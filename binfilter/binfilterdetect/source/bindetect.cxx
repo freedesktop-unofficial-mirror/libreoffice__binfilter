@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:37:19 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:13:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -277,7 +277,7 @@ BinFilterDetect::~BinFilterDetect()
             bReadOnly = aMedium.IsReadOnly();
             SvStorageRef aStor = aMedium.GetStorage();
 
-            if ( INetURLObject( aURL ).GetExtension().CompareToAscii("vor") == COMPARE_EQUAL )
+            if ( INetURLObject( aURL ).GetExtension().compareToAscii("vor") == 0 )
                 nMust |= SFX_FILTER_TEMPLATEPATH;
 
             // check the preselected filter
