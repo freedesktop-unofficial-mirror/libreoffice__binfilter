@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoattr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:24:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,40 +59,40 @@
  *
  ************************************************************************/
 
-#include "svdoattr.hxx"
+// auto strip #include "svdoattr.hxx"
 #include "xpool.hxx"
-#include "svditext.hxx"
-#include "svdtouch.hxx"
+// auto strip #include "svditext.hxx"
+// auto strip #include "svdtouch.hxx"
 #include "svdio.hxx"
 #include "svdmodel.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdpage.hxx"
-#include "svdattr.hxx"
-#include "svdattrx.hxx"
+// auto strip #include "svdattr.hxx"
+// auto strip #include "svdattrx.hxx"
 #include "svdpool.hxx"
-#include "svdotext.hxx"
+// auto strip #include "svdotext.hxx"
 #include "svdocapt.hxx"
-#include "svdograf.hxx"
-#include "svdoole2.hxx"
-#include "svdorect.hxx"
-#include "svdocirc.hxx"
-#include "svdomeas.hxx"
+// auto strip #include "svdograf.hxx"
+// auto strip #include "svdoole2.hxx"
+// auto strip #include "svdorect.hxx"
+// auto strip #include "svdocirc.hxx"
+// auto strip #include "svdomeas.hxx"
 
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
 
-#ifndef _XENUM_HXX //autogen
-#include "xenum.hxx"
-#endif
+// auto strip #ifndef _XENUM_HXX //autogen
+// auto strip #include "xenum.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
-#include "xlineit0.hxx"
-#endif
+// auto strip #ifndef _SVX_XLINEIT0_HXX //autogen
+// auto strip #include "xlineit0.hxx"
+// auto strip #endif
 
 #ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
@@ -102,45 +102,49 @@
 #include "xlnedwit.hxx"
 #endif
 
-#ifndef SVX_XFILLIT0_HXX //autogen
-#include "xfillit0.hxx"
-#endif
+// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
+// auto strip #include "xfillit0.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLBMTIT_HXX //autogen
-#include "xflbmtit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLBMTIT_HXX //autogen
+// auto strip #include "xflbmtit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_TEXTIT0_HXX //autogen
-#include "xtextit0.hxx"
-#endif
+// auto strip #ifndef _SVX_TEXTIT0_HXX //autogen
+// auto strip #include "xtextit0.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLBSTIT_HXX //autogen
-#include "xflbstit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLBSTIT_HXX //autogen
+// auto strip #include "xflbstit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLBTOXY_HXX //autogen
-#include "xflbtoxy.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLBTOXY_HXX //autogen
+// auto strip #include "xflbtoxy.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFTSHIT_HXX //autogen
-#include "xftshit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFTSHIT_HXX //autogen
+// auto strip #include "xftshit.hxx"
+// auto strip #endif
 
 #ifndef _EEITEMID_HXX
 #include <eeitemid.hxx>
 #endif
 
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include "colritem.hxx"
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
 #endif
 
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include "fontitem.hxx"
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include "colritem.hxx"
+// auto strip #endif
 
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include "fhgtitem.hxx"
-#endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include "fontitem.hxx"
+// auto strip #endif
+
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include "fhgtitem.hxx"
+// auto strip #endif
 
 //#include <charscaleitem.hxx>
 
@@ -152,9 +156,9 @@
 #include <xlnwtit.hxx>
 #endif
 
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
@@ -164,17 +168,17 @@
 #include <svtools/whiter.hxx>
 #endif
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
-#include <xlnclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
+// auto strip #include <xlnclit.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
 #endif
 
-#ifndef _SVX_XLNTRIT_HXX //autogen
-#include <xlntrit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNTRIT_HXX //autogen
+// auto strip #include <xlntrit.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XFLTRIT_HXX //autogen
 #include <xfltrit.hxx>
@@ -192,9 +196,9 @@
 #include "xflbckit.hxx"
 #endif
 
-#ifndef _XTABLE_HXX
-#include "xtable.hxx"
-#endif
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include "xtable.hxx"
+// auto strip #endif
 
 #ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
@@ -205,9 +209,9 @@
 #ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
 #endif
-#ifndef _SVX_XFLGRIT_HXX
-#include "xflgrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLGRIT_HXX
+// auto strip #include "xflgrit.hxx"
+// auto strip #endif
 #ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
 #endif
@@ -216,6 +220,9 @@
 #endif
 #ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
+#endif
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
 namespace binfilter {
 
