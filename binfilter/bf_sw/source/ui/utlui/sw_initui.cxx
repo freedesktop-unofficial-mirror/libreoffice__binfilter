@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:33:33 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:37:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -302,18 +302,18 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /* -----------------16.09.99 12:29-------------------
 
  --------------------------------------------------*/
-//STRIP001 const String&    SwAuthorityFieldType::GetAuthTypeName(ToxAuthorityType eType)
-//STRIP001 {
-//STRIP001  if(!pAuthFieldTypeList)
-//STRIP001  {
-//STRIP001      pAuthFieldTypeList = new SvStringsDtor(AUTH_TYPE_END, 1);
-//STRIP001      for(USHORT i = 0; i < AUTH_TYPE_END; i++)
-//STRIP001          pAuthFieldTypeList->Insert(
-//STRIP001              new String(SW_RES(STR_AUTH_TYPE_START + i)),
-//STRIP001                                  pAuthFieldTypeList->Count());
-//STRIP001  }
-//STRIP001  return *pAuthFieldTypeList->GetObject(eType);
-//STRIP001 }
+ const String&  SwAuthorityFieldType::GetAuthTypeName(ToxAuthorityType eType)
+ {
+    if(!pAuthFieldTypeList)
+    {
+        pAuthFieldTypeList = new SvStringsDtor(AUTH_TYPE_END, 1);
+        for(USHORT i = 0; i < AUTH_TYPE_END; i++)
+            pAuthFieldTypeList->Insert(
+                new String(SW_RES(STR_AUTH_TYPE_START + i)),
+                                    pAuthFieldTypeList->Count());
+    }
+    return *pAuthFieldTypeList->GetObject(eType);
+ }
 
 
 
