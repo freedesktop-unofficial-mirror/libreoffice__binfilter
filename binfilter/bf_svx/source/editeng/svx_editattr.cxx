@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editattr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:33:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,12 +59,40 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
+
 #include <svxfont.hxx>
-#include <flditem.hxx>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SFXPOOLITEM_HXX //autogen
+#include <svtools/poolitem.hxx>
+#endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+#ifndef _DATE_HXX //autogen
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TIME_HXX //autogen
+#include <tools/time.hxx>
+#endif
+
+// auto strip #include <flditem.hxx>
 #include <fontitem.hxx>
 #include <postitem.hxx>
 #include <wghtitem.hxx>
@@ -72,7 +100,7 @@
 #include <cntritem.hxx>
 #include <shdditem.hxx>
 #include <escpitem.hxx>
-#include <colritem.hxx>
+// auto strip #include <colritem.hxx>
 #include <wrlmitem.hxx>
 #include <fhgtitem.hxx>
 #include <crsditem.hxx>
@@ -83,9 +111,12 @@
 #include <emphitem.hxx>
 #include <charscaleitem.hxx>
 #include <charreliefitem.hxx>
-
-
 #include <editattr.hxx>
+
+#ifndef _SV_OUTDEV_HXX
+#include <vcl/outdev.hxx>
+#endif
+
 namespace binfilter {
 
 /*N*/ DBG_NAME( EE_EditAttrib )
@@ -347,7 +378,7 @@ namespace binfilter {
 // class EditCharAttribField
 // -------------------------------------------------------------------------
 /*N*/ EditCharAttribField::EditCharAttribField( const SvxFieldItem& rAttr, USHORT nPos )
-/*N*/   : EditCharAttrib( rAttr, nPos, nPos+1 )
+/*N*/   : EditCharAttrib( (const SfxPoolItem&)rAttr, nPos, nPos+1 )
 /*N*/ {
 /*N*/   SetFeature( TRUE ); // !!!
 /*N*/   pTxtColor = 0;
