@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmobjfac.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:46:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,21 +60,21 @@
  ************************************************************************/
 #pragma hdrstop
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 
-#ifndef _SVDOBJ_HXX
-#include "svdobj.hxx"
-#endif
+// auto strip #ifndef _SVDOBJ_HXX
+// auto strip #include "svdobj.hxx"
+// auto strip #endif
 
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
 
-#ifndef _SVX_FMSERVS_HXX
-#include "fmservs.hxx"
-#endif
+// auto strip #ifndef _SVX_FMSERVS_HXX
+// auto strip #include "fmservs.hxx"
+// auto strip #endif
 
 #ifndef _FM_FMOBJFAC_HXX
 #include "fmobjfac.hxx"
@@ -86,6 +86,18 @@
 
 #ifndef _FM_FMOBJ_HXX
 #include "fmobj.hxx"
+#endif
+
+#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
+#include <com/sun/star/sdbc/XRowSetListener.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
+#include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+#include <com/sun/star/frame/XFrame.hpp>
 #endif
 
 #ifndef _SVX_FMSHIMP_HXX
@@ -104,21 +116,21 @@
 #include "tbxform.hxx"
 #endif
 
-#ifndef _TOOLS_RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
 #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SVX_DIALMGR_HXX
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
 #ifndef _SVX_FMSERVS_HXX
 #include "fmservs.hxx"
