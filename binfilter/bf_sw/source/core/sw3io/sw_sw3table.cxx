@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:45:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,21 +63,31 @@
 #pragma hdrstop
 
 #include "swerror.h"
-#include "doc.hxx"
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+#include "doc.hxx"
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #include "sw3imp.hxx"
-#include "swtable.hxx"
+// auto strip #include "swtable.hxx"
 #include "ddefld.hxx"
 #include "swddetbl.hxx"
 #include "swtblfmt.hxx"
