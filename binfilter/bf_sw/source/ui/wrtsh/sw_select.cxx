@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_select.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,74 +64,79 @@
 
 #include <limits.h>
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
-#include <bf_svx/scripttypeitem.hxx>
-#endif
+// auto strip #ifndef _SFX_BINDINGS_HXX //autogen
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMACITEM_HXX //autogen
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SCRIPTTYPEITEM_HXX
+// auto strip #include <bf_svx/scripttypeitem.hxx>
+// auto strip #endif
 
 
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASESH_HXX
+// auto strip #include <basesh.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _BASESH_HXX
-#include <basesh.hxx>
-#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _INITUI_HXX
-#include <initui.hxx>
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>                   // fuer Undo-Ids
-#endif
-#ifndef _SWEVENT_HXX
-#include <swevent.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _INITUI_HXX
+// auto strip #include <initui.hxx>
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>                 // fuer Undo-Ids
+// auto strip #endif
+// auto strip #ifndef _SWEVENT_HXX
+// auto strip #include <swevent.hxx>
+// auto strip #endif
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
 
 #if OSL_DEBUG_LEVEL > 1
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #endif
 namespace binfilter {
 

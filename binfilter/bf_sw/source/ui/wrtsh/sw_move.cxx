@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_move.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,25 +62,29 @@
 
 #pragma hdrstop
 
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
+// auto strip #ifndef _SFX_BINDINGS_HXX //autogen
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*  Immer:
