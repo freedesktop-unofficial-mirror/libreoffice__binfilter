@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmcrsr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:49:52 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:09:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -602,7 +602,7 @@ struct SwFillData
 /*N*/       aLine.TwipsToLine( rPoint.Y() );
 /*N*/       while( aLine.Y() + aLine.GetLineHeight() > nMaxY )
 /*N*/       {
-/*?*/           DBG_LOOP;
+///*?*/             DBG_LOOP;
 /*?*/           if( !aLine.Prev() )
 /*?*/               break;
 /*N*/       }
