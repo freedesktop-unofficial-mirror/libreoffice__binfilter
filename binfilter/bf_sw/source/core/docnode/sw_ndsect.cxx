@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:15:28 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:34:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,9 +82,9 @@
 // auto strip #ifndef _FMTANCHR_HXX //autogen
 // auto strip #include <fmtanchr.hxx>
 // auto strip #endif
-// auto strip #ifndef _TXTFTN_HXX //autogen
-// auto strip #include <txtftn.hxx>
-// auto strip #endif
+#ifndef _TXTFTN_HXX //autogen
+#include <txtftn.hxx>
+#endif
 // auto strip #ifndef _FMTCLDS_HXX //autogen
 // auto strip #include <fmtclds.hxx>
 // auto strip #endif
@@ -144,9 +144,9 @@
 // auto strip #ifndef _PAGEFRM_HXX
 // auto strip #include <pagefrm.hxx>
 // auto strip #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
+#ifndef _CNTFRM_HXX
+#include <cntfrm.hxx>
+#endif
 #ifndef _NODE2LAY_HXX
 #include <node2lay.hxx>
 #endif
@@ -777,29 +777,29 @@ namespace binfilter {
 /*N*/   SwFtnIdxs& rFtnArr = pNd->GetDoc()->GetFtnIdxs();
 /*N*/   if( rFtnArr.Count() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nPos;
-//STRIP001 /*?*/        rFtnArr.SeekEntry( SwNodeIndex( *pNd ), &nPos );
-//STRIP001 /*?*/        SwTxtFtn* pSrch;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // loesche erstmal alle, die dahinter stehen
-//STRIP001 /*?*/        while( nPos < rFtnArr.Count() &&
-//STRIP001 /*?*/            _SwTxtFtn_GetIndex( (pSrch = rFtnArr[ nPos ]) ) <= nEnd )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // Werden die Nodes nicht geloescht mussen sie bei den Seiten
-//STRIP001 /*?*/            // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
-//STRIP001 /*?*/            // stehen (Undo loescht sie nicht!)
-//STRIP001 /*?*/            pSrch->DelFrms();
-//STRIP001 /*?*/            ++nPos;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        while( nPos-- &&
-//STRIP001 /*?*/            _SwTxtFtn_GetIndex( (pSrch = rFtnArr[ nPos ]) ) >= nStt )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // Werden die Nodes nicht geloescht mussen sie bei den Seiten
-//STRIP001 /*?*/            // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
-//STRIP001 /*?*/            // stehen (Undo loescht sie nicht!)
-//STRIP001 /*?*/            pSrch->DelFrms();
-//STRIP001 /*?*/        }
+/*?*/       USHORT nPos;
+ /*?*/      rFtnArr.SeekEntry( SwNodeIndex( *pNd ), &nPos );
+ /*?*/      SwTxtFtn* pSrch;
+ /*?*/
+ /*?*/      // loesche erstmal alle, die dahinter stehen
+ /*?*/      while( nPos < rFtnArr.Count() &&
+ /*?*/          _SwTxtFtn_GetIndex( (pSrch = rFtnArr[ nPos ]) ) <= nEnd )
+ /*?*/      {
+ /*?*/          // Werden die Nodes nicht geloescht mussen sie bei den Seiten
+ /*?*/          // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
+ /*?*/          // stehen (Undo loescht sie nicht!)
+ /*?*/          pSrch->DelFrms();
+ /*?*/          ++nPos;
+ /*?*/      }
+ /*?*/
+ /*?*/      while( nPos-- &&
+ /*?*/          _SwTxtFtn_GetIndex( (pSrch = rFtnArr[ nPos ]) ) >= nStt )
+ /*?*/      {
+ /*?*/          // Werden die Nodes nicht geloescht mussen sie bei den Seiten
+ /*?*/          // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
+ /*?*/          // stehen (Undo loescht sie nicht!)
+ /*?*/          pSrch->DelFrms();
+ /*?*/      }
 /*N*/   }
 /*N*/ }
 
@@ -1091,68 +1091,68 @@ namespace binfilter {
 //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
 //Dokument. Die erzeugten Contentframes werden in das entsprechende
 //Layout gehaengt.
-//STRIP001 void SwSectionNode::MakeFrms(const SwNodeIndex & rIdx )
-//STRIP001 {
-//STRIP001  // also nehme meinen nachfolgenden oder vorhergehenden ContentFrame:
-//STRIP001  SwNodes& rNds = GetNodes();
-//STRIP001  if( rNds.IsDocNodes() && rNds.GetDoc()->GetRootFrm() )
-//STRIP001  {
-//STRIP001      if( GetSection().IsHidden() || IsCntntHidden() )
-//STRIP001      {
-//STRIP001          SwNodeIndex aIdx( *EndOfSectionNode() );
-//STRIP001          SwCntntNode* pCNd = rNds.GoNextSection( &aIdx, TRUE, FALSE );
-//STRIP001          if( !pCNd )
-//STRIP001          {
-//STRIP001              aIdx = *this;
-//STRIP001              if( 0 == ( pCNd = rNds.GoPrevSection( &aIdx, TRUE, FALSE )) )
-//STRIP001                  return ;
-//STRIP001          }
-//STRIP001          pCNd = rNds[ aIdx ]->GetCntntNode();
-//STRIP001          pCNd->MakeFrms( (SwCntntNode&)rIdx.GetNode() );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
-//STRIP001          SwFrm *pFrm, *pNew;
-//STRIP001          while( 0 != (pFrm = aNode2Layout.NextFrm()) )
-//STRIP001          {
-//STRIP001              ASSERT( pFrm->IsSctFrm(), "Depend von Section keine Section." );
-//STRIP001              pNew = rIdx.GetNode().GetCntntNode()->MakeFrm();
-//STRIP001
-//STRIP001              SwSectionNode *pS = rIdx.GetNode().FindSectionNode();
-//STRIP001              // if the node is in a section, the sectionframe now
-//STRIP001              // has to be created..
-//STRIP001                 // OD 14.11.2002 #104684# - boolean to control <Init()> of a new
-//STRIP001                 // section frame.
-//STRIP001                 bool bInitNewSect = false;
-//STRIP001              if( pS )
-//STRIP001              {
-//STRIP001                  SwSectionFrm *pSct = new SwSectionFrm( pS->GetSection() );
-//STRIP001                     // OD 14.11.2002 #104684# - prepare <Init()> of new section frame.
-//STRIP001                     bInitNewSect = true;
-//STRIP001                  SwLayoutFrm* pUp = pSct;
-//STRIP001                  while( pUp->Lower() )  // for columned sections
-//STRIP001                  {
-//STRIP001                      ASSERT( pUp->Lower()->IsLayoutFrm(),"Who's in there?" );
-//STRIP001                      pUp = (SwLayoutFrm*)pUp->Lower();
-//STRIP001                  }
-//STRIP001                  pNew->Paste( pUp, NULL );
-//STRIP001                  pNew = pSct;
-//STRIP001              }
-//STRIP001
-//STRIP001              // wird ein Node vorher oder nachher mit Frames versehen
-//STRIP001              if ( rIdx < GetIndex() )
-//STRIP001                  // der neue liegt vor mir
-//STRIP001                  pNew->Paste( pFrm->GetUpper(), pFrm );
-//STRIP001              else
-//STRIP001                  // der neue liegt hinter mir
-//STRIP001                  pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
-//STRIP001                 if ( bInitNewSect )
-//STRIP001                     static_cast<SwSectionFrm*>(pNew)->Init();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+void SwSectionNode::MakeFrms(const SwNodeIndex & rIdx )
+{
+    // also nehme meinen nachfolgenden oder vorhergehenden ContentFrame:
+    SwNodes& rNds = GetNodes();
+    if( rNds.IsDocNodes() && rNds.GetDoc()->GetRootFrm() )
+    {
+        if( GetSection().IsHidden() || IsCntntHidden() )
+        {
+            SwNodeIndex aIdx( *EndOfSectionNode() );
+            SwCntntNode* pCNd = rNds.GoNextSection( &aIdx, TRUE, FALSE );
+            if( !pCNd )
+            {
+                aIdx = *this;
+                if( 0 == ( pCNd = rNds.GoPrevSection( &aIdx, TRUE, FALSE )) )
+                    return ;
+            }
+            pCNd = rNds[ aIdx ]->GetCntntNode();
+            pCNd->MakeFrms( (SwCntntNode&)rIdx.GetNode() );
+        }
+        else
+        {
+            SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
+            SwFrm *pFrm, *pNew;
+            while( 0 != (pFrm = aNode2Layout.NextFrm()) )
+            {
+                ASSERT( pFrm->IsSctFrm(), "Depend von Section keine Section." );
+                pNew = rIdx.GetNode().GetCntntNode()->MakeFrm();
+
+                SwSectionNode *pS = rIdx.GetNode().FindSectionNode();
+                // if the node is in a section, the sectionframe now
+                // has to be created..
+                // OD 14.11.2002 #104684# - boolean to control <Init()> of a new
+                // section frame.
+                bool bInitNewSect = false;
+                if( pS )
+                {
+                    SwSectionFrm *pSct = new SwSectionFrm( pS->GetSection() );
+                    // OD 14.11.2002 #104684# - prepare <Init()> of new section frame.
+                    bInitNewSect = true;
+                    SwLayoutFrm* pUp = pSct;
+                    while( pUp->Lower() )  // for columned sections
+                    {
+                        ASSERT( pUp->Lower()->IsLayoutFrm(),"Who's in there?" );
+                        pUp = (SwLayoutFrm*)pUp->Lower();
+                    }
+                    pNew->Paste( pUp, NULL );
+                    pNew = pSct;
+                }
+
+                // wird ein Node vorher oder nachher mit Frames versehen
+                if ( rIdx < GetIndex() )
+                    // der neue liegt vor mir
+                    pNew->Paste( pFrm->GetUpper(), pFrm );
+                else
+                    // der neue liegt hinter mir
+                    pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
+                if ( bInitNewSect )
+                    static_cast<SwSectionFrm*>(pNew)->Init();
+            }
+        }
+    }
+}
 
 //Fuer jedes vorkommen im Layout einen SectionFrm anlegen und vor den
 //entsprechenden CntntFrm pasten.
@@ -1286,30 +1286,30 @@ namespace binfilter {
 //STRIP001  return pSectNd;
 //STRIP001 }
 
-//STRIP001 BOOL SwSectionNode::IsCntntHidden() const
-//STRIP001 {
-//STRIP001  ASSERT( !pSection->IsHidden(), "That's simple: Hidden Section => Hidden Content" );
-//STRIP001  SwNodeIndex aTmp( *this, 1 );
-//STRIP001  ULONG nEnd = EndOfSectionIndex();
-//STRIP001  while( aTmp < nEnd )
-//STRIP001  {
-//STRIP001      if( aTmp.GetNode().IsSectionNode() )
-//STRIP001      {
-//STRIP001          const SwSection& rSect = ((SwSectionNode&)aTmp.GetNode()).GetSection();
-//STRIP001          if( rSect.IsHiddenFlag() )
-//STRIP001              // dann diese Section ueberspringen
-//STRIP001              aTmp = *aTmp.GetNode().EndOfSectionNode();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if( aTmp.GetNode().IsCntntNode() || aTmp.GetNode().IsTableNode() )
-//STRIP001              return FALSE; // Nicht versteckter Inhalt wurde gefunden
-//STRIP001          ASSERT( aTmp.GetNode().IsEndNode(), "EndNode expected" );
-//STRIP001      }
-//STRIP001      aTmp++;
-//STRIP001  }
-//STRIP001  return TRUE; // Alles versteckt
-//STRIP001 }
+BOOL SwSectionNode::IsCntntHidden() const
+{
+    ASSERT( !pSection->IsHidden(), "That's simple: Hidden Section => Hidden Content" );
+    SwNodeIndex aTmp( *this, 1 );
+    ULONG nEnd = EndOfSectionIndex();
+    while( aTmp < nEnd )
+    {
+        if( aTmp.GetNode().IsSectionNode() )
+        {
+            const SwSection& rSect = ((SwSectionNode&)aTmp.GetNode()).GetSection();
+            if( rSect.IsHiddenFlag() )
+                // dann diese Section ueberspringen
+                aTmp = *aTmp.GetNode().EndOfSectionNode();
+        }
+        else
+        {
+            if( aTmp.GetNode().IsCntntNode() || aTmp.GetNode().IsTableNode() )
+                return FALSE; // Nicht versteckter Inhalt wurde gefunden
+            ASSERT( aTmp.GetNode().IsEndNode(), "EndNode expected" );
+        }
+        aTmp++;
+    }
+    return TRUE; // Alles versteckt
+}
 
 
 //STRIP001 void SwSectionNode::NodesArrChgd()
