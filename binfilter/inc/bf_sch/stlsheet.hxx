@@ -2,9 +2,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:53:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #ifndef _SCH_STLSHEET_HXX
 #define _SCH_STLSHEET_HXX
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 namespace binfilter {
 
 

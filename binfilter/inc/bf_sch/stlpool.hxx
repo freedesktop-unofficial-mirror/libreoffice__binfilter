@@ -2,9 +2,9 @@
  *
  *  $RCSfile: stlpool.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:53:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,12 +65,12 @@
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-#ifndef _RSCSFX_HXX //autogen
-#include <rsc/rscsfx.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _RSCSFX_HXX //autogen
+// auto strip #include <rsc/rscsfx.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
