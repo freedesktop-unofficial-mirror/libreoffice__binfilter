@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1509,19 +1509,19 @@ static double SMALLEST_DASH_WIDTH(26.95);
 //STRIP001 }
 
 /*N*/ void SdrObject::SetName(const XubString& rStr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if(rStr.Len())
-//STRIP001  {
-//STRIP001      ImpForcePlusData();
-//STRIP001      pPlusData->aObjName = rStr;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if(pPlusData)
-//STRIP001      {
-//STRIP001          pPlusData->aObjName = rStr;
-//STRIP001      }
-//STRIP001  }
+/*NBFF*/ {
+/*NBFF*/    if(rStr.Len())
+/*NBFF*/    {
+/*NBFF*/        ImpForcePlusData();
+/*NBFF*/        pPlusData->aObjName = rStr;
+/*NBFF*/    }
+/*NBFF*/    else
+/*NBFF*/    {
+/*NBFF*/        if(pPlusData)
+/*NBFF*/        {
+/*NBFF*/            pPlusData->aObjName = rStr;
+/*NBFF*/        }
+/*NBFF*/    }
 /*N*/ }
 
 /*N*/ XubString SdrObject::GetName() const
