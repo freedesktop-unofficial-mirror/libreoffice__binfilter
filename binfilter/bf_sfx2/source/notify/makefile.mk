@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:24 $
+#   last change: $Author: vg $ $Date: 2005-03-08 16:20:58 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -95,7 +95,8 @@ SLOFILES =	\
         $(SLO)$/sfx2_linkhdl.obj
 
 EXCEPTIONSFILES =	\
-        $(SLO)$/sfx2_eventsupplier.obj \
+        $(SLO)$/sfx2_eventsupplier.obj
+
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk
