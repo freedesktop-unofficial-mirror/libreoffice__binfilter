@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtcfg.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:58:17 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:12:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,16 @@
 #ifndef _TXTCFG_HXX
 #define _TXTCFG_HXX
 
-#if OSL_DEBUG_LEVEL > 1
-// auto strip #include "dbgloop.hxx"  // DBG_LOOP
-#else
-#ifdef DBG_LOOP     //kann per precompiled hereinkommen
-#undef DBG_LOOP
-#undef DBG_LOOP_RESET
-#endif
-#define DBG_LOOP
-#define DBG_LOOP_RESET
-#endif
+//#if OSL_DEBUG_LEVEL > 1
+//// auto strip #include "dbgloop.hxx"  // DBG_LOOP
+//#else
+//#ifdef DBG_LOOP       //kann per precompiled hereinkommen
+//#undef DBG_LOOP
+//#undef DBG_LOOP_RESET
+//#endif
+//#define DBG_LOOP
+//#define DBG_LOOP_RESET
+//#endif
 namespace binfilter {
 
 // Toleranzwert in der Formatierung und Textausgabe.
