@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rdswg.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:45:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,12 +68,12 @@
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
-#ifndef _SWGSTR_HXX
-#include <swgstr.hxx>
-#endif
-#ifndef _SWGIDS_HXX
-#include <swgids.hxx>
-#endif
+// auto strip #ifndef _SWGSTR_HXX
+// auto strip #include <swgstr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWGIDS_HXX
+// auto strip #include <swgids.hxx>
+// auto strip #endif
 class Brush;
 class Color;
 class SfxItemSet;
