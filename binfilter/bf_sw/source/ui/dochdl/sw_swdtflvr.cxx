@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:18 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 12:55:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -307,6 +307,9 @@
 // #109590#
 #ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
+#endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
 #endif
 namespace binfilter {
 
@@ -1714,7 +1717,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001              pStream = new SvMemoryStream( (void*)sData.getStr(),
 //STRIP001                          sData.getLength() * sizeof( sal_Unicode ),
 //STRIP001                          STREAM_READ );
-//STRIP001 #ifdef __BIGENDIAN
+//STRIP001 #ifdef OSL_BIGENDIAN
 //STRIP001              pStream->SetNumberFormatInt( NUMBERFORMAT_INT_BIGENDIAN );
 //STRIP001 #else
 //STRIP001              pStream->SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
