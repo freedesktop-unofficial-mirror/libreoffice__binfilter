@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_refupdat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:22:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,19 +60,19 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 
 #include "refupdat.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "compiler.hxx"
-#include "bigrange.hxx"
+// auto strip #include "bigrange.hxx"
 #include "chgtrack.hxx"
 namespace binfilter {
 
