@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:52:25 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:08:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -262,8 +262,8 @@ namespace binfilter {
 /*N*/   SetModified(sal_True);
 /*N*/   SfxDocumentInfo &rInfo = GetDocInfo();
 /*N*/   Broadcast( SfxDocumentInfoHint( &rInfo ) );
-/*N*/   SetAutoLoad( rInfo.GetReloadURL(), rInfo.GetReloadDelay() * 1000,
-/*N*/                rInfo.IsReloadEnabled() );
+/*N*/   SetAutoLoad( INetURLObject(rInfo.GetReloadURL()),
+/*N*/       rInfo.GetReloadDelay() * 1000, rInfo.IsReloadEnabled() );
 /*N*/
 /*N*/   // bitte beachten:
 /*N*/   // 1. Titel in DocInfo aber nicht am Doc (nach HTML-Import)
@@ -1035,8 +1035,8 @@ namespace binfilter {
 /*N*/       !(pImp->nLoadedFlags & SFX_LOADED_IMAGES ) )
 /*N*/   {
 /*N*/       SfxDocumentInfo& rInfo = GetDocInfo();
-/*N*/       SetAutoLoad( rInfo.GetReloadURL(), rInfo.GetReloadDelay() * 1000,
-/*N*/                    rInfo.IsReloadEnabled() );
+/*N*/       SetAutoLoad( INetURLObject(rInfo.GetReloadURL()),
+/*N*/           rInfo.GetReloadDelay() * 1000, rInfo.IsReloadEnabled() );
 /*N*/       if( !bSetModifiedTRUE && IsEnableSetModified() )
 /*?*/           SetModified( sal_False );
 /*N*/       Invalidate( SID_SAVEASDOC );
