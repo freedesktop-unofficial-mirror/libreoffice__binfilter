@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porfly.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:53:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,10 +64,19 @@
 
 #include "dcontact.hxx" // SwDrawContact
 #include "dflyobj.hxx"  // SwVirtFlyDrawObj
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #include "pam.hxx"      // SwPosition
-#include "flyfrm.hxx"   // SwFlyInCntFrm
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx" // SwFlyInCntFrm
 #include "frmfmt.hxx"   // SwFrmFmt
-#include "viewsh.hxx"
+// auto strip #include "viewsh.hxx"
 
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
@@ -90,9 +99,9 @@
 #include "flyfrms.hxx"
 #include "txatbase.hxx" // SwTxtAttr
 #include "porfly.hxx"
-#include "porlay.hxx"   // SetFly
+// auto strip #include "porlay.hxx" // SetFly
 #include "inftxt.hxx"   // SwTxtPaintInfo
-#include "frmsh.hxx"
+// auto strip #include "frmsh.hxx"
 namespace binfilter {
 
 /*************************************************************************
