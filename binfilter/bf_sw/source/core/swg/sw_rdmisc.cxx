@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdmisc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:46:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,55 +63,60 @@
 #pragma hdrstop
 
 
-#ifndef _COLOR_HXX //autogen
-#include <tools/color.hxx>
-#endif
-#ifndef _JOBSET_HXX //autogen
-#include <vcl/jobset.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
-#endif
+// auto strip #ifndef _COLOR_HXX //autogen
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
+// auto strip #ifndef _JOBSET_HXX //autogen
+// auto strip #include <vcl/jobset.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMACITEM_HXX //autogen
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
 
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _DOCSTAT_HXX //autogen
-#include <docstat.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSTAT_HXX //autogen
+// auto strip #include <docstat.hxx>
+// auto strip #endif
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _RDSWG_HXX
-#include <rdswg.hxx>
-#endif
-#ifndef _SWGPAR_HXX
-#include <swgpar.hxx>       // SWGRD_xxx-Flags
-#endif
-#ifndef _FRMIDS_HXX
-#include <frmids.hxx>
-#endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>        // Zeichen-Konversion
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _RDSWG_HXX
+// auto strip #include <rdswg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWGPAR_HXX
+// auto strip #include <swgpar.hxx>     // SWGRD_xxx-Flags
+// auto strip #endif
+// auto strip #ifndef _FRMIDS_HXX
+// auto strip #include <frmids.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>      // Zeichen-Konversion
+// auto strip #endif
 namespace binfilter {
 
 //using namespace ::com::sun::star;
