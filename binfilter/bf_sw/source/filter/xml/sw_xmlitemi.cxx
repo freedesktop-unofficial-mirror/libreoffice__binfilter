@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitemi.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:25:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,11 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
