@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scdll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:36:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -80,7 +80,7 @@
 #include "docsh.hxx"
 #include "tabvwsh.hxx"
 #include "prevwsh.hxx"
-#include "drawsh.hxx"
+// auto strip #include "drawsh.hxx"
 #include "drformsh.hxx"
 #include "drtxtob.hxx"
 #include "editsh.hxx"
@@ -105,11 +105,16 @@
 #include <bf_svx/selctrl.hxx>
 #include <bf_svx/insctrl.hxx>
 #include <bf_svx/zoomctrl.hxx>
-#include <bf_svx/flditem.hxx>
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+// auto strip #include <bf_svx/flditem.hxx>
 #include <bf_svx/modctrl.hxx>
 #include <bf_svx/pszctrl.hxx>
-#include <bf_svx/fntctl.hxx>
-#include <bf_svx/fntszctl.hxx>
+// auto strip #include <bf_svx/fntctl.hxx>
+// auto strip #include <bf_svx/fntszctl.hxx>
 #include <bf_svx/grafctrl.hxx>
 #include <bf_svx/galbrws.hxx>
 #include <bf_svx/clipboardctl.hxx>
@@ -117,6 +122,11 @@
 #ifndef _SVX_VERT_TEXT_TBXCTRL_HXX
 #include <bf_svx/verttexttbxctrl.hxx>
 #endif
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
 #include "tbinsert.hxx"
 
 // Child-Windows
@@ -124,16 +134,16 @@
 #include "navipi.hxx"
 #include "inputwin.hxx"
 #include <bf_svx/fontwork.hxx>
-#include <bf_svx/srchdlg.hxx>
+// auto strip #include <bf_svx/srchdlg.hxx>
 #include <bf_offmgr/hyprlink.hxx>
 #include <bf_svx/imapdlg.hxx>
 
-#include "editutil.hxx"
+// auto strip #include "editutil.hxx"
 #include <bf_svx/svdfield.hxx>      //  SdrRegisterFieldClasses
 #include <rtl/logfile.hxx>
 
 #include "dwfunctr.hxx"
-#include "acredlin.hxx"
+// auto strip #include "acredlin.hxx"
 namespace binfilter {
 
 //------------------------------------------------------------------
