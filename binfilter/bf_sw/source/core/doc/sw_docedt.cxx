@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docedt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:06:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,21 +68,21 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SOUND_HXX //autogen
-#include <vcl/sound.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
-#include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX //autogen
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
@@ -96,90 +96,98 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
-#ifndef _ACORRECT_HXX
-#include <acorrect.hxx>     // Autokorrektur
+// auto strip #ifndef _ACORRECT_HXX
+// auto strip #include <acorrect.hxx>       // Autokorrektur
+// auto strip #endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>        // fuer SwBookmark
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>         // fuers Spell
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>      // fuer SwBookmark
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>           // fuers Spell
-#endif
-#ifndef _CRSRSH_HXX
-#include <crsrsh.hxx>
-#endif
-#ifndef _CRSTATE_HXX
-#include <crstate.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _CRSRSH_HXX
+// auto strip #include <crsrsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _CRSTATE_HXX
+// auto strip #include <crstate.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _DOCTXM_HXX
-#include <doctxm.hxx>       // beim Move: Verzeichnisse korrigieren
-#endif
-#ifndef _FTNIDX_HXX
-#include <ftnidx.hxx>
-#endif
-#ifndef _FTNINFO_HXX
-#include <ftninfo.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>       // Statusanzeige
-#endif
+// auto strip #ifndef _DOCTXM_HXX
+// auto strip #include <doctxm.hxx>     // beim Move: Verzeichnisse korrigieren
+// auto strip #endif
+// auto strip #ifndef _FTNIDX_HXX
+// auto strip #include <ftnidx.hxx>
+// auto strip #endif
+// auto strip #ifndef _FTNINFO_HXX
+// auto strip #include <ftninfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>     // Statusanzeige
+// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>       // Strukturen zum Sichern beim Move/Delete
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>          // fuers UpdateFtn
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>            // fuers UpdateFtn
+// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-#ifndef _SPLARGS_HXX
-#include <splargs.hxx>      // fuer Spell
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SPLARGS_HXX
+// auto strip #include <splargs.hxx>        // fuer Spell
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>       // fuer die UndoIds
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #include "comcore.hrc"
 #include "editsh.hxx"
 namespace binfilter {
