@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:29:28 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:19:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2097,12 +2097,14 @@ namespace SfxContainer_Impl
 /*N*/ }
 
 // Methods XNameAccess
-/*N*/ Any SfxLibrary_Impl::getByName( const OUString& aName )
-/*N*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*N*/ {
-/*N*/   Any aRetAny = maNameContainer.getByName( aName ) ;
-/*N*/   return aRetAny;
-/*N*/ }
+Any SfxLibrary_Impl::getByName( const OUString& aName )
+    throw(NoSuchElementException, WrappedTargetException, RuntimeException)
+{
+    Any aRetAny;
+    if ( !mbPasswordProtected || mbPasswordVerified )
+        aRetAny = maNameContainer.getByName( aName );
+    return aRetAny;
+}
 
 /*N*/ Sequence< OUString > SfxLibrary_Impl::getElementNames()
 /*N*/   throw(RuntimeException)
