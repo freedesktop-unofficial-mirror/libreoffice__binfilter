@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_confuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:19:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,7 +68,7 @@
 #include "confuno.hxx"
 #include "unonames.hxx"
 #include "unoguard.hxx"
-#include "scdll.hxx"
+// auto strip #include "scdll.hxx"
 #include "docsh.hxx"
 #include "miscuno.hxx"
 #include "forbiuno.hxx"
@@ -86,12 +86,12 @@
 #ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
 #endif
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include <bf_xmloff/xmluconv.hxx>
+// auto strip #endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
