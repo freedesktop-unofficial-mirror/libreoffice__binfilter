@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_label.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:08 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:34:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
  // #pragma ******************************************************************
 
  // #include *****************************************************************
@@ -66,63 +67,58 @@
 #include "helpid.h"
 // ----- defined strings -----------------------------------------------------
 #define LABEL_STRING                                    \
-    Text = "Etiketten" ;                                \
-    Text [ ENGLISH ] = "Labels" ;                       \
-    Text [ norwegian ] = "Etiketter" ;                  \
-    Text [ italian ] = "Etichette" ;                    \
-    Text [ portuguese_brazilian ] = "Etiquetas" ;       \
-    Text [ portuguese ] = "Etiquetas" ;                 \
-    Text [ finnish ] = "Osoitetarrat" ;                       \
-    Text [ danish ] = "Etiketter" ;                     \
-    Text [ french ] = "�tiquettes" ;                    \
-    Text [ swedish ] = "Etiketter" ;                    \
-    Text [ dutch ] = "Etiketten" ;                      \
-    Text [ spanish ] = "Etiquetas" ;                    \
-    Text [ english_us ] = "Labels" ;                    \
-    Text[ chinese_simplified ] = "标签";                \
-    Text[ russian ] = "��������";                       \
-    Text[ polish ] = "Etykiety";                        \
-    Text[ japanese ] = "ラベル書き";                          \
-    Text[ chinese_traditional ] = "貼標";               \
-    Text[ arabic ] = "������ �����";                    \
-    Text[ greek ] = "��������";                         \
-    Text[ korean ] = "레이블";   \
-    Text[ turkish ] = "Etiket"; \
-    Text[ catalan ] = "Etiquetes";  \
-    Text[ thai ] = "ป้ายชื่อ";  \
-    Text[ czech ] = "Štítky"; \
-    Text[ hebrew ] = "‮מדבקות‬";  \
-    Text[ hindi ] = "लेबिलें";    \
-    Text[ slovak ] = "Štítky";
+    Text [ de ] = "Etiketten" ;                                \
+    Text [ en-US ] = "Labels" ;                    \
+    Text[ pt ] = "Etiquetas";\
+    Text[ ru ] = "Этикетки";\
+    Text[ el ] = "Ετικέτες";\
+    Text[ nl ] = "Etiketten";\
+    Text[ fr ] = "Étiquettes";\
+    Text[ es ] = "Etiquetas";\
+    Text[ fi ] = "Osoitetarrat";\
+    Text[ ca ] = "Etiquetes";\
+    Text[ it ] = "Etichette";\
+    Text[ sk ] = "Štítky";\
+    Text[ da ] = "Etiketter";\
+    Text[ sv ] = "Etiketter";\
+    Text[ pl ] = "Etykiety";\
+    Text[ pt-BR ] = "Etiquetas";\
+    Text[ th ] = "ป้ายชื่อ";\
+    Text[ ja ] = "ラベル書き";\
+    Text[ ko ] = "레이블";\
+    Text[ zh-CN ] = "标签";\
+    Text[ zh-TW ] = "貼標";\
+    Text[ tr ] = "Etiket";\
+    Text[ hi-IN ] = "लेबिलें";\
+    Text[ ar ] = "بطاقات عنونة";\
+    Text[ he ] = "‮מדבקות‬";\
 
 #define BUSINESS_CARD_STRING \
-    Text = "Visitenkarten" ;                            \
-    Text [ ENGLISH ] = "Business cards" ;               \
-    Text[ english_us ] = "Business Cards";              \
-    Text[ portuguese ] = "Cart�es de visita";           \
-    Text[ russian ] = "�������� ��������";              \
-    Text[ greek ] = "�������������� ������";                   \
-    Text[ dutch ] = "Visitekaartjes";                   \
-    Text[ french ] = "Cartes de visite";                \
-    Text[ spanish ] = "Tarjetas de visita";             \
-    Text[ italian ] = "Biglietti da visita";            \
-    Text[ danish ] = "Visitkort";                       \
-    Text[ swedish ] = "Visitkort";                      \
-    Text[ polish ] = "Wizyt�wki";                       \
-    Text[ portuguese_brazilian ] = "Cart�es de Visita";    \
-    Text[ japanese ] = "名刺";                          \
-    Text[ korean ] = "명함";                  \
-    Text[ chinese_simplified ] = "名片";                \
-    Text[ chinese_traditional ] = "名片";               \
-    Text[ arabic ] = "������ �������";  \
-    Text[ finnish ] = "K�yntikortit";   \
-    Text[ turkish ] = "Meslek Kartlar�";    \
-    Text[ catalan ] = "Targetes de visita"; \
-    Text[ thai ] = "นามบัตร"; \
-    Text[ czech ] = "Vizitky";  \
-    Text[ hebrew ] = "‮כרטיסי ביקור‬";   \
-    Text[ hindi ] = "व्यवहार कार्डस"; \
-    Text[ slovak ] = "Vizitky";
+    Text [ de ] = "Visitenkarten" ;                         \
+    Text [ en-US ] = "Business Cards";              \
+    Text[ pt ] = "Cartões de visita";\
+    Text[ ru ] = "Визитные карточки";\
+    Text[ el ] = "Επαγγελματικές κάρτες";\
+    Text[ nl ] = "Visitekaartjes";\
+    Text[ fr ] = "Cartes de visite";\
+    Text[ es ] = "Tarjetas de visita";\
+    Text[ fi ] = "Käyntikortit";\
+    Text[ ca ] = "Targetes de visita";\
+    Text[ it ] = "Biglietti da visita";\
+    Text[ sk ] = "Vizitky";\
+    Text[ da ] = "Visitkort";\
+    Text[ sv ] = "Visitkort";\
+    Text[ pl ] = "Wizytówki";\
+    Text[ pt-BR ] = "Cartões de Visita";\
+    Text[ th ] = "นามบัตร";\
+    Text[ ja ] = "名刺";\
+    Text[ ko ] = "명함";\
+    Text[ zh-CN ] = "名片";\
+    Text[ zh-TW ] = "名片";\
+    Text[ tr ] = "Meslek Kartları";\
+    Text[ hi-IN ] = "व्यवहार कार्डस";\
+    Text[ ar ] = "بطاقات الزيارة";\
+    Text[ he ] = "‮כרטיסי ביקור‬";\
 
  // DLG_LAB ------------------------------------------------------------------
 //STRIP001 TabDialog DLG_LAB
@@ -819,65 +815,60 @@
  // String *******************************************************************
 String STR_DOC_TITLE
 {
-    Text = "Etiketten" ;
-    Text [ English ] = "Labels" ;
-    Text [ norwegian ] = "Etiketter" ;
-    Text [ italian ] = "Busta" ;
-    Text [ portuguese_brazilian ] = "Etiquetas" ;
-    Text [ portuguese ] = "Etiquetas" ;
-    Text [ finnish ] = "Osoitetarrat" ;
-    Text [ danish ] = "Etiketter" ;
-    Text [ french ] = "�tiquettes" ;
-    Text [ swedish ] = "Etiketter" ;
-    Text [ dutch ] = "Etiketten" ;
-    Text [ spanish ] = "Etiquetas" ;
-    Text [ english_us ] = "Labels" ;
-    Text[ chinese_simplified ] = "标签";
-    Text[ russian ] = "�������";
-    Text[ polish ] = "Etykiety";
-    Text[ japanese ] = "ラベル書き";
-    Text[ chinese_traditional ] = "貼標";
-    Text[ arabic ] = "������ �����";
-    Text[ greek ] = "��������";
-    Text[ korean ] = "레이블";
-    Text[ turkish ] = "Etiket";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Etiquetes";
-    Text[ thai ] = "ป้ายชื่อ";
-    Text[ czech ] = "Popisky";
-    Text[ hebrew ] = "‮מדבקות‬";
-    Text[ hindi ] = "लेबिलें";
-    Text[ slovak ] = "Štítky";
+    Text [ de ] = "Etiketten" ;
+    Text [ en-US ] = "Labels" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Etiquetas";
+    Text[ ru ] = "Подписи";
+    Text[ el ] = "Ετικέτες";
+    Text[ nl ] = "Etiketten";
+    Text[ fr ] = "Étiquettes";
+    Text[ es ] = "Etiquetas";
+    Text[ fi ] = "Osoitetarrat";
+    Text[ ca ] = "Etiquetes";
+    Text[ it ] = "Busta";
+    Text[ sk ] = "Štítky";
+    Text[ da ] = "Etiketter";
+    Text[ sv ] = "Etiketter";
+    Text[ pl ] = "Etykiety";
+    Text[ pt-BR ] = "Etiquetas";
+    Text[ th ] = "ป้ายชื่อ";
+    Text[ ja ] = "ラベル書き";
+    Text[ ko ] = "레이블";
+    Text[ zh-CN ] = "标签";
+    Text[ zh-TW ] = "貼標";
+    Text[ tr ] = "Etiket";
+    Text[ hi-IN ] = "लेबिलें";
+    Text[ ar ] = "بطاقات عنونة";
+    Text[ he ] = "‮מדבקות‬";
 };
 String STR_CUSTOM
 {
-    Text                        = "[Benutzer]" ;
-    Text [ English ]            = "[Custom]" ;
-    Text[ english_us ] = "[User]";
-    Text[ portuguese ] = "[Utilizador]";
-    Text[ russian ] = "[������������]";
-    Text[ greek ] = "[�������]";
-    Text[ dutch ] = "[Aangepast]";
-    Text[ french ] = "[Utilisateur]";
-    Text[ spanish ] = "[Usuario]";
-    Text[ finnish ] = "[K�ytt�j�n m��ritt�m�]";
-    Text[ italian ] = "[Utente]";
-    Text[ danish ] = "[Bruger]";
-    Text[ swedish ] = "[Anv�ndare]";
-    Text[ polish ] = "[U�ytkownik]";
-    Text[ portuguese_brazilian ] = "[Usu�rio]";
-    Text[ japanese ] = "[ユーザー]";
-    Text[ korean ] = "[사용자]";
-    Text[ chinese_simplified ] = "[使用者]";
-    Text[ chinese_traditional ] = "[使用者]";
-    Text[ turkish ] = "\n[Kullan�c�]";
-    Text[ arabic ] = "[������]";
-    Text[ catalan ] = "[Usuari-definit]";
-    Text[ thai ] = "[ระบุผู้ใช้]";
-    Text[ czech ] = "[Uživatelský]";
-    Text[ hebrew ] = "[Benutzer]";
-    Text[ hindi ] = "[उपभोक्ता]";
-    Text[ slovak ] = "[Užívateľský]";
+    Text [ de ] = "[Benutzer]" ;
+    Text [ en-US ] = "[User]";
+    Text[ pt ] = "[Utilizador]";
+    Text[ ru ] = "[Пользователь]";
+    Text[ el ] = "[Χρήστης]";
+    Text[ nl ] = "[Aangepast]";
+    Text[ fr ] = "[Utilisateur]";
+    Text[ es ] = "[Usuario]";
+    Text[ fi ] = "[Käyttäjän määrittämä]";
+    Text[ ca ] = "[Usuari-definit]";
+    Text[ it ] = "[Utente]";
+    Text[ sk ] = "[Užívateľský]";
+    Text[ da ] = "[Bruger]";
+    Text[ sv ] = "[Användare]";
+    Text[ pl ] = "[Użytkownik]";
+    Text[ pt-BR ] = "[Usuário]";
+    Text[ th ] = "[ระบุผู้ใช้]";
+    Text[ ja ] = "[ユーザー]";
+    Text[ ko ] = "[사용자]";
+    Text[ zh-CN ] = "[使用者]";
+    Text[ zh-TW ] = "[使用者]";
+    Text[ tr ] = "\n[Kullanıcı]";
+    Text[ hi-IN ] = "[उपभोक्ता]";
+    Text[ ar ] = "[مستخدم]";
+    Text[ he ] = "[Benutzer]";
 };
 /********************************************************************/
 //STRIP001 TabPage TP_VISITING_CARDS
