@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfact.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:18:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,19 +61,29 @@
 
 #pragma hdrstop
 
-#ifndef _REF_HXX
-#include <tools/ref.hxx>
-#endif
+// auto strip #ifndef _REF_HXX
+// auto strip #include <tools/ref.hxx>
+// auto strip #endif
 
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 
 #ifndef _CMDID_H
 #include <cmdid.h>
