@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:11:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 15:27:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -173,6 +173,9 @@
 #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
+#endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
 #endif
 #ifndef _EDIMP_HXX //autogen
 #include <edimp.hxx>

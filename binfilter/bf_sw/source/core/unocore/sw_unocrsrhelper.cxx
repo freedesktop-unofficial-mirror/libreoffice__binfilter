@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unocrsrhelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:09:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 15:27:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,9 @@
 
 #ifndef _UNOCRSRHELPER_HXX
 #include <unocrsrhelper.hxx>
+#endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
 #endif
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
