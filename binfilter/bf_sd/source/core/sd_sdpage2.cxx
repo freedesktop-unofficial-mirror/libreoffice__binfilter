@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:31:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:29:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,24 +63,24 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _OUTLINER_HXX
-#include <bf_svx/outliner.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTLINER_HXX
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
 #ifndef _SVXLINK_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
 #endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX //autogen
-#include <bf_svx/outlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTLOBJ_HXX //autogen
+// auto strip #include <bf_svx/outlobj.hxx>
+// auto strip #endif
 #include <svtools/urihelper.hxx>
 
 #ifndef _SVX_XMLCNITM_HXX
@@ -91,11 +91,11 @@
 #include <bf_svx/svditer.hxx>
 #endif
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
-#include "sdresid.hxx"
+// auto strip #include "sdresid.hxx"
 #include "sdpage.hxx"
 #include "glob.hxx"
 #include "glob.hrc"
@@ -108,13 +108,13 @@
 
 #ifdef MAC
 #include "::ui:inc:strings.hrc"
-#include "::ui:inc:docshell.hxx"
+// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/strings.hrc"
 #include "../ui/inc/docshell.hxx"
 #else
-#include "..\ui\inc\cfgids.hxx"
+// auto strip #include "..\ui\inc\cfgids.hxx"
 #include "..\ui\inc\strings.hrc"
 #include "..\ui\inc\docshell.hxx"
 #endif
