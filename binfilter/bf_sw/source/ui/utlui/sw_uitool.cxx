@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:35:34 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:00:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -212,6 +212,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 // 50 cm 28350
 //
@@ -776,7 +777,7 @@ namespace binfilter {
 //STRIP001      if( pFilterName )
 //STRIP001          *pFilterName = pMed->GetFilter()->GetFilterName();
 //STRIP001
-//STRIP001      rFileName = URIHelper::SmartRelToAbs( pMed->GetName() );
+//STRIP001      rFileName = so3::StaticBaseUrl::SmartRelToAbs( pMed->GetName() );
 //STRIP001      if( pPassword )
 //STRIP001      {
 //STRIP001          const SfxPoolItem* pItem;
