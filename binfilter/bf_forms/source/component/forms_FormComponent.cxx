@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormComponent.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:49:09 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:38:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1652,7 +1652,7 @@ void OBoundControlModel::reset() throw (RuntimeException)
             {
                 _reset();   // setzen der Werte,
                 _commit();  // uebertragen der Werte ins Feld
-                            // fuer das zuruecksetzen des modifyflags ist das Formular zuständig
+                            // fuer das zuruecksetzen des modifyflags ist das Formular zustaendig
             }
             else
                 _onValueChanged();
