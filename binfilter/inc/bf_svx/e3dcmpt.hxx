@@ -2,9 +2,9 @@
  *
  *  $RCSfile: e3dcmpt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:12:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _E3D_E3DIOCMPT_HXX
 #define _E3D_E3DIOCMPT_HXX
 
-#ifndef _SVDITER_HXX
-#include "svditer.hxx"
-#endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include "svditer.hxx"
+// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
