@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:30:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,75 +59,75 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
-#include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOWLISTENER_HPP_
-#include <com/sun/star/awt/XWindowListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
-#include <com/sun/star/awt/XControlContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
+// auto strip #include <com/sun/star/awt/XWindow.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XWINDOWLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XWindowListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
+// auto strip #include <com/sun/star/awt/XControlContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
-#include <com/sun/star/form/XImageProducerSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODECHANGEBROADCASTER_HPP_
-#include <com/sun/star/util/XModeChangeBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-#include <com/sun/star/lang/XComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
+// auto strip #include <com/sun/star/form/XImageProducerSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XMODECHANGEBROADCASTER_HPP_
+// auto strip #include <com/sun/star/util/XModeChangeBroadcaster.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 
 #ifdef OS2
 #include <tools/svpm.h>
-#include <vcl/sysdep.hxx>
+// auto strip #include <vcl/sysdep.hxx>
 #endif
 
 #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
 #endif
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
 
-#include "svdedxv.hxx"
+// auto strip #include "svdedxv.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdoutl.hxx"
 #include "svdpagv.hxx"
-#include "svdoutl.hxx"
-#include "svdpagv.hxx"
-#include "outliner.hxx"
-#include "xpoly.hxx"
-#include "svdxout.hxx"
-#include "svdetc.hxx"
-#include "svdobj.hxx"
+// auto strip #include "outliner.hxx"
+// auto strip #include "xpoly.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdouno.hxx"
 #include "svdpage.hxx"
 #include "svdio.hxx"
 #include "svdview.hxx"
 #include "svditer.hxx"
 #include "svdogrp.hxx"
-#include "svdtypes.hxx"
+// auto strip #include "svdtypes.hxx"
 
-#include "svdotext.hxx" // fuer PaintOutlinerView
+// auto strip #include "svdotext.hxx" // fuer PaintOutlinerView
 #include "svdoole2.hxx"
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
