@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porrst.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:54:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
 #ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
 #endif
@@ -88,6 +88,10 @@
 #include <vcl/svapp.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -97,39 +101,39 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>    // SwTxtNode
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>  // SwTxtNode
+// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>  // SwPageFrm
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>   // ASSERT
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>   // ASSERT
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
 #ifndef _PORRST_HXX
 #include <porrst.hxx>
 #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
-#ifndef _TXTPAINT_HXX
-#include <txtpaint.hxx> // ClipVout
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>   // SwTxtFrm
-#endif
-#ifndef _SWFNTCCH_HXX
-#include <swfntcch.hxx> // SwFontAccess
-#endif
+// auto strip #ifndef _TXTPAINT_HXX
+// auto strip #include <txtpaint.hxx>   // ClipVout
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx> // SwTxtFrm
+// auto strip #endif
+// auto strip #ifndef _SWFNTCCH_HXX
+// auto strip #include <swfntcch.hxx>   // SwFontAccess
+// auto strip #endif
 #ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
 #endif
@@ -142,12 +146,12 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _REDLNITR_HXX
-#include <redlnitr.hxx> // SwRedlineItr
-#endif
-#ifndef _PORFLY_HXX
-#include <porfly.hxx>   // SwFlyPortion
-#endif
+// auto strip #ifndef _REDLNITR_HXX
+// auto strip #include <redlnitr.hxx>   // SwRedlineItr
+// auto strip #endif
+// auto strip #ifndef _PORFLY_HXX
+// auto strip #include <porfly.hxx>     // SwFlyPortion
+// auto strip #endif
 #ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
 #endif
