@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:03:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,30 +69,30 @@
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
 #ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
 #endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
-#include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
-#include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVXLINKMGR_HXX
-#include <bf_svx/linkmgr.hxx>
-#endif
+// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
+// auto strip #include <bf_svx/keepitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX //autogen
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVXLINKMGR_HXX
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #endif
 #ifndef SMDLL0_HXX //autogen
 #include <bf_starmath/smdll0.hxx>
 #endif
@@ -103,42 +103,47 @@
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
 #ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
 #endif
-#ifndef _FMTINFMT_HXX //autogen
-#include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
-#include <txtfld.hxx>
-#endif
-#ifndef _TXTINET_HXX //autogen
-#include <txtinet.hxx>
-#endif
+// auto strip #ifndef _FMTINFMT_HXX //autogen
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFLD_HXX //autogen
+// auto strip #include <txtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTINET_HXX //autogen
+// auto strip #include <txtinet.hxx>
+// auto strip #endif
 #ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -148,9 +153,9 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -169,27 +174,27 @@
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>           // Undo-Attr
-#endif
+// auto strip #ifndef _ROLBCK_HXX
+// auto strip #include <rolbck.hxx>         // Undo-Attr
+// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer die Bookmarks
 #endif
 #ifndef _DOCTXM_HXX
 #include <doctxm.hxx>           // fuer die Verzeichnisse
 #endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>          // PoolVorlagen-Id's
 #endif
@@ -205,12 +210,12 @@
 #ifndef _ACORRECT_HXX
 #include <acorrect.hxx>         // Autokorrektur
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>          //
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>           // Statusanzeige
-#endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>            //
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>         // Statusanzeige
+// auto strip #endif
 #ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
 #endif
@@ -223,9 +228,9 @@
 #ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
 #endif
-#ifndef _SWBASLNK_HXX
-#include <swbaslnk.hxx>
-#endif
+// auto strip #ifndef _SWBASLNK_HXX
+// auto strip #include <swbaslnk.hxx>
+// auto strip #endif
 
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // StatLine-String
