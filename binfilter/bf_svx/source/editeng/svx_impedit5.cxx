@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit5.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:37:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,20 +59,32 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
 #include <editeng.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editdbg.hxx>
 
-#include <svtools/smplhint.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 
 
-#ifndef _SVX_LRSPITEM_HXX
-#include <lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX
+// auto strip #include <lrspitem.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ void ImpEditEngine::SetStyleSheetPool( SfxStyleSheetPool* pSPool )
