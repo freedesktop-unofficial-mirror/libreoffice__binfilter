@@ -2,9 +2,9 @@
  *
  *  $RCSfile: clipfmtitem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:09:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _GEN_HXX
-#include <tools/gen.hxx>
-#endif
+// auto strip #ifndef _GEN_HXX
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
 #endif
