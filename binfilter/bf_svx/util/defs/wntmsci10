@@ -18690,3 +18690,4 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ?getCounter@?A0x370408c2@binfilter@@YAAAJXZ
 ?getSafteyMutex@?A0x370408c2@binfilter@@YAAAVMutex@osl@@XZ
 ?getSharedContext@?A0x370408c2@binfilter@@YAPAVOSystemParseContext@svxform@2@PAV342@E@Z
+?lcl_ensureControlVisibility@?A0xad9b0d53@binfilter@@YAXPAVSdrView@2@PBVSdrUnoObj@2@_N@Z
