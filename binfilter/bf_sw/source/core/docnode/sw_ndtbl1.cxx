@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:16:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,25 +69,29 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
 #endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _TABCOL_HXX //autogen
-#include <tabcol.hxx>
-#endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABCOL_HXX //autogen
+// auto strip #include <tabcol.hxx>
+// auto strip #endif
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
@@ -97,24 +101,24 @@
 #ifndef _TABFRM_HXX //autogen
 #include <tabfrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX //autogen
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX //autogen
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX //autogen
 #include <txtfrm.hxx>
 #endif
 
 #include "doc.hxx"
-#include "pam.hxx"
-#include "swcrsr.hxx"
+// auto strip #include "pam.hxx"
+// auto strip #include "swcrsr.hxx"
 #include "viscrs.hxx"
-#include "swtable.hxx"
-#include "htmltbl.hxx"
-#include "tblsel.hxx"
+// auto strip #include "swtable.hxx"
+// auto strip #include "htmltbl.hxx"
+// auto strip #include "tblsel.hxx"
 #include "swtblfmt.hxx"
-#include "docary.hxx"
-#include "ndindex.hxx"
-#include "undobj.hxx"
+// auto strip #include "docary.hxx"
+// auto strip #include "ndindex.hxx"
+// auto strip #include "undobj.hxx"
 namespace binfilter {
 
 
