@@ -2,9 +2,9 @@
  *
  *  $RCSfile: optgrid.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:22:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,18 +63,18 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXTABDLG_HXX //autogen
-#include <bf_sfx2/tabdlg.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SV_GROUP_HXX //autogen
-#include <vcl/group.hxx>
-#endif
-#ifndef _SV_FIXED_HXX //autogen
-#include <vcl/fixed.hxx>
-#endif
+// auto strip #ifndef _SFXTABDLG_HXX //autogen
+// auto strip #include <bf_sfx2/tabdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_GROUP_HXX //autogen
+// auto strip #include <vcl/group.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_FIXED_HXX //autogen
+// auto strip #include <vcl/fixed.hxx>
+// auto strip #endif
 #ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
 #endif
