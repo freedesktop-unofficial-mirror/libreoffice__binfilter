@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_typemap.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:51:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,9 +97,9 @@
 
 #define ITEMID_FMTSPLIT     0
 #define ITEMID_PAGEMODEL    0
-#include <bf_svx/editdata.hxx>
+// auto strip #include <bf_svx/editdata.hxx>
 #include "eetext.hxx"
-#include "schattr.hxx"
+// auto strip #include "schattr.hxx"
 
 #define ITEMID_LINE         0
 #define ITEMID_BRUSH        0
@@ -109,22 +109,26 @@
 #include <bf_svx/sizeitem.hxx>
 
 #define ITEMID_PAGE         0
-#include <bf_svx/pageitem.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
 
-#include <bf_svx/rulritem.hxx>
+// auto strip #include <bf_svx/rulritem.hxx>
+
+#ifndef _SFXSTRITEM_HXX
+#include <svtools/stritem.hxx>
+#endif
 
 #define ITEMID_AUTHOR       0
 #define ITEMID_DATE         0
 #define ITEMID_TEXT         0
-#include <bf_svx/postattr.hxx>
+// auto strip #include <bf_svx/postattr.hxx>
 
 #define ITEMID_SEARCH       0
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 
 #define ITEMID_HORJUSTIFY   0
 #define ITEMID_VERJUSTIFY   0
 #define ITEMID_ORIENTATION  0
-#include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
 
 #include <bf_svx/zoomitem.hxx>
 
@@ -132,6 +136,11 @@
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
 #endif
+
+#ifndef _SFXMSG_HXX
+#include <bf_sfx2/msg.hxx>
+#endif
+
 namespace binfilter {
 
 /*?*/ typedef SfxVoidItem   CharSetItem;
