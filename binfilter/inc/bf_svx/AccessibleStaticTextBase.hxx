@@ -2,9 +2,9 @@
  *
  *  $RCSfile: AccessibleStaticTextBase.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:06:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,13 +68,13 @@
 #include <tools/gen.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
 #include <com/sun/star/accessibility/XAccessible.hpp>
@@ -84,9 +84,9 @@
 #include <com/sun/star/accessibility/XAccessibleText.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_TEXTSEGMENT_HPP_
-#include <com/sun/star/accessibility/TextSegment.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_TEXTSEGMENT_HPP_
+// auto strip #include <com/sun/star/accessibility/TextSegment.hpp>
+// auto strip #endif
 namespace binfilter {
 
 class SvxEditSource;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: IAccessibleParent.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:07:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _SVX_ACCESSIBILITY_IACCESSIBLE_PARENT_HXX
 #define _SVX_ACCESSIBILITY_IACCESSIBLE_PARENT_HXX
 
-#ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
-#include <com/sun/star/uno/RuntimeException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/uno/RuntimeException.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
 #endif
