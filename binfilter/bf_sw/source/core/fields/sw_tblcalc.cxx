@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblcalc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:27:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,12 +65,17 @@
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>      // fuer GetBodyTxtNode
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>        // fuer GetBodyTxtNode
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -83,9 +88,9 @@
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>    // fuer Modify()
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>  // fuer Modify()
+// auto strip #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer _SetGetExpFld
 #endif
