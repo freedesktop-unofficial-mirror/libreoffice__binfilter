@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_dlgutil.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:21:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,28 +63,28 @@
 
 #include <limits.h>
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
-#ifndef _UNO_LINGU_HXX
-#include <unolingu.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <unolingu.hxx>
+// auto strip #endif
 
-#include <svtools/itemset.hxx>
-#include <bf_sfx2/viewfrm.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 
 #pragma hdrstop
 
 #include "dialogs.hrc"
 
 #include "dlgutil.hxx"
-#include "dialmgr.hxx"
-#include "langtab.hxx"
+// auto strip #include "dialmgr.hxx"
+// auto strip #include "langtab.hxx"
 namespace binfilter {
 
 // -----------------------------------------------------------------------
