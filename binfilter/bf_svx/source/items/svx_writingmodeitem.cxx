@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_writingmodeitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:06:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,17 @@
 // include ---------------------------------------------------------------
 
 
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 #ifndef _SVX_WRITINGMODEITEM_HXX
 #include "writingmodeitem.hxx"
 #endif
 
-#ifndef _SVX_DIALMGR_HXX
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
 #ifndef _SVXITEMS_HRC
 #include "svxitems.hrc"
