@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLExportDatabaseRanges.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:24:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,12 +68,12 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SHEET_FILTEROPERATOR_HPP_
-#include <com/sun/star/sheet/FilterOperator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HPP_
-#include <com/sun/star/sheet/TableFilterField.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_FILTEROPERATOR_HPP_
+// auto strip #include <com/sun/star/sheet/FilterOperator.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HPP_
+// auto strip #include <com/sun/star/sheet/TableFilterField.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSHEETFILTERDESCRIPTOR_HPP_
 #include <com/sun/star/sheet/XSheetFilterDescriptor.hpp>
 #endif
