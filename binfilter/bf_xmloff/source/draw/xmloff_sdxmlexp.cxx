@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_sdxmlexp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:52:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,21 +73,21 @@
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
-#endif
+// auto strip #ifndef _LANG_HXX
+// auto strip #include <tools/lang.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
-#include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONSUPPLIER_HPP_
 #include <com/sun/star/presentation/XPresentationSupplier.hpp>
@@ -97,21 +97,21 @@
 #include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
-#include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
+// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
-#include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
+// auto strip #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
 #ifndef _SDXMLEXP_HXX
 #include "sdxmlexp.hxx"
@@ -141,9 +141,9 @@
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-#include <com/sun/star/style/XStyle.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
+// auto strip #include <com/sun/star/style/XStyle.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FORM_XFORMSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
@@ -157,49 +157,49 @@
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _SV_GEN_HXX
-#include <tools/gen.hxx>
-#endif
+// auto strip #ifndef _SV_GEN_HXX
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLASTPLP_HXX
-#include "xmlaustp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
+// auto strip #include "xmlaustp.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_STYLEEXP_HXX_
-#include "styleexp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_STYLEEXP_HXX_
+// auto strip #include "styleexp.hxx"
+// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
-#include "xmlexppr.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
+// auto strip #include "xmlexppr.hxx"
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
@@ -209,21 +209,21 @@
 #include "xexptran.hxx"
 #endif
 
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE1_HXX
 #include <cppuhelper/implbase1.hxx>
 #endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
 #include "PropertySetMerger.hxx"
@@ -234,9 +234,9 @@
 #endif
 
 
-#ifndef _XMLOFF_VISAREAEXPORT_HXX
-#include "VisAreaExport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_VISAREAEXPORT_HXX
+// auto strip #include "VisAreaExport.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NUMBERSTYLESEXPORT_HXX
 #include "XMLNumberStylesExport.hxx"
