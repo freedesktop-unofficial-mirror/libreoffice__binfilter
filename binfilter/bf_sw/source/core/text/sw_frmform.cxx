@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmform.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:50:16 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:09:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -702,7 +702,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       while( GetFollow() && GetFollow()->GetFollow() &&
 /*N*/              nNewOfst >= GetFollow()->GetFollow()->GetOfst() )
 /*N*/       {
-/*?*/           DBG_LOOP;
+///*?*/             DBG_LOOP;
 /*?*/           JoinFrm();
 /*N*/       }
 /*N*/   }
@@ -1609,7 +1609,7 @@ MSHORT FormatLevel::nLevel = 0;
  */
 /*N*/   do
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       if( bFirst )
 /*N*/           bFirst = sal_False;
 /*N*/       else
@@ -1891,7 +1891,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*M*/ void SwTxtFrm::Format( const SwBorderAttrs * )
 /*M*/ {
-/*M*/   DBG_LOOP;
+///*M*/     DBG_LOOP;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*M*/   const XubString aXXX = GetTxtNode()->GetTxt();
 /*M*/   const SwTwips nDbgY = Frm().Top();
@@ -2215,7 +2215,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::FormatQuick with swapped frame" );
 /*N*/
-/*N*/   DBG_LOOP;
+///*N*/     DBG_LOOP;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   const XubString aXXX = GetTxtNode()->GetTxt();
 /*N*/   const SwTwips nDbgY = Frm().Top();
@@ -2260,7 +2260,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   const xub_StrLen nEnd = GetFollow()
 /*N*/                     ? GetFollow()->GetOfst() : aInf.GetTxt().Len();
 /*N*/   do
-/*N*/   {   DBG_LOOP;
+/*N*/   {   //DBG_LOOP;
 /*N*/       nStart = aLine.FormatLine( nStart );
 /*N*/       if( aInf.IsNewLine() || (!aInf.IsStop() && nStart < nEnd) )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           aLine.Insert( new SwLineLayout() );
