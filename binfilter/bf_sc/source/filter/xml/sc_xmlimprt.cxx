@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlimprt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:32:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,11 +69,11 @@
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-#include <bf_xmloff/i18nmap.hxx>
-#include <bf_xmloff/xmltkmap.hxx>
-#include <bf_xmloff/xmlictxt.hxx>
+// auto strip #include <bf_xmloff/i18nmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmlictxt.hxx>
 #include <bf_xmloff/xmlmetai.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #include <bf_xmloff/xmlnumfi.hxx>
 #endif
@@ -92,15 +92,15 @@
 #ifndef XMLOFF_NUMEHELP_HXX
 #include <bf_xmloff/numehelp.hxx>
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
 #endif
 
-#include "xmlimprt.hxx"
-#include "document.hxx"
+// auto strip #include "xmlimprt.hxx"
+// auto strip #include "document.hxx"
 #include "docuno.hxx"
 #include "xmlbodyi.hxx"
 #include "xmlstyli.hxx"
@@ -133,42 +133,42 @@
 #include <comphelper/extract.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
-#include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGE_HPP_
-#include <com/sun/star/sheet/XSheetCellRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
-#include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-#include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
-#include <com/sun/star/util/XMergeable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CELLINSERTMODE_HPP_
-#include <com/sun/star/sheet/CellInsertMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
-#include <com/sun/star/sheet/XCellRangeMovement.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
-#include <com/sun/star/document/XActionLockable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
+// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGE_HPP_
+// auto strip #include <com/sun/star/sheet/XSheetCellRange.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
+// auto strip #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
+// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
+// auto strip #include <com/sun/star/util/XMergeable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_CELLINSERTMODE_HPP_
+// auto strip #include <com/sun/star/sheet/CellInsertMode.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
+// auto strip #include <com/sun/star/sheet/XCellRangeMovement.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
+// auto strip #include <com/sun/star/document/XActionLockable.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
-#include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormatTypes.hpp>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif

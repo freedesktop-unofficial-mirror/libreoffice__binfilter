@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlfonte.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:32:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PRECOMPILED
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,12 +69,12 @@
 #include "scitems.hxx"
 #endif
 
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
-#include <bf_xmloff/XMLFontAutoStylePool.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
+// auto strip #include <bf_xmloff/XMLFontAutoStylePool.hxx>
+// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
 #endif
