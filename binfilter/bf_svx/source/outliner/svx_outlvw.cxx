@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlvw.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:15:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,36 +59,62 @@
  *
  ************************************************************************/
 
-#include <outl_pch.hxx>
+// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #define _OUTLINER_CXX
-#include <outliner.hxx>
+// auto strip #include <outliner.hxx>
 #include <outleeng.hxx>
-#include <paralist.hxx>
-#include <outlundo.hxx>
-#include <outlobj.hxx>
-#include <flditem.hxx>
-#include <flditem.hxx>
-#include <eeitem.hxx>
-#include <numitem.hxx>
+// auto strip #include <paralist.hxx>
+// auto strip #include <outlundo.hxx>
+// auto strip #include <outlobj.hxx>
 
-#ifndef _SV_WINDOW_HXX //autogen
-#include <vcl/window.hxx>
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SVX_ITEMDATA_HXX
+// auto strip #include "itemdata.hxx"
+// auto strip #endif
+
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+
+// auto strip #include <flditem.hxx>
+// auto strip #include <flditem.hxx>
+// auto strip #include <eeitem.hxx>
+// auto strip #include <numitem.hxx>
+
+// auto strip #ifndef _SV_WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _EDITSTAT_HXX //autogen
+// auto strip #include <editstat.hxx>
+// auto strip #endif
+
+#ifndef _MyEDITVIEW_HXX
+#include "editview.hxx"
 #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
-
-#ifndef _EDITSTAT_HXX //autogen
-#include <editstat.hxx>
-#endif
 namespace binfilter {
 
 
