@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:55:31 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:33:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,9 +92,9 @@
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
+#ifndef _NODE_HXX
+#include <node.hxx>
+#endif
 // auto strip #ifndef _HINTS_HXX
 // auto strip #include <hints.hxx>
 // auto strip #endif
@@ -148,18 +148,18 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxFormula::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001 /*?*/    return GetFormula() == ((SwTblBoxFormula&)rAttr).GetFormula() &&
-//STRIP001 /*?*/            pDefinedIn == ((SwTblBoxFormula&)rAttr).pDefinedIn;
+/*?*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+ /*?*/  return GetFormula() == ((SwTblBoxFormula&)rAttr).GetFormula() &&
+ /*?*/          pDefinedIn == ((SwTblBoxFormula&)rAttr).pDefinedIn;
 /*N*/ }
 
 
 /*N*/ SfxPoolItem* SwTblBoxFormula::Clone( SfxItemPool* ) const
 /*N*/ {
-/*?*/  DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 // auf externe Darstellung umschalten!!
-//STRIP001  SwTblBoxFormula* pNew = new SwTblBoxFormula( GetFormula() );
-//STRIP001  pNew->SwTableFormula::operator=( *this );
-//STRIP001  return pNew;
+/*?*/  // auf externe Darstellung umschalten!!
+    SwTblBoxFormula* pNew = new SwTblBoxFormula( GetFormula() );
+    pNew->SwTableFormula::operator=( *this );
+    return pNew;
 /*N*/ }
 
 
@@ -170,14 +170,14 @@ namespace binfilter {
     // !!! MUSS VON JEDER ABLEITUNG UEBERLADEN WERDEN !!!
 /*N*/ const SwNode* SwTblBoxFormula::GetNodeOfFormula() const
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     const SwNode* pRet = 0;
-//STRIP001  if( pDefinedIn )
-//STRIP001  {
-//STRIP001      SwClient* pBox = SwClientIter( *pDefinedIn ).First( TYPE( SwTableBox ));
-//STRIP001      if( pBox )
-//STRIP001          pRet = ((SwTableBox*)pBox)->GetSttNd();
-//STRIP001  }
-//STRIP001  return pRet;
+/*?*/       const SwNode* pRet = 0;
+            if( pDefinedIn )
+            {
+                SwClient* pBox = SwClientIter( *pDefinedIn ).First( TYPE( SwTableBox ));
+                if( pBox )
+                    pRet = ((SwTableBox*)pBox)->GetSttNd();
+            }
+            return pRet;
 /*N*/ }
 
 
