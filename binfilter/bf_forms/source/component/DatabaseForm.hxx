@@ -2,9 +2,9 @@
  *
  *  $RCSfile: DatabaseForm.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:44:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,12 @@
 #ifndef _FRM_DATABASEFORM_HXX_
 #define _FRM_DATABASEFORM_HXX_
 
-#ifndef _COM_SUN_STAR_SDB_XSQLERRORLISTENER_HPP_
-#include <com/sun/star/sdb/XSQLErrorListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLERRORLISTENER_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLErrorListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
 #endif
@@ -98,9 +98,9 @@
 #ifndef _COM_SUN_STAR_SDBC_XRESULTSETUPDATE_HPP_
 #include <com/sun/star/sdbc/XResultSetUpdate.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVELISTENER_HPP_
-#include <com/sun/star/sdb/XRowSetApproveListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVELISTENER_HPP_
+// auto strip #include <com/sun/star/sdb/XRowSetApproveListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVEBROADCASTER_HPP_
 #include <com/sun/star/sdb/XRowSetApproveBroadcaster.hpp>
 #endif
@@ -110,27 +110,27 @@
 #ifndef _COM_SUN_STAR_FORM_XLOADABLE_HPP_
 #include <com/sun/star/form/XLoadable.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
-#include <com/sun/star/form/XLoadListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
+// auto strip #include <com/sun/star/form/XLoadListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
 #include <com/sun/star/awt/XTabControllerModel.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
-#include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
-#include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XRESULTSETACCESS_HPP_
-#include <com/sun/star/sdb/XResultSetAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XCLOSEABLE_HPP_
-#include <com/sun/star/sdbc/XCloseable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
+// auto strip #include <com/sun/star/script/XEventAttacherManager.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
+// auto strip #include <com/sun/star/sdbc/XRowSetListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XRESULTSETACCESS_HPP_
+// auto strip #include <com/sun/star/sdb/XResultSetAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XCLOSEABLE_HPP_
+// auto strip #include <com/sun/star/sdbc/XCloseable.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
 #endif
@@ -143,9 +143,9 @@
 #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-#include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
+// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
+// auto strip #endif
 
 
 #ifndef _LINK_HXX
@@ -158,15 +158,15 @@
 #include "ids.hxx"
 #endif
 
-#ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
-#include <comphelper/propagg.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
+// auto strip #include <comphelper/propagg.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
 #endif
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_GUARDING_HXX_
 #include <comphelper/guarding.hxx>
 #endif
@@ -179,9 +179,9 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
-#include <cppuhelper/implbase7.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE7_HXX_
+// auto strip #include <cppuhelper/implbase7.hxx>
+// auto strip #endif
 
 namespace com { namespace sun { namespace star { namespace sdbc {
     class SQLException;

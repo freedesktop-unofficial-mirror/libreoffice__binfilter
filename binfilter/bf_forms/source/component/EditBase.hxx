@@ -2,9 +2,9 @@
  *
  *  $RCSfile: EditBase.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:44:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,34 +65,34 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-#ifndef _DATE_HXX
-#include <tools/date.hxx>
-#endif
-#ifndef _LINK_HXX
-#include <tools/link.hxx>
-#endif
+// auto strip #ifndef _DATE_HXX
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINK_HXX
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
-#include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-#include <com/sun/star/awt/XFocusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
-#include <com/sun/star/awt/XKeyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
-#include <com/sun/star/form/XChangeBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-#include <com/sun/star/lang/XComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormatter.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XKeyListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
+// auto strip #include <com/sun/star/form/XChangeBroadcaster.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
 namespace binfilter {
 
 // persistence flags for use with the version id
