@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:20:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,64 +62,77 @@
 
 #pragma hdrstop
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // GetCurFld
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>        // SwRefMarkFldUpdate
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>      // SwRefMarkFldUpdate
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
 #endif
 #ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
 #endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
-#ifndef _DBFLD_HXX
-#include <dbfld.hxx>
-#endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _DBFLD_HXX
+// auto strip #include <dbfld.hxx>
+// auto strip #endif
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>
 #endif
-#ifndef _FLDDAT_HXX
-#include <flddat.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _DBMGR_HXX
-#include <dbmgr.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
-#include <swddetbl.hxx>
-#endif
+// auto strip #ifndef _FLDDAT_HXX
+// auto strip #include <flddat.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _DBMGR_HXX
+// auto strip #include <dbmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWDDETBL_HXX
+// auto strip #include <swddetbl.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
+
+#ifndef _PAM_HXX
+#include "pam.hxx"
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
+
+#ifndef _DOC_HXX
+#include "doc.hxx"
 #endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
