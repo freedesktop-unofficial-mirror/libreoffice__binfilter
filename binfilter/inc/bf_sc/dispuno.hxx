@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dispuno.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:44:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,9 @@
 #include <svtools/lstner.hxx>
 #endif
 
-#ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScImportParam
