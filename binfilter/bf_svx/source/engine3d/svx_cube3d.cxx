@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_cube3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:38:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
 #ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
@@ -70,13 +70,13 @@
 #include "globl3d.hxx"
 #endif
 
-#ifndef _POLY3D_HXX
-#include "poly3d.hxx"
-#endif
+// auto strip #ifndef _POLY3D_HXX
+// auto strip #include "poly3d.hxx"
+// auto strip #endif
 
-#ifndef _SVX_VECTOR3D_HXX
-#include <goodies/vector3d.hxx>
-#endif
+// auto strip #ifndef _SVX_VECTOR3D_HXX
+// auto strip #include <goodies/vector3d.hxx>
+// auto strip #endif
 
 #ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
