@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pageuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:23:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,13 +60,18 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "pageuno.hxx"
 #include "shapeuno.hxx"
+
+#ifndef _STRING_HXX
+#include <tools/string.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
