@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrtxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:52:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,20 +62,29 @@
 
 #pragma hdrstop
 
-#include "ndtxt.hxx"
-#include "flyfrm.hxx"
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
+// auto strip #include "ndtxt.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
 #include "paratr.hxx"
 #include "errhdl.hxx"
 
-#ifndef _SV_OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _SVX_PARAVERTALIGNITEM_HXX //autogen
-#include <bf_svx/paravertalignitem.hxx>
-#endif
+// auto strip #ifndef _SV_OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PARAVERTALIGNITEM_HXX //autogen
+// auto strip #include <bf_svx/paravertalignitem.hxx>
+// auto strip #endif
 
 #ifdef VERTICAL_LAYOUT
-#include "pormulti.hxx"
+// auto strip #include "pormulti.hxx"
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -89,8 +98,8 @@
 
 #include "txtcfg.hxx"
 #include "itrtxt.hxx"
-#include "txtfrm.hxx"
-#include "porfly.hxx"
+// auto strip #include "txtfrm.hxx"
+// auto strip #include "porfly.hxx"
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1
