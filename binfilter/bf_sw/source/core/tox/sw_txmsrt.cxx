@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txmsrt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:58:56 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:37:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,19 +65,19 @@
 // auto strip #ifndef _TOOLS_RESID_HXX
 // auto strip #include <tools/resid.hxx>
 // auto strip #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
+#ifndef _UNOTOOLS_CHARCLASS_HXX
+#include <unotools/charclass.hxx>
+#endif
+#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+#include <com/sun/star/i18n/CollatorOptions.hpp>
+#endif
+#ifndef _UNO_LINGU_HXX
+#include <bf_svx/unolingu.hxx>
+#endif
 
-// auto strip #ifndef _TXTFLD_HXX
-// auto strip #include <txtfld.hxx>
-// auto strip #endif
+#ifndef _TXTFLD_HXX
+#include <txtfld.hxx>
+#endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -101,21 +101,21 @@
 // auto strip #ifndef _FRMATR_HXX
 // auto strip #include <frmatr.hxx>
 // auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTTXMRK_HXX //autogen
-// auto strip #include <txttxmrk.hxx>
-// auto strip #endif
+#ifndef _PAM_HXX
+#include <pam.hxx>
+#endif
+#ifndef _TXTTXMRK_HXX //autogen
+#include <txttxmrk.hxx>
+#endif
 // auto strip #ifndef _FRMFMT_HXX //autogen
 // auto strip #include <frmfmt.hxx>
 // auto strip #endif
-// auto strip #ifndef _FMTFLD_HXX
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXMSRT_HXX
-// auto strip #include <txmsrt.hxx>
-// auto strip #endif
+#ifndef _FMTFLD_HXX
+#include <fmtfld.hxx>
+#endif
+#ifndef _TXMSRT_HXX
+#include <txmsrt.hxx>
+#endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -128,101 +128,101 @@
 // auto strip #ifndef _SWTABLE_HXX
 // auto strip #include <swtable.hxx>
 // auto strip #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>
-// auto strip #endif
+#ifndef _EXPFLD_HXX
+#include <expfld.hxx>
+#endif
 // auto strip #ifndef _NUMRULE_HXX
 // auto strip #include <numrule.hxx>
 // auto strip #endif
-// auto strip #ifndef _AUTHFLD_HXX
-// auto strip #include <authfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOXWRAP_HXX
-// auto strip #include <toxwrap.hxx>
-// auto strip #endif
+#ifndef _AUTHFLD_HXX
+#include <authfld.hxx>
+#endif
+#ifndef _TOXWRAP_HXX
+#include <toxwrap.hxx>
+#endif
 
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>
 #endif
 namespace binfilter {
 
-//STRIP001 extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, xub_StrLen nMySttPos,
-//STRIP001                         const SwTxtNode& rBehindNd, xub_StrLen nSttPos );
+extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, xub_StrLen nMySttPos,
+                           const SwTxtNode& rBehindNd, xub_StrLen nSttPos );
 
-//STRIP001 using namespace ::com::sun::star::uno;
-//STRIP001 using namespace ::rtl;
+using namespace ::com::sun::star::uno;
+using namespace ::rtl;
 /*--------------------------------------------------------------------
     Beschreibung: Strings initialisieren
  --------------------------------------------------------------------*/
 
 //STRIP001 USHORT SwTOXSortTabBase::nOpt = 0;
-//STRIP001
-//STRIP001 SV_IMPL_VARARR( SwTOXSources, SwTOXSource )
+
+SV_IMPL_VARARR( SwTOXSources, SwTOXSource )
 
 
-//STRIP001 SwTOXInternational::SwTOXInternational( LanguageType nLang, USHORT nOpt,
-//STRIP001                                         const String& rSortAlgorithm ) :
-//STRIP001     eLang( nLang ),
-//STRIP001     sSortAlgorithm(rSortAlgorithm),
-//STRIP001     nOptions( nOpt )
-//STRIP001 {
-//STRIP001  Init();
-//STRIP001 }
+SwTOXInternational::SwTOXInternational( LanguageType nLang, USHORT nOpt,
+                                        const String& rSortAlgorithm ) :
+    eLang( nLang ),
+    sSortAlgorithm(rSortAlgorithm),
+    nOptions( nOpt )
+{
+    Init();
+}
 
-//STRIP001 SwTOXInternational::SwTOXInternational( const SwTOXInternational& rIntl ) :
-//STRIP001     eLang( rIntl.eLang ),
-//STRIP001     sSortAlgorithm(rIntl.sSortAlgorithm),
-//STRIP001     nOptions( rIntl.nOptions )
-//STRIP001 {
-//STRIP001   Init();
-//STRIP001 }
+ SwTOXInternational::SwTOXInternational( const SwTOXInternational& rIntl ) :
+     eLang( rIntl.eLang ),
+     sSortAlgorithm(rIntl.sSortAlgorithm),
+     nOptions( rIntl.nOptions )
+ {
+   Init();
+ }
 
-//STRIP001 void SwTOXInternational::Init()
-//STRIP001 {
-//STRIP001  pIndexWrapper = new IndexEntrySupplierWrapper();
-//STRIP001
-//STRIP001     const ::com::sun::star::lang::Locale aLcl( SvxCreateLocale( eLang ) );
-//STRIP001     pIndexWrapper->SetLocale( aLcl );
-//STRIP001
-//STRIP001     if(!sSortAlgorithm.Len())
-//STRIP001     {
-//STRIP001         Sequence < OUString > aSeq( pIndexWrapper->GetAlgorithmList( aLcl ));
-//STRIP001         if(aSeq.getLength())
-//STRIP001             sSortAlgorithm = aSeq.getConstArray()[0];
-//STRIP001     }
-//STRIP001
-//STRIP001     if ( nOptions & TOI_CASE_SENSITIVE )
-//STRIP001         pIndexWrapper->LoadAlgorithm( aLcl, sSortAlgorithm, 0 );
-//STRIP001     else
-//STRIP001         pIndexWrapper->LoadAlgorithm( aLcl, sSortAlgorithm, SW_COLLATOR_IGNORES );
-//STRIP001
-//STRIP001  pCharClass = new CharClass( aLcl );
-//STRIP001
-//STRIP001 }
+ void SwTOXInternational::Init()
+ {
+    pIndexWrapper = new IndexEntrySupplierWrapper();
 
-//STRIP001 SwTOXInternational::~SwTOXInternational()
-//STRIP001 {
-//STRIP001  delete pCharClass;
-//STRIP001  delete pIndexWrapper;
-//STRIP001 }
+     const ::com::sun::star::lang::Locale aLcl( SvxCreateLocale( eLang ) );
+     pIndexWrapper->SetLocale( aLcl );
+
+     if(!sSortAlgorithm.Len())
+     {
+         Sequence < OUString > aSeq( pIndexWrapper->GetAlgorithmList( aLcl ));
+         if(aSeq.getLength())
+             sSortAlgorithm = aSeq.getConstArray()[0];
+     }
+
+     if ( nOptions & TOI_CASE_SENSITIVE )
+         pIndexWrapper->LoadAlgorithm( aLcl, sSortAlgorithm, 0 );
+     else
+         pIndexWrapper->LoadAlgorithm( aLcl, sSortAlgorithm, SW_COLLATOR_IGNORES );
+
+    pCharClass = new CharClass( aLcl );
+
+ }
+
+ SwTOXInternational::~SwTOXInternational()
+ {
+    delete pCharClass;
+    delete pIndexWrapper;
+ }
 
 //STRIP001 String SwTOXInternational::ToUpper( const String& rStr, xub_StrLen nPos ) const
 //STRIP001 {
 //STRIP001  return pCharClass->toUpper( rStr, nPos, 1 );
 //STRIP001 }
-//STRIP001 inline BOOL SwTOXInternational::IsNumeric( const String& rStr ) const
-//STRIP001 {
-//STRIP001  return pCharClass->isNumeric( rStr );
-//STRIP001 }
+inline BOOL SwTOXInternational::IsNumeric( const String& rStr ) const
+{
+    return pCharClass->isNumeric( rStr );
+}
 
-//STRIP001 sal_Int32 SwTOXInternational::Compare( const String& rTxt1, const String& rTxtReading1,
-//STRIP001                                        const ::com::sun::star::lang::Locale& rLocale1,
-//STRIP001                                        const String& rTxt2, const String& rTxtReading2,
-//STRIP001                                        const ::com::sun::star::lang::Locale& rLocale2 ) const
-//STRIP001 {
-//STRIP001     return pIndexWrapper->CompareIndexEntry( rTxt1, rTxtReading1, rLocale1,
-//STRIP001                                              rTxt2, rTxtReading2, rLocale2 );
-//STRIP001 }
+sal_Int32 SwTOXInternational::Compare( const String& rTxt1, const String& rTxtReading1,
+                                       const ::com::sun::star::lang::Locale& rLocale1,
+                                       const String& rTxt2, const String& rTxtReading2,
+                                       const ::com::sun::star::lang::Locale& rLocale2 ) const
+{
+    return pIndexWrapper->CompareIndexEntry( rTxt1, rTxtReading1, rLocale1,
+                                             rTxt2, rTxtReading2, rLocale2 );
+}
 
 //STRIP001 String SwTOXInternational::GetIndexKey( const String& rTxt, const String& rTxtReading,
 //STRIP001                                         const ::com::sun::star::lang::Locale& rLocale ) const
@@ -240,165 +240,165 @@ namespace binfilter {
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
-//STRIP001                                  const SwTxtTOXMark* pMark,
-//STRIP001                                     const SwTOXInternational* pInter,
-//STRIP001                                     const ::com::sun::star::lang::Locale* pLocale )
-//STRIP001     : pTxtMark( pMark ), pTOXNd( 0 ), nPos( 0 ), nType( nTyp ),
-//STRIP001     pTOXIntl( pInter ), bValidTxt( FALSE ), nCntPos( 0 )
-//STRIP001 {
-//STRIP001     if ( pLocale )
-//STRIP001         aLocale = *pLocale;
-//STRIP001
-//STRIP001     if( pNd )
-//STRIP001  {
-//STRIP001      xub_StrLen n = 0;
-//STRIP001      if( pTxtMark )
-//STRIP001          n = *pTxtMark->GetStart();
-//STRIP001      SwTOXSource aTmp( pNd, n,
-//STRIP001                  pTxtMark ? pTxtMark->GetTOXMark().IsMainEntry() : FALSE );
-//STRIP001      aTOXSources.Insert( aTmp, aTOXSources.Count() );
-//STRIP001
-//STRIP001      nPos = pNd->GetIndex();
-//STRIP001
-//STRIP001      switch( nTyp )
-//STRIP001      {
-//STRIP001      case TOX_SORT_CONTENT:
-//STRIP001      case TOX_SORT_PARA:
-//STRIP001      case TOX_SORT_TABLE:
-//STRIP001          // falls sie in Sonderbereichen stehen, sollte man die
-//STRIP001          // Position im Body besorgen
-//STRIP001          if( nPos < pNd->GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001          {
-//STRIP001              // dann die "Anker" (Body) Position holen.
-//STRIP001              Point aPt;
-//STRIP001              const SwCntntFrm* pFrm = pNd->GetFrm( &aPt, 0, FALSE );
-//STRIP001              if( pFrm )
-//STRIP001              {
-//STRIP001                  SwPosition aPos( *pNd );
-//STRIP001                  const SwDoc& rDoc = *pNd->GetDoc();
-//STRIP001 #ifndef PRODUCT
-//STRIP001                  ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ),
-//STRIP001                          "wo steht der Absatz" );
-//STRIP001 #else
-//STRIP001                  GetBodyTxtNode( rDoc, aPos, *pFrm );
-//STRIP001 #endif
-//STRIP001                  nPos = aPos.nNode.GetIndex();
-//STRIP001                  nCntPos = aPos.nContent.GetIndex();
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              nCntPos = n;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
+                                    const SwTxtTOXMark* pMark,
+                                    const SwTOXInternational* pInter,
+                                    const ::com::sun::star::lang::Locale* pLocale )
+    : pTxtMark( pMark ), pTOXNd( 0 ), nPos( 0 ), nType( nTyp ),
+    pTOXIntl( pInter ), bValidTxt( FALSE ), nCntPos( 0 )
+{
+    if ( pLocale )
+        aLocale = *pLocale;
+
+    if( pNd )
+    {
+        xub_StrLen n = 0;
+        if( pTxtMark )
+            n = *pTxtMark->GetStart();
+        SwTOXSource aTmp( pNd, n,
+                    pTxtMark ? pTxtMark->GetTOXMark().IsMainEntry() : FALSE );
+        aTOXSources.Insert( aTmp, aTOXSources.Count() );
+
+        nPos = pNd->GetIndex();
+
+        switch( nTyp )
+        {
+        case TOX_SORT_CONTENT:
+        case TOX_SORT_PARA:
+        case TOX_SORT_TABLE:
+            // falls sie in Sonderbereichen stehen, sollte man die
+            // Position im Body besorgen
+            if( nPos < pNd->GetNodes().GetEndOfExtras().GetIndex() )
+            {
+                // dann die "Anker" (Body) Position holen.
+                Point aPt;
+                const SwCntntFrm* pFrm = pNd->GetFrm( &aPt, 0, FALSE );
+                if( pFrm )
+                {
+                    SwPosition aPos( *pNd );
+                    const SwDoc& rDoc = *pNd->GetDoc();
+#ifndef PRODUCT
+                    ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ),
+                            "wo steht der Absatz" );
+#else
+                    GetBodyTxtNode( rDoc, aPos, *pFrm );
+#endif
+                    nPos = aPos.nNode.GetIndex();
+                    nCntPos = aPos.nContent.GetIndex();
+                }
+            }
+            else
+                nCntPos = n;
+            break;
+        }
+    }
+}
 
 
-//STRIP001 String SwTOXSortTabBase::GetURL() const
-//STRIP001 {
-//STRIP001  return aEmptyStr;
-//STRIP001 }
+String SwTOXSortTabBase::GetURL() const
+{
+    return aEmptyStr;
+}
 
-//STRIP001 void SwTOXSortTabBase::FillText( SwTxtNode& rNd, const SwIndex& rInsPos,
-//STRIP001                                  USHORT ) const
-//STRIP001 {
-//STRIP001     String sMyTxt;
-//STRIP001     String sMyTxtReading;
-//STRIP001
-//STRIP001     GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001     rNd.Insert( sMyTxt, rInsPos );
-//STRIP001 }
+void SwTOXSortTabBase::FillText( SwTxtNode& rNd, const SwIndex& rInsPos,
+                                    USHORT ) const
+{
+    String sMyTxt;
+    String sMyTxtReading;
 
-//STRIP001 BOOL SwTOXSortTabBase::operator==( const SwTOXSortTabBase& rCmp )
-//STRIP001 {
-//STRIP001  BOOL bRet = nPos == rCmp.nPos && nCntPos == rCmp.nCntPos &&
-//STRIP001          (!aTOXSources[0].pNd || !rCmp.aTOXSources[0].pNd ||
-//STRIP001          aTOXSources[0].pNd == rCmp.aTOXSources[0].pNd );
-//STRIP001
-//STRIP001  if( TOX_SORT_CONTENT == nType )
-//STRIP001  {
-//STRIP001      bRet = bRet && pTxtMark && rCmp.pTxtMark &&
-//STRIP001              *pTxtMark->GetStart() == *rCmp.pTxtMark->GetStart();
-//STRIP001
-//STRIP001      if( bRet )
-//STRIP001      {
-//STRIP001          // beide Pointer vorhanden -> vergleiche Text
-//STRIP001          // beide Pointer nicht vorhanden -> vergleiche AlternativText
-//STRIP001          const xub_StrLen *pEnd  = pTxtMark->GetEnd(),
-//STRIP001                           *pEndCmp = rCmp.pTxtMark->GetEnd();
-//STRIP001
-//STRIP001             String sMyTxt;
-//STRIP001             String sMyTxtReading;
-//STRIP001             GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001             String sOtherTxt;
-//STRIP001             String sOtherTxtReading;
-//STRIP001             rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001          bRet = ( ( pEnd && pEndCmp ) || ( !pEnd && !pEndCmp ) ) &&
-//STRIP001                     pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                        sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+    GetTxt( sMyTxt, sMyTxtReading );
 
-//STRIP001 BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
-//STRIP001 {
-//STRIP001  if( nPos < rCmp.nPos )
-//STRIP001      return TRUE;
-//STRIP001
-//STRIP001  if( nPos == rCmp.nPos )
-//STRIP001  {
-//STRIP001      if( nCntPos < rCmp.nCntPos )
-//STRIP001          return TRUE;
-//STRIP001
-//STRIP001      if( nCntPos == rCmp.nCntPos )
-//STRIP001      {
-//STRIP001          const SwNode* pFirst = aTOXSources[0].pNd;
-//STRIP001          const SwNode* pNext = rCmp.aTOXSources[0].pNd;
-//STRIP001
-//STRIP001          if( pFirst && pFirst == pNext )
-//STRIP001          {
-//STRIP001              if( TOX_SORT_CONTENT == nType && pTxtMark && rCmp.pTxtMark )
-//STRIP001              {
-//STRIP001                  if( *pTxtMark->GetStart() < *rCmp.pTxtMark->GetStart() )
-//STRIP001                      return TRUE;
-//STRIP001
-//STRIP001                  if( *pTxtMark->GetStart() == *rCmp.pTxtMark->GetStart() )
-//STRIP001                  {
-//STRIP001                      const xub_StrLen *pEnd = pTxtMark->GetEnd(),
-//STRIP001                                       *pEndCmp = rCmp.pTxtMark->GetEnd();
-//STRIP001
-//STRIP001                         String sMyTxt;
-//STRIP001                         String sMyTxtReading;
-//STRIP001                         GetTxt( sMyTxt, sMyTxtReading );
-//STRIP001
-//STRIP001                         String sOtherTxt;
-//STRIP001                         String sOtherTxtReading;
-//STRIP001                         rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
-//STRIP001
-//STRIP001                         // beide Pointer vorhanden -> vergleiche Text
-//STRIP001                      // beide Pointer nicht vorhanden -> vergleiche AlternativText
-//STRIP001                      if( ( pEnd && pEndCmp ) || ( !pEnd && !pEndCmp ) )
-//STRIP001                             pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                                sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
-//STRIP001
-//STRIP001                      if( pEnd && !pEndCmp )
-//STRIP001                          return TRUE;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if( pFirst && pFirst->IsTxtNode() &&
-//STRIP001                   pNext && pNext->IsTxtNode() )
-//STRIP001                  return ::IsFrameBehind( *(SwTxtNode*)pNext, nCntPos,
-//STRIP001                                          *(SwTxtNode*)pFirst, nCntPos );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
+    rNd.Insert( sMyTxt, rInsPos );
+}
+
+BOOL SwTOXSortTabBase::operator==( const SwTOXSortTabBase& rCmp )
+{
+    BOOL bRet = nPos == rCmp.nPos && nCntPos == rCmp.nCntPos &&
+            (!aTOXSources[0].pNd || !rCmp.aTOXSources[0].pNd ||
+            aTOXSources[0].pNd == rCmp.aTOXSources[0].pNd );
+
+    if( TOX_SORT_CONTENT == nType )
+    {
+        bRet = bRet && pTxtMark && rCmp.pTxtMark &&
+                *pTxtMark->GetStart() == *rCmp.pTxtMark->GetStart();
+
+        if( bRet )
+        {
+            // beide Pointer vorhanden -> vergleiche Text
+            // beide Pointer nicht vorhanden -> vergleiche AlternativText
+            const xub_StrLen *pEnd  = pTxtMark->GetEnd(),
+                             *pEndCmp = rCmp.pTxtMark->GetEnd();
+
+            String sMyTxt;
+            String sMyTxtReading;
+            GetTxt( sMyTxt, sMyTxtReading );
+
+            String sOtherTxt;
+            String sOtherTxtReading;
+            rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
+
+            bRet = ( ( pEnd && pEndCmp ) || ( !pEnd && !pEndCmp ) ) &&
+                    pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
+                                       sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
+        }
+    }
+    return bRet;
+}
+
+BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
+{
+    if( nPos < rCmp.nPos )
+        return TRUE;
+
+    if( nPos == rCmp.nPos )
+    {
+        if( nCntPos < rCmp.nCntPos )
+            return TRUE;
+
+        if( nCntPos == rCmp.nCntPos )
+        {
+            const SwNode* pFirst = aTOXSources[0].pNd;
+            const SwNode* pNext = rCmp.aTOXSources[0].pNd;
+
+            if( pFirst && pFirst == pNext )
+            {
+                if( TOX_SORT_CONTENT == nType && pTxtMark && rCmp.pTxtMark )
+                {
+                    if( *pTxtMark->GetStart() < *rCmp.pTxtMark->GetStart() )
+                        return TRUE;
+
+                    if( *pTxtMark->GetStart() == *rCmp.pTxtMark->GetStart() )
+                    {
+                        const xub_StrLen *pEnd = pTxtMark->GetEnd(),
+                                         *pEndCmp = rCmp.pTxtMark->GetEnd();
+
+                        String sMyTxt;
+                        String sMyTxtReading;
+                        GetTxt( sMyTxt, sMyTxtReading );
+
+                        String sOtherTxt;
+                        String sOtherTxtReading;
+                        rCmp.GetTxt( sOtherTxt, sOtherTxtReading );
+
+                        // beide Pointer vorhanden -> vergleiche Text
+                        // beide Pointer nicht vorhanden -> vergleiche AlternativText
+                        if( ( pEnd && pEndCmp ) || ( !pEnd && !pEndCmp ) )
+                            pTOXIntl->IsEqual( sMyTxt, sMyTxtReading, GetLocale(),
+                                               sOtherTxt, sOtherTxtReading, rCmp.GetLocale() );
+
+                        if( pEnd && !pEndCmp )
+                            return TRUE;
+                    }
+                }
+            }
+            else if( pFirst && pFirst->IsTxtNode() &&
+                     pNext && pNext->IsTxtNode() )
+                    return ::binfilter::IsFrameBehind( *(SwTxtNode*)pNext, nCntPos,
+                                            *(SwTxtNode*)pFirst, nCntPos );
+        }
+    }
+    return FALSE;
+}
 
 /*--------------------------------------------------------------------
      Beschreibung: sortierter Stichworteintrag
@@ -898,112 +898,112 @@ namespace binfilter {
 
   -----------------------------------------------------------------------*/
 
-//STRIP001 SwTOXAuthority::SwTOXAuthority( const SwCntntNode& rNd,
-//STRIP001              SwFmtFld& rField, const SwTOXInternational& rIntl ) :
-//STRIP001  SwTOXSortTabBase( TOX_SORT_AUTHORITY, &rNd, 0, &rIntl ),
-//STRIP001  m_rField(rField)
-//STRIP001 {
-//STRIP001  if(rField.GetTxtFld())
-//STRIP001      nCntPos = *rField.GetTxtFld()->GetStart();
-//STRIP001 }
+SwTOXAuthority::SwTOXAuthority( const SwCntntNode& rNd,
+                SwFmtFld& rField, const SwTOXInternational& rIntl ) :
+    SwTOXSortTabBase( TOX_SORT_AUTHORITY, &rNd, 0, &rIntl ),
+    m_rField(rField)
+{
+    if(rField.GetTxtFld())
+        nCntPos = *rField.GetTxtFld()->GetStart();
+}
 
-//STRIP001 USHORT SwTOXAuthority::GetLevel() const
-//STRIP001 {
-//STRIP001  String sText(((SwAuthorityField*)m_rField.GetFld())->
-//STRIP001                      GetFieldText(AUTH_FIELD_AUTHORITY_TYPE));
-//STRIP001  USHORT nRet = 0;
-//STRIP001  if( pTOXIntl->IsNumeric( sText ) )
-//STRIP001  {
-//STRIP001      nRet = (USHORT)sText.ToInt32();
-//STRIP001      nRet++;
-//STRIP001  }
-//STRIP001  if(nRet >= AUTH_TYPE_END)
-//STRIP001      nRet = 0;
-//STRIP001  return nRet;
-//STRIP001 }
+USHORT SwTOXAuthority::GetLevel() const
+{
+    String sText(((SwAuthorityField*)m_rField.GetFld())->
+                        GetFieldText(AUTH_FIELD_AUTHORITY_TYPE));
+    USHORT nRet = 0;
+    if( pTOXIntl->IsNumeric( sText ) )
+    {
+        nRet = (USHORT)sText.ToInt32();
+        nRet++;
+    }
+    if(nRet >= AUTH_TYPE_END)
+        nRet = 0;
+    return nRet;
+ }
 /*-- 15.09.99 14:28:08---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwTOXAuthority::_GetText( String& rTxt, String& rTxtReading )
-//STRIP001 {
-//STRIP001  //
-//STRIP001     rTxt = m_rField.GetFld()->Expand();
-//STRIP001 }
+void SwTOXAuthority::_GetText( String& rTxt, String& rTxtReading )
+{
+    //
+    rTxt = m_rField.GetFld()->Expand();
+}
 
 /* -----------------21.09.99 12:50-------------------
 
  --------------------------------------------------*/
-//STRIP001 void     SwTOXAuthority::FillText( SwTxtNode& rNd,
-//STRIP001                      const SwIndex& rInsPos, USHORT nAuthField ) const
-//STRIP001 {
-//STRIP001  SwAuthorityField* pField = (SwAuthorityField*)m_rField.GetFld();
-//STRIP001  String sText;
-//STRIP001  if(AUTH_FIELD_IDENTIFIER == nAuthField)
-//STRIP001  {
-//STRIP001      sText = pField->Expand();
-//STRIP001         const SwAuthorityFieldType* pType = (const SwAuthorityFieldType*)pField->GetTyp();
-//STRIP001         sal_Unicode cChar = pType->GetPrefix();
-//STRIP001         if(cChar && cChar != ' ')
-//STRIP001      sText.Erase(0, 1);
-//STRIP001         cChar = pType->GetSuffix();
-//STRIP001         if(cChar && cChar != ' ')
-//STRIP001      sText.Erase(sText.Len() - 1, 1);
-//STRIP001  }
-//STRIP001  else if(AUTH_FIELD_AUTHORITY_TYPE == nAuthField)
-//STRIP001  {
-//STRIP001      USHORT nLevel = GetLevel();
-//STRIP001      if(nLevel)
-//STRIP001          sText = SwAuthorityFieldType::GetAuthTypeName((ToxAuthorityType) --nLevel);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      sText = (pField->GetFieldText((ToxAuthorityField) nAuthField));
-//STRIP001  rNd.Insert( sText, rInsPos );
-//STRIP001 }
+void    SwTOXAuthority::FillText( SwTxtNode& rNd,
+                        const SwIndex& rInsPos, USHORT nAuthField ) const
+{
+    SwAuthorityField* pField = (SwAuthorityField*)m_rField.GetFld();
+    String sText;
+    if(AUTH_FIELD_IDENTIFIER == nAuthField)
+    {
+        sText = pField->Expand();
+        const SwAuthorityFieldType* pType = (const SwAuthorityFieldType*)pField->GetTyp();
+        sal_Unicode cChar = pType->GetPrefix();
+        if(cChar && cChar != ' ')
+        sText.Erase(0, 1);
+        cChar = pType->GetSuffix();
+        if(cChar && cChar != ' ')
+        sText.Erase(sText.Len() - 1, 1);
+    }
+    else if(AUTH_FIELD_AUTHORITY_TYPE == nAuthField)
+    {
+        USHORT nLevel = GetLevel();
+        if(nLevel)
+            sText = SwAuthorityFieldType::GetAuthTypeName((ToxAuthorityType) --nLevel);
+    }
+    else
+        sText = (pField->GetFieldText((ToxAuthorityField) nAuthField));
+    rNd.Insert( sText, rInsPos );
+}
 /* -----------------14.10.99 09:35-------------------
 
  --------------------------------------------------*/
-//STRIP001 BOOL     SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
-//STRIP001 {
-//STRIP001  return nType == rCmp.nType &&
-//STRIP001          ((SwAuthorityField*)m_rField.GetFld())->GetHandle() ==
-//STRIP001              ((SwAuthorityField*)((SwTOXAuthority&)rCmp).m_rField.GetFld())->GetHandle();
-//STRIP001 }
+BOOL    SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
+{
+    return nType == rCmp.nType &&
+            ((SwAuthorityField*)m_rField.GetFld())->GetHandle() ==
+                ((SwAuthorityField*)((SwTOXAuthority&)rCmp).m_rField.GetFld())->GetHandle();
+}
 /* -----------------21.10.99 09:52-------------------
 
  --------------------------------------------------*/
-//STRIP001 BOOL     SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  SwAuthorityField* pField = (SwAuthorityField*)m_rField.GetFld();
-//STRIP001  SwAuthorityFieldType* pType = (SwAuthorityFieldType*)
-//STRIP001                                              pField->GetTyp();
-//STRIP001  if(pType->IsSortByDocument())
-//STRIP001      bRet = SwTOXSortTabBase::operator<(rBase);
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SwAuthorityField* pCmpField = (SwAuthorityField*)
-//STRIP001                      ((SwTOXAuthority&)rBase).m_rField.GetFld();
-//STRIP001
-//STRIP001
-//STRIP001      for(USHORT i = 0; i < pType->GetSortKeyCount(); i++)
-//STRIP001      {
-//STRIP001          const SwTOXSortKey* pKey = pType->GetSortKey(i);
-//STRIP001             String sMyTxt = pField->GetFieldText(pKey->eField);
-//STRIP001             String sMyTxtReading;
-//STRIP001             String sOtherTxt = pCmpField->GetFieldText(pKey->eField);
-//STRIP001             String sOtherTxtReading;
-//STRIP001
-//STRIP001             sal_Int32 nComp = pTOXIntl->Compare( sMyTxt, sMyTxtReading, GetLocale(),
-//STRIP001                                                  sOtherTxt, sOtherTxtReading, rBase.GetLocale() );
-//STRIP001
-//STRIP001             if( nComp )
-//STRIP001          {
-//STRIP001              bRet = (-1 == nComp) == pKey->bSortAscending;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL    SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)
+{
+    BOOL bRet = FALSE;
+    SwAuthorityField* pField = (SwAuthorityField*)m_rField.GetFld();
+    SwAuthorityFieldType* pType = (SwAuthorityFieldType*)
+                                                pField->GetTyp();
+    if(pType->IsSortByDocument())
+        bRet = SwTOXSortTabBase::operator<(rBase);
+    else
+    {
+        SwAuthorityField* pCmpField = (SwAuthorityField*)
+                        ((SwTOXAuthority&)rBase).m_rField.GetFld();
+
+
+        for(USHORT i = 0; i < pType->GetSortKeyCount(); i++)
+        {
+            const SwTOXSortKey* pKey = pType->GetSortKey(i);
+            String sMyTxt = pField->GetFieldText(pKey->eField);
+            String sMyTxtReading;
+            String sOtherTxt = pCmpField->GetFieldText(pKey->eField);
+            String sOtherTxtReading;
+
+            sal_Int32 nComp = pTOXIntl->Compare( sMyTxt, sMyTxtReading, GetLocale(),
+                                                 sOtherTxt, sOtherTxtReading, rBase.GetLocale() );
+
+            if( nComp )
+            {
+                bRet = (-1 == nComp) == pKey->bSortAscending;
+                break;
+            }
+        }
+    }
+    return bRet;
+}
 
 }
