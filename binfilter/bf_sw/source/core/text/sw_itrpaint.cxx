@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrpaint.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:52:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,81 +62,86 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
-#include "flyfrm.hxx"     // SwFlyInCntFrm
-#include "viewopt.hxx"  // SwViewOptions
-#include "errhdl.hxx"
+// auto strip #include "hintids.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"   // SwFlyInCntFrm
+// auto strip #include "viewopt.hxx"    // SwViewOptions
+// auto strip #include "errhdl.hxx"
 #include "txtatr.hxx"  // SwINetFmt
 
-#ifndef _SV_MULTISEL_HXX //autogen
-#include <tools/multisel.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
-#include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
-#include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SV_MULTISEL_HXX //autogen
+// auto strip #include <tools/multisel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
+// auto strip #include <bf_svx/escpitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UDLNITEM_HXX //autogen
+// auto strip #include <bf_svx/udlnitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 
-#ifndef _TXTINET_HXX //autogen
-#include <txtinet.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
-#include <fchrfmt.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
-#include <fmtftn.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>      // SwField
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _TXTINET_HXX //autogen
+// auto strip #include <txtinet.hxx>
+// auto strip #endif
+// auto strip #ifndef _FCHRFMT_HXX //autogen
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFTN_HXX //autogen
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>      // SwField
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
 #endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
 
-#include "flyfrms.hxx"
-#include "viewsh.hxx"
-#include "txtcfg.hxx"
+// auto strip #include "flyfrms.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "txtcfg.hxx"
 #include "itrpaint.hxx"
-#include "txtfrm.hxx"   // pFrm
-#include "txtfly.hxx"
-#include "swfont.hxx"
-#include "txtpaint.hxx"
-#include "portab.hxx"   // SwTabPortion::IsFilled
-#include "porfly.hxx"     // SwFlyCntPortion
-#include "porfld.hxx"   // SwGrfNumPortion
-#include "frmfmt.hxx"   // LRSpace
-#include "txatbase.hxx" // SwTxtAttr
-#include "charfmt.hxx"  // SwFmtCharFmt
-#include "redlnitr.hxx" // SwRedlineItr
-#include "porrst.hxx"   // SwArrowPortion
+// auto strip #include "txtfrm.hxx"   // pFrm
+// auto strip #include "txtfly.hxx"
+// auto strip #include "swfont.hxx"
+// auto strip #include "txtpaint.hxx"
+// auto strip #include "portab.hxx"   // SwTabPortion::IsFilled
+// auto strip #include "porfly.hxx"   // SwFlyCntPortion
+// auto strip #include "porfld.hxx" // SwGrfNumPortion
+// auto strip #include "frmfmt.hxx" // LRSpace
+// auto strip #include "txatbase.hxx" // SwTxtAttr
+// auto strip #include "charfmt.hxx"  // SwFmtCharFmt
+// auto strip #include "redlnitr.hxx" // SwRedlineItr
+// auto strip #include "porrst.hxx" // SwArrowPortion
 #include "pormulti.hxx"
 namespace binfilter {
 
