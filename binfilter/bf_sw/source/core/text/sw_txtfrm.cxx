@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:56:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,26 +69,30 @@
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
-#include <bf_svx/langitem.hxx>
-#endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX //autogen
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
 #ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 #ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX
@@ -100,15 +104,15 @@
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>      // SwPosition
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>        // SwTxtNode
-#endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>        // SwPosition
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>      // SwTxtNode
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -151,27 +155,27 @@
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
 #ifndef _FMTLINE_HXX
 #include <fmtline.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // SwTxtFrm
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>     // SwTxtFrm
+// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectFrm
 #endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>       // DBG_LOOP
-#endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>     // DBG_LOOP
+// auto strip #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>       // Iteratoren
 #endif
@@ -181,9 +185,9 @@
 #ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>       // GetLineSpace benutzt SwFonts
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>       // GetLineSpace benutzt SwFonts
+// auto strip #endif
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // GetLineSpace benutzt pLastFont
 #endif
@@ -196,14 +200,14 @@
 #ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
 #endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 
 #if OSL_DEBUG_LEVEL > 1
-#ifndef _TXTPAINT_HXX
-#include <txtpaint.hxx>     // DbgRect
-#endif
+// auto strip #ifndef _TXTPAINT_HXX
+// auto strip #include <txtpaint.hxx>   // DbgRect
+// auto strip #endif
 namespace binfilter {
 extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
 } //STRIP008
