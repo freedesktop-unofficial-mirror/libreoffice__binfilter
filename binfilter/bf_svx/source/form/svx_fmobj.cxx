@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:46:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,13 +60,13 @@
  ************************************************************************/
 #pragma hdrstop
 
-#ifndef _SVX_FMPROP_HXX
-#include "fmprop.hxx"
-#endif
+// auto strip #ifndef _SVX_FMPROP_HXX
+// auto strip #include "fmprop.hxx"
+// auto strip #endif
 
-#ifndef _TOOLS_RESMGR_HXX
-#include <tools/resmgr.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESMGR_HXX
+// auto strip #include <tools/resmgr.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
@@ -80,17 +80,17 @@
 #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
-#include <com/sun/star/awt/XControlContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
+// auto strip #include <com/sun/star/awt/XControlContainer.hpp>
+// auto strip #endif
 
-#ifndef _SVDIO_HXX //autogen
-#include <svdio.hxx>
-#endif
+// auto strip #ifndef _SVDIO_HXX //autogen
+// auto strip #include <svdio.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
@@ -100,13 +100,13 @@
 #include "fmtools.hxx"
 #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SVX_DIALMGR_HXX
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
 #ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
@@ -127,15 +127,15 @@
 #ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
 #endif
-#ifndef _COMPHELPER_PROPERTY_HXX_
-#include <comphelper/property.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
+// auto strip #include <comphelper/property.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
