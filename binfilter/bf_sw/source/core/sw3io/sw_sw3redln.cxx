@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-23 14:05:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:44:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,24 +63,34 @@
 #pragma hdrstop
 
 #ifndef _DOC_HXX //autogen
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
 #ifndef _REDLINE_HXX //autogen
 #include <redline.hxx>
 #endif
 
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
-#include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
-#include <bf_svx/crsditem.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UDLNITEM_HXX //autogen
+// auto strip #include <bf_svx/udlnitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CRSDITEM_HXX //autogen
+// auto strip #include <bf_svx/crsditem.hxx>
+// auto strip #endif
 
 #include "sw3marks.hxx"
 #include "sw3imp.hxx"
