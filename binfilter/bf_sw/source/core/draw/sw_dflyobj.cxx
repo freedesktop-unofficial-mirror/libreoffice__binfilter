@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dflyobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:18:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,51 +63,56 @@
 
 #include "hintids.hxx"
 
-#ifndef _XPOLY_HXX //autogen
-#include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVDTRANS_HXX
-#include <bf_svx/svdtrans.hxx>
-#endif
+// auto strip #ifndef _XPOLY_HXX //autogen
+// auto strip #include <bf_svx/xpoly.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDTRANS_HXX
+// auto strip #include <bf_svx/svdtrans.hxx>
+// auto strip #endif
 #ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
 #endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
 
 
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FMTURL_HXX //autogen
-#include <fmturl.hxx>
-#endif
-#include "frmsh.hxx"
-#include "viewsh.hxx"
-#include "viewimp.hxx"
-#include "cntfrm.hxx"
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTURL_HXX //autogen
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
+// auto strip #include "frmsh.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "viewimp.hxx"
+// auto strip #include "cntfrm.hxx"
 #include "frmatr.hxx"
-#include "doc.hxx"
-#include "dview.hxx"
+// auto strip #include "doc.hxx"
+// auto strip #include "dview.hxx"
 #include "dflyobj.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "frmfmt.hxx"
-#include "viewopt.hxx"
-#include "frmtool.hxx"
+// auto strip #include "viewopt.hxx"
+// auto strip #include "frmtool.hxx"
 #include "flyfrms.hxx"
-#include "ndnotxt.hxx"
-#include "grfatr.hxx"
-#include "pagefrm.hxx"
+// auto strip #include "ndnotxt.hxx"
+// auto strip #include "grfatr.hxx"
+// auto strip #include "pagefrm.hxx"
 namespace binfilter {
 
 static FASTBOOL bInResize = FALSE;
