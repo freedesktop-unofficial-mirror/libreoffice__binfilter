@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmexpl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:56:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,99 +61,99 @@
 #ifndef _SVX_FMEXPL_HXX
 #define _SVX_FMEXPL_HXX
 
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
 
-#ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
-#endif
+// auto strip #ifndef _SFXBRDCST_HXX //autogen
+// auto strip #include <svtools/brdcst.hxx>
+// auto strip #endif
 
-#ifndef _SV_WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
+// auto strip #ifndef _SV_WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
-#include <bf_sfx2/childwin.hxx>
-#endif
+// auto strip #ifndef _SFX_CHILDWIN_HXX //autogen
+// auto strip #include <bf_sfx2/childwin.hxx>
+// auto strip #endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
+// auto strip #ifndef _SFX_BINDINGS_HXX //autogen
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
 
 #ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
 #endif
 
-#ifndef _SFXCTRLITEM_HXX //autogen
-#include <bf_sfx2/ctrlitem.hxx>
-#endif
+// auto strip #ifndef _SFXCTRLITEM_HXX //autogen
+// auto strip #include <bf_sfx2/ctrlitem.hxx>
+// auto strip #endif
 
-#ifndef _SV_IMAGE_HXX
-#include <vcl/image.hxx>
-#endif
+// auto strip #ifndef _SV_IMAGE_HXX
+// auto strip #include <vcl/image.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-#include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-#include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-#include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
+// auto strip #include <com/sun/star/form/XForm.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
+// auto strip #include <com/sun/star/form/XFormComponent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
+// auto strip #include <com/sun/star/container/XContainerListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
 
 
-#ifndef _SVTREEBOX_HXX //autogen
-#include <svtools/svtreebx.hxx>
-#endif
+// auto strip #ifndef _SVTREEBOX_HXX //autogen
+// auto strip #include <svtools/svtreebx.hxx>
+// auto strip #endif
 
-#ifndef _DIALOG_HXX //autogen
-#include <vcl/dialog.hxx>
-#endif
+// auto strip #ifndef _DIALOG_HXX //autogen
+// auto strip #include <vcl/dialog.hxx>
+// auto strip #endif
 
-#ifndef _GROUP_HXX //autogen
-#include <vcl/group.hxx>
-#endif
+// auto strip #ifndef _GROUP_HXX //autogen
+// auto strip #include <vcl/group.hxx>
+// auto strip #endif
 
-#ifndef _BUTTON_HXX //autogen
-#include <vcl/button.hxx>
-#endif
+// auto strip #ifndef _BUTTON_HXX //autogen
+// auto strip #include <vcl/button.hxx>
+// auto strip #endif
 
-#ifndef _FIXED_HXX //autogen
-#include <vcl/fixed.hxx>
-#endif
+// auto strip #ifndef _FIXED_HXX //autogen
+// auto strip #include <vcl/fixed.hxx>
+// auto strip #endif
 
-#ifndef _EDIT_HXX //autogen
-#include <vcl/edit.hxx>
-#endif
+// auto strip #ifndef _EDIT_HXX //autogen
+// auto strip #include <vcl/edit.hxx>
+// auto strip #endif
 
-#ifndef _SV_DOCKWIN_HXX //autogen
-#include <vcl/dockwin.hxx>
-#endif
+// auto strip #ifndef _SV_DOCKWIN_HXX //autogen
+// auto strip #include <vcl/dockwin.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMVIEW_HXX
 #include "fmview.hxx"
 #endif
 
-#include "fmexch.hxx"
+// auto strip #include "fmexch.hxx"
 
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
 class SdrObjListIter;
 namespace binfilter {
 

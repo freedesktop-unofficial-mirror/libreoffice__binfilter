@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmctrler.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:56:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,160 +61,160 @@
 #ifndef _SVX_FMCTRLER_HXX
 #define _SVX_FMCTRLER_HXX
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_XSQLERRORLISTENER_HPP_
-#include <com/sun/star/sdb/XSQLErrorListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
-#include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLERRORLISTENER_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLErrorListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVEBROADCASTER_HPP_
 #include <com/sun/star/sdb/XRowSetApproveBroadcaster.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVELISTENER_HPP_
-#include <com/sun/star/sdb/XRowSetApproveListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
-#include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVELISTENER_HPP_
+// auto strip #include <com/sun/star/sdb/XRowSetApproveListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
+// auto strip #include <com/sun/star/sdbc/XRowSetListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XRESETLISTENER_HPP_
 #include <com/sun/star/form/XResetListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-#include <com/sun/star/awt/XFocusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FOCUSEVENT_HPP_
-#include <com/sun/star/awt/FocusEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FOCUSEVENT_HPP_
+// auto strip #include <com/sun/star/awt/FocusEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETEBROADCASTER_HPP_
 #include <com/sun/star/form/XConfirmDeleteBroadcaster.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_DATABASEPARAMETEREVENT_HPP_
-#include <com/sun/star/form/DatabaseParameterEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_DATABASEDELETEEVENT_HPP_
-#include <com/sun/star/form/DatabaseDeleteEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERLISTENER_HPP_
-#include <com/sun/star/form/XDatabaseParameterListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_DATABASEPARAMETEREVENT_HPP_
+// auto strip #include <com/sun/star/form/DatabaseParameterEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_DATABASEDELETEEVENT_HPP_
+// auto strip #include <com/sun/star/form/DatabaseDeleteEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERLISTENER_HPP_
+// auto strip #include <com/sun/star/form/XDatabaseParameterListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
 #include <com/sun/star/form/XLoadListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETELISTENER_HPP_
-#include <com/sun/star/form/XConfirmDeleteListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_ERROREVENT_HPP_
-#include <com/sun/star/form/ErrorEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETELISTENER_HPP_
+// auto strip #include <com/sun/star/form/XConfirmDeleteListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_ERROREVENT_HPP_
+// auto strip #include <com/sun/star/form/ErrorEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERBROADCASTER_HPP_
 #include <com/sun/star/form/XDatabaseParameterBroadcaster.hpp>
 #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
-#include <com/sun/star/form/XFormControllerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
-#include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-#include <com/sun/star/frame/XDispatch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
-#include <com/sun/star/frame/XDispatchProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
-#include <com/sun/star/frame/XDispatchProviderInterception.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HPP_
-#include <com/sun/star/frame/DispatchDescriptor.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
+// auto strip #include <com/sun/star/form/XFormControllerListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
+// auto strip #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
+// auto strip #include <com/sun/star/frame/XDispatch.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
+// auto strip #include <com/sun/star/frame/XDispatchProvider.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
+// auto strip #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/frame/DispatchDescriptor.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMODESELECTOR_HPP_
 #include <com/sun/star/util/XModeSelector.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
-#include <com/sun/star/util/XModifyListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
+// auto strip #include <com/sun/star/util/XModifyListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMODIFYBROADCASTER_HPP_
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-#include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XTEXTLISTENER_HPP_
-#include <com/sun/star/awt/XTextListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XTEXTLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XTextListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
 #include <com/sun/star/awt/XItemListener.hpp>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
-#include <com/sun/star/awt/XTabControllerModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
-#include <com/sun/star/awt/XControlModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
-#include <com/sun/star/awt/XControlContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XTABCONTROLLER_HPP_
-#include <com/sun/star/awt/XTabController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
-#include <com/sun/star/awt/XControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
+// auto strip #include <com/sun/star/awt/XTabControllerModel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
+// auto strip #include <com/sun/star/awt/XControlModel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
+// auto strip #include <com/sun/star/awt/XControlContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XTABCONTROLLER_HPP_
+// auto strip #include <com/sun/star/awt/XTabController.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
+// auto strip #include <com/sun/star/awt/XControl.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
+// auto strip #endif
 
 #ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
@@ -227,30 +227,30 @@
 #include "sqlparserclient.hxx"
 #endif
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
-#include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE12_HXX_
-#include <cppuhelper/implbase12.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE1_HXX_
+// auto strip #include <cppuhelper/implbase2.hxx>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE12_HXX_
+// auto strip #include <cppuhelper/implbase12.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_COMPBASE12_HXX_
 #include <cppuhelper/compbase12.hxx>
 #endif
-#ifndef _CPPUHELPER_PROPSHLP_HXX
-#include <cppuhelper/propshlp.hxx>
-#endif
-#ifndef _FM_IMPLEMENTATION_IDS_HXX_
-#include <fmimplids.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_PROPSHLP_HXX
+// auto strip #include <cppuhelper/propshlp.hxx>
+// auto strip #endif
+// auto strip #ifndef _FM_IMPLEMENTATION_IDS_HXX_
+// auto strip #include <fmimplids.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _CONNECTIVITY_SQLPARSE_HXX
-#include <connectivity/sqlparse.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _CONNECTIVITY_SQLPARSE_HXX
+// auto strip #include <connectivity/sqlparse.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_BROADCASTHELPER_HXX_
 #include <comphelper/broadcasthelper.hxx>
 #endif
