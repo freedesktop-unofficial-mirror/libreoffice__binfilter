@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrcrsr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:51:53 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:09:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1032,7 +1032,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/               // Ausgleich vor 's'.
 /*N*/               while( pPor && !pPor->GetLen() )
 /*N*/               {
-/*N*/                   DBG_LOOP;
+///*N*/                     DBG_LOOP;
 /*N*/                   nX += pPor->Width();
 /*N*/                   if( !pPor->IsMarginPortion() )
 /*N*/                   {
