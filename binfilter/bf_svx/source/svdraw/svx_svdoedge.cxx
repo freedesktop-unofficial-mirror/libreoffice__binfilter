@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoedge.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:25:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,43 +59,52 @@
  *
  ************************************************************************/
 
-#include "svdoedge.hxx"
+// auto strip #include "svdoedge.hxx"
 #include "xpool.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpoly.hxx"
 #include "svdattrx.hxx"
 #include "svdpool.hxx"
-#include "svdmodel.hxx"
-#include "svdpage.hxx"
-#include "svdpagv.hxx"
-#include "svdview.hxx"
-#include "svdxout.hxx"
-#include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdview.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svddrag.hxx"
 #include "svddrgv.hxx"
-#include "svddrgm1.hxx"
-#include "svdhdl.hxx"
+// auto strip #include "svddrgm1.hxx"
+// auto strip #include "svdhdl.hxx"
 #include "svdtouch.hxx"
-#include "svdtrans.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdetc.hxx"
 #include "svdio.hxx"
 #include "svdsuro.hxx"
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
 
-#ifndef _SVX_SVDOIMP_HXX
-#include "svdoimp.hxx"
+#ifndef _SVX_RECTENUM_HXX
+#include "rectenum.hxx"
 #endif
+
+// auto strip #ifndef _SVX_SVDOIMP_HXX
+// auto strip #include "svdoimp.hxx"
+// auto strip #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
+#endif
+
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
