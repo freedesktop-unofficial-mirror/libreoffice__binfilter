@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unomap.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:11:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,25 +68,25 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SVX_UNOMID_HXX
-#include <bf_svx/unomid.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOMID_HXX
+// auto strip #include <bf_svx/unomid.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_TYPEGENERATION_HXX
 #include <comphelper/TypeGeneration.hxx>
 #endif
 #ifndef _COM_SUN_STAR_BEANS_PropertyAttribute_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
-#include <com/sun/star/text/PageNumberType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
-#include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
+// auto strip #include <com/sun/star/text/PageNumberType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
+// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
+// auto strip #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _UNOMAP_HXX
 #include <unomap.hxx>
 #endif
