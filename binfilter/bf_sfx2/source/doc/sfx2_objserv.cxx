@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:52:38 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:09:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -314,7 +314,8 @@ svtools::AsynchronLink* pPendingCloser = 0;
 /*N*/           if ( bCopyTo )
 /*N*/               aSavedInfo = GetDocInfo();
 /*N*/
-/*N*/           bOk = CommonSaveAs_Impl( aFileName, aFilterName, aParams );
+/*N*/           bOk = CommonSaveAs_Impl( INetURLObject(aFileName), aFilterName,
+/*N*/               aParams );
 /*N*/
 /*N*/           if ( bCopyTo )
 /*N*/           {
