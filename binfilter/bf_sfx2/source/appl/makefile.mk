@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:12 $
+#   last change: $Author: hjs $ $Date: 2004-06-25 13:40:52 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -75,9 +75,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 
 IMGLST_SRS=$(SRS)$/sfx2_appl.srs
 BMP_IN=$(BFPRJ)$/win/res
@@ -92,7 +90,7 @@ CFLAGS+=-Od
 
 SRS1NAME=sfx2_appl
 SRC1FILES =  \
-        sfx2_app.src sfx2_sfx.src sfx2_image.src sfx2_newhelp.src
+        sfx2_app.src sfx2_image.src sfx2_newhelp.src
 
 SRS2NAME=sfx2_sfx
 SRC2FILES =  \
