@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdtox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:47:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,27 +62,36 @@
 
 #pragma hdrstop
 
-#ifndef _DOC_HXX
-#include <doc.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _RDSWG_HXX
-#include <rdswg.hxx>
-#endif
-#ifndef _DOCTXM_HXX
-#include <doctxm.hxx>
-#endif
+
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _RDSWG_HXX
+// auto strip #include <rdswg.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCTXM_HXX
+// auto strip #include <doctxm.hxx>
+// auto strip #endif
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
-#endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 

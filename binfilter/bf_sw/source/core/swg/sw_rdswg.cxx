@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdswg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:47:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,43 +65,53 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _RDSWG_HXX
+// auto strip #include <rdswg.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>      // Zeichen-Konversion
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWGPAR_HXX
+// auto strip #include <swgpar.hxx>     // SWGRD_xxx-Flags
+// auto strip #endif
+// auto strip #ifndef _FRMIDS_HXX
+// auto strip #include <frmids.hxx>
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>     // Progress
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _RDSWG_HXX
-#include <rdswg.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>        // Zeichen-Konversion
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _SWGPAR_HXX
-#include <swgpar.hxx>       // SWGRD_xxx-Flags
-#endif
-#ifndef _FRMIDS_HXX
-#include <frmids.hxx>
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>       // Progress
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 
 #ifndef _SWSWERROR_H
 #include <swerror.h>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdpage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:47:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,21 +62,25 @@
 
 #pragma hdrstop
 
-#include "doc.hxx"
-
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
-#include <fmthdft.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#include "rdswg.hxx"
-#include "pagedesc.hxx"
-#include "swgpar.hxx"       // SWGRD_XXX
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
-#endif
+// auto strip #include "doc.hxx"
+
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHDFT_HXX //autogen
+// auto strip #include <fmthdft.hxx>
+// auto strip #endif
+
+// auto strip #include "rdswg.hxx"
+// auto strip #include "pagedesc.hxx"
+// auto strip #include "swgpar.hxx"     // SWGRD_XXX
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
