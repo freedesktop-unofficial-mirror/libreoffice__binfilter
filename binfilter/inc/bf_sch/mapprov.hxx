@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mapprov.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:52:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,9 +67,9 @@
 #include <svtools/itemprop.hxx>
 #endif
 
-#ifndef _SCH_UNONAMES_HXX
-#include "unonames.hxx"
-#endif
+// auto strip #ifndef _SCH_UNONAMES_HXX
+// auto strip #include "unonames.hxx"
+// auto strip #endif
 namespace binfilter {
 
 // ----------------------------------------------
