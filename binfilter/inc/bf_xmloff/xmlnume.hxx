@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlnume.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: jmeng $ $Date: 2003-12-04 01:45:51 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 09:18:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses

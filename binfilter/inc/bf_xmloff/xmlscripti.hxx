@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlscripti.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: jmeng $ $Date: 2003-12-04 01:45:54 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 09:18:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
