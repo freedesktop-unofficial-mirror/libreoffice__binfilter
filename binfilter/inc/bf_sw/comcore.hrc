@@ -2,9 +2,9 @@
  *
  *  $RCSfile: comcore.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:37:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,23 +67,23 @@
 // die Strings
 // ---------------
 
-#define STR_COMCORE_READERROR               (RC_COMCORE_BEGIN + 0)
+//STRIP001 #define STR_COMCORE_READERROR                (RC_COMCORE_BEGIN + 0)
 //STRIP001 #define MSG_COMCORE_ASKSEARCH                (RC_COMCORE_BEGIN + 1)
 #define STR_TABLE_DEFNAME                   (RC_COMCORE_BEGIN + 2)
 #define STR_GRAPHIC_DEFNAME                 (RC_COMCORE_BEGIN + 3)
 #define STR_OBJECT_DEFNAME                  (RC_COMCORE_BEGIN + 4)
 #define STR_FRAME_DEFNAME                   (RC_COMCORE_BEGIN + 5)
 #define STR_REGION_DEFNAME                  (RC_COMCORE_BEGIN + 6)
-#define STR_COMCORE_CANT_SHOW               (RC_COMCORE_BEGIN + 7)
+//STRIP001 #define STR_COMCORE_CANT_SHOW                (RC_COMCORE_BEGIN + 7)
 #define RID_GRAPHIC_REPLACEBMP              (RC_COMCORE_BEGIN + 8)
 #define RID_GRAPHIC_ERRORBMP                (RC_COMCORE_BEGIN + 9)
 #define STR_NUMRULE_DEFNAME                 (RC_COMCORE_BEGIN + 10)
-#define STR_EMPTYPAGE                       (RC_COMCORE_BEGIN + 11)
+//STRIP001 #define STR_EMPTYPAGE                        (RC_COMCORE_BEGIN + 11)
 //STRIP001 #define RID_SHELLRES_AUTOFMTSTRS         (RC_COMCORE_BEGIN + 12)
-#define STR_MULT_INTERACT_HYPH_WARN         (RC_COMCORE_BEGIN + 13)
-#define STR_MULT_INTERACT_SPELL_WARN        (RC_COMCORE_BEGIN + 14)
-#define STR_SPELL_TITLE                     (RC_COMCORE_BEGIN + 15)
-#define STR_HYPH_TITLE                      (RC_COMCORE_BEGIN + 16)
+//STRIP001 #define STR_MULT_INTERACT_HYPH_WARN          (RC_COMCORE_BEGIN + 13)
+//STRIP001 #define STR_MULT_INTERACT_SPELL_WARN     (RC_COMCORE_BEGIN + 14)
+//STRIP001 #define STR_SPELL_TITLE                      (RC_COMCORE_BEGIN + 15)
+//STRIP001 #define STR_HYPH_TITLE                       (RC_COMCORE_BEGIN + 16)
 //STRIP001 #define MSG_DISABLE_UNDO_QUESTION            (RC_COMCORE_BEGIN + 17)
 #define MSG_DISABLE_READLINE_QUESTION       (RC_COMCORE_BEGIN + 18)
 
