@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_workctrl.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:55 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:47:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 //STRIP001 #ifndef _SVXIDS_HRC
 //STRIP001 #include <bf_svx/svxids.hrc>
@@ -1191,24 +1192,22 @@ Noch ein paar Reserven
             ToolBoxItem
             {
                                 Identifier = NID_NEXT;
-                Text = "Vorwärts" ;
-                Text [ ENGLISH ] = "Forward" ;
+                Text [ de ] = "Vorwärts" ;
                         };
             ToolBoxItem
             {
                                 Identifier = NID_PREV;
-                Text = "Rückwärts" ;
-                Text [ ENGLISH ] = "Backward" ;
+                Text [ de ] = "Rückwärts" ;
                         };
             ToolBoxItem
             {
                                 Identifier = NID_CTRL;
-                Text = "Control" ;
+                Text [ de ] = "Control" ;
                         };
             ToolBoxItem
             {
                                 Identifier = NID_DRW;
-                Text = "Zeichenobjekt" ;
+                Text [ de ] = "Zeichenobjekt" ;
                         };
 
 
