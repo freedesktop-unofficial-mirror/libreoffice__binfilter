@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDataPoint.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:22:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,21 +63,21 @@
 #include "mapprov.hxx"
 
 // header for SvxServiceInfoHelper
-#ifndef SVX_UNOPROV_HXX
-#include <bf_svx/unoprov.hxx>
-#endif
+// auto strip #ifndef SVX_UNOPROV_HXX
+// auto strip #include <bf_svx/unoprov.hxx>
+// auto strip #endif
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
 // header for SvxUnoTextRangeBase
-#ifndef _SVX_UNOTEXT_HXX
-#include <bf_svx/unotext.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <bf_svx/unotext.hxx>
+// auto strip #endif
 // for OWN_ATTR_...
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
@@ -109,25 +109,28 @@
 #ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
 #endif
-#ifndef _SVX_XBITMAP_HXX
-#include <bf_svx/xbitmap.hxx>
-#endif
+// auto strip #ifndef _SVX_XBITMAP_HXX
+// auto strip #include <bf_svx/xbitmap.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
 
 // header for SvxChartDataDescrItem
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
+#endif
 namespace binfilter {
 
 
