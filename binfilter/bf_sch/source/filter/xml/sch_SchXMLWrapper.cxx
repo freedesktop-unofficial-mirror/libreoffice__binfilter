@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_SchXMLWrapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:48:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,45 +93,45 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
 #endif
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
-#include <comphelper/propertysetinfo.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTSETINFO_HXX_
+// auto strip #include <comphelper/propertysetinfo.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XERRORHANDLER_HPP_
-#include <com/sun/star/xml/sax/XErrorHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XENTITYRESOLVER_HPP_
-#include <com/sun/star/xml/sax/XEntityResolver.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-#include <com/sun/star/xml/sax/InputSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDTDHANDLER_HPP_
-#include <com/sun/star/xml/sax/XDTDHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XERRORHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XErrorHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XENTITYRESOLVER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XEntityResolver.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
+// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDTDHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XDTDHandler.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
-#include <com/sun/star/io/XActiveDataControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataControl.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXParseException.hpp>
 #endif
