@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_writer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:20:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,23 +67,23 @@
 #endif
 
 #define _SVSTDARR_STRINGSSORTDTOR
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _FILTER_HXX //autogen
-#include <svtools/filter.hxx>
-#endif
-#ifndef _SVX_IMPGRF_HXX //autogen
-#include <bf_svx/impgrf.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCFILE_HXX //autogen
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _FILTER_HXX //autogen
+// auto strip #include <svtools/filter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_IMPGRF_HXX //autogen
+// auto strip #include <bf_svx/impgrf.hxx>
+// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -94,6 +94,14 @@
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
@@ -103,12 +111,12 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _FORMAT_HXX
-#include <format.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _FORMAT_HXX
+// auto strip #include <format.hxx>
+// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer SwBookmark ...
 #endif
