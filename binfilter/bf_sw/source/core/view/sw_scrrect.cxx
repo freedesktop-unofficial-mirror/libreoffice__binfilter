@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_scrrect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:15:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,43 +65,48 @@
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
-#ifndef _SCRRECT_HXX
-#include <scrrect.hxx>      // SwScrollRect, SwScrollRects
-#endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+// auto strip #ifndef _SCRRECT_HXX
+// auto strip #include <scrrect.hxx>        // SwScrollRect, SwScrollRects
+// auto strip #endif
 // OD 18.02.2003 #107562# - <SwAlignRect> for <ViewShell::Scroll()>
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _CURSOR_HXX //autogen
+// auto strip #include <vcl/cursor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
-#ifndef _CURSOR_HXX //autogen
-#include <vcl/cursor.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
+
 #include "crsrsh.hxx"
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "pagefrm.hxx"
-#include "doc.hxx"
+// auto strip #include "doc.hxx"
 // OD 12.11.2002 #96272# - include declaration for <SetMappingForVirtDev>
-#include "setmapvirtdev.hxx"
+// auto strip #include "setmapvirtdev.hxx"
 namespace binfilter {
 
 //STRIP001 DBG_NAME(RefreshTimer)
