@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmpaint.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:50:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,94 +66,99 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SV_SOUND_HXX //autogen
-#include <vcl/sound.hxx>
-#endif
+// auto strip #ifndef _SV_SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx> // SW_MOD
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx> // SW_MOD
+// auto strip #endif
 
-#ifndef _SVX_PGRDITEM_HXX
-#include <bf_svx/pgrditem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_PGRDITEM_HXX
+// auto strip #include <bf_svx/pgrditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
 #endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
-#ifndef _PARATR_HXX
-#include <paratr.hxx>
-#endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _PARATR_HXX
+// auto strip #include <paratr.hxx>
+// auto strip #endif
 
-#ifndef _FMTLINE_HXX
-#include <fmtline.hxx>
-#endif
-#ifndef _LINEINFO_HXX
-#include <lineinfo.hxx>
-#endif
-#ifndef _CHARFMT_HXX
-#include <charfmt.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>  // SwViewImp
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>  // SwViewOption
-#endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>  // DrawGraphic
-#endif
-#ifndef _FRMSH_HXX
-#include <frmsh.hxx>
-#endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // SwTxtFrm
-#endif
+// auto strip #ifndef _FMTLINE_HXX
+// auto strip #include <fmtline.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINEINFO_HXX
+// auto strip #include <lineinfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARFMT_HXX
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx> // ViewShell
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>    // SwViewImp
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>    // SwViewOption
+// auto strip #endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>    // DrawGraphic
+// auto strip #endif
+// auto strip #ifndef _FRMSH_HXX
+// auto strip #include <frmsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>       // SwTxtFrm
+// auto strip #endif
 #ifndef _ITRPAINT_HXX
 #include <itrpaint.hxx>     // SwTxtPainter
 #endif
-#ifndef _TXTPAINT_HXX
-#include <txtpaint.hxx>     // SwSaveClip
+// auto strip #ifndef _TXTPAINT_HXX
+// auto strip #include <txtpaint.hxx>     // SwSaveClip
+// auto strip #endif
+// auto strip #ifndef _TXTCACHE_HXX
+// auto strip #include <txtcache.hxx>   // SwTxtLineAccess
+// auto strip #endif
+// auto strip #ifndef _SWFNTCCH_HXX
+// auto strip #include <swfntcch.hxx>   // SwFontAccess
+// auto strip #endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx> // SwDrawTextInfo
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _TXTCACHE_HXX
-#include <txtcache.hxx> // SwTxtLineAccess
-#endif
-#ifndef _SWFNTCCH_HXX
-#include <swfntcch.hxx> // SwFontAccess
-#endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx> // SwDrawTextInfo
-#endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>   // SwFlyFrm
-#endif
-#ifndef _REDLNITR_HXX
-#include <redlnitr.hxx> // SwRedlineItr
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>      // SwDoc
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx> // SW_MOD
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>   // SwTabFrm (Redlining)
-#endif
-#include "scrrect.hxx"
+
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx> // SwFlyFrm
+// auto strip #endif
+// auto strip #ifndef _REDLNITR_HXX
+// auto strip #include <redlnitr.hxx>   // SwRedlineItr
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>        // SwDoc
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx> // SW_MOD
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx> // SwTabFrm (Redlining)
+// auto strip #endif
+// auto strip #include "scrrect.hxx"
 namespace binfilter {
 
 
