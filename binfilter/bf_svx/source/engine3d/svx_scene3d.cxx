@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:41:52 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:41:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1158,13 +1158,13 @@ namespace binfilter {
 //STRIP001  Center.X() = (UpperLeft.X() + dxOutRectHalf) - rRef.X();
 //STRIP001  Center.Y() = -((UpperLeft.Y() + dyOutRectHalf) - rRef.Y());
 //STRIP001                // Ein paar Spezialfaelle zuerst abhandeln (n*90 Grad n ganzzahlig)
-//STRIP001  if (sn==1.0 && cs==0.0) { // 90ø
+//STRIP001  if (sn==1.0 && cs==0.0) { // 90deg
 //STRIP001      NewCenter.X() = -Center.Y();
 //STRIP001      NewCenter.Y() = -Center.X();
-//STRIP001  } else if (sn==0.0 && cs==-1.0) { // 180ø
+//STRIP001  } else if (sn==0.0 && cs==-1.0) { // 180deg
 //STRIP001      NewCenter.X() = -Center.X();
 //STRIP001      NewCenter.Y() = -Center.Y();
-//STRIP001  } else if (sn==-1.0 && cs==0.0) { // 270ø
+//STRIP001  } else if (sn==-1.0 && cs==0.0) { // 270deg
 //STRIP001      NewCenter.X() =  Center.Y();
 //STRIP001      NewCenter.Y() = -Center.X();
 //STRIP001  }
@@ -1217,7 +1217,7 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Die NbcRotate-Routine überlädt die des SdrObject. Die Idee ist die Scene
+|* Die NbcRotate-Routine ueberlaedt die des SdrObject. Die Idee ist die Scene
 |* drehen zu koennen und relativ zur Lage der Scene dann auch die Objekte
 |* in der Scene
 |*
@@ -1231,7 +1231,7 @@ namespace binfilter {
 //STRIP001  SetGlueReallyAbsolute(TRUE);
 //STRIP001
 //STRIP001      // So dass war die Szene, ab jetzt kommen die Objekte in der Szene
-//STRIP001      // 3D-Objekte gibt es nur ein einziges das kann zwar mehrere Flächen haben aber die Flaechen
+//STRIP001      // 3D-Objekte gibt es nur ein einziges das kann zwar mehrere Flaechen haben aber die Flaechen
 //STRIP001      // muessen ja nicht zusammenhaengend sein
 //STRIP001      // es ermoeglicht den Zugriff auf Kindobjekte
 //STRIP001      // Ich gehe also die gesamte Liste durch und rotiere um die Z-Achse die durch den
