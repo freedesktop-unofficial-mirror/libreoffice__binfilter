@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unofored.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:47:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,18 +63,18 @@
 
 #include <algorithm>
 
-#ifndef _EEITEM_HXX //autogen
-#include "eeitem.hxx"
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include "eeitem.hxx"
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
 #endif
 
-#include <svtools/itemset.hxx>
-#include <editeng.hxx>
-#include <editview.hxx>
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #include <editeng.hxx>
+// auto strip #include <editview.hxx>
 #include <unoedhlp.hxx>
-#include <editdata.hxx>
+// auto strip #include <editdata.hxx>
 #include <outliner.hxx>
 #include <editobj.hxx>      // nur fuer die GetText-Kruecke
 
