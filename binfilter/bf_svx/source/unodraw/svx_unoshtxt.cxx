@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshtxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:45:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #pragma hdrstop
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
 //#include <tools/debug.hxx>
 //#include <editeng.hxx>
@@ -71,52 +71,52 @@
 #include <unoshtxt.hxx>
 #include <unoedhlp.hxx>
 
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
 
-#ifndef _RTL_REF_HXX_
-#include <rtl/ref.hxx>
-#endif
+// auto strip #ifndef _RTL_REF_HXX_
+// auto strip #include <rtl/ref.hxx>
+// auto strip #endif
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
-#ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
-#endif
+// auto strip #ifndef _SFXHINT_HXX //autogen
+// auto strip #include <svtools/hint.hxx>
+// auto strip #endif
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
-#ifndef _SVDMODEL_HXX //autogen
-#include <svdmodel.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <svdmodel.hxx>
+// auto strip #endif
 #ifndef _SVDOUTL_HXX //autogen
 #include <svdoutl.hxx>
 #endif
-#ifndef _SVDOBJ_HXX
-#include <svdobj.hxx>
-#endif
+// auto strip #ifndef _SVDOBJ_HXX
+// auto strip #include <svdobj.hxx>
+// auto strip #endif
 #ifndef _SVDVIEW_HXX
 #include <svdview.hxx>
 #endif
-#ifndef _SVDETC_HXX
-#include <svdetc.hxx>
-#endif
-#ifndef _OUTLINER_HXX
-#include <outliner.hxx>
-#endif
-#ifndef _SVX_UNOFOROU_HXX
-#include <unoforou.hxx>
-#endif
+// auto strip #ifndef _SVDETC_HXX
+// auto strip #include <svdetc.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTLINER_HXX
+// auto strip #include <outliner.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UNOFOROU_HXX
+// auto strip #include <unoforou.hxx>
+// auto strip #endif
 #ifndef _SVX_UNOVIWOU_HXX
 #include <unoviwou.hxx>
 #endif
 #ifndef _OUTLOBJ_HXX
 #include "outlobj.hxx"
 #endif
-#include "svdotext.hxx"
+// auto strip #include "svdotext.hxx"
 #include "svdpage.hxx"
 #include "editeng.hxx"
 #ifndef _EDITOBJ_HXX
@@ -127,9 +127,9 @@
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
