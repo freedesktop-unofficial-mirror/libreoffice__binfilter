@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangelst.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:20:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,11 +69,11 @@
 
 #define SC_RANGELST_CXX         //fuer ICC
 
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 #include <stdlib.h>             // qsort
-#include <unotools/collatorwrapper.hxx>
+// auto strip #include <unotools/collatorwrapper.hxx>
 
-#include "rangelst.hxx"
+// auto strip #include "rangelst.hxx"
 #include "document.hxx"
 #include "refupdat.hxx"
 #include "rechead.hxx"
