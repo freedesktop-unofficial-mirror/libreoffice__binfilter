@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSymbolImageContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:44:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,12 +60,12 @@
  ************************************************************************/
 #include "XMLSymbolImageContext.hxx"
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
-#include "xmltkmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
+// auto strip #include "xmltkmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
@@ -79,9 +79,9 @@
 #include "XMLBase64ImportContext.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
 namespace binfilter {
 
 TYPEINIT1( XMLSymbolImageContext, XMLElementPropertyContext );
