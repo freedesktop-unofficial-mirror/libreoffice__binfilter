@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:13:06 $
+ *  last change: $Author: kz $ $Date: 2005-01-18 15:09:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,79 +61,21 @@
 
 #include "bindetect.hxx"
 
-// auto strip #include <framework/interaction.hxx>
-
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-// auto strip #include <com/sun/star/frame/XFrame.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-// auto strip #include <com/sun/star/frame/XModel.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
-// auto strip #include <com/sun/star/awt/XWindow.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-// auto strip #include <com/sun/star/container/XNameAccess.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETRUNTIMEEXCEPTION_HPP_
-// auto strip #include <com/sun/star/lang/WrappedTargetRuntimeException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
-// auto strip #include <com/sun/star/ucb/CommandAbortedException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UCB_INTERACTIVEAPPEXCEPTION_HPP_
-// auto strip #include <com/sun/star/ucb/InteractiveAppException.hpp>
-// auto strip #endif
-
-// auto strip #ifndef _COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HPP_
-// auto strip #include <com/sun/star/registry/RegistryValueType.hpp>
-// auto strip #endif
-// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
-
-// auto strip #ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
-// auto strip #include <framework/interaction.hxx>
-// auto strip #endif
-
-// auto strip #ifndef _TOOLKIT_UNOHLP_HXX
-// auto strip #include <toolkit/helper/vclunohelper.hxx>
-// auto strip #endif
 
 #ifndef _UCBHELPER_SIMPLEINTERACTIONREQUEST_HXX
 #include <ucbhelper/simpleinteractionrequest.hxx>
 #endif
 
 #include <rtl/ustring.h>
-// auto strip #include <rtl/logfile.hxx>
-// auto strip #include <svtools/itemset.hxx>
-// auto strip #include <vcl/window.hxx>
 #include <svtools/eitem.hxx>
-// auto strip #include <svtools/stritem.hxx>
 #include <tools/urlobj.hxx>
 #include <vos/mutex.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/ehdl.hxx>
-// auto strip #include <sot/storinfo.hxx>
+#include <svtools/itemset.hxx>
 
 using namespace ::com::sun::star::registry;
 using namespace ::com::sun::star::uno;
@@ -146,20 +88,11 @@ using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
 using namespace ::binfilter;
 
-// auto strip #include <bf_sfx2/app.hxx>
-#include <bf_sfx2/request.hxx>
 #include <bf_sfx2/sfxsids.hrc>
-#include <bf_sfx2/dispatch.hxx>
-// auto strip #include <bf_sfx2/sfxuno.hxx>
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #include <bf_sfx2/topfrm.hxx>
-// auto strip #include <bf_sfx2/frame.hxx>
-// auto strip #include <bf_sfx2/docfac.hxx>
 #include <bf_sfx2/fcontnr.hxx>
-//#include <bf_sfx2/loadenv.hxx>
 #include <bf_sfx2/docfile.hxx>
-// auto strip #include <bf_sfx2/docfilt.hxx>
-//#include <bf_sfx2/brokenpackageint.hxx>
+#include <bf_sfx2/app.hxx>
+#include <bf_sfx2/request.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
@@ -244,22 +177,21 @@ BinFilterDetect::~BinFilterDetect()
             lDescriptor[nProperty].Value >>= xInteraction;
     }
 
-    // can't check the type for external filters, so set the "dont" flag accordingly
     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+
+    // SfxErrorContext aCtx( ERRCTX_SFX_OPENDOC, aURL );
+
+    SfxApplication* pApp = SFX_APP();
     SfxFilterFlags nMust = SFX_FILTER_IMPORT, nDont = SFX_FILTER_NOTINSTALLED;
     SfxFilterMatcher& rMatcher = SFX_APP()->GetFilterMatcher();
 
-    SfxErrorContext aCtx( ERRCTX_SFX_OPENDOC, aURL );
-
     // transform parameters into an SfxItemSet
-    SfxApplication* pApp = SFX_APP();
     SfxAllItemSet *pSet = new SfxAllItemSet( pApp->GetPool() );
     TransformParameters( SID_OPENDOC, lDescriptor, *pSet );
     SFX_ITEMSET_ARG( pSet, pItem, SfxBoolItem, SID_DOC_READONLY, FALSE );
 
-    bWasReadOnly = pItem && pItem->GetValue();
-
     // ctor of SfxMedium uses owner transition of ItemSet
+    bWasReadOnly = pItem && pItem->GetValue();
     SfxMedium aMedium( aURL, bWasReadOnly ? STREAM_STD_READ : STREAM_STD_READWRITE, FALSE, NULL, pSet );
     aMedium.UseInteractionHandler( TRUE );
 
@@ -277,33 +209,35 @@ BinFilterDetect::~BinFilterDetect()
             bReadOnly = aMedium.IsReadOnly();
             SvStorageRef aStor = aMedium.GetStorage();
 
-            if ( INetURLObject( aURL ).GetExtension().compareToAscii("vor") == 0 )
+            // templates should be detected only when either explicitly asked for or if the extension matches
+            if ( INetURLObject( aURL ).GetExtension().compareToAscii("vor") == COMPARE_EQUAL )
                 nMust |= SFX_FILTER_TEMPLATEPATH;
+            else
+                nDont |= SFX_FILTER_TEMPLATEPATH;
 
-            // check the preselected filter
-            if ( aPreselectedFilterName.Len() )
-                pFilter = rMatcher.GetFilter4FilterName( aPreselectedFilterName, nMust, SFX_FILTER_NOTINSTALLED );
-            else if ( aTypeName.getLength() )
-                pFilter = rMatcher.GetFilter4EA( aTypeName, nMust, nDont );
-
-            if ( pFilter )
+            // check the storage wether it has a known format
+            sal_Int32 nClipId = aStor->GetFormat();
+            if ( nClipId )
             {
-                // preselected filter or type name matched to a valid filter detectable with this service
-                SfxFilterFlags nFlags = pFilter->GetFilterFlags();
-                if ( ( nFlags & nMust ) != nMust || ( nFlags & nDont ) != 0 || pFilter->GetFormat() != aStor->GetFormat() )
-                    // the filter exists, but filter flags or Clipboard Id don't match
-                    pFilter = 0;
-            }
-
-            if ( !pFilter )
-            {
-                // if the filter we just tried was the preselected filter and
-                // it doesn't fit, erase the filter name from the media descriptor
+                // check the preselected filter - does it match the format?
                 if ( aPreselectedFilterName.Len() )
-                    lDescriptor[nIndexOfFilterName].Value <<= ::rtl::OUString();
+                {
+                    pFilter = rMatcher.GetFilter4FilterName( aPreselectedFilterName, nMust, nDont);
+                    if ( pFilter && pFilter->GetFormat() != nClipId )
+                        pFilter = 0;
+                }
 
-                // try general detection using clipboard Id
-                 pFilter = rMatcher.GetFilter4ClipBoardId( aStor->GetFormat(), nMust, nDont );
+                // check the "flat" detected type - does it match the format?
+                if ( !pFilter && aTypeName.getLength() )
+                {
+                    pFilter = rMatcher.GetFilter4EA( aTypeName, nMust, nDont );
+                    if ( pFilter && pFilter->GetFormat() != nClipId )
+                        pFilter = 0;
+                }
+
+                // if both didn't fit - try any matching filter
+                if ( !pFilter && nClipId )
+                    pFilter = rMatcher.GetFilter4ClipBoardId( nClipId, nMust, nDont );
             }
         }
     }
