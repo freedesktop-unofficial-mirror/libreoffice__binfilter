@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:53:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,8 +150,18 @@
 #include "sfxsids.hrc"
 #include "basmgr.hxx"
 #include "dlgcont.hxx"
+
+#ifndef _BASMGR_HXX
+#include <basic/basmgr.hxx>
+#endif
+
 #include "scriptcont.hxx"
 #include "imgmgr.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
 #include "tbxconf.hxx"
 #include "accmgr.hxx"
 #include "helpid.hrc"
