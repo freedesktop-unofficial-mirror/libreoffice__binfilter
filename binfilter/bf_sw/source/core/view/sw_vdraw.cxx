@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vdraw.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:16:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,24 +62,24 @@
 
 #pragma hdrstop
 
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
-#ifndef _XOUTX_HXX //autogen
-#include <bf_svx/xoutx.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _XOUTX_HXX //autogen
+// auto strip #include <bf_svx/xoutx.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <svtools/accessibilityoptions.hxx>
+// auto strip #endif
 
 #ifndef _SVDPAGV_HXX //autogen
 #include <bf_svx/svdpagv.hxx>
@@ -94,23 +94,27 @@
 
 /// OD 29.08.2002 #102450#
 /// include <bf_svx/svdoutl.hxx>
-#ifndef _SVDOUTL_HXX
-#include <bf_svx/svdoutl.hxx>
-#endif
+// auto strip #ifndef _SVDOUTL_HXX
+// auto strip #include <bf_svx/svdoutl.hxx>
+// auto strip #endif
 
 #ifndef PRODUCT
-#ifndef _SVX_FMGLOB_HXX
-#include <bf_svx/fmglob.hxx>
+// auto strip #ifndef _SVX_FMGLOB_HXX
+// auto strip #include <bf_svx/fmglob.hxx>
+// auto strip #endif
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #include "fesh.hxx"
 #include "doc.hxx"
-#include "pagefrm.hxx"
-#include "rootfrm.hxx"
+// auto strip #include "pagefrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "viewimp.hxx"
-#include "dflyobj.hxx"
-#include "viewopt.hxx"
+// auto strip #include "dflyobj.hxx"
+// auto strip #include "viewopt.hxx"
 #include "dcontact.hxx"
 #include "dview.hxx"
 #include "flyfrm.hxx"
