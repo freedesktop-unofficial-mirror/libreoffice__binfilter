@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmmodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:46:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #ifndef SVX_LIGHT
 #ifndef _SFX_OBJSH_HXX //autogen
@@ -87,9 +87,9 @@ class SfxObjectShell;
 #ifndef _SVX_FMUNDO_HXX
 #include "fmundo.hxx"
 #endif
-#ifndef _SVX_SVDOBJ_HXX
-#include "svdobj.hxx"
-#endif
+// auto strip #ifndef _SVX_SVDOBJ_HXX
+// auto strip #include "svdobj.hxx"
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(FmFormModel, SdrModel);
