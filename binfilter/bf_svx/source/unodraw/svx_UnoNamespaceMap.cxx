@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_UnoNamespaceMap.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:39:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,9 @@
 #include <osl/diagnose.h>
 #endif
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
