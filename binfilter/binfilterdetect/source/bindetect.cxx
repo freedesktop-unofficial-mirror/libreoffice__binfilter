@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:37:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,79 +61,79 @@
 
 #include "bindetect.hxx"
 
-#include <framework/interaction.hxx>
+// auto strip #include <framework/interaction.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-#include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
-#include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+// auto strip #include <com/sun/star/frame/XFrame.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
+// auto strip #include <com/sun/star/awt/XWindow.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-#include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETRUNTIMEEXCEPTION_HPP_
-#include <com/sun/star/lang/WrappedTargetRuntimeException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
-#include <com/sun/star/ucb/CommandAbortedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_INTERACTIVEAPPEXCEPTION_HPP_
-#include <com/sun/star/ucb/InteractiveAppException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
+// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETRUNTIMEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/WrappedTargetRuntimeException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
+// auto strip #include <com/sun/star/ucb/CommandAbortedException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_INTERACTIVEAPPEXCEPTION_HPP_
+// auto strip #include <com/sun/star/ucb/InteractiveAppException.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HPP_
-#include <com/sun/star/registry/RegistryValueType.hpp>
-#endif
-#include <com/sun/star/registry/XRegistryKey.hpp>
+// auto strip #ifndef _COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HPP_
+// auto strip #include <com/sun/star/registry/RegistryValueType.hpp>
+// auto strip #endif
+// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
 
-#ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
-#include <framework/interaction.hxx>
-#endif
+// auto strip #ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
+// auto strip #include <framework/interaction.hxx>
+// auto strip #endif
 
-#ifndef _TOOLKIT_UNOHLP_HXX
-#include <toolkit/helper/vclunohelper.hxx>
-#endif
+// auto strip #ifndef _TOOLKIT_UNOHLP_HXX
+// auto strip #include <toolkit/helper/vclunohelper.hxx>
+// auto strip #endif
 
 #ifndef _UCBHELPER_SIMPLEINTERACTIONREQUEST_HXX
 #include <ucbhelper/simpleinteractionrequest.hxx>
 #endif
 
 #include <rtl/ustring.h>
-#include <rtl/logfile.hxx>
-#include <svtools/itemset.hxx>
-#include <vcl/window.hxx>
+// auto strip #include <rtl/logfile.hxx>
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #include <vcl/window.hxx>
 #include <svtools/eitem.hxx>
-#include <svtools/stritem.hxx>
+// auto strip #include <svtools/stritem.hxx>
 #include <tools/urlobj.hxx>
 #include <vos/mutex.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/ehdl.hxx>
-#include <sot/storinfo.hxx>
+// auto strip #include <sot/storinfo.hxx>
 
 using namespace ::com::sun::star::registry;
 using namespace ::com::sun::star::uno;
@@ -146,19 +146,19 @@ using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
 using namespace ::binfilter;
 
-#include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/request.hxx>
 #include <bf_sfx2/sfxsids.hrc>
 #include <bf_sfx2/dispatch.hxx>
-#include <bf_sfx2/sfxuno.hxx>
-#include <bf_sfx2/viewfrm.hxx>
-#include <bf_sfx2/topfrm.hxx>
-#include <bf_sfx2/frame.hxx>
-#include <bf_sfx2/docfac.hxx>
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #include <bf_sfx2/topfrm.hxx>
+// auto strip #include <bf_sfx2/frame.hxx>
+// auto strip #include <bf_sfx2/docfac.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 //#include <bf_sfx2/loadenv.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/docfilt.hxx>
+// auto strip #include <bf_sfx2/docfilt.hxx>
 //#include <bf_sfx2/brokenpackageint.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX

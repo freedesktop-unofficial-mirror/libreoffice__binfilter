@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtvfldi.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:09:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:37:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,13 +68,13 @@
 #include "txtvfldi.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
@@ -100,17 +100,17 @@
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlement.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlement.hxx"
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
 #include <com/sun/star/text/SetVariableType.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-#include <com/sun/star/text/XTextField.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
+// auto strip #include <com/sun/star/text/XTextField.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
@@ -120,29 +120,29 @@
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
 
 #ifndef _RTL_USTRING
 #include <rtl/ustring>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
