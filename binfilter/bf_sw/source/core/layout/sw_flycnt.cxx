@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:35:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,20 +68,25 @@
 #endif
 #include "pagefrm.hxx"
 #include "rootfrm.hxx"
-#include "cntfrm.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "cntfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
 #include "txtfrm.hxx"
 #include "doc.hxx"
-#include "viewsh.hxx"
-#include "viewimp.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "viewimp.hxx"
 #include "pam.hxx"
 #include "frmfmt.hxx"
 #include "frmtool.hxx"
 #include "dflyobj.hxx"
 #include "hints.hxx"
 #include "ndtxt.hxx"
-#include "swundo.hxx"
-#include "errhdl.hxx"
+// auto strip #include "swundo.hxx"
+// auto strip #include "errhdl.hxx"
 
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
@@ -102,12 +107,12 @@
 #ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
-#include "crstate.hxx"
+// auto strip #include "crstate.hxx"
 #include "sectfrm.hxx"
 namespace binfilter {
 
