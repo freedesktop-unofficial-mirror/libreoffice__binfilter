@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xpoly.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-06-24 11:53:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:51:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,13 @@
 #include <math.h>
 #include <string.h>
 #include <tools/stream.hxx>
-#include <tools/debug.hxx>
-#include <tools/poly.hxx>
+// auto strip #include <tools/debug.hxx>
+// auto strip #include <tools/poly.hxx>
 
 #pragma hdrstop
 
 #include "xoutx.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpoly.hxx"
 #include "xpolyimp.hxx"
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
