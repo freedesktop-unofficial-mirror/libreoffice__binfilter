@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:10:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,33 +69,33 @@
 
 #include <rtl/math.hxx>
 #include <unotools/textsearch.hxx>
-#include <svtools/zforlist.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <unotools/collatorwrapper.hxx>
-#include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
 #include <stdlib.h>
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
 #endif
 
-#include "table.hxx"
+// auto strip #include "table.hxx"
 #include "scitems.hxx"
-#include "collect.hxx"
-#include "attrib.hxx"
+// auto strip #include "collect.hxx"
+// auto strip #include "attrib.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "globstr.hrc"
-#include "global.hxx"
-#include "stlpool.hxx"
-#include "compiler.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "stlpool.hxx"
+// auto strip #include "compiler.hxx"
 #include "patattr.hxx"
 #include "subtotal.hxx"
 #include "docoptio.hxx"
 #include "markdata.hxx"
-#include "rangelst.hxx"
+// auto strip #include "rangelst.hxx"
 #include "attarray.hxx"
-#include "userlist.hxx"
-#include "progress.hxx"
+// auto strip #include "userlist.hxx"
+// auto strip #include "progress.hxx"
 #include "cellform.hxx"
 
 #include <vector>
