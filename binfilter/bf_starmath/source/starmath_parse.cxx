@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:12:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,31 +67,31 @@
 
 #include <com/sun/star/i18n/UnicodeType.hpp>
 
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _LANG_HXX
+// auto strip #include <tools/lang.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 
-#ifndef PARSE_HXX
-#include "parse.hxx"
-#endif
+// auto strip #ifndef PARSE_HXX
+// auto strip #include "parse.hxx"
+// auto strip #endif
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
-#ifndef _SMDLL_HXX
-#include "smdll.hxx"
-#endif
-#ifndef _SMMOD_HXX
-#include "smmod.hxx"
-#endif
+// auto strip #ifndef _SMDLL_HXX
+// auto strip #include "smdll.hxx"
+// auto strip #endif
+// auto strip #ifndef _SMMOD_HXX
+// auto strip #include "smmod.hxx"
+// auto strip #endif
 #ifndef CONFIG_HXX
 #include "config.hxx"
 #endif
