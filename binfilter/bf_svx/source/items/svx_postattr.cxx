@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_postattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:05:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,8 +68,12 @@
 #define ITEMID_DATE     0
 #define ITEMID_TEXT     0
 
+#ifndef _SFXSTRITEM_HXX //autogen
+#include <svtools/stritem.hxx>
+#endif
+
 #include "postattr.hxx"
-#include "itemtype.hxx"
+// auto strip #include "itemtype.hxx"
 namespace binfilter {
 
 // -----------------------------------------------------------------------
