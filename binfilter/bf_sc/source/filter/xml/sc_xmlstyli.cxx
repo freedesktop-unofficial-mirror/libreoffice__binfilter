@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyli.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:34:20 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:49:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -167,9 +167,9 @@ void ScXMLCellImportPropertyMapper::finished(::std::vector< XMLPropertyState >& 
     XMLPropertyState* pNewBorders[4] = { NULL, NULL, NULL, NULL };
     XMLPropertyState* pAllBorderWidthProperty = NULL;
     XMLPropertyState* pBorderWidths[4] = { NULL, NULL, NULL, NULL };
-    ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-    for (property; property != rProperties.end(); property++)
+    for (::std::vector< XMLPropertyState >::iterator aIter = rProperties.begin(); aIter != rProperties.end(); ++aIter)
     {
+        XMLPropertyState *property = &(*aIter);
         sal_Int16 nContextID = getPropertySetMapper()->GetEntryContextId(property->mnIndex);
         switch (nContextID)
         {
@@ -251,9 +251,9 @@ void ScXMLRowImportPropertyMapper::finished(::std::vector< XMLPropertyState >& r
     XMLPropertyState* pHeight = NULL;
     XMLPropertyState* pOptimalHeight = NULL;
     XMLPropertyState* pPageBreak = NULL;
-    ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-    for (property; property != rProperties.end(); property++)
+    for (::std::vector< XMLPropertyState >::iterator aIter = rProperties.begin(); aIter != rProperties.end(); ++aIter)
     {
+        XMLPropertyState *property = &(*aIter);
         sal_Int16 nContextID = getPropertySetMapper()->GetEntryContextId(property->mnIndex);
         switch (nContextID)
         {
