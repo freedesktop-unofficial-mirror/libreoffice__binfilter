@@ -2,9 +2,9 @@
  *
  *  $RCSfile: attrib.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef SC_SCATTR_HXX
 #define SC_SCATTR_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>

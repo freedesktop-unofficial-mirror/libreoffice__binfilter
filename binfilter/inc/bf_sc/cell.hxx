@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cell.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:42:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,22 +64,22 @@
 
 #include <stddef.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
-#include <tools/mempool.hxx>
-#endif
+// auto strip #ifndef _SVMEMPOOL_HXX //autogen
+// auto strip #include <tools/mempool.hxx>
+// auto strip #endif
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>
 #endif
-#ifndef SC_SCGLOB_HXX
-#include "global.hxx"
-#endif
+// auto strip #ifndef SC_SCGLOB_HXX
+// auto strip #include "global.hxx"
+// auto strip #endif
 #ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _SV_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>
