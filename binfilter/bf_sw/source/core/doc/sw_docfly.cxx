@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfly.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:06:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,25 +62,25 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
 #endif
-#ifndef _SVDOBJ_HXX //autogen
-#include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDCAPT_HXX //autogen
-#include <bf_svx/svdocapt.hxx>
-#endif
+// auto strip #ifndef _SVDOBJ_HXX //autogen
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDCAPT_HXX //autogen
+// auto strip #include <bf_svx/svdocapt.hxx>
+// auto strip #endif
 #ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
 #endif
@@ -88,12 +88,20 @@
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
 #ifndef _DCONTACT_HXX //autogen
 #include <dcontact.hxx>
 #endif
@@ -102,12 +110,12 @@
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
-#ifndef _NDINDEX_HXX //autogen
-#include <ndindex.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX //autogen
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -138,9 +146,9 @@
 #ifndef _FLYFRMS_HXX //autogen
 #include <flyfrms.hxx>
 #endif
-#ifndef _FRMTOOL_HXX //autogen
-#include <frmtool.hxx>
-#endif
+// auto strip #ifndef _FRMTOOL_HXX //autogen
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
@@ -150,24 +158,24 @@
 #ifndef _PAM_HXX //autogen
 #include <pam.hxx>
 #endif
-#ifndef _TBLSEL_HXX //autogen
-#include <tblsel.hxx>
-#endif
+// auto strip #ifndef _TBLSEL_HXX //autogen
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
 #ifndef _SWUNDO_HXX //autogen
 #include <swundo.hxx>
 #endif
-#ifndef _SWTABLE_HXX //autogen
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX //autogen
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _CRSTATE_HXX
 #include <crstate.hxx>
 #endif
 #ifndef _UNDOBJ_HXX //autogen
 #include <undobj.hxx>
 #endif
-#ifndef _FMTCNCT_HXX //autogen
-#include <fmtcnct.hxx>
-#endif
+// auto strip #ifndef _FMTCNCT_HXX //autogen
+// auto strip #include <fmtcnct.hxx>
+// auto strip #endif
 namespace binfilter {
 
 extern USHORT GetHtmlMode( const SwDocShell* );
