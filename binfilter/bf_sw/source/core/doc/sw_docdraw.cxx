@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:05:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,18 +69,29 @@
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
 #ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
 #endif
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
 #ifndef _SVX_FLDITEM_HXX //autogen
 #define ITEMID_FIELD EE_FEATURE_FIELD
-#include <bf_svx/flditem.hxx>
+// auto strip #include <bf_svx/flditem.hxx>
 #endif
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
@@ -88,51 +99,59 @@
 #ifndef _SVDOUTL_HXX
 #include <bf_svx/svdoutl.hxx>
 #endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
-#ifndef _SVDOGRP_HXX //autogen
-#include <bf_svx/svdogrp.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
-#include <bf_svx/langitem.hxx>
-#endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
 
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
 
-#ifndef _SVDOMEAS_HXX
-#include <bf_svx/svdfield.hxx>
-#endif
+// auto strip #ifndef _SVDOMEAS_HXX
+// auto strip #include <bf_svx/svdfield.hxx>
+// auto strip #endif
 #ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
 #endif
 
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-#ifndef _CHARFMT_HXX //autogen
-#include <charfmt.hxx>
-#endif
-#ifndef _VIEWIMP_HXX //autogen
-#include <viewimp.hxx>
-#endif
+// auto strip #ifndef _CHARFMT_HXX //autogen
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX //autogen
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
 #ifndef _SWHINTS_HXX
 #include <swhints.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -142,24 +161,24 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
 #endif
-#ifndef _FRAME_HXX
-#include <frame.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _FRAME_HXX
+// auto strip #include <frame.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer MakeDrawView
 #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>           // fuer die UndoIds
-#endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>         // fuer die UndoIds
+// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
@@ -176,9 +195,9 @@
 #include <dflyobj.hxx>
 #endif
 
-#ifndef _SVDETC_HXX
-#include <bf_svx/svdetc.hxx>
-#endif
+// auto strip #ifndef _SVDETC_HXX
+// auto strip #include <bf_svx/svdetc.hxx>
+// auto strip #endif
 #ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
 #endif

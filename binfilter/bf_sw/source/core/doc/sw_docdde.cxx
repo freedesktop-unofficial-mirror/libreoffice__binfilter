@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdde.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:05:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,18 +64,18 @@
 
 #include <stdlib.h>
 
-#ifndef _INTN_HXX
-#include <tools/intn.hxx>
-#endif
-#ifndef _APP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _INTN_HXX
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
 
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>           // LinkManager
@@ -87,6 +87,14 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -102,12 +110,12 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>          // fuer SwTable
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
