@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:12:26 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,9 @@
 // auto strip #ifndef _SV_METRIC_HXX //autogen
 // auto strip #include <vcl/metric.hxx>
 // auto strip #endif
-// auto strip #ifndef _SV_LINEINFO_HXX
-// auto strip #include <vcl/lineinfo.hxx>
-// auto strip #endif
+#ifndef _SV_LINEINFO_HXX
+#include <vcl/lineinfo.hxx>
+#endif
 // auto strip #ifndef _SV_OUTDEV_HXX //autogen
 // auto strip #include <vcl/outdev.hxx>
 // auto strip #endif
@@ -244,30 +244,30 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SmNode::SetPhantom(BOOL bIsPhantomP)
-//STRIP001 {
-//STRIP001  if (! (Flags() & FLG_VISIBLE))
-//STRIP001      bIsPhantom = bIsPhantomP;
-//STRIP001
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT  nSize = GetNumSubNodes();
-//STRIP001  for (USHORT i = 0; i < nSize; i++)
-//STRIP001      if (pNode = GetSubNode(i))
-//STRIP001          pNode->SetPhantom(bIsPhantom);
-//STRIP001 }
+void SmNode::SetPhantom(BOOL bIsPhantomP)
+{
+    if (! (Flags() & FLG_VISIBLE))
+        bIsPhantom = bIsPhantomP;
+
+    SmNode *pNode;
+    USHORT  nSize = GetNumSubNodes();
+    for (USHORT i = 0; i < nSize; i++)
+        if (pNode = GetSubNode(i))
+            pNode->SetPhantom(bIsPhantom);
+}
 
 
-/*N*/ void SmNode::SetColor(const Color& rColor)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (! (Flags() & FLG_COLOR))
-//STRIP001      GetFont().SetColor(rColor);
-//STRIP001
-//STRIP001  SmNode *pNode;
-//STRIP001  USHORT  nSize = GetNumSubNodes();
-//STRIP001  for (USHORT i = 0; i < nSize; i++)
-//STRIP001      if (pNode = GetSubNode(i))
-//STRIP001          pNode->SetColor(rColor);
-/*N*/ }
+void SmNode::SetColor(const Color& rColor)
+{
+    if (! (Flags() & FLG_COLOR))
+        GetFont().SetColor(rColor);
+
+    SmNode *pNode;
+    USHORT  nSize = GetNumSubNodes();
+    for (USHORT i = 0; i < nSize; i++)
+        if (pNode = GetSubNode(i))
+            pNode->SetColor(rColor);
+}
 
 
 /*N*/ void SmNode::SetAttribut(USHORT nAttrib)
@@ -632,22 +632,22 @@ namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////
 
-//STRIP001 SmStructureNode::SmStructureNode( const SmStructureNode &rNode ) :
-//STRIP001     SmNode( rNode.GetType(), rNode.GetToken() )
-//STRIP001 {
-//STRIP001     ULONG i;
-//STRIP001     for (i = 0;  i < aSubNodes.GetSize();  i++)
-//STRIP001         delete aSubNodes.Get(i);
-//STRIP001     aSubNodes.Clear();
-//STRIP001
-//STRIP001     ULONG nSize = rNode.aSubNodes.GetSize();
-//STRIP001     aSubNodes.SetSize( nSize );
-//STRIP001     for (i = 0;  i < nSize;  ++i)
-//STRIP001     {
-//STRIP001         SmNode *pNode = rNode.aSubNodes.Get(i);
-//STRIP001         aSubNodes.Put( i, pNode ? new SmNode( *pNode ) : 0 );
-//STRIP001     }
-//STRIP001 }
+SmStructureNode::SmStructureNode( const SmStructureNode &rNode ) :
+    SmNode( rNode.GetType(), rNode.GetToken() )
+{
+    ULONG i;
+    for (i = 0;  i < aSubNodes.GetSize();  i++)
+        delete aSubNodes.Get(i);
+    aSubNodes.Clear();
+
+    ULONG nSize = rNode.aSubNodes.GetSize();
+    aSubNodes.SetSize( nSize );
+    for (i = 0;  i < nSize;  ++i)
+    {
+        SmNode *pNode = rNode.aSubNodes.Get(i);
+        aSubNodes.Put( i, pNode ? new SmNode( *pNode ) : 0 );
+    }
+}
 
 
 /*N*/ SmStructureNode::~SmStructureNode()
@@ -660,25 +660,25 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SmStructureNode & SmStructureNode::operator = ( const SmStructureNode &rNode )
-//STRIP001 {
-//STRIP001     SmNode::operator = ( rNode );
-//STRIP001
-//STRIP001     ULONG i;
-//STRIP001     for (i = 0;  i < aSubNodes.GetSize();  i++)
-//STRIP001         delete aSubNodes.Get(i);
-//STRIP001     aSubNodes.Clear();
-//STRIP001
-//STRIP001     ULONG nSize = rNode.aSubNodes.GetSize();
-//STRIP001     aSubNodes.SetSize( nSize );
-//STRIP001     for (i = 0;  i < nSize;  ++i)
-//STRIP001     {
-//STRIP001         SmNode *pNode = rNode.aSubNodes.Get(i);
-//STRIP001         aSubNodes.Put( i, pNode ? new SmNode( *pNode ) : 0 );
-//STRIP001     }
-//STRIP001
-//STRIP001     return *this;
-//STRIP001 }
+SmStructureNode & SmStructureNode::operator = ( const SmStructureNode &rNode )
+{
+    SmNode::operator = ( rNode );
+
+    ULONG i;
+    for (i = 0;  i < aSubNodes.GetSize();  i++)
+        delete aSubNodes.Get(i);
+    aSubNodes.Clear();
+
+    ULONG nSize = rNode.aSubNodes.GetSize();
+    aSubNodes.SetSize( nSize );
+    for (i = 0;  i < nSize;  ++i)
+    {
+        SmNode *pNode = rNode.aSubNodes.Get(i);
+        aSubNodes.Put( i, pNode ? new SmNode( *pNode ) : 0 );
+    }
+
+    return *this;
+}
 
 
 /*N*/ void SmStructureNode::SetSubNodes(SmNode *pFirst, SmNode *pSecond, SmNode *pThird)
@@ -748,10 +748,10 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SmNode * SmVisibleNode::GetSubNode(USHORT nIndex)
-//STRIP001 {
-//STRIP001  return NULL;
-//STRIP001 }
+SmNode * SmVisibleNode::GetSubNode(USHORT nIndex)
+{
+    return NULL;
+}
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -839,10 +839,10 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SmNode * SmTableNode::GetLeftMost()
-//STRIP001 {
-//STRIP001  return this;
-//STRIP001 }
+SmNode * SmTableNode::GetLeftMost()
+{
+    return this;
+}
 
 
 /**************************************************************************/
@@ -1183,271 +1183,271 @@ namespace binfilter {
 /**************************************************************************/
 
 
-//STRIP001 double Det(const Point &rHeading1, const Point &rHeading2)
-//STRIP001  // gibt den Wert der durch die beiden Punkte gebildeten Determinante
-//STRIP001  // zurück
-//STRIP001 {
-//STRIP001  return rHeading1.X() * rHeading2.Y() - rHeading1.Y() * rHeading2.X();
-//STRIP001 }
+double Det(const Point &rHeading1, const Point &rHeading2)
+ // gibt den Wert der durch die beiden Punkte gebildeten Determinante
+ // zurück
+{
+ return rHeading1.X() * rHeading2.Y() - rHeading1.Y() * rHeading2.X();
+}
 
 
-//STRIP001 BOOL IsPointInLine(const Point &rPoint1,
-//STRIP001                 const Point &rPoint2, const Point &rHeading2)
-//STRIP001  // ergibt TRUE genau dann, wenn der Punkt 'rPoint1' zu der Gerade gehört die
-//STRIP001  // durch den Punkt 'rPoint2' geht und den Richtungsvektor 'rHeading2' hat
-//STRIP001 {
-//STRIP001  DBG_ASSERT(rHeading2 != Point(), "Sm : 0 vector");
-//STRIP001
-//STRIP001  BOOL bRes = FALSE;
-//STRIP001  const double eps = 5.0 * DBL_EPSILON;
-//STRIP001
-//STRIP001  double fLambda;
-//STRIP001  if (labs(rHeading2.X()) > labs(rHeading2.Y()))
-//STRIP001  {
-//STRIP001      fLambda = (rPoint1.X() - rPoint2.X()) / (double) rHeading2.X();
-//STRIP001      bRes = fabs(rPoint1.Y() - (rPoint2.Y() + fLambda * rHeading2.Y())) < eps;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      fLambda = (rPoint1.Y() - rPoint2.Y()) / (double) rHeading2.Y();
-//STRIP001      bRes = fabs(rPoint1.X() - (rPoint2.X() + fLambda * rHeading2.X())) < eps;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRes;
-//STRIP001 }
+BOOL IsPointInLine(const Point &rPoint1,
+                const Point &rPoint2, const Point &rHeading2)
+ // ergibt TRUE genau dann, wenn der Punkt 'rPoint1' zu der Gerade gehört die
+ // durch den Punkt 'rPoint2' geht und den Richtungsvektor 'rHeading2' hat
+{
+ DBG_ASSERT(rHeading2 != Point(), "Sm : 0 vector");
+
+ BOOL bRes = FALSE;
+ const double eps = 5.0 * DBL_EPSILON;
+
+ double fLambda;
+ if (labs(rHeading2.X()) > labs(rHeading2.Y()))
+ {
+     fLambda = (rPoint1.X() - rPoint2.X()) / (double) rHeading2.X();
+     bRes = fabs(rPoint1.Y() - (rPoint2.Y() + fLambda * rHeading2.Y())) < eps;
+ }
+ else
+ {
+     fLambda = (rPoint1.Y() - rPoint2.Y()) / (double) rHeading2.Y();
+     bRes = fabs(rPoint1.X() - (rPoint2.X() + fLambda * rHeading2.X())) < eps;
+ }
+
+ return bRes;
+}
 
 
-//STRIP001 USHORT GetLineIntersectionPoint(Point &rResult,
-//STRIP001                              const Point& rPoint1, const Point &rHeading1,
-//STRIP001                              const Point& rPoint2, const Point &rHeading2)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(rHeading1 != Point(), "Sm : 0 vector");
-//STRIP001  DBG_ASSERT(rHeading2 != Point(), "Sm : 0 vector");
-//STRIP001
-//STRIP001  USHORT nRes = 1;
-//STRIP001  const double eps = 5.0 * DBL_EPSILON;
-//STRIP001
-//STRIP001  // sind die Richtumgsvektoren linear abhängig ?
-//STRIP001  double  fDet = Det(rHeading1, rHeading2);
-//STRIP001  if (fabs(fDet) < eps)
-//STRIP001  {
-//STRIP001      nRes    = IsPointInLine(rPoint1, rPoint2, rHeading2) ? USHRT_MAX : 0;
-//STRIP001      rResult = nRes ? rPoint1 : Point();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // hier achten wir nicht auf Rechengenauigkeit
-//STRIP001      // (das würde aufwendiger und lohnt sich hier kaum)
-//STRIP001      double fLambda = (    (rPoint1.Y() - rPoint2.Y()) * rHeading2.X()
-//STRIP001                          - (rPoint1.X() - rPoint2.X()) * rHeading2.Y())
-//STRIP001                       / fDet;
-//STRIP001      rResult = Point(rPoint1.X() + (long) (fLambda * rHeading1.X()),
-//STRIP001                      rPoint1.Y() + (long) (fLambda * rHeading1.Y()));
-//STRIP001  }
-//STRIP001
-//STRIP001  return nRes;
-//STRIP001 }
+USHORT GetLineIntersectionPoint(Point &rResult,
+                             const Point& rPoint1, const Point &rHeading1,
+                             const Point& rPoint2, const Point &rHeading2)
+{
+ DBG_ASSERT(rHeading1 != Point(), "Sm : 0 vector");
+ DBG_ASSERT(rHeading2 != Point(), "Sm : 0 vector");
+
+ USHORT nRes = 1;
+ const double eps = 5.0 * DBL_EPSILON;
+
+ // sind die Richtumgsvektoren linear abhängig ?
+ double  fDet = Det(rHeading1, rHeading2);
+ if (fabs(fDet) < eps)
+ {
+     nRes    = IsPointInLine(rPoint1, rPoint2, rHeading2) ? USHRT_MAX : 0;
+     rResult = nRes ? rPoint1 : Point();
+ }
+ else
+ {
+     // hier achten wir nicht auf Rechengenauigkeit
+     // (das würde aufwendiger und lohnt sich hier kaum)
+     double fLambda = (    (rPoint1.Y() - rPoint2.Y()) * rHeading2.X()
+                         - (rPoint1.X() - rPoint2.X()) * rHeading2.Y())
+                      / fDet;
+     rResult = Point(rPoint1.X() + (long) (fLambda * rHeading1.X()),
+                     rPoint1.Y() + (long) (fLambda * rHeading1.Y()));
+ }
+
+ return nRes;
+}
 
 
 
-//STRIP001 SmBinDiagonalNode::SmBinDiagonalNode(const SmToken &rNodeToken)
-//STRIP001 :    SmStructureNode(NBINDIAGONAL, rNodeToken)
-//STRIP001 {
-//STRIP001  bAscending = FALSE;
-//STRIP001  SetNumSubNodes(3);
-//STRIP001 }
+SmBinDiagonalNode::SmBinDiagonalNode(const SmToken &rNodeToken)
+:   SmStructureNode(NBINDIAGONAL, rNodeToken)
+{
+    bAscending = FALSE;
+    SetNumSubNodes(3);
+}
 
 
-//STRIP001 void SmBinDiagonalNode::GetOperPosSize(Point &rPos, Size &rSize,
-//STRIP001                      const Point &rDiagPoint, double fAngleDeg) const
-//STRIP001  // gibt die Position und Größe für den Diagonalstrich zurück.
-//STRIP001  // Vor.: das SmRect des Nodes gibt die Begrenzung vor(!), muß also selbst
-//STRIP001  //      bereits bekannt sein.
-//STRIP001
-//STRIP001 {
-//STRIP001  const double  fPi   = 3.1415926535897932384626433;
-//STRIP001  double  fAngleRad   = fAngleDeg / 180.0 * fPi;
-//STRIP001  long    nRectLeft   = GetItalicLeft(),
-//STRIP001          nRectRight  = GetItalicRight(),
-//STRIP001          nRectTop    = GetTop(),
-//STRIP001          nRectBottom = GetBottom();
-//STRIP001  Point   aRightHdg     (100, 0),
-//STRIP001          aDownHdg      (0, 100),
-//STRIP001          aDiagHdg      ( (long)(100.0 * cos(fAngleRad)),
-//STRIP001                          (long)(-100.0 * sin(fAngleRad)) );
-//STRIP001
-//STRIP001  long  nLeft, nRight, nTop, nBottom;     // Ränder des Rechtecks für die
-//STRIP001                                          // Diagonale
-//STRIP001  Point aPoint;
-//STRIP001  if (IsAscending())
-//STRIP001  {
-//STRIP001      //
-//STRIP001      // obere rechte Ecke bestimmen
-//STRIP001      //
-//STRIP001      GetLineIntersectionPoint(aPoint,
-//STRIP001          Point(nRectLeft, nRectTop), aRightHdg,
-//STRIP001          rDiagPoint, aDiagHdg);
-//STRIP001      //
-//STRIP001      // gibt es einen Schnittpunkt mit dem oberen Rand ?
-//STRIP001      if (aPoint.X() <= nRectRight)
-//STRIP001      {
-//STRIP001          nRight = aPoint.X();
-//STRIP001          nTop   = nRectTop;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // es mu?einen Schnittpunkt mit dem rechten Rand geben!
-//STRIP001          GetLineIntersectionPoint(aPoint,
-//STRIP001              Point(nRectRight, nRectTop), aDownHdg,
-//STRIP001              rDiagPoint, aDiagHdg);
-//STRIP001
-//STRIP001          nRight = nRectRight;
-//STRIP001          nTop   = aPoint.Y();
-//STRIP001      }
-//STRIP001
-//STRIP001      //
-//STRIP001      // untere linke Ecke bestimmen
-//STRIP001      //
-//STRIP001      GetLineIntersectionPoint(aPoint,
-//STRIP001          Point(nRectLeft, nRectBottom), aRightHdg,
-//STRIP001          rDiagPoint, aDiagHdg);
-//STRIP001      //
-//STRIP001      // gibt es einen Schnittpunkt mit dem unteren Rand ?
-//STRIP001      if (aPoint.X() >= nRectLeft)
-//STRIP001      {
-//STRIP001          nLeft   = aPoint.X();
-//STRIP001          nBottom = nRectBottom;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // es mu?einen Schnittpunkt mit dem linken Rand geben!
-//STRIP001          GetLineIntersectionPoint(aPoint,
-//STRIP001              Point(nRectLeft, nRectTop), aDownHdg,
-//STRIP001              rDiagPoint, aDiagHdg);
-//STRIP001
-//STRIP001          nLeft   = nRectLeft;
-//STRIP001          nBottom = aPoint.Y();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      //
-//STRIP001      // obere linke Ecke bestimmen
-//STRIP001      //
-//STRIP001      GetLineIntersectionPoint(aPoint,
-//STRIP001          Point(nRectLeft, nRectTop), aRightHdg,
-//STRIP001          rDiagPoint, aDiagHdg);
-//STRIP001      //
-//STRIP001      // gibt es einen Schnittpunkt mit dem oberen Rand ?
-//STRIP001      if (aPoint.X() >= nRectLeft)
-//STRIP001      {
-//STRIP001          nLeft = aPoint.X();
-//STRIP001          nTop  = nRectTop;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // es mu?einen Schnittpunkt mit dem linken Rand geben!
-//STRIP001          GetLineIntersectionPoint(aPoint,
-//STRIP001              Point(nRectLeft, nRectTop), aDownHdg,
-//STRIP001              rDiagPoint, aDiagHdg);
-//STRIP001
-//STRIP001          nLeft = nRectLeft;
-//STRIP001          nTop  = aPoint.Y();
-//STRIP001      }
-//STRIP001
-//STRIP001      //
-//STRIP001      // untere rechte Ecke bestimmen
-//STRIP001      //
-//STRIP001      GetLineIntersectionPoint(aPoint,
-//STRIP001          Point(nRectLeft, nRectBottom), aRightHdg,
-//STRIP001          rDiagPoint, aDiagHdg);
-//STRIP001      //
-//STRIP001      // gibt es einen Schnittpunkt mit dem unteren Rand ?
-//STRIP001      if (aPoint.X() <= nRectRight)
-//STRIP001      {
-//STRIP001          nRight  = aPoint.X();
-//STRIP001          nBottom = nRectBottom;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // es mu?einen Schnittpunkt mit dem rechten Rand geben!
-//STRIP001          GetLineIntersectionPoint(aPoint,
-//STRIP001              Point(nRectRight, nRectTop), aDownHdg,
-//STRIP001              rDiagPoint, aDiagHdg);
-//STRIP001
-//STRIP001          nRight  = nRectRight;
-//STRIP001          nBottom = aPoint.Y();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rSize = Size(nRight - nLeft + 1, nBottom - nTop + 1);
-//STRIP001  rPos.X() = nLeft;
-//STRIP001  rPos.Y() = nTop;
-//STRIP001 }
+void SmBinDiagonalNode::GetOperPosSize(Point &rPos, Size &rSize,
+                        const Point &rDiagPoint, double fAngleDeg) const
+    // gibt die Position und Größe für den Diagonalstrich zurück.
+    // Vor.: das SmRect des Nodes gibt die Begrenzung vor(!), muß also selbst
+    //      bereits bekannt sein.
+
+{
+    const double  fPi   = 3.1415926535897932384626433;
+    double  fAngleRad   = fAngleDeg / 180.0 * fPi;
+    long    nRectLeft   = GetItalicLeft(),
+            nRectRight  = GetItalicRight(),
+            nRectTop    = GetTop(),
+            nRectBottom = GetBottom();
+    Point   aRightHdg     (100, 0),
+            aDownHdg      (0, 100),
+            aDiagHdg      ( (long)(100.0 * cos(fAngleRad)),
+                            (long)(-100.0 * sin(fAngleRad)) );
+
+    long  nLeft, nRight, nTop, nBottom;     // Ränder des Rechtecks für die
+                                            // Diagonale
+    Point aPoint;
+    if (IsAscending())
+    {
+        //
+        // obere rechte Ecke bestimmen
+        //
+        GetLineIntersectionPoint(aPoint,
+            Point(nRectLeft, nRectTop), aRightHdg,
+            rDiagPoint, aDiagHdg);
+        //
+        // gibt es einen Schnittpunkt mit dem oberen Rand ?
+        if (aPoint.X() <= nRectRight)
+        {
+            nRight = aPoint.X();
+            nTop   = nRectTop;
+        }
+        else
+        {
+            // es mu?einen Schnittpunkt mit dem rechten Rand geben!
+            GetLineIntersectionPoint(aPoint,
+                Point(nRectRight, nRectTop), aDownHdg,
+                rDiagPoint, aDiagHdg);
+
+            nRight = nRectRight;
+            nTop   = aPoint.Y();
+        }
+
+        //
+        // untere linke Ecke bestimmen
+        //
+        GetLineIntersectionPoint(aPoint,
+            Point(nRectLeft, nRectBottom), aRightHdg,
+            rDiagPoint, aDiagHdg);
+        //
+        // gibt es einen Schnittpunkt mit dem unteren Rand ?
+        if (aPoint.X() >= nRectLeft)
+        {
+            nLeft   = aPoint.X();
+            nBottom = nRectBottom;
+        }
+        else
+        {
+            // es mu?einen Schnittpunkt mit dem linken Rand geben!
+            GetLineIntersectionPoint(aPoint,
+                Point(nRectLeft, nRectTop), aDownHdg,
+                rDiagPoint, aDiagHdg);
+
+            nLeft   = nRectLeft;
+            nBottom = aPoint.Y();
+        }
+    }
+    else
+    {
+        //
+        // obere linke Ecke bestimmen
+        //
+        GetLineIntersectionPoint(aPoint,
+            Point(nRectLeft, nRectTop), aRightHdg,
+            rDiagPoint, aDiagHdg);
+        //
+        // gibt es einen Schnittpunkt mit dem oberen Rand ?
+        if (aPoint.X() >= nRectLeft)
+        {
+            nLeft = aPoint.X();
+            nTop  = nRectTop;
+        }
+        else
+        {
+            // es mu?einen Schnittpunkt mit dem linken Rand geben!
+            GetLineIntersectionPoint(aPoint,
+                Point(nRectLeft, nRectTop), aDownHdg,
+                rDiagPoint, aDiagHdg);
+
+            nLeft = nRectLeft;
+            nTop  = aPoint.Y();
+        }
+
+        //
+        // untere rechte Ecke bestimmen
+        //
+        GetLineIntersectionPoint(aPoint,
+            Point(nRectLeft, nRectBottom), aRightHdg,
+            rDiagPoint, aDiagHdg);
+        //
+        // gibt es einen Schnittpunkt mit dem unteren Rand ?
+        if (aPoint.X() <= nRectRight)
+        {
+            nRight  = aPoint.X();
+            nBottom = nRectBottom;
+        }
+        else
+        {
+            // es mu?einen Schnittpunkt mit dem rechten Rand geben!
+            GetLineIntersectionPoint(aPoint,
+                Point(nRectRight, nRectTop), aDownHdg,
+                rDiagPoint, aDiagHdg);
+
+            nRight  = nRectRight;
+            nBottom = aPoint.Y();
+        }
+    }
+
+    rSize = Size(nRight - nLeft + 1, nBottom - nTop + 1);
+    rPos.X() = nLeft;
+    rPos.Y() = nTop;
+}
 
 
-//STRIP001 void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
-//STRIP001 {
-//STRIP001  //! die beiden Argumente müssen in den Subnodes vor dem Operator kommen,
-//STRIP001  //! damit das anklicken im GraphicWindow den FormulaCursor richtig setzt
-//STRIP001  //! (vgl SmRootNode)
-//STRIP001  SmNode *pLeft  = GetSubNode(0),
-//STRIP001         *pRight = GetSubNode(1);
-//STRIP001  DBG_ASSERT(pLeft, "Sm : NULL pointer");
-//STRIP001  DBG_ASSERT(pRight, "Sm : NULL pointer");
-//STRIP001
-//STRIP001  DBG_ASSERT(GetSubNode(2)->GetType() == NPOLYLINE, "Sm : falscher Nodetyp");
-//STRIP001  SmPolyLineNode *pOper = (SmPolyLineNode *) GetSubNode(2);
-//STRIP001  DBG_ASSERT(pOper, "Sm : NULL pointer");
-//STRIP001
-//STRIP001  //! some routines being called extract some info from the OutputDevice's
-//STRIP001  //! font (eg the space to be used for borders OR the font name(!!)).
-//STRIP001  //! Thus the font should reflect the needs and has to be set!
-//STRIP001     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
-//STRIP001  aTmpDev.SetFont(GetFont());
-//STRIP001
-//STRIP001  pLeft->Arrange(aTmpDev, rFormat);
-//STRIP001  pRight->Arrange(aTmpDev, rFormat);
-//STRIP001
-//STRIP001  // implizit die Weite (incl Rand) des Diagonalstrichs ermitteln
-//STRIP001  pOper->Arrange(aTmpDev, rFormat);
-//STRIP001
-//STRIP001  long nDelta = pOper->GetWidth() * 8 / 10;
-//STRIP001
-//STRIP001  // TopLeft Position vom rechten Argument ermitteln
-//STRIP001  Point aPos;
-//STRIP001  aPos.X() = pLeft->GetItalicRight() + nDelta + pRight->GetItalicLeftSpace();
-//STRIP001  if (IsAscending())
-//STRIP001      aPos.Y() = pLeft->GetBottom() + nDelta;
-//STRIP001  else
-//STRIP001      aPos.Y() = pLeft->GetTop() - nDelta - pRight->GetHeight();
-//STRIP001
-//STRIP001  pRight->MoveTo(aPos);
-//STRIP001
-//STRIP001  // neue Baseline bestimmen
-//STRIP001  long nBaseline = IsAscending() ? (pLeft->GetBottom() + pRight->GetTop()) / 2
-//STRIP001                      : (pLeft->GetTop() + pRight->GetBottom()) / 2;
-//STRIP001  Point  aLogCenter ((pLeft->GetItalicRight() + pRight->GetItalicLeft()) / 2,
-//STRIP001                     nBaseline);
-//STRIP001
-//STRIP001  SmRect::operator = (*pLeft);
-//STRIP001  ExtendBy(*pRight, RCP_NONE);
-//STRIP001
-//STRIP001
-//STRIP001  // Position und Größe des Diagonalstrich ermitteln
-//STRIP001  Size  aSize;
-//STRIP001  GetOperPosSize(aPos, aSize, aLogCenter, IsAscending() ? 60.0 : -60.0);
-//STRIP001
-//STRIP001     // font specialist advised to change the width first
-//STRIP001     pOper->AdaptToY(aTmpDev, aSize.Height());
-//STRIP001     pOper->AdaptToX(aTmpDev, aSize.Width());
-//STRIP001  // und diese wirksam machen
-//STRIP001  pOper->Arrange(aTmpDev, rFormat);
-//STRIP001
-//STRIP001  pOper->MoveTo(aPos);
-//STRIP001
-//STRIP001  ExtendBy(*pOper, RCP_NONE, nBaseline);
-//STRIP001 }
+void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
+{
+    //! die beiden Argumente müssen in den Subnodes vor dem Operator kommen,
+    //! damit das anklicken im GraphicWindow den FormulaCursor richtig setzt
+    //! (vgl SmRootNode)
+    SmNode *pLeft  = GetSubNode(0),
+           *pRight = GetSubNode(1);
+    DBG_ASSERT(pLeft, "Sm : NULL pointer");
+    DBG_ASSERT(pRight, "Sm : NULL pointer");
+
+    DBG_ASSERT(GetSubNode(2)->GetType() == NPOLYLINE, "Sm : falscher Nodetyp");
+    SmPolyLineNode *pOper = (SmPolyLineNode *) GetSubNode(2);
+    DBG_ASSERT(pOper, "Sm : NULL pointer");
+
+    //! some routines being called extract some info from the OutputDevice's
+    //! font (eg the space to be used for borders OR the font name(!!)).
+    //! Thus the font should reflect the needs and has to be set!
+    SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
+    aTmpDev.SetFont(GetFont());
+
+    pLeft->Arrange(aTmpDev, rFormat);
+    pRight->Arrange(aTmpDev, rFormat);
+
+    // implizit die Weite (incl Rand) des Diagonalstrichs ermitteln
+    pOper->Arrange(aTmpDev, rFormat);
+
+    long nDelta = pOper->GetWidth() * 8 / 10;
+
+    // TopLeft Position vom rechten Argument ermitteln
+    Point aPos;
+    aPos.X() = pLeft->GetItalicRight() + nDelta + pRight->GetItalicLeftSpace();
+    if (IsAscending())
+        aPos.Y() = pLeft->GetBottom() + nDelta;
+    else
+        aPos.Y() = pLeft->GetTop() - nDelta - pRight->GetHeight();
+
+    pRight->MoveTo(aPos);
+
+    // neue Baseline bestimmen
+    long nBaseline = IsAscending() ? (pLeft->GetBottom() + pRight->GetTop()) / 2
+                        : (pLeft->GetTop() + pRight->GetBottom()) / 2;
+    Point  aLogCenter ((pLeft->GetItalicRight() + pRight->GetItalicLeft()) / 2,
+                       nBaseline);
+
+    SmRect::operator = (*pLeft);
+    ExtendBy(*pRight, RCP_NONE);
+
+
+    // Position und Größe des Diagonalstrich ermitteln
+    Size  aSize;
+    GetOperPosSize(aPos, aSize, aLogCenter, IsAscending() ? 60.0 : -60.0);
+
+    // font specialist advised to change the width first
+    pOper->AdaptToY(aTmpDev, aSize.Height());
+    pOper->AdaptToX(aTmpDev, aSize.Width());
+    // und diese wirksam machen
+    pOper->Arrange(aTmpDev, rFormat);
+
+    pOper->MoveTo(aPos);
+
+    ExtendBy(*pOper, RCP_NONE, nBaseline);
+}
 
 
 /**************************************************************************/
@@ -1812,62 +1812,62 @@ namespace binfilter {
 /**************************************************************************/
 
 
-//STRIP001 void SmVerticalBraceNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
-//STRIP001 {
-//STRIP001  SmNode *pBody   = GetSubNode(0),
-//STRIP001         *pBrace  = GetSubNode(1),
-//STRIP001         *pScript = GetSubNode(2);
-//STRIP001  DBG_ASSERT(pBody,   "Sm: NULL pointer!");
-//STRIP001  DBG_ASSERT(pBrace,  "Sm: NULL pointer!");
-//STRIP001  DBG_ASSERT(pScript, "Sm: NULL pointer!");
-//STRIP001
-//STRIP001     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
-//STRIP001  aTmpDev.SetFont(GetFont());
-//STRIP001
-//STRIP001  pBody->Arrange(aTmpDev, rFormat);
-//STRIP001
-//STRIP001  // Groesse wie bei Grenzen fuer diesen Teil
-//STRIP001  pScript->SetSize( Fraction( rFormat.GetRelSize(SIZ_LIMITS), 100 ) );
-//STRIP001  // etwas hoehere Klammern als normal
-//STRIP001  pBrace ->SetSize( Fraction(3, 2) );
-//STRIP001
-//STRIP001  long  nItalicWidth = pBody->GetItalicWidth();
-//STRIP001  if (nItalicWidth > 0)
-//STRIP001      pBrace->AdaptToX(aTmpDev, nItalicWidth);
-//STRIP001
-//STRIP001  pBrace ->Arrange(aTmpDev, rFormat);
-//STRIP001  pScript->Arrange(aTmpDev, rFormat);
-//STRIP001
-//STRIP001  // die relativen Position und die Abstaende zueinander bestimmen
-//STRIP001  RectPos  eRectPos;
-//STRIP001  long nFontHeight = pBody->GetFont().GetSize().Height();
-//STRIP001  long nDistBody   = nFontHeight * rFormat.GetDistance(DIS_ORNAMENTSIZE),
-//STRIP001       nDistScript = nFontHeight;
-//STRIP001  if (GetToken().eType == TOVERBRACE)
-//STRIP001  {
-//STRIP001      eRectPos = RP_TOP;
-//STRIP001      nDistBody    = - nDistBody;
-//STRIP001      nDistScript *= - rFormat.GetDistance(DIS_UPPERLIMIT);
-//STRIP001  }
-//STRIP001  else // TUNDERBRACE
-//STRIP001  {
-//STRIP001      eRectPos = RP_BOTTOM;
-//STRIP001      nDistScript *= + rFormat.GetDistance(DIS_LOWERLIMIT);
-//STRIP001  }
-//STRIP001  nDistBody   /= 100L;
-//STRIP001  nDistScript /= 100L;
-//STRIP001
-//STRIP001  Point  aPos = pBrace->AlignTo(*pBody, eRectPos, RHA_CENTER, RVA_BASELINE);
-//STRIP001  aPos.Y() += nDistBody;
-//STRIP001  pBrace->MoveTo(aPos);
-//STRIP001
-//STRIP001  aPos = pScript->AlignTo(*pBrace, eRectPos, RHA_CENTER, RVA_BASELINE);
-//STRIP001  aPos.Y() += nDistScript;
-//STRIP001  pScript->MoveTo(aPos);
-//STRIP001
-//STRIP001  SmRect::operator = (*pBody);
-//STRIP001  ExtendBy(*pBrace, RCP_THIS).ExtendBy(*pScript, RCP_THIS);
-//STRIP001 }
+void SmVerticalBraceNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
+{
+    SmNode *pBody   = GetSubNode(0),
+           *pBrace  = GetSubNode(1),
+           *pScript = GetSubNode(2);
+    DBG_ASSERT(pBody,   "Sm: NULL pointer!");
+    DBG_ASSERT(pBrace,  "Sm: NULL pointer!");
+    DBG_ASSERT(pScript, "Sm: NULL pointer!");
+
+    SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
+    aTmpDev.SetFont(GetFont());
+
+    pBody->Arrange(aTmpDev, rFormat);
+
+    // Groesse wie bei Grenzen fuer diesen Teil
+    pScript->SetSize( Fraction( rFormat.GetRelSize(SIZ_LIMITS), 100 ) );
+    // etwas hoehere Klammern als normal
+    pBrace ->SetSize( Fraction(3, 2) );
+
+    long  nItalicWidth = pBody->GetItalicWidth();
+    if (nItalicWidth > 0)
+        pBrace->AdaptToX(aTmpDev, nItalicWidth);
+
+    pBrace ->Arrange(aTmpDev, rFormat);
+    pScript->Arrange(aTmpDev, rFormat);
+
+    // die relativen Position und die Abstaende zueinander bestimmen
+    RectPos  eRectPos;
+    long nFontHeight = pBody->GetFont().GetSize().Height();
+    long nDistBody   = nFontHeight * rFormat.GetDistance(DIS_ORNAMENTSIZE),
+         nDistScript = nFontHeight;
+    if (GetToken().eType == TOVERBRACE)
+    {
+        eRectPos = RP_TOP;
+        nDistBody    = - nDistBody;
+        nDistScript *= - rFormat.GetDistance(DIS_UPPERLIMIT);
+    }
+    else // TUNDERBRACE
+    {
+        eRectPos = RP_BOTTOM;
+        nDistScript *= + rFormat.GetDistance(DIS_LOWERLIMIT);
+    }
+    nDistBody   /= 100L;
+    nDistScript /= 100L;
+
+    Point  aPos = pBrace->AlignTo(*pBody, eRectPos, RHA_CENTER, RVA_BASELINE);
+    aPos.Y() += nDistBody;
+    pBrace->MoveTo(aPos);
+
+    aPos = pScript->AlignTo(*pBrace, eRectPos, RHA_CENTER, RVA_BASELINE);
+    aPos.Y() += nDistScript;
+    pScript->MoveTo(aPos);
+
+    SmRect::operator = (*pBody);
+    ExtendBy(*pBrace, RCP_THIS).ExtendBy(*pScript, RCP_THIS);
+}
 
 
 /**************************************************************************/
@@ -1949,26 +1949,26 @@ namespace binfilter {
 /**************************************************************************/
 
 
-//STRIP001 void SmAlignNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
-//STRIP001  // setzt im ganzen subtree (incl aktuellem node) das alignment
-//STRIP001 {
-//STRIP001  DBG_ASSERT(GetNumSubNodes() > 0, "Sm: SubNode fehlt");
-//STRIP001
-//STRIP001  SmNode  *pNode = GetSubNode(0);
-//STRIP001
-//STRIP001  RectHorAlign  eHorAlign;
-//STRIP001  switch (GetToken().eType)
-//STRIP001  {
-//STRIP001      case TALIGNL:   eHorAlign = RHA_LEFT;   break;
-//STRIP001      case TALIGNC:   eHorAlign = RHA_CENTER; break;
-//STRIP001      case TALIGNR:   eHorAlign = RHA_RIGHT;  break;
-//STRIP001  }
-//STRIP001  SetRectHorAlign(eHorAlign);
-//STRIP001
-//STRIP001  pNode->Arrange(rDev, rFormat);
-//STRIP001
-//STRIP001  SmRect::operator = (pNode->GetRect());
-//STRIP001 }
+void SmAlignNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
+    // setzt im ganzen subtree (incl aktuellem node) das alignment
+{
+    DBG_ASSERT(GetNumSubNodes() > 0, "Sm: SubNode fehlt");
+
+    SmNode  *pNode = GetSubNode(0);
+
+    RectHorAlign  eHorAlign;
+    switch (GetToken().eType)
+    {
+        case TALIGNL:   eHorAlign = RHA_LEFT;   break;
+        case TALIGNC:   eHorAlign = RHA_CENTER; break;
+        case TALIGNR:   eHorAlign = RHA_RIGHT;  break;
+    }
+    SetRectHorAlign(eHorAlign);
+
+    pNode->Arrange(rDev, rFormat);
+
+    SmRect::operator = (pNode->GetRect());
+}
 
 
 /**************************************************************************/
@@ -2143,7 +2143,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       case TUNKNOWN : break;  // no assertion on "font <?> <?>"
 /*N*/
-/*?*/       case TPHANTOM : DBG_BF_ASSERT(0, "STRIP"); break; //STRIP001 SetPhantom(TRUE);              break;
+/*?*/       case TPHANTOM : SetPhantom(TRUE);               break;
 /*N*/       case TBOLD :    SetAttribut(ATTR_BOLD);         break;
 /*N*/       case TITALIC :  SetAttribut(ATTR_ITALIC);       break;
 /*?*/       case TNBOLD :   ClearAttribut(ATTR_BOLD);       break;
@@ -2240,34 +2240,34 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SmPolyLineNode::Draw(OutputDevice &rDev, const Point &rPosition) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (IsPhantom())
-//STRIP001      return;
-//STRIP001
-//STRIP001  long nBorderwidth = GetFont().GetBorderWidth();
-//STRIP001
-//STRIP001  LineInfo  aInfo;
-//STRIP001  aInfo.SetWidth(nWidth - 2 * nBorderwidth);
-//STRIP001
-//STRIP001  Point aOffset (Point() - aPoly.GetBoundRect().TopLeft()
-//STRIP001                 + Point(nBorderwidth, nBorderwidth)),
-//STRIP001        aPos (rPosition + aOffset);
-//STRIP001  ((Polygon &) aPoly).Move(aPos.X(), aPos.Y());
-//STRIP001
-//STRIP001     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, FALSE);
-//STRIP001     aTmpDev.SetLineColor( GetFont().GetColor() );
-//STRIP001
-//STRIP001     rDev.DrawPolyLine(aPoly, aInfo);
-//STRIP001
-//STRIP001 #ifdef SM_RECT_DEBUG
-//STRIP001  if (!IsDebug())
-//STRIP001      return;
-//STRIP001
-//STRIP001  int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
-//STRIP001  SmRect::Draw(rDev, rPosition, nRFlags);
-//STRIP001 #endif
-/*N*/ }
+void SmPolyLineNode::Draw(OutputDevice &rDev, const Point &rPosition) const
+{
+    if (IsPhantom())
+        return;
+
+    long nBorderwidth = GetFont().GetBorderWidth();
+
+    LineInfo  aInfo;
+    aInfo.SetWidth(nWidth - 2 * nBorderwidth);
+
+    Point aOffset (Point() - aPoly.GetBoundRect().TopLeft()
+                   + Point(nBorderwidth, nBorderwidth)),
+          aPos (rPosition + aOffset);
+    ((Polygon &) aPoly).Move(aPos.X(), aPos.Y());
+
+     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, FALSE);
+     aTmpDev.SetLineColor( GetFont().GetColor() );
+
+     rDev.DrawPolyLine(aPoly, aInfo);
+
+ #ifdef SM_RECT_DEBUG
+    if (!IsDebug())
+        return;
+
+    int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
+    SmRect::Draw(rDev, rPosition, nRFlags);
+ #endif
+}
 
 
 /**************************************************************************/
@@ -2286,48 +2286,48 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SmRootSymbolNode::Draw(OutputDevice &rDev, const Point &rPosition) const
-//STRIP001 {
-//STRIP001  if (IsPhantom())
-//STRIP001      return;
-//STRIP001
-//STRIP001  // draw root-sign itself
-//STRIP001     SmMathSymbolNode::Draw(rDev, rPosition);
-//STRIP001
-//STRIP001     static String aBarStr( (sal_Unicode) MS_BAR );
-//STRIP001     SmTmpDevice  aTmpDev( (OutputDevice &) rDev, TRUE );
-//STRIP001     aTmpDev.SetFillColor(GetFont().GetColor());
-//STRIP001     rDev.SetLineColor();
-//STRIP001     aTmpDev.SetFont( GetFont() );
-//STRIP001
-//STRIP001     // since the width is always unscaled it corresponds ot the _original_
-//STRIP001     // _unscaled_ font height to be used, we use that to calculate the
-//STRIP001     // bar height. Thus it is independent of the arguments height.
-//STRIP001     // ( see display of sqrt QQQ versus sqrt stack{Q#Q#Q#Q} )
-//STRIP001     long nBarHeight = GetWidth() * 7L / 100L;
-//STRIP001     long nBarWidth = nBodyWidth + GetBorderWidth();
-//STRIP001     Point aBarOffset( GetWidth(), +GetBorderWidth() );
-//STRIP001     Point aBarPos( rPosition + aBarOffset );
-//STRIP001
-//STRIP001     Rectangle  aBar(aBarPos, Size( nBarWidth, nBarHeight) );
-//STRIP001     //! avoid GROWING AND SHRINKING of drawn rectangle when constantly
-//STRIP001     //! increasing zoomfactor.
-//STRIP001     //  This is done by shifting it's output-position to a point that
-//STRIP001     //  corresponds exactly to a pixel on the output device.
-//STRIP001     Point  aDrawPos( rDev.PixelToLogic(rDev.LogicToPixel(aBar.TopLeft())) );
-//STRIP001     //aDrawPos.X() = aBar.Left();     //! don't change X position
-//STRIP001     aBar.SetPos( aDrawPos );
-//STRIP001
-//STRIP001     rDev.DrawRect( aBar );
-//STRIP001
-//STRIP001 #ifdef SM_RECT_DEBUG
-//STRIP001  if (!IsDebug())
-//STRIP001      return;
-//STRIP001
-//STRIP001  int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
-//STRIP001  SmRect::Draw(rDev, rPosition, nRFlags);
-//STRIP001 #endif
-//STRIP001 }
+void SmRootSymbolNode::Draw(OutputDevice &rDev, const Point &rPosition) const
+{
+    if (IsPhantom())
+        return;
+
+    // draw root-sign itself
+    SmMathSymbolNode::Draw(rDev, rPosition);
+
+    static String aBarStr( (sal_Unicode) MS_BAR );
+    SmTmpDevice  aTmpDev( (OutputDevice &) rDev, TRUE );
+    aTmpDev.SetFillColor(GetFont().GetColor());
+    rDev.SetLineColor();
+    aTmpDev.SetFont( GetFont() );
+
+    // since the width is always unscaled it corresponds ot the _original_
+    // _unscaled_ font height to be used, we use that to calculate the
+    // bar height. Thus it is independent of the arguments height.
+    // ( see display of sqrt QQQ versus sqrt stack{Q#Q#Q#Q} )
+    long nBarHeight = GetWidth() * 7L / 100L;
+    long nBarWidth = nBodyWidth + GetBorderWidth();
+    Point aBarOffset( GetWidth(), +GetBorderWidth() );
+    Point aBarPos( rPosition + aBarOffset );
+
+    Rectangle  aBar(aBarPos, Size( nBarWidth, nBarHeight) );
+    //! avoid GROWING AND SHRINKING of drawn rectangle when constantly
+    //! increasing zoomfactor.
+    //  This is done by shifting it's output-position to a point that
+    //  corresponds exactly to a pixel on the output device.
+    Point  aDrawPos( rDev.PixelToLogic(rDev.LogicToPixel(aBar.TopLeft())) );
+    //aDrawPos.X() = aBar.Left();     //! don't change X position
+    aBar.SetPos( aDrawPos );
+
+    rDev.DrawRect( aBar );
+
+#ifdef SM_RECT_DEBUG
+    if (!IsDebug())
+        return;
+
+    int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
+    SmRect::Draw(rDev, rPosition, nRFlags);
+#endif
+}
 
 
 /**************************************************************************/
@@ -2370,45 +2370,45 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if (IsPhantom())
-//STRIP001      return;
-//STRIP001
-//STRIP001     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, FALSE);
-//STRIP001     aTmpDev.SetFillColor(GetFont().GetColor());
-//STRIP001     rDev.SetLineColor();
-//STRIP001     aTmpDev.SetFont(GetFont());
-//STRIP001
-//STRIP001     ULONG  nBorderWidth = GetFont().GetBorderWidth();
-//STRIP001
-//STRIP001  // get rectangle and remove borderspace
-//STRIP001  Rectangle  aTmp (AsRectangle() + rPosition - GetTopLeft());
-//STRIP001  aTmp.Left()   += nBorderWidth;
-//STRIP001  aTmp.Right()  -= nBorderWidth;
-//STRIP001  aTmp.Top()    += nBorderWidth;
-//STRIP001  aTmp.Bottom() -= nBorderWidth;
-//STRIP001
-//STRIP001  DBG_ASSERT(aTmp.GetHeight() > 0  &&  aTmp.GetWidth() > 0,
-//STRIP001             "Sm: leeres Rechteck");
-//STRIP001
-//STRIP001  //! avoid GROWING AND SHRINKING of drawn rectangle when constantly
-//STRIP001  //! increasing zoomfactor.
-//STRIP001  //  This is done by shifting it's output-position to a point that
-//STRIP001  //  corresponds exactly to a pixel on the output device.
-//STRIP001     Point  aPos (rDev.PixelToLogic(rDev.LogicToPixel(aTmp.TopLeft())));
-//STRIP001  aTmp.SetPos(aPos);
-//STRIP001
-//STRIP001     rDev.DrawRect(aTmp);
-//STRIP001
-//STRIP001 #ifdef SM_RECT_DEBUG
-//STRIP001  if (!IsDebug())
-//STRIP001      return;
-//STRIP001
-//STRIP001  int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
-//STRIP001  SmRect::Draw(rDev, rPosition, nRFlags);
-//STRIP001 #endif
-/*N*/ }
+void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
+{
+    if (IsPhantom())
+        return;
+
+     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, FALSE);
+     aTmpDev.SetFillColor(GetFont().GetColor());
+     rDev.SetLineColor();
+     aTmpDev.SetFont(GetFont());
+
+     ULONG  nBorderWidth = GetFont().GetBorderWidth();
+
+    // get rectangle and remove borderspace
+    Rectangle  aTmp (AsRectangle() + rPosition - GetTopLeft());
+    aTmp.Left()   += nBorderWidth;
+    aTmp.Right()  -= nBorderWidth;
+    aTmp.Top()    += nBorderWidth;
+    aTmp.Bottom() -= nBorderWidth;
+
+    DBG_ASSERT(aTmp.GetHeight() > 0  &&  aTmp.GetWidth() > 0,
+               "Sm: leeres Rechteck");
+
+    //! avoid GROWING AND SHRINKING of drawn rectangle when constantly
+    //! increasing zoomfactor.
+    //  This is done by shifting it's output-position to a point that
+    //  corresponds exactly to a pixel on the output device.
+     Point  aPos (rDev.PixelToLogic(rDev.LogicToPixel(aTmp.TopLeft())));
+    aTmp.SetPos(aPos);
+
+     rDev.DrawRect(aTmp);
+
+ #ifdef SM_RECT_DEBUG
+    if (!IsDebug())
+        return;
+
+    int  nRFlags = SM_RECT_CORE | SM_RECT_ITALIC | SM_RECT_LINES | SM_RECT_MID;
+    SmRect::Draw(rDev, rPosition, nRFlags);
+ #endif
+}
 
 
 /**************************************************************************/
@@ -2907,16 +2907,16 @@ namespace binfilter {
 /**************************************************************************/
 
 
-//STRIP001 void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
-//STRIP001 {
-//STRIP001  PrepareAttributes();
-//STRIP001
-//STRIP001     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
-//STRIP001  aTmpDev.SetFont(GetFont());
-//STRIP001
-//STRIP001  SmRect::operator = (SmRect(aTmpDev, &rFormat, GetText(),
-//STRIP001                             GetFont().GetBorderWidth()).AsGlyphRect());
-//STRIP001 }
+void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
+{
+    PrepareAttributes();
+
+    SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
+    aTmpDev.SetFont(GetFont());
+
+    SmRect::operator = (SmRect(aTmpDev, &rFormat, GetText(),
+                               GetFont().GetBorderWidth()).AsGlyphRect());
+}
 
 
 /**************************************************************************/

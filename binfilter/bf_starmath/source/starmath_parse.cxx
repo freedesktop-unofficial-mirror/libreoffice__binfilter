@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:12:39 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:32:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1083,22 +1083,22 @@ const sal_Int32 coNumContFlags =
 /*?*/                   BufferString.Erase(BufferIndex, CurToken.aText.Len());
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pSNode = new SmAlignNode(CurToken);
+/*?*/                   pSNode = new SmAlignNode(CurToken);
 /*?*/
 /*?*/               NextToken();
 /*?*/           }
 /*?*/       }
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmAlignNode(CurToken);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            NextToken();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // allow for just one align statement in 5.0
-//STRIP001 /*?*/             if (CONVERT_40_TO_50 != GetConversion() && TokenInGroup(TGALIGN))
-//STRIP001 /*?*/            {   Error(PE_DOUBLE_ALIGN);
-//STRIP001 /*?*/                return;
-//STRIP001 /*?*/            }
+/*?*/           pSNode = new SmAlignNode(CurToken);
+/*?*/
+/*?*/           NextToken();
+/*?*/
+/*?*/           // allow for just one align statement in 5.0
+/*?*/             if (CONVERT_40_TO_50 != GetConversion() && TokenInGroup(TGALIGN))
+/*?*/           {   Error(PE_DOUBLE_ALIGN);
+/*?*/               return;
+/*?*/           }
 /*?*/       }
 /*?*/   }
 /*N*/
@@ -1236,22 +1236,22 @@ const sal_Int32 coNumContFlags =
 /*N*/
 /*N*/           case TOVERBRACE :
 /*N*/           case TUNDERBRACE :
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmVerticalBraceNode(CurToken);
-//STRIP001 /*?*/                pOper = new SmMathSymbolNode(CurToken);
-//STRIP001 /*?*/                NextToken();
+/*?*/               pSNode = new SmVerticalBraceNode(CurToken);
+/*?*/               pOper = new SmMathSymbolNode(CurToken);
+/*?*/               NextToken();
 /*?*/               break;
 /*?*/
 /*?*/           case TWIDEBACKSLASH:
 /*?*/           case TWIDESLASH:
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmBinDiagonalNode *pSTmp = new SmBinDiagonalNode(CurToken);
-//STRIP001 /*?*/                pSTmp->SetAscending(eType == TWIDESLASH);
-//STRIP001 /*?*/                pSNode = pSTmp;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                pOper = new SmPolyLineNode(CurToken);
-//STRIP001 /*?*/                NextToken();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                bSwitchArgs =TRUE;
+/*?*/               SmBinDiagonalNode *pSTmp = new SmBinDiagonalNode(CurToken);
+/*?*/               pSTmp->SetAscending(eType == TWIDESLASH);
+/*?*/               pSNode = pSTmp;
+/*?*/
+/*?*/               pOper = new SmPolyLineNode(CurToken);
+/*?*/               NextToken();
+/*?*/
+/*?*/               bSwitchArgs =TRUE;
 /*?*/               break;
 /*?*/           }
 /*?*/
@@ -1841,25 +1841,25 @@ const sal_Int32 coNumContFlags =
 /*N*/ }
 
 
-//STRIP001 void SmParser::Color()
-//STRIP001 {
-//STRIP001  DBG_ASSERT(CurToken.eType == TCOLOR, "Sm : Ooops...");
-//STRIP001
-//STRIP001  // last color rules, get that one
-//STRIP001  SmToken  aToken;
-//STRIP001  do
-//STRIP001  {   NextToken();
-//STRIP001
-//STRIP001      if (TokenInGroup(TGCOLOR))
-//STRIP001      {   aToken = CurToken;
-//STRIP001          NextToken();
-//STRIP001      }
-//STRIP001      else
-//STRIP001          Error(PE_COLOR_EXPECTED);
-//STRIP001  } while (CurToken.eType == TCOLOR);
-//STRIP001
-//STRIP001  NodeStack.Push(new SmFontNode(aToken));
-//STRIP001 }
+/*N*/ void SmParser::Color()
+/*N*/ {
+/*N*/     DBG_ASSERT(CurToken.eType == TCOLOR, "Sm : Ooops...");
+/*N*/
+/*N*/     // last color rules, get that one
+/*N*/     SmToken  aToken;
+/*N*/     do
+/*N*/     {   NextToken();
+/*N*/
+/*N*/         if (TokenInGroup(TGCOLOR))
+/*N*/         {   aToken = CurToken;
+/*N*/             NextToken();
+/*N*/         }
+/*N*/         else
+/*N*/             Error(PE_COLOR_EXPECTED);
+/*N*/     } while (CurToken.eType == TCOLOR);
+/*N*/
+/*N*/     NodeStack.Push(new SmFontNode(aToken));
+/*N*/ }
 
 
 /*N*/ void SmParser::Font()
