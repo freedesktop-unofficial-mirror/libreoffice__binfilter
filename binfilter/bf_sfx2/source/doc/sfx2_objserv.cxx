@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:52:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,125 +58,125 @@
  *
  *
  ************************************************************************/
-#include <so3/svstor.hxx>
+// auto strip #include <so3/svstor.hxx>
 
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
-#include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
-#endif
+// auto strip #ifndef  _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
+// auto strip #endif
 
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
-#include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
-#endif
+// auto strip #ifndef  _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
+// auto strip #endif
 
-#ifndef  _COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HPP_
-#include <com/sun/star/ui/dialogs/CommonFilePickerElementIds.hpp>
-#endif
+// auto strip #ifndef  _COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/CommonFilePickerElementIds.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XCONTROLACCESS_HPP_
-#include <com/sun/star/ui/dialogs/XControlAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UI_DIALOGS_XCONTROLACCESS_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/XControlAccess.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYACCESS_HPP_
-#include <com/sun/star/beans/XPropertyAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYACCESS_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyAccess.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DOCUMENT_XEXPORTER_HPP_
 #include <com/sun/star/document/XExporter.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-#include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
+// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
+// auto strip #endif
 
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
 #endif
 #if SUPD<613//MUSTINI
-    #ifndef _SFX_INIMGR_HXX //autogen
-    #include <inimgr.hxx>
-    #endif
+// auto strip   #ifndef _SFX_INIMGR_HXX //autogen
+// auto strip   #include <inimgr.hxx>
+// auto strip   #endif
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
 #if SUPD<613//MUSTINI
-    #ifndef _SFXINIMGR_HXX //autogen
-    #include <svtools/iniman.hxx>
-    #endif
+// auto strip   #ifndef _SFXINIMGR_HXX //autogen
+// auto strip   #include <svtools/iniman.hxx>
+// auto strip   #endif
 #endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-#include <vcl/wrkwin.hxx>
-#ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
-#endif
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #ifndef _SFXECODE_HXX
+// auto strip #include <svtools/sfxecode.hxx>
+// auto strip #endif
+// auto strip #ifndef _EHDL_HXX
+// auto strip #include <svtools/ehdl.hxx>
+// auto strip #endif
 
-#include <svtools/sbx.hxx>
-#include <svtools/pathoptions.hxx>
-#include <svtools/useroptions.hxx>
-#include <svtools/asynclink.hxx>
-#include <svtools/saveopt.hxx>
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #include <svtools/useroptions.hxx>
+// auto strip #include <svtools/asynclink.hxx>
+// auto strip #include <svtools/saveopt.hxx>
 
 #pragma hdrstop
 
 #include "sfxresid.hxx"
-#include "event.hxx"
+// auto strip #include "event.hxx"
 #include "request.hxx"
-#include "printer.hxx"
-#include "viewsh.hxx"
-#include "doctdlg.hxx"
-#include "docfilt.hxx"
+// auto strip #include "printer.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "doctdlg.hxx"
+// auto strip #include "docfilt.hxx"
 #include "docfile.hxx"
-#include "docinf.hxx"
+// auto strip #include "docinf.hxx"
 #include "dispatch.hxx"
 #include "dinfdlg.hxx"
-#include "objitem.hxx"
-#include "objsh.hxx"
+// auto strip #include "objitem.hxx"
+// auto strip #include "objsh.hxx"
 #include "objshimp.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "sfxtypes.hxx"
 #include "interno.hxx"
-#include "module.hxx"
-#include "topfrm.hxx"
-#include "versdlg.hxx"
+// auto strip #include "module.hxx"
+// auto strip #include "topfrm.hxx"
+// auto strip #include "versdlg.hxx"
 #include "doc.hrc"
 #include "docfac.hxx"
 #include "fcontnr.hxx"
 #include "filedlghelper.hxx"
-#include "sfxhelp.hxx"
+// auto strip #include "sfxhelp.hxx"
 
 #ifndef _SFX_HELPID_HRC
 #include "helpid.hrc"
 #endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star::lang;
