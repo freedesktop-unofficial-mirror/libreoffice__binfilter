@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:53:21 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:20:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -656,14 +656,14 @@ static SfxObjectShell* pWorkingDoc = NULL;
 
 //--------------------------------------------------------------------
 
-/*?*/ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001     if( !pImp->pBasicLibContainer )
-//STRIP001         GetBasicManager();
-//STRIP001  Reference< XLibraryContainer > xRet
-//STRIP001      = static_cast< XLibraryContainer* >( pImp->pBasicLibContainer );
-//STRIP001  return xRet;
-/*?*/ }
+Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
+{
+    if( !pImp->pBasicLibContainer )
+        GetBasicManager();
+    Reference< XLibraryContainer > xRet
+        = static_cast< XLibraryContainer* >( pImp->pBasicLibContainer );
+    return xRet;
+}
 
 //--------------------------------------------------------------------
 
