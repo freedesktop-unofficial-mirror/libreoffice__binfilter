@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:47:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,18 +175,23 @@
 
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #ifndef PCH
-#include <so3/ipenv.hxx>
-#include "scitems.hxx"
+// auto strip #include <so3/ipenv.hxx>
+// auto strip #include "scitems.hxx"
 
 #include <so3/ipenv.hxx>
-#include <bf_svx/pageitem.hxx>
-#include <vcl/virdev.hxx>
+
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/pageitem.hxx>
+// auto strip #include <vcl/virdev.hxx>
 #include <bf_svx/linkmgr.hxx>
 #endif
 
@@ -196,13 +201,18 @@
 
 #include "docsh.hxx"
 
-#include "stlsheet.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "stlpool.hxx"
-#include "global.hxx"
-#include "viewdata.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "viewdata.hxx"
 #include "tabvwsh.hxx"
 #include "tablink.hxx"
 #include "collect.hxx"
+
+#ifndef _SFXITEMSET_HXX
+#include <svtools/itemset.hxx>
+#endif
+
 namespace binfilter {
 
 /*N*/ struct ScStylePair
