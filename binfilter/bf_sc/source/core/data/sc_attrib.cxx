@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_attrib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:02:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,29 +71,50 @@
 #ifndef _COM_SUN_STAR_UTIL_CELLPROTECTION_HPP_
 #include <com/sun/star/util/CellProtection.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
-#include <com/sun/star/util/XProtectable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
+// auto strip #include <com/sun/star/util/XProtectable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/boxitem.hxx>
-#include <bf_svx/editdata.hxx>
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/editdata.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
-#include <svtools/args.hxx>
+// auto strip #include <svtools/args.hxx>
 
 #include "attrib.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "editutil.hxx"
 #include "bf_sc.hrc"
 #include "globstr.hrc"
