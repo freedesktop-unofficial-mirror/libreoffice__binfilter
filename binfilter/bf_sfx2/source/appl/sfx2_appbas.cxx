@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:19:09 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:34:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,6 +189,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 #include "sfxslots.hxx"
 
@@ -547,10 +548,10 @@ SbxVariable* SfxConstants_Impl::Find
     SvStorageRef aStor = new SvStorage( aAppBasicPath );
     if ( aStor->GetError() == 0 )
     {
-        String aBaseURL = INetURLObject::GetBaseURL();
-        INetURLObject::SetBaseURL( aAppBasicObj.GetMainURL( INetURLObject::NO_DECODE ) );
+        String aBaseURL = so3::StaticBaseUrl::GetBaseURL();
+        so3::StaticBaseUrl::SetBaseURL( aAppBasicObj.GetMainURL( INetURLObject::NO_DECODE ) );
         pImp->pBasicMgr->Store( *aStor );
-        INetURLObject::SetBaseURL( aBaseURL );
+        so3::StaticBaseUrl::SetBaseURL( aBaseURL );
     }
     if ( aStor->GetError() != 0 )
     {
