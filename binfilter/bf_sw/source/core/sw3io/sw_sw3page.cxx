@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3page.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:44:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,13 +63,22 @@
 #pragma hdrstop
 
 #include "swerror.h"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX //autogen
 #include <tools/tenccvt.hxx>
+#endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
 #ifndef _FMTCOL_HXX //autogen
