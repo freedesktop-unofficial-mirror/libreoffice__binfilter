@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unolayer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:07:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,21 +62,21 @@
 #pragma hdrstop
 
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
 #include <bf_svx/svdpagv.hxx>
 #include <bf_svx/unoshape.hxx>
-#include <bf_svx/svdobj.hxx>
+// auto strip #include <bf_svx/svdobj.hxx>
 
 // folgende fuer InsertSdPage()
-#ifndef _SVDLAYER_HXX //autogen
-#include <bf_svx/svdlayer.hxx>
-#endif
+// auto strip #ifndef _SVDLAYER_HXX //autogen
+// auto strip #include <bf_svx/svdlayer.hxx>
+// auto strip #endif
 
 #ifndef SVX_LIGHT
 #ifndef _SD_DOCSHELL_HXX
@@ -87,9 +87,9 @@
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
-#ifndef _UNOMODEL_HXX
-#include <unomodel.hxx>
-#endif
+// auto strip #ifndef _UNOMODEL_HXX
+// auto strip #include <unomodel.hxx>
+// auto strip #endif
 #ifndef _UNOLAYER_HXX
 #include <unolayer.hxx>
 #endif
@@ -98,16 +98,16 @@
 #include "unoprnms.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_NOSUPPORTEXCEPTION_HPP_
-#include <com/sun/star/lang/NoSupportException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_NOSUPPORTEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/NoSupportException.hpp>
+// auto strip #endif
 
 #include "unohelp.hxx"
 #include "frmview.hxx"
 #include "drviewsh.hxx"
 #include "sdview.hxx"
 
-#include "viewshel.hxx"
+// auto strip #include "viewshel.hxx"
 #include "app.hrc"
 #include "strings.hrc"
 #include "sdresid.hxx"
