@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: hjs $ $Date: 2004-06-25 12:59:35 $
+#   last change: $Author: rt $ $Date: 2005-01-11 11:29:50 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -133,7 +133,8 @@ SHL2STDLIBS+= \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
     $(VOSLIB) \
-    $(SALLIB)
+    $(SALLIB) \
+    $(SO2LIB)
 
 .IF "$(GUI)"=="WNT"
 SHL2STDLIBS += $(LIBPRE) advapi32.lib
