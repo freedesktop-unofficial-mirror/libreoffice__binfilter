@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: hjs $ $Date: 2004-06-28 12:35:48 $
+#   last change: $Author: vg $ $Date: 2005-02-21 16:33:38 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -84,7 +84,7 @@ USE_DEFFILE=TRUE
 
 CXXFILES=	bf_migrateexports.cxx \
             bf_migratefilter.cxx
-            
+
 SLOFILES=	$(SLO)$/bf_migrateexports.obj \
             $(SLO)$/bf_migratefilter.obj
 
@@ -99,6 +99,7 @@ SHL1STDLIBS=$(CPPULIB)			\
             $(SALLIB)			\
             $(VCLLIB)			\
             $(SVLLIB)			\
+                        $(SO2LIB)                       \
             $(ONELIB)			\
             $(TOOLSLIB)			\
             $(SOTLIB)			\
