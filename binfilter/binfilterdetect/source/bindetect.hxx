@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:59 $
+ *  last change: $Author: rt $ $Date: 2005-01-31 08:27:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,7 +123,7 @@ namespace com
     }
 }
 
-#include <bf_sfx2/sfxuno.hxx>
+#include <sfx2/sfxuno.hxx>
 
 #define REFERENCE ::com::sun::star::uno::Reference
 #define SEQUENCE ::com::sun::star::uno::Sequence
