@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdorect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:27:52 $
+ *  last change: $Author: rt $ $Date: 2004-12-13 08:46:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -206,8 +206,8 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SdrRectObj::RecalcXPoly()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  pXPoly=new XPolygon(ImpCalcXPoly(aRect,GetEckenradius()));
+/*N*/ { // #i37639# Needed for calc import
+/*N*/   pXPoly=new XPolygon(ImpCalcXPoly(aRect,GetEckenradius()));
 /*N*/ }
 
 /*N*/ const XPolygon& SdrRectObj::GetXPoly() const
