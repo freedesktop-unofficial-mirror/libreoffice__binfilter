@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2005-01-06 08:40:26 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:28:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -280,6 +280,7 @@ enum DatabaseCursorType
 #ifndef _COM_SUN_STAR_SDB_PARAMETERSREQUEST_HPP_
 #include <com/sun/star/sdb/ParametersRequest.hpp>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define DATABASEFORM_IMPLEMENTATION_NAME    ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.ODatabaseForm")
@@ -4205,7 +4206,7 @@ void SAL_CALL ODatabaseForm::write(const Reference<XObjectOutputStream>& _rxOutS
     _rxOutStream->writeBoolean(m_bAllowDelete);
 
     // html form stuff
-    ::rtl::OUString sTmp = INetURLObject::decode(INetURLObject::AbsToRel( m_aTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+    ::rtl::OUString sTmp = INetURLObject::decode(so3::StaticBaseUrl::AbsToRel( m_aTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
     _rxOutStream << sTmp;
     _rxOutStream->writeShort( (sal_Int16)m_eSubmitMethod );
     _rxOutStream->writeShort( (sal_Int16)m_eSubmitEncoding );
@@ -4315,7 +4316,7 @@ void SAL_CALL ODatabaseForm::read(const Reference<XObjectInputStream>& _rxInStre
     // html stuff
     ::rtl::OUString sTmp;
     _rxInStream >> sTmp;
-    m_aTargetURL = INetURLObject::decode(INetURLObject::RelToAbs( sTmp ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+    m_aTargetURL = INetURLObject::decode(so3::StaticBaseUrl::RelToAbs( sTmp ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
     m_eSubmitMethod     = (FormSubmitMethod)_rxInStream->readShort();
     m_eSubmitEncoding       = (FormSubmitEncoding)_rxInStream->readShort();
     _rxInStream >> m_aTargetFrame;
