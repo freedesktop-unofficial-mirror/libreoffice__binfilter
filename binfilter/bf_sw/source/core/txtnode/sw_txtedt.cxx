@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:02:52 $
+ *  last change: $Author: rt $ $Date: 2004-09-20 15:11:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -539,6 +539,11 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/
 /*N*/     // first we have to skip some whitespace characters
 /*N*/     const XubString& rText = rNode.GetTxt();
+/*N*/     Boundary aBound;
+/*N*/
+/*N*/     while ( true )
+/*N*/     {
+/*N*/
 /*N*/     while ( nBegin < rText.Len() &&
 /*N*/             lcl_IsSkippableWhiteSpace( rText.GetChar( nBegin ) ) )
 /*N*/         ++nBegin;
@@ -556,8 +561,20 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/     }
 /*N*/
 /*N*/     // get the word boundaries
-/*N*/     Boundary aBound = pBreakIt->xBreak->getWordBoundary( rText, nBegin,
+/*N*/     aBound = pBreakIt->xBreak->getWordBoundary( rText, nBegin,
 /*N*/             pBreakIt->GetLocale( aCurrLang ), nWordType, sal_True );
+/*N*/
+/*N*/      //no word boundaries could be found
+/*N*/      if(aBound.endPos == aBound.startPos)
+/*N*/          return FALSE;
+/*N*/
+/*N*/      if( nBegin == aBound.endPos )
+/*N*/          ++nBegin;
+/*N*/      else
+/*N*/          break;
+/*N*/
+/*N*/      } // end while( true )
+
 /*N*/
 /*N*/     // we have to differenciate between these cases:
 /*N*/     if ( aBound.startPos <= nBegin )
