@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_format.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:55:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>          // fuer RES_..
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>            // fuer RES_..
+// auto strip #endif
 #ifndef _FRAME_HXX
 #include <frame.hxx>            // fuer AttrCache
 #endif
-#ifndef _FORMAT_HXX
-#include <format.hxx>
-#endif
+// auto strip #ifndef _FORMAT_HXX
+// auto strip #include <format.hxx>
+// auto strip #endif
 
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
