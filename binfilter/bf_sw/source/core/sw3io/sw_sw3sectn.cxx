@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:44:47 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:12:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1031,7 +1031,7 @@ String Sw3IoImp::InContentsText()
 /*N*/       {
 /*N*/           String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
 /*N*/           aLinkFileName.Erase( 0, nTokenPos );
-/*N*/           aLinkFileName.Insert( INetURLObject::AbsToRel( sURL ), 0 );
+/*N*/           aLinkFileName.Insert( String(INetURLObject::AbsToRel( sURL )), 0 );
 /*N*/       }
 /*N*/   }
 /*N*/
