@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_newfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:37:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,15 +69,15 @@
 #include <bf_svx/svdpage.hxx>
 #endif
 
-#ifndef _FMTFORDR_HXX //autogen
-#include <fmtfordr.hxx>
-#endif
+// auto strip #ifndef _FMTFORDR_HXX //autogen
+// auto strip #include <fmtfordr.hxx>
+// auto strip #endif
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -87,18 +87,23 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
