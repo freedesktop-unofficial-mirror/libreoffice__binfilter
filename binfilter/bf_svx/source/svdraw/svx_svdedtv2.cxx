@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:20:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,42 +60,42 @@
  ************************************************************************/
 
 #include "svdedtv.hxx"
-#include "outliner.hxx"
-#include "svdundo.hxx"
-#include "svdogrp.hxx"   // fuer's Gruppieren
-#include "svdovirt.hxx"  // fuer VirtualObject-Bundling (Writer)
-#include "svdopath.hxx"  // fuer CombineObjects
-#include "svdpage.hxx"
-#include "svdpagv.hxx"
-#include "svditer.hxx"
-#include "svdograf.hxx"  // fuer Possibilities
-#include "svdoole2.hxx"  // und Mtf-Import
+// auto strip #include "outliner.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdogrp.hxx"   // fuer's Gruppieren
+// auto strip #include "svdovirt.hxx"  // fuer VirtualObject-Bundling (Writer)
+// auto strip #include "svdopath.hxx"  // fuer CombineObjects
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svditer.hxx"
+// auto strip #include "svdograf.hxx"  // fuer Possibilities
+// auto strip #include "svdoole2.hxx"  // und Mtf-Import
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
-#include "svdfmtf.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdglob.hxx"  // StringCache
+// auto strip #include "svdfmtf.hxx"
+// auto strip #include "svdetc.hxx"
 
-#ifndef _BASEDLGS_HXX
-#include <bf_sfx2/basedlgs.hxx>
-#endif
+// auto strip #ifndef _BASEDLGS_HXX
+// auto strip #include <bf_sfx2/basedlgs.hxx>
+// auto strip #endif
 
-#include "dstribut.hxx"
+// auto strip #include "dstribut.hxx"
 
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _OUTLOBJ_HXX //autogen
-#include <outlobj.hxx>
-#endif
+// auto strip #ifndef _OUTLOBJ_HXX //autogen
+// auto strip #include <outlobj.hxx>
+// auto strip #endif
 
-#ifndef _EEITEM_HXX
-#include "eeitem.hxx"
-#endif
+// auto strip #ifndef _EEITEM_HXX
+// auto strip #include "eeitem.hxx"
+// auto strip #endif
 
-#ifndef _POLY3D_HXX
-#include "poly3d.hxx"
-#endif
+// auto strip #ifndef _POLY3D_HXX
+// auto strip #include "poly3d.hxx"
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
