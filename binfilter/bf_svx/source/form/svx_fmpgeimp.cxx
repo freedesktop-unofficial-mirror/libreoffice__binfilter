@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmpgeimp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:46:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,16 +72,16 @@
 #include "fmpgeimp.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
-#include <com/sun/star/sdb/CommandType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
+// auto strip #include <com/sun/star/sdb/CommandType.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XObjectOutputStream.hpp>
 #endif
@@ -99,21 +99,21 @@
 #include <bf_sfx2/objsh.hxx>
 #endif
 
-#ifndef _SVX_FMUNDO_HXX
-#include "fmundo.hxx"
-#endif
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
+// auto strip #ifndef _SVX_FMUNDO_HXX
+// auto strip #include "fmundo.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
 #ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
 #endif
-#ifndef _SVX_FMSERVS_HXX
-#include "fmservs.hxx"
-#endif
+// auto strip #ifndef _SVX_FMSERVS_HXX
+// auto strip #include "fmservs.hxx"
+// auto strip #endif
 
 //  #include "fmstream.hxx"
 #ifndef _SVX_FMOBJ_HXX
@@ -126,9 +126,9 @@
 #include "fmmodel.hxx"
 #endif
 
-#ifndef _TOOLS_RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
 
 #ifndef _SVDITER_HXX //autogen
 #include "svditer.hxx"
@@ -138,26 +138,26 @@
 #include "fmresids.hrc"
 #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 #ifndef _VCL_STDTEXT_HXX
 #include <vcl/stdtext.hxx>
 #endif
 
-#ifndef _SVX_DIALMGR_HXX
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
-#ifndef _COMPHELPER_TYPES_HXX_
-#include <comphelper/types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_TYPES_HXX_
+// auto strip #include <comphelper/types.hxx>
+// auto strip #endif
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
