@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edsect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:22:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,10 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -74,28 +78,28 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>       // fuer die UndoIds
-#endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>     // fuer die UndoIds
+// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
 
-#ifndef _SECTFRM_HXX
-#include <sectfrm.hxx>      // SwSectionFrm
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>       // SwCntntFrm
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>       // SwTabFrm
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>      // SwRootFrm
-#endif
+// auto strip #ifndef _SECTFRM_HXX
+// auto strip #include <sectfrm.hxx>        // SwSectionFrm
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>     // SwCntntFrm
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>     // SwTabFrm
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>      // SwRootFrm
+// auto strip #endif
 namespace binfilter {
 
 
