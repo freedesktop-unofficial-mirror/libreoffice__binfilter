@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doccorr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:05:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,19 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
@@ -77,15 +84,15 @@
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
 #endif
-#ifndef _REDLINE_HXX
-#include <redline.hxx>
-#endif
+// auto strip #ifndef _REDLINE_HXX
+// auto strip #include <redline.hxx>
+// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
@@ -96,17 +103,17 @@
 #include <unocrsr.hxx>
 #endif
 
-#ifndef _TEMPAUTO_HXX
-#include <tempauto.hxx>     // temporaere Autokorrektur
-#endif
+// auto strip #ifndef _TEMPAUTO_HXX
+// auto strip #include <tempauto.hxx>     // temporaere Autokorrektur
+// auto strip #endif
 
-#ifndef _SWUNDOTEMPAUTOCORR_HXX
-#include <SwUndoTempAutoCorr.hxx>
-#endif
+// auto strip #ifndef _SWUNDOTEMPAUTOCORR_HXX
+// auto strip #include <SwUndoTempAutoCorr.hxx>
+// auto strip #endif
 
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
 
 #ifndef _HINTS_HXX
 #include <hints.hxx>
