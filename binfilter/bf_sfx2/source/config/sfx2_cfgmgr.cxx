@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:35:41 $
+ *  last change: $Author: vg $ $Date: 2005-02-21 16:32:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,31 +150,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/   if ( !pStorage )
 /*N*/   {
 /*N*/       // default config manager
-/*N*/         {
-/*N*/             // first check the upper layers of configuration
-/*N*/             String aPathes = SvtPathOptions().GetUIConfigPath();
-/*N*/             sal_uInt16 i, nIdx=0, nCount=aPathes.GetTokenCount( ';' );
-/*N*/             for ( i=0; i<nCount; ++i )
-/*N*/           {
-/*?*/                 String aPathToken = aPathes.GetToken( 0, ';', nIdx );
-/*?*/                 INetURLObject aPath( aPathToken );
-/*?*/                 String aCfgFileName;
-/*?*/                 aPath.insertName( String::CreateFromAscii("soffice.cfg") );
-/*?*/                 aCfgFileName = aPath.GetMainURL( INetURLObject::NO_DECODE );
-/*?*/                 SotStorageRef xStorage( GetStorage( aCfgFileName, STREAM_STD_READ ) );
-/*?*/
-/*?*/                 // load all the items, user layer will overwrite them if necessary
-/*?*/                 // every item from the upper layer will reference xStorage
-/*?*/                 if ( !xStorage->GetError() )
-/*?*/                     LoadConfiguration( *xStorage );
-/*N*/             }
-/*N*/         }
-/*N*/
-/*N*/         String aCfgFileName;
-/*N*/         INetURLObject aPath( SvtPathOptions().GetUserConfigPath() );
-/*N*/         aPath.insertName( String::CreateFromAscii("soffice.cfg") );
-/*N*/         aCfgFileName = aPath.GetMainURL( INetURLObject::NO_DECODE );
-/*N*/         pStorage = GetStorage( aCfgFileName, STREAM_STD_READWRITE );
+/*N*/         pStorage = new SotStorage( String() );
 /*N*/   }
 /*N*/
 /*N*/     if ( !pStorage->IsOLEStorage() )
