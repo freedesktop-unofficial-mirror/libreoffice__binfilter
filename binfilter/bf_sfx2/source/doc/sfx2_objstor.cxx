@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:22 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -780,18 +780,18 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   {
 /*N*/       GetpApp()->HideStatusText();
 /*N*/
-/*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pAsTempItem, SfxBoolItem, SID_TEMPLATE, sal_False);
-/*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pPreviewItem, SfxBoolItem, SID_PREVIEW, sal_False);
-/*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pHiddenItem, SfxBoolItem, SID_HIDDEN, sal_False);
-/*N*/       if( bOk && pMedium->GetOrigURL().Len()
-/*N*/        && !( pAsTempItem && pAsTempItem->GetValue() )
-/*N*/        && !( pPreviewItem && pPreviewItem->GetValue() )
-/*N*/        && !( pHiddenItem && pHiddenItem->GetValue() ) )
-/*N*/       {
-/*?*/           INetURLObject aUrl( pMedium->GetOrigURL() );
-/*?*/           if ( aUrl.GetProtocol() == INET_PROT_FILE )
-/*?*/               SystemShell::AddToRecentDocumentList( aUrl.GetURLNoPass( INetURLObject::NO_DECODE ) );
-/*N*/       }
+//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pAsTempItem, SfxBoolItem, SID_TEMPLATE, sal_False);
+//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pPreviewItem, SfxBoolItem, SID_PREVIEW, sal_False);
+//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pHiddenItem, SfxBoolItem, SID_HIDDEN, sal_False);
+//STRIP007      if( bOk && pMedium->GetOrigURL().Len()
+//STRIP007       && !( pAsTempItem && pAsTempItem->GetValue() )
+//STRIP007       && !( pPreviewItem && pPreviewItem->GetValue() )
+//STRIP007       && !( pHiddenItem && pHiddenItem->GetValue() ) )
+//STRIP007      {
+//STRIP007          INetURLObject aUrl( pMedium->GetOrigURL() );
+//STRIP007          if ( aUrl.GetProtocol() == INET_PROT_FILE )
+//STRIP007              SystemShell::AddToRecentDocumentList( aUrl.GetURLNoPass( INetURLObject::NO_DECODE ) );
+//STRIP007      }
 /*N*/   }
 /*N*/
 /*N*/   return bOk;

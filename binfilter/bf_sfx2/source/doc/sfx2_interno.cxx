@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:19 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,8 +113,8 @@ namespace binfilter {
 #define SVIPWINDOW(p) ((SvInPlaceWindow&)p->GetWindow())
 
 //-------------------------------------------------------------------------
-/*N*/ SV_OLE_FACTORY(SfxInPlaceObjectFactory){}};
-/*N*/ TYPEINIT1(SfxInPlaceObjectFactory,SvOleFactory);
+/*N*/ SV_IMPL_FACTORY(SfxInPlaceObjectFactory){}};
+/*N*/ TYPEINIT1(SfxInPlaceObjectFactory,SvFactory);
 /*N*/ SO2_IMPL_CLASS1(SfxInPlaceObject,SfxInPlaceObjectFactory,SvInPlaceObject,
 /*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))//STRIP002 SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4D))
 /*?*/ void SfxInPlaceObject::TestMemberObjRef(BOOL){}

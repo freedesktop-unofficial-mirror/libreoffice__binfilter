@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdata.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:01 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/       pThisDocument(0),
 /*N*/         bPlugged(sal_False),
 /*N*/       bOLEResize(sal_False),
-/*N*/       bDirectAliveCount(sal_False),
+//STRIP007      bDirectAliveCount(sal_False),
 /*N*/       bInQuit(sal_False),
 /*N*/       bInvalidateOnUnlock(sal_False),
 /*N*/       bBean( sal_False ),

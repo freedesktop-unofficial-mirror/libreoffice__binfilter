@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:14:28 $
+#   last change: $Author: aw $ $Date: 2003-11-11 15:30:20 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -66,8 +66,11 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_svx
 #svx.hid generieren
+
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
+
 USE_LDUMP2=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -83,7 +86,7 @@ INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Svx - DLL ----------
 
-HELPIDFILES=    ..$/inc$/helpid.hrc
+#HELPIDFILES=    ..$/inc$/helpid.hrc
 
 SHL1TARGET= bf_svx$(UPD)$(DLLPOSTFIX)
 SHL1IMPLIB= bf_svx
@@ -271,7 +274,7 @@ LIB1FILES  += \
 .ENDIF
 
 
-SRSFILELIST=\
+SRS1FILELIST=\
                 $(SRS)$/svx_svdstr.srs      \
                 $(SRS)$/svx_editeng.srs     \
                 $(SRS)$/svx_outliner.srs \
@@ -284,8 +287,9 @@ SRSFILELIST=\
                 $(SRS)$/svx_svxitems.srs \
                 $(SRS)$/svx_form.srs \
                 $(SRS)$/svx_engine3d.srs \
-#				$(SRS)$/svx_unodraw.srs \
                 $(SRS)$/svx_svxlink.srs
+
+#				$(SRS)$/svx_unodraw.srs \
 
 #SRSFILELIST=\
 #                $(SRS)$/svdstr.srs      \
@@ -306,18 +310,18 @@ SRSFILELIST=\
 #                $(SRS)$/accessibility.srs
 
 
-.IF "$(GUI)" != "MAC"
-SRSFILELIST+=   $(SRS)$/sfx2_sfx.srs
-.ELSE
-.IF "$(UPDMINOR)" != ""
-SRSFILELIST+=   $(SRS)$/sfx2_sfx.srs
-.ELSE
-SRSFILELIST+=   $(SRS)$/sfx2_sfx.srs
-.ENDIF
-.ENDIF
+#.IF "$(GUI)" != "MAC"
+#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
+#.ELSE
+#.IF "$(UPDMINOR)" != ""
+#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
+#.ELSE
+#SRS1FILELIST+=   $(SRS)$/sfx2_sfx.srs
+#.ENDIF
+#.ENDIF
 
 RESLIB1NAME=bf_svx
-RESLIB1SRSFILES= $(SRSFILELIST)
+RESLIB1SRSFILES= $(SRS1FILELIST)
 
 .IF "$(depend)" != ""
 

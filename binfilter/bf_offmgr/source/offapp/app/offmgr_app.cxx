@@ -2,9 +2,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:37 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -443,9 +443,9 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("ShapeCollection"), SvxShapeCollection_CreateInstance, aName );
 /*N*/   xSet->insert( makeAny(xFact) );
 /*N*/
-/*N*/   aName.getArray()[0] = ::rtl::OUString::createFromAscii("com.sun.star.util.NumberFormatter");
-/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("NumberFormatter"), SvNumberFormatterServiceObj_NewInstance, aName );
-/*N*/   xSet->insert( makeAny( xFact ) );
+//STRIP007  Not needed, Number formatter is now registered and accessed normally // aName.getArray()[0] = ::rtl::OUString::createFromAscii("com.sun.star.util.NumberFormatter");
+//STRIP007  xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("NumberFormatter"), SvNumberFormatterServiceObj_NewInstance, aName );
+//STRIP007  xSet->insert( makeAny( xFact ) );
 /*N*/
 /*N*/   xSet->insert( makeAny( SfxSettingsContainer::impl_createFactory(xSMgr) ) );
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "} register services: com.sun.star.drawing.ShapeCollection/com.sun.star.util.NumberFormatter" );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fntcache.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:41 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -401,7 +401,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 //STRIP001         bSymbol = RTL_TEXTENCODING_SYMBOL == aMet.GetCharSet();
 //STRIP001      if ( nLeading == USHRT_MAX )
 //STRIP001      {
-//STRIP001          long nTmpLeading = (long)aMet.GetLeading();
+//STRIP001          long nTmpLeading = (long)aMet.GetIntLeading();
 //STRIP001          if ( nTmpLeading < 5 )
 //STRIP001          {
 //STRIP001              GetAscent( pSh, pPrt );
@@ -626,12 +626,12 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       {
 /*N*/           // Wenn das Leading auf dem Window auch 0 ist, dann
 /*N*/           // muss es auch so bleiben (vgl. StarMath!).
-/*N*/           long nTmpLeading = (long)aWinMet.GetLeading();
+/*N*/           long nTmpLeading = (long)aWinMet.GetIntLeading();
 /*N*/            // einen Versuch haben wir noch wg. 31003:
 /*N*/           if( nTmpLeading <= 0 )
 /*N*/           {
 /*N*/               pWin->SetFont( rMet );
-/*N*/               nTmpLeading = (long)pWin->GetFontMetric().GetLeading();
+/*N*/               nTmpLeading = (long)pWin->GetFontMetric().GetIntLeading();
 /*N*/               if( nTmpLeading < 0 )
 /*N*/                   nLeading = 0;
 /*N*/               else
@@ -710,7 +710,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       {
 /*N*/           FontMetric aMet( pOut->GetFontMetric() );
 /*N*/           bSymbol = RTL_TEXTENCODING_SYMBOL == aMet.GetCharSet();
-/*N*/           long nTmpLead = (long)aMet.GetLeading();
+/*N*/           long nTmpLead = (long)aMet.GetIntLeading();
 /*N*/           if ( nTmpLead < 5 )
 /*N*/           {
 /*N*/               GetAscent( pSh, pOut );

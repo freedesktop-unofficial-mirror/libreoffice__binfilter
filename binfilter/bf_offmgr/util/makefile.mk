@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:12:28 $
+#   last change: $Author: aw $ $Date: 2003-11-11 15:30:12 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,8 +65,11 @@ BFPRJ=..
 
 PRJNAME=binfilter
 TARGET=bf_ofa
+
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
+
 .IF "$(CPU)"=="i386"
 USE_LDUMP2=TRUE
 .ENDIF
@@ -115,15 +118,6 @@ SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2IMPLIB= $(TARGET)
 SHL2LIBS=	$(SLB)$/$(TARGET).lib
 
-# static libraries
-SHL2STDLIBS= $(BASICIDELIB)
-
-#.IF "$(GUI)"=="UNX"
-#SHL2STDLIBS+= \
-#	$(SCHLIB) \
-#	$(SMLIB)
-#.ENDIF # "$(GUI)" == "UNX"
-
 # dynamic libraries
 SHL2STDLIBS+= \
     $(BFSVXLIB) \
@@ -140,11 +134,6 @@ SHL2STDLIBS+= \
     $(CPPULIB) \
     $(VOSLIB) \
     $(SALLIB)
-
-.IF "$(GUI)" == "UNX"
-SHL2STDLIBS+= \
-            $(BFSFXLIB)
-.ENDIF                 
 
 .IF "$(GUI)"=="WNT"
 SHL2STDLIBS += $(LIBPRE) advapi32.lib
@@ -164,7 +153,6 @@ DEF2DES 	=offmgr app-interface
 LIB4TARGET= $(LB)$/a$(TARGET).lib
 LIB4FILES=	$(LB)$/$(TARGET).lib
 .ENDIF
-
 
 .IF "$(BUILD_SOSL)"==""
 .IF "$(depend)" == ""

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:14:03 $
+#   last change: $Author: aw $ $Date: 2003-11-11 15:30:17 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -69,9 +69,10 @@ PRJNAME=binfilter
 TARGET=bf_sfx
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 #sfx.hid generieren
+
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
-
+NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
@@ -97,9 +98,9 @@ LIB1FILES=  $(SLB)$/sfx2_appl.lib		\
             $(SLB)$/sfx2_bastyp.lib		\
             $(SLB)$/sfx2_config.lib
 
-HELPIDFILES=\
-            ..\inc\sfxsids.hrc	\
-            ..\source\inc\helpid.hrc
+#HELPIDFILES=\
+#			..\inc\sfxsids.hrc	\
+#			..\source\inc\helpid.hrc
 
 .IF "$(GUI)"!="UNX"
 #LIB2TARGET= $(LB)$/$(TARGET).lib

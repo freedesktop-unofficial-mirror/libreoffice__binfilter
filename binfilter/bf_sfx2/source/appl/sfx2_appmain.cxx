@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:02 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -374,8 +374,8 @@ SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
 /*N*/     }
 /*N*/
 /*N*/     // merken, falls Applikation normal gestartet wurde
-/*N*/     if ( 0 == pAppData_Impl->nAppEvent || DISPATCH_OPEN == pAppData_Impl->nAppEvent )
-/*N*/         pAppData_Impl->bDirectAliveCount = TRUE;
+//STRIP007     if ( 0 == pAppData_Impl->nAppEvent || DISPATCH_OPEN == pAppData_Impl->nAppEvent )
+//STRIP007         pAppData_Impl->bDirectAliveCount = TRUE;
 /*N*/ }
 
 void SfxApplication::Main( )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:03 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -192,11 +192,11 @@ void SfxApplication::Quit()
 /*?*/   GetCancelManager()->Cancel(TRUE);
 /*?*/
 /*?*/   // direkte Benutzung is beendet
-/*?*/   if ( pAppData_Impl->bDirectAliveCount )
-/*?*/   {
-/*?*/       SvFactory::DecAliveCount();
-/*?*/       pAppData_Impl->bDirectAliveCount = FALSE;
-/*?*/   }
+//STRIP007  if ( pAppData_Impl->bDirectAliveCount )
+//STRIP007  {
+//STRIP007      SvFactory::DecAliveCount();
+//STRIP007      pAppData_Impl->bDirectAliveCount = FALSE;
+//STRIP007  }
 /*?*/
 /*
     SfxObjectShell *pLastDocSh = SfxObjectShell::GetFirst();
@@ -259,7 +259,7 @@ void SfxApplication::Quit()
 /*?*/
 /*?*/     DELETEZ( pAppData_Impl->pTemplates );
 /*?*/
-/*?*/   SvFactory::ClearDemandObjects();
+//STRIP007  SvFactory::ClearDemandObjects();
 /*?*/   DELETEZ(pImp->pTemplateDlg);
 /*?*/   SetViewFrame(0);
 /*?*/   bDowning = FALSE;
@@ -289,7 +289,7 @@ void SfxApplication::Quit()
 /*?*/   if( pImp->pDialogLibContainer )
 /*?*/       pImp->pDialogLibContainer->release();
 /*?*/
-/*?*/   SvFactory::ClearDemandObjects();
+//STRIP007  SvFactory::ClearDemandObjects();
 /*?*/   bInExit = FALSE;
 /*?*/
 /*?*/   DBG_ASSERT( pViewFrame == 0, "active foreign ViewFrame" );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtxhdl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:30 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -652,7 +652,7 @@ using namespace ::com::sun::star::i18n;
 //STRIP001      }
 //STRIP001
 //STRIP001      // y-Position der Striche zur Baseline bestimmen
-//STRIP001      long y=-(long)(aFontMetric.GetAscent()-aFontMetric.GetLeading()+1)/3;
+//STRIP001      long y=-(long)(aFontMetric.GetAscent()-aFontMetric.GetIntLeading()+1)/3;
 //STRIP001      if (!bDouble) y-=(nDick+1)/2;
 //STRIP001      else y-=nDick+(nDist+1)/2;
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:10 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2699,7 +2699,7 @@ struct TabInfo
 /*N*/
 /*N*/   sal_uInt16 nAscent = (sal_uInt16)aMetric.GetAscent();
 /*N*/   sal_uInt16 nDescent = (sal_uInt16)aMetric.GetDescent();
-/*N*/   sal_uInt16 nLeading = ( aMetric.GetLeading() > 0 ) ? (sal_uInt16)aMetric.GetLeading() : 0;
+/*N*/   sal_uInt16 nLeading = ( aMetric.GetIntLeading() > 0 ) ? (sal_uInt16)aMetric.GetIntLeading() : 0;
 /*N*/   // Fonts ohne Leading bereiten Probleme
 /*N*/   if ( ( nLeading == 0 ) && ( pRefDev->GetOutDevType() == OUTDEV_PRINTER ) )
 /*N*/   {
@@ -2714,11 +2714,11 @@ struct TabInfo
 /*N*/
 /*N*/       // 4/96: Kommt bei HP Laserjet 4V auch nicht hin
 /*N*/       // => Werte komplett vom Bildschirm holen.
-/*N*/ //        sal_uInt16 nTmpLeading = (sal_uInt16)aMetric.GetLeading();
+/*N*/ //        sal_uInt16 nTmpLeading = (sal_uInt16)aMetric.GetIntLeading();
 /*N*/ //        nAscent += nTmpLeading;
 /*N*/       nAscent = (sal_uInt16)aMetric.GetAscent();
 /*N*/       nDescent = (sal_uInt16)aMetric.GetDescent();
-/*N*/ //        nLeading = (sal_uInt16)aMetric.GetLeading();
+/*N*/ //        nLeading = (sal_uInt16)aMetric.GetIntLeading();
 /*N*/   }
 /*N*/   if ( nAscent > rCurMetrics.nMaxAscent )
 /*N*/       rCurMetrics.nMaxAscent = nAscent;

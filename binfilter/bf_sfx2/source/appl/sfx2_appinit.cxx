@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:01 $
+ *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -278,8 +278,8 @@ public:
 /*N*/     INetURLHistory::GetOrCreate()->SetLocation( SvtPathOptions().GetUserConfigPath() );
 /*N*/
 /*N*/   // merken, falls Applikation normal gestartet wurde
-/*N*/   if ( pAppData_Impl->bDirectAliveCount )
-/*N*/       SvFactory::IncAliveCount();
+//STRIP007  if ( pAppData_Impl->bDirectAliveCount )
+//STRIP007      SvFactory::IncAliveCount();
 /*N*/
 /*N*/   pImp->pEventHdl = new UniqueIndex( 1, 4, 4 );
 /*N*/     //InitializeDisplayName_Impl();
