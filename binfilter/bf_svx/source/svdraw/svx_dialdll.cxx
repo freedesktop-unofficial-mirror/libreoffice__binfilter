@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_dialdll.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:22:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:18:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,28 +62,28 @@
 // include ---------------------------------------------------------------
 
 #include <svtools/solar.hrc>
-#include <tools/stream.hxx>
+// auto strip #include <tools/stream.hxx>
 #include "dialdll.hxx"
 #include "dialmgr.hxx"
 #define ITEMID_BRUSH 1
 #include "brshitem.hxx"
-#include "chardlg.hxx"
+// auto strip #include "chardlg.hxx"
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX //autogen
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _TOOLS_RESMGR_HXX //autogen
-#include <tools/resmgr.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESMGR_HXX //autogen
+// auto strip #include <tools/resmgr.hxx>
+// auto strip #endif
 
 #ifndef _FILTER_HXX //autogen
 #include <svtools/filter.hxx>
