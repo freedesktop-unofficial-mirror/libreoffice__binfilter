@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 14:45:00 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:42:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -200,6 +200,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 /*N*/ void lcl_DefaultPageFmt( sal_uInt16 nPoolFmtId, SwFrmFmt &rFmt1,
@@ -887,15 +888,15 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/
 /*N*/               if ( !pOLENd->GetOLEObj().IsOleRef() )  //Noch nicht geladen
 /*N*/               {
-/*N*/                   String sBaseURL( INetURLObject::GetBaseURL() );
+/*N*/                   String sBaseURL( so3::StaticBaseUrl::GetBaseURL() );
 /*N*/                   const SfxMedium *pMedium;
 /*N*/                   if( 0 != (pMedium = GetDocShell()->GetMedium()) &&
 /*N*/                       pMedium->GetName() != sBaseURL )
-/*N*/                       INetURLObject::SetBaseURL( pMedium->GetName() );
+/*N*/                       so3::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/                   SvInfoObjectRef xInfo = GetPersist()->Find( pOLENd->GetOLEObj().GetName() );
 /*N*/                   if ( xInfo.Is() )   //Muss normalerweise gefunden werden
 /*N*/                       aName = xInfo->GetClassName();
-/*N*/                   INetURLObject::SetBaseURL( sBaseURL );
+/*N*/                   so3::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/               }
 /*N*/               else
 /*?*/                   aName = pOLENd->GetOLEObj().GetOleRef()->GetClassName();

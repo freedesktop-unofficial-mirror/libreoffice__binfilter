@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:13:21 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:43:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -134,6 +134,7 @@
 #ifndef _ERRHDL_HXX //autogen
 #include <errhdl.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 // bis SO5PF
@@ -1000,7 +1001,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   String sNm;
 /*N*/ BOOL SwTableAutoFmtTbl::Save() const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
-//STRIP001  String sNm( URIHelper::SmartRelToAbs( aPathOpt.GetUserConfigPath() ));
+//STRIP001  String sNm( so3::StaticBaseUrl::SmartRelToAbs( aPathOpt.GetUserConfigPath() ));
 //STRIP001  sNm += INET_PATH_TOKEN;
 //STRIP001  sNm.AppendAscii( RTL_CONSTASCII_STRINGPARAM( sAutoTblFmtName ));
 //STRIP001  SfxMedium aStream(sNm, STREAM_STD_WRITE, TRUE );
