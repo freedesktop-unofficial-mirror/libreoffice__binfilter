@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xoutbmp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:51:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,19 +59,19 @@
  *
  ************************************************************************/
 
-#include <sot/factory.hxx>
-#include <tools/urlobj.hxx>
-#include <unotools/ucbstreamhelper.hxx>
-#include <vcl/bmpacc.hxx>
-#include <tools/poly.hxx>
-#include <vcl/virdev.hxx>
-#include <vcl/wrkwin.hxx>
+// auto strip #include <sot/factory.hxx>
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #include <unotools/ucbstreamhelper.hxx>
+// auto strip #include <vcl/bmpacc.hxx>
+// auto strip #include <tools/poly.hxx>
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #include <vcl/wrkwin.hxx>
 #include <svtools/solar.hrc>
-#include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include "impgrf.hxx"
 #include "xoutbmp.hxx"
-#include <svtools/FilterConfigItem.hxx>
+// auto strip #include <svtools/FilterConfigItem.hxx>
 namespace binfilter {
 
 // -----------
