@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svddef.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:28:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _SVDDEF_HXX
 #define _SVDDEF_HXX
 
-#ifndef _XDEF_HXX
-#include <bf_svx/xdef.hxx>
-#endif
+// auto strip #ifndef _XDEF_HXX
+// auto strip #include <bf_svx/xdef.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************/
