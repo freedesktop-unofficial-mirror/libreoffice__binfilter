@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:33:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,12 +59,19 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
+
 #include <tstpitem.hxx>
-#include <colritem.hxx>
+// auto strip #include <colritem.hxx>
 #include <fontitem.hxx>
 #include <crsditem.hxx>
 #include <fhgtitem.hxx>
@@ -80,12 +87,16 @@
 #include <cscoitem.hxx>
 #include <langitem.hxx>
 #include <emphitem.hxx>
-#include <charscaleitem.hxx>
+// auto strip #include <charscaleitem.hxx>
 #include <charreliefitem.hxx>
-#include <xmlcnitm.hxx>
+// auto strip #include <xmlcnitm.hxx>
+
+#ifndef _SV_OUTDEV_HXX
+#include <vcl/outdev.hxx>
+#endif
 
 #include <editdoc.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editdbg.hxx>
 #include <eerdll.hxx>
 #include <eerdll2.hxx>
 
@@ -93,9 +104,9 @@
 #include <tools/stream.hxx>
 #endif
 
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 #include <tools/shl.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
 #ifndef _COM_SUN_STAR_TEXT_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
