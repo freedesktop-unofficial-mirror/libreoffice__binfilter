@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pam.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:31 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -214,44 +214,44 @@ namespace binfilter {
 /*N*/   return ( nContent != rPos.nContent );
 /*N*/ }
 
-//STRIP001 SwComparePosition ComparePosition(
-//STRIP001          const SwPosition& rStt1, const SwPosition& rEnd1,
-//STRIP001          const SwPosition& rStt2, const SwPosition& rEnd2 )
-//STRIP001 {
-//STRIP001  SwComparePosition nRet;
-//STRIP001  if( rStt1 < rStt2 )
-//STRIP001  {
-//STRIP001      if( rEnd1 > rStt2 )
-//STRIP001      {
-//STRIP001          if( rEnd1 >= rEnd2 )
-//STRIP001              nRet = POS_OUTSIDE;
-//STRIP001          else
-//STRIP001              nRet = POS_OVERLAP_BEFORE;
-//STRIP001
-//STRIP001      }
-//STRIP001      else if( rEnd1 == rStt2 )
-//STRIP001          nRet = POS_COLLIDE_END;
-//STRIP001      else
-//STRIP001          nRet = POS_BEFORE;
-//STRIP001  }
-//STRIP001  else if( rEnd2 > rStt1 )
-//STRIP001  {
-//STRIP001      if( rEnd2 >= rEnd1 )
-//STRIP001      {
-//STRIP001          if( rEnd2 == rEnd1 && rStt2 == rStt1 )
-//STRIP001              nRet = POS_EQUAL;
-//STRIP001          else
-//STRIP001              nRet = POS_INSIDE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          nRet = POS_OVERLAP_BEHIND;
-//STRIP001  }
-//STRIP001  else if( rEnd2 == rStt1 )
-//STRIP001      nRet = POS_COLLIDE_START;
-//STRIP001  else
-//STRIP001      nRet = POS_BEHIND;
-//STRIP001  return nRet;
-//STRIP001 }
+SwComparePosition ComparePosition(
+            const SwPosition& rStt1, const SwPosition& rEnd1,
+            const SwPosition& rStt2, const SwPosition& rEnd2 )
+{
+    SwComparePosition nRet;
+    if( rStt1 < rStt2 )
+    {
+        if( rEnd1 > rStt2 )
+        {
+            if( rEnd1 >= rEnd2 )
+                nRet = POS_OUTSIDE;
+            else
+                nRet = POS_OVERLAP_BEFORE;
+
+        }
+        else if( rEnd1 == rStt2 )
+            nRet = POS_COLLIDE_END;
+        else
+            nRet = POS_BEFORE;
+    }
+    else if( rEnd2 > rStt1 )
+    {
+        if( rEnd2 >= rEnd1 )
+        {
+            if( rEnd2 == rEnd1 && rStt2 == rStt1 )
+                nRet = POS_EQUAL;
+            else
+                nRet = POS_INSIDE;
+        }
+        else
+            nRet = POS_OVERLAP_BEHIND;
+    }
+    else if( rEnd2 == rStt1 )
+        nRet = POS_COLLIDE_START;
+    else
+        nRet = POS_BEHIND;
+    return nRet;
+}
 
 //STRIP001 SwComparePosition ComparePosition(
 //STRIP001          const unsigned long nStt1, const unsigned long nEnd1,

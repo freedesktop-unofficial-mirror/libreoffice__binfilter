@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:22 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1016,24 +1016,24 @@ using namespace ::rtl;
 
 /*N*/ SwFmtCol::~SwFmtCol() {}
 
-//STRIP001 SwFmtCol& SwFmtCol::operator=( const SwFmtCol& rCpy )
-//STRIP001 {
-//STRIP001  nLineWidth  = rCpy.nLineWidth;
-//STRIP001  aLineColor  = rCpy.aLineColor;
-//STRIP001  nLineHeight = rCpy.GetLineHeight();
-//STRIP001  eAdj        = rCpy.GetLineAdj();
-//STRIP001  nWidth      = rCpy.GetWishWidth();
-//STRIP001  bOrtho      = rCpy.IsOrtho();
-//STRIP001
-//STRIP001  if ( aColumns.Count() )
-//STRIP001      aColumns.DeleteAndDestroy( 0, aColumns.Count() );
-//STRIP001  for ( sal_uInt16 i = 0; i < rCpy.GetNumCols(); ++i )
-//STRIP001  {
-//STRIP001      SwColumn *pCol = new SwColumn( *rCpy.GetColumns()[i] );
-//STRIP001      aColumns.Insert( pCol, aColumns.Count() );
-//STRIP001  }
-//STRIP001  return *this;
-//STRIP001 }
+SwFmtCol& SwFmtCol::operator=( const SwFmtCol& rCpy )
+{
+    nLineWidth  = rCpy.nLineWidth;
+    aLineColor  = rCpy.aLineColor;
+    nLineHeight = rCpy.GetLineHeight();
+    eAdj        = rCpy.GetLineAdj();
+    nWidth      = rCpy.GetWishWidth();
+    bOrtho      = rCpy.IsOrtho();
+
+    if ( aColumns.Count() )
+        aColumns.DeleteAndDestroy( 0, aColumns.Count() );
+    for ( sal_uInt16 i = 0; i < rCpy.GetNumCols(); ++i )
+    {
+        SwColumn *pCol = new SwColumn( *rCpy.GetColumns()[i] );
+        aColumns.Insert( pCol, aColumns.Count() );
+    }
+    return *this;
+}
 
 /*N*/ SwFmtCol::SwFmtCol()
 /*N*/   : SfxPoolItem( RES_COL ),
@@ -1119,22 +1119,22 @@ using namespace ::rtl;
 //STRIP001  }
 //STRIP001 }
 
-//STRIP001 void SwFmtCol::Init( sal_uInt16 nNumCols, sal_uInt16 nGutterWidth, sal_uInt16 nAct )
-//STRIP001 {
-//STRIP001  //Loeschen scheint hier auf den erste Blick vielleicht etwas zu heftig;
-//STRIP001  //anderfalls muessten allerdings alle Werte der verbleibenden SwColumn's
-//STRIP001  //initialisiert werden.
-//STRIP001  if ( aColumns.Count() )
-//STRIP001      aColumns.DeleteAndDestroy( 0, aColumns.Count() );
-//STRIP001  for ( sal_uInt16 i = 0; i < nNumCols; ++i )
-//STRIP001  {   SwColumn *pCol = new SwColumn;
-//STRIP001      aColumns.Insert( pCol, i );
-//STRIP001  }
-//STRIP001  bOrtho = sal_True;
-//STRIP001  nWidth = USHRT_MAX;
-//STRIP001  if( nNumCols )
-//STRIP001      Calc( nGutterWidth, nAct );
-//STRIP001 }
+void SwFmtCol::Init( sal_uInt16 nNumCols, sal_uInt16 nGutterWidth, sal_uInt16 nAct )
+{
+    //Loeschen scheint hier auf den erste Blick vielleicht etwas zu heftig;
+    //anderfalls muessten allerdings alle Werte der verbleibenden SwColumn's
+    //initialisiert werden.
+    if ( aColumns.Count() )
+        aColumns.DeleteAndDestroy( 0, aColumns.Count() );
+    for ( sal_uInt16 i = 0; i < nNumCols; ++i )
+    {   SwColumn *pCol = new SwColumn;
+        aColumns.Insert( pCol, i );
+    }
+    bOrtho = sal_True;
+    nWidth = USHRT_MAX;
+    if( nNumCols )
+        Calc( nGutterWidth, nAct );
+}
 
 //STRIP001 void SwFmtCol::SetOrtho( sal_Bool bNew, sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 //STRIP001 {
@@ -1167,55 +1167,55 @@ using namespace ::rtl;
 //STRIP001  return nRet;
 //STRIP001 }
 
-//STRIP001 void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
-//STRIP001 {
-//STRIP001  //Erstmal die Spalten mit der Aktuellen Breite einstellen, dann die
-//STRIP001  //Wunschbreite der Spalten anhand der Gesamtwunschbreite hochrechnen.
-//STRIP001
-//STRIP001  const sal_uInt16 nGutterHalf = nGutterWidth ? nGutterWidth / 2 : 0;
-//STRIP001
-//STRIP001  //Breite der PrtAreas ist Gesamtbreite - Zwischenraeume / Anzahl
-//STRIP001  const sal_uInt16 nPrtWidth =
-//STRIP001              (nAct - ((GetNumCols()-1) * nGutterWidth)) / GetNumCols();
-//STRIP001  sal_uInt16 nAvail = nAct;
-//STRIP001
-//STRIP001  //Die erste Spalte ist PrtBreite + (Zwischenraumbreite/2)
-//STRIP001  const sal_uInt16 nLeftWidth = nPrtWidth + nGutterHalf;
-//STRIP001  SwColumn *pCol = aColumns[0];
-//STRIP001  pCol->SetWishWidth( nLeftWidth );
-//STRIP001  pCol->SetRight( nGutterHalf );
-//STRIP001  pCol->SetLeft ( 0 );
-//STRIP001  nAvail -= nLeftWidth;
-//STRIP001
-//STRIP001  //Spalte 2 bis n-1 ist PrtBreite + Zwischenraumbreite
-//STRIP001  const sal_uInt16 nMidWidth = nPrtWidth + nGutterWidth;
-//STRIP001  for ( sal_uInt16 i = 1; i < GetNumCols()-1; ++i )
-//STRIP001  {
-//STRIP001      pCol = aColumns[i];
-//STRIP001      pCol->SetWishWidth( nMidWidth );
-//STRIP001      pCol->SetLeft ( nGutterHalf );
-//STRIP001      pCol->SetRight( nGutterHalf );
-//STRIP001      nAvail -= nMidWidth;
-//STRIP001  }
-//STRIP001
-//STRIP001  //Die Letzte Spalte entspricht wieder der ersten, um Rundungsfehler
-//STRIP001  //auszugleichen wird der letzten Spalte alles zugeschlagen was die
-//STRIP001  //anderen nicht verbraucht haben.
-//STRIP001  pCol = aColumns[aColumns.Count()-1];
-//STRIP001  pCol->SetWishWidth( nAvail );
-//STRIP001  pCol->SetLeft ( nGutterHalf );
-//STRIP001  pCol->SetRight( 0 );
-//STRIP001
-//STRIP001  //Umrechnen der aktuellen Breiten in Wunschbreiten.
-//STRIP001  for ( i = 0; i < aColumns.Count(); ++i )
-//STRIP001  {
-//STRIP001      pCol = aColumns[i];
-//STRIP001      long nTmp = pCol->GetWishWidth();
-//STRIP001      nTmp *= GetWishWidth();
-//STRIP001      nTmp /= nAct;
-//STRIP001      pCol->SetWishWidth( sal_uInt16(nTmp) );
-//STRIP001  }
-//STRIP001 }
+void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
+{
+    //Erstmal die Spalten mit der Aktuellen Breite einstellen, dann die
+    //Wunschbreite der Spalten anhand der Gesamtwunschbreite hochrechnen.
+
+    const sal_uInt16 nGutterHalf = nGutterWidth ? nGutterWidth / 2 : 0;
+
+    //Breite der PrtAreas ist Gesamtbreite - Zwischenraeume / Anzahl
+    const sal_uInt16 nPrtWidth =
+                (nAct - ((GetNumCols()-1) * nGutterWidth)) / GetNumCols();
+    sal_uInt16 nAvail = nAct;
+
+    //Die erste Spalte ist PrtBreite + (Zwischenraumbreite/2)
+    const sal_uInt16 nLeftWidth = nPrtWidth + nGutterHalf;
+    SwColumn *pCol = aColumns[0];
+    pCol->SetWishWidth( nLeftWidth );
+    pCol->SetRight( nGutterHalf );
+    pCol->SetLeft ( 0 );
+    nAvail -= nLeftWidth;
+
+    //Spalte 2 bis n-1 ist PrtBreite + Zwischenraumbreite
+    const sal_uInt16 nMidWidth = nPrtWidth + nGutterWidth;
+    for ( sal_uInt16 i = 1; i < GetNumCols()-1; ++i )
+    {
+        pCol = aColumns[i];
+        pCol->SetWishWidth( nMidWidth );
+        pCol->SetLeft ( nGutterHalf );
+        pCol->SetRight( nGutterHalf );
+        nAvail -= nMidWidth;
+    }
+
+    //Die Letzte Spalte entspricht wieder der ersten, um Rundungsfehler
+    //auszugleichen wird der letzten Spalte alles zugeschlagen was die
+    //anderen nicht verbraucht haben.
+    pCol = aColumns[aColumns.Count()-1];
+    pCol->SetWishWidth( nAvail );
+    pCol->SetLeft ( nGutterHalf );
+    pCol->SetRight( 0 );
+
+    //Umrechnen der aktuellen Breiten in Wunschbreiten.
+    for ( i = 0; i < aColumns.Count(); ++i )
+    {
+        pCol = aColumns[i];
+        long nTmp = pCol->GetWishWidth();
+        nTmp *= GetWishWidth();
+        nTmp /= nAct;
+        pCol->SetWishWidth( sal_uInt16(nTmp) );
+    }
+}
 
 /*N*/ BOOL SwFmtCol::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2046,17 +2046,17 @@ using namespace ::rtl;
 
 // class SwNoReadOnly
 
-//STRIP001 SfxPoolItem* SwFmtEditInReadonly::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001  return new SwFmtEditInReadonly( Which(), GetValue() );
-//STRIP001 }
+SfxPoolItem* SwFmtEditInReadonly::Clone( SfxItemPool* pPool ) const
+{
+    return new SwFmtEditInReadonly( Which(), GetValue() );
+}
 
 // class SwFmtLayoutSplit
 
-//STRIP001 SfxPoolItem* SwFmtLayoutSplit::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001  return new SwFmtLayoutSplit( GetValue() );
-//STRIP001 }
+SfxPoolItem* SwFmtLayoutSplit::Clone( SfxItemPool* pPool ) const
+{
+    return new SwFmtLayoutSplit( GetValue() );
+}
 
 // class SwFmtNoBalancedColumns
 
@@ -2072,192 +2072,192 @@ using namespace ::rtl;
 //STRIP001  return sal_uInt16( FTNEND_ATTXTEND_END );
 //STRIP001 }
 
-//STRIP001 SwFmtFtnEndAtTxtEnd& SwFmtFtnEndAtTxtEnd::operator=(
-//STRIP001                      const SwFmtFtnEndAtTxtEnd& rAttr )
-//STRIP001 {
-//STRIP001  SfxEnumItem::SetValue( rAttr.GetValue() );
-//STRIP001  aFmt = rAttr.aFmt;
-//STRIP001  nOffset = rAttr.nOffset;
-//STRIP001  sPrefix = rAttr.sPrefix;
-//STRIP001  sSuffix = rAttr.sSuffix;
-//STRIP001  return *this;
-//STRIP001 }
+SwFmtFtnEndAtTxtEnd& SwFmtFtnEndAtTxtEnd::operator=(
+                        const SwFmtFtnEndAtTxtEnd& rAttr )
+{
+    SfxEnumItem::SetValue( rAttr.GetValue() );
+    aFmt = rAttr.aFmt;
+    nOffset = rAttr.nOffset;
+    sPrefix = rAttr.sPrefix;
+    sSuffix = rAttr.sSuffix;
+    return *this;
+}
 
-//STRIP001 int SwFmtFtnEndAtTxtEnd::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  const SwFmtFtnEndAtTxtEnd& rAttr = (SwFmtFtnEndAtTxtEnd&)rItem;
-//STRIP001  return SfxEnumItem::operator==( rAttr ) &&
-//STRIP001          aFmt.GetNumberingType() == rAttr.aFmt.GetNumberingType() &&
-//STRIP001          nOffset == rAttr.nOffset &&
-//STRIP001          sPrefix == rAttr.sPrefix &&
-//STRIP001          sSuffix == rAttr.sSuffix;
-//STRIP001 }
+int SwFmtFtnEndAtTxtEnd::operator==( const SfxPoolItem& rItem ) const
+{
+    const SwFmtFtnEndAtTxtEnd& rAttr = (SwFmtFtnEndAtTxtEnd&)rItem;
+    return SfxEnumItem::operator==( rAttr ) &&
+            aFmt.GetNumberingType() == rAttr.aFmt.GetNumberingType() &&
+            nOffset == rAttr.nOffset &&
+            sPrefix == rAttr.sPrefix &&
+            sSuffix == rAttr.sSuffix;
+}
 
-//STRIP001 BOOL SwFmtFtnEndAtTxtEnd::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001      case MID_COLLECT     :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND;
-//STRIP001          rVal.setValue(&bVal, ::getBooleanCppuType());
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_RESTART_NUM :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND_OWNNUMSEQ;
-//STRIP001          rVal.setValue(&bVal, ::getBooleanCppuType());
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_NUM_START_AT: rVal <<= (sal_Int16) nOffset; break;
-//STRIP001      case MID_OWN_NUM     :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND_OWNNUMANDFMT;
-//STRIP001          rVal.setValue(&bVal, ::getBooleanCppuType());
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_NUM_TYPE    : rVal <<= aFmt.GetNumberingType(); break;
-//STRIP001      case MID_PREFIX      : rVal <<= OUString(sPrefix); break;
-//STRIP001      case MID_SUFFIX      : rVal <<= OUString(sSuffix); break;
-//STRIP001      default: return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwFmtFtnEndAtTxtEnd::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+{
+    nMemberId &= ~CONVERT_TWIPS;
+    switch(nMemberId)
+    {
+        case MID_COLLECT     :
+        {
+            sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND;
+            rVal.setValue(&bVal, ::getBooleanCppuType());
+        }
+        break;
+        case MID_RESTART_NUM :
+        {
+            sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND_OWNNUMSEQ;
+            rVal.setValue(&bVal, ::getBooleanCppuType());
+        }
+        break;
+        case MID_NUM_START_AT: rVal <<= (sal_Int16) nOffset; break;
+        case MID_OWN_NUM     :
+        {
+            sal_Bool bVal = GetValue() >= FTNEND_ATTXTEND_OWNNUMANDFMT;
+            rVal.setValue(&bVal, ::getBooleanCppuType());
+        }
+        break;
+        case MID_NUM_TYPE    : rVal <<= aFmt.GetNumberingType(); break;
+        case MID_PREFIX      : rVal <<= OUString(sPrefix); break;
+        case MID_SUFFIX      : rVal <<= OUString(sSuffix); break;
+        default: return FALSE;
+    }
+    return TRUE;
+}
 
-//STRIP001 BOOL SwFmtFtnEndAtTxtEnd::PutValue( const uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  switch(nMemberId)
-//STRIP001  {
-//STRIP001      case MID_COLLECT     :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = *(sal_Bool*)rVal.getValue();
-//STRIP001          if(!bVal && GetValue() >= FTNEND_ATTXTEND)
-//STRIP001              SetValue(FTNEND_ATPGORDOCEND);
-//STRIP001          else if(bVal && GetValue() < FTNEND_ATTXTEND)
-//STRIP001              SetValue(FTNEND_ATTXTEND);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_RESTART_NUM :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = *(sal_Bool*)rVal.getValue();
-//STRIP001          if(!bVal && GetValue() >= FTNEND_ATTXTEND_OWNNUMSEQ)
-//STRIP001              SetValue(FTNEND_ATTXTEND);
-//STRIP001          else if(bVal && GetValue() < FTNEND_ATTXTEND_OWNNUMSEQ)
-//STRIP001              SetValue(FTNEND_ATTXTEND_OWNNUMSEQ);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_NUM_START_AT:
-//STRIP001      {
-//STRIP001          sal_Int16 nVal;
-//STRIP001          rVal >>= nVal;
-//STRIP001          if(nVal >= 0)
-//STRIP001              nOffset = nVal;
-//STRIP001          else
-//STRIP001              bRet = FALSE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_OWN_NUM     :
-//STRIP001      {
-//STRIP001          sal_Bool bVal = *(sal_Bool*)rVal.getValue();
-//STRIP001          if(!bVal && GetValue() >= FTNEND_ATTXTEND_OWNNUMANDFMT)
-//STRIP001              SetValue(FTNEND_ATTXTEND_OWNNUMSEQ);
-//STRIP001          else if(bVal && GetValue() < FTNEND_ATTXTEND_OWNNUMANDFMT)
-//STRIP001              SetValue(FTNEND_ATTXTEND_OWNNUMANDFMT);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_NUM_TYPE    :
-//STRIP001      {
-//STRIP001          sal_Int16 nVal;
-//STRIP001          rVal >>= nVal;
-//STRIP001          if(nVal >= 0 &&
-//STRIP001              (nVal <= SVX_NUM_ARABIC ||
-//STRIP001                  SVX_NUM_CHARS_UPPER_LETTER_N == nVal ||
-//STRIP001                      SVX_NUM_CHARS_LOWER_LETTER_N == nVal ))
-//STRIP001              aFmt.SetNumberingType(nVal);
-//STRIP001          else
-//STRIP001              bRet = FALSE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_PREFIX      :
-//STRIP001      {
-//STRIP001          OUString sVal; rVal >>= sVal;
-//STRIP001          sPrefix = sVal;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case MID_SUFFIX      :
-//STRIP001      {
-//STRIP001          OUString sVal; rVal >>= sVal;
-//STRIP001          sSuffix = sVal;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      default: bRet = FALSE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL SwFmtFtnEndAtTxtEnd::PutValue( const uno::Any& rVal, BYTE nMemberId )
+{
+    BOOL bRet = TRUE;
+    nMemberId &= ~CONVERT_TWIPS;
+    switch(nMemberId)
+    {
+        case MID_COLLECT     :
+        {
+            sal_Bool bVal = *(sal_Bool*)rVal.getValue();
+            if(!bVal && GetValue() >= FTNEND_ATTXTEND)
+                SetValue(FTNEND_ATPGORDOCEND);
+            else if(bVal && GetValue() < FTNEND_ATTXTEND)
+                SetValue(FTNEND_ATTXTEND);
+        }
+        break;
+        case MID_RESTART_NUM :
+        {
+            sal_Bool bVal = *(sal_Bool*)rVal.getValue();
+            if(!bVal && GetValue() >= FTNEND_ATTXTEND_OWNNUMSEQ)
+                SetValue(FTNEND_ATTXTEND);
+            else if(bVal && GetValue() < FTNEND_ATTXTEND_OWNNUMSEQ)
+                SetValue(FTNEND_ATTXTEND_OWNNUMSEQ);
+        }
+        break;
+        case MID_NUM_START_AT:
+        {
+            sal_Int16 nVal;
+            rVal >>= nVal;
+            if(nVal >= 0)
+                nOffset = nVal;
+            else
+                bRet = FALSE;
+        }
+        break;
+        case MID_OWN_NUM     :
+        {
+            sal_Bool bVal = *(sal_Bool*)rVal.getValue();
+            if(!bVal && GetValue() >= FTNEND_ATTXTEND_OWNNUMANDFMT)
+                SetValue(FTNEND_ATTXTEND_OWNNUMSEQ);
+            else if(bVal && GetValue() < FTNEND_ATTXTEND_OWNNUMANDFMT)
+                SetValue(FTNEND_ATTXTEND_OWNNUMANDFMT);
+        }
+        break;
+        case MID_NUM_TYPE    :
+        {
+            sal_Int16 nVal;
+            rVal >>= nVal;
+            if(nVal >= 0 &&
+                (nVal <= SVX_NUM_ARABIC ||
+                    SVX_NUM_CHARS_UPPER_LETTER_N == nVal ||
+                        SVX_NUM_CHARS_LOWER_LETTER_N == nVal ))
+                aFmt.SetNumberingType(nVal);
+            else
+                bRet = FALSE;
+        }
+        break;
+        case MID_PREFIX      :
+        {
+            OUString sVal; rVal >>= sVal;
+            sPrefix = sVal;
+        }
+        break;
+        case MID_SUFFIX      :
+        {
+            OUString sVal; rVal >>= sVal;
+            sSuffix = sVal;
+        }
+        break;
+        default: bRet = FALSE;
+    }
+    return bRet;
+}
 
 
 // class SwFmtFtnAtTxtEnd
 
-//STRIP001 SfxPoolItem* SwFmtFtnAtTxtEnd::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001  SwFmtFtnAtTxtEnd* pNew = new SwFmtFtnAtTxtEnd;
-//STRIP001  *pNew = *this;
-//STRIP001  return pNew;
-//STRIP001 }
+SfxPoolItem* SwFmtFtnAtTxtEnd::Clone( SfxItemPool* pPool ) const
+{
+    SwFmtFtnAtTxtEnd* pNew = new SwFmtFtnAtTxtEnd;
+    *pNew = *this;
+    return pNew;
+}
 
 // class SwFmtEndAtTxtEnd
 
-//STRIP001 SfxPoolItem* SwFmtEndAtTxtEnd::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001  SwFmtEndAtTxtEnd* pNew = new SwFmtEndAtTxtEnd;
-//STRIP001  *pNew = *this;
-//STRIP001  return pNew;
-//STRIP001 }
+SfxPoolItem* SwFmtEndAtTxtEnd::Clone( SfxItemPool* pPool ) const
+{
+    SwFmtEndAtTxtEnd* pNew = new SwFmtEndAtTxtEnd;
+    *pNew = *this;
+    return pNew;
+}
 
 //class SwFmtChain
 
 
-//STRIP001 int SwFmtChain::operator==( const SfxPoolItem &rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001
-//STRIP001  return GetPrev() == ((SwFmtChain&)rAttr).GetPrev() &&
-//STRIP001         GetNext() == ((SwFmtChain&)rAttr).GetNext();
-//STRIP001 }
+int SwFmtChain::operator==( const SfxPoolItem &rAttr ) const
+{
+    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 
-//STRIP001 SwFmtChain::SwFmtChain( const SwFmtChain &rCpy ) :
-//STRIP001  SfxPoolItem( RES_CHAIN )
-//STRIP001 {
-//STRIP001  SetPrev( rCpy.GetPrev() );
-//STRIP001  SetNext( rCpy.GetNext() );
-//STRIP001 }
+    return GetPrev() == ((SwFmtChain&)rAttr).GetPrev() &&
+           GetNext() == ((SwFmtChain&)rAttr).GetNext();
+}
 
-//STRIP001 SfxPoolItem* SwFmtChain::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001  SwFmtChain *pRet = new SwFmtChain;
-//STRIP001  pRet->SetPrev( GetPrev() );
-//STRIP001  pRet->SetNext( GetNext() );
-//STRIP001  return pRet;
-//STRIP001 }
+SwFmtChain::SwFmtChain( const SwFmtChain &rCpy ) :
+    SfxPoolItem( RES_CHAIN )
+{
+    SetPrev( rCpy.GetPrev() );
+    SetNext( rCpy.GetNext() );
+}
 
-//STRIP001 void SwFmtChain::SetPrev( SwFlyFrmFmt *pFmt )
-//STRIP001 {
-//STRIP001  if ( pFmt )
-//STRIP001      pFmt->Add( &aPrev );
-//STRIP001  else if ( aPrev.GetRegisteredIn() )
-//STRIP001      ((SwModify*)aPrev.GetRegisteredIn())->Remove( &aPrev );
-//STRIP001 }
+SfxPoolItem* SwFmtChain::Clone( SfxItemPool* pPool ) const
+{
+    SwFmtChain *pRet = new SwFmtChain;
+    pRet->SetPrev( GetPrev() );
+    pRet->SetNext( GetNext() );
+    return pRet;
+}
 
-//STRIP001 void SwFmtChain::SetNext( SwFlyFrmFmt *pFmt )
-//STRIP001 {
-//STRIP001  if ( pFmt )
-//STRIP001      pFmt->Add( &aNext );
-//STRIP001  else if ( aNext.GetRegisteredIn() )
-//STRIP001      ((SwModify*)aNext.GetRegisteredIn())->Remove( &aNext );
-//STRIP001 }
+void SwFmtChain::SetPrev( SwFlyFrmFmt *pFmt )
+{
+    if ( pFmt )
+        pFmt->Add( &aPrev );
+    else if ( aPrev.GetRegisteredIn() )
+        ((SwModify*)aPrev.GetRegisteredIn())->Remove( &aPrev );
+}
+
+void SwFmtChain::SetNext( SwFlyFrmFmt *pFmt )
+{
+    if ( pFmt )
+        pFmt->Add( &aNext );
+    else if ( aNext.GetRegisteredIn() )
+        ((SwModify*)aNext.GetRegisteredIn())->Remove( &aNext );
+}
 
 /*N*/ BOOL SwFmtChain::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2376,176 +2376,176 @@ using namespace ::rtl;
 /*N*/ {
 /*N*/ }
 
-//STRIP001 int SwTextGridItem::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001     return eGridType == ((SwTextGridItem&)rAttr).GetGridType() &&
-//STRIP001            nLines == ((SwTextGridItem&)rAttr).GetLines() &&
-//STRIP001            nBaseHeight == ((SwTextGridItem&)rAttr).GetBaseHeight() &&
-//STRIP001            nRubyHeight == ((SwTextGridItem&)rAttr).GetRubyHeight() &&
-//STRIP001            bRubyTextBelow == ((SwTextGridItem&)rAttr).GetRubyTextBelow() &&
-//STRIP001            bDisplayGrid == ((SwTextGridItem&)rAttr).GetDisplayGrid() &&
-//STRIP001            bPrintGrid == ((SwTextGridItem&)rAttr).GetPrintGrid() &&
-//STRIP001            aColor == ((SwTextGridItem&)rAttr).GetColor();
-//STRIP001 }
+int SwTextGridItem::operator==( const SfxPoolItem& rAttr ) const
+{
+    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    return eGridType == ((SwTextGridItem&)rAttr).GetGridType() &&
+           nLines == ((SwTextGridItem&)rAttr).GetLines() &&
+           nBaseHeight == ((SwTextGridItem&)rAttr).GetBaseHeight() &&
+           nRubyHeight == ((SwTextGridItem&)rAttr).GetRubyHeight() &&
+           bRubyTextBelow == ((SwTextGridItem&)rAttr).GetRubyTextBelow() &&
+           bDisplayGrid == ((SwTextGridItem&)rAttr).GetDisplayGrid() &&
+           bPrintGrid == ((SwTextGridItem&)rAttr).GetPrintGrid() &&
+           aColor == ((SwTextGridItem&)rAttr).GetColor();
+}
 
-//STRIP001 SfxPoolItem* SwTextGridItem::Clone( SfxItemPool* pPool ) const
-//STRIP001 {
-//STRIP001     return new SwTextGridItem( *this );
-//STRIP001 }
+SfxPoolItem* SwTextGridItem::Clone( SfxItemPool* pPool ) const
+{
+    return new SwTextGridItem( *this );
+}
 
-//STRIP001 SwTextGridItem& SwTextGridItem::operator=( const SwTextGridItem& rCpy )
-//STRIP001 {
-//STRIP001     aColor = rCpy.GetColor();
-//STRIP001     nLines = rCpy.GetLines();
-//STRIP001     nBaseHeight = rCpy.GetBaseHeight();
-//STRIP001     nRubyHeight = rCpy.GetRubyHeight();
-//STRIP001     eGridType = rCpy.GetGridType();
-//STRIP001     bRubyTextBelow = rCpy.GetRubyTextBelow();
-//STRIP001     bPrintGrid = rCpy.GetPrintGrid();
-//STRIP001     bDisplayGrid = rCpy.GetDisplayGrid();
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
+SwTextGridItem& SwTextGridItem::operator=( const SwTextGridItem& rCpy )
+{
+    aColor = rCpy.GetColor();
+    nLines = rCpy.GetLines();
+    nBaseHeight = rCpy.GetBaseHeight();
+    nRubyHeight = rCpy.GetRubyHeight();
+    eGridType = rCpy.GetGridType();
+    bRubyTextBelow = rCpy.GetRubyTextBelow();
+    bPrintGrid = rCpy.GetPrintGrid();
+    bDisplayGrid = rCpy.GetDisplayGrid();
 
-//STRIP001 BOOL SwTextGridItem::QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                                  BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     BOOL bRet = TRUE;
-//STRIP001
-//STRIP001     switch( nMemberId & ~CONVERT_TWIPS )
-//STRIP001     {
-//STRIP001         case MID_GRID_COLOR:
-//STRIP001             rVal <<= GetColor().GetColor();
-//STRIP001             break;
-//STRIP001         case MID_GRID_LINES:
-//STRIP001             rVal <<= GetLines();
-//STRIP001             break;
-//STRIP001         case MID_GRID_RUBY_BELOW:
-//STRIP001             rVal.setValue( &bRubyTextBelow, ::getBooleanCppuType() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_PRINT:
-//STRIP001             rVal.setValue( &bPrintGrid, ::getBooleanCppuType() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_DISPLAY:
-//STRIP001             rVal.setValue( &bDisplayGrid, ::getBooleanCppuType() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_BASEHEIGHT:
-//STRIP001             DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
-//STRIP001                         "This value needs TWIPS-MM100 conversion" );
-//STRIP001             rVal <<= (sal_Int32) TWIP_TO_MM100(nBaseHeight);
-//STRIP001             break;
-//STRIP001         case MID_GRID_RUBYHEIGHT:
-//STRIP001             DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
-//STRIP001                         "This value needs TWIPS-MM100 conversion" );
-//STRIP001             rVal <<= (sal_Int32)TWIP_TO_MM100(nRubyHeight);
-//STRIP001             break;
-//STRIP001         case MID_GRID_TYPE:
-//STRIP001             switch( GetGridType() )
-//STRIP001             {
-//STRIP001                 case GRID_NONE:
-//STRIP001                     rVal <<= TextGridMode::NONE;
-//STRIP001                     break;
-//STRIP001                 case GRID_LINES_ONLY:
-//STRIP001                     rVal <<= TextGridMode::LINES;
-//STRIP001                     break;
-//STRIP001                 case GRID_LINES_CHARS:
-//STRIP001                     rVal <<= TextGridMode::LINES_AND_CHARS;
-//STRIP001                     break;
-//STRIP001                 default:
-//STRIP001                     DBG_ERROR("unknown SwTextGrid value");
-//STRIP001                     bRet = FALSE;
-//STRIP001                     break;
-//STRIP001             }
-//STRIP001             break;
-//STRIP001         default:
-//STRIP001             DBG_ERROR("Unknown SwTextGridItem member");
-//STRIP001             bRet = FALSE;
-//STRIP001             break;
-//STRIP001     }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
+    return *this;
+}
 
-//STRIP001 BOOL SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                BYTE nMemberId )
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001     switch( nMemberId & ~CONVERT_TWIPS )
-//STRIP001     {
-//STRIP001         case MID_GRID_COLOR:
-//STRIP001         {
-//STRIP001             sal_Int32 nTmp;
-//STRIP001             bRet = (rVal >>= nTmp);
-//STRIP001             if( bRet )
-//STRIP001                 SetColor( Color(nTmp) );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001         case MID_GRID_LINES:
-//STRIP001         {
-//STRIP001             sal_Int16 nTmp;
-//STRIP001             bRet = (rVal >>= nTmp);
-//STRIP001             if( bRet && (nTmp >= 0) )
-//STRIP001                 SetLines( (sal_uInt16)nTmp );
-//STRIP001             else
-//STRIP001                 bRet = FALSE;
-//STRIP001         }
-//STRIP001         break;
-//STRIP001         case MID_GRID_RUBY_BELOW:
-//STRIP001             SetRubyTextBelow( *(sal_Bool*)rVal.getValue() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_PRINT:
-//STRIP001             SetPrintGrid( *(sal_Bool*)rVal.getValue() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_DISPLAY:
-//STRIP001             SetDisplayGrid( *(sal_Bool*)rVal.getValue() );
-//STRIP001             break;
-//STRIP001         case MID_GRID_BASEHEIGHT:
-//STRIP001         case MID_GRID_RUBYHEIGHT:
-//STRIP001         {
-//STRIP001             DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
-//STRIP001                         "This value needs TWIPS-MM100 conversion" );
-//STRIP001             sal_Int32 nTmp;
-//STRIP001             bRet = (rVal >>= nTmp);
-//STRIP001             nTmp = MM100_TO_TWIP( nTmp );
-//STRIP001             if( bRet && (nTmp >= 0) && ( nTmp <= USHRT_MAX) )
-//STRIP001                 if( (nMemberId & ~CONVERT_TWIPS) == MID_GRID_BASEHEIGHT )
-//STRIP001                     SetBaseHeight( (USHORT)nTmp );
-//STRIP001                 else
-//STRIP001                     SetRubyHeight( (USHORT)nTmp );
-//STRIP001             else
-//STRIP001                 bRet = FALSE;
-//STRIP001         }
-//STRIP001         break;
-//STRIP001         case MID_GRID_TYPE:
-//STRIP001             sal_Int16 nTmp;
-//STRIP001             bRet = (rVal >>= nTmp);
-//STRIP001             if( bRet )
-//STRIP001             {
-//STRIP001                 switch( nTmp )
-//STRIP001                 {
-//STRIP001                     case TextGridMode::NONE:
-//STRIP001                         SetGridType( GRID_NONE );
-//STRIP001                         break;
-//STRIP001                     case TextGridMode::LINES:
-//STRIP001                         SetGridType( GRID_LINES_ONLY );
-//STRIP001                         break;
-//STRIP001                     case TextGridMode::LINES_AND_CHARS:
-//STRIP001                         SetGridType( GRID_LINES_CHARS );
-//STRIP001                         break;
-//STRIP001                     default:
-//STRIP001                         bRet = FALSE;
-//STRIP001                         break;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             break;
-//STRIP001         default:
-//STRIP001             DBG_ERROR("Unknown SwTextGridItem member");
-//STRIP001             bRet = FALSE;
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
+BOOL SwTextGridItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+                                 BYTE nMemberId ) const
+{
+    BOOL bRet = TRUE;
+
+    switch( nMemberId & ~CONVERT_TWIPS )
+    {
+        case MID_GRID_COLOR:
+            rVal <<= GetColor().GetColor();
+            break;
+        case MID_GRID_LINES:
+            rVal <<= GetLines();
+            break;
+        case MID_GRID_RUBY_BELOW:
+            rVal.setValue( &bRubyTextBelow, ::getBooleanCppuType() );
+            break;
+        case MID_GRID_PRINT:
+            rVal.setValue( &bPrintGrid, ::getBooleanCppuType() );
+            break;
+        case MID_GRID_DISPLAY:
+            rVal.setValue( &bDisplayGrid, ::getBooleanCppuType() );
+            break;
+        case MID_GRID_BASEHEIGHT:
+            DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
+                        "This value needs TWIPS-MM100 conversion" );
+            rVal <<= (sal_Int32) TWIP_TO_MM100(nBaseHeight);
+            break;
+        case MID_GRID_RUBYHEIGHT:
+            DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
+                        "This value needs TWIPS-MM100 conversion" );
+            rVal <<= (sal_Int32)TWIP_TO_MM100(nRubyHeight);
+            break;
+        case MID_GRID_TYPE:
+            switch( GetGridType() )
+            {
+                case GRID_NONE:
+                    rVal <<= TextGridMode::NONE;
+                    break;
+                case GRID_LINES_ONLY:
+                    rVal <<= TextGridMode::LINES;
+                    break;
+                case GRID_LINES_CHARS:
+                    rVal <<= TextGridMode::LINES_AND_CHARS;
+                    break;
+                default:
+                    DBG_ERROR("unknown SwTextGrid value");
+                    bRet = FALSE;
+                    break;
+            }
+            break;
+        default:
+            DBG_ERROR("Unknown SwTextGridItem member");
+            bRet = FALSE;
+            break;
+    }
+
+    return bRet;
+}
+
+BOOL SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+                               BYTE nMemberId )
+{
+    BOOL bRet = TRUE;
+    switch( nMemberId & ~CONVERT_TWIPS )
+    {
+        case MID_GRID_COLOR:
+        {
+            sal_Int32 nTmp;
+            bRet = (rVal >>= nTmp);
+            if( bRet )
+                SetColor( Color(nTmp) );
+        }
+        break;
+        case MID_GRID_LINES:
+        {
+            sal_Int16 nTmp;
+            bRet = (rVal >>= nTmp);
+            if( bRet && (nTmp >= 0) )
+                SetLines( (sal_uInt16)nTmp );
+            else
+                bRet = FALSE;
+        }
+        break;
+        case MID_GRID_RUBY_BELOW:
+            SetRubyTextBelow( *(sal_Bool*)rVal.getValue() );
+            break;
+        case MID_GRID_PRINT:
+            SetPrintGrid( *(sal_Bool*)rVal.getValue() );
+            break;
+        case MID_GRID_DISPLAY:
+            SetDisplayGrid( *(sal_Bool*)rVal.getValue() );
+            break;
+        case MID_GRID_BASEHEIGHT:
+        case MID_GRID_RUBYHEIGHT:
+        {
+            DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
+                        "This value needs TWIPS-MM100 conversion" );
+            sal_Int32 nTmp;
+            bRet = (rVal >>= nTmp);
+            nTmp = MM100_TO_TWIP( nTmp );
+            if( bRet && (nTmp >= 0) && ( nTmp <= USHRT_MAX) )
+                if( (nMemberId & ~CONVERT_TWIPS) == MID_GRID_BASEHEIGHT )
+                    SetBaseHeight( (USHORT)nTmp );
+                else
+                    SetRubyHeight( (USHORT)nTmp );
+            else
+                bRet = FALSE;
+        }
+        break;
+        case MID_GRID_TYPE:
+            sal_Int16 nTmp;
+            bRet = (rVal >>= nTmp);
+            if( bRet )
+            {
+                switch( nTmp )
+                {
+                    case TextGridMode::NONE:
+                        SetGridType( GRID_NONE );
+                        break;
+                    case TextGridMode::LINES:
+                        SetGridType( GRID_LINES_ONLY );
+                        break;
+                    case TextGridMode::LINES_AND_CHARS:
+                        SetGridType( GRID_LINES_CHARS );
+                        break;
+                    default:
+                        bRet = FALSE;
+                        break;
+                }
+            }
+            break;
+        default:
+            DBG_ERROR("Unknown SwTextGridItem member");
+            bRet = FALSE;
+    }
+
+    return bRet;
+}
 
 // class SwHeaderAndFooterEatSpacingItem
 

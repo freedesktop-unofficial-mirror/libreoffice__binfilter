@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:11 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -171,14 +171,14 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SwTableBox* SwTblBoxFormula::GetTableBox()
-//STRIP001 {
-//STRIP001  SwTableBox* pBox = 0;
-//STRIP001  if( pDefinedIn )
-//STRIP001      pBox = (SwTableBox*)SwClientIter( *pDefinedIn ).
-//STRIP001                          First( TYPE( SwTableBox ));
-//STRIP001  return pBox;
-//STRIP001 }
+SwTableBox* SwTblBoxFormula::GetTableBox()
+{
+    SwTableBox* pBox = 0;
+    if( pDefinedIn )
+        pBox = (SwTableBox*)SwClientIter( *pDefinedIn ).
+                            First( TYPE( SwTableBox ));
+    return pBox;
+}
 
 
 //STRIP001 void SwTblBoxFormula::ChangeState( const SfxPoolItem* pItem )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_chpfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:34 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,10 +102,10 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 SwFieldType* SwChapterFieldType::Copy() const
-//STRIP001 {
-//STRIP001  return new SwChapterFieldType();
-//STRIP001 }
+SwFieldType* SwChapterFieldType::Copy() const
+{
+    return new SwChapterFieldType();
+}
 
 
 /*--------------------------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3num.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/   if( bBatsToSymbol )
 /*N*/       rFmt.SetBulletChar( ConvStarBatsCharToStarSymbol( cBullet8 ) );
 /*N*/   else if( bMathToSymbol )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      rFmt.SetBulletChar( ConvStarMathCharToStarSymbol( cBullet8 ) );
+            rFmt.SetBulletChar( ConvStarMathCharToStarSymbol( cBullet8 ) );
 /*N*/   else
 /*N*/       rFmt.SetBulletChar( ByteString::ConvertToUnicode( cBullet8, eCharSet ) );
 /*N*/   rFmt.SetIncludeUpperLevels( nUpperLevel );
@@ -881,23 +881,23 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 
 // Numerierungs-Regelwerk einlesen
 
-//STRIP001 void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
-//STRIP001 {
-//STRIP001  rDst.SetRuleType( rSrc.GetRuleType() );
-//STRIP001  rDst.SetPoolHelpId( rSrc.GetPoolHelpId() );
-//STRIP001  rDst.SetPoolHlpFileId( rSrc.GetPoolHlpFileId() );
-//STRIP001  rDst.SetContinusNum( rSrc.IsContinusNum() );
-//STRIP001
-//STRIP001  ASSERT( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
-//STRIP001          "NumRule-PoolIds sind unterschiedlich" );
-//STRIP001  ASSERT( rDst.IsAutoRule() == rSrc.IsAutoRule(),
-//STRIP001          "NumRule-Auto-Flags sind unterschiedlich" );
-//STRIP001  ASSERT( rDst.GetName() == rSrc.GetName(),
-//STRIP001          "NumRule-Namen sind unterschiedlich" );
-//STRIP001
-//STRIP001  rDst.SetInvalidRule( TRUE );
-//STRIP001 }
-//STRIP001
+void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
+{
+    rDst.SetRuleType( rSrc.GetRuleType() );
+    rDst.SetPoolHelpId( rSrc.GetPoolHelpId() );
+    rDst.SetPoolHlpFileId( rSrc.GetPoolHlpFileId() );
+    rDst.SetContinusNum( rSrc.IsContinusNum() );
+
+    ASSERT( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
+            "NumRule-PoolIds sind unterschiedlich" );
+    ASSERT( rDst.IsAutoRule() == rSrc.IsAutoRule(),
+            "NumRule-Auto-Flags sind unterschiedlich" );
+    ASSERT( rDst.GetName() == rSrc.GetName(),
+            "NumRule-Namen sind unterschiedlich" );
+
+    rDst.SetInvalidRule( TRUE );
+}
+
 
 /*N*/ void Sw3IoImp::InNumRules()
 /*N*/ {
@@ -978,8 +978,8 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*?*/                                   pDoc->FindNumRulePtr( pRule->GetName() );
 /*?*/                               if( pDocRule )
 /*?*/                               {
-                                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                                  pDoc->ChgNumRuleFmts( *pRule );
-//STRIP001 /*?*/                                    lcl_sw3io__copyNumRule( *pRule, *pDocRule );
+                                        pDoc->ChgNumRuleFmts( *pRule );
+/*?*/                                   lcl_sw3io__copyNumRule( *pRule, *pDocRule );
 /*?*/                               }
 /*?*/                               else
 /*?*/                                   bInsertRule = TRUE;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtcnct.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:46 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,14 +91,14 @@ class SwFmtChain: public SfxPoolItem
 
 public:
     SwFmtChain() : SfxPoolItem( RES_CHAIN ) {}
-    SwFmtChain( const SwFmtChain &rCpy ):SfxPoolItem( RES_CHAIN ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwFmtChain( const SwFmtChain &rCpy );
+    SwFmtChain( const SwFmtChain &rCpy );
 
-//STRIP001  inline SwFmtChain &operator=( const SwFmtChain& );
+    inline SwFmtChain &operator=( const SwFmtChain& );
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual SfxPoolItem* Clone( SfxItemPool* pPool = 0 ) const;
-    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual SfxPoolItem* Create(SvStream &, USHORT nVer) const;
+    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -113,16 +113,16 @@ public:
     SwFlyFrmFmt* GetNext() const { return (SwFlyFrmFmt*)aNext.GetRegisteredIn(); }
 
 
-//STRIP001  void SetPrev( SwFlyFrmFmt *pFmt );
-//STRIP001  void SetNext( SwFlyFrmFmt *pFmt );
+    void SetPrev( SwFlyFrmFmt *pFmt );
+    void SetNext( SwFlyFrmFmt *pFmt );
 };
 
-//STRIP001 SwFmtChain &SwFmtChain::operator=( const SwFmtChain &rCpy )
-//STRIP001 {
-//STRIP001  SetPrev( rCpy.GetPrev() );
-//STRIP001  SetNext( rCpy.GetNext() );
-//STRIP001  return *this;
-//STRIP001 }
+SwFmtChain &SwFmtChain::operator=( const SwFmtChain &rCpy )
+{
+    SetPrev( rCpy.GetPrev() );
+    SetNext( rCpy.GetNext() );
+    return *this;
+}
 
 
 #if !(defined(MACOSX) && ( __GNUC__ < 3 ))

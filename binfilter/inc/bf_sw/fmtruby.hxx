@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtruby.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:52 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,10 +90,10 @@ public:
     SwFmtRuby& operator=( const SwFmtRuby& rAttr );
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int  operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;}; //STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_ASSERT(0, "STRIP");return NULL;}; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -101,8 +101,8 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
-//STRIP001  virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                                      BYTE nMemberId = 0 ) const;
+    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
+                                    BYTE nMemberId = 0 ) const;
     virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 );
 

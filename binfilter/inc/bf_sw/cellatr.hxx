@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cellatr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:32 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,8 +110,8 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     // erfrage und setze den Modify-Pointer
@@ -122,9 +122,9 @@ public:
     //  BoxAttribut -> BoxStartNode
     virtual const SwNode* GetNodeOfFormula() const;
 
-//STRIP001        SwTableBox* GetTableBox();
-//STRIP001  const SwTableBox* GetTableBox() const
-//STRIP001      { return ((SwTblBoxFormula*)this)->GetTableBox(); }
+          SwTableBox* GetTableBox();
+    const SwTableBox* GetTableBox() const
+        { return ((SwTblBoxFormula*)this)->GetTableBox(); }
 
     // Status aendern
 //STRIP001  void ChangeState( const SfxPoolItem* pItem );

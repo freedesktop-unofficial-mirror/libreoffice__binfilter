@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblcalc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,8 @@
 #endif
 namespace binfilter {
 
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+
 using namespace ::com::sun::star;
 using namespace ::rtl;
 
@@ -105,7 +107,7 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwTblFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwTblFieldType(GetDoc());
+        return new SwTblFieldType(GetDoc());
 /*N*/ }
 
 
@@ -215,10 +217,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwTblFiel
 /*N*/   return nSubType;
 /*N*/ }
 
-//STRIP001 void SwTblField::SetSubType(USHORT nType)
-//STRIP001 {
-//STRIP001  nSubType = nType;
-//STRIP001 }
+void SwTblField::SetSubType(USHORT nType)
+{
+    nSubType = nType;
+}
 
 
 /*N*/ void SwTblField::SetValue( const double& rVal )
@@ -238,10 +240,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwTblFiel
 /*N*/ }
 
 
-//STRIP001 void SwTblField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  SetFormula( rStr );
-//STRIP001 }
+void SwTblField::SetPar2(const String& rStr)
+{
+    SetFormula( rStr );
+}
 
 
 /*-----------------04.03.98 10:33-------------------
@@ -282,37 +284,37 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwTblFiel
 /*-----------------04.03.98 10:33-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  String sTmp;
-//STRIP001  switch ( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      SetFormula( ::GetString( rAny, sTmp ));
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001         if(*(sal_Bool*)rAny.getValue())
-//STRIP001             nSubType = GSE_FORMULA|SUB_CMD;
-//STRIP001         else
-//STRIP001             nSubType = GSE_FORMULA;
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001         ChgExpStr( ::GetString( rAny, sTmp ));
-//STRIP001      break;
-//STRIP001     case FIELD_PROP_FORMAT:
-//STRIP001         {
-//STRIP001             sal_Int32 nTmp;
-//STRIP001             rAny >>= nTmp;
-//STRIP001             SetFormat(nTmp);
-//STRIP001         }
-//STRIP001         break;
-//STRIP001  default:
-//STRIP001         bRet = sal_False;
-//STRIP001  }
-//STRIP001     return bRet;
-//STRIP001 }
+BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    BOOL bRet = TRUE;
+    String sTmp;
+    switch ( nMId )
+    {
+    case FIELD_PROP_PAR2:
+        SetFormula( ::binfilter::GetString( rAny, sTmp ));
+        break;
+    case FIELD_PROP_BOOL1:
+        if(*(sal_Bool*)rAny.getValue())
+            nSubType = GSE_FORMULA|SUB_CMD;
+        else
+            nSubType = GSE_FORMULA;
+        break;
+    case FIELD_PROP_PAR1:
+        ChgExpStr( ::binfilter::GetString( rAny, sTmp ));
+        break;
+    case FIELD_PROP_FORMAT:
+        {
+            sal_Int32 nTmp;
+            rAny >>= nTmp;
+            SetFormat(nTmp);
+        }
+        break;
+    default:
+        bRet = sal_False;
+    }
+    return bRet;
+}
 
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -301,38 +301,38 @@ public:
 /*N*/ }
 
 // zeichengebundene Zeichen-Objekte absatzgebunden exportieren
-//STRIP001 void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
-//STRIP001                                    xub_StrLen nEnd, USHORT nCount )
-//STRIP001 {
-//STRIP001  ASSERT( pExportInfo, "Wo sind die Export-Informationen???" );
-//STRIP001  if( !pExportInfo || !nCount )
-//STRIP001      return;
-//STRIP001
-//STRIP001  pExportInfo->bDrwFrmFmt31 = TRUE;
-//STRIP001
-//STRIP001  USHORT nCntAttr = rNd.HasHints() ? rNd.GetSwpHints().Count() : 0;
-//STRIP001  USHORT nExported = 0;
-//STRIP001  for( USHORT n = 0; n < nCntAttr && nExported < nCount; n++ )
-//STRIP001  {
-//STRIP001      const SwTxtAttr* pHt = rNd.GetSwpHints()[ n ];
-//STRIP001      BOOL   bHtEnd   = BOOL( pHt->GetEnd() != NULL );
-//STRIP001      xub_StrLen nHtStart = *pHt->GetStart();
-//STRIP001
-//STRIP001      if( !bHtEnd && nHtStart >= nStart && nHtStart < nEnd &&
-//STRIP001          RES_TXTATR_FLYCNT==pHt->GetAttr().Which() )
-//STRIP001      {
-//STRIP001          const SwFmtFlyCnt& rFlyCnt = (const SwFmtFlyCnt&)pHt->GetAttr();
-//STRIP001          const SwFmt *pFmt = rFlyCnt.GetFrmFmt();
-//STRIP001          if( RES_DRAWFRMFMT == pFmt->Which() )
-//STRIP001          {
-//STRIP001              OutFormat( SWG_SDRFMT, *pFmt );
-//STRIP001              nExported++;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  pExportInfo->bDrwFrmFmt31 = FALSE;
-//STRIP001 }
+void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
+                                     xub_StrLen nEnd, USHORT nCount )
+{
+   ASSERT( pExportInfo, "Wo sind die Export-Informationen???" );
+   if( !pExportInfo || !nCount )
+       return;
+
+   pExportInfo->bDrwFrmFmt31 = TRUE;
+
+   USHORT nCntAttr = rNd.HasHints() ? rNd.GetSwpHints().Count() : 0;
+   USHORT nExported = 0;
+   for( USHORT n = 0; n < nCntAttr && nExported < nCount; n++ )
+   {
+       const SwTxtAttr* pHt = rNd.GetSwpHints()[ n ];
+       BOOL   bHtEnd   = BOOL( pHt->GetEnd() != NULL );
+       xub_StrLen nHtStart = *pHt->GetStart();
+
+       if( !bHtEnd && nHtStart >= nStart && nHtStart < nEnd &&
+           RES_TXTATR_FLYCNT==pHt->GetAttr().Which() )
+       {
+           const SwFmtFlyCnt& rFlyCnt = (const SwFmtFlyCnt&)pHt->GetAttr();
+           const SwFmt *pFmt = rFlyCnt.GetFrmFmt();
+           if( RES_DRAWFRMFMT == pFmt->Which() )
+           {
+               OutFormat( SWG_SDRFMT, *pFmt );
+               nExported++;
+           }
+       }
+   }
+
+   pExportInfo->bDrwFrmFmt31 = FALSE;
+}
 
 /*N*/ sal_Char Sw3IoImp::ConvStarSymbolCharToStarBats( sal_Unicode c )
 /*N*/ {
@@ -367,22 +367,22 @@ public:
 /*N*/   return cNew;
 /*N*/ }
 
-//STRIP001 sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
-//STRIP001 {
-//STRIP001  sal_Unicode cNew = c;
-//STRIP001  if( !hMathFontConv )
-//STRIP001  {
-//STRIP001      hMathFontConv = CreateFontToSubsFontConverter( sStarMath,
-//STRIP001               FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-//STRIP001      ASSERT( hMathFontConv, "Got no symbol font converter" );
-//STRIP001  }
-//STRIP001  if( hMathFontConv )
-//STRIP001  {
-//STRIP001      cNew = ConvertFontToSubsFontChar( hMathFontConv, (sal_Unicode)(sal_uChar)c + 0xf000 );
-//STRIP001  }
-//STRIP001
-//STRIP001  return cNew;
-//STRIP001 }
+sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
+{
+    sal_Unicode cNew = c;
+    if( !hMathFontConv )
+    {
+        hMathFontConv = CreateFontToSubsFontConverter( sStarMath,
+                 FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
+        ASSERT( hMathFontConv, "Got no symbol font converter" );
+    }
+    if( hMathFontConv )
+    {
+        cNew = ConvertFontToSubsFontChar( hMathFontConv, (sal_Unicode)(sal_uChar)c + 0xf000 );
+    }
+
+    return cNew;
+}
 
 /*N*/ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem )
 /*N*/ {
@@ -575,7 +575,7 @@ public:
 /*N*/               else if( bBatsToSymbol )
 /*N*/                   rText += ConvStarBatsCharToStarSymbol( c );
 /*N*/               else if( bMathToSymbol )
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  rText += ConvStarMathCharToStarSymbol( c );
+                        rText += ConvStarMathCharToStarSymbol( c );
 /*N*/               else
 /*N*/                   rText += ByteString::ConvertToUnicode( c,
 /*N*/                                       RTL_TEXTENCODING_SYMBOL );
@@ -883,7 +883,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   ByteString aText8;
 /*N*/   pStrm->ReadByteString( aText8 );
 /*N*/   if( pCrypter )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pCrypter->Decrypt( aText8 );
+            pCrypter->Decrypt( aText8 );
 /*N*/   String aText( aText8, eSrcSet );
 /*N*/   if( !pNd )
 /*N*/   {
@@ -1343,18 +1343,18 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 // Einlesen des puren Textes eines TextNodes. Der Text wird an den vorhandenen
 // Text im String angefuegt.
 
-//STRIP001 void Sw3IoImp::InTxtNodeText( String& rText )
-//STRIP001 {
-//STRIP001  OpenRec( SWG_TEXTNODE );
-//STRIP001  OpenFlagRec();
-//STRIP001  CloseFlagRec();
-//STRIP001  String aText;
-//STRIP001  InString( *pStrm, aText );
-//STRIP001  CloseRec( SWG_TEXTNODE );
-//STRIP001  if( rText.Len() )
-//STRIP001      rText += ' ';
-//STRIP001  rText += aText;
-//STRIP001 }
+void Sw3IoImp::InTxtNodeText( String& rText )
+{
+    OpenRec( SWG_TEXTNODE );
+    OpenFlagRec();
+    CloseFlagRec();
+    String aText;
+    InString( *pStrm, aText );
+    CloseRec( SWG_TEXTNODE );
+    if( rText.Len() )
+        rText += ' ';
+    rText += aText;
+}
 
 // Zaehlen der Worte eines Nodes
 //!! Wird auch vom SW2-Reader benutzt!!
@@ -2001,7 +2001,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       sw3io_countwords( aDefWordDelim, aText, aStat.nWord, aStat.nChar );
 /*N*/
 /*N*/   if( aText8.Len() && pCrypter )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pCrypter->Encrypt( aText8 );
+            pCrypter->Encrypt( aText8 );
 /*N*/   pStrm->WriteByteString( aText8 );
 /*N*/   aStat.nPara++;
 /*N*/
@@ -2015,7 +2015,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   // noch die zeichengebunden Zeichen-Objekte als abstzgebundene Objekte
 /*N*/   OutNodeFlyFrames( nPosIdx );
 /*N*/   if( pExpInfo && pExpInfo->nDrawFrmFmts )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      ExportNodeDrawFrmFmts( *pNd, nStart, nEnd, pExpInfo->nDrawFrmFmts );
+            ExportNodeDrawFrmFmts( *pNd, nStart, nEnd, pExpInfo->nDrawFrmFmts );
 /*N*/
 /*N*/   // Beim SW31-Export evtl. die "umgebauten" Hints ausgeben, sonst die
 /*N*/   // Original-Hints
@@ -2401,7 +2401,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               break;
 /*N*/
 /*N*/           case SWG_CONTOUR:
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              pContour = InContour();
+                    pContour = InContour();
 /*N*/               break;
 /*N*/
 /*N*/           default:
@@ -2557,7 +2557,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       // wir hier einen eigenen Record, der aber auch fuer andere Sachen
 /*N*/       // verwendet werden kann und sollte
 /*N*/       if( !IsSw31Export() && rNode.HasContour() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          OutContour( *rNode.HasContour() );
+                OutContour( *rNode.HasContour() );
 /*N*/
 /*N*/       CloseRec( SWG_GRFNODE );
 /*N*/       aStat.nGrf++;
@@ -2696,9 +2696,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/           case SWG_CONTOUR:
 /*?*/               if( pOLENd )
 /*?*/               {
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  PolyPolygon *pContour = InContour();
-//STRIP001 /*?*/                    pOLENd->SetContour( pContour );
-//STRIP001 /*?*/                    delete pContour;
+                        PolyPolygon *pContour = InContour();
+ /*?*/                  pOLENd->SetContour( pContour );
+ /*?*/                  delete pContour;
 /*?*/               }
 /*?*/               else
 /*?*/                   SkipRec();
@@ -2754,7 +2754,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       }
 /*N*/
 /*N*/       if( !IsSw31Export() && rNode.HasContour() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          OutContour( *rNode.HasContour() );
+                OutContour( *rNode.HasContour() );
 /*N*/
 /*N*/       CloseRec( SWG_OLENODE );
 /*N*/       aStat.nOLE++;
@@ -2887,37 +2887,37 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   CloseRec( SWG_IMAGEMAP );
 /*N*/ }
 
-//STRIP001 PolyPolygon *Sw3IoImp::InContour()
-//STRIP001 {
-//STRIP001  PolyPolygon *pContour = 0;
-//STRIP001
-//STRIP001  OpenRec( SWG_CONTOUR );
-//STRIP001  BYTE cFlags = OpenFlagRec();
-//STRIP001  CloseFlagRec();
-//STRIP001
-//STRIP001  if( (cFlags & 0x10) != 0 )
-//STRIP001  {
-//STRIP001      pContour = new PolyPolygon;
-//STRIP001      *pStrm >> *pContour;
-//STRIP001  }
-//STRIP001
-//STRIP001  CloseRec( SWG_CONTOUR );
-//STRIP001
-//STRIP001  return pContour;
-//STRIP001 }
+ PolyPolygon *Sw3IoImp::InContour()
+ {
+    PolyPolygon *pContour = 0;
 
-//STRIP001 void Sw3IoImp::OutContour( const PolyPolygon& rPoly )
-//STRIP001 {
-//STRIP001  OpenRec( SWG_CONTOUR );
-//STRIP001
-//STRIP001  BYTE cFlags = 0x10; // es folgt ein Contour Poly-Polygon
-//STRIP001  *pStrm << cFlags;
-//STRIP001
-//STRIP001  // das Contour-PolyPolygon rausschreiben
-//STRIP001  *pStrm << rPoly;
-//STRIP001
-//STRIP001  CloseRec( SWG_CONTOUR );
-//STRIP001 }
+    OpenRec( SWG_CONTOUR );
+    BYTE cFlags = OpenFlagRec();
+    CloseFlagRec();
+
+    if( (cFlags & 0x10) != 0 )
+    {
+        pContour = new PolyPolygon;
+        *pStrm >> *pContour;
+    }
+
+    CloseRec( SWG_CONTOUR );
+
+    return pContour;
+ }
+
+void Sw3IoImp::OutContour( const PolyPolygon& rPoly )
+{
+   OpenRec( SWG_CONTOUR );
+
+   BYTE cFlags = 0x10; // es folgt ein Contour Poly-Polygon
+   *pStrm << cFlags;
+
+   // das Contour-PolyPolygon rausschreiben
+   *pStrm << rPoly;
+
+   CloseRec( SWG_CONTOUR );
+}
 
 
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmteiro.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:47 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,9 +83,9 @@ public:
                      BOOL bPrt = FALSE ) : SfxBoolItem( nId, bPrt ) {}
 
     // "pure virtual Methoden" vom SfxPoolItem
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
+    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
 //STRIP001                                  SfxMapUnit ePresMetric,

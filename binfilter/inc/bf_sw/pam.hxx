@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:18 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,9 +139,9 @@ enum SwComparePosition {
     POS_COLLIDE_START,      // Pos1 Start stoesst an Pos2 Ende
     POS_COLLIDE_END         // Pos1 End stoesst an Pos2 Start
 };
-//STRIP001 SwComparePosition ComparePosition(
-//STRIP001          const SwPosition& rStt1, const SwPosition& rEnd1,
-//STRIP001          const SwPosition& rStt2, const SwPosition& rEnd2 );
+SwComparePosition ComparePosition(
+            const SwPosition& rStt1, const SwPosition& rEnd1,
+            const SwPosition& rStt2, const SwPosition& rEnd2 );
 
 //STRIP001 SwComparePosition ComparePosition(
 //STRIP001          const unsigned long nStt1, const unsigned long nEnd1,

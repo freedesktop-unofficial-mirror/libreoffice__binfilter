@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3471,13 +3471,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( pIdx && !pCntntSect )
 //STRIP001  return TRUE;
 //STRIP001 }
 
-//STRIP001 USHORT SwRedline::GetStackCount() const
-//STRIP001 {
-//STRIP001  USHORT nRet = 1;
-//STRIP001  for( SwRedlineData* pCur = pRedlineData; pCur->pNext; ++nRet )
-//STRIP001      pCur = pCur->pNext;
-//STRIP001  return nRet;
-//STRIP001 }
+USHORT SwRedline::GetStackCount() const
+{
+    USHORT nRet = 1;
+    for( SwRedlineData* pCur = pRedlineData; pCur->pNext; ++nRet )
+        pCur = pCur->pNext;
+    return nRet;
+}
 
 //STRIP001 USHORT SwRedline::GetAuthor( USHORT nPos ) const
 //STRIP001 {
@@ -3496,29 +3496,29 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( pIdx && !pCntntSect )
 /*?*/   return SW_MOD()->GetRedlineAuthor(pCur->nAuthor);
 /*?*/}
 
-//STRIP001 const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-//STRIP001      pCur = pCur->pNext;
-//STRIP001  ASSERT( !nPos, "Pos angabe ist zu gross" );
-//STRIP001  return pCur->aStamp;
-//STRIP001 }
+const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
+{
+    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+        pCur = pCur->pNext;
+    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    return pCur->aStamp;
+}
 
-//STRIP001 SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-//STRIP001      pCur = pCur->pNext;
-//STRIP001  ASSERT( !nPos, "Pos angabe ist zu gross" );
-//STRIP001  return pCur->eType;
-//STRIP001 }
+SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
+{
+    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+        pCur = pCur->pNext;
+    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    return pCur->eType;
+}
 
-//STRIP001 const String& SwRedline::GetComment( USHORT nPos ) const
-//STRIP001 {
-//STRIP001  for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
-//STRIP001      pCur = pCur->pNext;
-//STRIP001  ASSERT( !nPos, "Pos angabe ist zu gross" );
-//STRIP001  return pCur->sComment;
-//STRIP001 }
+const String& SwRedline::GetComment( USHORT nPos ) const
+{
+    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+        pCur = pCur->pNext;
+    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    return pCur->sComment;
+}
 
 /*N*/ int SwRedline::operator==( const SwRedline& rCmp ) const
 /*N*/ {

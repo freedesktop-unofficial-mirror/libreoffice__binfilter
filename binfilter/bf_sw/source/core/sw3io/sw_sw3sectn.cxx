@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -428,59 +428,59 @@ namespace binfilter {
 
 // Einlesen des puren Textes eines Content-Bereichs
 
-//STRIP001 String Sw3IoImp::InContentsText()
-//STRIP001 {
-//STRIP001  String aText;
-//STRIP001  OpenRec( SWG_CONTENTS );
-//STRIP001  if( IsVersion(SWG_LAYFRAMES) )
-//STRIP001      OpenFlagRec();
-//STRIP001  if( IsVersion(SWG_LONGIDX) )
-//STRIP001  {
-//STRIP001      UINT32 nNodes;
-//STRIP001      *pStrm >> nNodes;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      UINT16 nNodes16, nSectIdDummy;
-//STRIP001      if( IsVersion(SWG_LAYFRAMES) )
-//STRIP001          *pStrm >> nSectIdDummy;
-//STRIP001      *pStrm >> nNodes16;
-//STRIP001  }
-//STRIP001  if( IsVersion(SWG_LAYFRAMES) )
-//STRIP001      CloseFlagRec();
-//STRIP001
-//STRIP001  xub_StrLen nLastPos;
-//STRIP001  while( BytesLeft() )
-//STRIP001  {
-//STRIP001      switch( Peek() )
-//STRIP001      {
-//STRIP001          case SWG_TEXTNODE:
-//STRIP001              nLastPos = aText.Len();
-//STRIP001              InTxtNodeText( aText );
-//STRIP001              break;
-//STRIP001          case SWG_REPTEXTNODE:
-//STRIP001              {
-//STRIP001                  UINT32 nRepetitions;
-//STRIP001                  OpenRec( SWG_REPTEXTNODE );
-//STRIP001                  *pStrm >> nRepetitions;
-//STRIP001                  CloseRec( SWG_REPTEXTNODE );
-//STRIP001
-//STRIP001                  String aRepString;
-//STRIP001                  if( nLastPos==0 )
-//STRIP001                      aRepString += ' ';
-//STRIP001
-//STRIP001                  aRepString += aText.Copy( nLastPos, aText.Len()-nLastPos );
-//STRIP001                  while( nRepetitions--  )
-//STRIP001                      aText += aRepString;
-//STRIP001              }
-//STRIP001              break;
-//STRIP001          default:
-//STRIP001              SkipRec();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  CloseRec( SWG_CONTENTS );
-//STRIP001  return aText;
-//STRIP001 }
+String Sw3IoImp::InContentsText()
+{
+    String aText;
+    OpenRec( SWG_CONTENTS );
+    if( IsVersion(SWG_LAYFRAMES) )
+        OpenFlagRec();
+    if( IsVersion(SWG_LONGIDX) )
+    {
+        UINT32 nNodes;
+        *pStrm >> nNodes;
+    }
+    else
+    {
+        UINT16 nNodes16, nSectIdDummy;
+        if( IsVersion(SWG_LAYFRAMES) )
+            *pStrm >> nSectIdDummy;
+        *pStrm >> nNodes16;
+    }
+    if( IsVersion(SWG_LAYFRAMES) )
+        CloseFlagRec();
+
+    xub_StrLen nLastPos;
+    while( BytesLeft() )
+    {
+        switch( Peek() )
+        {
+            case SWG_TEXTNODE:
+                nLastPos = aText.Len();
+                InTxtNodeText( aText );
+                break;
+            case SWG_REPTEXTNODE:
+                {
+                    UINT32 nRepetitions;
+                    OpenRec( SWG_REPTEXTNODE );
+                    *pStrm >> nRepetitions;
+                    CloseRec( SWG_REPTEXTNODE );
+
+                    String aRepString;
+                    if( nLastPos==0 )
+                        aRepString += ' ';
+
+                    aRepString += aText.Copy( nLastPos, aText.Len()-nLastPos );
+                    while( nRepetitions--  )
+                        aText += aRepString;
+                }
+                break;
+            default:
+                SkipRec();
+        }
+    }
+    CloseRec( SWG_CONTENTS );
+    return aText;
+}
 
 // Einen Basis-Contents-Bereich des Dokuments ausgeben
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtfld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:48 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,7 +107,7 @@ public:
     SwTxtFld *GetTxtFld()               { return pTxtAttr; }
 
     BOOL IsFldInDoc() const;
-//STRIP001  BOOL IsProtect() const;
+    BOOL IsProtect() const;
 };
 
 

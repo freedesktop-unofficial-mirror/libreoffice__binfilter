@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3fmts.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:50 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -132,14 +132,14 @@ namespace binfilter {
 
 // Finden eines AttrSets nach Index
 
-//STRIP001 SwFmt* lcl_sw3io__GetUserPoolFmt( USHORT nId, const SvPtrarr* pFmtArr )
-//STRIP001 {
-//STRIP001  SwFmt* pFmt;
-//STRIP001  for( USHORT n = 0; n < pFmtArr->Count(); ++n )
-//STRIP001      if( nId == (pFmt = (SwFmt*)(*pFmtArr)[n])->GetPoolFmtId() )
-//STRIP001          return pFmt;
-//STRIP001  return 0;
-//STRIP001 }
+SwFmt* lcl_sw3io__GetUserPoolFmt( USHORT nId, const SvPtrarr* pFmtArr )
+{
+    SwFmt* pFmt;
+    for( USHORT n = 0; n < pFmtArr->Count(); ++n )
+        if( nId == (pFmt = (SwFmt*)(*pFmtArr)[n])->GetPoolFmtId() )
+            return pFmt;
+    return 0;
+}
 
 // Whichwerte werden nach Gruppen gespreizt, so dass die einzelnen
 // Gruppen getrennt um neue Attribute erweitert werden koennen.
@@ -205,16 +205,16 @@ namespace binfilter {
 
 sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 {
-    DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    ASSERT( pTxtNd, "There is the text node?" );
-//STRIP001  if( !pTxtNd )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SwStartNode *pSttNd = pTxtNd->FindStartNode();
-//STRIP001  while( pSttNd &&
-//STRIP001         (pSttNd->IsTableNode() || pSttNd->IsSectionNode() ||
-//STRIP001          SwTableBoxStartNode == pSttNd->GetStartNodeType() ) )
-//STRIP001      pSttNd = pSttNd->FindStartNode();
-//STRIP001  return !pSttNd || SwNormalStartNode == pSttNd->GetStartNodeType();
+    ASSERT( pTxtNd, "There is the text node?" );
+    if( !pTxtNd )
+        return FALSE;
+
+    const SwStartNode *pSttNd = pTxtNd->FindStartNode();
+    while( pSttNd &&
+           (pSttNd->IsTableNode() || pSttNd->IsSectionNode() ||
+            SwTableBoxStartNode == pSttNd->GetStartNodeType() ) )
+        pSttNd = pSttNd->FindStartNode();
+    return !pSttNd || SwNormalStartNode == pSttNd->GetStartNodeType();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -575,11 +575,11 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                   if( IsPoolUserFmt( nPoolId ) )
 /*?*/                   {
 /*?*/                       // wir suchen uns das richtige Format
-                            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                      if( 0 == ( pFmt = lcl_sw3io__GetUserPoolFmt( nPoolId,
-//STRIP001 /*?*/                                                pDoc->GetFrmFmts() )) )
-//STRIP001 /*?*/                            pFmt = lcl_sw3io__GetUserPoolFmt( nPoolId,
-//STRIP001 /*?*/                                                pDoc->GetSpzFrmFmts() );
-//STRIP001 /*?*/                        ASSERT( pFmt, "Format not found." );
+                            if( 0 == ( pFmt = lcl_sw3io__GetUserPoolFmt( nPoolId,
+/*?*/                                               pDoc->GetFrmFmts() )) )
+/*?*/                           pFmt = lcl_sw3io__GetUserPoolFmt( nPoolId,
+/*?*/                                               pDoc->GetSpzFrmFmts() );
+/*?*/                       ASSERT( pFmt, "Format not found." );
 /*?*/                   }
 /*?*/                   else
 /*?*/                       pFmt = pDoc->GetFrmFmtFromPool( nPoolId );
@@ -722,22 +722,22 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                       SwFlyFrmFmt *pFlyFmt = pChain->GetPrev();
 /*?*/                       if( pFlyFmt )
 /*?*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( pFlyFmt->GetChain() );
-//STRIP001 /*?*/                            ASSERT( !aChain.GetNext(),
-//STRIP001 /*?*/                                    "Next ist bereits verkettet" );
-//STRIP001 /*?*/                            aChain.SetNext( (SwFlyFrmFmt *)pFmt );
-//STRIP001 /*?*/                            pFlyFmt->SetAttr( aChain );
+/*?*/                            SwFmtChain aChain( pFlyFmt->GetChain() );
+/*?*/                           ASSERT( !aChain.GetNext(),
+/*?*/                                   "Next ist bereits verkettet" );
+/*?*/                           aChain.SetNext( (SwFlyFrmFmt *)pFmt );
+/*?*/                           pFlyFmt->SetAttr( aChain );
 /*?*/                       }
 /*?*/
 /*?*/                       // Den Prev des Next richtig setzen.
 /*?*/                       pFlyFmt = pChain->GetNext();
 /*?*/                       if( pFlyFmt )
 /*?*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( pFlyFmt->GetChain() );
-//STRIP001 /*?*/                            ASSERT( !aChain.GetPrev(),
-//STRIP001 /*?*/                                    "Prev ist bereits verkettet" );
-//STRIP001 /*?*/                            aChain.SetPrev( (SwFlyFrmFmt *)pFmt );
-//STRIP001 /*?*/                            pFlyFmt->SetAttr( aChain );
+/*?*/                            SwFmtChain aChain( pFlyFmt->GetChain() );
+/*?*/                           ASSERT( !aChain.GetPrev(),
+/*?*/                                   "Prev ist bereits verkettet" );
+/*?*/                           aChain.SetPrev( (SwFlyFrmFmt *)pFmt );
+/*?*/                           pFlyFmt->SetAttr( aChain );
 /*?*/                       }
 /*N*/                   }
 /*N*/               }
@@ -1237,59 +1237,62 @@ extern BOOL TstFlyRange( const SwPaM* pPam, const SwIndex& rFlyPos );
 ////////////////////////////////////////////////////////////////////////////
 
 //STRIP001 void Sw3IoImp::ScanAttr( SvStrings& rSecList,
-//STRIP001                       SvStringsDtor& rBookmarks )
+//STRIP001                          SvStringsDtor& rBookmarks )
 //STRIP001 {
-//STRIP001  UINT16 nWhich, nVer, nDummy16;
+//STRIP001     UINT16 nWhich, nVer, nDummy16;
 //STRIP001
-//STRIP001  OpenRec( SWG_ATTRIBUTE );
+//STRIP001     OpenRec( SWG_ATTRIBUTE );
 //STRIP001
-//STRIP001  BYTE cFlags = OpenFlagRec();
-//STRIP001  *pStrm >> nWhich >> nVer;
-//STRIP001  nWhich = lcl_sw3io__CompressWhich( nWhich, nVersion );
-//STRIP001  if( cFlags & 0x10 )
-//STRIP001      *pStrm >> nDummy16;
-//STRIP001  if( cFlags & 0x20 )
-//STRIP001      *pStrm >> nDummy16;
-//STRIP001  CloseFlagRec();
+//STRIP001     BYTE cFlags = OpenFlagRec();
+//STRIP001     *pStrm >> nWhich >> nVer;
+//STRIP001     nWhich = lcl_sw3io__CompressWhich( nWhich, nVersion );
+//STRIP001     if( cFlags & 0x10 )
+//STRIP001         *pStrm >> nDummy16;
+//STRIP001     if( cFlags & 0x20 )
+//STRIP001         *pStrm >> nDummy16;
+//STRIP001     CloseFlagRec();
 //STRIP001
-//STRIP001  switch( nWhich )
-//STRIP001  {
-//STRIP001  case RES_TXTATR_FLYCNT:
-//STRIP001      // ein zeichengebundener Rahmen
-//STRIP001      ScanFormat( SWG_FLYFMT, rSecList, rBookmarks );
-//STRIP001      break;
-//STRIP001  case RES_TXTATR_FTN:
-//STRIP001      {
-//STRIP001          // eine Fussnote
-//STRIP001          String aDummy;
-//STRIP001          *pStrm >> nDummy16;
-//STRIP001          InString( *pStrm, aDummy );
-//STRIP001          ScanContents( rSecList, rBookmarks );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case RES_HEADER:
-//STRIP001  case RES_FOOTER:
-//STRIP001      {
-//STRIP001          // eine Kopf- oder Fusszeile
-//STRIP001          BYTE nDummy8;
-//STRIP001          *pStrm >> nDummy8;
-//STRIP001          if( SWG_FREEFMT==Peek() )
-//STRIP001              ScanFormat( SWG_FREEFMT, rSecList, rBookmarks );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case RES_CNTNT:
-//STRIP001      // der Inhalt eines Fly-Frames
-//STRIP001      ScanContents( rSecList, rBookmarks );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      // hier gibt's erstmal eine Warnung
-//STRIP001      break;
-//STRIP001  }
+//STRIP001     switch( nWhich )
+//STRIP001     {
+//STRIP001     case RES_TXTATR_FLYCNT:
+//STRIP001         // ein zeichengebundener Rahmen
+//STRIP001         ScanFormat( SWG_FLYFMT, rSecList, rBookmarks );
+//STRIP001         break;
+//STRIP001     case RES_TXTATR_FTN:
+//STRIP001         {
+//STRIP001             // eine Fussnote
+//STRIP001             String aDummy;
+//STRIP001             *pStrm >> nDummy16;
+//STRIP001             InString( *pStrm, aDummy );
+//STRIP001             ScanContents( rSecList, rBookmarks );
+//STRIP001         }
+//STRIP001         break;
+//STRIP001     case RES_HEADER:
+//STRIP001     case RES_FOOTER:
+//STRIP001         {
+//STRIP001             // eine Kopf- oder Fusszeile
+//STRIP001             BYTE nDummy8;
+//STRIP001             *pStrm >> nDummy8;
+//STRIP001             if( SWG_FREEFMT==Peek() )
+//STRIP001                 ScanFormat( SWG_FREEFMT, rSecList, rBookmarks );
+//STRIP001         }
+//STRIP001         break;
+//STRIP001     case RES_CNTNT:
+//STRIP001         // der Inhalt eines Fly-Frames
+//STRIP001         ScanContents( rSecList, rBookmarks );
+//STRIP001         break;
+//STRIP001     default:
+//STRIP001         // hier gibt's erstmal eine Warnung
+//STRIP001         break;
+//STRIP001     }
 //STRIP001
-//STRIP001  CloseRec( SWG_ATTRIBUTE );
+//STRIP001     CloseRec( SWG_ATTRIBUTE );
 //STRIP001 }
 
 /*  */
 
 
 }
+
+
+

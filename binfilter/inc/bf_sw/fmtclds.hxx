@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtclds.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:11 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,14 +139,14 @@ class SwFmtCol : public SfxPoolItem
                             //gemischt (optisch verteilt).
                             //Das Flag ist initial gesetzt.
 
-//STRIP001  void Calc( USHORT nGutterWidth, USHORT nAct );
+    void Calc( USHORT nGutterWidth, USHORT nAct );
 
 public:
     SwFmtCol();
     SwFmtCol( const SwFmtCol& );
     ~SwFmtCol();
 
-//STRIP001  SwFmtCol& operator=( const SwFmtCol& );
+    SwFmtCol& operator=( const SwFmtCol& );
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int             operator==( const SfxPoolItem& ) const;
@@ -188,7 +188,7 @@ public:
 
     //Mit dieser Funktion koennen die Spalten (immer wieder) initialisert
     //werden. Das Ortho Flag wird automatisch gesetzt.
-//STRIP001  void Init( USHORT nNumCols, USHORT nGutterWidth, USHORT nAct );
+    void Init( USHORT nNumCols, USHORT nGutterWidth, USHORT nAct );
 
     //Stellt die Raender fuer die Spalten in aColumns ein.
     //Wenn das Flag bOrtho gesetzt ist, werden die Spalten neu optisch

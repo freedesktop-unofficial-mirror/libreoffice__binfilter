@@ -2,9 +2,9 @@
  *
  *  $RCSfile: crypter.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:48 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,14 +73,14 @@ namespace binfilter {
 
 class Crypter
 {
-//STRIP001  BYTE cPasswd[ PASSWDLEN ];
+    BYTE cPasswd[ PASSWDLEN ];
 public:
-    Crypter( const ByteString& rPasswd ){DBG_ASSERT(0, "STRIP");} ;//STRIP001   Crypter( const ByteString& rPasswd );
-//STRIP001  short GetMaxPasswdLen() const { return PASSWDLEN; }
-//STRIP001  short GetMinPasswdLen() const { return 5;         }
-//STRIP001
-//STRIP001  void Encrypt( ByteString& rTxt ) const;
-//STRIP001  void Decrypt( ByteString& rTxt ) const;
+    Crypter( const ByteString& rPasswd );
+    short GetMaxPasswdLen() const { return PASSWDLEN; }
+    short GetMinPasswdLen() const { return 5;         }
+
+    void Encrypt( ByteString& rTxt ) const;
+    void Decrypt( ByteString& rTxt ) const;
 };
 
 } //namespace binfilter

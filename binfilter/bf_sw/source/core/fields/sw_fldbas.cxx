@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:25 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -455,11 +455,11 @@ using namespace ::com::sun::star;
 /*N*/   return GetPar2();
 /*N*/ }
 
-//STRIP001 void SwField::SetPar1(const String& rStr)
-//STRIP001 {}
+void SwField::SetPar1(const String& rStr)
+{}
 
-//STRIP001 void SwField::SetPar2(const String& rStr)
-//STRIP001 {}
+void SwField::SetPar2(const String& rStr)
+ {}
 
 /*N*/ USHORT SwField::GetSubType() const
 /*N*/ {
@@ -467,10 +467,10 @@ using namespace ::com::sun::star;
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void SwField::SetSubType(USHORT nType)
-//STRIP001 {
-//STRIP001 //   ASSERT(0, "Sorry Not implemented");
-//STRIP001 }
+void SwField::SetSubType(USHORT nType)
+{
+//  ASSERT(0, "Sorry Not implemented");
+}
 
 /*N*/ BOOL  SwField::QueryValue( uno::Any& rVal, BYTE nMId ) const
 /*N*/ {
@@ -513,15 +513,15 @@ using namespace ::com::sun::star;
                     muss immer vom gleichen Typ sein.
  --------------------------------------------------------------------*/
 
-//STRIP001 SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
-//STRIP001 {
-//STRIP001  ASSERT( pNewType && pNewType->Which() == pType->Which(),
-//STRIP001          "kein Typ oder ungleiche Typen" );
-//STRIP001
-//STRIP001  SwFieldType* pOld = pType;
-//STRIP001  pType = pNewType;
-//STRIP001  return pOld;
-//STRIP001 }
+SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
+{
+    ASSERT( pNewType && pNewType->Which() == pType->Which(),
+            "kein Typ oder ungleiche Typen" );
+
+    SwFieldType* pOld = pType;
+    pType = pNewType;
+    return pOld;
+}
 
     // hat das Feld eine Action auf dem ClickHandler ? (z.B. INetFelder,..)
 //STRIP001 FASTBOOL SwField::HasClickHdl() const
@@ -831,22 +831,22 @@ using namespace ::com::sun::star;
                     muss immer vom gleichen Typ sein.
  --------------------------------------------------------------------*/
 
-//STRIP001 SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
-//STRIP001 {
-//STRIP001  SwDoc* pNewDoc = ((SwValueFieldType *)pNewType)->GetDoc();
-//STRIP001  SwDoc* pDoc    = GetDoc();
-//STRIP001
-//STRIP001  if( pNewDoc && pDoc && pDoc != pNewDoc)
-//STRIP001  {
-//STRIP001      SvNumberFormatter* pFormatter = pNewDoc->GetNumberFormatter();
-//STRIP001
-//STRIP001      if( pFormatter && pFormatter->HasMergeFmtTbl() &&
-//STRIP001          ((SwValueFieldType *)GetTyp())->UseFormat() )
-//STRIP001          SetFormat(pFormatter->GetMergeFmtIndex( GetFormat() ));
-//STRIP001  }
-//STRIP001
-//STRIP001  return SwField::ChgTyp(pNewType);
-//STRIP001 }
+SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
+{
+    SwDoc* pNewDoc = ((SwValueFieldType *)pNewType)->GetDoc();
+    SwDoc* pDoc    = GetDoc();
+
+    if( pNewDoc && pDoc && pDoc != pNewDoc)
+    {
+        SvNumberFormatter* pFormatter = pNewDoc->GetNumberFormatter();
+
+        if( pFormatter && pFormatter->HasMergeFmtTbl() &&
+            ((SwValueFieldType *)GetTyp())->UseFormat() )
+            SetFormat(pFormatter->GetMergeFmtIndex( GetFormat() ));
+    }
+
+    return SwField::ChgTyp(pNewType);
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Format aendern
@@ -999,55 +999,55 @@ void SwValueField::ChangeFormat(ULONG n)
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwFormulaField::SetExpandedFormula( const String& rStr )
-//STRIP001 {
-//STRIP001  ULONG nFmt(GetFormat());
-//STRIP001
-//STRIP001  if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
-//STRIP001  {
-//STRIP001      double fValue;
-//STRIP001
-//STRIP001      SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001
-//STRIP001      if (pFormatter->IsNumberFormat(rStr, nFmt, fValue))
-//STRIP001      {
-//STRIP001          SwValueField::SetValue(fValue);
-//STRIP001          sFormula.Erase();
-//STRIP001
-//STRIP001          ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue, nFmt);
-//STRIP001          return;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  sFormula = rStr;
-//STRIP001 }
+void SwFormulaField::SetExpandedFormula( const String& rStr )
+{
+    ULONG nFmt(GetFormat());
+
+    if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
+    {
+        double fValue;
+
+        SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
+
+        if (pFormatter->IsNumberFormat(rStr, nFmt, fValue))
+        {
+            SwValueField::SetValue(fValue);
+            sFormula.Erase();
+
+            ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue, nFmt);
+            return;
+        }
+    }
+    sFormula = rStr;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 String SwFormulaField::GetExpandedFormula() const
-//STRIP001 {
-//STRIP001  ULONG nFmt(GetFormat());
-//STRIP001
-//STRIP001  if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
-//STRIP001  {
-//STRIP001      String sFormattedValue;
-//STRIP001      Color* pCol = 0;
-//STRIP001
-//STRIP001      SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001
-//STRIP001      if (pFormatter->IsTextFormat(nFmt))
-//STRIP001      {
-//STRIP001          String sValue;
-//STRIP001          ((SwValueFieldType *)GetTyp())->DoubleToString(sValue, GetValue(), nFmt);
-//STRIP001          pFormatter->GetOutputString(sValue, nFmt, sFormattedValue, &pCol);
-//STRIP001      }
-//STRIP001      else
-//STRIP001          pFormatter->GetOutputString(GetValue(), nFmt, sFormattedValue, &pCol);
-//STRIP001
-//STRIP001      return sFormattedValue;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return GetFormula();
-//STRIP001 }
+String SwFormulaField::GetExpandedFormula() const
+{
+    ULONG nFmt(GetFormat());
+
+    if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
+    {
+        String sFormattedValue;
+        Color* pCol = 0;
+
+        SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
+
+        if (pFormatter->IsTextFormat(nFmt))
+        {
+            String sValue;
+            ((SwValueFieldType *)GetTyp())->DoubleToString(sValue, GetValue(), nFmt);
+            pFormatter->GetOutputString(sValue, nFmt, sFormattedValue, &pCol);
+        }
+        else
+            pFormatter->GetOutputString(GetValue(), nFmt, sFormattedValue, &pCol);
+
+        return sFormattedValue;
+    }
+    else
+        return GetFormula();
+}
 }

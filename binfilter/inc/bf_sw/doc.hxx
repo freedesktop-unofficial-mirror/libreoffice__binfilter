@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:38 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -755,7 +755,7 @@ public:
         // dokumentglobale Macros
 //STRIP001  sal_Bool HasGlobalMacro(sal_uInt16 nEvent) const;
 //STRIP001  const SvxMacro& GetGlobalMacro(sal_uInt16 nEvent) const;
-//STRIP001  void SetGlobalMacro(sal_uInt16 nEvent, const SvxMacro&);
+  void SetGlobalMacro(sal_uInt16 nEvent, const SvxMacro&);
 //STRIP001  sal_Bool DelGlobalMacro(sal_uInt16 nEvent);
     const SvxMacroTableDtor& GetMacroTable() const { return *pMacroTable; }
 

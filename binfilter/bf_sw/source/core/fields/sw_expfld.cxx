@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -289,7 +289,7 @@ using namespace ::rtl;
 /*N*/               rPos = *rAnchor.GetCntntAnchor();
 /*N*/               pTxtNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/               if( FLY_AT_CNTNT == rAnchor.GetAnchorId() )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    ((SwTxtNode*)pTxtNode)->MakeStartIndex( &rPos.nContent );
+/*?*/               ((SwTxtNode*)pTxtNode)->MakeStartIndex( &rPos.nContent );
 /*N*/ // oder doch besser das Ende vom (Anker-)TextNode nehmen ??
 /*N*/ //                    ((SwTxtNode*)pTxtNode)->MakeEndIndex( &rPos.nContent );
 /*N*/
@@ -370,7 +370,7 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwGetExpFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpFieldType(GetDoc());
+            return new SwGetExpFieldType(GetDoc());
 /*N*/ }
 
 /*N*/ void SwGetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* pNew )
@@ -474,15 +474,15 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 //STRIP001  }
 //STRIP001 }
 
-//STRIP001 String SwGetExpField::GetPar2() const
-//STRIP001 {
-//STRIP001  return GetFormula();
-//STRIP001 }
+String SwGetExpField::GetPar2() const
+{
+    return GetFormula();
+}
 
-//STRIP001 void SwGetExpField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  SetFormula(rStr);
-//STRIP001 }
+void SwGetExpField::SetPar2(const String& rStr)
+{
+    SetFormula(rStr);
+}
 
 /*N*/ USHORT SwGetExpField::GetSubType() const
 /*N*/ {
@@ -545,46 +545,46 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*-----------------07.03.98 16:08-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Int32 nTmp;
-//STRIP001  String sTmp;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_DOUBLE:
-//STRIP001      SwValueField::SetValue(*(double*) rAny.getValue());
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_FORMAT:
-//STRIP001      rAny >>= nTmp;
-//STRIP001      SetFormat(nTmp);
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001       rAny >>= nTmp;
-//STRIP001       nSubType = nTmp;
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      SetFormula( ::GetString( rAny, sTmp ));
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_SUBTYPE:
-//STRIP001      nTmp = lcl_APIToSubType(rAny);
-//STRIP001      if( nTmp >=0 )
-//STRIP001          SetSubType( (GetSubType() & 0xff00) | nTmp);
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL2:
-//STRIP001      if(*(sal_Bool*) rAny.getValue())
-//STRIP001          nSubType |= SUB_CMD;
-//STRIP001      else
-//STRIP001          nSubType &= (~SUB_CMD);
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR4:
-//STRIP001      ChgExpStr(::GetString( rAny, sTmp ));
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001         return SwField::PutValue(rAny, nMId);
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    sal_Int32 nTmp;
+    String sTmp;
+    switch( nMId )
+    {
+    case FIELD_PROP_DOUBLE:
+        SwValueField::SetValue(*(double*) rAny.getValue());
+        break;
+    case FIELD_PROP_FORMAT:
+        rAny >>= nTmp;
+        SetFormat(nTmp);
+        break;
+    case FIELD_PROP_USHORT1:
+         rAny >>= nTmp;
+         nSubType = nTmp;
+        break;
+    case FIELD_PROP_PAR1:
+        SetFormula( GetString( rAny, sTmp ));
+        break;
+    case FIELD_PROP_SUBTYPE:
+        nTmp = lcl_APIToSubType(rAny);
+        if( nTmp >=0 )
+            SetSubType( (GetSubType() & 0xff00) | nTmp);
+        break;
+    case FIELD_PROP_BOOL2:
+        if(*(sal_Bool*) rAny.getValue())
+            nSubType |= SUB_CMD;
+        else
+            nSubType &= (~SUB_CMD);
+        break;
+    case FIELD_PROP_PAR4:
+        ChgExpStr(GetString( rAny, sTmp ));
+        break;
+    default:
+        return SwField::PutValue(rAny, nMId);
+    }
+    return TRUE;
+}
 
 /*-----------------JP: 17.06.93 -------------------
  Set-Expression-Type
@@ -617,10 +617,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*N*/   return sName;
 /*N*/ }
 
-//STRIP001 void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
-//STRIP001 {
-//STRIP001  return;     // nicht weiter expandieren
-//STRIP001 }
+void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
+{
+    return;     // nicht weiter expandieren
+}
 
 //STRIP001 void SwSetExpFieldType::SetSeqFormat(ULONG nFmt)
 //STRIP001 {
@@ -1050,27 +1050,27 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*N*/   return ((SwSetExpFieldType*)GetTyp())->GetName();
 /*N*/ }
 
-//STRIP001 String SwSetExpField::GetPar2() const
-//STRIP001 {
-//STRIP001  USHORT nType = ((SwSetExpFieldType*)GetTyp())->GetType();
-//STRIP001
-//STRIP001  if (nType & GSE_STRING)
-//STRIP001      return GetFormula();
-//STRIP001  return GetExpandedFormula();
-//STRIP001 }
+String SwSetExpField::GetPar2() const
+{
+    USHORT nType = ((SwSetExpFieldType*)GetTyp())->GetType();
 
-//STRIP001 void SwSetExpField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  USHORT nType = ((SwSetExpFieldType*)GetTyp())->GetType();
-//STRIP001
-//STRIP001  if( !(nType & GSE_SEQ) || rStr.Len() )
-//STRIP001  {
-//STRIP001      if (nType & GSE_STRING)
-//STRIP001          SetFormula(rStr);
-//STRIP001      else
-//STRIP001          SetExpandedFormula(rStr);
-//STRIP001  }
-//STRIP001 }
+    if (nType & GSE_STRING)
+        return GetFormula();
+    return GetExpandedFormula();
+}
+
+void SwSetExpField::SetPar2(const String& rStr)
+{
+    USHORT nType = ((SwSetExpFieldType*)GetTyp())->GetType();
+
+    if( !(nType & GSE_SEQ) || rStr.Len() )
+    {
+        if (nType & GSE_STRING)
+            SetFormula(rStr);
+        else
+            SetExpandedFormula(rStr);
+    }
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Eingabefeld Type
@@ -1083,8 +1083,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 
 /*N*/ SwFieldType* SwInputFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pType = new SwInputFieldType( pDoc );
-//STRIP001  return pType;
+            SwInputFieldType* pType = new SwInputFieldType( pDoc );
+            return pType;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -1160,30 +1160,30 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*-----------------06.03.98 11:12-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001       ::GetString( rAny, aContent );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      ::GetString( rAny, aPText );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+         GetString( rAny, aContent );
+        break;
+    case FIELD_PROP_PAR2:
+        GetString( rAny, aPText );
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return TRUE;
+}
 /*--------------------------------------------------------------------
     Beschreibung: Bedingung setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwInputField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  aContent = rStr;
-//STRIP001 }
+void SwInputField::SetPar1(const String& rStr)
+{
+    aContent = rStr;
+}
 
 /*N*/ const String& SwInputField::GetPar1() const
 /*N*/ {
@@ -1194,10 +1194,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
     Beschreibung: True/False Text
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwInputField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  aPText = rStr;
-//STRIP001 }
+void SwInputField::SetPar2(const String& rStr)
+{
+    aPText = rStr;
+}
 
 /*N*/ String SwInputField::GetPar2() const
 /*N*/ {
@@ -1209,10 +1209,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*N*/   return nSubType;
 /*N*/ }
 
-//STRIP001 void SwInputField::SetSubType(USHORT nSub)
-//STRIP001 {
-//STRIP001  nSubType = nSub;
-//STRIP001 }
+void SwInputField::SetSubType(USHORT nSub)
+{
+    nSubType = nSub;
+}
 /*-----------------05.03.98 17:22-------------------
 
 --------------------------------------------------*/
@@ -1317,8 +1317,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*?*/       nSeqNo = nTmp16;
 /*?*/       break;
 /*?*/   case FIELD_PROP_PAR1:
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SetPar1( SwStyleNameMapper::GetUIName(
-//STRIP001 /*?*/                            ::binfilter::GetString( rAny, sTmp ), GET_POOLID_TXTCOLL ) );
+/*?*/       SetPar1( SwStyleNameMapper::GetUIName(
+/*?*/                           ::binfilter::GetString( rAny, sTmp ), GET_POOLID_TXTCOLL ) );
 /*?*/       break;
 /*N*/   case FIELD_PROP_PAR2:
 /*N*/       {

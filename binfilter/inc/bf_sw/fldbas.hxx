@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:25:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -370,7 +370,7 @@ public:
     inline SwFieldType* GetTyp() const;
 
     // neuen Typ setzen (wird fuer das Kopieren zwischen Dokumenten benutzt)
-//STRIP001  virtual SwFieldType* ChgTyp( SwFieldType* );
+    virtual SwFieldType* ChgTyp( SwFieldType* );
 
     // Expandierung fuer die Anzeige
     virtual String      Expand() const = 0;
@@ -391,7 +391,7 @@ public:
 //STRIP001          USHORT      GetTypeId() const;
 //STRIP001  static  USHORT      GetResId(USHORT nTypeId, BOOL& bAmbigous);
     virtual USHORT      GetSubType() const;
-    virtual void        SetSubType(USHORT){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void        SetSubType(USHORT);
+    virtual void        SetSubType(USHORT);
 
     // Sprache an der Feldposition
     inline USHORT       GetLanguage() const;
@@ -405,8 +405,8 @@ public:
     virtual String      GetFormula() const;
 
     virtual void        ChangeFormat(ULONG n);
-//STRIP001  virtual void        SetPar1(const String& rStr);
-//STRIP001  virtual void        SetPar2(const String& rStr);
+    virtual void        SetPar1(const String& rStr);
+    virtual void        SetPar2(const String& rStr);
 
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
@@ -466,7 +466,7 @@ protected:
 public:
     virtual                 ~SwValueField();
 
-//STRIP001  virtual SwFieldType*    ChgTyp( SwFieldType* );
+    virtual SwFieldType*    ChgTyp( SwFieldType* );
     virtual void            SetLanguage(USHORT nLng);
 //  os: wozu war das denn da?
 //  virtual void            ChangeFormat(ULONG n);
@@ -494,8 +494,8 @@ public:
     virtual String          GetFormula() const;
     void                    SetFormula(const String& rStr);
 
-//STRIP001  void                    SetExpandedFormula(const String& rStr);
-//STRIP001  String                  GetExpandedFormula() const;
+    void                    SetExpandedFormula(const String& rStr);
+    String                  GetExpandedFormula() const;
 
 };
 

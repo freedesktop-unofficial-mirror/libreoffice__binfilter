@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ddefld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:37 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,8 +98,8 @@ public:
     virtual SwFieldType* Copy() const;
     virtual const String& GetName() const;
 
-//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     String GetCmd() const;
     void SetCmd( const String& rStr );
@@ -143,11 +143,11 @@ public:
 
     // ueber Typen Parameter ermitteln
     // Name kann nicht geaendert werden
-//STRIP001  virtual const String& GetPar1() const;
+    virtual const String& GetPar1() const;
 
     // Commando
-//STRIP001  virtual String  GetPar2() const;
-//STRIP001  virtual void    SetPar2(const String& rStr);
+    virtual String  GetPar2() const;
+    virtual void    SetPar2(const String& rStr);
 };
 
 

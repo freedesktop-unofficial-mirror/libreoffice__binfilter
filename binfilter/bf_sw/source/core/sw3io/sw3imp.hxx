@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -329,7 +329,7 @@ public:
     SwFmt *FindCachedFmt( USHORT ) const;
 // /OPT: Cache fuer Formate im StringPool
 
-//STRIP001  void   LoadOld( SvStream& );
+    void   LoadOld( SvStream& );
     void   Load( SvStream&, USHORT nVersion );
     void   Store( SvStream& );
 
@@ -375,11 +375,11 @@ class Sw3IoImp
     FontToSubsFontConverter hBatsFontConv;
     FontToSubsFontConverter hMathFontConv;
 
-//STRIP001  void               SetDBName();
-//STRIP001  void               MakeBlockText( const ByteString& rText );
+    void               SetDBName();
+    void               MakeBlockText( const ByteString& rText );
     sal_Char ConvStarSymbolCharToStarBats( sal_Unicode c );
     sal_Unicode ConvStarBatsCharToStarSymbol( sal_Char c );
-//STRIP001  sal_Unicode ConvStarMathCharToStarSymbol( sal_Char c );
+    sal_Unicode ConvStarMathCharToStarSymbol( sal_Char c );
     sal_Bool ConvertText( ByteString& rText8, String& rText,
                     xub_StrLen nStart, xub_StrLen nEnd,
                     xub_StrLen nOffset, const SwTxtNode& rNd,
@@ -527,7 +527,7 @@ public:
 
     Sw3IoImp( Sw3Io& );
    ~Sw3IoImp();
-//STRIP001  void SetDoc( SwDoc& r );
+    void SetDoc( SwDoc& r );
     static Sw3IoImp* GetCurrentIo();
     void Reset();
     void Reset2();
@@ -546,8 +546,8 @@ public:
 
     BOOL OpenStreams( BOOL bRdWr = TRUE, BOOL bUseDrawStream = TRUE );
     void CloseStreams();
-//STRIP001  ULONG OpenStreamsForScan( SvStorage *pStor, BOOL bPageStyles );
-//STRIP001  void CloseStreamsForScan();
+    ULONG OpenStreamsForScan( SvStorage *pStor, BOOL bPageStyles );
+    void CloseStreamsForScan();
     BOOL CheckStreams();
     BOOL CheckHeader( sal_Char *pHeader );
     BOOL Good()     { return BOOL( pStrm->GetError() == SVSTREAM_OK ); }
@@ -556,12 +556,12 @@ public:
     BOOL OpenRec( BYTE cType );     // Record oeffnen
     void CloseRec( BYTE cType );    // Record schliessen
     void SkipRec();                 // Record uebergehen
-//STRIP001  void InsertRecordSize( ULONG nPos, ULONG nSize );
-//STRIP001  ULONG GetRecordSize( ULONG nPos );
+    void InsertRecordSize( ULONG nPos, ULONG nSize );
+    ULONG GetRecordSize( ULONG nPos );
     BOOL HasRecSizes() const { return pRecSizes != 0; }
-//STRIP001  void FlushRecSizes();
-//STRIP001  void InRecSizes( ULONG nRecPos );
-//STRIP001  ULONG OutRecSizes();
+    void FlushRecSizes();
+    void InRecSizes( ULONG nRecPos );
+    ULONG OutRecSizes();
     BYTE OpenFlagRec();             // Endeposition eines Flag-Records merken
     void CloseFlagRec();            // Flag-Record schliessen
     void OpenValuePos16( UINT16 );  // Position fuer UINT16-Wert merken
@@ -639,27 +639,27 @@ public:
     void SaveStyleSheets( BOOL bUsed );     // O: StyleSheets
 
                                             // SW3BLOCK.CXX
-//STRIP001  void DetectAndSetFFVersion( SvStorage *pRoot );
-//STRIP001  void InitBlockMode( SvStorage*, BOOL );
-//STRIP001  void ResetBlockMode();
-//STRIP001  ULONG FirstBlockName( String& rShort, String& rLong );
-//STRIP001  ULONG NextBlockName( String& rShort, String& rLong );
-//STRIP001  ULONG GetBlock( const String& rShort, sal_Bool bConvertMode = sal_False );
-//STRIP001  ULONG GetBlockText( const String& rShort, String& rText );
+    void DetectAndSetFFVersion( SvStorage *pRoot );
+    void InitBlockMode( SvStorage*, BOOL );
+    void ResetBlockMode();
+    ULONG FirstBlockName( String& rShort, String& rLong );
+    ULONG NextBlockName( String& rShort, String& rLong );
+    ULONG GetBlock( const String& rShort, sal_Bool bConvertMode = sal_False );
+    ULONG GetBlockText( const String& rShort, String& rText );
     BOOL   CheckPersist();                  // Doc mit SvPersist versehen
-//STRIP001  void   ClearPersist();                  // SvPersist freigeben
-//STRIP001  ULONG GetBlockMacroTable( const String& rShort,
-//STRIP001                            SvxMacroTableDtor& rMacroTbl );
+    void   ClearPersist();                  // SvPersist freigeben
+    ULONG GetBlockMacroTable( const String& rShort,
+                          SvxMacroTableDtor& rMacroTbl );
 
                                             // SW3DOC.CXX
     void   LoadDocContents( SwPaM* );       // I: Dokumentinhalt
     void   SaveDocContents( SwPaM&, const String* = NULL );
-//STRIP001  void   LoadDocText( String& );          // I: nur Text eines Docs lesen
+    void   LoadDocText( String& );          // I: nur Text eines Docs lesen
     USHORT GetStreamFlags();                // I: Stream-Flags laden
     void   InHeader( BOOL bReadRecSizes=FALSE); // I: Dateikopf
     void   OutHeader( ULONG nRecSzPos=0UL );    // O: Dateikopf
-//STRIP001  void   OutRecordSizesPos( ULONG nRecSzPos );
-//STRIP001  BOOL   InHeaderForScan( BOOL bReadRecSizes=FALSE );
+    void   OutRecordSizesPos( ULONG nRecSzPos );
+    BOOL   InHeaderForScan( BOOL bReadRecSizes=FALSE );
 
                                             // SW3FIELD.CXX
     SwField* InField();                     // I: Feld
@@ -687,7 +687,7 @@ public:
     void   CollectFlyFrms( const SwPaM* );  // vor Ausgabe: alle FlyFrms finden
     void   FreeFlyFrms();                   // nach Ausgabe. Infos freigeben
     SwFmt* FindFlyFrm( ULONG nNodeId );     // O: absatzgebundenen Fly suchen
-//STRIP001  void   InMacroTbl();                    // I: globale Makros
+    void   InMacroTbl();                    // I: globale Makros
     void   OutMacroTbl();                   // O: globale Makros
     void   InDictionary();                  // I: Woerterbuecher (Online-Spl.)
     void   OutDictionary();                 // O: Woerterbuecher (Online-Spl.)
@@ -697,7 +697,7 @@ public:
     void   OutDBName();                     // O: Datenbankname
     void   InStringPool( BYTE, Sw3StringPool& );
     void   OutStringPool( BYTE, Sw3StringPool& );
-//STRIP001  void   InPasswd();                      // I: Passwort
+    void   InPasswd();                      // I: Passwort
     void   SetPasswd( const String& rPass );// IO: Passwort setzen
                                             // O: TOX- und Bookmark-Bereiche suchen
     void   CollectMarks( SwPaM*, BOOL bPageStylesOnly );
@@ -714,12 +714,12 @@ public:
 
                                             // SW3NODES.CXX
     void   OutNodeFlyFrames( ULONG nNdId );// O: Absatz- und Zeichen-Flys
-//STRIP001  void   ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
-//STRIP001                                xub_StrLen nEnd, USHORT nCount );
+    void   ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
+                            xub_StrLen nEnd, USHORT nCount );
     void   ConvertText( SwTxtNode& rNd, const ByteString& rText8,
                         xub_StrLen, SvUShorts*, SvXub_StrLens* );   // I: Zeichensatz-Konversion
     void   InTxtNode( SwTxtNode*, SwNodeIndex&, xub_StrLen, BYTE = 0 );
-//STRIP001  void   InTxtNodeText( String& rText );  // I: Nur Text eines TxtNodes lesen
+    void   InTxtNodeText( String& rText );  // I: Nur Text eines TxtNodes lesen
     void   OutTxtNode( SwCntntNode&, xub_StrLen, xub_StrLen, ULONG );
     void   OutEmptyTxtNode( ULONG nNodeIdx=0, BOOL bNodeMarks=FALSE );
                                             // I: hartes Attribut
@@ -745,8 +745,8 @@ public:
                       const ImageMap *pIMap, BOOL bIsMap );
 
                                             // I/O: Contour
-//STRIP001  PolyPolygon *InContour();
-//STRIP001  void OutContour( const PolyPolygon& rPoly );
+    PolyPolygon *InContour();
+    void OutContour( const PolyPolygon& rPoly );
 
                                             // SW3NUM.CXX
     void   InNumFmt( SwNumFmt& rFmt );      // I: Numerierungs-Format
@@ -783,7 +783,7 @@ public:
                                             // SW3SECTN.CXX
     void   InContents( SwNodeIndex&, xub_StrLen=0, BOOL=TRUE, BYTE=0, BOOL=FALSE );
     SwStartNode& InContents();              // I: neue Section anlegen
-//STRIP001  String InContentsText();                // I: Section als String einlesen
+    String InContentsText();                // I: Section als String einlesen
     void   OutContents( SwPaM* );           // O: per PaM definierter Bereich
     void   OutContents( const SwNodeIndex& );   // O: abgeschlossener Bereich
                                             // O: contents
@@ -805,7 +805,7 @@ public:
 
                                             // SW3REDLIN.CXX
 /*N*/   void InRedline(); //SW50.SDW                        // I: Redline
-//STRIP001  void OutRedline( const SwRedline& rRedline );
+        void OutRedline( const SwRedline& rRedline );
 /*N*/   void InRedlines(); //SW50.SDW
     void OutRedlines( BOOL bPageStyles );
     void CollectRedlines( SwPaM* pPaM, BOOL bPageOnly );
@@ -825,18 +825,18 @@ public:
     void InDocDummies();
     void OutDocDummies();
 
-//STRIP001  void InPagePreViewPrintData();
+    void InPagePreViewPrintData();
     void OutPagePreViewPrintData();
 
     // die folgenden Methoden sind zum Suchen von Sections
-//STRIP001  void GetSectionList( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001  void ScanContents( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001  void ScanTableLine( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001  void ScanFormat( BYTE cKind, SvStrings& rSectionList, SvStringsDtor& rBookmarks );
-//STRIP001  void ScanAttr( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
+    void GetSectionList( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
+    void ScanContents( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
+    void ScanTableLine( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
+//STRIP001     void ScanFormat( BYTE cKind, SvStrings& rSectionList, SvStringsDtor& rBookmarks );
+//STRIP001     void ScanAttr( SvStrings& rSectionList, SvStringsDtor& rBookmarks );
 
-//STRIP001  void GetMacroTable( SvxMacroTableDtor& rMacroTbl );
-//STRIP001  void ScanMacroTbl( SvxMacroTableDtor& rMacroTbl );
+    void GetMacroTable( SvxMacroTableDtor& rMacroTbl );
+    void ScanMacroTbl( SvxMacroTableDtor& rMacroTbl );
 
 #ifdef TEST_HUGE_DOCS
 //STRIP001  void InHugeRecord();

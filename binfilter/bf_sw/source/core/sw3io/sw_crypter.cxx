@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_crypter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:49 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,73 +58,75 @@
  *
  *
  ************************************************************************/
+#pragma hdrstop
+
+#include <string.h>
+#ifndef _STRING_HXX //autogen
+#include <tools/string.hxx>
+#endif
+
+#ifndef _CRYPTER_HXX
+#include <crypter.hxx>
+#endif
+
 namespace binfilter {
 
 
-//STRIP001 #pragma hdrstop
-//STRIP001
-//STRIP001 #include <string.h>
-//STRIP001 #ifndef _STRING_HXX //autogen
-//STRIP001 #include <tools/string.hxx>
-//STRIP001 #endif
-//STRIP001
-//STRIP001 #ifndef _CRYPTER_HXX
-//STRIP001 #include <crypter.hxx>
-//STRIP001 #endif
-//STRIP001
-//STRIP001 Crypter::Crypter( const ByteString& r )
-//STRIP001 {
-//STRIP001  // Dies sind Randomwerte, die konstant zur Verschluesselung
-//STRIP001  // des Passworts verwendet werden. Durch die Verwendung eines
-//STRIP001  // verschluesselten Passworts wird vermieden, dass das Passwort
-//STRIP001  // im RAM gehalten wird.
-//STRIP001  static const BYTE cEncode[] =
-//STRIP001  { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
-//STRIP001    0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
-//STRIP001
-//STRIP001  xub_StrLen nLen = r.Len();
-//STRIP001  if( nLen > PASSWDLEN ) nLen = PASSWDLEN;
-//STRIP001  ByteString aPasswd( r );
-//STRIP001  if( nLen > PASSWDLEN )
-//STRIP001      aPasswd.Erase( nLen );
-//STRIP001  else
-//STRIP001      aPasswd.Expand( PASSWDLEN, ' ' );
-//STRIP001  memcpy( cPasswd, cEncode, PASSWDLEN );
-//STRIP001  Encrypt( aPasswd );
-//STRIP001  memcpy( cPasswd, aPasswd.GetBuffer(), PASSWDLEN );
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 void Crypter::Encrypt( ByteString& r ) const
-//STRIP001 {
-//STRIP001  xub_StrLen nLen = r.Len();
-//STRIP001  if( !nLen )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  xub_StrLen nCryptPtr = 0;
-//STRIP001  BYTE cBuf[ PASSWDLEN ];
-//STRIP001  memcpy( cBuf, cPasswd, PASSWDLEN );
-//STRIP001  BYTE* pSrc = (BYTE*)r.GetBufferAccess();
-//STRIP001  BYTE* p = cBuf;
-//STRIP001
-//STRIP001  while( nLen-- )
-//STRIP001  {
-//STRIP001      *pSrc = *pSrc ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) );
-//STRIP001      *p += ( nCryptPtr < (PASSWDLEN-1) ) ? *(p+1) : cBuf[ 0 ];
-//STRIP001      if( !*p ) *p += 1;
-//STRIP001      p++;
-//STRIP001      if( ++nCryptPtr >= PASSWDLEN ) nCryptPtr = 0, p = cBuf;
-//STRIP001      pSrc++;
-//STRIP001  }
-//STRIP001 }
-//STRIP001
-//STRIP001
-//STRIP001
-//STRIP001 void Crypter::Decrypt( ByteString& r ) const
-//STRIP001 {
-//STRIP001  Encrypt( r );
-//STRIP001 }
+
+
+Crypter::Crypter( const ByteString& r )
+{
+    // Dies sind Randomwerte, die konstant zur Verschluesselung
+    // des Passworts verwendet werden. Durch die Verwendung eines
+    // verschluesselten Passworts wird vermieden, dass das Passwort
+    // im RAM gehalten wird.
+    static const BYTE cEncode[] =
+    { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
+      0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
+
+    xub_StrLen nLen = r.Len();
+    if( nLen > PASSWDLEN ) nLen = PASSWDLEN;
+    ByteString aPasswd( r );
+    if( nLen > PASSWDLEN )
+        aPasswd.Erase( nLen );
+    else
+        aPasswd.Expand( PASSWDLEN, ' ' );
+    memcpy( cPasswd, cEncode, PASSWDLEN );
+    Encrypt( aPasswd );
+    memcpy( cPasswd, aPasswd.GetBuffer(), PASSWDLEN );
+}
+
+
+
+void Crypter::Encrypt( ByteString& r ) const
+{
+    xub_StrLen nLen = r.Len();
+    if( !nLen )
+        return ;
+
+    xub_StrLen nCryptPtr = 0;
+    BYTE cBuf[ PASSWDLEN ];
+    memcpy( cBuf, cPasswd, PASSWDLEN );
+    BYTE* pSrc = (BYTE*)r.GetBufferAccess();
+    BYTE* p = cBuf;
+
+    while( nLen-- )
+    {
+        *pSrc = *pSrc ^ ( *p ^ (BYTE) ( cBuf[ 0 ] * nCryptPtr ) );
+        *p += ( nCryptPtr < (PASSWDLEN-1) ) ? *(p+1) : cBuf[ 0 ];
+        if( !*p ) *p += 1;
+        p++;
+        if( ++nCryptPtr >= PASSWDLEN ) nCryptPtr = 0, p = cBuf;
+        pSrc++;
+    }
+}
+
+
+
+void Crypter::Decrypt( ByteString& r ) const
+{
+    Encrypt( r );
+}
 
 
 

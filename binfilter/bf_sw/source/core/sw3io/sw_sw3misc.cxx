@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -526,26 +526,26 @@ public:
 
 // Makros
 
-//STRIP001 void Sw3IoImp::InMacroTbl()
-//STRIP001 {
-//STRIP001  OpenRec( SWG_MACROTBL );
-//STRIP001  while( BytesLeft() )
-//STRIP001  {
-//STRIP001      OpenRec( SWG_MACRO );
-//STRIP001      sal_uInt16 nKey, nScriptType = STARBASIC;
-//STRIP001      String aLib, aMac;
-//STRIP001      *pStrm >> nKey;
-//STRIP001      InString( *pStrm, aLib );
-//STRIP001      InString( *pStrm, aMac );
-//STRIP001
-//STRIP001      if( SWG_SVXMACROS <= nVersion )
-//STRIP001          *pStrm >> nScriptType;
-//STRIP001      pDoc->SetGlobalMacro( nKey, SvxMacro( aMac, aLib,
-//STRIP001                                      (ScriptType)nScriptType ) );
-//STRIP001      CloseRec( SWG_MACRO );
-//STRIP001  }
-//STRIP001  CloseRec( SWG_MACROTBL );
-//STRIP001 }
+void Sw3IoImp::InMacroTbl()
+{
+    OpenRec( SWG_MACROTBL );
+    while( BytesLeft() )
+    {
+        OpenRec( SWG_MACRO );
+        sal_uInt16 nKey, nScriptType = STARBASIC;
+        String aLib, aMac;
+        *pStrm >> nKey;
+        InString( *pStrm, aLib );
+        InString( *pStrm, aMac );
+
+        if( SWG_SVXMACROS <= nVersion )
+            *pStrm >> nScriptType;
+        pDoc->SetGlobalMacro( nKey, SvxMacro( aMac, aLib,
+                                        (ScriptType)nScriptType ) );
+        CloseRec( SWG_MACRO );
+    }
+    CloseRec( SWG_MACROTBL );
+}
 
 /*N*/ void Sw3IoImp::OutMacroTbl()
 /*N*/ {
@@ -658,7 +658,7 @@ public:
 /*N*/ {
 /*N*/   OpenRec( cType );
 /*N*/   if( nVersion < SWG_POOLIDS )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      rPool.LoadOld( *pStrm );
+            rPool.LoadOld( *pStrm );
 /*N*/   else
 /*N*/       rPool.Load( *pStrm, nVersion );
 /*N*/   CloseRec( cType );
@@ -673,37 +673,37 @@ public:
 /*N*/   CloseRec( cType );
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::InPasswd()
-//STRIP001 {
-//STRIP001  OpenRec( SWG_PASSWORD );
-//STRIP001  if( nVersion >= SWG_CRYPT )
-//STRIP001  {
-//STRIP001      sal_uInt8 cType;
-//STRIP001      ByteString aPasswd;
-//STRIP001      *pStrm >> cType;
-//STRIP001      // TODO: unicode: It seems that we had a bug here, because the
-//STRIP001      // password was converted from the source to the system encoding
-//STRIP001      // before it was decrypted. We now decrypt it first.
-//STRIP001      pStrm->ReadByteString( aPasswd );
-//STRIP001         /*
-//STRIP001         // Datum und Uhrzeit als Passwort fuers Passwort nehmen
-//STRIP001      sal_Char buf[ 17 ];
-//STRIP001      snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
-//STRIP001      Crypter( buf ).Decrypt( aPasswd );
-//STRIP001      switch( cType )
-//STRIP001      {
-//STRIP001          case 1:
-//STRIP001              {
-//STRIP001                  ::com::sun::star::uno::Sequence <sal_Int8> aPWD;
-//STRIP001                  SvPasswordHelper::GetHashPassword( aPWD,
-//STRIP001                                      String( aPasswd, eSrcSet ));
-//STRIP001                  pDoc->ChgSectionPasswd( aPWD );
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001         }*/
-//STRIP001  }
-//STRIP001  CloseRec( SWG_PASSWORD );
-//STRIP001 }
+void Sw3IoImp::InPasswd()
+{
+    OpenRec( SWG_PASSWORD );
+    if( nVersion >= SWG_CRYPT )
+    {
+        sal_uInt8 cType;
+        ByteString aPasswd;
+        *pStrm >> cType;
+        // TODO: unicode: It seems that we had a bug here, because the
+        // password was converted from the source to the system encoding
+        // before it was decrypted. We now decrypt it first.
+        pStrm->ReadByteString( aPasswd );
+        /*
+        // Datum und Uhrzeit als Passwort fuers Passwort nehmen
+        sal_Char buf[ 17 ];
+        snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
+        Crypter( buf ).Decrypt( aPasswd );
+        switch( cType )
+        {
+            case 1:
+                {
+                    ::com::sun::star::uno::Sequence <sal_Int8> aPWD;
+                    SvPasswordHelper::GetHashPassword( aPWD,
+                                        String( aPasswd, eSrcSet ));
+                    pDoc->ChgSectionPasswd( aPWD );
+                    break;
+                }
+        }*/
+    }
+    CloseRec( SWG_PASSWORD );
+}
 
 /*N*/ int sw3mark_compare( const Sw3Mark& r1, const Sw3Mark& r2 )
 /*N*/ {
@@ -1306,7 +1306,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       // SetFirstTabPos modifies the patterns
 /*N*/       // TODO:.is code that OK?
 /*N*/       if( bSetTabs && (cFlags & 0x10) != 0 )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 aForm.SetFirstTabPos( nFirstTabPos );
+/*?*/           aForm.SetFirstTabPos( nFirstTabPos );
 /*N*/       else
 /*N*/           //fill tab stop positions into the patterns
 /*N*/           aForm.AdjustTabStops(*pDoc);
@@ -2871,40 +2871,40 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   CloseRec( SWG_DOCDUMMIES );
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::InPagePreViewPrintData()
-//STRIP001 {
-//STRIP001  OpenRec( SWG_PGPREVIEWPRTDATA );
-//STRIP001
-//STRIP001  sal_uInt8 cFlags;
-//STRIP001  sal_uInt8 nRow, nCol;
-//STRIP001  sal_uInt32 nLeftSpace, nRightSpace, nTopSpace, nBottomSpace,
-//STRIP001          nHorzSpace, nVertSpace;
-//STRIP001
-//STRIP001  *pStrm  >> cFlags
-//STRIP001          >> nRow
-//STRIP001          >> nCol
-//STRIP001          >> nLeftSpace
-//STRIP001          >> nRightSpace
-//STRIP001          >> nTopSpace
-//STRIP001          >> nBottomSpace
-//STRIP001          >> nHorzSpace
-//STRIP001          >> nVertSpace
-//STRIP001          ;
-//STRIP001  CloseRec( SWG_PGPREVIEWPRTDATA );
-//STRIP001
-//STRIP001  SwPagePreViewPrtData aData;
-//STRIP001  aData.SetLeftSpace( nLeftSpace );
-//STRIP001  aData.SetRightSpace( nRightSpace );
-//STRIP001  aData.SetTopSpace( nTopSpace );
-//STRIP001  aData.SetBottomSpace( nBottomSpace );
-//STRIP001  aData.SetHorzSpace( nHorzSpace );
-//STRIP001  aData.SetVertSpace( nVertSpace );
-//STRIP001  aData.SetRow( nRow );
-//STRIP001  aData.SetCol( nCol );
-//STRIP001  aData.SetLandscape( 0 != ( cFlags & 0x01 ) );
-//STRIP001  aData.SetStretch( 0 != ( cFlags & 0x02 ) );
-//STRIP001  pDoc->SetPreViewPrtData( &aData );
-//STRIP001 }
+void Sw3IoImp::InPagePreViewPrintData()
+{
+    OpenRec( SWG_PGPREVIEWPRTDATA );
+
+    sal_uInt8 cFlags;
+    sal_uInt8 nRow, nCol;
+    sal_uInt32 nLeftSpace, nRightSpace, nTopSpace, nBottomSpace,
+            nHorzSpace, nVertSpace;
+
+    *pStrm  >> cFlags
+            >> nRow
+            >> nCol
+            >> nLeftSpace
+            >> nRightSpace
+            >> nTopSpace
+            >> nBottomSpace
+            >> nHorzSpace
+            >> nVertSpace
+            ;
+    CloseRec( SWG_PGPREVIEWPRTDATA );
+
+    SwPagePreViewPrtData aData;
+    aData.SetLeftSpace( nLeftSpace );
+    aData.SetRightSpace( nRightSpace );
+    aData.SetTopSpace( nTopSpace );
+    aData.SetBottomSpace( nBottomSpace );
+    aData.SetHorzSpace( nHorzSpace );
+    aData.SetVertSpace( nVertSpace );
+    aData.SetRow( nRow );
+    aData.SetCol( nCol );
+    aData.SetLandscape( 0 != ( cFlags & 0x01 ) );
+    aData.SetStretch( 0 != ( cFlags & 0x02 ) );
+    pDoc->SetPreViewPrtData( &aData );
+}
 
 /*N*/ void Sw3IoImp::OutPagePreViewPrintData()
 /*N*/ {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: redline.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:02 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -267,14 +267,14 @@ public:
         { return *pRedlineData != rCmp; }
     void SetAutoFmtFlag()               { pRedlineData->SetAutoFmtFlag(); }
 
-//STRIP001  USHORT GetStackCount() const;
+    USHORT GetStackCount() const;
 //STRIP001  USHORT GetAuthor( USHORT nPos ) const;
     const String& GetAuthorString( USHORT nPos = 0 ) const;
-//STRIP001  const DateTime& GetTimeStamp( USHORT nPos ) const;
-//STRIP001  SwRedlineType GetRealType( USHORT nPos ) const;
-//STRIP001  SwRedlineType GetType( USHORT nPos ) const
-//STRIP001      { return SwRedlineType( GetRealType( nPos ) & REDLINE_NO_FLAG_MASK); }
-//STRIP001  const String& GetComment( USHORT nPos ) const;
+    const DateTime& GetTimeStamp( USHORT nPos ) const;
+    SwRedlineType GetRealType( USHORT nPos ) const;
+    SwRedlineType GetType( USHORT nPos ) const
+        { return SwRedlineType( GetRealType( nPos ) & REDLINE_NO_FLAG_MASK); }
+    const String& GetComment( USHORT nPos ) const;
 
     const String& GetComment() const    { return pRedlineData->GetComment(); }
     void SetComment( const String& rS ) { pRedlineData->SetComment( rS ); }

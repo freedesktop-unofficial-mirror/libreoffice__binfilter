@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_macrofld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:37 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,8 @@
 #include <unofldmid.h>
 #endif
 namespace binfilter {
+
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -163,10 +165,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwMacroFieldType* pT
     Beschreibung: LibName und MacroName
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwMacroField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  aMacro = rStr;
-//STRIP001 }
+void SwMacroField::SetPar1(const String& rStr)
+{
+    aMacro = rStr;
+}
 
 /*N*/ const String& SwMacroField::GetPar1() const
 /*N*/ {
@@ -177,10 +179,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwMacroFieldType* pT
     Beschreibung: Macrotext
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwMacroField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  aText = rStr;
-//STRIP001 }
+void SwMacroField::SetPar2(const String& rStr)
+{
+    aText = rStr;
+}
 
 /*N*/ String SwMacroField::GetPar2() const
 /*N*/ {
@@ -212,26 +214,26 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwMacroFieldType* pT
 /*-----------------05.03.98 13:38-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001  String sTmp;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      CreateMacroString( aMacro, ::GetString(rAny, sTmp), GetLibName());
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      ::GetString( rAny, aText );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      CreateMacroString(aMacro, GetMacroName(), ::GetString(rAny, sTmp) );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    String sTmp;
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        CreateMacroString( aMacro, ::binfilter::GetString(rAny, sTmp), GetLibName());
+        break;
+    case FIELD_PROP_PAR2:
+        ::binfilter::GetString( rAny, aText );
+        break;
+    case FIELD_PROP_PAR3:
+        CreateMacroString(aMacro, GetMacroName(), ::binfilter::GetString(rAny, sTmp) );
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return TRUE;
+}
 
 // create an internally used macro name from the library and macro name parts
 /*N*/ void SwMacroField::CreateMacroString(

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -137,38 +137,38 @@ using namespace ::rtl;
 /*N*/   return Expand();
 /*N*/ }
 
-//STRIP001 double SwUserField::GetValue() const
-//STRIP001 {
-//STRIP001  return ((SwUserFieldType*)GetTyp())->GetValue();
-//STRIP001 }
+double SwUserField::GetValue() const
+{
+    return ((SwUserFieldType*)GetTyp())->GetValue();
+}
 
-//STRIP001 void SwUserField::SetValue( const double& rVal )
-//STRIP001 {
-//STRIP001  ((SwUserFieldType*)GetTyp())->SetValue(rVal);
-//STRIP001 }
+void SwUserField::SetValue( const double& rVal )
+{
+    ((SwUserFieldType*)GetTyp())->SetValue(rVal);
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Name
  --------------------------------------------------------------------*/
 
-//STRIP001 const String& SwUserField::GetPar1() const
-//STRIP001 {
-//STRIP001  return ((SwUserFieldType*)GetTyp())->GetName();
-//STRIP001 }
+const String& SwUserField::GetPar1() const
+{
+    return ((SwUserFieldType*)GetTyp())->GetName();
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Content
  --------------------------------------------------------------------*/
 
-//STRIP001 String SwUserField::GetPar2() const
-//STRIP001 {
-//STRIP001  return ((SwUserFieldType*)GetTyp())->GetContent(GetFormat());
-//STRIP001 }
+String SwUserField::GetPar2() const
+{
+    return ((SwUserFieldType*)GetTyp())->GetContent(GetFormat());
+}
 
-//STRIP001 void SwUserField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  ((SwUserFieldType*)GetTyp())->SetContent(rStr, GetFormat());
-//STRIP001 }
+void SwUserField::SetPar2(const String& rStr)
+{
+    ((SwUserFieldType*)GetTyp())->SetContent(rStr, GetFormat());
+}
 
 /*N*/ sal_uInt16 SwUserField::GetSubType() const
 /*N*/ {
@@ -349,10 +349,10 @@ using namespace ::rtl;
 /*?*/           SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
 /*?*/
 /*?*/           if (pFormatter->IsNumberFormat(rStr, nFmt, fValue))
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                SetValue(fValue);
-//STRIP001 /*?*/                aContent.Erase();
-//STRIP001 /*?*/                DoubleToString(aContent, fValue, nFmt);
+/*?*/           {
+/*?*/               SetValue(fValue);
+/*?*/               aContent.Erase();
+/*?*/               DoubleToString(aContent, fValue, nFmt);
 /*?*/           }
 /*N*/       }
 /*N*/

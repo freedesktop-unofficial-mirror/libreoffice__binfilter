@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3io.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:58 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,9 +96,9 @@ public:
     Sw3Io( SwDoc& );
    ~Sw3Io();
     Sw3IoImp* GetImp() { return pImp; }
-//STRIP001  void  SetDoc( SwDoc& );
+    void  SetDoc( SwDoc& );
     void  SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite=TRUE );
-//STRIP001  void  SetSw31Export( BOOL b31 );
+    void  SetSw31Export( BOOL b31 );
 
      SvStorage* GetStorage();
     void  HandsOff();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,37 +112,37 @@ extern String GetSWGVersion();
 //////////////////////////////////////////////////////////////////////////////
 
 
-//STRIP001 void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
-//STRIP001 {
-//STRIP001  // bei "alten" Dokumenten muss das an eine Tabelle gebundene
-//STRIP001  // Chart-Object sonderbehandelt werden. Die Verbindung von
-//STRIP001  // Tabelle zum ChartObject erfolgt weiterhin ueber den Namen,
-//STRIP001  // aber der wird nicht mehr im FlyFormat, sondern direkt
-//STRIP001  // beim OLE-Node gespeichert. FlyFrames koennen jetzt benannt
-//STRIP001  // werden (Name steht im FlyFormat!)
-//STRIP001
-//STRIP001  // durch alle Tabellen
-//STRIP001  for( USHORT n = pDoc->GetTblFrmFmts()->Count(); n; )
-//STRIP001  {
-//STRIP001      const String& rTblNm = (*pDoc->GetTblFrmFmts())[ --n ]->GetName();
-//STRIP001      for( USHORT i = pDoc->GetSpzFrmFmts()->Count(); i; )
-//STRIP001      {
-//STRIP001          // und durch alle Flys
-//STRIP001          SwFmt *pFmt = (*pDoc->GetSpzFrmFmts())[ --i ];
-//STRIP001          if( RES_FLYFRMFMT == pFmt->Which() && pFmt->GetName() == rTblNm )
-//STRIP001          {
-//STRIP001              const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
-//STRIP001              SwOLENode* pNd;
-//STRIP001              if( pIdx && 0 != ( pNd =
-//STRIP001                  pDoc->GetNodes()[ pIdx->GetIndex() + 1 ]->GetOLENode() ))
-//STRIP001              {
-//STRIP001                  pNd->SetChartTblName( rTblNm );
-//STRIP001                  pFmt->SetName( pDoc->GetUniqueOLEName() );
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
+{
+    // bei "alten" Dokumenten muss das an eine Tabelle gebundene
+    // Chart-Object sonderbehandelt werden. Die Verbindung von
+    // Tabelle zum ChartObject erfolgt weiterhin ueber den Namen,
+    // aber der wird nicht mehr im FlyFormat, sondern direkt
+    // beim OLE-Node gespeichert. FlyFrames koennen jetzt benannt
+    // werden (Name steht im FlyFormat!)
+
+    // durch alle Tabellen
+    for( USHORT n = pDoc->GetTblFrmFmts()->Count(); n; )
+    {
+        const String& rTblNm = (*pDoc->GetTblFrmFmts())[ --n ]->GetName();
+        for( USHORT i = pDoc->GetSpzFrmFmts()->Count(); i; )
+        {
+            // und durch alle Flys
+            SwFmt *pFmt = (*pDoc->GetSpzFrmFmts())[ --i ];
+            if( RES_FLYFRMFMT == pFmt->Which() && pFmt->GetName() == rTblNm )
+            {
+                const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
+                SwOLENode* pNd;
+                if( pIdx && 0 != ( pNd =
+                    pDoc->GetNodes()[ pIdx->GetIndex() + 1 ]->GetOLENode() ))
+                {
+                    pNd->SetChartTblName( rTblNm );
+                    pFmt->SetName( pDoc->GetUniqueOLEName() );
+                }
+            }
+        }
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -241,7 +241,7 @@ extern String GetSWGVersion();
 /*N*/               InStringPool( cType, aStringPool );
 /*N*/               break;
 /*N*/           case SWG_PASSWORD:
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              InPasswd(); break;
+                    InPasswd(); break;
 /*N*/           case SWG_JOBSETUP:
 /*N*/               if( bNormal && !bInsert ) InJobSetup();
 /*N*/               else SkipRec(); break;
@@ -250,7 +250,7 @@ extern String GetSWGVersion();
 /*N*/               break;
 /*?*/           case SWG_PGPREVIEWPRTDATA:
 /*?*/               if( bNormal && !bInsert )
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  InPagePreViewPrintData();
+                        InPagePreViewPrintData();
 /*?*/               else
 /*?*/                   SkipRec();
 /*?*/               break;
@@ -300,7 +300,7 @@ extern String GetSWGVersion();
 /*N*/               }
 /*N*/               break;
 /*?*/           case SWG_MACROTBL:
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              if( bNormal ) InMacroTbl(); else SkipRec();
+                    if( bNormal ) InMacroTbl(); else SkipRec();
 /*?*/               break;
 /*N*/           case SWG_DICTIONARY:
 /*N*/               if( bNormal && IsVersion( SWG_DESKTOP40 ) )
@@ -350,7 +350,7 @@ extern String GetSWGVersion();
 /*N*/               InBookmarks();
 /*N*/               break;
 /*N*/           case SWG_REDLINES:
-                    /*N {DBG_ASSERT(0, "STRIP");} */ InRedlines(); //SW50.SDW
+                    InRedlines(); //SW50.SDW
 /*?*/               break;
 /*N*/           case SWG_CONTENTS:
 /*N*/               if( bNormal )
@@ -416,7 +416,7 @@ extern String GetSWGVersion();
 /*N*/               // werden (Name steht im FlyFormat!)
 /*N*/               if( nVersion < SWG_OLENAME && pDoc->GetTblFrmFmts()->Count() &&
 /*N*/                   pDoc->GetSpzFrmFmts()->Count() )
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                      ::lcl_sw3doc_ChgChartName( pDoc );
+                        lcl_sw3doc_ChgChartName( pDoc );
 /*N*/
 /*N*/               pDoc->SetLoaded( TRUE );
 /*N*/           }
@@ -575,7 +575,7 @@ extern String GetSWGVersion();
 /*N*/
 /*N*/   ULONG nRecSzPos = 0;
 /*N*/   if( !nRes && HasRecSizes() && !IsSw31Or40Export() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      nRecSzPos = OutRecSizes();
+                nRecSzPos = OutRecSizes();
 /*N*/
 /*N*/   OpenRec( SWG_EOF );
 /*N*/   CloseRec( SWG_EOF );
@@ -605,35 +605,35 @@ extern String GetSWGVersion();
 // String angefuegt.
 
 
-//STRIP001 void Sw3IoImp::LoadDocText( String& rText )
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  Reset2();
-//STRIP001  pStrm->Seek( 0 );
-//STRIP001  OutputMode( FALSE );
-//STRIP001  InHeader( TRUE );
-//STRIP001  if( ( nFileFlags & SWGF_BAD_FILE )
-//STRIP001   || ( nVersion < SWG_DDESEP ) )
-//STRIP001      Error( ERR_SWG_READ_ERROR );
-//STRIP001
-//STRIP001  BOOL bDone = BOOL( !Good() );
-//STRIP001  while( !bDone )
-//STRIP001  {
-//STRIP001      BYTE cType = Peek();
-//STRIP001      if( !Good() || pStrm->IsEof() )
-//STRIP001          bDone = TRUE;
-//STRIP001      else switch( cType )
-//STRIP001      {
-//STRIP001          case SWG_EOF:
-//STRIP001              bDone = TRUE; break;
-//STRIP001          case SWG_CONTENTS:
-//STRIP001              rText += InContentsText();
-//STRIP001              break;
-//STRIP001          default:
-//STRIP001              SkipRec();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+void Sw3IoImp::LoadDocText( String& rText )
+{
+    rText.Erase();
+    Reset2();
+    pStrm->Seek( 0 );
+    OutputMode( FALSE );
+    InHeader( TRUE );
+    if( ( nFileFlags & SWGF_BAD_FILE )
+     || ( nVersion < SWG_DDESEP ) )
+        Error( ERR_SWG_READ_ERROR );
+
+    BOOL bDone = BOOL( !Good() );
+    while( !bDone )
+    {
+        BYTE cType = Peek();
+        if( !Good() || pStrm->IsEof() )
+            bDone = TRUE;
+        else switch( cType )
+        {
+            case SWG_EOF:
+                bDone = TRUE; break;
+            case SWG_CONTENTS:
+                rText += InContentsText();
+                break;
+            default:
+                SkipRec();
+        }
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -761,7 +761,7 @@ extern String GetSWGVersion();
 /*N*/ #endif
 /*N*/
 /*N*/   if( nRecSzPos!= 0 && bReadRecSizes && !nRes && IsVersion(SWG_RECSIZES) )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      InRecSizes( nRecSzPos );
+                    InRecSizes( nRecSzPos );
 /*N*/ }
 
 
@@ -846,15 +846,15 @@ extern String GetSWGVersion();
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::OutRecordSizesPos( ULONG nRecSzPos )
-//STRIP001 {
-//STRIP001  ULONG nPos = pStrm->Tell();
-//STRIP001
-//STRIP001  pStrm->Seek( 16UL );
-//STRIP001  *pStrm << (UINT32)nRecSzPos;
-//STRIP001
-//STRIP001  pStrm->Seek( nPos );
-//STRIP001 }
+void Sw3IoImp::OutRecordSizesPos( ULONG nRecSzPos )
+{
+    ULONG nPos = pStrm->Tell();
+
+    pStrm->Seek( 16UL );
+    *pStrm << (UINT32)nRecSzPos;
+
+    pStrm->Seek( nPos );
+}
 
 /*#pragma SEG_FUNCDEF(sw3doc_0b)
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: reffld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:06 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,7 +144,7 @@ public:
 
     // SubType erfragen/setzen
     virtual USHORT      GetSubType() const;
-//STRIP001  virtual void        SetSubType( USHORT n );
+    virtual void        SetSubType( USHORT n );
 
     // SequenceNo erfragen/setzen (nur fuer REF_SEQUENCEFLD interressant)
     USHORT              GetSeqNo() const        { return nSeqNo; }
@@ -152,9 +152,9 @@ public:
 
     // Name der Referenz
     virtual const String& GetPar1() const;
-//STRIP001  virtual void        SetPar1(const String& rStr);
+    virtual void        SetPar1(const String& rStr);
 
-//STRIP001  virtual String      GetPar2() const;
+    virtual String      GetPar2() const;
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 

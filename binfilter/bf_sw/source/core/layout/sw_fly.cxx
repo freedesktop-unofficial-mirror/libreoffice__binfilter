@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:51 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2638,17 +2638,17 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 //STRIP001  return bRet;
 //STRIP001 }
 
-//STRIP001 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
-//STRIP001                              SwTwips &rPos ) const
-//STRIP001 {
-//STRIP001  ASSERT( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
-//STRIP001  if( !GetAnchor() )
-//STRIP001      return FALSE;
-//STRIP001  rHori = HORI_NONE;
-//STRIP001  rRel = FRAME;
-//STRIP001  rPos = Frm().Left() - GetAnchor()->Frm().Left();
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
+                                SwTwips &rPos ) const
+{
+    ASSERT( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
+    if( !GetAnchor() )
+        return FALSE;
+    rHori = HORI_NONE;
+    rRel = FRAME;
+    rPos = Frm().Left() - GetAnchor()->Frm().Left();
+    return TRUE;
+}
 
 
 }

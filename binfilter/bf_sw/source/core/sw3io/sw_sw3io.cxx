@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:55 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -339,10 +339,10 @@ namespace binfilter {
 /*N*/  }
 
 
-//STRIP001 void Sw3Io::SetDoc( SwDoc& r )
-//STRIP001 {
-//STRIP001  pImp->SetDoc( r );
-//STRIP001 }
+void Sw3Io::SetDoc( SwDoc& r )
+{
+    pImp->SetDoc( r );
+}
 
 
 /*N*/ void Sw3Io::SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite )
@@ -351,10 +351,10 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void Sw3Io::SetSw31Export( BOOL b31 )
-//STRIP001 {
-//STRIP001  pImp->SetSw31Export( b31 );
-//STRIP001 }
+void Sw3Io::SetSw31Export( BOOL b31 )
+{
+    pImp->SetSw31Export( b31 );
+}
 
 
 //STRIP001 ULONG Sw3Io::LoadStyles( SvStorage* pStor )
@@ -462,67 +462,67 @@ namespace binfilter {
 
 //STRIP001 ULONG Sw3Io::GetSectionList( SvStorage *pStor, SvStrings& rSectionList )
 //STRIP001 {
-//STRIP001  ULONG nRes = pImp->OpenStreamsForScan( pStor, TRUE );
-//STRIP001  if( nRes )
-//STRIP001      return nRes;
+//STRIP001     ULONG nRes = pImp->OpenStreamsForScan( pStor, TRUE );
+//STRIP001     if( nRes )
+//STRIP001         return nRes;
 //STRIP001
-//STRIP001  SvStringsDtor aBookmarks;
+//STRIP001     SvStringsDtor aBookmarks;
 //STRIP001
-//STRIP001  // zuerst die Page-Styles durchsuchen
-//STRIP001  pImp->pPageStyles->Seek( 0L );
-//STRIP001  pImp->pPageStyles->SetBufferSize( SW3_BSR_PAGESTYLES );
-//STRIP001  pImp->pStrm = pImp->pPageStyles;
-//STRIP001  pImp->GetSectionList( rSectionList, aBookmarks );
-//STRIP001  pImp->pStrm = NULL;
-//STRIP001  pImp->CheckIoError( pImp->pPageStyles );
-//STRIP001  pImp->pPageStyles->SetBufferSize( 0 );
+//STRIP001     // zuerst die Page-Styles durchsuchen
+//STRIP001     pImp->pPageStyles->Seek( 0L );
+//STRIP001     pImp->pPageStyles->SetBufferSize( SW3_BSR_PAGESTYLES );
+//STRIP001     pImp->pStrm = pImp->pPageStyles;
+//STRIP001     pImp->GetSectionList( rSectionList, aBookmarks );
+//STRIP001     pImp->pStrm = NULL;
+//STRIP001     pImp->CheckIoError( pImp->pPageStyles );
+//STRIP001     pImp->pPageStyles->SetBufferSize( 0 );
 //STRIP001
-//STRIP001  if( !pImp->nRes )
-//STRIP001  {
-//STRIP001      // und jetzt den Contents-Stream
-//STRIP001      pImp->pContents->Seek( 0L );
-//STRIP001      pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
-//STRIP001      pImp->pStrm = pImp->pContents;
-//STRIP001      pImp->GetSectionList( rSectionList, aBookmarks );
-//STRIP001      pImp->pStrm = NULL;
-//STRIP001      pImp->CheckIoError( pImp->pContents );
-//STRIP001      pImp->pContents->SetBufferSize( 0 );
-//STRIP001  }
+//STRIP001     if( !pImp->nRes )
+//STRIP001     {
+//STRIP001         // und jetzt den Contents-Stream
+//STRIP001         pImp->pContents->Seek( 0L );
+//STRIP001         pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
+//STRIP001         pImp->pStrm = pImp->pContents;
+//STRIP001         pImp->GetSectionList( rSectionList, aBookmarks );
+//STRIP001         pImp->pStrm = NULL;
+//STRIP001         pImp->CheckIoError( pImp->pContents );
+//STRIP001         pImp->pContents->SetBufferSize( 0 );
+//STRIP001     }
 //STRIP001
-//STRIP001  nRes = pImp->nRes;
-//STRIP001  if( nRes )
-//STRIP001      nRes |= ERRCODE_CLASS_READ;
-//STRIP001 //   else if( pImp->nWarn )
-//STRIP001 //       nRes = pImp->nWarn | ERRCODE_CLASS_READ;
+//STRIP001     nRes = pImp->nRes;
+//STRIP001     if( nRes )
+//STRIP001         nRes |= ERRCODE_CLASS_READ;
+//STRIP001 //  else if( pImp->nWarn )
+//STRIP001 //      nRes = pImp->nWarn | ERRCODE_CLASS_READ;
 //STRIP001
-//STRIP001  pImp->CloseStreamsForScan();
+//STRIP001     pImp->CloseStreamsForScan();
 //STRIP001
-//STRIP001  return nRes;
+//STRIP001     return nRes;
 //STRIP001 }
 
 //STRIP001 ULONG Sw3Io::GetMacroTable( SvStorage *pStor, SvxMacroTableDtor& rMacroTbl )
 //STRIP001 {
-//STRIP001  ULONG nRes = pImp->OpenStreamsForScan( pStor, FALSE );
-//STRIP001  if( nRes )
-//STRIP001      return nRes;
+//STRIP001     ULONG nRes = pImp->OpenStreamsForScan( pStor, FALSE );
+//STRIP001     if( nRes )
+//STRIP001         return nRes;
 //STRIP001
-//STRIP001  pImp->pContents->Seek( 0L );
-//STRIP001  pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
-//STRIP001  pImp->pStrm = pImp->pContents;
-//STRIP001  pImp->GetMacroTable( rMacroTbl );
-//STRIP001  pImp->pStrm = NULL;
-//STRIP001  pImp->CheckIoError( pImp->pContents );
-//STRIP001  pImp->pContents->SetBufferSize( 0 );
+//STRIP001     pImp->pContents->Seek( 0L );
+//STRIP001     pImp->pContents->SetBufferSize( SW3_BSR_CONTENTS );
+//STRIP001     pImp->pStrm = pImp->pContents;
+//STRIP001     pImp->GetMacroTable( rMacroTbl );
+//STRIP001     pImp->pStrm = NULL;
+//STRIP001     pImp->CheckIoError( pImp->pContents );
+//STRIP001     pImp->pContents->SetBufferSize( 0 );
 //STRIP001
-//STRIP001  nRes = pImp->nRes;
-//STRIP001  if( nRes )
-//STRIP001      nRes |= ERRCODE_CLASS_READ;
-//STRIP001 //   else if( pImp->nWarn )
-//STRIP001 //       nRes = pImp->nWarn | ERRCODE_CLASS_READ;
+//STRIP001     nRes = pImp->nRes;
+//STRIP001     if( nRes )
+//STRIP001         nRes |= ERRCODE_CLASS_READ;
+//STRIP001 //  else if( pImp->nWarn )
+//STRIP001 //      nRes = pImp->nWarn | ERRCODE_CLASS_READ;
 //STRIP001
-//STRIP001  pImp->CloseStreamsForScan();
+//STRIP001     pImp->CloseStreamsForScan();
 //STRIP001
-//STRIP001  return nRes;
+//STRIP001     return nRes;
 //STRIP001 }
 
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtatr2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-22 09:40:27 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -499,48 +499,48 @@ using namespace ::rtl;
 /*N*/   return *this;
 /*N*/  }
 
-//STRIP001 int SwFmtRuby::operator==( const SfxPoolItem& rAttr ) const
-//STRIP001 {
-//STRIP001  ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
-//STRIP001  return sRubyTxt == ((SwFmtRuby&)rAttr).sRubyTxt &&
-//STRIP001         sCharFmtName == ((SwFmtRuby&)rAttr).sCharFmtName &&
-//STRIP001         nCharFmtId == ((SwFmtRuby&)rAttr).nCharFmtId &&
-//STRIP001         nPosition == ((SwFmtRuby&)rAttr).nPosition &&
-//STRIP001         nAdjustment == ((SwFmtRuby&)rAttr).nAdjustment;
-//STRIP001 }
+int SwFmtRuby::operator==( const SfxPoolItem& rAttr ) const
+{
+    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    return sRubyTxt == ((SwFmtRuby&)rAttr).sRubyTxt &&
+           sCharFmtName == ((SwFmtRuby&)rAttr).sCharFmtName &&
+           nCharFmtId == ((SwFmtRuby&)rAttr).nCharFmtId &&
+           nPosition == ((SwFmtRuby&)rAttr).nPosition &&
+           nAdjustment == ((SwFmtRuby&)rAttr).nAdjustment;
+}
 
-//STRIP001 SfxPoolItem* SwFmtRuby::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SwFmtRuby( *this );
-//STRIP001 }
+SfxPoolItem* SwFmtRuby::Clone( SfxItemPool* ) const
+{
+    return new SwFmtRuby( *this );
+}
 
-//STRIP001 BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                              BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMemberId )
-//STRIP001  {
-//STRIP001      case MID_RUBY_TEXT: rVal <<= (OUString)sRubyTxt;                    break;
-//STRIP001          case MID_RUBY_ADJUST:   rVal <<= (sal_Int16)nAdjustment;    break;
-//STRIP001      case MID_RUBY_CHARSTYLE:
-//STRIP001      {
-//STRIP001          String aString;
-//STRIP001          SwStyleNameMapper::FillProgName(sCharFmtName, aString, GET_POOLID_CHRFMT, sal_True );
-//STRIP001          rVal <<= OUString ( aString );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001         case MID_RUBY_ABOVE:
-//STRIP001         {
-//STRIP001             sal_Bool bAbove = !nPosition;
-//STRIP001             rVal.setValue(&bAbove, ::getBooleanCppuType());
-//STRIP001         }
-//STRIP001         break;
-//STRIP001         default:
-//STRIP001          bRet = FALSE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
+                            BYTE nMemberId ) const
+{
+    BOOL bRet = TRUE;
+    nMemberId &= ~CONVERT_TWIPS;
+    switch( nMemberId )
+    {
+        case MID_RUBY_TEXT: rVal <<= (OUString)sRubyTxt;                    break;
+        case MID_RUBY_ADJUST:   rVal <<= (sal_Int16)nAdjustment;    break;
+        case MID_RUBY_CHARSTYLE:
+        {
+            String aString;
+            SwStyleNameMapper::FillProgName(sCharFmtName, aString, GET_POOLID_CHRFMT, sal_True );
+            rVal <<= OUString ( aString );
+        }
+        break;
+        case MID_RUBY_ABOVE:
+        {
+            sal_Bool bAbove = !nPosition;
+            rVal.setValue(&bAbove, ::getBooleanCppuType());
+        }
+        break;
+        default:
+            bRet = FALSE;
+    }
+    return bRet;
+}
 /*N*/ BOOL SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                           BYTE nMemberId  )
 /*N*/ {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3page.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -164,7 +164,7 @@ namespace binfilter {
 /*N*/           InBookmarks();
 /*N*/
 /*N*/       if( SWG_REDLINES == Peek() )
-                /*N {DBG_ASSERT(0, "STRIP");} N*/           InRedlines(); //SW50.SDW
+                InRedlines(); //SW50.SDW
 /*N*/
 /*N*/       // ggfs. dem Numberformatter lesen
 /*N*/       if( SWG_NUMBERFORMATTER == Peek() )
@@ -213,7 +213,7 @@ namespace binfilter {
 /*?*/           // if( !nRes && nVersion < SWG_MULTIDB )
 /*?*/           if( !nRes &&
 /*?*/               !IsVersion( SWG_MULTIDB, SWG_EXPORT31, SWG_DESKTOP40 ) )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              SetDBName();
+                    SetDBName();
 /*?*/           Cleanup();
 /*?*/
 /*?*/           pDoc->ChgDBData( aOldData );
@@ -236,104 +236,104 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::SetDBName()
-//STRIP001 {
-//STRIP001  SvStream* pOld = pStrm;
-//STRIP001  pContents->Seek( 0L );
-//STRIP001  pContents->SetBufferSize( SW3_BSR_CONTENTS );
-//STRIP001  pStrm = pContents;
-//STRIP001
-//STRIP001  // Erstmal den Header lesen
-//STRIP001  BYTE cLen, cSet;
-//STRIP001  INT8 nLCompatVer, nDummy8;
-//STRIP001  USHORT nLVersion, nLFileFlags;
-//STRIP001  INT32 nDummy32;
-//STRIP001  sal_Char cHdrSign[ 8 ];
-//STRIP001
-//STRIP001  Reset2();
-//STRIP001  OutputMode( FALSE );
-//STRIP001
-//STRIP001  if( pStrm->Read( cHdrSign, 7 ) != 7 || !CheckHeader(cHdrSign) )
-//STRIP001  {
-//STRIP001      Error( ERR_SW6_NOWRITER_FILE );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  *pStrm >> cLen;
-//STRIP001
-//STRIP001  // nRecSizesPos braucht hier nicht gelesen zu werden, da die Methode
-//STRIP001  // nicht fuer eine 5.0 ff aufgerufen wird.
-//STRIP001  ULONG nOld = pStrm->Tell();
-//STRIP001  *pStrm >> nLVersion >> nLFileFlags >> nDummy32 >> nDummy32 >> nDummy32
-//STRIP001         >> nDummy8 >> nDummy8 >> nDummy8 >> nLCompatVer;
-//STRIP001  if( nLCompatVer > SWG_CVERSION )
-//STRIP001  {
-//STRIP001      Error( ERR_SWG_NEW_VERSION );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  if( nLFileFlags & SWGF_BAD_FILE )
-//STRIP001  {
-//STRIP001      Error( ERR_SWG_READ_ERROR );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  pStrm->Read( cPasswd, 16L );
-//STRIP001  *pStrm >> cSet >> nDummy8 >> nDummy32 >> nDummy32;
-//STRIP001  if( nLFileFlags & SWGF_BLOCKNAME )
-//STRIP001  {
-//STRIP001      BYTE cBuf[ 64 ];
-//STRIP001      if( pStrm->Read( cBuf, 64 ) != 64 )
-//STRIP001          pStrm->SetError( SVSTREAM_FILEFORMAT_ERROR );
-//STRIP001  }
-//STRIP001
-//STRIP001  ULONG nNew = pStrm->Tell();
-//STRIP001  nOld += cLen;
-//STRIP001  if( nOld != nNew )
-//STRIP001      pStrm->Seek( nOld );
-//STRIP001
-//STRIP001  BOOL bDone = FALSE;
-//STRIP001
-//STRIP001  // Normales Lesen?
-//STRIP001  while( !bDone )
-//STRIP001  {
-//STRIP001      BYTE cType = Peek();
-//STRIP001      if( !Good() || pStrm->IsEof() )
-//STRIP001          bDone = TRUE;
-//STRIP001      else switch( cType )
-//STRIP001      {
-//STRIP001          case SWG_EOF:
-//STRIP001              bDone = TRUE;
-//STRIP001              break;
-//STRIP001
-//STRIP001          case SWG_DBNAME:
-//STRIP001          {
-//STRIP001              String sDBName;
-//STRIP001              ByteString s8;
-//STRIP001              OpenRec( SWG_DBNAME );
-//STRIP001
-//STRIP001              pStrm->ReadByteString( s8 );
-//STRIP001              rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
-//STRIP001                              (rtl_TextEncoding)cSet, pStrm->GetVersion() );
-//STRIP001              sDBName = ConvertStringNoDbDelim( s8, eEnc );
-//STRIP001              SwDBData aData;
-//STRIP001              aData.sDataSource = sDBName.GetToken(0, DB_DELIM);
-//STRIP001              aData.sCommand = sDBName.GetToken(1, DB_DELIM);
-//STRIP001              pDoc->ChgDBData( aData );
-//STRIP001
-//STRIP001              ULONG nSaveWarn = nWarn;
-//STRIP001              CloseRec( SWG_DBNAME );
-//STRIP001              nWarn = nSaveWarn;
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          default:
-//STRIP001              SkipRec();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  pStrm = pOld;
-//STRIP001  CheckIoError( pContents );
-//STRIP001  pContents->SetBufferSize( 0 );
-//STRIP001 }
+void Sw3IoImp::SetDBName()
+{
+    SvStream* pOld = pStrm;
+    pContents->Seek( 0L );
+    pContents->SetBufferSize( SW3_BSR_CONTENTS );
+    pStrm = pContents;
+
+    // Erstmal den Header lesen
+    BYTE cLen, cSet;
+    INT8 nLCompatVer, nDummy8;
+    USHORT nLVersion, nLFileFlags;
+    INT32 nDummy32;
+    sal_Char cHdrSign[ 8 ];
+
+    Reset2();
+    OutputMode( FALSE );
+
+    if( pStrm->Read( cHdrSign, 7 ) != 7 || !CheckHeader(cHdrSign) )
+    {
+        Error( ERR_SW6_NOWRITER_FILE );
+        return;
+    }
+    *pStrm >> cLen;
+
+    // nRecSizesPos braucht hier nicht gelesen zu werden, da die Methode
+    // nicht fuer eine 5.0 ff aufgerufen wird.
+    ULONG nOld = pStrm->Tell();
+    *pStrm >> nLVersion >> nLFileFlags >> nDummy32 >> nDummy32 >> nDummy32
+           >> nDummy8 >> nDummy8 >> nDummy8 >> nLCompatVer;
+    if( nLCompatVer > SWG_CVERSION )
+    {
+        Error( ERR_SWG_NEW_VERSION );
+        return;
+    }
+    if( nLFileFlags & SWGF_BAD_FILE )
+    {
+        Error( ERR_SWG_READ_ERROR );
+        return;
+    }
+
+    pStrm->Read( cPasswd, 16L );
+    *pStrm >> cSet >> nDummy8 >> nDummy32 >> nDummy32;
+    if( nLFileFlags & SWGF_BLOCKNAME )
+    {
+        BYTE cBuf[ 64 ];
+        if( pStrm->Read( cBuf, 64 ) != 64 )
+            pStrm->SetError( SVSTREAM_FILEFORMAT_ERROR );
+    }
+
+    ULONG nNew = pStrm->Tell();
+    nOld += cLen;
+    if( nOld != nNew )
+        pStrm->Seek( nOld );
+
+    BOOL bDone = FALSE;
+
+    // Normales Lesen?
+    while( !bDone )
+    {
+        BYTE cType = Peek();
+        if( !Good() || pStrm->IsEof() )
+            bDone = TRUE;
+        else switch( cType )
+        {
+            case SWG_EOF:
+                bDone = TRUE;
+                break;
+
+            case SWG_DBNAME:
+            {
+                String sDBName;
+                ByteString s8;
+                OpenRec( SWG_DBNAME );
+
+                pStrm->ReadByteString( s8 );
+                rtl_TextEncoding eEnc = GetSOLoadTextEncoding(
+                                (rtl_TextEncoding)cSet, pStrm->GetVersion() );
+                sDBName = ConvertStringNoDbDelim( s8, eEnc );
+                SwDBData aData;
+                aData.sDataSource = sDBName.GetToken(0, DB_DELIM);
+                aData.sCommand = sDBName.GetToken(1, DB_DELIM);
+                pDoc->ChgDBData( aData );
+
+                ULONG nSaveWarn = nWarn;
+                CloseRec( SWG_DBNAME );
+                nWarn = nSaveWarn;
+            }
+            break;
+
+            default:
+                SkipRec();
+        }
+    }
+
+    pStrm = pOld;
+    CheckIoError( pContents );
+    pContents->SetBufferSize( 0 );
+}
 
 /*N*/ void Sw3IoImp::OutPageDescs( BOOL bUsed )
 /*N*/ {

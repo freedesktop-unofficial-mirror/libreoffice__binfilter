@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_scrptfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,8 @@
 #endif
 namespace binfilter {
 
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+
 using namespace ::com::sun::star;
 using namespace ::rtl;
 /*--------------------------------------------------------------------
@@ -82,7 +84,7 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwScriptFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwScriptFieldType( pDoc );
+        return new SwScriptFieldType( pDoc );
 /*N*/ }
 
 
@@ -94,90 +96,90 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwScriptF
 /*N*/                               const String& rType, const String& rCode,
 /*N*/                               BOOL bURL )
 /*N*/   : SwField( pType ), sType( rType ), sCode( rCode ), bCodeURL( bURL )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {
 /*N*/ }
 
 /*N*/ String SwScriptField::Expand() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {
 /*N*/   return aEmptyStr;
 /*N*/ }
 
-//STRIP001 SwField* SwScriptField::Copy() const
-//STRIP001 {
-//STRIP001  return new SwScriptField( (SwScriptFieldType*)GetTyp(), sType, sCode, bCodeURL );
-//STRIP001 }
+SwField* SwScriptField::Copy() const
+{
+    return new SwScriptField( (SwScriptFieldType*)GetTyp(), sType, sCode, bCodeURL );
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Type setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwScriptField::SetPar1( const String& rStr )
-//STRIP001 {
-//STRIP001  sType = rStr;
-//STRIP001 }
+void SwScriptField::SetPar1( const String& rStr )
+{
+    sType = rStr;
+}
 
-//STRIP001 const String& SwScriptField::GetPar1() const
-//STRIP001 {
-//STRIP001  return sType;
-//STRIP001 }
+const String& SwScriptField::GetPar1() const
+{
+    return sType;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Code setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwScriptField::SetPar2( const String& rStr )
-//STRIP001 {
-//STRIP001  sCode = rStr;
-//STRIP001 }
+void SwScriptField::SetPar2( const String& rStr )
+{
+    sCode = rStr;
+}
 
 
-//STRIP001 String SwScriptField::GetPar2() const
-//STRIP001 {
-//STRIP001  return sCode;
-//STRIP001 }
+String SwScriptField::GetPar2() const
+{
+    return sCode;
+}
 /*-----------------05.03.98 15:00-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      rAny <<= OUString( sType );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      rAny <<= OUString( sCode );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      rAny.setValue(&bCodeURL, ::getBooleanCppuType());
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        rAny <<= OUString( sType );
+        break;
+    case FIELD_PROP_PAR2:
+        rAny <<= OUString( sCode );
+        break;
+    case FIELD_PROP_BOOL1:
+        rAny.setValue(&bCodeURL, ::getBooleanCppuType());
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return TRUE;
+}
 /*-----------------05.03.98 15:00-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, sType );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      ::GetString( rAny, sCode );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      bCodeURL = *(sal_Bool*)rAny.getValue();
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, sType );
+        break;
+    case FIELD_PROP_PAR2:
+        ::binfilter::GetString( rAny, sCode );
+        break;
+    case FIELD_PROP_BOOL1:
+        bCodeURL = *(sal_Bool*)rAny.getValue();
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return TRUE;
+}
 
 }

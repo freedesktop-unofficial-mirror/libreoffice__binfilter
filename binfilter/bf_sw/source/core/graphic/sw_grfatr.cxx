@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_grfatr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:44 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -137,10 +137,10 @@ using namespace ::com::sun::star;
 /*N*/   return new SwMirrorGrf( *this );
 /*N*/ }
 
-//STRIP001 sal_uInt16 SwMirrorGrf::GetValueCount() const
-//STRIP001 {
-//STRIP001  return RES_GRFMIRROR_END - RES_GRFMIRROR_BEGIN;
-//STRIP001 }
+sal_uInt16 SwMirrorGrf::GetValueCount() const
+{
+   return RES_GRFMIRROR_END - RES_GRFMIRROR_BEGIN;
+}
 
 /*N*/ int SwMirrorGrf::operator==( const SfxPoolItem& rItem) const
 /*N*/ {

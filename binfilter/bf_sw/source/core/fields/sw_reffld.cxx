@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_reffld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -336,10 +336,10 @@ using namespace ::rtl;
 /*N*/   return nSubType;
 /*N*/ }
 
-//STRIP001 void SwGetRefField::SetSubType( USHORT n )
-//STRIP001 {
-//STRIP001  nSubType = n;
-//STRIP001 }
+void SwGetRefField::SetSubType( USHORT n )
+{
+    nSubType = n;
+}
 
 /*N*/ String SwGetRefField::Expand() const
 /*N*/ {
@@ -560,16 +560,16 @@ using namespace ::rtl;
 /*N*/ }
 
 
-//STRIP001 void SwGetRefField::SetPar1( const String& rName )
-//STRIP001 {
-//STRIP001  sSetRefName = rName;
-//STRIP001 }
+void SwGetRefField::SetPar1( const String& rName )
+{
+    sSetRefName = rName;
+}
 
 
-//STRIP001 String SwGetRefField::GetPar2() const
-//STRIP001 {
-//STRIP001  return Expand();
-//STRIP001 }
+String SwGetRefField::GetPar2() const
+{
+    return Expand();
+}
 
 /*-----------------06.03.98 13:34-------------------
 

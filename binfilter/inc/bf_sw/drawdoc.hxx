@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:40 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,7 +81,7 @@ class SwDrawDocument : public FmFormModel
     SwDoc* pDoc;
 public:
     SwDrawDocument( SwDoc* pDoc );
-//STRIP001  SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh );
+    SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh );
     ~SwDrawDocument();
 
     const SwDoc& GetDoc() const { return *pDoc; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-22 09:40:26 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1041,26 +1041,26 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/            SOFFICE_FILEFORMAT_40==nFFVer ) ? 0 : IVER_TOXMARK_NEWTOX;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT nVer) const
-//STRIP001 {
-//STRIP001     String sRubyTxt;
-//STRIP001     SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt );
-//STRIP001
-//STRIP001     BOOL bVal;
-//STRIP001     rStrm >> bVal;
-//STRIP001
-//STRIP001  return pRet;
-//STRIP001 }
+SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT nVer) const
+{
+    String sRubyTxt;
+    SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt );
 
-//STRIP001 SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT nIVer ) const
-//STRIP001 {
-//STRIP001     BOOL bVal = 0;
-//STRIP001     rStrm << bVal;
-//STRIP001
-//STRIP001     ASSERT( FALSE, "Ruby atribute stored in old format" )
-//STRIP001
-//STRIP001     return rStrm;
-//STRIP001 }
+    BOOL bVal;
+    rStrm >> bVal;
+
+    return pRet;
+}
+
+SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT nIVer ) const
+{
+    BOOL bVal = 0;
+    rStrm << bVal;
+
+    ASSERT( FALSE, "Ruby atribute stored in old format" )
+
+    return rStrm;
+}
 
 /*N*/ USHORT SwFmtRuby::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -1073,27 +1073,27 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/ }
 
 
-//STRIP001 SfxPoolItem* SwTblBoxFormula::Create( SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  String sStr;
-//STRIP001  rStrm.ReadByteString( sStr, rStrm.GetStreamCharSet() );
-//STRIP001  return new SwTblBoxFormula( sStr );
-//STRIP001 }
+SfxPoolItem* SwTblBoxFormula::Create( SvStream & rStrm, USHORT ) const
+{
+    String sStr;
+    rStrm.ReadByteString( sStr, rStrm.GetStreamCharSet() );
+    return new SwTblBoxFormula( sStr );
+}
 
-//STRIP001 SvStream& SwTblBoxFormula::Store( SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  if( EXTRNL_NAME != GetNameType() && pDefinedIn )
-//STRIP001  {
-//STRIP001      const SwTableNode* pTblNd;
-//STRIP001      const SwTableBox* pBox = (SwTableBox*)GetTableBox();
-//STRIP001      if( pBox && pBox->GetSttNd() &&
-//STRIP001          0 != ( pTblNd = pBox->GetSttNd()->FindTableNode() ))
-//STRIP001      {
-//STRIP001          ((SwTblBoxFormula*)this)->PtrToBoxNm( &pTblNd->GetTable() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return rStrm.WriteByteString( GetFormula(), rStrm.GetStreamCharSet() );
-//STRIP001 }
+SvStream& SwTblBoxFormula::Store( SvStream & rStrm, USHORT ) const
+{
+    if( EXTRNL_NAME != GetNameType() && pDefinedIn )
+    {
+        const SwTableNode* pTblNd;
+        const SwTableBox* pBox = (SwTableBox*)GetTableBox();
+        if( pBox && pBox->GetSttNd() &&
+            0 != ( pTblNd = pBox->GetSttNd()->FindTableNode() ))
+        {
+            ((SwTblBoxFormula*)this)->PtrToBoxNm( &pTblNd->GetTable() );
+        }
+    }
+    return rStrm.WriteByteString( GetFormula(), rStrm.GetStreamCharSet() );
+}
 
 /*N*/ USHORT SwTblBoxFormula::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -1104,77 +1104,77 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   return SOFFICE_FILEFORMAT_31==nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
-//STRIP001 {
-//STRIP001  SwFmtChain *pChain = new SwFmtChain;
-//STRIP001
-//STRIP001  UINT16 nPrevIdx, nNextIdx;
-//STRIP001  if( nIVer>0 )
-//STRIP001  {
-//STRIP001      rStrm   >> nPrevIdx
-//STRIP001              >> nNextIdx;
-//STRIP001
-//STRIP001      Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-//STRIP001      ASSERT( pIo || nPrevIdx != IDX_NO_VALUE || nNextIdx != IDX_NO_VALUE,
-//STRIP001              "SwFmtChain: kein sw3io: Verkettung nicht moeglich" );
-//STRIP001      if( pIo )
-//STRIP001      {
-//STRIP001          // Wenn hier ein Format schon gelesen wurde, erfolgt die
-//STRIP001          // Verkettung hier in der einen Richtung und in InFormat
-//STRIP001          // in der anderen Richtung.
-//STRIP001          // Wenn das Format noch nicht gefunden wurde, erfolgt die
-//STRIP001          // Verkettung wenn das Ziel-Format gelesen wird.
-//STRIP001          if( nPrevIdx != IDX_NO_VALUE )
-//STRIP001          {
-//STRIP001              SwFlyFrmFmt *pPrevFlyFmt =
-//STRIP001                  (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nPrevIdx );
-//STRIP001              ASSERT( pIo->bInsert ||
-//STRIP001                      (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
-//STRIP001                      pIo->aStringPool.Find( nPrevIdx ) ) == pPrevFlyFmt,
-//STRIP001                      "falsches Prev-Format gechached?" );
-//STRIP001              pChain->SetPrev( pPrevFlyFmt );
-//STRIP001          }
-//STRIP001          if( nNextIdx != IDX_NO_VALUE )
-//STRIP001          {
-//STRIP001              SwFlyFrmFmt *pNextFlyFmt =
-//STRIP001                  (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nNextIdx );
-//STRIP001              ASSERT( pIo->bInsert ||
-//STRIP001                      (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
-//STRIP001                      pIo->aStringPool.Find( nNextIdx ) ) == pNextFlyFmt,
-//STRIP001                      "falsches Prev-Format gechached?" );
-//STRIP001              pChain->SetNext( pNextFlyFmt );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return pChain;
-//STRIP001 }
+SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
+{
+    SwFmtChain *pChain = new SwFmtChain;
+
+    UINT16 nPrevIdx, nNextIdx;
+    if( nIVer>0 )
+    {
+        rStrm   >> nPrevIdx
+                >> nNextIdx;
+
+        Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+        ASSERT( pIo || nPrevIdx != IDX_NO_VALUE || nNextIdx != IDX_NO_VALUE,
+                "SwFmtChain: kein sw3io: Verkettung nicht moeglich" );
+        if( pIo )
+        {
+            // Wenn hier ein Format schon gelesen wurde, erfolgt die
+            // Verkettung hier in der einen Richtung und in InFormat
+            // in der anderen Richtung.
+            // Wenn das Format noch nicht gefunden wurde, erfolgt die
+            // Verkettung wenn das Ziel-Format gelesen wird.
+            if( nPrevIdx != IDX_NO_VALUE )
+            {
+                SwFlyFrmFmt *pPrevFlyFmt =
+                    (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nPrevIdx );
+                ASSERT( pIo->bInsert ||
+                        (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
+                        pIo->aStringPool.Find( nPrevIdx ) ) == pPrevFlyFmt,
+                        "falsches Prev-Format gechached?" );
+                pChain->SetPrev( pPrevFlyFmt );
+            }
+            if( nNextIdx != IDX_NO_VALUE )
+            {
+                SwFlyFrmFmt *pNextFlyFmt =
+                    (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nNextIdx );
+                ASSERT( pIo->bInsert ||
+                        (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
+                        pIo->aStringPool.Find( nNextIdx ) ) == pNextFlyFmt,
+                        "falsches Prev-Format gechached?" );
+                pChain->SetNext( pNextFlyFmt );
+            }
+        }
+    }
+
+    return pChain;
+}
 
 /*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT nIVer) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return rStrm;//STRIP001
-//STRIP001  ASSERT( nIVer != USHRT_MAX,
-//STRIP001          "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
-//STRIP001
-//STRIP001  Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-//STRIP001  USHORT nPrevIdx = IDX_NO_VALUE, nNextIdx = IDX_NO_VALUE;
-//STRIP001  if( pIo )
-//STRIP001  {
-//STRIP001      if( GetPrev() )
-//STRIP001      {
-//STRIP001          nPrevIdx = pIo->aStringPool.Find( GetPrev()->GetName(),
-//STRIP001                                            GetPrev()->GetPoolFmtId() );
-//STRIP001      }
-//STRIP001      if( GetNext() )
-//STRIP001      {
-//STRIP001          nNextIdx = pIo->aStringPool.Find( GetNext()->GetName(),
-//STRIP001                                            GetNext()->GetPoolFmtId() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  rStrm   << (UINT16)nPrevIdx
-//STRIP001          << (UINT16)nNextIdx;
-//STRIP001
-//STRIP001  return rStrm;
+/*N*/ {
+        ASSERT( nIVer != USHRT_MAX,
+                "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
+
+        Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+        USHORT nPrevIdx = IDX_NO_VALUE, nNextIdx = IDX_NO_VALUE;
+        if( pIo )
+        {
+            if( GetPrev() )
+            {
+                nPrevIdx = pIo->aStringPool.Find( GetPrev()->GetName(),
+                                                  GetPrev()->GetPoolFmtId() );
+            }
+            if( GetNext() )
+            {
+                nNextIdx = pIo->aStringPool.Find( GetNext()->GetName(),
+                                                  GetNext()->GetPoolFmtId() );
+            }
+        }
+
+        rStrm   << (UINT16)nPrevIdx
+                << (UINT16)nNextIdx;
+
+        return rStrm;
 /*N*/ }
 
 /*N*/ USHORT SwFmtChain::GetVersion( USHORT nFFVer ) const
@@ -1186,22 +1186,22 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   return SOFFICE_FILEFORMAT_40 < nFFVer ? 1 : USHRT_MAX;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT nIVer) const
-//STRIP001 {
-//STRIP001     SwTextGridItem* pRet = new SwTextGridItem;
-//STRIP001     BOOL bVal;
-//STRIP001     rStrm >> bVal;
-//STRIP001
-//STRIP001     return pRet;
-//STRIP001 }
+SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT nIVer) const
+{
+    SwTextGridItem* pRet = new SwTextGridItem;
+    BOOL bVal;
+    rStrm >> bVal;
 
-//STRIP001 SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT nIVer ) const
-//STRIP001 {
-//STRIP001     BOOL bVal = 0;
-//STRIP001     rStrm << bVal;
-//STRIP001
-//STRIP001     return rStrm;
-//STRIP001 }
+    return pRet;
+}
+
+SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT nIVer ) const
+{
+    BOOL bVal = 0;
+    rStrm << bVal;
+
+    return rStrm;
+}
 
 /*N*/ USHORT SwTextGridItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {

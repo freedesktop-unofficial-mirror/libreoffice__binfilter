@@ -2,9 +2,9 @@
  *
  *  $RCSfile: grfatr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:55 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,7 +117,7 @@ public:
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
 
     // pure virtual-Methiden von SfxEnumItem
-    virtual USHORT          GetValueCount() const{DBG_ASSERT(0, "STRIP");return 0;} ;//STRIP001     virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
@@ -176,8 +176,8 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual int             operator==( const SfxPoolItem& ) const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -290,8 +290,8 @@ public:
     // pure virtual-Methiden von SfxEnumItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual int             operator==( const SfxPoolItem& ) const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: expfld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:42 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,14 +103,14 @@ struct _SeqFldLstElem
 };
 SV_DECL_PTRARR_DEL( _SwSeqFldList, _SeqFldLstElem*, 10, 10 )
 
-//STRIP001 class SwSeqFldList : public _SwSeqFldList
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SwSeqFldList()  : _SwSeqFldList( 10, 10 ) {}
-//STRIP001
-//STRIP001  BOOL InsertSort( _SeqFldLstElem* );
-//STRIP001  BOOL SeekEntry( const _SeqFldLstElem& , USHORT* pPos = 0 );
-//STRIP001 };
+class SwSeqFldList : public _SwSeqFldList
+{
+public:
+    SwSeqFldList()  : _SwSeqFldList( 10, 10 ) {}
+
+    BOOL InsertSort( _SeqFldLstElem* );
+    BOOL SeekEntry( const _SeqFldLstElem& , USHORT* pPos = 0 );
+};
 
 /*--------------------------------------------------------------------
     Beschreibung: Ausdruck
@@ -163,13 +163,13 @@ public:
     virtual String              GetCntnt(BOOL bName = FALSE) const;
 
     // Die Formel aendern
-//STRIP001  virtual String              GetPar2() const;
-//STRIP001  virtual void                SetPar2(const String& rStr);
+    virtual String              GetPar2() const;
+    virtual void                SetPar2(const String& rStr);
 
     virtual USHORT              GetSubType() const;
     virtual void                SetSubType(USHORT nType);
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     static USHORT       GetReferenceTextPos( const SwFmtFld& rFmt, SwDoc& rDoc);
 };
@@ -213,20 +213,20 @@ public:
     inline void             SetType(USHORT nTyp);
     inline USHORT           GetType() const;
 
-//STRIP001  void                    SetSeqFormat(ULONG nFormat);
-//STRIP001  ULONG                   GetSeqFormat();
+    void                    SetSeqFormat(ULONG nFormat);
+    ULONG                   GetSeqFormat();
 
     BOOL                    IsDeleted() const       { return bDeleted; }
     void                    SetDeleted( BOOL b )    { bDeleted = b; }
 
     // ueberlagert, weil das Set-Field selbst dafuer sorgt, das
     // es aktualisiert wird.
-//STRIP001  virtual void            Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
+    virtual void            Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
     inline const String&    GetSetRefName() const;
 
     USHORT SetSeqRefNo( SwSetExpField& rFld );
 
-//STRIP001  USHORT GetSeqFldList( SwSeqFldList& rList );
+    USHORT GetSeqFldList( SwSeqFldList& rList );
     String MakeSeqName( USHORT nSeqNo );
 
     // Seqencefelder ggfs. Kapitelweise numerieren
@@ -305,8 +305,8 @@ public:
     virtual const String&       GetPar1()   const;
 
     // Die Formel
-//STRIP001  virtual String              GetPar2()   const;
-//STRIP001  virtual void                SetPar2(const String& rStr);
+    virtual String              GetPar2()   const;
+    virtual void                SetPar2(const String& rStr);
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
@@ -374,26 +374,26 @@ public:
 
     // Content
     virtual const String&   GetPar1() const;
-//STRIP001  virtual void            SetPar1(const String& rStr);
+    virtual void            SetPar1(const String& rStr);
 
     // aPromptText
     virtual String          GetPar2() const;
-//STRIP001  virtual void            SetPar2(const String& rStr);
+    virtual void            SetPar2(const String& rStr);
 
     virtual USHORT          GetSubType() const;
-//STRIP001  virtual void            SetSubType(USHORT nSub);
+    virtual void            SetSubType(USHORT nSub);
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
     Description: Sorted list of input fields and DropDown fields
  --------------------------------------------------------------------*/
 
-class SwInputFieldList
-{
-public:
-    SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE );
+//STRIP001 class SwInputFieldList
+//STRIP001 {
+//STRIP001 public:
+//STRIP001  SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE );
 //STRIP001  ~SwInputFieldList();
 
 //STRIP001  USHORT      Count() const;
@@ -415,7 +415,7 @@ public:
 //STRIP001  SwEditShell*    pSh;
 //STRIP001  _SetGetExpFlds* pSrtLst;
 //STRIP001  SvPtrarr        aTmpLst;
-};
+//STRIP001 };
 
 /*--------------------------------------------------------------------
     Beschreibung: Tabellen-Formelfeld
@@ -449,7 +449,7 @@ public:
 
     virtual void        SetValue( const double& rVal );
     virtual USHORT      GetSubType() const;
-//STRIP001  virtual void        SetSubType(USHORT nType);
+    virtual void        SetSubType(USHORT nType);
     virtual String      Expand() const;
     virtual SwField*    Copy() const;
 
@@ -462,9 +462,9 @@ public:
     virtual String      GetCntnt(BOOL bName = FALSE) const;
     // Die Formel
     virtual String      GetPar2()   const;
-//STRIP001  virtual void        SetPar2(const String& rStr);
+    virtual void        SetPar2(const String& rStr);
     virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 

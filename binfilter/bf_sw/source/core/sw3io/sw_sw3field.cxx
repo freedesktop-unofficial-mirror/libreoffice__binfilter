@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -782,115 +782,115 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*  */
 
-//STRIP001 SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
-//STRIP001 {
-//STRIP001  SwAuthorityFieldType* pFldType = (SwAuthorityFieldType*) rIo.pDoc->
-//STRIP001          InsertFldType( SwAuthorityFieldType(rIo.pDoc) );
-//STRIP001
-//STRIP001  UINT16 nCount, nSortCount;
-//STRIP001  BYTE cPrefix, cSuffix;
-//STRIP001  BYTE cFlags = rIo.OpenFlagRec();
-//STRIP001  *rIo.pStrm  >> nCount
-//STRIP001              >> cPrefix
-//STRIP001              >> cSuffix
-//STRIP001              >> nSortCount;
-//STRIP001  rIo.CloseFlagRec();
-//STRIP001  if( 0 == pFldType->GetEntryCount() || (rIo.bNormal && !rIo.bInsert) )
-//STRIP001  {
-//STRIP001      pFldType->SetPreSuffix( ByteString::ConvertToUnicode( cPrefix,
-//STRIP001                                                            rIo.eSrcSet ),
-//STRIP001                              ByteString::ConvertToUnicode( cSuffix,
-//STRIP001                                                            rIo.eSrcSet ) );
-//STRIP001      pFldType->SetSequence( (cFlags & 0x10) != 0 );
-//STRIP001      pFldType->SetSortByDocument( (cFlags & 0x20) != 0);
-//STRIP001  }
-//STRIP001
-//STRIP001  ASSERT( !rIo.pAuthorityMap, "authority map is already existing" );
-//STRIP001  if( nCount > 0 )
-//STRIP001      rIo.pAuthorityMap = new SvUShorts;
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  for( i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      rIo.OpenRec( SWG_AUTHORITY_ENTRY_LCL );
-//STRIP001
-//STRIP001      SwAuthEntry aEntry;
-//STRIP001
-//STRIP001      while( rIo.BytesLeft() )
-//STRIP001      {
-//STRIP001          UINT16 nPos;
-//STRIP001          String sEntry;
-//STRIP001          *rIo.pStrm  >> nPos;
-//STRIP001          rIo.InString( *rIo.pStrm, sEntry );
-//STRIP001
-//STRIP001          aEntry.SetAuthorField( (ToxAuthorityField)nPos, sEntry );
-//STRIP001      }
-//STRIP001
-//STRIP001      USHORT nNewPos = pFldType->AppendField( aEntry );
-//STRIP001      ASSERT( !rIo.bNormal || rIo.bInsert || nNewPos == i,
-//STRIP001              "unexpected authority entry position" );
-//STRIP001      rIo.pAuthorityMap->Insert( nNewPos, rIo.pAuthorityMap->Count() );
-//STRIP001
-//STRIP001      rIo.CloseRec( SWG_AUTHORITY_ENTRY_LCL );
-//STRIP001  }
-//STRIP001  SwTOXSortKey* pSortKeys = nSortCount ? new SwTOXSortKey[nSortCount] : 0;
-//STRIP001  for( i=0; i<nSortCount; i++ )
-//STRIP001  {
-//STRIP001      BYTE cFlag;
-//STRIP001      UINT16 nType;
-//STRIP001      *rIo.pStrm  >> cFlag
-//STRIP001                  >> nType;
-//STRIP001      pSortKeys[i].bSortAscending = 0 != (cFlag & 0x01);
-//STRIP001      pSortKeys[i].eField = (ToxAuthorityField)nType;
-//STRIP001  }
-//STRIP001  pFldType->SetSortKeys(nSortCount, pSortKeys);
-//STRIP001  delete pSortKeys;
-//STRIP001
-//STRIP001  return pFldType;
-//STRIP001 }
+SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
+{
+    SwAuthorityFieldType* pFldType = (SwAuthorityFieldType*) rIo.pDoc->
+            InsertFldType( SwAuthorityFieldType(rIo.pDoc) );
+
+    UINT16 nCount, nSortCount;
+    BYTE cPrefix, cSuffix;
+    BYTE cFlags = rIo.OpenFlagRec();
+    *rIo.pStrm  >> nCount
+                >> cPrefix
+                >> cSuffix
+                >> nSortCount;
+    rIo.CloseFlagRec();
+    if( 0 == pFldType->GetEntryCount() || (rIo.bNormal && !rIo.bInsert) )
+    {
+        pFldType->SetPreSuffix( ByteString::ConvertToUnicode( cPrefix,
+                                                              rIo.eSrcSet ),
+                                ByteString::ConvertToUnicode( cSuffix,
+                                                              rIo.eSrcSet ) );
+        pFldType->SetSequence( (cFlags & 0x10) != 0 );
+        pFldType->SetSortByDocument( (cFlags & 0x20) != 0);
+    }
+
+    ASSERT( !rIo.pAuthorityMap, "authority map is already existing" );
+    if( nCount > 0 )
+        rIo.pAuthorityMap = new SvUShorts;
+
+    USHORT i;
+    for( i=0; i<nCount; i++ )
+    {
+        rIo.OpenRec( SWG_AUTHORITY_ENTRY_LCL );
+
+        SwAuthEntry aEntry;
+
+        while( rIo.BytesLeft() )
+        {
+            UINT16 nPos;
+            String sEntry;
+            *rIo.pStrm  >> nPos;
+            rIo.InString( *rIo.pStrm, sEntry );
+
+            aEntry.SetAuthorField( (ToxAuthorityField)nPos, sEntry );
+        }
+
+        USHORT nNewPos = pFldType->AppendField( aEntry );
+        ASSERT( !rIo.bNormal || rIo.bInsert || nNewPos == i,
+                "unexpected authority entry position" );
+        rIo.pAuthorityMap->Insert( nNewPos, rIo.pAuthorityMap->Count() );
+
+        rIo.CloseRec( SWG_AUTHORITY_ENTRY_LCL );
+    }
+    SwTOXSortKey* pSortKeys = nSortCount ? new SwTOXSortKey[nSortCount] : 0;
+    for( i=0; i<nSortCount; i++ )
+    {
+        BYTE cFlag;
+        UINT16 nType;
+        *rIo.pStrm  >> cFlag
+                    >> nType;
+        pSortKeys[i].bSortAscending = 0 != (cFlag & 0x01);
+        pSortKeys[i].eField = (ToxAuthorityField)nType;
+    }
+    pFldType->SetSortKeys(nSortCount, pSortKeys);
+    delete pSortKeys;
+
+    return pFldType;
+}
 
 /*N*/ void lcl_sw3io_OutAuthorityFieldType( Sw3IoImp& rIo,
 /*N*/                                     SwAuthorityFieldType *pType )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/    BYTE cFlags = 0x06;
-//STRIP001 /*?*/    if( pType->IsSequence() )
-//STRIP001 /*?*/        cFlags |= 0x10;
-//STRIP001 /*?*/    if( pType->IsSortByDocument() )
-//STRIP001 /*?*/        cFlags|= 0x20;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT nCount = pType->GetEntryCount();
-//STRIP001 /*?*/    *rIo.pStrm  << cFlags
-//STRIP001 /*?*/                << (UINT16)nCount
-//STRIP001 /*?*/                << (BYTE)ByteString::ConvertFromUnicode( pType->GetPrefix(),
-//STRIP001 /*?*/                                                         rIo.eSrcSet )
-//STRIP001 /*?*/                << (BYTE)ByteString::ConvertFromUnicode( pType->GetSuffix(),
-//STRIP001 /*?*/                                                         rIo.eSrcSet )
-//STRIP001 /*?*/                << (UINT16)pType->GetSortKeyCount();
-//STRIP001 /*?*/
-//STRIP001 /*?*/    USHORT i;
-//STRIP001 /*?*/    for( i=0; i<nCount; i++ )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        const SwAuthEntry *pEntry = pType->GetEntryByPosition( i );
-//STRIP001 /*?*/        rIo.OpenRec( SWG_AUTHORITY_ENTRY_LCL );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        USHORT nPos = 0;
-//STRIP001 /*?*/        String sEntry;
-//STRIP001 /*?*/        BOOL bHasEntry = pEntry->GetFirstAuthorField( nPos, sEntry );
-//STRIP001 /*?*/        while( bHasEntry )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            *rIo.pStrm  << (UINT16)nPos;
-//STRIP001 /*?*/            rIo.OutString(*rIo.pStrm, sEntry );
-//STRIP001 /*?*/            bHasEntry = pEntry->GetNextAuthorField( nPos, sEntry );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        rIo.CloseRec( SWG_AUTHORITY_ENTRY_LCL );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    for( i=0; i < pType->GetSortKeyCount(); i++ )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        const SwTOXSortKey* pKey = pType->GetSortKey(i);
-//STRIP001 /*?*/        *rIo.pStrm  << (BYTE)(pKey->bSortAscending ? 0X01 : 0x00)
-//STRIP001 /*?*/                    << (UINT16)pKey->eField;
-//STRIP001 /*?*/    }
+/*N*/ {
+/*?*/   BYTE cFlags = 0x06;
+/*?*/   if( pType->IsSequence() )
+/*?*/       cFlags |= 0x10;
+/*?*/   if( pType->IsSortByDocument() )
+/*?*/       cFlags|= 0x20;
+/*?*/
+/*?*/   USHORT nCount = pType->GetEntryCount();
+/*?*/   *rIo.pStrm  << cFlags
+/*?*/               << (UINT16)nCount
+/*?*/               << (BYTE)ByteString::ConvertFromUnicode( pType->GetPrefix(),
+/*?*/                                                        rIo.eSrcSet )
+/*?*/               << (BYTE)ByteString::ConvertFromUnicode( pType->GetSuffix(),
+/*?*/                                                        rIo.eSrcSet )
+/*?*/               << (UINT16)pType->GetSortKeyCount();
+/*?*/
+/*?*/   USHORT i;
+/*?*/   for( i=0; i<nCount; i++ )
+/*?*/   {
+/*?*/       const SwAuthEntry *pEntry = pType->GetEntryByPosition( i );
+/*?*/       rIo.OpenRec( SWG_AUTHORITY_ENTRY_LCL );
+/*?*/
+/*?*/       USHORT nPos = 0;
+/*?*/       String sEntry;
+/*?*/       BOOL bHasEntry = pEntry->GetFirstAuthorField( nPos, sEntry );
+/*?*/       while( bHasEntry )
+/*?*/       {
+/*?*/           *rIo.pStrm  << (UINT16)nPos;
+/*?*/           rIo.OutString(*rIo.pStrm, sEntry );
+/*?*/           bHasEntry = pEntry->GetNextAuthorField( nPos, sEntry );
+/*?*/       }
+/*?*/
+/*?*/       rIo.CloseRec( SWG_AUTHORITY_ENTRY_LCL );
+/*?*/   }
+/*?*/   for( i=0; i < pType->GetSortKeyCount(); i++ )
+/*?*/   {
+/*?*/       const SwTOXSortKey* pKey = pType->GetSortKey(i);
+/*?*/       *rIo.pStrm  << (BYTE)(pKey->bSortAscending ? 0X01 : 0x00)
+/*?*/                   << (UINT16)pKey->eField;
+/*?*/   }
 /*N*/ }
 
 /*  */
@@ -942,9 +942,9 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   if( rIo.nVersion >= SWG_SHORTFIELDS && (0x01 & cFlag) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 sal_Char* dummy;
-//STRIP001 /*?*/        ByteString sTmp( aExpand, RTL_TEXTENCODING_ASCII_US );
-//STRIP001 /*?*/        pFld->ChgValue( strtod( sTmp.GetBuffer(), &dummy ), TRUE );
+            sal_Char* dummy;
+/*?*/       ByteString sTmp( aExpand, RTL_TEXTENCODING_ASCII_US );
+/*?*/       pFld->ChgValue( strtod( sTmp.GetBuffer(), &dummy ), TRUE );
 /*N*/   }
 /*N*/   else
 /*N*/       pFld->InitContent( aExpand );
@@ -984,9 +984,9 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   if( 0x01 & cFlag )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 double dVal;
-//STRIP001 /*?*/        *rIo.pStrm >> dVal;
-//STRIP001 /*?*/        pFld->ChgValue( dVal, TRUE );
+/*?*/       double dVal;
+/*?*/       *rIo.pStrm >> dVal;
+/*?*/       pFld->ChgValue( dVal, TRUE );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1123,7 +1123,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, ULONG& )
-/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ { //SW40.SDW
 /*N*/   SwDateTimeField* pFld =
 /*N*/       new SwDateTimeField( (SwDateTimeFieldType *)pType, DATEFLD );
 /*N*/   pFld->SetSubType(nSubType);
@@ -1135,12 +1135,12 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  SwDateTimeField* pFld =
-//STRIP001      new SwDateTimeField( (SwDateTimeFieldType*)pType, TIMEFLD );
-//STRIP001  pFld->SetSubType(nSubType);
-//STRIP001
-//STRIP001  return pFld;
+/*N*/ {
+            SwDateTimeField* pFld =
+                new SwDateTimeField( (SwDateTimeFieldType*)pType, TIMEFLD );
+            pFld->SetSubType(nSubType);
+
+            return pFld;
 /*N*/ }
 
 /*  */
@@ -1377,7 +1377,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InHiddenTxtField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                      USHORT, ULONG& )
-/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ { //SW40.SDW
 /*N*/   BYTE cFlags;
 /*N*/   USHORT nSubType;
 /*N*/   String aText, aCond;
@@ -1420,55 +1420,55 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutHiddenTxtField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  String aText(pFld->GetPar2());
-//STRIP001  BYTE cFlags = ((SwHiddenTxtField*)pFld)->GetValue() ? 0x10 : 0;
-//STRIP001
-//STRIP001  if( ((SwHiddenTxtField*)pFld)->IsValid() )
-//STRIP001  {
-//STRIP001      if( !rIo.IsSw31Export() )
-//STRIP001      {
-//STRIP001          aText = pFld->GetPar2();
-//STRIP001          aText += '|';
-//STRIP001          aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if (((SwHiddenTxtField*)pFld)->GetValue())
-//STRIP001          {
-//STRIP001              aText = ((SwHiddenTxtField*)pFld)->GetPar2().GetToken(0, '|');
-//STRIP001              aText += '|';
-//STRIP001              aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              aText = ((SwHiddenTxtField*)pFld)->GetCntnt();
-//STRIP001              aText += '|';
-//STRIP001              aText += pFld->GetPar2().GetToken(1, '|');
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      aText = pFld->GetPar2();
-//STRIP001
-//STRIP001  if( ((SwHiddenTxtField*)pFld)->IsConditional() )
-//STRIP001      cFlags |= 0x20;
-//STRIP001
-//STRIP001  String sCond( pFld->GetPar1() );
-//STRIP001  USHORT nSubType = pFld->GetSubType();
-//STRIP001  if( 0x20 & cFlags && TYP_CONDTXTFLD != nSubType )
-//STRIP001  {
-//STRIP001      lcl_sw3io_ChkHiddenExp( sCond );
-//STRIP001      if( 0x10 & cFlags )
-//STRIP001          cFlags &= ~0x10;
-//STRIP001      else
-//STRIP001          cFlags |= 0x10;
-//STRIP001  }
-//STRIP001
-//STRIP001  *rIo.pStrm << cFlags;
-//STRIP001  rIo.OutString( *rIo.pStrm, aText ); // text
-//STRIP001  rIo.OutString( *rIo.pStrm, sCond ); // condition
-//STRIP001  *rIo.pStrm << nSubType;
+/*N*/ {
+    String aText(pFld->GetPar2());
+    BYTE cFlags = ((SwHiddenTxtField*)pFld)->GetValue() ? 0x10 : 0;
+
+    if( ((SwHiddenTxtField*)pFld)->IsValid() )
+    {
+        if( !rIo.IsSw31Export() )
+        {
+            aText = pFld->GetPar2();
+            aText += '|';
+            aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
+        }
+        else
+        {
+            if (((SwHiddenTxtField*)pFld)->GetValue())
+            {
+                aText = ((SwHiddenTxtField*)pFld)->GetPar2().GetToken(0, '|');
+                aText += '|';
+                aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
+            }
+            else
+            {
+                aText = ((SwHiddenTxtField*)pFld)->GetCntnt();
+                aText += '|';
+                aText += pFld->GetPar2().GetToken(1, '|');
+            }
+        }
+    }
+    else
+        aText = pFld->GetPar2();
+
+    if( ((SwHiddenTxtField*)pFld)->IsConditional() )
+        cFlags |= 0x20;
+
+    String sCond( pFld->GetPar1() );
+    USHORT nSubType = pFld->GetSubType();
+    if( 0x20 & cFlags && TYP_CONDTXTFLD != nSubType )
+    {
+        lcl_sw3io_ChkHiddenExp( sCond );
+        if( 0x10 & cFlags )
+            cFlags &= ~0x10;
+        else
+            cFlags |= 0x10;
+    }
+
+    *rIo.pStrm << cFlags;
+    rIo.OutString( *rIo.pStrm, aText ); // text
+    rIo.OutString( *rIo.pStrm, sCond ); // condition
+    *rIo.pStrm << nSubType;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutHiddenTxtField( Sw3IoImp& rIo, SwField* pFld )
@@ -1496,21 +1496,21 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InPostItField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  INT32 nDate;
-//STRIP001  String aAuthor, aText;
-//STRIP001  *rIo.pStrm >> nDate;
-//STRIP001  rIo.InString( *rIo.pStrm, aAuthor );
-//STRIP001  rIo.InString( *rIo.pStrm, aText );
-//STRIP001  return new SwPostItField( (SwPostItFieldType*)pType, aAuthor, aText, Date( nDate ) );
+/*N*/ {
+        INT32 nDate;
+        String aAuthor, aText;
+        *rIo.pStrm >> nDate;
+        rIo.InString( *rIo.pStrm, aAuthor );
+        rIo.InString( *rIo.pStrm, aText );
+        return new SwPostItField( (SwPostItFieldType*)pType, aAuthor, aText, Date( nDate ) );
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutPostItField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  Date aDate = ((SwPostItField*)pFld)->GetDate();
-//STRIP001  *rIo.pStrm << (INT32) aDate.GetDate();
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar1() );    // Author
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar2() );     // Text
+/*N*/ {
+        Date aDate = ((SwPostItField*)pFld)->GetDate();
+        *rIo.pStrm << (INT32) aDate.GetDate();
+        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );    // Author
+        rIo.OutString( *rIo.pStrm, pFld->GetPar2() );     // Text
 /*N*/ }
 
 /*  */
@@ -1566,19 +1566,19 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InFixTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  INT32 nVal;
-//STRIP001  *rIo.pStrm >> nVal;
-//STRIP001  SwDateTimeField* pFld = new SwDateTimeField( (SwDateTimeFieldType*)pType, TIMEFLD|FIXEDFLD );
-//STRIP001   Date aTmpDate;
-//STRIP001  DateTime aDT(aTmpDate, Time(nVal));
-//STRIP001     pFld->SetDateTime( aDT );
-//STRIP001  return pFld;
+/*N*/ {
+        INT32 nVal;
+        *rIo.pStrm >> nVal;
+        SwDateTimeField* pFld = new SwDateTimeField( (SwDateTimeFieldType*)pType, TIMEFLD|FIXEDFLD );
+         Date aTmpDate;
+        DateTime aDT(aTmpDate, Time(nVal));
+           pFld->SetDateTime( aDT );
+        return pFld;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutFixTimeField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     *rIo.pStrm << (INT32)((SwDateTimeField*)pFld)->GetTime(TRUE).GetTime();
+/*N*/ {
+            *rIo.pStrm << (INT32)((SwDateTimeField*)pFld)->GetTime(TRUE).GetTime();
 /*N*/ }
 
 /*  */
@@ -1687,7 +1687,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InInputField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                USHORT, ULONG& )
-/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ { //SW40.SDW
 /*N*/   String aContent, aPrompt;
 /*N*/   UINT16 nSubType;
 /*N*/   rIo.InString( *rIo.pStrm, aContent );
@@ -1706,10 +1706,10 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutInputField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar1() );// Content oder SwUserFieldName
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar2() );// PromptText
-//STRIP001  *rIo.pStrm << (UINT16) pFld->GetSubType();
+/*N*/ {
+        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );// Content oder SwUserFieldName
+        rIo.OutString( *rIo.pStrm, pFld->GetPar2() );// PromptText
+        *rIo.pStrm << (UINT16) pFld->GetSubType();
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutInputField( Sw3IoImp& rIo, SwField* pFld )
@@ -1776,7 +1776,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField *lcl_sw3io_InGetExpField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                   USHORT nSubType, ULONG& rFmt )
-/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ { //SW40.SDW
 /*N*/   String aText, aExpand;
 /*N*/   UINT16 nSub;
 /*N*/   rIo.InString( *rIo.pStrm, aText );
@@ -1810,10 +1810,10 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutGetExpField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetFormula() );
-//STRIP001  rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetExpStr() );
-//STRIP001  *rIo.pStrm << (UINT16) pFld->GetSubType();
+/*N*/ {
+        rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetFormula() );
+        rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetExpStr() );
+        *rIo.pStrm << (UINT16) pFld->GetSubType();
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutGetExpField( Sw3IoImp& rIo, SwField* pFld )
@@ -2047,7 +2047,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InDocInfoField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT nSubType, ULONG& rFmt )
-/*N*/ { //SW40.SDW DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ {
 /*N*/   UINT16 nSub;
 /*N*/   *rIo.pStrm >> nSub;
 /*N*/   nSubType |= nSub;
@@ -2079,11 +2079,11 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutDocInfoField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  UINT16 nSubType = pFld->GetSubType();
-//STRIP001  nSubType &= 0x00ff;
-//STRIP001
-//STRIP001  *rIo.pStrm << nSubType;
+/*N*/ {
+            UINT16 nSubType = pFld->GetSubType();
+            nSubType &= 0x00ff;
+
+            *rIo.pStrm << nSubType;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutDocInfoField( Sw3IoImp& rIo, SwField* pFld )
@@ -2303,34 +2303,34 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InRefPageSetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  INT16 nOffset;
-//STRIP001  BYTE cIsOn;
-//STRIP001  *rIo.pStrm >> nOffset >> cIsOn;
-//STRIP001  return new SwRefPageSetField( (SwRefPageSetFieldType*)pType, nOffset, cIsOn!=0 );
+/*N*/ {
+            INT16 nOffset;
+            BYTE cIsOn;
+            *rIo.pStrm >> nOffset >> cIsOn;
+            return new SwRefPageSetField( (SwRefPageSetFieldType*)pType, nOffset, cIsOn!=0 );
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutRefPageSetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  *rIo.pStrm << (INT16)((SwRefPageSetField*)pFld)->GetOffset()
-//STRIP001             << (BYTE)((SwRefPageSetField*)pFld)->IsOn();
+/*N*/ {
+        *rIo.pStrm << (INT16)((SwRefPageSetField*)pFld)->GetOffset()
+                   << (BYTE)((SwRefPageSetField*)pFld)->IsOn();
 /*N*/ }
 
 /*  */
 
 /*N*/ SwField* lcl_sw3io_InRefPageGetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  String aString;
-//STRIP001  SwRefPageGetField *pFld = new SwRefPageGetField( (SwRefPageGetFieldType*)pType, 0 );
-//STRIP001  rIo.InString( *rIo.pStrm, aString );
-//STRIP001  pFld->SetText( aString );
-//STRIP001  return pFld;
+/*N*/ {
+            String aString;
+            SwRefPageGetField *pFld = new SwRefPageGetField( (SwRefPageGetFieldType*)pType, 0 );
+            rIo.InString( *rIo.pStrm, aString );
+            pFld->SetText( aString );
+            return pFld;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutRefPageGetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  rIo.OutString( *rIo.pStrm, ((SwRefPageGetField*)pFld)->GetText() );
+/*N*/ {
+        rIo.OutString( *rIo.pStrm, ((SwRefPageGetField*)pFld)->GetText() );
 /*N*/ }
 
 /*  */
@@ -2362,12 +2362,12 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*?*/
 /*?*/       while( nCnt-- )
 /*?*/       {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nCurKey;
-//STRIP001 /*?*/            String aLibName, aMacName;
-//STRIP001 /*?*/            *rIo.pStrm >> nCurKey;
-//STRIP001 /*?*/            rIo.InString( *rIo.pStrm, aLibName );
-//STRIP001 /*?*/            rIo.InString( *rIo.pStrm, aMacName );
-//STRIP001 /*?*/            rIo.pFmtINetFmt->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
+                USHORT nCurKey;
+/*?*/           String aLibName, aMacName;
+/*?*/           *rIo.pStrm >> nCurKey;
+/*?*/           rIo.InString( *rIo.pStrm, aLibName );
+/*?*/           rIo.InString( *rIo.pStrm, aMacName );
+/*?*/           rIo.pFmtINetFmt->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -2396,120 +2396,120 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InScriptField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  String aType, aCode;
-//STRIP001  BYTE cFlags = 0;
-//STRIP001  rIo.InString( *rIo.pStrm, aType );
-//STRIP001  rIo.InString( *rIo.pStrm, aCode );
-//STRIP001
-//STRIP001  // Hier gab es mal eine Version SWG_SCRIPTURLS (0x0121), die jedoch
-//STRIP001  // so gut wie keiner benutuzt hat, erst recht nicht mit Script-Feldern.
-//STRIP001  // Deshalb wurde die geknickt.
-//STRIP001  if( rIo.IsVersion( SWG_NEWFIELDS ) )
-//STRIP001      *rIo.pStrm >> cFlags;
-//STRIP001  else if( aCode.CompareIgnoreCaseToAscii( "// @url: ", 9 ) == COMPARE_EQUAL )
-//STRIP001  {
-//STRIP001      // HACK fuer die 363 (4.0 fixpack 2): Script-Links wurden
-//STRIP001      // als spezieller Kommentar rausgeschrieben, weil es kein Flag zu
-//STRIP001      // Unterscheidung von normalem Code gab.
-//STRIP001      aCode.Erase( 0, 9 );
-//STRIP001      cFlags = 0x01;
-//STRIP001  }
-//STRIP001  if( (cFlags & 0x01) != 0 )
-//STRIP001      aCode = URIHelper::SmartRelToAbs( aCode );
-//STRIP001
-//STRIP001  SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
-//STRIP001                                           (cFlags & 0x01) != 0 );
-//STRIP001  return pFld;
+/*N*/ {
+        String aType, aCode;
+        BYTE cFlags = 0;
+        rIo.InString( *rIo.pStrm, aType );
+        rIo.InString( *rIo.pStrm, aCode );
+
+        // Hier gab es mal eine Version SWG_SCRIPTURLS (0x0121), die jedoch
+        // so gut wie keiner benutuzt hat, erst recht nicht mit Script-Feldern.
+        // Deshalb wurde die geknickt.
+        if( rIo.IsVersion( SWG_NEWFIELDS ) )
+            *rIo.pStrm >> cFlags;
+        else if( aCode.CompareIgnoreCaseToAscii( "// @url: ", 9 ) == COMPARE_EQUAL )
+        {
+            // HACK fuer die 363 (4.0 fixpack 2): Script-Links wurden
+            // als spezieller Kommentar rausgeschrieben, weil es kein Flag zu
+            // Unterscheidung von normalem Code gab.
+            aCode.Erase( 0, 9 );
+            cFlags = 0x01;
+        }
+        if( (cFlags & 0x01) != 0 )
+            aCode = URIHelper::SmartRelToAbs( aCode );
+
+        SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
+                                                 (cFlags & 0x01) != 0 );
+        return pFld;
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InScriptField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  String aType, aCode;
-//STRIP001  BYTE cFlags = 0;
-//STRIP001  rIo.InString( *rIo.pStrm, aType );
-//STRIP001  rIo.InString( *rIo.pStrm, aCode );
-//STRIP001  *rIo.pStrm >> cFlags;
-//STRIP001
-//STRIP001  if( (cFlags & 0x01) != 0 )
-//STRIP001      aCode = URIHelper::SmartRelToAbs( aCode );
-//STRIP001
-//STRIP001  SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
-//STRIP001                                           (cFlags & 0x01) != 0 );
-//STRIP001  return pFld;
+/*N*/ {
+        String aType, aCode;
+        BYTE cFlags = 0;
+        rIo.InString( *rIo.pStrm, aType );
+        rIo.InString( *rIo.pStrm, aCode );
+        *rIo.pStrm >> cFlags;
+
+        if( (cFlags & 0x01) != 0 )
+            aCode = URIHelper::SmartRelToAbs( aCode );
+
+        SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
+                                                 (cFlags & 0x01) != 0 );
+        return pFld;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutScriptField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  ASSERT( !rIo.IsSw31Export(),
-//STRIP001          "Wer will denn da ein Script-Feld exportieren" );
-//STRIP001
-//STRIP001  BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
-//STRIP001
-//STRIP001  String aCode;
-//STRIP001  if( ((SwScriptField*)pFld)->IsCodeURL() )
-//STRIP001  {
-//STRIP001      aCode.AssignAscii( "// @url: " );
-//STRIP001      aCode += INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      aCode = ((SwScriptField*)pFld)->GetCode();
-//STRIP001
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-//STRIP001  rIo.OutString( *rIo.pStrm, aCode );
+/*N*/ {
+        ASSERT( !rIo.IsSw31Export(),
+                "Wer will denn da ein Script-Feld exportieren" );
+
+        BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
+
+        String aCode;
+        if( ((SwScriptField*)pFld)->IsCodeURL() )
+        {
+            aCode.AssignAscii( "// @url: " );
+            aCode += INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+        }
+        else
+            aCode = ((SwScriptField*)pFld)->GetCode();
+
+        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
+        rIo.OutString( *rIo.pStrm, aCode );
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutScriptField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  ASSERT( !rIo.IsSw31Export(),
-//STRIP001          "Wer will denn da ein Script-Feld exportieren" );
-//STRIP001
-//STRIP001  BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
-//STRIP001
-//STRIP001  String aCode;
-//STRIP001  if( ((SwScriptField*)pFld)->IsCodeURL() )
-//STRIP001      aCode = INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
-//STRIP001  else
-//STRIP001      aCode = ((SwScriptField*)pFld)->GetCode();
-//STRIP001
-//STRIP001  rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-//STRIP001  rIo.OutString( *rIo.pStrm, aCode );
-//STRIP001  *rIo.pStrm << cFlags;
+/*N*/ {
+        ASSERT( !rIo.IsSw31Export(),
+                "Wer will denn da ein Script-Feld exportieren" );
+
+        BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
+
+        String aCode;
+        if( ((SwScriptField*)pFld)->IsCodeURL() )
+            aCode = INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+        else
+            aCode = ((SwScriptField*)pFld)->GetCode();
+
+        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
+        rIo.OutString( *rIo.pStrm, aCode );
+        *rIo.pStrm << cFlags;
 /*N*/ }
 
 /*  */
 
 /*N*/ SwField* lcl_sw3io_InAuthorityField( Sw3IoImp& rIo, SwFieldType*,
 /*N*/                                 USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  rIo.OpenFlagRec();
-//STRIP001
-//STRIP001  UINT16 nPos;
-//STRIP001  *rIo.pStrm >> nPos;
-//STRIP001
-//STRIP001  rIo.CloseFlagRec();
-//STRIP001
-//STRIP001  if( rIo.pAuthorityMap && nPos < rIo.pAuthorityMap->Count() )
-//STRIP001      nPos = (*rIo.pAuthorityMap)[nPos];
-//STRIP001
-//STRIP001  SwField *pFld = 0;
-//STRIP001  SwFieldType* pType = rIo.pDoc->GetFldType( RES_AUTHORITY, aEmptyStr );
-//STRIP001  ASSERT( pType, "missing authority field type" );
-//STRIP001  if( pType )
-//STRIP001  {
-//STRIP001      long nHandle = ((SwAuthorityFieldType *)pType)->GetHandle( nPos );
-//STRIP001      pFld = new SwAuthorityField( (SwAuthorityFieldType *)pType, nHandle );
-//STRIP001  }
-//STRIP001
-//STRIP001  return pFld;
+/*N*/ {
+        rIo.OpenFlagRec();
+
+        UINT16 nPos;
+        *rIo.pStrm >> nPos;
+
+        rIo.CloseFlagRec();
+
+        if( rIo.pAuthorityMap && nPos < rIo.pAuthorityMap->Count() )
+            nPos = (*rIo.pAuthorityMap)[nPos];
+
+        SwField *pFld = 0;
+        SwFieldType* pType = rIo.pDoc->GetFldType( RES_AUTHORITY, aEmptyStr );
+        ASSERT( pType, "missing authority field type" );
+        if( pType )
+        {
+            long nHandle = ((SwAuthorityFieldType *)pType)->GetHandle( nPos );
+            pFld = new SwAuthorityField( (SwAuthorityFieldType *)pType, nHandle );
+        }
+
+        return pFld;
 /*N*/ }
 
 /*N*/ void lcl_sw3io_OutAuthorityField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  BYTE cFlags = 0x02;
-//STRIP001  *rIo.pStrm  << cFlags
-//STRIP001              << (UINT16)((SwAuthorityField *)pFld)->GetHandlePosition();
+/*N*/ {
+            BYTE cFlags = 0x02;
+            *rIo.pStrm  << cFlags
+                        << (UINT16)((SwAuthorityField *)pFld)->GetHandlePosition();
 /*N*/ }
 
 /*  */
@@ -3029,7 +3029,7 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 /*N*/       case RES_SETEXPFLD:
 /*N*/           p = lcl_sw3io_InSetExpFieldType( *this ); break;
 /*?*/       case RES_AUTHORITY:
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          p = lcl_sw3io_InAuthorityFieldType( *this ); break;
+/*?*/          p = lcl_sw3io_InAuthorityFieldType( *this ); break;
 /*?*/       default:
 /*?*/           Warning(); break;
 /*N*/   }

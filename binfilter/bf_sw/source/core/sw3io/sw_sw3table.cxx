@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -330,9 +330,9 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           if( pDDEFldType && !pNd->GetTable().IsTblComplex() )
 /*N*/           {
 /*N*/               //DDETabelle, dann tausche am Node den Tabellen-Pointer aus
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/                 SwDDETable* pNewTable = new SwDDETable( pNd->GetTable(),
-//STRIP001 /*N*/                                                        pDDEFldType );
-//STRIP001 /*?*/                pNd->SetNewTable( pNewTable, FALSE );
+                    SwDDETable* pNewTable = new SwDDETable( pNd->GetTable(),
+/*N*/                                                       pDDEFldType );
+/*?*/               pNd->SetNewTable( pNewTable, FALSE );
 /*N*/           }
 /*N*/
 /*N*/           // Layout-Frames wieder erzeugen, falls eingefuegt
@@ -400,8 +400,8 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   // DDE-Tabelle? Dann den DDE-Feldtyp speichern
 /*N*/   if( IS_TYPE(SwDDETable, &rTbl) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwDDETable* pDDE = (SwDDETable*) &rTbl;
-//STRIP001 /*?*/        OutFieldType( *pDDE->GetDDEFldType() );
+/*?*/       SwDDETable* pDDE = (SwDDETable*) &rTbl;
+/*?*/       OutFieldType( *pDDE->GetDDEFldType() );
 /*N*/   }
 /*N*/   if( !IsSw31Or40Export() )
 /*N*/   {

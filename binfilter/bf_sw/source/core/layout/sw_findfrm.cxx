@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:25 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,16 +99,16 @@ namespace binfilter {
 /*N*/   return (SwLayoutFrm*)pLay;
 /*N*/ }
 
-//STRIP001 SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
-//STRIP001 {
-//STRIP001  SwCntntFrm *pRet = FindFirstBodyCntnt();
-//STRIP001  SwCntntFrm *pNxt = pRet;
-//STRIP001  while ( pNxt && pNxt->IsInDocBody() && IsAnLower( pNxt ) )
-//STRIP001  {   pRet = pNxt;
-//STRIP001      pNxt = pNxt->FindNextCnt();
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
+SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
+{
+    SwCntntFrm *pRet = FindFirstBodyCntnt();
+    SwCntntFrm *pNxt = pRet;
+    while ( pNxt && pNxt->IsInDocBody() && IsAnLower( pNxt ) )
+    {   pRet = pNxt;
+        pNxt = pNxt->FindNextCnt();
+    }
+    return pRet;
+}
 
 /*************************************************************************
 |*

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tox.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:19 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -321,7 +321,7 @@ public:
     inline USHORT   GetFormMax() const;
 
     USHORT GetFirstTabPos() const  ;    //{ return nFirstTabPos; }
-//STRIP001  void SetFirstTabPos( USHORT n );    //{ nFirstTabPos = n; }
+    void SetFirstTabPos( USHORT n );    //{ nFirstTabPos = n; }
 
     BOOL IsFirstTabPosFlag() const  ;   //{ return bHasFirstTabPos; }
 //STRIP001  void SetFirstTabPosFlag( BOOL b );  //{ bHasFirstTabPos = b; }

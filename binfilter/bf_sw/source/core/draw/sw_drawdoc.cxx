@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_drawdoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:25 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -209,29 +209,29 @@ namespace binfilter {
 \************************************************************************/
 
 
-//STRIP001 SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
-//STRIP001  : FmFormModel( ::GetPalettePath(), pPool, pDocSh, TRUE ),
-//STRIP001  pDoc( pDocSh->GetDoc() )
-//STRIP001 {
-//STRIP001  SetScaleUnit( MAP_TWIP );
-//STRIP001  SetDefaultFontHeight( 240 );
-//STRIP001  SetSwapGraphics( TRUE );
-//STRIP001
-//STRIP001  ASSERT( pDocSh, "DocShell not found" );
-//STRIP001  SvxColorTableItem* pColItem = ( SvxColorTableItem* )
-//STRIP001                              ( pDocSh->GetItem( ITEMID_COLOR_TABLE ) );
-//STRIP001  XColorTable *pXCol = pColItem ? pColItem->GetColorTable() :
-//STRIP001                                  OFF_APP()->GetStdColorTable();
-//STRIP001  SetColorTable( pXCol );
-//STRIP001
-//STRIP001  if ( !pColItem )
-//STRIP001      pDocSh->PutItem( SvxColorTableItem( pXCol ) );
-//STRIP001
-//STRIP001  // Bug 35371:
-//STRIP001  //  fuers "Datei einfuegen" NIE die anderen Items an der DocShell setzen!!!
-//STRIP001  // Diese zeigen sonst immer in das temporaere SdrModel !
-//STRIP001  SetObjectShell( pDocSh );
-//STRIP001 }
+SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
+    : FmFormModel( GetPalettePath(), pPool, pDocSh, TRUE ),
+    pDoc( pDocSh->GetDoc() )
+{
+    SetScaleUnit( MAP_TWIP );
+    SetDefaultFontHeight( 240 );
+    SetSwapGraphics( TRUE );
+
+    ASSERT( pDocSh, "DocShell not found" );
+    SvxColorTableItem* pColItem = ( SvxColorTableItem* )
+                                ( pDocSh->GetItem( ITEMID_COLOR_TABLE ) );
+    XColorTable *pXCol = pColItem ? pColItem->GetColorTable() :
+                                    OFF_APP()->GetStdColorTable();
+    SetColorTable( pXCol );
+
+    if ( !pColItem )
+        pDocSh->PutItem( SvxColorTableItem( pXCol ) );
+
+    // Bug 35371:
+    //  fuers "Datei einfuegen" NIE die anderen Items an der DocShell setzen!!!
+    // Diese zeigen sonst immer in das temporaere SdrModel !
+    SetObjectShell( pDocSh );
+}
 
 /*************************************************************************
 |*

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:35 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -370,123 +370,123 @@ using namespace ::rtl;
 /*N*/   return pTmp;
 /*N*/ }
 
-/*N*/ String SwDBField::GetCntnt(BOOL bName) const
-/*N*/ {
-/*N*/   if(bName)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        const String& rDBName = ((SwDBFieldType*)GetTyp())->GetName();
-//STRIP001 /*?*/        String sContent( SFX_APP()->LocalizeDBName(INI2NATIONAL,
-//STRIP001 /*?*/                                            rDBName.GetToken(0, DB_DELIM)));
+//STRIP001 /*N*/ String SwDBField::GetCntnt(BOOL bName) const
+//STRIP001 /*N*/ {
+//STRIP001 /*N*/    if(bName)
+//STRIP001 /*N*/   {
+//STRIP001 /*?*/       const String& rDBName = ((SwDBFieldType*)GetTyp())->GetName();
+//STRIP001 /*?*/       String sContent( SFX_APP()->LocalizeDBName(INI2NATIONAL,
+//STRIP001 /*?*/                                           rDBName.GetToken(0, DB_DELIM)));
 //STRIP001 /*?*/
-//STRIP001 /*?*/        if (sContent.Len() > 1)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            sContent += DB_DELIM;
-//STRIP001 /*?*/            sContent += rDBName.GetToken(1, DB_DELIM);
-//STRIP001 /*?*/            sContent += DB_DELIM;
-//STRIP001 /*?*/            sContent += rDBName.GetToken(2, DB_DELIM);
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        return lcl_DBTrennConv(sContent);
-/*N*/   }
-/*N*/   return Expand();
-/*N*/ }
+//STRIP001 /*?*/       if (sContent.Len() > 1)
+//STRIP001 /*?*/       {
+//STRIP001 /*?*/           sContent += DB_DELIM;
+//STRIP001 /*?*/           sContent += rDBName.GetToken(1, DB_DELIM);
+//STRIP001 /*?*/           sContent += DB_DELIM;
+//STRIP001 /*?*/           sContent += rDBName.GetToken(2, DB_DELIM);
+//STRIP001 /*?*/       }
+//STRIP001 /*?*/       return lcl_DBTrennConv(sContent);
+//STRIP001 /*N*/    }
+//STRIP001 /*N*/    return Expand();
+//STRIP001 /*N*/ }
 
 //------------------------------------------------------------------------------
 
-//STRIP001 void SwDBField::ChgValue( double d, BOOL bVal )
-//STRIP001 {
-//STRIP001  bValidValue = bVal;
-//STRIP001  SetValue(d);
-//STRIP001
-//STRIP001  if( bValidValue )
-//STRIP001      aContent = ((SwValueFieldType*)GetTyp())->ExpandValue(d, GetFormat(), GetLanguage());
-//STRIP001 }
+void SwDBField::ChgValue( double d, BOOL bVal )
+{
+    bValidValue = bVal;
+    SetValue(d);
+
+    if( bValidValue )
+        aContent = ((SwValueFieldType*)GetTyp())->ExpandValue(d, GetFormat(), GetLanguage());
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
-//STRIP001 {
-//STRIP001  SwFieldType* pOld = SwValueField::ChgTyp( pNewType );
-//STRIP001
-//STRIP001  ((SwDBFieldType*)pNewType)->AddRef();
-//STRIP001  ((SwDBFieldType*)pOld)->ReleaseRef();
-//STRIP001
-//STRIP001  return pOld;
-//STRIP001 }
+SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
+{
+    SwFieldType* pOld = SwValueField::ChgTyp( pNewType );
+
+    ((SwDBFieldType*)pNewType)->AddRef();
+    ((SwDBFieldType*)pOld)->ReleaseRef();
+
+    return pOld;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Aktuellen Field-Value holen und chachen
  --------------------------------------------------------------------*/
 
 /*N*/ void SwDBField::Evaluate()
-/*N*/ {
-/*N*/   SwNewDBMgr* pMgr = GetDoc()->GetNewDBMgr();
-/*N*/
-/*N*/   // erstmal loeschen
-/*N*/   bValidValue = FALSE;
-/*N*/   double nValue = DBL_MAX;
-/*N*/   const SwDBData& aTmpData = GetDBData();
-/*N*/
-/*N*/     if(!pMgr || !pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True))
-/*N*/       return ;
-/*N*/
-/*N*/   ULONG nFmt;
-/*?*/
-/*?*/   // Passenden Spaltennamen suchen
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 String aColNm( ((SwDBFieldType*)GetTyp())->GetColumnName() );
+ /*N*/ {    DBG_ERROR("STRIP")
+//STRIP001 /*N*/    SwNewDBMgr* pMgr = GetDoc()->GetNewDBMgr();
+//STRIP001 /*N*/
+//STRIP001 /*N*/    // erstmal loeschen
+//STRIP001 /*N*/    bValidValue = FALSE;
+//STRIP001 /*N*/    double nValue = DBL_MAX;
+//STRIP001 /*N*/    const SwDBData& aTmpData = GetDBData();
+//STRIP001 /*N*/
+//STRIP001 /*N*/     if(!pMgr || !pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True))
+//STRIP001 /*N*/        return ;
+//STRIP001 /*N*/
+//STRIP001 /*N*/    ULONG nFmt;
 //STRIP001 /*?*/
-//STRIP001 /*?*/    SvNumberFormatter* pDocFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001 /*?*/    pMgr->GetMergeColumnCnt(aColNm, GetLanguage(), aContent, &nValue, &nFmt);
-//STRIP001 /*?*/    if( !( nSubType & SUB_OWN_FMT ) )
-//STRIP001 /*?*/        SetFormat( nFmt = pMgr->GetColumnFmt( aTmpData.sDataSource, aTmpData.sCommand,
-//STRIP001 /*?*/                                        aColNm, pDocFormatter, GetLanguage() ));
+//STRIP001 /*?*/    // Passenden Spaltennamen suchen
+//STRIP001 /*?*/   String aColNm( ((SwDBFieldType*)GetTyp())->GetColumnName() );
 //STRIP001 /*?*/
-//STRIP001 /*?*/    if( DBL_MAX != nValue )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        sal_Int32 nColumnType = pMgr->GetColumnType(aTmpData.sDataSource, aTmpData.sCommand, aColNm);
-//STRIP001 /*?*/        if( DataType::DATE == nColumnType  || DataType::TIME == nColumnType  ||
+//STRIP001 /*?*/   SvNumberFormatter* pDocFormatter = GetDoc()->GetNumberFormatter();
+//STRIP001 /*?*/   pMgr->GetMergeColumnCnt(aColNm, GetLanguage(), aContent, &nValue, &nFmt);
+//STRIP001 /*?*/   if( !( nSubType & SUB_OWN_FMT ) )
+//STRIP001 /*?*/       SetFormat( nFmt = pMgr->GetColumnFmt( aTmpData.sDataSource, aTmpData.sCommand,
+//STRIP001 /*?*/                                       aColNm, pDocFormatter, GetLanguage() ));
+//STRIP001 /*?*/
+//STRIP001 /*?*/   if( DBL_MAX != nValue )
+//STRIP001 /*?*/   {
+//STRIP001 /*?*/       sal_Int32 nColumnType = pMgr->GetColumnType(aTmpData.sDataSource, aTmpData.sCommand, aColNm);
+//STRIP001 /*?*/       if( DataType::DATE == nColumnType  || DataType::TIME == nColumnType  ||
 //STRIP001 /*?*/                  DataType::TIMESTAMP  == nColumnType)
 //STRIP001 /*?*/
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            Date aStandard(1,1,1900);
-//STRIP001 /*?*/            if (*pDocFormatter->GetNullDate() != aStandard)
-//STRIP001 /*?*/                nValue += (aStandard - *pDocFormatter->GetNullDate());
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        bValidValue = TRUE;
-//STRIP001 /*?*/        SetValue(nValue);
-//STRIP001 /*?*/        aContent = ((SwValueFieldType*)GetTyp())->ExpandValue(nValue, GetFormat(), GetLanguage());
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        SwSbxValue aVal;
-//STRIP001 /*?*/        aVal.PutString( aContent );
+//STRIP001 /*?*/       {
+//STRIP001 /*?*/           Date aStandard(1,1,1900);
+//STRIP001 /*?*/           if (*pDocFormatter->GetNullDate() != aStandard)
+//STRIP001 /*?*/               nValue += (aStandard - *pDocFormatter->GetNullDate());
+//STRIP001 /*?*/       }
+//STRIP001 /*?*/       bValidValue = TRUE;
+//STRIP001 /*?*/       SetValue(nValue);
+//STRIP001 /*?*/       aContent = ((SwValueFieldType*)GetTyp())->ExpandValue(nValue, GetFormat(), GetLanguage());
+//STRIP001 /*?*/   }
+//STRIP001 /*?*/   else
+//STRIP001 /*?*/   {
+//STRIP001 /*?*/       SwSbxValue aVal;
+//STRIP001 /*?*/       aVal.PutString( aContent );
 //STRIP001 /*?*/
-//STRIP001 /*?*/        if (aVal.IsNumeric())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SetValue(aVal.GetDouble());
+//STRIP001 /*?*/       if (aVal.IsNumeric())
+//STRIP001 /*?*/       {
+//STRIP001 /*?*/           SetValue(aVal.GetDouble());
 //STRIP001 /*?*/
-//STRIP001 /*?*/            SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001 /*?*/            if (nFmt && nFmt != ULONG_MAX && !pFormatter->IsTextFormat(nFmt))
-//STRIP001 /*?*/                bValidValue = TRUE; // Wegen Bug #60339 nicht mehr bei allen Strings
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            // Bei Strings TRUE wenn Laenge > 0 sonst FALSE
-//STRIP001 /*?*/            SetValue(aContent.Len() ? 1 : 0);
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    bInitialized = TRUE;
+//STRIP001 /*?*/           SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
+//STRIP001 /*?*/           if (nFmt && nFmt != ULONG_MAX && !pFormatter->IsTextFormat(nFmt))
+//STRIP001 /*?*/               bValidValue = TRUE; // Wegen Bug #60339 nicht mehr bei allen Strings
+//STRIP001 /*?*/       }
+//STRIP001 /*?*/       else
+//STRIP001 /*?*/       {
+//STRIP001 /*?*/           // Bei Strings TRUE wenn Laenge > 0 sonst FALSE
+//STRIP001 /*?*/           SetValue(aContent.Len() ? 1 : 0);
+//STRIP001 /*?*/       }
+//STRIP001 /*?*/   }
+//STRIP001 /*?*/   bInitialized = TRUE;
 /*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Namen erfragen
  --------------------------------------------------------------------*/
 
-//STRIP001 const String& SwDBField::GetPar1() const
-//STRIP001 {
-//STRIP001  return ((SwDBFieldType*)GetTyp())->GetName();
-//STRIP001 }
+const String& SwDBField::GetPar1() const
+{
+    return ((SwDBFieldType*)GetTyp())->GetName();
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
@@ -623,23 +623,23 @@ using namespace ::rtl;
 
 //------------------------------------------------------------------------------
 
-/*N*/ String SwDBNameInfField::GetCntnt(BOOL bName) const
-/*N*/ {
-/*N*/   String sStr(SwField::GetCntnt(bName));
-/*N*/
-/*N*/   if(bName)
-/*N*/   {
-/*?*/       if (aDBData.sDataSource.getLength())
-/*?*/       {
-/*?*/           sStr += ':';
-/*?*/           sStr += String(aDBData.sDataSource);
-/*?*/           sStr += DB_DELIM;
-/*?*/           sStr += String(aDBData.sCommand);
-/*?*/       }
-/*N*/   }
-/*N*/   return lcl_DBTrennConv(sStr);
-/*N*/ }
-
+//STRIP001 /*N*/ String SwDBNameInfField::GetCntnt(BOOL bName) const
+//STRIP001 /*N*/ {
+//STRIP001 /*N*/    String sStr(SwField::GetCntnt(bName));
+//STRIP001 /*N*/
+//STRIP001 /*N*/    if(bName)
+//STRIP001 /*N*/    {
+//STRIP001 /*?*/        if (aDBData.sDataSource.getLength())
+//STRIP001 /*?*/        {
+//STRIP001 /*?*/            sStr += ':';
+//STRIP001 /*?*/            sStr += String(aDBData.sDataSource);
+//STRIP001 /*?*/            sStr += DB_DELIM;
+//STRIP001 /*?*/            sStr += String(aDBData.sCommand);
+//STRIP001 /*?*/        }
+//STRIP001 /*N*/    }
+//STRIP001 /*N*/    return lcl_DBTrennConv(sStr);
+//STRIP001 /*N*/ }
+//STRIP001
 /*-----------------06.03.98 16:55-------------------
 
 --------------------------------------------------*/
@@ -671,38 +671,38 @@ using namespace ::rtl;
 /*-----------------06.03.98 16:55-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      rAny >>= aDBData.sDataSource;
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      rAny >>= aDBData.sCommand;
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_SHORT1:
-//STRIP001      rAny >>= aDBData.nCommandType;
-//STRIP001      break;
-//STRIP001     case FIELD_PROP_BOOL2:
-//STRIP001     {
-//STRIP001         USHORT nSubType = GetSubType();
-//STRIP001         sal_Bool bVisible;
-//STRIP001         if(!(rAny >>= bVisible))
-//STRIP001             return FALSE;
-//STRIP001         if(bVisible)
-//STRIP001             nSubType &= ~SUB_INVISIBLE;
-//STRIP001         else
-//STRIP001             nSubType |= SUB_INVISIBLE;
-//STRIP001         SetSubType(nSubType);
-//STRIP001     }
-//STRIP001     break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        rAny >>= aDBData.sDataSource;
+        break;
+    case FIELD_PROP_PAR2:
+        rAny >>= aDBData.sCommand;
+        break;
+    case FIELD_PROP_SHORT1:
+        rAny >>= aDBData.nCommandType;
+        break;
+    case FIELD_PROP_BOOL2:
+    {
+        USHORT nSubType = GetSubType();
+        sal_Bool bVisible;
+        if(!(rAny >>= bVisible))
+            return FALSE;
+        if(bVisible)
+            nSubType &= ~SUB_INVISIBLE;
+        else
+            nSubType |= SUB_INVISIBLE;
+        SetSubType(nSubType);
+    }
+    break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return TRUE;
+}
 /* -----------------4/10/2003 15:03------------------
 
  --------------------------------------------------*/
@@ -731,8 +731,8 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwDBNextSetFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNextSetFieldType* pTmp = new SwDBNextSetFieldType();
-//STRIP001  return pTmp;
+            SwDBNextSetFieldType* pTmp = new SwDBNextSetFieldType();
+            return pTmp;
 /*N*/ }
 /*--------------------------------------------------------------------
     Beschreibung: SwDBSetField
@@ -783,10 +783,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNextSetFieldType
 /*N*/   return aCond;
 /*N*/ }
 
-//STRIP001 void SwDBNextSetField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  aCond = rStr;
-//STRIP001 }
+void SwDBNextSetField::SetPar1(const String& rStr)
+{
+    aCond = rStr;
+}
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
@@ -807,20 +807,20 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNextSetFieldType
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::binfilter::GetString( rAny, aCond );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = SwDBNameInfField::PutValue( rAny, nMId );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    BOOL bRet = TRUE;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR3:
+        ::binfilter::GetString( rAny, aCond );
+        break;
+    default:
+        bRet = SwDBNameInfField::PutValue( rAny, nMId );
+    }
+    return bRet;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
@@ -850,8 +850,8 @@ void SwDBNextSetField::SetPar2(const String& rStr)
 
 /*N*/ SwFieldType* SwDBNumSetFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType* pTmp = new SwDBNumSetFieldType();
-//STRIP001  return pTmp;
+        SwDBNumSetFieldType* pTmp = new SwDBNumSetFieldType();
+        return pTmp;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -907,10 +907,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 /*N*/   return aCond;
 /*N*/ }
 
-//STRIP001 void SwDBNumSetField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  aCond = rStr;
-//STRIP001 }
+void SwDBNumSetField::SetPar1(const String& rStr)
+{
+    aCond = rStr;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Bedingung
@@ -921,10 +921,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 /*N*/   return aPar2;
 /*N*/ }
 
-//STRIP001 void SwDBNumSetField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  aPar2 = rStr;
-//STRIP001 }
+void SwDBNumSetField::SetPar2(const String& rStr)
+{
+    aPar2 = rStr;
+}
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
@@ -948,27 +948,27 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::binfilter::GetString( rAny, aCond );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_FORMAT:
-//STRIP001      {
-//STRIP001          sal_Int32 nVal;
-//STRIP001          rAny >>= nVal;
-//STRIP001          aPar2 = String::CreateFromInt32(nVal);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = SwDBNameInfField::PutValue(rAny, nMId );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    BOOL bRet = TRUE;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR3:
+        ::binfilter::GetString( rAny, aCond );
+        break;
+    case FIELD_PROP_FORMAT:
+        {
+            sal_Int32 nVal;
+            rAny >>= nVal;
+            aPar2 = String::CreateFromInt32(nVal);
+        }
+        break;
+    default:
+        bRet = SwDBNameInfField::PutValue(rAny, nMId );
+    }
+    return bRet;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: SwDBNameFieldType
@@ -994,8 +994,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 
 /*N*/ SwFieldType* SwDBNameFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNameFieldType *pTmp = new SwDBNameFieldType(pDoc);
-//STRIP001  return pTmp;
+        SwDBNameFieldType *pTmp = new SwDBNameFieldType(pDoc);
+        return pTmp;
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -1039,10 +1039,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNameFieldType *p
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001  return SwDBNameInfField::PutValue(rAny, nMId );
-//STRIP001 }
+BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    return SwDBNameInfField::PutValue(rAny, nMId );
+}
 /*--------------------------------------------------------------------
     Beschreibung: SwDBNameFieldType
  --------------------------------------------------------------------*/
@@ -1056,8 +1056,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNameFieldType *p
 
 /*N*/ SwFieldType* SwDBSetNumberFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBSetNumberFieldType *pTmp = new SwDBSetNumberFieldType;
-//STRIP001  return pTmp;
+        SwDBSetNumberFieldType *pTmp = new SwDBSetNumberFieldType;
+        return pTmp;
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -1131,31 +1131,31 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBSetNumberFieldTy
 /*-----------------06.03.98 16:15-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001  BOOL bRet = TRUE;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      {
-//STRIP001          sal_Int16 nSet;
-//STRIP001          rAny >>= nSet;
-//STRIP001          if(nSet < (INT16) SVX_NUMBER_NONE )
-//STRIP001              SetFormat(nSet);
-//STRIP001          else
-//STRIP001              //exception(wrong_value)
-//STRIP001              ;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_FORMAT:
-//STRIP001      rAny >>= nNumber;
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = SwDBNameInfField::PutValue( rAny, nMId );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    BOOL bRet = TRUE;
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_USHORT1:
+        {
+            sal_Int16 nSet;
+            rAny >>= nSet;
+            if(nSet < (INT16) SVX_NUMBER_NONE )
+                SetFormat(nSet);
+            else
+                //exception(wrong_value)
+                ;
+        }
+        break;
+    case FIELD_PROP_FORMAT:
+        rAny >>= nNumber;
+        break;
+    default:
+        bRet = SwDBNameInfField::PutValue( rAny, nMId );
+    }
+    return bRet;
+}
 
 
 }

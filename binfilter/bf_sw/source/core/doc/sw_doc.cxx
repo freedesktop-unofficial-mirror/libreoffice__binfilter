@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:49 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -610,18 +610,18 @@ namespace binfilter {
 //STRIP001  return *(pMacroTable->Get(nEvent));
 //STRIP001 }
 
-//STRIP001 void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
-//STRIP001 {
-//STRIP001  SvxMacro *pMacro;
-//STRIP001  SetModified();
-//STRIP001  if ( 0 != (pMacro=pMacroTable->Get(nEvent)) )
-//STRIP001  {
-//STRIP001      delete pMacro;
-//STRIP001      pMacroTable->Replace(nEvent, new SvxMacro(rMacro));
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  pMacroTable->Insert(nEvent, new SvxMacro(rMacro));
-//STRIP001 }
+void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
+{
+    SvxMacro *pMacro;
+    SetModified();
+    if ( 0 != (pMacro=pMacroTable->Get(nEvent)) )
+    {
+        delete pMacro;
+        pMacroTable->Replace(nEvent, new SvxMacro(rMacro));
+        return;
+    }
+    pMacroTable->Insert(nEvent, new SvxMacro(rMacro));
+}
 
 //STRIP001 BOOL SwDoc::DelGlobalMacro(USHORT nEvent)
 //STRIP001 {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -380,13 +380,13 @@ public:
 /*N*/       delete pDoc;
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::SetDoc( SwDoc& r )
-//STRIP001 {
-//STRIP001  if( pDoc && !pDoc->RemoveLink() )
-//STRIP001      delete pDoc;
-//STRIP001  pDoc = &r;
-//STRIP001  r.AddLink();
-//STRIP001 }
+void Sw3IoImp::SetDoc( SwDoc& r )
+{
+    if( pDoc && !pDoc->RemoveLink() )
+        delete pDoc;
+    pDoc = &r;
+    r.AddLink();
+}
 
 /*N*/ Sw3IoImp* Sw3IoImp::GetCurrentIo()
 /*N*/ {
@@ -927,9 +927,9 @@ public:
 /*N*/       sal_uInt32 nSize = nVal >> 8;
 /*N*/       if( LONG_RECSIZE == nSize && IsVersion( SWG_LONGRECS ) )
 /*N*/       {
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          sal_uInt32 nTmp = GetRecordSize( nPos );
-//STRIP001 /*?*/            if( nTmp != ULONG_MAX )
-//STRIP001 /*?*/                nSize = nTmp;
+                sal_uInt32 nTmp = GetRecordSize( nPos );
+/*?*/           if( nTmp != ULONG_MAX )
+/*?*/               nSize = nTmp;
 /*N*/       }
 /*N*/
 /*N*/       aRecSizes.Insert( nPos + nSize, nLvl );
@@ -994,8 +994,8 @@ public:
 /*?*/               }
 /*?*/               else
 /*?*/               {
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  InsertRecordSize( nBgn, nSize );
-//STRIP001 /*?*/                    nSize = LONG_RECSIZE;
+                        InsertRecordSize( nBgn, nSize );
+/*?*/                  nSize = LONG_RECSIZE;
 /*?*/               }
 /*N*/           }
 /*N*/           sal_uInt32 nVal = ( nSize << 8 ) | aRecTypes[nLvl];
@@ -1033,33 +1033,33 @@ public:
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::InsertRecordSize( sal_uInt32 nPos, sal_uInt32 nSize )
-//STRIP001 {
-//STRIP001  if( !pRecSizes )
-//STRIP001      pRecSizes = new Sw3RecordSizeTable;
-//STRIP001
-//STRIP001  pRecSizes->Insert( nPos, nSize );
-//STRIP001 }
+void Sw3IoImp::InsertRecordSize( sal_uInt32 nPos, sal_uInt32 nSize )
+{
+    if( !pRecSizes )
+        pRecSizes = new Sw3RecordSizeTable;
 
-//STRIP001 sal_uInt32 Sw3IoImp::GetRecordSize( sal_uInt32 nPos )
-//STRIP001 {
-//STRIP001  sal_uInt32 nTablePos, nRet = ULONG_MAX;
-//STRIP001
-//STRIP001  if( pRecSizes &&
-//STRIP001      TABLE_ENTRY_NOTFOUND != pRecSizes->SearchKey( nPos, &nTablePos ) )
-//STRIP001  {
-//STRIP001      nRet = pRecSizes->GetObject( nTablePos );
-//STRIP001  }
-//STRIP001  ASSERT( nRet != ULONG_MAX, "Record-Size nicht gefunden" );
-//STRIP001
-//STRIP001  return nRet;
-//STRIP001 }
+    pRecSizes->Insert( nPos, nSize );
+}
 
-//STRIP001 void Sw3IoImp::FlushRecSizes()
-//STRIP001 {
-//STRIP001  delete pRecSizes;
-//STRIP001  pRecSizes = 0;
-//STRIP001 }
+sal_uInt32 Sw3IoImp::GetRecordSize( sal_uInt32 nPos )
+{
+    sal_uInt32 nTablePos, nRet = ULONG_MAX;
+
+    if( pRecSizes &&
+        TABLE_ENTRY_NOTFOUND != pRecSizes->SearchKey( nPos, &nTablePos ) )
+    {
+        nRet = pRecSizes->GetObject( nTablePos );
+    }
+    ASSERT( nRet != ULONG_MAX, "Record-Size nicht gefunden" );
+
+    return nRet;
+}
+
+void Sw3IoImp::FlushRecSizes()
+{
+    delete pRecSizes;
+    pRecSizes = 0;
+}
 
 // Zurueckliefern, wie viele Bytes ein Record noch enthaelt
 
@@ -1115,74 +1115,74 @@ public:
 /*N*/   CloseRec( c );
 /*N*/ }
 
-//STRIP001 void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
-//STRIP001 {
-//STRIP001  ASSERT( !pRecSizes, "RecSize-Tabelle existiert noch" );
-//STRIP001  ASSERT( nRecPos, "Keine Position der RecSize-Tabelle" );
-//STRIP001
-//STRIP001  if( nRecPos )
-//STRIP001  {
-//STRIP001      pRecSizes = new Sw3RecordSizeTable;
-//STRIP001
-//STRIP001      // Wenn der Stream vor dem Record steht, wird der Record
-//STRIP001      // normal gelesen. Sonst wird erstmal zu ihm geseekt und
-//STRIP001      // nach dem Lesen wieder am die aktuelle Stelle zurueck.
-//STRIP001      sal_uInt32 nOldPos = pStrm->Tell();
-//STRIP001      if( nOldPos != nRecPos )
-//STRIP001          pStrm->Seek( nRecPos );
-//STRIP001
-//STRIP001      sal_uInt32 nCount, nPos, nSize;
-//STRIP001      OpenRec( SWG_RECSIZES );
-//STRIP001      OpenFlagRec();
-//STRIP001      *pStrm >> nCount;
-//STRIP001      CloseFlagRec();
-//STRIP001
-//STRIP001      for( sal_uInt32 i=0; i < (sal_uInt32)nCount; i++ )
-//STRIP001      {
-//STRIP001          *pStrm >> nPos >> nSize;
-//STRIP001          pRecSizes->Insert( (sal_uInt32)nPos, nSize );
-//STRIP001      }
-//STRIP001
-//STRIP001      CloseRec( SWG_RECSIZES );
-//STRIP001
-//STRIP001      if( nOldPos != nRecPos )
-//STRIP001          pStrm->Seek( nOldPos );
-//STRIP001  }
-//STRIP001 }
+void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
+{
+    ASSERT( !pRecSizes, "RecSize-Tabelle existiert noch" );
+    ASSERT( nRecPos, "Keine Position der RecSize-Tabelle" );
 
-//STRIP001 sal_uInt32 Sw3IoImp::OutRecSizes()
-//STRIP001 {
-//STRIP001  sal_uInt32 nRecPos = 0;
-//STRIP001  if( pRecSizes )
-//STRIP001  {
-//STRIP001      sal_uInt32 nCount = pRecSizes->Count();
-//STRIP001      ASSERT( nCount, "RecSize-Tabelle ist leer" );
-//STRIP001
-//STRIP001      if( (nCount*8 + 4) > MAX_SMALL_RECSIZE )
-//STRIP001      {
-//STRIP001          // Der Record darf kein langer sein, sonst haben wir ein
-//STRIP001          // Problem ...
-//STRIP001          Error( ERR_SWG_LARGE_DOC_ERROR );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nRecPos = pStrm->Tell();
-//STRIP001          OpenRec( SWG_RECSIZES );
-//STRIP001
-//STRIP001          *pStrm << (sal_uInt8)0x04 << (sal_uInt32)nCount;
-//STRIP001
-//STRIP001          for( sal_uInt32 i=0; i < nCount; i++ )
-//STRIP001          {
-//STRIP001              *pStrm  << (sal_uInt32)pRecSizes->GetObjectKey( i )
-//STRIP001                      << (sal_uInt32)pRecSizes->GetObject( i );
-//STRIP001          }
-//STRIP001
-//STRIP001          CloseRec( SWG_RECSIZES );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return nRecPos;
-//STRIP001 }
+    if( nRecPos )
+    {
+        pRecSizes = new Sw3RecordSizeTable;
+
+        // Wenn der Stream vor dem Record steht, wird der Record
+        // normal gelesen. Sonst wird erstmal zu ihm geseekt und
+        // nach dem Lesen wieder am die aktuelle Stelle zurueck.
+        sal_uInt32 nOldPos = pStrm->Tell();
+        if( nOldPos != nRecPos )
+            pStrm->Seek( nRecPos );
+
+        sal_uInt32 nCount, nPos, nSize;
+        OpenRec( SWG_RECSIZES );
+        OpenFlagRec();
+        *pStrm >> nCount;
+        CloseFlagRec();
+
+        for( sal_uInt32 i=0; i < (sal_uInt32)nCount; i++ )
+        {
+            *pStrm >> nPos >> nSize;
+            pRecSizes->Insert( (sal_uInt32)nPos, nSize );
+        }
+
+        CloseRec( SWG_RECSIZES );
+
+        if( nOldPos != nRecPos )
+            pStrm->Seek( nOldPos );
+    }
+}
+
+sal_uInt32 Sw3IoImp::OutRecSizes()
+{
+    sal_uInt32 nRecPos = 0;
+    if( pRecSizes )
+    {
+        sal_uInt32 nCount = pRecSizes->Count();
+        ASSERT( nCount, "RecSize-Tabelle ist leer" );
+
+        if( (nCount*8 + 4) > MAX_SMALL_RECSIZE )
+        {
+            // Der Record darf kein langer sein, sonst haben wir ein
+            // Problem ...
+            Error( ERR_SWG_LARGE_DOC_ERROR );
+        }
+        else
+        {
+            nRecPos = pStrm->Tell();
+            OpenRec( SWG_RECSIZES );
+
+            *pStrm << (sal_uInt8)0x04 << (sal_uInt32)nCount;
+
+            for( sal_uInt32 i=0; i < nCount; i++ )
+            {
+                *pStrm  << (sal_uInt32)pRecSizes->GetObjectKey( i )
+                        << (sal_uInt32)pRecSizes->GetObject( i );
+            }
+
+            CloseRec( SWG_RECSIZES );
+        }
+    }
+
+    return nRecPos;
+}
 
 // Ein Flag-Byte enthaelt immer die Anzahl Daten im unteren Nybble.
 // Hier wird das Flagbyte mit der aktuellen Position ausgewertet.
@@ -1466,53 +1466,53 @@ public:
 /*N*/   // Wenn der erste Stream gelesen wird, kann es noch keine RecSizes geben
 /*N*/   ASSERT( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
 /*N*/   if( HasRecSizes() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      FlushRecSizes();
+            FlushRecSizes();
 /*N*/
 /*N*/   pDrawing->Seek( 0L );
 /*N*/   pDrawing->SetBufferSize( SW3_BSR_DRAWING );
 /*N*/   SdrModel* pModel = NULL;
 /*N*/   if( bInsert )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/  {
-//STRIP001 /*N*/        //!!Diesen Code parallel zum Code fuer die Pools im docnew.cxx
-//STRIP001 /*N*/        //pflegen.
-//STRIP001 /*?*/        SfxItemPool *pAttrPool = new SfxItemPool(
-//STRIP001 /*?*/                                        String::CreateFromAscii("SWG"),
-//STRIP001 /*?*/                                        POOLATTR_BEGIN, POOLATTR_END-1,
-//STRIP001 /*?*/                                        aSlotTab, aAttrTab );
-//STRIP001 /*?*/        SfxItemPool *pSdrPool = new SdrItemPool( pAttrPool );
-//STRIP001 /*?*/        SfxItemPool *pEEgPool = EditEngine::CreatePool();
-//STRIP001 /*?*/        pSdrPool->SetSecondaryPool( pEEgPool );
-//STRIP001 /*?*/        pAttrPool->FreezeIdRanges();
-//STRIP001 /*?*/        SdrModel* pInsModel = new SwDrawDocument( pAttrPool, pDoc->GetDocShell() );
-//STRIP001 /*?*/        pSdrPool->Load( *pDrawing );
-//STRIP001 /*?*/        if( pDrawing->GetError() == SVSTREAM_OK )
-//STRIP001 /*?*/            *pDrawing >> *pInsModel;
-//STRIP001 /*?*/        if( pDrawing->GetError() == SVSTREAM_OK )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pModel = pDoc->MakeDrawModel();
-//STRIP001 /*?*/            // Objekte werden vor die aktuellen Objekte eingefuegt
-//STRIP001 /*?*/            SdrPage* pInsPage = pInsModel->GetPage( 0 );
-//STRIP001 /*?*/            SdrPage* pPage = pModel->GetPage( 0 );
-//STRIP001 /*?*/            pPage->RecalcObjOrdNums();
-//STRIP001 /*?*/            nZOrderOff = pPage->GetObjCount();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            for( sal_uInt32 n = pInsPage->GetObjCount(); n--; )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SdrObject* pObj = pInsPage->RemoveObject( 0 );
-//STRIP001 /*?*/                if( pObj )
-//STRIP001 /*?*/                    pPage->InsertObject( pObj );
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    ASSERT( !this, "wo ist das DrawObject?" );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        delete pInsModel;
-//STRIP001 /*?*/        pSdrPool->Delete();
-//STRIP001 /*?*/        pAttrPool->SetSecondaryPool(0);
-//STRIP001 /*?*/        pSdrPool->SetSecondaryPool(0);
-//STRIP001 /*?*/        delete pAttrPool;
-//STRIP001 /*?*/        delete pSdrPool;
-//STRIP001 /*?*/        delete pEEgPool;
-//STRIP001 /*N*/    }
+/*N*/   {
+/*N*/       //!!Diesen Code parallel zum Code fuer die Pools im docnew.cxx
+/*N*/       //pflegen.
+/*?*/       SfxItemPool *pAttrPool = new SfxItemPool(
+/*?*/                                       String::CreateFromAscii("SWG"),
+/*?*/                                       POOLATTR_BEGIN, POOLATTR_END-1,
+/*?*/                                       aSlotTab, aAttrTab );
+/*?*/       SfxItemPool *pSdrPool = new SdrItemPool( pAttrPool );
+/*?*/       SfxItemPool *pEEgPool = EditEngine::CreatePool();
+/*?*/       pSdrPool->SetSecondaryPool( pEEgPool );
+/*?*/       pAttrPool->FreezeIdRanges();
+/*?*/       SdrModel* pInsModel = new SwDrawDocument( pAttrPool, pDoc->GetDocShell() );
+/*?*/       pSdrPool->Load( *pDrawing );
+/*?*/       if( pDrawing->GetError() == SVSTREAM_OK )
+/*?*/           *pDrawing >> *pInsModel;
+/*?*/       if( pDrawing->GetError() == SVSTREAM_OK )
+/*?*/       {
+/*?*/           pModel = pDoc->MakeDrawModel();
+/*?*/           // Objekte werden vor die aktuellen Objekte eingefuegt
+/*?*/           SdrPage* pInsPage = pInsModel->GetPage( 0 );
+/*?*/           SdrPage* pPage = pModel->GetPage( 0 );
+/*?*/           pPage->RecalcObjOrdNums();
+/*?*/           nZOrderOff = pPage->GetObjCount();
+/*?*/
+/*?*/           for( sal_uInt32 n = pInsPage->GetObjCount(); n--; )
+/*?*/           {
+/*?*/               SdrObject* pObj = pInsPage->RemoveObject( 0 );
+/*?*/               if( pObj )
+/*?*/                   pPage->InsertObject( pObj );
+/*?*/               else
+/*?*/                   ASSERT( !this, "wo ist das DrawObject?" );
+/*?*/           }
+/*?*/       }
+/*?*/       delete pInsModel;
+/*?*/       pSdrPool->Delete();
+/*?*/       pAttrPool->SetSecondaryPool(0);
+/*?*/       pSdrPool->SetSecondaryPool(0);
+/*?*/       delete pAttrPool;
+/*?*/       delete pSdrPool;
+/*?*/       delete pEEgPool;
+/*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       pModel = pDoc->MakeDrawModel();
@@ -1586,7 +1586,7 @@ public:
 /*N*/       return;
 /*N*/
 /*N*/   if( HasRecSizes() ) // sicher ist sicher
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      FlushRecSizes();
+/*?*/       FlushRecSizes();
 /*N*/
 /*N*/   pDrawing->SetSize( 0L );
 /*N*/   // Stream weg, wenn wir kein OLE-Objekt sind
@@ -1712,13 +1712,13 @@ public:
 /*N*/
 /*N*/   sal_uInt32 nRecSzPos = 0;
 /*N*/   if( !nRes && HasRecSizes() && !IsSw31Or40Export() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      nRecSzPos = OutRecSizes();
+/*?*/       nRecSzPos = OutRecSizes();
 /*N*/
 /*N*/   OpenRec( SWG_EOF );
 /*N*/   CloseRec( SWG_EOF );
 /*N*/
 /*N*/   if( nRecSzPos )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      OutRecordSizesPos( nRecSzPos );
+/*?*/       OutRecordSizesPos( nRecSzPos );
 /*N*/
 /*N*/   pStrm = pOld;
 /*N*/   pPageStyles->Commit();
@@ -1761,13 +1761,13 @@ public:
 /*N*/
 /*N*/   sal_uInt32 nRecSzPos = 0;
 /*N*/   if( !nRes && HasRecSizes() && !IsSw31Or40Export() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      nRecSzPos = OutRecSizes();
+/*?*/       nRecSzPos = OutRecSizes();
 /*N*/
 /*N*/   OpenRec( SWG_EOF );
 /*N*/   CloseRec( SWG_EOF );
 /*N*/
 /*N*/   if( nRecSzPos )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      OutRecordSizesPos( nRecSzPos );
+/*?*/       OutRecordSizesPos( nRecSzPos );
 /*N*/
 /*N*/   pStrm = pOld;
 /*N*/   pNumRules->Commit();
@@ -2456,32 +2456,32 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 
 // Laderoutine fuer Dokumente bis 134g
 
-//STRIP001 void Sw3StringPool::LoadOld( SvStream& r )
-//STRIP001 {
-//STRIP001  aPool.DeleteAndDestroy( 0, aPool.Count() );
-//STRIP001  sal_uInt16 n;
-//STRIP001  String s;
-//STRIP001  r >> n;
-//STRIP001  // Dieser schlimme Hack ist notwendig, da ich vergessen habe,
-//STRIP001  // den Zeichensatz im Record zu speichern. Und kein Flag-Byte da!
-//STRIP001  // Dieser Hack arbeitet gut, wenn das LSByte der Anzahl Strings != 0
-//STRIP001  // ist, was bis heute (10.04.95) der Fall ist.
-//STRIP001      rtl_TextEncoding eSrcEnc = r.GetStreamCharSet();
-//STRIP001  if( n >= 256 )
-//STRIP001  {
-//STRIP001      sal_uInt8 cCharSet, cDummyFlags;
-//STRIP001      r.SeekRel( -2L );
-//STRIP001      r >> cDummyFlags >> cCharSet >> n;
-//STRIP001      eSrcEnc = (rtl_TextEncoding)cCharSet;
-//STRIP001  }
-//STRIP001  while( n-- )
-//STRIP001  {
-//STRIP001      r.ReadByteString( s, eSrcEnc );
-//STRIP001      Sw3String* p = new Sw3String( s, 0 );
-//STRIP001      aPool.Insert( p, aPool.Count() );
-//STRIP001  }
-//STRIP001  bFixed = sal_True;
-//STRIP001 }
+void Sw3StringPool::LoadOld( SvStream& r )
+{
+    aPool.DeleteAndDestroy( 0, aPool.Count() );
+    sal_uInt16 n;
+    String s;
+    r >> n;
+    // Dieser schlimme Hack ist notwendig, da ich vergessen habe,
+    // den Zeichensatz im Record zu speichern. Und kein Flag-Byte da!
+    // Dieser Hack arbeitet gut, wenn das LSByte der Anzahl Strings != 0
+    // ist, was bis heute (10.04.95) der Fall ist.
+    rtl_TextEncoding eSrcEnc = r.GetStreamCharSet();
+    if( n >= 256 )
+    {
+        sal_uInt8 cCharSet, cDummyFlags;
+        r.SeekRel( -2L );
+        r >> cDummyFlags >> cCharSet >> n;
+        eSrcEnc = (rtl_TextEncoding)cCharSet;
+    }
+    while( n-- )
+    {
+        r.ReadByteString( s, eSrcEnc );
+        Sw3String* p = new Sw3String( s, 0 );
+        aPool.Insert( p, aPool.Count() );
+    }
+    bFixed = sal_True;
+}
 
 /*N*/ void Sw3StringPool::Load( SvStream& r, sal_uInt16 nSVersion )
 /*N*/ {
@@ -2774,11 +2774,11 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/ {
 /*N*/   if( pCrypter )
 /*N*/   {
-            {DBG_ASSERT(0, "STRIP");return sal_False;} //STRIP001 /*?*/         sal_Char buf[ 17 ];
-//STRIP001 /*?*/        snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
-//STRIP001 /*?*/        ByteString aTest( buf );
-//STRIP001 /*?*/        pCrypter->Encrypt( aTest );
-//STRIP001 /*?*/        return sal_Bool( !memcmp( cPasswd, aTest.GetBuffer(), PASSWDLEN ) );
+/*?*/       sal_Char buf[ 17 ];
+/*?*/       snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
+/*?*/       ByteString aTest( buf );
+/*?*/       pCrypter->Encrypt( aTest );
+/*?*/       return sal_Bool( !memcmp( cPasswd, aTest.GetBuffer(), PASSWDLEN ) );
 /*N*/   }
 /*N*/   else
 /*N*/       return sal_Bool( ( nFileFlags & SWGF_HAS_PASSWD ) == 0 );
@@ -2791,13 +2791,13 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   delete pCrypter; pCrypter = NULL;
 /*N*/   if( pRoot && pRoot->GetKey().Len() )
 /*N*/   {
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pCrypter = new Crypter( pRoot->GetKey() );
-//STRIP001 /*?*/        sal_Char buf[ 17 ];
-//STRIP001 /*?*/        snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
-//STRIP001 /*?*/        ByteString aTest( buf );
-//STRIP001 /*?*/        pCrypter->Encrypt( aTest );
-//STRIP001 /*?*/        memcpy( cPasswd, aTest.GetBuffer(), aTest.Len() );
-//STRIP001 /*?*/        nFileFlags|= SWGF_HAS_PASSWD;
+/*?*/       pCrypter = new Crypter( pRoot->GetKey() );
+/*?*/       sal_Char buf[ 17 ];
+/*?*/       snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
+/*?*/       ByteString aTest( buf );
+/*?*/       pCrypter->Encrypt( aTest );
+/*?*/       memcpy( cPasswd, aTest.GetBuffer(), aTest.Len() );
+/*?*/       nFileFlags|= SWGF_HAS_PASSWD;
 /*N*/   }
 /*N*/ }
 

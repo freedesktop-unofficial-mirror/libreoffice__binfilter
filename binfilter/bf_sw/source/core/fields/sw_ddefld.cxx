@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ddefld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:35 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,6 +103,8 @@
 #include <unofldmid.h>
 #endif
 namespace binfilter {
+
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 
 using namespace rtl;
 
@@ -394,57 +396,57 @@ using namespace rtl;
 /* -----------------------------28.08.00 16:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const
-//STRIP001 {
-//STRIP001  BYTE nPart = 0;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR2:      nPart = 3; break;
-//STRIP001  case FIELD_PROP_PAR4:      nPart = 2; break;
-//STRIP001  case FIELD_PROP_SUBTYPE:   nPart = 1; break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      {
-//STRIP001          sal_Bool bSet = GetType() == ::so3::LINKUPDATE_ALWAYS ? TRUE : FALSE;
-//STRIP001          rVal.setValue(&bSet, ::getBooleanCppuType());
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  if( nPart )
-//STRIP001         rVal <<= OUString(GetCmd().GetToken(nPart-1, ::so3::cTokenSeperator));
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const
+{
+    BYTE nPart = 0;
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR2:      nPart = 3; break;
+    case FIELD_PROP_PAR4:      nPart = 2; break;
+    case FIELD_PROP_SUBTYPE:   nPart = 1; break;
+    case FIELD_PROP_BOOL1:
+        {
+            sal_Bool bSet = GetType() == ::so3::LINKUPDATE_ALWAYS ? TRUE : FALSE;
+            rVal.setValue(&bSet, ::getBooleanCppuType());
+        }
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    if( nPart )
+        rVal <<= OUString(GetCmd().GetToken(nPart-1, ::so3::cTokenSeperator));
+    return TRUE;
+}
 /* -----------------------------28.08.00 16:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId )
-//STRIP001 {
-//STRIP001  BYTE nPart = 0;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR2:      nPart = 3; break;
-//STRIP001  case FIELD_PROP_PAR4:      nPart = 2; break;
-//STRIP001  case FIELD_PROP_SUBTYPE:   nPart = 1; break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001         SetType( *(sal_Bool*)rVal.getValue() ? ::so3::LINKUPDATE_ALWAYS
-//STRIP001                                           : ::so3::LINKUPDATE_ONCALL );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  if( nPart )
-//STRIP001  {
-//STRIP001      String sTmp, sCmd( GetCmd() );
-//STRIP001         while(3 > sCmd.GetTokenCount(so3::cTokenSeperator))
-//STRIP001             sCmd += ::so3::cTokenSeperator;
-//STRIP001         sCmd.SetToken( nPart-1, ::so3::cTokenSeperator, ::GetString( rVal, sTmp ) );
-//STRIP001      SetCmd( sCmd );
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
+BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId )
+{
+    BYTE nPart = 0;
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR2:      nPart = 3; break;
+    case FIELD_PROP_PAR4:      nPart = 2; break;
+    case FIELD_PROP_SUBTYPE:   nPart = 1; break;
+    case FIELD_PROP_BOOL1:
+        SetType( *(sal_Bool*)rVal.getValue() ? ::so3::LINKUPDATE_ALWAYS
+                                             : ::so3::LINKUPDATE_ONCALL );
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    if( nPart )
+    {
+        String sTmp, sCmd( GetCmd() );
+        while(3 > sCmd.GetTokenCount(so3::cTokenSeperator))
+            sCmd += ::so3::cTokenSeperator;
+        sCmd.SetToken( nPart-1, ::so3::cTokenSeperator, ::binfilter::GetString( rVal, sTmp ) );
+        SetCmd( sCmd );
+    }
+    return TRUE;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -483,23 +485,23 @@ using namespace rtl;
     Beschreibung: Parameter des Typen erfragen
                   Name
  --------------------------------------------------------------------*/
-//STRIP001 const String& SwDDEField::GetPar1() const
-//STRIP001 {
-//STRIP001  return ((SwDDEFieldType*)GetTyp())->GetName();
-//STRIP001 }
+const String& SwDDEField::GetPar1() const
+{
+    return ((SwDDEFieldType*)GetTyp())->GetName();
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Parameter des Typen erfragen
                   Commando
  --------------------------------------------------------------------*/
-//STRIP001 String SwDDEField::GetPar2() const
-//STRIP001 {
-//STRIP001  return ((SwDDEFieldType*)GetTyp())->GetCmd();
-//STRIP001 }
+String SwDDEField::GetPar2() const
+{
+    return ((SwDDEFieldType*)GetTyp())->GetCmd();
+}
 
-//STRIP001 void SwDDEField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  ((SwDDEFieldType*)GetTyp())->SetCmd(rStr);
-//STRIP001 }
+void SwDDEField::SetPar2(const String& rStr)
+{
+    ((SwDDEFieldType*)GetTyp())->SetCmd(rStr);
+}
 
 }

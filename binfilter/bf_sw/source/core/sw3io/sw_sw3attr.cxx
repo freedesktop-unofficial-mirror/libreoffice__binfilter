@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3attr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:49 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -316,19 +316,19 @@ namespace binfilter {
 /*N*/       SwRelationOrient eRel = GetRelationOrient();
 /*N*/       if( eRel > PRTAREA )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if( !(pIo && pIo->pExportInfo && pIo->pExportInfo->pFlyFrm &&
-//STRIP001 /*?*/                pIo->pExportInfo->pFlyFrm->ConvertHoriTo40( eHori, eRel, nPos ) ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                switch ( eRel )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    case REL_PG_LEFT: eRel = FRAME; eHori = HORI_LEFT; break;
-//STRIP001 /*?*/                    case REL_PG_RIGHT: eRel = FRAME; break;
-//STRIP001 /*?*/                    case REL_FRM_LEFT: eRel = PRTAREA; break;
-//STRIP001 /*?*/                    case REL_FRM_RIGHT: eRel = PRTAREA; break;
-//STRIP001 /*?*/                    case REL_PG_PRTAREA: eRel = PRTAREA; break;
-//STRIP001 /*?*/                    default: eRel = FRAME; break;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
+/*?*/           if( !(pIo && pIo->pExportInfo && pIo->pExportInfo->pFlyFrm &&
+/*?*/               pIo->pExportInfo->pFlyFrm->ConvertHoriTo40( eHori, eRel, nPos ) ) )
+/*?*/           {
+/*?*/               switch ( eRel )
+/*?*/               {
+/*?*/                   case REL_PG_LEFT: eRel = FRAME; eHori = HORI_LEFT; break;
+/*?*/                   case REL_PG_RIGHT: eRel = FRAME; break;
+/*?*/                   case REL_FRM_LEFT: eRel = PRTAREA; break;
+/*?*/                   case REL_FRM_RIGHT: eRel = PRTAREA; break;
+/*?*/                   case REL_PG_PRTAREA: eRel = PRTAREA; break;
+/*?*/                   default: eRel = FRAME; break;
+/*?*/               }
+/*?*/           }
 /*N*/       }
 /*N*/       rStrm << (long) nPos
 /*N*/             << (BYTE) eHori;
@@ -438,7 +438,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       nWishWidth = USHRT_MAX;
 /*?*/       if( nCol )
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 p->Init( nCol, nGutterWidth, nWishWidth );
+/*?*/           p->Init( nCol, nGutterWidth, nWishWidth );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -549,19 +549,19 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SfxPoolItem* SwFmtEditInReadonly::Create(SvStream &rStrm, USHORT) const
-//STRIP001 {
-//STRIP001  BYTE n;
-//STRIP001  rStrm >> n;
-//STRIP001  return new SwFmtEditInReadonly( RES_EDIT_IN_READONLY, BOOL(n) );
-//STRIP001 }
+SfxPoolItem* SwFmtEditInReadonly::Create(SvStream &rStrm, USHORT) const
+{
+    BYTE n;
+    rStrm >> n;
+    return new SwFmtEditInReadonly( RES_EDIT_IN_READONLY, BOOL(n) );
+}
 
 
-//STRIP001 SvStream& SwFmtEditInReadonly::Store(SvStream &rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  rStrm << BYTE(GetValue());
-//STRIP001  return rStrm;
-//STRIP001 }
+SvStream& SwFmtEditInReadonly::Store(SvStream &rStrm, USHORT ) const
+{
+    rStrm << BYTE(GetValue());
+    return rStrm;
+}
 
 
 /*N*/ USHORT SwFmtEditInReadonly::GetVersion( USHORT nFFVer ) const
@@ -574,19 +574,19 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SfxPoolItem* SwFmtLayoutSplit::Create(SvStream &rStrm, USHORT) const
-//STRIP001 {
-//STRIP001  BYTE n;
-//STRIP001  rStrm >> n;
-//STRIP001  return new SwFmtLayoutSplit( BOOL(n) );
-//STRIP001 }
+SfxPoolItem* SwFmtLayoutSplit::Create(SvStream &rStrm, USHORT) const
+{
+    BYTE n;
+    rStrm >> n;
+    return new SwFmtLayoutSplit( BOOL(n) );
+}
 
 
-//STRIP001 SvStream& SwFmtLayoutSplit::Store(SvStream &rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  rStrm << BYTE(GetValue());
-//STRIP001  return rStrm;
-//STRIP001 }
+SvStream& SwFmtLayoutSplit::Store(SvStream &rStrm, USHORT ) const
+{
+    rStrm << BYTE(GetValue());
+    return rStrm;
+}
 
 
 /*N*/ USHORT SwFmtLayoutSplit::GetVersion( USHORT nFFVer ) const
@@ -599,49 +599,49 @@ namespace binfilter {
 /*N*/          SOFFICE_FILEFORMAT_40==nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SvStream& SwFmtFtnEndAtTxtEnd::Store( SvStream & rStrm, USHORT nIVer ) const
-//STRIP001 {
-//STRIP001 // alt: nur ein BOOL, jetzt 2 enums, 2 Strings, 1 uint16
-//STRIP001  if( 0 == nIVer )        // old - only a boolitem
-//STRIP001  {
-//STRIP001      rStrm << (BYTE)( FTNEND_ATPGORDOCEND == GetValue() ? 0 : 1 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      rStrm << (BYTE)GetValue()
-//STRIP001            << (UINT16)nOffset
-//STRIP001            << (UINT16)aFmt.GetNumberingType();
-//STRIP001      rStrm.WriteByteString( sPrefix, rStrm.GetStreamCharSet() );
-//STRIP001      rStrm.WriteByteString( sSuffix, rStrm.GetStreamCharSet() );
-//STRIP001  }
-//STRIP001
-//STRIP001  return rStrm;
-//STRIP001 }
+SvStream& SwFmtFtnEndAtTxtEnd::Store( SvStream & rStrm, USHORT nIVer ) const
+{
+// alt: nur ein BOOL, jetzt 2 enums, 2 Strings, 1 uint16
+    if( 0 == nIVer )        // old - only a boolitem
+    {
+        rStrm << (BYTE)( FTNEND_ATPGORDOCEND == GetValue() ? 0 : 1 );
+    }
+    else
+    {
+        rStrm << (BYTE)GetValue()
+              << (UINT16)nOffset
+              << (UINT16)aFmt.GetNumberingType();
+        rStrm.WriteByteString( sPrefix, rStrm.GetStreamCharSet() );
+        rStrm.WriteByteString( sSuffix, rStrm.GetStreamCharSet() );
+    }
 
-//STRIP001 SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
-//STRIP001 {
-//STRIP001  SwFmtFtnEndAtTxtEnd* pNew = (SwFmtFtnEndAtTxtEnd*)Clone();
-//STRIP001
-//STRIP001  BYTE nVal;
-//STRIP001  rStrm >> nVal;
-//STRIP001  pNew->SetValue( nVal );
-//STRIP001
-//STRIP001  if( 0 < nVer )
-//STRIP001  {
-//STRIP001      UINT16 nOffset, nFmtType;
-//STRIP001      String sPostfix, sSuffix;
-//STRIP001      rStrm >> nOffset
-//STRIP001            >> nFmtType;
-//STRIP001      rStrm.ReadByteString( sPostfix, rStrm.GetStreamCharSet() );
-//STRIP001      rStrm.ReadByteString( sSuffix, rStrm.GetStreamCharSet() );
-//STRIP001
-//STRIP001      pNew->SetNumType( (SvxExtNumType)nFmtType );
-//STRIP001      pNew->SetOffset( nOffset );
-//STRIP001      pNew->SetPrefix( sPostfix );
-//STRIP001      pNew->SetSuffix( sSuffix );
-//STRIP001  }
-//STRIP001  return pNew;
-//STRIP001 }
+    return rStrm;
+}
+
+SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
+{
+    SwFmtFtnEndAtTxtEnd* pNew = (SwFmtFtnEndAtTxtEnd*)Clone();
+
+    BYTE nVal;
+    rStrm >> nVal;
+    pNew->SetValue( nVal );
+
+    if( 0 < nVer )
+    {
+        UINT16 nOffset, nFmtType;
+        String sPostfix, sSuffix;
+        rStrm >> nOffset
+              >> nFmtType;
+        rStrm.ReadByteString( sPostfix, rStrm.GetStreamCharSet() );
+        rStrm.ReadByteString( sSuffix, rStrm.GetStreamCharSet() );
+
+        pNew->SetNumType( (SvxExtNumType)nFmtType );
+        pNew->SetOffset( nOffset );
+        pNew->SetPrefix( sPostfix );
+        pNew->SetSuffix( sSuffix );
+    }
+    return pNew;
+}
 
 /*N*/ USHORT SwFmtFtnEndAtTxtEnd::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -653,19 +653,19 @@ namespace binfilter {
 /*N*/          SOFFICE_FILEFORMAT_40==nFFVer ? USHRT_MAX : 1;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwFmtNoBalancedColumns::Create(SvStream &rStrm, USHORT) const
-//STRIP001 {
-//STRIP001  BYTE n;
-//STRIP001  rStrm >> n;
-//STRIP001  return new SwFmtNoBalancedColumns( BOOL(n) );
-//STRIP001 }
+SfxPoolItem* SwFmtNoBalancedColumns::Create(SvStream &rStrm, USHORT) const
+{
+    BYTE n;
+    rStrm >> n;
+    return new SwFmtNoBalancedColumns( BOOL(n) );
+}
 
 
-//STRIP001 SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  rStrm << BYTE(GetValue());
-//STRIP001  return rStrm;
-//STRIP001 }
+SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
+{
+    rStrm << BYTE(GetValue());
+    return rStrm;
+}
 
 
 /*N*/ USHORT SwFmtNoBalancedColumns::GetVersion( USHORT nFFVer ) const
@@ -767,21 +767,21 @@ namespace binfilter {
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwRotationGrf::Create( SvStream & rStrm, USHORT nVer ) const
-//STRIP001 {
-//STRIP001  SwRotationGrf* pRet = (SwRotationGrf*)SfxUInt16Item::Create( rStrm, nVer );
-//STRIP001  Size aSz;
-//STRIP001  rStrm >> aSz;
-//STRIP001  pRet->SetUnrotatedSize( aSz );
-//STRIP001  return pRet;
-//STRIP001 }
+SfxPoolItem* SwRotationGrf::Create( SvStream & rStrm, USHORT nVer ) const
+{
+    SwRotationGrf* pRet = (SwRotationGrf*)SfxUInt16Item::Create( rStrm, nVer );
+    Size aSz;
+    rStrm >> aSz;
+    pRet->SetUnrotatedSize( aSz );
+    return pRet;
+}
 
-//STRIP001 SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
-//STRIP001 {
-//STRIP001  SfxUInt16Item::Store( rStrm, nIVer );
-//STRIP001  rStrm << GetUnrotatedSize();
-//STRIP001  return rStrm;
-//STRIP001 }
+SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
+{
+    SfxUInt16Item::Store( rStrm, nIVer );
+    rStrm << GetUnrotatedSize();
+    return rStrm;
+}
 
 /*N*/ USHORT SwLuminanceGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -822,20 +822,20 @@ namespace binfilter {
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  SwGammaGrf* pRet = (SwGammaGrf*)Clone();
-//STRIP001  double aVal;
-//STRIP001  rStrm >> aVal;
-//STRIP001  pRet->SetValue( aVal );
-//STRIP001  return pRet;
-//STRIP001 }
-//STRIP001
-//STRIP001 SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  rStrm << GetValue();
-//STRIP001  return rStrm;
-//STRIP001 }
+SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
+{
+    SwGammaGrf* pRet = (SwGammaGrf*)Clone();
+    double aVal;
+    rStrm >> aVal;
+    pRet->SetValue( aVal );
+    return pRet;
+}
+
+SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
+{
+    rStrm << GetValue();
+    return rStrm;
+}
 
 /*N*/ USHORT SwInvertGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {

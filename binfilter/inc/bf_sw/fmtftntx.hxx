@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtftntx.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:49 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:42:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,14 +104,14 @@ protected:
 
 public:
     virtual USHORT          GetValueCount() const{DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT          GetValueCount() const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
+    virtual int             operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 // will be used at time??
 //  void                    FillVariable( SbxVariable &rVar,
@@ -128,7 +128,7 @@ public:
 
     inline BOOL IsAtEnd() const { return FTNEND_ATPGORDOCEND != GetValue(); }
 
-//STRIP001  SwFmtFtnEndAtTxtEnd & operator=( const SwFmtFtnEndAtTxtEnd & rAttr );
+    SwFmtFtnEndAtTxtEnd & operator=( const SwFmtFtnEndAtTxtEnd & rAttr );
 
     sal_Int16 GetNumType() const        { return aFmt.GetNumberingType(); }
     void SetNumType( sal_Int16 eType )  { aFmt.SetNumberingType(eType); }
@@ -152,7 +152,7 @@ public:
         : SwFmtFtnEndAtTxtEnd( RES_FTN_AT_TXTEND, ePos )
     {}
 
-    virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
+    virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
 };
 
 class SwFmtEndAtTxtEnd : public SwFmtFtnEndAtTxtEnd
@@ -164,7 +164,7 @@ public:
         SetNumType( SVX_NUM_ROMAN_LOWER );
     }
 
-    virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
+    virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
 };
 
 #if !(defined(MACOSX) && ( __GNUC__ < 3 ))

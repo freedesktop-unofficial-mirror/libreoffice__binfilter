@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:37 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -529,66 +529,66 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-//STRIP001 void SwForm::SetFirstTabPos( USHORT n )  //{ nFirstTabPos = n; }
-//STRIP001 {
-//STRIP001  // the tab stop token looks like: <T ,,1234,0,.> <T> <T ,,1234>
-//STRIP001  //for loading only: all levels get a first tab stop at the given position
-//STRIP001  String sVal( String::CreateFromInt32(  n ));
-//STRIP001  String sTmp; sTmp.AssignAscii( SwForm::aFormTab );
-//STRIP001  sTmp.Insert(sVal, 2);
-//STRIP001
-//STRIP001  for(USHORT i = 0; i < MAXLEVEL; i++)
-//STRIP001  {
-//STRIP001      //if two tabstops then exchange
-//STRIP001      String& rPattern = aPattern[ i + 1];
-//STRIP001      if( 2 <= lcl_GetPatternCount( rPattern, SwForm::aFormTab ))
-//STRIP001      {
-//STRIP001          //change existing tab
-//STRIP001          xub_StrLen nStart = rPattern.SearchAscii( "<T" );
-//STRIP001          xub_StrLen nEnd = rPattern.Search( '>', nStart );
-//STRIP001          String sTmp( rPattern.Copy( nStart, nEnd - nStart + 1 ));
-//STRIP001          rPattern.Erase( nStart, nEnd - nStart + 1 );
-//STRIP001
-//STRIP001          // if TabAlign is set
-//STRIP001          String sTabAlign;
-//STRIP001          if(sTmp.GetTokenCount(',') >= 4)
-//STRIP001          {
-//STRIP001              sTabAlign = sTmp.GetToken(3, ',');
-//STRIP001              sTabAlign.Erase(sTabAlign.Len() - 1, 1);
-//STRIP001          }
-//STRIP001          String sTabFillChar;
-//STRIP001          if(sTmp.GetTokenCount(',') >= 5)
-//STRIP001          {
-//STRIP001              sTabFillChar = sTmp.GetToken(4, ',');
-//STRIP001              sTabFillChar.Erase(sTabAlign.Len() - 1, 1);
-//STRIP001          }
-//STRIP001          sTmp.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<T ,," ));
-//STRIP001          sTmp += sVal;
-//STRIP001          if( sTabAlign.Len() )
-//STRIP001          {
-//STRIP001              sTmp += ',';
-//STRIP001              sTmp += sTabAlign;
-//STRIP001          }
-//STRIP001          if(sTabFillChar.Len())
-//STRIP001          {
-//STRIP001              sTmp += ',';
-//STRIP001              sTmp += sTabFillChar;
-//STRIP001          }
-//STRIP001          sTmp += '>';
-//STRIP001          rPattern.Insert( sTmp, nStart );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          //insert new tab after the first token
-//STRIP001          xub_StrLen nIndex = rPattern.Search('>');
-//STRIP001          String sTmp;
-//STRIP001          sTmp.AssignAscii( SwForm::aFormTab );
-//STRIP001          sTmp.InsertAscii( " ,,", nFormTabLen - 1);
-//STRIP001          sTmp.Insert( sVal, nFormTabLen + 2 );
-//STRIP001          rPattern.Insert( sTmp, nIndex + 1 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
+{
+    // the tab stop token looks like: <T ,,1234,0,.> <T> <T ,,1234>
+    //for loading only: all levels get a first tab stop at the given position
+    String sVal( String::CreateFromInt32(  n ));
+    String sTmp; sTmp.AssignAscii( SwForm::aFormTab );
+    sTmp.Insert(sVal, 2);
+
+    for(USHORT i = 0; i < MAXLEVEL; i++)
+    {
+        //if two tabstops then exchange
+        String& rPattern = aPattern[ i + 1];
+        if( 2 <= lcl_GetPatternCount( rPattern, SwForm::aFormTab ))
+        {
+            //change existing tab
+            xub_StrLen nStart = rPattern.SearchAscii( "<T" );
+            xub_StrLen nEnd = rPattern.Search( '>', nStart );
+            String sTmp( rPattern.Copy( nStart, nEnd - nStart + 1 ));
+            rPattern.Erase( nStart, nEnd - nStart + 1 );
+
+            // if TabAlign is set
+            String sTabAlign;
+            if(sTmp.GetTokenCount(',') >= 4)
+            {
+                sTabAlign = sTmp.GetToken(3, ',');
+                sTabAlign.Erase(sTabAlign.Len() - 1, 1);
+            }
+            String sTabFillChar;
+            if(sTmp.GetTokenCount(',') >= 5)
+            {
+                sTabFillChar = sTmp.GetToken(4, ',');
+                sTabFillChar.Erase(sTabAlign.Len() - 1, 1);
+            }
+            sTmp.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<T ,," ));
+            sTmp += sVal;
+            if( sTabAlign.Len() )
+            {
+                sTmp += ',';
+                sTmp += sTabAlign;
+            }
+            if(sTabFillChar.Len())
+            {
+                sTmp += ',';
+                sTmp += sTabFillChar;
+            }
+            sTmp += '>';
+            rPattern.Insert( sTmp, nStart );
+        }
+        else
+        {
+            //insert new tab after the first token
+            xub_StrLen nIndex = rPattern.Search('>');
+            String sTmp;
+            sTmp.AssignAscii( SwForm::aFormTab );
+            sTmp.InsertAscii( " ,,", nFormTabLen - 1);
+            sTmp.Insert( sVal, nFormTabLen + 2 );
+            rPattern.Insert( sTmp, nIndex + 1 );
+        }
+    }
+}
 /* -----------------------------28.02.00 09:48--------------------------------
     if the templates contain settings of the tab positions (<5.1) then
     they must be imported into the pattern

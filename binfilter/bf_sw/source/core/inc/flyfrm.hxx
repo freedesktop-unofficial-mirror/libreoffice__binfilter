@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flyfrm.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:52 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -238,10 +238,10 @@ public:
 
     // OD 16.04.2003 #i13147# - add parameter <_bForPaint> to avoid load of
     // the graphic during paint. Default value: sal_False
-//STRIP001     BOOL GetContour( PolyPolygon&   rContour,
-//STRIP001                      const sal_Bool _bForPaint = sal_False ) const;
+    BOOL GetContour( PolyPolygon&   rContour,
+            const sal_Bool _bForPaint = sal_False ) const;
 
-//STRIP001  BOOL ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel, SwTwips &rPos ) const;
+    BOOL ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel, SwTwips &rPos ) const;
 
     //Auf dieser Shell painten (PreView, Print-Flag usw. rekursiv beachten)?.
 //STRIP001  static BOOL IsPaint( SdrObject *pObj, const ViewShell *pSh );

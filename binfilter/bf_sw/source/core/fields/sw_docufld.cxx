@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
+ *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -268,14 +268,13 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwPageNumberFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwPageNumberFieldType *pTmp = new SwPageNumberFieldType();
-//STRIP001
-//STRIP001  pTmp->nNum       = nNum;
-//STRIP001  pTmp->nMax       = nMax;
-//STRIP001  pTmp->nNumberingType = nNumberingType;
-//STRIP001  pTmp->bVirtuell  = bVirtuell;
-//STRIP001
-//STRIP001  return pTmp;
+        SwPageNumberFieldType *pTmp = new SwPageNumberFieldType();
+        pTmp->nNum       = nNum;
+        pTmp->nMax       = nMax;
+        pTmp->nNumberingType = nNumberingType;
+        pTmp->bVirtuell  = bVirtuell;
+
+        return pTmp;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -366,10 +365,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwPageNumberFieldTyp
 /*N*/   return String::CreateFromInt32(nOffset);
 /*N*/ }
 
-//STRIP001 void SwPageNumberField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  nOffset = (short)rStr.ToInt32();
-//STRIP001 }
+void SwPageNumberField::SetPar2(const String& rStr)
+{
+    nOffset = (short)rStr.ToInt32();
+}
 
 /*N*/ sal_uInt16 SwPageNumberField::GetSubType() const
 /*N*/ {
@@ -481,7 +480,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwPageNumberFieldTyp
 
 /*N*/ SwFieldType* SwAuthorFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwAuthorFieldType;
+        return new SwAuthorFieldType;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -542,31 +541,31 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwAuthorF
 /*-----------------05.03.98 11:15-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      SetFormat( *(sal_Bool*)rAny.getValue() ? AF_NAME : AF_SHORTCUT );
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_BOOL2:
-//STRIP001      if( *(sal_Bool*)rAny.getValue() )
-//STRIP001          SetFormat( GetFormat() | AF_FIXED);
-//STRIP001      else
-//STRIP001          SetFormat( GetFormat() & ~AF_FIXED);
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, aContent );
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_BOOL1:
+        SetFormat( *(sal_Bool*)rAny.getValue() ? AF_NAME : AF_SHORTCUT );
+        break;
+
+    case FIELD_PROP_BOOL2:
+        if( *(sal_Bool*)rAny.getValue() )
+            SetFormat( GetFormat() | AF_FIXED);
+        else
+            SetFormat( GetFormat() & ~AF_FIXED);
+        break;
+
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, aContent );
+        break;
+
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: SwFileNameFieldType
@@ -629,8 +628,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwAuthorF
 
 /*N*/ SwFieldType* SwFileNameFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwFieldType *pTmp = new SwFileNameFieldType(pDoc);
-//STRIP001  return pTmp;
+            SwFieldType *pTmp = new SwFileNameFieldType(pDoc);
+            return pTmp;
 /*N*/ }
 /*--------------------------------------------------------------------
     Beschreibung: SwFileNameField
@@ -809,8 +808,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwFieldType *pTmp = 
 
 /*N*/ SwFieldType* SwTemplNameFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwFieldType *pTmp = new SwTemplNameFieldType(pDoc);
-//STRIP001  return pTmp;
+        SwFieldType *pTmp = new SwTemplNameFieldType(pDoc);
+        return pTmp;
 /*N*/ }
 /*--------------------------------------------------------------------
     Beschreibung: SwTemplNameField
@@ -945,8 +944,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwFieldType *pTmp = 
 
 /*N*/ SwFieldType* SwDocStatFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocStatFieldType *pTmp = new SwDocStatFieldType(pDoc);
-//STRIP001  return pTmp;
+            SwDocStatFieldType *pTmp = new SwDocStatFieldType(pDoc);
+            return pTmp;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -977,10 +976,10 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocStatFieldType *
 /*N*/   return nSubType;
 /*N*/ }
 
-//STRIP001 void SwDocStatField::SetSubType(sal_uInt16 nSub)
-//STRIP001 {
-//STRIP001  nSubType = nSub;
-//STRIP001 }
+void SwDocStatField::SetSubType(sal_uInt16 nSub)
+{
+    nSubType = nSub;
+}
 
 /*N*/ void SwDocStatField::ChangeExpansion( const SwFrm* pFrm )
 /*N*/ {
@@ -1008,31 +1007,31 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocStatFieldType *
 /*-----------------05.03.98 11:38-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch ( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_USHORT2:
-//STRIP001      {
-//STRIP001          sal_Int16 nSet;
-//STRIP001          rAny >>= nSet;
-//STRIP001          if(nSet <= SVX_NUM_CHARS_LOWER_LETTER_N &&
-//STRIP001              nSet != SVX_NUM_CHAR_SPECIAL &&
-//STRIP001                  nSet != SVX_NUM_BITMAP)
-//STRIP001          {
-//STRIP001              SetFormat(nSet);
-//STRIP001              bRet = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    BOOL bRet = FALSE;
+    nMId &= ~CONVERT_TWIPS;
+    switch ( nMId )
+    {
+    case FIELD_PROP_USHORT2:
+        {
+            sal_Int16 nSet;
+            rAny >>= nSet;
+            if(nSet <= SVX_NUM_CHARS_LOWER_LETTER_N &&
+                nSet != SVX_NUM_CHAR_SPECIAL &&
+                    nSet != SVX_NUM_BITMAP)
+            {
+                SetFormat(nSet);
+                bRet = TRUE;
+            }
+        }
+        break;
+
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return bRet;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: DokumentinfoFields
@@ -1048,8 +1047,8 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocStatFieldType *
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwDocInfoFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocInfoFieldType* pType = new SwDocInfoFieldType(GetDoc());
-//STRIP001  return pType;
+        SwDocInfoFieldType* pType = new SwDocInfoFieldType(GetDoc());
+        return pType;
 /*N*/ }
 
 /*N*/ void lcl_GetLocalDataWrapper( ULONG nLang,
@@ -1245,10 +1244,10 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocInfoFieldType* 
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwDocInfoField::SetSubType(sal_uInt16 nSub)
-//STRIP001 {
-//STRIP001  nSubType = nSub;
-//STRIP001 }
+void SwDocInfoField::SetSubType(sal_uInt16 nSub)
+{
+    nSubType = nSub;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -1309,54 +1308,54 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocInfoFieldType* 
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001  sal_Int32 nValue;
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      if( nSubType & DI_SUB_FIXED )
-//STRIP001          ::GetString( rAny, aContent );
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      if( nSubType & DI_SUB_FIXED )
-//STRIP001      {
-//STRIP001          rAny >>= nValue;
-//STRIP001          aContent = String::CreateFromInt32(nValue);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      if(*(sal_Bool*)rAny.getValue())
-//STRIP001          nSubType |= DI_SUB_FIXED;
-//STRIP001      else
-//STRIP001          nSubType &= ~DI_SUB_FIXED;
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_FORMAT:
-//STRIP001      {
-//STRIP001          rAny >>= nValue;
-//STRIP001          if( nValue >= 0)
-//STRIP001              SetFormat(nValue);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::GetString( rAny, aContent );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL2:
-//STRIP001      nSubType &= 0xf0ff;
-//STRIP001      if(*(sal_Bool*)rAny.getValue())
-//STRIP001          nSubType |= DI_SUB_DATE;
-//STRIP001      else
-//STRIP001          nSubType |= DI_SUB_TIME;
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001         return SwField::PutValue(rAny, nMId);
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    sal_Int32 nValue;
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        if( nSubType & DI_SUB_FIXED )
+            ::binfilter::GetString( rAny, aContent );
+        break;
+
+    case FIELD_PROP_USHORT1:
+        if( nSubType & DI_SUB_FIXED )
+        {
+            rAny >>= nValue;
+            aContent = String::CreateFromInt32(nValue);
+        }
+        break;
+
+    case FIELD_PROP_BOOL1:
+        if(*(sal_Bool*)rAny.getValue())
+            nSubType |= DI_SUB_FIXED;
+        else
+            nSubType &= ~DI_SUB_FIXED;
+        break;
+    case FIELD_PROP_FORMAT:
+        {
+            rAny >>= nValue;
+            if( nValue >= 0)
+                SetFormat(nValue);
+        }
+        break;
+
+    case FIELD_PROP_PAR3:
+        ::binfilter::GetString( rAny, aContent );
+        break;
+    case FIELD_PROP_BOOL2:
+        nSubType &= 0xf0ff;
+        if(*(sal_Bool*)rAny.getValue())
+            nSubType |= DI_SUB_DATE;
+        else
+            nSubType |= DI_SUB_TIME;
+        break;
+    default:
+        return SwField::PutValue(rAny, nMId);
+    }
+    return sal_True;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: SwHiddenTxtFieldType by JP
@@ -1368,7 +1367,7 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocInfoFieldType* 
 
 /*N*/ SwFieldType* SwHiddenTxtFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwHiddenTxtFieldType( bHidden );
+        return new SwHiddenTxtFieldType( bHidden );
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
@@ -1573,19 +1572,19 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwHiddenT
     Beschreibung: True/False Text
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwHiddenTxtField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  if(nSubType == TYP_CONDTXTFLD)
-//STRIP001  {
-//STRIP001      sal_uInt16 nPos = rStr.Search('|');
-//STRIP001      aTRUETxt = rStr.Copy(0, nPos);
-//STRIP001
-//STRIP001      if(nPos != STRING_NOTFOUND)
-//STRIP001          aFALSETxt = rStr.Copy(nPos + 1);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      aTRUETxt = rStr;
-//STRIP001 }
+void SwHiddenTxtField::SetPar2(const String& rStr)
+{
+    if(nSubType == TYP_CONDTXTFLD)
+    {
+        sal_uInt16 nPos = rStr.Search('|');
+        aTRUETxt = rStr.Copy(0, nPos);
+
+        if(nPos != STRING_NOTFOUND)
+            aFALSETxt = rStr.Copy(nPos + 1);
+    }
+    else
+        aTRUETxt = rStr;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -1640,31 +1639,31 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwHiddenT
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      {
-//STRIP001          String sVal;
-//STRIP001          SetPar1(::GetString( rAny, sVal ));
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      ::GetString( rAny, aTRUETxt );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::GetString( rAny, aFALSETxt );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001         bIsHidden = *(sal_Bool*)rAny.getValue();
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        {
+            String sVal;
+            SetPar1(GetString( rAny, sVal ));
+        }
+        break;
+    case FIELD_PROP_PAR2:
+        ::binfilter::GetString( rAny, aTRUETxt );
+        break;
+    case FIELD_PROP_PAR3:
+        ::binfilter::GetString( rAny, aFALSETxt );
+        break;
+    case FIELD_PROP_BOOL1:
+        bIsHidden = *(sal_Bool*)rAny.getValue();
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 //------------------------------------------------------------------------------
 
@@ -1711,8 +1710,8 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwHiddenT
 
 /*N*/ SwFieldType* SwHiddenParaFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwHiddenParaFieldType* pType = new SwHiddenParaFieldType();
-//STRIP001  return pType;
+            SwHiddenParaFieldType* pType = new SwHiddenParaFieldType();
+            return pType;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -1767,32 +1766,32 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwHiddenParaFieldTyp
 /*-----------------05.03.98 13:25-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwHiddenParaField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch ( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, aCond );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001         bIsHidden = *(sal_Bool*)rAny.getValue();
-//STRIP001      break;
-//STRIP001
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwHiddenParaField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch ( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, aCond );
+        break;
+    case FIELD_PROP_BOOL1:
+        bIsHidden = *(sal_Bool*)rAny.getValue();
+        break;
+
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Bedingung setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwHiddenParaField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  aCond = rStr;
-//STRIP001 }
+void SwHiddenParaField::SetPar1(const String& rStr)
+{
+    aCond = rStr;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -1813,7 +1812,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwHiddenParaFieldTyp
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwPostItFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwPostItFieldType;
+            return new SwPostItFieldType;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -1823,107 +1822,107 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwPostItF
 /*?*/ SwPostItField::SwPostItField( SwPostItFieldType* pType,
 /*?*/       const String& rAuthor, const String& rTxt, const Date& rDate )
 /*?*/   : SwField( pType ), sTxt( rTxt ), sAuthor( rAuthor ), aDate( rDate )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 /*?*/ String SwPostItField::Expand() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/   return aEmptyStr;
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SwField* SwPostItField::Copy() const
-//STRIP001 {
-//STRIP001  return new SwPostItField( (SwPostItFieldType*)GetTyp(), sAuthor,
-//STRIP001                              sTxt, aDate );
-//STRIP001 }
+SwField* SwPostItField::Copy() const
+{
+    return new SwPostItField( (SwPostItFieldType*)GetTyp(), sAuthor,
+                                sTxt, aDate );
+}
 /*--------------------------------------------------------------------
     Beschreibung: Author setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwPostItField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  sAuthor = rStr;
-//STRIP001 }
+void SwPostItField::SetPar1(const String& rStr)
+{
+    sAuthor = rStr;
+}
 
-//STRIP001 const String& SwPostItField::GetPar1() const
-//STRIP001 {
-//STRIP001  return sAuthor;
-//STRIP001 }
+const String& SwPostItField::GetPar1() const
+{
+    return sAuthor;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Text fuers PostIt setzen
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwPostItField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  sTxt = rStr;
-//STRIP001 }
+void SwPostItField::SetPar2(const String& rStr)
+{
+    sTxt = rStr;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 String SwPostItField::GetPar2() const
-//STRIP001 {
-//STRIP001  return sTxt;
-//STRIP001 }
+String SwPostItField::GetPar2() const
+{
+    return sTxt;
+}
 
 /*-----------------05.03.98 13:42-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwPostItField::QueryValue( uno::Any& rAny, BYTE nMId ) const
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      rAny <<= OUString(sAuthor);
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      rAny <<= OUString(sTxt);
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_DATE:
-//STRIP001      {
-//STRIP001          util::Date aSetDate;
-//STRIP001          aSetDate.Day = aDate.GetDay();
-//STRIP001          aSetDate.Month = aDate.GetMonth();
-//STRIP001          aSetDate.Year = aDate.GetYear();
-//STRIP001          rAny.setValue(&aSetDate, ::getCppuType((util::Date*)0));
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwPostItField::QueryValue( uno::Any& rAny, BYTE nMId ) const
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        rAny <<= OUString(sAuthor);
+        break;
+    case FIELD_PROP_PAR2:
+        rAny <<= OUString(sTxt);
+        break;
+    case FIELD_PROP_DATE:
+        {
+            util::Date aSetDate;
+            aSetDate.Day = aDate.GetDay();
+            aSetDate.Month = aDate.GetMonth();
+            aSetDate.Year = aDate.GetYear();
+            rAny.setValue(&aSetDate, ::getCppuType((util::Date*)0));
+        }
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 /*-----------------05.03.98 13:42-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, sAuthor );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2:
-//STRIP001      ::GetString( rAny, sTxt );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_DATE:
-//STRIP001      if( rAny.getValueType() == ::getCppuType((util::Date*)0) )
-//STRIP001      {
-//STRIP001          util::Date aSetDate = *(util::Date*)rAny.getValue();
-//STRIP001          aDate = Date(aSetDate.Day, aSetDate.Month, aSetDate.Year);
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, sAuthor );
+        break;
+    case FIELD_PROP_PAR2:
+        ::binfilter::GetString( rAny, sTxt );
+        break;
+    case FIELD_PROP_DATE:
+        if( rAny.getValueType() == ::getCppuType((util::Date*)0) )
+        {
+            util::Date aSetDate = *(util::Date*)rAny.getValue();
+            aDate = Date(aSetDate.Day, aSetDate.Month, aSetDate.Year);
+        }
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 /*--------------------------------------------------------------------
     Beschreibung: DokumentinfoFields
  --------------------------------------------------------------------*/
@@ -1937,8 +1936,8 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwPostItF
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwExtUserFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwExtUserFieldType* pType = new SwExtUserFieldType;
-//STRIP001  return pType;
+            SwExtUserFieldType* pType = new SwExtUserFieldType;
+            return pType;
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
@@ -2012,10 +2011,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwExtUserFieldType* 
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwExtUserField::SetSubType(sal_uInt16 nSub)
-//STRIP001 {
-//STRIP001  nType = nSub;
-//STRIP001 }
+void SwExtUserField::SetSubType(sal_uInt16 nSub)
+{
+    nType = nSub;
+}
 
 /*-----------------05.03.98 14:14-------------------
 
@@ -2049,33 +2048,33 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwExtUserFieldType* 
 /*-----------------05.03.98 14:14-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, aContent );
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      {
-//STRIP001          sal_Int16 nTmp;
-//STRIP001          rAny >>= nTmp;
-//STRIP001          nType = nTmp;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      if( *(sal_Bool*)rAny.getValue() )
-//STRIP001          SetFormat(GetFormat() | AF_FIXED);
-//STRIP001      else
-//STRIP001          SetFormat(GetFormat() & ~AF_FIXED);
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, aContent );
+        break;
+
+    case FIELD_PROP_USHORT1:
+        {
+            sal_Int16 nTmp;
+            rAny >>= nTmp;
+            nType = nTmp;
+        }
+        break;
+    case FIELD_PROP_BOOL1:
+        if( *(sal_Bool*)rAny.getValue() )
+            SetFormat(GetFormat() | AF_FIXED);
+        else
+            SetFormat(GetFormat() & ~AF_FIXED);
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 //-------------------------------------------------------------------------
 
 /*--------------------------------------------------------------------
@@ -2091,7 +2090,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwExtUserFieldType* 
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwRefPageSetFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwRefPageSetFieldType;
+            return new SwRefPageSetFieldType;
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
@@ -2108,75 +2107,75 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwRefPage
 /*?*/ SwRefPageSetField::SwRefPageSetField( SwRefPageSetFieldType* pType,
 /*?*/                   short nOff, sal_Bool bFlag )
 /*?*/   : SwField( pType ), nOffset( nOff ), bOn( bFlag )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 /*?*/ String SwRefPageSetField::Expand() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/   return aEmptyStr;
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SwField* SwRefPageSetField::Copy() const
-//STRIP001 {
-//STRIP001  return new SwRefPageSetField( (SwRefPageSetFieldType*)GetTyp(), nOffset, bOn );
-//STRIP001 }
+SwField* SwRefPageSetField::Copy() const
+{
+    return new SwRefPageSetField( (SwRefPageSetFieldType*)GetTyp(), nOffset, bOn );
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 String SwRefPageSetField::GetPar2() const
-//STRIP001 {
-//STRIP001  return String::CreateFromInt32( GetOffset() );
-//STRIP001 }
+String SwRefPageSetField::GetPar2() const
+{
+    return String::CreateFromInt32( GetOffset() );
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwRefPageSetField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  SetOffset( (short) rStr.ToInt32() );
-//STRIP001 }
+void SwRefPageSetField::SetPar2(const String& rStr)
+{
+    SetOffset( (short) rStr.ToInt32() );
+}
 
 /*-----------------05.03.98 14:52-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwRefPageSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      rAny.setValue(&bOn, ::getBooleanCppuType());
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      rAny <<= (sal_Int16)nOffset;
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwRefPageSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_BOOL1:
+        rAny.setValue(&bOn, ::getBooleanCppuType());
+        break;
+    case FIELD_PROP_USHORT1:
+        rAny <<= (sal_Int16)nOffset;
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 /*-----------------05.03.98 14:52-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001      bOn = *(sal_Bool*)rAny.getValue();
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      rAny >>=nOffset;
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_BOOL1:
+        bOn = *(sal_Bool*)rAny.getValue();
+        break;
+    case FIELD_PROP_USHORT1:
+        rAny >>=nOffset;
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 /*--------------------------------------------------------------------
     Beschreibung: relatives Seitennummern - Abfrage Feld
  --------------------------------------------------------------------*/
@@ -2190,9 +2189,9 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwRefPage
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwRefPageGetFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwRefPageGetFieldType* pNew = new SwRefPageGetFieldType( pDoc );
-//STRIP001  pNew->nNumberingType = nNumberingType;
-//STRIP001  return pNew;
+            SwRefPageGetFieldType* pNew = new SwRefPageGetFieldType( pDoc );
+            pNew->nNumberingType = nNumberingType;
+            return pNew;
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
@@ -2326,25 +2325,25 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwRefPageGetFieldTyp
 /*?*/ SwRefPageGetField::SwRefPageGetField( SwRefPageGetFieldType* pType,
 /*?*/                                   sal_uInt32 nFmt )
 /*?*/   : SwField( pType, nFmt )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 /*?*/ String SwRefPageGetField::Expand() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/   return sTxt;
 /*?*/ }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SwField* SwRefPageGetField::Copy() const
-//STRIP001 {
-//STRIP001  SwRefPageGetField* pCpy = new SwRefPageGetField(
-//STRIP001                      (SwRefPageGetFieldType*)GetTyp(), GetFormat() );
-//STRIP001  pCpy->SetText( sTxt );
-//STRIP001  return pCpy;
-//STRIP001 }
+SwField* SwRefPageGetField::Copy() const
+{
+    SwRefPageGetField* pCpy = new SwRefPageGetField(
+                        (SwRefPageGetFieldType*)GetTyp(), GetFormat() );
+    pCpy->SetText( sTxt );
+    return pCpy;
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -2410,53 +2409,53 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwRefPageGetFieldTyp
 /*-----------------05.03.98 14:52-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwRefPageGetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001         case FIELD_PROP_USHORT1:
-//STRIP001             rAny <<= (sal_Int16)GetFormat();
-//STRIP001         break;
-//STRIP001         case FIELD_PROP_PAR1:
-//STRIP001             rAny <<= OUString(sTxt);
-//STRIP001         break;
-//STRIP001         default:
-//STRIP001             DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwRefPageGetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+        case FIELD_PROP_USHORT1:
+            rAny <<= (sal_Int16)GetFormat();
+        break;
+        case FIELD_PROP_PAR1:
+            rAny <<= OUString(sTxt);
+        break;
+        default:
+            DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 /*-----------------05.03.98 14:52-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001         case FIELD_PROP_USHORT1:
-//STRIP001      {
-//STRIP001          sal_Int16 nSet;
-//STRIP001          rAny >>= nSet;
-//STRIP001          if(nSet <= SVX_NUM_PAGEDESC )
-//STRIP001              SetFormat(nSet);
-//STRIP001          else
-//STRIP001              //exception(wrong_value)
-//STRIP001              ;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001         case FIELD_PROP_PAR1:
-//STRIP001         {
-//STRIP001             OUString sTmp;
-//STRIP001             rAny >>= sTmp;
-//STRIP001             sTxt = sTmp;
-//STRIP001         }
-//STRIP001         break;
-//STRIP001     default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+        case FIELD_PROP_USHORT1:
+        {
+            sal_Int16 nSet;
+            rAny >>= nSet;
+            if(nSet <= SVX_NUM_PAGEDESC )
+                SetFormat(nSet);
+            else
+                //exception(wrong_value)
+                ;
+        }
+        break;
+        case FIELD_PROP_PAR1:
+        {
+            OUString sTmp;
+            rAny >>= sTmp;
+            sTxt = sTmp;
+        }
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Feld zum Anspringen und Editieren
@@ -2471,7 +2470,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwRefPageGetFieldTyp
  ---------------------------------------------------------------------------*/
 /*N*/ SwFieldType* SwJumpEditFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwJumpEditFieldType( pDoc );
+            return new SwJumpEditFieldType( pDoc );
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
@@ -2523,10 +2522,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwJumpEdi
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwJumpEditField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  sTxt = rStr;
-//STRIP001 }
+void SwJumpEditField::SetPar1(const String& rStr)
+{
+    sTxt = rStr;
+}
 
 // HinweisText
 /* ---------------------------------------------------------------------------
@@ -2539,10 +2538,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwJumpEdi
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwJumpEditField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  sHelp = rStr;
-//STRIP001 }
+void SwJumpEditField::SetPar2(const String& rStr)
+{
+    sHelp = rStr;
+}
 
 /*-----------------05.03.98 15:00-------------------
 
@@ -2582,39 +2581,39 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwJumpEdi
 /*-----------------05.03.98 15:00-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwJumpEditField::PutValue( const uno::Any& rAny, BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_USHORT1:
-//STRIP001      {
-//STRIP001          //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
-//STRIP001          //              called with a int32 value! But normally we need
-//STRIP001          //              here only a int16
-//STRIP001          sal_Int32 nSet;
-//STRIP001          rAny >>= nSet;
-//STRIP001          switch( nSet )
-//STRIP001          {
-//STRIP001              case text::PlaceholderType::TEXT     : SetFormat(JE_FMT_TEXT); break;
-//STRIP001              case text::PlaceholderType::TABLE    : SetFormat(JE_FMT_TABLE); break;
-//STRIP001              case text::PlaceholderType::TEXTFRAME: SetFormat(JE_FMT_FRAME); break;
-//STRIP001              case text::PlaceholderType::GRAPHIC  : SetFormat(JE_FMT_GRAPHIC); break;
-//STRIP001              case text::PlaceholderType::OBJECT   : SetFormat(JE_FMT_OLE); break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR1 :
-//STRIP001      ::GetString( rAny, sHelp );
-//STRIP001      break;
-//STRIP001  case FIELD_PROP_PAR2 :
-//STRIP001       ::GetString( rAny, sTxt);
-//STRIP001       break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwJumpEditField::PutValue( const uno::Any& rAny, BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_USHORT1:
+        {
+            //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
+            //              called with a int32 value! But normally we need
+            //              here only a int16
+            sal_Int32 nSet;
+            rAny >>= nSet;
+            switch( nSet )
+            {
+                case text::PlaceholderType::TEXT     : SetFormat(JE_FMT_TEXT); break;
+                case text::PlaceholderType::TABLE    : SetFormat(JE_FMT_TABLE); break;
+                case text::PlaceholderType::TEXTFRAME: SetFormat(JE_FMT_FRAME); break;
+                case text::PlaceholderType::GRAPHIC  : SetFormat(JE_FMT_GRAPHIC); break;
+                case text::PlaceholderType::OBJECT   : SetFormat(JE_FMT_OLE); break;
+            }
+        }
+        break;
+    case FIELD_PROP_PAR1 :
+        ::binfilter::GetString( rAny, sHelp );
+        break;
+    case FIELD_PROP_PAR2 :
+         ::binfilter::GetString( rAny, sTxt);
+         break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 
 /*--------------------------------------------------------------------
@@ -2628,7 +2627,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwJumpEdi
 
 /*N*/ SwFieldType* SwCombinedCharFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwCombinedCharFieldType;
+            return new SwCombinedCharFieldType;
 /*N*/ }
 
 /* --------------------------------------------------------------------*/
@@ -2637,58 +2636,58 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwCombine
 /*?*/                                           const String& rChars )
 /*?*/   : SwField( pFTyp, 0 ),
 /*?*/   sCharacters( rChars.Copy( 0, MAX_COMBINED_CHARACTERS ))
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 /*?*/ String    SwCombinedCharField::Expand() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/   return sCharacters;
 /*?*/ }
 
-//STRIP001 SwField* SwCombinedCharField::Copy() const
-//STRIP001 {
-//STRIP001  return new SwCombinedCharField( (SwCombinedCharFieldType*)GetTyp(),
-//STRIP001                                      sCharacters );
-//STRIP001 }
+SwField* SwCombinedCharField::Copy() const
+{
+    return new SwCombinedCharField( (SwCombinedCharFieldType*)GetTyp(),
+                                        sCharacters );
+}
 
-//STRIP001 const String& SwCombinedCharField::GetPar1() const
-//STRIP001 {
-//STRIP001  return sCharacters;
-//STRIP001 }
+const String& SwCombinedCharField::GetPar1() const
+{
+    return sCharacters;
+}
 
-//STRIP001 void SwCombinedCharField::SetPar1(const String& rStr)
-//STRIP001 {
-//STRIP001  sCharacters = rStr.Copy( 0, MAX_COMBINED_CHARACTERS );
-//STRIP001 }
+void SwCombinedCharField::SetPar1(const String& rStr)
+{
+    sCharacters = rStr.Copy( 0, MAX_COMBINED_CHARACTERS );
+}
 
-//STRIP001 BOOL SwCombinedCharField::QueryValue( ::com::sun::star::uno::Any& rAny,
-//STRIP001                                      BYTE nMId ) const
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      rAny <<= ::rtl::OUString( sCharacters );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwCombinedCharField::QueryValue( ::com::sun::star::uno::Any& rAny,
+                                        BYTE nMId ) const
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        rAny <<= ::rtl::OUString( sCharacters );
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
-//STRIP001 BOOL SwCombinedCharField::PutValue( const ::com::sun::star::uno::Any& rAny,
-//STRIP001                                      BYTE nMId )
-//STRIP001 {
-//STRIP001     nMId &= ~CONVERT_TWIPS;
-//STRIP001  switch( nMId )
-//STRIP001  {
-//STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      ::GetString( rAny, sCharacters ).Erase( MAX_COMBINED_CHARACTERS );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      DBG_ERROR("illegal property");
-//STRIP001  }
-//STRIP001  return sal_True;
-//STRIP001 }
+BOOL SwCombinedCharField::PutValue( const ::com::sun::star::uno::Any& rAny,
+                                        BYTE nMId )
+{
+    nMId &= ~CONVERT_TWIPS;
+    switch( nMId )
+    {
+    case FIELD_PROP_PAR1:
+        ::binfilter::GetString( rAny, sCharacters ).Erase( MAX_COMBINED_CHARACTERS );
+        break;
+    default:
+        DBG_ERROR("illegal property");
+    }
+    return sal_True;
+}
 
 }
