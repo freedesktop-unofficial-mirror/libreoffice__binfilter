@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:41:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDITER_HXX
 #include "svditer.hxx"
@@ -76,29 +76,29 @@
 #include <stdlib.h>
 #endif
 
-#ifndef _E3D_GLOBL3D_HXX
-#include "globl3d.hxx"
-#endif
+// auto strip #ifndef _E3D_GLOBL3D_HXX
+// auto strip #include "globl3d.hxx"
+// auto strip #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
 
-#ifndef _E3D_SCENE3D_HXX
-#include "scene3d.hxx"
-#endif
+// auto strip #ifndef _E3D_SCENE3D_HXX
+// auto strip #include "scene3d.hxx"
+// auto strip #endif
 
 #ifndef _E3D_UNDO_HXX
 #include "e3dundo.hxx"
 #endif
 
-#ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
-#endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include <goodies/base3d.hxx>
+// auto strip #endif
 
 #ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
@@ -116,33 +116,33 @@
 #include "svxids.hrc"
 #endif
 
-#ifndef _SVX_COLRITEM_HXX
-#include "colritem.hxx"
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX
+// auto strip #include "colritem.hxx"
+// auto strip #endif
 
-#ifndef _SVXE3DITEM_HXX
-#include "e3ditem.hxx"
-#endif
+// auto strip #ifndef _SVXE3DITEM_HXX
+// auto strip #include "e3ditem.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLNTRIT_HXX
-#include "xlntrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNTRIT_HXX
+// auto strip #include "xlntrit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLTRIT_HXX
-#include "xfltrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLTRIT_HXX
+// auto strip #include "xfltrit.hxx"
+// auto strip #endif
 
-#ifndef _SVX3DITEMS_HXX
-#include "svx3ditems.hxx"
-#endif
+// auto strip #ifndef _SVX3DITEMS_HXX
+// auto strip #include "svx3ditems.hxx"
+// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
 #endif
 
-#ifndef _SVX_XFLFTRIT_HXX
-#include "xflftrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLFTRIT_HXX
+// auto strip #include "xflftrit.hxx"
+// auto strip #endif
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
