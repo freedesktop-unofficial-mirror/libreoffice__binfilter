@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edundo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:22:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,40 +62,44 @@
 
 #pragma hdrstop
 
-#ifndef _SVDVIEW_HXX //autogen wg. SdrView
-#include <bf_svx/svdview.hxx>
+// auto strip #ifndef _SVDVIEW_HXX //autogen wg. SdrView
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
+// auto strip #ifndef _EDITSH_HXX
+// auto strip #include <editsh.hxx>
+// auto strip #endif
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
