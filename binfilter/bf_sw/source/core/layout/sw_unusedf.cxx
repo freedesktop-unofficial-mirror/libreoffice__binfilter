@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unusedf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:39:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,10 +62,15 @@
 
 #pragma hdrstop
 
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "cntfrm.hxx"
-#include "flyfrm.hxx"
-#include "errhdl.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
+// auto strip #include "errhdl.hxx"
 namespace binfilter {
 
 
