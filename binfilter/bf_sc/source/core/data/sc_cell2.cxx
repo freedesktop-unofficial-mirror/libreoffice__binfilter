@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 12:42:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -242,25 +242,25 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/       else
 /*N*/       {   //! anderer Pool
 /*?*/           // Leider gibt es keinen anderen Weg, um den Pool umzuhaengen,
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  // als das Object durch eine entsprechende Engine zu schleusen..
-//STRIP001 /*?*/            EditEngine& rEngine = pDoc->GetEditEngine();
-//STRIP001 /*?*/            if ( pObject->HasOnlineSpellErrors() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                ULONG nControl = rEngine.GetControlWord();
-//STRIP001 /*?*/                const ULONG nSpellControl = EE_CNTRL_ONLINESPELLING | EE_CNTRL_ALLOWBIGOBJS;
-//STRIP001 /*?*/                BOOL bNewControl = ( (nControl & nSpellControl) != nSpellControl );
-//STRIP001 /*?*/                if ( bNewControl )
-//STRIP001 /*?*/                    rEngine.SetControlWord( nControl | nSpellControl );
-//STRIP001 /*?*/                rEngine.SetText( *pObject );
-//STRIP001 /*?*/                pData = rEngine.CreateTextObject();
-//STRIP001 /*?*/                if ( bNewControl )
-//STRIP001 /*?*/                    rEngine.SetControlWord( nControl );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                rEngine.SetText( *pObject );
-//STRIP001 /*?*/                pData = rEngine.CreateTextObject();
-//STRIP001 /*?*/            }
+/*N*/   // als das Object durch eine entsprechende Engine zu schleusen.. // cellformats.sdc
+/*N*/ /*?*/             EditEngine& rEngine = pDoc->GetEditEngine();
+//STRIP001          if ( pObject->HasOnlineSpellErrors() )
+//STRIP001          {
+//STRIP001              ULONG nControl = rEngine.GetControlWord();
+//STRIP001              const ULONG nSpellControl = EE_CNTRL_ONLINESPELLING | EE_CNTRL_ALLOWBIGOBJS;
+//STRIP001              BOOL bNewControl = ( (nControl & nSpellControl) != nSpellControl );
+//STRIP001              if ( bNewControl )
+//STRIP001                  rEngine.SetControlWord( nControl | nSpellControl );
+//STRIP001              rEngine.SetText( *pObject );
+//STRIP001              pData = rEngine.CreateTextObject();
+//STRIP001              if ( bNewControl )
+//STRIP001                  rEngine.SetControlWord( nControl );
+//STRIP001          }
+//STRIP001          else
+//STRIP001          {
+/*N*/ /*?*/                 rEngine.SetText( *pObject );
+/*N*/ /*?*/                 pData = rEngine.CreateTextObject();
+//STRIP001          }
 /*N*/       }
 /*N*/   }
 /*N*/   else
