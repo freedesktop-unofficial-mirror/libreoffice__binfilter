@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:17:05 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:34:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -320,46 +320,46 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
-//STRIP001 {
-//STRIP001  SwSectionFmt* pFmt = GetFmt();
-//STRIP001  if( pFmt )
-//STRIP001  {
-//STRIP001      int bHide = bHidden && bCondition;
-//STRIP001
-//STRIP001      if( bHide )                         // die Nodes also "verstecken"
-//STRIP001      {
-//STRIP001          if( !bHiddenFlag )              // ist nicht versteckt
-//STRIP001          {
-//STRIP001              // wie sieht es mit dem Parent aus, ist der versteckt ?
-//STRIP001              // (eigentlich muesste das vom bHiddenFlag angezeigt werden!)
-//STRIP001
-//STRIP001              // erstmal allen Childs sagen, das sie versteckt sind
-//STRIP001              SwMsgPoolItem aMsgItem( RES_SECTION_HIDDEN );
-//STRIP001              pFmt->Modify( &aMsgItem, &aMsgItem );
-//STRIP001
-//STRIP001              // alle Frames loeschen
-//STRIP001              pFmt->DelFrms();
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if( bHiddenFlag )              // die Nodes wieder anzeigen
-//STRIP001      {
-//STRIP001          // alle Frames sichtbar machen ( Childs Sections werden vom
-//STRIP001          // MakeFrms beruecksichtigt). Aber nur wenn die ParentSection
-//STRIP001          // nichts dagegen hat !
-//STRIP001          SwSection* pParentSect = pFmt->GetParentSection();
-//STRIP001          if( !pParentSect || !pParentSect->IsHiddenFlag() )
-//STRIP001          {
-//STRIP001              // erstmal allen Childs sagen, das der Parent nicht mehr
-//STRIP001              // versteckt ist
-//STRIP001              SwMsgPoolItem aMsgItem( RES_SECTION_NOT_HIDDEN );
-//STRIP001              pFmt->Modify( &aMsgItem, &aMsgItem );
-//STRIP001
-//STRIP001              pFmt->MakeFrms();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
+{
+    SwSectionFmt* pFmt = GetFmt();
+    if( pFmt )
+    {
+        int bHide = bHidden && bCondition;
+
+        if( bHide )                         // die Nodes also "verstecken"
+        {
+            if( !bHiddenFlag )              // ist nicht versteckt
+            {
+                // wie sieht es mit dem Parent aus, ist der versteckt ?
+                // (eigentlich muesste das vom bHiddenFlag angezeigt werden!)
+
+                // erstmal allen Childs sagen, das sie versteckt sind
+                SwMsgPoolItem aMsgItem( RES_SECTION_HIDDEN );
+                pFmt->Modify( &aMsgItem, &aMsgItem );
+
+                // alle Frames loeschen
+                pFmt->DelFrms();
+            }
+        }
+        else if( bHiddenFlag )              // die Nodes wieder anzeigen
+        {
+            // alle Frames sichtbar machen ( Childs Sections werden vom
+            // MakeFrms beruecksichtigt). Aber nur wenn die ParentSection
+            // nichts dagegen hat !
+            SwSection* pParentSect = pFmt->GetParentSection();
+            if( !pParentSect || !pParentSect->IsHiddenFlag() )
+            {
+                // erstmal allen Childs sagen, das der Parent nicht mehr
+                // versteckt ist
+                SwMsgPoolItem aMsgItem( RES_SECTION_NOT_HIDDEN );
+                pFmt->Modify( &aMsgItem, &aMsgItem );
+
+                pFmt->MakeFrms();
+            }
+        }
+    }
+}
 
 /*N*/ int SwSection::CalcHiddenFlag() const
 /*N*/ {
@@ -383,8 +383,8 @@ namespace binfilter {
 /*N*/   if( bHidden == bFlag )
 /*N*/       return;
 /*N*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bHidden = bFlag;
-//STRIP001 /*?*/    _SetHiddenFlag( bHidden, bCondHiddenFlag );
+/*?*/   bHidden = bFlag;
+/*?*/   _SetHiddenFlag( bHidden, bCondHiddenFlag );
 /*N*/ }
 
 
@@ -498,14 +498,14 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 void SwSection::SetCondHidden( int bFlag )
-//STRIP001 {
-//STRIP001  if( bCondHiddenFlag == bFlag )
-//STRIP001      return;
-//STRIP001
-//STRIP001  bCondHiddenFlag = bFlag;
-//STRIP001  _SetHiddenFlag( bHidden, bCondHiddenFlag );
-//STRIP001 }
+void SwSection::SetCondHidden( int bFlag )
+{
+    if( bCondHiddenFlag == bFlag )
+        return;
+
+    bCondHiddenFlag = bFlag;
+    _SetHiddenFlag( bHidden, bCondHiddenFlag );
+}
 
 
 // setze/erfrage den gelinkten FileNamen
@@ -712,18 +712,18 @@ namespace binfilter {
 
 
 //Erzeugt die Ansichten
-//STRIP001 void SwSectionFmt::MakeFrms()
-//STRIP001 {
-//STRIP001  SwSectionNode* pSectNd;
-//STRIP001  const SwNodeIndex* pIdx = GetCntnt(FALSE).GetCntntIdx();
-//STRIP001
-//STRIP001  if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
-//STRIP001      0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pIdx );
-//STRIP001      pSectNd->MakeFrms( &aIdx );
-//STRIP001  }
-//STRIP001 }
+void SwSectionFmt::MakeFrms()
+{
+    SwSectionNode* pSectNd;
+    const SwNodeIndex* pIdx = GetCntnt(FALSE).GetCntntIdx();
+
+    if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
+        0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
+    {
+        SwNodeIndex aIdx( *pIdx );
+        pSectNd->MakeFrms( &aIdx );
+    }
+}
 
 /*N*/ void lcl_ClientIter( SwSectionFmt* pFmt, const SfxPoolItem* pOld,
 /*N*/                                       const SfxPoolItem* pNew )
