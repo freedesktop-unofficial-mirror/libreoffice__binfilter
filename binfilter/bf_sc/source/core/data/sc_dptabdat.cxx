@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dptabdat.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:06:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,21 +60,21 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <tools/debug.hxx>
-#include <tools/date.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #include <tools/debug.hxx>
+// auto strip #include <tools/date.hxx>
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
 #include "dptabdat.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 namespace binfilter {
 
 // -----------------------------------------------------------------------
