@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_progress.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:34:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,40 +61,40 @@
 
 #include "progress.hxx"
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
 #endif
 
-#ifndef _SBX_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
+// auto strip #ifndef _SBX_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
 #pragma hdrstop
 
-#include <so3/transbnd.hxx>             // SvProgressArg
+// auto strip #include <so3/transbnd.hxx>             // SvProgressArg
 #include <svtools/eitem.hxx>
 
 #include "appdata.hxx"
 #include "request.hxx"
-#include "frame.hxx"
-#include "viewfrm.hxx"
+// auto strip #include "frame.hxx"
+// auto strip #include "viewfrm.hxx"
 #include "ipfrm.hxx"
-#include "viewsh.hxx"
-#include "objsh.hxx"
-#include "app.hxx"
-#include "stbmgr.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "objsh.hxx"
+// auto strip #include "app.hxx"
+// auto strip #include "stbmgr.hxx"
 #include "dispatch.hxx"
 #include "sfxtypes.hxx"
 #include "docfile.hxx"
 #include "workwin.hxx"
-#include "sfxresid.hxx"
+// auto strip #include "sfxresid.hxx"
 #include "bastyp.hrc"
 
 #include <time.h>
 namespace binfilter {
-#include "sfxslots.hxx"
+// auto strip #include "sfxslots.hxx"
 
 
 using namespace ::com::sun::star::uno;
