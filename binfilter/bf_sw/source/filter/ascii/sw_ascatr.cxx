@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ascatr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:17:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,15 +70,24 @@
 #endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
-#ifndef _SVX_FONTITEM_HXX
-#include <bf_svx/fontitem.hxx>
+// auto strip #ifndef _SVX_FONTITEM_HXX
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -88,24 +97,24 @@
 #ifndef _WRTASC_HXX
 #include <wrtasc.hxx>
 #endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
-#include <fchrfmt.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _FCHRFMT_HXX
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
 #ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
 #endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>
-#endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
 #ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
 #endif
-#ifndef _CHARFMT_HXX
-#include <charfmt.hxx>
-#endif
+// auto strip #ifndef _CHARFMT_HXX
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
 #ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
 #endif
