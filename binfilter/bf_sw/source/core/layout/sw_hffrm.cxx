@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_hffrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:36:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,8 +64,13 @@
 
 #include "pagefrm.hxx"
 #include "viewsh.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "errhdl.hxx"
+// auto strip #include "errhdl.hxx"
 
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
