@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_drawitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:02:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,7 +72,12 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
-#include "xoutx.hxx"
+// auto strip #include "xoutx.hxx"
+
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
 #include "drawitem.hxx"
 namespace binfilter {
 
