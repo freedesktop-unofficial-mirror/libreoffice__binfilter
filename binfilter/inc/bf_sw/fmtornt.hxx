@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtornt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:42:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,18 +61,18 @@
 #ifndef _FMTORNT_HXX
 #define _FMTORNT_HXX
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
 #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 #ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
 #endif

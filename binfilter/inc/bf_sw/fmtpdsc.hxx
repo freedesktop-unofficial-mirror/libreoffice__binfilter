@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtpdsc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:42:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,18 @@
 #define _FMTPDSC_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-#ifndef _CALBCK_HXX //autogen
-#include <calbck.hxx>
-#endif
+// auto strip #ifndef _CALBCK_HXX //autogen
+// auto strip #include <calbck.hxx>
+// auto strip #endif
 class IntlWrapper;
 namespace binfilter {
 
