@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:19:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,23 +69,44 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <bf_svx/algitem.hxx>
-#include <bf_svx/boxitem.hxx>
-#include <bf_svx/brshitem.hxx>
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
-#include <bf_svx/fmdpage.hxx>
+// auto strip #include <bf_svx/fmdpage.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-#include <bf_svx/srchitem.hxx>
-#include <bf_svx/unomid.hxx>
-#include <bf_svx/unoprnms.hxx>
-#include <bf_svx/unotext.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/unomid.hxx>
+// auto strip #include <bf_svx/unoprnms.hxx>
+// auto strip #include <bf_svx/unotext.hxx>
 #include <bf_svx/svdpage.hxx>
 #include <bf_sfx2/bindings.hxx>
-#include <bf_sch/schdll.hxx>    // SchMemChart
+// auto strip #include <bf_sch/schdll.hxx>  // SchMemChart
 #include <bf_sch/memchrt.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <rtl/uuid.h>
 #include <float.h>              // DBL_MIN
@@ -96,14 +117,14 @@
 #include <com/sun/star/table/CellOrientation.hpp>
 #include <com/sun/star/table/CellVertJustify.hpp>
 #include <com/sun/star/table/ShadowFormat.hpp>
-#include <com/sun/star/table/TableBorder.hpp>
+// auto strip #include <com/sun/star/table/TableBorder.hpp>
 #include <com/sun/star/sheet/CellFlags.hpp>
 #include <com/sun/star/sheet/FormulaResult.hpp>
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#include <com/sun/star/lang/Locale.hpp>
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #include <com/sun/star/lang/Locale.hpp>
 
 #include "autoform.hxx"
-#include "cellsuno.hxx"
+// auto strip #include "cellsuno.hxx"
 #include "cursuno.hxx"
 #include "textuno.hxx"
 #include "editsrc.hxx"
@@ -119,7 +140,7 @@
 #include "srchuno.hxx"
 #include "targuno.hxx"
 #include "docsh.hxx"
-#include "markdata.hxx"
+// auto strip #include "markdata.hxx"
 #include "patattr.hxx"
 #include "docpool.hxx"
 #include "docfunc.hxx"
@@ -127,7 +148,7 @@
 #include "olinefun.hxx"
 #include "hints.hxx"
 #include "cell.hxx"
-#include "undocell.hxx"
+// auto strip #include "undocell.hxx"
 #include "undotab.hxx"
 #include "undoblk.hxx"      // fuer lcl_ApplyBorder - nach docfunc verschieben!
 #include "stlsheet.hxx"
@@ -140,11 +161,11 @@
 #include "prnsave.hxx"
 #include "tablink.hxx"
 #include "dociter.hxx"
-#include "rangeutl.hxx"
-#include "conditio.hxx"
+// auto strip #include "rangeutl.hxx"
+// auto strip #include "conditio.hxx"
 #include "validat.hxx"
 #include "bf_sc.hrc"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "unoguard.hxx"
 #include "cellform.hxx"
 #include "globstr.hrc"
@@ -156,6 +177,11 @@
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
