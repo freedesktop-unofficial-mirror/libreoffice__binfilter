@@ -2,9 +2,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:45:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,17 +63,17 @@
 #define SC_DOCUMENT_HXX
 
 
-#ifndef _SV_PRNTYPES_HXX //autogen
-#include <vcl/prntypes.hxx>
-#endif
+// auto strip #ifndef _SV_PRNTYPES_HXX //autogen
+// auto strip #include <vcl/prntypes.hxx>
+// auto strip #endif
 
 #ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 #ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
