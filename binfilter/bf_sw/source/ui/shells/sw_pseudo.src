@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pseudo.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:54 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:48:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 
 
@@ -65,281 +66,109 @@
 /*
 SfxSlotInfo SID_DRAW_LINE
 {
-    SlotName = "Linie" ;
-    SlotName [ english_us ] = "Line" ;
-    SlotName [ portuguese ] = "Linha" ;
-    SlotName [ dutch ] = "Lijn" ;
-    SlotName [ french ] = "Ligne" ;
-    SlotName [ spanish ] = "Línea" ;
-    SlotName [ italian ] = "Line" ;
-    SlotName [ danish ] = "Line" ;
-    SlotName [ swedish ] = "Linje" ;
-    SlotName [ portuguese_brazilian ] = "Line" ;
+    Slotname [ de ] = "Linie" ;
+    Slotname [ en-US ] = "Line" ;
 };
 SfxSlotInfo SID_DRAW_RECT
 {
-    SlotName = "Rechteck" ;
-    SlotName [ english_us ] = "Rectangle" ;
-    SlotName [ portuguese ] = "Rectângulo" ;
-    SlotName [ dutch ] = "Rechthoek" ;
-    SlotName [ french ] = "Rectangle" ;
-    SlotName [ spanish ] = "Rectángulo" ;
-    SlotName [ italian ] = "Rect" ;
-    SlotName [ danish ] = "Rectangle" ;
-    SlotName [ swedish ] = "Rektangel" ;
-    SlotName [ portuguese_brazilian ] = "Rectangle" ;
+    Slotname [ de ] = "Rechteck" ;
+    Slotname [ en-US ] = "Rectangle" ;
 };
 SfxSlotInfo SID_DRAW_ELLIPSE
 {
-    SlotName = "Ellipse" ;
-    SlotName [ english_us ] = "Ellipse" ;
-    SlotName [ portuguese ] = "Elipse" ;
-    SlotName [ dutch ] = "Ellipse" ;
-    SlotName [ french ] = "Ellipse" ;
-    SlotName [ spanish ] = "Ellipse" ;
-    SlotName [ italian ] = "Ellipse" ;
-    SlotName [ danish ] = "Ellipse" ;
-    SlotName [ swedish ] = "Ellipse" ;
-    SlotName [ portuguese_brazilian ] = "Ellipse" ;
+    Slotname [ de ] = "Ellipse" ;
+    Slotname [ en-US ] = "Ellipse" ;
 };
 SfxSlotInfo SID_DRAW_ARC
 {
-    SlotName = "Kreisbogen" ;
-    SlotName [ english_us ] = "Arc" ;
-    SlotName [ portuguese ] = "Arco de círculo" ;
-    SlotName [ dutch ] = "Cirkelboog" ;
-    SlotName [ french ] = "Arc" ;
-    SlotName [ spanish ] = "Arco" ;
-    SlotName [ italian ] = "Arc" ;
-    SlotName [ danish ] = "Cirkelbue" ;
-    SlotName [ swedish ] = "Kurvbåge" ;
-    SlotName [ portuguese_brazilian ] = "Arc" ;
+    Slotname [ de ] = "Kreisbogen" ;
+    Slotname [ en-US ] = "Arc" ;
 };
 SfxSlotInfo SID_DRAW_PIE
 {
-    SlotName = "Kreissektor" ;
-    SlotName [ english_us ] = "Circle Pie" ;
-    SlotName [ portuguese ] = "Sector de círculo" ;
-    SlotName [ dutch ] = "Cirkelsegment" ;
-    SlotName [ french ] = "Secteur de cercle" ;
-    SlotName [ spanish ] = "Sector de círculo" ;
-    SlotName [ italian ] = "Pie" ;
-    SlotName [ danish ] = "Circle Pie" ;
-    SlotName [ swedish ] = "Cirkelsektor" ;
-    SlotName [ portuguese_brazilian ] = "Circle Pie" ;
+    Slotname [ de ] = "Kreissektor" ;
+    Slotname [ en-US ] = "Circle Pie" ;
 };
 SfxSlotInfo SID_DRAW_CIRCLECUT
 {
-    SlotName = "Kreissegment" ;
-    SlotName [ english_us ] = "Circle Segment" ;
-    SlotName [ portuguese ] = "Segmento de círculo" ;
-    SlotName [ dutch ] = "Cirkelgedeelte" ;
-    SlotName [ french ] = "Segment de cercle" ;
-    SlotName [ spanish ] = "Segmento de círculo" ;
-    SlotName [ italian ] = "Segmento di cerchio" ;
-    SlotName [ danish ] = "Circle Segment" ;
-    SlotName [ swedish ] = "Cirkelsegment" ;
-    SlotName [ portuguese_brazilian ] = "Circle Segment" ;
+    Slotname [ de ] = "Kreissegment" ;
+    Slotname [ en-US ] = "Circle Segment" ;
 };
 SfxSlotInfo SID_DRAW_TEXT
 {
-    SlotName = "Text" ;
-    SlotName [ english_us ] = "Text" ;
-    SlotName [ portuguese ] = "Texto" ;
-    SlotName [ dutch ] = "Tekst" ;
-    SlotName [ french ] = "Texte" ;
-    SlotName [ spanish ] = "Texto" ;
-    SlotName [ italian ] = "TextToolbox" ;
-    SlotName [ danish ] = "Text" ;
-    SlotName [ swedish ] = "Text" ;
-    SlotName [ portuguese_brazilian ] = "Text" ;
+    Slotname [ de ] = "Text" ;
+    Slotname [ en-US ] = "Text" ;
 };
 
 SfxSlotInfo SID_DRAW_CAPTION
 {
-    SlotName = "Legende" ;
-    SlotName [ english_us ] = "Callout" ;
-    SlotName [ portuguese ] = "Legenda" ;
-    SlotName [ dutch ] = "Legenda" ;
-    SlotName [ french ] = "Légende" ;
-    SlotName [ spanish ] = "Leyenda" ;
-    SlotName [ italian ] = "Caption" ;
-    SlotName [ danish ] = "Legend" ;
-    SlotName [ swedish ] = "Beskrivning" ;
-    SlotName [ portuguese_brazilian ] = "Legend" ;
+    Slotname [ de ] = "Legende" ;
+    Slotname [ en-US ] = "Callout" ;
 };
 
 
 
 SfxSlotInfo SID_INSERT_PUSHBUTTON
 {
-    SlotName = "Pushbutton" ;
-    SlotName [ English ] = "Pushutton" ;
-    Slotname [ dutch ] = "PushButton" ;
-    Slotname [ english_us ] = "PushButton" ;
-    Slotname [ italian ] = "Pushbutton" ;
-    Slotname [ spanish ] = "Pushbutton" ;
-    Slotname [ french ] = "BoutondeCommande" ;
-    Slotname [ swedish ] = "Pushbutton" ;
-    Slotname [ danish ] = "Pushbutton" ;
-    Slotname [ portuguese ] = "BotãoComando" ;
-    Slotname [ portuguese_brazilian ] = "Pushbutton" ;
+    Slotname [ de ] = "Pushbutton" ;
+    Slotname [ en-US ] = "PushButton" ;
 
 };
 SfxSlotInfo SID_INSERT_CHECKBOX
 {
-    SlotName = "Checkbox" ;
-    SlotName [ English ] = "Checkbox" ;
-    Slotname [ dutch ] = "Checkbox" ;
-    Slotname [ english_us ] = "Checkbox" ;
-    Slotname [ italian ] = "CheckBox" ;
-    Slotname [ spanish ] = "CasillaControl" ;
-    Slotname [ french ] = "Caseàcocher" ;
-    Slotname [ swedish ] = "Checkbox" ;
-    Slotname [ danish ] = "Checkbox" ;
-    Slotname [ portuguese ] = "CaixaRevisão" ;
-    Slotname [ portuguese_brazilian ] = "Checkbox" ;
+    Slotname [ de ] = "Checkbox" ;
+    Slotname [ en-US ] = "Checkbox" ;
 };
 SfxSlotInfo SID_INSERT_RADIOBUTTON
 {
-    SlotName = "Radiobutton" ;
-    SlotName [ English ] = "Radiobutton" ;
-    Slotname [ dutch ] = "Radiobutton" ;
-    Slotname [ english_us ] = "Radiobutton" ;
-    Slotname [ italian ] = "Radiobutton" ;
-    Slotname [ spanish ] = "Radiobutton" ;
-    Slotname [ french ] = "Cased'Option" ;
-    Slotname [ swedish ] = "Radiobutton" ;
-    Slotname [ danish ] = "Radiobutton" ;
-    Slotname [ portuguese ] = "BotãoSelecção" ;
-    Slotname [ portuguese_brazilian ] = "Radiobutton" ;
+    Slotname [ de ] = "Radiobutton" ;
+    Slotname [ en-US ] = "Radiobutton" ;
 };
 SfxSlotInfo SID_INSERT_SPINBUTTON
 {
-    SlotName = "Spinbutton" ;
-    SlotName [ English ] = "Spinbutton" ;
-    Slotname [ dutch ] = "Spinbutton" ;
-    Slotname [ english_us ] = "Spinbutton" ;
-    Slotname [ italian ] = "Spinbutton" ;
-    Slotname [ spanish ] = "Spinbutton" ;
-    Slotname [ french ] = "Spinbutton" ;
-    Slotname [ swedish ] = "Spinbutton" ;
-    Slotname [ danish ] = "Spinbutton" ;
-    Slotname [ portuguese ] = "BotãoSpin" ;
-    Slotname [ portuguese_brazilian ] = "Spinbutton" ;
+    Slotname [ de ] = "Spinbutton" ;
+    Slotname [ en-US ] = "Spinbutton" ;
 };
 SfxSlotInfo SID_INSERT_FIXEDTEXT
 {
-    SlotName = "Fixedtext" ;
-    SlotName [ English ] = "FixedText" ;
-    Slotname [ dutch ] = "Fixedtext" ;
-    Slotname [ english_us ] = "FixedText" ;
-    Slotname [ italian ] = "TestoFisso" ;
-    Slotname [ spanish ] = "TextoFijo" ;
-    Slotname [ french ] = "TexteFixe" ;
-    Slotname [ swedish ] = "Fixedtext" ;
-    Slotname [ danish ] = "Fixedtext" ;
-    Slotname [ portuguese ] = "TextoFixo" ;
-    Slotname [ portuguese_brazilian ] = "Fixedtext" ;
+    Slotname [ de ] = "Fixedtext" ;
+    Slotname [ en-US ] = "FixedText" ;
 };
 SfxSlotInfo SID_INSERT_GROUPBOX
 {
-    SlotName = "Groupbox" ;
-    SlotName [ English ] = "Groupbox" ;
-    Slotname [ english_us ] = "Groupbox" ;
-    Slotname [ italian ] = "GroupBox" ;
-    Slotname [ spanish ] = "CuadroGrupos" ;
-    Slotname [ french ] = "GroupBox" ;
-    Slotname [ dutch ] = "Groupbox" ;
-    Slotname [ swedish ] = "Groupbox" ;
-    Slotname [ danish ] = "Groupbox" ;
-    Slotname [ portuguese ] = "CaixaGrupos" ;
-    Slotname [ portuguese_brazilian ] = "Groupbox" ;
+    Slotname [ de ] = "Groupbox" ;
+    Slotname [ en-US ] = "Groupbox" ;
 };
 
 SfxSlotInfo SID_INSERT_LISTBOX
 {
-    SlotName = "Listbox" ;
-    SlotName [ English ] = "Listbox" ;
-    Slotname [ english_us ] = "Listbox" ;
-    Slotname [ italian ] = "Listbox" ;
-    Slotname [ spanish ] = "CuadroLista" ;
-    Slotname [ french ] = "ZonedeListe" ;
-    Slotname [ dutch ] = "Listbox" ;
-    Slotname [ swedish ] = "Listbox" ;
-    Slotname [ danish ] = "Listbox" ;
-    Slotname [ portuguese ] = "CaixaLista" ;
-    Slotname [ portuguese_brazilian ] = "Listbox" ;
+    Slotname [ de ] = "Listbox" ;
+    Slotname [ en-US ] = "Listbox" ;
 };
 SfxSlotInfo SID_INSERT_COMBOBOX
 {
-    SlotName = "Combobox" ;
-    SlotName [ English ] = "Combobox" ;
-    Slotname [ dutch ] = "Combobox" ;
-    Slotname [ english_us ] = "Combobox" ;
-    Slotname [ italian ] = "ComboBox" ;
-    Slotname [ spanish ] = "CuadroCombinado" ;
-    Slotname [ french ] = "Zonedelistedéroulante" ;
-    Slotname [ swedish ] = "Combobox" ;
-    Slotname [ danish ] = "Combobox" ;
-    Slotname [ portuguese ] = "CaixaCombinação" ;
-    Slotname [ portuguese_brazilian ] = "Combobox" ;
+    Slotname [ de ] = "Combobox" ;
+    Slotname [ en-US ] = "Combobox" ;
 };
 SfxSlotInfo SID_INSERT_EDIT
 {
-    SlotName = "Edit" ;
-    SlotName [ English ] = "Edit" ;
-    Slotname [ english_us ] = "Edit" ;
-    Slotname [ italian ] = "Edit" ;
-    Slotname [ spanish ] = "Edición" ;
-    Slotname [ french ] = "Modifier" ;
-    Slotname [ dutch ] = "Edit" ;
-    Slotname [ swedish ] = "Redigera" ;
-    Slotname [ danish ] = "Edit" ;
-    Slotname [ portuguese ] = "Editar" ;
-    Slotname [ portuguese_brazilian ] = "Edit" ;
+    Slotname [ de ] = "Edit" ;
+    Slotname [ en-US ] = "Edit" ;
 };
 SfxSlotInfo SID_INSERT_HSCROLLBAR
 {
-    SlotName = "HScrollbar" ;
-    SlotName [ English ] = "HScrollbar" ;
-    Slotname [ english_us ] = "HScrollbar" ;
-    Slotname [ italian ] = "HScrollbar" ;
-    Slotname [ spanish ] = "HScrollbar" ;
-    Slotname [ french ] = "BarredeDéfilementH" ;
-    Slotname [ dutch ] = "HScrollbar" ;
-    Slotname [ swedish ] = "HRullningslist" ;
-    Slotname [ danish ] = "HScrollbar" ;
-    Slotname [ portuguese ] = "BarraDeslH" ;
-    Slotname [ portuguese_brazilian ] = "HScrollbar" ;
+    Slotname [ de ] = "HScrollbar" ;
+    Slotname [ en-US ] = "HScrollbar" ;
 };
 SfxSlotInfo SID_INSERT_VSCROLLBAR
 {
-    SlotName = "VScrollbar" ;
-    SlotName [ English ] = "VScrollbar" ;
-    Slotname [ dutch ] = "VScrollbar" ;
-    Slotname [ english_us ] = "VScrollbar" ;
-    Slotname [ italian ] = "VScrollbar" ;
-    Slotname [ spanish ] = "VScrollbar" ;
-    Slotname [ french ] = "BarredeDéfilementV" ;
-    Slotname [ swedish ] = "VRullningslist" ;
-    Slotname [ danish ] = "VScrollbar" ;
-    Slotname [ portuguese ] = "BarraDeslV" ;
-    Slotname [ portuguese_brazilian ] = "VScrollbar" ;
+    Slotname [ de ] = "VScrollbar" ;
+    Slotname [ en-US ] = "VScrollbar" ;
 };
 SfxSlotInfo SID_INSERT_PREVIEW
 {
-    SlotName = "Preview" ;
-    SlotName [ English ] = "Preview" ;
-    Slotname [ dutch ] = "Preview" ;
-    Slotname [ english_us ] = "Preview" ;
-    Slotname [ italian ] = "Anteprima" ;
-    Slotname [ spanish ] = "Presentación preliminar" ;
-    Slotname [ french ] = "Aperçu" ;
-    Slotname [ swedish ] = "Preview" ;
-    Slotname [ danish ] = "Preview" ;
-    Slotname [ portuguese ] = "Previsualizar" ;
-    Slotname [ portuguese_brazilian ] = "Preview" ;
+    Slotname [ de ] = "Preview" ;
+    Slotname [ en-US ] = "Preview" ;
 };
 */
 
