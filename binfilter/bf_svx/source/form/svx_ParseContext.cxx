@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_ParseContext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:43:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
+// auto strip #include <svtools/syslocale.hxx>
+// auto strip #endif
 #ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
 #endif
@@ -77,6 +77,11 @@
 #ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
 #endif
+
+#ifndef _SHL_HXX
+#include <tools/shl.hxx>
+#endif
+
 namespace binfilter {
 
 
