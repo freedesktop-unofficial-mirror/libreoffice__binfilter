@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:55:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -75,24 +75,29 @@
 #endif
 
 #include "viewsh.hxx"   // NewFldPortion, GetDoc()
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"      // NewFldPortion, GetSysFldType()
 #include "rootfrm.hxx"  // Info ueber virt. PageNumber
 #include "pagefrm.hxx"  // NewFldPortion, GetVirtPageNum()
 #include "ndtxt.hxx"    // NewNumberPortion, pHints->GetNum()
-#include "fldbas.hxx"      // SwField
+// auto strip #include "fldbas.hxx"      // SwField
 #include "viewopt.hxx"  // SwViewOptions
 #include "flyfrm.hxx"   //IsInBody()
 #include "viewimp.hxx"
-#include "txtatr.hxx"   // SwTxtFld
+// auto strip #include "txtatr.hxx"   // SwTxtFld
 
 #include "txtcfg.hxx"
 
-#include "swfont.hxx"   // NewFldPortion, new SwFont
-#include "fntcache.hxx"   // NewFldPortion, SwFntAccess
+// auto strip #include "swfont.hxx"   // NewFldPortion, new SwFont
+// auto strip #include "fntcache.hxx"   // NewFldPortion, SwFntAccess
 
-#include "porfld.hxx"
+// auto strip #include "porfld.hxx"
 #include "porftn.hxx"   // NewExtraPortion
-#include "porref.hxx"   // NewExtraPortion
+// auto strip #include "porref.hxx"   // NewExtraPortion
 #include "portox.hxx"   // NewExtraPortion
 #include "porhyph.hxx"   // NewExtraPortion
 #include "porfly.hxx"   // NewExtraPortion
@@ -103,9 +108,9 @@
 #include "expfld.hxx"
 #include "docufld.hxx"
 #include "pagedesc.hxx"  // NewFldPortion, GetNum()
-#ifndef _PORMULTI_HXX
-#include <pormulti.hxx>     // SwMultiPortion
-#endif
+// auto strip #ifndef _PORMULTI_HXX
+// auto strip #include <pormulti.hxx>   // SwMultiPortion
+// auto strip #endif
 namespace binfilter {
 
 
