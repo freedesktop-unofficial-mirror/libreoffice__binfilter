@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unocrsrhelper.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 15:27:40 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:45:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,6 +208,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -835,8 +836,8 @@ void InsertFile(SwUnoCrsr* pUnoCrsr,
         Reader *pRead = pDocSh->StartConvertFrom( *pMed, &pRdr, 0, pUnoCrsr);
         if( pRead )
         {
-            String sTmpBaseURL( INetURLObject::GetBaseURL() );
-            INetURLObject::SetBaseURL( pMed->GetName() );
+            String sTmpBaseURL( so3::StaticBaseUrl::GetBaseURL() );
+            so3::StaticBaseUrl::SetBaseURL( pMed->GetName() );
 
             UnoActionContext aContext(pDoc);
 
@@ -862,7 +863,7 @@ void InsertFile(SwUnoCrsr* pUnoCrsr,
 
             delete pRdr;
 
-            INetURLObject::SetBaseURL( sTmpBaseURL );
+            so3::StaticBaseUrl::SetBaseURL( sTmpBaseURL );
 
             // ggfs. alle Verzeichnisse updaten:
 /*          if( pWrtShell->IsUpdateTOX() )
