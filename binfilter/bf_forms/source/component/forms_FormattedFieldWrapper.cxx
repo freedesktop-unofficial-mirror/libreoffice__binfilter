@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormattedFieldWrapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:49:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,21 +59,44 @@
  *
  ************************************************************************/
 
+#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+#include <comphelper/proparrhlp.hxx>
+#endif
+
 #ifndef _FRM_FORMATTED_FIELD_WRAPPER_HXX_
 #include "FormattedFieldWrapper.hxx"
 #endif
+
+#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
+#include <com/sun/star/util/XNumberFormatter.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
+#include <com/sun/star/awt/XFocusListener.hpp>
+#endif
+#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
+#include <com/sun/star/awt/XKeyListener.hpp>
+#endif
+#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
+#include <com/sun/star/form/XChangeBroadcaster.hpp>
+#endif
+
+#ifndef _LINK_HXX
+#include <tools/link.hxx>
+#endif
+
 #ifndef _FORMS_EDIT_HXX_
 #include "Edit.hxx"
 #endif
 #ifndef _FORMS_FORMATTEDFIELD_HXX_
 #include "FormattedField.hxx"
 #endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _FORMS_EDITBASE_HXX_
-#include "EditBase.hxx"
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _FORMS_EDITBASE_HXX_
+// auto strip #include "EditBase.hxx"
+// auto strip #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
@@ -81,15 +104,20 @@
 #include <connectivity/dbtools.hxx>
 #endif
 
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _TOOLS_INTN_HXX
-#include <tools/intn.hxx>
+// auto strip #ifndef _TOOLS_INTN_HXX
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
+
+#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
+#include <com/sun/star/io/XMarkableStream.hpp>
 #endif
+
 namespace binfilter {
 
 //.........................................................................
