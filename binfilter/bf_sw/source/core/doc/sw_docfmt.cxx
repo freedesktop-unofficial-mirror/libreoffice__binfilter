@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1440,16 +1440,16 @@ struct ParaRstFmt
 /*N*/ }
 
 //FEATURE::CONDCOLL
-//STRIP001 SwConditionTxtFmtColl* SwDoc::MakeCondTxtFmtColl( const String &rFmtName,
-//STRIP001                                              SwTxtFmtColl *pDerivedFrom )
-//STRIP001 {
-//STRIP001  SwConditionTxtFmtColl*pFmtColl = new SwConditionTxtFmtColl( GetAttrPool(),
-//STRIP001                                                  rFmtName, pDerivedFrom );
-//STRIP001  pTxtFmtCollTbl->Insert(pFmtColl, pTxtFmtCollTbl->Count());
-//STRIP001  pFmtColl->SetAuto( FALSE );
-//STRIP001  SetModified();
-//STRIP001  return pFmtColl;
-//STRIP001 }
+/*NBFF*/SwConditionTxtFmtColl* SwDoc::MakeCondTxtFmtColl( const String &rFmtName,
+/*NBFF*/                                                SwTxtFmtColl *pDerivedFrom )
+/*NBFF*/{
+/*NBFF*/    SwConditionTxtFmtColl*pFmtColl = new SwConditionTxtFmtColl( GetAttrPool(),
+/*NBFF*/                                                    rFmtName, pDerivedFrom );
+/*NBFF*/    pTxtFmtCollTbl->Insert(pFmtColl, pTxtFmtCollTbl->Count());
+/*NBFF*/    pFmtColl->SetAuto( FALSE );
+/*NBFF*/    SetModified();
+/*NBFF*/    return pFmtColl;
+/*NBFF*/}
 //FEATURE::CONDCOLL
 
 // GRF
