@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmtools.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:48:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,216 +60,216 @@
  ************************************************************************/
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_XEXECUTABLEDIALOG_HPP_
 #include <com/sun/star/ui/dialogs/XExecutableDialog.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_XCOMPLETEDCONNECTION_HPP_
-#include <com/sun/star/sdb/XCompletedConnection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBCX_PRIVILEGE_HPP_
-#include <com/sun/star/sdbcx/Privilege.hpp>
-#endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XCOMPLETEDCONNECTION_HPP_
+// auto strip #include <com/sun/star/sdb/XCompletedConnection.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBCX_PRIVILEGE_HPP_
+// auto strip #include <com/sun/star/sdbcx/Privilege.hpp>
+// auto strip #endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 #ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
 #endif
 #ifndef SVX_DBTOOLSCLIENT_HXX
 #include "dbtoolsclient.hxx"
 #endif
-#ifndef _SVX_FMSERVS_HXX
-#include "fmservs.hxx"
-#endif
-#ifndef _SVX_FMGLOB_HXX
-#include "fmglob.hxx"
-#endif
-#ifndef _VCL_STDTEXT_HXX
-#include <vcl/stdtext.hxx>
-#endif
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
-#include <toolkit/unohlp.hxx>
-#endif
+// auto strip #ifndef _SVX_FMSERVS_HXX
+// auto strip #include "fmservs.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_FMGLOB_HXX
+// auto strip #include "fmglob.hxx"
+// auto strip #endif
+// auto strip #ifndef _VCL_STDTEXT_HXX
+// auto strip #include <vcl/stdtext.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
+// auto strip #include <toolkit/unohlp.hxx>
+// auto strip #endif
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <wchar.h>
 
-#ifndef _COM_SUN_STAR_UNO_XNAMINGSERVICE_HPP_
-#include <com/sun/star/uno/XNamingService.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
-#include <com/sun/star/sdbc/XDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
-#include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XQUERIESSUPPLIER_HPP_
-#include <com/sun/star/sdb/XQueriesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
-#include <com/sun/star/sdb/SQLContext.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBCX_XTABLESSUPPLIER_HPP_
-#include <com/sun/star/sdbcx/XTablesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XRESULTSETACCESS_HPP_
-#include <com/sun/star/sdb/XResultSetAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_XNAMINGSERVICE_HPP_
+// auto strip #include <com/sun/star/uno/XNamingService.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
+// auto strip #include <com/sun/star/sdbc/XDataSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
+// auto strip #include <com/sun/star/sdb/CommandType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XQUERIESSUPPLIER_HPP_
+// auto strip #include <com/sun/star/sdb/XQueriesSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
+// auto strip #include <com/sun/star/sdb/SQLContext.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBCX_XTABLESSUPPLIER_HPP_
+// auto strip #include <com/sun/star/sdbcx/XTablesSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XRESULTSETACCESS_HPP_
+// auto strip #include <com/sun/star/sdb/XResultSetAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
-#include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
-#include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
-#include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
-#include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-#include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-#include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
-#include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
-#include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_LANGUAGE_HPP_
-#include <com/sun/star/util/Language.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
-#include <com/sun/star/util/XNumberFormats.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
-#include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-#include <com/sun/star/util/XCloneable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REFLECTION_XIDLCLASS_HPP_
-#include <com/sun/star/reflection/XIdlClass.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REFLECTION_XIDLMETHOD_HPP_
-#include <com/sun/star/reflection/XIdlMethod.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XINTROSPECTION_HPP_
-#include <com/sun/star/beans/XIntrospection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
-#include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-#include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
+// auto strip #include <com/sun/star/util/NumberFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSink.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
+// auto strip #include <com/sun/star/script/XEventAttacherManager.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
+// auto strip #include <com/sun/star/form/XForm.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
+// auto strip #include <com/sun/star/form/XFormComponent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormatter.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_LANGUAGE_HPP_
+// auto strip #include <com/sun/star/util/Language.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormats.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
+// auto strip #include <com/sun/star/util/XNumberFormatTypes.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
+// auto strip #include <com/sun/star/util/XCloneable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_REFLECTION_XIDLCLASS_HPP_
+// auto strip #include <com/sun/star/reflection/XIdlClass.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_REFLECTION_XIDLMETHOD_HPP_
+// auto strip #include <com/sun/star/reflection/XIdlMethod.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XINTROSPECTION_HPP_
+// auto strip #include <com/sun/star/beans/XIntrospection.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
+// auto strip #include <com/sun/star/container/XChild.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
+// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
+// auto strip #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
-#ifndef _SBXVAR_HXX //autogen
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef _SBXVAR_HXX //autogen
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 
-#ifndef INCLUDED_RTL_MATH_HXX
-#include <rtl/math.hxx>
-#endif
+// auto strip #ifndef INCLUDED_RTL_MATH_HXX
+// auto strip #include <rtl/math.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _INTN_HXX //autogen
-#include <tools/intn.hxx>
-#endif
+// auto strip #ifndef _INTN_HXX //autogen
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
 
-#ifndef _SFX_BINDINGS_HXX //autogen wg. SfxBindings
-#include <bf_sfx2/bindings.hxx>
-#endif
+// auto strip #ifndef _SFX_BINDINGS_HXX //autogen wg. SfxBindings
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
 
-#ifndef _SFXENUMITEM_HXX //autogen wg. SfxBoolItem
-#include <svtools/eitem.hxx>
-#endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen wg. SfxBoolItem
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
 
-#ifndef _SFXSTRITEM_HXX //autogen wg. SfxStringItem
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen wg. SfxStringItem
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_SERVICEFACTORY_HXX_
-#include <cppuhelper/servicefactory.hxx>
-#endif
-#ifndef _COMPHELPER_TYPES_HXX_
-#include <comphelper/types.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTY_HXX_
-#include <comphelper/property.hxx>
-#endif
-#ifndef _COMPHELPER_CONTAINER_HXX_
-#include <comphelper/container.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_SERVICEFACTORY_HXX_
+// auto strip #include <cppuhelper/servicefactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_TYPES_HXX_
+// auto strip #include <comphelper/types.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
+// auto strip #include <comphelper/property.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_CONTAINER_HXX_
+// auto strip #include <comphelper/container.hxx>
+// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
-#ifndef _FM_STATIC_HXX_
-#include "fmstatic.hxx"
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
-#ifndef _DBHELPER_DBEXCEPTION_HXX_
-#include <connectivity/dbexception.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
+// auto strip #ifndef _FM_STATIC_HXX_
+// auto strip #include "fmstatic.hxx"
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
+// auto strip #ifndef _DBHELPER_DBEXCEPTION_HXX_
+// auto strip #include <connectivity/dbexception.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
 #include <algorithm>
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 namespace svxform
