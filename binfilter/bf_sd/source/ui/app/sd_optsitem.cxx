@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_optsitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:32:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,12 +59,12 @@
  *
  ************************************************************************/
 
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
 #endif
@@ -75,10 +75,10 @@
 #include <svtools/syslocale.hxx>
 #endif
 
-#include "app.hxx"
+// auto strip #include "app.hxx"
 #include "optsitem.hxx"
 #include "cfgids.hxx"
-#include "frmview.hxx"
+// auto strip #include "frmview.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
