@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlimpit.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -638,7 +638,8 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
                         return sal_False;
 
                     sal_uInt16 nSize = sizeof( aDBorderWidths );
-                    for( sal_uInt16 i=0; i < nSize; i += 4 )
+                    sal_uInt16 i=0;
+                    for( i=0; i < nSize; i += 4 )
                     {
                         if( aDBorderWidths[i+1] == nOutWidth &&
                             aDBorderWidths[i+2] == nInWidth &&

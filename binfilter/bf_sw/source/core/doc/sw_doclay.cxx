@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1859,7 +1859,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 /*N*/   sal_uInt8* pSetFlags = new sal_uInt8[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
-/*N*/   for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
+        sal_uInt16 n=0;
+/*N*/   for( n = 0; n < rFmts.Count(); ++n )
 /*N*/   {
 /*N*/       const SwFrmFmt* pFlyFmt = rFmts[ n ];
 /*N*/       if( RES_FLYFRMFMT == pFlyFmt->Which() &&
@@ -2077,7 +2078,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 /*N*/   while( pFlyNd )
 /*N*/   {
 /*N*/       // dann ueber den Anker nach oben "hangeln"
-/*N*/       for( sal_uInt16 n = 0; n < GetSpzFrmFmts()->Count(); ++n )
+            sal_uInt16 n=0;
+/*N*/       for( n = 0; n < GetSpzFrmFmts()->Count(); ++n )
 /*N*/       {
 /*N*/           const SwFrmFmt* pFmt = (*GetSpzFrmFmts())[ n ];
 /*N*/           const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();

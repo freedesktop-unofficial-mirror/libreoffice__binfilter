@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1375,7 +1375,8 @@ namespace binfilter {
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
 /*N*/   const SwSectionNode* pSectNd;
-/*N*/   for( USHORT n = 0; n < pSectionFmtTbl->Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < pSectionFmtTbl->Count(); ++n )
 /*N*/       if( 0 != ( pSectNd = (*pSectionFmtTbl)[ n ]->GetSectionNode( FALSE ) ))
 /*N*/       {
 /*N*/           const String& rNm = pSectNd->GetSection().GetName();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mba $ $Date: 2004-04-02 14:16:02 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2268,7 +2268,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void addTitle_Impl( Sequence < ::com::sun::star::beans::PropertyValue >& rSeq, const ::rtl::OUString& rTitle )
 /*N*/ {
 /*N*/     sal_Int32 nCount = rSeq.getLength();
-/*N*/     for ( sal_Int32 nArg=0; nArg<nCount; nArg++ )
+/*N*/     sal_Int32 nArg; for ( nArg=0; nArg<nCount; nArg++ )
 /*N*/     {
 /*N*/         ::com::sun::star::beans::PropertyValue& rProp = rSeq[nArg];
 /*N*/         if ( rProp.Name.equalsAscii("Title") )

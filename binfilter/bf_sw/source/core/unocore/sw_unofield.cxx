@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unofield.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:58 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -350,7 +350,8 @@ static const ServiceIdResId aServiceToRes[] =
 //-----------------------------------------------------------------
 sal_uInt16 lcl_ServiceIdToResId(sal_uInt16 nServiceId)
 {
-    for( const ServiceIdResId* pMap = aServiceToRes;
+    const ServiceIdResId* pMap;
+    for( pMap = aServiceToRes;
             USHRT_MAX != pMap->nServiceId && nServiceId != pMap->nServiceId;
             ++pMap )
         ;
@@ -2570,7 +2571,8 @@ uno::Sequence< OUString > SwXTextFieldMasters::getElementNames(void)
 
     SvStrings aFldNames;
     String* pString = new String();
-    for( sal_uInt16 i = 0; i < nCount; i++)
+    sal_uInt16 i=0;
+    for( i = 0; i < nCount; i++)
     {
         SwFieldType& rFldType = *((*pFldTypes)[i]);
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1415,7 +1415,7 @@ namespace binfilter {
 /*N*/       List aPostItemChangeList;
 /*N*/       sal_uInt32 nCount(pSub->GetObjCount());
 /*N*/
-/*N*/       for(sal_uInt32 a(0); a < nCount; a++)
+/*N*/       sal_uInt32 a; for(a = 0; a < nCount; a++)
 /*N*/       {
 /*N*/           SdrObject* pObj = pSub->GetObj(a);
 /*N*/           if(pObj->AllowItemChange(nWhich, pNewItem))

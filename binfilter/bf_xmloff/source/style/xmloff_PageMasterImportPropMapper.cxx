@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_PageMasterImportPropMapper.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:25 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -232,7 +232,8 @@ void PageMasterImportPropertyMapper::finished(::std::vector< XMLPropertyState >&
         }
     }
 
-    for (sal_uInt16 i = 0; i < 4; i++)
+    sal_uInt16 i;
+    for (i = 0; i < 4; i++)
     {
         if (pAllPaddingProperty && !pPadding[i])
             pNewPadding[i] = new XMLPropertyState(pAllPaddingProperty->mnIndex + 1 + i, pAllPaddingProperty->maValue);

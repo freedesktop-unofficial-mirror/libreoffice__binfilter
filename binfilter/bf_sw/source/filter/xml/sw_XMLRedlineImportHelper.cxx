@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_XMLRedlineImportHelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:02 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -519,7 +519,8 @@ void XMLRedlineImportHelper::Add(
         // (hierarchy sanity checking happens on insertino into the document)
 
         // find last element
-        for(RedlineInfo* pInfoChain = aRedlineMap[rId];
+        RedlineInfo* pInfoChain;
+        for( pInfoChain = aRedlineMap[rId];
             NULL != pInfoChain->pNextRedline;
             pInfoChain = pInfoChain->pNextRedline) ; // empty loop
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_number.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:06 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -430,7 +430,8 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   {
 /*N*/       SwNumFmt* pFmt;
 /*N*/       // Nummerierung:
-/*N*/       for( int n = 0; n < MAXLEVEL; ++n )
+            int n=0;
+/*N*/       for( n = 0; n < MAXLEVEL; ++n )
 /*N*/       {
 /*N*/           pFmt = new SwNumFmt;
 /*N*/           pFmt->SetIncludeUpperLevels( 1 );
@@ -486,7 +487,8 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   {
 /*N*/           // Nummerierung:
 /*N*/           SwNumFmt** ppFmts = (SwNumFmt**)SwNumRule::aBaseFmts;
-/*N*/           for( int n = 0; n < MAXLEVEL; ++n, ++ppFmts )
+                int n=0;
+/*N*/           for( n = 0; n < MAXLEVEL; ++n, ++ppFmts )
 /*N*/               delete *ppFmts, *ppFmts = 0;
 /*N*/
 /*N*/           // Gliederung:

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fltini.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:16 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -584,7 +584,8 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/ {
 /*N*/   Sequence<OUString> aNames( nCnt );
 /*N*/   OUString* pNames = aNames.getArray();
-/*N*/   for( USHORT n = 0; n < nCnt; ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < nCnt; ++n )
 /*N*/       pNames[ n ] = OUString::createFromAscii( ppNames[ n ] );
 /*N*/   Sequence<Any> aValues = GetProperties( aNames );
 /*N*/

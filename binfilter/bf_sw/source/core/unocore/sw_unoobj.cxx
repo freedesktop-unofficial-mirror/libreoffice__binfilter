@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -933,7 +933,8 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
  {
     SwPageDesc* pRet = 0;
     sal_uInt16 nDCount = rDoc.GetPageDescCnt();
-    for( sal_uInt16 i = 0; i < nDCount; i++ )
+    sal_uInt16 i=0;
+    for( i = 0; i < nDCount; i++ )
     {
         SwPageDesc* pDsc = &rDoc._GetPageDesc( i );
         if(pDsc->GetName() == rName)

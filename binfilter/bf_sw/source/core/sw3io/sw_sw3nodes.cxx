@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -672,7 +672,8 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       aDeleteFontTxtAttrs.Insert( pHints->GetHt( nHint-1), aDeleteFontTxtAttrs.Count() );
 /*N*/   xub_StrLen nLen = nOffset + (bTo8 ? rText.Len() : rText8.Len() );
 /*N*/   xub_StrLen nCopy = nOffset;
-/*N*/   for( xub_StrLen nPos = 0; nPos < nLen; nPos++ )
+        xub_StrLen nPos=0;
+/*N*/   for( nPos = 0; nPos < nLen; nPos++ )
 /*N*/   {
 /*N*/       if( aEndPosStack.Count() &&
 /*N*/           nPos == aEndPosStack[aEndPosStack.Count()-1] )

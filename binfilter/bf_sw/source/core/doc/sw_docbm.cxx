@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:53 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -394,7 +394,8 @@ namespace binfilter {
 /*N*/   // Die neue Zuordung erfolgt nach dem Moven.
 /*N*/   SwDoc* pDoc = rStt.GetNode().GetDoc();
 /*N*/   const SwBookmarks& rBkmks = pDoc->GetBookmarks();
-/*N*/   for( USHORT nCnt = 0; nCnt < rBkmks.Count(); ++nCnt )
+        USHORT nCnt=0;
+/*N*/   for( nCnt = 0; nCnt < rBkmks.Count(); ++nCnt )
 /*N*/   {
 /*N*/       // liegt auf der Position ??
 /*N*/       int eType = BKMK_POS_NONE;

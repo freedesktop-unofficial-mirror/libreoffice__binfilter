@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:11 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2291,7 +2291,7 @@ using namespace ::com::sun::star;
 /*N*/               String aName = pInfo->GetObjName();
 /*N*/
 /*N*/               nCnt = GetPageCount();
-/*N*/               for( UINT16 a = 0; a < nCnt && !bFound; a++ )
+/*N*/               UINT16 a; for( a = 0; a < nCnt && !bFound; a++ )
 /*N*/               {
 /*N*/                   // Pages
 /*N*/                   SdrObjListIter aIter( *GetPage(a) );
@@ -2664,7 +2664,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   sal_uInt16 nCnt(GetMasterPageCount());
 /*N*/
-/*N*/   for(sal_uInt16 a(0); a < nCnt; a++)
+/*N*/   sal_uInt16 a; for(a=0; a < nCnt; a++)
 /*N*/   {
 /*N*/       // MasterPages
 /*N*/       const SdrPage& rPage = *GetMasterPage(a);
@@ -2694,7 +2694,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   sal_uInt16 nCnt(GetMasterPageCount());
 /*N*/
-/*N*/   for(sal_uInt16 a(0); a < nCnt; a++)
+/*N*/   sal_uInt16 a; for(a=0; a < nCnt; a++)
 /*N*/   {
 /*N*/       // MasterPages
 /*N*/       const SdrPage& rPage = *GetMasterPage(a);

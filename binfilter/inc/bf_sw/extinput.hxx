@@ -2,9 +2,9 @@
  *
  *  $RCSfile: extinput.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:42 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@ class SwExtTextInput : public SwPaM
     BOOL bInsText : 1;
     BOOL bIsOverwriteCursor : 1;
 public:
+            SwExtTextInput(){};
 //STRIP001  SwExtTextInput( const SwPaM& rPam, Ring* pRing = 0 );
 //STRIP001  virtual ~SwExtTextInput();
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltbli.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:07 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1951,7 +1951,8 @@ SwTableBox *SwXMLTableContext::MakeTableBox( SwTableLine *pUpper,
     while( !bSplitted )
     {
         sal_uInt32 nStartRow = nTopRow;
-        for( sal_uInt32 i=nTopRow; i<nBottomRow; i++ )
+        sal_uInt32 i;
+        for( i=nTopRow; i<nBottomRow; i++ )
         {
             // Could the table be splitted behind the current row?
             sal_Bool bSplit = sal_True;

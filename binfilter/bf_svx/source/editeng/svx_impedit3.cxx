@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:18 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2292,7 +2292,7 @@ struct TabInfo
 /*N*/   // nicht uebereinstimmen, da evtl. Zeilenumbrueche...
 /*N*/   sal_uInt16 nPortionStart = 0;
 /*N*/   sal_uInt16 nInvPortion = 0;
-/*N*/   for ( sal_uInt16 nP = 0; nP < pParaPortion->GetTextPortions().Count(); nP++ )
+/*N*/   sal_uInt16 nP; for ( nP = 0; nP < pParaPortion->GetTextPortions().Count(); nP++ )
 /*N*/   {
 /*N*/       TextPortion* pTmpPortion = pParaPortion->GetTextPortions().GetObject(nP);
 /*N*/       nPortionStart += pTmpPortion->GetLen();

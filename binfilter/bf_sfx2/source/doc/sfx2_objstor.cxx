@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:17 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1684,7 +1684,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       // put in the REAL file name, and copy all PropertyValues
 /*N*/         const OUString sOutputStream ( RTL_CONSTASCII_USTRINGPARAM ( "OutputStream" ) );
 /*N*/         BOOL bHasStream = FALSE;
-/*N*/       for ( sal_Int32 i = 0, nEnd = aOldArgs.getLength(); i < nEnd; i++ )
+/*N*/       sal_Int32 i, nEnd; for ( i = 0, nEnd = aOldArgs.getLength(); i < nEnd; i++ )
 /*N*/       {
 /*N*/           pNewValue[i] = pOldValue[i];
 /*N*/             if ( pOldValue[i].Name.equalsAsciiL ( RTL_CONSTASCII_STRINGPARAM ( "FileName" ) ) )

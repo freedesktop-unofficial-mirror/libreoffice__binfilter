@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:16 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -243,7 +243,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/         if ( bIsUniCode )
 /*N*/         {
 /*N*/             sal_Unicode* pString = new sal_Unicode[ nLen ];
-/*N*/             for ( UINT32 i = 0; i < nLen; i++ )
+/*N*/             UINT32 i; for ( i = 0; i < nLen; i++ )
 /*N*/                 rStream >> pString[ i ];
 /*N*/             if ( pString[ i - 1 ] == 0 )
 /*N*/             {

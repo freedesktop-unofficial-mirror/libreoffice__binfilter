@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:03 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,6 +110,7 @@ struct SwPosition
     SwNodeIndex nNode;
     SwIndex nContent;
 
+    SwPosition( );
     SwPosition( const SwNode& rNode );
     SwPosition( const SwNodeIndex &rNode );
     SwPosition( const SwNodeIndex &rNode, const SwIndex &rCntnt );
@@ -167,6 +168,7 @@ class SwPaM : public Ring
 //STRIP001  SwPaM* MakeRegion( SwMoveFn fnMove, const SwPaM * pOrigRg = 0 );
 
 public:
+    SwPaM(){};
     SwPaM( const SwPosition& rPos, SwPaM* pRing = 0 );
     SwPaM( const SwPosition& rMk, const SwPosition& rPt, SwPaM* pRing = 0 );
     SwPaM( SwPaM & );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edsect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:30 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -190,7 +190,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   const SwSectionFmts& rFmts = GetDoc()->GetSections();
 /*N*/   USHORT nCnt = rFmts.Count();
-/*N*/   for( USHORT n = 0; n < nCnt; ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < nCnt; ++n )
 /*N*/   {
 /*N*/       SectionType eTmpType;
 /*N*/       const SwSectionFmt* pFmt = rFmts[ n ];

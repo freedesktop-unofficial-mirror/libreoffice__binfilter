@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3num.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -503,7 +503,8 @@ namespace binfilter {
 /*N*/   BYTE nKnownFmt = nFmt > MAXLEVEL ? MAXLEVEL : nFmt;
 /*N*/   BYTE nRead = 0;
 /*N*/
-/*N*/   for( int i = 0; i < nKnownFmt; i++ )
+        int i=0;
+/*N*/   for( i = 0; i < nKnownFmt; i++ )
 /*N*/   {
 /*N*/       BYTE nFmtLvl;
 /*N*/       *pStrm >> nFmtLvl;
@@ -748,7 +749,8 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/   // Tabelle der definierten Formate aufbauen
 /*N*/   USHORT nMaxLevel = IsSw31Or40Export() ? OLD_MAXLEVEL : MAXLEVEL;
 /*N*/   short nFmt = 0;
-/*N*/   for( USHORT i = 0; i < nMaxLevel; i++ )
+        USHORT i=0;
+/*N*/   for( i = 0; i < nMaxLevel; i++ )
 /*N*/   {
 /*N*/       const SwNumFmt* pFmt = rRule.GetNumFmt( i );
 /*N*/       if( pFmt ) nFmt++;

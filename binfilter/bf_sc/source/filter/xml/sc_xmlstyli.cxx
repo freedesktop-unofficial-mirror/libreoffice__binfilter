@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyli.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:23 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -190,7 +190,8 @@ void ScXMLCellImportPropertyMapper::finished(::std::vector< XMLPropertyState >& 
             case CTF_SC_BOTTOMBORDERWIDTH           : pBorderWidths[XML_LINE_BOTTOM] = property; break;
         }
     }
-    for (sal_uInt16 i = 0; i < 4; i++)
+    sal_uInt16 i;
+    for (i = 0; i < 4; i++)
     {
         if (pAllPaddingProperty && !pPadding[i])
             pNewPadding[i] = new XMLPropertyState(maPropMapper->FindEntryIndex(aPaddingCTF[i]), pAllPaddingProperty->maValue);

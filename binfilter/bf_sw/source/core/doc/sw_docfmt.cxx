@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:58 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1148,7 +1148,8 @@ struct ParaRstFmt
 /*N*/   // suche den Anfang der Defaults
 /*N*/   SvxTabStop* pTabs = ((SvxTabStop*)rChgTabStop.GetStart())
 /*N*/                       + (nOldCnt-1);
-/*N*/   for( USHORT n = nOldCnt; n ; --n, --pTabs )
+        USHORT n;
+/*N*/   for( n = nOldCnt; n ; --n, --pTabs )
 /*N*/       if( SVX_TAB_ADJUST_DEFAULT != pTabs->GetAdjustment() )
 /*N*/           break;
 /*N*/   ++n;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -320,7 +320,8 @@ namespace binfilter {
 /*N*/   ULONG nEndOfExtras = pDoc->GetNodes().GetEndOfExtras().GetIndex();
 /*N*/
 /*N*/   const SwRedlineTbl& rRedlines = pDoc->GetRedlineTbl();
-/*N*/   for( USHORT i=0; i<rRedlines.Count(); i++ )
+        USHORT i=0;
+/*N*/   for( i=0; i<rRedlines.Count(); i++ )
 /*N*/   {
 /*?*/       SwRedline *pRedline = rRedlines[i];
 /*?*/       const SwPosition *pPos = pRedline->Start();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3281,7 +3281,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   DelFrms();
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
-/*N*/   for( USHORT n = 0; n < pTblFrmFmtTbl->Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < pTblFrmFmtTbl->Count(); ++n )
 /*N*/   {
 /*N*/       const SwFrmFmt* pFmt = (*pTblFrmFmtTbl)[ n ];
 /*N*/       if( !pFmt->IsDefault() && IsUsed( *pFmt )  &&

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_shapeexport3.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:14 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -295,8 +295,9 @@ void XMLShapeExport::ImpExport3DShape(
                 sal_Int32 nOuterSequenceCount(xPolyPolygon3D.SequenceX.getLength());
                 drawing::DoubleSequence* pInnerSequenceX = xPolyPolygon3D.SequenceX.getArray();
                 drawing::DoubleSequence* pInnerSequenceY = xPolyPolygon3D.SequenceY.getArray();
+                sal_Int32 a;
 
-                for(sal_Int32 a(0L); a < nOuterSequenceCount; a++)
+                for(a = 0L; a < nOuterSequenceCount; a++)
                 {
                     sal_Int32 nInnerSequenceCount(pInnerSequenceX->getLength());
                     double* pArrayX = pInnerSequenceX->getArray();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itradj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:18 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -157,7 +157,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   const nOldIdx = GetInfo().GetIdx();
+/*N*/   const int nOldIdx = GetInfo().GetIdx();
 /*N*/   GetInfo().SetIdx( nStart );
 /*N*/   CalcNewBlock( pCurr, pFly );
 /*N*/   GetInfo().SetIdx( nOldIdx );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:31 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1711,7 +1711,8 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/
 /*N*/   //Auf welche Seite will der 'letzte' Fly?
 /*N*/   USHORT nMaxPg = 0;
-/*N*/   for ( USHORT i = 0; i < pTbl->Count(); ++i )
+        USHORT i=0;
+/*N*/   for ( i = 0; i < pTbl->Count(); ++i )
 /*N*/   {
 /*N*/       const SwFmtAnchor &rAnch = (*pTbl)[i]->GetAnchor();
 /*N*/       if ( !rAnch.GetCntntAnchor() && nMaxPg < rAnch.GetPageNum() )

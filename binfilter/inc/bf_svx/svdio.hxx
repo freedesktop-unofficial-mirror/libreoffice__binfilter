@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdio.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:49 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,16 +88,16 @@ const char SdrIOPgVwID[2]={'P','V'}; // PageView
 const char SdrIOEndeID[2]={'X','X'}; // Ende
 const char SdrIOJoeMagic[4]={'J','o','e','M'}; // Um meine eigenen SubRecords zu erkennen
 
-const nAktSdrFileMajorVersion =  0;
+const int nAktSdrFileMajorVersion =  0;
 
 // #84529# increase fileversion to be able to correct gradient rotation for 5.2 and earlierl
-const nAktSdrFileMinorVersion = 17; // = 16;
+const int nAktSdrFileMinorVersion = 17; // = 16;
 
-const nAktSdrFileVersion = (nAktSdrFileMajorVersion <<8) + (nAktSdrFileMinorVersion);
-const nSdrFileVersion31 = 12; // Fileversion des Office 3.1
-const nSdrFileVersion40 = 13; // Fileversion des Office 4.0
-const nSdrFileVersion50 = 14; // Fileversion des Office 5.0
-const nSdrFileVersion51 = 15; // Fileversion des Office 5.1
+const int nAktSdrFileVersion = (nAktSdrFileMajorVersion <<8) + (nAktSdrFileMinorVersion);
+const int nSdrFileVersion31 = 12; // Fileversion des Office 3.1
+const int nSdrFileVersion40 = 13; // Fileversion des Office 4.0
+const int nSdrFileVersion50 = 14; // Fileversion des Office 5.0
+const int nSdrFileVersion51 = 15; // Fileversion des Office 5.1
 
 // Fileversionen:
 //  0= ??-04-1995  Initialversion.

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:55 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -569,8 +569,8 @@ public:
 /*N*/   return bRes;
 /*N*/ }
 
-const RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
-const RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
+const int RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
+const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 
 /*N*/ BOOL SwStyleSheetPool::Store( SvStream& s, BOOL bUsed )
 /*N*/ {
@@ -602,7 +602,8 @@ const RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 /*N*/   // Rahmenvorlagen: nur die Nicht-Auto-Vorlagen uebernehmen
 /*N*/   const SwFmt* pFmt;
 /*N*/   USHORT nArrLen = rDoc.GetCharFmts()->Count();
-/*N*/   for( USHORT i = 0; i < nArrLen; i++ )
+        USHORT i=0;
+/*N*/   for( i = 0; i < nArrLen; i++ )
 /*N*/   {
 /*N*/       pFmt = (*rDoc.GetCharFmts())[ i ];
 /*N*/       if( ( !bUsed || rDoc.IsUsed( *pFmt ) ) && !pFmt->IsDefault() )
@@ -767,7 +768,8 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/ void SwStyleSheetPool::CopyToDoc( BOOL bOverwrite, USHORT eMask )
 /*N*/ {
 /*N*/   SwFmt* pFmt;
-/*N*/   for( SwStyleSheet* p = (SwStyleSheet*) aStyles.First(); p;
+        SwStyleSheet* p;
+/*N*/   for( p = (SwStyleSheet*) aStyles.First(); p;
 /*N*/        p = (SwStyleSheet*) aStyles.Next() )
 /*N*/   {
 /*N*/       if( !p->pFmt && (eMask & p->nFamily) )

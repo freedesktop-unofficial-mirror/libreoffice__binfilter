@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Columns.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:55 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -183,7 +183,7 @@ protected:
     static void clearAggregateProperties(::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property>& seqProps, sal_Bool bAllowDropDown);
     static void setOwnProperties(::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property>& seqProps);
 
-    DECLARE_XCLONEABLE();
+    //DECLARE_XCLONEABLE();
 };
 
 #define DECL_COLUMN(ClassName)                                      \

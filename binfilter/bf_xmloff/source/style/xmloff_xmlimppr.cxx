@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlimppr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:46 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -566,7 +566,9 @@ sal_Bool SvXMLImportPropertyMapper::_FillMultiPropertySet(
     aPropertyPairs.reserve( nCount );
 
     // iterate over property states that we want to set
-    for( sal_Int32 i=0; i < nCount; i++ )
+    sal_Int32 i;
+
+    for( i=0; i < nCount; i++ )
     {
         const XMLPropertyState& rProp = rProperties[i];
         sal_Int32 nIdx = rProp.mnIndex;

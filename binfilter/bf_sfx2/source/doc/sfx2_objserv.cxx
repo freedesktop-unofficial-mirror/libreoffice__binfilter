@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:21 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -289,7 +289,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 /*N*/       if( !aFilterName.Len() )
 /*N*/       {
 /*N*/           sal_uInt16 nActFilt = 0;
-/*N*/           for( const SfxFilter* pFilt = GetFactory().GetFilter( 0 );
+/*N*/           const SfxFilter* pFilt = GetFactory().GetFilter( 0 ); for( ;
 /*N*/                pFilt && ( !pFilt->CanExport()
 /*N*/                 || !bSaveTo && !pFilt->CanImport() // SaveAs case
 /*N*/                 || pFilt->IsInternal() );

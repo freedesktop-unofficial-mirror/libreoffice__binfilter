@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmod2a.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:20 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1641,10 +1641,11 @@ namespace binfilter {
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
 /*?*/           long   nDirty = 0;
+                long   nRows  = 0;
 /*?*/
 /*?*/             //    Calculate the total of all segements with percentage value and
 /*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
-/*?*/           for (long nRows = nStart;nRows < nRowCnt;nRows ++)
+/*?*/           for (nRows = nStart;nRows < nRowCnt;nRows ++)
 /*?*/               if (pDescrLists [nRows])
 /*?*/               {
 /*?*/                   long   nIndex= nCols + nRows * nColCnt;
@@ -1701,10 +1702,11 @@ namespace binfilter {
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
 /*?*/           long   nDirty = 0;
+                long   nCols = 0;
 /*?*/
 /*?*/             //    Calculate the total of all segements with a percentage value and
 /*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
-/*?*/           for (long nCols = 0;nCols < nColCnt;nCols ++)
+/*?*/           for (nCols = 0;nCols < nColCnt;nCols ++)
 /*?*/           {
 /*?*/               long   nIndex = nCols + nRows * nColCnt;
 /*?*/               if ((pDescription [nIndex].eDescr == CHDESCR_PERCENT) ||

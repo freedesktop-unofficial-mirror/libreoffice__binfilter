@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:26 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1164,7 +1164,8 @@ using namespace ::com::sun::star;
 /*N*/         long nRowCnt=aDataRowAttrList.Count();//=GetRowCount();
 /*N*/       if( (bOldIsStock && !HasStockLines()) || (bOldIs3D && !bNewIs3D) )
 /*N*/       {
-/*?*/           for(long n=0;n<nRowCnt;n++)
+                long n=0;
+/*?*/           for(n=0;n<nRowCnt;n++)
 /*?*/               aDataRowAttrList.GetObject(n)->Put(XLineStyleItem(XLINE_SOLID));
 /*?*/           long nColCnt=aDataPointAttrList.Count();
 /*?*/           SfxItemSet  *   pAttributes;
@@ -1184,7 +1185,8 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*N*/       if(!bOldIsStock && HasStockLines() || (!bOldIs3D && bNewIs3D) )
 /*N*/       {
-/*N*/           for(long n=0;n<nRowCnt;n++)
+                long n=0;
+/*N*/           for(n=0;n<nRowCnt;n++)
 /*N*/               aDataRowAttrList.GetObject(n)->Put(XLineStyleItem(XLINE_NONE));
 /*N*/           long nColCnt=aDataPointAttrList.Count();
 /*N*/           SfxItemSet  *   pAttributes;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtcol.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:03 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -408,7 +408,8 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     int nRet = 0;
 /*N*/                       const SwCollCondition& rCond ) const
 /*N*/ {
 /*N*/   const SwCollCondition* pFnd = 0;
-/*N*/   for( USHORT n = 0; n < aCondColls.Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < aCondColls.Count(); ++n )
 /*?*/       if( *( pFnd = aCondColls[ n ]) == rCond )
 /*?*/           break;
 /*N*/

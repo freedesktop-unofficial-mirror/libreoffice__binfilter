@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlstyle.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:49 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1026,7 +1026,9 @@ void SvXMLStylesContext::CopyStylesToDoc( sal_Bool bOverwrite,
 {
     // pass 1: create text, paragraph and frame styles
     sal_uInt32 nCount = GetStyleCount();
-    for( sal_uInt32 i=0; i<nCount; i++ )
+    sal_uInt32 i;
+
+    for( i=0; i<nCount; i++ )
     {
         SvXMLStyleContext *pStyle = GetStyle( i );
         if( !pStyle )

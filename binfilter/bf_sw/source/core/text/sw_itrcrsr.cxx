@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrcrsr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:19 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -219,7 +219,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*M*/     //
 /*M*/     // Carefully adjust the text formatting ranges.
 /*M*/     //
-/*M*/     const nLMWithNum = pNode->GetLeftMarginWithNum( sal_True );
+/*M*/     const int nLMWithNum = pNode->GetLeftMarginWithNum( sal_True );
 /*M*/     if ( pFrm->IsRightToLeft() )
 /*M*/         nLeft = pFrm->Frm().Left() + pFrm->Prt().Left() + nLMWithNum -
 /*M*/                 ( rSpace.GetTxtFirstLineOfst() < 0 ?

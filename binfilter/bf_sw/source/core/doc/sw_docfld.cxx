@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:57 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -536,7 +536,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/           "Was ist das fuer ein MessageItem?" );
 /*N*/
 /*N*/   SwFieldType* pFldType;
-/*N*/   for( USHORT i = 0; i < pFldTypes->Count(); ++i )
+        USHORT i=0;
+/*N*/   for( i = 0; i < pFldTypes->Count(); ++i )
 /*N*/   {
 /*N*/       if( RES_TABLEFLD == ( pFldType = (*pFldTypes)[i] )->Which() )
 /*N*/       {
@@ -2493,14 +2494,16 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bIsModified = IsModified();
 /*M*/       SwSectionNode* pSectNd;
 /*M*/       USHORT nArrStt = 0;
 /*M*/       ULONG nSttCntnt = rDoc.GetNodes().GetEndOfExtras().GetIndex();
-/*M*/       for( USHORT n = rArr.Count(); n; )
+            USHORT n=0;
+/*M*/       for( n = rArr.Count(); n; )
 /*M*/       {
 /*M*/           SwSection* pSect = rArr[ --n ]->GetSection();
 /*M*/           if( pSect->IsHidden() && pSect->GetCondition().Len() &&
 /*M*/               0 != ( pSectNd = pSect->GetFmt()->GetSectionNode() ))
 /*M*/           {
 /*M*/               ULONG nIdx = pSectNd->GetIndex();
-/*M*/               for( USHORT i = 0;
+                    USHORT i=0;
+/*M*/               for( i = 0;
 /*M*/                   i < aTmpArr.Count() && aTmpArr[ i ] < nIdx;
 /*M*/                   ++i )
 /*M*/                   ;

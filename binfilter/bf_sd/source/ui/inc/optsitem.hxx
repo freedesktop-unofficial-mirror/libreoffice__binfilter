@@ -2,9 +2,9 @@
  *
  *  $RCSfile: optsitem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:18 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -231,9 +231,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-class SdOptionsLayoutItem : public SfxPoolItem, public SdOptionsLayout
-{
-public:
+//STRIP001class SdOptionsLayoutItem : public SfxPoolItem, public SdOptionsLayout
+//STRIP001{
+//STRIP001public:
 
 //STRIP001                          SdOptionsLayoutItem( USHORT nWhich);
 //STRIP001                          SdOptionsLayoutItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
@@ -242,7 +242,7 @@ public:
 //STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
 //STRIP001
 //STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
-};
+//STRIP001};
 
 // ---------------------
 // - SdOptionsContents -
@@ -284,9 +284,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-class SdOptionsContentsItem : public SfxPoolItem, public SdOptionsContents
-{
-public:
+//STRIP001class SdOptionsContentsItem : public SfxPoolItem, public SdOptionsContents
+//STRIP001{
+//STRIP001public:
 //STRIP001
 //STRIP001                          SdOptionsContentsItem( USHORT nWhich);
 //STRIP001                          SdOptionsContentsItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
@@ -296,7 +296,7 @@ public:
 //STRIP001
 //STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-};
+//STRIP001};
 
 // -----------------
 // - SdOptionsMisc -
@@ -412,9 +412,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-class SdOptionsMiscItem : public SfxPoolItem, public SdOptionsMisc
-{
-public:
+//STRIP001class SdOptionsMiscItem : public SfxPoolItem, public SdOptionsMisc
+//STRIP001{
+//STRIP001public:
 //STRIP001
 //STRIP001                          SdOptionsMiscItem( USHORT nWhich);
 //STRIP001                          SdOptionsMiscItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
@@ -424,7 +424,7 @@ public:
 //STRIP001
 //STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-};
+//STRIP001};
 
 // -----------------
 // - SdOptionsSnap -
@@ -484,9 +484,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-class SdOptionsSnapItem : public SfxPoolItem, public SdOptionsSnap
-{
-public:
+//STRIP001class SdOptionsSnapItem : public SfxPoolItem, public SdOptionsSnap
+//STRIP001{
+//STRIP001public:
 
 //STRIP001                          SdOptionsSnapItem( USHORT nWhich);
 //STRIP001                          SdOptionsSnapItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
@@ -496,7 +496,7 @@ public:
 //STRIP001
 //STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-};
+//STRIP001};
 
 // -----------------
 // - SdOptionsZoom -
@@ -529,9 +529,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-class SdOptionsZoomItem : public SfxPoolItem, public SdOptionsZoom
-{
-public:
+//STRIP001class SdOptionsZoomItem : public SfxPoolItem, public SdOptionsZoom
+//STRIP001{
+//STRIP001public:
 //STRIP001
 //STRIP001                          SdOptionsZoomItem( USHORT nWhich);
 //STRIP001                          SdOptionsZoomItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
@@ -541,7 +541,7 @@ public:
 //STRIP001
 //STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-};
+//STRIP001};
 
 // -----------------
 // - SdOptionsGrid -
@@ -702,10 +702,14 @@ public:
 // - SdOptions -
 // -------------
 
-class SdOptions : public SdOptionsLayout, public SdOptionsContents,
-                  public SdOptionsMisc, public SdOptionsSnap,
-                  public SdOptionsZoom, public SdOptionsGrid,
-                  public SdOptionsPrint
+class SdOptions :
+    public SdOptionsLayout,
+    public SdOptionsContents,
+    public SdOptionsMisc,
+    public SdOptionsSnap,
+    public SdOptionsZoom,
+    public SdOptionsGrid,
+    public SdOptionsPrint
 {
 public:
 

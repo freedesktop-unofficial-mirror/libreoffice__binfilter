@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_impastp3.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:38 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,7 +99,9 @@ sal_Bool SvXMLAutoStylePoolParentP_Impl::Add( XMLFamilyData_Impl* pFamilyData, c
     sal_Int32 nProperties = rProperties.size();
     sal_uInt32 nCount = maPropertiesList.Count();
     SvXMLAutoStylePoolPropertiesP_Impl *pProperties = 0;
-    for( sal_uInt32 i=0; i < nCount; i++ )
+    sal_uInt32 i;
+
+    for( i=0; i < nCount; i++ )
     {
         SvXMLAutoStylePoolPropertiesP_Impl *pIS = maPropertiesList.GetObject( i );
         if( nProperties > pIS->GetProperties().size() )

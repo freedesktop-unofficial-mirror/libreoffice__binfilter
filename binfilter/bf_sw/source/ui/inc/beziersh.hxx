@@ -2,9 +2,9 @@
  *
  *  $RCSfile: beziersh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:52 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@ public:
     SFX_DECL_INTERFACE(SW_BEZIERSHELL);
 //STRIP001  TYPEINFO();
 
+            SwBezierShell(SwView &rView);
 //STRIP001          SwBezierShell(SwView &rView);
 //STRIP001
 //STRIP001  void    GetState(SfxItemSet &);

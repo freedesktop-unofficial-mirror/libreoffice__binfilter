@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_scene3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:25 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1384,7 +1384,7 @@ namespace binfilter {
 /*N*/                       // ambientes licht, auf globales aufaddieren
 /*N*/                       B3dColor aCol(pLight->GetColor().GetColor());
 /*N*/                       aCol *= pLight->GetIntensity();
-/*N*/                       aCol += (B3dColor &)aLightGroup.GetGlobalAmbientLight();
+/*N*/                       aCol += (const B3dColor &)(aLightGroup.GetGlobalAmbientLight());
 /*N*/                       aLightGroup.SetGlobalAmbientLight(aCol);
 /*N*/                   }
 /*N*/               }
@@ -1567,8 +1567,9 @@ namespace binfilter {
 /*N*/   // ItemChange at all contained objects
 /*N*/   List aPostItemChangeList;
 /*N*/   sal_uInt32 nCount(pSub->GetObjCount());
+        sal_uInt32 a;
 /*N*/
-/*N*/   for(sal_uInt32 a(0); a < nCount; a++)
+/*N*/   for( a=0; a < nCount; a++)
 /*N*/   {
 /*N*/       SdrObject* pObj = pSub->GetObj(a);
 /*N*/       if(pObj->AllowItemChange(nWhich, pNewItem))

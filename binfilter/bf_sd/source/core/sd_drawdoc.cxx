@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:21 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -346,7 +346,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   USHORT nDefTab = pOptions->GetDefTab();
 /*N*/   SetDefaultTabulator( nDefTab );
 /*N*/
-/*N*/   TRY
+/*N*/   try
 /*N*/   {
 /*N*/       Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
 /*N*/       if ( xSpellChecker.is() )
@@ -358,11 +358,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/       SetForbiddenCharsTable( new SvxForbiddenCharactersTable( ::legacy_binfilters::getLegacyProcessServiceFactory() ) );
 /*N*/   }
-/*N*/   CATCH_ALL()
+/*N*/   catch(...)
 /*N*/   {
 /*N*/       DBG_ERROR("Can't get SpellChecker");
 /*N*/   }
-/*N*/   END_CATCH
+/*N*/   // END_CATCH
 /*N*/
 /*N*/   rOutliner.SetDefaultLanguage( Application::GetSettings().GetLanguage() );
 /*N*/
@@ -411,7 +411,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/   pHitTestOutliner->SetCalcFieldValueHdl( LINK(SD_MOD(), SdModule, CalcFieldValueHdl) );
 /*N*/
-/*N*/   TRY
+/*N*/   try
 /*N*/   {
 /*N*/       Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
 /*N*/       if ( xSpellChecker.is() )
@@ -421,11 +421,11 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       if( xHyphenator.is() )
 /*N*/           pHitTestOutliner->SetHyphenator( xHyphenator );
 /*N*/   }
-/*N*/   CATCH_ALL()
+/*N*/   catch(...)
 /*N*/   {
 /*N*/       DBG_ERROR("Can't get SpellChecker");
 /*N*/   }
-/*N*/   END_CATCH
+/*N*/   //END_CATCH
 /*N*/
 /*N*/   pHitTestOutliner->SetDefaultLanguage( Application::GetSettings().GetLanguage() );
 /*N*/

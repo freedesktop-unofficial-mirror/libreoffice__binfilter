@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_styleexp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:43 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -389,8 +389,9 @@ void XMLStyleExport::exportStyleFamily(
     // the names of all exported styles are remembered.
     SvStringsSortDtor *pExportedStyles = 0;
     sal_Bool bFirstStyle = sal_True;
+    sal_Int32 i;
 
-    for( sal_Int32 i=0; i < nStyles; i++ )
+    for( i=0; i < nStyles; i++ )
     {
         Reference< XStyle > xStyle;
         try

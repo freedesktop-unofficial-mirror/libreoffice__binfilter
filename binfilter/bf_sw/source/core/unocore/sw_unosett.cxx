@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosett.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:03 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1395,7 +1395,8 @@ SwXNumberingRules::SwXNumberingRules(const SwNumRule& rRule) :
 {
     //erstmal das Doc organisieren; es haengt an den gesetzten Zeichenvorlagen - wenn
     // keine gesetzt sind, muss es auch ohne gehen
-    for(sal_uInt16 i = 0; i < MAXLEVEL; i++)
+    sal_uInt16 i=0;
+    for( i = 0; i < MAXLEVEL; i++)
     {
         SwNumFmt rFmt(pNumRule->Get(i));
         SwCharFmt* pCharFmt = rFmt.GetCharFmt();

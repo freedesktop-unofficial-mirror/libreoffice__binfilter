@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_smlib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:28 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -258,7 +258,7 @@ USHORT SmModuleDummy::HasID (const SvGlobalName &rName)
                                      SOFFICE_FILEFORMAT_60,
                                      0 };
 
-    for( const USHORT *pArr = aIdArr; *pArr; ++pArr )
+    const USHORT *pArr = aIdArr; for( ; *pArr; ++pArr )
         if( GetID( *pArr ) == rName )
             break;
     return *pArr;

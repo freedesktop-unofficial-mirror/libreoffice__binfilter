@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_propread.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:28 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -281,7 +281,7 @@ Dictionary& Dictionary::operator=( Dictionary& rDictionary )
 {
     if ( this != &rDictionary )
     {
-        for ( void* pPtr = First(); pPtr; pPtr = Next() )
+        void* pPtr; for ( pPtr = First(); pPtr; pPtr = Next() )
             delete (Dict*)pPtr;
 
         for ( pPtr = rDictionary.First(); pPtr; pPtr = rDictionary.Next() )
@@ -316,7 +316,7 @@ sal_Bool Section::GetProperty( sal_uInt32 nId, PropItem& rPropItem )
 {
     if ( nId )
     {
-        for ( PropEntry* pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
+        PropEntry* pProp; for ( pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
         {
             if ( pProp->mnId == nId )
                 break;
@@ -367,7 +367,7 @@ sal_Bool Section::GetDictionary( Dictionary& rDict )
 
     Dictionary aDict;
 
-    for ( PropEntry* pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
+    PropEntry* pProp; for ( pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
     {
         if ( pProp->mnId == 0 )
             break;
@@ -582,7 +582,7 @@ Section& Section::operator=( Section& rSection )
     if ( this != &rSection )
     {
         memcpy( (void*)aFMTID, (void*)rSection.aFMTID, 16 );
-        for ( PropEntry* pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
+        PropEntry* pProp; for ( pProp = (PropEntry*)First(); pProp; pProp = (PropEntry*)Next() )
             delete pProp;
         Clear();
         for ( pProp = (PropEntry*)rSection.First(); pProp; pProp = (PropEntry*)rSection.Next() )
@@ -623,7 +623,7 @@ void PropRead::AddSection( Section& rSection )
 
 const Section* PropRead::GetSection( const sal_uInt8* pFMTID )
 {
-    for ( Section* pSection = (Section*)First(); pSection; pSection = (Section*)Next() )
+    Section* pSection; for ( pSection = (Section*)First(); pSection; pSection = (Section*)Next() )
     {
         if ( memcmp( pSection->GetFMTID(), pFMTID, 16 ) == 0 )
             break;
@@ -685,7 +685,7 @@ PropRead& PropRead::operator=( PropRead& rPropRead )
         mnVersionHi = rPropRead.mnVersionHi;
         memcpy( mApplicationCLSID, rPropRead.mApplicationCLSID, 16 );
 
-        for ( Section* pSection = (Section*)First(); pSection; pSection = (Section*)Next() )
+        Section* pSection; for ( pSection = (Section*)First(); pSection; pSection = (Section*)Next() )
             delete pSection;
         Clear();
         for ( pSection = (Section*)rPropRead.First(); pSection; pSection = (Section*)rPropRead.Next() )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:50 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -942,7 +942,8 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/
 /*N*/   case RES_ATTRSET_CHG:
 /*N*/       {
-/*N*/           for( USHORT n = RES_GRFATR_BEGIN; n < RES_GRFATR_END; ++n )
+                USHORT n;
+/*N*/           for( n = RES_GRFATR_BEGIN; n < RES_GRFATR_END; ++n )
 /*N*/               if( SFX_ITEM_SET == ((SwAttrSetChg*)pOld)->GetChgSet()->
 /*N*/                               GetItemState( n, FALSE ))
 /*N*/               {

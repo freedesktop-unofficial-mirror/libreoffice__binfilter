@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:16 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -898,7 +898,8 @@ public:
 /*N*/   //      - RES_PARATR_REGISTER
 /*N*/   //      + 2 Dummies fuer die einzelnen "Bereiche"
 /*N*/   SwAttrPool::pVersionMap1 = new USHORT[ 60 ];
-/*N*/   for( USHORT i = 1; i <= 17; i++ )
+        USHORT i;
+/*N*/   for( i = 1; i <= 17; i++ )
 /*N*/       SwAttrPool::pVersionMap1[ i-1 ] = i;
 /*N*/   for ( i = 18; i <= 27; ++i )
 /*N*/       SwAttrPool::pVersionMap1[ i-1 ] = i + 5;

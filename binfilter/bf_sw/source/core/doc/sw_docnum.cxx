@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnum.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -212,7 +212,8 @@ namespace binfilter {
     // (eigentlich koennte das auch per Modify am die Nodes propagiert
     // werden !! )
 /*N*/   ULONG nStt = GetNodes().GetEndOfContent().StartOfSectionIndex();
-/*N*/   for( USHORT n = 0; n < pTxtFmtCollTbl->Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < pTxtFmtCollTbl->Count(); ++n )
 /*N*/   {
 /*N*/       SwTxtFmtColl* pColl = (*pTxtFmtCollTbl)[ n ];
 /*N*/       BYTE nLevel = pColl->GetOutlineLevel();
@@ -763,7 +764,8 @@ namespace binfilter {
 /*N*/
 /*N*/   USHORT nChkLevel = 0, nChgFmtLevel = 0, nMask = 1;
 /*N*/
-/*N*/   for( BYTE n = 0; n < MAXLEVEL; ++n, nMask <<= 1 )
+        BYTE n=0;
+/*N*/   for( n = 0; n < MAXLEVEL; ++n, nMask <<= 1 )
 /*N*/   {
 /*N*/       const SwNumFmt& rOldFmt = pOld->Get( n ),
 /*N*/                     & rNewFmt = rRule.Get( n );
@@ -2045,7 +2047,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 /*N*/   }
 /*N*/
 /*N*/   const SwNumRule* pNumRule;
-/*N*/   for( USHORT n = 0; n < pNumRuleTbl->Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < pNumRuleTbl->Count(); ++n )
 /*N*/       if( 0 != ( pNumRule = (*pNumRuleTbl)[ n ] ) )
 /*N*/       {
 /*N*/           const String& rNm = pNumRule->GetName();

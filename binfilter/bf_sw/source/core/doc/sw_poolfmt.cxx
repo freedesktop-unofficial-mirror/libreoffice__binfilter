@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1650,7 +1650,8 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwPageDesc *pNewPgDsc;
-/*N*/   for( USHORT n = 0; n < aPageDescs.Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < aPageDescs.Count(); ++n )
 /*N*/       if( nId == ( pNewPgDsc = aPageDescs[ n ] )->GetPoolFmtId() )
 /*N*/       {
 /*N*/           if( pDesc )
@@ -1819,7 +1820,8 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwNumRule* pNewRule;
-/*N*/   for( USHORT n = 0; n < GetNumRuleTbl().Count(); ++n )
+        USHORT n=0;
+/*N*/   for( n = 0; n < GetNumRuleTbl().Count(); ++n )
 /*N*/       if( nId == ( pNewRule = GetNumRuleTbl()[ n ] )->GetPoolFmtId() )
 /*N*/       {
 /*?*/           if( pDesc )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:43 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -394,7 +394,8 @@ namespace binfilter {
 /*N*/       ::binfilter::MakeSelUnions( aUnions, pStart, pEnd, eSearchType );
 /*N*/
 /*N*/       //Jetzt zu jedem Eintrag die Boxen herausfischen und uebertragen.
-/*N*/       for( USHORT i = 0; i < aUnions.Count() && bTblIsValid; ++i )
+            USHORT i=0;
+/*N*/       for( i = 0; i < aUnions.Count() && bTblIsValid; ++i )
 /*N*/       {
 /*N*/           SwSelUnion *pUnion = aUnions[i];
 /*N*/           const SwTabFrm *pTable = pUnion->GetTable();
@@ -527,7 +528,8 @@ namespace binfilter {
 /*N*/       ::binfilter::MakeSelUnions( aUnions, pStart, pEnd, TBLSEARCH_NO_UNION_CORRECT );
 /*N*/
 /*N*/       //Jetzt zu jedem Eintrag die Boxen herausfischen und uebertragen.
-/*N*/       for( USHORT i = 0; i < aUnions.Count() && bTblIsValid &&
+            USHORT i=0;
+/*N*/       for( i = 0; i < aUnions.Count() && bTblIsValid &&
 /*N*/                                   bValidChartSel; ++i )
 /*N*/       {
 /*N*/           SwSelUnion *pUnion = aUnions[i];

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3489,7 +3489,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( pIdx && !pCntntSect )
 
 /*?*/const String& SwRedline::GetAuthorString( USHORT nPos ) const
 /*?*/{
-/*?*/   for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+        SwRedlineData* pCur;
+/*?*/   for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
 /*?*/       pCur = pCur->pNext;
 /*?*/   ASSERT( !nPos, "Pos angabe ist zu gross" );
 /*?*/   return SW_MOD()->GetRedlineAuthor(pCur->nAuthor);

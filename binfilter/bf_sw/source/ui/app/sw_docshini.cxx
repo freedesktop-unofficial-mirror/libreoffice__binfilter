@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:56 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -786,7 +786,8 @@ using namespace ::rtl;
 /*N*/           pStor->FillInfoList( &aInfoList );
 /*N*/
 /*N*/           // erstmal alle nicht "OLE-Objecte" aus der Liste entfernen
-/*N*/           for( sal_uInt32 n = aInfoList.Count(); n; )
+                sal_uInt32 n;
+/*N*/           for( n = aInfoList.Count(); n; )
 /*N*/           {
 /*N*/               const String& rName = aInfoList.GetObject( --n ).GetName();
 /*N*/               // in ndole.cxx wird dieser PreFix benutzt

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rangelst.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:21:12 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,7 @@ namespace binfilter {
 class ScDocument;
 
 typedef ScRange* ScRangePtr;
-DECLARE_LIST( ScRangeListBase, ScRangePtr );
+DECLARE_LIST( ScRangeListBase, ScRangePtr )
 class ScRangeList : public ScRangeListBase, public SvRefBase
 {
 public:
@@ -106,7 +106,7 @@ SV_DECL_IMPL_REF( ScRangeList );
 
 // RangePairList: erster Range (aRange[0]) eigentlicher Range, zweiter
 // Range (aRange[1]) Daten zu diesem Range, z.B. Rows eines ColName
-DECLARE_LIST( ScRangePairListBase, ScRangePair* );
+DECLARE_LIST( ScRangePairListBase, ScRangePair* )
 class ScRangePairList : public ScRangePairListBase, public SvRefBase
 {
 #if defined( ICC ) && defined( OS2 )

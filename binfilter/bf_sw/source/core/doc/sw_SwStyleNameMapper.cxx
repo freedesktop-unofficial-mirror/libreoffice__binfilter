@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwStyleNameMapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:51 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -406,7 +406,9 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/                                          RES_POOLCOLL_DOC_END - RES_POOLCOLL_DOC_BEGIN +
 /*N*/                                          RES_POOLCOLL_HTML_END - RES_POOLCOLL_HTML_BEGIN );
 /*N*/               pStrings = bProgName ? &GetTextProgNameArray() : &GetTextUINameArray();
-/*N*/               for ( sal_uInt16 nIndex = 0, nId = RES_POOLCOLL_TEXT_BEGIN ; nId < RES_POOLCOLL_TEXT_END ; nId++,nIndex++ )
+                    sal_uInt16 nIndex=0;
+                    sal_uInt16 nId;
+/*N*/               for ( nIndex = 0, nId = RES_POOLCOLL_TEXT_BEGIN ; nId < RES_POOLCOLL_TEXT_END ; nId++,nIndex++ )
 /*N*/                   (*pHash)[(*pStrings)[nIndex]] = nId;
 /*N*/               pStrings = bProgName ? &GetListsProgNameArray() : &GetListsUINameArray();
 /*N*/               for ( nIndex = 0, nId = RES_POOLCOLL_LISTS_BEGIN ; nId < RES_POOLCOLL_LISTS_END ; nId++,nIndex++ )
@@ -439,7 +441,9 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/               pHash = new NameToIdHash ( RES_POOLCHR_NORMAL_END - RES_POOLCHR_NORMAL_BEGIN +
 /*N*/                                          RES_POOLCHR_HTML_END - RES_POOLCHR_HTML_BEGIN );
 /*N*/               pStrings = bProgName ? &GetChrFmtProgNameArray() : &GetChrFmtUINameArray();
-/*N*/               for ( sal_uInt16 nIndex = 0, nId = RES_POOLCHR_NORMAL_BEGIN ; nId < RES_POOLCHR_NORMAL_END ; nId++,nIndex++ )
+                    sal_uInt16 nIndex = 0;
+                    sal_uInt16 nId;
+/*N*/               for ( nIndex = 0, nId = RES_POOLCHR_NORMAL_BEGIN ; nId < RES_POOLCHR_NORMAL_END ; nId++,nIndex++ )
 /*N*/                   (*pHash)[(*pStrings)[nIndex]] = nId;
 /*N*/               pStrings = bProgName ? &GetHTMLChrFmtProgNameArray() : &GetHTMLChrFmtUINameArray();
 /*N*/               for ( nIndex = 0, nId = RES_POOLCHR_HTML_BEGIN ; nId < RES_POOLCHR_HTML_END ; nId++,nIndex++ )
@@ -1129,7 +1133,8 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/         RES_POOLCOLL_LABEL_FRAME- RES_POOLCOLL_EXTRA_BEGIN,
 /*N*/         0
 /*N*/     };
-/*N*/     for (const sal_uInt16 * pIds = nIds; *pIds; ++pIds)
+          const sal_uInt16 *pIds;
+/*N*/     for ( pIds = nIds; *pIds; ++pIds)
 /*N*/     {
 /*N*/         if (aRes == *rExtraArr[ *pIds ])
 /*N*/         {
@@ -1155,7 +1160,8 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*?*/         RES_POOLCOLL_LABEL_FRAME- RES_POOLCOLL_EXTRA_BEGIN,
 /*?*/         0
 /*?*/     };
-/*?*/     for (const sal_uInt16 * pIds = nIds; *pIds; ++pIds)
+          const sal_uInt16 *pIds;
+/*?*/     for ( pIds = nIds; *pIds; ++pIds)
 /*?*/     {
 /*?*/         if (aRes == *rExtraArr[ *pIds ])
 /*?*/         {

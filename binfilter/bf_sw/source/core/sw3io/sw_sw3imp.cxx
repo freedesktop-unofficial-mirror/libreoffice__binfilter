@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:52 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1820,12 +1820,12 @@ public:
 /*N*/   bFixed = sal_False;
 /*N*/ }
 
-const RES_POOLCOLL_HTML_LISTING_40 = 0x3002;
-const RES_POOLCOLL_HTML_XMP_40 = 0x3003;
-const RES_POOLCOLL_HTML_HR_40 = 0x3004;
-const RES_POOLCOLL_HTML_H6_40 = 0x3005;
-const RES_POOLCOLL_HTML_DD_40 = 0x3006;
-const RES_POOLCOLL_HTML_DT_40 = 0x3007;
+const int RES_POOLCOLL_HTML_LISTING_40 = 0x3002;
+const int RES_POOLCOLL_HTML_XMP_40 = 0x3003;
+const int RES_POOLCOLL_HTML_HR_40 = 0x3004;
+const int RES_POOLCOLL_HTML_H6_40 = 0x3005;
+const int RES_POOLCOLL_HTML_DD_40 = 0x3006;
+const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 
 /*N*/ sal_uInt16 Sw3StringPool::ConvertFromOldPoolId( sal_uInt16 nId, sal_uInt16 nVersion )
 /*N*/ {
@@ -1905,7 +1905,8 @@ const RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   Setup( rDoc, *rDoc.GetDfltCharFmt() );
 /*N*/   // Text-Collections
 /*N*/   sal_uInt16 nArrLen = rDoc.GetTxtFmtColls()->Count();
-/*N*/   for( sal_uInt16 n = 0; n < nArrLen; n++ )
+        sal_uInt16 n=0;
+/*N*/   for( n = 0; n < nArrLen; n++ )
 /*N*/       Setup( rDoc, *(*rDoc.GetTxtFmtColls())[ n ] );
 /*N*/   // benannte Zeichen- und Rahmenvorlagen
 /*N*/   nArrLen = rDoc.GetCharFmts()->Count();
@@ -2067,7 +2068,8 @@ const RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/               }
 /*N*/               // Add template names
 /*N*/               const SwForm& rForm = pTOXBaseSect->GetTOXForm();
-/*N*/               for( sal_uInt16 i = 0; i < rForm.GetFormMax(); i++ )
+                    sal_uInt16 i=0;
+/*N*/               for( i = 0; i < rForm.GetFormMax(); i++ )
 /*N*/               {
 /*N*/                   const String& rCollNm = rForm.GetTemplate( i );
 /*N*/                   if( rCollNm.Len() )
@@ -2218,7 +2220,8 @@ const RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   // Numerierungen auuf sie verwiesen werden kann.
 /*N*/   sal_uInt16 nArrLen = rDoc.GetCharFmts()->Count();
 /*N*/   // Element 0 ist das Default-Format!
-/*N*/   for( sal_uInt16 n = 1; n < nArrLen; n++ )
+        sal_uInt16 n;
+/*N*/   for( n = 1; n < nArrLen; n++ )
 /*N*/       Setup( rDoc, *(*rDoc.GetCharFmts())[ n ] );
 /*N*/
 /*N*/   // Die Namen der Numerierungen werden sowieso benoetigt.
@@ -2246,7 +2249,8 @@ const RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/ {
 /*N*/   sal_uInt16 nArrLen = rDoc.GetFrmFmts()->Count();
 /*N*/   // Element 0 ist das Default-Format!
-/*N*/   for( sal_uInt16 n = 1; n < nArrLen; n++ )
+        sal_uInt16 n;
+/*N*/   for( n = 1; n < nArrLen; n++ )
 /*N*/   {
 /*N*/       SwFmt& rFmt = (SwFmt&) *(*rDoc.GetFrmFmts())[ n ];
 /*N*/       RemoveExtension( rFmt );

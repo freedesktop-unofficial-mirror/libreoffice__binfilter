@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3615,7 +3615,7 @@ class ImpSkeleton;
 /*N*/ {
 /*N*/   sal_uInt32 nCount(rChange.GetRectangleCount());
 /*N*/
-/*N*/   for(sal_uInt32 a(0); a < nCount; a++)
+/*N*/   sal_uInt32 a; for(a=0; a < nCount; a++)
 /*N*/       SendRepaintBroadcast(rChange.GetRectangle(a));
 /*N*/
 /*N*/   if(ISA(SdrObjGroup))

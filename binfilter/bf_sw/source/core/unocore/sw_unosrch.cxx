@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosrch.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:04 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,7 +163,8 @@ void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& 
     long nLen = aSearchAttribs.getLength();
     const PropertyValue* pProps = aSearchAttribs.getConstArray();
     //delete all existing values
-    for(long i = 0; i < nArrLen; i++)
+    long i=0;
+    for( i = 0; i < nArrLen; i++)
     {
         delete pValueArr[i];
         pValueArr[i] = 0;
@@ -190,7 +191,8 @@ void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& 
 const Sequence< PropertyValue > SwSearchProperties_Impl::GetProperties() const
 {
     sal_uInt16 nPropCount = 0;
-    for(sal_uInt16 i = 0; i < nArrLen; i++)
+    sal_uInt16 i=0;
+    for(i = 0; i < nArrLen; i++)
         if(pValueArr[i])
             nPropCount++;
 

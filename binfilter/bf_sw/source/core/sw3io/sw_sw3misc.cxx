@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:53 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1235,7 +1235,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/
 /*N*/       sal_uInt8 nPat, nTmpl;
 /*N*/       *pStrm >> nPat;
-/*N*/       for( sal_uInt16 i = 0; Good() && i < nPat; i++ )
+            sal_uInt16 i=0;
+/*N*/       for( i = 0; Good() && i < nPat; i++ )
 /*N*/       {
 /*N*/           String aText;
 /*N*/           InString( *pStrm, aText );
@@ -1440,7 +1441,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       else if( TOX_AUTHORITIES == eType && nCount > MAXLEVEL+1 )
 /*N*/           nCount = MAXLEVEL+1;
 /*N*/
-/*N*/       for( sal_uInt16 i = nCount; i > 0; i-- )
+            sal_uInt16 i=0;
+/*N*/       for( i = nCount; i > 0; i-- )
 /*N*/       {
 /*N*/           if( rFrm.GetPattern( i - 1 ).Len() )
 /*N*/           {
@@ -1616,7 +1618,8 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/       // Search TOX type
 /*N*/       sal_uInt16 nTOXTypes = pDoc->GetTOXTypeCount( eTOXType );
 /*N*/       const SwTOXType* pTOXType = NULL;
-/*N*/       for( sal_uInt16 i=0; i<nTOXTypes; i++ )
+            sal_uInt16 i=0;
+/*N*/       for( i=0; i<nTOXTypes; i++ )
 /*N*/       {
 /*N*/           const SwTOXType* pTmp = pDoc->GetTOXType( eTOXType, i );
 /*N*/           if( pTmp->GetTypeName() == aTypeName )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1059,8 +1059,8 @@ struct ScChangeTrackMsgInfo
 };
 
 // MsgQueue fuer Benachrichtigung via ModifiedLink
-/*N*/ DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* );
-/*N*/ DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* );
+/*N*/ DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* )
+/*N*/ DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* )
 
 enum ScChangeTrackMergeState
 {

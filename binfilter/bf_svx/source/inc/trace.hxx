@@ -2,9 +2,9 @@
  *
  *  $RCSfile: trace.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:38 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@ public:
 #define TRACE_RANGE_MESSAGE(message)            { aTrace.TraceString(message); }
 #define TRACE_RANGE_MESSAGE1(message, param)    { aTrace.TraceString1StringParam(message, param); }
 
+}//end of namespace binfilter
 #else
 
 #define TRACE_RANGE(range_description)          ;
@@ -108,5 +109,4 @@ public:
 
 #endif
 
-}//end of namespace binfilter
 #endif // _TRACE_HXX_

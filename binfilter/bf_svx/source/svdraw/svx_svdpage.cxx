@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:12 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2153,7 +2153,7 @@ using namespace ::com::sun::star;
 
 #ifdef GCC
 // Dummy-Implementationen fuer Deklarationen in svdpage.hxx
-/*N*/ Bitmap      SdrPage::GetBitmap(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE) const {}
-/*N*/ GDIMetaFile SdrPage::GetMetaFile(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE) {}
+/*N*/ Bitmap      SdrPage::GetBitmap(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders) const {}
+/*N*/ GDIMetaFile SdrPage::GetMetaFile(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders) {}
 #endif
 }

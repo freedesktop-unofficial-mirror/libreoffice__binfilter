@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:28 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -375,7 +375,7 @@ static const String sDocumentTitle  = String::CreateFromAscii( "DocumentTitle" )
 /*N*/             for ( sal_uInt16 n=0; n<nCount; n++ )
 /*N*/             {
 /*N*/                 const ::com::sun::star::beans::PropertyValue& rProp = pPropsVal[n];
-/*N*/                 for ( USHORT nSub=0; nSub<nSubCount; nSub++ )
+/*N*/                 USHORT nSub; for ( nSub=0; nSub<nSubCount; nSub++ )
 /*N*/                 {
 /*N*/                     // search sub item by name
 /*N*/                     ByteString aStr( pSlot->pUnoName );
@@ -1017,7 +1017,7 @@ static const String sDocumentTitle  = String::CreateFromAscii( "DocumentTitle" )
 /*N*/                     continue;
 /*N*/
 /*N*/                 USHORT nFormalArgs = pSlot->GetFormalArgumentCount();
-/*N*/                 for ( USHORT nArg=0; nArg<nFormalArgs; ++nArg )
+/*N*/                 USHORT nArg; for ( nArg=0; nArg<nFormalArgs; ++nArg )
 /*N*/                 {
 /*N*/                     const SfxFormalArgument &rArg = pSlot->GetFormalArgument( nArg );
 /*N*/                     USHORT nWhich = rSet.GetPool()->GetWhich( rArg.nSlotId );

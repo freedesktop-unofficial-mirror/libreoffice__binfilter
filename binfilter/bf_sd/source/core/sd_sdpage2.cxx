@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:24 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -407,7 +407,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // NULL-Pointer rauszaehlen. Eigentlich haben die nichts in der Liste
 /*N*/   // verloren, aber es gibt leider Kundenfiles, in denen so was vorkommt.
-/*N*/   for (UINT32 nObj = 0; nObj < nCount; nObj++)
+/*N*/   UINT32 nObj; for (nObj = 0; nObj < nCount; nObj++)
 /*N*/   {
 /*N*/       SdrObject* pObj = (SdrObject*)aPresObjList.GetObject(nObj);
 /*N*/       if (!pObj)

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3page.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,7 +179,8 @@ namespace binfilter {
 /*N*/       {
 /*N*/           USHORT* pFollows = new USHORT[ nDesc ];
 /*N*/           SwPageDesc** pDescs = new SwPageDesc*[ nDesc ];
-/*N*/           for( USHORT i = 0; i < nDesc; i++ )
+                USHORT i=0;
+/*N*/           for( i = 0; i < nDesc; i++ )
 /*N*/               pDescs[ i ] = InPageDesc( pFollows[ i ] );
 /*N*/           // Follows aufloesen
 /*N*/           for( i = 0; i < nDesc; i++ )

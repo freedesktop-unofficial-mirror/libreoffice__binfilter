@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlsubti.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:28 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,9 +99,9 @@ namespace binfilter {
 
 class ScXMLImport;
 
-const nDefaultRowCount = 20;
-const nDefaultColCount = 20;
-const nDefaultTabCount = 10;
+const int nDefaultRowCount = 20;
+const int nDefaultColCount = 20;
+const int nDefaultTabCount = 10;
 
 typedef std::vector<sal_Int32> ScMysalIntVec;
 typedef std::list<sal_Int32> ScMysalIntList;

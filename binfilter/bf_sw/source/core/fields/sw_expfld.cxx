@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -214,7 +214,8 @@ using namespace ::rtl;
 /*N*/   sal_Unicode *pStr = rTmpName.GetBufferAccess(), *pBackStr = pStr + nLen;
 /*N*/
 /*N*/     long nBackCount = bWithCommandType ? 2 : 1;
-/*N*/     for( xub_StrLen i = nLen; i; --i, pBackStr-- )
+            xub_StrLen i;
+/*N*/     for( i = nLen; i; --i, pBackStr-- )
 /*N*/       if( '.' == *pBackStr )
 /*N*/       {
 /*?*/           *pBackStr = DB_DELIM;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLTextColumnsContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:07 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -462,7 +462,9 @@ void XMLTextColumnsContext::EndElement( )
 
         sal_Int32 nRelWidth = 0;
         sal_uInt16 nColumnsWithWidth = 0;
-        for( sal_Int16 i=0; i < nCount; i++ )
+        sal_Int16 i;
+
+        for( i=0; i < nCount; i++ )
         {
             const TextColumn& rColumn =
                 (*pColumns)[(sal_uInt16)i]->getTextColumn();

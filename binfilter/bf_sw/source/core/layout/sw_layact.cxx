@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-16 15:10:29 $
+ *  last change: $Author: aw $ $Date: 2004-04-19 10:23:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -267,7 +267,8 @@ namespace binfilter {
 /*N*/   const SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
 /*N*/   const SwFlyFrm *pSelfFly = pCnt->FindFlyFrm();
 /*N*/
-/*N*/   for ( USHORT i = 0; i < rObjs.Count() && aTmp.Count(); ++i )
+        USHORT i=0;
+/*N*/   for ( i = 0; i < rObjs.Count() && aTmp.Count(); ++i )
 /*N*/   {
 /*N*/       SdrObject *pO = rObjs[i];
 /*N*/       if ( !pO->IsWriterFlyFrame() )
@@ -1569,9 +1570,9 @@ namespace binfilter {
 /*N*/             if ( pLay->IsPageFrm() )
 /*N*/             {
 /*N*/                 SwPageFrm* pPageFrm = static_cast<SwPageFrm*>(pLay);
-/*N*/                 const nBorderWidth =
+/*N*/                 const int nBorderWidth =
 /*N*/                         pImp->GetShell()->GetOut()->PixelToLogic( Size( pPageFrm->BorderPxWidth(), 0 ) ).Width();
-/*N*/                 const nShadowWidth =
+/*N*/                 const int nShadowWidth =
 /*N*/                         pImp->GetShell()->GetOut()->PixelToLogic( Size( pPageFrm->ShadowPxWidth(), 0 ) ).Width();
 /*N*/                 aPaint.Left( aPaint.Left() - nBorderWidth );
 /*N*/                 aPaint.Top( aPaint.Top() - nBorderWidth );
@@ -1593,7 +1594,8 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   SwRegionRects aRegion( aOldRect );
 /*N*/                   aRegion -= aPaint;
-/*N*/                   for ( USHORT i = 0; i < aRegion.Count(); ++i )
+                        USHORT i=0;
+/*N*/                   for ( i = 0; i < aRegion.Count(); ++i )
 /*N*/                       pImp->GetShell()->AddPaintRect( aRegion[i] );
 /*N*/                     aRegion.ChangeOrigin( aPaint );
 /*N*/                   aRegion.Remove( 0, aRegion.Count() );
