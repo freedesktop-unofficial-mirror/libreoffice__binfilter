@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:03:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -70,18 +70,18 @@
 #include <svtools/zforlist.hxx>
 
 #include "scitems.hxx"
-#include "column.hxx"
+// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "attarray.hxx"
-#include "patattr.hxx"
+// auto strip #include "patattr.hxx"
 #include "cellform.hxx"
-#include "collect.hxx"
-#include "compiler.hxx"
-#include "brdcst.hxx"
-#include "docoptio.hxx"         // GetStdPrecision fuer GetMaxStringLen
-#include "subtotal.hxx"
-#include "markdata.hxx"
+// auto strip #include "collect.hxx"
+// auto strip #include "compiler.hxx"
+// auto strip #include "brdcst.hxx"
+// auto strip #include "docoptio.hxx"           // GetStdPrecision fuer GetMaxStringLen
+// auto strip #include "subtotal.hxx"
+// auto strip #include "markdata.hxx"
 #include "detfunc.hxx"          // fuer Notizen bei DeleteRange
 namespace binfilter {
 
