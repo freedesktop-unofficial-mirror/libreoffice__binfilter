@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schdll.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:49:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #pragma hdrstop
 
 
-#ifndef _STDCTRL_HXX
-#include <svtools/stdctrl.hxx>
-#endif
+// auto strip #ifndef _STDCTRL_HXX
+// auto strip #include <svtools/stdctrl.hxx>
+// auto strip #endif
 
 #ifndef _SVX_PSZCTRL_HXX
 #include <bf_svx/pszctrl.hxx>
@@ -74,25 +74,25 @@
 #include <bf_svx/modctrl.hxx>
 #endif
 
-#ifndef _SVX_XLINEIT0_HXX
-#include <bf_svx/xlineit0.hxx>
-#endif
+// auto strip #ifndef _SVX_XLINEIT0_HXX
+// auto strip #include <bf_svx/xlineit0.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XLNWTIT_HXX
-#include <bf_svx/xlnwtit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNWTIT_HXX
+// auto strip #include <bf_svx/xlnwtit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XLNCLIT_HXX
-#include <bf_svx/xlnclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX
+// auto strip #include <bf_svx/xlnclit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX
-#include <bf_svx/xflclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFILLIT0_HXX
-#include <bf_svx/xfillit0.hxx>
-#endif
+// auto strip #ifndef _SVX_XFILLIT0_HXX
+// auto strip #include <bf_svx/xfillit0.hxx>
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
@@ -101,28 +101,28 @@
 #include <bf_svx/f3dchild.hxx>
 #endif
 // header for XFillTransparenceItem
-#ifndef _SVX_XFLTRIT_HXX
-#include <bf_svx/xfltrit.hxx>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-#include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
+// auto strip #ifndef _SVX_XFLTRIT_HXX
+// auto strip #include <bf_svx/xfltrit.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
+// auto strip #endif
 
 
-#include "schdll0.hxx"
+// auto strip #include "schdll0.hxx"
 #include "docshell.hxx"
 #include "schmod.hxx"
 #include "app.hrc"
 #include "schresid.hxx"
-#include "schdll.hxx"
+// auto strip #include "schdll.hxx"
 #include "memchrt.hxx"
 #include "viewshel.hxx"
-#ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#endif
-#include "dgrdata.hxx"
-#include "dlggraut.hxx"
-#include "objfac.hxx"
+// auto strip #ifndef _CHTMODEL_HXX
+// auto strip #include "chtmodel.hxx"
+// auto strip #endif
+// auto strip #include "dgrdata.hxx"
+// auto strip #include "dlggraut.hxx"
+// auto strip #include "objfac.hxx"
 #include "res_bmp.hrc"  // contains define for RID_MENU, RID_ACCEL
 
 #include "globopt.hxx"
