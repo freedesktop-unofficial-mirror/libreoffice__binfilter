@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:46:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,12 +67,12 @@
 #include "fmpage.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 
 
 #ifndef _SVX_FMMODEL_HXX
@@ -80,9 +80,9 @@
 #endif
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMOBJ_HXX
-#include "fmobj.hxx"
-#endif
+// auto strip #ifndef _SVX_FMOBJ_HXX
+// auto strip #include "fmobj.hxx"
+// auto strip #endif
 #endif
 
 #ifndef SVX_LIGHT
@@ -91,13 +91,13 @@
 #endif
 #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SVX_DIALMGR_HXX
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
 #ifndef SVX_LIGHT
 #ifndef _SVX_FMPGEIMP_HXX
@@ -110,50 +110,50 @@
 #endif
 
 #ifndef SVX_LIGHT
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
-#endif
-
-#ifndef _SVDITER_HXX //autogen
-#include "svditer.hxx"
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
 #endif
 
-#ifndef _SVDVIEW_HXX //autogen
-#include <svdview.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include "svditer.hxx"
+// auto strip #endif
 
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _SVDVIEW_HXX //autogen
+// auto strip #include <svdview.hxx>
+// auto strip #endif
 
-#ifndef _SV_HELP_HXX //autogen
-#include <vcl/help.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SV_HELP_HXX //autogen
+// auto strip #include <vcl/help.hxx>
+// auto strip #endif
 
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMGLOB_HXX
-#include "fmglob.hxx"
-#endif
+// auto strip #ifndef _SVX_FMGLOB_HXX
+// auto strip #include "fmglob.hxx"
+// auto strip #endif
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
-#ifndef _SVX_FMPROP_HXX
-#include "fmprop.hxx"
-#endif
+// auto strip #ifndef _SVX_FMPROP_HXX
+// auto strip #include "fmprop.hxx"
+// auto strip #endif
 #ifndef _SVX_FMUNDO_HXX
 #include "fmundo.hxx"
 #endif
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 #endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
-#include <comphelper/property.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
+// auto strip #include <comphelper/property.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
