@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:35:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,36 +59,69 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
 #define _SOLAR__PRIVATE 1
 
-#ifndef SVX_LIGHT
-#include <srchitem.hxx>
+// auto strip #ifndef SVX_LIGHT
+// auto strip #include <srchitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
 #endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
 #include <editview.hxx>
-#include <flditem.hxx>
-#include <svxacorr.hxx>
-#include <langitem.hxx>
-#include <eerdll.hxx>
-#include <eerdll2.hxx>
-#include <editeng.hrc>
-#include <dlgutil.hxx>
-#include <helpid.hrc>
-#include <tools/isolang.hxx>
-#include <vcl/menu.hxx>
 
-#ifndef _UNO_LINGU_HXX
-#include <unolingu.hxx>
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
 #endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
-#include <com/sun/star/linguistic2/XDictionary1.hpp>
-#endif
+
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+
+// auto strip #include <flditem.hxx>
+// auto strip #include <svxacorr.hxx>
+// auto strip #include <langitem.hxx>
+// auto strip #include <eerdll.hxx>
+// auto strip #include <eerdll2.hxx>
+#include <editeng.hrc>
+// auto strip #include <dlgutil.hxx>
+#include <helpid.hrc>
+// auto strip #include <tools/isolang.hxx>
+// auto strip #include <vcl/menu.hxx>
+
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionary1.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL_
 #include <com/sun/star/beans/PropertyValues.hdl>
 #endif
