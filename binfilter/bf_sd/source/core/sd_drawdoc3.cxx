@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 13:28:00 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,9 +98,6 @@
 // auto strip #endif
 // auto strip #ifndef _SV_MSGBOX_HXX //autogen
 // auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _SOT_STORAGE_HXX
-// auto strip #include <sot/storage.hxx>
 // auto strip #endif
 // auto strip #ifndef _SOT_FORMATS_HXX //autogen
 // auto strip #include <sot/formats.hxx>

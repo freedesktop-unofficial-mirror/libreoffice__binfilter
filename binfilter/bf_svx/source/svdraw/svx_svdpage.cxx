@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:30:38 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,6 @@
 #define _IPOBJ_HXX
 #endif
 
-// auto strip #ifndef _SOT_STORAGE_HXX
-// auto strip #include <sot/storage.hxx>
-// auto strip #endif
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif

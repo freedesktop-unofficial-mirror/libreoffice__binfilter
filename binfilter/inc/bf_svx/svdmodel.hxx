@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
 #endif
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
+
+#include <so3/svstor.hxx>
+
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif

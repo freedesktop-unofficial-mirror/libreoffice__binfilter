@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:50 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,9 +83,9 @@
 #ifndef _TOOLS_INTN_HXX
 #include <tools/intn.hxx>
 #endif
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
+
+#include <so3/svstor.hxx>
+
 #ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
 #endif

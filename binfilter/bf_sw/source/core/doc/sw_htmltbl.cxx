@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_htmltbl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:11:22 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,9 +76,6 @@
 // auto strip #endif
 // auto strip #ifndef _APP_HXX //autogen
 // auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _SOT_STORAGE_HXX //autogen
-// auto strip #include <sot/storage.hxx>
 // auto strip #endif
 
 #ifndef _HORIORNT_HXX

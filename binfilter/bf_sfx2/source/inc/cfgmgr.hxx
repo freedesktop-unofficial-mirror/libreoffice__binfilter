@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cfgmgr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:43 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 #ifndef _SFXCFGMGR_HXX
 #define _SFXCFGMGR_HXX
 
-#include <sot/storage.hxx>
+#include <so3/svstor.hxx>
 class SvStream;
 class String;
 namespace binfilter {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-09-08 13:50:28 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,9 +105,7 @@
 #include <cppuhelper/interfacecontainer.hxx>
 // auto strip #include "sfxuno.hxx"
 
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
+#include <so3/svstor.hxx>
 #ifndef _XMLSCRIPT_XMLLIB_IMEXP_HXX_
 #include <xmlscript/xmllib_imexp.hxx>
 #endif

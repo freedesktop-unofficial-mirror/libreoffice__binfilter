@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdoole2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:36:46 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,9 +75,9 @@
 #ifndef _GDIMTF_HXX //autogen
 #include <vcl/gdimtf.hxx>
 #endif
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
+
+#include <so3/svstor.hxx>
+
 class SvPersist;
 class SvInPlaceObjectRef;
 class SvEmbeddedInfoObject;

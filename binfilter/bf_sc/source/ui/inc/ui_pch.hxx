@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:18 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -214,7 +214,7 @@
 #include <vcl/accel.hxx>
 #include <svtools/smplhint.hxx>
 #include <bf_sfx2/viewfac.hxx>
-#include <sot/storage.hxx>
+#include <so3/svstor.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <so3/so2defs.hxx>
 #include <so3/persist.hxx>
@@ -380,7 +380,6 @@
 #include <vcl/dockwin.hxx>
 #include <vcl/virdev.hxx>
 #include <so3/so2defs.hxx>
-#include <so3/svstor.hxx>
 #include <rangeutl.hxx>
 #include <vcl/toolbox.hxx>
 #include <fupoor.hxx>

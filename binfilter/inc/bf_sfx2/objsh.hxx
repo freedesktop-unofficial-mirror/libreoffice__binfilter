@@ -2,9 +2,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:21 $
+ *  last change: $Author: kz $ $Date: 2004-10-07 10:25:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,11 +102,7 @@
 #ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
 #endif
-#include <sot/storage.hxx>
-
-#ifndef _SOT_STORAGE_HXX //autogen
-#include <sot/storage.hxx>
-#endif
+#include <so3/svstor.hxx>
 
 #ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
