@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:59:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,8 +62,12 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"          // Update fuer UserFields
-#include "fldbas.hxx"          // fuer FieldType
+// auto strip #include "fldbas.hxx"          // fuer FieldType
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -75,9 +79,9 @@
 #include "ddefld.hxx"
 #include "usrfld.hxx"
 #include "expfld.hxx"
-#include "swfont.hxx"       // fuer GetFldsColor
+// auto strip #include "swfont.hxx"       // fuer GetFldsColor
 #include "ndtxt.hxx"        // SwTxtNode
-#include "calc.hxx"         // Update fuer UserFields
+// auto strip #include "calc.hxx"         // Update fuer UserFields
 #include "hints.hxx"
 namespace binfilter {
 
