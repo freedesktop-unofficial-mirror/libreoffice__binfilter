@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impgrfll.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:18:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,45 +59,50 @@
  *
  ************************************************************************/
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _SV_SALBTYPE_HXX
-#include <vcl/salbtype.hxx>     // FRound
-#endif
+// auto strip #ifndef _SV_SALBTYPE_HXX
+// auto strip #include <vcl/salbtype.hxx>       // FRound
+// auto strip #endif
 
-#ifndef _SV_VIRDEV_HXX
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _SV_VIRDEV_HXX
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
-#ifndef _SV_GDIMTF_HXX
-#include <vcl/gdimtf.hxx>
-#endif
+// auto strip #ifndef _SV_GDIMTF_HXX
+// auto strip #include <vcl/gdimtf.hxx>
+// auto strip #endif
 
 #ifndef _SV_METAACT_HXX
 #include <vcl/metaact.hxx>
 #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _SVTOOLS_GRAPHICTOOLS_HXX_
-#include <svtools/graphictools.hxx>
-#endif
+// auto strip #ifndef _SVTOOLS_GRAPHICTOOLS_HXX_
+// auto strip #include <svtools/graphictools.hxx>
+// auto strip #endif
 
 #include "svdobj.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpoly.hxx"
+
+#ifndef _XDEF_HXX
+#include "xdef.hxx"
+#endif
+
 #include "xattr.hxx"
-#include "xoutbmp.hxx"
+// auto strip #include "xoutbmp.hxx"
 #include "xoutx.hxx"
 
-#include "xenum.hxx"
-#include "xgrad.hxx"
-#include "xhatch.hxx"
-#include "xflhtit.hxx"
-#include "xbtmpit.hxx"
+// auto strip #include "xenum.hxx"
+// auto strip #include "xgrad.hxx"
+// auto strip #include "xhatch.hxx"
+// auto strip #include "xflhtit.hxx"
+// auto strip #include "xbtmpit.hxx"
 #include "svdoimp.hxx"
 #include "svdattr.hxx"
 namespace binfilter {
