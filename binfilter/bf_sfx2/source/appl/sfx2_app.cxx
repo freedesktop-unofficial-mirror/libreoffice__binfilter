@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 16:30:52 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 12:22:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -219,7 +219,7 @@
 #endif
 
 #if defined( WIN ) || defined( WNT ) || defined( OS2 )
-#define DDE_AVAILABLE
+// #i30187# DDE not needed for binfilter #define DDE_AVAILABLE
 #endif
 
 #include <svtools/saveopt.hxx>
