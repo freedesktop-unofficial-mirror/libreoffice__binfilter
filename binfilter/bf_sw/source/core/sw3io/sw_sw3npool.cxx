@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-09 17:18:46 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:44:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -182,6 +182,7 @@
 #ifndef _SWERROR_H
 #include <error.h>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
@@ -617,7 +618,7 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   rStrm.ReadByteString( aTarget, rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> nId1 >> nId2;
 /*N*/
-/*N*/   aURL = URIHelper::SmartRelToAbs( aURL );
+/*N*/   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/   SwFmtINetFmt *pNew = new SwFmtINetFmt( aURL, aTarget );
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   if( nId1 != IDX_NO_VALUE )
@@ -688,7 +689,7 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*?*/       nId2 = (UINT16) pIo->aStringPool.Find( aVisitedFmt, nVisitedId );
 /*N*/   String aURL( GetValue() );
 /*N*/   lcl_sw3io__ConvertMarkToOutline( aURL );
-/*N*/   rStrm.WriteByteString( INetURLObject::AbsToRel( aURL URL_DECODE ),
+/*N*/   rStrm.WriteByteString( so3::StaticBaseUrl::AbsToRel( aURL URL_DECODE ),
 /*N*/                          rStrm.GetStreamCharSet() );
 /*N*/       rStrm.WriteByteString( aTargetFrame, rStrm.GetStreamCharSet() );
 /*N*/   rStrm << nId1 << nId2;
