@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:36:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,17 +63,22 @@
 #pragma hdrstop
 
 #include <time.h>
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "pagefrm.hxx"
-#include "cntfrm.hxx"
+// auto strip #include "cntfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "viewimp.hxx"
 #include "crsrsh.hxx"
 #include "dflyobj.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "dcontact.hxx"
-#include "ndtxt.hxx"    // OnlineSpelling
+// auto strip #include "ndtxt.hxx"    // OnlineSpelling
 #include "frmfmt.hxx"
 #include "swregion.hxx"
 #include "viewopt.hxx"  // OnlineSpelling ueber Internal-TabPage testen.
@@ -89,15 +94,15 @@
 #ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 
 #define _SVSTDARR_BOOLS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
 #define _LAYACT_CXX
 #include "layact.hxx"
@@ -105,32 +110,32 @@
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
 #endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif
 
-#include "swmodule.hxx"
-#include "fmtline.hxx"
+// auto strip #include "swmodule.hxx"
+// auto strip #include "fmtline.hxx"
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"
 #include "txtfrm.hxx"
-#include "notxtfrm.hxx"
+// auto strip #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
 #include "mdiexp.hxx"
 #include "fmtornt.hxx"
 #include "sectfrm.hxx"
-#include "lineinfo.hxx"
-#include "scrrect.hxx"
+// auto strip #include "lineinfo.hxx"
+// auto strip #include "scrrect.hxx"
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
