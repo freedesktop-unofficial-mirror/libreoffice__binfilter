@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:30:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,6 +113,11 @@
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -125,6 +130,11 @@
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
