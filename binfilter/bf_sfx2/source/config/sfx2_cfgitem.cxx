@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:35:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 
 #pragma hdrstop
 
-#include "cfgitem.hxx"
+// auto strip #include "cfgitem.hxx"
 #include "cfgmgr.hxx"
 #include "sfx.hrc"
 #include "cfgimpl.hxx"
