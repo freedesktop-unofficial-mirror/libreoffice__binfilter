@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdglev.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:22:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,13 @@
 #include "svdglev.hxx"
 #include <math.h>
 
-#include "svdundo.hxx"
+// auto strip #include "svdundo.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
-#include "svdpagv.hxx"
-#include "svdglue.hxx"
-#include "svdtrans.hxx"
-#include "svdobj.hxx"
+// auto strip #include "svdglob.hxx"  // StringCache
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdglue.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdobj.hxx"
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
