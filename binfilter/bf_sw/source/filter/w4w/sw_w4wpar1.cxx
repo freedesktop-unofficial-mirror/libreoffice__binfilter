@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wpar1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:05 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:42:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3357,8 +3357,8 @@ void SwW4WParser::Read_IndentPara()                     // (IPS)
  *    |  |                           \
  *    |  | Kopf                       \                     STP und SBP
  *    |  |                              - STP
- *    |  +-----------------          /                      die Åbrigen Daten
- *    |                 - HM        /                       fehlen, so da·
+ *    |  +-----------------          /                      die uebrigen Daten
+ *    |                 - HM        /                       fehlen, so dass
  *    |  +------------------------ /                        mit moeglichst
  *    |  |                                                  plausiblen Hilfs-
  *    |  |                                                  werten gearbeitet
@@ -3382,7 +3382,7 @@ void SwW4WParser::Read_IndentPara()                     // (IPS)
  *    |     - Seitenrand oben                   nPgUpper
  *    |  +---------------------
  *    |  |                     \
- *    |  | Kopf                 - Kopf-Hoehe   ˇnHdHeight
+ *    |  | Kopf                 - Kopf-Hoehe    nHdHeight
  *    |  |                     /
  *    |  +----------------    /
  *    |     - Kopf-Margin    /                  nHdLower
