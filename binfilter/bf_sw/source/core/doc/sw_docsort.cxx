@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsort.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:09:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,88 +62,96 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+
+// auto strip #ifndef INCLUDED_RTL_MATH_HXX
+// auto strip #include <rtl/math.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
-#ifndef INCLUDED_RTL_MATH_HXX
-#include <rtl/math.hxx>
-#endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-#include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _SORTOPT_HXX
-#include <sortopt.hxx>
-#endif
-#ifndef _DOCSORT_HXX
-#include <docsort.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
-#ifndef _REDLINE_HXX
-#include <redline.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SORTOPT_HXX
+// auto strip #include <sortopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSORT_HXX
+// auto strip #include <docsort.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _REDLINE_HXX
+// auto strip #include <redline.hxx>
+// auto strip #endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 #if OSL_DEBUG_LEVEL > 1
 //nur zum debugen
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
 #endif
 namespace binfilter {
 
