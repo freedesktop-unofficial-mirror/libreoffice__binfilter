@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:18:53 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:34:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -254,6 +254,7 @@
 #ifndef _SV_SYSWIN_HXX
 #include <vcl/syswin.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 // Static member
@@ -1055,7 +1056,7 @@ String GetURL_Impl( const String& rName )
 /*N*/             // otherwise BaseURL is set in activation of document
 /*N*/             INetURLObject aObject( SvtPathOptions().GetWorkPath() );
 /*N*/           aObject.setFinalSlash();
-/*N*/             INetURLObject::SetBaseURL( aObject.GetMainURL( INetURLObject::NO_DECODE ) );
+/*N*/             so3::StaticBaseUrl::SetBaseURL( aObject.GetMainURL( INetURLObject::NO_DECODE ) );
 /*N*/         }
 /*N*/
 /*N*/         if( pNewContainerFrame )
