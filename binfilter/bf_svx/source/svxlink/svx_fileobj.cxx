@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:34:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,31 +62,31 @@
 #pragma hdrstop
 
 #ifdef OS2
-#include <vcl/sysdep.hxx>
+// auto strip #include <vcl/sysdep.hxx>
 #endif
 
 
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 #ifndef _SOT_FORMATS_HXX
 #include <sot/formats.hxx>
 #endif
-#ifndef _FILTER_HXX
-#include <svtools/filter.hxx>
-#endif
-#ifndef _SOERR_HXX
-#include <so3/soerr.hxx>
-#endif
+// auto strip #ifndef _FILTER_HXX
+// auto strip #include <svtools/filter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOERR_HXX
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
 #ifndef _LNKBASE_HXX
 #include <so3/lnkbase.hxx>
 #endif
@@ -99,19 +99,19 @@
 #ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
 #endif
-#ifndef _SFX_DOCFILT_HACK_HXX
-#include <bf_sfx2/docfilt.hxx>
-#endif
-#include <sot/exchange.hxx>
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/uno/Sequence.hxx>
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
+// auto strip #include <sot/exchange.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
 #include "fileobj.hxx"
 #include "linkmgr.hxx"
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
-#include "xoutbmp.hxx"
-#include "opengrf.hxx"
+// auto strip #include "xoutbmp.hxx"
+// auto strip #include "opengrf.hxx"
 #include "impgrf.hxx"
 namespace binfilter {
 
