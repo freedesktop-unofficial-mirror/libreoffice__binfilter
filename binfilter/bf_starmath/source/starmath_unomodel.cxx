@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_unomodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:47 $
+ *  last change: $Author: aw $ $Date: 2003-12-10 14:09:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -427,7 +427,11 @@ OUString SmModel::getImplementationName(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SmModel::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
-    return rServiceName == C2U("com.sun.star.formula.FormulaProperties");
+    return (
+            rServiceName == C2U("com.sun.star.document.OfficeDocument"  ) ||
+            rServiceName == C2U("com.sun.star.formula.FormulaProperties")
+           );
+
 }
 /*-- 07.02.00 13:24:09---------------------------------------------------
 
@@ -436,9 +440,10 @@ uno::Sequence< OUString > SmModel::getSupportedServiceNames(void) throw( uno::Ru
 {
     ::vos::OGuard aGuard(Application::GetSolarMutex());
 
-    uno::Sequence< OUString > aRet(1);
+    uno::Sequence< OUString > aRet(2);
     OUString* pArray = aRet.getArray();
-    pArray[0] = C2U("com.sun.star.formula.FormulaProperties");
+    pArray[0] = C2U("com.sun.star.document.OfficeDocument");
+    pArray[1] = C2U("com.sun.star.formula.FormulaProperties");
     return aRet;
 }
 

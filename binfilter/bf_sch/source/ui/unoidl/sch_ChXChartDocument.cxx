@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:04 $
+ *  last change: $Author: aw $ $Date: 2003-12-10 14:08:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1498,11 +1498,12 @@ sal_Bool SAL_CALL ChXChartDocument::supportsService( const ::rtl::OUString& Serv
 uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDocument::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    uno::Sequence< ::rtl::OUString > aSeq( 3 );
+    uno::Sequence< ::rtl::OUString > aSeq( 4 );
     ::rtl::OUString* pStr = aSeq.getArray();
-    pStr[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ));
-    pStr[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTableAddressSupplier" ));
-    pStr[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
+    pStr[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.OfficeDocument" ));
+    pStr[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ));
+    pStr[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTableAddressSupplier" ));
+    pStr[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unodoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:48 $
+ *  last change: $Author: aw $ $Date: 2003-12-10 14:09:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,10 +85,10 @@ using namespace ::com::sun::star;
 
 uno::Sequence< ::rtl::OUString > SAL_CALL SwTextDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< ::rtl::OUString > aRet ( 2 );
+    // useable for component registration only!
+    uno::Sequence< ::rtl::OUString > aRet ( 1 );
     ::rtl::OUString* pArray = aRet.getArray();
     pArray[0] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.TextDocument" ) );
-    pArray[1] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.document.OfficeDocument" ) );
 
     return aRet;
 }
@@ -126,11 +126,10 @@ uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const 
 
 uno::Sequence< ::rtl::OUString > SAL_CALL SwWebDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< ::rtl::OUString > aRet ( 3 );
+    // useable for component registration only!
+    uno::Sequence< ::rtl::OUString > aRet ( 1 );
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.TextDocument" ) );
-    pArray[1] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.document.OfficeDocument" ) );
-    pArray[2] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.WebDocument" ) );
+    pArray[0] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.WebDocument" ) );
 
     return aRet;
 }
@@ -168,11 +167,10 @@ uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const u
 
 uno::Sequence< ::rtl::OUString > SAL_CALL SwGlobalDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< ::rtl::OUString > aRet ( 3 );
+    // useable for component registration only!
+    uno::Sequence< ::rtl::OUString > aRet ( 1 );
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.TextDocument" ) );
-    pArray[1] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.document.OfficeDocument" ) );
-    pArray[2] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.GlobalDocument" ) );
+    pArray[0] = ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.text.GlobalDocument" ) );
 
     return aRet;
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unodoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
+ *  last change: $Author: aw $ $Date: 2003-12-10 14:08:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,9 +87,9 @@ using namespace ::com::sun::star;
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< ::rtl::OUString > aSeq( 2 );
-    aSeq[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.OfficeDocument" ));
-    aSeq[1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.sheet.SpreadsheetDocument" ));
+    //useable for component registration only!
+    uno::Sequence< ::rtl::OUString > aSeq( 1 );
+    aSeq[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.sheet.SpreadsheetDocument" ));
     return aSeq;
 }
 
