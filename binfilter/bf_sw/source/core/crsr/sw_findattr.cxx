@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findattr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:00:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,79 +62,84 @@
 
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
-#include <com/sun/star/util/SearchOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
-#include <com/sun/star/util/SearchFlags.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
+// auto strip #include <com/sun/star/util/SearchOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
+// auto strip #include <com/sun/star/util/SearchFlags.hpp>
+// auto strip #endif
 
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
 
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen wg. Application
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
-#ifndef _FCHRFMT_HXX //autogen
-#include <fchrfmt.hxx>
+// auto strip #ifndef _FCHRFMT_HXX //autogen
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARFMT_HXX //autogen
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _CHARFMT_HXX //autogen
-#include <charfmt.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
 #endif
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _EDITSH_HXX
+// auto strip #include <editsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
 #endif
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
 #endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
