@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_arealink.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:45:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,23 +69,23 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <bf_svx/linkmgr.hxx>
+// auto strip #include <bf_svx/linkmgr.hxx>
 #include <svtools/stritem.hxx>
 #include <vcl/msgbox.hxx>
 
 #include "arealink.hxx"
 
 #include "tablink.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "docsh.hxx"
 #include "rangenam.hxx"
 #include "dbcolect.hxx"
-#include "undoblk.hxx"
+// auto strip #include "undoblk.hxx"
 #include "globstr.hrc"
 #include "markdata.hxx"
 #include "hints.hxx"
-#include "htmlimp.hxx"
-#include "linkarea.hxx"         // dialog
+// auto strip #include "htmlimp.hxx"
+// auto strip #include "linkarea.hxx"           // dialog
 
 #include "attrib.hxx"           // raus, wenn ResetAttrib am Dokument
 #include "patattr.hxx"          // raus, wenn ResetAttrib am Dokument
