@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:56:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,15 +61,15 @@
 #ifndef _SFXDOCINF_HXX
 #define _SFXDOCINF_HXX
 
-#ifndef _ERRCODE_HXX //autogen wg. ErrCode
-#include <tools/errcode.hxx>
-#endif
-#ifndef _DATETIME_HXX //autogen
-#include <tools/datetime.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _ERRCODE_HXX //autogen wg. ErrCode
+// auto strip #include <tools/errcode.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATETIME_HXX //autogen
+// auto strip #include <tools/datetime.hxx>
+// auto strip #endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 #ifndef _SFXHINT_HXX //autogen
 #include <svtools/hint.hxx>
 #endif
