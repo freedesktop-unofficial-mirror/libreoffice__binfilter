@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:36 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,7 +59,7 @@
  *
  ************************************************************************/
 
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 #include <vcl/metric.hxx>
 #include <vcl/virdev.hxx>
 #include <math.h>

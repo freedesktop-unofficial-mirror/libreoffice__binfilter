@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdnum.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:02 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,6 @@
 
 #include <hintids.hxx>
 
-#ifndef _GDIOBJ_HXX //autogen
-#include <vcl/gdiobj.hxx>
-#endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:59 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,11 +75,8 @@
 #ifndef _TOOLS_SIMPLERESMGR_HXX_
 #include <tools/simplerm.hxx>
 #endif
-#ifndef _CONFIG_HXX //autogen
-#include <vcl/config.hxx>
-#endif
-#ifndef _SYSTEM_HXX //autogen
-#include <vcl/system.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
 #endif
 
 #ifndef SVTOOLS_ASYNCLINK_HXX

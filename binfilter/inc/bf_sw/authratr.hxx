@@ -2,9 +2,9 @@
  *
  *  $RCSfile: authratr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:28 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,8 @@
 #include <tools/solar.h>
 #endif
 
-#ifndef _SV_COLOR_HXX //autogen
-#include <vcl/color.hxx>
+#ifndef _COLOR_HXX //autogen
+#include <tools/color.hxx>
 #endif
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xfontmac.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:39 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1521,7 +1521,7 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                     short nAngle = (short) (acos(fCos) * 1800 / F_PI + 0.5);
                     if ( fSin < 0 )
                         nAngle = 3600 - nAngle;
-                    aFont.SetLineOrientation(nAngle);
+                    aFont.SetOrientation(nAngle);
                     pOut->SetFont(aFont);
                     if ( bDraw )
                         pOut->DrawTextArray(aPos, rText, pDXArray, nChar, nCnt);

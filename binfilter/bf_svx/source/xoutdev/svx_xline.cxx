@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:39 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <tools/bigint.hxx>
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:48 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,8 +77,8 @@
 #ifndef _PERSIST_HXX //autogen
 #include <so3/persist.hxx>
 #endif
-#ifndef _SV_POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 #ifndef _VCL_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>

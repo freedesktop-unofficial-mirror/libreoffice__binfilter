@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xoutx.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:46 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -295,30 +295,6 @@ protected:
     //                               const long* pDXArray = NULL);
 
     const Rectangle&    GetFormTextBoundRect() const { return aFormTextBoundRect; }
-
-#ifndef NOOLDSV
-    // Nur Temporaer
-    const Pen&          GetPen() const {
-#if !(defined(MACOSX) && (__GNUC__ < 3))
-                static Pen aPen;
-#endif
-                aPen = pOut->GetPen(); return aPen;
-        }
-    void                SetPen( const Pen& rPen ) { pOut->SetPen( rPen ); }
-
-    const Brush&        GetBrush() const {
-#if !(defined(MACOSX) && (__GNUC__ < 3))
-                static Brush aBrush;
-#endif
-                aBrush = pOut->GetFillInBrush(); return aBrush;
-        }
-    void                SetFillInBrush( const Brush& rBrush ) { pOut->SetFillInBrush( rBrush ); }
-
-    // StarView-Pen und -FillInBrush temporaer ueberschreiben, z.B. fuer
-    // dragging in SvDraw
-    void                OverridePen(const Pen& rPen);
-    void                OverrideFillInBrush(const Brush& rBrush);
-#endif
 
     // Nur Temporaer
     const Color&        GetLineColor() const { return pOut->GetLineColor(); }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:22 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1115,8 +1115,8 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/                    nDefaultDir, NULL, &nError );
 /*N*/     nError = U_ZERO_ERROR;
 /*N*/     long nCount = ubidi_countRuns( pBidi, &nError );
-/*N*/     UTextOffset nStart = 0;
-/*N*/     UTextOffset nEnd;
+/*N*/     int32_t nStart = 0;
+/*N*/     int32_t nEnd;
 /*N*/     UBiDiLevel nCurrDir;
 /*N*/     // counter for direction information arrays
 /*N*/     USHORT nCntDir = 0;

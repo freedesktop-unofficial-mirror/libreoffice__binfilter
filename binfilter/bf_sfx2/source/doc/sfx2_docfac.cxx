@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,7 +73,9 @@
 #include <so3/embobj.hxx>
 #endif
 
-#include <vcl/config.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
+#endif
 #include <svtools/pathoptions.hxx>
 #include <svtools/moduleoptions.hxx>
 #include <tools/urlobj.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:10 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1794,8 +1794,8 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/         long nCount = ubidi_countRuns( pBidi, &nError );
 /*?*/
-/*?*/         UTextOffset nStart = 0;
-/*?*/         UTextOffset nEnd;
+/*?*/         int32_t nStart = 0;
+/*?*/         int32_t nEnd;
 /*?*/         UBiDiLevel nCurrDir;
 /*?*/
 /*?*/         for ( USHORT nIdx = 0; nIdx < nCount; ++nIdx )

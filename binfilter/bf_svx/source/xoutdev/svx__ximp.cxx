@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__ximp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:36 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vcl/svapp.hxx>
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 #include <vcl/gradient.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/gdimtf.hxx>
@@ -249,7 +249,7 @@ namespace binfilter {
 //STRIP001 /*?*/                        ImpDrawBitmapFill( aPolyRect, bPrinter );
 /*?*/                   }
 /*?*/               }
-/*?*/               else if( bRect || bPrinter || Application::IsRemoteServer() )
+/*?*/               else if( bRect || bPrinter )
 /*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    pOut->IntersectClipRegion( rPolyPoly );
 //STRIP001 /*?*/                    ImpDrawBitmapFill( aPolyRect, bPrinter );

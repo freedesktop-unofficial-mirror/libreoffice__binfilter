@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:51 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,7 +124,7 @@ namespace binfilter {
 //************************************************************
 
 class ExtOutputDevice;
-class ImpSdrMtfAnimator;
+//class ImpSdrMtfAnimator;
 class OutlinerParaObject;
 class SdrOutliner;
 class SdrDragStat;
@@ -369,7 +369,7 @@ public:
     SfxBroadcaster*             pBroadcast;    // Broadcaster, falls dieses Obj referenziert wird (bVirtObj=TRUE). Auch fuer Konnektoren etc.
     SdrObjUserDataList*         pUserDataList; // applikationsspeziefische Daten
     SdrGluePointList*           pGluePoints;   // Klebepunkte zum Ankleben von Objektverbindern
-    ImpSdrMtfAnimator*          pAnimator;     // Fuer Laufschrift und blinkenden Text
+//  ImpSdrMtfAnimator*          pAnimator;     // Fuer Laufschrift und blinkenden Text
     AutoTimer*                  pAutoTimer;
     XubString                   aObjName;      // Jedes Objekt soll nun einen Namen haben
 
@@ -578,7 +578,7 @@ protected:
 //STRIP001  void ImpTakeDescriptionStr(USHORT nStrCacheID, String& rStr, USHORT nVal=0) const;
 
     void ImpForcePlusData() { if (pPlusData==NULL) pPlusData=NewPlusData(); }
-    ImpSdrMtfAnimator* ImpGetMtfAnimator() const { return pPlusData!=NULL ? pPlusData->pAnimator : NULL; }
+//  ImpSdrMtfAnimator* ImpGetMtfAnimator() const { return pPlusData!=NULL ? pPlusData->pAnimator : NULL; }
 //STRIP001  ImpSdrMtfAnimator* ImpForceMtfAnimator();
 
 //STRIP001  String GetWinkStr(long nWink, FASTBOOL bNoDegChar=FALSE) const;

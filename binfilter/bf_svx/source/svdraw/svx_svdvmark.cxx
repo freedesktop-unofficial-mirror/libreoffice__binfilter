@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdvmark.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:31 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,12 +66,12 @@
 #include "svdpagv.hxx"
 #include "svdpntv.hxx"
 
-#ifndef _SV_POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
-#ifndef NOOLDSV //autogen
-#include <vcl/system.hxx>
-#endif
+//#ifndef NOOLDSV //autogen
+//#include <vcl/system.hxx>
+//#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

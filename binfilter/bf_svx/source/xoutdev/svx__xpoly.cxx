@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xpoly.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:17 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #include <string.h>
 #include <tools/stream.hxx>
 #include <tools/debug.hxx>
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 
 #pragma hdrstop
 

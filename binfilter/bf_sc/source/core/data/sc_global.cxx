@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:05 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,7 +83,7 @@
 #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <vcl/image.hxx>
-#include <vcl/rcid.h>
+#include <tools/rcid.h>
 #include <vcl/virdev.hxx>
 #include <unotools/charclass.hxx>
 #include <stdlib.h>

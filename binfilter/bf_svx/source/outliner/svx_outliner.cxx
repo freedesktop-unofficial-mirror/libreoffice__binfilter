@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:08 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
 #endif
-#ifndef _SYSTEM_HXX //autogen
-#include <vcl/system.hxx>
-#endif
+//#ifndef _SYSTEM_HXX //autogen
+//#include <vcl/system.hxx>
+//#endif
 
 #define _OUTLINER_CXX
 #include <outliner.hxx>
@@ -2374,8 +2374,8 @@ namespace binfilter {
 /*?*/
 /*?*/         sal_Int32 nCount(ubidi_countRuns(pBidi, &nError));
 /*?*/
-/*?*/         UTextOffset nStart(0);
-/*?*/         UTextOffset nEnd;
+/*?*/         int32_t nStart(0);
+/*?*/         int32_t nEnd;
 /*?*/         UBiDiLevel nCurrDir;
 /*?*/
 /*?*/       ubidi_getLogicalRun(pBidi, nStart, &nEnd, &nCurrDir);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:11 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,8 +85,8 @@
 #include <svtools/itemset.hxx>
 #endif
 
-#ifndef _SV_CONFIG_HXX //autogen
-#include <vcl/config.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
 #endif
 
 #ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX

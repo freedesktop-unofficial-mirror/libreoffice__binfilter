@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:54 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,8 +80,8 @@
 #include "matrix3d.hxx"
 #endif
 
-#ifndef _SV_POLY_HXX
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 
 #ifndef _TOOLS_DEBUG_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdhlpln.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:49 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,7 +129,7 @@ public:
 //STRIP001  FASTBOOL operator!=(const SdrHelpLineList& rCmp) const                 { return !operator==(rCmp); }
     USHORT             GetCount() const                                    { return USHORT(aList.Count()); }
     void               Insert(const SdrHelpLine& rHL, USHORT nPos=0xFFFF)  { aList.Insert(new SdrHelpLine(rHL),nPos); }
-    void               Delete(USHORT nPos)                                 { delete aList.Remove(nPos); }
+    void               Delete(USHORT nPos)                                 { delete (SdrHelpLine*)aList.Remove(nPos); }
     void               Move(USHORT nPos, USHORT nNewPos)                   { aList.Insert(aList.Remove(nPos),nNewPos); }
     SdrHelpLine&       operator[](USHORT nPos)                             { return *GetObject(nPos); }
     const SdrHelpLine& operator[](USHORT nPos) const                       { return *GetObject(nPos); }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:13 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,8 +79,8 @@
 #ifndef _CSTITEM_HXX //autogen
 #include <svtools/cstitem.hxx>
 #endif
-#ifndef _SV_CONFIG_HXX //autogen
-#include <vcl/config.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
 #endif
 #ifndef _EHDL_HXX
 #include <svtools/ehdl.hxx>

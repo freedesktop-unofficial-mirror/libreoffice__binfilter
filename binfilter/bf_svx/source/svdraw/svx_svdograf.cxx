@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:18 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -236,7 +236,7 @@ namespace binfilter {
 /*N*/   pGraphicLink    ( NULL )
 /*N*/ {
 /*N*/   pGraphic = new GraphicObject;
-/*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), Application::IsRemoteServer() ? 60000 : 20000 );
+/*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*N*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*N*/   bNoShear = TRUE;
 /*N*/   bCopyToPoolOnAfterRead = FALSE;
@@ -250,7 +250,7 @@ namespace binfilter {
 /*?*/   pGraphicLink    ( NULL )
 /*?*/ {
 /*?*/   pGraphic = new GraphicObject( rGrf );
-/*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), Application::IsRemoteServer() ? 60000 : 20000 );
+/*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*?*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*?*/   bNoShear = TRUE;
 /*?*/   bCopyToPoolOnAfterRead = FALSE;
@@ -263,7 +263,7 @@ namespace binfilter {
 /*?*/   pGraphicLink    ( NULL )
 /*?*/ {
 /*?*/   pGraphic = new GraphicObject( rGrf );
-/*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), Application::IsRemoteServer() ? 60000 : 20000 );
+/*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*?*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*?*/   bNoShear = TRUE;
 /*?*/   bCopyToPoolOnAfterRead = FALSE;
@@ -282,7 +282,7 @@ namespace binfilter {
 /*N*/ void SdrGrafObj::SetGraphicObject( const GraphicObject& rGrfObj )
 /*N*/ {
 /*N*/   *pGraphic = rGrfObj;
-/*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), Application::IsRemoteServer() ? 60000 : 20000 );
+/*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
 /*N*/   pGraphic->SetUserData();
 /*N*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
 /*N*/   SetChanged();
@@ -844,7 +844,7 @@ namespace binfilter {
 /*?*/
 /*?*/           aFont.SetColor( COL_LIGHTRED );
 /*?*/           aFont.SetTransparent( TRUE );
-/*?*/           aFont.SetLineOrientation( USHORT( NormAngle360( aGeo.nDrehWink ) / 10 ) );
+/*?*/           aFont.SetOrientation( USHORT( NormAngle360( aGeo.nDrehWink ) / 10 ) );
 /*?*/
 /*?*/           if( IsLinkedGraphic() )
 /*?*/               aFont.SetUnderline( UNDERLINE_SINGLE );

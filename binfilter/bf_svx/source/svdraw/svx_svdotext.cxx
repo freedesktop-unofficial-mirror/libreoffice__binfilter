@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:22 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2080,23 +2080,23 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ void SdrTextObj::RestartAnimation(SdrPageView* pPageView) const
 /*N*/ {
-/*N*/   FASTBOOL bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
-/*N*/   if (bAnimated) {
-/*N*/       ImpSdrMtfAnimator* pAnimator=((SdrTextObj*)this)->ImpGetMtfAnimator();
-/*N*/       if (pAnimator!=NULL) {
-/*?*/           if (pPageView==NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                pAnimator->Stop();
-/*?*/           } else {
-/*?*/               for (ULONG nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
-/*?*/                   nInfoNum--;
-/*?*/                   ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-/*?*/                   if (pInfo->pPageView==pPageView) {
-/*?*/                       pAnimator->RemoveInfo(nInfoNum);
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*N*/       }
-/*N*/   }
+///*N*/     FASTBOOL bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
+///*N*/     if (bAnimated) {
+///*N*/         ImpSdrMtfAnimator* pAnimator=((SdrTextObj*)this)->ImpGetMtfAnimator();
+///*N*/         if (pAnimator!=NULL) {
+///*?*/             if (pPageView==NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+////STRIP001 /*?*/              pAnimator->Stop();
+///*?*/             } else {
+///*?*/                 for (ULONG nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
+///*?*/                     nInfoNum--;
+///*?*/                     ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
+///*?*/                     if (pInfo->pPageView==pPageView) {
+///*?*/                         pAnimator->RemoveInfo(nInfoNum);
+///*?*/                     }
+///*?*/                 }
+///*?*/             }
+///*N*/         }
+///*N*/     }
 /*N*/ }
 
 //STRIP001 SdrObjGeoData* SdrTextObj::NewGeoData() const

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmshell.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:46 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -130,18 +130,18 @@ class FmFormShell : public SfxShell
         // Ereignis interesiert, nicht sauber verstaendigen (sie koennte sich lediglich von der Application
         // das Navigator-Fenster geben lassen, aber das wollen wir ja nicht, ge ? ...))
 
-#ifdef NOOLDSV
-    class FormShellWaitObject
-    {
-        Window* m_pWindow;
-    public:
-        FormShellWaitObject(const FmFormShell* _pShell);
-        ~FormShellWaitObject();
-    };
-    friend class FormShellWaitObject;
-
-    const OutputDevice* GetCurrentViewDevice() const { return m_pFormView ? m_pFormView->GetActualOutDev() : NULL; }
-#endif
+//#ifdef NOOLDSV
+//  class FormShellWaitObject
+//  {
+//      Window* m_pWindow;
+//  public:
+//      FormShellWaitObject(const FmFormShell* _pShell);
+//      ~FormShellWaitObject();
+//  };
+//  friend class FormShellWaitObject;
+//
+//  const OutputDevice* GetCurrentViewDevice() const { return m_pFormView ? m_pFormView->GetActualOutDev() : NULL; }
+//#endif
 
 public:
     SFX_DECL_INTERFACE(SVX_INTERFACE_FORM_SH);

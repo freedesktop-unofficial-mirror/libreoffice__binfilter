@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:09 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,8 +68,8 @@
 #include <editeng.hxx>
 #include <editview.hxx>
 
-#ifndef _SV_POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 
 #ifndef _UNO_LINGU_HXX

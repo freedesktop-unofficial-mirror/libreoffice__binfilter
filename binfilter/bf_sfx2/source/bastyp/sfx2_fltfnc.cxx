@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:18 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,8 +77,8 @@
 #ifndef _EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
 #endif
-#ifndef _CONFIG_HXX //autogen
-#include <vcl/config.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
 #endif
 #ifndef _SB_SBMETH_HXX //autogen
 #include <basic/sbmeth.hxx>
@@ -241,9 +241,6 @@ using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
 using namespace ::vos;
 
-#ifndef _SV_SYSTEM_HXX
-#include <vcl/system.hxx>
-#endif
 #ifndef _SVTOOLS_CTYPEITM_HXX
 #include <svtools/ctypeitm.hxx>
 #endif

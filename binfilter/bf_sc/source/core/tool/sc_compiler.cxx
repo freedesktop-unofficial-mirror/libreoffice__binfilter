@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:27 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,7 +72,7 @@
 #include <basic/sbmeth.hxx>
 #include <basic/sbstar.hxx>
 #include <svtools/zforlist.hxx>
-#include <vcl/rcid.h>
+#include <tools/rcid.h>
 #include <tools/rc.hxx>
 #include <tools/solar.h>
 #include <unotools/charclass.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: udlnitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:23 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,8 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SV_FONTTYPE_HXX //autogen
-#include <vcl/fonttype.hxx>
+#ifndef _VCL_VCLENUM_HXX
+#include <vcl/vclenum.hxx>
 #endif
 #ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>

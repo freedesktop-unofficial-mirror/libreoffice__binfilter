@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:39 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #include <stdlib.h>
 #include <vcl/wrkwin.hxx>
 #include <vcl/svapp.hxx>
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 #include <vcl/window.hxx>
 #include <vcl/gradient.hxx>
 #include <svtools/itemset.hxx>
@@ -803,19 +803,19 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-#ifndef NOOLDSV
-
-/*N*/ void XOutputDevice::OverridePen(const Pen& rPen)
-/*N*/ {
-/*N*/   nLineWidth = 0;
-/*N*/   bHair = TRUE;
-/*N*/   bLineStart = FALSE;
-/*N*/   bLineEnd = FALSE;
-/*N*/   eLineStyle = ( rPen.GetStyle() == PEN_NULL  ) ? XLINE_NONE : XLINE_SOLID;
-/*N*/   pOut->SetLineColor( rPen.GetColor() );
-/*N*/ }
-
-#endif
+//#ifndef NOOLDSV
+//
+///*N*/ void XOutputDevice::OverridePen(const Pen& rPen)
+///*N*/ {
+///*N*/     nLineWidth = 0;
+///*N*/     bHair = TRUE;
+///*N*/     bLineStart = FALSE;
+///*N*/     bLineEnd = FALSE;
+///*N*/     eLineStyle = ( rPen.GetStyle() == PEN_NULL  ) ? XLINE_NONE : XLINE_SOLID;
+///*N*/     pOut->SetLineColor( rPen.GetColor() );
+///*N*/ }
+//
+//#endif
 
 /*************************************************************************
 |*
@@ -829,15 +829,15 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-#ifndef NOOLDSV
-
-/*N*/ void XOutputDevice::OverrideFillInBrush( const Brush& rBrush )
-/*N*/ {
-/*N*/   eFillStyle = ( rBrush.GetStyle() == BRUSH_NULL ) ?  XFILL_NONE : XFILL_SOLID;
-/*N*/   pOut->SetFillColor( rBrush.GetColor() );
-/*N*/ }
-
-#endif
+//#ifndef NOOLDSV
+//
+///*N*/ void XOutputDevice::OverrideFillInBrush( const Brush& rBrush )
+///*N*/ {
+///*N*/     eFillStyle = ( rBrush.GetStyle() == BRUSH_NULL ) ?  XFILL_NONE : XFILL_SOLID;
+///*N*/     pOut->SetFillColor( rBrush.GetColor() );
+///*N*/ }
+//
+//#endif
 
 /*************************************************************************
 |*

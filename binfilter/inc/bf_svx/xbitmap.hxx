@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xbitmap.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #define _SVX_XBITMAP_HXX
 
 #ifndef _COLOR_HXX //autogen
-#include <vcl/color.hxx>
+#include <tools/color.hxx>
 #endif
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>

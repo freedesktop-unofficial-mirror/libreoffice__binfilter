@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,7 @@
 #endif
 
 #ifndef _SV_RESARY_HXX
-#include <vcl/resary.hxx>
+#include <tools/resary.hxx>
 #endif
 #ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>

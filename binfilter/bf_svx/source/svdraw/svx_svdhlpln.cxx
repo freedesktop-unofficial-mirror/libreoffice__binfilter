@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdhlpln.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:13 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,8 @@
 #include "svdhlpln.hxx"
 #include "svdio.hxx"
 
-#ifndef _GDIOBJ_HXX //autogen
-#include <vcl/gdiobj.hxx>
-#endif
-
 #ifndef _COLOR_HXX //autogen
-#include <vcl/color.hxx>
+#include <tools/color.hxx>
 #endif
 
 #ifndef _OUTDEV_HXX //autogen
@@ -78,8 +74,8 @@
 #include <vcl/window.hxx>
 #endif
 
-#ifndef _SV_POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 namespace binfilter {
 

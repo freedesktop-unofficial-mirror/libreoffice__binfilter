@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:00 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,8 @@
 #include <tools/gen.hxx>
 #endif
 
-#ifndef _POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 
 #ifndef _FRACT_HXX //autogen
@@ -88,7 +88,7 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Winkelangaben der DrawingEngine sind 1/100 Degree
-const nWinkDiv=100;
+// const nWinkDiv=100;
 // Um Winkel der DrawingEngine mit den Trigonometrischen Funktionen
 // verarbeiten zu koennen, muessen sie zunaest ins Bogenmass umgerechnet
 // werden. Dies gestaltet sich recht einfach mit der folgenden Konstanten

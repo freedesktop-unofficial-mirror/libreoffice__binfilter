@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_editutil.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,7 +79,7 @@
 #include <bf_svx/editstat.hxx>
 #include <bf_svx/escpitem.hxx>
 #include <bf_svx/flditem.hxx>
-#include <vcl/system.hxx>
+//#include <vcl/system.hxx>
 #include <vcl/svapp.hxx>
 #include <vcl/outdev.hxx>
 #include <svtools/inethist.hxx>

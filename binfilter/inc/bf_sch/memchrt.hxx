@@ -2,9 +2,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:57 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,8 +68,8 @@
 #ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
 #endif
-#ifndef _SV_COLOR_HXX
-#include <vcl/color.hxx>
+#ifndef _COLOR_HXX
+#include <tools/color.hxx>
 #endif
 #ifndef _LINK_HXX
 #include <tools/link.hxx>

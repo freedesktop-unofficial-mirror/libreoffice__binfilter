@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:50 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,9 +79,6 @@
 #endif
 #ifndef _SFXBRDCST_HXX //autogen
 #include <svtools/brdcst.hxx>
-#endif
-#ifndef _SYSTEM_HXX //autogen
-#include <vcl/system.hxx>
 #endif
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>

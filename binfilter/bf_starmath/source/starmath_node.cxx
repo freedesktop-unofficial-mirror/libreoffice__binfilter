@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:27 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,8 +71,8 @@
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
-#ifndef _SV_COLOR_HXX //autogen
-#include <vcl/color.hxx>
+#ifndef _COLOR_HXX //autogen
+#include <tools/color.hxx>
 #endif
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>

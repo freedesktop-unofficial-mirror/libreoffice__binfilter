@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:27 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,9 +90,9 @@
 #include <svtools/memberid.hrc>
 #include <bf_sfx2/sfxsids.hrc>
 #include <svtools/cntwids.hrc>
-#include <vcl/resid.hxx>
+//#include <vcl/resid.hxx>
 #include <tools/resid.hxx>
-#include <vcl/rc.hxx>
+//#include <vcl/rc.hxx>
 #include <tools/rc.hxx>
 #include <tools/resmgr.hxx>
 #include <tools/gen.hxx>
@@ -102,13 +102,13 @@
 #include <vcl/keycod.hxx>
 #include <vcl/keycodes.hxx>
 #include <tools/globname.hxx>
-#include <vcl/color.hxx>
+#include <tools/color.hxx>
 #include <vcl/region.hxx>
 #include <vcl/mapmod.hxx>
 #include <vcl/bitmap.hxx>
 #include <sot/sotref.hxx>
 #include <bf_svx/svxids.hrc>
-#include <vcl/fonttype.hxx>
+#include <vcl/vclenum.hxx>
 #include <sot/object.hxx>
 #include <sot/sotdata.hxx>
 #include <sot/factory.hxx>
@@ -117,7 +117,6 @@
 #include <vcl/wall.hxx>
 #include <vcl/settings.hxx>
 #include <vcl/accel.hxx>
-#include <vcl/gdiobj.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/pointr.hxx>
 #include <vcl/ptrstyle.hxx>
@@ -127,7 +126,7 @@
 #include <tools/errinf.hxx>
 #include <tools/errcode.hxx>
 #include <tools/stream.hxx>
-#include <vcl/color.hxx>
+//#include <vcl/color.hxx>
 #include <vcl/window.hxx>
 #include <global.hxx>
 #include <vcl/syswin.hxx>
@@ -189,7 +188,7 @@
 #include <vcl/apptypes.hxx>
 #include <viewopti.hxx>
 #include <viewdata.hxx>
-#include <vcl/resid.hxx>
+//#include <vcl/resid.hxx>
 #include <bf_sfx2/viewsh.hxx>
 #include <bf_sfx2/clientsh.hxx>
 #include <document.hxx>
@@ -289,7 +288,7 @@
 #include <vcl/print.hxx>
 #include <vcl/floatwin.hxx>
 #include <vcl/wrkwin.hxx>
-#include <vcl/system.hxx>
+//#include <vcl/system.hxx>
 #include <bf_sfx2/childwin.hxx>
 #include <bf_sfx2/chalign.hxx>
 #include <bf_sfx2/dispatch.hxx>
@@ -305,7 +304,6 @@
 #include <vcl/print.hxx>
 #include <uiitems.hxx>
 #include <bf_svx/svdmodel.hxx>
-#include <vcl/gdiobj.hxx>
 #include <bf_svx/editeng.hxx>
 #include <bf_svx/pageitem.hxx>
 #include <anyrefdg.hxx>
@@ -356,7 +354,7 @@
 #include <bf_svx/sdtditm.hxx>
 #include <bf_svx/sdtfsitm.hxx>
 #include <bf_svx/sdtmfitm.hxx>
-#include <vcl/poly.hxx>
+#include <tools/poly.hxx>
 #include <vcl/gdimtf.hxx>
 #include <cell.hxx>
 #include <stddef.h>

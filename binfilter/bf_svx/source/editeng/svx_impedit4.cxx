@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:10 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,7 +67,7 @@
 #include <vcl/svapp.hxx>
 #pragma hdrstop
 
-#include <vcl/system.hxx>
+//#include <vcl/system.hxx>
 #include <srchitem.hxx>
 #include <lspcitem.hxx>
 #include <adjitem.hxx>

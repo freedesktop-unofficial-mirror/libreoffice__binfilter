@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:12 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,7 +66,7 @@
 #include <math.h>
 #include <vcl/metaact.hxx>   // fuer TakeContour
 #include <vcl/cvtsvm.hxx>
-#include <vcl/line.hxx>
+#include <tools/line.hxx>
 #include <tools/bigint.hxx>
 #include <vector>
 #include "svdobj.hxx"
@@ -307,7 +307,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   pBroadcast(NULL),
 /*N*/   pUserDataList(NULL),
 /*N*/   pGluePoints(NULL),
-/*N*/   pAnimator(NULL),
+///*N*/     pAnimator(NULL),
 /*N*/   pAutoTimer(NULL)
 /*N*/ {
 /*N*/ }
@@ -317,7 +317,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if (pBroadcast   !=NULL) delete pBroadcast;
 /*N*/   if (pUserDataList!=NULL) delete pUserDataList;
 /*N*/   if (pGluePoints  !=NULL) delete pGluePoints;
-/*N*/   if (pAnimator    !=NULL) delete pAnimator;
+///*N*/     if (pAnimator    !=NULL) delete pAnimator;
 /*N*/   if (pAutoTimer   !=NULL) delete pAutoTimer;
 /*N*/ }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3num.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:53 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,8 +80,8 @@
 #include <bf_svx/tstpitem.hxx>
 #endif
 
-#ifndef _SV_FONTTYPE_HXX //autogen
-#include <vcl/fonttype.hxx>
+#ifndef _VCL_VCLENUM_HXX
+#include <vcl/vclenum.hxx>
 #endif
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>

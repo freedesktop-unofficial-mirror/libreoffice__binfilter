@@ -2,9 +2,9 @@
  *
  *  $RCSfile: AccessibleCsvControl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,7 +75,7 @@
 #endif
 
 #ifndef _SV_GEN_HXX
-#include <vcl/gen.hxx>
+#include <tools/gen.hxx>
 #endif
 #ifndef _STRING_HXX
 #include <tools/string.hxx>

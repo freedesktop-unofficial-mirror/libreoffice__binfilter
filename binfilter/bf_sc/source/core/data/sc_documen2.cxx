@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -262,7 +262,6 @@
 #include <bf_sfx2/printer.hxx>
 #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
-#include <vcl/system.hxx>
 #include <comphelper/processfactory.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <svtools/PasswordHelper.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:49 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -106,9 +106,9 @@
 #include <sot/exchange.hxx>
 #include <sot/formats.hxx>
 
-#ifndef _SV_SYSTEM_HXX
-#include <vcl/system.hxx>
-#endif
+//#ifndef _SV_SYSTEM_HXX
+//#include <vcl/system.hxx>
+//#endif
 
 #include <numitem.hxx>
 #include <bulitem.hxx>

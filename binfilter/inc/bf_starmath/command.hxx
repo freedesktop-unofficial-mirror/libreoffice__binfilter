@@ -2,9 +2,9 @@
  *
  *  $RCSfile: command.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:15 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 
 
 #ifndef _RC_HXX //autogen
-#include <vcl/rc.hxx>
+#include <tools/rc.hxx>
 #endif
 
 #ifndef _BITMAP_HXX //autogen

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: colritem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:19 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,8 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SV_COLOR_HXX //autogen
-#include <vcl/color.hxx>
+#ifndef _COLOR_HXX //autogen
+#include <tools/color.hxx>
 #endif
 
 #ifdef _USE_NAMESPACE

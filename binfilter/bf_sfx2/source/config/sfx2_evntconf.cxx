@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:38 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #include <vcl/msgbox.hxx>
 #endif
 #ifndef _SV_RESARY_HXX
-#include <vcl/resary.hxx>
+#include <tools/resary.hxx>
 #endif
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>

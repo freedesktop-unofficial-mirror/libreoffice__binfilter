@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoframe.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:02 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,8 +152,8 @@
 #ifndef _COM_SUN_STAR_DRAWING_COLORMODE_HPP_
 #include <com/sun/star/drawing/ColorMode.hpp>
 #endif
-#ifndef _SV_POLY_HXX //autogen
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 #ifndef _SWUNDO_HXX //autogen
 #include <swundo.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:18 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -833,8 +833,8 @@ namespace binfilter {
 /*N*/   } else { // ansonsten ist es eine leere Gruppe
 /*?*/       if (!rInfoRec.bPrinter && rInfoRec.aPaintLayer.IsSet(nLayerId)) {
 /*?*/           OutputDevice* pOutDev=rXOut.GetOutDev();
-/*?*/           pOutDev->SetFillInBrush(Brush(BRUSH_NULL));
-/*?*/           pOutDev->SetPen(Color(COL_LIGHTGRAY));
+/*?*/           pOutDev->SetFillColor();
+/*?*/           pOutDev->SetLineColor(COL_LIGHTGRAY);
 /*?*/           pOutDev->DrawRect(aOutRect);
 /*N*/       }
 /*N*/   }

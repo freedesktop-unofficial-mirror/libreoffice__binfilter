@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:43 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,7 +81,7 @@
 #include <bf_svx/unolingu.hxx>
 
 #include <vcl/svapp.hxx>
-#include <vcl/system.hxx>
+//#include <vcl/system.hxx>
 #include <rtl/math.hxx>
 
 #include "viewdata.hxx"

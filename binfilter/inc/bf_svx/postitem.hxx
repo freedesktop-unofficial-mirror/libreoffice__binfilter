@@ -2,9 +2,9 @@
  *
  *  $RCSfile: postitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:22 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,8 +63,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SV_FONTTYPE_HXX //autogen
-#include <vcl/fonttype.hxx>
+#ifndef _VCL_VCLENUM_HXX
+#include <vcl/vclenum.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>

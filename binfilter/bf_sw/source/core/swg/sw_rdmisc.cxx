@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdmisc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:02 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,10 +64,7 @@
 
 
 #ifndef _COLOR_HXX //autogen
-#include <vcl/color.hxx>
-#endif
-#ifndef _GDIOBJ_HXX //autogen
-#include <vcl/gdiobj.hxx>
+#include <tools/color.hxx>
 #endif
 #ifndef _JOBSET_HXX //autogen
 #include <vcl/jobset.hxx>

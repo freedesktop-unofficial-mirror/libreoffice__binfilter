@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:23 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,8 +188,8 @@
 #include "svdio.hxx"
 #endif
 
-#ifndef _SV_POLY_HXX
-#include <vcl/poly.hxx>
+#ifndef _TL_POLY_HXX
+#include <tools/poly.hxx>
 #endif
 
 #ifndef _B3D_B3DTRANS_HXX

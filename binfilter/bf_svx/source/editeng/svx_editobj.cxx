@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:49 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,7 +73,7 @@
 #include <editeng.hxx>
 #include <fontitem.hxx>
 #include <cscoitem.hxx>
-#include <vcl/system.hxx>
+//#include <vcl/system.hxx>
 #include <flditem.hxx>
 #include <lrspitem.hxx>
 #include <tstpitem.hxx>

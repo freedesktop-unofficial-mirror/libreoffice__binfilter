@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxtypes.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:03 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,13 +65,13 @@
 #include <tools/debug.hxx>
 #endif
 #ifndef _RC_HXX //autogen
-#include <vcl/rc.hxx>
+#include <tools/rc.hxx>
 #endif
 #ifndef _RCID_H //autogen
-#include <vcl/rcid.h>
+#include <tools/rcid.h>
 #endif
 #ifndef _RESID_HXX //autogen
-#include <vcl/resid.hxx>
+#include <tools/resid.hxx>
 #endif
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>

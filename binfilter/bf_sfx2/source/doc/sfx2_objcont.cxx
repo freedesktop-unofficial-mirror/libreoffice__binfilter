@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:20 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -284,9 +284,6 @@ using namespace ::com::sun::star::uno;
 /*N*/     BOOL bLoadDocView = aOpt.IsSaveDocView();
 /*N*/
 /*N*/     // In a StarPortal not possible at the moment
-/*N*/   if ( Application::IsRemoteServer() )
-/*N*/       bLoadDocWins = FALSE;
-/*N*/
 /*N*/   if ( !bLoadDocView )
 /*N*/       return 0;
 /*N*/

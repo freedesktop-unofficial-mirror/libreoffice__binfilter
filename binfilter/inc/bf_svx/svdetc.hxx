@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:48 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:31:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,10 +64,6 @@
 
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-
-#ifndef _GDIOBJ_HXX //autogen
-#include <vcl/gdiobj.hxx>
 #endif
 
 #ifndef _CONTNR_HXX //autogen

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdata.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,8 +61,8 @@
 #ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
 #endif
-#ifndef _SV_CONFIG_HXX //autogen
-#include <vcl/config.hxx>
+#ifndef _CONFIG_HXX
+#include <tools/config.hxx>
 #endif
 #ifndef _INETSTRM_HXX //autogen
 #include <svtools/inetstrm.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_bulitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:04 $
+ *  last change: $Author: aw $ $Date: 2004-02-13 14:30:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
-#ifndef _SV_SYSTEM_HXX
-#include <vcl/system.hxx>
-#endif
+//#ifndef _SV_SYSTEM_HXX
+//#include <vcl/system.hxx>
+//#endif
 #pragma hdrstop
 
 #include <vcl/outdev.hxx>
