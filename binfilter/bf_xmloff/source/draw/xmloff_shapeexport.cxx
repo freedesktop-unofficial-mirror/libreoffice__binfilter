@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_shapeexport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:52:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #include <com/sun/star/text/XText.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
@@ -93,23 +93,23 @@
 #ifndef _COM_SUN_STAR_DRAWING_GLUEPOINT2_HPP_
 #include <com/sun/star/drawing/GluePoint2.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_ALIGNMENT_HPP_
-#include <com/sun/star/drawing/Alignment.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_ESCAPEDIRECTION_HPP_
-#include <com/sun/star/drawing/EscapeDirection.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_ALIGNMENT_HPP_
+// auto strip #include <com/sun/star/drawing/Alignment.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_ESCAPEDIRECTION_HPP_
+// auto strip #include <com/sun/star/drawing/EscapeDirection.hpp>
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
-#include "PropertySetMerger.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
+// auto strip #include "PropertySetMerger.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_SHAPEEXPORT_HXX
-#include "shapeexport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_SHAPEEXPORT_HXX
+// auto strip #include "shapeexport.hxx"
+// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
@@ -119,9 +119,9 @@
 #include "sdxmlexp_impl.hxx"
 #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -131,13 +131,13 @@
 #include "contextid.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>

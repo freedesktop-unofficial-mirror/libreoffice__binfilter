@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_shapeexport2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:53:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,13 +63,13 @@
 #include <com/sun/star/text/XText.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
@@ -99,21 +99,21 @@
 #include "anim.hxx"
 #endif
 
-#ifndef _XMLOFF_SHAPEEXPORT_HXX
-#include "shapeexport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_SHAPEEXPORT_HXX
+// auto strip #include "shapeexport.hxx"
+// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -135,9 +135,9 @@
 #include <vcl/salbtype.hxx>     // FRound
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 
 #include "xmlnmspe.hxx"

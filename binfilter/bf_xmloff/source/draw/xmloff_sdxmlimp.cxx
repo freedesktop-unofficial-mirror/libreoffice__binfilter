@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_sdxmlimp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:52:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,13 +65,13 @@
 #include "xmlscripti.hxx"
 #endif
 
-#ifndef _SDXMLIMP_HXX
-#include "sdxmlimp.hxx"
-#endif
+// auto strip #ifndef _SDXMLIMP_HXX
+// auto strip #include "sdxmlimp.hxx"
+// auto strip #endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
-#include "sdxmlimp_impl.hxx"
-#endif
+// auto strip #ifndef _SDXMLIMP_IMPL_HXX
+// auto strip #include "sdxmlimp_impl.hxx"
+// auto strip #endif
 
 #ifndef _XIMPBODY_HXX
 #include "ximpbody.hxx"
@@ -89,9 +89,9 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -109,9 +109,9 @@
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
-#include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
+// auto strip #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
@@ -125,25 +125,25 @@
 #include <com/sun/star/drawing/XDrawPagesSupplier.hpp>
 #endif
 
-#ifndef _SDPROPLS_HXX
-#include "sdpropls.hxx"
-#endif
+// auto strip #ifndef _SDPROPLS_HXX
+// auto strip #include "sdpropls.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
-#include "xmlexppr.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
+// auto strip #include "xmlexppr.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-#include <com/sun/star/style/XStyle.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
+// auto strip #include <com/sun/star/style/XStyle.hpp>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
