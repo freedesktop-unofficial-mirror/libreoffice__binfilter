@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_uiitems.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:35:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,17 +62,17 @@
 
 #pragma hdrstop
 
-#ifndef _SVX_ITEMTYPE_HXX
-#include <bf_svx/itemtype.hxx>
-#endif
-#ifndef _UNOSETT_HXX
-#include <unosett.hxx>
-#endif
+// auto strip #ifndef _SVX_ITEMTYPE_HXX
+// auto strip #include <bf_svx/itemtype.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOSETT_HXX
+// auto strip #include <unosett.hxx>
+// auto strip #endif
 
-#include "uiparam.hxx"
-#include "swtypes.hxx"
+// auto strip #include "uiparam.hxx"
+// auto strip #include "swtypes.hxx"
 #include "cmdid.h"
-#include "pagedesc.hxx"
+// auto strip #include "pagedesc.hxx"
 #include "uiitems.hxx"
 
 #include "utlui.hrc"
