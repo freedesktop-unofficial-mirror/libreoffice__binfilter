@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:35:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:44:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,13 @@
 #pragma hdrstop
 
 #include "swerror.h"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "docary.hxx"
+// auto strip #include "docary.hxx"
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
 #ifndef _SVX_FONTITEM_HXX //autogen
@@ -86,8 +91,12 @@
 #include <svtools/htmlkywd.hxx>
 #endif
 
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
 #ifndef _FMTCOL_HXX //autogen
