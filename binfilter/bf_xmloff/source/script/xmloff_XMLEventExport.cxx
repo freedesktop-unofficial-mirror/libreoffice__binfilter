@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLEventExport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:35:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:02:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,17 +63,17 @@
 #include "XMLEventExport.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP
-#include <com/sun/star/container/XNameReplace.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP
+// auto strip #include <com/sun/star/container/XNameReplace.hpp>
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -83,17 +83,17 @@
 #include "xmlexp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 namespace binfilter {
 
 
