@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_sdpropls.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:51:54 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:51:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1132,10 +1132,11 @@ void XMLShapeExportPropertyMapper::ContextFilter(
     XMLPropertyState* pCaptionEscAbs = NULL;
 
     // filter properties
-    for( ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-         property != rProperties.end();
-         property++ )
+    for( ::std::vector< XMLPropertyState >::iterator aIter = rProperties.begin();
+         aIter != rProperties.end();
+         ++aIter )
     {
+        XMLPropertyState *property = &(*aIter);
         // find properties with context
         // to prevent writing this property set mnIndex member to -1
         switch( getPropertySetMapper()->GetEntryContextId( property->mnIndex ))
@@ -1427,10 +1428,11 @@ void XMLPageExportPropertyMapper::ContextFilter(
     XMLPropertyState* pTransDuration = NULL;
 
     // filter properties
-    for( ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-         property != rProperties.end();
-         property++ )
+    for( ::std::vector< XMLPropertyState >::iterator aIter = rProperties.begin();
+         aIter != rProperties.end();
+         ++aIter )
     {
+        XMLPropertyState*property = &(*aIter);
         // find properties with context
         // to prevent writing this property set mnIndex member to -1
         switch( getPropertySetMapper()->GetEntryContextId( property->mnIndex ))
