@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_formlayerexport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:59:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,39 +61,39 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_FORMLAYEREXPORT_HXX_
-#include "formlayerexport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
-#include "strings.hxx"
-#endif
-#ifndef _XMLOFF_ELEMENTEXPORT_HXX_
-#include "elementexport.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMLAYEREXPORT_HXX_
+// auto strip #include "formlayerexport.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_FORMS_STRINGS_HXX_
+// auto strip #include "strings.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_ELEMENTEXPORT_HXX_
+// auto strip #include "elementexport.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "xmlnmspe.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #include "layerexport.hxx"
 #endif
-#ifndef _XMLOFF_FORMS_PROPERTYEXPORT_HXX_
-#include "propertyexport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_PROPERTYEXPORT_HXX_
+// auto strip #include "propertyexport.hxx"
+// auto strip #endif
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
 #endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #include "officeforms.hxx"
 #endif
@@ -227,6 +227,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/13 08:48:50  aw
+ *  #117295# minimize_includes step2
+ *
+ *  Revision 1.1  2003/12/05 09:34:14  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.13  2002/10/25 07:58:00  fs
  *  #104402# re-introduced exportAutoStyles
  *
