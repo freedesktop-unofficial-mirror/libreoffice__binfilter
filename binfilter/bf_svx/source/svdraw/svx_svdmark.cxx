@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmark.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:23:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,16 +60,16 @@
  ************************************************************************/
 
 #include "svdmark.hxx"
-#include "svdetc.hxx"
-#include "svdobj.hxx"
-#include "svdpage.hxx"
-#include "svditer.hxx"
-#include "svdpagv.hxx"
-#include "svdopath.hxx" // zur Abschaltung
-#include "svdogrp.hxx"  // des Cache bei
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdobj.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svditer.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdopath.hxx" // zur Abschaltung
+// auto strip #include "svdogrp.hxx"  // des Cache bei
 #include "svdorect.hxx" // GetMarkDescription
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
+// auto strip #include "svdglob.hxx"  // StringCache
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
