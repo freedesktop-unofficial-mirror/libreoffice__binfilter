@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_fillinfo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:07:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,10 +73,10 @@
 
 #include "document.hxx"
 #include "cell.hxx"
-#include "table.hxx"
-#include "attrib.hxx"
+// auto strip #include "table.hxx"
+// auto strip #include "attrib.hxx"
 #include "attarray.hxx"
-#include "markarr.hxx"
+// auto strip #include "markarr.hxx"
 #include "markdata.hxx"
 #include "patattr.hxx"
 #include "poolhelp.hxx"
