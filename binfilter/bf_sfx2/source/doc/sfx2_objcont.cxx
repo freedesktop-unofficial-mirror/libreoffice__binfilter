@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:52:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,11 @@
 #include "accmgr.hxx"
 #include "mnumgr.hxx"
 #include "imgmgr.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
 #include "tbxconf.hxx"
 #include "docfile.hxx"
 #include "objuno.hxx"
@@ -134,6 +139,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _BASMGR_HXX
+#include <basic/basmgr.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
