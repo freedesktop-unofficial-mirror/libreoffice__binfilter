@@ -2,9 +2,9 @@
  *
  *  $RCSfile: formattributes.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:56:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #define _XMLOFF_FORMATTRIBUTES_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
+// auto strip #ifndef _VOS_REFERNCE_HXX_
+// auto strip #include <vos/refernce.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
@@ -388,6 +388,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/08 16:32:18  aw
+ *  #117295#
+ *
+ *  Revision 1.1  2003/12/05 09:34:04  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.7  2003/10/21 08:39:13  obo
  *  INTEGRATION: CWS formcelllinkage (1.6.160); FILE MERGED
  *  2003/10/01 09:55:19 fs 1.6.160.1: #i18994# merging the changes from the CWS fs002
