@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:51:04 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:08:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -451,14 +451,14 @@ namespace binfilter {
 
 /*N*/ void SfxFrameDescriptor::SetActualURL( const String& rURL )
 /*N*/ {
-/*N*/   aActualURL = rURL;
+/*N*/   aActualURL = INetURLObject(rURL);
 /*N*/   if ( pImp->pArgs )
 /*?*/       pImp->pArgs->ClearItem();
 /*N*/ }
 
 /*?*/ void SfxFrameDescriptor::SetActualURL( const INetURLObject& rURL )
 /*?*/ {
-/*?*/   SetActualURL( rURL.GetMainURL( INetURLObject::DECODE_TO_IURI ) );
+/*?*/   SetActualURL(String(rURL.GetMainURL( INetURLObject::DECODE_TO_IURI )));
 /*?*/ }
 
 /*N*/ void SfxFrameDescriptor::SetEditable( BOOL bSet )
