@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:37:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1192,8 +1192,8 @@ public:
     const SwTxtFmtColls *GetTxtFmtColls() const { return pTxtFmtCollTbl; }
     SwTxtFmtColl *MakeTxtFmtColl( const String &rFmtName,
                                   SwTxtFmtColl *pDerivedFrom );
-//STRIP001  SwConditionTxtFmtColl* MakeCondTxtFmtColl( const String &rFmtName,
-//STRIP001                                             SwTxtFmtColl *pDerivedFrom );
+/*NBFF*/    SwConditionTxtFmtColl* MakeCondTxtFmtColl( const String &rFmtName,
+/*NBFF*/                                               SwTxtFmtColl *pDerivedFrom );
 //STRIP001  void DelTxtFmtColl(sal_uInt16 nFmt);
 //STRIP001  void DelTxtFmtColl( SwTxtFmtColl* pColl );
     sal_Bool SetTxtFmtColl( const SwPaM &rRg, SwTxtFmtColl *pFmt,
