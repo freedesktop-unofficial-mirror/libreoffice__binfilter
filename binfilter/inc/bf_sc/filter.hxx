@@ -2,9 +2,9 @@
  *
  *  $RCSfile: filter.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:46:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,14 +85,14 @@ typedef ULONG FltError;
 #define eERR_OK         ERRCODE_NONE                // kein Fehler, alles OK
 #define eERR_OPEN       SCERR_IMPORT_OPEN           // ...
 #define eERR_UNBEK      SCERR_IMPORT_UNKNOWN        // unbekannter Fehler, auch historische Bedeutung
-#define eERR_NOMEM      SCERR_IMPORT_OUTOFMEM       // nicht mehr genuegend Speicher zur Verfuegung
-#define eERR_UNKN_WK    SCERR_IMPORT_UNKNOWN_WK     // unbekanntes WK?-Format (Lotus 1-2-3)
+//STRIP001 #define  eERR_NOMEM      SCERR_IMPORT_OUTOFMEM       // nicht mehr genuegend Speicher zur Verfuegung
+//STRIP001 #define  eERR_UNKN_WK    SCERR_IMPORT_UNKNOWN_WK     // unbekanntes WK?-Format (Lotus 1-2-3)
 #define eERR_FORMAT     SCERR_IMPORT_FORMAT         // Formatfehler beim Lesen (kein Formel-Fehler!)
 #define eERR_NI         SCERR_IMPORT_NI             // Nicht implementierter Filter
-#define eERR_UNKN_BIFF  SCERR_IMPORT_UNKNOWN_BIFF   // unbekanntes BIFF-Format (Excel)
-#define eERR_NI_BIFF    SCERR_IMPORT_NI_BIFF        // nicht implementiertes BIFF-Format
-#define eERR_FILEPASSWD SCERR_IMPORT_FILEPASSWD     // File Passwordgeschuetzt
-#define eERR_INTERN     SCERR_IMPORT_INTERNAL       // interner Fehler
+//STRIP001 #define  eERR_UNKN_BIFF  SCERR_IMPORT_UNKNOWN_BIFF   // unbekanntes BIFF-Format (Excel)
+//STRIP001 #define  eERR_NI_BIFF    SCERR_IMPORT_NI_BIFF        // nicht implementiertes BIFF-Format
+//STRIP001 #define  eERR_FILEPASSWD SCERR_IMPORT_FILEPASSWD     // File Passwordgeschuetzt
+//STRIP001 #define  eERR_INTERN     SCERR_IMPORT_INTERNAL       // interner Fehler
 #define eERR_RNGOVRFLW  SCWARN_IMPORT_RANGE_OVERFLOW// ueberlauf der Zellkoordinaten:
                                                     //  Tabelle abgschnitten auf erlaubtem Bereich
 // mehr Fehlercodes siehe scerrors.hxx
