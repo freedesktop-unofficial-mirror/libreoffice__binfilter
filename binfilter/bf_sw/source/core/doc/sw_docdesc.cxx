@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:05:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,9 +92,9 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _GLOBNAME_HXX //autogen
-#include <tools/globname.hxx>
-#endif
+// auto strip #ifndef _GLOBNAME_HXX //autogen
+// auto strip #include <tools/globname.hxx>
+// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
@@ -108,12 +108,20 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FTNINFO_HXX //autogen
+// auto strip #include <ftninfo.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FTNINFO_HXX //autogen
-#include <ftninfo.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _FESH_HXX //autogen
 #include <fesh.hxx>
 #endif
@@ -123,30 +131,30 @@
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>  //Fuer DelPageDesc
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>    //Fuer DelPageDesc
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Fuer DelPageDesc
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
@@ -171,9 +179,9 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
