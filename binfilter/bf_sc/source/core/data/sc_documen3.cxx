@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:04:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -125,43 +125,48 @@
 
 #include "scitems.hxx"
 #include <bf_svx/langitem.hxx>
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_sfx2/bindings.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "document.hxx"
 #include "attrib.hxx"
-#include "cell.hxx"
-#include "table.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "table.hxx"
 #include "rangenam.hxx"
 #include "dbcolect.hxx"
 #include "pivot.hxx"
 #include "docpool.hxx"
 #include "poolhelp.hxx"
-#include "autoform.hxx"
-#include "rangelst.hxx"
-#include "chartarr.hxx"
+// auto strip #include "autoform.hxx"
+// auto strip #include "rangelst.hxx"
+// auto strip #include "chartarr.hxx"
 #include "refupdat.hxx"
 #include "docoptio.hxx"
 #include "viewopti.hxx"
 #include "scextopt.hxx"
-#include "brdcst.hxx"
-#include "bcaslot.hxx"
+// auto strip #include "brdcst.hxx"
+// auto strip #include "bcaslot.hxx"
 #include "tablink.hxx"
-#include "markdata.hxx"
+// auto strip #include "markdata.hxx"
 #include "conditio.hxx"
-#include "dociter.hxx"
+// auto strip #include "dociter.hxx"
 #include "detdata.hxx"
-#include "detfunc.hxx"
+// auto strip #include "detfunc.hxx"
 #include "scmod.hxx"        // SC_MOD
 #include "inputopt.hxx"     // GetExpandRefs
-#include "chartlis.hxx"
+// auto strip #include "chartlis.hxx"
 #include "bf_sc.hrc"            // SID_LINK
 #include "hints.hxx"
 #include "dpobject.hxx"
-#include "unoguard.hxx"
+// auto strip #include "unoguard.hxx"
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 namespace binfilter {
 using namespace ::com::sun::star;
 
