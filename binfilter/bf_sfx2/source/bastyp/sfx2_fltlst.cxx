@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltlst.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:32:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,17 +64,17 @@
 //*****************************************************************************************************************
 //  includes
 //*****************************************************************************************************************
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #include "sfxuno.hxx"
 
