@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Edit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:48:03 $
+ *  last change: $Author: obo $ $Date: 2004-08-13 14:08:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -386,7 +386,7 @@ IMPL_LINK(OEditControl, OnKeyPressed, void*, EMPTYARG)
     InterfaceRef  xParent = xFComp->getParent();
     Reference<XSubmit>  xSubmit(xParent, UNO_QUERY);
     if (xSubmit.is())
-        xSubmit->submit( Reference<XControl>(), MouseEvent() );
+        xSubmit->submit( Reference<XControl>(), ::com::sun::star::awt::MouseEvent() );
     return 0L;
 }
 
