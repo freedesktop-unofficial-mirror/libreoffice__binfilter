@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:42:10 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:11:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2455,7 +2455,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         if( ((SwScriptField*)pFld)->IsCodeURL() )
         {
             aCode.AssignAscii( "// @url: " );
-            aCode += INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+            aCode += String(INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() ));
         }
         else
             aCode = ((SwScriptField*)pFld)->GetCode();
