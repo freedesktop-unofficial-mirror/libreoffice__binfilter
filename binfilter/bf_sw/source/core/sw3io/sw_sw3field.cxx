@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:42:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,7 +65,7 @@
 #include <stdlib.h>
 
 #include <stdio.h>
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 
 #ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
@@ -73,9 +73,9 @@
 #ifndef _SFXMACITEM_HXX //autogen
 #include <svtools/macitem.hxx>
 #endif
-#ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
-#endif
+// auto strip #ifndef _ZFORLIST_HXX //autogen
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
 #ifndef _ZFORMAT_HXX //autogen
 #include <svtools/zformat.hxx>
 #endif
@@ -88,7 +88,7 @@
 
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #ifndef _FMTINFMT_HXX //autogen
@@ -98,11 +98,15 @@
 #include <fmtfld.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "docary.hxx"
+// auto strip #include "docary.hxx"
 #include "sw3imp.hxx"
-#include "sw3ids.hxx"
-#include "fldbas.hxx"
+// auto strip #include "sw3ids.hxx"
+// auto strip #include "fldbas.hxx"
 #include "flddat.hxx"
 #include "docufld.hxx"
 #include "chpfld.hxx"
