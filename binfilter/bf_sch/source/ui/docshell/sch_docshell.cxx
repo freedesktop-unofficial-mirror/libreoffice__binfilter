@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 12:55:22 $
+ *  last change: $Author: kz $ $Date: 2005-01-21 13:17:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -816,6 +816,35 @@ using namespace ::com::sun::star;
 /*N*/               // (noch) keine ungesicherten Aenderungen im Model
 /*N*/               if (bRet)
 /*N*/               {
+
+                        // #i39672# convert range strings to new XML compatible format
+
+                        // Note: Formerly, the parent storage was queried to
+                        // find out whether it is a Writer or a Calc.  This
+                        // worked, because it was done in SaveAs().  It is
+                        // better to do the conversion right after loading,
+                        // however here we have no parent.  So both conversions
+                        // are called.  This works, because the things written
+                        // to the SomeData strings is so different, that both
+                        // routines won't convert the data for the wrong
+                        // format. (Note: only the conversion from old to new,
+                        // i.e. the call with parameter TRUE, work like this, as
+                        // the new format is the same for both)
+
+                        // try Writer
+                        bool bConverted =
+                            pChDoc->GetChartData()->ConvertChartRangeForWriter( TRUE );
+
+                        // try Calc
+                        if( ! bConverted )
+                        {
+                            SchMemChart* pData = pChDoc->GetChartData();
+                            if( pData &&
+                                pData->SomeData3().Len() > 0 &&
+                                (pData->GetChartRange().maRanges.size() == 0) )
+                                bConverted = pData->ConvertChartRangeForCalc( TRUE );
+                        }
+
 /*N*/                   pChDoc->SetChanged( FALSE );
 /*N*/                   pChDoc->NewOrLoadCompleted( DOC_LOADED );
 /*N*/               }
@@ -1116,28 +1145,33 @@ using namespace ::com::sun::star;
 /*N*/                 if( pParent )
 /*N*/                 {
 /*?*/                     // determine which is parent application
-/*?*/                      DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvGlobalName aGlobalName;
-//STRIP001 /*?*/                     ULONG nFileFormat;
-//STRIP001 /*?*/                     String aAppName, aFullName, aShortName;
-//STRIP001 /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,
-//STRIP001 /*?*/                                         &aAppName, &aFullName, &aShortName,
-//STRIP001 /*?*/                                         SOFFICE_FILEFORMAT_60 );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                     // calc does this conversion itself except when object was
-//STRIP001 /*?*/                     // copied to clipboard. In this case SomeData3 was filled before.
-//STRIP001 /*?*/                     if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
-//STRIP001 /*?*/                     {
-//STRIP001 /*?*/                         SchMemChart* pData = pChDoc->GetChartData();
-//STRIP001 /*?*/                         if( pData &&
-//STRIP001 /*?*/                             pData->SomeData3().Len() > 0 &&
-//STRIP001 /*?*/                             (pData->GetChartRange().maRanges.size() == 0) )
-//STRIP001 /*?*/                         {
-//STRIP001 /*?*/                             pData->ConvertChartRangeForCalc( TRUE );
-//STRIP001 /*?*/                         }
-//STRIP001 /*?*/                     }
-//STRIP001 /*?*/                     else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
-//STRIP001 /*?*/                         pChDoc->GetChartData()->ConvertChartRangeForWriter( TRUE );
-/*N*/                 }
+/*?*/                      DBG_BF_ASSERT(0, "STRIP");
+
+DBG_ERROR( "Conversion routine called" );
+fprintf( stderr,  "BM: Conversion routine called\n" );
+SvGlobalName aGlobalName;
+ /*?*/                     ULONG nFileFormat;
+ /*?*/                     String aAppName, aFullName, aShortName;
+ /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,
+ /*?*/                                         &aAppName, &aFullName, &aShortName,
+ /*?*/                                         SOFFICE_FILEFORMAT_60 );
+ /*?*/
+ /*?*/                     // calc does this conversion itself except when object was
+ /*?*/                     // copied to clipboard. In this case SomeData3 was filled before.
+ /*?*/                     if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
+ /*?*/                     {
+ /*?*/                         SchMemChart* pData = pChDoc->GetChartData();
+ /*?*/                         if( pData &&
+ /*?*/                             pData->SomeData3().Len() > 0 &&
+ /*?*/                             (pData->GetChartRange().maRanges.size() == 0) )
+ /*?*/                         {
+ /*?*/                             pData->ConvertChartRangeForCalc( TRUE );
+ /*?*/                         }
+ /*?*/                     }
+ /*?*/                     else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
+ /*?*/                         pChDoc->GetChartData()->ConvertChartRangeForWriter( TRUE );
+
+ /*N*/                 }
 /*N*/             }
 /*N*/
 /*N*/           bRet = aFilter.Export();
