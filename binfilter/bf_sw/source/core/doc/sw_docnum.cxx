@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnum.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:08:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,18 +66,18 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _DATE_HXX //autogen
-#include <tools/date.hxx>
-#endif
-#ifndef _TIME_HXX //autogen
-#include <tools/time.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
@@ -85,33 +85,41 @@
 #ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
-#ifndef _DOCTXM_HXX
-#include <doctxm.hxx>       // pTOXBaseRing
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCTXM_HXX
+// auto strip #include <doctxm.hxx>     // pTOXBaseRing
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
 #endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
-#endif
+// auto strip #ifndef _ROLBCK_HXX
+// auto strip #include <rolbck.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -121,18 +129,18 @@
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _PAMTYP_HXX
-#include <pamtyp.hxx>
-#endif
+// auto strip #ifndef _PAMTYP_HXX
+// auto strip #include <pamtyp.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
