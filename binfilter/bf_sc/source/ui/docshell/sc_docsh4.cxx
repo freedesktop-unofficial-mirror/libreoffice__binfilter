@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:47:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,81 +71,81 @@
 #include <math.h>       // prevent conflict between exception and std::exception
 #endif
 
-#include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/docfilt.hxx>
+// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <svtools/ehdl.hxx>
 #include <svtools/sbxcore.hxx>
-#include <bf_sfx2/printer.hxx>
+// auto strip #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/request.hxx>
 #include <svtools/sfxecode.hxx>
 #include <bf_sfx2/topfrm.hxx>
-#include <bf_offmgr/ofaitem.hxx>
+// auto strip #include <bf_offmgr/ofaitem.hxx>
 #include <bf_offmgr/sbaitems.hxx>
-#include <sot/formats.hxx>
-#include <svtools/printdlg.hxx>
+// auto strip #include <sot/formats.hxx>
+// auto strip #include <svtools/printdlg.hxx>
 #include <svtools/whiter.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
-#include <tools/multisel.hxx>
-#include <bf_svx/drawitem.hxx>
-#include <bf_svx/fmview.hxx>
-#include <bf_svx/pageitem.hxx>
-#include <bf_svx/svditer.hxx>
-#include <bf_svx/svdpage.hxx>
-#include <bf_sch/schdll.hxx>
-#ifndef _SVX_FMSHELL_HXX //autogen
-#include <bf_svx/fmshell.hxx>
-#endif
-#ifndef _SFX_PASSWD_HXX
-#include <bf_sfx2/passwd.hxx>
-#endif
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
-#include <svtools/PasswordHelper.hxx>
-#endif
+// auto strip #include <tools/multisel.hxx>
+// auto strip #include <bf_svx/drawitem.hxx>
+// auto strip #include <bf_svx/fmview.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #include <bf_sch/schdll.hxx>
+// auto strip #ifndef _SVX_FMSHELL_HXX //autogen
+// auto strip #include <bf_svx/fmshell.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PASSWD_HXX
+// auto strip #include <bf_sfx2/passwd.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_PASSWORDHELPER_HXX
+// auto strip #include <svtools/PasswordHelper.hxx>
+// auto strip #endif
 
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "bf_sc.hrc"
-#include "stlsheet.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "stlpool.hxx"
 #include "appoptio.hxx"
 #include "globstr.hrc"
-#include "global.hxx"
-#include "styledlg.hxx"
-#include "hfedtdlg.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "styledlg.hxx"
+// auto strip #include "hfedtdlg.hxx"
 #include "dbdocfun.hxx"
 #include "printfun.hxx"              // DrawToDev
-#include "viewdata.hxx"
+// auto strip #include "viewdata.hxx"
 #include "tabvwsh.hxx"
-#include "impex.hxx"
-#include "attrib.hxx"
-#include "corodlg.hxx"
-#include "undodat.hxx"
-#include "autostyl.hxx"
-#include "undocell.hxx"
-#include "undotab.hxx"
-#include "inputhdl.hxx"
+// auto strip #include "impex.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "corodlg.hxx"
+// auto strip #include "undodat.hxx"
+// auto strip #include "autostyl.hxx"
+// auto strip #include "undocell.hxx"
+// auto strip #include "undotab.hxx"
+// auto strip #include "inputhdl.hxx"
 #include "dbcolect.hxx"
-#include "servobj.hxx"
-#include "rangenam.hxx"
+// auto strip #include "servobj.hxx"
+// auto strip #include "rangenam.hxx"
 #include "scmod.hxx"
-#include "scendlg.hxx"
-#include "chgviset.hxx"
-#include "reffact.hxx"
-#include "chartlis.hxx"
-#include "waitoff.hxx"
+// auto strip #include "scendlg.hxx"
+// auto strip #include "chgviset.hxx"
+// auto strip #include "reffact.hxx"
+// auto strip #include "chartlis.hxx"
+// auto strip #include "waitoff.hxx"
 #include "tablink.hxx"      // ScDocumentLoader statics
-#include "drwlayer.hxx"
+// auto strip #include "drwlayer.hxx"
 #include "docoptio.hxx"
-#include "undostyl.hxx"
-#include "rangeseq.hxx"
-#include "chgtrack.hxx"
-#include "printopt.hxx"
+// auto strip #include "undostyl.hxx"
+// auto strip #include "rangeseq.hxx"
+// auto strip #include "chgtrack.hxx"
+// auto strip #include "printopt.hxx"
 
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
