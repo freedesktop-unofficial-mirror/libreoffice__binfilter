@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdsob.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:30:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,7 +71,7 @@
 #endif
 
 #ifndef _STRING_H
-#include <tools/string.hxx> //wg. memset
+// auto strip #include <tools/string.hxx> //wg. memset
 #define _STRING_H
 #endif
 namespace binfilter {

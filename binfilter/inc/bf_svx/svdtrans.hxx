@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:37:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:30:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,25 +62,25 @@
 #ifndef _SVDTRANS_HXX
 #define _SVDTRANS_HXX
 
-#ifndef _GEN_HXX //autogen
-#include <tools/gen.hxx>
-#endif
+// auto strip #ifndef _GEN_HXX //autogen
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 
-#ifndef _FRACT_HXX //autogen
-#include <tools/fract.hxx>
-#endif
+// auto strip #ifndef _FRACT_HXX //autogen
+// auto strip #include <tools/fract.hxx>
+// auto strip #endif
 
-#ifndef _MAPMOD_HXX //autogen
-#include <vcl/mapmod.hxx>
-#endif
+// auto strip #ifndef _MAPMOD_HXX //autogen
+// auto strip #include <vcl/mapmod.hxx>
+// auto strip #endif
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #include <vcl/field.hxx>
 namespace binfilter {

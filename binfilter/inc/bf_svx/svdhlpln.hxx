@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdhlpln.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:29:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <tools/gen.hxx>
 #endif
 
-#ifndef _POINTR_HXX //autogen
-#include <vcl/pointr.hxx>
-#endif
+// auto strip #ifndef _POINTR_HXX //autogen
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
 
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
