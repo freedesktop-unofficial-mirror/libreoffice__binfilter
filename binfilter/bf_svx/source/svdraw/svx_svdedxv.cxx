@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedxv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:21:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <svtools/accessibilityoptions.hxx>
+// auto strip #endif
 
 #include "svdedxv.hxx"
 #include <svtools/solar.hrc>
@@ -70,69 +70,69 @@
 #include <tools/string.h>
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
 
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _SV_HATCH_HXX //autogen
-#include <vcl/hatch.hxx>
-#endif
+// auto strip #ifndef _SV_HATCH_HXX //autogen
+// auto strip #include <vcl/hatch.hxx>
+// auto strip #endif
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
-#ifndef _EDITSTAT_HXX //autogen
-#include <editstat.hxx>
-#endif
+// auto strip #ifndef _EDITSTAT_HXX //autogen
+// auto strip #include <editstat.hxx>
+// auto strip #endif
 
-#ifndef _CONFIG_HXX
-#include <tools/config.hxx>
-#endif
+// auto strip #ifndef _CONFIG_HXX
+// auto strip #include <tools/config.hxx>
+// auto strip #endif
 
-#ifndef _SV_CURSOR_HXX //autogen
-#include <vcl/cursor.hxx>
-#endif
+// auto strip #ifndef _SV_CURSOR_HXX //autogen
+// auto strip #include <vcl/cursor.hxx>
+// auto strip #endif
 
 
-#include "editobj.hxx"
-#include "outlobj.hxx"
-#include "scripttypeitem.hxx"
+// auto strip #include "editobj.hxx"
+// auto strip #include "outlobj.hxx"
+// auto strip #include "scripttypeitem.hxx"
 #include "svditext.hxx"
+// auto strip #include "svdoutl.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdotext.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svditer.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdetc.hxx"   // fuer GetDraftFillColor
+// auto strip #include "svdibrow.hxx"
 #include "svdoutl.hxx"
-#include "svdxout.hxx"
-#include "svdotext.hxx"
-#include "svdundo.hxx"
-#include "svditer.hxx"
-#include "svdpagv.hxx"
-#include "svdpage.hxx"
-#include "svdetc.hxx"   // fuer GetDraftFillColor
-#include "svdibrow.hxx"
-#include "svdoutl.hxx"
-#include "svddrgv.hxx"  // fuer SetSolidDragging()
+// auto strip #include "svddrgv.hxx"  // fuer SetSolidDragging()
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
+// auto strip #include "svdglob.hxx"  // StringCache
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
-#ifndef _SVX_ADJITEM_HXX //autogen
-#include "adjitem.hxx"
-#endif
+// auto strip #ifndef _SVX_ADJITEM_HXX //autogen
+// auto strip #include "adjitem.hxx"
+// auto strip #endif
 
 // #98988#
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
