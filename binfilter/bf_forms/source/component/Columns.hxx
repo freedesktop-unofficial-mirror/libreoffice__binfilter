@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Columns.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:43:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #ifndef _FRM_COLUMNS_HXX
 #define _FRM_COLUMNS_HXX
 
-#ifndef _CPPUHELPER_COMPONENT_HXX_
-#include <cppuhelper/component.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
+// auto strip #include <cppuhelper/component.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
 #endif
-#ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
-#include <comphelper/propagg.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
+// auto strip #include <comphelper/propagg.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
@@ -79,15 +79,15 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
 #include <com/sun/star/io/XObjectInputStream.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
+// auto strip #endif
 #ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
 #endif
