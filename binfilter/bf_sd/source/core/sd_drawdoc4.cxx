@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:28:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,26 +60,26 @@
  ************************************************************************/
 
 #ifndef SVX_LIGHT
-#include <tools/urlobj.hxx>
-#include <bf_sfx2/docfile.hxx>
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
-#ifndef _OSPLCFG_HXX
-#include <bf_offmgr/osplcfg.hxx>
-#endif
-#include "sdoutl.hxx"
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif#else
-#ifndef _OUTLINER_HXX //autogen wg. Outliner
-#include <bf_svx/outliner.hxx>
-#endif
+// auto strip #ifndef _OSPLCFG_HXX
+// auto strip #include <bf_offmgr/osplcfg.hxx>
+// auto strip #endif
+// auto strip #include "sdoutl.hxx"
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif#else
+// auto strip #ifndef _OUTLINER_HXX //autogen wg. Outliner
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
 #ifdef MAC
-#include "::ui:inc:docshell.hxx"
+// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/docshell.hxx"
@@ -102,7 +102,7 @@
 #define ITEMID_FRAMEDIR             EE_PARA_WRITINGDIR
 
 #include <bf_svx/svxids.hrc>
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_svx/lspcitem.hxx>
@@ -111,27 +111,32 @@
 #include <bf_svx/dialmgr.hxx>                   // SVX_RESSTR
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/xtable.hxx>
-#ifndef _SVX_XIT_HXX //autogen
-#include <bf_svx/xit.hxx>
+// auto strip #ifndef _SVX_XIT_HXX //autogen
+// auto strip #include <bf_svx/xit.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_XLINEIT0_HXX //autogen
+// auto strip #include <bf_svx/xlineit0.hxx>
+// auto strip #endif
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
 #endif
-#ifndef _SVX_XLINEIT0_HXX //autogen
-#include <bf_svx/xlineit0.hxx>
-#endif
-#ifndef _SDSHITM_HXX //autogen
-#include <bf_svx/sdshitm.hxx>
-#endif
+
+// auto strip #ifndef _SDSHITM_HXX //autogen
+// auto strip #include <bf_svx/sdshitm.hxx>
+// auto strip #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
 #endif
-#ifndef SVX_XFILLIT0_HXX //autogen
-#include <bf_svx/xfillit0.hxx>
-#endif
-#ifndef _SDSHCITM_HXX //autogen
-#include <bf_svx/sdshcitm.hxx>
-#endif
-#ifndef _EDITSTAT_HXX //autogen
-#include <bf_svx/editstat.hxx>
-#endif
+// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
+// auto strip #include <bf_svx/xfillit0.hxx>
+// auto strip #endif
+// auto strip #ifndef _SDSHCITM_HXX //autogen
+// auto strip #include <bf_svx/sdshcitm.hxx>
+// auto strip #endif
+// auto strip #ifndef _EDITSTAT_HXX //autogen
+// auto strip #include <bf_svx/editstat.hxx>
+// auto strip #endif
 #ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
 #endif
@@ -204,12 +209,12 @@
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-#ifndef _SVDITER_HXX //autogen
-#include <bf_svx/svditer.hxx>
-#endif
-#ifndef _SVDOGRP_HXX //autogen
-#include <bf_svx/svdogrp.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
 #ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
 #endif
@@ -219,27 +224,27 @@
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
 #endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
+// auto strip #include <com/sun/star/linguistic2/XHyphenator.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
 #ifndef _OUTLOBJ_HXX
 #include <bf_svx/outlobj.hxx>
 #endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
-#include <bf_svx/langitem.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
@@ -248,10 +253,10 @@
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
 #include "glob.hrc"
-#include "glob.hxx"
+// auto strip #include "glob.hxx"
 #include "stlpool.hxx"
 #include "helpids.h"
-#include "sdiocmpt.hxx"
+// auto strip #include "sdiocmpt.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
