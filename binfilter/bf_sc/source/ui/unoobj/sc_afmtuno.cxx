@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_afmtuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:18:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,16 +60,16 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include "scitems.hxx"
-#include <tools/debug.hxx>
-#include <tools/shl.hxx>
-#include <svtools/poolitem.hxx>
-#include <bf_svx/unomid.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <tools/debug.hxx>
+// auto strip #include <tools/shl.hxx>
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #include <bf_svx/unomid.hxx>
 #ifndef SC_UNOWIDS_HXX
 #include "unowids.hxx"
 #endif
@@ -78,81 +78,81 @@
 #include <rtl/uuid.h>
 #endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
-#include <com/sun/star/table/BorderLine.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
+// auto strip #include <com/sun/star/table/BorderLine.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
-#include <com/sun/star/table/ShadowLocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
-#include <com/sun/star/table/TableBorder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
-#include <com/sun/star/table/ShadowFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
-#include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
-#include <com/sun/star/table/CellContentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
-#include <com/sun/star/table/TableOrientation.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
+// auto strip #include <com/sun/star/table/ShadowLocation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
+// auto strip #include <com/sun/star/table/TableBorder.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
+// auto strip #include <com/sun/star/table/ShadowFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
+// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
+// auto strip #include <com/sun/star/table/CellContentType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
+// auto strip #include <com/sun/star/table/TableOrientation.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
 #include <com/sun/star/table/CellHoriJustify.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
-#include <com/sun/star/util/SortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
-#include <com/sun/star/util/SortFieldType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
+// auto strip #include <com/sun/star/util/SortField.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
+// auto strip #include <com/sun/star/util/SortFieldType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
 #include <com/sun/star/table/CellOrientation.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
-#include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SIMPLEFONTMETRIC_HPP_
-#include <com/sun/star/awt/SimpleFontMetric.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTWEIGHT_HPP_
-#include <com/sun/star/awt/FontWeight.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-#include <com/sun/star/awt/FontSlant.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_CHARSET_HPP_
-#include <com/sun/star/awt/CharSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
-#include <com/sun/star/awt/FontDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-#include <com/sun/star/awt/FontWidth.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
+// auto strip #include <com/sun/star/table/CellAddress.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_SIMPLEFONTMETRIC_HPP_
+// auto strip #include <com/sun/star/awt/SimpleFontMetric.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWEIGHT_HPP_
+// auto strip #include <com/sun/star/awt/FontWeight.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
+// auto strip #include <com/sun/star/awt/FontSlant.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_CHARSET_HPP_
+// auto strip #include <com/sun/star/awt/CharSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/awt/FontDescriptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
+// auto strip #include <com/sun/star/awt/FontWidth.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XFONT_HPP_
 #include <com/sun/star/awt/XFont.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_FONTTYPE_HPP_
-#include <com/sun/star/awt/FontType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP_
-#include <com/sun/star/awt/FontUnderline.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTSTRIKEOUT_HPP_
-#include <com/sun/star/awt/FontStrikeout.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
-#include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
-#include <com/sun/star/awt/FontPitch.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTTYPE_HPP_
+// auto strip #include <com/sun/star/awt/FontType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP_
+// auto strip #include <com/sun/star/awt/FontUnderline.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSTRIKEOUT_HPP_
+// auto strip #include <com/sun/star/awt/FontStrikeout.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
+// auto strip #include <com/sun/star/awt/FontFamily.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
+// auto strip #include <com/sun/star/awt/FontPitch.hpp>
+// auto strip #endif
 
 #include "afmtuno.hxx"
 #include "miscuno.hxx"

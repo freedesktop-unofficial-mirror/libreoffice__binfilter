@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_appluno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:18:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,12 +60,12 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <tools/shl.hxx>
+// auto strip #include <tools/shl.hxx>
 #include <cppuhelper/factory.hxx>
 #include <osl/diagnose.h>
 #include <bf_sfx2/app.hxx>
