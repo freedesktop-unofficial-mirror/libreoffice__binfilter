@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_drwlayer.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:06:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -78,40 +78,40 @@
 #include <bf_svx/objfac3d.hxx>
 #include <bf_svx/svdoutl.hxx>
 #include <bf_svx/svditer.hxx>
-#include <bf_svx/svdocapt.hxx>
-#include <bf_svx/svdocirc.hxx>
+// auto strip #include <bf_svx/svdocapt.hxx>
+// auto strip #include <bf_svx/svdocirc.hxx>
 #include <bf_svx/svdoedge.hxx>
-#include <bf_svx/svdograf.hxx>
+// auto strip #include <bf_svx/svdograf.hxx>
 #include <bf_svx/svdoole2.hxx>
 #include <bf_svx/svdundo.hxx>
-#include <bf_svx/unolingu.hxx>
+// auto strip #include <bf_svx/unolingu.hxx>
 #include <bf_svx/drawitem.hxx>
 #ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
 #endif
-#include <bf_sfx2/viewsh.hxx>
-#include <bf_sfx2/docinf.hxx>
+// auto strip #include <bf_sfx2/viewsh.hxx>
+// auto strip #include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <so3/ipobj.hxx>
-#include <so3/svstor.hxx>
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #include <so3/svstor.hxx>
 #include <svtools/pathoptions.hxx>
 #include <svtools/itempool.hxx>
-#include <vcl/virdev.hxx>
+// auto strip #include <vcl/virdev.hxx>
 #include <bf_offmgr/app.hxx>
-#include <bf_sch/schdll.hxx>
-#include <bf_sch/schdll0.hxx>
-#include <bf_sch/memchrt.hxx>
+// auto strip #include <bf_sch/schdll.hxx>
+// auto strip #include <bf_sch/schdll0.hxx>
+// auto strip #include <bf_sch/memchrt.hxx>
 
 #include "drwlayer.hxx"
 #include "drawpage.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "rechead.hxx"
 #include "userdat.hxx"
-#include "markdata.hxx"
+// auto strip #include "markdata.hxx"
 #include "globstr.hrc"
 #include "scmod.hxx"
-#include "chartarr.hxx"
+// auto strip #include "chartarr.hxx"
 namespace binfilter {
 
 #define DET_ARROW_OFFSET    1000
