@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:58:44 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:36:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,108 +144,108 @@ namespace binfilter {
     includes plain text at a given position into
      the appropriate token
  --------------------------------------------------*/
-//STRIP001 USHORT lcl_ConvertTextIntoPattern( String& rPattern,
-//STRIP001                                  xub_StrLen nStart, xub_StrLen nEnd )
-//STRIP001 {
-//STRIP001  String sTmp; sTmp.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<X ,,"));
-//STRIP001  sTmp += TOX_STYLE_DELIMITER;
-//STRIP001  sTmp += rPattern.Copy( nStart, nEnd - nStart);
-//STRIP001  rPattern.Erase( nStart, nEnd - nStart);
-//STRIP001  sTmp += TOX_STYLE_DELIMITER;
-//STRIP001  sTmp += '>';
-//STRIP001  rPattern.Insert(sTmp, nStart);
-//STRIP001  // return the offset of the new end position
-//STRIP001  return 8;
-//STRIP001 }
+USHORT lcl_ConvertTextIntoPattern( String& rPattern,
+                                    xub_StrLen nStart, xub_StrLen nEnd )
+{
+    String sTmp; sTmp.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<X ,,"));
+    sTmp += TOX_STYLE_DELIMITER;
+    sTmp += rPattern.Copy( nStart, nEnd - nStart);
+    rPattern.Erase( nStart, nEnd - nStart);
+    sTmp += TOX_STYLE_DELIMITER;
+    sTmp += '>';
+    rPattern.Insert(sTmp, nStart);
+    // return the offset of the new end position
+    return 8;
+}
 
 /* -----------------23.09.99 13:59-------------------
 
  --------------------------------------------------*/
-//STRIP001 struct PatternIni
-//STRIP001 {
-//STRIP001  USHORT n1;
-//STRIP001  USHORT n2;
-//STRIP001  USHORT n3;
-//STRIP001  USHORT n4;
-//STRIP001  USHORT n5;
-//STRIP001 };
-//STRIP001 const PatternIni aPatternIni[] =
-//STRIP001 {
-//STRIP001  {USHRT_MAX},    //Header - no pattern
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},   //AUTH_TYPE_ARTICLE,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_BOOK,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_BOOKLET,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CONFERENCE,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INBOOK,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INCOLLECTION,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INPROCEEDINGS,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_JOURNAL,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MANUAL,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MASTERSTHESIS,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MISC,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_PHDTHESIS,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_PROCEEDINGS,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_TECHREPORT,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_UNPUBLISHED,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_EMAIL,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, AUTH_FIELD_URL, USHRT_MAX},//AUTH_TYPE_WWW,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM1,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM2,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM3,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM4,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM5,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_YEAR,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_URL,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM1,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM2,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM3,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM4,
-//STRIP001  {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM5,
-//STRIP001  {USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX}
-//STRIP001 };
+struct PatternIni
+{
+    USHORT n1;
+    USHORT n2;
+    USHORT n3;
+    USHORT n4;
+    USHORT n5;
+};
+const PatternIni aPatternIni[] =
+{
+    {USHRT_MAX},    //Header - no pattern
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},   //AUTH_TYPE_ARTICLE,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_BOOK,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_BOOKLET,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CONFERENCE,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INBOOK,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INCOLLECTION,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_INPROCEEDINGS,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_JOURNAL,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MANUAL,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MASTERSTHESIS,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_MISC,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_PHDTHESIS,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_PROCEEDINGS,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_TECHREPORT,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_UNPUBLISHED,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_EMAIL,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, AUTH_FIELD_URL, USHRT_MAX},//AUTH_TYPE_WWW,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM1,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM2,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM3,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM4,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_TYPE_CUSTOM5,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_YEAR,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_URL,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM1,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM2,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM3,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM4,
+    {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM5,
+    {USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX}
+};
 /* -----------------23.09.99 13:58-------------------
 
  --------------------------------------------------*/
-//STRIP001 String lcl_GetAuthPattern(USHORT nTypeId)
-//STRIP001 {
-//STRIP001  String sAuth; sAuth.AssignAscii( SwForm::aFormAuth );
-//STRIP001  sAuth.Insert(' ', 2);
-//STRIP001  //
-//STRIP001  PatternIni aIni = aPatternIni[nTypeId];
-//STRIP001
-//STRIP001  //TODO: create pattern for authorities
-//STRIP001  // create a level for each type of authorities
-//STRIP001  String sRet = sAuth;
-//STRIP001  String sTmp( String::CreateFromInt32( AUTH_FIELD_IDENTIFIER ));
-//STRIP001  if(sTmp.Len() < 2)
-//STRIP001      sTmp.Insert('0', 0);
-//STRIP001  sRet.Insert(sTmp, 2);
-//STRIP001  sRet.AppendAscii( RTL_CONSTASCII_STRINGPARAM( ": " ));
-//STRIP001  lcl_ConvertTextIntoPattern(sRet, sRet.Len() - 2, sRet.Len());
-//STRIP001  USHORT nVals[5];
-//STRIP001  nVals[0] = aIni.n1;
-//STRIP001  nVals[1] = aIni.n2;
-//STRIP001  nVals[2] = aIni.n3;
-//STRIP001  nVals[3] = aIni.n4;
-//STRIP001  nVals[4] = aIni.n5;
-//STRIP001
-//STRIP001  for(USHORT i = 0; i < 5 ; i++)
-//STRIP001  {
-//STRIP001      if(nVals[i] == USHRT_MAX)
-//STRIP001          break;
-//STRIP001      if(i > 0)
-//STRIP001      {
-//STRIP001          sRet.AppendAscii( RTL_CONSTASCII_STRINGPARAM( ", " ));
-//STRIP001          lcl_ConvertTextIntoPattern(sRet, sRet.Len() - 2, sRet.Len());
-//STRIP001      }
-//STRIP001      sRet += sAuth;
-//STRIP001      sTmp = String::CreateFromInt32( nVals[ i ] );
-//STRIP001      if(sTmp.Len() < 2)
-//STRIP001          sTmp.Insert('0', 0);
-//STRIP001      sRet.Insert(sTmp, sRet.Len() - 2);
-//STRIP001  }
-//STRIP001  return sRet;
-//STRIP001 }
+String lcl_GetAuthPattern(USHORT nTypeId)
+{
+    String sAuth; sAuth.AssignAscii( SwForm::aFormAuth );
+    sAuth.Insert(' ', 2);
+    //
+    PatternIni aIni = aPatternIni[nTypeId];
+
+    //TODO: create pattern for authorities
+    // create a level for each type of authorities
+    String sRet = sAuth;
+    String sTmp( String::CreateFromInt32( AUTH_FIELD_IDENTIFIER ));
+    if(sTmp.Len() < 2)
+        sTmp.Insert('0', 0);
+    sRet.Insert(sTmp, 2);
+    sRet.AppendAscii( RTL_CONSTASCII_STRINGPARAM( ": " ));
+    lcl_ConvertTextIntoPattern(sRet, sRet.Len() - 2, sRet.Len());
+    USHORT nVals[5];
+    nVals[0] = aIni.n1;
+    nVals[1] = aIni.n2;
+    nVals[2] = aIni.n3;
+    nVals[3] = aIni.n4;
+    nVals[4] = aIni.n5;
+
+    for(USHORT i = 0; i < 5 ; i++)
+    {
+        if(nVals[i] == USHRT_MAX)
+            break;
+        if(i > 0)
+        {
+            sRet.AppendAscii( RTL_CONSTASCII_STRINGPARAM( ", " ));
+            lcl_ConvertTextIntoPattern(sRet, sRet.Len() - 2, sRet.Len());
+        }
+        sRet += sAuth;
+        sTmp = String::CreateFromInt32( nVals[ i ] );
+        if(sTmp.Len() < 2)
+            sTmp.Insert('0', 0);
+        sRet.Insert(sTmp, sRet.Len() - 2);
+    }
+    return sRet;
+}
 /*--------------------------------------------------------------------
      Beschreibung:  Verzeichnis-Markierungen D/Ctor
  --------------------------------------------------------------------*/
@@ -432,7 +432,7 @@ namespace binfilter {
 /*N*/       for( USHORT i = 1; i < GetFormMax(); ++i, ++nPoolId )    // Nr 0 ist der Titel
 /*N*/       {
 /*N*/           if(TOX_AUTHORITIES == nType)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetPattern(i, lcl_GetAuthPattern(i));
+/*?*/           SetPattern(i, lcl_GetAuthPattern(i));
 /*N*/           else
 /*N*/               SetPattern( i, sStr );
 /*N*/
