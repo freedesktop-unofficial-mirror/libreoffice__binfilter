@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:13:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,62 +66,73 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
 
-#ifndef _TOOLS_RESID_HXX
-#include <tools/resid.hxx>
+// auto strip #ifndef _TOOLS_RESID_HXX
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXDOCFILE_HXX
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _ZFORLIST_HXX //autogen
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
 #ifndef _ZFORMAT_HXX //autogen
 #include <svtools/zformat.hxx>
 #endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
-#ifndef _SFXAPP_HXX
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SVX_DIALMGR_HXX
-#include <bf_svx/dialmgr.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_DIALMGR_HXX
+// auto strip #include <bf_svx/dialmgr.hxx>
+// auto strip #endif
 #ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
 #endif
 
 #define READ_OLDVERS        // erstmal noch alte Versionen lesen
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _TBLAFMT_HXX
 #include <tblafmt.hxx>
 #endif
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
+#ifndef _ERRHDL_HXX //autogen
+#include <errhdl.hxx>
 #endif
 namespace binfilter {
 
