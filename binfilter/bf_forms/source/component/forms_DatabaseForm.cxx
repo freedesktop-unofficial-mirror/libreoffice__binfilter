@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:22:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:47:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,27 +78,27 @@
 #include "frm_resource.hrc"
 #endif
 
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
-#include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCANCELLABLE_HPP_
-#include <com/sun/star/util/XCancellable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XCANCELLABLE_HPP_
+// auto strip #include <com/sun/star/util/XCancellable.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_RESULTSETTYPE_HPP_
 #include <com/sun/star/sdbc/ResultSetType.hpp>
 #endif
 #ifndef _COM_SUN_STAR_SDBC_RESULTSETCONCURRENCY_HPP_
 #include <com/sun/star/sdbc/ResultSetConcurrency.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_DATASELECTIONTYPE_HPP_
 #include <com/sun/star/form/DataSelectionType.hpp>
 #endif
@@ -114,9 +114,9 @@
 #ifndef _COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HPP_
 #include <com/sun/star/frame/FrameSearchFlag.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-#include <com/sun/star/frame/XDispatch.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
+// auto strip #include <com/sun/star/frame/XDispatch.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
@@ -135,9 +135,9 @@
 #ifndef _COM_SUN_STAR_SDBCX_PRIVILEGE_HPP_
 #include <com/sun/star/sdbcx/Privilege.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-#include <com/sun/star/sdbc/XRowSet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
+// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_TABULATORCYCLE_HPP_
 #include <com/sun/star/form/TabulatorCycle.hpp>
 #endif
@@ -151,13 +151,13 @@
 #include <com/sun/star/util/XURLTransformer.hpp>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _SV_TIMER_HXX
-#include <vcl/timer.hxx>
-#endif
+// auto strip #ifndef _SV_TIMER_HXX
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
 
 #ifndef _FRM_GROUPMANAGER_HXX_
 #include "GroupManager.hxx"
@@ -166,15 +166,15 @@
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-#ifndef _FRM_PROPERTY_HXX_
-#include "property.hxx"
-#endif
+// auto strip #ifndef _FRM_PROPERTY_HXX_
+// auto strip #include "property.hxx"
+// auto strip #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-#ifndef _FRM_IDS_HXX_
-#include "ids.hxx"
-#endif
+// auto strip #ifndef _FRM_IDS_HXX_
+// auto strip #include "ids.hxx"
+// auto strip #endif
 
 #ifndef _FSYS_HXX
 #include <tools/fsys.hxx>
@@ -185,21 +185,21 @@
 #ifndef _INETSTRM_HXX //autogen
 #include <svtools/inetstrm.hxx>
 #endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
-#include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE2_HXX_
+// auto strip #include <cppuhelper/implbase2.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_SEQSTREAM_HXX
 #include <comphelper/seqstream.hxx>
 #endif
@@ -212,9 +212,9 @@
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -224,12 +224,12 @@
 #ifndef _INETTYPE_HXX
 #include <svtools/inettype.hxx>
 #endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _SV_SVAPP_HXX   // because of the solar mutex
 #include <vcl/svapp.hxx>
 #endif
@@ -244,6 +244,14 @@
 #endif
 #ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
+#endif
+
+#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
 #endif
 
 // compatiblity: DatabaseCursorType is dead, but for compatiblity reasons we still have to write it ...
