@@ -2,9 +2,9 @@
  *
  *  $RCSfile: impex.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:53 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:45:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,9 @@
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
+#endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
 #endif
 class SvStream;
 namespace binfilter {
@@ -175,7 +178,7 @@ public:
 // static
 inline BOOL ScImportExport::IsEndianSwap( const SvStream& rStrm )
 {
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
     return rStrm.GetNumberFormatInt() != NUMBERFORMAT_INT_BIGENDIAN;
 #else
     return rStrm.GetNumberFormatInt() != NUMBERFORMAT_INT_LITTLEENDIAN;

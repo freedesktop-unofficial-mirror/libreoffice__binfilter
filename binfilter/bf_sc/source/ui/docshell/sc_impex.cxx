@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:44:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -125,6 +125,9 @@ class StarBASIC;
 
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
+#endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
 #endif
 namespace binfilter {
 
@@ -383,7 +386,7 @@ namespace binfilter {
 // static
 //STRIP001 inline void ScImportExport::SetNoEndianSwap( SvStream& rStrm )
 //STRIP001 {
-//STRIP001 #ifdef __BIGENDIAN
+//STRIP001 #ifdef OSL_BIGENDIAN
 //STRIP001  rStrm.SetNumberFormatInt( NUMBERFORMAT_INT_BIGENDIAN );
 //STRIP001 #else
 //STRIP001  rStrm.SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
