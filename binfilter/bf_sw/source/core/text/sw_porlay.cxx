@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:53:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,13 @@
 
 #pragma hdrstop
 
-#include "errhdl.hxx"   // ASSERT
+// auto strip #include "errhdl.hxx" // ASSERT
 
 #include "txtcfg.hxx"
-#include "porlay.hxx"
+// auto strip #include "porlay.hxx"
 #include "itrform2.hxx"
-#include "porglue.hxx"
-#include "porexp.hxx"   // SwQuoVadisPortion
+// auto strip #include "porglue.hxx"
+// auto strip #include "porexp.hxx" // SwQuoVadisPortion
 #include "blink.hxx"    // pBlink
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
@@ -87,9 +87,14 @@
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>
+// auto strip #ifndef   _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -104,9 +109,9 @@
 #ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
 #endif
-#ifndef _SV_OUTDEV_HXX
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::i18n::ScriptType;
