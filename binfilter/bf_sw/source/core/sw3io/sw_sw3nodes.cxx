@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-07 09:41:42 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 13:03:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -217,6 +217,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define URL_DECODE  \
@@ -2345,7 +2346,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/                  << (INT16) 0;
 /*N*/
 /*N*/           // Start lcl_sw3io_OutINetField()
-/*N*/           OutString( *pStrm, INetURLObject::AbsToRel(
+/*N*/           OutString( *pStrm, so3::StaticBaseUrl::AbsToRel(
 /*N*/                       ((const SwFmtINetFmt *)pAttr)->GetValue() URL_DECODE ) );
 /*N*/           pStrm->WriteByteString( *pInfo->aINetFmtTexts[nINetFmtCnt] );
 /*N*/           // Ende lcl_sw3io_OutINetField()
@@ -2426,7 +2427,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/           if( bLink )
 /*N*/           {
 /*N*/               pGrf = 0;
-                    if( aGrfName.Len() )
+/*N*/               if( aGrfName.Len() )
 /*N*/                   aGrfName = INetURLObject::RelToAbs(aGrfName );
 /*N*/           }
 /*N*/           else
@@ -2531,7 +2532,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/       {
 /*N*/           nFileFlags |= SWGF_HAS_GRFLNK;
 /*N*/           rGrf.GetFileFilterNms( &aName, &sFilterNm );
-/*N*/           aName = INetURLObject::AbsToRel( aName );
+/*N*/           aName = so3::StaticBaseUrl::AbsToRel( aName );
 /*N*/       }
 /*N*/
 /*N*/       // Beim 31-Export muss die URL noch am Node gespeichert werden
@@ -2817,7 +2818,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/
 /*N*/   InString( *pStrm, rURL );
 /*N*/   if( rURL.Len() )
-/*N*/       rURL = URIHelper::SmartRelToAbs( rURL );
+/*N*/       rURL = so3::StaticBaseUrl::SmartRelToAbs( rURL );
 /*N*/
 /*N*/   // bis hier hatten wir frueher einen SWG_GRAPHIC_EXT-Record!
 /*N*/   if( IsVersion( SWG_TARGETFRAME, SWG_EXPORT31, SWG_DESKTOP40 ) )
@@ -2831,7 +2832,9 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/   if( cFlags & 0x20 )
 /*N*/   {
 /*?*/       pIMap = new ImageMap;
-/*?*/       *pStrm >> *pIMap;
+/*?*/       pIMap->Read(
+                *pStrm,
+                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_IMAGEMAP );
@@ -2878,7 +2881,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/   if( aURL.Len() )
 /*N*/   {
 /*N*/       lcl_sw3io__ConvertMarkToOutline( aURL );
-/*N*/       aURL = INetURLObject::AbsToRel( aURL URL_DECODE);
+/*N*/       aURL = so3::StaticBaseUrl::AbsToRel( aURL URL_DECODE);
 /*N*/   }
 /*N*/   OutString( *pStrm, aURL );
 /*N*/
@@ -2890,7 +2893,9 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/       OutString( *pStrm, aEmptyStr );
 /*N*/
 /*N*/       if( pIMap )
-/*?*/         *pStrm << *pIMap;
+/*?*/         pIMap->Write(
+                *pStrm,
+                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_IMAGEMAP );
