@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swserv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:12:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
@@ -72,12 +72,19 @@
 #include <com/sun/star/uno/Sequence.h>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _SWSERV_HXX
 #include <swserv.hxx>
 #endif
@@ -93,12 +100,12 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _SHELLIO_HXX
-#include <shellio.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHELLIO_HXX
+// auto strip #include <shellio.hxx>
+// auto strip #endif
 
 #ifndef _SWERROR_H
 #include <swerror.h>
