@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_frm_resource.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:29 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 12:53:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,12 +100,10 @@ namespace frm
         if (m_pImpl)
             return;
 
-        LanguageType nType = Application::GetSettings().GetUILanguage();
-
         ByteString sFileName("bf_frm"); //STRIP005
         sFileName += ByteString::CreateFromInt32( (sal_Int32)SOLARUPD );
 
-        m_pImpl = SimpleResMgr::Create(sFileName.GetBuffer(), nType);
+        m_pImpl = SimpleResMgr::Create(sFileName.GetBuffer(), Application::GetSettings().GetUILocale());
 
         if (m_pImpl)
         {
