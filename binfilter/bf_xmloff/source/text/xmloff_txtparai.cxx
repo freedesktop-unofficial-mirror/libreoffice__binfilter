@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtparai.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:35:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,66 +59,66 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _TOOLS_STRINGS_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _TOOLS_STRINGS_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
-#include <com/sun/star/text/XTextFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
-#include <com/sun/star/text/XTextCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
+// auto strip #include <com/sun/star/text/XTextFrame.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
+// auto strip #include <com/sun/star/text/XTextCursor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
 #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-#include <com/sun/star/drawing/XShapes.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
+// auto strip #include <com/sun/star/drawing/XShapes.hpp>
+// auto strip #endif
 
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_TXTIMP_HXX
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TXTIMP_HXX
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_TXTPARAI_HXX
 #include "txtparai.hxx"
 #endif
