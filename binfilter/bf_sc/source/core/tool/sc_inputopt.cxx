@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_inputopt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:17:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,13 +69,13 @@
 
 #include <tools/debug.hxx>
 
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/uno/Sequence.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-#include "cfgids.hxx"
+// auto strip #include "cfgids.hxx"
 #include "inputopt.hxx"
 #include "rechead.hxx"
-#include "scresid.hxx"
+// auto strip #include "scresid.hxx"
 #include "global.hxx"
 #include "bf_sc.hrc"
 #include "miscuno.hxx"

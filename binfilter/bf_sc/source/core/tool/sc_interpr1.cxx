@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:17:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -77,16 +77,16 @@
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/algitem.hxx>
 #include <unotools/textsearch.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <tools/solar.h>
-#include <unotools/charclass.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <unotools/collatorwrapper.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
 #include <stdlib.h>
 #include <string.h>
@@ -94,10 +94,10 @@
 
 #include "interpre.hxx"
 #include "patattr.hxx"
-#include "global.hxx"
-#include "document.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "document.hxx"
 #include "dociter.hxx"
-#include "cell.hxx"
+// auto strip #include "cell.hxx"
 #include "scmatrix.hxx"
 #include "docoptio.hxx"
 #include "globstr.hrc"
