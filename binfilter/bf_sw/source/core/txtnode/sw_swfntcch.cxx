@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swfntcch.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:01:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,7 +67,7 @@
 #endif
 #include "swfntcch.hxx"
 #include "fmtcol.hxx"
-#include "swfont.hxx"
+// auto strip #include "swfont.hxx"
 namespace binfilter {
 
 // aus atrstck.cxx
