@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: aw $ $Date: 2003-12-05 09:32:04 $
+#   last change: $Author: hjs $ $Date: 2004-06-28 12:35:17 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -133,8 +133,6 @@ SVXLIGHTOBJFILES =	\
 
 CPPUMAKERFLAGS=
 
-UNOTYPES=\
-    com.sun.star.formula.SymbolDescriptor
 # --- Targets -------------------------------------------------------
 
 .INCLUDE :  target.mk
