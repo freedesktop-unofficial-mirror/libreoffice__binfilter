@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2004-12-23 10:42:00 $
+ *  last change: $Author: vg $ $Date: 2005-03-08 15:35:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -253,7 +253,8 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/       *pFullTypeName  = String( ScResId( SCSTR_50_LONG_DOCNAME ) );
 /*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
 /*N*/   }
-/*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_60 )
+/*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_60 ||
+                  nFileFormat == SOFFICE_FILEFORMAT_CURRENT )   // #i41083# also allow CURRENT
 /*N*/   {
 /*N*/       // for binfilter, we need the FormatIDs to be set. Not setting them
             // has always been an error (!)
@@ -711,15 +712,16 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 //STRIP001     else
 //STRIP001      aDocument.SetInsertingFromOtherDoc( FALSE );
 //STRIP001
-//STRIP001  aDocument.SetImportingXML( FALSE );
-//STRIP001
-//STRIP001     if (pModificator)
-//STRIP001     {
-//STRIP001         delete pModificator;
-//STRIP001         pModificator = NULL;
-//STRIP001     }
-//STRIP001     else
-//STRIP001         DBG_ERROR("The Modificator should exist");
+            aDocument.SetInsertingFromOtherDoc( FALSE );
+            aDocument.SetImportingXML( FALSE );
+
+            if (pModificator)
+            {
+                delete pModificator;
+                pModificator = NULL;
+            }
+            else
+                DBG_ERROR("The Modificator should exist");
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::LoadXML( SfxMedium* pMedium, SvStorage* pStor )
