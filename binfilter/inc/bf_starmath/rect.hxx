@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rect.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:16 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -248,16 +248,16 @@ public:
                               long nNewAlignM);
             SmRect & ExtendBy(const SmRect &rRect, RectCopyMBL eCopyMode,
                       BOOL bKeepVerAlignParams);
-//STRIP001          SmRect & ExtendBy(const Point &rPoint);
+            SmRect & ExtendBy(const Point &rPoint);
 
-//STRIP001          long    OrientedDist(const Point &rPoint) const;
-//STRIP001          BOOL    IsInsideRect(const Point &rPoint) const;
-//STRIP001          BOOL    IsInsideItalicRect(const Point &rPoint) const;
+            long    OrientedDist(const Point &rPoint) const;
+            BOOL    IsInsideRect(const Point &rPoint) const;
+            BOOL    IsInsideItalicRect(const Point &rPoint) const;
 
     inline  SmRect & operator = (const SmRect &rRect);
 
     inline  Rectangle   AsRectangle() const;
-//STRIP001          SmRect      AsGlyphRect() const;
+            SmRect      AsGlyphRect() const;
 
 //STRIP001          void        Draw(OutputDevice &rDev, const Point &rPosition, int nFlags) const;
 };

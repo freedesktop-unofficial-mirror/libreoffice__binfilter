@@ -2,9 +2,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:16 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:38:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -160,7 +160,7 @@ public:
 
             BOOL IsDebug() const { return bIsDebug; }
             BOOL IsPhantom() const { return bIsPhantom; }
-//STRIP001          void SetPhantom(BOOL bIsPhantom);
+            void SetPhantom(BOOL bIsPhantom);
             void SetColor(const Color &rColor);
 
             void SetAttribut(USHORT nAttrib);
@@ -228,7 +228,7 @@ protected:
     {}
 
 public:
-//STRIP001             SmStructureNode( const SmStructureNode &rNode );
+             SmStructureNode( const SmStructureNode &rNode );
     virtual ~SmStructureNode();
 
     virtual BOOL        IsVisible() const;
@@ -241,7 +241,7 @@ public:
                                 SmNode *pThird = NULL);
             void SetSubNodes(const SmNodeArray &rNodeArray);
 
-//STRIP001     virtual SmStructureNode & operator = ( const SmStructureNode &rNode );
+     virtual SmStructureNode & operator = ( const SmStructureNode &rNode );
 
 //STRIP001     virtual void  GetAccessibleText( String &rText ) const;
 };
@@ -261,7 +261,7 @@ public:
 
     virtual BOOL        IsVisible() const;
     virtual USHORT      GetNumSubNodes() const;
-//STRIP001  virtual SmNode *    GetSubNode(USHORT nIndex);
+    virtual SmNode *    GetSubNode(USHORT nIndex);
 };
 
 
@@ -392,7 +392,7 @@ public:
     :   SmSpecialNode(NGLYPH_SPECIAL, rNodeToken, FNT_MATH)
     {}
 
-//STRIP001  virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
+    virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
 };
 
 
@@ -437,7 +437,7 @@ public:
     virtual void AdaptToX(const OutputDevice &rDev, ULONG nWidth);
     virtual void AdaptToY(const OutputDevice &rDev, ULONG nHeight);
 
-//STRIP001     virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
+    virtual void Draw(OutputDevice &rDev, const Point &rPosition) const;
 };
 
 
@@ -485,7 +485,7 @@ public:
     :   SmStructureNode(NTABLE, rNodeToken)
     {}
 
-//STRIP001  virtual SmNode * GetLeftMost();
+    virtual SmNode * GetLeftMost();
 
     virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
 };
@@ -602,21 +602,21 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 
-//STRIP001 class SmBinDiagonalNode : public SmStructureNode
-//STRIP001 {
-//STRIP001  BOOL    bAscending;
-//STRIP001
-//STRIP001  void    GetOperPosSize(Point &rPos, Size &rSize,
-//STRIP001                         const Point &rDiagPoint, double fAngleDeg) const;
-//STRIP001
-//STRIP001 public:
-//STRIP001  SmBinDiagonalNode(const SmToken &rNodeToken);
-//STRIP001
-//STRIP001  BOOL    IsAscending() const { return bAscending; }
-//STRIP001  void    SetAscending(BOOL bVal)  { bAscending = bVal; }
-//STRIP001
-//STRIP001  virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001 };
+class SmBinDiagonalNode : public SmStructureNode
+{
+   BOOL    bAscending;
+
+   void    GetOperPosSize(Point &rPos, Size &rSize,
+                          const Point &rDiagPoint, double fAngleDeg) const;
+
+public:
+   SmBinDiagonalNode(const SmToken &rNodeToken);
+
+   BOOL    IsAscending() const { return bAscending; }
+   void    SetAscending(BOOL bVal)  { bAscending = bVal; }
+
+   virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
+};
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -716,20 +716,20 @@ inline SmBracebodyNode::SmBracebodyNode(const SmToken &rNodeToken) :
 ////////////////////////////////////////////////////////////////////////////////
 
 
-//STRIP001 class SmVerticalBraceNode : public SmStructureNode
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  inline SmVerticalBraceNode(const SmToken &rNodeToken);
-//STRIP001
-//STRIP001  virtual void    Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001 };
+class SmVerticalBraceNode : public SmStructureNode
+{
+public:
+    inline SmVerticalBraceNode(const SmToken &rNodeToken);
+
+    virtual void    Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
+};
 
 
-//STRIP001 inline SmVerticalBraceNode::SmVerticalBraceNode(const SmToken &rNodeToken) :
-//STRIP001  SmStructureNode(NVERTICAL_BRACE, rNodeToken)
-//STRIP001 {
-//STRIP001  SetNumSubNodes(3);
-//STRIP001 }
+inline SmVerticalBraceNode::SmVerticalBraceNode(const SmToken &rNodeToken) :
+    SmStructureNode(NVERTICAL_BRACE, rNodeToken)
+{
+    SetNumSubNodes(3);
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -759,15 +759,15 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 
-//STRIP001 class SmAlignNode : public SmStructureNode
-//STRIP001 {
-//STRIP001 public:
-//STRIP001  SmAlignNode(const SmToken &rNodeToken)
-//STRIP001  :   SmStructureNode(NALIGN, rNodeToken)
-//STRIP001  {}
-//STRIP001
-//STRIP001  virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
-//STRIP001 };
+class SmAlignNode : public SmStructureNode
+{
+public:
+    SmAlignNode(const SmToken &rNodeToken)
+    :   SmStructureNode(NALIGN, rNodeToken)
+    {}
+
+    virtual void Arrange(const OutputDevice &rDev, const SmFormat &rFormat);
+};
 
 
 ////////////////////////////////////////////////////////////////////////////////
