@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdocapt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:25:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,45 +63,45 @@
 #include <tools/bigint.hxx>
 #endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
-#include <xlnwtit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
+// auto strip #include <xlnwtit.hxx>
+// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
 #include "svdocapt.hxx"
-#include "xpool.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpool.hxx"
+// auto strip #include "xpoly.hxx"
 #include "svdattrx.hxx"
 #include "svdpool.hxx"
-#include "svdxout.hxx"
-#include "svdetc.hxx"
-#include "svdtrans.hxx"
-#include "svdtouch.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdtouch.hxx"
 #include "svdio.hxx"
-#include "svdhdl.hxx"
-#include "svddrag.hxx"
-#include "svdmodel.hxx"
-#include "svdview.hxx"   // fuer RectSnap
-#include "svdpagv.hxx"   // fuer GetOffset bei BegDrag()
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdhdl.hxx"
+// auto strip #include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdview.hxx"   // fuer RectSnap
+// auto strip #include "svdpagv.hxx"   // fuer GetOffset bei BegDrag()
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
-#include "svdogrp.hxx"
-#include "svdpage.hxx"
+// auto strip #include "svdogrp.hxx"
+// auto strip #include "svdpage.hxx"
 
-#ifndef _SVX_XFLHTIT_HXX
-#include <xflhtit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLHTIT_HXX
+// auto strip #include <xflhtit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX
-#include <xflclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX
+// auto strip #include <xflclit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFLTRIT_HXX
-#include <xfltrit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLTRIT_HXX
+// auto strip #include <xfltrit.hxx>
+// auto strip #endif
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
