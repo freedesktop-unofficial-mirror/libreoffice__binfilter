@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltbli.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:11 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:51:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,7 +66,6 @@
 #include <bf_xmloff/XMLTextTableContext.hxx>
 #endif
 
-// STL include
 #include <hash_map>
 
 #if !defined(_SVSTDARR_USHORTS_DECL) || !defined(_SVSTDARR_BOOLS_DECL) || !defined(_SVSTDARR_STRINGSDTOR_DECL)
