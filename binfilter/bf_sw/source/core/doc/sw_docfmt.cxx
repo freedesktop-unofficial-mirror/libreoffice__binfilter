@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:06:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,26 +92,26 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
 #endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
 #endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #define _ZFORLIST_DECLARE_TABLE
 #include <svtools/zforlist.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
@@ -120,21 +120,29 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _FMTHDFT_HXX //autogen
-#include <fmthdft.hxx>
+// auto strip #ifndef _FMTHDFT_HXX //autogen
+// auto strip #include <fmthdft.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -144,27 +152,27 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _NDGRF_HXX
-#include <ndgrf.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>         // Fuer Sonderbehandlung in InsFrmFmt
-#endif
+// auto strip #ifndef _NDGRF_HXX
+// auto strip #include <ndgrf.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>           // Fuer Sonderbehandlung in InsFrmFmt
+// auto strip #endif
 #ifndef _ROLBCK_HXX
 #include <rolbck.hxx>           // Undo-Attr
 #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>           // servieren: Veraenderungen erkennen
 #endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -177,9 +185,9 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -195,9 +203,9 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
 #endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif

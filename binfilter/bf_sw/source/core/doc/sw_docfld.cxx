@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:06:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,45 +62,52 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #include <string.h>
 #include <float.h>
 
-#ifndef _DATETIME_HXX //autogen
-#include <tools/datetime.hxx>
-#endif
+// auto strip #ifndef _DATETIME_HXX //autogen
+// auto strip #include <tools/datetime.hxx>
+// auto strip #endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_ULONGS
-#include <svtools/svarray.hxx>
+// auto strip #include <svtools/svarray.hxx>
 #endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
 #ifndef _SO2REF_HXX //autogen
 #include <so3/so2ref.hxx>
 #endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#ifndef _DOC_HXX
-#include <doc.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -110,21 +117,21 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-#ifndef _CALC_HXX
-#include <calc.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _CALC_HXX
+// auto strip #include <calc.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
 #endif
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
 #endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 #ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
 #endif
@@ -170,12 +177,12 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _AUTHFLD_HXX
-#include <authfld.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _AUTHFLD_HXX
+// auto strip #include <authfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _TXTINET_HXX
 #include <txtinet.hxx>
 #endif
