@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chartbar.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:42:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #include "chtmodel.hxx"
-#include "chartbar.hxx"
+// auto strip #include "chartbar.hxx"
 #include "chaxis.hxx"
 namespace binfilter {
 
