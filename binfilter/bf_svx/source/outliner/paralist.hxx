@@ -2,9 +2,9 @@
  *
  *  $RCSfile: paralist.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:53 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:33:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,7 +96,7 @@ public:
 //STRIP001  Paragraph*      PrevVisible( Paragraph* ) const;
 //STRIP001  Paragraph*      LastVisible() const;
 
-//STRIP001  Paragraph*      GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const;
+/*NBFF*/    Paragraph*      GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const;
 //STRIP001  BOOL            HasChilds( Paragraph* pParagraph ) const;
 //STRIP001  BOOL            HasHiddenChilds( Paragraph* pParagraph ) const;
 //STRIP001  BOOL            HasVisibleChilds( Paragraph* pParagraph ) const;
