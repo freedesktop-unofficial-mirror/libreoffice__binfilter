@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlimpit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:24:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,29 +62,29 @@
 #include "xmlimpit.hxx"
 #include <bf_xmloff/xmluconv.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
-#ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include <bf_xmloff/attrlist.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include <bf_xmloff/attrlist.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include <bf_xmloff/xmlnmspe.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include <bf_xmloff/xmlnmspe.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
@@ -99,9 +99,9 @@
 #include "unomid.h"
 #endif
 
-#ifndef _SVX_UNOMID_HXX
-#include <bf_svx/unomid.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOMID_HXX
+// auto strip #include <bf_svx/unomid.hxx>
+// auto strip #endif
 
 #ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
@@ -127,12 +127,16 @@
 #include <bf_svx/keepitem.hxx>
 #endif
 
-#ifndef _SVX_BRSHITEM_HXX
-#include <bf_svx/brshitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
 
 #ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _FMTORNT_HXX
@@ -147,9 +151,9 @@
 #include "fmtlsplt.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
@@ -163,9 +167,9 @@
 #include "xmlithlp.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
