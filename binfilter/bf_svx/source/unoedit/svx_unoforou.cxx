@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoforou.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:47:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,23 +71,23 @@
 #endif
 
 #include <svtools/itemset.hxx>
-#include <editeng.hxx>
-#include <editdata.hxx>
+// auto strip #include <editeng.hxx>
+// auto strip #include <editdata.hxx>
 #include <outliner.hxx>
 #include <unoedhlp.hxx>
 #include <svdobj.hxx>
 
-#ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
-#ifndef _SV_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
 
 #include "unoforou.hxx"
 #include "unofored.hxx"
