@@ -2,9 +2,9 @@
  *
  *  $RCSfile: charrotateitem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:31 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:36:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,39 +92,39 @@ public:
                        sal_Bool bFitIntoLine = sal_False,
                        const sal_uInt16 nId = ITEMID_CHARROTATE );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-//STRIP001  virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
+/*NBFF*/    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+/*NBFF*/    virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
+/*NBFF*/    virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper * = 0 ) const;
+/*NBFF*/    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
+/*NBFF*/                                    SfxMapUnit eCoreMetric,
+/*NBFF*/                                    SfxMapUnit ePresMetric,
+/*NBFF*/                                    String &rText,
+/*NBFF*/                                     const IntlWrapper * = 0 ) const;
 
-//STRIP001  virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                  BYTE nMemberId );
-//STRIP001  virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                              BYTE nMemberId ) const;
+/*NBFF*/    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                    BYTE nMemberId );
+/*NBFF*/    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                BYTE nMemberId ) const;
 
-//STRIP001  inline SvxCharRotateItem& operator=( const SvxCharRotateItem& rItem )
-//STRIP001  {
-//STRIP001      SetValue( rItem.GetValue() );
-//STRIP001      SetFitToLine( rItem.IsFitToLine() );
-//STRIP001      return *this;
-//STRIP001  }
+/*NBFF*/    inline SvxCharRotateItem& operator=( const SvxCharRotateItem& rItem )
+/*NBFF*/    {
+/*NBFF*/        SetValue( rItem.GetValue() );
+/*NBFF*/        SetFitToLine( rItem.IsFitToLine() );
+/*NBFF*/        return *this;
+/*NBFF*/    }
 
-//STRIP001  virtual int              operator==( const SfxPoolItem& ) const;
+/*NBFF*/    virtual int              operator==( const SfxPoolItem& ) const;
 
     // our currently only degree values
-//STRIP001  void SetTopToBotton()                   { SetValue( 2700 ); }
-//STRIP001  void SetBottomToTop()                   { SetValue(  900 ); }
-//STRIP001  sal_Bool IsTopToBotton() const          { return 2700 == GetValue(); }
-//STRIP001  sal_Bool IsBottomToTop() const          { return  900 == GetValue(); }
-//STRIP001
-//STRIP001  sal_Bool IsFitToLine() const            { return bFitToLine; }
-//STRIP001  void SetFitToLine( sal_Bool b )         { bFitToLine = b; }
+/*NBFF*/    void SetTopToBotton()                   { SetValue( 2700 ); }
+/*NBFF*/    void SetBottomToTop()                   { SetValue(  900 ); }
+/*NBFF*/    sal_Bool IsTopToBotton() const          { return 2700 == GetValue(); }
+/*NBFF*/    sal_Bool IsBottomToTop() const          { return  900 == GetValue(); }
+/*NBFF*/
+/*NBFF*/    sal_Bool IsFitToLine() const            { return bFitToLine; }
+/*NBFF*/    void SetFitToLine( sal_Bool b )         { bFitToLine = b; }
 };
 
 }//end of namespace binfilter
