@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_htmltbl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:11:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,49 +62,56 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 
 //#define TEST_DELAYED_RESIZE
 
 #ifdef TEST_DELAYED_RESIZE
-#ifndef _SV_SOUND_HXX //autogen
-#include <vcl/sound.hxx>
+// auto strip #ifndef _SV_SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
 #endif
+// auto strip #ifndef _WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_STORAGE_HXX //autogen
+// auto strip #include <sot/storage.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SOT_STORAGE_HXX //autogen
-#include <sot/storage.hxx>
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#include "ndtxt.hxx"
-#include "doc.hxx"
-#include "swtable.hxx"
-#include "rootfrm.hxx"
-#include "docsh.hxx"
-#include "flyfrm.hxx"
-#include "poolfmt.hxx"
-#include "viewsh.hxx"
-#include "tabfrm.hxx"
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #include "ndtxt.hxx"
+// auto strip #include "doc.hxx"
+// auto strip #include "swtable.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "docsh.hxx"
+// auto strip #include "flyfrm.hxx"
+// auto strip #include "poolfmt.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "tabfrm.hxx"
 
 #include "htmltbl.hxx"
-#include "ndindex.hxx"
+// auto strip #include "ndindex.hxx"
 namespace binfilter {
 
 #define COLFUZZY 20
