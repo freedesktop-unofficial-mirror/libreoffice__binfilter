@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
+ *  last change: $Author: cl $ $Date: 2004-04-02 07:48:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1921,37 +1921,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void ImpEditEngine::ImpRemoveChars( const EditPaM& rPaM, USHORT nChars, EditUndoRemoveChars* pCurUndo )
 /*N*/ {
-/*N*/   if ( IsUndoEnabled() && !IsInUndo() )
-/*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 XubString aStr( rPaM.GetNode()->Copy( rPaM.GetIndex(), nChars ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // Pruefen, ob Attribute geloescht oder geaendert werden:
-//STRIP001 /*?*/        USHORT nStart = rPaM.GetIndex();
-//STRIP001 /*?*/        USHORT nEnd = nStart + nChars;
-//STRIP001 /*?*/        CharAttribArray& rAttribs = rPaM.GetNode()->GetCharAttribs().GetAttribs();
-//STRIP001 /*?*/        USHORT nAttrs = rAttribs.Count();
-//STRIP001 /*?*/        for ( USHORT nAttr = 0; nAttr < rAttribs.Count(); nAttr++ )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            EditCharAttrib* pAttr = rAttribs[nAttr];
-//STRIP001 /*?*/            if ( ( pAttr->GetEnd() >= nStart ) && ( pAttr->GetStart() < nEnd ) )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/ #ifndef SVX_LIGHT
-//STRIP001 /*?*/                EditSelection aSel( rPaM );
-//STRIP001 /*?*/                aSel.Max().GetIndex() += nChars;
-//STRIP001 /*?*/                EditUndoSetAttribs* pAttrUndo = CreateAttribUndo( aSel, GetEmptyItemSet() );
-//STRIP001 /*?*/                InsertUndo( pAttrUndo );
-//STRIP001 /*?*/ #endif
-//STRIP001 /*?*/                break;  // for
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        if ( pCurUndo && ( CreateEditPaM( pCurUndo->GetEPaM() ) == rPaM ) )
-//STRIP001 /*?*/            pCurUndo->GetStr() += aStr;
-//STRIP001 /*?*/ #ifndef SVX_LIGHT
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            InsertUndo( new EditUndoRemoveChars( this, CreateEPaM( rPaM ), aStr ) );
-//STRIP001 /*?*/ #endif
-/*N*/   }
-/*N*/
 /*N*/   aEditDoc.RemoveChars( rPaM, nChars );
 /*N*/   TextModified();
 /*N*/ }

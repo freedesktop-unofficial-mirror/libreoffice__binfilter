@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:42 $
+ *  last change: $Author: cl $ $Date: 2004-04-02 07:48:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -314,157 +314,157 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*N*/ String SvxDateField::GetFormatted( SvNumberFormatter& rFormatter, LanguageType eLang ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return String(); //STRIP001
-//STRIP001     Date aDate; // current date
-//STRIP001  if ( eType == SVXDATETYPE_FIX )
-//STRIP001      aDate.SetDate( nFixDate );
-//STRIP001
-//STRIP001  SvxDateFormat eTmpFormat = eFormat;
-//STRIP001
-//STRIP001  if ( eTmpFormat == SVXDATEFORMAT_SYSTEM )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXDATEFORMAT_SYSTEM nicht implementiert!" );
-//STRIP001      eTmpFormat = SVXDATEFORMAT_STDSMALL;
-//STRIP001  }
-//STRIP001  else if ( eTmpFormat == SVXDATEFORMAT_APPDEFAULT )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXDATEFORMAT_APPDEFAULT: Woher nehmen?" );
-//STRIP001      eTmpFormat = SVXDATEFORMAT_STDSMALL;
-//STRIP001  }
-//STRIP001
-//STRIP001     ULONG nFormatKey;
-//STRIP001
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001      case SVXDATEFORMAT_STDSMALL:
-//STRIP001             // short
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_SHORT, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_STDBIG:
-//STRIP001             // long
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_LONG, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_A:
-//STRIP001          // 13.02.96
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYY, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_B:
-//STRIP001          // 13.02.1996
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYYYY, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_C:
-//STRIP001             // 13. Feb 1996
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMYYYY, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_D:
-//STRIP001             // 13. Februar 1996
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMMYYYY, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_E:
-//STRIP001             // Die, 13. Februar 1996
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNDMMMMYYYY, eLang );
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_F:
-//STRIP001             // Dienstag, 13. Februar 1996
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNNNDMMMMYYYY, eLang );
-//STRIP001      break;
-//STRIP001         default:
-//STRIP001             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_DATE, eLang );
-//STRIP001  }
-//STRIP001
-//STRIP001     double fDiffDate = aDate - *(rFormatter.GetNullDate());
-//STRIP001     String aStr;
-//STRIP001      Color* pColor = NULL;
-//STRIP001     rFormatter.GetOutputString( fDiffDate, nFormatKey, aStr, &pColor );
-//STRIP001     return aStr;
+/*N*/ {
+/*N*/     Date aDate; // current date
+/*N*/   if ( eType == SVXDATETYPE_FIX )
+/*N*/       aDate.SetDate( nFixDate );
+/*N*/
+/*N*/   SvxDateFormat eTmpFormat = eFormat;
+/*N*/
+/*N*/   if ( eTmpFormat == SVXDATEFORMAT_SYSTEM )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXDATEFORMAT_SYSTEM nicht implementiert!" );
+/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
+/*N*/   }
+/*N*/   else if ( eTmpFormat == SVXDATEFORMAT_APPDEFAULT )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXDATEFORMAT_APPDEFAULT: Woher nehmen?" );
+/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
+/*N*/   }
+/*N*/
+/*N*/     ULONG nFormatKey;
+/*N*/
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/       case SVXDATEFORMAT_STDSMALL:
+/*N*/             // short
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_SHORT, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_STDBIG:
+/*N*/             // long
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYSTEM_LONG, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_A:
+/*N*/           // 13.02.96
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYY, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_B:
+/*N*/           // 13.02.1996
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DDMMYYYY, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_C:
+/*N*/             // 13. Feb 1996
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMYYYY, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_D:
+/*N*/             // 13. Februar 1996
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_DMMMMYYYY, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_E:
+/*N*/             // Die, 13. Februar 1996
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNDMMMMYYYY, eLang );
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_F:
+/*N*/             // Dienstag, 13. Februar 1996
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_DATE_SYS_NNNNDMMMMYYYY, eLang );
+/*N*/       break;
+/*N*/         default:
+/*N*/             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_DATE, eLang );
+/*N*/   }
+/*N*/
+/*N*/     double fDiffDate = aDate - *(rFormatter.GetNullDate());
+/*N*/     String aStr;
+/*N*/       Color* pColor = NULL;
+/*N*/     rFormatter.GetOutputString( fDiffDate, nFormatKey, aStr, &pColor );
+/*N*/     return aStr;
 /*N*/ }
 
 // deprecated, to be removed
 /*N*/ XubString SvxDateField::GetFormatted( LanguageType eLanguage, LanguageType eFmt ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return XubString(); //STRIP001
-//STRIP001  International aInter( eLanguage, eFmt );
-//STRIP001  int bLongDate = FALSE;
-//STRIP001
-//STRIP001  Date aDate; // aktuelles
-//STRIP001  if ( eType == SVXDATETYPE_FIX )
-//STRIP001      aDate.SetDate( nFixDate );
-//STRIP001
-//STRIP001  SvxDateFormat eTmpFormat = eFormat;
-//STRIP001
-//STRIP001  if ( eTmpFormat == SVXDATEFORMAT_SYSTEM )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXDATEFORMAT_SYSTEM nicht implementiert!" );
-//STRIP001      eTmpFormat = SVXDATEFORMAT_STDSMALL;
-//STRIP001  }
-//STRIP001  else if ( eTmpFormat == SVXDATEFORMAT_APPDEFAULT )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXDATEFORMAT_APPDEFAULT: Woher nehmen?" );
-//STRIP001      eTmpFormat = SVXDATEFORMAT_STDSMALL;
-//STRIP001  }
-//STRIP001
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001      // kurze Formate standard
-//STRIP001      case SVXDATEFORMAT_STDSMALL:
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_STDBIG:
-//STRIP001      {
-//STRIP001          bLongDate = TRUE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_A:
-//STRIP001      {
-//STRIP001          // 13.02.96
-//STRIP001          aInter.SetDateCentury( FALSE );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_B:
-//STRIP001      {
-//STRIP001          // 13.02.1996
-//STRIP001          aInter.SetDateCentury( TRUE );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_C:
-//STRIP001      {
-//STRIP001          // 13.Feb 1996
-//STRIP001          aInter.SetLongDateDayOfWeekFormat( DAYOFWEEK_NONE );
-//STRIP001          aInter.SetLongDateMonthFormat( MONTH_SHORT );
-//STRIP001          aInter.SetDateCentury( TRUE );
-//STRIP001          bLongDate = TRUE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_D:
-//STRIP001      {
-//STRIP001          // 13.Februar 1996
-//STRIP001          aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_NONE);
-//STRIP001          aInter.SetLongDateMonthFormat(MONTH_LONG);
-//STRIP001          aInter.SetDateCentury(TRUE);
-//STRIP001          bLongDate = TRUE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_E:
-//STRIP001      {
-//STRIP001          // Die, 13.Februar 1996
-//STRIP001          aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_SHORT);
-//STRIP001          aInter.SetLongDateMonthFormat(MONTH_LONG);
-//STRIP001          aInter.SetDateCentury(TRUE);
-//STRIP001          bLongDate = TRUE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001      case SVXDATEFORMAT_F:
-//STRIP001      {
-//STRIP001          // Dienstag, 13.Februar 1996
-//STRIP001          aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_LONG);
-//STRIP001          aInter.SetLongDateMonthFormat(MONTH_LONG);
-//STRIP001          aInter.SetDateCentury(TRUE);
-//STRIP001          bLongDate = TRUE;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bLongDate )
-//STRIP001      return aInter.GetLongDate( aDate );
-//STRIP001  return aInter.GetDate( aDate );
+/*N*/ {
+/*N*/   International aInter( eLanguage, eFmt );
+/*N*/   int bLongDate = FALSE;
+/*N*/
+/*N*/   Date aDate; // aktuelles
+/*N*/   if ( eType == SVXDATETYPE_FIX )
+/*N*/       aDate.SetDate( nFixDate );
+/*N*/
+/*N*/   SvxDateFormat eTmpFormat = eFormat;
+/*N*/
+/*N*/   if ( eTmpFormat == SVXDATEFORMAT_SYSTEM )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXDATEFORMAT_SYSTEM nicht implementiert!" );
+/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
+/*N*/   }
+/*N*/   else if ( eTmpFormat == SVXDATEFORMAT_APPDEFAULT )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXDATEFORMAT_APPDEFAULT: Woher nehmen?" );
+/*N*/       eTmpFormat = SVXDATEFORMAT_STDSMALL;
+/*N*/   }
+/*N*/
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/       // kurze Formate standard
+/*N*/       case SVXDATEFORMAT_STDSMALL:
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_STDBIG:
+/*N*/       {
+/*N*/           bLongDate = TRUE;
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_A:
+/*N*/       {
+/*N*/           // 13.02.96
+/*N*/           aInter.SetDateCentury( FALSE );
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_B:
+/*N*/       {
+/*N*/           // 13.02.1996
+/*N*/           aInter.SetDateCentury( TRUE );
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_C:
+/*N*/       {
+/*N*/           // 13.Feb 1996
+/*N*/           aInter.SetLongDateDayOfWeekFormat( DAYOFWEEK_NONE );
+/*N*/           aInter.SetLongDateMonthFormat( MONTH_SHORT );
+/*N*/           aInter.SetDateCentury( TRUE );
+/*N*/           bLongDate = TRUE;
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_D:
+/*N*/       {
+/*N*/           // 13.Februar 1996
+/*N*/           aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_NONE);
+/*N*/           aInter.SetLongDateMonthFormat(MONTH_LONG);
+/*N*/           aInter.SetDateCentury(TRUE);
+/*N*/           bLongDate = TRUE;
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_E:
+/*N*/       {
+/*N*/           // Die, 13.Februar 1996
+/*N*/           aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_SHORT);
+/*N*/           aInter.SetLongDateMonthFormat(MONTH_LONG);
+/*N*/           aInter.SetDateCentury(TRUE);
+/*N*/           bLongDate = TRUE;
+/*N*/       }
+/*N*/       break;
+/*N*/       case SVXDATEFORMAT_F:
+/*N*/       {
+/*N*/           // Dienstag, 13.Februar 1996
+/*N*/           aInter.SetLongDateDayOfWeekFormat(DAYOFWEEK_LONG);
+/*N*/           aInter.SetLongDateMonthFormat(MONTH_LONG);
+/*N*/           aInter.SetDateCentury(TRUE);
+/*N*/           bLongDate = TRUE;
+/*N*/       }
+/*N*/       break;
+/*N*/   }
+/*N*/
+/*N*/   if( bLongDate )
+/*N*/       return aInter.GetLongDate( aDate );
+/*N*/   return aInter.GetDate( aDate );
 /*N*/ }
 
 //STRIP001 MetaAction* SvxDateField::createBeginComment() const
@@ -716,39 +716,39 @@ namespace binfilter {
 //----------------------------------------------------------------------------
 
 /*N*/ SvxExtTimeField::SvxExtTimeField()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  nFixTime = Time().GetTime();
-//STRIP001  eType = SVXTIMETYPE_VAR;
-//STRIP001  eFormat = SVXTIMEFORMAT_STANDARD;
+/*N*/ {
+/*N*/   nFixTime = Time().GetTime();
+/*N*/   eType = SVXTIMETYPE_VAR;
+/*N*/   eFormat = SVXTIMEFORMAT_STANDARD;
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ SvxExtTimeField::SvxExtTimeField( const Time& rTime, SvxTimeType eT, SvxTimeFormat eF )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  nFixTime = rTime.GetTime();
-//STRIP001  eType = eT;
-//STRIP001  eFormat = eF;
+/*N*/ {
+/*N*/   nFixTime = rTime.GetTime();
+/*N*/   eType = eT;
+/*N*/   eFormat = eF;
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ SvxFieldData* SvxExtTimeField::Clone() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  return new SvxExtTimeField( *this );
+/*N*/ {
+/*N*/   return new SvxExtTimeField( *this );
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ int SvxExtTimeField::operator==( const SvxFieldData& rOther ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  if ( rOther.Type() != Type() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SvxExtTimeField& rOtherFld = (const SvxExtTimeField&) rOther;
-//STRIP001  return ( ( nFixTime == rOtherFld.nFixTime ) &&
-//STRIP001              ( eType == rOtherFld.eType ) &&
-//STRIP001              ( eFormat == rOtherFld.eFormat ) );
+/*N*/ {
+/*N*/   if ( rOther.Type() != Type() )
+/*N*/       return FALSE;
+/*N*/
+/*N*/   const SvxExtTimeField& rOtherFld = (const SvxExtTimeField&) rOther;
+/*N*/   return ( ( nFixTime == rOtherFld.nFixTime ) &&
+/*N*/               ( eType == rOtherFld.eType ) &&
+/*N*/               ( eFormat == rOtherFld.eFormat ) );
 /*N*/ }
 
 //----------------------------------------------------------------------------
@@ -776,128 +776,128 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-//STRIP001 String SvxExtTimeField::GetFormatted( SvNumberFormatter& rFormatter, LanguageType eLang ) const
-//STRIP001 {
-//STRIP001     Time aTime; // current time
-//STRIP001  if ( eType == SVXTIMETYPE_FIX )
-//STRIP001      aTime.SetTime( nFixTime );
-//STRIP001
-//STRIP001  SvxTimeFormat eTmpFormat = eFormat;
-//STRIP001
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001         case SVXTIMEFORMAT_SYSTEM :
-//STRIP001             DBG_ERROR( "SVXTIMEFORMAT_SYSTEM: not implemented" );
-//STRIP001             eTmpFormat = SVXTIMEFORMAT_STANDARD;
-//STRIP001         break;
-//STRIP001         case SVXTIMEFORMAT_APPDEFAULT :
-//STRIP001             DBG_ERROR( "SVXTIMEFORMAT_APPDEFAULT: not implemented" );
-//STRIP001             eTmpFormat = SVXTIMEFORMAT_STANDARD;
-//STRIP001         break;
-//STRIP001  }
-//STRIP001
-//STRIP001     ULONG nFormatKey;
-//STRIP001
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001      case SVXTIMEFORMAT_12_HM:
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMAMPM, eLang );
-//STRIP001      break;
-//STRIP001         case SVXTIMEFORMAT_12_HMSH:
-//STRIP001         {   // no builtin format available, try to insert or reuse
-//STRIP001             String aFormatCode( RTL_CONSTASCII_USTRINGPARAM( "HH:MM:SS.00 AM/PM" ) );
-//STRIP001             xub_StrLen nCheckPos;
-//STRIP001             short nType;
-//STRIP001             BOOL bInserted = rFormatter.PutandConvertEntry( aFormatCode,
-//STRIP001                 nCheckPos, nType, nFormatKey, LANGUAGE_ENGLISH_US, eLang );
-//STRIP001             DBG_ASSERT( nCheckPos == 0, "SVXTIMEFORMAT_12_HMSH: could not insert format code" );
-//STRIP001             if ( nCheckPos )
-//STRIP001                 nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001      case SVXTIMEFORMAT_24_HM:
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMM, eLang );
-//STRIP001      break;
-//STRIP001      case SVXTIMEFORMAT_24_HMSH:
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
-//STRIP001      break;
-//STRIP001      case SVXTIMEFORMAT_12_HMS:
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSSAMPM, eLang );
-//STRIP001      break;
-//STRIP001      case SVXTIMEFORMAT_24_HMS:
-//STRIP001             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSS, eLang );
-//STRIP001      break;
-//STRIP001      case SVXTIMEFORMAT_STANDARD:
-//STRIP001         default:
-//STRIP001             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_TIME, eLang );
-//STRIP001  }
-//STRIP001
-//STRIP001     double fFracTime = aTime.GetTimeInDays();
-//STRIP001     String aStr;
-//STRIP001      Color* pColor = NULL;
-//STRIP001     rFormatter.GetOutputString( fFracTime, nFormatKey, aStr, &pColor );
-//STRIP001     return aStr;
-//STRIP001 }
+/*N*/ String SvxExtTimeField::GetFormatted( SvNumberFormatter& rFormatter, LanguageType eLang ) const
+/*N*/ {
+/*N*/     Time aTime; // current time
+/*N*/   if ( eType == SVXTIMETYPE_FIX )
+/*N*/       aTime.SetTime( nFixTime );
+/*N*/
+/*N*/   SvxTimeFormat eTmpFormat = eFormat;
+/*N*/
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/         case SVXTIMEFORMAT_SYSTEM :
+/*N*/             DBG_ERROR( "SVXTIMEFORMAT_SYSTEM: not implemented" );
+/*N*/             eTmpFormat = SVXTIMEFORMAT_STANDARD;
+/*N*/         break;
+/*N*/         case SVXTIMEFORMAT_APPDEFAULT :
+/*N*/             DBG_ERROR( "SVXTIMEFORMAT_APPDEFAULT: not implemented" );
+/*N*/             eTmpFormat = SVXTIMEFORMAT_STANDARD;
+/*N*/         break;
+/*N*/   }
+/*N*/
+/*N*/     ULONG nFormatKey;
+/*N*/
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/       case SVXTIMEFORMAT_12_HM:
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMAMPM, eLang );
+/*N*/       break;
+/*N*/         case SVXTIMEFORMAT_12_HMSH:
+/*N*/         {   // no builtin format available, try to insert or reuse
+/*N*/             String aFormatCode( RTL_CONSTASCII_USTRINGPARAM( "HH:MM:SS.00 AM/PM" ) );
+/*N*/             xub_StrLen nCheckPos;
+/*N*/             short nType;
+/*N*/             BOOL bInserted = rFormatter.PutandConvertEntry( aFormatCode,
+/*N*/                 nCheckPos, nType, nFormatKey, LANGUAGE_ENGLISH_US, eLang );
+/*N*/             DBG_ASSERT( nCheckPos == 0, "SVXTIMEFORMAT_12_HMSH: could not insert format code" );
+/*N*/             if ( nCheckPos )
+/*N*/                 nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
+/*N*/         }
+/*N*/         break;
+/*N*/       case SVXTIMEFORMAT_24_HM:
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMM, eLang );
+/*N*/       break;
+/*N*/       case SVXTIMEFORMAT_24_HMSH:
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HH_MMSS00, eLang );
+/*N*/       break;
+/*N*/       case SVXTIMEFORMAT_12_HMS:
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSSAMPM, eLang );
+/*N*/       break;
+/*N*/       case SVXTIMEFORMAT_24_HMS:
+/*N*/             nFormatKey = rFormatter.GetFormatIndex( NF_TIME_HHMMSS, eLang );
+/*N*/       break;
+/*N*/       case SVXTIMEFORMAT_STANDARD:
+/*N*/         default:
+/*N*/             nFormatKey = rFormatter.GetStandardFormat( NUMBERFORMAT_TIME, eLang );
+/*N*/   }
+/*N*/
+/*N*/     double fFracTime = aTime.GetTimeInDays();
+/*N*/     String aStr;
+/*N*/       Color* pColor = NULL;
+/*N*/     rFormatter.GetOutputString( fFracTime, nFormatKey, aStr, &pColor );
+/*N*/     return aStr;
+/*N*/ }
 
 // deprecated, to be removed
-//STRIP001 XubString SvxExtTimeField::GetFormatted( LanguageType eLanguage, LanguageType eFmt ) const
-//STRIP001 {
-//STRIP001  International aInter( eLanguage, eFmt );
-//STRIP001  XubString aStrTime;
-//STRIP001
-//STRIP001  Time aTime; // aktuelle Zeit
-//STRIP001  if ( eType == SVXTIMETYPE_FIX )
-//STRIP001      aTime.SetTime( nFixTime );
-//STRIP001
-//STRIP001  SvxTimeFormat eTmpFormat = eFormat;
-//STRIP001
-//STRIP001  if ( eTmpFormat == SVXTIMEFORMAT_SYSTEM )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXTIMEFORMAT_SYSTEM nicht implementiert!" );
-//STRIP001      eTmpFormat = SVXTIMEFORMAT_STANDARD;
-//STRIP001  }
-//STRIP001  else if ( eTmpFormat == SVXTIMEFORMAT_APPDEFAULT )
-//STRIP001  {
-//STRIP001      DBG_ERROR( "SVXTIMEFORMAT_APPDEFAULT: Woher nehmen?" );
-//STRIP001      eTmpFormat = SVXTIMEFORMAT_STANDARD;
-//STRIP001  }
-//STRIP001
-//STRIP001  // 12 oder 24 Stunden
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001      case SVXTIMEFORMAT_24_HM:
-//STRIP001      case SVXTIMEFORMAT_24_HMS:
-//STRIP001      case SVXTIMEFORMAT_24_HMSH:
-//STRIP001          aInter.SetTimeFormat( HOUR_24 );
-//STRIP001      break;
-//STRIP001
-//STRIP001      default:
-//STRIP001          aInter.SetTimeFormat( HOUR_12 );
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  switch( eTmpFormat )
-//STRIP001  {
-//STRIP001      case SVXTIMEFORMAT_12_HM:
-//STRIP001      case SVXTIMEFORMAT_24_HM:
-//STRIP001           aStrTime = aInter.GetTime( aTime, FALSE );
-//STRIP001      break;
-//STRIP001
-//STRIP001      case SVXTIMEFORMAT_12_HMSH:
-//STRIP001      case SVXTIMEFORMAT_24_HMSH:
-//STRIP001           aStrTime = aInter.GetTime( aTime, TRUE, TRUE );
-//STRIP001      break;
-//STRIP001
-//STRIP001      case SVXTIMEFORMAT_STANDARD:
-//STRIP001      case SVXTIMEFORMAT_12_HMS:
-//STRIP001      case SVXTIMEFORMAT_24_HMS:
-//STRIP001      default:
-//STRIP001           aStrTime = aInter.GetTime( aTime, TRUE );
-//STRIP001      break;
-//STRIP001
-//STRIP001  }
-//STRIP001
-//STRIP001  return( aStrTime );
-//STRIP001 }
+/*N*/ XubString SvxExtTimeField::GetFormatted( LanguageType eLanguage, LanguageType eFmt ) const
+/*N*/ {
+/*N*/   International aInter( eLanguage, eFmt );
+/*N*/   XubString aStrTime;
+/*N*/
+/*N*/   Time aTime; // aktuelle Zeit
+/*N*/   if ( eType == SVXTIMETYPE_FIX )
+/*N*/       aTime.SetTime( nFixTime );
+/*N*/
+/*N*/   SvxTimeFormat eTmpFormat = eFormat;
+/*N*/
+/*N*/   if ( eTmpFormat == SVXTIMEFORMAT_SYSTEM )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXTIMEFORMAT_SYSTEM nicht implementiert!" );
+/*N*/       eTmpFormat = SVXTIMEFORMAT_STANDARD;
+/*N*/   }
+/*N*/   else if ( eTmpFormat == SVXTIMEFORMAT_APPDEFAULT )
+/*N*/   {
+/*N*/       DBG_ERROR( "SVXTIMEFORMAT_APPDEFAULT: Woher nehmen?" );
+/*N*/       eTmpFormat = SVXTIMEFORMAT_STANDARD;
+/*N*/   }
+/*N*/
+/*N*/   // 12 oder 24 Stunden
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/       case SVXTIMEFORMAT_24_HM:
+/*N*/       case SVXTIMEFORMAT_24_HMS:
+/*N*/       case SVXTIMEFORMAT_24_HMSH:
+/*N*/           aInter.SetTimeFormat( HOUR_24 );
+/*N*/       break;
+/*N*/
+/*N*/       default:
+/*N*/           aInter.SetTimeFormat( HOUR_12 );
+/*N*/       break;
+/*N*/   }
+/*N*/   switch( eTmpFormat )
+/*N*/   {
+/*N*/       case SVXTIMEFORMAT_12_HM:
+/*N*/       case SVXTIMEFORMAT_24_HM:
+/*N*/            aStrTime = aInter.GetTime( aTime, FALSE );
+/*N*/       break;
+/*N*/
+/*N*/       case SVXTIMEFORMAT_12_HMSH:
+/*N*/       case SVXTIMEFORMAT_24_HMSH:
+/*N*/            aStrTime = aInter.GetTime( aTime, TRUE, TRUE );
+/*N*/       break;
+/*N*/
+/*N*/       case SVXTIMEFORMAT_STANDARD:
+/*N*/       case SVXTIMEFORMAT_12_HMS:
+/*N*/       case SVXTIMEFORMAT_24_HMS:
+/*N*/       default:
+/*N*/            aStrTime = aInter.GetTime( aTime, TRUE );
+/*N*/       break;
+/*N*/
+/*N*/   }
+/*N*/
+/*N*/   return( aStrTime );
+/*N*/ }
 
 //STRIP001 MetaAction* SvxExtTimeField::createBeginComment() const
 //STRIP001 {
@@ -930,21 +930,21 @@ namespace binfilter {
 //----------------------------------------------------------------------------
 
 /*N*/ SvxFieldData* SvxExtFileField::Clone() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  return new SvxExtFileField( *this );
+/*N*/ {
+/*N*/   return new SvxExtFileField( *this );
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ int SvxExtFileField::operator==( const SvxFieldData& rOther ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  if ( rOther.Type() != Type() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SvxExtFileField& rOtherFld = (const SvxExtFileField&) rOther;
-//STRIP001  return ( ( aFile == rOtherFld.aFile ) &&
-//STRIP001              ( eType == rOtherFld.eType ) &&
-//STRIP001              ( eFormat == rOtherFld.eFormat ) );
+/*N*/ {
+/*N*/   if ( rOther.Type() != Type() )
+/*N*/       return FALSE;
+/*N*/
+/*N*/   const SvxExtFileField& rOtherFld = (const SvxExtFileField&) rOther;
+/*N*/   return ( ( aFile == rOtherFld.aFile ) &&
+/*N*/               ( eType == rOtherFld.eType ) &&
+/*N*/               ( eFormat == rOtherFld.eFormat ) );
 /*N*/ }
 
 //----------------------------------------------------------------------------
@@ -976,80 +976,80 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-//STRIP001 XubString SvxExtFileField::GetFormatted() const
-//STRIP001 {
-//STRIP001  XubString aString;
-//STRIP001
-//STRIP001  INetURLObject aURLObj( aFile );
-//STRIP001
-//STRIP001     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
-//STRIP001     {
-//STRIP001         // invalid? try to interpret string as system file name
-//STRIP001         String aURLStr;
-//STRIP001
-//STRIP001         ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aFile, aURLStr );
-//STRIP001
-//STRIP001         aURLObj.SetURL( aURLStr );
-//STRIP001     }
-//STRIP001
-//STRIP001     // #92009# Be somewhat liberate when trying to
-//STRIP001     // get formatted content out of the FileField
-//STRIP001     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
-//STRIP001     {
-//STRIP001         // still not valid? Then output as is
-//STRIP001         aString = aFile;
-//STRIP001     }
-//STRIP001  else if( INET_PROT_FILE == aURLObj.GetProtocol() )
-//STRIP001  {
-//STRIP001      switch( eFormat )
-//STRIP001      {
-//STRIP001          case SVXFILEFORMAT_FULLPATH:
-//STRIP001              aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_PATH:
-//STRIP001                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
-//STRIP001                 // #101742# Leave trailing slash at the pathname
-//STRIP001                 aURLObj.setFinalSlash();
-//STRIP001              aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_NAME:
-//STRIP001              aString = aURLObj.getBase();
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_NAME_EXT:
-//STRIP001              aString = aURLObj.getName();
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      switch( eFormat )
-//STRIP001      {
-//STRIP001          case SVXFILEFORMAT_FULLPATH:
-//STRIP001              aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_PATH:
-//STRIP001                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
-//STRIP001                 // #101742# Leave trailing slash at the pathname
-//STRIP001                 aURLObj.setFinalSlash();
-//STRIP001              aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_NAME:
-//STRIP001              aString = aURLObj.getBase();
-//STRIP001          break;
-//STRIP001
-//STRIP001          case SVXFILEFORMAT_NAME_EXT:
-//STRIP001              aString = aURLObj.getName();
-//STRIP001          break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return( aString );
-//STRIP001 }
+/*N*/ XubString SvxExtFileField::GetFormatted() const
+/*N*/ {
+/*N*/   XubString aString;
+/*N*/
+/*N*/   INetURLObject aURLObj( aFile );
+/*N*/
+/*N*/     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
+/*N*/     {
+/*N*/         // invalid? try to interpret string as system file name
+/*N*/         String aURLStr;
+/*N*/
+/*N*/         ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aFile, aURLStr );
+/*N*/
+/*N*/         aURLObj.SetURL( aURLStr );
+/*N*/     }
+/*N*/
+/*N*/     // #92009# Be somewhat liberate when trying to
+/*N*/     // get formatted content out of the FileField
+/*N*/     if( INET_PROT_NOT_VALID == aURLObj.GetProtocol() )
+/*N*/     {
+/*N*/         // still not valid? Then output as is
+/*N*/         aString = aFile;
+/*N*/     }
+/*N*/   else if( INET_PROT_FILE == aURLObj.GetProtocol() )
+/*N*/   {
+/*N*/       switch( eFormat )
+/*N*/       {
+/*N*/           case SVXFILEFORMAT_FULLPATH:
+/*N*/               aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_PATH:
+/*N*/                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
+/*N*/                 // #101742# Leave trailing slash at the pathname
+/*N*/                 aURLObj.setFinalSlash();
+/*N*/               aString = aURLObj.getFSysPath(INetURLObject::FSYS_DETECT);
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_NAME:
+/*N*/               aString = aURLObj.getBase();
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_NAME_EXT:
+/*N*/               aString = aURLObj.getName();
+/*N*/           break;
+/*N*/       }
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       switch( eFormat )
+/*N*/       {
+/*N*/           case SVXFILEFORMAT_FULLPATH:
+/*N*/               aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_PATH:
+/*N*/                 aURLObj.removeSegment(INetURLObject::LAST_SEGMENT, false);
+/*N*/                 // #101742# Leave trailing slash at the pathname
+/*N*/                 aURLObj.setFinalSlash();
+/*N*/               aString = aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_NAME:
+/*N*/               aString = aURLObj.getBase();
+/*N*/           break;
+/*N*/
+/*N*/           case SVXFILEFORMAT_NAME_EXT:
+/*N*/               aString = aURLObj.getName();
+/*N*/           break;
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   return( aString );
+/*N*/ }
 
 //----------------------------------------------------------------------------
 //      SvxAuthorField
@@ -1069,34 +1069,34 @@ namespace binfilter {
 
 /*N*/ SvxAuthorField::SvxAuthorField( const SvxAddressItem& rAdrItem,
 /*N*/                                   SvxAuthorType eT, SvxAuthorFormat eF )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  aName      = rAdrItem.GetName();
-//STRIP001  aFirstName = rAdrItem.GetFirstName();
-//STRIP001  aShortName = rAdrItem.GetShortName();
-//STRIP001  eType   = eT;
-//STRIP001  eFormat = eF;
+/*N*/ {
+/*N*/   aName      = rAdrItem.GetName();
+/*N*/   aFirstName = rAdrItem.GetFirstName();
+/*N*/   aShortName = rAdrItem.GetShortName();
+/*N*/   eType   = eT;
+/*N*/   eFormat = eF;
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ SvxFieldData* SvxAuthorField::Clone() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  return new SvxAuthorField( *this );
+/*N*/ {
+/*N*/   return new SvxAuthorField( *this );
 /*N*/ }
 
 //----------------------------------------------------------------------------
 
 /*N*/ int SvxAuthorField::operator==( const SvxFieldData& rOther ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  if ( rOther.Type() != Type() )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  const SvxAuthorField& rOtherFld = (const SvxAuthorField&) rOther;
-//STRIP001  return ( ( aName == rOtherFld.aName ) &&
-//STRIP001              ( aFirstName == rOtherFld.aFirstName ) &&
-//STRIP001              ( aShortName == rOtherFld.aShortName ) &&
-//STRIP001              ( eType == rOtherFld.eType ) &&
-//STRIP001              ( eFormat == rOtherFld.eFormat ) );
+/*N*/ {
+/*N*/   if ( rOther.Type() != Type() )
+/*N*/       return FALSE;
+/*N*/
+/*N*/   const SvxAuthorField& rOtherFld = (const SvxAuthorField&) rOther;
+/*N*/   return ( ( aName == rOtherFld.aName ) &&
+/*N*/               ( aFirstName == rOtherFld.aFirstName ) &&
+/*N*/               ( aShortName == rOtherFld.aShortName ) &&
+/*N*/               ( eType == rOtherFld.eType ) &&
+/*N*/               ( eFormat == rOtherFld.eFormat ) );
 /*N*/ }
 
 //----------------------------------------------------------------------------
