@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dpage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:18:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,61 +61,66 @@
 
 #pragma hdrstop
 
-#ifndef _BASMGR_HXX
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _GOODIES_IMAPOBJ_HXX
-#include <svtools/imapobj.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SV_HELP_HXX //autogen
-#include <vcl/help.hxx>
-#endif
-#ifndef _SVDVIEW_HXX //autogen
-#include <bf_svx/svdview.hxx>
-#endif
+// auto strip #ifndef _BASMGR_HXX
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_HELP_HXX //autogen
+// auto strip #include <vcl/help.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDVIEW_HXX //autogen
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #endif
 
-#ifndef _FMTURL_HXX //autogen
-#include <fmturl.hxx>
-#endif
+// auto strip #ifndef _FMTURL_HXX //autogen
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
@@ -125,24 +130,24 @@
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-#ifndef _DFLYOBJ_HXX
-#include <dflyobj.hxx>
-#endif
+// auto strip #ifndef _DFLYOBJ_HXX
+// auto strip #include <dflyobj.hxx>
+// auto strip #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-#ifndef _USRFLD_HXX
-#include <usrfld.hxx>
-#endif
+// auto strip #ifndef _USRFLD_HXX
+// auto strip #include <usrfld.hxx>
+// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
