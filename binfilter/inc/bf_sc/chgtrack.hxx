@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2004-07-30 14:52:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:43:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #define SC_CHGTRACK_HXX
 
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif
@@ -81,16 +81,16 @@
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif
-#ifndef _LINK_HXX //autogen
-#include <tools/link.hxx>
-#endif
+// auto strip #ifndef _LINK_HXX //autogen
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>
 #endif
 
-#ifndef SC_SCGLOB_HXX
-#include "global.hxx"
-#endif
+// auto strip #ifndef SC_SCGLOB_HXX
+// auto strip #include "global.hxx"
+// auto strip #endif
 #ifndef SC_BIGRANGE_HXX
 #include "bigrange.hxx"
 #endif
@@ -100,9 +100,9 @@
 
 #ifdef SC_CHGTRACK_CXX
 // core/inc
-#ifndef SC_REFUPDAT_HXX
-#include "refupdat.hxx"
-#endif
+// auto strip #ifndef SC_REFUPDAT_HXX
+// auto strip #include "refupdat.hxx"
+// auto strip #endif
 #endif
 /*N*/#include <tools/debug.hxx>
 /*N*/
