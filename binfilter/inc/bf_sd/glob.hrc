@@ -2,9 +2,9 @@
  *
  *  $RCSfile: glob.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:54:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,9 +113,9 @@
 #define STR_HANDOUT                             RID_APP_START+748
 #define STR_MASTERPAGE                          RID_APP_START+749
 #define STR_PRESOBJNOTESTEXT                    RID_APP_START+750
-#define STR_BAD_PASSWORD_OR_FILE_CORRUPTED      RID_APP_START+751
-#define STR_UNDO_MOVEPAGES                      RID_APP_START+752
-#define STR_NOT_ENOUGH_MEMORY                   RID_APP_START+753
+//STRIP001 #define STR_BAD_PASSWORD_OR_FILE_CORRUPTED      RID_APP_START+751
+//STRIP001 #define STR_UNDO_MOVEPAGES                      RID_APP_START+752
+//STRIP001 #define STR_NOT_ENOUGH_MEMORY                   RID_APP_START+753
 #define STR_LAYOUT_SUBTITLE                     RID_APP_START+754
 #define STR_POOLSHEET_OBJWITHARROW              RID_APP_START+755
 #define STR_POOLSHEET_OBJWITHSHADOW             RID_APP_START+756
@@ -149,9 +149,9 @@
 #define STR_GLUEPOINTSOBJECTBARSHELL            RID_APP_START+790
 #define STR_EMPTY_STYLESHEET_NAME               RID_APP_START+791
 #define STR_LAYER_MEASURELINES                  RID_APP_START+792
-#define STR_LAYOUT_DEFAULT_TITLE_NAME           RID_APP_START+793
+//STRIP001 #define STR_LAYOUT_DEFAULT_TITLE_NAME           RID_APP_START+793
 #define STR_GRAFOBJECTBARSHELL                  RID_APP_START+794
-#define STR_POWERPOINT_IMPORT                   RID_APP_START+795
+//STRIP001 #define STR_POWERPOINT_IMPORT                    RID_APP_START+795
 #define STR_STAROFFICE_XML_DRAW                 RID_APP_START+796
 #define STR_STAROFFICE_XML_IMPRESS              RID_APP_START+797
 #define STR_PRESVIEWSHELL                       RID_APP_START+798
