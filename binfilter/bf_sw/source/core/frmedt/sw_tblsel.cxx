@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:29:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,55 +67,60 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
 #ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
 #endif
-#ifndef _SCH_DLL_HXX //autogen
-#include <bf_sch/schdll.hxx>
-#endif
-#ifndef _SCH_MEMCHRT_HXX
-#include <bf_sch/memchrt.hxx>
-#endif
+// auto strip #ifndef _SCH_DLL_HXX //autogen
+// auto strip #include <bf_sch/schdll.hxx>
+// auto strip #endif
+// auto strip #ifndef _SCH_MEMCHRT_HXX
+// auto strip #include <bf_sch/memchrt.hxx>
+// auto strip #endif
 
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -128,30 +133,30 @@
 #ifndef _CELLFRM_HXX
 #include <cellfrm.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _SWCRSR_HXX
-#include <swcrsr.hxx>
-#endif
+// auto strip #ifndef _SWCRSR_HXX
+// auto strip #include <swcrsr.hxx>
+// auto strip #endif
 #ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
 #endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _MVSAVE_HXX
-#include <mvsave.hxx>
-#endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _MVSAVE_HXX
+// auto strip #include <mvsave.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //siehe auch swtable.cxx
