@@ -2,9 +2,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:52 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:25:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,9 @@
 #endif
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
+#endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
 #endif
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
@@ -928,7 +931,7 @@ inline int ScAddress::operator>=( const ScAddress& r ) const
     return !operator<( r );
 }
 
-#ifdef __LITTLEENDIAN
+#ifdef OSL_LITENDIAN
 
 inline USHORT* ScAddress::RowPos() { return (USHORT*) &nAddress; }
 inline BYTE*   ScAddress::ColPos() { return (BYTE*) &nAddress + 2; }

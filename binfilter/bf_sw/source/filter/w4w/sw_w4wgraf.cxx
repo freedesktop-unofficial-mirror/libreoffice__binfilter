@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wgraf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:55 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:24:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,9 @@
 #ifndef _W4WGRAF_HXX
 #include <w4wgraf.hxx>         // eigenes
 #endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
 namespace binfilter {
 
 #define MAX_MEM_GRAF 300000         // ab 300K im File statt im Speicher
@@ -160,13 +163,13 @@ SvStream& operator << ( SvStream& rOStream, BmpFileHd& rHead ) //$ ostream
 {
     BmpFileHd aHd = rHead;
 
-#ifndef __LITTLEENDIAN
+#ifndef OSL_LITENDIAN
     aHd.Typ     =SWAPSHORT( aHd.Typ );
     aHd.Size    =SWAPLONG ( aHd.Size );
     aHd.Reserve1=SWAPSHORT( aHd.Reserve1 );
     aHd.Reserve2=SWAPSHORT( aHd.Reserve2 );
     aHd.Offset  =SWAPLONG ( aHd.Offset );
-#endif // !__LITTLEENDIAN
+#endif // !OSL_LITENDIAN
 
                             // Da MS die BmpFileHd-Struktur nicht aligned hat,
                             // muessen die Member einzeln 'rausgeschrieben werden,
@@ -185,7 +188,7 @@ SvStream& operator << ( SvStream& rOStream, BmpFileHd& rHead ) //$ ostream
 
 SvStream& operator << ( SvStream& rOStream, BmpInfoHd& rInfo) //$ ostream
 {
-#ifndef __LITTLEENDIAN
+#ifndef OSL_LITENDIAN
     BmpInfoHd aInfo = rInfo;
 
     aInfo.Size    =SWAPLONG ( aInfo.Size );
@@ -201,9 +204,9 @@ SvStream& operator << ( SvStream& rOStream, BmpInfoHd& rInfo) //$ ostream
     aInfo.ColMust =SWAPLONG ( aInfo.ColMust );
 
     rOStream.Write( (char*)&aInfo, sizeof(aInfo) );
-#else // !__LITTLEENDIAN
+#else // !OSL_LITENDIAN
     rOStream.Write( (char*)&rInfo, sizeof(rInfo) );
-#endif // !__LITTLEENDIAN
+#endif // !OSL_LITENDIAN
     return rOStream;
 }
 
@@ -998,7 +1001,7 @@ void WriteWmfPreHd( long nWidth, long nHeight, SvStream& rOStream ) //$ ostream
     for( USHORT n=0; n < 10; n++ )
         aHeader.checksum ^= *(((UINT16*)&aHeader)+n);
 
-#ifndef __LITTLEENDIAN
+#ifndef OSL_LITENDIAN
     aHeader.key = SWAPLONG( aHeader.key );
     aHeader.left = 0;
     aHeader.top = 0;
@@ -1006,7 +1009,7 @@ void WriteWmfPreHd( long nWidth, long nHeight, SvStream& rOStream ) //$ ostream
     aHeader.bottom = SWAPSHORT( aHeader.bottom );
     aHeader.inch = SWAPSHORT( aHeader.inch );
     aHeader.checksum = SWAPSHORT( aHeader.checksum );
-#endif // !__LITTLEENDIAN
+#endif // !OSL_LITENDIAN
 
     rOStream.Write( (char*)&aHeader, METAFILEHEADER_SIZE );
 }

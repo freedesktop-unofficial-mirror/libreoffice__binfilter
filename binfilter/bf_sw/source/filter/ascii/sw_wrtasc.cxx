@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtasc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:22:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,9 @@
 
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
+#endif
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
 #endif
 namespace binfilter {
 
@@ -242,7 +245,7 @@ namespace binfilter {
 /*M*/                             case RTL_TEXTENCODING_UCS2:
 /*M*/                               //Strm().StartWritingUnicodeText();
 /*M*/                                 Strm().SetEndianSwap(FALSE);
-/*M*/ #ifdef __LITTLEENDIAN
+/*M*/ #ifdef OSL_LITENDIAN
 /*M*/                                 Strm() << BYTE(0xFF) << BYTE(0xFE);
 /*M*/ #else
 /*M*/                                 Strm() << BYTE(0xFE) << BYTE(0xFF);

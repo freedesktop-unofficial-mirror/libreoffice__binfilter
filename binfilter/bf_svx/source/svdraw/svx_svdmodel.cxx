@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:19:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -197,6 +197,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -410,7 +415,7 @@ using namespace ::com::sun::star;
 /*N*/   mnCharCompressType = 0;
 /*N*/ #endif
 /*N*/
-/*N*/ #ifdef __LITTLEENDIAN
+/*N*/ #ifdef OSL_LITENDIAN
 /*N*/   nStreamNumberFormat=NUMBERFORMAT_INT_LITTLEENDIAN;
 /*N*/ #endif
 /*N*/   bExtColorTable=bUseExtColorTable;
