@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:37:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,17 +71,17 @@
 #include <bf_starmath/smdll.hxx>
 #include <bf_svx/svdetc.hxx>
 #include <bf_svx/itemdata.hxx> //STRIP002
-#include <osl/mutex.hxx>
-#include <cppuhelper/factory.hxx>
-#include <bf_sfx2/docfac.hxx>
-#include <bf_sfx2/docfilt.hxx>
-#include <bf_sfx2/fcontnr.hxx>
-#include <bf_sfx2/app.hxx>
+// auto strip #include <osl/mutex.hxx>
+// auto strip #include <cppuhelper/factory.hxx>
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #include <bf_sfx2/fcontnr.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/imagemgr.hxx>
 #include <framework/imageproducer.hxx>
-#include <unotools/processfactory.hxx>
-#include <sot/clsids.hxx> //STRIP002
-#include <sot/sotdata.hxx> //SRTIP002
+// auto strip #include <unotools/processfactory.hxx>
+// auto strip #include <sot/clsids.hxx> //STRIP002
+// auto strip #include <sot/sotdata.hxx> //SRTIP002
 
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <svtools/moduleoptions.hxx>
