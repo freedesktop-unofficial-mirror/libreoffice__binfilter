@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:44 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,14 +63,14 @@
 #include <svtools/pathoptions.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
 #endif
 
-#include <cppuhelper/implbase2.hxx>
+// auto strip #include <cppuhelper/implbase2.hxx>
 
 #include "xtable.hxx"
 namespace binfilter {
@@ -270,9 +270,9 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 #include "UnoGraphicExporter.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-#include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
+// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
+// auto strip #endif
 
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
