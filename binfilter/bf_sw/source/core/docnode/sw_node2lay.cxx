@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_node2lay.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:16:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,17 @@
 
 #pragma hdrstop
 
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>   // SwClientIter
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx> // SwClientIter
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
@@ -80,7 +85,7 @@
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-#include "frmfmt.hxx"
+// auto strip #include "frmfmt.hxx"
 #include "cntfrm.hxx"
 #include "tabfrm.hxx"
 #include "frmtool.hxx"

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_nodes.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:16:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,18 @@
 
 #include <stdlib.h>
 
-#ifndef _NODE_HXX
-#include <node.hxx>
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -82,21 +91,21 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>      // fuer erzuegen / loeschen der Table-Frames
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>      // fuer erzuegen / loeschen der Table-Frames
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
@@ -118,7 +127,7 @@ SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)//STRIP008 ;
 
 //#define JP_DEBUG
 #ifdef JP_DEBUG
-#include "shellio.hxx"
+// auto strip #include "shellio.hxx"
 #endif
 namespace binfilter {
 
