@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_rect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:12:53 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:32:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -600,102 +600,102 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/ }
 
 
-//STRIP001 SmRect & SmRect::ExtendBy(const Point &rPoint)
-//STRIP001  // extend current rectangle to include 'rPoint'.
-//STRIP001  // The effect should be similar to
-//STRIP001  //      "ExtendBy(rRect, RCP_THIS, (BOOL) TRUE)"
-//STRIP001  // where 'rRect' is a SmRect of size and width 1 with no italic spaces
-//STRIP001  // (as by "SmRect (1, 1)") and position at 'rPoint'.
-//STRIP001 {
-//STRIP001  // get some values used for italic spaces adaption
-//STRIP001  // ! (need to be done before changing current SmRect) !
-//STRIP001  long  nL = Min(GetItalicLeft(),  rPoint.X()),
-//STRIP001        nR = Max(GetItalicRight(), rPoint.X());
-//STRIP001
-//STRIP001  // this is the adaption of rectangle union
-//STRIP001  if (rPoint.X() < GetLeft())
-//STRIP001      SetLeft(rPoint.X());
-//STRIP001  if (rPoint.X() > GetRight())
-//STRIP001      SetRight(rPoint.X());
-//STRIP001  if (rPoint.Y() < GetTop())
-//STRIP001      SetTop(rPoint.Y());
-//STRIP001  if (rPoint.Y() > GetBottom())
-//STRIP001      SetBottom(rPoint.Y());
-//STRIP001
-//STRIP001  SetItalicSpaces(GetLeft() - nL, nR - GetRight());
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
+SmRect & SmRect::ExtendBy(const Point &rPoint)
+    // extend current rectangle to include 'rPoint'.
+    // The effect should be similar to
+    //      "ExtendBy(rRect, RCP_THIS, (BOOL) TRUE)"
+    // where 'rRect' is a SmRect of size and width 1 with no italic spaces
+    // (as by "SmRect (1, 1)") and position at 'rPoint'.
+{
+    // get some values used for italic spaces adaption
+    // ! (need to be done before changing current SmRect) !
+    long  nL = Min(GetItalicLeft(),  rPoint.X()),
+          nR = Max(GetItalicRight(), rPoint.X());
+
+    // this is the adaption of rectangle union
+    if (rPoint.X() < GetLeft())
+        SetLeft(rPoint.X());
+    if (rPoint.X() > GetRight())
+        SetRight(rPoint.X());
+    if (rPoint.Y() < GetTop())
+        SetTop(rPoint.Y());
+    if (rPoint.Y() > GetBottom())
+        SetBottom(rPoint.Y());
+
+    SetItalicSpaces(GetLeft() - nL, nR - GetRight());
+
+    return *this;
+}
 
 
-//STRIP001 long SmRect::OrientedDist(const Point &rPoint) const
-//STRIP001  // return oriented distance of rPoint to the current rectangle,
-//STRIP001  // especially the return value is <= 0 iff the point is inside the
-//STRIP001  // rectangle.
-//STRIP001  // For simplicity the maximum-norm is used.
-//STRIP001 {
-//STRIP001  BOOL  bIsInside = IsInsideItalicRect(rPoint);
-//STRIP001
-//STRIP001  // build reference point to define the distance
-//STRIP001  Point  aRef;
-//STRIP001  if (bIsInside)
-//STRIP001  {   Point  aIC (GetItalicCenterX(), GetCenterY());
-//STRIP001
-//STRIP001      aRef.X() = rPoint.X() >= aIC.X() ? GetItalicRight() : GetItalicLeft();
-//STRIP001      aRef.Y() = rPoint.Y() >= aIC.Y() ? GetBottom() : GetTop();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // x-coordinate
-//STRIP001      if (rPoint.X() > GetItalicRight())
-//STRIP001          aRef.X() = GetItalicRight();
-//STRIP001      else if (rPoint.X() < GetItalicLeft())
-//STRIP001          aRef.X() = GetItalicLeft();
-//STRIP001      else
-//STRIP001          aRef.X() = rPoint.X();
-//STRIP001      // y-coordinate
-//STRIP001      if (rPoint.Y() > GetBottom())
-//STRIP001          aRef.Y() = GetBottom();
-//STRIP001      else if (rPoint.Y() < GetTop())
-//STRIP001          aRef.Y() = GetTop();
-//STRIP001      else
-//STRIP001          aRef.Y() = rPoint.Y();
-//STRIP001  }
-//STRIP001
-//STRIP001  // build distance vector
-//STRIP001  Point  aDist (aRef - rPoint);
-//STRIP001
-//STRIP001  long nAbsX = labs(aDist.X()),
-//STRIP001       nAbsY = labs(aDist.Y());
-//STRIP001
-//STRIP001  return bIsInside ? - Min(nAbsX, nAbsY) : Max (nAbsX, nAbsY);
-//STRIP001 }
+long SmRect::OrientedDist(const Point &rPoint) const
+    // return oriented distance of rPoint to the current rectangle,
+    // especially the return value is <= 0 iff the point is inside the
+    // rectangle.
+    // For simplicity the maximum-norm is used.
+{
+    BOOL  bIsInside = IsInsideItalicRect(rPoint);
+
+    // build reference point to define the distance
+    Point  aRef;
+    if (bIsInside)
+    {   Point  aIC (GetItalicCenterX(), GetCenterY());
+
+        aRef.X() = rPoint.X() >= aIC.X() ? GetItalicRight() : GetItalicLeft();
+        aRef.Y() = rPoint.Y() >= aIC.Y() ? GetBottom() : GetTop();
+    }
+    else
+    {
+        // x-coordinate
+        if (rPoint.X() > GetItalicRight())
+            aRef.X() = GetItalicRight();
+        else if (rPoint.X() < GetItalicLeft())
+            aRef.X() = GetItalicLeft();
+        else
+            aRef.X() = rPoint.X();
+        // y-coordinate
+        if (rPoint.Y() > GetBottom())
+            aRef.Y() = GetBottom();
+        else if (rPoint.Y() < GetTop())
+            aRef.Y() = GetTop();
+        else
+            aRef.Y() = rPoint.Y();
+    }
+
+    // build distance vector
+    Point  aDist (aRef - rPoint);
+
+    long nAbsX = labs(aDist.X()),
+         nAbsY = labs(aDist.Y());
+
+    return bIsInside ? - Min(nAbsX, nAbsY) : Max (nAbsX, nAbsY);
+}
 
 
-//STRIP001 BOOL SmRect::IsInsideRect(const Point &rPoint) const
-//STRIP001 {
-//STRIP001  return     rPoint.Y() >= GetTop()
-//STRIP001         &&  rPoint.Y() <= GetBottom()
-//STRIP001         &&  rPoint.X() >= GetLeft()
-//STRIP001         &&  rPoint.X() <= GetRight();
-//STRIP001 }
+BOOL SmRect::IsInsideRect(const Point &rPoint) const
+{
+    return     rPoint.Y() >= GetTop()
+           &&  rPoint.Y() <= GetBottom()
+           &&  rPoint.X() >= GetLeft()
+           &&  rPoint.X() <= GetRight();
+}
 
 
-//STRIP001 BOOL SmRect::IsInsideItalicRect(const Point &rPoint) const
-//STRIP001 {
-//STRIP001  return     rPoint.Y() >= GetTop()
-//STRIP001         &&  rPoint.Y() <= GetBottom()
-//STRIP001         &&  rPoint.X() >= GetItalicLeft()
-//STRIP001         &&  rPoint.X() <= GetItalicRight();
-//STRIP001 }
+BOOL SmRect::IsInsideItalicRect(const Point &rPoint) const
+{
+    return     rPoint.Y() >= GetTop()
+           &&  rPoint.Y() <= GetBottom()
+           &&  rPoint.X() >= GetItalicLeft()
+           &&  rPoint.X() <= GetItalicRight();
+}
 
-//STRIP001 SmRect SmRect::AsGlyphRect() const
-//STRIP001 {
-//STRIP001  SmRect aRect (*this);
-//STRIP001  aRect.SetTop(nGlyphTop);
-//STRIP001  aRect.SetBottom(nGlyphBottom);
-//STRIP001  return aRect;
-//STRIP001 }
+SmRect SmRect::AsGlyphRect() const
+{
+    SmRect aRect (*this);
+    aRect.SetTop(nGlyphTop);
+    aRect.SetBottom(nGlyphBottom);
+    return aRect;
+}
 
 
 // forward declaration
