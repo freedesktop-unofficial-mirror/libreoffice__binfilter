@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3block.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:41:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,58 +62,67 @@
 
 #pragma hdrstop
 
-#ifndef _VCL_VCLENUM_HXX
-#include <vcl/vclenum.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
-#include <vcl/font.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX //autogen
-#include <tools/tenccvt.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _SOT_STORINFO_HXX //autogen
-#include <sot/storinfo.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
-#include <so3/clsids.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX
-#include <svtools/macitem.hxx>
+// auto strip #ifndef _VCL_VCLENUM_HXX
+// auto strip #include <vcl/vclenum.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_FONT_HXX //autogen
+// auto strip #include <vcl/font.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_TENCCVT_HXX //autogen
+// auto strip #include <tools/tenccvt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_STORINFO_HXX //autogen
+// auto strip #include <sot/storinfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SO_CLSIDS_HXX
+// auto strip #include <so3/clsids.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMACITEM_HXX
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _SW3IO_HXX
-#include <sw3io.hxx>
-#endif
+
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _SW3IO_HXX
+// auto strip #include <sw3io.hxx>
+// auto strip #endif
 #ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
 #endif
-#ifndef _SWBLOCKS_HXX
-#include <swblocks.hxx>
-#endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _SHELLIO_HXX
-#include <shellio.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _SWBLOCKS_HXX
+// auto strip #include <swblocks.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHELLIO_HXX
+// auto strip #include <shellio.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 
 #ifndef _SWSWERROR_H
 #include <swerror.h>
