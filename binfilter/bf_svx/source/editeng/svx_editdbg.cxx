@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdbg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:33:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,44 +59,63 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #pragma hdrstop
 
-#include <lspcitem.hxx>
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
 
-#include <lrspitem.hxx>
-#include <ulspitem.hxx>
-#include <cntritem.hxx>
-#include <colritem.hxx>
-#include <fhgtitem.hxx>
-#include <fontitem.hxx>
-#include <adjitem.hxx>
-#include <wghtitem.hxx>
-#include <postitem.hxx>
-#include <udlnitem.hxx>
-#include <crsditem.hxx>
-#include <shdditem.hxx>
-#include <escpitem.hxx>
-#include <kernitem.hxx>
-#include <wrlmitem.hxx>
-#include <akrnitem.hxx>
-#include <langitem.hxx>
-#include <emphitem.hxx>
-#include <numitem.hxx>
-#include <tstpitem.hxx>
-#include <charscaleitem.hxx>
-#include <charreliefitem.hxx>
-#include <frmdiritem.hxx>
+// auto strip #include <lspcitem.hxx>
 
-#include <impedit.hxx>
-#include <editeng.hxx>
-#include <editview.hxx>
+// auto strip #include <lrspitem.hxx>
+// auto strip #include <ulspitem.hxx>
+// auto strip #include <cntritem.hxx>
+// auto strip #include <colritem.hxx>
+// auto strip #include <fhgtitem.hxx>
+// auto strip #include <fontitem.hxx>
+// auto strip #include <adjitem.hxx>
+// auto strip #include <wghtitem.hxx>
+// auto strip #include <postitem.hxx>
+// auto strip #include <udlnitem.hxx>
+// auto strip #include <crsditem.hxx>
+// auto strip #include <shdditem.hxx>
+// auto strip #include <escpitem.hxx>
+// auto strip #include <kernitem.hxx>
+// auto strip #include <wrlmitem.hxx>
+// auto strip #include <akrnitem.hxx>
+// auto strip #include <langitem.hxx>
+// auto strip #include <emphitem.hxx>
+// auto strip #include <numitem.hxx>
+// auto strip #include <tstpitem.hxx>
+// auto strip #include <charscaleitem.hxx>
+// auto strip #include <charreliefitem.hxx>
+// auto strip #include <frmdiritem.hxx>
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
+// auto strip #include <impedit.hxx>
+// auto strip #include <editeng.hxx>
+// auto strip #include <editview.hxx>
 #include <editdoc.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editdbg.hxx>
 namespace binfilter {
 
 #if defined( DBG_UTIL ) || ( OSL_DEBUG_LEVEL > 1 )
