@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtcol.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 #ifndef _FMTCOL_HXX
 #define _FMTCOL_HXX
 
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 
 #ifndef _FORMAT_HXX
 #include <format.hxx>
