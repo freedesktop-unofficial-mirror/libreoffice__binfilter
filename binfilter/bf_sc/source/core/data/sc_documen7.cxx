@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen7.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:05:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,14 +60,14 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
 #if defined( WNT ) && defined( erBEEP )
 #include <svwin.h>
@@ -77,23 +77,23 @@
 #endif
 
 #include "document.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
 #include "cell.hxx"
-#include "compiler.hxx"     // errCircularReference
-#include "scerrors.hxx"
-#include "docoptio.hxx"
-#include "refupdat.hxx"
-#include "table.hxx"
-#include "progress.hxx"
+// auto strip #include "compiler.hxx"       // errCircularReference
+// auto strip #include "scerrors.hxx"
+// auto strip #include "docoptio.hxx"
+// auto strip #include "refupdat.hxx"
+// auto strip #include "table.hxx"
+// auto strip #include "progress.hxx"
 #include "scmod.hxx"        // SC_MOD
 #include "inputopt.hxx"     // GetExpandRefs
 #include "conditio.hxx"
 #include "bclist.hxx"
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX //autogen
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
 
 #include "globstr.hrc"
