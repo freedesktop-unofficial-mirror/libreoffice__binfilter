@@ -1,4 +1,4 @@
-bf	binfilter:	idl setup2 xmloff xmlscript connectivity basctl stoc uui NULL
+bf	binfilter :	idl setup2 xmloff xmlscript connectivity basctl stoc uui NULL
 bf	binfilter\bf_xmloff\source\core						nmake	-	all	bf_xo_core NULL
 bf	binfilter\bf_xmloff\source\meta						nmake	-	all	bf_xo_meta NULL
 bf	binfilter\bf_xmloff\source\style						nmake	-	all	bf_xo_style NULL
