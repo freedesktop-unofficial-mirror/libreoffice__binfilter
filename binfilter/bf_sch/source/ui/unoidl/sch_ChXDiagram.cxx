@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDiagram.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: bm $ $Date: 2004-04-02 15:31:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:22:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,9 +60,9 @@
  ************************************************************************/
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -80,11 +80,16 @@
 // header for SvxChartDataDescrItem
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #include "ChXDiagram.hxx"
-#include "ChXChartObject.hxx"
+// auto strip #include "ChXChartObject.hxx"
 #include "ChXChartAxis.hxx"
 #include "ChXDataRow.hxx"
 #include "ChXDataPoint.hxx"
@@ -95,12 +100,12 @@
 
 #include "mapprov.hxx"
 
-#include "chtmodel.hxx"
-#include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
+// auto strip #include "chtmodel.hxx"
+// auto strip #include "globfunc.hxx"           // for GlobalGenerate3DAttrDefaultItem
 #include "schattr.hxx"
 #include "charttyp.hxx"
-#include "datarow.hxx"
-#include "datapoin.hxx"
+// auto strip #include "datarow.hxx"
+// auto strip #include "datapoin.hxx"
 #include "chtscene.hxx"
 #include "docshell.hxx"
 
@@ -141,15 +146,18 @@
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
-#include <com/sun/star/drawing/HomogenMatrix.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
+// auto strip #include <com/sun/star/drawing/HomogenMatrix.hpp>
+// auto strip #endif
 
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
 
 #include "pairs.hxx"
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
+#endif
 
 namespace
 {
