@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_crbm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:59:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,20 @@
 
 #pragma hdrstop
 
-#include "doc.hxx"
-#include "crsrsh.hxx"
-#include "ndtxt.hxx"
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#include "bookmrk.hxx"
-#include "callnk.hxx"
-#include "swcrsr.hxx"
+#include "doc.hxx"
+#include "crsrsh.hxx"
+// auto strip #include "ndtxt.hxx"
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+
+// auto strip #include "bookmrk.hxx"
+// auto strip #include "callnk.hxx"
+// auto strip #include "swcrsr.hxx"
 namespace binfilter {
 
 
