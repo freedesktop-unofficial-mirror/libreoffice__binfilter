@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dlgutil.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:11:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #ifndef _FIELD_HXX
 #include <vcl/field.hxx>
 #endif
-#ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif

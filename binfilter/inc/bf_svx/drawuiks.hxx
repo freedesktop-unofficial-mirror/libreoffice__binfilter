@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawuiks.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:12:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 #ifndef _SDUIKS_HXX
 #define _SDUIKS_HXX
 
-#include <usr/uiks.hxx>
+// auto strip #include <usr/uiks.hxx>
 namespace binfilter {
 
 #define UIK_SHAPEFACTORY                    UIK_DRAWING(00)
