@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cusshow.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:53:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,17 +62,17 @@
 #ifndef _SD_CUSSHOW_HXX
 #define _SD_CUSSHOW_HXX
 
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX //autogen
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
