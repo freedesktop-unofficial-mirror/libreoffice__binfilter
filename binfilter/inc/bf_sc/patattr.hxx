@@ -2,9 +2,9 @@
  *
  *  $RCSfile: patattr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:48:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef SC_SCPATATR_HXX
 #define SC_SCPATATR_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
