@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swatrset.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:56:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,25 +64,25 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
 #define ITEMID_LINE             SID_ATTR_LINE_STYLE
-#ifndef _SVX_BOLNITEM_HXX //autogen
-#include <bf_svx/bolnitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _XTABLE_HXX //autogen
-#include <bf_svx/xtable.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
+// auto strip #ifndef _SVX_BOLNITEM_HXX //autogen
+// auto strip #include <bf_svx/bolnitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _XTABLE_HXX //autogen
+// auto strip #include <bf_svx/xtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
 
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
@@ -93,18 +93,23 @@
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _NODE_HXX //autogen
 #include <node.hxx>
 #endif
-#ifndef _FORMAT_HXX //autogen
-#include <format.hxx>
-#endif
-#ifndef _SWATRSET_HXX
-#include <swatrset.hxx>
-#endif
+// auto strip #ifndef _FORMAT_HXX //autogen
+// auto strip #include <format.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWATRSET_HXX
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>       // fuer SetModifyAtAttr
 #endif
