@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_chpfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:24:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,15 +66,19 @@
 #include <com/sun/star/text/ChapterFormat.hpp>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _FRAME_HXX
 #include <frame.hxx>        // SwChapterFieldType::ChangeExpansion()
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>          // fuer GetBodyTxtNode
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>            // fuer GetBodyTxtNode
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:24:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #pragma hdrstop
 
 #include <float.h>
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
@@ -76,33 +76,38 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-#ifndef _LAYFRM_HXX
-#include <layfrm.hxx>
-#endif
+// auto strip #ifndef _LAYFRM_HXX
+// auto strip #include <layfrm.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
 #endif
-#ifndef _CELLFML_HXX
-#include <cellfml.hxx>
-#endif
+// auto strip #ifndef _CELLFML_HXX
+// auto strip #include <cellfml.hxx>
+// auto strip #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
@@ -121,9 +126,9 @@
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
 namespace binfilter {
 
 const sal_Unicode cRelTrenner = ',';
