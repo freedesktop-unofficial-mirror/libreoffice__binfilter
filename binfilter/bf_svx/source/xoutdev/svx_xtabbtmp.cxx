@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xtabbtmp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:53:13 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:10:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -342,8 +342,8 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/
 /*N*/       aURL.Append( aName );
 /*N*/
-/*N*/       if( !aURL.getExtension().Len() )
-/*N*/           aURL.setExtension( String( pszExtBitmap, 3 ) );
+/*N*/       if( !aURL.getExtension().getLength() )
+/*N*/           aURL.setExtension( rtl::OUString( pszExtBitmap, 3 ) );
 /*N*/
 /*N*/       // check if file exists, SfxMedium shows an errorbox else
 /*N*/       {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:45:21 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:10:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -648,8 +648,7 @@ void SAL_CALL SvxPluginShape::setPropertyValue( const OUString& aPropertyName, c
                         OUString aURL;
                         if( aValue >>= aURL )
                         {
-                            const String aStrURL( aURL );
-                            xPlugin->SetURL( aStrURL );
+                            xPlugin->SetURL( aURL );
                             bOwn = sal_True;
                         }
                     }
