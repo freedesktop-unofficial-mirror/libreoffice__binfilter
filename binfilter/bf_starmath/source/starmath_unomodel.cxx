@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_unomodel.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-10 14:09:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:14:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _RTL_UUID_H_
+#include <rtl/uuid.h>
+#endif
+
 namespace binfilter {
 using namespace ::vos;
 using namespace ::rtl;
