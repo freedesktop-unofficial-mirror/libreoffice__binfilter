@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtatr2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:00:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,18 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 #include "unomid.h"
 
-#ifndef __SBX_SBXVARIABLE_HXX //autogen
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef __SBX_SBXVARIABLE_HXX //autogen
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 #ifndef _SFXMACITEM_HXX //autogen
 #include <svtools/macitem.hxx>
 #endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 
 #ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
@@ -90,15 +90,25 @@
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>        // SwUpdateAttr
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>        // SwUpdateAttr
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
 #endif
-#ifndef _UNOSTYLE_HXX
-#include <unostyle.hxx>
-#endif
+
+// auto strip #ifndef _UNOSTYLE_HXX
+// auto strip #include <unostyle.hxx>
+// auto strip #endif
 #ifndef _UNOEVENT_HXX
 #include <unoevent.hxx>     // SwHyperlinkEventDescriptor
 #endif
