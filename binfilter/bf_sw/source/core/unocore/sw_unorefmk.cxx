@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unorefmk.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:14:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,11 @@
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
@@ -77,6 +82,11 @@
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
