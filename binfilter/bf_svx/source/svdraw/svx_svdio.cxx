@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdio.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:14 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:53:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,9 @@
 
 #include "svdio.hxx"
 #include "svdobj.hxx"
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,7 +186,7 @@ namespace binfilter {
 
 /*N*/ void SdrIOHeader::Write()
 /*N*/ {
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/   nVersion=SWAPSHORT(nVersion);
 /*N*/   nBlkSize=SWAPLONG (nBlkSize);
 /*N*/ #endif
@@ -196,7 +199,7 @@ namespace binfilter {
 /*N*/       rStream.Write((char*)&nBlkSize, 4);
 /*N*/   }
 /*N*/
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/   nVersion=SWAPSHORT(nVersion);
 /*N*/   nBlkSize=SWAPLONG (nBlkSize);
 /*N*/ #endif
@@ -212,7 +215,7 @@ namespace binfilter {
 /*N*/       rStream.Read((char*)&nVersion, 2);
 /*N*/       rStream.Read((char*)&nBlkSize, 4);
 /*N*/
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/       nVersion=SWAPSHORT(nVersion);
 /*N*/       nBlkSize=SWAPLONG (nBlkSize);
 /*N*/ #endif
@@ -432,13 +435,13 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!IsEnde())
 /*N*/   {
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/       nInventor = SWAPLONG(nInventor);
 /*N*/       nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/ #endif
 /*N*/       rStream.Write((char*)&nInventor, 4);
 /*N*/       rStream.Write((char*)&nIdentifier, 2);
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/       nInventor = SWAPLONG(nInventor);
 /*N*/       nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/ #endif
@@ -453,7 +456,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       rStream.Read((char*)&nInventor, 4);
 /*N*/       rStream.Read((char*)&nIdentifier, 2);
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/       nInventor = SWAPLONG(nInventor);
 /*N*/       nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/ #endif
@@ -646,7 +649,7 @@ namespace binfilter {
 /*N*/   rStream.Read((char*)&nInventor, 4);
 /*N*/   rStream.Read((char*)&nIdentifier, 2);
 /*N*/
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/   nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/   nInventor = SWAPLONG(nInventor);
 /*N*/ #endif
@@ -656,7 +659,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrDownCompat::Write();
 /*N*/
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/   nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/   nInventor = SWAPLONG(nInventor);
 /*N*/ #endif
@@ -664,7 +667,7 @@ namespace binfilter {
 /*N*/   rStream.Write((char*)&nInventor, 4);
 /*N*/   rStream.Write((char*)&nIdentifier, 2);
 /*N*/
-/*N*/ #ifdef __BIGENDIAN
+/*N*/ #ifdef OSL_BIGENDIAN
 /*N*/   nIdentifier = SWAPSHORT(nIdentifier);
 /*N*/   nInventor = SWAPLONG(nInventor);
 /*N*/ #endif

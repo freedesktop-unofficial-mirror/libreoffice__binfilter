@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_excimpop.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:54 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:57:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,9 @@
 #include "excxfbuf.hxx"
 #include "excfntbf.hxx"
 #include "excvfbff.hxx"
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
 namespace binfilter {
 
 const sal_Char *SwExcelParser::pBuildInName[] = {
@@ -1085,7 +1088,7 @@ double SwExcelParser::RkToDouble( const UINT32 &nRk )
         fVal = ( double ) ( *( ( INT32 * ) &nRk ) >> 2 );
     else
         {// 64-Bit IEEE-Float
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
 //680xx und alle anderen vernuenftigen Prozessoren...
         *( ( UINT32 * ) &fVal + 1 ) = 0;    // unteren 32 Bits = 0
         *( ( UINT32 * ) &fVal ) = nRk & 0xFFFFFFFC; // Bit 0, 1 = 0
@@ -1227,7 +1230,7 @@ void SwExcelParser::PutCell( UINT16 nCol, UINT16 nRow, double fVal,
 
     pExcGlob->Normalize( nCol, nRow );
 
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
 //680xx und alle anderen vernuenftigen Prozessoren...
     nUpperWord = *( (UINT16*) &fVal );                  // Intel-Word #3
     if( nUpperWord == 0xFFFF )
@@ -1282,7 +1285,7 @@ void SwExcelParser::PutCell( UINT16 nCol, UINT16 nRow, double fVal,
             nLastXF = nXF;
             }
 // dieses ifdef ist nur fuer das segprag tool, wegen paariger Klammerung
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
     } // Ende: Ergebnis keine Zahl!
 #else
     } // Ende: Ergebnis keine Zahl!

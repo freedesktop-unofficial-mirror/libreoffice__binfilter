@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xpoly.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:53:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,9 @@
 #include "xoutx.hxx"
 #include "xpoly.hxx"
 #include "xpolyimp.hxx"
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -1601,7 +1604,7 @@ namespace binfilter {
 #if (__SIZEOFLONG) != 4
         if ( 1 )
 #else
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
 /*N*/       if ( rIStream.GetNumberFormatInt() != NUMBERFORMAT_INT_BIGENDIAN )
 #else
 /*N*/       if ( rIStream.GetNumberFormatInt() != NUMBERFORMAT_INT_LITTLEENDIAN )
@@ -1725,7 +1728,7 @@ namespace binfilter {
 #if (__SIZEOFLONG) != 4
 /*N*/       if ( 1 )
 #else
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
 /*N*/       if ( rOStream.GetNumberFormatInt() != NUMBERFORMAT_INT_BIGENDIAN )
 #else
 /*N*/       if ( rOStream.GetNumberFormatInt() != NUMBERFORMAT_INT_LITTLEENDIAN )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
+ *  last change: $Author: hr $ $Date: 2004-06-24 11:55:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -325,6 +325,9 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
 #include <memory>
+#ifndef _OSL_ENDIAN_H_
+#include <osl/endian.h>
+#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -493,7 +496,7 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
     if(!aCrsr.HasMark())
         return;
     SvCacheStream aStream( 20480 );
-#ifdef __BIGENDIAN
+#ifdef OSL_BIGENDIAN
     aStream.SetNumberFormatInt( NUMBERFORMAT_INT_BIGENDIAN );
 #else
     aStream.SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
