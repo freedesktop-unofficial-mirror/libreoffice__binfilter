@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
+ *  last change: $Author: hr $ $Date: 2005-04-04 12:36:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ using namespace ::com::sun::star::linguistic2;
 
 
 /*N*/ Sequence< OUString > lcl_GetLastFoundSvcs(
-/*N*/         SvtLinguConfigItem &rCfg,
+/*N*/         SvtLinguConfig &rCfg,
 /*N*/         const OUString &rLastFoundList ,
 /*N*/         const Locale &rAvailLocale )
 /*N*/ {
@@ -282,11 +282,11 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/         if (!xLngSvcMgr.is())
 /*N*/             return;
 /*N*/
-/*N*/         SvtLinguConfigItem aCfg( A2OU( "Office.Linguistic/ServiceManager" ) );
+/*N*/         SvtLinguConfig aCfg;
 /*N*/
 /*N*/         const sal_Char * apServices[3]      =  { SN_THESAURUS,         SN_SPELLCHECKER,            SN_HYPHENATOR };
-/*N*/         const sal_Char * apActiveLists[3]    =  { "ThesaurusList",      "SpellCheckerList",         "HyphenatorList" };
-/*N*/         const sal_Char * apLastFoundLists[3] =  { "LastFoundThesauri",  "LastFoundSpellCheckers",   "LastFoundHyphenators" };
+              const sal_Char * apActiveLists[3]    =  { "ServiceManager/ThesaurusList",      "ServiceManager/SpellCheckerList",         "ServiceManager/HyphenatorList" };
+              const sal_Char * apLastFoundLists[3] =  { "ServiceManager/LastFoundThesauri",  "ServiceManager/LastFoundSpellCheckers",   "ServiceManager/LastFoundHyphenators" };
 /*N*/
 /*N*/         for (int k = 0;  k < 3;  ++k)
 /*N*/         {
@@ -426,8 +426,8 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ {
 /*N*/     if (!pLocaleSeq)
 /*N*/     {
-/*N*/         SvtLinguConfigItem aCfg( A2OU( "Office.Linguistic/ServiceManager" ) );
-/*N*/         String  aNode( A2OU( "ThesaurusList" ) );
+/*N*/         SvtLinguConfig aCfg;
+/*N*/         String  aNode( A2OU( "ServiceManager/ThesaurusList" ) );
 /*N*/         Sequence < OUString > aNodeNames( aCfg.GetNodeNames( aNode ) );
 /*N*/         const OUString *pNodeNames = aNodeNames.getConstArray();
 /*N*/         INT32 nLen = aNodeNames.getLength();
