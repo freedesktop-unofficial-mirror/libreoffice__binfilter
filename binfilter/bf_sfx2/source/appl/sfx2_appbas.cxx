@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2004-05-06 16:17:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:25:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,34 +62,34 @@
 #ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
-#include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
+// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _BASRDLL_HXX //autogen
-#include <basic/basrdll.hxx>
-#endif
+// auto strip #ifndef _BASRDLL_HXX //autogen
+// auto strip #include <basic/basrdll.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
-#ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
-#endif
-#ifndef __SBX_SBX_FACTORY_HXX //autogen
-#include <svtools/sbxfac.hxx>
-#endif
-#ifndef _SBXCLASS_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
-#ifndef _SV_GRADIENT_HXX
-#include <vcl/gradient.hxx>
-#endif
+// auto strip #ifndef _SFXMACITEM_HXX //autogen
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
+// auto strip #ifndef __SBX_SBX_FACTORY_HXX //autogen
+// auto strip #include <svtools/sbxfac.hxx>
+// auto strip #endif
+// auto strip #ifndef _SBXCLASS_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_GRADIENT_HXX
+// auto strip #include <vcl/gradient.hxx>
+// auto strip #endif
 #ifndef _SFXRECTITEM_HXX //autogen
 #include <svtools/rectitem.hxx>
 #endif
@@ -99,84 +99,89 @@
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
-#ifndef _SB_SBMETH_HXX //autogen
-#include <basic/sbmeth.hxx>
-#endif
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMETH_HXX //autogen
+// auto strip #include <basic/sbmeth.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _REGCODE_HXX
 #endif
 #ifndef _SB_SBUNO_HXX
 #include <basic/sbuno.hxx>
 #endif
-#ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
-#endif
+// auto strip #ifndef _SFXECODE_HXX
+// auto strip #include <svtools/sfxecode.hxx>
+// auto strip #endif
+// auto strip #ifndef _EHDL_HXX
+// auto strip #include <svtools/ehdl.hxx>
+// auto strip #endif
 
-#include <svtools/undoopt.hxx>
+// auto strip #include <svtools/undoopt.hxx>
 #include <svtools/pathoptions.hxx>
-#include <svtools/useroptions.hxx>
-#include <unotools/bootstrap.hxx>
+// auto strip #include <svtools/useroptions.hxx>
+// auto strip #include <unotools/bootstrap.hxx>
 
 #pragma hdrstop
 
 #include "appuno.hxx"
-#include "module.hxx"
-#include "arrdecl.hxx"
-#include "app.hxx"
-#include "sfxtypes.hxx"
-#include "sfxresid.hxx"
-#include "msg.hxx"
-#include "msgpool.hxx"
-#include "progress.hxx"
+// auto strip #include "module.hxx"
+// auto strip #include "arrdecl.hxx"
+// auto strip #include "app.hxx"
+// auto strip #include "sfxtypes.hxx"
+// auto strip #include "sfxresid.hxx"
+// auto strip #include "msg.hxx"
+// auto strip #include "msgpool.hxx"
+// auto strip #include "progress.hxx"
 #include "objsh.hxx"
-#include "objitem.hxx"
-#include "viewfrm.hxx"
-#include "viewsh.hxx"
-#include "dispatch.hxx"
-#include "tplpitem.hxx"
-#include "minfitem.hxx"
+// auto strip #include "objitem.hxx"
+// auto strip #include "viewfrm.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "dispatch.hxx"
+// auto strip #include "tplpitem.hxx"
+// auto strip #include "minfitem.hxx"
 #include "app.hrc"
-#include "evntconf.hxx"
-#include "macrconf.hxx"
-#include "request.hxx"
-#include "docinf.hxx"
+// auto strip #include "evntconf.hxx"
+// auto strip #include "macrconf.hxx"
+// auto strip #include "request.hxx"
+// auto strip #include "docinf.hxx"
 #include "dinfdlg.hxx"
 #include "appdata.hxx"
-#include "appbas.hxx"
-#include "sfxhelp.hxx"
+// auto strip #include "appbas.hxx"
+// auto strip #include "sfxhelp.hxx"
 #include "stbmgr.hxx"
 #include "appimp.hxx"
-#include "basmgr.hxx"
+// auto strip #include "basmgr.hxx"
 #include "dlgcont.hxx"
+
+#ifndef _BASMGR_HXX
+#include <basic/basmgr.hxx>
+#endif
+
 #include "scriptcont.hxx"
-#include "helper.hxx"
+// auto strip #include "helper.hxx"
 
 #define ITEMID_SEARCH SID_SEARCH_ITEM
 
 #include "srchitem.hxx"
-#ifndef _VOS_SOCKET_HXX_ //autogen
-#include <vos/socket.hxx>
-#endif
+// auto strip #ifndef _VOS_SOCKET_HXX_ //autogen
+// auto strip #include <vos/socket.hxx>
+// auto strip #endif
 
 #define SFX_TYPEMAP
 #define Selection
