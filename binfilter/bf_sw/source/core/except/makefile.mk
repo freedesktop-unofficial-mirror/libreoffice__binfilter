@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:24 $
+#   last change: $Author: obo $ $Date: 2004-11-17 09:08:37 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -90,12 +90,10 @@ CXXFILES =
 .IF "$(product)"==""
 .IF "$(cap)"==""
 CXXFILES += \
-        sw_errhdl.cxx			\
-        sw_dbgloop.cxx
+        sw_errhdl.cxx
 
 SLOFILES +=  \
-        $(SLO)$/sw_errhdl.obj 	\
-        $(SLO)$/sw_dbgloop.obj
+        $(SLO)$/sw_errhdl.obj
 .ENDIF
 .ENDIF
 # --- Tagets -------------------------------------------------------
