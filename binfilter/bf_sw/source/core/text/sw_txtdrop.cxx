@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtdrop.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:55:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -80,15 +80,15 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>   // Format()
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>   // Format()
+// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>  // SwViewOption
-#endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>  // SwViewOption
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
@@ -98,21 +98,21 @@
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
-#ifndef _TXTPAINT_HXX
-#include <txtpaint.hxx> // SwSaveClip
-#endif
-#ifndef _TXTFLY_HXX
-#include <txtfly.hxx>   // Format()
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTPAINT_HXX
+// auto strip #include <txtpaint.hxx> // SwSaveClip
+// auto strip #endif
+// auto strip #ifndef _TXTFLY_HXX
+// auto strip #include <txtfly.hxx>   // Format()
+// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>    // pBlink
 #endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
