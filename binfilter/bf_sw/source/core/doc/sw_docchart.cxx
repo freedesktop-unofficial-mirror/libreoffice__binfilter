@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docchart.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:04:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,13 +64,13 @@
 
 #include <float.h>
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
 #ifndef _SCH_DLL_HXX
 #include <bf_sch/schdll.hxx>
 #endif
@@ -81,39 +81,48 @@
 #include <vcl/window.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _CELLFML_HXX
-#include <cellfml.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLFML_HXX
+// auto strip #include <cellfml.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
