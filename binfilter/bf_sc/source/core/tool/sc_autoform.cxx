@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_autoform.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:13:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,27 +69,27 @@
 
 #include "autoform.hxx"
 
-#include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <svtools/pathoptions.hxx>
-#include <svtools/itemset.hxx>
-#include <tools/shl.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #include <tools/shl.hxx>
+// auto strip #include <vcl/svapp.hxx>
 #include <vcl/outdev.hxx>
 #include <bf_svx/dialmgr.hxx>
 #include <bf_svx/dialogs.hrc>
-#include <bf_svx/langitem.hxx>
+// auto strip #include <bf_svx/langitem.hxx>
 #include <tools/urlobj.hxx>
 
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
 
 #include "globstr.hrc"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 namespace binfilter {
 
 //------------------------------------------------------------------------
