@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:30 $
+ *  last change: $Author: aw $ $Date: 2004-02-18 09:25:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1504,6 +1504,86 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/     return sString.makeStringAndClear();
 /*N*/ }
 
+// com.sun.star.sheet.SpreadsheetDocument
+#define NNUMFILTERNAMESFORSPREADSHEETDOCUMENT (7)
+static const sal_Char* sFilterNamesForSpreadsheetDocument[NNUMFILTERNAMESFORSPREADSHEETDOCUMENT] =
+{
+    "StarCalc 1.0",
+    "StarCalc 3.0",
+    "StarCalc 3.0 Vorlage/Template",
+    "StarCalc 4.0",
+    "StarCalc 4.0 Vorlage/Template",
+    "StarCalc 5.0",
+    "StarCalc 5.0 Vorlage/Template"
+};
+
+// com.sun.star.chart.ChartDocument
+#define SFILTERNAMESFORCHARTDOCUMENT (3)
+static const sal_Char* sFilterNamesForChartDocument[SFILTERNAMESFORCHARTDOCUMENT] =
+{
+    "StarChart 3.0",
+    "StarChart 4.0",
+    "StarChart 5.0"
+};
+
+// com.sun.star.drawing.DrawingDocument
+#define SFILTERNAMESFORDRAWINGDOCUMENT (4)
+static const sal_Char* sFilterNamesForDrawingDocument[SFILTERNAMESFORDRAWINGDOCUMENT] =
+{
+    "StarDraw 3.0",
+    "StarDraw 3.0 Vorlage",
+    "StarDraw 5.0",
+    "StarDraw 5.0 Vorlage"
+};
+
+// com.sun.star.presentation.PresentationDocument
+#define SFILTERNAMESFORPRESENTATIONDOCUMENT (9)
+static const sal_Char* sFilterNamesForPresentationDocument[SFILTERNAMESFORPRESENTATIONDOCUMENT] =
+{
+    "StarDraw 3.0 (StarImpress)",
+    "StarDraw 3.0 Vorlage (StarImpress)",
+    "StarDraw 5.0 (StarImpress)",
+    "StarDraw 5.0 Vorlage (StarImpress)",
+    "StarImpress 4.0",
+    "StarImpress 4.0 Vorlage",
+    "StarImpress 5.0",
+    "StarImpress 5.0 (packed)",
+    "StarImpress 5.0 Vorlage"
+};
+
+// com.sun.star.formula.FormulaProperties
+#define SFILTERNAMESFORFORMULAPROPERTIES (4)
+static const sal_Char* sFilterNamesForFormulaProperties[SFILTERNAMESFORFORMULAPROPERTIES] =
+{
+    "StarMath 2.0",
+    "StarMath 3.0",
+    "StarMath 4.0",
+    "StarMath 5.0"
+};
+
+// com.sun.star.text.GlobalDocument
+#define SFILTERNAMESFORGLOBALDOCUMENT (5)
+static const sal_Char* sFilterNamesForGlobalDocument[SFILTERNAMESFORGLOBALDOCUMENT] =
+{
+    "StarWriter 3.0 (StarWriter/GlobalDocument)",
+    "StarWriter 4.0 (StarWriter/GlobalDocument)",
+    "StarWriter 4.0/GlobalDocument",
+    "StarWriter 5.0 (StarWriter/GlobalDocument)",
+    "StarWriter 5.0/GlobalDocument"
+};
+
+// com.sun.star.text.TextDocument
+#define SFILTERNAMESFORTEXTDOCUMENT (6)
+static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] =
+{
+    "StarWriter 3.0",
+    "StarWriter 3.0 Vorlage/Template",
+    "StarWriter 4.0",
+    "StarWriter 4.0 Vorlage/Template",
+    "StarWriter 5.0",
+    "StarWriter 5.0 Vorlage/Template"
+};
+
 /*N*/ void SfxFilterContainer::ReadExternalFilters( const String& rDocServiceName )
 /*N*/ {
 /*N*/     RTL_LOGFILE_CONTEXT( aMeasure, "sfx2 (as96863) ::SfxFilterContainer::ReadExternalFilters" );
@@ -1526,56 +1606,98 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/           )
 /*N*/         {
 /*N*/             // select right query to get right set of filters for search modul
-/*N*/             ::rtl::OUString sQuery;
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.TextDocument"                ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_writer:sort_prop=uiname:use_order:default_first"    ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.WebDocument"                 ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_web:sort_prop=uiname:use_order:default_first"       ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.GlobalDocument"              ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_global:sort_prop=uiname:use_order:default_first"    ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.chart.ChartDocument"              ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_chart:sort_prop=uiname:use_order:default_first"     ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.sheet.SpreadsheetDocument"        ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_calc:sort_prop=uiname:use_order:default_first"      ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.presentation.PresentationDocument") == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_impress:sort_prop=uiname:use_order:default_first"   ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.drawing.DrawingDocument"          ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_draw:sort_prop=uiname:use_order:default_first"      ); else
-/*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.formula.FormulaProperties"        ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_math:sort_prop=uiname:use_order:default_first"      );
-/*N*/
-/*N*/             DBG_ASSERT( !(sQuery.getLength()<1), "SfxFilterContainer::ReadExternalFilters()\nCouldn't find right filter query for given modul! Filters will be ignored ...\n" );
-/*N*/
-/*N*/             if( sQuery.getLength() > 0 )
+///*N*/             ::rtl::OUString sQuery;
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.TextDocument"                ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_writer:sort_prop=uiname:use_order:default_first"    ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.WebDocument"                 ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_web:sort_prop=uiname:use_order:default_first"       ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.text.GlobalDocument"              ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_global:sort_prop=uiname:use_order:default_first"    ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.chart.ChartDocument"              ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_chart:sort_prop=uiname:use_order:default_first"     ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.sheet.SpreadsheetDocument"        ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_calc:sort_prop=uiname:use_order:default_first"      ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.presentation.PresentationDocument") == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_impress:sort_prop=uiname:use_order:default_first"   ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.drawing.DrawingDocument"          ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_draw:sort_prop=uiname:use_order:default_first"      ); else
+///*N*/             if( rDocServiceName.EqualsAscii("com.sun.star.formula.FormulaProperties"        ) == TRUE ) sQuery = DEFINE_CONST_UNICODE("_query_math:sort_prop=uiname:use_order:default_first"      );
+///*N*/
+///*N*/             DBG_ASSERT( !(sQuery.getLength()<1), "SfxFilterContainer::ReadExternalFilters()\nCouldn't find right filter query for given modul! Filters will be ignored ...\n" );
+
+                // select right query to get right set of filters for search modul
+                ::std::vector< ::rtl::OUString > aFilterNameList;
+
+                if(rDocServiceName.EqualsAscii("com.sun.star.text.TextDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORTEXTDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForTextDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.text.WebDocument") == TRUE)
+                {
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.text.GlobalDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORGLOBALDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForGlobalDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.chart.ChartDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORCHARTDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForChartDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.sheet.SpreadsheetDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < NNUMFILTERNAMESFORSPREADSHEETDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForSpreadsheetDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.presentation.PresentationDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORPRESENTATIONDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForPresentationDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.drawing.DrawingDocument") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORDRAWINGDOCUMENT; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForDrawingDocument[a] ));
+                }
+                else if(rDocServiceName.EqualsAscii("com.sun.star.formula.FormulaProperties") == TRUE)
+                {
+                    for(sal_uInt32 a(0L); a < SFILTERNAMESFORFORMULAPROPERTIES; a++)
+                        aFilterNameList.push_back( OUString::createFromAscii( sFilterNamesForFormulaProperties[a] ));
+                }
+
+/*N*/             if( aFilterNameList.size() ) //sQuery.getLength() > 0 )
 /*N*/             {
 /*N*/                 // get all internal filter names, which are match given doc service name (modul)
-/*N*/                 ::com::sun::star::uno::Sequence< ::rtl::OUString > lFilterNames;
-/*N*/                 ::com::sun::star::uno::Any                         aResult     ;
+/*N*/                 //::com::sun::star::uno::Sequence< ::rtl::OUString > lFilterNames;
+/*N*/                 ::com::sun::star::uno::Any aResult;
 /*N*/
-/*N*/                 aResult = xFilterCFG->getByName( sQuery );
-/*N*/                 if( aResult >>= lFilterNames )
-/*N*/                 {
+/*N*/                 //aResult = xFilterCFG->getByName( sQuery );
+///*N*/                 if(sFilterNameArray) //  aResult >>= lFilterNames )
+///*N*/                 {
 /*N*/                     // If list of filters already exist ...
 /*N*/                     // ReadExternalFilters must work in update mode.
 /*N*/                     // Best way seams to mark all filters NOT_INSTALLED
 /*N*/                     // and change it back for all valid filters afterwards.
-/*N*/                     BOOL bUpdated = FALSE;
-/*N*/                     if( pImpl->aList.Count() > 0 )
-/*N*/                     {
-/*?*/                         bUpdated = TRUE;
-/*?*/                         SfxFilterList_Impl& rList = pImpl->aList;
-/*?*/                         USHORT nCount = (USHORT)rList.Count();
-/*?*/                         SfxFilter* pFilter;
-/*?*/                         for (USHORT f=0; f<nCount; ++f)
-/*?*/                         {
-/*?*/                           pFilter = NULL;
-/*?*/                             pFilter = rList.GetObject(f);
-/*?*/                             pFilter->nFormatType |= SFX_FILTER_NOTINSTALLED;
-/*?*/                         }
-/*N*/                     }
+///*N*/                     BOOL bUpdated = FALSE;
+///*N*/                     if( pImpl->aList.Count() > 0 )
+///*N*/                     {
+///*?*/                         bUpdated = TRUE;
+///*?*/                         SfxFilterList_Impl& rList = pImpl->aList;
+///*?*/                         USHORT nCount = (USHORT)rList.Count();
+///*?*/                         SfxFilter* pFilter;
+///*?*/                         for (USHORT f=0; f<nCount; ++f)
+///*?*/                         {
+///*?*/                             pFilter = NULL;
+///*?*/                             pFilter = rList.GetObject(f);
+///*?*/                             pFilter->nFormatType |= SFX_FILTER_NOTINSTALLED;
+///*?*/                         }
+///*N*/                     }
 /*N*/
 /*N*/                     // get all properties of filters ... put it into the filter container
 /*N*/                     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > lFilterProperties                           ;
-/*N*/                     sal_Int32                                                                 nFilterCount      = lFilterNames.getLength();
-/*N*/                     sal_Int32                                                                 nFilter           = 0                       ;
+///*N*/                     sal_Int32                                                                 nFilterCount      = lFilterNames.getLength();
+///*N*/                     sal_Int32                                                                 nFilter           = 0                       ;
 /*N*/
-/*N*/                     for( nFilter=0; nFilter<nFilterCount; ++nFilter )
+/*N*/                     for(sal_uInt32 nFilter(0L); nFilter < aFilterNameList.size(); nFilter++) // nFilter=0; nFilter<nFilterCount; ++nFilter )
 /*N*/                     {
 /*N*/                         // Try to get filter .. but look for any exceptions!
 /*N*/                         // May be filter was deleted by another thread ...
-/*N*/                         ::rtl::OUString sFilterName = lFilterNames[nFilter];
+/*N*/                         ::rtl::OUString sFilterName(aFilterNameList[nFilter]); //::rtl::OUString sFilterName = lFilterNames[nFilter];
 /*N*/                         try
 /*N*/                         {
 /*N*/                             aResult = xFilterCFG->getByName( sFilterName );
@@ -1746,43 +1868,43 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/                         }
 /*N*/                     }
 /*N*/
-/*N*/                     // In case we updated an already filled cache, it was to complicated to
-/*N*/                     // look for right place of the default filter!
-/*N*/                     // It seams to be easiear to step over the whole container twice and
-/*N*/                     // correct it now ...
-/*N*/                     if (bUpdated)
-/*N*/                     {
-/*?*/                         SfxFilterList_Impl& rList       = pImpl->aList;
-/*?*/                         SfxFilter*          pOldDefault = rList.First();
-/*?*/                         SfxFilter*          pNewDefault = NULL         ;
-/*?*/                         sal_Int32           nNewPos     = 0            ;
-/*?*/
-/*?*/                         if ((pOldDefault->nFormatType & SFX_FILTER_DEFAULT) != SFX_FILTER_DEFAULT)
-/*?*/                         {
-/*?*/                             USHORT nCount = (USHORT)rList.Count();
-/*?*/                             SfxFilter* pFilter;
-/*?*/                             for (USHORT f=0; f<nCount; ++f)
-/*?*/                             {
-/*?*/                                 pFilter = NULL;
-/*?*/                                 pFilter = rList.GetObject(f);
-/*?*/                                 if ((pFilter->nFormatType & SFX_FILTER_DEFAULT) == SFX_FILTER_DEFAULT)
-/*?*/                                 {
-/*?*/                                     pNewDefault = pFilter;
-/*?*/                                     nNewPos     = f;
-/*?*/                                     break;
-/*?*/                                 }
-/*?*/                             }
-/*?*/
-/*?*/                             if (nNewPos>0 && pNewDefault)
-/*?*/                             {
-/*?*/                                 rList.Remove( pNewDefault                 );
-/*?*/                                 rList.Remove( pOldDefault                 );
-/*?*/                                 rList.Insert( pNewDefault, (ULONG)0       );
-/*?*/                                 rList.Insert( pOldDefault, (ULONG)nNewPos );
-/*?*/                             }
-/*N*/                         }
-/*N*/                     }
-/*N*/                 }
+///*N*/                     // In case we updated an already filled cache, it was to complicated to
+///*N*/                     // look for right place of the default filter!
+///*N*/                     // It seams to be easiear to step over the whole container twice and
+///*N*/                     // correct it now ...
+///*N*/                     if (bUpdated)
+///*N*/                     {
+///*?*/                         SfxFilterList_Impl& rList       = pImpl->aList;
+///*?*/                         SfxFilter*          pOldDefault = rList.First();
+///*?*/                         SfxFilter*          pNewDefault = NULL         ;
+///*?*/                         sal_Int32           nNewPos     = 0            ;
+///*?*/
+///*?*/                         if ((pOldDefault->nFormatType & SFX_FILTER_DEFAULT) != SFX_FILTER_DEFAULT)
+///*?*/                         {
+///*?*/                             USHORT nCount = (USHORT)rList.Count();
+///*?*/                             SfxFilter* pFilter;
+///*?*/                             for (USHORT f=0; f<nCount; ++f)
+///*?*/                             {
+///*?*/                                 pFilter = NULL;
+///*?*/                                 pFilter = rList.GetObject(f);
+///*?*/                                 if ((pFilter->nFormatType & SFX_FILTER_DEFAULT) == SFX_FILTER_DEFAULT)
+///*?*/                                 {
+///*?*/                                     pNewDefault = pFilter;
+///*?*/                                     nNewPos     = f;
+///*?*/                                     break;
+///*?*/                                 }
+///*?*/                             }
+///*?*/
+///*?*/                             if (nNewPos>0 && pNewDefault)
+///*?*/                             {
+///*?*/                                 rList.Remove( pNewDefault                 );
+///*?*/                                 rList.Remove( pOldDefault                 );
+///*?*/                                 rList.Insert( pNewDefault, (ULONG)0       );
+///*?*/                                 rList.Insert( pOldDefault, (ULONG)nNewPos );
+///*?*/                             }
+///*N*/                         }
+///*N*/                     }
+///*N*/                 }
 /*N*/             }
 /*N*/         }
 /*N*/     }
