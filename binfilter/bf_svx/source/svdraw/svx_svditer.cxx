@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svditer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:23:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,13 +63,13 @@
 #include "svditer.hxx"
 #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
-#ifndef _SVDOBJ_HXX
-#include "svdobj.hxx"
-#endif
+// auto strip #ifndef _SVDOBJ_HXX
+// auto strip #include "svdobj.hxx"
+// auto strip #endif
 
 // #99190#
 #ifndef _E3D_SCENE3D_HXX
