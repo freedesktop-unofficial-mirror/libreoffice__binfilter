@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLIndexSpanEntryContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:26:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #include "XMLIndexTemplateContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 namespace binfilter {
 
 
