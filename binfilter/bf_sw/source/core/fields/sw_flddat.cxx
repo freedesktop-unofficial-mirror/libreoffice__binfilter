@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flddat.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:26:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 
 #include <math.h>
 
-#ifndef _DATETIME_HXX
-#include <tools/datetime.hxx>
-#endif
+// auto strip #ifndef _DATETIME_HXX
+// auto strip #include <tools/datetime.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
@@ -74,12 +74,16 @@
 #include <com/sun/star/util/DateTime.hpp>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _FLDDAT_HXX
 #include <flddat.hxx>
 #endif
