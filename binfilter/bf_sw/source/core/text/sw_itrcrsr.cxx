@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrcrsr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:51:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,21 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 #include "errhdl.hxx"
-#include "ndtxt.hxx"
-#include "frmfmt.hxx"
+// auto strip #include "ndtxt.hxx"
+// auto strip #include "frmfmt.hxx"
 #include "paratr.hxx"
-#include "flyfrm.hxx"
 
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #include "flyfrm.hxx"
+
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
 #ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
 #endif
@@ -87,23 +92,23 @@
 #endif
 
 #ifdef VERTICAL_LAYOUT
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
 #endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
 #endif
 
 #include "txtcfg.hxx"
 #include "itrtxt.hxx"
 
-#include "txtfrm.hxx"
-#include "flyfrms.hxx"
-#include "porglue.hxx"      // SwFlyCnt
+// auto strip #include "txtfrm.hxx"
+// auto strip #include "flyfrms.hxx"
+// auto strip #include "porglue.hxx"        // SwFlyCnt
 #include "porfld.hxx"       // SwFldPortion::IsFollow()
 #include "porfly.hxx"       // GetFlyCrsrOfst()
 #include "pordrop.hxx"
