@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_redlnitr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:55:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,77 +62,87 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _REDLINE_HXX
-#include <redline.hxx>      // SwRedline
-#endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>       // SwTxt ...
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>       // SwRedlineTbl
-#endif
+
+// auto strip #ifndef _REDLINE_HXX
+// auto strip #include <redline.hxx>        // SwRedline
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>     // SwTxt ...
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>     // SwRedlineTbl
+// auto strip #endif
 #ifndef _ITRATR_HXX
 #include <itratr.hxx>       // SwAttrIter
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // SwTxtNode
 #endif
-#ifndef _SWFNTCCH_HXX
-#include <swfntcch.hxx>     // SwFontAccess
+// auto strip #ifndef _SWFNTCCH_HXX
+// auto strip #include <swfntcch.hxx>       // SwFontAccess
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
 #endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>     // SwTxtAttr
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>       // SwTxtAttr
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-#ifndef _ATRHNDL_HXX
-#include <atrhndl.hxx>
-#endif
+// auto strip #ifndef _ATRHNDL_HXX
+// auto strip #include <atrhndl.hxx>
+// auto strip #endif
 
 //////////////////////////
 
-#ifndef _SV_KEYCODES_HXX //autogen
-#include <vcl/keycodes.hxx>
-#endif
-#ifndef _VCL_CMDEVT_HXX //autogen
-#include <vcl/cmdevt.hxx>
-#endif
+// auto strip #ifndef _SV_KEYCODES_HXX //autogen
+// auto strip #include <vcl/keycodes.hxx>
+// auto strip #endif
+// auto strip #ifndef _VCL_CMDEVT_HXX //autogen
+// auto strip #include <vcl/cmdevt.hxx>
+// auto strip #endif
 
-#ifndef _SV_SETTINGS_HXX //autogen
-#include <vcl/settings.hxx>
-#endif
+// auto strip #ifndef _SV_SETTINGS_HXX //autogen
+// auto strip #include <vcl/settings.hxx>
+// auto strip #endif
 
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
 #endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _REDLNITR_HXX
 #include <redlnitr.hxx>
 #endif
@@ -140,15 +150,15 @@
 #include <extinput.hxx>
 #endif
 
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>   // ViewShell
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx> // ViewShell
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
