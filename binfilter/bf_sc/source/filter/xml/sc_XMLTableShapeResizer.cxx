@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableShapeResizer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:29:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _SC_XMLTABLESHAPERESIZER_HXX
-#include "XMLTableShapeResizer.hxx"
-#endif
+// auto strip #ifndef _SC_XMLTABLESHAPERESIZER_HXX
+// auto strip #include "XMLTableShapeResizer.hxx"
+// auto strip #endif
 #ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
 #endif
@@ -88,9 +88,9 @@
 #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
