@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:27:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,9 +115,19 @@
 #ifndef _SWTABLE_HXX
 #include "swtable.hxx"
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include "doc.hxx"
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX
 #include "pam.hxx"
 #endif
@@ -162,6 +172,9 @@
 #endif
 #ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
+#endif
+#ifndef _SWRECT_HXX
+#include <bf_sw/swrect.hxx>
 #endif
 namespace binfilter {
 
