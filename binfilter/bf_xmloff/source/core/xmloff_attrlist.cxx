@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_attrlist.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:46:25 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:20:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -119,6 +119,21 @@ SvXMLAttributeList::SvXMLAttributeList( const SvXMLAttributeList &r )
 {
     m_pImpl = new SvXMLAttributeList_Impl;
     *m_pImpl = *(r.m_pImpl);
+}
+
+SvXMLAttributeList::SvXMLAttributeList( const uno::Reference<
+        xml::sax::XAttributeList> & rAttrList )
+    : sType( GetXMLToken(XML_CDATA) )
+{
+    m_pImpl = new SvXMLAttributeList_Impl;
+
+    SvXMLAttributeList* pImpl =
+        SvXMLAttributeList::getImplementation( rAttrList );
+
+    if( pImpl )
+        *m_pImpl = *(pImpl->m_pImpl);
+    else
+        AppendAttributeList( rAttrList );
 }
 
 OUString SAL_CALL SvXMLAttributeList::getNameByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
