@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:02:54 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,6 +103,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #define FRAME_MARKER    (ULONG)0x21981357
@@ -571,7 +572,7 @@ namespace binfilter {
 /*N*/   eFormat= (SvxURLFormat)nFormat;
 /*N*/
 /*N*/   // Relatives Speichern => Beim laden absolut machen.
-/*N*/   aURL = INetURLObject::RelToAbs( aTmpURL );
+/*N*/   aURL = so3::StaticBaseUrl::RelToAbs( aTmpURL );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -579,7 +580,7 @@ namespace binfilter {
 /*N*/ void SvxURLField::Save( SvPersistStream & rStm )
 /*N*/ {
 /*N*/   // Relatives Speichern der URL
-/*N*/   String aTmpURL = INetURLObject::AbsToRel( aURL );
+/*N*/   String aTmpURL = so3::StaticBaseUrl::AbsToRel( aURL );
 /*N*/
 /*N*/   rStm << (USHORT)eFormat;
 /*N*/
