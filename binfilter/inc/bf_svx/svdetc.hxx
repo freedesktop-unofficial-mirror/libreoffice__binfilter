@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: kz $ $Date: 2004-07-30 14:53:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:29:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,9 +78,9 @@
 #include <tools/shl.hxx>
 #endif
 
-#ifndef _OUTLINER_HXX //autogen
-#include <bf_svx/outliner.hxx>
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
 }}}}
