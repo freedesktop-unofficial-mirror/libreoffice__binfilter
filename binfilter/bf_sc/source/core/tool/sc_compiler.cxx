@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:14 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -887,7 +887,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bFound = FALSE;
 /*N*/
-/*N*/   for( USHORT i = ocInternalBegin; i <= ocInternalEnd && !bFound; i++ )
+/*N*/   USHORT i = 0;
+/*N*/   for( i = ocInternalBegin; i <= ocInternalEnd && !bFound; i++ )
 /*N*/       bFound = rName.EqualsAscii( pInternal[ i-ocInternalBegin ] );
 /*N*/
 /*N*/   if (bFound)

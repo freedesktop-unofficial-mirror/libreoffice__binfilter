@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_drwlayer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:04 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1661,7 +1661,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                RecalcPos( pObj, pData )
 //STRIP001  return aName;
 //STRIP001 }
 
-/*N*/ inline IsNamedObject( SdrObject* pObj, const String& rName )
+/*N*/ inline BOOL IsNamedObject( SdrObject* pObj, const String& rName )
 /*N*/ {
 /*N*/   //  TRUE if rName is the object's Name or PersistName
 /*N*/   //  (used to find a named object)

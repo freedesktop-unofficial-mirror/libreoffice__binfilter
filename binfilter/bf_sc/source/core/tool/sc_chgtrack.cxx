@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,7 +115,7 @@
 #include "chgtrack.hxx"
 namespace binfilter {
 
-/*N*/ DECLARE_STACK( ScChangeActionStack, ScChangeAction* );
+/*N*/ DECLARE_STACK( ScChangeActionStack, ScChangeAction* )
 
 const USHORT nMemPoolChangeActionCellListEntry = (0x2000 - 64) / sizeof(ScChangeActionCellListEntry);
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionCellListEntry, nMemPoolChangeActionCellListEntry, nMemPoolChangeActionCellListEntry )//STRIP008 ;

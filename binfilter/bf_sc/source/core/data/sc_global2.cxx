@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:05 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -647,14 +647,16 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 /*N*/   bPagebreak=bCaseSens=bUserDef=bIncludePattern=bRemoveOnly = FALSE;
 /*N*/   bAscending=bReplace=bDoSort = TRUE;
 /*N*/
-/*N*/   for (USHORT i=0; i<MAXSUBTOTAL; i++)
+/*N*/   USHORT i=0;
+/*N*/   for ( i=0; i<MAXSUBTOTAL; i++)
 /*N*/   {
 /*N*/       bGroupActive[i] = FALSE;
 /*N*/       nField[i]       = 0;
 /*N*/
 /*N*/       if ( (nSubTotals[i] > 0) && pSubTotals[i] && pFunctions[i] )
 /*N*/       {
-/*?*/           for ( USHORT j=0; j<nSubTotals[i]; j++ )
+/*?*/           USHORT j=0;
+/*?*/           for ( j=0; j<nSubTotals[i]; j++ )
 /*?*/               pSubTotals[i][j] = 0;
 /*?*/               pFunctions[i][j] = SUBTOTAL_FUNC_NONE;
 /*N*/       }

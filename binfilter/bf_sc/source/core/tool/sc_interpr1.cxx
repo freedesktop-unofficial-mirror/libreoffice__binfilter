@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:30 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3541,7 +3541,8 @@ void ScInterpreter::ScCountEmptyCells()
                  BOOL bFound = FALSE;
                  sal_Int32 nRes;
                  String aParamStr = *rEntry.pStr;
-                 for (USHORT i = 0; i < nMatCount; i++)
+                 USHORT i = 0;
+                 for ( i = 0; i < nMatCount; i++)
                  {
                      if (!pMat1->IsValue(i))
                      {
@@ -3568,7 +3569,8 @@ void ScInterpreter::ScCountEmptyCells()
              {
                  BOOL bFound = FALSE;
                  double fVal1;
-                 for (USHORT i = 0; i < nMatCount; i++)
+                 USHORT i = 0;
+                 for ( i = 0; i < nMatCount; i++)
                  {
                      if (pMat1->IsValue(i))
                          fVal1 = pMat1->GetDouble(i);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:38 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,7 +149,8 @@ namespace binfilter {
 /*N*/   USHORT nErr = 0;
 /*N*/   if (pData)
 /*N*/   {
-/*N*/       for (USHORT nPos=0; nPos<nCount; nPos++)
+/*N*/       USHORT nPos=0;
+/*N*/       for (nPos=0; nPos<nCount; nPos++)
 /*N*/       {
 /*N*/           if (nPos)
 /*N*/               if (pData[nPos].pPattern == pData[nPos-1].pPattern || pData[nPos].nRow <= pData[nPos-1].nRow)
@@ -2084,7 +2085,8 @@ namespace binfilter {
 /*N*/       BOOL bFirst=TRUE;
 /*N*/       USHORT nStartIndex;
 /*N*/       USHORT nEndIndex;
-/*N*/       for (USHORT i = 0; i < nCount-1; i++)
+/*N*/       USHORT i = 0;
+/*N*/       for (i = 0; i < nCount-1; i++)
 /*N*/           if (pData[i].nRow >= nStartRow && pData[i].nRow <= nStartRow+nSize-1)
 /*N*/           {
 /*N*/               if (bFirst)

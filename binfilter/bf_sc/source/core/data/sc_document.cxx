@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -595,7 +595,8 @@ namespace binfilter {
 /*N*/   BOOL bRet = FALSE;
 /*N*/   BOOL bOldAutoCalc = GetAutoCalc();
 /*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/   USHORT i = 0;
+/*N*/   for (i=nStartTab; i<=nEndTab && bTest; i++)
 /*N*/       if (pTab[i])
 /*N*/           bTest &= pTab[i]->TestInsertRow( nStartCol, nEndCol, nSize );
 /*N*/   if (bTest)
@@ -691,7 +692,8 @@ namespace binfilter {
 /*N*/   if (pUndoOutline)
 /*N*/       *pUndoOutline = FALSE;
 /*N*/
-/*N*/   for (USHORT i=nStartTab; i<=nEndTab; i++)
+/*N*/   USHORT i=0;
+/*N*/   for (i=nStartTab; i<=nEndTab; i++)
 /*N*/       if (pTab[i])
 /*N*/           pTab[i]->DeleteRow( nStartCol, nEndCol, nStartRow, nSize, pUndoOutline );
 /*N*/
@@ -754,7 +756,8 @@ namespace binfilter {
 /*N*/   BOOL bRet = FALSE;
 /*N*/   BOOL bOldAutoCalc = GetAutoCalc();
 /*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/   USHORT i=0;
+/*N*/   for (i=nStartTab; i<=nEndTab && bTest; i++)
 /*N*/       if (pTab[i])
 /*N*/           bTest &= pTab[i]->TestInsertCol( nStartRow, nEndRow, nSize );
 /*N*/   if (bTest)
@@ -838,7 +841,8 @@ namespace binfilter {
 /*N*/   if (pUndoOutline)
 /*N*/       *pUndoOutline = FALSE;
 /*N*/
-/*N*/   for (USHORT i=nStartTab; i<=nEndTab; i++)
+/*N*/   USHORT i=0;
+/*N*/   for (i=nStartTab; i<=nEndTab; i++)
 /*N*/       if (pTab[i])
 /*N*/           pTab[i]->DeleteCol( nStartCol, nStartRow, nEndRow, nSize, pUndoOutline );
 /*N*/
@@ -2306,7 +2310,8 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*N*/       return;     // dann wird erst beim Einfuegen in das richtige Doc berechnet
 /*N*/
 /*N*/   bCalcingAfterLoad = TRUE;
-/*N*/   for (USHORT i=0; i<=MAXTAB; i++)
+/*N*/   USHORT i=0;
+/*N*/   for (i=0; i<=MAXTAB; i++)
 /*N*/       if (pTab[i]) pTab[i]->CalcAfterLoad();
 /*N*/   for (i=0; i<=MAXTAB; i++)
 /*N*/       if (pTab[i]) pTab[i]->SetDirtyAfterLoad();
