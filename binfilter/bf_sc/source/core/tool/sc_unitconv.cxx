@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unitconv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:23:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,16 +60,16 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/uno/Sequence.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
 #include "unitconv.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "viewopti.hxx"         //! move ScLinkConfigItem to separate header!
 namespace binfilter {
 
