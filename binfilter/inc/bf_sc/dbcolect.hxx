@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbcolect.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:44:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,9 @@
 #ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
 #endif
-#ifndef _TOOLS_DEBUG_HXX //STRIP001
-#include <tools/debug.hxx>//STRIP001 //------------------------------------------------------------------------
-#endif//STRIP001
+// auto strip #ifndef _TOOLS_DEBUG_HXX //STRIP001
+// auto strip #include <tools/debug.hxx>//STRIP001 //------------------------------------------------------------------------
+// auto strip #endif//STRIP001
 namespace binfilter {
 class ScDocument;
 class ScMultipleReadHeader;
