@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_filtuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:21:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,22 +60,22 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include <com/sun/star/ui/dialogs/ExecutableDialogResults.hpp>
 #include <tools/urlobj.hxx>
-#include <vcl/msgbox.hxx>
+// auto strip #include <vcl/msgbox.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 
 #include "filtuno.hxx"
 #include "miscuno.hxx"
 #include "unoguard.hxx"
-#include "scdll.hxx"
+// auto strip #include "scdll.hxx"
 #include "imoptdlg.hxx"
-#include "asciiopt.hxx"
+// auto strip #include "asciiopt.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
 namespace binfilter {
