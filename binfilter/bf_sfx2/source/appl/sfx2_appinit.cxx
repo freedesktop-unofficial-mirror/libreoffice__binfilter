@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:26:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,6 +159,11 @@
 #include "sfxresid.hxx"
 #include "sfxtypes.hxx"
 #include "stbmgr.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
 #include "tbxconf.hxx"
 #include "viewsh.hxx"
 #include "eacopier.hxx"
@@ -170,6 +175,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _VOS_MUTEX_HXX_
+#include <vos/mutex.hxx>
+#endif
+
 namespace binfilter {
 
 #ifdef UNX
