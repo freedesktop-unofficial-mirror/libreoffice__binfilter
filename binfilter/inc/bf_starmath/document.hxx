@@ -2,9 +2,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:15 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:38:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,7 +188,7 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
 //STRIP001  void        RestartFocusTimer ();
 
     BOOL        Try3x( SvStorage *pStor, StreamMode eMode);
-//STRIP001  BOOL        Try2x( SvStorage *pStor, StreamMode eMode);
+    BOOL        Try2x( SvStorage *pStor, StreamMode eMode);
 //STRIP001  BOOL        WriteAsMathType3( SfxMedium& );
 
 //STRIP001  virtual void        Draw(OutputDevice *pDevice,
