@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_EditBase.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:48:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,27 +62,36 @@
 #ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
 #endif
-#ifndef _FRM_PROPERTY_HXX_
-#include "property.hxx"
-#endif
+// auto strip #ifndef _FRM_PROPERTY_HXX_
+// auto strip #include "property.hxx"
+// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-#ifndef _FRM_SERVICES_HXX_
-#include "services.hxx"
-#endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
-#ifndef _FRM_RESOURCE_HXX_
-#include "frm_resource.hxx"
-#endif
+// auto strip #ifndef _FRM_SERVICES_HXX_
+// auto strip #include "services.hxx"
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRM_RESOURCE_HXX_
+// auto strip #include "frm_resource.hxx"
+// auto strip #endif
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
+
+#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
+#include <com/sun/star/io/XMarkableStream.hpp>
+#endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
 namespace binfilter {
 
 //.........................................................................
@@ -91,7 +100,7 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-using namespace ::com::sun::star::sdbcx;
+//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
