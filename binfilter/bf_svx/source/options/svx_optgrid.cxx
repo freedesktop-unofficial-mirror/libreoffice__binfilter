@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_optgrid.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:10:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,25 +61,25 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
-#include <bf_sfx2/module.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMODULE_HXX //autogen
+// auto strip #include <bf_sfx2/module.hxx>
+// auto strip #endif
 #pragma hdrstop
 
 #define _SVX_OPTGRID_CXX
 
 #include "svxids.hrc"
-#include "dialmgr.hxx"
+// auto strip #include "dialmgr.hxx"
 #include "optgrid.hxx"
 #include "dialogs.hrc"
 #include "optgrid.hrc"
-#include "dlgutil.hxx"
+// auto strip #include "dlgutil.hxx"
 namespace binfilter {
 
 /* -----------------18.08.98 17:41-------------------
