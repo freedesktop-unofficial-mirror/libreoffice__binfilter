@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3attr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:41:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,11 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -102,9 +107,9 @@
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
@@ -123,9 +128,9 @@
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
