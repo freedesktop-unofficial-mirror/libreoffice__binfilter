@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txmsrt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:36:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,7 +76,7 @@ class SwTxtNode;
 class SwTxtTOXMark;
 class SwIndex;
 class SwFmtFld;
-//STRIP001 class IndexEntrySupplierWrapper;
+class IndexEntrySupplierWrapper;
 
 enum TOXSortType
 {
@@ -88,49 +88,49 @@ enum TOXSortType
     TOX_SORT_AUTHORITY
 };
 
-//STRIP001 struct SwTOXSource
-//STRIP001 {
-//STRIP001  const SwCntntNode* pNd;
-//STRIP001  xub_StrLen nPos;
-//STRIP001  BOOL bMainEntry;
-//STRIP001
-//STRIP001  SwTOXSource() : pNd(0), nPos(0), bMainEntry(FALSE) {}
-//STRIP001  SwTOXSource( const SwCntntNode* pNode, xub_StrLen n, BOOL bMain )
-//STRIP001      : pNd(pNode), nPos(n), bMainEntry(bMain)
-//STRIP001  {}
-//STRIP001 };
+struct SwTOXSource
+{
+    const SwCntntNode* pNd;
+    xub_StrLen nPos;
+    BOOL bMainEntry;
 
-//STRIP001 SV_DECL_VARARR( SwTOXSources, SwTOXSource, 0, 10 )
+    SwTOXSource() : pNd(0), nPos(0), bMainEntry(FALSE) {}
+    SwTOXSource( const SwCntntNode* pNode, xub_StrLen n, BOOL bMain )
+        : pNd(pNode), nPos(n), bMainEntry(bMain)
+    {}
+};
+
+SV_DECL_VARARR( SwTOXSources, SwTOXSource, 0, 10 )
 
 class SwTOXInternational
 {
-//STRIP001  IndexEntrySupplierWrapper* pIndexWrapper;
-//STRIP001  CharClass* pCharClass;
-//STRIP001  LanguageType eLang;
-//STRIP001     String sSortAlgorithm;
-//STRIP001     USHORT nOptions;
-//STRIP001
-//STRIP001  void Init();
+    IndexEntrySupplierWrapper* pIndexWrapper;
+    CharClass* pCharClass;
+    LanguageType eLang;
+     String sSortAlgorithm;
+     USHORT nOptions;
+
+    void Init();
 
 public:
     SwTOXInternational( LanguageType nLang, USHORT nOptions,
-                        const String& rSortAlgorithm ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const String& rSortAlgorithm );
-//STRIP001  SwTOXInternational( const SwTOXInternational& );
-//STRIP001  ~SwTOXInternational();
-//STRIP001
-//STRIP001     sal_Int32 Compare( const String& rTxt1, const String& rTxtReading1,
-//STRIP001                        const ::com::sun::star::lang::Locale& rLocale1,
-//STRIP001                        const String& rTxt2, const String& rTxtReading2,
-//STRIP001                        const ::com::sun::star::lang::Locale& rLocale2 ) const;
-//STRIP001
-//STRIP001     inline BOOL IsEqual( const String& rTxt1, const String& rTxtReading1,
-//STRIP001                          const ::com::sun::star::lang::Locale& rLocale1,
-//STRIP001                          const String& rTxt2, const String& rTxtReading2,
-//STRIP001                          const ::com::sun::star::lang::Locale& rLocale2 ) const
-//STRIP001  {
-//STRIP001         return 0 == Compare( rTxt1, rTxtReading1, rLocale1,
-//STRIP001                              rTxt2, rTxtReading2, rLocale2 );
-//STRIP001  }
+                        const String& rSortAlgorithm );
+    SwTOXInternational( const SwTOXInternational& );
+    ~SwTOXInternational();
+
+     sal_Int32 Compare( const String& rTxt1, const String& rTxtReading1,
+                        const ::com::sun::star::lang::Locale& rLocale1,
+                        const String& rTxt2, const String& rTxtReading2,
+                        const ::com::sun::star::lang::Locale& rLocale2 ) const;
+
+     inline BOOL IsEqual( const String& rTxt1, const String& rTxtReading1,
+                          const ::com::sun::star::lang::Locale& rLocale1,
+                          const String& rTxt2, const String& rTxtReading2,
+                          const ::com::sun::star::lang::Locale& rLocale2 ) const
+    {
+         return 0 == Compare( rTxt1, rTxtReading1, rLocale1,
+                              rTxt2, rTxtReading2, rLocale2 );
+    }
 //STRIP001
 //STRIP001     inline BOOL IsLess( const String& rTxt1, const String& rTxtReading1,
 //STRIP001                         const ::com::sun::star::lang::Locale& rLocale1,
@@ -147,7 +147,7 @@ public:
 //STRIP001  String GetFollowingText( BOOL bMorePages ) const;
 //STRIP001
 //STRIP001  String ToUpper( const String& rStr, xub_StrLen nPos ) const;
-//STRIP001  inline BOOL IsNumeric( const String& rStr ) const;
+    inline BOOL IsNumeric( const String& rStr ) const;
 };
 
 /*--------------------------------------------------------------------
@@ -156,61 +156,61 @@ public:
 
 struct SwTOXSortTabBase
 {
-//STRIP001  SwTOXSources aTOXSources;
-//STRIP001     ::com::sun::star::lang::Locale aLocale;
-//STRIP001  const SwTxtNode* pTOXNd;
-//STRIP001  const SwTxtTOXMark* pTxtMark;
-//STRIP001  const SwTOXInternational* pTOXIntl;
-//STRIP001  ULONG nPos;
-//STRIP001  xub_StrLen nCntPos;
-//STRIP001     USHORT nType;
-//STRIP001  static USHORT nOpt;
+    SwTOXSources aTOXSources;
+     ::com::sun::star::lang::Locale aLocale;
+    const SwTxtNode* pTOXNd;
+    const SwTxtTOXMark* pTxtMark;
+    const SwTOXInternational* pTOXIntl;
+    ULONG nPos;
+    xub_StrLen nCntPos;
+     USHORT nType;
+    static USHORT nOpt;
 
     SwTOXSortTabBase( TOXSortType nType,
                       const SwCntntNode* pTOXSrc,
                       const SwTxtTOXMark* pTxtMark,
                       const SwTOXInternational* pIntl,
-                      const ::com::sun::star::lang::Locale* pLocale = NULL ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const ::com::sun::star::lang::Locale* pLocale = NULL );
+                      const ::com::sun::star::lang::Locale* pLocale = NULL );
 
-//STRIP001  USHORT  GetType() const         { return nType; }
-//STRIP001  USHORT  GetOptions() const      { return nOpt; }
+    USHORT  GetType() const         { return nType; }
+    USHORT  GetOptions() const      { return nOpt; }
 
-//STRIP001  virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0) const;
-//STRIP001  virtual USHORT  GetLevel()  const = 0;
-//STRIP001  virtual BOOL    operator==( const SwTOXSortTabBase& );
-//STRIP001  virtual BOOL    operator<( const SwTOXSortTabBase& );
-//STRIP001
-//STRIP001  virtual String  GetURL() const;
-//STRIP001
-//STRIP001     inline void GetTxt( String&, String& ) const;
-//STRIP001     inline const ::com::sun::star::lang::Locale& GetLocale() const;
-//STRIP001
+    virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0) const;
+    virtual USHORT  GetLevel()  const = 0;
+    virtual BOOL    operator==( const SwTOXSortTabBase& );
+    virtual BOOL    operator<( const SwTOXSortTabBase& );
+
+    virtual String  GetURL() const;
+
+     inline void GetTxt( String&, String& ) const;
+     inline const ::com::sun::star::lang::Locale& GetLocale() const;
+
 private:
-//STRIP001  BOOL bValidTxt;
-//STRIP001     String sSortTxt;
-//STRIP001     String sSortTxtReading;
+    BOOL bValidTxt;
+     String sSortTxt;
+     String sSortTxtReading;
 
-//STRIP001     virtual void _GetText( String&, String& ) = 0;
+     virtual void _GetText( String&, String& ) = 0;
 };
 
-//STRIP001 inline void SwTOXSortTabBase::GetTxt( String& rSortTxt,
-//STRIP001                                       String& rSortTxtReading ) const
-//STRIP001 {
-//STRIP001  if( !bValidTxt )
-//STRIP001  {
-//STRIP001      SwTOXSortTabBase* pThis = (SwTOXSortTabBase*)this;
-//STRIP001         pThis->_GetText( pThis->sSortTxt, pThis->sSortTxtReading );
-//STRIP001      pThis->bValidTxt = TRUE;
-//STRIP001  }
+inline void SwTOXSortTabBase::GetTxt( String& rSortTxt,
+                                      String& rSortTxtReading ) const
+{
+    if( !bValidTxt )
+    {
+        SwTOXSortTabBase* pThis = (SwTOXSortTabBase*)this;
+        pThis->_GetText( pThis->sSortTxt, pThis->sSortTxtReading );
+        pThis->bValidTxt = TRUE;
+    }
 
-//STRIP001     rSortTxt = sSortTxt;
-//STRIP001     rSortTxtReading = sSortTxtReading;
-//STRIP001 }
+     rSortTxt = sSortTxt;
+     rSortTxtReading = sSortTxtReading;
+ }
 
-//STRIP001 inline const ::com::sun::star::lang::Locale& SwTOXSortTabBase::GetLocale() const
-//STRIP001 {
-//STRIP001     return aLocale;
-//STRIP001 }
+ inline const ::com::sun::star::lang::Locale& SwTOXSortTabBase::GetLocale() const
+ {
+     return aLocale;
+ }
 
 /*--------------------------------------------------------------------
      Beschreibung: fuer Sortierung nach Text
@@ -301,21 +301,21 @@ private:
 //STRIP001  USHORT nLevel;
 //STRIP001 };
 
-//STRIP001 struct SwTOXAuthority : public SwTOXSortTabBase
-//STRIP001 {
-//STRIP001 private:
-//STRIP001  SwFmtFld& m_rField;
-//STRIP001  virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0 ) const;
-//STRIP001     virtual void _GetText( String&, String& );
-//STRIP001
-//STRIP001 public:
-//STRIP001  SwTOXAuthority( const SwCntntNode& rNd, SwFmtFld& rField, const SwTOXInternational& rIntl );
-//STRIP001  SwFmtFld& GetFldFmt() {return m_rField;}
-//STRIP001
-//STRIP001  virtual BOOL    operator==( const SwTOXSortTabBase& );
-//STRIP001  virtual BOOL    operator<( const SwTOXSortTabBase& );
-//STRIP001  virtual USHORT  GetLevel() const;
-//STRIP001 };
+struct SwTOXAuthority : public SwTOXSortTabBase
+{
+private:
+    SwFmtFld& m_rField;
+    virtual void    FillText( SwTxtNode& rNd, const SwIndex& rInsPos, USHORT nAuthField = 0 ) const;
+    virtual void _GetText( String&, String& );
+
+public:
+    SwTOXAuthority( const SwCntntNode& rNd, SwFmtFld& rField, const SwTOXInternational& rIntl );
+    SwFmtFld& GetFldFmt() {return m_rField;}
+
+    virtual BOOL    operator==( const SwTOXSortTabBase& );
+    virtual BOOL    operator<( const SwTOXSortTabBase& );
+    virtual USHORT  GetLevel() const;
+};
 
 
 } //namespace binfilter
