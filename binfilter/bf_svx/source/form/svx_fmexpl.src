@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmexpl.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:13:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:45:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -996,12 +996,12 @@ Menu RID_FMSHELL_CONVERSIONMENU
 //STRIP001      Text[ korean ] = "ê²½ë¡œ";
 //STRIP001      Text[ turkish ] = "Veri yolu";
 //STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Cam?;
+//STRIP001      Text[ catalan ] = "Cam?";
 //STRIP001      Text[ finnish ] = "Polku";
 //STRIP001      Text[ thai ] = "à¹€à¸ªà¹‰à¸™à¸—à¸²à¸‡";
 //STRIP001      Text[ czech ] = "Cesta";
-//STRIP001      Text[ hebrew ] = "â€®××¡×œ×•×œâ€?;
-//STRIP001      Text[ hindi ] = "à¤®à¤¾à¤°à¥à¤?;
+//STRIP001      Text[ hebrew ] = "â€®××¡×œ×•×œâ€?";
+//STRIP001      Text[ hindi ] = "à¤®à¤¾à¤°à¥à¤?";
 //STRIP001      Text[ slovak ] = "Cesta";
 //STRIP001  };
 //STRIP001  FixedText FT_PATH
@@ -1037,20 +1037,20 @@ Menu RID_FMSHELL_CONVERSIONMENU
 //STRIP001  Text [ french ] = "Sélection de formulaire" ;
 //STRIP001  Text [ dutch ] = "Formulier selecteren" ;
 //STRIP001  Text[ chinese_simplified ] = "é€‰æ‹©è¡¨å•";
-//STRIP001  Text[ russian ] = "Âûáî?ôîğì?;
+//STRIP001  Text[ russian ] = "Âûáî?ôîğì?";
 //STRIP001  Text[ polish ] = "Wybierz formularz";
-//STRIP001  Text[ japanese ] = "ãƒ•ã‚©ãƒ¼ãƒ ã®é¸æŠ?;
+//STRIP001  Text[ japanese ] = "ãƒ•ã‚©ãƒ¼ãƒ ã®é¸æŠ?";
 //STRIP001  Text[ chinese_traditional ] = "é¸æ“‡è¡¨å–®";
-//STRIP001  Text[ arabic ] = "ÊÍÏí?ÇáÇÓÊãÇÑ?;
+//STRIP001  Text[ arabic ] = "ÊÍÏí?ÇáÇÓÊãÇÑ?";
 //STRIP001  Text[ greek ] = "Åğéëïã?öüñìáò";
 //STRIP001  Text[ korean ] = "ìš©ì§€ ì„ íƒ";
 //STRIP001  Text[ turkish ] = "Form seçimi";
 //STRIP001  Text[ language_user1 ] = " ";
 //STRIP001  Text[ catalan ] = "Seleccioneu el formulari";
 //STRIP001  Text[ finnish ] = "Valitse lomake";
-//STRIP001  Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸à¹à¸šà¸?;
+//STRIP001  Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸à¹à¸šà¸?";
 //STRIP001  Text[ czech ] = "Vybrat formulÃ¡Å™";
-//STRIP001  Text[ hebrew ] = "â€®×‘×—×™×¨×?×˜×•×¤×¡â€?;
+//STRIP001  Text[ hebrew ] = "â€®×‘×—×™×¨×?×˜×•×¤×¡â€?";
 //STRIP001  Text[ hindi ] = "à¤«à¤¼à¥‰à¤°à¥à¤® à¤šà¥à¤¨à¥‹";
 //STRIP001  Text[ slovak ] = "VybraÅ¥ formu";
 //STRIP001 };
@@ -1075,18 +1075,18 @@ Menu RID_FMSHELL_CONVERSIONMENU
 //STRIP001  Text[ chinese_simplified ] = "è¡¨å•åŠ©æ‰‹";
 //STRIP001  Text[ russian ] = "Íàâèãàòî?ôîğì";
 //STRIP001  Text[ polish ] = "Nawigator formularza";
-//STRIP001  Text[ japanese ] = "ãƒ•ã‚©ãƒ¼ãƒ ãƒŠãƒ“ã‚²ãƒ¼ã‚?;
+//STRIP001  Text[ japanese ] = "ãƒ•ã‚©ãƒ¼ãƒ ãƒŠãƒ“ã‚²ãƒ¼ã‚?";
 //STRIP001  Text[ chinese_traditional ] = "è¡¨å–®åŠ©æ‰‹";
-//STRIP001  Text[ arabic ] = "äÇİíÌíÊæ?ÇáÇÓÊãÇÑ?;
+//STRIP001  Text[ arabic ] = "äÇİíÌíÊæ?ÇáÇÓÊãÇÑ?";
 //STRIP001  Text[ greek ] = "ĞåñéŞãçó?öüñìáò";
-//STRIP001  Text[ korean ] = "ìš©ì§€ ë„¤ë¹„ê²Œì´í„?;
-//STRIP001  Text[ turkish ] = "Form navigatör?;
+//STRIP001  Text[ korean ] = "ìš©ì§€ ë„¤ë¹„ê²Œì´í„?";
+//STRIP001  Text[ turkish ] = "Form navigatör?";
 //STRIP001  Text[ language_user1 ] = " ";
 //STRIP001  Text[ catalan ] = "Navegador de formularis";
 //STRIP001  Text[ finnish ] = "Lomakkeen etsin";
 //STRIP001  Text[ thai ] = "à¸•à¸±à¸§à¸™à¸³à¹à¸šà¸š";
 //STRIP001  Text[ czech ] = "NavigÃ¡tor formulÃ¡Å™em";
-//STRIP001  Text[ hebrew ] = "â€®× ×•×•×?×˜×¤×¡×™×â€?;
+//STRIP001  Text[ hebrew ] = "â€®× ×•×•×?×˜×¤×¡×™×â€?";
 //STRIP001  Text[ hindi ] = "à¤«à¤¼à¥‰à¤°à¥à¤® à¤¨à¥‰à¤µà¤¿à¤—à¥‡à¤Ÿà¤°";
 //STRIP001  Text[ slovak ] = "NavigÃ¡tor formulÃ¡rom";
 //STRIP001 };
