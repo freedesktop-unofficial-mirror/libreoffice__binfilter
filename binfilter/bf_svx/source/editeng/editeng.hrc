@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editeng.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:31:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,8 @@
 #define RID_EDITUNDO_TRANSLITERATE  ( RID_EDIT_START + 8 )
 
 #define RID_MENU_SPELL              ( RID_EDIT_START + 10 )
-#define RID_STR_PARAGRAPH           ( RID_EDIT_START + 11 )
-#define RID_STR_WORD                ( RID_EDIT_START + 12 )
+//STRIP001 #define RID_STR_PARAGRAPH            ( RID_EDIT_START + 11 )
+//STRIP001 #define RID_STR_WORD             ( RID_EDIT_START + 12 )
 
 #define MN_SPELLING         1
 #define MN_INSERT           2
