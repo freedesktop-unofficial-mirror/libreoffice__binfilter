@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmPropBrw.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:55:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,24 +61,24 @@
 #ifndef SVX_FMPROPBRW_HXX
 #define SVX_FMPROPBRW_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
 #include <com/sun/star/awt/XControlContainer.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-#include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _BASEDLGS_HXX
-#include <bf_sfx2/basedlgs.hxx>
-#endif
-#ifndef _SFXCTRLITEM_HXX
-#include <bf_sfx2/ctrlitem.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+// auto strip #include <com/sun/star/frame/XFrame.hpp>
+// auto strip #endif
+// auto strip #ifndef _BASEDLGS_HXX
+// auto strip #include <bf_sfx2/basedlgs.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXCTRLITEM_HXX
+// auto strip #include <bf_sfx2/ctrlitem.hxx>
+// auto strip #endif
 #ifndef _SFX_CHILDWIN_HXX
 #include <bf_sfx2/childwin.hxx>
 #endif

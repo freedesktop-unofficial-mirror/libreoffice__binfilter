@@ -2,9 +2,9 @@
  *
  *  $RCSfile: filtnav.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:55:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,80 +61,80 @@
 #ifndef _SVX_FILTNAV_HXX
 #define _SVX_FILTNAV_HXX
 
-#ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
-#include <com/sun/star/awt/XTextComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-#include <com/sun/star/form/XForm.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
+// auto strip #include <com/sun/star/awt/XTextComponent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
+// auto strip #include <com/sun/star/form/XForm.hpp>
+// auto strip #endif
 
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
 
-#ifndef _SFXBRDCST_HXX //autogen
-#include <svtools/brdcst.hxx>
-#endif
+// auto strip #ifndef _SFXBRDCST_HXX //autogen
+// auto strip #include <svtools/brdcst.hxx>
+// auto strip #endif
 
-#ifndef _SV_WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
+// auto strip #ifndef _SV_WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
-#include <bf_sfx2/childwin.hxx>
-#endif
+// auto strip #ifndef _SFX_CHILDWIN_HXX //autogen
+// auto strip #include <bf_sfx2/childwin.hxx>
+// auto strip #endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
-#ifndef _SFX_BINDINGS_HXX //autogen
-#include <bf_sfx2/bindings.hxx>
-#endif
+// auto strip #ifndef _SFX_BINDINGS_HXX //autogen
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
 
 #ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
 #endif
 
-#ifndef _SFXCTRLITEM_HXX //autogen
-#include <bf_sfx2/ctrlitem.hxx>
-#endif
+// auto strip #ifndef _SFXCTRLITEM_HXX //autogen
+// auto strip #include <bf_sfx2/ctrlitem.hxx>
+// auto strip #endif
 
-#ifndef _SV_IMAGE_HXX
-#include <vcl/image.hxx>
-#endif
+// auto strip #ifndef _SV_IMAGE_HXX
+// auto strip #include <vcl/image.hxx>
+// auto strip #endif
 
-#ifndef _SVTREEBOX_HXX //autogen
-#include <svtools/svtreebx.hxx>
-#endif
+// auto strip #ifndef _SVTREEBOX_HXX //autogen
+// auto strip #include <svtools/svtreebx.hxx>
+// auto strip #endif
 
-#ifndef _DIALOG_HXX //autogen
-#include <vcl/dialog.hxx>
-#endif
+// auto strip #ifndef _DIALOG_HXX //autogen
+// auto strip #include <vcl/dialog.hxx>
+// auto strip #endif
 
-#ifndef _GROUP_HXX //autogen
-#include <vcl/group.hxx>
-#endif
+// auto strip #ifndef _GROUP_HXX //autogen
+// auto strip #include <vcl/group.hxx>
+// auto strip #endif
 
-#ifndef _SV_DOCKWIN_HXX //autogen
-#include <vcl/dockwin.hxx>
-#endif
+// auto strip #ifndef _SV_DOCKWIN_HXX //autogen
+// auto strip #include <vcl/dockwin.hxx>
+// auto strip #endif
 
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
-#ifndef _SVX_FMEXCH_HXX
-#include "fmexch.hxx"
-#endif
-#ifndef _CONNECTIVITY_SQLPARSE_HXX
-#include <connectivity/sqlparse.hxx>
-#endif
-#ifndef _SVX_FMEXCH_HXX
-#include "fmexch.hxx"
-#endif
-#ifndef SVX_SQLPARSERCLIENT_HXX
-#include "sqlparserclient.hxx"
-#endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_FMEXCH_HXX
+// auto strip #include "fmexch.hxx"
+// auto strip #endif
+// auto strip #ifndef _CONNECTIVITY_SQLPARSE_HXX
+// auto strip #include <connectivity/sqlparse.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FMEXCH_HXX
+// auto strip #include "fmexch.hxx"
+// auto strip #endif
+// auto strip #ifndef SVX_SQLPARSERCLIENT_HXX
+// auto strip #include "sqlparserclient.hxx"
+// auto strip #endif
 namespace binfilter {
 
 class FmFormShell;
