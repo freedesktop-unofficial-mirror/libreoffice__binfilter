@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:33:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,88 +72,93 @@
 #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
-#include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-#include <com/sun/star/text/DocumentStatistic.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
+// auto strip #include <com/sun/star/text/HorizontalAdjust.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
+// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
-#include <com/sun/star/text/HoriOrientationFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
-#include <com/sun/star/text/NotePrintMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
-#include <com/sun/star/text/SizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
-#include <com/sun/star/text/VertOrientationFormat.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
+// auto strip #include <com/sun/star/text/HoriOrientationFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
+// auto strip #include <com/sun/star/text/NotePrintMode.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
+// auto strip #include <com/sun/star/text/SizeType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
+// auto strip #include <com/sun/star/text/VertOrientationFormat.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
 #include <com/sun/star/text/WrapTextMode.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
-#include <com/sun/star/text/XTextFrame.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
+// auto strip #include <com/sun/star/text/XTextFrame.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP_
 #include <com/sun/star/text/TextContentAnchorType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_INVALIDTEXTCONTENTEXCEPTION_HPP_
-#include <com/sun/star/text/InvalidTextContentException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-#include <com/sun/star/text/XTextContent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_INVALIDTEXTCONTENTEXCEPTION_HPP_
+// auto strip #include <com/sun/star/text/InvalidTextContentException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
+// auto strip #include <com/sun/star/text/XTextContent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_TEXTGRIDMODE_HPP_
 #include <com/sun/star/text/TextGridMode.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
-#include <com/sun/star/awt/Size.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
+// auto strip #include <com/sun/star/awt/Size.hpp>
+// auto strip #endif
 #ifndef _SVTOOLS_UNOIMAP_HXX
 #include <svtools/unoimap.hxx>
 #endif
-#ifndef _SVTOOLS_UNOEVENT_HXX_
-#include <svtools/unoevent.hxx>
-#endif
-#ifndef __SBX_SBXVARIABLE_HXX //autogen
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef _SVTOOLS_UNOEVENT_HXX_
+// auto strip #include <svtools/unoevent.hxx>
+// auto strip #endif
+// auto strip #ifndef __SBX_SBXVARIABLE_HXX //autogen
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
-#ifndef _GOODIES_IMAPOBJ_HXX //autogen
-#include <svtools/imapobj.hxx>
-#endif
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX //autogen
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #ifndef _UNOSETT_HXX
 #include <unosett.hxx>
 #endif
-#ifndef _UNOSTYLE_HXX
-#include <unostyle.hxx>
-#endif
+// auto strip #ifndef _UNOSTYLE_HXX
+// auto strip #include <unostyle.hxx>
+// auto strip #endif
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
@@ -163,9 +168,9 @@
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
@@ -193,9 +198,9 @@
 #ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _SECTION_HXX //autogen
 #include <section.hxx>
 #endif
@@ -208,9 +213,9 @@
 #ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #include <hfspacingitem.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -226,24 +231,24 @@
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
@@ -256,12 +261,12 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -299,9 +304,9 @@
 #ifndef _UNOMID_H
 #include <unomid.h>
 #endif
-#ifndef _UNOOBJ_HXX
-#include <unoobj.hxx>
-#endif
+// auto strip #ifndef _UNOOBJ_HXX
+// auto strip #include <unoobj.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
