@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flddat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:39:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _FLDDAT_HXX
 #define _FLDDAT_HXX
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #include "fldbas.hxx"
 class DateTime;
