@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: aw $ $Date: 2003-12-05 15:10:44 $
+#   last change: $Author: rt $ $Date: 2004-07-13 16:26:25 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -122,8 +122,10 @@ SHL1TARGET= bf_sc$(UPD)$(DLLPOSTFIX)
 SHL1VERSIONMAP= bf_sc.map
 SHL1IMPLIB= bf_sci
 
+.IF "$(OS)" != "MACOSX"
 # static libraries
 SHL1STDLIBS+= $(BFSCHLIB)
+.ENDIF
 
 # dynamic libraries
 SHL1STDLIBS+=       \
@@ -149,6 +151,12 @@ SHL1STDLIBS+=       \
     $(SOTLIB)		\
     $(BFXMLOFFLIB)	\
     $(DBTOOLSLIB)
+
+
+.IF "$(OS)" == "MACOSX"
+# static libraries muyst come at end of list on MacOSX
+SHL1STDLIBS+= $(BFSCHLIB)
+.ENDIF
 
 
 SHL1DEPN=   $(L)$/itools.lib
