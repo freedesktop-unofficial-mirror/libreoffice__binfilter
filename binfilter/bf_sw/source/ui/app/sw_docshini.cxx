@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:30:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,39 +76,39 @@
 #ifndef _SOT_STORINFO_HXX
 #include <sot/storinfo.hxx>
 #endif
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _ZFORLIST_HXX //autogen
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
 #ifndef _CTRLTOOL_HXX //autogen
 #include <svtools/ctrltool.hxx>
 #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _OFA_MISCCFG_HXX //autogen
-#include <bf_sfx2/misccfg.hxx>
-#endif
+// auto strip #ifndef _OFA_MISCCFG_HXX //autogen
+// auto strip #include <bf_sfx2/misccfg.hxx>
+// auto strip #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
 #ifndef _SVX_ASIANCFG_HXX
 #include <bf_svx/asiancfg.hxx>
 #endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
 #ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
 #endif
@@ -119,18 +119,18 @@
 #include <bf_svx/adjitem.hxx>
 #endif
 
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
-#include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-#endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
+// auto strip #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #endif
@@ -166,9 +166,9 @@
 #ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
 #endif
-#ifndef _MySVXACORR_HXX //autogen
-#include <bf_svx/svxacorr.hxx>
-#endif
+// auto strip #ifndef _MySVXACORR_HXX //autogen
+// auto strip #include <bf_svx/svxacorr.hxx>
+// auto strip #endif
 
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
@@ -177,33 +177,43 @@
 #ifndef _PRTOPT_HXX
 #include <prtopt.hxx>
 #endif
-#ifndef _FMTCOL_HXX //autogen
-#include <fmtcol.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
+
+// auto strip #ifndef _FMTCOL_HXX //autogen
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCFAC_HXX
-#include <docfac.hxx>
-#endif
+// auto strip #ifndef _DOCFAC_HXX
+// auto strip #include <docfac.hxx>
+// auto strip #endif
 #ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
 #endif
-#ifndef _SHELLIO_HXX
-#include <shellio.hxx>
-#endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+// auto strip #ifndef _SHELLIO_HXX
+// auto strip #include <shellio.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
 #endif
@@ -213,9 +223,9 @@
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-#ifndef _DBMGR_HXX
-#include <dbmgr.hxx>
-#endif
+// auto strip #ifndef _DBMGR_HXX
+// auto strip #include <dbmgr.hxx>
+// auto strip #endif
 #ifndef _USRPREF_HXX
 #include <usrpref.hxx>
 #endif
@@ -225,24 +235,24 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _MODCFG_HXX
-#include <modcfg.hxx>
-#endif
+// auto strip #ifndef _MODCFG_HXX
+// auto strip #include <modcfg.hxx>
+// auto strip #endif
 #ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
 #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
 #ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
 #endif
-#ifndef _FLDUPDE_HXX
-#include <fldupde.hxx>
-#endif
+// auto strip #ifndef _FLDUPDE_HXX
+// auto strip #include <fldupde.hxx>
+// auto strip #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
 #endif
