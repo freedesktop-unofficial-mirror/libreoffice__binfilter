@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unopage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:16 $
+ *  last change: $Author: cl $ $Date: 2004-04-02 07:50:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,10 @@
 #ifndef _E3D_LATHE3D_HXX
 #include <lathe3d.hxx>
 #endif
+#include <cube3d.hxx>
+#include <sphere3d.hxx>
+#include <polygn3d.hxx>
+
 namespace binfilter {
 
 using namespace ::vos;
@@ -575,6 +579,20 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
     {
         case E3dInventor:
         {
+            if( nType == E3D_COMPOUNDOBJ_ID )
+            {
+                if( pObj->ISA( E3dSphereObj ) )
+                    nType = E3D_SPHEREOBJ_ID;
+                else if( pObj->ISA( E3dCubeObj ) )
+                    nType = E3D_CUBEOBJ_ID;
+                else if( pObj->ISA( E3dExtrudeObj ) )
+                    nType = E3D_EXTRUDEOBJ_ID;
+                else if( pObj->ISA( E3dLatheObj ) )
+                    nType = E3D_LATHEOBJ_ID;
+                else if( pObj->ISA( E3dPolygonObj ) )
+                    nType = E3D_LATHEOBJ_ID;
+            }
+
             switch( nType )
             {
                 case E3D_SCENE_ID :
@@ -597,6 +615,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                     pRet = new Svx3DPolygonObject( pObj );
                     break;
                 default: // unbekanntes 3D-Objekt auf der Page
+                    DBG_ERROR( "svx::SvxDrawPage::CreateShapeByTypeAndInventor(), unkown 3d-object found!" );
                     pRet = new SvxShape( pObj );
                     break;
             }
