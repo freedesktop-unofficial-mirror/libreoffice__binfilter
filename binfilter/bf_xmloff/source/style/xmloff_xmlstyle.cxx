@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlstyle.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:19:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,27 +59,27 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
-#include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_SAXEXCEPTION_HPP_
-#include <com/sun/star/xml/sax/SAXException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-#include <com/sun/star/xml/sax/XLocator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/xml/sax/SAXParseException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXEXCEPTION_HPP_
+// auto strip #include <com/sun/star/xml/sax/SAXException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
+// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
@@ -87,12 +87,12 @@
 #include "PageMasterPropMapper.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
-#include <tools/debug.hxx>
-#endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -112,33 +112,33 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX
+// auto strip #include "families.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
-#include "xmlimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLIMP_HXX
+// auto strip #include "xmlimp.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
-#include "xmlimppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
-#include "xmlstyle.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLIMPPR_HXX
+// auto strip #include "xmlimppr.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLSTYLE_HXX
+// auto strip #include "xmlstyle.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_TXTSTYLI_HXX
 #include "txtstyli.hxx"
 #endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
-#include "txtprmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TXTPRMAP_HXX
+// auto strip #include "txtprmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
 #endif
