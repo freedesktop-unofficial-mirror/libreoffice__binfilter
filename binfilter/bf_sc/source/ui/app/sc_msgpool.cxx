@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_msgpool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:44 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:36:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -70,6 +70,11 @@
 
 #include "bf_sc.hrc"
 #include "docpool.hxx"
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 #include "msgpool.hxx"
 namespace binfilter {
 
