@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:27:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,36 +64,36 @@
 
 #include "appuno.hxx"
 
-#include <svtools/sbx.hxx>
+// auto strip #include <svtools/sbx.hxx>
 #include <svtools/itempool.hxx>
 
 #ifndef _SFXRECTITEM_HXX //autogen
 #include <svtools/rectitem.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
-#ifndef _WLDCRD_HXX //autogen
-#include <tools/wldcrd.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _WLDCRD_HXX //autogen
+// auto strip #include <tools/wldcrd.hxx>
+// auto strip #endif
 
 #include <tools/urlobj.hxx>
 
-#ifndef _CONFIG_HXX
-#include <tools/config.hxx>
-#endif
-#ifndef __SBX_SBXMETHOD_HXX
-#include <svtools/sbxmeth.hxx>
-#endif
+// auto strip #ifndef _CONFIG_HXX
+// auto strip #include <tools/config.hxx>
+// auto strip #endif
+// auto strip #ifndef __SBX_SBXMETHOD_HXX
+// auto strip #include <svtools/sbxmeth.hxx>
+// auto strip #endif
 #ifndef _SB_SBMETH_HXX
 #include <basic/sbmeth.hxx>
 #endif
-#ifndef _SBX_SBXOBJECT_HXX
-#include <svtools/sbxobj.hxx>
-#endif
-#ifndef _SB_SBERRORS_HXX
-#include <basic/sberrors.hxx>
-#endif
+// auto strip #ifndef _SBX_SBXOBJECT_HXX
+// auto strip #include <svtools/sbxobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBERRORS_HXX
+// auto strip #include <basic/sberrors.hxx>
+// auto strip #endif
 #ifndef _BASMGR_HXX
 #include <basic/basmgr.hxx>
 #endif
@@ -101,92 +101,98 @@
 #include <basic/sbuno.hxx>
 #endif
 
+#ifndef _SBXCORE_HXX
 #include <svtools/sbxcore.hxx>
-#include <svtools/ownlist.hxx>
-#include <svtools/lckbitem.hxx>
+#endif
+#ifndef _SBXCLASS_HXX
+#include <svtools/sbx.hxx>
+#endif
+
+// auto strip #include <svtools/ownlist.hxx>
+// auto strip #include <svtools/lckbitem.hxx>
 #include <svtools/stritem.hxx>
 #include <svtools/intitem.hxx>
 #include <svtools/eitem.hxx>
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
-#include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
-#include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAMEACTIONLISTENER_HPP_
-#include <com/sun/star/frame/XFrameActionListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
+// auto strip #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
+// auto strip #include <com/sun/star/task/XInteractionHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAMEACTIONLISTENER_HPP_
+// auto strip #include <com/sun/star/frame/XFrameActionListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_XCOMPONENTLOADER_HPP_
 #include <com/sun/star/frame/XComponentLoader.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-#include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_FRAMEACTIONEVENT_HPP_
-#include <com/sun/star/frame/FrameActionEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_FRAMEACTION_HPP_
-#include <com/sun/star/frame/FrameAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-#include <com/sun/star/container/XNameReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-#include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
-#include <com/sun/star/container/XSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-#include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XTOPWINDOW_HPP_
-#include <com/sun/star/awt/XTopWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
-#include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
-#include <com/sun/star/awt/PosSize.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HPP_
-#include <com/sun/star/registry/RegistryValueType.hpp>
-#endif
-#include <comphelper/processfactory.hxx>
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
-#include <com/sun/star/awt/PosSize.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XBUTTON_HPP_
-#include <com/sun/star/awt/XButton.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_DISPATCHRESULTEVENT_HPP_
-#include <com/sun/star/frame/DispatchResultEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+// auto strip #include <com/sun/star/frame/XFrame.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTIONEVENT_HPP_
+// auto strip #include <com/sun/star/frame/FrameActionEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTION_HPP_
+// auto strip #include <com/sun/star/frame/FrameAction.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XNameReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
+// auto strip #include <com/sun/star/container/XContainerListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
+// auto strip #include <com/sun/star/container/XSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XTOPWINDOW_HPP_
+// auto strip #include <com/sun/star/awt/XTopWindow.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
+// auto strip #include <com/sun/star/awt/XWindow.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
+// auto strip #include <com/sun/star/awt/PosSize.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HPP_
+// auto strip #include <com/sun/star/registry/RegistryValueType.hpp>
+// auto strip #endif
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
+// auto strip #include <com/sun/star/awt/PosSize.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XBUTTON_HPP_
+// auto strip #include <com/sun/star/awt/XButton.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHRESULTEVENT_HPP_
+// auto strip #include <com/sun/star/frame/DispatchResultEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_DISPATCHRESULTSTATE_HPP_
 #include <com/sun/star/frame/DispatchResultState.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
 #endif
@@ -194,8 +200,8 @@
 #include <com/sun/star/ucb/XContent.hpp>
 #endif
 
-#include <tools/cachestr.hxx>
-#include <osl/mutex.hxx>
+// auto strip #include <tools/cachestr.hxx>
+// auto strip #include <osl/mutex.hxx>
 
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::uno;
@@ -206,33 +212,47 @@ using namespace ::com::sun::star::io;
 
 #pragma hdrstop
 
-#include "sfxtypes.hxx"
-#include "sfxuno.hxx"
-#include "appdata.hxx"
-#include "app.hxx"
+// auto strip #include "sfxtypes.hxx"
+// auto strip #include "sfxuno.hxx"
+// auto strip #include "appdata.hxx"
+// auto strip #include "app.hxx"
 #include "sfxsids.hrc"
-#include "msg.hxx"
+// auto strip #include "msg.hxx"
 #include "msgpool.hxx"
 #include "request.hxx"
-#include "module.hxx"
-#include "fcontnr.hxx"
+// auto strip #include "module.hxx"
+// auto strip #include "fcontnr.hxx"
 #include "frmload.hxx"
 #include "frame.hxx"
 #include "sfxbasic.hxx"
-#include "objsh.hxx"
+// auto strip #include "objsh.hxx"
 #include "objuno.hxx"
 #include "unoctitm.hxx"
 #include "dispatch.hxx"
 #include "doctemplates.hxx"
 #include "shutdownicon.hxx"
+
+#ifndef _SFX_NAMECONT_HXX
+#include "namecont.hxx"
+#endif
+
 #include "scriptcont.hxx"
 #include "dlgcont.hxx"
 #include "objshimp.hxx"
 #include "fltoptint.hxx"
-#include "docfile.hxx"
+// auto strip #include "docfile.hxx"
 #include "sfxbasecontroller.hxx"
 #include "brokenpackageint.hxx"
 #include "eventsupplier.hxx"
+
+#ifndef _COM_SUN_STAR_DOCUMENT_FILTEROPTIONSREQUEST_HPP_
+#include <com/sun/star/document/FilterOptionsRequest.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_DOCUMENT_BROKENPACKAGEREQUEST_HPP_
+#include <com/sun/star/document/BrokenPackageRequest.hpp>
+#endif
+
 namespace binfilter {
 
 #define FRAMELOADER_SERVICENAME         "com.sun.star.frame.FrameLoader"
@@ -1785,9 +1805,9 @@ namespace binfilter {//STRIP009
 /*N*/     return Sequence< Reference < XDispatch > >();
 /*N*/ }
 #ifdef TEST_HANDLERS
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
-#include <cppuhelper/implbase2.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE2_HXX_
+// auto strip #include <cppuhelper/implbase2.hxx>
+// auto strip #endif
 
 #include <com/sun/star/awt/XKeyHandler.hdl>
 #include <com/sun/star/awt/XMouseClickHandler.hdl>
