@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:02:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -263,7 +263,7 @@
 #define ABOUT_STR_DEVELOPER                 1
 #define ABOUT_STR_DEVELOPER_ARY             2
 #define ABOUT_STR_COPYRIGHT_ADABAS          3
-#define ABOUT_STR_SFX_DEVELOPER             (RID_SFX_START+99) // unser String
+//STRIP001 #define ABOUT_STR_SFX_DEVELOPER              (RID_SFX_START+99) // unser String
 
 #define ABOUT_STR_ACCEL                     2
 #define RID_APPTITLE                        (RID_SFX_START+4)
@@ -280,32 +280,32 @@
 //STRIP001 #define TP_MANAGE_STYLES                    (RID_SFX_START+7)
 #define DLG_STYLE_DESIGNER                  (RID_SFX_START+8)
 
-#define STR_STYLE_FILTER_AUTO               (RID_SFX_START+9)
-#define STR_STYLE_FILTER_USED               (RID_SFX_START+10)
-#define STR_STYLE_FILTER_USERDEF            (RID_SFX_START+11)
-#define STR_STYLE_FILTER_ALL                (RID_SFX_START+12)
+//STRIP001 #define  STR_STYLE_FILTER_AUTO               (RID_SFX_START+9)
+//STRIP001 #define  STR_STYLE_FILTER_USED               (RID_SFX_START+10)
+//STRIP001 #define  STR_STYLE_FILTER_USERDEF            (RID_SFX_START+11)
+//STRIP001 #define  STR_STYLE_FILTER_ALL                (RID_SFX_START+12)
 // +13 schon benutzt!
 #define STR_STYLE_FILTER_HIERARCHICAL       (RID_SFX_START+1200)
 
 #define STR_NONAME                          (RID_SFX_START+100)
-#define STR_NONE                            (RID_SFX_START+101)
+//STRIP001 #define STR_NONE                         (RID_SFX_START+101)
 #define STR_CLOSE                           (RID_SFX_START+103)
 #define STR_STANDARD                        (RID_SFX_START+104)
 #define STR_READONLY                        (RID_SFX_START+105)
 
-#define STR_FILTERNAME_ALL                  (RID_SFX_START+106)
-#define STR_FILTERNAME_CFG                  (RID_SFX_START+107)
+//STRIP001 #define STR_FILTERNAME_ALL                   (RID_SFX_START+106)
+//STRIP001 #define STR_FILTERNAME_CFG                   (RID_SFX_START+107)
 #define STR_EDIT                            (RID_SFX_START+108)
 #define STR_HUMAN_APPNAME                   (RID_SFX_START+109)
-#define STR_QUERY_SAVE_DOCUMENT             (RID_SFX_START+110)
-#define STR_BYTES                           (RID_SFX_START+111)
-#define STR_KB                              (RID_SFX_START+112)
-#define STR_MB                              (RID_SFX_START+113)
-#define STR_GB                              (RID_SFX_START+114)
+//STRIP001 #define STR_QUERY_SAVE_DOCUMENT          (RID_SFX_START+110)
+//STRIP001 #define STR_BYTES                        (RID_SFX_START+111)
+//STRIP001 #define STR_KB                               (RID_SFX_START+112)
+//STRIP001 #define STR_MB                               (RID_SFX_START+113)
+//STRIP001 #define STR_GB                               (RID_SFX_START+114)
 
 #define STR_VERSION_TYPE                    (RID_SFX_START+115)
 #define STR_VERSION_ID                      (RID_SFX_START+116)
-#define STR_STANDARD_SHORTCUT               (RID_SFX_START+117)
+//STRIP001 #define STR_STANDARD_SHORTCUT               (RID_SFX_START+117)
 #define STR_REPAIREDDOCUMENT                (RID_SFX_START+118)
 
 //=========================================================================
@@ -323,15 +323,15 @@
 #define GID_INSERT                          (RID_GROUPS_SFXOFFSET+ 9)
 #define GID_FORMAT                          (RID_GROUPS_SFXOFFSET+10)
 #define GID_TEMPLATE                        (RID_GROUPS_SFXOFFSET+11)
-#define GID_TEXT                            (RID_GROUPS_SFXOFFSET+12)
+//STRIP001 #define GID_TEXT                            (RID_GROUPS_SFXOFFSET+12)
 #define GID_FRAME                           (RID_GROUPS_SFXOFFSET+13)
 #define GID_GRAPHIC                         (RID_GROUPS_SFXOFFSET+14)
 #define GID_TABLE                           (RID_GROUPS_SFXOFFSET+15)
 #define GID_ENUMERATION                     (RID_GROUPS_SFXOFFSET+16)
 #define GID_DATA                            (RID_GROUPS_SFXOFFSET+17)
 #define GID_SPECIAL                         (RID_GROUPS_SFXOFFSET+18)
-#define GID_IMAGE                           (RID_GROUPS_SFXOFFSET+19)
-#define GID_CHART                           (RID_GROUPS_SFXOFFSET+20)
+//STRIP001 #define GID_IMAGE                           (RID_GROUPS_SFXOFFSET+19)
+//STRIP001 #define GID_CHART                           (RID_GROUPS_SFXOFFSET+20)
 #define GID_EXPLORER                        (RID_GROUPS_SFXOFFSET+21)
 #define GID_CONNECTOR                       (RID_GROUPS_SFXOFFSET+22)
 #define GID_MODIFY                          (RID_GROUPS_SFXOFFSET+23)
@@ -400,7 +400,7 @@
 #define STR_UNDO                            (RID_SFX_VIEW_START+11)
 #define STR_REDO                            (RID_SFX_VIEW_START+12)
 #define STR_REPEAT                          (RID_SFX_VIEW_START+13)
-#define RID_STR_NEW_TASK                    (RID_SFX_DOC_START+ 76)
+//STRIP001 #define RID_STR_NEW_TASK                 (RID_SFX_DOC_START+ 76)
 
 // Member-Ids ------------------------------------------------------------
 
