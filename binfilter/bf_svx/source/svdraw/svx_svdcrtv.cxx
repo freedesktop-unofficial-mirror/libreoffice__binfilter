@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdcrtv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:19:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,25 +60,25 @@
  ************************************************************************/
 
 #include "svdcrtv.hxx"
-#include "xattr.hxx"
+// auto strip #include "xattr.hxx"
 #include "svdio.hxx"
-#include "svdxout.hxx"
-#include "svdundo.hxx"
-#include "svdocapt.hxx" // Spezialbehandlung: Nach dem Create transparente Fuellung
-#include "svdcrtmt.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdocapt.hxx" // Spezialbehandlung: Nach dem Create transparente Fuellung
+// auto strip #include "svdcrtmt.hxx"
 #include "svdvmark.hxx"
-#include "svdoedge.hxx"
-#include "svdpagv.hxx"
-#include "svdpage.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdoedge.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdetc.hxx"
 
-#ifndef _E3D_SCENE3D_HXX
-#include "scene3d.hxx"
-#endif
+// auto strip #ifndef _E3D_SCENE3D_HXX
+// auto strip #include "scene3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_VIEW3D_HXX
-#include "view3d.hxx"
-#endif
+// auto strip #ifndef _E3D_VIEW3D_HXX
+// auto strip #include "view3d.hxx"
+// auto strip #endif
 namespace binfilter {
 
 #define XOR_CREATE_PEN          PEN_SOLID
