@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:03:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,37 +68,37 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/editobj.hxx>
-#include <bf_svx/editstat.hxx>
+// auto strip #include <bf_svx/editstat.hxx>
 #include <bf_svx/emphitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
 #include <bf_svx/rotmodit.hxx>
 #include <bf_svx/scripttypeitem.hxx>
 #include <bf_svx/unolingu.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
 #include <math.h>
 
-#include "column.hxx"
+// auto strip #include "column.hxx"
 #include "cell.hxx"
 #include "document.hxx"
-#include "docpool.hxx"
+// auto strip #include "docpool.hxx"
 #include "attarray.hxx"
 #include "patattr.hxx"
 #include "cellform.hxx"
-#include "collect.hxx"
-#include "stlsheet.hxx"
+// auto strip #include "collect.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "rechead.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "editutil.hxx"
 #include "subtotal.hxx"
 #include "markdata.hxx"
-#include "compiler.hxx"         // ScTokenArray GetCodeLen
+// auto strip #include "compiler.hxx"           // ScTokenArray GetCodeLen
 #include "dbcolect.hxx"
 #include "bclist.hxx"
 namespace binfilter {
