@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrtxt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:52:45 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:10:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -252,7 +252,7 @@ namespace binfilter {
 /*N*/   const SwLineLayout *pNext = Next();
 /*N*/   while( pNext && pNext->IsDummy() && pNext->GetNext() )
 /*N*/   {
-/*?*/       DBG_LOOP;
+///*?*/         DBG_LOOP;
 /*?*/       pNext = Next();
 /*N*/   }
 /*N*/   return pNext;
@@ -267,7 +267,7 @@ namespace binfilter {
 /*N*/   const SwLineLayout *pNext = pCurr->GetNext();
 /*N*/   while( pNext && pNext->IsDummy() && pNext->GetNext() )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       pNext = pNext->GetNext();
 /*N*/   }
 /*N*/   return (SwLineLayout*)pNext;
@@ -316,7 +316,7 @@ namespace binfilter {
 /*N*/   const SwLineLayout *pLast = pPrev;
 /*N*/   while( pPrev && pPrev->IsDummy() )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       pLast = pPrev;
 /*N*/       pPrev = Prev();
 /*N*/   }
@@ -331,7 +331,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   while( Next() )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/   }
 /*N*/ }
 
@@ -564,7 +564,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   while( pLay != pCurr )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       if ( pLay->IsEndHyph() )
 /*N*/           nEndCnt++;
 /*N*/       else

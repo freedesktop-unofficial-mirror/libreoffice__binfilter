@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrform2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:52:07 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:09:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -330,7 +330,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/       SwLinePortion *pPrev = pPor;
 /*N*/       while( pPor && pPor != pUnderFlow )
 /*N*/       {
-/*N*/           DBG_LOOP;
+///*N*/             DBG_LOOP;
 /*N*/           if( !pPor->IsKernPortion() &&
 /*N*/               ( pPor->Width() || pPor->IsSoftHyphPortion() ) )
 /*N*/           {
@@ -472,7 +472,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   rInf.SetLast( pPor );
 /*N*/   while( pPor )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       pPor->Move( rInf );
 /*N*/       rInf.SetLast( pPor );
 /*N*/       pPor = pPor->GetPortion();
@@ -539,7 +539,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/       ASSERT( rInf.GetLen() < STRING_LEN &&
 /*N*/               rInf.GetIdx() <= rInf.GetTxt().Len(),
 /*N*/               "SwTxtFormatter::BuildPortions: bad length in info" );
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/
 /*N*/         // We have to check the script for fields in order to set the
 /*N*/         // correct nActual value for the font.
@@ -1668,7 +1668,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   sal_Bool bMore = sal_True;
 /*N*/   while(bMore)
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       CalcRealHeight();
 /*N*/       bMore = Next() != 0;
 /*N*/   }
