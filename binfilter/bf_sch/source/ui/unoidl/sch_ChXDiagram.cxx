@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDiagram.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:06 $
+ *  last change: $Author: bm $ $Date: 2004-04-02 15:31:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,6 +150,25 @@
 #endif
 
 #include "pairs.hxx"
+
+namespace
+{
+::binfilter::ChartScene * lcl_GetScene( ::binfilter::ChartModel * pModel )
+{
+    ::binfilter::ChartScene * pScene = NULL;
+
+    if( pModel && pModel->IsReal3D() )
+    {
+        if( ! pModel->IsInitialized())
+            pModel->Initialize();
+        pScene = pModel->GetScene();
+    }
+
+    return pScene;
+}
+} // anonymous namespace
+
+
 namespace binfilter {
 
 using namespace ::vos;
@@ -896,7 +915,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                 case OWN_ATTR_3D_VALUE_TRANSFORM_MATRIX:
                     {
-                        E3dObject* pScene = mpModel->GetScene();
+                        E3dObject* pScene = lcl_GetScene( mpModel );
 
                         if( pScene )
                         {
@@ -911,7 +930,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                 case OWN_ATTR_3D_VALUE_CAMERA_GEOMETRY:
                     {
-                        E3dScene* pScene = mpModel->GetScene();
+                        E3dScene* pScene = lcl_GetScene( mpModel );
 
                         if( pScene )
                         {
@@ -1266,7 +1285,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
                     else
                     {
                         //E3dPolyScene* mpModel->GetScene();
-                        E3dObject* pScene = mpModel->GetScene();
+                        E3dObject* pScene = lcl_GetScene( mpModel );
                         if( pScene )
                         {
                             if( nWID == OWN_ATTR_3D_VALUE_TRANSFORM_MATRIX )
@@ -1281,11 +1300,11 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
                             else if( nWID == OWN_ATTR_3D_VALUE_CAMERA_GEOMETRY )
                             {
                                 // get CameraGeometry from scene
-                                E3dScene* pScene = mpModel->GetScene();
+                                 E3dScene* pE3dScene = mpModel->GetScene();
                                 drawing::CameraGeometry aCamGeo;
 
                                 // fill Vectors from scene camera
-                                B3dCamera& aCameraSet = pScene->GetCameraSet();
+                                B3dCamera& aCameraSet = pE3dScene->GetCameraSet();
                                 Vector3D aVRP = aCameraSet.GetVRP();
                                 Vector3D aVPN = aCameraSet.GetVPN();
                                 Vector3D aVUP = aCameraSet.GetVUV();
@@ -1493,7 +1512,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                 if (pScene == NULL)
                 {
                     RTL_LOGFILE_CONTEXT_TRACE (context, "getting 3D scene");
-                    pScene = mpModel->GetScene();
+                    pScene = lcl_GetScene( mpModel );
                 }
                 if (pScene != NULL)
                     if (nWID == OWN_ATTR_3D_VALUE_TRANSFORM_MATRIX)
@@ -1506,10 +1525,10 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     else if (nWID == OWN_ATTR_3D_VALUE_CAMERA_GEOMETRY)
                     {
                         // get CameraGeometry from scene
-                        E3dScene* pScene = mpModel->GetScene();
+                         E3dScene* pE3dScene = mpModel->GetScene();
 
                         // fill Vectors from scene camera
-                        B3dCamera& aCameraSet = pScene->GetCameraSet();
+                        B3dCamera& aCameraSet = pE3dScene->GetCameraSet();
                         Vector3D aVRP = aCameraSet.GetVRP();
                         Vector3D aVPN = aCameraSet.GetVPN();
                         Vector3D aVUP = aCameraSet.GetVUV();
