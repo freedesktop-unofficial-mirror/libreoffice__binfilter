@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cursuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:19:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,22 +60,22 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include "scitems.hxx"
-#include <svtools/intitem.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <rtl/uuid.h>
 
 #include "cursuno.hxx"
-#include "cellsuno.hxx"
+// auto strip #include "cellsuno.hxx"
 #include "docsh.hxx"
-#include "hints.hxx"
+// auto strip #include "hints.hxx"
 #include "markdata.hxx"
-#include "dociter.hxx"
+// auto strip #include "dociter.hxx"
 #include "unoguard.hxx"
 #include "miscuno.hxx"
 namespace binfilter {
