@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ImageControl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:51:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,6 +59,10 @@
  *
  ************************************************************************/
 
+#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+#include <comphelper/proparrhlp.hxx>
+#endif
+
 #ifndef _FRM_IMAGE_CONTROL_HXX_
 #include "ImageControl.hxx"
 #endif
@@ -72,13 +76,13 @@
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
 #endif
-#include "conversion.hxx"
+// auto strip #include "conversion.hxx"
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-#ifndef _UNTOOLS_UCBLOCKBYTES_HXX
-#include <unotools/ucblockbytes.hxx>
-#endif
+// auto strip #ifndef _UNTOOLS_UCBLOCKBYTES_HXX
+// auto strip #include <unotools/ucblockbytes.hxx>
+// auto strip #endif
 #ifndef _FILEDLGHELPER_HXX
 #include <bf_sfx2/filedlghelper.hxx>
 #endif
@@ -89,18 +93,18 @@
 #include <com/sun/star/awt/PopupMenuDirection.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
-#include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/TemplateDescription.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
 #include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
 #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
 #include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
-#include <com/sun/star/ui/dialogs/XFilePicker.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HPP_
+// auto strip #include <com/sun/star/ui/dialogs/XFilePicker.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
 #include <com/sun/star/sdbc/DataType.hpp>
 #endif
@@ -110,41 +114,54 @@
 #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XDIALOG_HPP_
-#include <com/sun/star/awt/XDialog.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XDIALOG_HPP_
+// auto strip #include <com/sun/star/awt/XDialog.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_NOTCONNECTEDEXCEPTION_HPP_
-#include <com/sun/star/io/NotConnectedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_NOTCONNECTEDEXCEPTION_HPP_
+// auto strip #include <com/sun/star/io/NotConnectedException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
-#ifndef _SVX_IMPGRF_HXX
-#include <bf_svx/impgrf.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _SVX_IMPGRF_HXX
+// auto strip #include <bf_svx/impgrf.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #ifndef _UNOTOOLS_STREAMHELPER_HXX_
 #include <unotools/streamhelper.hxx>
 #endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
 #ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
 #endif
+
+#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
+#include <com/sun/star/form/FormComponentType.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
 namespace binfilter {
 
 #define ID_OPEN_GRAPHICS            1
@@ -158,7 +175,7 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-using namespace ::com::sun::star::sdbcx;
+//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
