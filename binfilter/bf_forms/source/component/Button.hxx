@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Button.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:43:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,24 +66,24 @@
 #include "Image.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_MOUSEEVENT_HPP_
-#include <com/sun/star/awt/MouseEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
-#include <com/sun/star/lang/EventObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_ACTIONEVENT_HPP_
-#include <com/sun/star/awt/ActionEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XACTIONLISTENER_HPP_
-#include <com/sun/star/awt/XActionListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_MOUSEEVENT_HPP_
+// auto strip #include <com/sun/star/awt/MouseEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
+// auto strip #include <com/sun/star/lang/EventObject.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_ACTIONEVENT_HPP_
+// auto strip #include <com/sun/star/awt/ActionEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XACTIONLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XActionListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XBUTTON_HPP_
 #include <com/sun/star/awt/XButton.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
 namespace binfilter {
 
 //.........................................................................
