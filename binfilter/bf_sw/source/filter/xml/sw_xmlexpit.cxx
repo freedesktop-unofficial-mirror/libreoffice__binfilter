@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexpit.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:22:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,29 +63,29 @@
 
 #include <bf_xmloff/xmluconv.hxx>
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
-#ifndef _SFXPOOLITEM_HXX
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include <bf_xmloff/attrlist.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include <bf_xmloff/attrlist.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
@@ -118,9 +118,9 @@
 #include "unomid.h"
 #endif
 
-#ifndef _SVX_UNOMID_HXX
-#include <bf_svx/unomid.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOMID_HXX
+// auto strip #include <bf_svx/unomid.hxx>
+// auto strip #endif
 
 #ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
@@ -146,12 +146,16 @@
 #include <bf_svx/keepitem.hxx>
 #endif
 
-#ifndef _SVX_BRSHITEM_HXX
-#include <bf_svx/brshitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
 
 #ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _FMTORNT_HXX
@@ -166,17 +170,17 @@
 #include "fmtlsplt.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
-#include <bf_xmloff/prhdlfac.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
+// auto strip #include <bf_xmloff/prhdlfac.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
-#include <bf_xmloff/xmltypes.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
+// auto strip #include <bf_xmloff/xmltypes.hxx>
+// auto strip #endif
 
 #ifndef _SW_XMLITHLP_HXX
 #include "xmlithlp.hxx"
