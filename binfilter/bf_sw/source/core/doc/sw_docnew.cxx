@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:08:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,12 +67,12 @@
 #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HDL_
 #include <com/sun/star/i18n/ForbiddenCharacters.hdl>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
@@ -101,9 +101,9 @@
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
 #endif
-#ifndef _SVDPAGE_HXX
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
@@ -123,28 +123,35 @@
 #ifndef _FMTFORDR_HXX
 #include <fmtfordr.hxx>
 #endif
-#ifndef _FMTPDSC_HXX
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
 #endif
 
-#ifndef _DOC_HXX
-#include <doc.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
 #endif
 #ifndef _LAYOUTER_HXX
 #include <layouter.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx> //Damit die PageDescs zerstoert werden koennen.
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx> //Damit die PageDescs zerstoert werden koennen.
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -166,12 +173,12 @@
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>           // Undo-Attr, SwHistory
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROLBCK_HXX
+// auto strip #include <rolbck.hxx>           // Undo-Attr, SwHistory
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>          // fuer die Pool-Vorlage
 #endif
@@ -190,12 +197,12 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
 #endif
@@ -229,9 +236,9 @@
 #ifndef _LAYCACHE_HXX
 #include <laycache.hxx>
 #endif
-#ifndef _MVSAVE_HXX
-#include <mvsave.hxx>
-#endif
+// auto strip #ifndef _MVSAVE_HXX
+// auto strip #include <mvsave.hxx>
+// auto strip #endif
 
 #ifndef _CMDID_H
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
