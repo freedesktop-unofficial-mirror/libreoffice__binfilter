@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:45:56 $
+ *  last change: $Author: vg $ $Date: 2005-03-11 10:38:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #pragma hdrstop
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
@@ -446,55 +445,7 @@ using namespace ::com::sun::star;
 /*N*/   if( !pCrsr )
 /*N*/   {
 /*N*/       delete pPam;          // ein neues aufgemacht.
-/*N*/
-/*N*/       // alle Links updaten und Fehler melden
-/*N*/       // (die Graphic-Links nicht, passiert ueber unseren Grafik-Cache!!)
-/*N*/       // JP 20.03.96: aber nicht wenn die DocShell als INTERNAL
-/*N*/       //              construiert wurde (FileLinks in FileLinks in ...)
-/*N*/       // JP 27.06.96: wenn internal, dann nie Updaten! (rekursionen werden
-/*N*/       //              sonst nicht erkannt! ( Bug )
-/*N*/
-/*N*/       SfxObjectCreateMode eMode;
-/*N*/       USHORT nLinkMode = pDoc->GetLinkUpdMode();
-/*N*/         USHORT nUpdateDocMode = pDoc->GetDocShell()->GetUpdateDocMode();
-/*N*/         if( pDoc->GetDocShell() &&
-/*N*/                 (nLinkMode != NEVER ||  document::UpdateDocMode::FULL_UPDATE == nUpdateDocMode) &&
-/*N*/           pDoc->GetLinkManager().GetLinks().Count() &&
-/*N*/           SFX_CREATE_MODE_INTERNAL !=
-/*N*/                       ( eMode = pDoc->GetDocShell()->GetCreateMode()) &&
-/*N*/           SFX_CREATE_MODE_ORGANIZER != eMode &&
-/*N*/           SFX_CREATE_MODE_PREVIEW != eMode &&
-/*N*/           !pDoc->GetDocShell()->IsPreview() )
-/*N*/       {
-/*N*/           ViewShell* pVSh = 0;
-/*N*/             BOOL bAskUpdate = nLinkMode == MANUAL;
-/*N*/             BOOL bUpdate = TRUE;
-/*N*/             switch(nUpdateDocMode)
-/*N*/             {
-/*N*/                 case document::UpdateDocMode::NO_UPDATE:   bUpdate = FALSE;break;
-/*N*/                 case document::UpdateDocMode::QUIET_UPDATE:bAskUpdate = FALSE; break;
-/*N*/                 case document::UpdateDocMode::FULL_UPDATE: bAskUpdate = TRUE; break;
-/*N*/ //                case document::UpdateDocMode::ACCORDING_TO_CONFIG:break;
-/*N*/             }
-/*N*/             if(bUpdate)
-/*N*/             {
-/*N*/                 SfxMedium* pMedium = pDoc->GetDocShell()->GetMedium();
-/*N*/                 SfxFrame* pFrm = pMedium ? pMedium->GetLoadTargetFrame() : 0;
-/*N*/                 Window* pDlgParent = pFrm ? &pFrm->GetWindow() : 0;
-/*N*/                 if( pDoc->GetRootFrm() && !pDoc->GetEditShell( &pVSh ) && !pVSh )
-/*N*/                 {
-/*N*/                     ViewShell aVSh( *pDoc, 0, 0 );
-/*N*/
-/*N*/                     SET_CURR_SHELL( &aVSh );
-/*N*/                     pDoc->GetLinkManager().UpdateAllLinks( bAskUpdate , TRUE, FALSE, pDlgParent );
-/*N*/                 }
-/*N*/                 else
-/*N*/                     pDoc->GetLinkManager().UpdateAllLinks( bAskUpdate, TRUE, FALSE, pDlgParent );
-/*N*/             }
-/*N*/       }
-/*N*/
 /*N*/       eOld = (SwRedlineMode)(pDoc->GetRedlineMode() & ~REDLINE_IGNORE);
-/*N*/
 /*N*/       pDoc->SetFieldsDirty( FALSE );
 /*N*/   }
 /*N*/
