@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_envimg.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:44:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,32 +62,32 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SVX_PAPERINF_HXX //autogen
-#include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_ADRITEM_HXX //autogen
-#include <bf_svx/adritem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PAPERINF_HXX //autogen
+// auto strip #include <bf_svx/paperinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ADRITEM_HXX //autogen
+// auto strip #include <bf_svx/adritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
 #endif
