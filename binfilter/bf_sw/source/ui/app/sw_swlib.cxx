@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:32:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,32 +62,32 @@
 
 #define _SWLIB_CXX
 
-#ifndef _SFX_OBJFAC_HXX //autogen
-#include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _INETTYPE_HXX //autogen
-#include <svtools/inettype.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _INETTYPE_HXX //autogen
+// auto strip #include <svtools/inettype.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _PARHTML_HXX //autogen
 #include <svtools/parhtml.hxx>
 #endif
 
-#include <swdll.hxx>
+// auto strip #include <swdll.hxx>
 #include <swdll0.hxx> // wird vom makefile generiert
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swcomlib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:31:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,37 +63,37 @@
 
 #define _SWLIB_CXX
 
-#ifndef _SFX_OBJFAC_HXX //autogen
-#include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
 #endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _PARHTML_HXX //autogen
-#include <svtools/parhtml.hxx>
-#endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _PARHTML_HXX //autogen
+// auto strip #include <svtools/parhtml.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
 
-#ifndef _SWMODULE_HXX //autogen
-#include <swmodule.hxx>
-#endif
+// auto strip #ifndef _SWMODULE_HXX //autogen
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
 #ifndef _SWWDOCSH_HXX //autogen
 #include <wdocsh.hxx>
 #endif
@@ -103,8 +103,8 @@
 #ifndef _SHELLIO_HXX //autogen
 #include <shellio.hxx>
 #endif
-#include <swdll.hxx>
-#include "iodetect.hxx"
+// auto strip #include <swdll.hxx>
+// auto strip #include "iodetect.hxx"
 
 #include <app.hrc>
 #include <web.hrc>
