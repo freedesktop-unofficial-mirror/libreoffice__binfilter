@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edatmisc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:19:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,24 +62,28 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>      // fuer aNodes
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>      // fuer SwPaM
-#endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>    // fuer MACROS
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>   // fuer die UndoIds
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>    // fuer Get-/ChgFmt Set-/GetAttrXXX
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>      // fuer SwPaM
+// auto strip #endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>    // fuer MACROS
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>   // fuer die UndoIds
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>    // fuer Get-/ChgFmt Set-/GetAttrXXX
+// auto strip #endif
 namespace binfilter {
 
 
