@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-11 15:30:12 $
+#   last change: $Author: hjs $ $Date: 2004-06-25 12:59:35 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -81,7 +81,7 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/offmgr_ofapch
 # --- Settings ------------------------------------------------------------
 
 .INCLUDE :	settings.mk
-INC+= -I$(PRJ)$/inc$/bf_offmgr
+#INC+= -I$(PRJ)$/inc$/bf_offmgr
 
 .IF "$(prjpch)" != ""
 CDEFS+=-DPRECOMPILED
@@ -96,8 +96,8 @@ RES1FILELIST=\
     $(SRS)$/offmgr_ofaslots.srs \
     $(SRS)$/offmgr_dialog.srs \
     $(SRS)$/offmgr_app.srs \
-    $(SOLARRESDIR)$/svtools.srs \
-    $(SOLARRESDIR)$/so2.srs 	
+    $(SOLARCOMMONRESDIR)$/svtools.srs \
+    $(SOLARCOMMONRESDIR)$/so2.srs 	
 
 RESLIB1NAME=$(TARGET)
 RESLIB1SRSFILES=$(RES1FILELIST)
@@ -167,7 +167,7 @@ ALL:\
 
 .INCLUDE :	target.mk
 
-$(MISCX)$/$(SHL2TARGET).flt: makefile.mk
+$(MISC)$/$(SHL2TARGET).flt: makefile.mk
     @echo ------------------------------
     @echo Making: $@
     @echo WEP>$@
@@ -198,5 +198,6 @@ $(INCCOM)$/class.lst:
 
 #$(INCCOM)$/sba.hrc: $(INC)$/sbasltid.hrc
 $(INCCOM)$/sba.hrc: $(PRJ)$/inc$/bf_offmgr/sbasltid.hrc
-    @+-$(COPY) $(INC)$/sbasltid.hrc $(INCCOM)$/sba.hrc
-    @+-$(COPY) $(INC)$/sbasltid.hrc $(INC)$/sba,hrc
+    @+-$(COPY) $(PRJ)$/inc/bf_offmgr/sbasltid.hrc $(INCCOM)$/sba.hrc
+#	@+-$(COPY) $(INC)$/sbasltid.hrc $(INCCOM)$/sba.hrc
+#	@+-$(COPY) $(INC)$/sbasltid.hrc $(INC)$/sba,hrc
