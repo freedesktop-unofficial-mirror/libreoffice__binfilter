@@ -2,9 +2,9 @@
  *
  *  $RCSfile: gridcell.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:58:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,13 +70,13 @@
 #include "fmtools.hxx"
 #endif
 
-#ifndef _CPPUHELPER_COMPONENT_HXX_
-#include <cppuhelper/component.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
+// auto strip #include <cppuhelper/component.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
-#include <com/sun/star/sdb/XColumn.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
+// auto strip #include <com/sun/star/sdb/XColumn.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XBOUNDCONTROL_HPP_
 #include <com/sun/star/form/XBoundControl.hpp>
 #endif
@@ -89,33 +89,33 @@
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
-#include <com/sun/star/awt/XControlModel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
+// auto strip #include <com/sun/star/awt/XControlModel.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XCHECKBOX_HPP_
 #include <com/sun/star/awt/XCheckBox.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-#include <com/sun/star/beans/XFastPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
-#include <comphelper/propmultiplex.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
+// auto strip #include <comphelper/propmultiplex.hxx>
+// auto strip #endif
 #ifndef SVX_SQLPARSERCLIENT_HXX
 #include "sqlparserclient.hxx"
 #endif
-#ifndef SVX_TYPECONVERSION_CLIENT_HXX
-#include "typeconversionclient.hxx"
-#endif
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
-#include <comphelper/propmultiplex.hxx>
-#endif
+// auto strip #ifndef SVX_TYPECONVERSION_CLIENT_HXX
+// auto strip #include "typeconversionclient.hxx"
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
+// auto strip #include <comphelper/propmultiplex.hxx>
+// auto strip #endif
 class Edit;
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmvwimp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:58:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,12 +81,12 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
 #include <com/sun/star/awt/XFocusListener.hpp>
 #endif
@@ -96,9 +96,9 @@
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
