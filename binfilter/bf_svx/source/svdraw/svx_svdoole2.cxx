@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:26:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,60 +63,60 @@
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
 #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _PERSIST_HXX
-#include <so3/persist.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _PERSIST_HXX
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
 #ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
 #endif
-#ifndef _SVDPAGV_HXX
-#include <svdpagv.hxx>
-#endif
-#ifndef _GLOBNAME_HXX
-#include <tools/globname.hxx>
-#endif
-#ifndef _IPCLIENT_HXX //autogen
-#include <so3/ipclient.hxx>
-#endif
-#ifndef _SV_JOBSET_HXX
-#include <vcl/jobset.hxx>
-#endif
+// auto strip #ifndef _SVDPAGV_HXX
+// auto strip #include <svdpagv.hxx>
+// auto strip #endif
+// auto strip #ifndef _GLOBNAME_HXX
+// auto strip #include <tools/globname.hxx>
+// auto strip #endif
+// auto strip #ifndef _IPCLIENT_HXX //autogen
+// auto strip #include <so3/ipclient.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_JOBSET_HXX
+// auto strip #include <vcl/jobset.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
 
-#include <sot/formats.hxx>
+// auto strip #include <sot/formats.hxx>
 
-#ifndef _IPENV_HXX //autogen
-#include <so3/ipenv.hxx>
-#endif
-#ifndef _PSEUDO_HXX
-#include <so3/pseudo.hxx>
-#endif
-#ifndef _SVXLINKMGR_HXX //autogen
-#include <linkmgr.hxx>
-#endif
-#ifndef SVTOOLS_TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
+// auto strip #ifndef _IPENV_HXX //autogen
+// auto strip #include <so3/ipenv.hxx>
+// auto strip #endif
+// auto strip #ifndef _PSEUDO_HXX
+// auto strip #include <so3/pseudo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVXLINKMGR_HXX //autogen
+// auto strip #include <linkmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_TRANSFER_HXX
+// auto strip #include <svtools/transfer.hxx>
+// auto strip #endif
 
 
 #include "svdoole2.hxx"
 #include <svtools/solar.hrc>
-#include "svdxout.hxx"
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
+// auto strip #include "svdxout.hxx"
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
 
-#include "svdpagv.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdio.hxx"
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdetc.hxx"
 #include "svdview.hxx"
