@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:33:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:14:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,26 +76,26 @@
 //#endif
 
 #define _OUTLINER_CXX
-#include <outliner.hxx>
+// auto strip #include <outliner.hxx>
 #include <paralist.hxx>
 #include <outlobj.hxx>
 #include <outleeng.hxx>
-#include <outlundo.hxx>
-#include <eeitem.hxx>
+// auto strip #include <outlundo.hxx>
+// auto strip #include <eeitem.hxx>
 #include <editstat.hxx>
 #include <scripttypeitem.hxx>
 
-#ifndef _EDITOBJ_HXX //autogen
-#include <editobj.hxx>
-#endif
+// auto strip #ifndef _EDITOBJ_HXX //autogen
+// auto strip #include <editobj.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -105,32 +105,41 @@
 #include <numitem.hxx>
 #endif
 
-#ifndef _SVX_ADJITEM_HXX
-#include <adjitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ADJITEM_HXX
+// auto strip #include <adjitem.hxx>
+// auto strip #endif
 
-#ifndef _SV_GRAPH_HXX //autogen
-#include <vcl/graph.hxx>
-#endif
+// auto strip #ifndef _SV_GRAPH_HXX //autogen
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
 
 #ifndef _GRFMGR_HXX
 #include <goodies/grfmgr.hxx>
 #endif
 
-#ifndef _SVX_SVXFONT_HXX
-#include <svxfont.hxx>
-#endif
+// auto strip #ifndef _SVX_SVXFONT_HXX
+// auto strip #include <svxfont.hxx>
+// auto strip #endif
 
 #ifndef _SVX_BRSHITEM_HXX
 #include <brshitem.hxx>
 #endif
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
 // #101498# calculate if it's RTL or not
 #include <unicode/ubidi.h>
+
+#ifndef _SVX_LRSPITEM_HXX
+#include "lrspitem.hxx"
+#endif
+
+#ifndef _UNDO_HXX
+#include <svtools/undo.hxx>
+#endif
+
 namespace binfilter {
 
 /*N*/ #define DEFAULT_SCALE 75
