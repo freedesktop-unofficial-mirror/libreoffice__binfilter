@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:49:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
 #endif
-#ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
-#endif
+// auto strip #ifndef _SFXECODE_HXX
+// auto strip #include <svtools/sfxecode.hxx>
+// auto strip #endif
 #include <tools/urlobj.hxx>
 #include <svtools/saveopt.hxx>
 #include <tools/tenccvt.hxx>
@@ -72,13 +72,13 @@
 #include <sot/exchange.hxx>
 #include "rtl/tencinfo.h"
 
-#include "docfilt.hxx"
+// auto strip #include "docfilt.hxx"
 #include "fcontnr.hxx"
 #include "openflag.hxx"
 #include "app.hxx"
-#include "docinf.hxx"
+// auto strip #include "docinf.hxx"
 #include "docfile.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "sfxtypes.hxx"
 namespace binfilter {
 
 //========================================================================
