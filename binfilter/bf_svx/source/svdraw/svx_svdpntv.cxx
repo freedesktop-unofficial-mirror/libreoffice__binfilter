@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:31:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,67 +65,72 @@
 #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
-#include <com/sun/star/awt/XControl.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
+// auto strip #include <com/sun/star/awt/XControl.hpp>
+// auto strip #endif
 
-#include "svdpntv.hxx"
-#include "editdata.hxx"
-#include "svdmrkv.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdpntv.hxx"
+// auto strip #include "editdata.hxx"
+// auto strip #include "svdmrkv.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdpagv.hxx"
 #include "svdpage.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdvmark.hxx"
 #include "svdio.hxx"
-#include "svdundo.hxx"
+// auto strip #include "svdundo.hxx"
 #include "svdview.hxx"
-#include "svdglue.hxx"
-#include "svdobj.hxx"
+// auto strip #include "svdglue.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdograf.hxx"
-#include "svdattrx.hxx"
-#include "svdibrow.hxx"
-#include "svditer.hxx"
+// auto strip #include "svdattrx.hxx"
+// auto strip #include "svdibrow.hxx"
+// auto strip #include "svditer.hxx"
 #include "svdouno.hxx"
 
-#ifndef _SVX_XLNCLIT_HXX
-#include "xlnclit.hxx"
-#endif
-#ifndef _SVX_XFLCLIT_HXX
-#include "xflclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX
+// auto strip #include "xlnclit.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX
+// auto strip #include "xflclit.hxx"
+// auto strip #endif
 
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
 
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
-#ifndef _B2D_MBMP_HXX
-#include <goodies/b2dmbmp.hxx>
+// auto strip #ifndef _B2D_MBMP_HXX
+// auto strip #include <goodies/b2dmbmp.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _B2D_MTRI_HXX
+// auto strip #include <goodies/b2dmtri.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _GRFMGR_HXX
+// auto strip #include <goodies/grfmgr.hxx>
+// auto strip #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
 
-#ifndef _B2D_MTRI_HXX
-#include <goodies/b2dmtri.hxx>
-#endif
-
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
