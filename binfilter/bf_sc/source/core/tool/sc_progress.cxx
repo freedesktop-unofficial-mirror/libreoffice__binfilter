@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_progress.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:20:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,16 +69,16 @@
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/objsh.hxx>
-#include <bf_sfx2/progress.hxx>
-#include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/progress.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/sfxsids.hrc>
-#include <svtools/eitem.hxx>
-#include <svtools/itemset.hxx>
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #include <svtools/itemset.hxx>
 
 #define SC_PROGRESS_CXX
 #include "progress.hxx"
-#include "document.hxx"
-#include "global.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "global.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 
