@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
+ *  last change: $Author: aw $ $Date: 2004-04-23 14:05:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -737,7 +737,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/                               rNewPos.nContent.GetIndex() + nOffset );
 /*N*/       }
 /*N*/   }
-/*N*/ };
+/*N*/ }
 /*N*/
 /*N*/ void Sw3IoImp::CleanupRedlines()
 /*N*/ {

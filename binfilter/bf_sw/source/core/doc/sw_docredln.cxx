@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:14 $
+ *  last change: $Author: aw $ $Date: 2004-04-23 14:05:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3498,7 +3498,7 @@ USHORT SwRedline::GetStackCount() const
 
 const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
 {
-    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
     ASSERT( !nPos, "Pos angabe ist zu gross" );
     return pCur->aStamp;
@@ -3506,7 +3506,7 @@ const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
 
 SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
 {
-    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
     ASSERT( !nPos, "Pos angabe ist zu gross" );
     return pCur->eType;
@@ -3514,7 +3514,7 @@ SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
 
 const String& SwRedline::GetComment( USHORT nPos ) const
 {
-    for( SwRedlineData* pCur = pRedlineData; nPos && pCur->pNext; --nPos )
+    SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
     ASSERT( !nPos, "Pos angabe ist zu gross" );
     return pCur->sComment;

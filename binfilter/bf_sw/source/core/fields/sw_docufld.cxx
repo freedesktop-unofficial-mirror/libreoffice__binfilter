@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
+ *  last change: $Author: aw $ $Date: 2004-04-23 14:05:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1647,7 +1647,7 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
     case FIELD_PROP_PAR1:
         {
             String sVal;
-            SetPar1(GetString( rAny, sVal ));
+            SetPar1(binfilter::GetString( rAny, sVal ));
         }
         break;
     case FIELD_PROP_PAR2:

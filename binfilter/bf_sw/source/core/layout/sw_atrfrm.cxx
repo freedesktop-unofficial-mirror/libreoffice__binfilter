@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
+ *  last change: $Author: aw $ $Date: 2004-04-23 14:05:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1189,7 +1189,7 @@ void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 
     //Spalte 2 bis n-1 ist PrtBreite + Zwischenraumbreite
     const sal_uInt16 nMidWidth = nPrtWidth + nGutterWidth;
-    for ( sal_uInt16 i = 1; i < GetNumCols()-1; ++i )
+    sal_uInt16 i; for ( i = 1; i < GetNumCols()-1; ++i )
     {
         pCol = aColumns[i];
         pCol->SetWishWidth( nMidWidth );

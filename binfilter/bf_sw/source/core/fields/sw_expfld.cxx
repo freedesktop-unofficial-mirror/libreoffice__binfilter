@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
+ *  last change: $Author: aw $ $Date: 2004-04-23 14:05:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -564,7 +564,7 @@ BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
          nSubType = nTmp;
         break;
     case FIELD_PROP_PAR1:
-        SetFormula( GetString( rAny, sTmp ));
+        SetFormula( binfilter::GetString( rAny, sTmp ));
         break;
     case FIELD_PROP_SUBTYPE:
         nTmp = lcl_APIToSubType(rAny);
@@ -578,7 +578,7 @@ BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
             nSubType &= (~SUB_CMD);
         break;
     case FIELD_PROP_PAR4:
-        ChgExpStr(GetString( rAny, sTmp ));
+        ChgExpStr(binfilter::GetString( rAny, sTmp ));
         break;
     default:
         return SwField::PutValue(rAny, nMId);
@@ -1166,10 +1166,10 @@ BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
     switch( nMId )
     {
     case FIELD_PROP_PAR1:
-         GetString( rAny, aContent );
+        binfilter::GetString( rAny, aContent );
         break;
     case FIELD_PROP_PAR2:
-        GetString( rAny, aPText );
+        binfilter::GetString( rAny, aPText );
         break;
     default:
         DBG_ERROR("illegal property");
