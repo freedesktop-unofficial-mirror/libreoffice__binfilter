@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:10:38 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:30:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #include "conditio.hxx"
 #include "chartlis.hxx"
 #include "globstr.hrc"
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -2727,7 +2728,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (VALIDROW(nRow) && pRowFl
 /*N*/
 /*N*/                   rStream >> nLinkMode;
 /*N*/                   rStream.ReadByteString( aLinkDoc, rStream.GetStreamCharSet() );
-/*N*/                   aLinkDoc = INetURLObject::RelToAbs( aLinkDoc );
+/*N*/                   aLinkDoc = so3::StaticBaseUrl::RelToAbs( aLinkDoc );
 /*N*/                   rStream.ReadByteString( aLinkFlt, rStream.GetStreamCharSet() );
 /*N*/                   rStream.ReadByteString( aLinkTab, rStream.GetStreamCharSet() );
 /*N*/
@@ -2871,7 +2872,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (VALIDROW(nRow) && pRowFl
 /*N*/   String aSaveName( aName );
 /*N*/   if ( nLinkMode )
 /*N*/   {
-/*N*/       aLinkDocSaveName = INetURLObject::AbsToRel( aLinkDocSaveName );
+/*N*/       aLinkDocSaveName = so3::StaticBaseUrl::AbsToRel( aLinkDocSaveName );
 /*N*/       aLinkDocSaveName = INetURLObject::decode( aLinkDocSaveName,
 /*N*/           INET_HEX_ESCAPE, INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/         if ( ScGlobal::pTransliteration->isEqual( aLinkDocSaveName,
