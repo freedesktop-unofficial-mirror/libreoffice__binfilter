@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:27:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,48 +62,58 @@
 #ifndef _BASMGR_HXX //autogen
 #include <basic/basmgr.hxx>
 #endif
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
 
 #ifdef WIN
 #define _TL_LANG_SPECIAL
 #endif
 
-#ifndef _SVDDE_HXX //autogen
-#include <svtools/svdde.hxx>
-#endif
+// auto strip #ifndef _SVDDE_HXX //autogen
+// auto strip #include <svtools/svdde.hxx>
+// auto strip #endif
 #ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
 #endif
 
-#ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
-#endif
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
 
 #include <svtools/inethist.hxx>
-#include <svtools/saveopt.hxx>
+// auto strip #include <svtools/saveopt.hxx>
 
 #pragma hdrstop
 
 #include "app.hrc"
-#include "app.hxx"
-#include "unoctitm.hxx"
+// auto strip #include "app.hxx"
+
+#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+#include <com/sun/star/lang/XTypeProvider.hpp>
+#endif
+
+// auto strip #include "unoctitm.hxx"
 #include "appdata.hxx"
-#include "viewsh.hxx"
+// auto strip #include "viewsh.hxx"
 #include "dispatch.hxx"
-#include "printer.hxx"
+// auto strip #include "printer.hxx"
 #include "plugobj.hxx"
 #include "arrdecl.hxx"
 #include "sfxresid.hxx"
 #include "newhdl.hxx"
-#include "cfgmgr.hxx"
+// auto strip #include "cfgmgr.hxx"
 #include "accmgr.hxx"
-#include "event.hxx"
+// auto strip #include "event.hxx"
 #include "macrconf.hxx"
 #include "mnumgr.hxx"
-#include "imgmgr.hxx"
+// auto strip #include "imgmgr.hxx"
 #include "templdlg.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
 #include "tbxconf.hxx"
 #include "msgpool.hxx"
 #include "frameobj.hxx"
@@ -111,14 +121,14 @@
 #include "sfxtypes.hxx"
 #include "appimp.hxx"
 #include "sfxlocal.hrc"
-#include "dataurl.hxx"
+// auto strip #include "dataurl.hxx"
 #include "fcontnr.hxx"
 #include "nochaos.hxx"
-#include "appuno.hxx"
+// auto strip #include "appuno.hxx"
 #include "doctempl.hxx"
 #include "viewfrm.hxx"
-#include "bmkmenu.hxx"
-#include "objsh.hxx"
+// auto strip #include "bmkmenu.hxx"
+// auto strip #include "objsh.hxx"
 #include "dlgcont.hxx"
 #include "scriptcont.hxx"
 #include <misccfg.hxx>
