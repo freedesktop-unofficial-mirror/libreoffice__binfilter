@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxln.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:28:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,24 +59,24 @@
  *
  ************************************************************************/
 
-#include <unotools/ucbstreamhelper.hxx>
-#include <unotools/localfilehelper.hxx>
+// auto strip #include <unotools/ucbstreamhelper.hxx>
+// auto strip #include <unotools/localfilehelper.hxx>
 
-#ifndef _UCBHELPER_CONTENT_HXX_
-#include <ucbhelper/content.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENTBROKER_HXX_
-#include <ucbhelper/contentbroker.hxx>
-#endif
-#ifndef _UNOTOOLS_DATETIME_HXX_
-#include <unotools/datetime.hxx>
-#endif
+// auto strip #ifndef _UCBHELPER_CONTENT_HXX_
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #endif
+// auto strip #ifndef _UCBHELPER_CONTENTBROKER_HXX_
+// auto strip #include <ucbhelper/contentbroker.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_DATETIME_HXX_
+// auto strip #include <unotools/datetime.hxx>
+// auto strip #endif
 
 #include "svdotext.hxx"
-#include "svditext.hxx"
+// auto strip #include "svditext.hxx"
 #include "svdmodel.hxx"
 #include "svdio.hxx"
-#include "editdata.hxx"
+// auto strip #include "editdata.hxx"
 
 #ifndef SVX_LIGHT
 #ifndef _LNKBASE_HXX //autogen
@@ -88,9 +88,9 @@
 #include <linkmgr.hxx>
 #endif
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 #include <svtools/urihelper.hxx>
 

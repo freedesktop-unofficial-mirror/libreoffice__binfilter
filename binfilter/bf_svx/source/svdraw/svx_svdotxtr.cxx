@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxtr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:29:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,20 +59,20 @@
  *
  ************************************************************************/
 
-#include "svdotext.hxx"
+// auto strip #include "svdotext.hxx"
 #include "xoutx.hxx"     // fuer XOutCreatePolygon
-#include "svditext.hxx"
-#include "svdtrans.hxx"
-#include "svdogrp.hxx"
+// auto strip #include "svditext.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdogrp.hxx"
 #include "svdopath.hxx"
-#include "svdoutl.hxx"
+// auto strip #include "svdoutl.hxx"
 #include "svdtxhdl.hxx"  // DrawTextToPath fuer Convert
-#include "svdpage.hxx"   // fuer Convert
+// auto strip #include "svdpage.hxx"   // fuer Convert
 #include "svdmodel.hxx"  // fuer Convert
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
