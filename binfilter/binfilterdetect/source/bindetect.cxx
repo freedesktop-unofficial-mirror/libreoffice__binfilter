@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2005-01-18 15:09:49 $
+ *  last change: $Author: rt $ $Date: 2005-01-31 08:34:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,6 @@
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
 #endif
-
 #ifndef _UCBHELPER_SIMPLEINTERACTIONREQUEST_HXX
 #include <ucbhelper/simpleinteractionrequest.hxx>
 #endif
@@ -76,6 +75,8 @@
 #include <svtools/sfxecode.hxx>
 #include <svtools/ehdl.hxx>
 #include <svtools/itemset.hxx>
+#include <vcl/svapp.hxx>
+#include <sot/storage.hxx>
 
 using namespace ::com::sun::star::registry;
 using namespace ::com::sun::star::uno;
@@ -88,22 +89,20 @@ using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
 using namespace ::binfilter;
 
-#include <bf_sfx2/sfxsids.hrc>
-#include <bf_sfx2/fcontnr.hxx>
-#include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/app.hxx>
-#include <bf_sfx2/request.hxx>
+#include <sfx2/request.hxx>
+#include <sfx2/sfxsids.hrc>
+#include <sfx2/fcontnr.hxx>
+#include <sfx2/docfile.hxx>
+#include <sfx2/app.hxx>
 
+/*
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-#endif
+#endif */
+
 namespace binfilter {
 BinFilterDetect::BinFilterDetect( const REFERENCE < ::com::sun::star::lang::XMultiServiceFactory >& xFactory )
 {
-    ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxLegServFact;
-    mxLegServFact = ::legacy_binfilters::getLegacyProcessServiceFactory();
-    ::com::sun::star::uno::Reference < XComponent > xWrapper( mxLegServFact->createInstance(
-        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" ))), UNO_QUERY );
 }
 
 BinFilterDetect::~BinFilterDetect()
@@ -197,7 +196,7 @@ BinFilterDetect::~BinFilterDetect()
 
     BOOL bIsStorage = aMedium.IsStorage();
     String aFilterName;
-    if ( aMedium.GetErrorCode() == ERRCODE_NONE && bIsStorage )
+    if ( aMedium.GetErrorCode() == ERRCODE_NONE && !bIsStorage )
     {
         // remember input stream and content and put them into the descriptor later
         // should be done here since later the medium can switch to a version
@@ -207,37 +206,42 @@ BinFilterDetect::~BinFilterDetect()
         if ( aMedium.GetErrorCode() == ERRCODE_NONE )
         {
             bReadOnly = aMedium.IsReadOnly();
-            SvStorageRef aStor = aMedium.GetStorage();
+            SotStorageRef aStor = new SotStorage( aMedium.GetInStream(), FALSE );
 
-            // templates should be detected only when either explicitly asked for or if the extension matches
-            if ( INetURLObject( aURL ).GetExtension().compareToAscii("vor") == COMPARE_EQUAL )
-                nMust |= SFX_FILTER_TEMPLATEPATH;
-            else
-                nDont |= SFX_FILTER_TEMPLATEPATH;
-
-            // check the storage wether it has a known format
-            sal_Int32 nClipId = aStor->GetFormat();
-            if ( nClipId )
+            // check against defective storages
+            if ( aStor->GetError() == ERRCODE_NONE )
             {
-                // check the preselected filter - does it match the format?
+                // templates should be detected only when either explicitly asked for or if the extension matches
+                if ( INetURLObject( aURL ).GetExtension().compareToAscii("vor") == 0 )
+                    nMust |= SFX_FILTER_TEMPLATEPATH;
+                else
+                    nDont |= SFX_FILTER_TEMPLATEPATH;
+
+                // check the preselected filter
                 if ( aPreselectedFilterName.Len() )
-                {
-                    pFilter = rMatcher.GetFilter4FilterName( aPreselectedFilterName, nMust, nDont);
-                    if ( pFilter && pFilter->GetFormat() != nClipId )
-                        pFilter = 0;
-                }
-
-                // check the "flat" detected type - does it match the format?
-                if ( !pFilter && aTypeName.getLength() )
-                {
+                    pFilter = rMatcher.GetFilter4FilterName( aPreselectedFilterName, nMust, SFX_FILTER_NOTINSTALLED );
+                else if ( aTypeName.getLength() )
                     pFilter = rMatcher.GetFilter4EA( aTypeName, nMust, nDont );
-                    if ( pFilter && pFilter->GetFormat() != nClipId )
+
+                if ( pFilter )
+                {
+                    // preselected filter or type name matched to a valid filter detectable with this service
+                    SfxFilterFlags nFlags = pFilter->GetFilterFlags();
+                    if ( ( nFlags & nMust ) != nMust || ( nFlags & nDont ) != 0 || pFilter->GetFormat() != aStor->GetFormat() )
+                        // the filter exists, but filter flags or Clipboard Id don't match
                         pFilter = 0;
                 }
 
-                // if both didn't fit - try any matching filter
-                if ( !pFilter && nClipId )
-                    pFilter = rMatcher.GetFilter4ClipBoardId( nClipId, nMust, nDont );
+                if ( !pFilter )
+                {
+                    // if the filter we just tried was the preselected filter and
+                    // it doesn't fit, erase the filter name from the media descriptor
+                    if ( aPreselectedFilterName.Len() )
+                        lDescriptor[nIndexOfFilterName].Value <<= ::rtl::OUString();
+
+                    // try general detection using clipboard Id
+                    pFilter = rMatcher.GetFilter4ClipBoardId( aStor->GetFormat(), nMust, nDont );
+                }
             }
         }
     }
@@ -422,10 +426,6 @@ void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName 
             xFactory->acquire();
             pReturn = xFactory.get();
         }
-        legacysmgr_component_getFactory(
-            pImplementationName,
-            reinterpret_cast< XMultiServiceFactory *>(pServiceManager),
-            reinterpret_cast<XRegistryKey*> (pRegistryKey) );
     }
     // Return with result of this operation.
     return pReturn ;
