@@ -2,9 +2,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-08-20 10:58:34 $
+ *  last change: $Author: rt $ $Date: 2004-12-16 10:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,22 +144,23 @@ namespace legacy_binfilters
 #define LIBNAME(x) SAL_DLLPREFIX x SAL_DLLEXTENSION
 
 //== registered into LEGACY_RDB_NAME rdb ====================================================
-static char const * const s_legacy_libs [] = // #dochnoetig#
-{
-//     SVLIBRARY("sw"), // SVLIBRARY makes decorated name including UPD etc, e.g. libsw669ss.so
-    SVLIBRARY("bf_xo"),     // bf_xmloff
-    SVLIBRARY("bf_sw"),     // bf_writer
-    SVLIBRARY("bf_sc"),     // bf_calc
-    SVLIBRARY("bf_sd"),     // bf_draw/bf_impress
-    SVLIBRARY("bf_sm"),     // bf_starmath
-    SVLIBRARY("bf_sch"),    // bf_chart
-
-    SVLIBRARY("bf_frm"),    // bf_form
-    SVLIBRARY("bf_lng"),    // bf_linguistic
-    SVLIBRARY("bf_svx"),    // bf_sfx2 bf_and svx
-    SVLIBRARY("bf_wrapper"),    // bf_officewrp
-    0
-};
+// #i30331#
+//static char const * const s_legacy_libs [] = // #dochnoetig#
+//{
+////     SVLIBRARY("sw"), // SVLIBRARY makes decorated name including UPD etc, e.g. libsw669ss.so
+//  SVLIBRARY("bf_xo"),     // bf_xmloff
+//  SVLIBRARY("bf_sw"),     // bf_writer
+//  SVLIBRARY("bf_sc"),     // bf_calc
+//  SVLIBRARY("bf_sd"),     // bf_draw/bf_impress
+//  SVLIBRARY("bf_sm"),     // bf_starmath
+//  SVLIBRARY("bf_sch"),    // bf_chart
+//
+//  SVLIBRARY("bf_frm"),    // bf_form
+//  SVLIBRARY("bf_lng"),    // bf_linguistic
+//  SVLIBRARY("bf_svx"),    // bf_sfx2 bf_and svx
+//  SVLIBRARY("bf_wrapper"),    // bf_officewrp
+//    0
+//};
 
 static Reference< lang::XMultiServiceFactory > s_xLegacyMgr;
 /** has to be used for legacy binary filter components
@@ -2106,64 +2107,68 @@ extern "C"
 sal_Bool SAL_CALL legacysmgr_component_writeInfo(
     lang::XMultiServiceFactory * smgr, registry::XRegistryKey * key )
 {
-    if (component_writeInfoHelper( smgr, key, s_entries ))
-    {
-        try
-        {
-            Reference< lang::XMultiServiceFactory > xMgr( smgr );
-            OSL_ASSERT( xMgr.is() );
-            // write LEGACY_RDB_NAME rdb
-            Reference< registry::XSimpleRegistry > xSimReg(
-                xMgr->createInstance(
-                    OUSTR("com.sun.star.registry.SimpleRegistry") ),
-                UNO_QUERY_THROW );
-            OUString dir( get_lib_dir() );
-            xSimReg->open(
-                dir + OUSTR("/" LEGACY_RDB_NAME),
-                sal_False /* ! read-only */, sal_True /* create */ );
+    // #i30331#
+    return component_writeInfoHelper( smgr, key, s_entries );
 
-            Reference< registry::XImplementationRegistration > xImpReg(
-                xMgr->createInstance(
-                    OUSTR("com.sun.star.registry.ImplementationRegistration") ),
-                UNO_QUERY_THROW );
-
-            OUString shared_lib_loader =
-                OUSTR("com.sun.star.loader.SharedLibrary");
-            dir += OUSTR("/");
-            for ( sal_Int32 nPos = 0; 0 != s_legacy_libs[ nPos ]; ++nPos )
-            {
-                OUString lib_name(
-                    OUString::createFromAscii( s_legacy_libs[ nPos ] ) );
-                OUString abs_loc( dir + lib_name );
-                DirectoryItem dirItem;
-                if (DirectoryItem::E_None ==
-                    DirectoryItem::get( abs_loc, dirItem ))
-                {
-                    xImpReg->registerImplementation(
-                        shared_lib_loader, lib_name, xSimReg );
-                } // else ignore library
-            }
-
-            xSimReg->close();
-            return sal_True;
-        }
-        catch (Exception & exc)
-        {
-#if defined _DEBUG
-            OUStringBuffer buf( 128 );
-            buf.appendAscii(
-                RTL_CONSTASCII_STRINGPARAM(
-                    "### unexpected exception "
-                    "occured writing registry binfilters.rdb: ") );
-            buf.append( exc.Message );
-            OString cstr(
-                OUStringToOString(
-                    buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
-            OSL_ENSURE( 0, cstr.getStr() );
-#endif
-        }
-    }
-    return sal_False;
+// #i30331#
+//    if (component_writeInfoHelper( smgr, key, s_entries ))
+//    {
+//        try
+//        {
+//            Reference< lang::XMultiServiceFactory > xMgr( smgr );
+//            OSL_ASSERT( xMgr.is() );
+//            // write LEGACY_RDB_NAME rdb
+//            Reference< registry::XSimpleRegistry > xSimReg(
+//                xMgr->createInstance(
+//                    OUSTR("com.sun.star.registry.SimpleRegistry") ),
+//                UNO_QUERY_THROW );
+//            OUString dir( get_lib_dir() );
+//            xSimReg->open(
+//                dir + OUSTR("/" LEGACY_RDB_NAME),
+//                sal_False /* ! read-only */, sal_True /* create */ );
+//
+//            Reference< registry::XImplementationRegistration > xImpReg(
+//                xMgr->createInstance(
+//                    OUSTR("com.sun.star.registry.ImplementationRegistration") ),
+//                UNO_QUERY_THROW );
+//
+//            OUString shared_lib_loader =
+//                OUSTR("com.sun.star.loader.SharedLibrary");
+//            dir += OUSTR("/");
+//            for ( sal_Int32 nPos = 0; 0 != s_legacy_libs[ nPos ]; ++nPos )
+//            {
+//                OUString lib_name(
+//                    OUString::createFromAscii( s_legacy_libs[ nPos ] ) );
+//                OUString abs_loc( dir + lib_name );
+//                DirectoryItem dirItem;
+//                if (DirectoryItem::E_None ==
+//                    DirectoryItem::get( abs_loc, dirItem ))
+//                {
+//                    xImpReg->registerImplementation(
+//                        shared_lib_loader, lib_name, xSimReg );
+//                } // else ignore library
+//            }
+//
+//            xSimReg->close();
+//            return sal_True;
+//        }
+//        catch (Exception & exc)
+//        {
+//#if defined _DEBUG
+//            OUStringBuffer buf( 128 );
+//            buf.appendAscii(
+//                RTL_CONSTASCII_STRINGPARAM(
+//                    "### unexpected exception "
+//                    "occured writing registry binfilters.rdb: ") );
+//            buf.append( exc.Message );
+//            OString cstr(
+//                OUStringToOString(
+//                    buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
+//            OSL_ENSURE( 0, cstr.getStr() );
+//#endif
+//        }
+//    }
+//    return sal_False;
 }
 #if defined(SOLARIS) && defined(INTEL)
 #pragma optimize ( "", on )
