@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_hintpost.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:01:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,10 +61,10 @@
 
 #pragma hdrstop
 
-#include "arrdecl.hxx"
+// auto strip #include "arrdecl.hxx"
 #include "hintpost.hxx"
 #include "app.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "sfxtypes.hxx"
 namespace binfilter {
 
 //====================================================================
