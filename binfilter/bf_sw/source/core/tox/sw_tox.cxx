@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:58:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,34 +62,41 @@
 
 #pragma hdrstop
 
-
 #ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
 #endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _TXTATR_HXX
 #include <txtatr.hxx>
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _TXTTXMRK_HXX //autogen
-#include <txttxmrk.hxx>
-#endif
+// auto strip #ifndef _TXTTXMRK_HXX //autogen
+// auto strip #include <txttxmrk.hxx>
+// auto strip #endif
 #ifndef _TOX_HXX
 #include <tox.hxx>
 #endif
 #ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
