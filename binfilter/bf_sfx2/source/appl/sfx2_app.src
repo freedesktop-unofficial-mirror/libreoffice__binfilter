@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-24 15:47:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3717,14 +3717,14 @@ ToolBox RID_ENVTOOLBOX
 
 ImageList RID_DEFAULTIMAGELIST_SC
 {
-    ImageBitmap = Bitmap { FILE = "sc_out.bmp" ; };
+    Prefix = "sc";
     MaskColor = IMAGE_STDBTN_COLOR ;
     IMAGE_ID_LIST
 };
 
 ImageList RID_DEFAULTIMAGELIST_LC
 {
-    ImageBitmap = Bitmap { FILE = "lc_out.bmp" ; };
+    Prefix = "lc";
     MaskColor = IMAGE_STDBTN_COLOR ;
     IMAGE_ID_LIST
 };
