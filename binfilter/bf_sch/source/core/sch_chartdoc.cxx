@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:42:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,29 +61,29 @@
 
 #pragma hdrstop
 
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 
-#ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
-#include <bf_sfx2/interno.hxx>
-#endif
+// auto strip #ifndef _CTRLTOOL_HXX //autogen
+// auto strip #include <svtools/ctrltool.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_INTERNO_HXX //autogen
+// auto strip #include <bf_sfx2/interno.hxx>
+// auto strip #endif
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
-#ifndef _SV_MENU_HXX //autogen
-#include <vcl/menu.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX //autogen
-#include <svtools/ctrltool.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MENU_HXX //autogen
+// auto strip #include <vcl/menu.hxx>
+// auto strip #endif
+// auto strip #ifndef _CTRLTOOL_HXX //autogen
+// auto strip #include <svtools/ctrltool.hxx>
+// auto strip #endif
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -93,9 +93,9 @@
 #endif
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
@@ -107,14 +107,19 @@
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#endif
+// auto strip #ifndef _CHTMODEL_HXX
+// auto strip #include "chtmodel.hxx"
+// auto strip #endif
 #ifndef _SCH_STLPOOL_HXX
 #include "stlpool.hxx"
 #endif
@@ -132,29 +137,34 @@
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 
 #include "glob.hrc"
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVDLAYER_HXX //autogen
-#include <bf_svx/svdlayer.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDLAYER_HXX //autogen
+// auto strip #include <bf_svx/svdlayer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
 
-#include "pairs.hxx"
+// auto strip #include "pairs.hxx"
 #include "chaxis.hxx"
 
 #include "memchrt.hxx"
+
+#ifndef _SFXITEMPOOL_HXX
+#include <svtools/itempool.hxx>
+#endif
+
 namespace binfilter {
 
 /*************************************************************************
