@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:26:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,53 +59,53 @@
  *
  ************************************************************************/
 
-#ifndef _SVXLINKMGR_HXX //autogen
-#include <linkmgr.hxx>
-#endif
+// auto strip #ifndef _SVXLINKMGR_HXX //autogen
+// auto strip #include <linkmgr.hxx>
+// auto strip #endif
 
-#ifndef _UCBHELPER_CONTENT_HXX_
-#include <ucbhelper/content.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENTBROKER_HXX_
-#include <ucbhelper/contentbroker.hxx>
-#endif
-#ifndef _UNOTOOLS_DATETIME_HXX_
-#include <unotools/datetime.hxx>
-#endif
+// auto strip #ifndef _UCBHELPER_CONTENT_HXX_
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #endif
+// auto strip #ifndef _UCBHELPER_CONTENTBROKER_HXX_
+// auto strip #include <ucbhelper/contentbroker.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_DATETIME_HXX_
+// auto strip #include <unotools/datetime.hxx>
+// auto strip #endif
 
 #include "svdogrp.hxx"
 
 #ifndef SVX_LIGHT
-#ifndef _LNKBASE_HXX //autogen
-#include <so3/lnkbase.hxx>
-#endif
+// auto strip #ifndef _LNKBASE_HXX //autogen
+// auto strip #include <so3/lnkbase.hxx>
+// auto strip #endif
 #endif
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 #include <svtools/urihelper.hxx>
 
 #include "xpool.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpoly.hxx"
 
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdmodel.hxx"
 #include "svdpage.hxx"
 #include "svditer.hxx"
-#include "svdobj.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdobj.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
-#include "svdattrx.hxx"  // NotPersistItems
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdattrx.hxx"  // NotPersistItems
 #include "svdoedge.hxx"  // #32383# Die Verbinder nach Move nochmal anbroadcasten
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _PERSIST_HXX //autogen
-#include <so3/persist.hxx>
-#endif
+// auto strip #ifndef _PERSIST_HXX //autogen
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
@@ -113,6 +113,9 @@
 
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
+#endif
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
 namespace binfilter {
 
