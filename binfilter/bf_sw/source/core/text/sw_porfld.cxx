@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:53:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,70 +70,75 @@
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _GRAPH_HXX //autogen
-#include <vcl/graph.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _METRIC_HXX //autogen
-#include <vcl/metric.hxx>
-#endif
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _GRAPH_HXX //autogen
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _METRIC_HXX //autogen
+// auto strip #include <vcl/metric.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 
-#ifndef _FRMSH_HXX
-#include <frmsh.hxx>
-#endif
+// auto strip #ifndef _FRMSH_HXX
+// auto strip #include <frmsh.hxx>
+// auto strip #endif
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
+// auto strip #ifndef _PORLAY_HXX
+// auto strip #include <porlay.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
-#ifndef _PORLAY_HXX
-#include <porlay.hxx>
-#endif
-#ifndef _PORFLD_HXX
-#include <porfld.hxx>
-#endif
+
+// auto strip #ifndef _PORFLD_HXX
+// auto strip #include <porfld.hxx>
+// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>    // pBlink
 #endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>  // DrawGraphic
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>  // DrawGraphic
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>
-#endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx>
+// auto strip #endif
 #ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
 #endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
-#include <accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <accessibilityoptions.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
