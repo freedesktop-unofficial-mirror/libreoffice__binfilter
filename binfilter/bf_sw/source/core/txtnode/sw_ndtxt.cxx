@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:01:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,15 +70,15 @@
 #ifndef _COM_SUN_STAR_I18N_XINPUTSEQUENCECHECKER_HPP_
 #include <com/sun/star/i18n/InputSequenceCheckMode.hpp>
 #endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
-#include <bf_svx/escpitem.hxx>
-#endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
+// auto strip #include <bf_svx/escpitem.hxx>
+// auto strip #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
@@ -104,12 +104,12 @@
 #ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _TXTATR_HXX //autogen
-#include <txtatr.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX //autogen
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
 #ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
 #endif
@@ -134,9 +134,9 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
 #ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
 #endif
@@ -152,24 +152,29 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>                  // fuer SwPosition
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>                    // fuer SwPosition
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -179,24 +184,24 @@
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
 #endif
-#ifndef _FTNBOSS_HXX
-#include <ftnboss.hxx>
-#endif
+// auto strip #ifndef _FTNBOSS_HXX
+// auto strip #include <ftnboss.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>                // fuer SwFmtChg in ChgTxtColl
 #endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>             // fuer SwPageDesc
-#endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>               // fuer SwPageDesc
+// auto strip #endif
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>               // fuer SwTblField
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>              // fuer SwSection
-#endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>                // fuer SwSection
+// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
@@ -206,9 +211,9 @@
 #ifndef _WRONG_HXX
 #include <wrong.hxx>                // fuer die WrongList des OnlineSpellings
 #endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
