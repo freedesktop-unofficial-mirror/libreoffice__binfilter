@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:17:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,10 +73,10 @@
 #include <math.h>
 
 #include "interpre.hxx"
-#include "global.hxx"
-#include "compiler.hxx"
-#include "cell.hxx"
-#include "document.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "compiler.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "document.hxx"
 #include "dociter.hxx"
 #include "scmatrix.hxx"
 #include "globstr.hrc"

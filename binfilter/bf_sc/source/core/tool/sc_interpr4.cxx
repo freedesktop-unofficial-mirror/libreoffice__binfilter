@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:18:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -92,37 +92,37 @@
 #endif
 
 
-#include <rangelst.hxx>
+// auto strip #include <rangelst.hxx>
 #include <bf_sfx2/app.hxx>
-#include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 #include <basic/sbmeth.hxx>
 #include <basic/sbmod.hxx>
 #include <basic/sbstar.hxx>
 #include <svtools/sbx.hxx>
 #include <svtools/zforlist.hxx>
-#include <tools/urlobj.hxx>
+// auto strip #include <tools/urlobj.hxx>
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
 #include <math.h>
 #include <float.h>
 
-#include <com/sun/star/table/XCellRange.hpp>
+// auto strip #include <com/sun/star/table/XCellRange.hpp>
 
 using namespace ::com::sun::star;
 
 #include "interpre.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "dbcolect.hxx"
-#include "cell.hxx"
-#include "callform.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "callform.hxx"
 #include "addincol.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "dociter.hxx"
-#include "docoptio.hxx"
+// auto strip #include "docoptio.hxx"
 #include "scmatrix.hxx"
-#include "adiasync.hxx"
+// auto strip #include "adiasync.hxx"
 #include "bf_sc.hrc"
 #include "cellsuno.hxx"
 #include "optuno.hxx"
