@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:24 $
+ *  last change: $Author: mba $ $Date: 2004-04-02 14:16:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -234,7 +234,7 @@
 #include "sfx.hrc"
 #endif
 
-
+#include "openflag.hxx"
 #include "topfrm.hxx"
 #include "appdata.hxx"
 #include "loadenv.hxx"
@@ -1948,56 +1948,54 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/
 /*N*/   // the object shell should exist always
 /*N*/   DBG_ASSERT( m_pData->m_pObjectShell.Is(), "Model is useless without an ObjectShell" );
-/*N*/
-/*N*/   if ( m_pData->m_pObjectShell.Is() )
-/*N*/   {
-/*N*/       if( m_pData->m_pObjectShell->GetMedium() )
-/*N*/           throw DOUBLEINITIALIZATIONEXCEPTION();
-/*N*/
-/*N*/       SfxAllItemSet *pParams = new SfxAllItemSet( SFX_APP()->GetPool() );
-/*N*/       TransformParameters( SID_OPENDOC, seqArguments, *pParams );
-/*N*/
-/*N*/       ::rtl::OUString aFilterName;
-/*N*/       SFX_ITEMSET_ARG( pParams, pFilterNameItem, SfxStringItem, SID_FILTER_NAME, sal_False );
-/*N*/       if( pFilterNameItem )
-/*N*/           aFilterName = pFilterNameItem->GetValue();
-/*N*/
-/*N*/       if( !aFilterName.getLength() )
-/*N*/           throw ILLEGALARGUMENTIOEXCEPTION();
-/*N*/
-/*N*/       pParams->Put( SfxBoolItem( SID_VIEW, sal_False ) );
-/*N*/       pParams->Put( SfxObjectShellItem( SID_OBJECTSHELL, m_pData->m_pObjectShell ) );
-/*N*/
-/*N*/           // create LoadEnvironment and set link for callback when it is finished
-/*N*/           m_pData->m_pLoader = LoadEnvironment_Impl::Create( *pParams, TRUE );
-/*N*/           m_pData->m_pLoader->AddRef();
-/*N*/           m_pData->m_pLoader->SetDoneLink( LINK( this, SfxBaseModel, LoadDone_Impl ) );
-/*N*/
-/*N*/         m_pData->m_bLoadDone = sal_False;
-/*N*/         m_pData->m_pLoader->Start();
-/*N*/
-/*N*/           // wait for callback
-/*N*/           while( m_pData->m_bLoadDone == sal_False )
-/*N*/               Application::Yield();
-/*N*/
-/*N*/       m_pData->m_pLoader->ReleaseRef();
-/*N*/       m_pData->m_pLoader = NULL;
-/*N*/       DELETEZ( pParams );
-/*N*/
-/*N*/       sal_uInt32 nErrCode = m_pData->m_pObjectShell->GetError() ?
-/*N*/                               m_pData->m_pObjectShell->GetError() : ERRCODE_IO_CANTREAD;
-/*N*/       m_pData->m_pObjectShell->ResetError();
-/*
-         // remove lock without closing (it is set in the LoadEnvironment, because the document
-         // is loaded in a hidden mode)
-         m_pData->m_pObjectShell->RemoveOwnerLock();
-*/
-/*N*/       if ( !m_pData->m_bLoadState )
-/*N*/       {
-/*N*/           throw SfxIOException_Impl( nErrCode );
-/*N*/       }
-/*N*/   }
-/*N*/ }
+    if ( m_pData->m_pObjectShell.Is() )
+     {
+         if( m_pData->m_pObjectShell->GetMedium() )
+             throw DOUBLEINITIALIZATIONEXCEPTION();
+
+         SfxAllItemSet *pParams = new SfxAllItemSet( SFX_APP()->GetPool() );
+         TransformParameters( SID_OPENDOC, seqArguments, *pParams );
+
+         ::rtl::OUString aFilterName;
+         SFX_ITEMSET_ARG( pParams, pFilterNameItem, SfxStringItem, SID_FILTER_NAME, sal_False );
+         if( pFilterNameItem )
+             aFilterName = pFilterNameItem->GetValue();
+
+         if( !aFilterName.getLength() )
+             throw ILLEGALARGUMENTIOEXCEPTION();
+
+        const SfxFilter* pFilter = SFX_APP()->GetFilterMatcher().GetFilter4FilterName( aFilterName );
+        BOOL bReadOnly = FALSE;
+        SFX_ITEMSET_ARG( pParams, pReadOnlyItem, SfxBoolItem, SID_DOC_READONLY, FALSE );
+        if ( pReadOnlyItem && pReadOnlyItem->GetValue() )
+            bReadOnly = TRUE;
+        SFX_ITEMSET_ARG( pParams, pFileNameItem, SfxStringItem, SID_FILE_NAME, FALSE );
+        SfxMedium* pMedium = new SfxMedium( pFileNameItem->GetValue(), bReadOnly ? SFX_STREAM_READONLY : SFX_STREAM_READWRITE, FALSE, pFilter, pParams );
+
+        // allow to use an interactionhandler (if there is one)
+        pMedium->UseInteractionHandler( TRUE );
+
+        // load document
+        sal_uInt32 nError = ERRCODE_NONE;
+        BOOL bOK = m_pData->m_pObjectShell->DoLoad(pMedium);
+        m_pData->m_pObjectShell->ResetError();
+        nError = pMedium->GetError();
+        if ( !nError && !bOK )
+            nError = ERRCODE_IO_GENERAL;
+
+        if ( nError )
+        {
+            if ( m_pData->m_pObjectShell->GetMedium() != pMedium )
+            {
+                // for whatever reason document now has another medium
+                DBG_ERROR("Document has rejected the medium?!");
+                delete pMedium;
+            }
+
+            throw SfxIOException_Impl( nError ? nError : ERRCODE_IO_CANTREAD );
+        }
+    }
+}
 
 /*N #dochnoetig# */ IMPL_LINK( SfxBaseModel, LoadDone_Impl, void*, pVoid )
 /*N*/ {
