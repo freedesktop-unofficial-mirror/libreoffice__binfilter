@@ -1,4 +1,13 @@
 bf	binfilter:	idl setup2 xmloff xmlscript connectivity basctl stoc uui NULL
+bf	binfilter\bf_xmloff\source\core						nmake	-	all	bf_xo_core NULL
+bf	binfilter\bf_xmloff\source\meta						nmake	-	all	bf_xo_meta NULL
+bf	binfilter\bf_xmloff\source\style						nmake	-	all	bf_xo_style NULL
+bf	binfilter\bf_xmloff\source\text						nmake	-	all	bf_xo_text NULL
+bf	binfilter\bf_xmloff\source\draw						nmake	-	all	bf_xo_draw NULL
+bf	binfilter\bf_xmloff\source\chart						nmake	-	all	bf_xo_chart NULL
+bf	binfilter\bf_xmloff\source\forms						nmake	-	all	bf_xo_forms NULL
+bf	binfilter\bf_xmloff\source\script					nmake	-	all	bf_xo_script NULL
+bf	binfilter\bf_xmloff\util								nmake	-	all	bf_xo_util bf_xo_chart bf_xo_core bf_xo_draw bf_xo_forms bf_xo_meta bf_xo_script bf_xo_style bf_xo_text NULL
 bf	binfilter									usr1	-	all	bf_mkout NULL
 bf	binfilter\legacysmgr\source\legacy			nmake	-	all	bf_legacy	NULL
 bf	binfilter\bf_sfx2\inc								get		-	all	bf_sf_inc NULL
@@ -7,7 +16,7 @@ bf	binfilter\bf_sfx2\jobs								get		-	all	bf_sf_jobs NULL
 bf	binfilter\bf_sfx2\win\res							get		-	all	bf_sf_wres NULL
 bf	binfilter\bf_sfx2\mac\res							get		-	all	bf_sf_mres NULL
 bf	binfilter\bf_sfx2\source\inc							get		-	all	bf_sf_sinc NULL
-bf	binfilter\bf_sfx2\sdi								nmake	-	all	bf_sf_sdi  bf_legacy NULL
+bf	binfilter\bf_sfx2\sdi								nmake	-	all	bf_sf_sdi  bf_legacy bf_xo_util NULL
 bf	binfilter\bf_sfx2\source\accel						nmake	-	all	bf_sf_accl bf_sf_sdi NULL
 bf	binfilter\bf_sfx2\source\appl						nmake	-	all	bf_sf_appl bf_sf_sdi NULL
 bf	binfilter\bf_sfx2\source\view						nmake	-	all	bf_sf_view bf_sf_sdi NULL
