@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtatr2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:43 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:02:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,15 +65,15 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SVX_XMLCNITM_HXX
-#include <bf_svx/xmlcnitm.hxx>
-#endif
-#ifndef _SVX_TWOLINESITEM_HXX
-#include <bf_svx/twolinesitem.hxx>
-#endif
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_XMLCNITM_HXX
+// auto strip #include <bf_svx/xmlcnitm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_TWOLINESITEM_HXX
+// auto strip #include <bf_svx/twolinesitem.hxx>
+// auto strip #endif
 #ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
 #endif
@@ -98,15 +98,20 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // RES_POOLCHR_INET_...
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
 #endif
-#ifndef _FMTRUBY_HXX
-#include <fmtruby.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
+// auto strip #ifndef _FMTRUBY_HXX
+// auto strip #include <fmtruby.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //STRIP001 TYPEINIT1(SwTxtINetFmt,SwClient);
