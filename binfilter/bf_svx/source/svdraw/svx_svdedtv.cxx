@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:20:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,26 +59,26 @@
  *
  ************************************************************************/
 
-#include <vcl/metaact.hxx>
-#include "svdedtv.hxx"
-#include "svdxout.hxx"
-#include "svdundo.hxx"
-#include "svdograf.hxx"  // fuer Possibilities
-#include "svdopath.hxx"
-#include "svdoole2.hxx"
-#include "svdopage.hxx"
-#include "svdoedge.hxx"
-#include "svdlayer.hxx"
-#include "svdpagv.hxx"
-#include "svdpage.hxx"
+// auto strip #include <vcl/metaact.hxx>
+// auto strip #include "svdedtv.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdograf.hxx"  // fuer Possibilities
+// auto strip #include "svdopath.hxx"
+// auto strip #include "svdoole2.hxx"
+// auto strip #include "svdopage.hxx"
+// auto strip #include "svdoedge.hxx"
+// auto strip #include "svdlayer.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdpage.hxx"
 #include "svdpoev.hxx"  // fuer die PolyPossiblities
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
+// auto strip #include "svdglob.hxx"  // StringCache
 
 // #i13033#
-#ifndef _CLONELIST_HXX_
-#include <clonelist.hxx>
-#endif
+// auto strip #ifndef _CLONELIST_HXX_
+// auto strip #include <clonelist.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,8 +178,8 @@ namespace binfilter {
 //STRIP001  return pNewLayer;
 //STRIP001 }
 } //namespace binfilter
-#include "svdogrp.hxx"
-#include "scene3d.hxx"
+// auto strip #include "svdogrp.hxx"
+// auto strip #include "scene3d.hxx"
 namespace binfilter {//STRIP009
 //STRIP001 BOOL SdrEditView::ImpDelLayerCheck(SdrObjList* pOL, SdrLayerID nDelID) const
 //STRIP001 {
