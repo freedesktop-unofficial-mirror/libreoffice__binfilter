@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:38:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,27 +68,27 @@
 #include <svtools/searchopt.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UTIL_XREPLACEABLE_HPP_
-#include <com/sun/star/util/XReplaceable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSEARCHABLE_HPP_
-#include <com/sun/star/util/XSearchable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSEARCHDESCRIPTOR_HPP_
-#include <com/sun/star/util/XSearchDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
-#include <com/sun/star/util/XPropertyReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREPLACEDESCRIPTOR_HPP_
-#include <com/sun/star/util/XReplaceDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XREPLACEABLE_HPP_
+// auto strip #include <com/sun/star/util/XReplaceable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XSEARCHABLE_HPP_
+// auto strip #include <com/sun/star/util/XSearchable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XSEARCHDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/util/XSearchDescriptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
+// auto strip #include <com/sun/star/util/XPropertyReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XREPLACEDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/util/XReplaceDescriptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 
 #include <svtools/memberid.hrc>
-#include <tools/isolang.hxx>
+// auto strip #include <tools/isolang.hxx>
 
 #pragma hdrstop
 
@@ -98,7 +98,7 @@
 #define ITEMID_SEARCH   SID_SEARCH_ITEM
 #include "srchitem.hxx"
 
-#include <sfxuno.hxx>
+// auto strip #include <sfxuno.hxx>
 namespace binfilter {
 
 //using namespace uno;
