@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_menuids.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:48 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 13:20:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 
 #include "app.hrc"
@@ -1151,34 +1152,30 @@ MenuItem\
 {\
     Identifier = SID_ROW_POSITION ; \
     HelpID = SID_ROW_POSITION;\
-    Text = "A~nordnung" ; \
-    Text [ ENGLISH ] = "~Arrange" ; \
-    Text [ norwegian ] = "~Arrange" ;\
-    Text [ italian ] = "~Disponi" ; \
-    Text [ portuguese_brazilian ] = "Dis~posi��o" ; \
-    Text [ portuguese ] = "~Disposi��o" ; \
-    Text [ finnish ] = "J~�rjestys" ; \
-    Text [ danish ] = "Placering" ; \
-    Text [ french ] = "~Disposition" ; \
-    Text [ swedish ] = "~Placering" ; \
-    Text [ dutch ] = "~Rangschikking" ; \
-    Text [ spanish ] = "~Disposici�n" ; \
-    Text [ english_us ] = "A~rrangement" ; \
-    Text[ russian ] = "������������";   \
-    Text[ polish ] = "~Rozmieszczenie"; \
-    Text[ greek ] = "�����������";  \
-    Text[ japanese ] = "配置(~R)";    \
-    Text[ korean ] = "배치(~R)";  \
-    Text[ chinese_simplified ] = "排序(~R)";  \
-    Text[ chinese_traditional ] = "排序(~R)"; \
-    Text[ turkish ] = "D�zenleme";  \
-    Text[ arabic ] = "�������"; \
-    Text[ catalan ] = "~Organitza"; \
-    Text[ extern ] = "A~rrangement"; \
-    Text[ thai ] = "จั~ดเรียง"; \
-    Text[ czech ] = "Uspořádání";   \
-    Text[ hindi ] = "A~rrangement"  ;   \
-        Text[ hebrew ] = "A~nordnung";  \
+    Text [ de ] = "A~nordnung" ; \
+    Text [ en-US ] = "A~rrangement" ; \
+    Text[ pt ] = "~Disposição";\
+        Text[ ru ] = "Расположение";\
+        Text[ el ] = "Τακτοποίηση";\
+        Text[ nl ] = "~Rangschikking";\
+        Text[ fr ] = "~Disposition";\
+        Text[ es ] = "~Disposición";\
+        Text[ fi ] = "J~ärjestys";\
+        Text[ ca ] = "~Organitza";\
+        Text[ it ] = "~Disponi";\
+        Text[ da ] = "Placering";\
+        Text[ sv ] = "~Placering";\
+        Text[ pl ] = "~Rozmieszczenie";\
+        Text[ pt-BR ] = "Dis~posição";\
+        Text[ th ] = "จั~ดเรียง";\
+        Text[ ja ] = "配置(~R)";\
+        Text[ ko ] = "배치(~R)";\
+        Text[ zh-CN ] = "排序(~R)";\
+        Text[ zh-TW ] = "排序(~R)";\
+        Text[ tr ] = "Düzenleme";\
+        Text[ hi-IN ] = "A~rrangement";\
+        Text[ ar ] = "الترتيب";\
+        Text[ he ] = "A~nordnung";\
     SubMenu = Menu\
     {\
         ItemList = \
@@ -1187,69 +1184,61 @@ MenuItem\
             {\
                 Identifier = SID_ROW_MOREFRONT ; \
                 HelpID = SID_ROW_MOREFRONT;\
-                Text = "W~eiter nach vorn" ; \
-                Text [ ENGLISH ] = "Bring ~Forward" ; \
-                Text [ norwegian ] = "Flytt ~Framover" ; \
-                Text [ italian ] = "Porta pi� avanti" ; \
-                Text [ portuguese_brazilian ] = "A~van�ar" ; \
-                Text [ portuguese ] = "~Mais para a frente" ; \
-                Text [ finnish ] = "Siirr� ~eteenp�in" ; \
-                Text [ danish ] = "L�ngere ~fremad" ; \
-                Text [ french ] = "V~ers l'avant" ; \
-                Text [ swedish ] = "L�ngre fra~m" ; \
-                Text [ dutch ] = "Naar v~oren" ; \
-                Text [ spanish ] = "Traer ~adelante" ; \
-                Text [ english_us ] = "Bring ~Forward" ; \
-                Text[ chinese_simplified ] = "上移一层(~F)";\
-                    Text[ russian ] = "����������� ~������";\
-                    Text[ polish ] = "P~rzesu� do przodu";\
-                    Text[ japanese ] = "前方に移動(~F)";\
-                    Text[ chinese_traditional ] = "上移一層(~F)";\
-                    Text[ arabic ] = "����� ������";\
-                    Text[ greek ] = "�~������� ��� ������� ������";\
-                    Text[ korean ] = "앞으로 이동(~F)";\
-                    Text[ turkish ] = "~Bir �ne getir";\
-                    Text[ language_user1 ] = " ";\
-                    Text[ catalan ] = "Porta al ~davant";\
-                    Text[ extern ] = "Bring ~Forward";\
-                    Text[ thai ] = "นำไป~ข้างหน้า";\
-                    Text[ czech ] = "Přenést blíž";\
-                    Text[ hebrew ] = "W~eiter nach vorn";\
-                    Text[ hindi ] = "~आगे प्रस्तुत करना";\
+                Text [ de ] = "W~eiter nach vorn" ; \
+                Text [ en-US ] = "Bring ~Forward" ; \
+                    Text [ x-comment ] = " ";\
+                    Text[ pt ] = "~Mais para a frente";\
+                    Text[ ru ] = "Переместить ~вперед";\
+                    Text[ el ] = "Μ~εταφορά ένα επίπεδο εμπρός";\
+                    Text[ nl ] = "Naar v~oren";\
+                    Text[ fr ] = "V~ers l'avant";\
+                    Text[ es ] = "Traer ~adelante";\
+                    Text[ fi ] = "Siirrä ~eteenpäin";\
+                    Text[ ca ] = "Porta al ~davant";\
+                    Text[ it ] = "Porta più avanti";\
+                    Text[ da ] = "Længere ~fremad";\
+                    Text[ sv ] = "Längre fra~m";\
+                    Text[ pl ] = "P~rzesuń do przodu";\
+                    Text[ pt-BR ] = "A~vançar";\
+                    Text[ th ] = "นำไป~ข้างหน้า";\
+                    Text[ ja ] = "前方に移動(~F)";\
+                    Text[ ko ] = "앞으로 이동(~F)";\
+                    Text[ zh-CN ] = "上移一层(~F)";\
+                    Text[ zh-TW ] = "上移一層(~F)";\
+                    Text[ tr ] = "~Bir öne getir";\
+                    Text[ hi-IN ] = "~आगे प्रस्तुत करना";\
+                    Text[ ar ] = "إحضار أماماً";\
+                    Text[ he ] = "W~eiter nach vorn";\
                 };\
             MenuItem\
             {\
                 Identifier = SID_ROW_MOREBACK ; \
                 HelpID = SID_ROW_MOREBACK;\
-                Text = "Weiter ~nach hinten" ; \
-                Text [ ENGLISH ] = "Send ~Backward" ; \
-                Text [ norwegian ] = "Send ~Bakover" ; \
-                Text [ italian ] = "Porta pi� i~ndietro" ; \
-                Text [ portuguese_brazilian ] = "Rec~uar" ; \
-                Text [ portuguese ] = "Mais para o f~undo" ; \
-                Text [ finnish ] = "Siirr� taakse~p�in" ; \
-                Text [ danish ] = "L�ngere ~tilbage" ; \
-                Text [ french ] = "~Vers l'arri�re" ; \
-                Text [ swedish ] = "L�ngre ba~k" ; \
-                Text [ dutch ] = "Naar a~chteren" ; \
-                Text [ spanish ] = "Enviar a~tr�s" ; \
-                Text [ english_us ] = "Send Back~ward" ; \
-                Text[ chinese_simplified ] = "下移一层(~W)";\
-                    Text[ russian ] = "����������� ~�����";\
-                    Text[ polish ] = "Pr~zesu� do ty�u";\
-                    Text[ japanese ] = "後方に移動(~W)";\
-                    Text[ chinese_traditional ] = "下移一層(~W)";\
-                    Text[ arabic ] = "����� �����";\
-                    Text[ greek ] = "~�������� ����";\
-                    Text[ korean ] = "뒤로 이동(~W)";\
-                    Text[ turkish ] = "Bir alta g�nder";\
-                    Text[ language_user1 ] = " ";\
-                    Text[ catalan ] = "Envia cap ~enrere";\
-                    Text[ extern ] = "Send Back~ward";\
-                    Text[ thai ] = "ส่งกลับข้าง~หลัง";\
-                    Text[ czech ] = "Přenést dál";\
-                    Text[ hebrew ] = "Weiter ~nach hinten";\
-                    Text[ hindi ] = "पिछली ~ओर भेजो";\
+                Text [ de ] = "Weiter ~nach hinten" ; \
+                Text [ en-US ] = "Send Back~ward" ; \
+                    Text [ x-comment ] = " ";\
+                    Text[ pt ] = "Mais para o f~undo";\
+                    Text[ ru ] = "Переместить ~назад";\
+                    Text[ el ] = "~Μεταφορά πίσω";\
+                    Text[ nl ] = "Naar a~chteren";\
+                    Text[ fr ] = "~Vers l'arrière";\
+                    Text[ es ] = "Enviar a~trás";\
+                    Text[ fi ] = "Siirrä taakse~päin";\
+                    Text[ ca ] = "Envia cap ~enrere";\
+                    Text[ it ] = "Porta più i~ndietro";\
+                    Text[ da ] = "Længere ~tilbage";\
+                    Text[ sv ] = "Längre ba~k";\
+                    Text[ pl ] = "Pr~zesuń do tyłu";\
+                    Text[ pt-BR ] = "Rec~uar";\
+                    Text[ th ] = "ส่งกลับข้าง~หลัง";\
+                    Text[ ja ] = "後方に移動(~W)";\
+                    Text[ ko ] = "뒤로 이동(~W)";\
+                    Text[ zh-CN ] = "下移一层(~W)";\
+                    Text[ zh-TW ] = "下移一層(~W)";\
+                    Text[ tr ] = "Bir alta gönder";\
+                    Text[ hi-IN ] = "पिछली ~ओर भेजो";\
+                    Text[ ar ] = "إرسال خلفاً";\
+                    Text[ he ] = "Weiter ~nach hinten";\
                 };\
         };\
     };\
@@ -1294,38 +1283,34 @@ MenuItem\
     {\
         Identifier = SID_ATTR_TRANSFORM ; \
         HelpID = SID_ATTR_TRANSFORM ; \
-        Text = "P~osition und Gr��e..." ; \
-        Text [ ENGLISH ] = "P~osition and Size..." ; \
-        Text [ norwegian ] = "P~osition and Size..." ; \
-        Text [ italian ] = "P~osizione e dimensione..." ; \
-        Text [ portuguese_brazilian ] = "P~osi??o e Tamanho..." ; \
-        Text [ portuguese ] = "P~osi��o e tamanho..." ; \
-        Text [ finnish ] = "Sijainti ja ko~ko" ; \
-        Text [ danish ] = "Pla~cering og st�rrelse..." ; \
-        Text [ french ] = "P~osition et taille..." ; \
-        Text [ swedish ] = "P~osition och storlek..." ; \
-        Text [ dutch ] = "~Positie en grootte..." ; \
-        Text [ spanish ] = "P~osici�n y tama�o..." ; \
-        Text [ english_us ] = "Position and Si~ze..." ; \
-        Text[ chinese_simplified ] = "位置和大小(~Z)...";\
-        Text[ russian ] = "~������� � ������...";\
-        Text[ polish ] = "~Pozycja i rozmiar...";\
-        Text[ japanese ] = "位置とサイズ(~Z)...";\
-        Text[ chinese_traditional ] = "位置和大小(~Z)...";\
-        Text[ arabic ] = "...������ ������~";\
-        Text[ greek ] = "���� ��� �����~��...";\
-        Text[ korean ] = "위치 및 크기(~Z)...";\
-        Text[ turkish ] = "Konum ve ~Boyut";\
-        Text[ language_user1 ] = " ";\
-        Text[ catalan ] = "Position and Si~ze...";\
-        Text[ thai ] = "ตำแหน่งและข~นาด...";\
-    Text[ czech ] = "Umístění a velikost...";    \
-    Text[ hindi ] = "Position and Si~ze..." ; \
-        Text[ hebrew ] = "P~osition und Größe...";    \
+        Text [ de ] = "P~osition und Gr��e..." ; \
+        Text [ en-US ] = "Position and Si~ze..." ; \
+        Text [ x-comment ] = " ";\
+    Text[ pt ] = "P~osição e tamanho...";\
+        Text[ ru ] = "~Позиция и размер...";\
+        Text[ el ] = "Θέση και μέγεθ~ος...";\
+        Text[ nl ] = "~Positie en grootte...";\
+        Text[ fr ] = "P~osition et taille...";\
+        Text[ es ] = "P~osición y tamaño...";\
+        Text[ fi ] = "Sijainti ja ko~ko";\
+        Text[ ca ] = "Position and Si~ze...";\
+        Text[ it ] = "P~osizione e dimensione...";\
+        Text[ da ] = "Pla~cering og størrelse...";\
+        Text[ sv ] = "P~osition och storlek...";\
+        Text[ pl ] = "~Pozycja i rozmiar...";\
+        Text[ pt-BR ] = "P~osi??o e Tamanho...";\
+        Text[ th ] = "ตำแหน่งและข~นาด...";\
+        Text[ ja ] = "位置とサイズ(~Z)...";\
+        Text[ ko ] = "위치 및 크기(~Z)...";\
+        Text[ zh-CN ] = "位置和大小(~Z)...";\
+        Text[ zh-TW ] = "位置和大小(~Z)...";\
+        Text[ tr ] = "Konum ve ~Boyut";\
+        Text[ hi-IN ] = "Position and Si~ze...";\
+        Text[ ar ] = "...الموضع والحجم~";\
+        Text[ he ] = "P~osition und Größe...";\
     }
 
 // EOF
-
 
 
 
