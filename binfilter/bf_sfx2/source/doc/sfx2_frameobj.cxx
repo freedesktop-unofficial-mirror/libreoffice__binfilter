@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frameobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:50:51 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:36:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #include "objsh.hxx"
 #endif
 
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 //STRIP001 class SfxFrameObjectEditDialog_Impl : public SfxSingleTabDialog
@@ -315,7 +316,7 @@ namespace binfilter {
 //STRIP001 /*?*/
 //STRIP001 /*?*/     if( ERRCODE_NONE == aDlg.Execute() )
 //STRIP001 /*?*/    {
-//STRIP001 /*?*/         String aName( URIHelper::SmartRelToAbs( aDlg.GetPath() ) );
+//STRIP001 /*?*/         String aName( so3::StaticBaseUrl::SmartRelToAbs( aDlg.GetPath() ) );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        // Namen "ubertragen
 //STRIP001 /*?*/        pImpl->pFrmDescr->SetURL( aName );
