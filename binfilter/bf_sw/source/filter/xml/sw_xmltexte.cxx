@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexte.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:28:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,33 +65,48 @@
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
-#ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTSUPPLIER_HPP_
-#include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include <bf_xmloff/families.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTSUPPLIER_HPP_
+// auto strip #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include <bf_xmloff/families.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 #include <bf_xmloff/txtprmap.hxx>
 #endif
 
-#include <bf_svx/svdobj.hxx>
+// auto strip #include <bf_svx/svdobj.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
+#endif
+
 #ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
 #endif
@@ -109,20 +124,20 @@
 #include "xmltexte.hxx"
 #endif
 
-#ifndef _APPLET_HXX //autogen
-#include <so3/applet.hxx>
-#endif
-#ifndef _PLUGIN_HXX //autogen
-#include <so3/plugin.hxx>
-#endif
+// auto strip #ifndef _APPLET_HXX //autogen
+// auto strip #include <so3/applet.hxx>
+// auto strip #endif
+// auto strip #ifndef _PLUGIN_HXX //autogen
+// auto strip #include <so3/plugin.hxx>
+// auto strip #endif
 
-#ifndef _FRAMEOBJ_HXX //autogen
-#include <bf_sfx2/frameobj.hxx>
-#endif
+// auto strip #ifndef _FRAMEOBJ_HXX //autogen
+// auto strip #include <bf_sfx2/frameobj.hxx>
+// auto strip #endif
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 #ifndef _SW_APPLET_IMPL_HXX
 #include <SwAppletImpl.hxx>
@@ -131,9 +146,9 @@
 #define _SVSTDARR_ULONGS
 #include <svtools/svstdarr.hxx>
 
-#ifndef _SFX_FRMDESCRHXX
-#include <bf_sfx2/frmdescr.hxx>
-#endif
+// auto strip #ifndef _SFX_FRMDESCRHXX
+// auto strip #include <bf_sfx2/frmdescr.hxx>
+// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
