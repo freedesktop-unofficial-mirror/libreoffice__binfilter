@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmltabi.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:34:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,7 +73,7 @@
 #include "xmlcoli.hxx"
 #include "xmlsceni.hxx"
 #include "document.hxx"
-#include "docuno.hxx"
+// auto strip #include "docuno.hxx"
 #include "olinetab.hxx"
 
 #ifndef _SC_XMLCONVERTER_HXX
@@ -89,20 +89,20 @@
 #include "XMLStylesImportHelper.hxx"
 #endif
 
-#include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_FORMSIMP_HXX
-#include <bf_xmloff/formsimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_FORMSIMP_HXX
+// auto strip #include <bf_xmloff/formsimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
-#include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#include <com/sun/star/sheet/XSpreadsheets.hpp>
-#include <com/sun/star/sheet/XSpreadsheet.hpp>
+// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
+// auto strip #include <com/sun/star/sheet/XSpreadsheets.hpp>
+// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
 #include <com/sun/star/sheet/XPrintAreas.hpp>
-#include <com/sun/star/table/CellAddress.hpp>
+// auto strip #include <com/sun/star/table/CellAddress.hpp>
 namespace binfilter {
 
 using namespace ::com::sun::star;
