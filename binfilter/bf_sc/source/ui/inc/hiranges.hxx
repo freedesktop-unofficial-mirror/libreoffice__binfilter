@@ -2,9 +2,9 @@
  *
  *  $RCSfile: hiranges.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:43 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:01:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <tools/color.hxx>
 #endif
 
-#ifndef SC_SCGLOB_HXX
-#include "global.hxx"
-#endif
+// auto strip #ifndef SC_SCGLOB_HXX
+// auto strip #include "global.hxx"
+// auto strip #endif
 #include <tools/debug.hxx> //STRIP001
 namespace binfilter {
 //==================================================================
