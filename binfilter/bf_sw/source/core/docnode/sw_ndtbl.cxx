@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:15:48 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:34:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2112,32 +2112,32 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
 //Dokument. Die erzeugten Contentframes werden in das entsprechende
 //Layout gehaengt.
-//STRIP001 void SwTableNode::MakeFrms(const SwNodeIndex & rIdx )
-//STRIP001 {
-//STRIP001  if( !GetTable().GetFrmFmt()->GetDepends())//gibt es ueberhaupt Frames ??
-//STRIP001      return;
-//STRIP001
-//STRIP001  SwFrm *pFrm, *pNew;
-//STRIP001  SwCntntNode * pNode = rIdx.GetNode().GetCntntNode();
-//STRIP001
-//STRIP001  ASSERT( pNode, "Kein Contentnode oder Copy-Node und neuer Node identisch.");
-//STRIP001
-//STRIP001  BOOL bBefore = rIdx < GetIndex();
-//STRIP001
-//STRIP001  SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
-//STRIP001
-//STRIP001  while( 0 != (pFrm = aNode2Layout.NextFrm()) )
-//STRIP001  {
-//STRIP001      pNew = pNode->MakeFrm();
-//STRIP001      // wird ein Node vorher oder nachher mit Frames versehen
-//STRIP001      if ( bBefore )
-//STRIP001          // der neue liegt vor mir
-//STRIP001          pNew->Paste( pFrm->GetUpper(), pFrm );
-//STRIP001      else
-//STRIP001          // der neue liegt hinter mir
-//STRIP001          pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
-//STRIP001  }
-//STRIP001 }
+void SwTableNode::MakeFrms(const SwNodeIndex & rIdx )
+{
+    if( !GetTable().GetFrmFmt()->GetDepends())//gibt es ueberhaupt Frames ??
+        return;
+
+    SwFrm *pFrm, *pNew;
+    SwCntntNode * pNode = rIdx.GetNode().GetCntntNode();
+
+    ASSERT( pNode, "Kein Contentnode oder Copy-Node und neuer Node identisch.");
+
+    BOOL bBefore = rIdx < GetIndex();
+
+    SwNode2Layout aNode2Layout( *this, rIdx.GetIndex() );
+
+    while( 0 != (pFrm = aNode2Layout.NextFrm()) )
+    {
+        pNew = pNode->MakeFrm();
+        // wird ein Node vorher oder nachher mit Frames versehen
+        if ( bBefore )
+            // der neue liegt vor mir
+            pNew->Paste( pFrm->GetUpper(), pFrm );
+        else
+            // der neue liegt hinter mir
+            pNew->Paste( pFrm->GetUpper(), pFrm->GetNext() );
+    }
+}
 
 //Fuer jede Shell einen TblFrm anlegen und vor den entsprechenden
 //CntntFrm pasten.
