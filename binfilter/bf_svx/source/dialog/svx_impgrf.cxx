@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impgrf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:42:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:24:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,47 +63,47 @@
 
 #include <limits.h>             // USHRT_MAX
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _BIGINT_HXX
-#include <tools/bigint.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _BIGINT_HXX
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFXDISPATCH_HXX
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SV_WAITOBJ_HXX //autogen
-#include <vcl/waitobj.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_VIEWOPTIONS_HXX
-#include <svtools/viewoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-#include <unotools/localfilehelper.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WAITOBJ_HXX //autogen
+// auto strip #include <vcl/waitobj.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_VIEWOPTIONS_HXX
+// auto strip #include <svtools/viewoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
+// auto strip #include <unotools/localfilehelper.hxx>
+// auto strip #endif
 #pragma hdrstop
 
-#include <ucbhelper/content.hxx>
-#include <osl/file.hxx>
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #include <osl/file.hxx>
 
-#ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
-#include <com/sun/star/ucb/CommandAbortedException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
+// auto strip #include <com/sun/star/ucb/CommandAbortedException.hpp>
+// auto strip #endif
 
 using namespace ::ucb;
 using namespace ::com::sun::star::uno;
@@ -115,7 +115,7 @@ using namespace ::com::sun::star::uno;
 #include "impgrf.hxx"
 
 #include "dialmgr.hxx"
-#include "svxerr.hxx"
+// auto strip #include "svxerr.hxx"
 #include "helpid.hrc"
 namespace binfilter {
 
