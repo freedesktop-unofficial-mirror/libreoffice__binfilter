@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pagedesc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:37:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,21 +101,26 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>   // SwTxtFmtColl
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx> // SwTxtFmtColl
+// auto strip #endif
 #ifndef _NODE_HXX //autogen
 #include <node.hxx>
 #endif
-#ifndef _SWTABLE_HXX //autogen
-#include <swtable.hxx>
+// auto strip #ifndef _SWTABLE_HXX //autogen
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMTOOL_HXX //autogen
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FRMTOOL_HXX //autogen
-#include <frmtool.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>          // fuer GetAttrPool
 #endif
