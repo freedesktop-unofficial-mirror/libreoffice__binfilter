@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_scriptcont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:29:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,59 +59,70 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
-#ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-#include <com/sun/star/xml/sax/InputSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
-#include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
-#include <com/sun/star/ucb/XSimpleFileAccess.hpp>
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
+// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
+// auto strip #include <com/sun/star/ucb/XSimpleFileAccess.hpp>
+// auto strip #endif
+
+// auto strip #include <com/sun/star/script/XStarBasicAccess.hpp>
+// auto strip #include <com/sun/star/script/XStarBasicModuleInfo.hpp>
+// auto strip #include <com/sun/star/script/XStarBasicLibraryInfo.hpp>
+
+#ifndef _SFX_SFXUNO_HXX
+#include <bf_sfx2/sfxuno.hxx>
 #endif
 
-#include <com/sun/star/script/XStarBasicAccess.hpp>
-#include <com/sun/star/script/XStarBasicModuleInfo.hpp>
-#include <com/sun/star/script/XStarBasicLibraryInfo.hpp>
+#ifndef _SFX_NAMECONT_HXX
+#include "namecont.hxx"
+#endif
 
+#ifndef _BASMGR_HXX
+#include <basic/basmgr.hxx>
+#endif
 
 #include "scriptcont.hxx"
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef _RTL_DIGEST_H_
 #include <rtl/digest.h>
 #endif
 
 // For password functionality
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 
-#include <svtools/pathoptions.hxx>
+// auto strip #include <svtools/pathoptions.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/ehdl.hxx>
 #include <basic/basmgr.hxx>
-#include <basic/sbmod.hxx>
+// auto strip #include <basic/sbmod.hxx>
 #include <xmlscript/xmlmod_imexp.hxx>
 #include <app.hxx>
 namespace binfilter {
