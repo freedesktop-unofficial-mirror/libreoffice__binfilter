@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ednumber.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:21:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,14 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
@@ -74,27 +79,27 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
