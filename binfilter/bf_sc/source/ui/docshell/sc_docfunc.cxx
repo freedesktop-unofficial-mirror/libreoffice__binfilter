@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docfunc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:46:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,25 +60,25 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/svdundo.hxx>
 #include <bf_sfx2/bindings.hxx>
-#include <bf_sfx2/printer.hxx>
+// auto strip #include <bf_sfx2/printer.hxx>
 #include <vcl/msgbox.hxx>
-#include <vcl/sound.hxx>
-#include <vcl/virdev.hxx>
+// auto strip #include <vcl/sound.hxx>
+// auto strip #include <vcl/virdev.hxx>
 #include <vcl/waitobj.hxx>
 #include <svtools/zforlist.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
@@ -92,7 +92,7 @@
 #include "bf_sc.hrc"
 
 #include "arealink.hxx"
-#include "attrib.hxx"
+// auto strip #include "attrib.hxx"
 #include "autoform.hxx"
 #include "cell.hxx"
 #include "detdata.hxx"
@@ -106,11 +106,11 @@
 #include "olinetab.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
-#include "rangeutl.hxx"
-#include "refundo.hxx"
+// auto strip #include "rangeutl.hxx"
+// auto strip #include "refundo.hxx"
 #include "scresid.hxx"
 #include "stlpool.hxx"
-#include "stlsheet.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "tablink.hxx"
 #include "tabvwsh.hxx"
 #include "uiitems.hxx"
@@ -118,11 +118,11 @@
 #include "undocell.hxx"
 #include "undodraw.hxx"
 #include "undotab.hxx"
-#include "waitoff.hxx"
+// auto strip #include "waitoff.hxx"
 #include "sizedev.hxx"
 #include "scmod.hxx"
 #include "inputhdl.hxx"
-#include "inputwin.hxx"
+// auto strip #include "inputwin.hxx"
 #include "editable.hxx"
 namespace binfilter {
 

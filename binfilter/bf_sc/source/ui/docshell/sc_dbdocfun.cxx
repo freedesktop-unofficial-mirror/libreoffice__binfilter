@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dbdocfun.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:46:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,7 +71,7 @@
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
 
-#include <com/sun/star/sdbc/XResultSet.hpp>
+// auto strip #include <com/sun/star/sdbc/XResultSet.hpp>
 
 #include "dbdocfun.hxx"
 #include "bf_sc.hrc"
@@ -83,7 +83,7 @@
 #include "tabvwsh.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
-#include "olinetab.hxx"
+// auto strip #include "olinetab.hxx"
 #include "dpobject.hxx"
 #include "dociter.hxx"      // for lcl_EmptyExcept
 #include "cell.hxx"         // for lcl_EmptyExcept
