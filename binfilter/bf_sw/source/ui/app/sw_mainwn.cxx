@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_mainwn.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:31:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,21 +63,21 @@
 #pragma hdrstop
 
 
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX
-#include <svtools/svstdarr.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX //autogen
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVARRAY_HXX
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif
-#ifndef _RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
+// auto strip #ifndef _RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
 
 #ifndef _SWDOCSH_HXX //autogen
 #include <docsh.hxx>
