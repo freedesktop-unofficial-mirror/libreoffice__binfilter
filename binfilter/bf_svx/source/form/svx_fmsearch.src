@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmsearch.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:14:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:21:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,13 +82,13 @@
 //STRIP001  Text[ swedish ] = "Dataposts�kning";
 //STRIP001  Text[ polish ] = "Wyszukiwanie rekord�w";
 //STRIP001  Text[ portuguese_brazilian ] = "Pesquisar Registro";
-//STRIP001  Text[ japanese ] = "デー�?レコードの検�?;
+//STRIP001  Text[ japanese ] = "デー�?レコードの検�?";
 //STRIP001  Text[ chinese_simplified ] = "搜寻数据条目";
 //STRIP001  Text[ chinese_traditional ] = "搜尋資料條目";
-//STRIP001  Text[ arabic ] = "����?�� ��?;
+//STRIP001  Text[ arabic ] = "����?�� ��?";
 //STRIP001  Text[ greek ] = "��������?��������";
 //STRIP001  Text[ korean ] = "데이�?레코�?찾기";
-//STRIP001  Text[ turkish ] = "Veri k�mesi aramas?;
+//STRIP001  Text[ turkish ] = "Veri k�mesi aramas?";
 //STRIP001  Text[ language_user1 ] = " ";
 //STRIP001  Text[ catalan ] = "Cerca de registres";
 //STRIP001  Text[ finnish ] = "Tietuehaku";
@@ -103,7 +103,7 @@
 //STRIP001      Text [ ENGLISH ] = "Search for";
 //STRIP001      Text[ english_us ] = "Search for";
 //STRIP001      Text[ portuguese ] = "Procurar por";
-//STRIP001      Text[ russian ] = "����?;
+//STRIP001      Text[ russian ] = "����?";
 //STRIP001      Text[ greek ] = "��������?��?��";
 //STRIP001      Text[ dutch ] = "Zoeken naar";
 //STRIP001      Text[ french ] = "Rechercher";
@@ -114,17 +114,17 @@
 //STRIP001      Text[ polish ] = "Szukaj:";
 //STRIP001      Text[ portuguese_brazilian ] = "Pesquisar por";
 //STRIP001      Text[ japanese ] = "検索条件";
-//STRIP001      Text[ korean ] = "검�?대�?;
+//STRIP001      Text[ korean ] = "검�?대�?";
 //STRIP001      Text[ chinese_simplified ] = "搜寻目标";
 //STRIP001      Text[ chinese_traditional ] = "搜尋內容";
 //STRIP001      Text[ arabic ] = "����?��";
 //STRIP001      Text[ turkish ] = "Bunun i�in ara";
 //STRIP001      Text[ catalan ] = "Cerca per";
 //STRIP001      Text[ finnish ] = "Hakukohde";
-//STRIP001      Text[ thai ] = "ค้นห�?;
+//STRIP001      Text[ thai ] = "ค้นห�?";
 //STRIP001      Text[ czech ] = "Hledaný výraz";
-//STRIP001      Text[ hebrew ] = "‮י�?לחפש�?;
-//STRIP001      Text[ hindi ] = "केलि�?खो�?;
+//STRIP001      Text[ hebrew ] = "‮י�?לחפש�?";
+//STRIP001      Text[ hindi ] = "केलि�?खो�?";
 //STRIP001      Text[ slovak ] = "Hľadaný výraz";
 //STRIP001  };
 //STRIP001  RadioButton RB_SEARCHFORTEXT
@@ -135,8 +135,8 @@
 //STRIP001         Text = "~Text";
 //STRIP001      Text[ english_us ] = "~Text";
 //STRIP001      Text[ portuguese ] = "~Texto";
-//STRIP001      Text[ russian ] = "����?;
-//STRIP001      Text[ greek ] = "~������?;
+//STRIP001      Text[ russian ] = "����?";
+//STRIP001      Text[ greek ] = "~������?";
 //STRIP001      Text[ dutch ] = "~Tekst";
 //STRIP001      Text[ french ] = "Texte";
 //STRIP001      Text[ spanish ] = "~Texto";
@@ -153,9 +153,9 @@
 //STRIP001      Text[ turkish ] = "~Metin";
 //STRIP001      Text[ arabic ] = "���� :";
 //STRIP001      Text[ catalan ] = "~Text :";
-//STRIP001      Text[ thai ] = "~ข้อควา�?;
+//STRIP001      Text[ thai ] = "~ข้อควา�?";
 //STRIP001      Text[ czech ] = "Text";
-//STRIP001      Text[ hebrew ] = "‮טקסט�?;
+//STRIP001      Text[ hebrew ] = "‮טקסט�?";
 //STRIP001      Text[ hindi ] = "~टेक्स्ट्";
 //STRIP001      Text[ slovak ] = "~Text";
 //STRIP001  };
@@ -188,7 +188,7 @@
 //STRIP001      Text[ finnish ] = "Kent�n sis�lt?~NULL (tyhj?";
 //STRIP001      Text[ thai ] = "เนื้อหาเขตข้อมูล~NULL";
 //STRIP001      Text[ czech ] = "Obsah pole je NULL";
-//STRIP001      Text[ hebrew ] = "‮השד�?ריק�?;
+//STRIP001      Text[ hebrew ] = "‮השד�?ריק�?";
 //STRIP001      Text[ hindi ] = "क्षेत्�?का वि~षय NULL";
 //STRIP001      Text[ slovak ] = "Obsah poľa je ~NULL";
 //STRIP001  };
@@ -220,8 +220,8 @@
 //STRIP001      Text[ finnish ] = "Kent�n sis�lt?ei ole ~NULL (tyhj?";
 //STRIP001      Text[ thai ] = "เนื้อหาเขตข้อมูลไม�?NU~LL";
 //STRIP001      Text[ czech ] = "Obsah pole není NULL";
-//STRIP001      Text[ hebrew ] = "‮השד�?אינו ריק�?;
-//STRIP001      Text[ hindi ] = "क्षेत्�?का विष~�?NULL नही�?;
+//STRIP001      Text[ hebrew ] = "‮השד�?אינו ריק�?";
+//STRIP001      Text[ hindi ] = "क्षेत्�?का विष~�?NULL नही�?";
 //STRIP001      Text[ slovak ] = "Obsah poľa nie je NU~LL";
 //STRIP001  };
 //STRIP001  ComboBox CMB_SEARCHTEXT
@@ -253,8 +253,8 @@
 //STRIP001      Text[ russian ] = "������?������";
 //STRIP001      Text[ polish ] = "Przeszukiwany obszar";
 //STRIP001      Text[ japanese ] = "範囲";
-//STRIP001      Text[ chinese_traditional ] = "區�?;
-//STRIP001      Text[ arabic ] = "���� ����?;
+//STRIP001      Text[ chinese_traditional ] = "區�?";
+//STRIP001      Text[ arabic ] = "���� ����?";
 //STRIP001      Text[ greek ] = "������?����������";
 //STRIP001      Text[ korean ] = "범위";
 //STRIP001      Text[ turkish ] = "Aranacak yer";
@@ -263,7 +263,7 @@
 //STRIP001      Text[ finnish ] = "Hakualue";
 //STRIP001      Text[ thai ] = "ที่ค้นหา";
 //STRIP001      Text[ czech ] = "Kde hledat";
-//STRIP001      Text[ hebrew ] = "‮היכ�?לחפש�?;
+//STRIP001      Text[ hebrew ] = "‮היכ�?לחפש�?";
 //STRIP001      Text[ hindi ] = "कहाँ पर खो�?करना है";
 //STRIP001      Text[ slovak ] = "Kde hľadať";
 //STRIP001  };
@@ -274,8 +274,8 @@
 //STRIP001         Text = "~Formular";
 //STRIP001      Text[ english_us ] = "Form";
 //STRIP001      Text[ portuguese ] = "~Formul�rio";
-//STRIP001      Text[ russian ] = "����?;
-//STRIP001      Text[ greek ] = "����?;
+//STRIP001      Text[ russian ] = "����?";
+//STRIP001      Text[ greek ] = "����?";
 //STRIP001      Text[ dutch ] = "~Formulier";
 //STRIP001      Text[ french ] = "Formulaire";
 //STRIP001      Text[ spanish ] = "~Formulario";
@@ -294,7 +294,7 @@
 //STRIP001      Text[ catalan ] = "Formulari:";
 //STRIP001      Text[ thai ] = "แบบฟอร์ม";
 //STRIP001      Text[ czech ] = "Formulář";
-//STRIP001      Text[ hebrew ] = "‮טופס�?;
+//STRIP001      Text[ hebrew ] = "‮טופס�?";
 //STRIP001      Text[ hindi ] = "फ़ॉर्म";
 //STRIP001      Text[ slovak ] = "Formulár";
 //STRIP001  };
@@ -326,19 +326,19 @@
 //STRIP001      Text[ chinese_simplified ] = "全部字段";
 //STRIP001      Text[ russian ] = "��?��?";
 //STRIP001      Text[ polish ] = "Wszystkie pola";
-//STRIP001      Text[ japanese ] = "すべてのフィール�?;
-//STRIP001      Text[ chinese_traditional ] = "全部的欄�?;
+//STRIP001      Text[ japanese ] = "すべてのフィール�?";
+//STRIP001      Text[ chinese_traditional ] = "全部的欄�?";
 //STRIP001      Text[ arabic ] = "�� ������";
-//STRIP001      Text[ greek ] = "��?�� ����?;
+//STRIP001      Text[ greek ] = "��?�� ����?";
 //STRIP001      Text[ korean ] = "모든 필드";
 //STRIP001      Text[ turkish ] = "T�m alanlar";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Tots els camps";
 //STRIP001      Text[ finnish ] = "Kaikki kent�t";
-//STRIP001      Text[ thai ] = "เขตข้อมูลทั้งหม�?;
+//STRIP001      Text[ thai ] = "เขตข้อมูลทั้งหม�?";
 //STRIP001      Text[ czech ] = "Všechna pole";
-//STRIP001      Text[ hebrew ] = "‮כ�?השדות�?;
-//STRIP001      Text[ hindi ] = "सब क्षेत्�?;
+//STRIP001      Text[ hebrew ] = "‮כ�?השדות�?";
+//STRIP001      Text[ hindi ] = "सब क्षेत्�?";
 //STRIP001      Text[ slovak ] = "Všetky polia";
 //STRIP001  };
 //STRIP001  RadioButton RB_SINGLEFIELD
@@ -349,11 +349,11 @@
 //STRIP001         Text[ english_us ] = "Single field";
 //STRIP001      Text[ portuguese ] = "Campo �~nico";
 //STRIP001      Text[ russian ] = "?��������?����";
-//STRIP001      Text[ greek ] = "���������� ����?;
+//STRIP001      Text[ greek ] = "���������� ����?";
 //STRIP001      Text[ dutch ] = "~E�n veld";
 //STRIP001      Text[ french ] = "Champ unique";
 //STRIP001      Text[ spanish ] = "~Campo individual";
-//STRIP001      Text[ finnish ] = "Yksitt�inen kentt?;
+//STRIP001      Text[ finnish ] = "Yksitt�inen kentt?";
 //STRIP001      Text[ italian ] = "Campo singolo";
 //STRIP001      Text[ danish ] = "En~kelt felt";
 //STRIP001      Text[ swedish ] = "~Enskilt f�lt";
@@ -362,14 +362,14 @@
 //STRIP001      Text[ japanese ] = "指定のフィールド";
 //STRIP001      Text[ korean ] = "지�?필드:";
 //STRIP001      Text[ chinese_simplified ] = "单个字段";
-//STRIP001      Text[ chinese_traditional ] = "單個欄�?;
+//STRIP001      Text[ chinese_traditional ] = "單個欄�?";
 //STRIP001      Text[ turkish ] = "Tek alan";
 //STRIP001      Text[ arabic ] = "��?���� :";
 //STRIP001      Text[ catalan ] = "~Camp individual :";
-//STRIP001      Text[ thai ] = "เขตข้อมูลเดี่ย�?;
+//STRIP001      Text[ thai ] = "เขตข้อมูลเดี่ย�?";
 //STRIP001      Text[ czech ] = "Samostatné pole";
-//STRIP001      Text[ hebrew ] = "‮שד�?בודד�?;
-//STRIP001      Text[ hindi ] = "अकेल�?क्षेत्�?;
+//STRIP001      Text[ hebrew ] = "‮שד�?בודד�?";
+//STRIP001      Text[ hindi ] = "अकेल�?क्षेत्�?";
 //STRIP001      Text[ slovak ] = "Samostatné pole";
 //STRIP001  };
 //STRIP001  ListBox LB_FIELD
@@ -397,20 +397,20 @@
 //STRIP001      Text[ spanish ] = "Configuraci�n";
 //STRIP001      Text[ english_us ] = "Settings";
 //STRIP001      Text[ chinese_simplified ] = "设定";
-//STRIP001      Text[ russian ] = "��������?;
+//STRIP001      Text[ russian ] = "��������?";
 //STRIP001      Text[ polish ] = "Ustawienia";
 //STRIP001      Text[ japanese ] = "設定";
 //STRIP001      Text[ chinese_traditional ] = "設定";
-//STRIP001      Text[ arabic ] = "������?;
-//STRIP001      Text[ greek ] = "��������?;
+//STRIP001      Text[ arabic ] = "������?";
+//STRIP001      Text[ greek ] = "��������?";
 //STRIP001      Text[ korean ] = "설정";
 //STRIP001      Text[ turkish ] = "Ayarlar";
 //STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Configuraci?;
+//STRIP001      Text[ catalan ] = "Configuraci?";
 //STRIP001      Text[ finnish ] = "Asetukset";
 //STRIP001      Text[ thai ] = "กำหนดค่า";
 //STRIP001      Text[ czech ] = "Nastavení";
-//STRIP001      Text[ hebrew ] = "‮הגדרות�?;
+//STRIP001      Text[ hebrew ] = "‮הגדרות�?";
 //STRIP001      Text[ hindi ] = "निर्धारण";
 //STRIP001      Text[ slovak ] = "Nastavenia";
 //STRIP001  };
@@ -421,7 +421,7 @@
 //STRIP001         Text = "~Position";
 //STRIP001         Text[ english_us ] = "Position";
 //STRIP001      Text[ portuguese ] = "~Posi��o:";
-//STRIP001      Text[ russian ] = "��������?;
+//STRIP001      Text[ russian ] = "��������?";
 //STRIP001      Text[ greek ] = "����";
 //STRIP001      Text[ dutch ] = "~Positie";
 //STRIP001      Text[ french ] = "Position";
@@ -439,10 +439,10 @@
 //STRIP001      Text[ turkish ] = "Konum";
 //STRIP001      Text[ arabic ] = "������:";
 //STRIP001      Text[ catalan ] = "~Posici?:";
-//STRIP001      Text[ thai ] = "ตำแหน่�?;
+//STRIP001      Text[ thai ] = "ตำแหน่�?";
 //STRIP001      Text[ czech ] = "Umístění";
-//STRIP001      Text[ hebrew ] = "‮מיקום�?;
-//STRIP001      Text[ hindi ] = "स्था�?;
+//STRIP001      Text[ hebrew ] = "‮מיקום�?";
+//STRIP001      Text[ hindi ] = "स्था�?";
 //STRIP001      Text[ slovak ] = "Umiestnenie";
 //STRIP001  };
 //STRIP001  ListBox LB_POSITION
@@ -474,9 +474,9 @@
 //STRIP001      Text[ chinese_simplified ] = "使用字段格式";
 //STRIP001      Text[ russian ] = "��������?������ ��?";
 //STRIP001      Text[ polish ] = "Zastosuj formatowanie pola";
-//STRIP001      Text[ japanese ] = "フィールドの書式設定を使�?;
+//STRIP001      Text[ japanese ] = "フィールドの書式設定を使�?";
 //STRIP001      Text[ chinese_traditional ] = "使用欄位格式";
-//STRIP001      Text[ arabic ] = "������?����?����?;
+//STRIP001      Text[ arabic ] = "������?����?����?";
 //STRIP001      Text[ greek ] = "�������� ����?������";
 //STRIP001      Text[ korean ] = "필드 서식 적용";
 //STRIP001      Text[ turkish ] = "Alan format�n?uygula";
@@ -485,8 +485,8 @@
 //STRIP001      Text[ finnish ] = "K�yt?kent�n muotoa";
 //STRIP001      Text[ thai ] = "ใช้รูปแบบเขตข้อมูล";
 //STRIP001      Text[ czech ] = "Použít formát pole";
-//STRIP001      Text[ hebrew ] = "‮יישו�?עיצוב שדה�?;
-//STRIP001      Text[ hindi ] = "क्षेत्�?रचना लागू कर�?;
+//STRIP001      Text[ hebrew ] = "‮יישו�?עיצוב שדה�?";
+//STRIP001      Text[ hindi ] = "क्षेत्�?रचना लागू कर�?";
 //STRIP001      Text[ slovak ] = "Použiť formát poľa";
 //STRIP001  };
 //STRIP001  CheckBox CB_CASE
@@ -507,21 +507,21 @@
 //STRIP001      Text[ spanish ] = "Coincidencia ~exacta";
 //STRIP001      Text[ english_us ] = "Match case";
 //STRIP001      Text[ chinese_simplified ] = "精确搜寻";
-//STRIP001      Text[ russian ] = "��������?������?;
+//STRIP001      Text[ russian ] = "��������?������?";
 //STRIP001      Text[ polish ] = "Uwzgl�dniaj wielko�� liter";
 //STRIP001      Text[ japanese ] = "大文字と小文字を区別する";
 //STRIP001      Text[ chinese_traditional ] = "精確搜尋";
 //STRIP001      Text[ arabic ] = "��?����";
-//STRIP001      Text[ greek ] = "������?��������?;
+//STRIP001      Text[ greek ] = "������?��������?";
 //STRIP001      Text[ korean ] = "대문자 �?소문자를 구분";
-//STRIP001      Text[ turkish ] = "B�Y�K/k���k harf duyarl?;
+//STRIP001      Text[ turkish ] = "B�Y�K/k���k harf duyarl?";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Coincid�ncia ~exacta";
 //STRIP001      Text[ finnish ] = "Sama kirjainkoko";
 //STRIP001      Text[ thai ] = "จับคู่ตัวพิมพ์";
 //STRIP001      Text[ czech ] = "Rozlišovat velikost";
-//STRIP001      Text[ hebrew ] = "‮התאמ�?אותיות גדולות קטנות�?;
-//STRIP001      Text[ hindi ] = "केस् तुलन�?कर�?;
+//STRIP001      Text[ hebrew ] = "‮התאמ�?אותיות גדולות קטנות�?";
+//STRIP001      Text[ hindi ] = "केस् तुलन�?कर�?";
 //STRIP001      Text[ slovak ] = "Rozlišovať veľkosť";
 //STRIP001  };
 //STRIP001  CheckBox CB_BACKWARD
@@ -542,21 +542,21 @@
 //STRIP001      Text[ spanish ] = "Buscar hacia ~atr�s";
 //STRIP001      Text[ english_us ] = "Search backwards";
 //STRIP001      Text[ chinese_simplified ] = "向后搜寻";
-//STRIP001      Text[ russian ] = "�������� ����?;
+//STRIP001      Text[ russian ] = "�������� ����?";
 //STRIP001      Text[ polish ] = "Szukaj wstecz";
-//STRIP001      Text[ japanese ] = "後戻りして検�?;
+//STRIP001      Text[ japanese ] = "後戻りして検�?";
 //STRIP001      Text[ chinese_traditional ] = "向後搜尋";
-//STRIP001      Text[ arabic ] = "��?����?;
+//STRIP001      Text[ arabic ] = "��?����?";
 //STRIP001      Text[ greek ] = "���~������ ����";
 //STRIP001      Text[ korean ] = "뒤로 찾기";
 //STRIP001      Text[ turkish ] = "Geriye do�ru ara";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Cerca cap enrere";
 //STRIP001      Text[ finnish ] = "Etsi taaksep�in";
-//STRIP001      Text[ thai ] = "ค้นหาย้อนกลั�?;
+//STRIP001      Text[ thai ] = "ค้นหาย้อนกลั�?";
 //STRIP001      Text[ czech ] = "Hledat nazpět";
-//STRIP001      Text[ hebrew ] = "‮חיפו�?אחורה�?;
-//STRIP001      Text[ hindi ] = "पीछे की ओर खो�?;
+//STRIP001      Text[ hebrew ] = "‮חיפו�?אחורה�?";
+//STRIP001      Text[ hindi ] = "पीछे की ओर खो�?";
 //STRIP001      Text[ slovak ] = "Spätné vyhľadávanie";
 //STRIP001  };
 //STRIP001  CheckBox CB_STARTOVER
@@ -576,21 +576,21 @@
 //STRIP001      Text[ dutch ] = "~Vanaf begin";
 //STRIP001      Text[ spanish ] = "~Desde el principio";
 //STRIP001      Text[ english_us ] = "From Beginning";
-//STRIP001      Text[ chinese_simplified ] = "从开�?;
+//STRIP001      Text[ chinese_simplified ] = "从开�?";
 //STRIP001      Text[ russian ] = "?������";
 //STRIP001      Text[ polish ] = "Od pocz�tku";
-//STRIP001      Text[ japanese ] = "最初か�?;
-//STRIP001      Text[ chinese_traditional ] = "從起�?;
-//STRIP001      Text[ arabic ] = "�� ������?;
+//STRIP001      Text[ japanese ] = "最初か�?";
+//STRIP001      Text[ chinese_traditional ] = "從起�?";
+//STRIP001      Text[ arabic ] = "�� ������?";
 //STRIP001      Text[ greek ] = "��?��?��~��";
-//STRIP001      Text[ korean ] = "처음부�?;
+//STRIP001      Text[ korean ] = "처음부�?";
 //STRIP001      Text[ turkish ] = "Ba�tan itibaren";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Des del principi";
 //STRIP001      Text[ finnish ] = "Alusta";
-//STRIP001      Text[ thai ] = "จากการเริ่มต้�?;
+//STRIP001      Text[ thai ] = "จากการเริ่มต้�?";
 //STRIP001      Text[ czech ] = "Od začátku";
-//STRIP001      Text[ hebrew ] = "‮חיפו�?מהתחלה�?;
+//STRIP001      Text[ hebrew ] = "‮חיפו�?מהתחלה�?";
 //STRIP001      Text[ hindi ] = "प्रारं�?से";
 //STRIP001      Text[ slovak ] = "Od začiatku";
 //STRIP001  };
@@ -611,22 +611,22 @@
 //STRIP001      Text[ dutch ] = "P~laatsvervangende tekst";
 //STRIP001      Text[ spanish ] = "~Expresi�n comod�n";
 //STRIP001      Text[ english_us ] = "Wildcard expression";
-//STRIP001      Text[ chinese_simplified ] = "通配符表�?;
-//STRIP001      Text[ russian ] = "��������?������?������?;
+//STRIP001      Text[ chinese_simplified ] = "通配符表�?";
+//STRIP001      Text[ russian ] = "��������?������?������?";
 //STRIP001      Text[ polish ] = "Wyra�enie symbolu wieloznacznego";
 //STRIP001      Text[ japanese ] = "ワイルドカードの表現";
 //STRIP001      Text[ chinese_traditional ] = "萬用字元表達";
 //STRIP001      Text[ arabic ] = "����?���� ����";
-//STRIP001      Text[ greek ] = "��������?�����~��?�������� ����?;
+//STRIP001      Text[ greek ] = "��������?�����~��?�������� ����?";
 //STRIP001      Text[ korean ] = "패턴 일치(와일드카드) �?";
 //STRIP001      Text[ turkish ] = "Genel arama terimi";
 //STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "~Expresi?comod?;
+//STRIP001      Text[ catalan ] = "~Expresi?comod?";
 //STRIP001      Text[ finnish ] = "Yleismerkkilauseke";
-//STRIP001      Text[ thai ] = "คำอธิบายตัวยึดตำแหน่�?;
+//STRIP001      Text[ thai ] = "คำอธิบายตัวยึดตำแหน่�?";
 //STRIP001      Text[ czech ] = "Výraz se zástupnými znaky";
-//STRIP001      Text[ hebrew ] = "‮ביטו�?כוכביות�?;
-//STRIP001      Text[ hindi ] = "वैल्डकार्ड वर्ण�?;
+//STRIP001      Text[ hebrew ] = "‮ביטו�?כוכביות�?";
+//STRIP001      Text[ hindi ] = "वैल्डकार्ड वर्ण�?";
 //STRIP001      Text[ slovak ] = "Výraz so zástupnými znakmi";
 //STRIP001  };
 //STRIP001  CheckBox CB_REGULAR
@@ -647,21 +647,21 @@
 //STRIP001      Text[ spanish ] = "Expresi�n ~regular";
 //STRIP001      Text[ english_us ] = "Regular expression";
 //STRIP001      Text[ chinese_simplified ] = "常规表达";
-//STRIP001      Text[ russian ] = "����?���� ��������?;
+//STRIP001      Text[ russian ] = "����?���� ��������?";
 //STRIP001      Text[ polish ] = "Wyra�enie regularne";
 //STRIP001      Text[ japanese ] = "正規表現";
 //STRIP001      Text[ chinese_traditional ] = "常規表達";
-//STRIP001      Text[ arabic ] = "����?������?;
-//STRIP001      Text[ greek ] = "�������� ������?;
-//STRIP001      Text[ korean ] = "정규�?;
+//STRIP001      Text[ arabic ] = "����?������?";
+//STRIP001      Text[ greek ] = "�������� ������?";
+//STRIP001      Text[ korean ] = "정규�?";
 //STRIP001      Text[ turkish ] = "Genel arama terimi";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Expresi?~regular";
 //STRIP001      Text[ finnish ] = "S��nn�llinen lauseke";
 //STRIP001      Text[ thai ] = "คำอธิบายปกติ";
 //STRIP001      Text[ czech ] = "Regulární výraz";
-//STRIP001      Text[ hebrew ] = "‮ביטויי�?רגולרוום�?;
-//STRIP001      Text[ hindi ] = "नियमित वर्ण�?;
+//STRIP001      Text[ hebrew ] = "‮ביטויי�?רגולרוום�?";
+//STRIP001      Text[ hindi ] = "नियमित वर्ण�?";
 //STRIP001      Text[ slovak ] = "Regulárny výraz";
 //STRIP001  };
 //STRIP001  CheckBox CB_APPROX
@@ -676,7 +676,7 @@
 //STRIP001      Text[ portuguese_brazilian ] = "Pesquisa por Semelhan�a";
 //STRIP001      Text[ portuguese ] = "Pro~cura por semelhan�a";
 //STRIP001      Text[ danish ] = "S�g lignende";
-//STRIP001      Text[ french ] = "Recherche de similarit?;
+//STRIP001      Text[ french ] = "Recherche de similarit?";
 //STRIP001      Text[ swedish ] = "~Likhetss�kning";
 //STRIP001      Text[ dutch ] = "Overeenkomsten ~zoeken";
 //STRIP001      Text[ spanish ] = "~B�squeda por semejanza";
@@ -685,18 +685,18 @@
 //STRIP001      Text[ russian ] = "����?��������";
 //STRIP001      Text[ polish ] = "Szukaj podobnych";
 //STRIP001      Text[ japanese ] = "類似スペルの検索";
-//STRIP001      Text[ chinese_traditional ] = "相似字搜�?;
-//STRIP001      Text[ arabic ] = "����?�� ����?������?;
+//STRIP001      Text[ chinese_traditional ] = "相似字搜�?";
+//STRIP001      Text[ arabic ] = "����?�� ����?������?";
 //STRIP001      Text[ greek ] = "��������?����������";
-//STRIP001      Text[ korean ] = "유사�?검�?;
+//STRIP001      Text[ korean ] = "유사�?검�?";
 //STRIP001      Text[ turkish ] = "Benzerini ara";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Cerca de similitud";
 //STRIP001      Text[ finnish ] = "Vastaavuushaku";
 //STRIP001      Text[ thai ] = "ค้นหาสิ่งที่คล้ายกัน";
 //STRIP001      Text[ czech ] = "Hledání podobností";
-//STRIP001      Text[ hebrew ] = "‮חפו�?על בסיס דמיון�?;
-//STRIP001      Text[ hindi ] = "तुल्यत�?खो�?;
+//STRIP001      Text[ hebrew ] = "‮חפו�?על בסיס דמיון�?";
+//STRIP001      Text[ hindi ] = "तुल्यत�?खो�?";
 //STRIP001      Text[ slovak ] = "Hľadanie synoným";
 //STRIP001  };
 //STRIP001  PushButton PB_APPROXSETTINGS
@@ -761,10 +761,10 @@
 //STRIP001      Text[ turkish ] = "Karakter geni�li�ini ayarla";
 //STRIP001      Text[ arabic ] = "����?��?����?��?����";
 //STRIP001      Text[ catalan ] = "Considera la llargada del car�cter";
-//STRIP001      Text[ thai ] = "จับคู่ความกว้างตัวอักษ�?;
+//STRIP001      Text[ thai ] = "จับคู่ความกว้างตัวอักษ�?";
 //STRIP001      Text[ czech ] = "Porovnat šířku znaku";
-//STRIP001      Text[ hebrew ] = "‮חיפו�?לפי רוחב תו�?;
-//STRIP001      Text[ hindi ] = "अक्ष�?विस्ता�?की तुलन�?कर�?;
+//STRIP001      Text[ hebrew ] = "‮חיפו�?לפי רוחב תו�?";
+//STRIP001      Text[ hindi ] = "अक्ष�?विस्ता�?की तुलन�?कर�?";
 //STRIP001      Text[ slovak ] = "Porovnať šírku znaku";
 //STRIP001  };
 //STRIP001  CheckBox CB_SOUNDSLIKECJK
@@ -796,7 +796,7 @@
 //STRIP001      Text[ finnish ] = "Samankuuloinen kuin (japani)";
 //STRIP001      Text[ thai ] = "เสียงคล้า�?(ภาษาญี่ปุ่�?";
 //STRIP001      Text[ czech ] = "Zní jako (japonština)";
-//STRIP001      Text[ hebrew ] = "‮נשמ�?כמו (יפנית)�?;
+//STRIP001      Text[ hebrew ] = "‮נשמ�?כמו (יפנית)�?";
 //STRIP001      Text[ hindi ] = "के समान (जपानी�?";
 //STRIP001      Text[ slovak ] = "Znie ako (japončina)";
 //STRIP001  };
@@ -848,13 +848,13 @@
 //STRIP001      Text[ dutch ] = "Status";
 //STRIP001      Text[ spanish ] = "Estado";
 //STRIP001      Text[ english_us ] = "State";
-//STRIP001      Text[ chinese_simplified ] = "状�?;
-//STRIP001      Text[ russian ] = "����?��?;
+//STRIP001      Text[ chinese_simplified ] = "状�?";
+//STRIP001      Text[ russian ] = "����?��?";
 //STRIP001      Text[ polish ] = "Stan";
-//STRIP001      Text[ japanese ] = "ステータ�?;
-//STRIP001      Text[ chinese_traditional ] = "狀�?;
+//STRIP001      Text[ japanese ] = "ステータ�?";
+//STRIP001      Text[ chinese_traditional ] = "狀�?";
 //STRIP001      Text[ arabic ] = "������";
-//STRIP001      Text[ greek ] = "����?;
+//STRIP001      Text[ greek ] = "����?";
 //STRIP001      Text[ korean ] = "상태";
 //STRIP001      Text[ turkish ] = "Durum";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -862,8 +862,8 @@
 //STRIP001      Text[ finnish ] = "Tila";
 //STRIP001      Text[ thai ] = "ภาวะ";
 //STRIP001      Text[ czech ] = "Stav";
-//STRIP001      Text[ hebrew ] = "‮מדינה�?;
-//STRIP001      Text[ hindi ] = "वस्तुस्थित�?;
+//STRIP001      Text[ hebrew ] = "‮מדינה�?";
+//STRIP001      Text[ hindi ] = "वस्तुस्थित�?";
 //STRIP001      Text[ slovak ] = "Štát";
 //STRIP001  };
 //STRIP001  FixedText FT_RECORDLABEL
@@ -881,11 +881,11 @@
 //STRIP001      Text[ dutch ] = "Record:";
 //STRIP001      Text[ spanish ] = "Registro :";
 //STRIP001      Text[ english_us ] = "Record :";
-//STRIP001      Text[ chinese_simplified ] = "数据条目�?;
+//STRIP001      Text[ chinese_simplified ] = "数据条目�?";
 //STRIP001      Text[ russian ] = "������ :";
 //STRIP001      Text[ polish ] = "Rekord:";
 //STRIP001      Text[ japanese ] = "レコード:";
-//STRIP001      Text[ chinese_traditional ] = "資料條目�?;
+//STRIP001      Text[ chinese_traditional ] = "資料條目�?";
 //STRIP001      Text[ arabic ] = "��?:";
 //STRIP001      Text[ greek ] = "������?:";
 //STRIP001      Text[ korean ] = "레코�?";
@@ -895,7 +895,7 @@
 //STRIP001      Text[ finnish ] = "Tietue :";
 //STRIP001      Text[ thai ] = "ระเบียน :";
 //STRIP001      Text[ czech ] = "Záznam:";
-//STRIP001      Text[ hebrew ] = "‮רשומ�? �?;
+//STRIP001      Text[ hebrew ] = "‮רשומ�? �?";
 //STRIP001      Text[ hindi ] = "लेखा :";
 //STRIP001      Text[ slovak ] = "Záznam:";
 //STRIP001  };
@@ -929,21 +929,21 @@
 //STRIP001      Text[ spanish ] = "~Buscar";
 //STRIP001      Text[ english_us ] = "Search";
 //STRIP001      Text[ chinese_simplified ] = "搜寻";
-//STRIP001      Text[ russian ] = "����?;
+//STRIP001      Text[ russian ] = "����?";
 //STRIP001      Text[ polish ] = "Szukaj";
 //STRIP001      Text[ japanese ] = "検索";
 //STRIP001      Text[ chinese_traditional ] = "搜尋";
-//STRIP001      Text[ arabic ] = "��?;
+//STRIP001      Text[ arabic ] = "��?";
 //STRIP001      Text[ greek ] = "A��������";
-//STRIP001      Text[ korean ] = "검�?;
+//STRIP001      Text[ korean ] = "검�?";
 //STRIP001      Text[ turkish ] = "Ara";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Cerca";
 //STRIP001      Text[ finnish ] = "Etsi";
-//STRIP001      Text[ thai ] = "ค้นห�?;
+//STRIP001      Text[ thai ] = "ค้นห�?";
 //STRIP001      Text[ czech ] = "Hledat";
-//STRIP001      Text[ hebrew ] = "‮חיפוש�?;
-//STRIP001      Text[ hindi ] = "खो�?;
+//STRIP001      Text[ hebrew ] = "‮חיפוש�?";
+//STRIP001      Text[ hindi ] = "खो�?";
 //STRIP001      Text[ slovak ] = "Hľadať";
 //STRIP001  };
 //STRIP001  CancelButton 1
@@ -964,21 +964,21 @@
 //STRIP001      Text[ spanish ] = "~Cerrar";
 //STRIP001      Text[ english_us ] = "~Close";
 //STRIP001      Text[ chinese_simplified ] = "关闭(~C)";
-//STRIP001      Text[ russian ] = "~������?;
+//STRIP001      Text[ russian ] = "~������?";
 //STRIP001      Text[ polish ] = "~Zamknij";
 //STRIP001      Text[ japanese ] = "閉じ�?~C)";
 //STRIP001      Text[ chinese_traditional ] = "關閉(~C)";
-//STRIP001      Text[ arabic ] = "����?;
+//STRIP001      Text[ arabic ] = "����?";
 //STRIP001      Text[ greek ] = "��������";
 //STRIP001      Text[ korean ] = "닫기(~C)";
 //STRIP001      Text[ turkish ] = "Kapat";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Tan~ca";
 //STRIP001      Text[ finnish ] = "~Sulje";
-//STRIP001      Text[ thai ] = "~ปิ�?;
+//STRIP001      Text[ thai ] = "~ปิ�?";
 //STRIP001      Text[ czech ] = "Zavřít";
-//STRIP001      Text[ hebrew ] = "‮סגירה�?;
-//STRIP001      Text[ hindi ] = "~बन्द कर�?;
+//STRIP001      Text[ hebrew ] = "‮סגירה�?";
+//STRIP001      Text[ hindi ] = "~बन्द कर�?";
 //STRIP001      Text[ slovak ] = "~Zavrieť";
 //STRIP001  };
 //STRIP001  HelpButton 1
@@ -998,12 +998,12 @@
 //STRIP001      Text[ spanish ] = "~Ayuda";
 //STRIP001      Text[ english_us ] = "~Help";
 //STRIP001      Text[ chinese_simplified ] = "帮助(~H)";
-//STRIP001      Text[ russian ] = "~������?;
+//STRIP001      Text[ russian ] = "~������?";
 //STRIP001      Text[ polish ] = "Po~moc";
 //STRIP001      Text[ japanese ] = "ヘル�?~H)";
 //STRIP001      Text[ chinese_traditional ] = "說明(~H)";
-//STRIP001      Text[ arabic ] = "�~����?;
-//STRIP001      Text[ greek ] = "������?;
+//STRIP001      Text[ arabic ] = "�~����?";
+//STRIP001      Text[ greek ] = "������?";
 //STRIP001      Text[ korean ] = "도움�?~H)";
 //STRIP001      Text[ turkish ] = "Yard�m";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -1011,77 +1011,81 @@
 //STRIP001      Text[ finnish ] = "~Ohje";
 //STRIP001      Text[ thai ] = "~ช่วยเหลือ";
 //STRIP001      Text[ czech ] = "Nápověda";
-//STRIP001      Text[ hebrew ] = "‮עזרה�?;
+//STRIP001      Text[ hebrew ] = "‮עזרה�?";
 //STRIP001      Text[ hindi ] = "~सहायता";
 //STRIP001      Text[ slovak ] = "~Pomocník";
 //STRIP001  };
-//STRIP001  Text[ thai ] = "ระเบียนค้นห�?;
+//STRIP001  Text[ thai ] = "ระเบียนค้นห�?";
 //STRIP001  Text[ czech ] = "Hledání záznamu";
-//STRIP001  Text[ hebrew ] = "‮חיפו�?רשומות�?;
-//STRIP001  Text[ hindi ] = "लेखा खो�?कर�?;
+//STRIP001  Text[ hebrew ] = "‮חיפו�?רשומות�?";
+//STRIP001  Text[ hindi ] = "लेखा खो�?कर�?";
 //STRIP001  Text[ slovak ] = "Hľadanie záznamu";
 //STRIP001 };
 
-String RID_STR_RECORDSEARCH_METHODS
-{
-    Text [ de ] = "beliebig im Feld;am Feldanfang;am Feldende;ganzes Feld" ;
-    Text [ en-US ] = "anywhere in the field;beginning of field;end of field;entire field";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "qualquer posição dentro do campo; no início do campo; no fim do campo; no campo inteiro";
-    Text[ ru ] = "в любом месте поля;начало поля;конец поля;поле целиком";
-    Text[ el ] = "τυχαία;στην αρχή του πεδίου;στο τέλος του πεδίου;ολόκληρο το πεδίο";
-    Text[ nl ] = "willekeurige plaats in veld;aan veldeinde;aan veldbegin;compleet veld";
-    Text[ fr ] = "à un endroit quelconque du champ;en début de champ;en fin de champ;le champ entier";
-    Text[ es ] = "cualquier parte en campo;al principio del campo;al final del campo;todo el campo";
-    Text[ fi ] = "missä tahansa;kentän alussa;kentän lopussa;koko kenttä";
-    Text[ ca ] = "qualsevol part del camp;a l'inici del camp;al final del camp;tot el camp";
-    Text[ it ] = "a piacere sul campo;all'inizio del campo;alla fine del campo;l'intero campo";
-    Text[ sk ] = "kdekoľvek v poli;začiatok poľa;koniec poľa;celé pole";
-    Text[ da ] = "vilkårlig i feltet;ved feltets begyndelse;ved feltets slutning;hele feltet";
-    Text[ sv ] = "var du vill i fältet;i fältets början;i fältets slut;i hela fältet";
-    Text[ pl ] = "w dowolnym miejscu pola; na początku pola; na końcu pola;całe pole";
-    Text[ pt-BR ] = "em qualquer posição dentro do campo; no início do campo; no fim do campo; no campo inteiro";
-    Text[ th ] = "ที่ไหนก็ได้ในเขตข้อมูล;จุดเริ่มต้นของเขตข้อมูล;จุดสิ้นสุดของเขตข้อมูล;ทั้งเขตข้อมูล";
-    Text[ ja ] = "フィールド内;フィールドの初め;フィールドの終り;フィールド全体";
-    Text[ ko ] = "필드에서 임의로;필드 시작에;필드 끝에;전체 필드";
-    Text[ zh-CN ] = "字段内的任意位置;在字段的开端;在字段的结尾;整个字段";
-    Text[ zh-TW ] = "欄位的任意位置;在欄位起始位置;在欄位的結尾;整個欄位";
-    Text[ tr ] = "Alanda rasgele;Alan başında;Alan sonunda;Tüm alanda";
-    Text[ hi-IN ] = "क्षेत्र की किसी न किसी स्थान में;क्षेत्र की प्रारंभ में;क्षेत्र की अंत में;संपूर्ण क्षेत्र";
-    Text[ ar ] = "في أي مكان في الحقل؛في بدايته;في نهايته؛الحقل كله";
-    Text[ he ] = "‮בכל מקום בשדה;תחילת שדה;סוף שדה;השדה כולו‬";
-};
+//STRIP001 String RID_STR_RECORDSEARCH_METHODS
+//STRIP001 {
+//STRIP001      Text = "beliebig im Feld;am Feldanfang;am Feldende;ganzes Feld" ;
+//STRIP001      Text [ ENGLISH ] = "beliebig im Feld;am Feldanfang;am Feldende;ganzes Feld" ;
+//STRIP001      Text[ italian ] = "a piacere sul campo;all'inizio del campo;alla fine del campo;l'intero campo";
+//STRIP001      Text[ portuguese_brazilian ] = "em qualquer posi��o dentro do campo; no in�cio do campo; no fim do campo; no campo inteiro";
+//STRIP001      Text[ portuguese ] = "qualquer posi��o dentro do campo; no in�cio do campo; no fim do campo; no campo inteiro";
+//STRIP001      Text[ danish ] = "vilk�rlig i feltet;ved feltets begyndelse;ved feltets slutning;hele feltet";
+//STRIP001      Text[ french ] = "?un endroit quelconque du champ;en d�but de champ;en fin de champ;le champ entier";
+//STRIP001      Text[ swedish ] = "var du vill i f�ltet;i f�ltets b�rjan;i f�ltets slut;i hela f�ltet";
+//STRIP001      Text[ dutch ] = "willekeurige plaats in veld;aan veldeinde;aan veldbegin;compleet veld";
+//STRIP001      Text[ spanish ] = "cualquier parte en campo;al principio del campo;al final del campo;todo el campo";
+//STRIP001      Text[ english_us ] = "anywhere in the field;beginning of field;end of field;entire field";
+//STRIP001      Text[ chinese_simplified ] = "字段内的任意位置;在字段的开�?在字段的结尾;整个字段";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ russian ] = "?����?����?��?";������ ��?";����?��?";���� ������?";
+//STRIP001      Text[ polish ] = "w dowolnym miejscu pola; na pocz�tku pola; na ko�cu pola;ca�e pole";
+//STRIP001      Text[ japanese ] = "フィールド内;フィールドの初め;フィールドの終り;フィールド全�?";
+//STRIP001      Text[ chinese_traditional ] = "欄位的任意位�?在欄位起始位�?在欄位的結尾;整個欄�?";
+//STRIP001      Text[ arabic ] = "�� �� ���� �� ������� ������;�� ����������� ��?";
+//STRIP001      Text[ greek ] = "������;���� ���� ��?������;��?����?��?������;�������� �� ����?";
+//STRIP001      Text[ korean ] = "필드에서 임의�?필드 시작�?필드 끝에;전체 필드";
+//STRIP001      Text[ turkish ] = "Alanda rasgele;Alan ba��nda;Alan sonunda;T�m alanda";
+//STRIP001      Text[ catalan ] = "qualsevol part del camp;a l'inici del camp;al final del camp;tot el camp";
+//STRIP001      Text[ finnish ] = "miss?tahansa;kent�n alussa;kent�n lopussa;koko kentt?";
+//STRIP001      Text[ thai ] = "ที่ไหนก็ได้ในเขตข้อมูล;จุดเริ่มต้นของเขตข้อมูล;จุดสิ้นสุดของเขตข้อมูล;ทั้งเขตข้อมูล";
+//STRIP001      Text[ czech ] = "kdekoliv v poli;začátek pole;konec pole;celé pole";
+//STRIP001      Text[ hebrew ] = "‮בכ�?מקום בשדה;תחילת שדה;סוף שדה;השדה כולו�?";
+//STRIP001      Text[ hindi ] = "क्षेत्�?की किसी �?किसी स्था�?मे�?क्षेत्�?की प्रारं�?मे�?क्षेत्�?की अं�?मे�?संपूर्�?क्षेत्�?";
+//STRIP001      Text[ slovak ] = "kdekoľvek v poli;začiatok poľa;koniec poľa;celé pole";
+//STRIP001 };
 
-String RID_STR_RECORDSEARCH_BUTTONS
-{
-    // Bem. : das 'Suchen' in diesem String muss genau das selbe sein wie die Beschriftung des PB_SEARCH-Buttons im Dialog
-    Text [ de ] = "~Vom Anfang;~Vom Ende;~Suchen;~Abbrechen" ;
-    Text [ en-US ] = "From top;From bottom;Search;Cancel";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "~do princípio; do ~fim; ~Localizar; ~Cancelar";
-    Text[ ru ] = "C начала;С конца;Поиск;Отменить";
-    Text[ el ] = "Από την αρχή;Από το τέλος;Αναζήτη~ση;~Άκυρο";
-    Text[ nl ] = "~Vanaf begin;~Vanaf einde;~Zoeken;~Stoppen";
-    Text[ fr ] = "À partir du début ; À partir de la fin ; Rechercher ; Annuler";
-    Text[ es ] = "~Desde el principio;~Desde el final;~Buscar;~Cancelar";
-    Text[ fi ] = "Ylhäältä;Alhaalta;Etsi;Peruuta";
-    Text[ ca ] = "~Des de l'inici;~Des del final;~Cerca;~Cancel.la";
-    Text[ it ] = "dall'inizio;dalla fine; cerca;annulla";
-    Text[ sk ] = "Zhora;Zdola;Hľadať;Zrušiť";
-    Text[ da ] = "Fra begyndelsen;Fra slutningen;Søg;Annuller";
-    Text[ sv ] = "~Från början;~Från slutet;~Sök;~Avbryt";
-    Text[ pl ] = "Od góry;Od dołu;Szukaj;Anuluj";
-    Text[ pt-BR ] = "Desde cima; Desde baixo; Pesquisar; Cancelar";
-    Text[ th ] = "จากด้านบน;จากด้านล่าง;ค้นหา;ยกเลิก";
-    Text[ ja ] = "最初から;最後から;検索;キャンセル";
-    Text[ ko ] = "처음부터;끝에서부터;찾기;취소";
-    Text[ zh-CN ] = "从开端位置;从结束位置;搜寻;取消";
-    Text[ zh-TW ] = "從起始位置;從結束位置;搜尋;取消";
-    Text[ tr ] = "Baştan;Sondan;Ara;İptal";
-    Text[ hi-IN ] = "ऊपर से;नीचे से;खोज;रद्द करो";
-    Text[ ar ] = "من البداية؛ من النهاية؛ بحث؛ إلغاء";
-    Text[ he ] = "‮מלמעלה;מלמטה;חיפוש;ביטול‬";
-};
+//STRIP001 String RID_STR_RECORDSEARCH_BUTTONS
+//STRIP001 {
+//STRIP001      // Bem. : das 'Suchen' in diesem String muss genau das selbe sein wie die Beschriftung des PB_SEARCH-Buttons im Dialog
+//STRIP001      Text = "~Vom Anfang;~Vom Ende;~Suchen;~Abbrechen" ;
+//STRIP001      Text [ ENGLISH ] = "~Vom Anfang;~Vom Ende;~Suchen;~Abbrechen" ;
+//STRIP001      Text[ italian ] = "dall'inizio;dalla fine; cerca;annulla";
+//STRIP001      Text[ portuguese_brazilian ] = "Desde cima; Desde baixo; Pesquisar; Cancelar";
+//STRIP001      Text[ portuguese ] = "~do princ�pio; do ~fim; ~Localizar; ~Cancelar";
+//STRIP001      Text[ danish ] = "Fra begyndelsen;Fra slutningen;S�g;Annuller";
+//STRIP001      Text[ french ] = "?partir du d�but ; ?partir de la fin ; Rechercher ; Annuler";
+//STRIP001      Text[ swedish ] = "~Fr�n b�rjan;~Fr�n slutet;~S�k;~Avbryt";
+//STRIP001      Text[ dutch ] = "~Vanaf begin;~Vanaf einde;~Zoeken;~Stoppen";
+//STRIP001      Text[ spanish ] = "~Desde el principio;~Desde el final;~Buscar;~Cancelar";
+//STRIP001      Text[ english_us ] = "From top;From bottom;Search;Cancel";
+//STRIP001      Text[ chinese_simplified ] = "从开端位�?从结束位�?搜寻;取消";
+//STRIP001      Text[ russian ] = "C ������;?����?����?��������";
+//STRIP001      Text[ polish ] = "Od g�ry;Od do�u;Szukaj;Anuluj";
+//STRIP001      Text[ japanese ] = "最初か�?最後か�?検索;キャンセ�?";
+//STRIP001      Text[ chinese_traditional ] = "從起始位�?從結束位�?搜尋;取消";
+//STRIP001      Text[ arabic ] = "�� ������ɺ �� ������ɺ ��˺ ����?";
+//STRIP001      Text[ greek ] = "��?��?����;��?�� ����?�������~��;~����?";
+//STRIP001      Text[ korean ] = "처음부�?끝에서부�?찾기;취소";
+//STRIP001      Text[ turkish ] = "Ba�tan;Sondan;Ara;�ptal";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Des de l'inici;~Des del final;~Cerca;~Cancel.la";
+//STRIP001      Text[ finnish ] = "Ylh��lt?Alhaalta;Etsi;Peruuta";
+//STRIP001      Text[ thai ] = "จากด้านบ�?จากด้านล่า�?ค้นห�?ยกเลิ�?";
+//STRIP001      Text[ czech ] = "Odshora;Zezdola;Hledat;Zrušit";
+//STRIP001      Text[ hebrew ] = "‮מלמעל�?מלמטה;חיפוש;ביטול�?";
+//STRIP001      Text[ hindi ] = "ऊप�?से;नीचे से;खो�?रद्द कर�?";
+//STRIP001      Text[ slovak ] = "Zhora;Zdola;Hľadať;Zrušiť";
+//STRIP001 };
 
 ErrorBox RID_SVXERR_SEARCH_NORECORD
 {
@@ -1145,65 +1149,69 @@ ErrorBox RID_SVXERR_SEARCH_GENERAL_ERROR
     Message[ he ] = "‮ארעה שגיאה לא מוכרת. לא ניתן לסיים את החיפוש!‬";
 };
 
-String RID_STR_SEARCH_OVERFLOW
-{
-    Text [ de ] = "�berlauf, Suche wurde am Anfang fortgesetzt;�berlauf, Suche wurde am Ende fortgesetzt" ;
-    Text [ en-US ] = "Overflow, search continued at the beginning;Overflow, search continued at the end";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Transbordo - Localizar continua pelo início;Transbordo - Localizar continua pelo final.";
-    Text[ ru ] = "Переполнение, поиск продолжен с начала;Переполнение, поиск продолжен с конца";
-    Text[ el ] = "Υπερχείλιση, η αναζήτηση συνεχίστηκε από την αρχή;Υπερχείλιση, η αναζήτηση συνεχίστηκε από το τέλος";
-    Text[ nl ] = "Overloop, zoekactie is aan begin hervat;Overloop, zoekactie is aan einde hervat";
-    Text[ fr ] = "Débordement - la recherche a continué au début;Débordement - la recherche a continué à la fin";
-    Text[ es ] = "Desbordamiento; la búsqueda continúa por el principio;Desbordamiento; la búsqueda continúa desde el final";
-    Text[ fi ] = "Ylivuoto, hakua jatkettiin alusta;Ylivuoto, hakua jatkettiin lopusta";
-    Text[ ca ] = "Desbordament; la cerca continua per l'inici;Desbordament; la cerca continua pel final";
-    Text[ it ] = "Overflow, la ricerca è stata proseguita dall'inizio;Overflow, la ricerca è stata proseguita dalla fine";
-    Text[ sk ] = "Dookola, hľadanie pokračuje na začiatku;Dookola, hľadanie pokračuje na konci";
-    Text[ da ] = "\"Overløb, søgning fortsat ved start;Overløb, søgning fortsat ved slutning\"";
-    Text[ sv ] = "Spill, sökningen fortsatte från början;spill, sökningen fortsatte från slutet";
-    Text[ pl ] = "Przepełnienie, wyszukiwanie kontynuowane na początku;Przepełnienie, wyszukiwanie kontynuowane na końcu";
-    Text[ pt-BR ] = "Transbordo, a pesquisa continuou pelo início;Transbordo, a pesquisa continuou pelo final.";
-    Text[ th ] = "ล้น, ค้นหาต่อเนื่องที่จุดเริ่มต้น;ล้น, ค้นหาต่อเนื่องที่จุดสุดท้าย";
-    Text[ ja ] = "検索終了、最初から繰り返し検索;検索終了、最後から繰り返し検索";
-    Text[ ko ] = "오버플로, 찾기가 시작 부분에서 계속되었습니다;오버플로, 찾기가 끝 부분에서 계속되었습니다";
-    Text[ zh-CN ] = "超过,从起始位置接着搜寻;超过,从结束位置接着搜寻";
-    Text[ zh-TW ] = "超過,接著從起始位置搜尋;超過,接著從結尾位置搜尋";
-    Text[ tr ] = "Overflow, search continued at the beginning;Overflow, search continued at the end";
-    Text[ hi-IN ] = "अधिकता, खोज को प्रारंभ से जारी रखा है;अधिकता, खोज को अंत से जारी रखा है";
-    Text[ ar ] = "فائض، تم مواصلة البحث عند البداية; فائض، تم مواصلة البحث عند النهاية";
-    Text[ he ] = "‮הצפה, החיפש ממשיך מההתחלה; הצפה, החיפוש ממשיך מהסוף‬";
-};
+//STRIP001 String RID_STR_SEARCH_OVERFLOW
+//STRIP001 {
+//STRIP001      Text = "�berlauf, Suche wurde am Anfang fortgesetzt;�berlauf, Suche wurde am Ende fortgesetzt" ;
+//STRIP001      Text [ ENGLISH ] = "�berlauf, Suche wurde am Anfang fortgesetzt;�berlauf, Suche wurde am Ende fortgesetzt" ;
+//STRIP001      Text[ italian ] = "Overflow, la ricerca ?stata proseguita dall'inizio;Overflow, la ricerca ?stata proseguita dalla fine";
+//STRIP001      Text[ portuguese_brazilian ] = "Transbordo, a pesquisa continuou pelo in�cio;Transbordo, a pesquisa continuou pelo final.";
+//STRIP001      Text[ portuguese ] = "Transbordo - Localizar continua pelo in�cio;Transbordo - Localizar continua pelo final.";
+//STRIP001      Text[ danish ] = "\"Overl�b, s�gning fortsat ved start;Overl�b, s�gning fortsat ved slutning\"";
+//STRIP001      Text[ french ] = "D�bordement - la recherche a continu?au d�but;D�bordement - la recherche a continu??la fin";
+//STRIP001      Text[ swedish ] = "Spill, s�kningen fortsatte fr�n b�rjan;spill, s�kningen fortsatte fr�n slutet";
+//STRIP001      Text[ dutch ] = "Overloop, zoekactie is aan begin hervat;Overloop, zoekactie is aan einde hervat";
+//STRIP001      Text[ spanish ] = "Desbordamiento; la b�squeda contin�a por el principio;Desbordamiento; la b�squeda contin�a desde el final";
+//STRIP001      Text[ english_us ] = "Overflow, search continued at the beginning;Overflow, search continued at the end";
+//STRIP001      Text[ chinese_simplified ] = "超过,从起始位置接着搜寻;超过,从结束位置接着搜寻";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ russian ] = "������������, ����?��������??������;������������, ����?��������??����?";
+//STRIP001      Text[ polish ] = "Przepe�nienie, wyszukiwanie kontynuowane na pocz�tku;Przepe�nienie, wyszukiwanie kontynuowane na ko�cu";
+//STRIP001      Text[ japanese ] = "検索終了、最初から繰り返し検�?検索終了、最後から繰り返し検�?";
+//STRIP001      Text[ chinese_traditional ] = "超過,接著從起始位置搜�?超過,接著從結尾位置搜�?";
+//STRIP001      Text[ arabic ] = "����?�� ������ ����?��?������? ����?�� ������ ����?��?������?";
+//STRIP001      Text[ greek ] = "����������? ?��������?����������?��?��?����;����������? ?��������?����������?��?�� ����?";
+//STRIP001      Text[ korean ] = "오버플로, 찾기가 시작 부분에�?계속되었습니�?오버플로, 찾기가 �?부분에�?계속되었습니�?";
+//STRIP001      Text[ turkish ] = "Overflow, search continued at the beginning;Overflow, search continued at the end";
+//STRIP001      Text[ catalan ] = "Desbordament; la cerca continua per l'inici;Desbordament; la cerca continua pel final";
+//STRIP001      Text[ finnish ] = "Ylivuoto, hakua jatkettiin alusta;Ylivuoto, hakua jatkettiin lopusta";
+//STRIP001      Text[ thai ] = "ล้�? ค้นหาต่อเนื่องที่จุดเริ่มต้�?ล้�? ค้นหาต่อเนื่องที่จุดสุดท้าย";
+//STRIP001      Text[ czech ] = "Dokola, hledání pokračuje na začátku;Dokola, hledání pokračuje na konci";
+//STRIP001      Text[ hebrew ] = "‮הצפ�? החיפש ממשיך מההתחלה; הצפה, החיפוש ממשיך מהסוף�?";
+//STRIP001      Text[ hindi ] = "अधिकता, खो�?को प्रारं�?से जारी रख�?है;अधिकता, खो�?को अं�?से जारी रख�?है";
+//STRIP001      Text[ slovak ] = "Dookola, hľadanie pokračuje na začiatku;Dookola, hľadanie pokračuje na konci";
+//STRIP001 };
 
-String RID_STR_SEARCH_COUNTING
-{
-    Text [ de ] = "z�hle Datens�tze" ;
-    Text [ en-US ] = "counting records";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Contar registos de dados";
-    Text[ ru ] = "подсчет записей";
-    Text[ el ] = "αρίθμηση εγγραφών";
-    Text[ nl ] = "tel records";
-    Text[ fr ] = "Compter les enregistrements";
-    Text[ es ] = "contando registros de datos";
-    Text[ fi ] = "lasketaan tietueet";
-    Text[ ca ] = "s'estan comptant els registres";
-    Text[ it ] = "Overflow, la ricerca è stata proseguita dall'inizio, la ricerca è stata proseguita dalla fine";
-    Text[ sk ] = "počítať záznamy";
-    Text[ da ] = "tæller dataposter";
-    Text[ sv ] = "Räkna dataposter";
-    Text[ pl ] = "liczenie rekordów";
-    Text[ pt-BR ] = "contando registros";
-    Text[ th ] = "นับระเบียน";
-    Text[ ja ] = "レコードを数える";
-    Text[ ko ] = "레코드 수 세기";
-    Text[ zh-CN ] = "记数数据条目";
-    Text[ zh-TW ] = "計數資料項目";
-    Text[ tr ] = "Veri kümeleri sayılıyor";
-    Text[ hi-IN ] = "लेखाओं को गिनना";
-    Text[ ar ] = "عد سجلات البيانات";
-    Text[ he ] = "‮ספירת רשומות‬";
-};
+//STRIP001 String RID_STR_SEARCH_COUNTING
+//STRIP001 {
+//STRIP001      Text = "z�hle Datens�tze" ;
+//STRIP001      Text [ ENGLISH ] = "z�hle Datens�tze" ;
+//STRIP001      Text[ italian ] = "Overflow, la ricerca ?stata proseguita dall'inizio, la ricerca ?stata proseguita dalla fine";
+//STRIP001      Text[ portuguese_brazilian ] = "contando registros";
+//STRIP001      Text[ portuguese ] = "Contar registos de dados";
+//STRIP001      Text[ danish ] = "t�ller dataposter";
+//STRIP001      Text[ french ] = "Compter les enregistrements";
+//STRIP001      Text[ swedish ] = "R�kna dataposter";
+//STRIP001      Text[ dutch ] = "tel records";
+//STRIP001      Text[ spanish ] = "contando registros de datos";
+//STRIP001      Text[ english_us ] = "counting records";
+//STRIP001      Text[ chinese_simplified ] = "记数数据条目";
+//STRIP001      Text[ russian ] = "������?������?";
+//STRIP001      Text[ polish ] = "liczenie rekord�w";
+//STRIP001      Text[ japanese ] = "レコードを数える";
+//STRIP001      Text[ chinese_traditional ] = "計數資料項目";
+//STRIP001      Text[ arabic ] = "�� ����?��������";
+//STRIP001      Text[ greek ] = "�������� ��������";
+//STRIP001      Text[ korean ] = "레코�?�?세기";
+//STRIP001      Text[ turkish ] = "Veri k�meleri say�l�yor";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "s'estan comptant els registres";
+//STRIP001      Text[ finnish ] = "lasketaan tietueet";
+//STRIP001      Text[ thai ] = "นับระเบียน";
+//STRIP001      Text[ czech ] = "počítat záznamy";
+//STRIP001      Text[ hebrew ] = "‮ספיר�?רשומות�?";
+//STRIP001      Text[ hindi ] = "लेखाओं को गिनन�?";
+//STRIP001      Text[ slovak ] = "počítať záznamy";
+//STRIP001 };
 
 
 
