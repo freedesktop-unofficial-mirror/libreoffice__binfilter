@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:43:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
-#include <svtools/PasswordHelper.hxx>
-#endif
+// auto strip #ifndef _SVTOOLS_PASSWORDHELPER_HXX
+// auto strip #include <svtools/PasswordHelper.hxx>
+// auto strip #endif
 #ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
 #endif
@@ -89,18 +89,18 @@
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYLIST_HPP_
 #include <com/sun/star/linguistic2/XDictionaryList.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HPP_
-#include <com/sun/star/linguistic2/XDictionary.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionary.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
 #include <com/sun/star/linguistic2/XDictionary1.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
@@ -111,67 +111,77 @@
 #ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
 #endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
 
 #ifndef _SWDOCSH_HXX //autogen
 #include <docsh.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef SW_LINEINFO_HXX //autogen
 #include <lineinfo.hxx>
 #endif
-#ifndef _VIEWOPT_HXX //autogen
-#include <viewopt.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen
-#include <swmodule.hxx>
-#endif
-#ifndef _VIEWSH_HXX //autogen
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _VIEWOPT_HXX //autogen
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX //autogen
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX //autogen
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
 #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
 #endif
 #ifndef _SW3MARKS_HXX
 #include <sw3marks.hxx>
 #endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
@@ -184,9 +194,9 @@
 #ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
 #endif
-#ifndef _CRYPTER_HXX
-#include <crypter.hxx>
-#endif
+// auto strip #ifndef _CRYPTER_HXX
+// auto strip #include <crypter.hxx>
+// auto strip #endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
@@ -202,9 +212,9 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _FTNIDX_HXX //autogen
-#include <ftnidx.hxx>
-#endif
+// auto strip #ifndef _FTNIDX_HXX //autogen
+// auto strip #include <ftnidx.hxx>
+// auto strip #endif
 
 #ifndef _CMDID_H
 #include <cmdid.h>
