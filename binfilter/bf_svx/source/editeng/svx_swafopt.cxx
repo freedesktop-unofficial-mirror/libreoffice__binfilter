@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_swafopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:37:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _SV_KEYCODES_HXX //autogen
 #include <vcl/keycodes.hxx>
 #endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #include "swafopt.hxx"
 namespace binfilter {
