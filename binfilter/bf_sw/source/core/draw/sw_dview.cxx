@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dview.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:18:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,53 +63,58 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVDPAGV_HXX //autogen
-#include <bf_svx/svdpagv.hxx>
-#endif
-#ifndef _FM_FMMODEL_HXX
-#include <bf_svx/fmmodel.hxx>
-#endif
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGV_HXX //autogen
+// auto strip #include <bf_svx/svdpagv.hxx>
+// auto strip #endif
+// auto strip #ifndef _FM_FMMODEL_HXX
+// auto strip #include <bf_svx/fmmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
 
 
-#include "swtypes.hxx"
-#include "pagefrm.hxx"
-#include "rootfrm.hxx"
-#include "cntfrm.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "swtypes.hxx"
+// auto strip #include "pagefrm.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "cntfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
 #include "frmfmt.hxx"
-#include "dflyobj.hxx"
+// auto strip #include "dflyobj.hxx"
 #include "dcontact.hxx"
-#include "frmatr.hxx"
+// auto strip #include "frmatr.hxx"
 #include "viewsh.hxx"
 #include "viewimp.hxx"
 #include "dview.hxx"
-#include "dpage.hxx"
-#include "doc.hxx"
-#include "mdiexp.hxx"
+// auto strip #include "dpage.hxx"
+// auto strip #include "doc.hxx"
+// auto strip #include "mdiexp.hxx"
 
-#ifndef _NDOLE_HXX //autogen
-#include <ndole.hxx>
-#endif
+// auto strip #ifndef _NDOLE_HXX //autogen
+// auto strip #include <ndole.hxx>
+// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#include "shellres.hxx"
+// auto strip #include "shellres.hxx"
 
 // #i7672#
-#ifndef _OUTLINER_HXX //autogen
-#include <bf_svx/outliner.hxx>
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
 
 // OD 18.06.2003 #108784#
-#ifndef _SVDVMARK_HXX //autogen
-#include <bf_svx/svdvmark.hxx>
-#endif
+// auto strip #ifndef _SVDVMARK_HXX //autogen
+// auto strip #include <bf_svx/svdvmark.hxx>
+// auto strip #endif
 #include <vector>
 namespace binfilter {
 
