@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doctxm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:10:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,131 +69,141 @@
 #endif
 
 #define _SVSTDARR_STRINGSSORT
-#include <svtools/svstdarr.hxx>
-#ifndef _SVX_LANGITEM_HXX
-#include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX
-#include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SOT_CLSIDS_HXX
-#include <sot/clsids.hxx>
-#endif
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #ifndef _SVX_LANGITEM_HXX
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_TSPTITEM_HXX
+// auto strip #include <bf_svx/tstpitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_CLSIDS_HXX
+// auto strip #include <sot/clsids.hxx>
+// auto strip #endif
 
 #ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
 #endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _TXTTXMRK_HXX
-#include <txttxmrk.hxx>
-#endif
+
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTTXMRK_HXX
+// auto strip #include <txttxmrk.hxx>
+// auto strip #endif
 #ifndef _FMTINFMT_HXX
 #include <fmtinfmt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX
-#include <fmtpdsc.hxx>
+// auto strip #ifndef _FMTPDSC_HXX
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
 #ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
 #endif
 #ifndef _TXMSRT_HXX
 #include <txmsrt.hxx>
 #endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
-#endif
+// auto strip #ifndef _ROLBCK_HXX
+// auto strip #include <rolbck.hxx>
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
 #endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _CHARFMT_HXX
-#include <charfmt.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
-#include <fchrfmt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
+// auto strip #ifndef _CHARFMT_HXX
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FCHRFMT_HXX
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
 #ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
 #endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
 #ifndef _CHPFLD_HXX
 #include <chpfld.hxx>
 #endif
-#ifndef _MVSAVE_HXX
-#include <mvsave.hxx>
-#endif
-#ifndef _NODE2LAY_HXX
-#include <node2lay.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
+// auto strip #ifndef _MVSAVE_HXX
+// auto strip #include <mvsave.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE2LAY_HXX
+// auto strip #include <node2lay.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
+// auto strip #ifndef _EDITSH_HXX
+// auto strip #include <editsh.hxx>
+// auto strip #endif
 namespace binfilter {
 
 const sal_Unicode cNumRepl      = '@';
