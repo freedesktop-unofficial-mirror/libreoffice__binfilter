@@ -2,9 +2,9 @@
  *
  *  $RCSfile: AccessibleContextBase.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:57:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,46 +63,46 @@
 #ifndef _SC_ACCESSIBLECONTEXTBASE_HXX
 #define _SC_ACCESSIBLECONTEXTBASE_HXX
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
-#include <com/sun/star/accessibility/XAccessible.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
+// auto strip #include <com/sun/star/accessibility/XAccessible.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECOMPONENT_HPP_
 #include <com/sun/star/accessibility/XAccessibleComponent.hpp>
 #endif
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HPP_
-#include <com/sun/star/accessibility/XAccessibleContext.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HPP_
+// auto strip #include <com/sun/star/accessibility/XAccessibleContext.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEEVENTBROADCASTER_HPP_
 #include <com/sun/star/accessibility/XAccessibleEventBroadcaster.hpp>
 #endif
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_IllegalAccessibleComponentStateException_HPP_
-#include <com/sun/star/accessibility/IllegalAccessibleComponentStateException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_IllegalAccessibleComponentStateException_HPP_
+// auto strip #include <com/sun/star/accessibility/IllegalAccessibleComponentStateException.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
-#include <cppuhelper/weak.hxx>
-#endif
+// auto strip #ifndef   _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
+// auto strip #ifndef   _CPPUHELPER_WEAK_HXX_
+// auto strip #include <cppuhelper/weak.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
-#include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICENAME_HPP_
-#include <com/sun/star/lang/XServiceName.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP_
-#include <com/sun/star/lang/IndexOutOfBoundsException.hpp>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+// auto strip #include <com/sun/star/lang/XTypeProvider.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICENAME_HPP_
+// auto strip #include <com/sun/star/lang/XServiceName.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/IndexOutOfBoundsException.hpp>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
 #endif
@@ -115,7 +115,7 @@
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
 #endif
-#include <unotools/servicehelper.hxx>
+// auto strip #include <unotools/servicehelper.hxx>
 #include <comphelper/broadcasthelper.hxx>
 class Rectangle;
 namespace binfilter {
