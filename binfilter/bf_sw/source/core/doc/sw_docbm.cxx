@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:04:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,10 +62,10 @@
 
 #pragma hdrstop
 
-#include <tools/pstm.hxx>
-#ifndef _SVXLINKMGR_HXX
-#include <bf_svx/linkmgr.hxx>
-#endif
+// auto strip #include <tools/pstm.hxx>
+// auto strip #ifndef _SVXLINKMGR_HXX
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #endif
 
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
@@ -73,9 +73,19 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -94,15 +104,15 @@
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
-#ifndef _SWSERV_HXX
-#include <swserv.hxx>
-#endif
+// auto strip #ifndef _SWSERV_HXX
+// auto strip #include <swserv.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
