@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblrwcl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:14:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,91 +69,99 @@
 #define _ZFORLIST_DECLARE_TABLE
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _FRACT_HXX
-#include <tools/fract.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRACT_HXX
+// auto strip #include <tools/fract.hxx>
+// auto strip #endif
 
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX //autogen
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX //autogen
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
-#ifndef _ROWFRM_HXX
-#include <rowfrm.hxx>
-#endif
-#ifndef _DDEFLD_HXX
-#include <ddefld.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
-#ifndef _MVSAVE_HXX
-#include <mvsave.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
-#include <swtblfmt.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
-#include <swddetbl.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROWFRM_HXX
+// auto strip #include <rowfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _DDEFLD_HXX
+// auto strip #include <ddefld.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _MVSAVE_HXX
+// auto strip #include <mvsave.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTBLFMT_HXX
+// auto strip #include <swtblfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWDDETBL_HXX
+// auto strip #include <swddetbl.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_visiturl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:14:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,15 +63,22 @@
 #pragma hdrstop
 
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
 #ifndef _INETHIST_HXX //autogen
 #include <svtools/inethist.hxx>
 #endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 #ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
