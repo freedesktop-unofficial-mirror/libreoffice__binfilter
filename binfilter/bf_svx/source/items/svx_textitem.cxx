@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:32:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:06:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,13 +61,13 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
-#include <com/sun/star/style/CaseMap.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
+// auto strip #include <com/sun/star/style/CaseMap.hpp>
+// auto strip #endif
 
-#ifndef _SV_BITMAPEX_HXX
-#include <vcl/bitmapex.hxx>
-#endif
+// auto strip #ifndef _SV_BITMAPEX_HXX
+// auto strip #include <vcl/bitmapex.hxx>
+// auto strip #endif
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
@@ -109,7 +109,7 @@
 #define ITEMID_CHARRELIEF       0
 
 
-#include <svtools/sbx.hxx>
+// auto strip #include <svtools/sbx.hxx>
 #define GLOBALOVERFLOW3
 
 
@@ -120,16 +120,16 @@
 //#ifndef NOOLDSV //autogen
 //#include <vcl/system.hxx>
 //#endif
-#ifndef _VCL_VCLENUM_HXX
-#include <vcl/vclenum.hxx>
-#endif
+// auto strip #ifndef _VCL_VCLENUM_HXX
+// auto strip #include <vcl/vclenum.hxx>
+// auto strip #endif
 
-#ifndef _BIGINT_HXX //autogen
-#include <tools/bigint.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX //autogen
-#include <tools/tenccvt.hxx>
-#endif
+// auto strip #ifndef _BIGINT_HXX //autogen
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_TENCCVT_HXX //autogen
+// auto strip #include <tools/tenccvt.hxx>
+// auto strip #endif
 
 #include <rtl/ustring>
 #ifndef _ISOLANG_HXX
@@ -141,55 +141,55 @@
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
-#ifndef _SV_SETTINGS_HXX
-#include <vcl/settings.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SETTINGS_HXX
+// auto strip #include <vcl/settings.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_STYLE_CASEMAP_HPP_
 #include <com/sun/star/style/CaseMap.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_SIMPLEFONTMETRIC_HPP_
-#include <com/sun/star/awt/SimpleFontMetric.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTWEIGHT_HPP_
-#include <com/sun/star/awt/FontWeight.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-#include <com/sun/star/awt/FontSlant.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_CHARSET_HPP_
-#include <com/sun/star/awt/CharSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
-#include <com/sun/star/awt/FontDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-#include <com/sun/star/awt/FontWidth.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_SIMPLEFONTMETRIC_HPP_
+// auto strip #include <com/sun/star/awt/SimpleFontMetric.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWEIGHT_HPP_
+// auto strip #include <com/sun/star/awt/FontWeight.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
+// auto strip #include <com/sun/star/awt/FontSlant.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_CHARSET_HPP_
+// auto strip #include <com/sun/star/awt/CharSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/awt/FontDescriptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
+// auto strip #include <com/sun/star/awt/FontWidth.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XFONT_HPP_
 #include <com/sun/star/awt/XFont.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_FONTTYPE_HPP_
-#include <com/sun/star/awt/FontType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP_
-#include <com/sun/star/awt/FontUnderline.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTSTRIKEOUT_HPP_
-#include <com/sun/star/awt/FontStrikeout.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
-#include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
-#include <com/sun/star/awt/FontPitch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTTYPE_HPP_
+// auto strip #include <com/sun/star/awt/FontType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP_
+// auto strip #include <com/sun/star/awt/FontUnderline.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSTRIKEOUT_HPP_
+// auto strip #include <com/sun/star/awt/FontStrikeout.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
+// auto strip #include <com/sun/star/awt/FontFamily.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
+// auto strip #include <com/sun/star/awt/FontPitch.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_FONTEMPHASIS_HPP_
 #include <com/sun/star/text/FontEmphasis.hpp>
 #endif
@@ -197,9 +197,9 @@
 #include <com/sun/star/i18n/ScriptType.hpp>
 #endif
 
-#ifndef _SVX_UNOMID_HXX
-#include <unomid.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOMID_HXX
+// auto strip #include <unomid.hxx>
+// auto strip #endif
 
 
 #include "flstitem.hxx"
@@ -215,7 +215,7 @@
 #include "wrlmitem.hxx"
 #include "cntritem.hxx"
 #include "prszitem.hxx"
-#include "colritem.hxx"
+// auto strip #include "colritem.hxx"
 #include "cscoitem.hxx"
 #include "kernitem.hxx"
 #include "cmapitem.hxx"
@@ -223,7 +223,7 @@
 #include "langitem.hxx"
 #include "nlbkitem.hxx"
 #include "nhypitem.hxx"
-#include "lcolitem.hxx"
+// auto strip #include "lcolitem.hxx"
 #include "blnkitem.hxx"
 #include "emphitem.hxx"
 #include "twolinesitem.hxx"
@@ -232,8 +232,8 @@
 #include "charscaleitem.hxx"
 #include "charreliefitem.hxx"
 #include "itemtype.hxx"
-#include "dialmgr.hxx"
-#include "langtab.hxx"
+// auto strip #include "dialmgr.hxx"
+// auto strip #include "langtab.hxx"
 #include "dlgutil.hxx"
 
 // #90477#

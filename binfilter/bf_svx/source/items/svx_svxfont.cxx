@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxfont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:05:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,24 +61,24 @@
 
 // include ----------------------------------------------------------------
 
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
 #endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
 #ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
 #endif
-#ifndef _COM_SUN_STAR_I18N_KCHARACTERTYPE_HPP_
-#include <com/sun/star/i18n/KCharacterType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_KCHARACTERTYPE_HPP_
+// auto strip #include <com/sun/star/i18n/KCharacterType.hpp>
+// auto strip #endif
 #pragma hdrstop
 
 #define ITEMID_ESCAPEMENT   0
@@ -86,7 +86,7 @@
 #define _SVX_SVXFONT_CXX
 
 #include "svxfont.hxx"
-#include "escpitem.hxx"
+// auto strip #include "escpitem.hxx"
 namespace binfilter {
 
 // Minimum: Prozentwert fuers kernen
