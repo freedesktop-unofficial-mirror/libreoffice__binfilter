@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calcmove.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:33:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,18 @@
 
 #pragma hdrstop
 
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "pagefrm.hxx"
-#include "cntfrm.hxx"
+// auto strip #include "cntfrm.hxx"
 #include "viewsh.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "viewimp.hxx"
-#include "swtypes.hxx"
+// auto strip #include "viewimp.hxx"
+// auto strip #include "swtypes.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
 #include "flyfrm.hxx"
@@ -76,9 +81,9 @@
 #include "txtftn.hxx"
 #include "fmtftn.hxx"
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
 #endif
@@ -102,7 +107,7 @@
 #include "txtfrm.hxx"
 #include "frmsh.hxx"
 #include "pagedesc.hxx"
-#include "ftninfo.hxx"
+// auto strip #include "ftninfo.hxx"
 #include "sectfrm.hxx"
 #include "dbg_lay.hxx"
 namespace binfilter {
