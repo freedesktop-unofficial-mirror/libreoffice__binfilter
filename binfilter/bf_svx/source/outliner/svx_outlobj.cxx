@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:14:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,13 +59,13 @@
  *
  ************************************************************************/
 
-#include <outl_pch.hxx>
+// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
 
 #define _OUTLINER_CXX
-#include <outliner.hxx>
+// auto strip #include <outliner.hxx>
 #include <outlobj.hxx>
 #include <outleeng.hxx>
 
@@ -74,14 +74,14 @@
 #endif
 
 
-#ifndef _SV_BITMAP_HXX
-#include <vcl/bitmap.hxx>
-#endif
+// auto strip #ifndef _SV_BITMAP_HXX
+// auto strip #include <vcl/bitmap.hxx>
+// auto strip #endif
 
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ DBG_NAME(OutlinerParaObject)
