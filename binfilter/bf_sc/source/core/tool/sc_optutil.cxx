@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_optutil.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:19:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,12 +60,12 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
 #include "optutil.hxx"
 #include "global.hxx"       // for pSysLocale
