@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_facreg.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:46:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,25 +61,25 @@
 
 #include <string.h>
 
-#ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
-#include <com/sun/star/container/XSet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
+// auto strip #include <com/sun/star/container/XSet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-#include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
+// auto strip #include <com/sun/star/registry/XRegistryKey.hpp>
+// auto strip #endif
 
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
-#include "xmlreg.hxx"
+// auto strip #include "xmlreg.hxx"
 namespace binfilter {
 
 using namespace rtl;
