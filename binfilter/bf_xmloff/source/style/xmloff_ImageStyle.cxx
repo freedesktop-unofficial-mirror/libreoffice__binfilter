@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_ImageStyle.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:06:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,29 +63,29 @@
 #include "ImageStyle.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
-#include <com/sun/star/awt/XBitmap.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
+// auto strip #include <com/sun/star/awt/XBitmap.hpp>
+// auto strip #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include"attrlist.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include"attrlist.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include"xmluconv.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include"xmluconv.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include"xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -95,9 +95,9 @@
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _RTL_USTRING_
 #include <rtl/ustring>
@@ -107,9 +107,9 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
-#include "xmltkmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
+// auto strip #include "xmltkmap.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
