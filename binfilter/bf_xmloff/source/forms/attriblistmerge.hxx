@@ -2,9 +2,9 @@
  *
  *  $RCSfile: attriblistmerge.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:56:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,9 +68,9 @@
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
 #endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #endif
@@ -130,6 +130,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/08 16:32:17  aw
+ *  #117295#
+ *
+ *  Revision 1.1  2003/12/05 09:34:00  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.1  2000/12/12 12:02:13  fs
  *  initial checkin - helper class for mergin XAttributeList instances
  *
