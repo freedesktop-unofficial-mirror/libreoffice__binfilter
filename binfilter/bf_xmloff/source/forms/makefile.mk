@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: aw $ $Date: 2003-12-05 09:34:07 $
+#   last change: $Author: hjs $ $Date: 2004-06-28 12:35:32 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -75,15 +75,6 @@ ENABLE_EXCEPTIONS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_xmloff
 
 # --- Files --------------------------------------------------------
-
-# UNO header files
-UNOUCROUT=$(OUT)$/inc
-INCPRE+=$(UNOUCROUT)
-
-UNOTYPES=\
-    drafts.com.sun.star.form.XBindableValue \
-    drafts.com.sun.star.form.XListEntrySource \
-    drafts.com.sun.star.form.XListEntrySink
 
 SLOFILES =	\
         $(SLO)$/xmloff_formstyles.obj \
