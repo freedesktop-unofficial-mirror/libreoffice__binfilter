@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlxtimp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:50:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XGRAPHICOBJECTRESOLVER_HPP_
-#include <com/sun/star/document/XGraphicObjectResolver.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XGRAPHICOBJECTRESOLVER_HPP_
+// auto strip #include <com/sun/star/document/XGraphicObjectResolver.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
 #include <com/sun/star/io/XActiveDataControl.hpp>
@@ -76,15 +76,15 @@
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
 #endif
@@ -97,27 +97,27 @@
 #ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XSEEKABLE_HDL_
 #include <com/sun/star/io/XSeekable.hdl>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
@@ -139,9 +139,9 @@
 #include "bf_xmloff/xmlkywd.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLMETAE_HXX
-#include "bf_xmloff/xmlmetae.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLMETAE_HXX
+// auto strip #include "bf_xmloff/xmlmetae.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_DASHSTYLE_HXX
 #include "bf_xmloff/DashStyle.hxx"
@@ -163,9 +163,9 @@
 #include "bf_xmloff/MarkerStyle.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include <bf_xmloff/xmlictxt.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include <bf_xmloff/xmlictxt.hxx>
+// auto strip #endif
 
 #ifndef _XMLGRHLP_HXX
 #include "xmlgrhlp.hxx"
