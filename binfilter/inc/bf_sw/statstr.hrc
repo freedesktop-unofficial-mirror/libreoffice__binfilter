@@ -2,9 +2,9 @@
  *
  *  $RCSfile: statstr.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:47:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,23 +63,23 @@
 
 #include "rcid.hrc"
 
-#define STR_STATSTR_W4WREAD         (RC_STATLIN_STR + 0)
+//STRIP001 #define STR_STATSTR_W4WREAD          (RC_STATLIN_STR + 0)
 #define STR_STATSTR_W4WWRITE        (RC_STATLIN_STR + 1)
 #define STR_STATSTR_SWGREAD         (RC_STATLIN_STR + 2)
 #define STR_STATSTR_SWGWRITE        (RC_STATLIN_STR + 3)
 #define STR_STATSTR_REFORMAT        (RC_STATLIN_STR + 4)
-#define STR_STATSTR_AUTOFORMAT      (RC_STATLIN_STR + 5)
-#define STR_STATSTR_IMPGRF          (RC_STATLIN_STR + 6)
+//STRIP001 #define STR_STATSTR_AUTOFORMAT       (RC_STATLIN_STR + 5)
+//STRIP001 #define STR_STATSTR_IMPGRF          (RC_STATLIN_STR + 6)
 #define STR_STATSTR_SEARCH          (RC_STATLIN_STR + 7)
-#define STR_STATSTR_FORMAT          (RC_STATLIN_STR + 8)
-#define STR_STATSTR_PRINT           (RC_STATLIN_STR + 9)
+//STRIP001 #define STR_STATSTR_FORMAT           (RC_STATLIN_STR + 8)
+//STRIP001 #define STR_STATSTR_PRINT            (RC_STATLIN_STR + 9)
 #define STR_STATSTR_LAYOUTINIT      (RC_STATLIN_STR + 10)
-#define STR_STATSTR_LETTER          (RC_STATLIN_STR + 11)
-#define STR_STATSTR_SPELL           (RC_STATLIN_STR + 12)
-#define STR_STATSTR_HYPHEN          (RC_STATLIN_STR + 13)
-#define STR_STATSTR_TOX_INSERT      (RC_STATLIN_STR + 14)
-#define STR_STATSTR_TOX_UPDATE      (RC_STATLIN_STR + 15)
-#define STR_STATSTR_SUMMARY         (RC_STATLIN_STR + 16)
+//STRIP001 #define STR_STATSTR_LETTER           (RC_STATLIN_STR + 11)
+//STRIP001 #define STR_STATSTR_SPELL            (RC_STATLIN_STR + 12)
+//STRIP001 #define STR_STATSTR_HYPHEN           (RC_STATLIN_STR + 13)
+//STRIP001 #define STR_STATSTR_TOX_INSERT       (RC_STATLIN_STR + 14)
+//STRIP001 #define STR_STATSTR_TOX_UPDATE       (RC_STATLIN_STR + 15)
+//STRIP001 #define STR_STATSTR_SUMMARY          (RC_STATLIN_STR + 16)
 #define STR_STATSTR_SWGPRTOLENOTIFY (RC_STATLIN_STR + 17)
 
 #endif
