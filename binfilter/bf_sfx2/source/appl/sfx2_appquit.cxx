@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:27:16 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:19:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -259,8 +259,9 @@ void SfxApplication::Quit()
 /*?*/   StarBASIC::Stop();
 /*?*/
 /*?*/   // ggf. BASIC speichern
-/*?*/   if ( pImp->pBasicMgr && pImp->pBasicMgr->IsModified() )
-/*?*/       SaveBasicManager();
+        BasicManager* pBasMgr = GetAppBasicManager();
+        if ( pBasMgr && pBasMgr->IsModified() )
+            SaveBasicManager();
 /*?*/
 /*?*/   SaveBasicContainer();
 /*?*/   SaveDialogContainer();
@@ -293,7 +294,8 @@ void SfxApplication::Quit()
 /*?*/   DELETEZ(pMenuMgr);
 /*?*/   DELETEZ(pAcceleratorMgr);
 /*?*/   SfxObjectFactory::ClearAll_Impl();
-/*?*/     DELETEZ( pImp->pBasicMgr );
+/*?*/   DELETEZ( pBasMgr );
+        SetAppBasicManager( NULL );
 /*?*/   if( pImp->pBasicLibContainer )
 /*?*/       pImp->pBasicLibContainer->release();
 /*?*/   if( pImp->pDialogLibContainer )
