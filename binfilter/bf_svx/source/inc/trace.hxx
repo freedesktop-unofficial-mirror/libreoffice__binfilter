@@ -2,9 +2,9 @@
  *
  *  $RCSfile: trace.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:01:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,18 +63,18 @@
 
 #if defined(DBG_UTIL) && defined(ENABLE_RANGE_TRACING)
 
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
-#ifndef _VOS_THREAD_HXX_
-#include <vos/thread.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_THREAD_HXX_
+// auto strip #include <vos/thread.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
