@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlimppr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:18:21 $
+ *  last change: $Author: vg $ $Date: 2005-03-08 15:35:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -332,8 +332,9 @@ void SvXMLImportPropertyMapper::importXML(
                     if( -1 == nIndex )
                         nIndex = maPropMapper->FindEntryIndex( "TextUserDefinedAttributes", XML_NAMESPACE_TEXT, GetXMLToken(XML_XMLNS) );
 
-                    OSL_ENSURE( nIndex != -1,
-                                "not able to store alien attribute");
+                    // #i41083# no assertion because an extra attribute (writing-mode) is in
+                    // spreadsheet table styles, which don't have user defined attributes.
+                    // In normal xmloff, the assertion was removed for #i30395#.
 
                     // #106963#; use userdefined attribute only if it is in the specified property range
                     if( nIndex != -1 && nIndex >= nStartIdx && nIndex < nEndIdx)
