@@ -2,9 +2,9 @@
  *
  *  $RCSfile: twolinesitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:22 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:37:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,24 +91,24 @@ public:
                      sal_Unicode nStartBracket = 0,
                      sal_Unicode nEndBracket = 0,
                      sal_uInt16 nId = ITEMID_TWOLINES );
-//STRIP001  SvxTwoLinesItem( const SvxTwoLinesItem& rAttr );
+/*NBFF*/    SvxTwoLinesItem( const SvxTwoLinesItem& rAttr );
     virtual ~SvxTwoLinesItem();
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-//STRIP001  virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-//STRIP001  virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-//STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                  SfxMapUnit eCoreMetric,
-//STRIP001                                  SfxMapUnit ePresMetric,
-//STRIP001                                  String &rText,
-//STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
+/*NBFF*/    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
+/*NBFF*/    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+/*NBFF*/    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
+/*NBFF*/                                    SfxMapUnit eCoreMetric,
+/*NBFF*/                                    SfxMapUnit ePresMetric,
+/*NBFF*/                                    String &rText,
+/*NBFF*/                                     const IntlWrapper* pIntl = 0 ) const;
 
-//STRIP001  virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                                      BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                      BYTE nMemberId = 0 );
+/*NBFF*/    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                        BYTE nMemberId = 0 ) const;
+/*NBFF*/    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                        BYTE nMemberId = 0 );
 
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
