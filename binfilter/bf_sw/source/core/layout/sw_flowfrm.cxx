@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flowfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:34:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,11 +62,20 @@
 
 #pragma hdrstop
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #include "pam.hxx"
 #include "swtable.hxx"
-#include "frame.hxx"
+// auto strip #include "frame.hxx"
 #include "pagefrm.hxx"
-#include "flyfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
 #include "viewsh.hxx"
 #include "doc.hxx"
 #include "viewimp.hxx"
@@ -96,9 +105,9 @@
 #ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
