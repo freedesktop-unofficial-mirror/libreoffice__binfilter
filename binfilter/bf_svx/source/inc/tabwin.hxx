@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tabwin.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:00:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,43 +61,43 @@
 #ifndef _SVX_TABWIN_HXX
 #define _SVX_TABWIN_HXX
 
-#ifndef _SVTREEBOX_HXX //autogen
-#include <svtools/svtreebx.hxx>
-#endif
+// auto strip #ifndef _SVTREEBOX_HXX //autogen
+// auto strip #include <svtools/svtreebx.hxx>
+// auto strip #endif
 
-#ifndef _SV_FLOATWIN_HXX //autogen
-#include <vcl/floatwin.hxx>
-#endif
+// auto strip #ifndef _SV_FLOATWIN_HXX //autogen
+// auto strip #include <vcl/floatwin.hxx>
+// auto strip #endif
 
-#ifndef _BASEDLGS_HXX //autogen
-#include <bf_sfx2/basedlgs.hxx>
-#endif
+// auto strip #ifndef _BASEDLGS_HXX //autogen
+// auto strip #include <bf_sfx2/basedlgs.hxx>
+// auto strip #endif
 
 #ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
 #endif
 
-#ifndef _SFXCTRLITEM_HXX //autogen
-#include <bf_sfx2/ctrlitem.hxx>
-#endif
+// auto strip #ifndef _SFXCTRLITEM_HXX //autogen
+// auto strip #include <bf_sfx2/ctrlitem.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-#include <com/sun/star/form/XForm.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
+// auto strip #include <com/sun/star/form/XForm.hpp>
+// auto strip #endif
 
 //#ifndef _SVX_FMTOOLS_HXX
 //#include "fmtools.hxx"
 //#endif
 
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
-#include <comphelper/propmultiplex.hxx>
-#endif
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
-#ifndef SVX_DBTOOLSCLIENT_HXX
-#include "dbtoolsclient.hxx"
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
+// auto strip #include <comphelper/propmultiplex.hxx>
+// auto strip #endif
+// auto strip #ifndef _TRANSFER_HXX
+// auto strip #include <svtools/transfer.hxx>
+// auto strip #endif
+// auto strip #ifndef SVX_DBTOOLSCLIENT_HXX
+// auto strip #include "dbtoolsclient.hxx"
+// auto strip #endif
 namespace binfilter {
 //end of namespace binfilter
 //==================================================================

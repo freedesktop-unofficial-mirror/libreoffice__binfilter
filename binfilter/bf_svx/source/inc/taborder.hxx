@@ -2,9 +2,9 @@
  *
  *  $RCSfile: taborder.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:00:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,17 +80,17 @@
 #include <vcl/button.hxx>
 #endif
 
-#ifndef _SV_LSTBOX_HXX //autogen
-#include <vcl/lstbox.hxx>
-#endif
+// auto strip #ifndef _SV_LSTBOX_HXX //autogen
+// auto strip #include <vcl/lstbox.hxx>
+// auto strip #endif
 
 #ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
 #endif
 
-#ifndef _TOOLS_LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _TOOLS_LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMEXCH_HXX
 #include "fmexch.hxx"

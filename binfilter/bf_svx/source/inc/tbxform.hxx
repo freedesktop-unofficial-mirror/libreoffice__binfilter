@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tbxform.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:00:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,21 +65,21 @@
 #include <bf_sfx2/tbxctrl.hxx>
 #endif
 
-#ifndef _SFXTBXMGR_HXX //autogen
-#include <bf_sfx2/tbxmgr.hxx>
-#endif
+// auto strip #ifndef _SFXTBXMGR_HXX //autogen
+// auto strip #include <bf_sfx2/tbxmgr.hxx>
+// auto strip #endif
 
-#ifndef _SV_FIELD_HXX //autogen
-#include <vcl/field.hxx>
-#endif
+// auto strip #ifndef _SV_FIELD_HXX //autogen
+// auto strip #include <vcl/field.hxx>
+// auto strip #endif
 
-#ifndef _SV_DIALOG_HXX //autogen
-#include <vcl/dialog.hxx>
-#endif
+// auto strip #ifndef _SV_DIALOG_HXX //autogen
+// auto strip #include <vcl/dialog.hxx>
+// auto strip #endif
 
-#ifndef _SV_BUTTON_HXX //autogen
-#include <vcl/button.hxx>
-#endif
+// auto strip #ifndef _SV_BUTTON_HXX //autogen
+// auto strip #include <vcl/button.hxx>
+// auto strip #endif
 class FixedText;
 namespace binfilter {
 
