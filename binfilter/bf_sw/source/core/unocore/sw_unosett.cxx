@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosett.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:14:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,11 @@
 #include <hintids.hxx>
 #include "poolfmt.hrc"
 #include "poolfmt.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
 #endif
@@ -74,6 +79,11 @@
 #ifndef _UNOMAP_HXX
 #include <unomap.hxx>
 #endif
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
+#endif
+
 #ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
 #endif
@@ -89,6 +99,11 @@
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
@@ -149,7 +164,6 @@
 #ifndef _COM_SUN_STAR_STYLE_VERTICALALIGNMENT_HPP_
 #include <com/sun/star/style/VerticalAlignment.hpp>
 #endif
-
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif

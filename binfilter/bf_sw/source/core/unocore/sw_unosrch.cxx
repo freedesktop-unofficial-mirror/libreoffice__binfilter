@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosrch.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:14:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,10 @@
  ************************************************************************/
 
 #pragma hdrstop
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
@@ -72,6 +76,11 @@
 #ifndef _UNOMAP_HXX
 #include <unomap.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
