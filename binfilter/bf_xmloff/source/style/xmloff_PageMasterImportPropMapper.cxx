@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_PageMasterImportPropMapper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:07:40 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:54:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,55 +179,55 @@ void PageMasterImportPropertyMapper::finished(::std::vector< XMLPropertyState >&
         {
             switch (nContextID)
             {
-                case CTF_PM_PADDINGALL                  : pAllPaddingProperty = property; break;
-                case CTF_PM_PADDINGLEFT                 : pPadding[XML_LINE_LEFT] = property; break;
-                case CTF_PM_PADDINGRIGHT                : pPadding[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_PADDINGTOP                  : pPadding[XML_LINE_TOP] = property; break;
-                case CTF_PM_PADDINGBOTTOM               : pPadding[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_BORDERALL                   : pAllBorderProperty = property; break;
-                case CTF_PM_BORDERLEFT                  : pBorders[XML_LINE_LEFT] = property; break;
-                case CTF_PM_BORDERRIGHT                 : pBorders[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_BORDERTOP                   : pBorders[XML_LINE_TOP] = property; break;
-                case CTF_PM_BORDERBOTTOM                : pBorders[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_BORDERWIDTHALL              : pAllBorderWidthProperty = property; break;
-                case CTF_PM_BORDERWIDTHLEFT             : pBorderWidths[XML_LINE_LEFT] = property; break;
-                case CTF_PM_BORDERWIDTHRIGHT            : pBorderWidths[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_BORDERWIDTHTOP              : pBorderWidths[XML_LINE_TOP] = property; break;
-                case CTF_PM_BORDERWIDTHBOTTOM           : pBorderWidths[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_HEADERPADDINGALL            : pAllHeaderPaddingProperty = property; break;
-                case CTF_PM_HEADERPADDINGLEFT           : pHeaderPadding[XML_LINE_LEFT] = property; break;
-                case CTF_PM_HEADERPADDINGRIGHT          : pHeaderPadding[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_HEADERPADDINGTOP            : pHeaderPadding[XML_LINE_TOP] = property; break;
-                case CTF_PM_HEADERPADDINGBOTTOM         : pHeaderPadding[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_HEADERBORDERALL             : pAllHeaderBorderProperty = property; break;
-                case CTF_PM_HEADERBORDERLEFT            : pHeaderBorders[XML_LINE_LEFT] = property; break;
-                case CTF_PM_HEADERBORDERRIGHT           : pHeaderBorders[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_HEADERBORDERTOP             : pHeaderBorders[XML_LINE_TOP] = property; break;
-                case CTF_PM_HEADERBORDERBOTTOM          : pHeaderBorders[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_HEADERBORDERWIDTHALL        : pAllHeaderBorderWidthProperty = property; break;
-                case CTF_PM_HEADERBORDERWIDTHLEFT       : pHeaderBorderWidths[XML_LINE_LEFT] = property; break;
-                case CTF_PM_HEADERBORDERWIDTHRIGHT      : pHeaderBorderWidths[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_HEADERBORDERWIDTHTOP        : pHeaderBorderWidths[XML_LINE_TOP] = property; break;
-                case CTF_PM_HEADERBORDERWIDTHBOTTOM     : pHeaderBorderWidths[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_FOOTERPADDINGALL            : pAllFooterPaddingProperty = property; break;
-                case CTF_PM_FOOTERPADDINGLEFT           : pFooterPadding[XML_LINE_LEFT] = property; break;
-                case CTF_PM_FOOTERPADDINGRIGHT          : pFooterPadding[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_FOOTERPADDINGTOP            : pFooterPadding[XML_LINE_TOP] = property; break;
-                case CTF_PM_FOOTERPADDINGBOTTOM         : pFooterPadding[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_FOOTERBORDERALL             : pAllFooterBorderProperty = property; break;
-                case CTF_PM_FOOTERBORDERLEFT            : pFooterBorders[XML_LINE_LEFT] = property; break;
-                case CTF_PM_FOOTERBORDERRIGHT           : pFooterBorders[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_FOOTERBORDERTOP             : pFooterBorders[XML_LINE_TOP] = property; break;
-                case CTF_PM_FOOTERBORDERBOTTOM          : pFooterBorders[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_FOOTERBORDERWIDTHALL        : pAllFooterBorderWidthProperty = property; break;
-                case CTF_PM_FOOTERBORDERWIDTHLEFT       : pFooterBorderWidths[XML_LINE_LEFT] = property; break;
-                case CTF_PM_FOOTERBORDERWIDTHRIGHT      : pFooterBorderWidths[XML_LINE_RIGHT] = property; break;
-                case CTF_PM_FOOTERBORDERWIDTHTOP        : pFooterBorderWidths[XML_LINE_TOP] = property; break;
-                case CTF_PM_FOOTERBORDERWIDTHBOTTOM     : pFooterBorderWidths[XML_LINE_BOTTOM] = property; break;
-                case CTF_PM_HEADERHEIGHT                : pHeaderHeight = property; break;
-                case CTF_PM_HEADERMINHEIGHT             : pHeaderMinHeight = property; break;
-                case CTF_PM_FOOTERHEIGHT                : pFooterHeight = property; break;
-                case CTF_PM_FOOTERMINHEIGHT             : pFooterMinHeight = property; break;
+                case CTF_PM_PADDINGALL                  : pAllPaddingProperty = &(*property); break;
+                case CTF_PM_PADDINGLEFT                 : pPadding[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_PADDINGRIGHT                : pPadding[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_PADDINGTOP                  : pPadding[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_PADDINGBOTTOM               : pPadding[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_BORDERALL                   : pAllBorderProperty = &(*property); break;
+                case CTF_PM_BORDERLEFT                  : pBorders[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_BORDERRIGHT                 : pBorders[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_BORDERTOP                   : pBorders[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_BORDERBOTTOM                : pBorders[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_BORDERWIDTHALL              : pAllBorderWidthProperty = &(*property); break;
+                case CTF_PM_BORDERWIDTHLEFT             : pBorderWidths[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_BORDERWIDTHRIGHT            : pBorderWidths[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_BORDERWIDTHTOP              : pBorderWidths[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_BORDERWIDTHBOTTOM           : pBorderWidths[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_HEADERPADDINGALL            : pAllHeaderPaddingProperty = &(*property); break;
+                case CTF_PM_HEADERPADDINGLEFT           : pHeaderPadding[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_HEADERPADDINGRIGHT          : pHeaderPadding[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_HEADERPADDINGTOP            : pHeaderPadding[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_HEADERPADDINGBOTTOM         : pHeaderPadding[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_HEADERBORDERALL             : pAllHeaderBorderProperty = &(*property); break;
+                case CTF_PM_HEADERBORDERLEFT            : pHeaderBorders[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_HEADERBORDERRIGHT           : pHeaderBorders[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_HEADERBORDERTOP             : pHeaderBorders[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_HEADERBORDERBOTTOM          : pHeaderBorders[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_HEADERBORDERWIDTHALL        : pAllHeaderBorderWidthProperty = &(*property); break;
+                case CTF_PM_HEADERBORDERWIDTHLEFT       : pHeaderBorderWidths[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_HEADERBORDERWIDTHRIGHT      : pHeaderBorderWidths[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_HEADERBORDERWIDTHTOP        : pHeaderBorderWidths[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_HEADERBORDERWIDTHBOTTOM     : pHeaderBorderWidths[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_FOOTERPADDINGALL            : pAllFooterPaddingProperty = &(*property); break;
+                case CTF_PM_FOOTERPADDINGLEFT           : pFooterPadding[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_FOOTERPADDINGRIGHT          : pFooterPadding[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_FOOTERPADDINGTOP            : pFooterPadding[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_FOOTERPADDINGBOTTOM         : pFooterPadding[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_FOOTERBORDERALL             : pAllFooterBorderProperty = &(*property); break;
+                case CTF_PM_FOOTERBORDERLEFT            : pFooterBorders[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_FOOTERBORDERRIGHT           : pFooterBorders[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_FOOTERBORDERTOP             : pFooterBorders[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_FOOTERBORDERBOTTOM          : pFooterBorders[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_FOOTERBORDERWIDTHALL        : pAllFooterBorderWidthProperty = &(*property); break;
+                case CTF_PM_FOOTERBORDERWIDTHLEFT       : pFooterBorderWidths[XML_LINE_LEFT] = &(*property); break;
+                case CTF_PM_FOOTERBORDERWIDTHRIGHT      : pFooterBorderWidths[XML_LINE_RIGHT] = &(*property); break;
+                case CTF_PM_FOOTERBORDERWIDTHTOP        : pFooterBorderWidths[XML_LINE_TOP] = &(*property); break;
+                case CTF_PM_FOOTERBORDERWIDTHBOTTOM     : pFooterBorderWidths[XML_LINE_BOTTOM] = &(*property); break;
+                case CTF_PM_HEADERHEIGHT                : pHeaderHeight = &(*property); break;
+                case CTF_PM_HEADERMINHEIGHT             : pHeaderMinHeight = &(*property); break;
+                case CTF_PM_FOOTERHEIGHT                : pFooterHeight = &(*property); break;
+                case CTF_PM_FOOTERMINHEIGHT             : pFooterMinHeight = &(*property); break;
             }
         }
     }
