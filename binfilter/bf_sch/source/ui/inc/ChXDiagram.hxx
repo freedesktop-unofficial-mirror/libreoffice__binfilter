@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXDiagram.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:25 $
+ *  last change: $Author: kz $ $Date: 2004-07-30 14:52:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,7 +127,8 @@ class SchChartDocShell;
 } //namespace binfilter
 // GrP gcc 2.95.2 on Mac OS X chokes on this huge template class.
 // Expand the template by hand.
-#if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
+//#if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
+#if 1
 
 //  Construct a WeakImplHelper14 with the emphasis on 14.
 //  Fourteen interfaces are two to many to use the newer template definition
@@ -266,8 +267,7 @@ namespace cppu {
 #endif
 namespace binfilter {//STRIP009
     class ChXDiagram : public ::cppu::WeakImplHelper14
-#if ! (defined(MACOSX) && ( __GNUC__ < 3 ) )
-<
+ <
     ::com::sun::star::chart::XDiagram,
     ::com::sun::star::chart::XAxisZSupplier,
     ::com::sun::star::chart::XTwoAxisXSupplier, //  : XAxisXSupplier
@@ -282,8 +282,7 @@ namespace binfilter {//STRIP009
     ::com::sun::star::lang::XUnoTunnel,
        ::com::sun::star::lang::XComponent,
        ::com::sun::star::lang::XEventListener
->
-#endif
+ >
 {
 private:
     ::rtl::OUString maServiceName;
