@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xtabcolr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:53:26 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:10:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,8 +163,8 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/       aURL.Append( aName );
 /*N*/
-/*N*/       if( !aURL.getExtension().Len() )
-/*N*/           aURL.setExtension( String( pszExtColor, 3 ) );
+/*N*/       if( !aURL.getExtension().getLength() )
+/*N*/           aURL.setExtension( rtl::OUString( pszExtColor, 3 ) );
 /*N*/
 /*N*/       // check if file exists, SfxMedium shows an errorbox else
 /*N*/       {
