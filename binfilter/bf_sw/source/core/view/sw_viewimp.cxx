@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewimp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:16:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,41 +63,46 @@
 #pragma hdrstop
 
 #include "scrrect.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "crsrsh.hxx"
 #include "rootfrm.hxx"
 #include "pagefrm.hxx"
 #include "viewimp.hxx"
-#include "errhdl.hxx"
+// auto strip #include "errhdl.hxx"
 #include "viewopt.hxx"
-#include "flyfrm.hxx"
-#include "frmfmt.hxx"
+// auto strip #include "flyfrm.hxx"
+// auto strip #include "frmfmt.hxx"
 #include "layact.hxx"
 #include "swregion.hxx"
-#include "dflyobj.hxx"
+// auto strip #include "dflyobj.hxx"
 #include "dview.hxx"
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
 #ifdef ACCESSIBLE_LAYOUT
-#ifndef _ACCMAP_HXX
-#include <accmap.hxx>
-#endif
+// auto strip #ifndef _ACCMAP_HXX
+// auto strip #include <accmap.hxx>
+// auto strip #endif
 #endif
 
 // OD 12.12.2002 #103492#
-#ifndef _PAGEPREVIEWLAYOUT_HXX
-#include <pagepreviewlayout.hxx>
-#endif
+// auto strip #ifndef _PAGEPREVIEWLAYOUT_HXX
+// auto strip #include <pagepreviewlayout.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
