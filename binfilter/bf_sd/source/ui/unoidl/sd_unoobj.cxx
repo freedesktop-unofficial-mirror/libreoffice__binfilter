@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:07:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,27 +59,27 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-#include <com/sun/star/presentation/AnimationEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-#include <com/sun/star/presentation/ClickAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
-#include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
+// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
+// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
+// auto strip #include <com/sun/star/presentation/AnimationSpeed.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
-#include <com/sun/star/beans/PropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-#include <com/sun/star/beans/PropertyValues.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyState.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValues.hpp>
+// auto strip #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
@@ -88,12 +88,12 @@
 #include <comphelper/stl_types.hxx>
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
@@ -112,12 +112,12 @@
 #include <bf_sfx2/sfxsids.hrc>
 #endif
 #include <comphelper/extract.hxx>
-#include <bf_svx/unoprov.hxx>
+// auto strip #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/svditer.hxx>
-#ifndef _SVDOTEXT_HXX
-#include <bf_svx/svdotext.hxx>
-#endif
+// auto strip #ifndef _SVDOTEXT_HXX
+// auto strip #include <bf_svx/svdotext.hxx>
+// auto strip #endif
 #include <bf_svx/unoapi.hxx>
 
 #ifndef _SVDOPATH_HXX
@@ -146,12 +146,12 @@
 #include "unohelp.hxx"
 #include "unoobj.hxx"
 #include "unoprnms.hxx"
-#include "unomodel.hxx"
+// auto strip #include "unomodel.hxx"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-#include "viewshel.hxx"
+// auto strip #include "viewshel.hxx"
 #include "unokywds.hxx"
-#include "unostyls.hxx"
+// auto strip #include "unostyls.hxx"
 #include "unopsfm.hxx"
 #include "unogsfm.hxx"
 #include "unopstyl.hxx"
@@ -162,7 +162,7 @@
 #include "docshell.hxx"
 #endif
 #include "helpids.h"
-#include "glob.hxx"
+// auto strip #include "glob.hxx"
 #include "glob.hrc"
 #include "unolayer.hxx"
 #include "imapinfo.hxx"
