@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:32:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:36:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,93 +59,114 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #include <vcl/svapp.hxx>
 #pragma hdrstop
 
 //#include <vcl/system.hxx>
-#include <srchitem.hxx>
-#include <lspcitem.hxx>
-#include <adjitem.hxx>
-#include <tstpitem.hxx>
+// auto strip #include <srchitem.hxx>
 
-#include <eertfpar.hxx>
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
+
+// auto strip #include <lspcitem.hxx>
+// auto strip #include <adjitem.hxx>
+// auto strip #include <tstpitem.hxx>
+
+// auto strip #include <eertfpar.hxx>
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
-#include <editview.hxx>
-#include <eehtml.hxx>
-#include <editobj2.hxx>
-#include <tools/isolang.hxx>
+// auto strip #include <editview.hxx>
+// auto strip #include <eehtml.hxx>
+// auto strip #include <editobj2.hxx>
+// auto strip #include <tools/isolang.hxx>
 
-#include <editxml.hxx>
+// auto strip #include <editxml.hxx>
 
 
-#include "akrnitem.hxx"
-#include "cntritem.hxx"
-#include "colritem.hxx"
-#include "crsditem.hxx"
-#include "escpitem.hxx"
-#include "fhgtitem.hxx"
-#include "fontitem.hxx"
-#include "kernitem.hxx"
+// auto strip #include "akrnitem.hxx"
+// auto strip #include "cntritem.hxx"
+// auto strip #include "colritem.hxx"
+// auto strip #include "crsditem.hxx"
+// auto strip #include "escpitem.hxx"
+// auto strip #include "fhgtitem.hxx"
+// auto strip #include "fontitem.hxx"
+// auto strip #include "kernitem.hxx"
 #include "lrspitem.hxx"
-#include "postitem.hxx"
-#include "shdditem.hxx"
-#include "udlnitem.hxx"
-#include "ulspitem.hxx"
-#include "wghtitem.hxx"
+// auto strip #include "postitem.hxx"
+// auto strip #include "shdditem.hxx"
+// auto strip #include "udlnitem.hxx"
+// auto strip #include "ulspitem.hxx"
+// auto strip #include "wghtitem.hxx"
 #include "langitem.hxx"
-#include <charreliefitem.hxx>
-#include <frmdiritem.hxx>
-#include <emphitem.hxx>
+// auto strip #include <charreliefitem.hxx>
+// auto strip #include <frmdiritem.hxx>
+// auto strip #include <emphitem.hxx>
 
 #include <rtl/tencinfo.h>
 
-#include <svtools/rtfout.hxx>
+// auto strip #include <svtools/rtfout.hxx>
 
-#ifndef SVX_LIGHT
-#include <edtspell.hxx>
-#endif
+// auto strip #ifndef SVX_LIGHT
+// auto strip #include <edtspell.hxx>
+// auto strip #endif
 
 #ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
 #endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
-#include <com/sun/star/linguistic2/XThesaurus.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XMEANING_HPP_
-#include <com/sun/star/linguistic2/XMeaning.hpp>
-#endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
+// auto strip #include <com/sun/star/linguistic2/XThesaurus.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XMEANING_HPP_
+// auto strip #include <com/sun/star/linguistic2/XMeaning.hpp>
+// auto strip #endif
 
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#ifndef _TXTCMP_HXX //autogen
-#include <unotools/textsearch.hxx>
-#endif
+// auto strip #ifndef _TXTCMP_HXX //autogen
+// auto strip #include <unotools/textsearch.hxx>
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
-#ifndef _SV_HELP_HXX //autogen
-#include <vcl/help.hxx>
-#endif
+// auto strip #ifndef _SV_HELP_HXX //autogen
+// auto strip #include <vcl/help.hxx>
+// auto strip #endif
 
-#include <svtools/rtfkeywd.hxx>
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #include <svtools/rtfkeywd.hxx>
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
