@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svxerr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:31:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,52 +63,52 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _ERRCODE_HXX
-#include <tools/errcode.hxx>
-#endif
+// auto strip #ifndef _ERRCODE_HXX
+// auto strip #include <tools/errcode.hxx>
+// auto strip #endif
 
 // define ----------------------------------------------------------------
 
-#define ERRCODE_SVX_LINGU_THESAURUSNOTEXISTS   (1UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_NOTEXISTS)
+//STRIP001 #define ERRCODE_SVX_LINGU_THESAURUSNOTEXISTS   (1UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_NOTEXISTS)
 
-#define ERRCODE_SVX_LINGU_LANGUAGENOTEXISTS    (2UL | ERRCODE_AREA_SVX)
+//STRIP001 #define ERRCODE_SVX_LINGU_LANGUAGENOTEXISTS    (2UL | ERRCODE_AREA_SVX)
 
-#define ERRCODE_SVX_LINGU_LINGUNOTEXISTS       (3UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_NOTEXISTS )
-#define ERRCODE_SVX_LINGU_HYPHENNOTEXISTS      (4UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_NOTEXISTS )
-#define ERRCODE_SVX_LINGU_DICT_NOTREADABLE     (5UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_READ )
-#define ERRCODE_SVX_LINGU_DICT_NOTWRITEABLE    (6UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_WRITE )
+//STRIP001 #define ERRCODE_SVX_LINGU_LINGUNOTEXISTS       (3UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_NOTEXISTS )
+//STRIP001 #define ERRCODE_SVX_LINGU_HYPHENNOTEXISTS      (4UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_NOTEXISTS )
+//STRIP001 #define ERRCODE_SVX_LINGU_DICT_NOTREADABLE      (5UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_READ )
+//STRIP001 #define ERRCODE_SVX_LINGU_DICT_NOTWRITEABLE     (6UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_WRITE )
 
-#define ERRCODE_SVX_GRAPHIC_NOTREADABLE        (7UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_READ )
+//STRIP001 #define ERRCODE_SVX_GRAPHIC_NOTREADABLE         (7UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_READ )
 #define ERRCODE_SVX_GRAPHIC_WRONG_FILEFORMAT   (8UL | ERRCODE_AREA_SVX | \
                                                 ERRCODE_CLASS_READ )
-#define ERRCODE_SVX_LINGU_NOLANGUAGE           (9UL | ERRCODE_AREA_SVX | \
-                                                ERRCODE_CLASS_NOTEXISTS )
+//STRIP001 #define ERRCODE_SVX_LINGU_NOLANGUAGE        (9UL | ERRCODE_AREA_SVX | \
+//STRIP001                                              ERRCODE_CLASS_NOTEXISTS )
 #define ERRCODE_SVX_FORMS_NOIOSERVICES         (10UL | ERRCODE_AREA_SVX )
 #define ERRCODE_SVX_FORMS_READWRITEFAILED      (11UL | ERRCODE_AREA_SVX )
 
 #define ERRCODE_SVX_BULLETITEM_NOBULLET        (12UL | ERRCODE_AREA_SVX )
 
-#define ERRCODE_SVX_MODIFIED_VBASIC_STORAGE    (13UL | ERRCODE_AREA_SVX     \
-                                                     | ERRCODE_WARNING_MASK \
-                                                     | ERRCODE_CLASS_WRITE )
+//STRIP001 #define ERRCODE_SVX_MODIFIED_VBASIC_STORAGE    (13UL | ERRCODE_AREA_SVX     \
+//STRIP001                                                   | ERRCODE_WARNING_MASK \
+//STRIP001                                                   | ERRCODE_CLASS_WRITE )
 
 #define ERRCODE_SVX_VBASIC_STORAGE_EXIST       (14UL | ERRCODE_AREA_SVX     \
                                                      | ERRCODE_WARNING_MASK \
                                                      | ERRCODE_CLASS_WRITE )
 
 // both codes will be used twice : with ERRCODE_CLASS_READ- and ERRCODE_CLASS_WRITE-bits
-#define ERRCTX_SVX_LINGU_THESAURUS              1
-#define ERRCTX_SVX_LINGU_SPELLING               2
-#define ERRCTX_SVX_LINGU_HYPHENATION            3
-#define ERRCTX_SVX_LINGU_DICTIONARY             4
-#define ERRCTX_SVX_BACKGROUND                   5
-#define ERRCTX_SVX_IMPORT_GRAPHIC               6
+//STRIP001 #define ERRCTX_SVX_LINGU_THESAURUS               1
+//STRIP001 #define ERRCTX_SVX_LINGU_SPELLING                2
+//STRIP001 #define ERRCTX_SVX_LINGU_HYPHENATION         3
+//STRIP001 #define ERRCTX_SVX_LINGU_DICTIONARY              4
+//STRIP001 #define ERRCTX_SVX_BACKGROUND                    5
+//STRIP001 #define ERRCTX_SVX_IMPORT_GRAPHIC                6
 
 // class SvxErrorHandler -------------------------------------------------
 
