@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmrkv1.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:24:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,12 +60,12 @@
  ************************************************************************/
 
 #include "svdmrkv.hxx"
-#include "svdetc.hxx"
-#include "svdoedge.hxx"
-#include "svdglob.hxx"
-#include "svdpagv.hxx"
-#include "svdpage.hxx"
-#include "svddrgm1.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdoedge.hxx"
+// auto strip #include "svdglob.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svddrgm1.hxx"
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmrkv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:24:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,27 +59,27 @@
  *
  ************************************************************************/
 
-#include "svdmrkv.hxx"
-#include "svdetc.hxx"
-#include "svdoedge.hxx"
-#include "svdglob.hxx"
-#include "svditext.hxx"
+// auto strip #include "svdmrkv.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdoedge.hxx"
+// auto strip #include "svdglob.hxx"
+// auto strip #include "svditext.hxx"
 #include "svdview.hxx"
 #include "svdpagv.hxx"
-#include "svdpage.hxx"
-#include "svddrgm1.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svddrgm1.hxx"
 #include "svdio.hxx"
-#include "svdibrow.hxx"
+// auto strip #include "svdibrow.hxx"
 #include "svdoole2.hxx"
-#include "xgrad.hxx"
-#include "xflgrit.hxx"
+// auto strip #include "xgrad.hxx"
+// auto strip #include "xflgrit.hxx"
 
-#include "gradtrns.hxx"
-#include "xflftrit.hxx"
+// auto strip #include "gradtrns.hxx"
+// auto strip #include "xflftrit.hxx"
 
-#include "dialmgr.hxx"
+// auto strip #include "dialmgr.hxx"
 #include "svdstr.hrc"
-#include "svdundo.hxx"
+// auto strip #include "svdundo.hxx"
 
 // #105722#
 #ifndef _SVDOPATH_HXX
