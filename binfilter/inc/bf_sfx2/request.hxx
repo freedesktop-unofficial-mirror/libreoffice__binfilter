@@ -2,9 +2,9 @@
  *
  *  $RCSfile: request.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:02:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
 #endif
-#ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
-#endif
+// auto strip #ifndef _SFXHINT_HXX //autogen
+// auto strip #include <svtools/hint.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDER_HPP_
 #include <com/sun/star/frame/XDispatchRecorder.hpp>
