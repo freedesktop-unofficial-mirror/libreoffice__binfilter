@@ -2,9 +2,9 @@
  *
  *  $RCSfile: layerexport.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:56:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,12 @@
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #define _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
-#include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
-#include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
+// auto strip #include <com/sun/star/container/XIndexAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/script/ScriptEventDescriptor.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
 #include <com/sun/star/util/XNumberFormats.hpp>
 #endif
@@ -80,12 +80,12 @@
 #ifndef _XMLOFF_FORMS_IFACECOMPARE_HXX_
 #include "ifacecompare.hxx"
 #endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _VOS_REF_HXX_
+// auto strip #include <vos/ref.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 namespace binfilter {
 
 class SvXMLExport;
@@ -352,6 +352,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/08 16:32:19  aw
+ *  #117295#
+ *
+ *  Revision 1.1  2003/12/05 09:34:06  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.13  2002/10/25 08:00:10  fs
  *  #104402# now exporting the style of a grid column (Align/formatting) as style
  *
