@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:44 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:45:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,46 +65,46 @@
 #include <cppuhelper/typeprovider.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
-#include <com/sun/star/awt/XBitmap.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
-#include <com/sun/star/awt/Rectangle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
-#include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-#ifndef _B2D_MATRIX3D_HXX
-#include <goodies/matrix3d.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX
-#include <vcl/virdev.hxx>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
+// auto strip #include <com/sun/star/awt/XBitmap.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
+// auto strip #include <com/sun/star/awt/Rectangle.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
+// auto strip #include <com/sun/star/drawing/CircleKind.hpp>
+// auto strip #endif
+// auto strip #ifndef _B2D_MATRIX3D_HXX
+// auto strip #include <goodies/matrix3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_VIRDEV_HXX
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 #ifndef _FLTCALL_HXX
 #include <svtools/fltcall.hxx>
 #endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SVX_UNOTEXT_HXX
-#include <unotext.hxx>
-#endif
-#ifndef _SVDOBJ_HXX
-#include <svdobj.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
-#include <comphelper/extract.hxx>
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <unotext.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOBJ_HXX
+// auto strip #include <svdobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #include <comphelper/extract.hxx>
 
 #include <toolkit/unohlp.hxx>
 
@@ -112,12 +112,12 @@
 #include <rtl/memory.h>
 #include <so3/outplace.hxx>
 
-#ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX
-#include <bf_sfx2/objsh.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJSH_HXX
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
 #ifndef _SVDOPAGE_HXX
 #include "svdopage.hxx"
 #endif
@@ -127,19 +127,19 @@
 #ifndef _SVX_XFLBMTIT_HXX
 #include "xflbmtit.hxx"
 #endif
-#ifndef _SVX_XLNSTIT_HXX
-#include "xlnstit.hxx"
-#endif
-#ifndef _SVX_XLNEDIT_HXX
-#include "xlnedit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNSTIT_HXX
+// auto strip #include "xlnstit.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_XLNEDIT_HXX
+// auto strip #include "xlnedit.hxx"
+// auto strip #endif
 #ifndef _SVDOGRP_HXX
 #include "svdogrp.hxx"
 #endif
 #ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
 #endif
-#include "svdmodel.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "globl3d.hxx"
 #include "fmglob.hxx"
 #include "unopage.hxx"
@@ -147,7 +147,7 @@
 #include "unoshape.hxx"
 #include "svxids.hrc"
 #include "unoshtxt.hxx"
-#include "svdpage.hxx"
+// auto strip #include "svdpage.hxx"
 #include "unoshprp.hxx"
 #include "svdoole2.hxx"
 #include "sxciaitm.hxx" // todo: remove
@@ -155,17 +155,17 @@
 #include "unoapi.hxx"
 #include "svdomeas.hxx"
 
-#include <tools/shl.hxx>    //
-#include "dialmgr.hxx"      // not nice, we need our own resources some day
+// auto strip #include <tools/shl.hxx>  //
+// auto strip #include "dialmgr.hxx"        // not nice, we need our own resources some day
 #include "dialogs.hrc"      //
 
 #ifndef _SVDCAPT_HXX
 #include "svdocapt.hxx"
 #endif
 
-#ifndef _E3D_OBJ3D_HXX
-#include <obj3d.hxx>
-#endif
+// auto strip #ifndef _E3D_OBJ3D_HXX
+// auto strip #include <obj3d.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
@@ -179,9 +179,9 @@
 #include "xbtmpit.hxx"
 #endif
 
-#ifndef _SVX_XFLGRIT_HXX
-#include "xflgrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLGRIT_HXX
+// auto strip #include "xflgrit.hxx"
+// auto strip #endif
 
 #ifndef _SVX_XFLHTIT_HXX
 #include "xflhtit.hxx"
@@ -199,9 +199,9 @@
 #include "xlndsit.hxx"
 #endif
 
-#ifndef _SVDGLOB_HXX
-#include "svdglob.hxx"
-#endif
+// auto strip #ifndef _SVDGLOB_HXX
+// auto strip #include "svdglob.hxx"
+// auto strip #endif
 #include "svdstr.hrc"
 #include "unomaster.hxx"
 
