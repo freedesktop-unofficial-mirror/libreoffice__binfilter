@@ -2,9 +2,9 @@
  *
  *  $RCSfile: refreshtimer.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:00:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:48:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef SC_REFRESHTIMER_HXX
 #define SC_REFRESHTIMER_HXX
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 #ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
 #endif
