@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:11 $
+ *  last change: $Author: obo $ $Date: 2004-05-13 12:56:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1874,7 +1874,11 @@ using namespace ::com::sun::star::i18n;
 /*N*/           ( SFX_ITEM_SET == rNode.GetpSwAttrSet()->GetItemState( nWhich,
 /*N*/               FALSE, &pParaItem ) ) && ( pParaItem == &pHint->GetAttr() );
 /*N*/       BOOL bReplace = !( SETATTR_DONTREPLACE & nMode );
+#if defined(_MSC_VER) && (_MSC_VER >= 1310 )
+            ::binfilter::SwpHtStart_SAR *pTmpHints = 0;
+#else
 /*N*/       SwpHtStart_SAR *pTmpHints = 0;
+#endif
 /*N*/
 /*N*/       USHORT i;
 /*N*/       // Wir wollen zwar von nHtStart bis nMaxEnd, muessen aber ggf.
@@ -2051,7 +2055,11 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   // Beim Einfuegen spaltet es sich selbst.
 /*?*/                                       if( pHistory ) pHistory->Add( pOther );
 /*?*/                                       if( !pTmpHints )
+#if defined(_MSC_VER) && (_MSC_VER >= 1310 )
+                                                pTmpHints = new ::binfilter::SwpHtStart_SAR();
+#else
 /*?*/                                           pTmpHints = new SwpHtStart_SAR();
+#endif
 /*?*/                                       pTmpHints->C40_INSERT( SwTxtAttr, pOther,
 /*?*/                                           pTmpHints->Count() );
 /*?*/                                       Cut( i );
@@ -2100,7 +2108,11 @@ using namespace ::com::sun::star::i18n;
 /*?*/                                   // Beim Einfuegen spaltet es sich selbst.
 /*?*/                                       if( pHistory ) pHistory->Add( pOther );
 /*?*/                                       if( !pTmpHints )
+#if defined(_MSC_VER) && (_MSC_VER >= 1310 )
+                                                pTmpHints = new ::binfilter::SwpHtStart_SAR();
+#else
 /*?*/                                           pTmpHints = new SwpHtStart_SAR();
+#endif
 /*?*/                                       pTmpHints->C40_INSERT( SwTxtAttr, pOther,
 /*?*/                                           pTmpHints->Count() );
 /*?*/                                       Cut( i );
