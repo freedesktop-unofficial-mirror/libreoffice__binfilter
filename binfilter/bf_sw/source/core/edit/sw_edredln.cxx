@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edredln.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:21:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,28 @@
 
 #pragma hdrstop
 
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _SV_WINDOW_HXX //autogen
-#include <vcl/window.hxx>
+
+// auto strip #include "redline.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#include "redline.hxx"
+
 #include "doc.hxx"
-#include "swundo.hxx"
+// auto strip #include "swundo.hxx"
 #include "editsh.hxx"
-#include "edimp.hxx"
-#include "frmtool.hxx"
+// auto strip #include "edimp.hxx"
+// auto strip #include "frmtool.hxx"
 namespace binfilter {
 
 
