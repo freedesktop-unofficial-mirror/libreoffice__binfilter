@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:08:44 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:36:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 
 #include "frmdescr.hxx"
 #include "app.hxx"
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 /*N*/ DBG_NAME(SfxFrameSetDescriptor)
@@ -526,7 +527,7 @@ namespace binfilter {
 //STRIP001
 //STRIP001  if ( aURL.GetMainURL(INetURLObject::DECODE_TO_IURI).Len() )
 //STRIP001  {
-//STRIP001      rStream.WriteByteString( INetURLObject::AbsToRel( aURL.GetMainURL(
+//STRIP001      rStream.WriteByteString( so3::StaticBaseUrl::AbsToRel( aURL.GetMainURL(
 //STRIP001                  INetURLObject::DECODE_TO_IURI ) ), RTL_TEXTENCODING_UTF8 );
 //STRIP001  }
 //STRIP001  else
@@ -586,7 +587,7 @@ namespace binfilter {
 //STRIP001  bHasUI = ( nFlags1 & 0x02 ) == 0;
 //STRIP001  bReadOnly = ( nFlags1 & 0x04 ) != 0;
 //STRIP001  eSizeSelector = (SizeSelector) nSelector;
-//STRIP001  aURL = INetURLObject::RelToAbs( aURLName );
+//STRIP001  aURL = so3::StaticBaseUrl::RelToAbs( aURLName );
 //STRIP001  eScroll = (ScrollingMode) nScroll;
 //STRIP001  aActualURL = aURL;
 //STRIP001
