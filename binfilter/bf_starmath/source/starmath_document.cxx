@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:11:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,50 +61,50 @@
 
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HPP_
-#include <com/sun/star/accessibility/AccessibleEventId.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HPP_
+// auto strip #include <com/sun/star/accessibility/AccessibleEventId.hpp>
+// auto strip #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENT_HXX
-#include <ucbhelper/content.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX
-#include <sot/formats.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUPROPS_HXX_
-#include <svtools/linguprops.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
+// auto strip #ifndef _UCBHELPER_CONTENT_HXX
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_FORMATS_HXX
+// auto strip #include <sot/formats.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_LINGUPROPS_HXX_
+// auto strip #include <svtools/linguprops.hxx>
+// auto strip #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
 #endif
-#ifndef _SOT_EXCHANGE_HXX //autogen
-#include <sot/exchange.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SOT_EXCHANGE_HXX //autogen
+// auto strip #include <sot/exchange.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#include <vcl/mapunit.hxx>
-#include <vcl/mapmod.hxx>
+// auto strip #include <vcl/mapunit.hxx>
+// auto strip #include <vcl/mapmod.hxx>
 
-#ifndef COMPHELPER_ACCESSIBLE_TEXT_HELPER_HXX
-#include <comphelper/accessibletexthelper.hxx>
-#endif
+// auto strip #ifndef COMPHELPER_ACCESSIBLE_TEXT_HELPER_HXX
+// auto strip #include <comphelper/accessibletexthelper.hxx>
+// auto strip #endif
 
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
@@ -118,52 +118,52 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-#ifndef _SFXPTITEM_HXX //autogen
-#include <svtools/ptitem.hxx>
-#endif
-#ifndef _UNDO_HXX //autogen
-#include <svtools/undo.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _SVTOOLS_FSTATHELPER_HXX
-#include <svtools/fstathelper.hxx>
-#endif
-#ifndef _TRANSFER_HXX
-#include <svtools/transfer.hxx>
-#endif
+// auto strip #ifndef _SFXPTITEM_HXX //autogen
+// auto strip #include <svtools/ptitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDO_HXX //autogen
+// auto strip #include <svtools/undo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_FSTATHELPER_HXX
+// auto strip #include <svtools/fstathelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _TRANSFER_HXX
+// auto strip #include <svtools/transfer.hxx>
+// auto strip #endif
 
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
 #endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 #ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-#ifndef _SFX_DOCFILT_HACK_HXX
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
@@ -185,9 +185,9 @@
 #ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
 #endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef _SFXSLSTITM_HXX
 #include <svtools/slstitm.hxx>
 #endif
@@ -195,9 +195,9 @@
 #ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
 #endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 
 #ifndef STARMATH_HRC
 #include <starmath.hrc>
@@ -208,33 +208,33 @@
 #ifndef UNOMODEL_HXX
 #include <unomodel.hxx>
 #endif
-#ifndef CONFIG_HXX
-#include <config.hxx>
-#endif
-#ifndef SYMBOL_HXX
-#include <symbol.hxx>
-#endif
+// auto strip #ifndef CONFIG_HXX
+// auto strip #include <config.hxx>
+// auto strip #endif
+// auto strip #ifndef SYMBOL_HXX
+// auto strip #include <symbol.hxx>
+// auto strip #endif
 #ifndef TOOLBOX_HXX
 #include <toolbox.hxx>
 #endif
-#ifndef DIALOG_HXX
-#include <dialog.hxx>
-#endif
+// auto strip #ifndef DIALOG_HXX
+// auto strip #include <dialog.hxx>
+// auto strip #endif
 #ifndef ACTION_HXX
 #include <action.hxx>
 #endif
 #ifndef VIEW_HXX
 #include <view.hxx>
 #endif
-#ifndef UTILITY_HXX
-#include <utility.hxx>
-#endif
-#ifndef FORMAT_HXX
-#include <format.hxx>
-#endif
-#ifndef MATHTYPE_HXX
-#include <mathtype.hxx>
-#endif
+// auto strip #ifndef UTILITY_HXX
+// auto strip #include <utility.hxx>
+// auto strip #endif
+// auto strip #ifndef FORMAT_HXX
+// auto strip #include <format.hxx>
+// auto strip #endif
+// auto strip #ifndef MATHTYPE_HXX
+// auto strip #include <mathtype.hxx>
+// auto strip #endif
 #ifndef MATHML_HXX
 #include <mathml.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:12:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,50 +62,50 @@
 #pragma hdrstop
 #define APPEND(str,ascii) str.AppendAscii(RTL_CONSTASCII_STRINGPARAM(ascii))
 
-#ifndef _SV_GEN_HXX //autogen
-#include <tools/gen.hxx>
-#endif
-#ifndef _FRACT_HXX //autogen
-#include <tools/fract.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
-#include <rtl/math.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
-#include <tools/color.hxx>
-#endif
-#ifndef _SV_METRIC_HXX //autogen
-#include <vcl/metric.hxx>
-#endif
-#ifndef _SV_LINEINFO_HXX
-#include <vcl/lineinfo.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
-#include <bf_sfx2/module.hxx>
-#endif
+// auto strip #ifndef _SV_GEN_HXX //autogen
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRACT_HXX //autogen
+// auto strip #include <tools/fract.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_RTL_MATH_HXX
+// auto strip #include <rtl/math.hxx>
+// auto strip #endif
+// auto strip #ifndef _COLOR_HXX //autogen
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_METRIC_HXX //autogen
+// auto strip #include <vcl/metric.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_LINEINFO_HXX
+// auto strip #include <vcl/lineinfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMODULE_HXX //autogen
+// auto strip #include <bf_sfx2/module.hxx>
+// auto strip #endif
 
 
-#ifndef NODE_HXX
-#include "node.hxx"
-#endif
-#ifndef RECT_HXX
-#include <rect.hxx>
-#endif
+// auto strip #ifndef NODE_HXX
+// auto strip #include "node.hxx"
+// auto strip #endif
+// auto strip #ifndef RECT_HXX
+// auto strip #include <rect.hxx>
+// auto strip #endif
 #ifndef SYMBOL_HXX
 #include "symbol.hxx"
 #endif
-#ifndef _SMMOD_HXX
-#include "smmod.hxx"
-#endif
+// auto strip #ifndef _SMMOD_HXX
+// auto strip #include "smmod.hxx"
+// auto strip #endif
 #ifndef DOCUMENT_HXX
 #include <document.hxx>
 #endif
-#ifndef VIEW_HXX
-#include <view.hxx>
-#endif
+// auto strip #ifndef VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
 #ifndef _MATHTYPE_HXX
 #include "mathtype.hxx"
 #endif
