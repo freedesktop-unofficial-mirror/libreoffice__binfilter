@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_xchar.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:31 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:41:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -302,9 +302,9 @@ namespace binfilter {
 /*N*/       aBoundRect = aPoly.GetBoundRect();
 /*N*/       aPos       = GetOrigPos();
 /*N*/
-/*N*/       // jetzt nach (0, 0) verschieben verbessert die Chancen, daß in Scale()
-/*N*/       // (welches ia öfter aufgerufen wird) nicht das MoveTo ausgeführt
-/*N*/       // werden muß
+/*N*/       // jetzt nach (0, 0) verschieben verbessert die Chancen, dass in Scale()
+/*N*/       // (welches ia oefter aufgerufen wird) nicht das MoveTo ausgefuehrt
+/*N*/       // werden muss
 /*N*/       MoveTo(Point());
 /*N*/   }
 /*N*/ }
@@ -331,7 +331,7 @@ namespace binfilter {
 /*N*/   fDelayedFactorX = fDelayedFactorY = 1.0;
 /*N*/
 /*N*/   // Anm.: aBoundRect stimmt hier immer noch nicht!
-/*N*/   // Das passiert erst wenn es benötigt wird.
+/*N*/   // Das passiert erst wenn es benoetigt wird.
 /*N*/
 /*N*/   // ggf Ausgangsposition wiederherstellen
 /*N*/   if (aPos != aOrigin)
@@ -366,7 +366,7 @@ namespace binfilter {
 
 /*N*/ void SmPolygon::AdaptToY(const OutputDevice &rDev, ULONG nHeight)
 /*N*/ {
-/*N*/   DBG_ASSERT(aOrigSize.Height() != 0, "Sm: Polygon hat keine Höhe");
+/*N*/   DBG_ASSERT(aOrigSize.Height() != 0, "Sm: Polygon hat keine Hoehe");
 /*N*/   if (aOrigSize.Height() != 0)
 /*N*/   {
 /*N*/       double  fFactor = 1.0 / GetScaleY() * nHeight / aOrigSize.Height();
