@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:59:53 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:37:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,12 +73,12 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>       // ASSERT in ~SwTxtFtn()
-// auto strip #endif
-// auto strip #ifndef _PAGEFRM_HXX
-// auto strip #include <pagefrm.hxx>      // RemoveFtn()
-// auto strip #endif
+#ifndef _CNTFRM_HXX
+#include <cntfrm.hxx>       // ASSERT in ~SwTxtFtn()
+#endif
+#ifndef _PAGEFRM_HXX
+#include <pagefrm.hxx>      // RemoveFtn()
+#endif
 #ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
 #endif
@@ -100,9 +100,9 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-// auto strip #ifndef _FTNFRM_HXX
-// auto strip #include <ftnfrm.hxx>
-// auto strip #endif
+#ifndef _FTNFRM_HXX
+#include <ftnfrm.hxx>
+#endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
@@ -413,62 +413,62 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ }
 
 
-//STRIP001 void SwTxtFtn::DelFrms()
-//STRIP001 {
-//STRIP001  // loesche die Ftn-Frames aus den Seiten
-//STRIP001  ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
-//STRIP001  if( !pMyTxtNd )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  BOOL bFrmFnd = FALSE;
-//STRIP001  {
-//STRIP001      SwClientIter aIter( *pMyTxtNd );
-//STRIP001      for( SwCntntFrm* pFnd = (SwCntntFrm*)aIter.First( TYPE( SwCntntFrm ));
-//STRIP001              pFnd; pFnd = (SwCntntFrm*)aIter.Next() )
-//STRIP001      {
-//STRIP001             SwPageFrm* pPage = pFnd->FindPageFrm();
-//STRIP001             if( pPage )
-//STRIP001             {
-//STRIP001                 pPage->RemoveFtn( pFnd, this );
-//STRIP001                 bFrmFnd = TRUE;
-//STRIP001             }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  //JP 13.05.97: falls das Layout vorm loeschen der Fussnoten entfernt
-//STRIP001  //              wird, sollte man das ueber die Fussnote selbst tun
-//STRIP001  if( !bFrmFnd && pStartNode )
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *pStartNode );
-//STRIP001      SwCntntNode* pCNd = pMyTxtNd->GetNodes().GoNext( &aIdx );
-//STRIP001      if( pCNd )
-//STRIP001      {
-//STRIP001          SwClientIter aIter( *pCNd );
-//STRIP001          for( SwCntntFrm* pFnd = (SwCntntFrm*)aIter.First( TYPE( SwCntntFrm ));
-//STRIP001                  pFnd; pFnd = (SwCntntFrm*)aIter.Next() )
-//STRIP001          {
-//STRIP001              SwPageFrm* pPage = pFnd->FindPageFrm();
-//STRIP001
-//STRIP001              SwFrm *pFrm = pFnd->GetUpper();
-//STRIP001              while ( pFrm && !pFrm->IsFtnFrm() )
-//STRIP001                  pFrm = pFrm->GetUpper();
-//STRIP001
-//STRIP001              SwFtnFrm *pFtn = (SwFtnFrm*)pFrm;
-//STRIP001              while ( pFtn && pFtn->GetMaster() )
-//STRIP001                  pFtn = pFtn->GetMaster();
-//STRIP001              ASSERT( pFtn->GetAttr() == this, "Ftn mismatch error." );
-//STRIP001
-//STRIP001              while ( pFtn )
-//STRIP001              {
-//STRIP001                  SwFtnFrm *pFoll = pFtn->GetFollow();
-//STRIP001                  pFtn->Cut();
-//STRIP001                  delete pFtn;
-//STRIP001                  pFtn = pFoll;
-//STRIP001              }
-//STRIP001              pPage->UpdateFtnNum();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+ void SwTxtFtn::DelFrms()
+ {
+    // loesche die Ftn-Frames aus den Seiten
+    ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
+    if( !pMyTxtNd )
+        return ;
+
+    BOOL bFrmFnd = FALSE;
+    {
+        SwClientIter aIter( *pMyTxtNd );
+        for( SwCntntFrm* pFnd = (SwCntntFrm*)aIter.First( TYPE( SwCntntFrm ));
+                pFnd; pFnd = (SwCntntFrm*)aIter.Next() )
+        {
+             SwPageFrm* pPage = pFnd->FindPageFrm();
+             if( pPage )
+             {
+                 pPage->RemoveFtn( pFnd, this );
+                 bFrmFnd = TRUE;
+             }
+        }
+    }
+    //JP 13.05.97: falls das Layout vorm loeschen der Fussnoten entfernt
+    //              wird, sollte man das ueber die Fussnote selbst tun
+    if( !bFrmFnd && pStartNode )
+    {
+        SwNodeIndex aIdx( *pStartNode );
+        SwCntntNode* pCNd = pMyTxtNd->GetNodes().GoNext( &aIdx );
+        if( pCNd )
+        {
+            SwClientIter aIter( *pCNd );
+            for( SwCntntFrm* pFnd = (SwCntntFrm*)aIter.First( TYPE( SwCntntFrm ));
+                    pFnd; pFnd = (SwCntntFrm*)aIter.Next() )
+            {
+                SwPageFrm* pPage = pFnd->FindPageFrm();
+
+                SwFrm *pFrm = pFnd->GetUpper();
+                while ( pFrm && !pFrm->IsFtnFrm() )
+                    pFrm = pFrm->GetUpper();
+
+                SwFtnFrm *pFtn = (SwFtnFrm*)pFrm;
+                while ( pFtn && pFtn->GetMaster() )
+                    pFtn = pFtn->GetMaster();
+                ASSERT( pFtn->GetAttr() == this, "Ftn mismatch error." );
+
+                while ( pFtn )
+                {
+                    SwFtnFrm *pFoll = pFtn->GetFollow();
+                    pFtn->Cut();
+                    delete pFtn;
+                    pFtn = pFoll;
+                }
+                pPage->UpdateFtnNum();
+            }
+        }
+    }
+ }
 
 
 /*N*/ USHORT SwTxtFtn::SetSeqRefNo()
