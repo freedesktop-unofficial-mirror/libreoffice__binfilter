@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:50:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
 // header for SvStream
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 // header for SAL_STATIC_CAST
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
@@ -73,8 +73,8 @@
 
 #include "schopt.hxx"
 
-#include "cfgids.hxx"
-#include "defines.hxx"          // for ROW_COLOR_COUNT
+// auto strip #include "cfgids.hxx"
+// auto strip #include "defines.hxx"            // for ROW_COLOR_COUNT
 #include "schresid.hxx"
 #include "strings.hrc"
 namespace binfilter {
