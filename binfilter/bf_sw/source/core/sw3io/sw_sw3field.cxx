@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:11:47 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:44:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 
 #include "poolfmt.hxx"      // fuer InSetExpField
 #include "poolfmt.hrc"      // fuer InSetExpField
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC)
@@ -2349,7 +2350,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.InString( *rIo.pStrm, rIo.aINetFldText );
 /*N*/
 /*N*/   // JP 10.04.96: aus rel. URLs wieder absolute machen!
-/*N*/   aURL = URIHelper::SmartRelToAbs( aURL );
+/*N*/   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/
 /*N*/   String sTarget;
 /*N*/   if( rIo.IsVersion( SWG_TARGETFRAME, SWG_EXPORT31 ) )
@@ -2420,7 +2421,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
             cFlags = 0x01;
         }
         if( (cFlags & 0x01) != 0 )
-            aCode = URIHelper::SmartRelToAbs( aCode );
+            aCode = so3::StaticBaseUrl::SmartRelToAbs( aCode );
 
         SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
                                                  (cFlags & 0x01) != 0 );
@@ -2437,7 +2438,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         *rIo.pStrm >> cFlags;
 
         if( (cFlags & 0x01) != 0 )
-            aCode = URIHelper::SmartRelToAbs( aCode );
+            aCode = so3::StaticBaseUrl::SmartRelToAbs( aCode );
 
         SwScriptField *pFld = new SwScriptField( (SwScriptFieldType*)pType, aType, aCode,
                                                  (cFlags & 0x01) != 0 );
@@ -2455,7 +2456,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         if( ((SwScriptField*)pFld)->IsCodeURL() )
         {
             aCode.AssignAscii( "// @url: " );
-            aCode += String(INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() ));
+            aCode += so3::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
         }
         else
             aCode = ((SwScriptField*)pFld)->GetCode();
@@ -2473,7 +2474,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
         String aCode;
         if( ((SwScriptField*)pFld)->IsCodeURL() )
-            aCode = INetURLObject::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
+            aCode = so3::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
         else
             aCode = ((SwScriptField*)pFld)->GetCode();
 
