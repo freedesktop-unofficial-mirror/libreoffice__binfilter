@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:02:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,15 +59,15 @@
  *
  ************************************************************************/
 
-#ifndef _SV_METAACT_HXX
-#include <vcl/metaact.hxx>
-#endif
+// auto strip #ifndef _SV_METAACT_HXX
+// auto strip #include <vcl/metaact.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
-#ifndef _INTN_HXX
-#include <tools/intn.hxx>
-#endif
+// auto strip #ifndef _INTN_HXX
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
@@ -83,6 +83,19 @@
 #endif
 
 #define ITEMID_FIELD    0
+
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
 #include "flditem.hxx"
 #include "adritem.hxx"
 
