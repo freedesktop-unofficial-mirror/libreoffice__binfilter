@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svditext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:17:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 
 // SvxItem-Mapping. Wird benoetigt um die SvxItem-Header erfolgreich zu includen
 
-#ifndef _EDITDATA_HXX
-#include <editdata.hxx>
-#endif
+// auto strip #ifndef _EDITDATA_HXX
+// auto strip #include <editdata.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //      textitem.hxx        editdata.hxx
