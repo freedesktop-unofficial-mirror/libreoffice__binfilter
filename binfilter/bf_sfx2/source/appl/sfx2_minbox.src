@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_minbox.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:16 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 13:41:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 
 
@@ -91,35 +92,32 @@ QueryBox RID_DELETE_MAIL_QBX
     DefButton = WB_DEF_NO ;
     /* ### ACHTUNG: Neuer Text in Resource? Sind Sie sicher, da� Sie diese Mail l�schen wollen? : Sind Sie sicher, da� Sie diese Mail l�schen wollen? */
     /* ### ACHTUNG: Neuer Text in Resource? Sind Sie sicher, da� Sie diese Mail l�schen wollen? : Sind Sie sicher, da� Sie diese Mail l�schen wollen? */
-    Message = "Sind Sie sicher, dass Sie diese Mail l�schen wollen?" ;
-    Message [ English ] = "Are you sure you want to delete this mail?" ;
-    Message [ norwegian ] = "Er du sikker p� at du vil slette denne mailen?" ;
-    Message [ italian ] = "Volete eliminare questa mail?" ;
-    Message [ portuguese_brazilian ] = "Deseja realmente excluir esta mensagem?" ;
-    Message [ portuguese ] = "Deseja realmente eliminar esta mensagem?" ;
-    Message [ finnish ] = "Haluatko varmasti poistaa t�m�n viestin?" ;
-    Message [ danish ] = "Er du sikker p�, at du vil slette denne meddelelse?" ;
-    Message [ french ] = "�tes vous s�r de vouloir supprimer ce message ?" ;
-    Message [ swedish ] = "�r du s�ker p� att du vill radera det h�r e-brevet?" ;
-    Message [ dutch ] = "Weet u zeker dat u deze mail wilt wissen?" ;
-    Message [ spanish ] = "�Desea realmente borrar este mensaje?" ;
-    Message [ english_us ] = "Are you sure you want to delete this message?" ;
-    Message[ chinese_simplified ] = "真的要删除这个电子邮件？";
-    Message[ russian ] = "�� ������������� ������ ������� ��� ���������?";
-    Message[ polish ] = "Czy na pewno chcesz usun�� t� wiadomo��?";
-    Message[ japanese ] = "このメールを本当に削除しますか。";
-    Message[ chinese_traditional ] = "您真要刪除這個郵件？";
-    Message[ arabic ] = "�� ���� ������ ��� ��� ������ɿ";
-    Message[ greek ] = "������ ���������� �� ���������� �� ������ ����;";
-    Message[ korean ] = "이 메일을 정말로 삭제하겠습니까?";
-    Message[ turkish ] = "Bu e-posta iletisini ger�ekten silmek istiyor musunuz?";
-    Message[ language_user1 ] = " ";
-    Message[ catalan ] = "Realment voleu suprimir aquest missatge?";
-    Message[ thai ] = "คุณแน่ใจหรือไม่ที่จะลบข้อความนี้?";
-    Message[ czech ] = "Jste si jist, že chcete smazat tuto zprávu?";
-    Message[ hebrew ] = "‮האם באמת למחוק הודעה זו?‬";
-    Message[ hindi ] = "आप सचमुच में इस संदेश को मिटाना चाहते है?";
-    Message[ slovak ] = "Ste si istý, že chcete zmazať túto správu?";
+    Message [ de ] = "Sind Sie sicher, dass Sie diese Mail l�schen wollen?" ;
+    Message [ en-US ] = "Are you sure you want to delete this message?" ;
+    Message [ x-comment ] = " ";
+    Message[ pt ] = "Deseja realmente eliminar esta mensagem?";
+    Message[ ru ] = "Вы действительно хотите удалить это сообщение?";
+    Message[ el ] = "Θέλετε πραγματικά να διαγράψετε το μήνυμα αυτό;";
+    Message[ nl ] = "Weet u zeker dat u deze mail wilt wissen?";
+    Message[ fr ] = "Êtes vous sûr de vouloir supprimer ce message ?";
+    Message[ es ] = "¿Desea realmente borrar este mensaje?";
+    Message[ fi ] = "Haluatko varmasti poistaa tämän viestin?";
+    Message[ ca ] = "Realment voleu suprimir aquest missatge?";
+    Message[ it ] = "Volete eliminare questa mail?";
+    Message[ sk ] = "Ste si istý, že chcete zmazať túto správu?";
+    Message[ da ] = "Er du sikker på, at du vil slette denne meddelelse?";
+    Message[ sv ] = "Är du säker på att du vill radera det här e-brevet?";
+    Message[ pl ] = "Czy na pewno chcesz usunąć tę wiadomość?";
+    Message[ pt-BR ] = "Deseja realmente excluir esta mensagem?";
+    Message[ th ] = "คุณแน่ใจหรือไม่ที่จะลบข้อความนี้?";
+    Message[ ja ] = "このメールを本当に削除しますか。";
+    Message[ ko ] = "이 메일을 정말로 삭제하겠습니까?";
+    Message[ zh-CN ] = "真的要删除这个电子邮件？";
+    Message[ zh-TW ] = "您真要刪除這個郵件？";
+    Message[ tr ] = "Bu e-posta iletisini gerçekten silmek istiyor musunuz?";
+    Message[ hi-IN ] = "आप सचमुच में इस संदेश को मिटाना चाहते है?";
+    Message[ ar ] = "هل تريد بالفعل حذف هذه الرسالة؟";
+    Message[ he ] = "‮האם באמת למחוק הודעה זו?‬";
 };
 
  // RID_MAIL_INBOX --------------------------------------------------------
@@ -138,54 +136,40 @@ DockingWindow RID_MAIL_INBOX
     SVLook = TRUE ;
     Hide = TRUE ;
     Size = MAP_APPFONT ( 308 , 118 ) ;
-    Text = "Eingangskorb" ;
-    Text [ English ] = "Inbox" ;
-    Text [ norwegian ] = "Innboks" ;
-    Text [ italian ] = "Posta in arrivo" ;
-    Text [ portuguese_brazilian ] = "Caixa de entrada" ;
-    Text [ portuguese ] = "Caixa de recep��o" ;
-    Text [ finnish ] = "Saapuneet" ;
-    Text [ danish ] = "Indbakke" ;
-    Text [ french ] = "Bo�te de r�ception" ;
-    Text [ swedish ] = "Inkorg" ;
-    Text [ dutch ] = "Postvak IN" ;
-    Text [ spanish ] = "Carpeta de entrada" ;
-    Text [ english_us ] = "Inbox" ;
+    Text [ de ] = "Eingangskorb" ;
+    Text [ en-US ] = "Inbox" ;
     PushButton BTN_MAILINBOX_OPEN
     {
         Pos = MAP_APPFONT ( 252 , 6 ) ;
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? �ffnen... : �ffnen... */
         /* ### ACHTUNG: Neuer Text in Resource? �ffnen... : �ffnen... */
-        Text = "�ffnen..." ;
-        Text [ English ] = "Open..." ;
-        Text [ norwegian ] = "�pne..." ;
-        Text [ italian ] = "Apri..." ;
-        Text [ portuguese_brazilian ] = "Abrir..." ;
-        Text [ portuguese ] = "Abrir..." ;
-        Text [ finnish ] = "Avaa..." ;
-        Text [ danish ] = "�bn..." ;
-        Text [ french ] = "Ouvrir..." ;
-        Text [ swedish ] = "�ppna..." ;
-        Text [ dutch ] = "Openen..." ;
-        Text [ spanish ] = "Abrir..." ;
-        Text [ english_us ] = "Open..." ;
-        Text[ chinese_simplified ] = "打开...";
-        Text[ russian ] = "�������...";
-        Text[ polish ] = "Otw�rz...";
-        Text[ japanese ] = "開く...";
-        Text[ chinese_traditional ] = "開啟舊檔...";
-        Text[ arabic ] = "���...";
-        Text[ greek ] = "�������...";
-        Text[ korean ] = "열기...";
-        Text[ turkish ] = "A�...";
-        Text[ language_user1 ] = " ";
-        Text[ catalan ] = "Obre...";
-        Text[ thai ] = "เปิด...";
-        Text[ czech ] = "Otevřít...";
-        Text[ hebrew ] = "‮פתיחה...‬";
-        Text[ hindi ] = "खोलो...";
-        Text[ slovak ] = "Otvoriť...";
+        Text [ de ] = "�ffnen..." ;
+        Text [ en-US ] = "Open..." ;
+        Text [ x-comment ] = " ";
+        Text[ pt ] = "Abrir...";
+        Text[ ru ] = "Открыть...";
+        Text[ el ] = "Άνοιγμα...";
+        Text[ nl ] = "Openen...";
+        Text[ fr ] = "Ouvrir...";
+        Text[ es ] = "Abrir...";
+        Text[ fi ] = "Avaa...";
+        Text[ ca ] = "Obre...";
+        Text[ it ] = "Apri...";
+        Text[ sk ] = "Otvoriť...";
+        Text[ da ] = "Åbn...";
+        Text[ sv ] = "Öppna...";
+        Text[ pl ] = "Otwórz...";
+        Text[ pt-BR ] = "Abrir...";
+        Text[ th ] = "เปิด...";
+        Text[ ja ] = "開く...";
+        Text[ ko ] = "열기...";
+        Text[ zh-CN ] = "打开...";
+        Text[ zh-TW ] = "開啟舊檔...";
+        Text[ tr ] = "Aç...";
+        Text[ hi-IN ] = "खोलो...";
+        Text[ ar ] = "فتح...";
+        Text[ he ] = "‮פתיחה...‬";
     };
     PushButton BTN_MAILINBOX_DELETE
     {
@@ -193,35 +177,32 @@ DockingWindow RID_MAIL_INBOX
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? L�schen : L�schen */
         /* ### ACHTUNG: Neuer Text in Resource? L�schen : L�schen */
-        Text = "L�schen" ;
-        Text [ English ] = "Delete" ;
-        Text [ norwegian ] = "Slett" ;
-        Text [ italian ] = "Elimina" ;
-        Text [ portuguese_brazilian ] = "Excluir" ;
-        Text [ portuguese ] = "Eliminar" ;
-        Text [ finnish ] = "Poista" ;
-        Text [ danish ] = "Slet" ;
-        Text [ french ] = "Supprimer" ;
-        Text [ swedish ] = "Radera" ;
-        Text [ dutch ] = "Wissen" ;
-        Text [ spanish ] = "Borrar" ;
-        Text [ english_us ] = "Delete" ;
-        Text[ chinese_simplified ] = "删除";
-        Text[ russian ] = "�������";
-        Text[ polish ] = "Usu�";
-        Text[ japanese ] = "削除";
-        Text[ chinese_traditional ] = "刪除";
-        Text[ arabic ] = "���";
-        Text[ greek ] = "��������";
-        Text[ korean ] = "삭제";
-        Text[ turkish ] = "Sil";
-        Text[ language_user1 ] = " ";
-        Text[ catalan ] = "Suprimeix";
-        Text[ thai ] = "ลบ";
-        Text[ czech ] = "Smazat";
-        Text[ hebrew ] = "‮מחיקה‬";
-        Text[ hindi ] = "मिटाओ";
-        Text[ slovak ] = "Zmazať";
+        Text [ de ] = "L�schen" ;
+        Text [ en-US ] = "Delete" ;
+        Text [ x-comment ] = " ";
+        Text[ pt ] = "Eliminar";
+        Text[ ru ] = "Удалить";
+        Text[ el ] = "Διαγραφή";
+        Text[ nl ] = "Wissen";
+        Text[ fr ] = "Supprimer";
+        Text[ es ] = "Borrar";
+        Text[ fi ] = "Poista";
+        Text[ ca ] = "Suprimeix";
+        Text[ it ] = "Elimina";
+        Text[ sk ] = "Zmazať";
+        Text[ da ] = "Slet";
+        Text[ sv ] = "Radera";
+        Text[ pl ] = "Usuń";
+        Text[ pt-BR ] = "Excluir";
+        Text[ th ] = "ลบ";
+        Text[ ja ] = "削除";
+        Text[ ko ] = "삭제";
+        Text[ zh-CN ] = "删除";
+        Text[ zh-TW ] = "刪除";
+        Text[ tr ] = "Sil";
+        Text[ hi-IN ] = "मिटाओ";
+        Text[ ar ] = "حذف";
+        Text[ he ] = "‮מחיקה‬";
     };
     PushButton BTN_MAILINBOX_CLOSE
     {
@@ -229,36 +210,33 @@ DockingWindow RID_MAIL_INBOX
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? Schlie�en : Schlie�en */
         /* ### ACHTUNG: Neuer Text in Resource? Schlie�en : Schlie�en */
-        Text = "Schlie�en" ;
-        Text [ English ] = "Close" ;
-        Text [ norwegian ] = "Lukk" ;
-        Text [ italian ] = "Chiudi" ;
-        Text [ portuguese_brazilian ] = "Fechar" ;
-        Text [ portuguese ] = "Fechar" ;
-        Text [ finnish ] = "Sulje" ;
-        Text [ danish ] = "Luk" ;
-        Text [ french ] = "Fermer" ;
-        Text [ swedish ] = "St�ng" ;
-        Text [ dutch ] = "Sluiten" ;
-        Text [ spanish ] = "Cerrar" ;
-        Text [ english_us ] = "Close" ;
+        Text [ de ] = "Schlie�en" ;
+        Text [ en-US ] = "Close" ;
         DefButton = TRUE ;
-        Text[ chinese_simplified ] = "关闭";
-        Text[ russian ] = "�������";
-        Text[ polish ] = "Zamknij";
-        Text[ japanese ] = "閉じる";
-        Text[ chinese_traditional ] = "關閉";
-        Text[ arabic ] = "�����";
-        Text[ greek ] = "��������";
-        Text[ korean ] = "닫기";
-        Text[ turkish ] = "Kapat";
-        Text[ language_user1 ] = " ";
-        Text[ catalan ] = "Tanca";
-        Text[ thai ] = "ปิด";
-        Text[ czech ] = "Zavřít";
-        Text[ hebrew ] = "‮סגירה‬";
-        Text[ hindi ] = "बन्द करो";
-        Text[ slovak ] = "Zavrieť";
+        Text [ x-comment ] = " ";
+        Text[ pt ] = "Fechar";
+        Text[ ru ] = "Закрыть";
+        Text[ el ] = "Κλείσιμο";
+        Text[ nl ] = "Sluiten";
+        Text[ fr ] = "Fermer";
+        Text[ es ] = "Cerrar";
+        Text[ fi ] = "Sulje";
+        Text[ ca ] = "Tanca";
+        Text[ it ] = "Chiudi";
+        Text[ sk ] = "Zavrieť";
+        Text[ da ] = "Luk";
+        Text[ sv ] = "Stäng";
+        Text[ pl ] = "Zamknij";
+        Text[ pt-BR ] = "Fechar";
+        Text[ th ] = "ปิด";
+        Text[ ja ] = "閉じる";
+        Text[ ko ] = "닫기";
+        Text[ zh-CN ] = "关闭";
+        Text[ zh-TW ] = "關閉";
+        Text[ tr ] = "Kapat";
+        Text[ hi-IN ] = "बन्द करो";
+        Text[ ar ] = "إغلاق";
+        Text[ he ] = "‮סגירה‬";
     };
     Control CTRL_MAILINBOX_BROWSER
     {
@@ -266,22 +244,30 @@ DockingWindow RID_MAIL_INBOX
         Size = MAP_APPFONT ( 240 , 105 ) ;
         Border = TRUE ;
     };
-    Text[ chinese_simplified ] = "收件箱";
-    Text[ russian ] = "��������";
-    Text[ polish ] = "Skrzynka odbiorcza";
-    Text[ japanese ] = "受信トレー";
-    Text[ chinese_traditional ] = "收件匣";
-    Text[ arabic ] = "��� ������";
-    Text[ greek ] = "������ �����������";
-    Text[ korean ] = "받은 편지함";
-    Text[ turkish ] = "Gelen kutusu";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Carpeta de entrada";
-    Text[ thai ] = "กล่องขาเข้า";
-    Text[ czech ] = "Došlá pošta";
-    Text[ hebrew ] = "‮תא דואר נכנס‬";
-    Text[ hindi ] = "इनबॉक्स";
-    Text[ slovak ] = "Došlá pošta";
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Caixa de recepção";
+    Text[ ru ] = "Входящие";
+    Text[ el ] = "Καλάθι εισερχόμενα";
+    Text[ nl ] = "Postvak IN";
+    Text[ fr ] = "Boîte de réception";
+    Text[ es ] = "Carpeta de entrada";
+    Text[ fi ] = "Saapuneet";
+    Text[ ca ] = "Carpeta de entrada";
+    Text[ it ] = "Posta in arrivo";
+    Text[ sk ] = "Došlá pošta";
+    Text[ da ] = "Indbakke";
+    Text[ sv ] = "Inkorg";
+    Text[ pl ] = "Skrzynka odbiorcza";
+    Text[ pt-BR ] = "Caixa de entrada";
+    Text[ th ] = "กล่องขาเข้า";
+    Text[ ja ] = "受信トレー";
+    Text[ ko ] = "받은 편지함";
+    Text[ zh-CN ] = "收件箱";
+    Text[ zh-TW ] = "收件匣";
+    Text[ tr ] = "Gelen kutusu";
+    Text[ hi-IN ] = "इनबॉक्स";
+    Text[ ar ] = "سلة الوارد";
+    Text[ he ] = "‮תא דואר נכנס‬";
 };
 
  // ********************************************************************** EOF
