@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:35:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:44:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,48 +68,48 @@
 #define ITEMID_LINEEND_LIST             SID_LINEEND_LIST
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
 
-#ifndef _PSTM_HXX
-#include <tools/pstm.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#include <bf_sfx2/docfac.hxx>
+// auto strip #include <bf_sfx2/docfac.hxx>
 
 #ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SVX_SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
-#ifndef _SVX_SRCHDLG_HXX
-#include <bf_svx/srchdlg.hxx>
-#endif
-#ifndef _SVX_SVXIFACT_HXX
-#include <bf_svx/svxifact.hxx>
-#endif
-#ifndef _SVX_FLSTITEM_HXX
-#include <bf_svx/flstitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHITEM_HXX
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SRCHDLG_HXX
+// auto strip #include <bf_svx/srchdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SVXIFACT_HXX
+// auto strip #include <bf_svx/svxifact.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FLSTITEM_HXX
+// auto strip #include <bf_svx/flstitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
 #ifndef _SFXINTITEM_HXX
 #include <svtools/intitem.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-#ifndef _SFX_DOCFILE_HXX //autogen
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _B3D_BASE3D_HXX
-#include "goodies/base3d.hxx"
-#endif
-#ifndef _SVX_DRAWITEM_HXX //autogen
-#include <bf_svx/drawitem.hxx>
-#endif
+// auto strip #ifndef _SFX_DOCFILE_HXX //autogen
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include "goodies/base3d.hxx"
+// auto strip #endif
+// auto strip #ifndef _SVX_DRAWITEM_HXX //autogen
+// auto strip #include <bf_svx/drawitem.hxx>
+// auto strip #endif
 #ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
 #endif
@@ -119,12 +119,12 @@
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 #ifndef _CTRLTOOL_HXX //autogen
 #include <svtools/ctrltool.hxx>
 #endif
@@ -134,28 +134,28 @@
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-#ifndef _SFX_TOPFRM_HXX
-#include <bf_sfx2/topfrm.hxx>
-#endif
+// auto strip #ifndef _SFX_TOPFRM_HXX
+// auto strip #include <bf_sfx2/topfrm.hxx>
+// auto strip #endif
 
 #include "app.hrc"
-#include "app.hxx"
+// auto strip #include "app.hxx"
 #include "strmname.h"
-#include "stlpool.hxx"
+// auto strip #include "stlpool.hxx"
 #include "strings.hrc"
 #include "docshell.hxx"
-#include "sdview.hxx"
+// auto strip #include "sdview.hxx"
 #include "drawdoc.hxx"
-#include "sdpage.hxx"
+// auto strip #include "sdpage.hxx"
 #include "glob.hrc"
 #include "res_bmp.hrc"
-#include "fupoor.hxx"
-#include "fusearch.hxx"
+// auto strip #include "fupoor.hxx"
+// auto strip #include "fusearch.hxx"
 #include "viewshel.hxx"
 #include "sdresid.hxx"
 #include "fuslshow.hxx"
 //STRIP001 #include "preview.hxx"
-#include "drawview.hxx"
+// auto strip #include "drawview.hxx"
 #include "frmview.hxx"
 #include "unomodel.hxx"
 
