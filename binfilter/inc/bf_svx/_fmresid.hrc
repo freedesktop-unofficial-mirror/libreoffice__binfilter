@@ -2,9 +2,9 @@
  *
  *  $RCSfile: _fmresid.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:07:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,16 +73,16 @@
 
 // String-Id's -----------------------------------------------------------
 #define RID_STR_FORMSHELL                           (RID_FORMS_START + 0)
-#define RID_STR_STDFORMNAME                         (RID_FORMS_START + 1)
-#define RID_STR_EDIT_CLASSNAME                      (RID_FORMS_START + 2)
-#define RID_STR_BUTTON_CLASSNAME                    (RID_FORMS_START + 3)
-#define RID_STR_FIXEDTEXT_CLASSNAME                 (RID_FORMS_START + 4)
-#define RID_STR_CHECKBOX_CLASSNAME                  (RID_FORMS_START + 5)
-#define RID_STR_RADIOBUTTON_CLASSNAME               (RID_FORMS_START + 6)
-#define RID_STR_LISTBOX_CLASSNAME                   (RID_FORMS_START + 7)
-#define RID_STR_COMBOBOX_CLASSNAME                  (RID_FORMS_START + 8)
+//STRIP001 #define RID_STR_STDFORMNAME                          (RID_FORMS_START + 1)
+//STRIP001 #define RID_STR_EDIT_CLASSNAME                       (RID_FORMS_START + 2)
+//STRIP001 #define RID_STR_BUTTON_CLASSNAME                 (RID_FORMS_START + 3)
+//STRIP001 #define RID_STR_FIXEDTEXT_CLASSNAME                  (RID_FORMS_START + 4)
+//STRIP001 #define RID_STR_CHECKBOX_CLASSNAME                   (RID_FORMS_START + 5)
+//STRIP001 #define RID_STR_RADIOBUTTON_CLASSNAME                (RID_FORMS_START + 6)
+//STRIP001 #define RID_STR_LISTBOX_CLASSNAME                    (RID_FORMS_START + 7)
+//STRIP001 #define RID_STR_COMBOBOX_CLASSNAME                   (RID_FORMS_START + 8)
 #define RID_STR_URLBUTTON_CLASSNAME                 (RID_FORMS_START + 9)
-#define RID_STR_GROUPBOX_CLASSNAME                  (RID_FORMS_START + 10)
+//STRIP001 #define RID_STR_GROUPBOX_CLASSNAME                   (RID_FORMS_START + 10)
 
 // Error-Id's  -----------------------------------------------------------
 
@@ -95,11 +95,11 @@
 #error Resource-Ueberlauf in #line, #file
 #endif
 
-// Strings
-#define ACTFRM_RID_STREND RID_STR_GROUPBOX_CLASSNAME
-#if ACTFRM_RID_STREND > RID_FORMS_END
-#error Resource-Ueberlauf in #line, #file
-#endif
+//STRIP001 // Strings
+//STRIP001 #define ACTFRM_RID_STREND RID_STR_GROUPBOX_CLASSNAME
+//STRIP001 #if ACTFRM_RID_STREND > RID_FORMS_END
+//STRIP001 #error Resource-Ueberlauf in #line, #file
+//STRIP001 #endif
 
 
 #endif          // _FM_FMPAGE_HXX
