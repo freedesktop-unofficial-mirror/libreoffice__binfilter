@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlstyli.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:12 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,25 +69,25 @@
 #include <vector>
 #endif
 #ifndef _XMLOFF_XMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include <xmloff/maptype.hxx>
+#include <bf_xmloff/maptype.hxx>
 #endif
 #ifndef _XMLOFF_PRSTYLEI_HXX_
-#include <xmloff/prstylei.hxx>
+#include <bf_xmloff/prstylei.hxx>
 #endif
 #ifndef _XMLOFF_XMLIMPPR_HXX
-#include <xmloff/xmlimppr.hxx>
+#include <bf_xmloff/xmlimppr.hxx>
 #endif
 #ifndef _XMLTEXTMASTERPAGECONTEXT_HXX
-#include <xmloff/XMLTextMasterPageContext.hxx>
+#include <bf_xmloff/XMLTextMasterPageContext.hxx>
 #endif
 #ifndef _XMLTEXTMASTERSTYLESCONTEXT_HXX
-#include <xmloff/XMLTextMasterStylesContext.hxx>
+#include <bf_xmloff/XMLTextMasterStylesContext.hxx>
 #endif
 #ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>

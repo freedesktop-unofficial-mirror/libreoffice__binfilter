@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlitem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:43 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,15 +72,14 @@
 #include <limits.h>
 
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 
 namespace rtl { class OUString; }
 class SfxItemSet;
-class SvXMLUnitConverter;
 namespace binfilter {
 
-
+class SvXMLUnitConverter;
 class SvXMLImportItemMapper;
 
 struct SvXMLItemMapEntry;

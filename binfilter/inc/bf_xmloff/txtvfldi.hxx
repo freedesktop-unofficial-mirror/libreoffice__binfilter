@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtvfldi.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:03 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:09:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ protected:
     const ::rtl::OUString sPropertyHint;
     const ::rtl::OUString sPropertyIsVisible;
     const ::rtl::OUString sPropertyIsDisplayFormula;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
 
 private:
     ::rtl::OUString sName;              /// name attribute
@@ -206,7 +206,7 @@ private:
     sal_Bool bSetDescription;           /// set sDescription with Hint-property
     sal_Bool bSetVisible;               /// set IsVisible
     sal_Bool bSetDisplayFormula;        /// set DisplayFormula (sub type???)
-    sal_Bool bSetPresentation;          /// set presentation frm elem. content?
+//STRIP013  sal_Bool bSetPresentation;          /// set presentation frm elem. content?
 
 public:
 
@@ -228,8 +228,8 @@ public:
         sal_Bool bDisplayFormula,       /// set ??? (display attr.)
         sal_Bool bType,                 /// set value type with ???-property
         sal_Bool bStyle,                /// set data style (NumberFormat-Prop.)
-        sal_Bool bValue,                /// set value with Content/Value-Prop.
-        sal_Bool bPresentation);        /// set presentation from elem. content
+        sal_Bool bValue);               /// set value with Content/Value-Prop.
+//STRIP013      ,sal_Bool bPresentation);       /// set presentation from elem. content
 
 protected:
     /// process attribute values
@@ -344,8 +344,8 @@ public:
         sal_Bool bDisplayFormula,       /// see XMLTextFieldImportContext
         sal_Bool bType,                 /// see XMLTextFieldImportContext
         sal_Bool bStyle,                /// see XMLTextFieldImportContext
-        sal_Bool bValue,                /// see XMLTextFieldImportContext
-        sal_Bool bPresentation);        /// see XMLTextFieldImportContext
+        sal_Bool bValue);               /// see XMLTextFieldImportContext
+//STRIP013      ,sal_Bool bPresentation);       /// see XMLTextFieldImportContext
 
 protected:
 
@@ -546,7 +546,7 @@ class XMLTableFormulaImportContext : public XMLTextFieldImportContext
     const ::rtl::OUString sPropertyNumberFormat;
     const ::rtl::OUString sPropertyContent;
     const ::rtl::OUString sPropertyIsShowFormula;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
 
     XMLValueImportHelper aValueHelper;
 
@@ -583,7 +583,7 @@ class XMLDatabaseDisplayImportContext : public XMLDatabaseFieldImportContext
 {
     const ::rtl::OUString sPropertyColumnName;
     const ::rtl::OUString sPropertyDatabaseFormat;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
     const ::rtl::OUString sPropertyIsVisible;
 
     XMLValueImportHelper aValueHelper;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_xmlversion.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:24 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,11 +72,11 @@
 #endif
 
 #ifndef  _XMLOFF_XMLMETAE_HXX
-#include <xmloff/xmlmetae.hxx>
+#include <bf_xmloff/xmlmetae.hxx>
 #endif
 
 #ifndef  _XMLOFF_XMLKYWD_HXX
-#include <xmloff/xmlkywd.hxx>
+#include <bf_xmloff/xmlkywd.hxx>
 #endif
 
 #ifndef  _COMPHELPER_PROCESSFACTORY_HXX_
@@ -137,7 +137,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/ }
 
 // ------------------------------------------------------------------------
-/*?*/ sal_uInt32 SfxXMLVersListExport_Impl::exportDoc( enum ::xmloff::token::XMLTokenEnum eClass )
+/*?*/ sal_uInt32 SfxXMLVersListExport_Impl::exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass )
 /*?*/ {
 /*?*/     GetDocHandler()->startDocument();
 /*?*/
@@ -470,7 +470,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/         // SfxXMLVersListExport_Impl aExp( pList, sVerName, xHandler );
 /*?*/         SfxXMLVersListExport_Impl aExp( xServiceFactory, pList, sVerName, xHandler );
 /*?*/
-/*?*/         aExp.exportDoc( ::xmloff::token::XML_VERSION );
+/*?*/         aExp.exportDoc( ::binfilter::xmloff::token::XML_VERSION );
 /*?*/
 /*?*/         xVerStream->Commit();
 /*?*/         xVerStream.Clear();

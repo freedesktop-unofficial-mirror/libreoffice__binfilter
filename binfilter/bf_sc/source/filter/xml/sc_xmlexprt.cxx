@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:03 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,32 +151,32 @@
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_FAMILIES_HXX_
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 #ifndef XMLOFF_NUMEHELP_HXX
-#include <xmloff/numehelp.hxx>
+#include <bf_xmloff/numehelp.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_TXTPARAE_HXX
-#include <xmloff/txtparae.hxx>
+#include <bf_xmloff/txtparae.hxx>
 #endif
-#ifndef _SVX_XMLCNITM_HXX  //STRIP008 #ifndef _XMLOFF_XMLCNITM_HXX
-#include <bf_svx/xmlcnitm.hxx>  //STRIP008 #include <xmloff/xmlcnitm.hxx>
-#endif  //STRIP008 #endif
+#ifndef _XMLOFF_XMLCNITM_HXX
+#include <bf_xmloff/xmlcnitm.hxx>
+#endif
 
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
@@ -311,7 +311,7 @@ namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 //----------------------------------------------------------------------------
 
@@ -1484,7 +1484,7 @@ void ScXMLExport::_ExportContent()
                             uno::Reference<drawing::XDrawPage> xDrawPage;
                             if (pSharedData->HasForm(nTable, xDrawPage) && xDrawPage.is())
                             {
-                                ::xmloff::OOfficeFormsExport aForms(*this);
+                                ::binfilter::xmloff::OOfficeFormsExport aForms(*this);
                                 GetFormExport()->exportForms( xDrawPage );
                                 sal_Bool bRet = GetFormExport()->seekPage( xDrawPage );
                                 DBG_ASSERT( bRet, "OFormLayerXMLExport::seekPage failed!" );

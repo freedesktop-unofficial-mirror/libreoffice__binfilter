@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:02 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1529,7 +1529,7 @@ using namespace sfx2;
 //STRIP001 /*?*/     {
 //STRIP001 /*?*/         // synchron loading without a given frame or as blank frame
 //STRIP001 /*?*/         SFX_REQUEST_ARG( rReq, pFileNameItem, SfxStringItem, SID_FILE_NAME, FALSE );
-//STRIP001 /*?*/         Reference < XComponentLoader > xDesktop( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY );
+//STRIP001 /*?*/         Reference < XComponentLoader > xDesktop( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY ); //STRIP002 ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY );
 //STRIP001 /*?*/         Reference < XComponent > xComp = xDesktop->loadComponentFromURL( pFileNameItem->GetValue(), aTarget, 0, aArgs );
 //STRIP001 /*?*/        Reference < XModel > xModel( xComp, UNO_QUERY );
 //STRIP001 /*?*/         if ( xModel.is() )
@@ -1546,7 +1546,7 @@ using namespace sfx2;
 //STRIP001 /*?*/     if ( pFrame )
 //STRIP001 /*?*/         xFrame = pFrame->GetFrameInterface();
 //STRIP001 /*?*/     else
-//STRIP001 /*?*/         xFrame = Reference < XFrame >( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY );
+//STRIP001 /*?*/         xFrame = Reference < XFrame >( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY ); //STRIP002 ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY );
 //STRIP001 /*?*/
 //STRIP001 /*?*/     if( aFileName.Len() && aFileName.GetChar(0) == '#' )
 //STRIP001 /*?*/     {

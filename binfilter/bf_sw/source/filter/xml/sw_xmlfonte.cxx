@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlfonte.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:37 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,7 +80,7 @@
 #include <com/sun/star/text/XText.hpp>
 #endif
 #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
-#include <xmloff/XMLFontAutoStylePool.hxx>
+#include <bf_xmloff/XMLFontAutoStylePool.hxx>
 #endif
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>

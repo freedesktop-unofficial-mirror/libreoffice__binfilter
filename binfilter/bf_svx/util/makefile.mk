@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:18 $
+#   last change: $Author: aw $ $Date: 2003-12-05 15:10:56 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -93,7 +93,7 @@ SVXLOKAL=	$(LB)$/bf_svx.lib
 SHL1BASE  = 0x1d800000
 
 SHL1STDLIBS= \
-    $(XMLOFFLIB) \
+    $(BFXMLOFFLIB) \
             $(GOODIESLIB) \
             $(BASICLIB) \
             $(SO2LIB) \

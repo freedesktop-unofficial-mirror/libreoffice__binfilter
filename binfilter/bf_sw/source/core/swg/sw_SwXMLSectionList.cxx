@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXMLSectionList.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:00 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,13 +67,13 @@
 #include <SwXMLSectionList.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -82,7 +82,7 @@
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 #include <tools/debug.hxx>  //STRIP001
 namespace binfilter {
 sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";

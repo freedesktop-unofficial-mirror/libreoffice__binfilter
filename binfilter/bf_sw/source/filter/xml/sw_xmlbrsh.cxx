@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlbrsh.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:36 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,12 +69,12 @@
 #include <com/sun/star/io/XOutputStream.hpp>
 #endif
 
-#include <xmloff/nmspmap.hxx>
-#include <xmloff/xmlnmspe.hxx>
-#include <xmloff/xmlimp.hxx>
-#include <xmloff/xmltkmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
 #ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
-#include <xmloff/XMLBase64ImportContext.hxx>
+#include <bf_xmloff/XMLBase64ImportContext.hxx>
 #endif
 
 #ifndef _SVX_UNOMID_HXX
@@ -84,7 +84,7 @@
 #include <bf_svx/brshitem.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #include "xmlbrshi.hxx"
@@ -97,7 +97,7 @@ namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 enum SvXMLTokenMapAttrs
 {

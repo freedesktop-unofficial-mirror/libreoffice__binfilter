@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlfonte.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:04 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,7 +73,7 @@
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
-#include <xmloff/XMLFontAutoStylePool.hxx>
+#include <bf_xmloff/XMLFontAutoStylePool.hxx>
 #endif
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>

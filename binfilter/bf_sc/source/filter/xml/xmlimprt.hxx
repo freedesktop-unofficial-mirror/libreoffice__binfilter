@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlimprt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:10 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,19 +66,19 @@
 #include <rsc/rscsfx.hxx>
 #endif
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 #ifndef _XMLOFF_XMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 #ifndef _XMLOFF_XMLTKMAP_HXX
-#include <xmloff/xmltkmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLASTPLP_HXX
-#include <xmloff/xmlaustp.hxx>
+#include <bf_xmloff/xmlaustp.hxx>
 #endif
 #ifndef _XMLOFF_XMLSTYLE_HXX
-#include <xmloff/xmlstyle.hxx>
+#include <bf_xmloff/xmlstyle.hxx>
 #endif
 #include <com/sun/star/frame/XModel.hpp>
 #include <tools/time.hxx>
@@ -115,15 +115,15 @@
 #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HPP_
 #include <com/sun/star/sheet/XSheetCellRangeContainer.hpp>
 #endif
-class XMLNumberFormatAttributesExportHelper;
-class SvXMLTokenMap;
-class SvXMLStyleContext;
 class SfxItemSet;
-class XMLShapeImportHelper;
 namespace binfilter {
 
 class ScRangeList;
 class ScMyStyleNumberFormats;
+class XMLShapeImportHelper;
+class XMLNumberFormatAttributesExportHelper;
+class SvXMLTokenMap;
+class SvXMLStyleContext;
 
 using namespace ::rtl;
 

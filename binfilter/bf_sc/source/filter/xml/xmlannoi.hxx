@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlannoi.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,10 +62,10 @@
 #define SC_XMLANNOI_HXX
 
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 #ifndef _XMLOFF_XMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>

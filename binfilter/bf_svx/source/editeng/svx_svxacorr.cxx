@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxacorr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:11 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -184,7 +184,7 @@
 #include <com/sun/star/ucb/NameClash.hpp>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -194,7 +194,7 @@ namespace binfilter {
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 using namespace ::rtl;
 using namespace ::utl;
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtfldi.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:02 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:09:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -656,7 +656,7 @@ class XMLSimpleDocInfoImportContext : public XMLTextFieldImportContext
     const ::rtl::OUString sPropertyFixed;
     const ::rtl::OUString sPropertyContent;
     const ::rtl::OUString sPropertyAuthor;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
 
 protected:
     sal_Bool bFixed;
@@ -806,7 +806,7 @@ class XMLConditionalTextImportContext : public XMLTextFieldImportContext
     const ::rtl::OUString sPropertyTrueContent;
     const ::rtl::OUString sPropertyFalseContent;
     const ::rtl::OUString sPropertyIsConditionTrue;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013    const ::rtl::OUString sPropertyCurrentPresentation;
 
     ::rtl::OUString sCondition;
     ::rtl::OUString sTrueContent;
@@ -878,7 +878,7 @@ class XMLFileNameImportContext : public XMLTextFieldImportContext
 {
     const ::rtl::OUString sPropertyFixed;
     const ::rtl::OUString sPropertyFileFormat;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
 
     sal_Int16 nFormat;
     sal_Bool bFixed;
@@ -1107,7 +1107,7 @@ class XMLReferenceFieldImportContext : public XMLTextFieldImportContext
     const ::rtl::OUString sPropertyReferenceFieldPart;
     const ::rtl::OUString sPropertyReferenceFieldSource;
     const ::rtl::OUString sPropertySourceName;
-    const ::rtl::OUString sPropertyCurrentPresentation;
+//STRIP013  const ::rtl::OUString sPropertyCurrentPresentation;
 
     ::rtl::OUString sName;
     sal_uInt16 nElementToken;

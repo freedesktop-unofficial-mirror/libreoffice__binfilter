@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:37 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,28 +84,28 @@
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLTKMAP_HXX
-#include <xmloff/xmltkmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 #ifndef _XMLOFF_TXTIMP_HXX
-#include <xmloff/txtimp.hxx>
+#include <bf_xmloff/txtimp.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLTEXTSHAPEIMPORTHELPER_HXX_
-#include <xmloff/XMLTextShapeImportHelper.hxx>
+#include <bf_xmloff/XMLTextShapeImportHelper.hxx>
 #endif
 #ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
-#include <xmloff/XMLFontStylesContext.hxx>
+#include <bf_xmloff/XMLFontStylesContext.hxx>
 #endif
 #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-#include <xmloff/ProgressBarHelper.hxx>
+#include <bf_xmloff/ProgressBarHelper.hxx>
 #endif
 #ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
@@ -141,7 +141,7 @@
 #endif
 
 #ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
-#include <xmloff/DocumentSettingsContext.hxx>
+#include <bf_xmloff/DocumentSettingsContext.hxx>
 #endif
 
 #ifndef _SWDOCSH_HXX
@@ -165,7 +165,7 @@
 #include <ForbiddenCharactersEnum.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
@@ -192,7 +192,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::drawing;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 struct OUStringEquals
 {
@@ -824,7 +824,7 @@ class SvTextShapeImportHelper : public XMLTextShapeImportHelper
     // stored in the superclass, from whom we originally got the
     // reference, is already destroyed when we want to use it in the
     // destructor
-    UniReference< ::xmloff::OFormLayerXMLImport > rFormImport;
+    UniReference< ::binfilter::xmloff::OFormLayerXMLImport > rFormImport;
 
     // hold reference to the one page (if it exists) for calling startPage()
     // and endPage. If !xPage.is(), then this document doesn't have a

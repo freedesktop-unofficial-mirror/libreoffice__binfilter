@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltbli.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:43 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #define _XMLTBLI_HXX
 
 #ifndef _XMLOFF_XMLTEXTTABLECONTEXT_HXX
-#include <xmloff/XMLTextTableContext.hxx>
+#include <bf_xmloff/XMLTextTableContext.hxx>
 #endif
 
 // STL include

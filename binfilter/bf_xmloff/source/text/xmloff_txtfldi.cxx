@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtfldi.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:15 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:09:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -340,7 +340,7 @@ const sal_Char sAPI_adjust[]            = "Adjust";
 const sal_Char sAPI_on[]                = "On";
 const sal_Char sAPI_is_automatic_update[] = "IsAutomaticUpdate";
 const sal_Char sAPI_source_name[]       = "SourceName";
-const sal_Char sAPI_current_presentation[] = "CurrentPresentation";
+//STRIP013const sal_Char sAPI_current_presentation[] = "CurrentPresentation";
 const sal_Char sAPI_reference_field_part[] = "ReferenceFieldPart";
 const sal_Char sAPI_reference_field_source[] = "ReferenceFieldSource";
 const sal_Char sAPI_dde_command_type[]  = "DDECommandType";
@@ -1859,9 +1859,9 @@ XMLSimpleDocInfoImportContext::XMLSimpleDocInfoImportContext(
         bHasContent(bContent),
         sPropertyFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
         sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
-        sPropertyAuthor(RTL_CONSTASCII_USTRINGPARAM(sAPI_author)),
-        sPropertyCurrentPresentation(
-            RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation))
+        sPropertyAuthor(RTL_CONSTASCII_USTRINGPARAM(sAPI_author))
+//STRIP013      ,sPropertyCurrentPresentation(
+//STRIP013          RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation))
 {
     bValid = sal_True;
 }
@@ -1916,13 +1916,13 @@ void XMLSimpleDocInfoImportContext::PrepareField(
                     rPropertySet->setPropertyValue(sPropertyContent, aAny);
                 }
 
-                // #111880#-4
-                // The API for binfilter does not have this property, so test it first
-                // before using it to not throw exceptions
-                if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-                {
-                    rPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
-                }
+//STRIP013              // #111880#-4
+//STRIP013              // The API for binfilter does not have this property, so test it first
+//STRIP013              // before using it to not throw exceptions
+//STRIP013              if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013              {
+//STRIP013                  rPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
+//STRIP013              }
             }
         }
     }
@@ -2286,7 +2286,7 @@ XMLConditionalTextImportContext::XMLConditionalTextImportContext(
         sPropertyTrueContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_true_content)),
         sPropertyFalseContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_false_content)),
         sPropertyIsConditionTrue(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_condition_true)),
-        sPropertyCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
+//STRIP013        sPropertyCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
         sCondition(),
         sTrueContent(),
         sFalseContent(),
@@ -2346,17 +2346,17 @@ void XMLConditionalTextImportContext::PrepareField(
     aAny.setValue( &bCurrentValue, ::getBooleanCppuType() );
     xPropertySet->setPropertyValue(sPropertyIsConditionTrue, aAny);
 
-    // #111880#-4
-    // The API for binfilter does not have this property, so test it first
-    // before using it to not throw exceptions
-    // properties are optional
-    Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
-
-    if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-    {
-        aAny <<= GetContent();
-        xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
-    }
+//STRIP013  // #111880#-4
+//STRIP013  // The API for binfilter does not have this property, so test it first
+//STRIP013  // before using it to not throw exceptions
+//STRIP013  // properties are optional
+//STRIP013  Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
+//STRIP013
+//STRIP013  if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013  {
+//STRIP013      aAny <<= GetContent();
+//STRIP013      xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
+//STRIP013  }
 }
 
 
@@ -2450,8 +2450,8 @@ XMLFileNameImportContext::XMLFileNameImportContext(
                                   nPrfx, sLocalName),
         sPropertyFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
         sPropertyFileFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_file_format)),
-        sPropertyCurrentPresentation(
-            RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
+//STRIP013      sPropertyCurrentPresentation(
+//STRIP013          RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
         nFormat(FilenameDisplayFormat::FULL),
         bFixed(sal_False)
 {
@@ -2510,11 +2510,11 @@ void XMLFileNameImportContext::PrepareField(
         xPropertySet->setPropertyValue(sPropertyFileFormat, aAny);
     }
 
-    if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-    {
-        aAny <<= GetContent();
-        xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
-    }
+//STRIP013  if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013  {
+//STRIP013      aAny <<= GetContent();
+//STRIP013      xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
+//STRIP013  }
 }
 
 
@@ -2812,11 +2812,11 @@ void XMLPageVarGetFieldImportContext::PrepareField(
     aAny <<= nNumType;
     xPropertySet->setPropertyValue(sPropertyNumberingType, aAny);
 
-    // display old content (#96657#)
-    aAny <<= GetContent();
-    xPropertySet->setPropertyValue(
-        OUString(RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
-        aAny );
+//STRIP013    // display old content (#96657#)
+//STRIP013    aAny <<= GetContent();
+//STRIP013    xPropertySet->setPropertyValue(
+//STRIP013        OUString(RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
+//STRIP013        aAny );
 }
 
 
@@ -3037,9 +3037,9 @@ XMLReferenceFieldImportContext::XMLReferenceFieldImportContext(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_reference_field_part)),
         sPropertyReferenceFieldSource(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_reference_field_source)),
-        sPropertySourceName(RTL_CONSTASCII_USTRINGPARAM(sAPI_source_name)),
-        sPropertyCurrentPresentation(
-            RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation))
+        sPropertySourceName(RTL_CONSTASCII_USTRINGPARAM(sAPI_source_name))
+//STRIP013      ,sPropertyCurrentPresentation(
+//STRIP013          RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation))
 {
 }
 
@@ -3151,16 +3151,16 @@ void XMLReferenceFieldImportContext::PrepareField(
             break;
     }
 
-    // #111880#-4
-    // The API for binfilter does not have this property, so test it first
-    // before using it to not throw exceptions
-    Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
-
-    if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-    {
-        aAny <<= GetContent();
-        xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
-    }
+//STRIP013  // #111880#-4
+//STRIP013  // The API for binfilter does not have this property, so test it first
+//STRIP013  // before using it to not throw exceptions
+//STRIP013  Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
+//STRIP013
+//STRIP013  if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013  {
+//STRIP013      aAny <<= GetContent();
+//STRIP013      xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
+//STRIP013  }
 }
 
 

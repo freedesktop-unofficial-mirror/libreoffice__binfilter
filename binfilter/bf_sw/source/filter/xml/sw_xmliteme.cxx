@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmliteme.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:38 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,16 +76,16 @@
 #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLITMPR_HXX
 #include "xmlexpit.hxx"
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLTABE_HXX
-#include <xmloff/xmltabe.hxx>
+#include <bf_xmloff/xmltabe.hxx>
 #endif
 #ifndef _XMLBRSHE_HXX
 #include "xmlbrshe.hxx"
@@ -135,7 +135,7 @@ namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 extern SvXMLItemMapEntry aXMLTableItemMap[];
 extern SvXMLItemMapEntry aXMLTableRowItemMap[];

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_mathml.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:26 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,25 +108,25 @@ one go*/
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLKYWD_HXX
-#include <xmloff/xmlkywd.hxx>
+#include <bf_xmloff/xmlkywd.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_ATTRLIST_HXX
-#include <xmloff/attrlist.hxx>
+#include <bf_xmloff/attrlist.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_XMLMETAI_HXX
-#include <xmloff/xmlmetai.hxx>
+#include <bf_xmloff/xmlmetai.hxx>
 #endif
 
 #ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
@@ -167,7 +167,7 @@ using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 using ::rtl::OUString;
 using ::rtl::OUStringBuffer;
 

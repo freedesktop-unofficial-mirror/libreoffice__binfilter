@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexpit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:36 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,14 +61,14 @@
 
 #include "xmlexpit.hxx"
 
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _SFXITEMPOOL_HXX
@@ -84,15 +84,15 @@
 #endif
 
 #ifndef _XMLOFF_ATTRLIST_HXX
-#include <xmloff/attrlist.hxx>
+#include <bf_xmloff/attrlist.hxx>
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 
 #ifndef _SVX_XMLCNITM_HXX
@@ -100,7 +100,7 @@
 #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
-#include <xmloff/xmlexp.hxx>
+#include <bf_xmloff/xmlexp.hxx>
 #endif
 
 #ifndef _SVSTDARR_USHORTS
@@ -167,15 +167,15 @@
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
-#include <xmloff/prhdlfac.hxx>
+#include <bf_xmloff/prhdlfac.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLTYPES_HXX
-#include <xmloff/xmltypes.hxx>
+#include <bf_xmloff/xmltypes.hxx>
 #endif
 
 #ifndef _SW_XMLITHLP_HXX
@@ -186,7 +186,7 @@ namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::uno::Any;
 
 /** fills the given attribute list with the items in the given set */

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlstyle.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:11 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,28 +63,28 @@
 #define _SC_XMLSTYLE_HXX
 
 #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include <xmloff/maptype.hxx>
+#include <bf_xmloff/maptype.hxx>
 #endif
 #ifndef _XMLOFF_XMLASTPLP_HXX
-#include <xmloff/xmlaustp.hxx>
+#include <bf_xmloff/xmlaustp.hxx>
 #endif
 #ifndef _XMLOFF_XMLTYPES_HXX
-#include <xmloff/xmltypes.hxx>
+#include <bf_xmloff/xmltypes.hxx>
 #endif
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include <xmloff/xmlprmap.hxx>
+#include <bf_xmloff/xmlprmap.hxx>
 #endif
 #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
-#include <xmloff/prhdlfac.hxx>
+#include <bf_xmloff/prhdlfac.hxx>
 #endif
 #ifndef _XMLOFF_STYLEEXP_HXX_
-#include <xmloff/styleexp.hxx>
+#include <bf_xmloff/styleexp.hxx>
 #endif
 #ifndef _XMLOFF_XMLEXPPR_HXX
-#include <xmloff/xmlexppr.hxx>
+#include <bf_xmloff/xmlexppr.hxx>
 #endif
 #ifndef _XMLOFF_CONTEXTID_HXX_
-#include <xmloff/contextid.hxx>
+#include <bf_xmloff/contextid.hxx>
 #endif
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexti.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:21 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,19 +76,19 @@
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
 #ifndef _XMLOFF_PRSTYLEI_HXX_
-#include <xmloff/prstylei.hxx>
+#include <bf_xmloff/prstylei.hxx>
 #endif
 #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include <xmloff/maptype.hxx>
+#include <bf_xmloff/maptype.hxx>
 #endif
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include <xmloff/xmlprmap.hxx>
+#include <bf_xmloff/xmlprmap.hxx>
 #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
-#include <xmloff/txtprmap.hxx>
+#include <bf_xmloff/txtprmap.hxx>
 #endif
 #ifndef _XMLOFF_I18NMAP_HXX
-#include <xmloff/i18nmap.hxx>
+#include <bf_xmloff/i18nmap.hxx>
 #endif
 
 #ifndef _UNOCRSR_HXX
@@ -129,7 +129,7 @@
 #include "XMLRedlineImportHelper.hxx"
 #endif
 #ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
-#include <xmloff/XMLFilterServiceNames.h>
+#include <bf_xmloff/XMLFilterServiceNames.h>
 #endif
 
 #ifndef _SW_APPLET_IMPL_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmltabi.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,13 +89,13 @@
 #include "XMLStylesImportHelper.hxx"
 #endif
 
-#include <xmloff/xmltkmap.hxx>
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #ifndef _XMLOFF_FORMSIMP_HXX
-#include <xmloff/formsimp.hxx>
+#include <bf_xmloff/formsimp.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>

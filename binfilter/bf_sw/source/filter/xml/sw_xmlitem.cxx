@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:37 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 
 #ifndef _XMLIMPIT_HXX

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:39 $
+#   last change: $Author: aw $ $Date: 2003-12-05 15:10:49 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -97,7 +97,7 @@ SHL1STDLIBS= \
             $(BFSVXLIB) \
             $(LEGACYSMGRLIB)	\
             $(SO2LIB) \
-            $(XMLOFFLIB) \
+            $(BFXMLOFFLIB) \
             $(SVTOOLLIB) \
             $(TKLIB) \
             $(VCLLIB) \

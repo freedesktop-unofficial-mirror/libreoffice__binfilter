@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyle.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:06 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,21 +74,22 @@
 #include "XMLConverter.hxx"
 #endif
 
-#include <xmloff/xmlnmspe.hxx>
-#include <xmloff/xmluconv.hxx>
-#include <xmloff/xmltypes.hxx>
-#include <xmloff/families.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmltypes.hxx>
+#include <bf_xmloff/families.hxx>
+
 #ifndef _XMLOFF_XMLNUMFE_HXX
-#include <xmloff/xmlnumfe.hxx>
+#include <bf_xmloff/xmlnumfe.hxx>
 #endif
 #ifndef _XMLOFF_XMLNUMFI_HXX
-#include <xmloff/xmlnumfi.hxx>
+#include <bf_xmloff/xmlnumfi.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_ATTRLIST_HXX
-#include <xmloff/attrlist.hxx>
+#include <bf_xmloff/attrlist.hxx>
 #endif
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -129,7 +130,7 @@
 namespace binfilter {
 
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 #define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
 #define MAP_END()   { NULL, 0, 0, XML_TOKEN_INVALID, 0 }

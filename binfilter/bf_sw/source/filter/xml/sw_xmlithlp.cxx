@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlithlp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:39 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,17 +120,17 @@
 #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 namespace binfilter {
 
 
 using namespace ::rtl;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 
 #define SVX_XML_BORDER_STYLE_NONE 0

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTableShapesContext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:55 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #define _SC_XMLTABLESHAPESCONTEXT_HXX
 
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 namespace binfilter {
 

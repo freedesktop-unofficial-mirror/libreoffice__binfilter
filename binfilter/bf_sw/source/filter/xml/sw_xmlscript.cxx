@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlscript.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:40 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,15 +72,15 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLMETAI_HXX
-#include <xmloff/xmlscripti.hxx>
+#include <bf_xmloff/xmlscripti.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
-#include <xmloff/xmlscripte.hxx>
+#include <bf_xmloff/xmlscripte.hxx>
 #endif
 
 #ifndef _SVX_LANGITEM_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlimprt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:04 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,36 +67,36 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <xmloff/nmspmap.hxx>
-#include <xmloff/xmlnmspe.hxx>
-#include <xmloff/i18nmap.hxx>
-#include <xmloff/xmltkmap.hxx>
-#include <xmloff/xmlictxt.hxx>
-#include <xmloff/xmlmetai.hxx>
+#include <bf_xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/i18nmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlmetai.hxx>
 #include <bf_sfx2/objsh.hxx>
 #ifndef _XMLOFF_XMLNUMFI_HXX
-#include <xmloff/xmlnumfi.hxx>
+#include <bf_xmloff/xmlnumfi.hxx>
 #endif
 #ifndef _XMLOFF_XMLSCRIPTI_HXX
-#include <xmloff/xmlscripti.hxx>
+#include <bf_xmloff/xmlscripti.hxx>
 #endif
 #ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
-#include <xmloff/XMLFontStylesContext.hxx>
+#include <bf_xmloff/XMLFontStylesContext.hxx>
 #endif
 #ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
-#include <xmloff/DocumentSettingsContext.hxx>
+#include <bf_xmloff/DocumentSettingsContext.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef XMLOFF_NUMEHELP_HXX
-#include <xmloff/numehelp.hxx>
+#include <bf_xmloff/numehelp.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_XMLERROR_HXX
-#include <xmloff/xmlerror.hxx>
+#include <bf_xmloff/xmlerror.hxx>
 #endif
 
 #include "xmlimprt.hxx"
@@ -179,7 +179,7 @@ namespace binfilter {
 #define SC_CURRENCYSYMBOL   "CurrencySymbol"
 
 using namespace ::com::sun::star;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 OUString SAL_CALL ScXMLImport_getImplementationName() throw()
 {

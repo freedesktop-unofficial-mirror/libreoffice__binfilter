@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlfmt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:36 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,7 +76,7 @@
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 
 #ifndef _FORMAT_HXX //autogen wg. SwFmt
@@ -120,40 +120,40 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_I18NMAP_HXX
-#include <xmloff/i18nmap.hxx>
+#include <bf_xmloff/i18nmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLTKMAP_HXX
-#include <xmloff/xmltkmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
 #endif
 #ifndef _XMLITEM_HXX
 #include "xmlitem.hxx"
 #endif
 #ifndef _XMLOFF_XMLSTYLE_HXX
-#include <xmloff/xmlstyle.hxx>
+#include <bf_xmloff/xmlstyle.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_TXTSTYLI_HXX
-#include <xmloff/txtstyli.hxx>
+#include <bf_xmloff/txtstyli.hxx>
 #endif
 #ifndef _XMLOFF_TXTIMP_HXX
-#include <xmloff/txtimp.hxx>
+#include <bf_xmloff/txtimp.hxx>
 #endif
 #ifndef _XMLOFF_FAMILIES_HXX
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 #ifndef _XMLOFF_XMLTEXTMASTERSTYLESCONTEXT_HXX
-#include <xmloff/XMLTextMasterStylesContext.hxx>
+#include <bf_xmloff/XMLTextMasterStylesContext.hxx>
 #endif
 #ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX
-#include <xmloff/XMLTextShapeStyleContext.hxx>
+#include <bf_xmloff/XMLTextShapeStyleContext.hxx>
 #endif
 #ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
-#include <xmloff/XMLGraphicsDefaultStyle.hxx>
+#include <bf_xmloff/XMLGraphicsDefaultStyle.hxx>
 #endif
 
 #ifndef _NUMRULE_HXX
@@ -180,7 +180,7 @@ using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using namespace ::rtl;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 class SwXMLConditionParser_Impl
 {

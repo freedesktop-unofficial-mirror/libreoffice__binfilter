@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltexti.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:44 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,10 +63,10 @@
 #define _XMLTEXTI_HXX
 
 #ifndef _XMLOFF_TXTIMP_HXX
-#include <xmloff/txtimp.hxx>
+#include <bf_xmloff/txtimp.hxx>
 #endif
 #ifndef _XMLOFF_FUNCTIONAL_HXX
-#include <xmloff/functional.hxx>
+#include <bf_xmloff/functional.hxx>
 #endif
 
 #ifndef _PLUGIN_HXX //autogen
@@ -77,9 +77,8 @@
 #include <bf_sfx2/frameobj.hxx>
 #endif
 class SvPlugInObjectRef;
-class SvXMLImport;
 namespace binfilter {
-
+class SvXMLImport;
 class XMLRedlineImportHelper;
 class SwApplet_Impl;
 

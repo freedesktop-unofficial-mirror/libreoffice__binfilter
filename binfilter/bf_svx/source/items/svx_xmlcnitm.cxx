@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlcnitm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:17 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,10 +67,10 @@
 #endif
 
 #ifndef _XMLOFF_XMLCNIMP_HXX
-#include <xmloff/xmlcnimp.hxx>
+#include <bf_xmloff/xmlcnimp.hxx>
 #endif
 #ifndef _XMLOFF_XMLCNITM_HXX
-#include <xmloff/unoatrcn.hxx>
+#include <bf_xmloff/unoatrcn.hxx>
 #endif
 #include "xmlcnitm.hxx"
 namespace binfilter {

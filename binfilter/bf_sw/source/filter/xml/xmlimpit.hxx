@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlimpit.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:42 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,14 +81,13 @@
 #endif
 
 namespace rtl { class OUString; }
-class SvXMLUnitConverter;
 class SfxPoolItem;
 class SfxItemSet;
-class SvXMLAttributeList;
-class SvXMLNamespaceMap;
 namespace binfilter {
 
-
+class SvXMLUnitConverter;
+class SvXMLAttributeList;
+class SvXMLNamespaceMap;
 struct SvXMLItemMapEntry;
 
 class SvXMLImportItemMapper

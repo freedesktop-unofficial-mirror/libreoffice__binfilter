@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlxtimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:34 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,47 +124,47 @@
 #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmloff/xmlnmspe.hxx"
+#include "bf_xmloff/xmlnmspe.hxx"
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include "xmloff/nmspmap.hxx"
+#include "bf_xmloff/nmspmap.hxx"
 #endif
 
 #ifndef _XMLOFF_XMLKYWD_HXX
-#include "xmloff/xmlkywd.hxx"
+#include "bf_xmloff/xmlkywd.hxx"
 #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
-#include "xmloff/xmlmetae.hxx"
+#include "bf_xmloff/xmlmetae.hxx"
 #endif
 
 #ifndef _XMLOFF_DASHSTYLE_HXX
-#include "xmloff/DashStyle.hxx"
+#include "bf_xmloff/DashStyle.hxx"
 #endif
 
 #ifndef _XMLOFF_GRADIENTSTYLE_HXX
-#include "xmloff/GradientStyle.hxx"
+#include "bf_xmloff/GradientStyle.hxx"
 #endif
 
 #ifndef _XMLOFF_HATCHSTYLE_HXX
-#include "xmloff/HatchStyle.hxx"
+#include "bf_xmloff/HatchStyle.hxx"
 #endif
 
 #ifndef _XMLOFF_IMAGESTYLE_HXX
-#include "xmloff/ImageStyle.hxx"
+#include "bf_xmloff/ImageStyle.hxx"
 #endif
 
 #ifndef _XMLOFF_MARKERSTYLE_HXX
-#include "xmloff/MarkerStyle.hxx"
+#include "bf_xmloff/MarkerStyle.hxx"
 #endif
 
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 
 #ifndef _XMLGRHLP_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mathml.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:22 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,16 +61,16 @@
 #ifndef MATHML_HXX
 #define MATHML_HXX
 #ifndef _SDXMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 #ifndef _SDXMLEXP_HXX
-#include <xmloff/xmlexp.hxx>
+#include <bf_xmloff/xmlexp.hxx>
 #endif
 #ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
-#include <xmloff/DocumentSettingsContext.hxx>
+#include <bf_xmloff/DocumentSettingsContext.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef NODE_HXX
@@ -440,7 +440,7 @@ public:
     void _ExportAutoStyles() {}
     void _ExportMasterStyles() {}
     void _ExportContent();
-    sal_uInt32 exportDoc(enum ::xmloff::token::XMLTokenEnum eClass);
+    sal_uInt32 exportDoc(enum ::binfilter::xmloff::token::XMLTokenEnum eClass);
 
     virtual void GetViewSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
     virtual void GetConfigurationSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);

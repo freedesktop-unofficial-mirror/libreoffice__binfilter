@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexte.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:41 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,16 +73,16 @@
 #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
 #endif
 #ifndef _XMLOFF_FAMILIES_HXX_
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
-#include <xmloff/txtprmap.hxx>
+#include <bf_xmloff/txtprmap.hxx>
 #endif
 
 #include <bf_svx/svdobj.hxx>
@@ -145,7 +145,7 @@ using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::document;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 enum SvEmbeddedObjectTypes
 {

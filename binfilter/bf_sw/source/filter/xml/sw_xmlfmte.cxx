@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlfmte.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:37 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,35 +67,35 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_ATTRLIST_HXX
-#include <xmloff/attrlist.hxx>
+#include <bf_xmloff/attrlist.hxx>
 #endif
 #ifndef _XMLITMPR_HXX
 #include "xmlexpit.hxx"
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
-#include <xmloff/XMLTextListAutoStylePool.hxx>
+#include <bf_xmloff/XMLTextListAutoStylePool.hxx>
 #endif
 #ifndef _XMLOFF_XMLTEXTMASTERPAGEEXPORT
-#include <xmloff/XMLTextMasterPageExport.hxx>
+#include <bf_xmloff/XMLTextMasterPageExport.hxx>
 #endif
 
 #ifndef _XMLOFF_TXTPRMAP_HXX
-#include <xmloff/txtprmap.hxx>
+#include <bf_xmloff/txtprmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLASTPLP_HXX
-#include <xmloff/xmlaustp.hxx>
+#include <bf_xmloff/xmlaustp.hxx>
 #endif
 #ifndef _XMLOFF_FAMILIES_HXX_
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-#include <xmloff/ProgressBarHelper.hxx>
+#include <bf_xmloff/ProgressBarHelper.hxx>
 #endif
 
 #ifndef _FORMAT_HXX //autogen wg. SwFmt
@@ -141,7 +141,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::drawing;
 using namespace ::com::sun::star::lang;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 void SwXMLExport::ExportFmt( const SwFmt& rFmt, enum XMLTokenEnum eFamily )
 {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitemm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:38 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,13 +69,13 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _UNOMID_H
@@ -83,7 +83,7 @@
 #endif
 namespace binfilter {
 
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 #define M_E( p, l, w, m ) \
     { XML_NAMESPACE_##p, XML_##l, w, m }

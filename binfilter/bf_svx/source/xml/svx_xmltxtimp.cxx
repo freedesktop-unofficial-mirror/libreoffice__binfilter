@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmltxtimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:34 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,23 +107,23 @@
 #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
-#include <xmloff/xmlimp.hxx>
+#include <bf_xmloff/xmlimp.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
-#include "xmloff/xmlmetae.hxx"
+#include "bf_xmloff/xmlmetae.hxx"
 #endif
 #ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmloff/xmlictxt.hxx>
+#include <bf_xmloff/xmlictxt.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLSTYLE_HXX
-#include <xmloff/xmlstyle.hxx>
+#include <bf_xmloff/xmlstyle.hxx>
 #endif
 
 #ifndef _SVX_EDITSOURCE_HXX

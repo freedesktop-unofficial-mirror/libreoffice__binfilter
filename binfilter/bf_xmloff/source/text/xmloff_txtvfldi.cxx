@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtvfldi.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:19 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:09:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,7 +175,7 @@ static const sal_Char sAPI_is_visible[]         = "IsVisible";
 static const sal_Char sAPI_variable_subtype[]   = "VariableSubtype";
 static const sal_Char sAPI_data_column_name[]   = "DataColumnName";
 static const sal_Char sAPI_is_data_base_format[]    = "DataBaseFormat";
-static const sal_Char sAPI_current_presentation[]   = "CurrentPresentation";
+//STRIP013static const sal_Char sAPI_current_presentation[] = "CurrentPresentation";
 static const sal_Char sAPI_sequence_value[]     = "SequenceValue";
 static const sal_Char sAPI_is_fixed_language[] = "IsFixedLanguage";
 
@@ -202,8 +202,8 @@ XMLVarFieldImportContext::XMLVarFieldImportContext(
     const OUString& rLocalName,
     sal_Bool bName, sal_Bool bFormula, sal_Bool bFormulaDefault,
     sal_Bool bDescription, sal_Bool bVisible, sal_Bool bDisplayFormula,
-    sal_Bool bType, sal_Bool bStyle, sal_Bool bValue,
-    sal_Bool bPresentation) :
+    sal_Bool bType, sal_Bool bStyle, sal_Bool bValue) :
+//STRIP013  ,sal_Bool bPresentation) :
         XMLTextFieldImportContext(rImport, rHlp, pServiceName,
                                   nPrfx, rLocalName),
         sName(),
@@ -222,14 +222,14 @@ XMLVarFieldImportContext::XMLVarFieldImportContext(
         bSetDescription(bDescription),
         bSetVisible(bVisible),
         bSetDisplayFormula(bDisplayFormula),
-        bSetPresentation(bPresentation),
+//STRIP013      bSetPresentation(bPresentation),
         sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
         sPropertyHint(RTL_CONSTASCII_USTRINGPARAM(sAPI_hint)),
         sPropertyIsVisible(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_visible)),
         sPropertyIsDisplayFormula(RTL_CONSTASCII_USTRINGPARAM(
-            sAPI_is_show_formula)),
-        sPropertyCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM(
-            sAPI_current_presentation))
+            sAPI_is_show_formula))
+//STRIP013      ,sPropertyCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM(
+//STRIP013          sAPI_current_presentation))
 {
 }
 
@@ -339,21 +339,21 @@ void XMLVarFieldImportContext::PrepareField(
     aValueHelper.SetDefault(GetContent());
     aValueHelper.PrepareField(xPropertySet);
 
-    // finally, set the curren presentation
-    if (bSetPresentation)
-    {
-        // #111880#-4
-        // The API for binfilter does not have this property, so test it first
-        // before using it to not throw exceptions
-        Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
-
-        if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-        {
-            Any aAny;
-            aAny <<= GetContent();
-            xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
-        }
-    }
+//STRIP013  // finally, set the curren presentation
+//STRIP013  if (bSetPresentation)
+//STRIP013  {
+//STRIP013      // #111880#-4
+//STRIP013      // The API for binfilter does not have this property, so test it first
+//STRIP013      // before using it to not throw exceptions
+//STRIP013      Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
+//STRIP013
+//STRIP013      if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013      {
+//STRIP013          Any aAny;
+//STRIP013          aAny <<= GetContent();
+//STRIP013          xPropertySet->setPropertyValue(sPropertyCurrentPresentation, aAny);
+//STRIP013      }
+//STRIP013  }
 }
 
 
@@ -372,12 +372,13 @@ XMLSetVarFieldImportContext::XMLSetVarFieldImportContext(
     const OUString& rLocalName, VarType eVarType,
     sal_Bool bName, sal_Bool bFormula, sal_Bool bFormulaDefault,
     sal_Bool bDescription, sal_Bool bVisible, sal_Bool bDisplayFormula,
-    sal_Bool bType, sal_Bool bStyle, sal_Bool bValue, sal_Bool bPresentation) :
+    sal_Bool bType, sal_Bool bStyle, sal_Bool bValue) :
+//STRIP013  ,sal_Bool bPresentation) :
         XMLVarFieldImportContext(rImport, rHlp, pServiceName,
                                  nPrfx, rLocalName,
                                  bName, bFormula, bFormulaDefault,
                                  bDescription, bVisible, bDisplayFormula,
-                                 bType, bStyle, bValue, bPresentation),
+                                 bType, bStyle, bValue), //STRIP013, bPresentation),
         eFieldType(eVarType)
 {
 }
@@ -457,7 +458,8 @@ XMLSequenceFieldImportContext::XMLSequenceFieldImportContext(
                                     // name, formula
                                     sal_True, sal_True, sal_True,
                                     sal_False, sal_False, sal_False,
-                                    sal_False, sal_False, sal_False, sal_True),
+                                    sal_False, sal_False, sal_False),
+//STRIP013                                  , sal_True),
         sNumFormat(OUString::valueOf(sal_Unicode('1'))),
         sNumFormatSync(GetXMLToken(XML_FALSE)),
         sRefName(),
@@ -531,8 +533,8 @@ XMLVariableSetFieldImportContext::XMLVariableSetFieldImportContext(
                                     // display none
                                     sal_True, sal_True, sal_True,
                                     sal_False, sal_True, sal_False,
-                                    sal_True, sal_True, sal_True,
-                                    sal_True),
+                                    sal_True, sal_True, sal_True),
+//STRIP013                                  ,sal_True),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type))
 {
 }
@@ -566,8 +568,8 @@ XMLVariableInputFieldImportContext::XMLVariableInputFieldImportContext(
                                     // value&type, style, formula
                                     sal_True, sal_True, sal_True,
                                     sal_True, sal_True, sal_False,
-                                    sal_True, sal_True, sal_True,
-                                    sal_True),
+                                    sal_True, sal_True, sal_True),
+//STRIP013                                  ,sal_True),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type)),
         sPropertyIsInput(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_input))
 {
@@ -606,8 +608,8 @@ XMLUserFieldImportContext::XMLUserFieldImportContext(
                                     // name, display none/formula, style
                                     sal_True, sal_False, sal_False,
                                     sal_False, sal_True, sal_True,
-                                    sal_False, sal_True, sal_False,
-                                    sal_False)
+                                    sal_False, sal_True, sal_False)
+//STRIP013                                  ,sal_False)
 {
 }
 
@@ -628,8 +630,8 @@ XMLUserFieldInputImportContext::XMLUserFieldInputImportContext(
                                  // name, description, style
                                  sal_True, sal_False, sal_False,
                                  sal_True, sal_False, sal_False,
-                                 sal_False /*???*/, sal_True, sal_False,
-                                 sal_False)
+                                 sal_False /*???*/, sal_True, sal_False)
+//STRIP013                               ,sal_False)
 {
 }
 
@@ -659,8 +661,8 @@ XMLVariableGetFieldImportContext::XMLVariableGetFieldImportContext(
                                  // name, style, display formula
                                  sal_True, sal_False, sal_False,
                                  sal_False, sal_False, sal_True,
-                                 sal_True, sal_True, sal_False,
-                                 sal_True),
+                                 sal_True, sal_True, sal_False),
+//STRIP013                               ,sal_True),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type))
 {
 }
@@ -697,8 +699,8 @@ XMLExpressionFieldImportContext::XMLExpressionFieldImportContext(
                                  // formula, type, style, display formula
                                  sal_False, sal_True, sal_True,
                                  sal_False, sal_False, sal_True,
-                                 sal_True, sal_True, sal_False,
-                                 sal_True),
+                                 sal_True, sal_True, sal_False),
+//STRIP013                               ,sal_True),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type))
 {
     bValid = sal_True;  // always valid
@@ -733,8 +735,8 @@ XMLTextInputFieldImportContext::XMLTextInputFieldImportContext(
                                  // description
                                  sal_False, sal_False, sal_False,
                                  sal_True, sal_False, sal_False,
-                                 sal_False, sal_False, sal_False,
-                                 sal_False),
+                                 sal_False, sal_False, sal_False),
+//STRIP013                               ,sal_False),
         sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content))
 {
     bValid = sal_True;  // always valid
@@ -765,8 +767,8 @@ XMLTableFormulaImportContext::XMLTableFormulaImportContext(
         XMLTextFieldImportContext(rImport, rHlp, sAPI_table_formula,
                                   nPrfx, rLocalName),
         sPropertyIsShowFormula(RTL_CONSTASCII_USTRINGPARAM("IsShowFormula")),
-        sPropertyCurrentPresentation(
-            RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
+//STRIP013        sPropertyCurrentPresentation(
+//STRIP013            RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
         aValueHelper(rImport, rHlp, sal_False, sal_True, sal_False, sal_True),
         sFormula(),
         bIsShowFormula(sal_False)
@@ -814,16 +816,16 @@ void XMLTableFormulaImportContext::PrepareField(
     aAny.setValue( &bIsShowFormula, ::getBooleanCppuType() );
     xPropertySet->setPropertyValue( sPropertyIsShowFormula, aAny );
 
-    // #111880#-4
-    // The API for binfilter does not have this property, so test it first
-    // before using it to not throw exceptions
-    Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
-
-    if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-    {
-        aAny <<= GetContent();
-        xPropertySet->setPropertyValue( sPropertyCurrentPresentation, aAny );
-    }
+//STRIP013  // #111880#-4
+//STRIP013  // The API for binfilter does not have this property, so test it first
+//STRIP013  // before using it to not throw exceptions
+//STRIP013  Reference<XPropertySetInfo> xPropertySetInfo(xPropertySet->getPropertySetInfo());
+//STRIP013
+//STRIP013  if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013  {
+//STRIP013      aAny <<= GetContent();
+//STRIP013      xPropertySet->setPropertyValue( sPropertyCurrentPresentation, aAny );
+//STRIP013  }
 }
 
 
@@ -1175,8 +1177,8 @@ XMLDatabaseDisplayImportContext::XMLDatabaseDisplayImportContext(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_data_column_name)),
         sPropertyDatabaseFormat(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_is_data_base_format)),
-        sPropertyCurrentPresentation(
-            RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
+//STRIP013      sPropertyCurrentPresentation(
+//STRIP013          RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
         sPropertyIsVisible(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_is_visible)),
         bDisplayOK( sal_False ),
@@ -1278,18 +1280,18 @@ void XMLDatabaseDisplayImportContext::EndElement()
                             xField->setPropertyValue(sPropertyIsVisible, aAny);
                         }
 
-                        // #111880#-4
-                        // The API for binfilter does not have this property, so test it first
-                        // before using it to not throw exceptions
-                        Reference<XPropertySetInfo> xPropertySetInfo(xField->getPropertySetInfo());
-
-                        if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-                        {
-                            // set presentation
-                            aAny <<= GetContent();
-                            xField->setPropertyValue(sPropertyCurrentPresentation,
-                                                     aAny);
-                        }
+//STRIP013                      // #111880#-4
+//STRIP013                      // The API for binfilter does not have this property, so test it first
+//STRIP013                      // before using it to not throw exceptions
+//STRIP013                      Reference<XPropertySetInfo> xPropertySetInfo(xField->getPropertySetInfo());
+//STRIP013
+//STRIP013                      if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
+//STRIP013                      {
+//STRIP013                          // set presentation
+//STRIP013                          aAny <<= GetContent();
+//STRIP013                          xField->setPropertyValue(sPropertyCurrentPresentation,
+//STRIP013                                                   aAny);
+//STRIP013                      }
 
                         // success!
                         return;

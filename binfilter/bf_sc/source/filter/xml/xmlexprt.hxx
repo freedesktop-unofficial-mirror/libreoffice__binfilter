@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlexprt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:09 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #define SC_XMLEXPRT_HXX
 
 #ifndef _XMLOFF_XMLEXP_HXX
-#include <xmloff/xmlexp.hxx>
+#include <bf_xmloff/xmlexp.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
@@ -81,8 +81,6 @@
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HDL_
 #include <com/sun/star/drawing/XShapes.hdl>
 #endif
-class SvXMLExportPropertyMapper;
-class XMLNumberFormatAttributesExportHelper;
 class SfxItemPool;
 namespace binfilter {
 
@@ -104,6 +102,8 @@ class ScDocument;
 class ScMySharedData;
 class ScMyDefaultStyles;
 class ScChartListener;
+class SvXMLExportPropertyMapper;
+class XMLNumberFormatAttributesExportHelper;
 
 typedef std::vector< ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShapes > > ScMyXShapesVec;
 
@@ -277,7 +277,7 @@ public:
     XMLNumberFormatAttributesExportHelper* GetNumberFormatAttributesExportHelper();
 
     // Export the document.
-    virtual sal_uInt32 exportDoc( enum ::xmloff::token::XMLTokenEnum eClass = ::xmloff::token::XML_TOKEN_INVALID );
+    virtual sal_uInt32 exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass = ::binfilter::xmloff::token::XML_TOKEN_INVALID );
 
     // XExporter
     virtual void SAL_CALL setSourceDocument( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >& xDoc ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);

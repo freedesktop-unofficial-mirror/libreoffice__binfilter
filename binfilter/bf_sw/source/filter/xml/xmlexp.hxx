@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlexp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:42 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,26 +63,26 @@
 #define _XMLEXP_HXX
 
 #ifndef _XMLOFF_XMLEXP_HXX
-#include <xmloff/xmlexp.hxx>
+#include <bf_xmloff/xmlexp.hxx>
 #endif
 
 #ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
 #endif
 #ifndef _UNIVERSALL_REFERENCE_HXX
-#include <xmloff/uniref.hxx>
+#include <bf_xmloff/uniref.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
-class SvXMLUnitConverter;
-class SvXMLAutoStylePoolP;
-class XMLPropertySetMapper;
 namespace binfilter {
 
 class SwPaM;
 class SwFmt;
 class SwFrmFmt;
+class SvXMLUnitConverter;
+class SvXMLAutoStylePoolP;
+class XMLPropertySetMapper;
 
 class SvXMLExportItemMapper;
 
@@ -141,7 +141,7 @@ class SwXMLExport : public SvXMLExport
                                  sal_Bool bTop=sal_False );
 
 
-    void ExportFmt( const SwFmt& rFmt,  enum ::xmloff::token::XMLTokenEnum eClass = ::xmloff::token::XML_TOKEN_INVALID );
+    void ExportFmt( const SwFmt& rFmt,  enum ::binfilter::xmloff::token::XMLTokenEnum eClass = ::binfilter::xmloff::token::XML_TOKEN_INVALID );
     void ExportTableFmt( const SwFrmFmt& rFmt, sal_uInt32 nAbsWidth );
 
     void ExportTableColumnStyle( const SwXMLTableColumn_Impl& rCol );
@@ -204,7 +204,7 @@ public:
 
     void setBlockMode();
 
-    virtual sal_uInt32 exportDoc( enum ::xmloff::token::XMLTokenEnum eClass = ::xmloff::token::XML_TOKEN_INVALID );
+    virtual sal_uInt32 exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass = ::binfilter::xmloff::token::XML_TOKEN_INVALID );
 
     inline const SvXMLUnitConverter& GetTwipUnitConverter() const;
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:02 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,7 +102,7 @@
 #include "inputopt.hxx"
 
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #ifndef _SC_VIEWSETTINGSSEQUENCEDEFINES_HXX

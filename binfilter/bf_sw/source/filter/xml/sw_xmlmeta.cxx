@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlmeta.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:39 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,24 +78,24 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLMETAI_HXX
-#include <xmloff/xmlmetai.hxx>
+#include <bf_xmloff/xmlmetai.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
-#include <xmloff/xmlmetae.hxx>
+#include <bf_xmloff/xmlmetae.hxx>
 #endif
 #ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 
 #ifndef _DOCSTAT_HXX
@@ -115,7 +115,7 @@
 #include "xmlimp.hxx"
 #endif
 #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-#include <xmloff/ProgressBarHelper.hxx>
+#include <bf_xmloff/ProgressBarHelper.hxx>
 #endif
 #ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
@@ -128,7 +128,7 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::text;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 // ---------------------------------------------------------------------
 

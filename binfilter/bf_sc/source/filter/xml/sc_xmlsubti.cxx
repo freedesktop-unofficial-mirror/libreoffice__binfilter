@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlsubti.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,13 +84,13 @@
 #include "XMLStylesImportHelper.hxx"
 #endif
 
-#include <xmloff/xmltkmap.hxx>
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_XMLERROR_HXX
-#include <xmloff/xmlerror.hxx>
+#include <bf_xmloff/xmlerror.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_

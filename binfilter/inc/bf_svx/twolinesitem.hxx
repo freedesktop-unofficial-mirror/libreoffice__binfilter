@@ -2,9 +2,9 @@
  *
  *  $RCSfile: twolinesitem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:19 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,7 +71,6 @@
 #include <bf_svx/svxids.hrc>
 #endif
 
-class SvXMLUnitConverter;
 #ifdef _USE_NAMESPACE
 namespace rtl
 {
@@ -81,7 +80,7 @@ namespace rtl
 }
 #endif
 namespace binfilter {
-
+class SvXMLUnitConverter;
 class SvxTwoLinesItem : public SfxPoolItem
 {
     sal_Unicode cStartBracket, cEndBracket;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_XMLRedlineImportHelper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:35 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,7 +92,7 @@
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
@@ -128,7 +128,7 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 using ::rtl::OUString;
 using ::com::sun::star::frame::XModel;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:40 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,19 +77,19 @@
 #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #ifndef XMLOFF_NUMEHELP_HXX
-#include <xmloff/numehelp.hxx>
+#include <bf_xmloff/numehelp.hxx>
 #endif
 
 #ifndef _CNTRSRT_HXX
@@ -172,7 +172,7 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::table::XCell;
 
 

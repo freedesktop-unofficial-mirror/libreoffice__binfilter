@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltexte.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:43 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,18 +63,17 @@
 #define _XMLTEXTE_HXX
 
 #ifndef _XMLOFF_TEXTPARAE_HXX_
-#include <xmloff/txtparae.hxx>
+#include <bf_xmloff/txtparae.hxx>
 #endif
 #ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
 #endif
-class SvXMLAutoStylePoolP;
 namespace com { namespace sun { namespace star { namespace style {
                 class XStyle; } } } }
 namespace binfilter {
 
 class SwXMLExport;
-
+class SvXMLAutoStylePoolP;
 class SwNoTxtNode;
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlcelli.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:02 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,18 +107,18 @@
 #include "scerrors.hxx"
 #endif
 
-#include <xmloff/xmltkmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
-#include <xmloff/nmspmap.hxx>
-#include <xmloff/xmluconv.hxx>
-#include <xmloff/families.hxx>
+#include <bf_xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmluconv.hxx>
+#include <bf_xmloff/families.hxx>
 #ifndef XMLOFF_NUMEHELP_HXX
-#include <xmloff/numehelp.hxx>
+#include <bf_xmloff/numehelp.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #include <svtools/zforlist.hxx>
 

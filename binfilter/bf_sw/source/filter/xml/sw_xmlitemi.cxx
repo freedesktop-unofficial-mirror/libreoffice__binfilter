@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitemi.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:38 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,13 +81,13 @@
 #include "xmlitem.hxx"
 #endif
 #ifndef _XMLOFF_I18NMAP_HXX
-#include <xmloff/i18nmap.hxx>
+#include <bf_xmloff/i18nmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_FAMILIES_HXX
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 
 #ifndef _SVX_UNOMID_HXX
@@ -113,7 +113,7 @@
 #endif
 
 #ifndef _XMLOFF_XMLTABI_HXX
-//#include <xmloff/xmltabi.hxx>
+//#include <bf_xmloff/xmltabi.hxx>
 #endif
 
 #ifndef _XMLBRSHI_HXX

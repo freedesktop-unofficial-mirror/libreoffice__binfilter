@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltext.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:40 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #pragma hdrstop
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,13 +147,14 @@ namespace legacy_binfilters
 static char const * const s_legacy_libs [] = // #dochnoetig#
 {
 //     SVLIBRARY("sw"), // SVLIBRARY makes decorated name including UPD etc, e.g. libsw669ss.so
+    SVLIBRARY("bf_xo"),     // bf_xmloff
     SVLIBRARY("bf_sw"),     // bf_writer
     SVLIBRARY("bf_sc"),     // bf_calc
     SVLIBRARY("bf_sd"),     // bf_draw/bf_impress
     SVLIBRARY("bf_sm"),     // bf_starmath
     SVLIBRARY("bf_sch"),    // bf_chart
 
-    SVLIBRARY("bf_frm"),    // bf_frame
+    SVLIBRARY("bf_frm"),    // bf_form
     SVLIBRARY("bf_lng"),    // bf_linguistic
     SVLIBRARY("bf_svx"),    // bf_sfx2 bf_and svx
     SVLIBRARY("bf_wrapper"),    // bf_officewrp

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlconti.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:03 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,13 +72,13 @@
 #include "global.hxx"
 #include "document.hxx"
 
-#include <xmloff/xmltkmap.hxx>
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 namespace binfilter {
 

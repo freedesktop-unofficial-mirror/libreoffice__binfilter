@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlrowi.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:05 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:10:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,14 +76,14 @@
 #include "docuno.hxx"
 #include "olinetab.hxx"
 
-#include <xmloff/xmltkmap.hxx>
-#include <xmloff/nmspmap.hxx>
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmltkmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #ifndef _XMLOFF_FAMILIES_HXX_
-#include <xmloff/families.hxx>
+#include <bf_xmloff/families.hxx>
 #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmloff/xmltoken.hxx>
+#include <bf_xmloff/xmltoken.hxx>
 #endif
 
 #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_

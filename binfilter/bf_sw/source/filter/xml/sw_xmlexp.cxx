@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:36 $
+ *  last change: $Author: aw $ $Date: 2003-12-05 15:11:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,19 +116,19 @@
 #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
-#include <xmloff/nmspmap.hxx>
+#include <bf_xmloff/nmspmap.hxx>
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
-#include <xmloff/xmlnmspe.hxx>
+#include <bf_xmloff/xmlnmspe.hxx>
 #endif
 #ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
 #endif
 #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-#include <xmloff/ProgressBarHelper.hxx>
+#include <bf_xmloff/ProgressBarHelper.hxx>
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
-#include <xmloff/xmluconv.hxx>
+#include <bf_xmloff/xmluconv.hxx>
 #endif
 
 #ifndef _PAM_HXX //autogen wg. SwPaM
@@ -207,7 +207,7 @@ using namespace ::com::sun::star::drawing;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::form;
 using namespace ::com::sun::star::i18n;
-using namespace ::xmloff::token;
+using namespace ::binfilter::xmloff::token;
 
 #ifdef XML_CORE_API
 void SwXMLExport::SetCurPaM( SwPaM& rPaM, sal_Bool bWhole, sal_Bool bTabOnly )
@@ -691,7 +691,7 @@ void SwXMLExport::_ExportContent()
             Reference<XFormsSupplier> xFormSupp(xPage, UNO_QUERY);
             if (xFormSupp->getForms()->hasElements())
             {
-                ::xmloff::OOfficeFormsExport aOfficeForms(*this);
+                ::binfilter::xmloff::OOfficeFormsExport aOfficeForms(*this);
 
                 GetFormExport()->seekPage(xPage);
                 GetFormExport()->exportForms(xPage);
