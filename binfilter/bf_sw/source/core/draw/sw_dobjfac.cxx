@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dobjfac.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:18:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-#ifndef _DPAGE_HXX
-#include <dpage.hxx>
-#endif
+// auto strip #ifndef _DPAGE_HXX
+// auto strip #include <dpage.hxx>
+// auto strip #endif
 #ifndef _DOBJFAC_HXX
 #include <dobjfac.hxx>
 #endif
