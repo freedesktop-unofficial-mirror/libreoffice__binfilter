@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:19:38 $
+ *  last change: $Author: kz $ $Date: 2005-01-13 17:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1751,13 +1751,13 @@ namespace SfxContainer_Impl
 /*N*/ }
 
 // Methods XLibraryContainer2
-/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name )
-/*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001  sal_Bool bRet = pImplLib->mbLink;
-//STRIP001  return bRet;
-/*?*/ }
+sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name )
+    throw (NoSuchElementException, RuntimeException)
+{
+    SfxLibrary_Impl* pImplLib = getImplLib( Name );
+    sal_Bool bRet = pImplLib->mbLink;
+    return bRet;
+}
 
 /*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
@@ -1770,13 +1770,13 @@ namespace SfxContainer_Impl
 //STRIP001     return aRetStr;
 /*?*/ }
 
-/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
-/*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001  sal_Bool bRet = pImplLib->mbReadOnly || (pImplLib->mbLink && pImplLib->mbReadOnlyLink);
-//STRIP001  return bRet;
-/*?*/ }
+sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
+    throw (NoSuchElementException, RuntimeException)
+{
+    SfxLibrary_Impl* pImplLib = getImplLib( Name );
+    sal_Bool bRet = pImplLib->mbReadOnly || (pImplLib->mbLink && pImplLib->mbReadOnlyLink);
+    return bRet;
+}
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& Name, sal_Bool bReadOnly )
 /*?*/     throw (NoSuchElementException, RuntimeException)
