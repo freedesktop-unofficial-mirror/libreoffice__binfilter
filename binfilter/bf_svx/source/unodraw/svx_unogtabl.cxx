@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unogtabl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:41:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,20 +63,20 @@
 #include <com/sun/star/awt/Gradient.hpp>
 #endif
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
 #ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
 #endif
 
-#include "xgrad.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "xgrad.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "xdef.hxx"
 #include "xflgrit.hxx"
 namespace binfilter {
