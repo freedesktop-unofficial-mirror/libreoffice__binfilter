@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:46:29 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 10:42:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
@@ -161,11 +160,13 @@ SO2_DECL_REF(SvStorageStream)
 // auto strip #include "scextopt.hxx"
 
 #include "docsh.hxx"
+#include "ViewSettingsSequenceDefines.hxx"
 
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
 namespace binfilter {
+using namespace ::com::sun::star;
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -403,6 +404,46 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/
 /*N*/               UpdateLinks();              // verknuepfte Tabellen in Link-Manager
 /*N*/               RemoveUnknownObjects();     // unbekannte Ole-Objekte loeschen
+
+                    // #116578# Manually load view state from sfx window data (no view is created).
+                    // See SfxObjectShell::LoadWindows_Impl.
+                    // Only the user data string is used, only from the first view.
+
+                    SvStorageStreamRef aWinStm  = pStor->OpenStream(
+                            String::CreateFromAscii("SfxWindows"), STREAM_STD_READ );
+                    if ( aWinStm.Is() && aWinStm->GetError() == ERRCODE_NONE )
+                    {
+                        aWinStm->SetBufferSize(1024);
+                        String aWinData;
+                        aWinStm->ReadByteString( aWinData );
+                        if ( aWinData.Len() )
+                        {
+                            char cToken =',';
+                            BOOL bOldFormat = TRUE;
+                            if ( aWinData.GetToken( 0, cToken ).EqualsAscii( "TASK" ) )
+                            {
+                                bOldFormat = FALSE;
+                                aWinStm->ReadByteString( aWinData );    // read next string
+                            }
+                            USHORT nViewId = (USHORT) aWinData.GetToken( 0, cToken ).ToInt32();
+
+                            // only ScTabViewShell is handled (ID as in ScDLL::Init)
+                            if ( nViewId == 1 )
+                            {
+                                if ( bOldFormat )
+                                {
+                                    aUserData = aWinData.GetToken( 2, cToken );
+                                }
+                                else
+                                {
+                                    USHORT nPos=0;
+                                    FASTBOOL bActive = aWinData.GetToken( 3, cToken, nPos ).ToInt32();
+                                    aUserData = aWinData.Copy( nPos );
+                                }
+                                // aUserData is used in ScModelObj::getViewData
+                            }
+                        }
+                    }
 /*N*/           }
 /*N*/       }
 /*N*/       else            // SFX_CREATE_MODE_ORGANIZER
@@ -520,6 +561,64 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*?*/           DBG_ERROR( "Stream Error" );
 /*?*/           bRet = FALSE;
 /*N*/       }
+
+            // #116578# Manually create sfx window data from uno view data (no view is created).
+            // See SfxObjectShell::SaveWindows_Impl.
+            // Only data from the first view is used.
+
+            uno::Reference<document::XViewDataSupplier> xSupplier( GetModel(), uno::UNO_QUERY );
+            if ( xSupplier.is() && eShellMode == SFX_CREATE_MODE_STANDARD )
+            {
+                uno::Reference<container::XIndexAccess> xData = xSupplier->getViewData();
+                if ( xData.is() && xData->getCount() >= 1  )
+                {
+                    uno::Sequence<beans::PropertyValue> aSeq;
+                    uno::Any aAny = xData->getByIndex( 0 );
+                    if ( aAny >>= aSeq )
+                    {
+                        sal_Int32 nViewId = 0;
+
+                        sal_Int32 nCount = aSeq.getLength();
+                        for (sal_Int32 i = 0; i < nCount; i++)
+                            if ( aSeq[i].Name.compareToAscii(SC_VIEWID) == 0 )
+                            {
+                                ::rtl::OUString aId;
+                                aSeq[i].Value >>= aId;
+                                String aTmp( aId );
+                                aTmp.Erase( 0, 4 );  // format is like in "view3"
+                                nViewId = aTmp.ToInt32();
+                            }
+
+                        if ( nViewId == 1 )         // ScTabViewShell, ID from ScDLL::Init
+                        {
+                            String aUserStr;
+                            ScViewData aLocalViewData( this, NULL );            // no ViewShell
+                            aLocalViewData.ReadUserDataSequence( aSeq );
+                            aLocalViewData.WriteUserData( aUserStr );
+
+                            if ( aUserStr.Len() )
+                            {
+                                SvStorageStreamRef aWinStm  = pStor->OpenStream(
+                                        String::CreateFromAscii("SfxWindows"), STREAM_TRUNC | STREAM_STD_READWRITE );
+                                if ( aWinStm.Is() && aWinStm->GetError() == ERRCODE_NONE )
+                                {
+                                    aWinStm->SetBufferSize(1024);
+
+                                    char cToken = ',';
+                                    String aWinData = String::CreateFromInt32( nViewId );
+                                    aWinData += cToken;
+                                    aWinData += cToken;
+                                    aWinData += aUserStr;
+                                    aWinData += cToken;
+                                    aWinData += '1';        // active
+
+                                    aWinStm->WriteByteString( aWinData );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 /*N*/   }
 /*N*/
 /*N*/   delete pProgress;
