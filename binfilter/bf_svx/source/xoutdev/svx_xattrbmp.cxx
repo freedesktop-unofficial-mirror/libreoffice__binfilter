@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:51:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,10 +60,10 @@
  ************************************************************************/
 
 #include <com/sun/star/awt/XBitmap.hpp>
-#include <tools/stream.hxx>
-#include <vcl/window.hxx>
+// auto strip #include <tools/stream.hxx>
+// auto strip #include <vcl/window.hxx>
 #include <vcl/virdev.hxx>
-#include <vcl/bitmapex.hxx>
+// auto strip #include <vcl/bitmapex.hxx>
 #include <toolkit/unohlp.hxx>
 
 #ifndef _SFXSTYLE_HXX
@@ -71,11 +71,16 @@
 #endif
 
 #include "dialogs.hrc"
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 #include "xattr.hxx"
 #include "xtable.hxx"
-#include "xoutx.hxx"
-#include "xdef.hxx"
-#include "unomid.hxx"
+// auto strip #include "xoutx.hxx"
+// auto strip #include "xdef.hxx"
+// auto strip #include "unomid.hxx"
 #include "unoprnms.hxx"
 
 #include "unoapi.hxx"
