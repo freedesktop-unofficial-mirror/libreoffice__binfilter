@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_tbxform.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:14:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:50:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -603,7 +603,7 @@ FloatingWindow RID_SVXTBX_FORM
 //STRIP001      Text[ english_us ] = "go to record";
 //STRIP001      Text[ portuguese ] = "ir para registo";
 //STRIP001      Text[ russian ] = "οεπεις??ηΰοθρθ";
-//STRIP001      Text[ greek ] = "μετάβαση στην εγγραφ?;
+//STRIP001      Text[ greek ] = "μετάβαση στην εγγραφ?";
 //STRIP001      Text[ dutch ] = "ga naar record";
 //STRIP001      Text[ french ] = "Passer ?l'enregistrement";
 //STRIP001      Text[ spanish ] = "Ir a registro";
@@ -612,18 +612,18 @@ FloatingWindow RID_SVXTBX_FORM
 //STRIP001      Text[ swedish ] = "g?till datapost";
 //STRIP001      Text[ polish ] = "przejd?do rekordu";
 //STRIP001      Text[ portuguese_brazilian ] = "ir para o registro";
-//STRIP001      Text[ japanese ] = "γƒ¬γ‚³γƒΌγƒ‰γ?;
-//STRIP001      Text[ korean ] = "λ μ½”λ“λ΅ κ°€κΈ?;
+//STRIP001      Text[ japanese ] = "γƒ¬γ‚³γƒΌγƒ‰γ?";
+//STRIP001      Text[ korean ] = "λ μ½”λ“λ΅ κ°€κΈ?";
 //STRIP001      Text[ chinese_simplified ] = "θ½¬ε°ζ•°ζ®ζ΅η›®";
 //STRIP001      Text[ chinese_traditional ] = "θ½‰ε°θ³‡ζ–™ζΆη›®";
-//STRIP001      Text[ arabic ] = "ΗαΗδΚήΗα Εα?ΗαΣΜ?;
+//STRIP001      Text[ arabic ] = "ΗαΗδΚήΗα Εα?ΗαΣΜ?";
 //STRIP001      Text[ turkish ] = "Veri kόmesine git";
 //STRIP001      Text[ catalan ] = "vιs al registre";
 //STRIP001      Text[ finnish ] = "siirry tietueeseen";
 //STRIP001      Text[ thai ] = "ΰΉ„ΰΈ›ΰΈΆΰΈ±ΰΈ‡ΰΈ£ΰΈ°ΰΉ€ΰΈΰΈµΰΈΆΰΈ™";
 //STRIP001      Text[ czech ] = "pΕ™ejΓ­t na zΓ΅znam";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧΆΧ‘Χ?ΧΧ¨Χ©Χ•ΧΧ”β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤²ΰ¥‡ΰ¤–ΰ¤Ύ ΰ¤®ΰ¥‡ΰ¤?ΰ¤ΰ¤Ύΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧΆΧ‘Χ?ΧΧ¨Χ©Χ•ΧΧ”β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤²ΰ¥‡ΰ¤–ΰ¤Ύ ΰ¤®ΰ¥‡ΰ¤?ΰ¤ΰ¤Ύΰ¤?";
 //STRIP001      Text[ slovak ] = "prejsΕ¥ na zΓ΅znam";
 //STRIP001  };
 //STRIP001  NumericField 1
@@ -649,13 +649,13 @@ FloatingWindow RID_SVXTBX_FORM
 //STRIP001  Text[ greek ] = "Αριθμό?εγγραφής";
 //STRIP001  Text[ korean ] = "λ μ½”λ“?λ²νΈ";
 //STRIP001  Text[ chinese_traditional ] = "θ³‡ζ–™ζΆη›®η·¨θ™";
-//STRIP001  Text[ arabic ] = "Ρή?ΗαΣΜ?;
+//STRIP001  Text[ arabic ] = "Ρή?ΗαΣΜ?";
 //STRIP001  Text[ turkish ] = "Veri kόmesi no.";
 //STRIP001  Text[ catalan ] = "Nϊmero de registre";
 //STRIP001  Text[ finnish ] = "Tietueen numero";
 //STRIP001  Text[ thai ] = "ΰΉ€ΰΈ¥ΰΈ‚ΰΈ£ΰΈ°ΰΉ€ΰΈΰΈµΰΈΆΰΈ™";
 //STRIP001  Text[ czech ] = "ΔΓ­slo zΓ΅znamu";
-//STRIP001  Text[ hebrew ] = "β€®ΧΧ΅Χ¤Χ?Χ¨Χ©Χ•ΧΧ”β€?;
+//STRIP001  Text[ hebrew ] = "β€®ΧΧ΅Χ¤Χ?Χ¨Χ©Χ•ΧΧ”β€?";
 //STRIP001  Text[ hindi ] = "ΰ¤²ΰ¥‡ΰ¤–ΰ¤Ύ ΰ¤Έΰ¤‚ΰ¤–ΰ¥ΰ¤―ΰ¤Ύ";
 //STRIP001  Text[ slovak ] = "ΔΓ­slo zΓ΅znamu";
 //STRIP001 };
