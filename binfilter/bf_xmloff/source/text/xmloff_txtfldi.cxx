@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtfldi.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:09:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:35:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
  *  (variable related text fields and database display fields)
  */
 
-#ifndef _XMLOFF_TXTFLDI_HXX
-#include "txtfldi.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TXTFLDI_HXX
+// auto strip #include "txtfldi.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_TXTVFLDI_HXX
 #include "txtvfldi.hxx"
@@ -81,9 +81,9 @@
 #include "xmlnumi.hxx"
 #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -93,17 +93,17 @@
 #include "nmspmap.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlement.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlement.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLSTRINGBUFFERIMPORTCONTEXT_HXX
 #include "XMLStringBufferImportContext.hxx"
@@ -113,17 +113,17 @@
 #include "XMLEventsImportContext.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
 #include <com/sun/star/text/UserDataPart.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
-#include <com/sun/star/style/NumberingType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
+// auto strip #include <com/sun/star/style/NumberingType.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HPP_
 #include <com/sun/star/text/PlaceholderType.hpp>
@@ -137,25 +137,25 @@
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-#include <com/sun/star/text/XTextField.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
+// auto strip #include <com/sun/star/text/XTextField.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-#include <com/sun/star/text/XTextContent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
+// auto strip #include <com/sun/star/text/XTextContent.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
@@ -165,9 +165,9 @@
 #include <com/sun/star/text/XDependentTextField.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
-#include <com/sun/star/text/SetVariableType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
+// auto strip #include <com/sun/star/text/SetVariableType.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_FILENAMEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
@@ -185,21 +185,21 @@
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
-#include <com/sun/star/document/XDocumentInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
+// auto strip #include <com/sun/star/document/XDocumentInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HPP_
 #include <com/sun/star/text/BibliographyDataType.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
-#include <com/sun/star/text/BibliographyDataField.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
+// auto strip #include <com/sun/star/text/BibliographyDataField.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XUPDATABLE_HPP_
 #include <com/sun/star/util/XUpdatable.hpp>
@@ -213,17 +213,17 @@
 #include <rtl/ustring>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
