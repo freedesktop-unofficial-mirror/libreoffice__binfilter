@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:15:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
@@ -79,69 +79,74 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFTN_HXX //autogen
+// auto strip #include <txtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _TXTFTN_HXX //autogen
-#include <txtftn.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _CALC_HXX
-#include <calc.hxx>
-#endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _CALC_HXX
+// auto strip #include <calc.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-#ifndef _SWSERV_HXX
-#include <swserv.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _SWSERV_HXX
+// auto strip #include <swserv.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _NODE2LAY_HXX
 #include <node2lay.hxx>
 #endif
