@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:12:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,14 +67,17 @@
 #include <hintids.hxx>
 #endif
 
+#ifndef _FRMATR_HXX
+#include <frmatr.hxx>
+#endif
 
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
-#include <bf_svx/paperinf.hxx>
-#endif
+// auto strip #ifndef _SVX_PAPERINF_HXX //autogen
+// auto strip #include <bf_svx/paperinf.hxx>
+// auto strip #endif
 #ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
 #endif
@@ -138,9 +141,16 @@
 #ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
 #endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -169,21 +179,21 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>
-#endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
