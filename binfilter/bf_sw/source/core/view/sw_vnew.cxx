@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vnew.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:17:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,11 +62,15 @@
 
 #pragma hdrstop
 
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX
@@ -105,9 +109,9 @@
 #ifndef _DVIEW_HXX
 #include <dview.hxx>        // SdrView
 #endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif

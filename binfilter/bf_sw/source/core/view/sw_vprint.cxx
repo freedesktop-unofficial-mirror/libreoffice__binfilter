@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vprint.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:17:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,127 +66,132 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _INTN_HXX //autogen
-#include <tools/intn.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX //autogen
-#include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _INTN_HXX //autogen
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PROGRESS_HXX //autogen
+// auto strip #include <bf_sfx2/progress.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFX_PRNMON_HXX
 #include <bf_sfx2/prnmon.hxx>
 #endif
-#ifndef _SVX_PAPERINF_HXX //autogen
-#include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_PBINITEM_HXX //autogen
-#include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVDVIEW_HXX //autogen
-#include <bf_svx/svdview.hxx>
-#endif
-#ifndef _EMBOBJ_HXX //autogen
-#include <so3/embobj.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
+// auto strip #ifndef _SVX_PAPERINF_HXX //autogen
+// auto strip #include <bf_svx/paperinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PBINITEM_HXX //autogen
+// auto strip #include <bf_svx/pbinitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDVIEW_HXX //autogen
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #endif
+// auto strip #ifndef _EMBOBJ_HXX //autogen
+// auto strip #include <so3/embobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TXTFLD_HXX //autogen
+// auto strip #include <txtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _TXTFLD_HXX //autogen
-#include <txtfld.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>      // Imp->SetFirstVisPageInvalid()
 #endif
-#ifndef _LAYACT_HXX
-#include <layact.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
-#include <docufld.hxx>      // PostItFld /-Type
-#endif
-#ifndef _DOCFLD_HXX
-#include <docfld.hxx>       // _SetGetExpFld
-#endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>       // SwModify/SwClientIter
-#endif
-#ifndef _SHELLRES_HXX
-#include <shellres.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
-#ifndef _SWPRTOPT_HXX
-#include <swprtopt.hxx>     // SwPrtOptions
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>      // fuer RES_POOLPAGE_JAKET
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>       // Ansteuern der Statusleiste
-#endif
+// auto strip #ifndef _LAYACT_HXX
+// auto strip #include <layact.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCUFLD_HXX
+// auto strip #include <docufld.hxx>      // PostItFld /-Type
+// auto strip #endif
+// auto strip #ifndef _DOCFLD_HXX
+// auto strip #include <docfld.hxx>       // _SetGetExpFld
+// auto strip #endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>       // SwModify/SwClientIter
+// auto strip #endif
+// auto strip #ifndef _SHELLRES_HXX
+// auto strip #include <shellres.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWPRTOPT_HXX
+// auto strip #include <swprtopt.hxx>     // SwPrtOptions
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>      // fuer RES_POOLPAGE_JAKET
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>       // Ansteuern der Statusleiste
+// auto strip #endif
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>      //      -- " --
 #endif
 #ifndef _PTQUEUE_HXX
 #include <ptqueue.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // MinPrtLine
-#endif
-#ifndef _VISCRS_HXX
-#include <viscrs.hxx>       // SwShellCrsr
-#endif
-#ifndef _FMTPDSC_HXX
-#include <fmtpdsc.hxx>      // SwFmtPageDesc
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>     // MinPrtLine
+// auto strip #endif
+// auto strip #ifndef _VISCRS_HXX
+// auto strip #include <viscrs.hxx>     // SwShellCrsr
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX
+// auto strip #include <fmtpdsc.hxx>        // SwFmtPageDesc
+// auto strip #endif
 namespace binfilter {
 
 #define JOBSET_ERR_DEFAULT          0
