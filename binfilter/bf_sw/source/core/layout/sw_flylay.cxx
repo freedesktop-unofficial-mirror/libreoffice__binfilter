@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flylay.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:35:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,22 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "pagefrm.hxx"
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "cntfrm.hxx"
-#include "dview.hxx"
+// auto strip #include "dview.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "ftnfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
-#include "errhdl.hxx"
+// auto strip #include "errhdl.hxx"
 #include "hints.hxx"
 #include "pam.hxx"
 #include "sectfrm.hxx"
@@ -96,17 +100,17 @@
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#include "ndole.hxx"
+// auto strip #include "ndole.hxx"
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
 
 #ifdef ACCESSIBLE_LAYOUT
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
