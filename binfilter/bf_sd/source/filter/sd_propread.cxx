@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_propread.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:43 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:30:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _PROPREAD_HXX_
 #include <propread.hxx>
 #endif
-#ifndef _BIGINT_HXX
-#include <tools/bigint.hxx>
-#endif
+// auto strip #ifndef _BIGINT_HXX
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
 #include "rtl/tencinfo.h"
 #include "rtl/textenc.h"
 namespace binfilter {
