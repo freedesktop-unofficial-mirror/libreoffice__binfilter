@@ -2,9 +2,9 @@
  *
  *  $RCSfile: nmspmap.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:54:13 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 14:00:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,6 @@
 #ifndef _XMLOFF_NMSPMAP_HXX
 #define _XMLOFF_NMSPMAP_HXX
 
-// auto strip #ifndef _RTL_USTRING_HXX_
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 #ifndef __SGI_STL_HASH_MAP
 #include <hash_map>
 #endif
