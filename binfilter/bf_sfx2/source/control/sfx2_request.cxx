@@ -2,37 +2,37 @@
 // class SfxRequest
 //
 // (C) 1996 - 2000 StarDivision GmbH, Hamburg, Germany
-// $Author: rt $ $Date: 2004-05-05 16:40:11 $ $Revision: 1.3 $
+// $Author: hr $ $Date: 2004-08-03 14:37:45 $ $Revision: 1.4 $
 // $Logfile:   T:/bf_sfx2/source/control/request.cxv  $ $Workfile:   REQUEST.CXX  $
 //------------------------------------------------------------------*/
 
-#ifndef _COM_SUN_STAR_FRAME_DISPATCHSTATEMENT_HPP_
-#include <com/sun/star/frame/DispatchStatement.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHSTATEMENT_HPP_
+// auto strip #include <com/sun/star/frame/DispatchStatement.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-#include <com/sun/star/container/XIndexReplace.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UTIL_XURLTRANSFORMER_HPP_
-#include <com/sun/star/util/XURLTransformer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XURLTRANSFORMER_HPP_
+// auto strip #include <com/sun/star/util/XURLTransformer.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDERSUPPLIER_HPP_
-#include <com/sun/star/frame/XDispatchRecorderSupplier.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDERSUPPLIER_HPP_
+// auto strip #include <com/sun/star/frame/XDispatchRecorderSupplier.hpp>
+// auto strip #endif
 
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
@@ -46,20 +46,25 @@
 #include <svtools/itemdel.hxx>
 #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
 #pragma hdrstop
 
 #include "request.hxx"
 #include "dispatch.hxx"
-#include "msg.hxx"
+// auto strip #include "msg.hxx"
 #include "viewfrm.hxx"
-#include "macro.hxx"
+// auto strip #include "macro.hxx"
 #include "objface.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
+
+#ifndef _SFX_SFXUNO_HXX
+#include "sfxuno.hxx"
 #endif
+
 namespace binfilter {
 
 //===================================================================
