@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:29:23 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:53:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -328,6 +328,7 @@ using namespace ::com::sun::star;
 #endif
 
 #include <shells.hrc>
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 // auto strip #include <bf_svx/svxslots.hxx>
 #include "swslots.hxx"
@@ -865,7 +866,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SfxItemSet *pArgs = rReq.GetArgs()
 //STRIP001              if(aParam == C2S("~~~GetMacroPath"))
 //STRIP001              {
 //STRIP001                  SvtPathOptions aPathOpt;
-//STRIP001                  aPath = URIHelper::SmartRelToAbs( aPathOpt.GetConfigPath() );
+//STRIP001                  aPath = so3::StaticBaseUrl::SmartRelToAbs( aPathOpt.GetConfigPath() );
 //STRIP001                  if(aPath.Len())
 //STRIP001                      aPath += INET_PATH_TOKEN;
 //STRIP001              }
