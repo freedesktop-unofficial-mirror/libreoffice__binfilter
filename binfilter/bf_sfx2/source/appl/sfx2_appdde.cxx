@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:26:09 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 12:22:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -585,18 +585,18 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 /*N*/ void SfxApplication::RemoveDdeTopic( SfxObjectShell* pSh )
 /*N*/ {
-/*N*/   DBG_ASSERT( pAppData_Impl->pDocTopics, "es gibt gar keinen Dde-Service" )
+// #i30187# DDE not needed for binfilter/*N*/   DBG_ASSERT( pAppData_Impl->pDocTopics, "es gibt gar keinen Dde-Service" )
 /*N*/   //OV: Im Serverbetrieb ist DDE abgeklemmt!
 /*N*/   if( !pAppData_Impl->pDocTopics )
 /*N*/       return;
 /*N*/
-/*N*/   SfxDdeDocTopic_Impl* pTopic;
-/*N*/   for( USHORT n = pAppData_Impl->pDocTopics->Count(); n; )
-/*?*/       if( ( pTopic = (*pAppData_Impl->pDocTopics)[ --n ])->pSh == pSh )
-/*?*/       {
-/*?*/           pAppData_Impl->pDdeService->RemoveTopic( *pTopic );
-/*?*/           pAppData_Impl->pDocTopics->DeleteAndDestroy( n );
-/*?*/       }
+///*N*/     SfxDdeDocTopic_Impl* pTopic;
+///*N*/     for( USHORT n = pAppData_Impl->pDocTopics->Count(); n; )
+///*?*/         if( ( pTopic = (*pAppData_Impl->pDocTopics)[ --n ])->pSh == pSh )
+///*?*/         {
+///*?*/             pAppData_Impl->pDdeService->RemoveTopic( *pTopic );
+///*?*/             pAppData_Impl->pDocTopics->DeleteAndDestroy( n );
+///*?*/         }
 /*N*/ }
 
 //STRIP001 const DdeService* SfxApplication::GetDdeService() const
