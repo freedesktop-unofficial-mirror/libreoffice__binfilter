@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXFilterOptions.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:46 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 09:42:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,9 @@
 #endif
 #ifndef _UNOTXDOC_HXX //autogen
 #include <unotxdoc.hxx>
+#endif
+#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+#include <com/sun/star/io/XInputStream.hpp>
 #endif
 namespace binfilter {
 
