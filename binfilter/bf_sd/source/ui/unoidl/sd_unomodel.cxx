@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:07:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,23 +65,23 @@
 #ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
-#include <com/sun/star/style/XStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XDEVICE_HPP_
-#include <com/sun/star/awt/XDevice.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
+// auto strip #include <com/sun/star/style/XStyle.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XDEVICE_HPP_
+// auto strip #include <com/sun/star/awt/XDevice.hpp>
+// auto strip #endif
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
-#ifndef _UTL_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
+// auto strip #ifndef _UTL_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -90,20 +90,20 @@
 #include <bf_svx/unofield.hxx>
 #endif
 
-#ifndef _UNOMODEL_HXX
-#include <unomodel.hxx>
-#endif
+// auto strip #ifndef _UNOMODEL_HXX
+// auto strip #include <unomodel.hxx>
+// auto strip #endif
 
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFX_BINDINGS_HXX
-#include <bf_sfx2/bindings.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_BINDINGS_HXX
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
 #ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
@@ -117,12 +117,12 @@
 #include <bf_svx/UnoNamespaceMap.hxx>
 #endif
 
-#ifndef _SVDLAYER_HXX //autogen
-#include <bf_svx/svdlayer.hxx>
-#endif
-#ifndef _SVDSOB_HXX //autogen
-#include <bf_svx/svdsob.hxx>
-#endif
+// auto strip #ifndef _SVDLAYER_HXX //autogen
+// auto strip #include <bf_svx/svdlayer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDSOB_HXX //autogen
+// auto strip #include <bf_svx/svdsob.hxx>
+// auto strip #endif
 #ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
 #endif
@@ -131,15 +131,15 @@
 #include <bf_svx/unofill.hxx>
 #endif
 
-#ifndef _SVX_UNOPOOL_HXX_
-#include <bf_svx/unopool.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOPOOL_HXX_
+// auto strip #include <bf_svx/unopool.hxx>
+// auto strip #endif
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
 #endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
 #ifndef _TOOLKIT_AWT_VCLXDEVICE_HXX_
 #include <toolkit/awt/vclxdevice.hxx>
@@ -156,7 +156,7 @@
 
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/unonrule.hxx>
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 
 // #99870# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
 #ifndef _XMLEOHLP_HXX
@@ -173,14 +173,14 @@
 #include <UnoDocumentSettings.hxx>
 #endif
 
-#include <drawdoc.hxx>
+// auto strip #include <drawdoc.hxx>
 #include <glob.hrc>
 #include <sdresid.hxx>
 #include <sdpage.hxx>
 
 #include "unohelp.hxx"
 #include <unolayer.hxx>
-#include <unoprnms.hxx>
+// auto strip #include <unoprnms.hxx>
 #include <unopage.hxx>
 #include <unopres.hxx>
 #include <unocpres.hxx>
@@ -191,7 +191,7 @@
 #include <unogstyl.hxx>
 #include <unokywds.hxx>
 #include <frmview.hxx>
-#include "clview.hxx"
+// auto strip #include "clview.hxx"
 #include "viewshel.hxx"
 #include "app.hrc"
 
@@ -678,9 +678,9 @@ sal_Bool SAL_CALL SdXImpressDocument::hasControllersLocked(  )
     return pDoc && pDoc->isLocked();
 }
 } //namespace binfilter
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 namespace binfilter {//STRIP009
 uno::Reference < container::XIndexAccess > SAL_CALL SdXImpressDocument::getViewData() throw( uno::RuntimeException )
 {
