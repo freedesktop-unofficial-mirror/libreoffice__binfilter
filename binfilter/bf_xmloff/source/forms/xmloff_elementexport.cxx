@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_elementexport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:57:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,15 +64,15 @@
 #ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #include "elementexport.hxx"
 #endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
-#include "strings.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_STRINGS_HXX_
+// auto strip #include "strings.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
@@ -85,18 +85,18 @@
 #ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
 #include "eventexport.hxx"
 #endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
 #include <com/sun/star/io/XPersistObject.hpp>
 #endif
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
 #ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
 #endif
@@ -131,9 +131,9 @@
 #include "formcellbinding.hxx"
 #endif
 
-#ifndef _DRAFTS_COM_SUN_STAR_FORM_XBINDABLEVALUE_HPP_
-#include <drafts/com/sun/star/form/XBindableValue.hpp>
-#endif
+// auto strip #ifndef _DRAFTS_COM_SUN_STAR_FORM_XBINDABLEVALUE_HPP_
+// auto strip #include <drafts/com/sun/star/form/XBindableValue.hpp>
+// auto strip #endif
 #ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSINK_HPP_
 #include <drafts/com/sun/star/form/XListEntrySink.hpp>
 #endif

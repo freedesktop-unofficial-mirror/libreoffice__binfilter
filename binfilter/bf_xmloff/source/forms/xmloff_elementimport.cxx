@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_elementimport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:58:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 #include "elementimport.hxx"
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-#include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
+// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
@@ -79,18 +79,18 @@
 #ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
 #endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
-#include "callbacks.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
+// auto strip #include "callbacks.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 #include "attriblistmerge.hxx"
 #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
-#include "eventimport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
+// auto strip #include "eventimport.hxx"
+// auto strip #endif
 #ifndef XMLOFF_FORMSTYLES_HXX
 #include "formstyles.hxx"
 #endif
