@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_printer.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:08:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,35 +59,35 @@
  *
  ************************************************************************/
 
-#ifndef _SV_VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
-#ifndef _SV_METRIC_HXX //autogen
-#include <vcl/metric.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SV_PRINTDLG_HXX_ //autogen
-#include <svtools/printdlg.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PRINTWARNINGOPTIONS_HXX
-#include <svtools/printwarningoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PRINTOPTIONS_HXX
-#include <svtools/printoptions.hxx>
-#endif
+// auto strip #ifndef _SV_VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_METRIC_HXX //autogen
+// auto strip #include <vcl/metric.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_PRINTDLG_HXX_ //autogen
+// auto strip #include <svtools/printdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PRINTWARNINGOPTIONS_HXX
+// auto strip #include <svtools/printwarningoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PRINTOPTIONS_HXX
+// auto strip #include <svtools/printoptions.hxx>
+// auto strip #endif
 #include <vector>
 
 #pragma hdrstop
 
-#include "printer.hxx"
-#include "printopt.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "printer.hxx"
+// auto strip #include "printopt.hxx"
+// auto strip #include "sfxtypes.hxx"
 #include "prnmon.hxx"
-#include "viewsh.hxx"
+// auto strip #include "viewsh.hxx"
 #include "tabdlg.hxx"
-#include "sfxresid.hxx"
+// auto strip #include "sfxresid.hxx"
 #include "view.hrc"
 namespace binfilter {
 
