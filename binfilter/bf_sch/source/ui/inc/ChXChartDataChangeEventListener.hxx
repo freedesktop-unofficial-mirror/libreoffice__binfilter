@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXChartDataChangeEventListener.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:06:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,12 +67,12 @@
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATACHANGEEVENTLISTENER_HPP_
 #include <com/sun/star/chart/XChartDataChangeEventListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-#include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 namespace binfilter {
 
 class ChXChartDocument;
