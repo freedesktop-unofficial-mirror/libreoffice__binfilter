@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dptabsrc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:46:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,13 +62,13 @@
 #ifndef SC_DPTABSRC_HXX
 #define SC_DPTABSRC_HXX
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
-#ifndef _LIST_HXX //autogen wg. List
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX //autogen wg. List
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // enum ScSubTotalFunc
@@ -92,9 +92,9 @@
 #ifndef _COM_SUN_STAR_SHEET_XDATAPILOTMEMBERRESULTS_HPP_
 #include <com/sun/star/sheet/XDataPilotMemberResults.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SHEET_MEMBERRESULT_HPP_
-#include <com/sun/star/sheet/MemberResult.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_MEMBERRESULT_HPP_
+// auto strip #include <com/sun/star/sheet/MemberResult.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_GENERALFUNCTION_HPP_
 #include <com/sun/star/sheet/GeneralFunction.hpp>
 #endif
