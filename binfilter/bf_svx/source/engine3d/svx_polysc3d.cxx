@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_polysc3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:41:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,53 +59,57 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_SVTOOLS_OPTIONS3D_HXX
-#include <svtools/options3d.hxx>
+// auto strip #ifndef INCLUDED_SVTOOLS_OPTIONS3D_HXX
+// auto strip #include <svtools/options3d.hxx>
+// auto strip #endif
+
+#ifndef _XDEF_HXX //autogen
+#include "xdef.hxx"
 #endif
 
-#ifndef _SVX_FILLITEM_HXX
-#include "xfillit.hxx"
-#endif
+// auto strip #ifndef _SVX_FILLITEM_HXX
+// auto strip #include "xfillit.hxx"
+// auto strip #endif
 
-#ifndef _SVDOPATH_HXX //autogen
-#include "svdopath.hxx"
-#endif
+// auto strip #ifndef _SVDOPATH_HXX //autogen
+// auto strip #include "svdopath.hxx"
+// auto strip #endif
 
-#ifndef _SVDOGRP_HXX //autogen
-#include "svdogrp.hxx"
-#endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include "svdogrp.hxx"
+// auto strip #endif
 
-#ifndef _SVDITER_HXX //autogen
-#include "svditer.hxx"
-#endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include "svditer.hxx"
+// auto strip #endif
 
-#ifndef _SVDETC_HXX //autogen
-#include "svdetc.hxx"
-#endif
+// auto strip #ifndef _SVDETC_HXX //autogen
+// auto strip #include "svdetc.hxx"
+// auto strip #endif
 
-#ifndef _VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _XOUTX_HXX
-#include "xoutx.hxx"
-#endif
+// auto strip #ifndef _XOUTX_HXX
+// auto strip #include "xoutx.hxx"
+// auto strip #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
-#ifndef _SVDPOOL_HXX
-#include "svdpool.hxx"
-#endif
+// auto strip #ifndef _SVDPOOL_HXX
+// auto strip #include "svdpool.hxx"
+// auto strip #endif
 
-#ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -115,37 +119,37 @@
 #include "polysc3d.hxx"
 #endif
 
-#ifndef _E3D_PLIGHT3D_HXX
-#include "plight3d.hxx"
-#endif
+// auto strip #ifndef _E3D_PLIGHT3D_HXX
+// auto strip #include "plight3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_DLIGHT3D_HXX
-#include "dlight3d.hxx"
-#endif
+// auto strip #ifndef _E3D_DLIGHT3D_HXX
+// auto strip #include "dlight3d.hxx"
+// auto strip #endif
 
-#ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
-#endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include <goodies/base3d.hxx>
+// auto strip #endif
 
-#ifndef _B3D_B3DTEX_HXX
-#include <goodies/b3dtex.hxx>
-#endif
+// auto strip #ifndef _B3D_B3DTEX_HXX
+// auto strip #include <goodies/b3dtex.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XLNCLIT_HXX
-#include "xlnclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX
+// auto strip #include "xlnclit.hxx"
+// auto strip #endif
 
-#ifndef _SFXMETRICITEM_HXX
-#include <svtools/metitem.hxx>
-#endif
+// auto strip #ifndef _SFXMETRICITEM_HXX
+// auto strip #include <svtools/metitem.hxx>
+// auto strip #endif
 
-#ifndef _XTABLE_HXX
-#include "xtable.hxx"
-#endif
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include "xtable.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLNWTIT_HXX
-#include "xlnwtit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNWTIT_HXX
+// auto strip #include "xlnwtit.hxx"
+// auto strip #endif
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
