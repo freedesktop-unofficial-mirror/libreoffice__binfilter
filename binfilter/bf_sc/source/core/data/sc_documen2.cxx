@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:04:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 
@@ -251,33 +251,33 @@
 
 #define _ZFORLIST_DECLARE_TABLE
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
 #include <bf_svx/linkmgr.hxx>
-#include <bf_sfx2/bindings.hxx>
+// auto strip #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <svtools/PasswordHelper.hxx>
 #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 #ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
 #endif
 
-#include "document.hxx"
-#include "table.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "table.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
@@ -289,23 +289,23 @@
 #include "globstr.hrc"
 #include "chartarr.hxx"
 #include "rechead.hxx"
-#include "global.hxx"
-#include "brdcst.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
-#include "adiasync.hxx"
+// auto strip #include "adiasync.hxx"
 #include "addinlis.hxx"
 #include "chartlis.hxx"
-#include "markdata.hxx"
-#include "conditio.hxx"
+// auto strip #include "markdata.hxx"
+// auto strip #include "conditio.hxx"
 #include "validat.hxx"
-#include "progress.hxx"
+// auto strip #include "progress.hxx"
 #include "detdata.hxx"
 #include "bf_sc.hrc"                // FID_DATACHANGED
-#include "ddelink.hxx"
+// auto strip #include "ddelink.hxx"
 #include "chgtrack.hxx"
 #include "chgviset.hxx"
 #include "editutil.hxx"
-#include "hints.hxx"
+// auto strip #include "hints.hxx"
 #include "dpobject.hxx"
 #include "indexmap.hxx"
 #include "scrdata.hxx"
