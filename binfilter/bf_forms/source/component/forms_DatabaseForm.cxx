@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2005-02-16 17:38:01 $
+ *  last change: $Author: vg $ $Date: 2005-02-18 12:12:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3160,50 +3160,7 @@ void ODatabaseForm::stopSharingConnection( )
 //------------------------------------------------------------------------------
 sal_Bool ODatabaseForm::implEnsureConnection()
 {
-    try
-    {
-        if ( getConnection( ).is() )
-            // if our aggregate already has a connection, nothing needs to be done about it
-            return sal_True;
-
-        m_bSharingConnection = sal_False;
-
-        // if we're a sub form, we try to re-use the connection of our parent
-        if (m_bSubForm)
-        {
-            OSL_ENSURE( Reference< XForm >( getParent(), UNO_QUERY ).is(),
-                "ODatabaseForm::implEnsureConnection: m_bSubForm is TRUE, but the parent is no form?" );
-
-            Reference< XPropertySet > xParentProps( getParent(), UNO_QUERY );
-
-            // can we re-use (aka share) the connection of the parent?
-            if ( canShareConnection( xParentProps ) )
-            {
-                // yep -> do it
-                doShareConnection( xParentProps );
-                // success?
-                if ( m_bSharingConnection )
-                    // yes -> outta here
-                    return sal_True;
-            }
-        }
-
-        if (m_xAggregateSet.is())
-        {
-            // do we have a connection in the hierarchy than take that connection
-            // this overwrites all the other connnections
-            Reference< XConnection >  xConnection = calcConnection(
-                Reference<XRowSet> (m_xAggregate, UNO_QUERY),
-                m_xServiceFactory
-            );      // will set a calculated connection implicitly
-            return xConnection.is();
-        }
-    }
-    catch(SQLException& eDB)
-    {
-        onError(eDB, FRM_RES_STRING(RID_STR_CONNECTERROR));
-    }
-
+    OSL_ENSURE( sal_False, "ODatabaseForm::implEnsureConnection: this should be dead code, we're in binfilter here!" );
     return sal_False;
 }
 
