@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 12:44:39 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:39:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -473,7 +473,7 @@ enum ChartStyleV0
 /*N*/                                    GetPage(0)->GetSize().Width() * fMaximumWidth);
 /*N*/
 /*N*/           // FG: Das hier soll verhindern dass der Text in der Legende markiert werden kann
-/*N*/           //     dazu gibt es ja kein gueltiges Kontextmenü
+/*N*/           //     dazu gibt es ja kein gueltiges Kontextmenue
 /*N*/           pText->SetMarkProtect(TRUE);
 /*N*/           aTextList.Insert(pText, LIST_APPEND);
 /*N*/
@@ -723,7 +723,7 @@ enum ChartStyleV0
 //STRIP001 /*?*/                    }
 /*N*/               }
 /*N*/
-/*N*/               // FG: Jetzt wird aTextPos für den naechsten Legendeneintrag gesetzt
+/*N*/               // FG: Jetzt wird aTextPos fuer den naechsten Legendeneintrag gesetzt
 /*N*/              if (bWide)
 /*N*/               {
 /*?*/                   if (nShows >= nTextCols - 1)
@@ -1025,10 +1025,10 @@ enum ChartStyleV0
 /*N*/   //#50116# 8->9
 /*N*/   //#54870# ->10
 /*N*/   //12: ChartAchsen
-/*N*/   //13 Nachtrag: X-AchsenAttr-default bei XY-Charts (store unverändert)
+/*N*/   //13 Nachtrag: X-AchsenAttr-default bei XY-Charts (store unveraendert)
 /*N*/   //14 Overlap , Gapwith der 2 Y-Achsen
 /*N*/   //15 Neues 3D-Pie
-/*N*/   //16 Items für Achse SCHATTR_AXIS_SHOWDESCR,SCHATTR_AXIS_SHOWAXIS aktiviert,
+/*N*/   //16 Items fuer Achse SCHATTR_AXIS_SHOWDESCR,SCHATTR_AXIS_SHOWAXIS aktiviert,
 /*N*/   //    bisher nur von pChartBAxis genutzt!
 /*N*/
 /*N*/   //FG: 12 - seit 20.02.1997 - Umbruch ja/ein pro Achse hinzu
@@ -1092,7 +1092,7 @@ enum ChartStyleV0
 /*N*/   const long nOverlap = 0;
 /*N*/   rOut << (INT32)nGapWidth;
 /*N*/   rOut << (INT32)nOverlap;
-/*N*/   rOut << (INT32)nMarkLen; //entfällt demnächst! -> ChartAxis
+/*N*/   rOut << (INT32)nMarkLen; //entfaellt demnaechst! -> ChartAxis
 /*N*/   rOut << aChartRect;
 /*N*/   rOut << (INT32)nPieHeight;
 /*N*/
@@ -1173,7 +1173,7 @@ enum ChartStyleV0
 /*N*/
 /*N*/
 /*N*/
-/*N*/   //Abwärtskompatibel speichern (this->PrepareAxisStorage())
+/*N*/   //Abwaertskompatibel speichern (this->PrepareAxisStorage())
 /*N*/   pTmpXItems->Store(rOut);
 /*N*/   pTmpYItems->Store(rOut);
 /*N*/   pTmpZItems->Store(rOut);
@@ -1313,7 +1313,7 @@ enum ChartStyleV0
 /*N*/
 /*N*/   // Achtung : Gravierende Aenderungen an der Datei gegenueber der Auslieferungsversion
 /*N*/   // es werden mehr Daten geschrieben : Die alte Version muss (!) das aber auch verkraften
-/*N*/   // Die Reihenfolge muß (!!!!) eingehalten werden
+/*N*/   // Die Reihenfolge muss (!!!!) eingehalten werden
 /*N*/   pChartYAxis->StoreMemberCompat(rOut);
 /*N*/   pChartXAxis->StoreMemberCompat(rOut);
 /*N*/   pChartZAxis->StoreMemberCompat(rOut);
@@ -1477,8 +1477,8 @@ enum ChartStyleV0
 /*N*/   //-1 bedeutet KEINE WEITEREN ACHSEN!
 /*N*/   //Es MUSS keine Achse gestreamt werden (siehe Lade-Routine)
 /*N*/   //Die Reihenfolge ist eigentlich auch egal, jedoch gilt beim Laden:
-/*N*/   //erst die primäre und dann die sekundäre (X, bzw. evtl auch Y) Achse
-/*N*/   //(um defaults aus der primären Achse heraus zu erzeugen)
+/*N*/   //erst die primaere und dann die sekundaere (X, bzw. evtl auch Y) Achse
+/*N*/   //(um defaults aus der primaeren Achse heraus zu erzeugen)
 /*N*/
 /*N*/   INT32 nAxisId=CHART_AXIS_PRIMARY_X;
 /*N*/   rOut << nAxisId;
@@ -1502,8 +1502,8 @@ enum ChartStyleV0
 /*N*/
 /*N*/   //Elementar wichtig! Diesen Wert zu streamen ist absolutes Minimum
 /*N*/   //die obigen derzeit 4 Achsen kann man dagegen getrost reduzieren oder aufstocken
-/*N*/   //ohne daß die abwärtskompatiblität leidet! Genauso lassen sich beliebige
-/*N*/   //Achsen mit einer Id>4 dazwischen hängen. In alten Versionen wird bei
+/*N*/   //ohne dass die Abwaertskompatiblitaet leidet! Genauso lassen sich beliebige
+/*N*/   //Achsen mit einer Id>4 dazwischen haengen. In alten Versionen wird bei
 /*N*/   //unbekannter id einfach ein Dummy geladen (und weggeschmissen)
 /*N*/   nAxisId=-1;
 /*N*/   rOut << nAxisId;
@@ -1828,7 +1828,7 @@ enum ChartStyleV0
 /*N*/   aZAxisAttr.Load(rIn);
 /*N*/ DBG_ITEMS(aZAxisAttr,(ChartModel*)this);
 /*N*/
-/*N*/   if(nVersion < 12) //sonst wirds eh übergebügelt:
+/*N*/   if(nVersion < 12) //sonst wirds eh uebergebuegelt:
 /*N*/   {
 /*N*/       //konvertieren:
 /*N*/       AxisAttrOld2New(aXAxisAttr,TRUE,CHOBJID_DIAGRAM_X_AXIS);
@@ -1897,7 +1897,7 @@ enum ChartStyleV0
 /*?*/       pZAxisTitleAttr->Put(SvxChartTextOrientItem(CHTXTORIENT_AUTOMATIC));
 /*?*/       pAxisAttr->Put(SvxChartTextOrientItem(CHTXTORIENT_AUTOMATIC));
 /*?*/
-/*?*/       //Achsen auch für V12+ OK, (ToDo: Hier ist recht viel Overhead! )
+/*?*/       //Achsen auch fuer V12+ OK, (ToDo: Hier ist recht viel Overhead! )
 /*?*/       aXAxisAttr.ClearItem();
 /*?*/       aYAxisAttr.ClearItem();
 /*?*/       aZAxisAttr.ClearItem();
@@ -2036,7 +2036,7 @@ enum ChartStyleV0
 /*N*/
 /*N*/   // Achtung : Gravierende Aenderungen an der Datei gegenueber der Auslieferungsversion
 /*N*/   // es werden mehr Daten geschrieben : Die alte Version muss (!) das aber auch verkraften
-/*N*/   // Die Reihenfolge muß (!!!!) eingehalten werden
+/*N*/   // Die Reihenfolge muss (!!!!) eingehalten werden
 /*N*/   pChartYAxis->LoadMemberCompat(rIn);
 /*N*/   pChartXAxis->LoadMemberCompat(rIn);
 /*N*/   pChartZAxis->LoadMemberCompat(rIn);
@@ -2305,7 +2305,7 @@ enum ChartStyleV0
 /*N*/       //Es MUSS keine Achse gestreamt werden (siehe Lade-Routine)
 /*N*/       INT32 nAxisId=0;
 /*N*/       SfxItemSet aAxisSet(*pItemPool,nAxisWhichPairs);
-/*N*/       while(nAxisId != -1)//hier können beliebig viele, auch unbekannte Achsen kommen
+/*N*/       while(nAxisId != -1)//hier koennen beliebig viele, auch unbekannte Achsen kommen
 /*N*/       {
 /*N*/           aAxisSet.ClearItem();
 /*N*/           rIn >> nAxisId;
@@ -2315,10 +2315,10 @@ enum ChartStyleV0
 /*N*/               case CHART_AXIS_PRIMARY_X:
 /*N*/                   aAxisSet.Load(rIn);
 /*N*/                   SetAttributes(CHOBJID_DIAGRAM_X_AXIS,aAxisSet,FALSE);
-/*N*/                   SetAttributes(CHOBJID_DIAGRAM_A_AXIS,aAxisSet,FALSE);//falls nicht später geladen wird, hier neue defaults setzen
+/*N*/                   SetAttributes(CHOBJID_DIAGRAM_A_AXIS,aAxisSet,FALSE);//falls nicht spaeter geladen wird, hier neue defaults setzen
 /*N*/                   pChartAAxis->ShowAxis(FALSE); //default aus
 /*N*/                   pChartAAxis->ShowDescr(FALSE);
-/*N*/                   pChartXAxis->Update();  //Ab V12 kann jetzt der ganze LoadMemberCompat...Kram übergebügelt werden, in den Attr war alles drin!
+/*N*/                   pChartXAxis->Update();  //Ab V12 kann jetzt der ganze LoadMemberCompat...Kram uebergebuegelt werden, in den Attr war alles drin!
 /*N*/                   pChartAAxis->Update();
 /*N*/               break;
 /*N*/               case CHART_AXIS_PRIMARY_Y:
@@ -2351,7 +2351,7 @@ enum ChartStyleV0
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/   else //defaults ergänzen
+/*N*/   else //defaults ergaenzen
 /*N*/   {
 /*?*/       SfxItemSet aSet(*pItemPool,nAxisWhichPairs);
 /*?*/       aSet.Put(SfxInt32Item(SCHATTR_AXIS_TICKS,CHAXIS_MARK_OUTER));
@@ -2491,7 +2491,7 @@ enum ChartStyleV0
 /*?*/           }
 /*N*/   }
 /*N*/
-/*N*/   //dies ist immer möglich (IoVersion<=16), in Zukunft sollten nur noch die Attr unterstützt werden, dann kann hier evtl. mit IOVersion geklammert werden!
+/*N*/   //dies ist immer moeglich (IoVersion<=16), in Zukunft sollten nur noch die Attr unterstuetzt werden, dann kann hier evtl. mit IOVersion geklammert werden!
 /*N*/   pChartXAxis->ShowDescr(bShowXDescr);
 /*N*/   pChartXAxis->ShowAxis(bShowXAxis);
 /*N*/   pChartYAxis->ShowDescr(bShowYDescr);
@@ -2893,7 +2893,7 @@ enum ChartStyleV0
 //STRIP001  else eNewPos = eOldPos;
 //STRIP001
 //STRIP001
-//STRIP001  //#50913#: Legende hat neue Position? Wenn ja, dann relative Pos löschen:
+//STRIP001  //#50913#: Legende hat neue Position? Wenn ja, dann relative Pos loeschen:
 //STRIP001  if(eOldPos!=eNewPos)
 //STRIP001      SetLegendHasBeenMoved(FALSE);
 //STRIP001
