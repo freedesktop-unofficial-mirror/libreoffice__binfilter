@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangeutl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:20:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,10 +71,10 @@
 
 #include "rangeutl.hxx"
 #include "document.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "dbcolect.hxx"
 #include "rangenam.hxx"
-#include "scresid.hxx"
+// auto strip #include "scresid.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 
