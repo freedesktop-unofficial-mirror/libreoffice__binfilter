@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_authfld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:24:26 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:35:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,46 +91,46 @@
 #ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
 #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>
-// auto strip #endif
+#ifndef _EXPFLD_HXX
+#include <expfld.hxx>
+#endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _TOX_HXX
-// auto strip #include <tox.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXMSRT_HXX
-// auto strip #include <txmsrt.hxx>
-// auto strip #endif
+#ifndef _PAM_HXX
+#include <pam.hxx>
+#endif
+#ifndef _CNTFRM_HXX
+#include <cntfrm.hxx>
+#endif
+#ifndef _TOX_HXX
+#include <tox.hxx>
+#endif
+#ifndef _TXMSRT_HXX
+#include <txmsrt.hxx>
+#endif
 #ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
 #endif
-// auto strip #ifndef _FMTFLD_HXX
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTFLD_HXX
-// auto strip #include <txtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
+#ifndef _FMTFLD_HXX
+#include <fmtfld.hxx>
+#endif
+#ifndef _TXTFLD_HXX
+#include <txtfld.hxx>
+#endif
+#ifndef _NDTXT_HXX
+#include <ndtxt.hxx>
+#endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
+#ifndef _DOC_HXX
+#include <doc.hxx>
+#endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
@@ -522,102 +522,103 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
 /* -----------------19.10.99 13:46-------------------
 
  --------------------------------------------------*/
-//STRIP001 USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
-//STRIP001 {
-//STRIP001     //find the field in a sorted array of handles,
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001     sal_Bool bCurrentFieldWithoutTextNode = sal_False;
-//STRIP001 #endif
-//STRIP001     if(m_pSequArr->Count() && m_pSequArr->Count() != m_pDataArr->Count())
-//STRIP001         DelSequenceArray();
-//STRIP001     if(!m_pSequArr->Count())
-//STRIP001     {
-//STRIP001         SwTOXSortTabBases aSortArr;
-//STRIP001         SwClientIter aIter( *this );
-//STRIP001
-//STRIP001         SwTOXInternational aIntl(m_eLanguage, 0, m_sSortAlgorithm);
-//STRIP001
-//STRIP001         for( SwFmtFld* pFmtFld = (SwFmtFld*)aIter.First( TYPE(SwFmtFld) );
-//STRIP001                                 pFmtFld; pFmtFld = (SwFmtFld*)aIter.Next() )
-//STRIP001         {
-//STRIP001             SwAuthorityField* pAFld = (SwAuthorityField*)pFmtFld->GetFld();
-//STRIP001             const SwTxtFld* pTxtFld = pFmtFld->GetTxtFld();
-//STRIP001          if(!pTxtFld || !pTxtFld->GetpTxtNode())
-//STRIP001             {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001                 if(nHandle == pAFld->GetHandle())
-//STRIP001                     bCurrentFieldWithoutTextNode = sal_True;
-//STRIP001 #endif
-//STRIP001                 continue;
-//STRIP001             }
-//STRIP001             const SwTxtNode& rFldTxtNode = pTxtFld->GetTxtNode();
-//STRIP001             SwPosition aFldPos(rFldTxtNode);
-//STRIP001             SwDoc& rDoc = *(SwDoc*)rFldTxtNode.GetDoc();
-//STRIP001             SwCntntFrm *pFrm = rFldTxtNode.GetFrm();
-//STRIP001             const SwTxtNode* pTxtNode = 0;
-//STRIP001             if(pFrm && !pFrm->IsInDocBody())
-//STRIP001                 pTxtNode = GetBodyTxtNode( rDoc, aFldPos, *pFrm );
-//STRIP001             //if no text node could be found or the field is in the document
-//STRIP001             //body the directly available text node will be used
-//STRIP001             if(!pTxtNode)
-//STRIP001                 pTxtNode = &rFldTxtNode;
-//STRIP001             ULONG nPos = pTxtNode->GetIndex();
-//STRIP001             if( pTxtNode->GetTxt().Len() && pTxtNode->GetFrm() &&
-//STRIP001                 pTxtNode->GetNodes().IsDocNodes() )
-//STRIP001             {
-//STRIP001                 SwTOXAuthority* pNew = new SwTOXAuthority( *pTxtNode,
-//STRIP001                                                             *pFmtFld, aIntl );
-//STRIP001
-//STRIP001                 for(short i = 0; i < aSortArr.Count(); ++i)
-//STRIP001                 {
-//STRIP001                     SwTOXSortTabBase* pOld = aSortArr[i];
-//STRIP001                     if(*pOld == *pNew)
-//STRIP001                     {
-//STRIP001                         //only the first occurence in the document
-//STRIP001                         //has to be in the array
-//STRIP001                         if(*pOld < *pNew)
-//STRIP001                             DELETEZ(pNew);
-//STRIP001                         else // remove the old content
-//STRIP001                             aSortArr.DeleteAndDestroy( i, 1 );
-//STRIP001                         break;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001                 //if it still exists - insert at the correct position
-//STRIP001                 if(pNew)
-//STRIP001                 {
-//STRIP001                     for(short j = 0; j < aSortArr.Count(); ++j)
-//STRIP001                     {
-//STRIP001                         SwTOXSortTabBase* pOld = aSortArr[j];
-//STRIP001                         if(*pNew < *pOld)
-//STRIP001                             break;
-//STRIP001                     }
-//STRIP001                     aSortArr.Insert(pNew, j );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         for(USHORT i = 0; i < aSortArr.Count(); i++)
-//STRIP001         {
-//STRIP001             const SwTOXSortTabBase& rBase = *aSortArr[i];
-//STRIP001             SwFmtFld& rFmtFld = ((SwTOXAuthority&)rBase).GetFldFmt();
-//STRIP001             SwAuthorityField* pAFld = (SwAuthorityField*)rFmtFld.GetFld();
-//STRIP001             m_pSequArr->Insert(pAFld->GetHandle(), i);
-//STRIP001         }
-//STRIP001         aSortArr.DeleteAndDestroy(0, aSortArr.Count());
-//STRIP001     }
-//STRIP001     //find nHandle
-//STRIP001     USHORT nRet = 0;
-//STRIP001     for(USHORT i = 0; i < m_pSequArr->Count(); i++)
-//STRIP001     {
-//STRIP001         if((*m_pSequArr)[i] == nHandle)
-//STRIP001         {
-//STRIP001             nRet = i + 1;
-//STRIP001             break;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     ASSERT(bCurrentFieldWithoutTextNode || nRet, "Handle not found")
-//STRIP001     return nRet;
-//STRIP001 }
+USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
+{
+    //find the field in a sorted array of handles,
+#ifdef DBG_UTIL
+    sal_Bool bCurrentFieldWithoutTextNode = sal_False;
+#endif
+    if(m_pSequArr->Count() && m_pSequArr->Count() != m_pDataArr->Count())
+        DelSequenceArray();
+    if(!m_pSequArr->Count())
+    {
+        SwTOXSortTabBases aSortArr;
+        SwClientIter aIter( *this );
+
+        SwTOXInternational aIntl(m_eLanguage, 0, m_sSortAlgorithm);
+
+        for( SwFmtFld* pFmtFld = (SwFmtFld*)aIter.First( TYPE(SwFmtFld) );
+                                pFmtFld; pFmtFld = (SwFmtFld*)aIter.Next() )
+        {
+            SwAuthorityField* pAFld = (SwAuthorityField*)pFmtFld->GetFld();
+            const SwTxtFld* pTxtFld = pFmtFld->GetTxtFld();
+         if(!pTxtFld || !pTxtFld->GetpTxtNode())
+            {
+#ifdef DBG_UTIL
+                if(nHandle == pAFld->GetHandle())
+                    bCurrentFieldWithoutTextNode = sal_True;
+#endif
+                continue;
+            }
+            const SwTxtNode& rFldTxtNode = pTxtFld->GetTxtNode();
+            SwPosition aFldPos(rFldTxtNode);
+            SwDoc& rDoc = *(SwDoc*)rFldTxtNode.GetDoc();
+            SwCntntFrm *pFrm = rFldTxtNode.GetFrm();
+            const SwTxtNode* pTxtNode = 0;
+            if(pFrm && !pFrm->IsInDocBody())
+                pTxtNode = GetBodyTxtNode( rDoc, aFldPos, *pFrm );
+            //if no text node could be found or the field is in the document
+            //body the directly available text node will be used
+            if(!pTxtNode)
+                pTxtNode = &rFldTxtNode;
+            ULONG nPos = pTxtNode->GetIndex();
+            if( pTxtNode->GetTxt().Len() && pTxtNode->GetFrm() &&
+                pTxtNode->GetNodes().IsDocNodes() )
+            {
+                SwTOXAuthority* pNew = new SwTOXAuthority( *pTxtNode,
+                                                            *pFmtFld, aIntl );
+
+                for(short i = 0; i < aSortArr.Count(); ++i)
+                {
+                    SwTOXSortTabBase* pOld = aSortArr[i];
+                    if(*pOld == *pNew)
+                    {
+                        //only the first occurence in the document
+                        //has to be in the array
+                        if(*pOld < *pNew)
+                            DELETEZ(pNew);
+                        else // remove the old content
+                            aSortArr.DeleteAndDestroy( i, 1 );
+                        break;
+                    }
+                }
+                //if it still exists - insert at the correct position
+                if(pNew)
+                {
+                    short j;
+                    for(j = 0; j < aSortArr.Count(); ++j)
+                    {
+                        SwTOXSortTabBase* pOld = aSortArr[j];
+                        if(*pNew < *pOld)
+                            break;
+                    }
+                    aSortArr.Insert(pNew, j );
+                }
+            }
+        }
+
+        for(USHORT i = 0; i < aSortArr.Count(); i++)
+        {
+            const SwTOXSortTabBase& rBase = *aSortArr[i];
+            SwFmtFld& rFmtFld = ((SwTOXAuthority&)rBase).GetFldFmt();
+            SwAuthorityField* pAFld = (SwAuthorityField*)rFmtFld.GetFld();
+            m_pSequArr->Insert(pAFld->GetHandle(), i);
+        }
+        aSortArr.DeleteAndDestroy(0, aSortArr.Count());
+    }
+    //find nHandle
+    USHORT nRet = 0;
+    for(USHORT i = 0; i < m_pSequArr->Count(); i++)
+    {
+        if((*m_pSequArr)[i] == nHandle)
+        {
+            nRet = i + 1;
+            break;
+        }
+    }
+    ASSERT(bCurrentFieldWithoutTextNode || nRet, "Handle not found")
+    return nRet;
+}
 /* -----------------------------15.11.00 17:33--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -822,26 +823,25 @@ SwAuthorityField::~SwAuthorityField()
   -----------------------------------------------------------------------*/
 String  SwAuthorityField::Expand() const
 {
-    DBG_ERROR("STRIP" ) return String();
-//STRIP001     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
-//STRIP001     String sRet;
-//STRIP001     if(pAuthType->GetPrefix())
-//STRIP001         sRet.Assign(pAuthType->GetPrefix());
-//STRIP001
-//STRIP001     if( pAuthType->IsSequence() )
-//STRIP001     {
-//STRIP001         sRet += String::CreateFromInt32( pAuthType->GetSequencePos( nHandle ));
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         const SwAuthEntry* pEntry = pAuthType->GetEntryByHandle(nHandle);
-//STRIP001         //TODO: Expand to: identifier, number sequence, ...
-//STRIP001         if(pEntry)
-//STRIP001             sRet += pEntry->GetAuthorField(AUTH_FIELD_IDENTIFIER);
-//STRIP001     }
-//STRIP001     if(pAuthType->GetSuffix())
-//STRIP001         sRet += pAuthType->GetSuffix();
-//STRIP001     return sRet;
+     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
+     String sRet;
+     if(pAuthType->GetPrefix())
+         sRet.Assign(pAuthType->GetPrefix());
+
+     if( pAuthType->IsSequence() )
+     {
+         sRet += String::CreateFromInt32( pAuthType->GetSequencePos( nHandle ));
+     }
+     else
+     {
+         const SwAuthEntry* pEntry = pAuthType->GetEntryByHandle(nHandle);
+         //TODO: Expand to: identifier, number sequence, ...
+         if(pEntry)
+             sRet += pEntry->GetAuthorField(AUTH_FIELD_IDENTIFIER);
+     }
+     if(pAuthType->GetSuffix())
+         sRet += pAuthType->GetSuffix();
+     return sRet;
 }
 /*-- 14.09.99 16:21:00---------------------------------------------------
 
