@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtswtbl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:21:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,18 +69,18 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _FRACT_HXX
-#include <tools/fract.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRACT_HXX
+// auto strip #include <tools/fract.hxx>
+// auto strip #endif
 
 #ifndef _WRTSWTBL_HXX
 #include <wrtswtbl.hxx>
@@ -94,15 +94,23 @@
 #ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
 #endif
-#ifndef _FMTORNT_HXX
-#include <fmtornt.hxx>
+// auto strip #ifndef _FMTORNT_HXX
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _HORIORNT_HXX
+// auto strip #include <horiornt.hxx>
+// auto strip #endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _HTMLTBL_HXX
-#include <htmltbl.hxx>
-#endif
+
+// auto strip #ifndef _HTMLTBL_HXX
+// auto strip #include <htmltbl.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
