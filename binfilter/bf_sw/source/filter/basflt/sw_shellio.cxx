@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:19:18 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:45:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,6 +179,7 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -618,7 +619,7 @@ using namespace ::com::sun::star;
 /*N*/       ClearTemplate();
 /*N*/   else
 /*N*/   {
-/*?*/       INetURLObject aTDir( URIHelper::SmartRelToAbs(aTemplateNm) );
+/*?*/       INetURLObject aTDir( so3::StaticBaseUrl::SmartRelToAbs(aTemplateNm) );
 /*?*/       DateTime aCurrDateTime;
 /*?*/       BOOL bLoad = FALSE;
 /*?*/
