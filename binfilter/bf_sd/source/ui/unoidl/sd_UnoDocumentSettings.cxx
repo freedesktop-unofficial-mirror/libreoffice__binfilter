@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_UnoDocumentSettings.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:05:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,25 +61,25 @@
 
 #include <vector>
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-#include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
-#include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
+// auto strip #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
-#include <cppuhelper/implbase3.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE3_HXX_
+// auto strip #include <cppuhelper/implbase3.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_PROPERTYSETHELPER_HXX_
 #include <comphelper/propertysethelper.hxx>
@@ -105,16 +105,16 @@
 #include <osl/diagnose.h>
 #endif
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
 #include "drawdoc.hxx"
 #ifndef SVX_LIGHT
@@ -133,9 +133,9 @@
 #include "sdattr.hxx"
 #endif
 #endif
-#ifndef _SD_VIEWSHEL_HXX
-#include "../inc/viewshel.hxx"
-#endif
+// auto strip #ifndef _SD_VIEWSHEL_HXX
+// auto strip #include "../inc/viewshel.hxx"
+// auto strip #endif
 #ifndef _SD_FRMVIEW_HXX
 #include "../inc/frmview.hxx"
 #endif
@@ -144,9 +144,9 @@
 #include <sdoutl.hxx>
 #endif
 #else
-#ifndef _SVDOUTL_HXX
-#include <bf_svx/svdoutl.hxx>
-#endif
+// auto strip #ifndef _SVDOUTL_HXX
+// auto strip #include <bf_svx/svdoutl.hxx>
+// auto strip #endif
 #endif
 #ifndef _EDITSTAT_HXX
 #include <bf_svx/editstat.hxx>
