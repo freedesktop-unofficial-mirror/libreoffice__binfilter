@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wdocsh.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:36:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #pragma hdrstop
 
 
-#ifndef _SVX_SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHITEM_HXX
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -82,7 +82,7 @@
 #include "cmdid.h"
 #include "swtypes.hxx"
 
-#include "shellio.hxx"
+// auto strip #include "shellio.hxx"
 // nur wegen des Itemtypes
 #include "wdocsh.hxx"
 #include "web.hrc"
