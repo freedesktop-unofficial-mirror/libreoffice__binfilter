@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-10 14:08:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:21:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,13 +68,13 @@
 #include "ChartLegend.hxx"
 #include "ChartTitle.hxx"
 #include "ChartArea.hxx"
-#ifndef _CHXCHART_OBJECT_HXX
-#include "ChXChartObject.hxx"
-#endif
+// auto strip #ifndef _CHXCHART_OBJECT_HXX
+// auto strip #include "ChXChartObject.hxx"
+// auto strip #endif
 
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 
 #ifndef _SVX_UNONAMESPACEMAP_HXX_
 #include <bf_svx/UnoNamespaceMap.hxx>
@@ -90,7 +90,12 @@
 #ifndef _SVX_CHRTITEM_HXX
 #include "schattr.hxx"
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
@@ -112,16 +117,16 @@
 #endif
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _SVX_UNOSHAPE_HXX
-#include <bf_svx/unoshape.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOSHAPE_HXX
+// auto strip #include <bf_svx/unoshape.hxx>
+// auto strip #endif
 #ifndef _SVX_UNOFILL_HXX_
 #include <bf_svx/unofill.hxx>
 #endif
@@ -129,9 +134,9 @@
 #include <bf_svx/unoshcol.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
-#include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
+// auto strip #include <com/sun/star/chart/ChartSeriesAddress.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
 #endif
@@ -141,6 +146,13 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
+#endif
+#ifndef _RTL_UUID_H_
+#include <rtl/uuid.h>
+#endif
+
 namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
