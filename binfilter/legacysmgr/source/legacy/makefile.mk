@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1.1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+#   last change: $Author: hr $ $Date: 2004-09-09 10:58:30 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -92,6 +92,8 @@ SHL1VERSIONMAP=sols.map
 .ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXIgcc2"
 SHL1VERSIONMAP=lngi.map
 .ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXIgcc3"
+SHL1VERSIONMAP=gcc3_linux_intel.map
+.ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXSgcc3"
 SHL1VERSIONMAP=gcc3_linux_intel.map
 .ENDIF
 
