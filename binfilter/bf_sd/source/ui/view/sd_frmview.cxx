@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:16:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <bf_sfx2/topfrm.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
-#include <com/sun/star/awt/Rectangle.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
+// auto strip #include <com/sun/star/awt/Rectangle.hpp>
+// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
@@ -81,16 +81,16 @@
 #include <vector>
 
 #include "frmview.hxx"
-#include "viewshel.hxx"
+// auto strip #include "viewshel.hxx"
 #include "drawdoc.hxx"
-#include "docshell.hxx"
+// auto strip #include "docshell.hxx"
 #include "optsitem.hxx"
 #include "drviewsh.hxx"
 #include "outlnvsh.hxx"
 #include "slidvish.hxx"
-#include "app.hxx"
+// auto strip #include "app.hxx"
 #include "sdresid.hxx"
-#include "pres.hxx"
+// auto strip #include "pres.hxx"
 #include "glob.hrc"
 #include "sdiocmpt.hxx"
 namespace binfilter {
