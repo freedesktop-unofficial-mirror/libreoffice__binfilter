@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_itempool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:46:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,11 +74,16 @@
 #define ITEMID_CHARTREGRESSION  SCHATTR_STAT_REGRESSTYPE
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
 #endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
 
 // header for class SvXMLAttrContainerItem
 #ifndef _SVX_XMLCNITM_HXX
@@ -93,7 +98,7 @@
 #define ITEMID_SIZE 0
 #include <bf_svx/sizeitem.hxx>
 #endif
-#include "defines.hxx"
+// auto strip #include "defines.hxx"
 
 #include "itempool.hxx"
 #include "chaxis.hxx"
