@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_adritem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:08:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,12 +61,12 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _SBXVAR_HXX //autogen
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _SBXVAR_HXX //autogen
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <svtools/useroptions.hxx>
 #endif
