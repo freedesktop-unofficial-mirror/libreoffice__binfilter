@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlin.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:53:59 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:10:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -274,7 +274,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/   // An das Ende wandern und pLinPortion an den letzten haengen ...
 /*N*/   while( pPos->GetPortion() )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
 /*N*/   return pPos;
@@ -318,7 +318,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/   SwLinePortion *pPos = (SwLinePortion*)pRoot;
 /*N*/   while( pPos->GetPortion() && pPos->GetPortion() != this )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
 /*N*/   ASSERT( pPos->GetPortion(),
