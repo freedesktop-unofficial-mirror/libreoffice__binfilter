@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:48:23 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:01:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,6 +168,7 @@
 #include <vcl/fontcvt.hxx>
 #endif
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -1113,7 +1114,7 @@ const Reference< container::XNameContainer > & SvXMLImport::GetDashHelper()
     }
 
     if( !sRet.getLength() )
-        sRet = INetURLObject::RelToAbs( rURL );
+        sRet = so3::StaticBaseUrl::RelToAbs( rURL );
 
     return sRet;
 }
@@ -1377,7 +1378,7 @@ const SvXMLStylesContext *SvXMLImport::GetMasterStyles() const
 
 OUString SvXMLImport::GetAbsoluteReference(const OUString& rValue)
 {
-    return INetURLObject::RelToAbs( rValue );
+    return so3::StaticBaseUrl::RelToAbs( rValue );
 }
 
 void SvXMLImport::_CreateNumberFormatsSupplier()
