@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_blink.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:49:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 
 #pragma hdrstop
 
-#ifndef _DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
-#include "viewsh.hxx"
-#include "rootfrm.hxx"  // GetOleShell()
+// auto strip #ifndef _DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #include "viewsh.hxx"
+// auto strip #include "rootfrm.hxx"  // GetOleShell()
 
-#include "txtfrm.hxx"   // FindRootFrm()
+// auto strip #include "txtfrm.hxx" // FindRootFrm()
 #include "blink.hxx"
-#include "porlin.hxx"
+// auto strip #include "porlin.hxx"
 #include "porlay.hxx"   // SwLineLayout
 namespace binfilter {
 
