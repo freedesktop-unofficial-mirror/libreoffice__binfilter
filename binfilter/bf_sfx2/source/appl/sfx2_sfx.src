@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfx.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:42:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:48:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,34 +91,37 @@ String STR_NONAME
     Text[ he ] = "‮ללא כותרת‬";
 };
 
-String STR_NONE
-{
-    Text [ de ] = "- Keine -" ;
-    Text [ en-US ] = "- None -" ;
-    Text[ pt ] = "- Nenhum -";
-    Text[ ru ] = "- Нет -";
-    Text[ el ] = "- Κανένα -";
-    Text[ nl ] = "- Geen -";
-    Text[ fr ] = "- Aucun(e) -";
-    Text[ es ] = "- Ninguno -";
-    Text[ fi ] = "- Ei mitään -";
-    Text[ ca ] = "- cap -";
-    Text[ it ] = "- Senza -";
-    Text[ sk ] = "- žiadna -";
-    Text[ da ] = "- Ingen -";
-    Text[ sv ] = "- Ingen -";
-    Text[ pl ] = "- Brak -";
-    Text[ pt-BR ] = "- Nenhum -";
-    Text[ th ] = "- ไม่มี -";
-    Text[ ja ] = "-なし-";
-    Text[ ko ] = "- 없음 -";
-    Text[ zh-CN ] = "- 无 -";
-    Text[ zh-TW ] = "- 無 -";
-    Text[ tr ] = "- Yok -";
-    Text[ hi-IN ] = "- कोई नहीं -";
-    Text[ ar ] = "- بدون -";
-    Text[ he ] = "‮- ללא -‬";
-};
+//STRIP001 String STR_NONE
+//STRIP001 {
+//STRIP001      Text = "- Keine -" ;
+//STRIP001      Text [ ENGLISH ] = "- None -" ;
+//STRIP001      Text [ norwegian ] = "- Ingen -" ;
+//STRIP001      Text [ italian ] = "- Senza -" ;
+//STRIP001      Text [ portuguese_brazilian ] = "- Nenhum -" ;
+//STRIP001      Text [ portuguese ] = "- Nenhum -" ;
+//STRIP001      Text [ finnish ] = "- Ei mit��n -" ;
+//STRIP001      Text [ danish ] = "- Ingen -" ;
+//STRIP001      Text [ french ] = "- Aucun(e) -" ;
+//STRIP001      Text [ swedish ] = "- Ingen -" ;
+//STRIP001      Text [ dutch ] = "- Geen -" ;
+//STRIP001      Text [ spanish ] = "- Ninguno -" ;
+//STRIP001      Text [ english_us ] = "- None -" ;
+//STRIP001      Text[ chinese_simplified ] = "- �?-";
+//STRIP001      Text[ russian ] = "- ��?-";
+//STRIP001      Text[ polish ] = "- Brak -";
+//STRIP001      Text[ japanese ] = "-なし-";
+//STRIP001      Text[ chinese_traditional ] = "- �?-";
+//STRIP001      Text[ arabic ] = "- ���� -";
+//STRIP001      Text[ greek ] = "- ������ -";
+//STRIP001      Text[ korean ] = "- 없음 -";
+//STRIP001      Text[ turkish ] = "- Yok -";
+//STRIP001      Text[ catalan ] = "- cap -";
+//STRIP001      Text[ thai ] = "- ไม่ม�?-";
+//STRIP001      Text[ czech ] = "- žádná -";
+//STRIP001      Text[ hebrew ] = "�? ללא -�?";
+//STRIP001      Text[ hindi ] = "- को�?नही�?-";
+//STRIP001      Text[ slovak ] = "- žiadna -";
+//STRIP001 };
 
 String STR_CLOSE
 {
@@ -149,123 +152,135 @@ String STR_CLOSE
     Text[ he ] = "‮סגירה‬";
 };
 
-String STR_STYLE_FILTER_AUTO
-{
-    Text [ de ] = "Automatisch" ;
-    Text [ en-US ] = "Automatic" ;
-    Text[ pt ] = "Automático";
-    Text[ ru ] = "Автоматически";
-    Text[ el ] = "Αυτόματα";
-    Text[ nl ] = "Automatisch";
-    Text[ fr ] = "Automatique";
-    Text[ es ] = "Automático";
-    Text[ fi ] = "Automaattinen";
-    Text[ ca ] = "Automàtic";
-    Text[ it ] = "Automatico";
-    Text[ sk ] = "Automaticky";
-    Text[ da ] = "Automatisk";
-    Text[ sv ] = "Automatisk";
-    Text[ pl ] = "Automatycznie";
-    Text[ pt-BR ] = "Automático";
-    Text[ th ] = "อัตโนมัติ";
-    Text[ ja ] = "自動";
-    Text[ ko ] = "자동";
-    Text[ zh-CN ] = "自动";
-    Text[ zh-TW ] = "自動";
-    Text[ tr ] = "Otomatik";
-    Text[ hi-IN ] = "स्वचालित";
-    Text[ ar ] = "تلقائي";
-    Text[ he ] = "‮אוטומטי‬";
-};
+//STRIP001 String STR_STYLE_FILTER_AUTO
+//STRIP001 {
+//STRIP001      TEXT = "Automatisch" ;
+//STRIP001      TEXT [ English ] = "Automatic" ;
+//STRIP001      TEXT [ norwegian ] = "Automatic" ;
+//STRIP001      TEXT [ italian ] = "Automatico" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "Autom�tico" ;
+//STRIP001      TEXT [ portuguese ] = "Autom�tico" ;
+//STRIP001      TEXT [ finnish ] = "Automaattinen" ;
+//STRIP001      TEXT [ danish ] = "Automatisk" ;
+//STRIP001      TEXT [ french ] = "Automatique" ;
+//STRIP001      TEXT [ swedish ] = "Automatisk" ;
+//STRIP001      TEXT [ dutch ] = "Automatisch" ;
+//STRIP001      TEXT [ spanish ] = "Autom�tico" ;
+//STRIP001      TEXT [ english_us ] = "Automatic" ;
+//STRIP001      TEXT[ chinese_simplified ] = "自动";
+//STRIP001      TEXT[ russian ] = "������������?";
+//STRIP001      TEXT[ polish ] = "Automatycznie";
+//STRIP001      TEXT[ japanese ] = "自動";
+//STRIP001      TEXT[ chinese_traditional ] = "自動";
+//STRIP001      TEXT[ arabic ] = "������";
+//STRIP001      TEXT[ greek ] = "��������";
+//STRIP001      TEXT[ korean ] = "자동";
+//STRIP001      TEXT[ turkish ] = "Otomatik";
+//STRIP001      TEXT[ catalan ] = "Autom�tic";
+//STRIP001      TEXT[ thai ] = "อัตโนมัต�?";
+//STRIP001      TEXT[ czech ] = "Automaticky";
+//STRIP001      TEXT[ hebrew ] = "‮אוטומטי�?";
+//STRIP001      TEXT[ hindi ] = "स्वचालित";
+//STRIP001      TEXT[ slovak ] = "Automaticky";
+//STRIP001 };
 
-String STR_STYLE_FILTER_USED
-{
-    Text [ de ] = "Verwendete Vorlagen" ;
-    Text [ en-US ] = "Applied Styles" ;
-    Text[ pt ] = "Estilos usados";
-    Text[ ru ] = "Используемые стили";
-    Text[ el ] = "Εφαρμοσμένα πρότυπα";
-    Text[ nl ] = "Gebruikte opmaakprofielen";
-    Text[ fr ] = "Styles utilisés";
-    Text[ es ] = "Estilos utilizados";
-    Text[ fi ] = "Käytetyt tyylit";
-    Text[ ca ] = "Estils aplicats";
-    Text[ it ] = "Modelli usati";
-    Text[ sk ] = "Použité štýly";
-    Text[ da ] = "Anvendte typografier";
-    Text[ sv ] = "Använda mallar";
-    Text[ pl ] = "Zastosowane style";
-    Text[ pt-BR ] = "Estilos aplicados";
-    Text[ th ] = "ลักษณะประยุกต์";
-    Text[ ja ] = "使用したスタイル";
-    Text[ ko ] = "적용된 스타일";
-    Text[ zh-CN ] = "使用的样式";
-    Text[ zh-TW ] = "使用的樣式";
-    Text[ tr ] = "Kullanılan biçimler";
-    Text[ hi-IN ] = "लागू किया हुआ शैलियाँ";
-    Text[ ar ] = "أنماط قيد الاستخدام";
-    Text[ he ] = "‮סגנונות מיושמים‬";
-};
+//STRIP001 String STR_STYLE_FILTER_USED
+//STRIP001 {
+//STRIP001      TEXT = "Verwendete Vorlagen" ;
+//STRIP001      TEXT [ English ] = "Used styles" ;
+//STRIP001      TEXT [ norwegian ] = "Brukte stiler" ;
+//STRIP001      TEXT [ italian ] = "Modelli usati" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "Estilos aplicados" ;
+//STRIP001      TEXT [ portuguese ] = "Estilos usados" ;
+//STRIP001      TEXT [ finnish ] = "K�ytetyt tyylit" ;
+//STRIP001      TEXT [ danish ] = "Anvendte typografier" ;
+//STRIP001      TEXT [ french ] = "Styles utilis�s" ;
+//STRIP001      TEXT [ swedish ] = "Anv�nda mallar" ;
+//STRIP001      TEXT [ dutch ] = "Gebruikte opmaakprofielen" ;
+//STRIP001      TEXT [ spanish ] = "Estilos utilizados" ;
+//STRIP001      TEXT [ english_us ] = "Applied Styles" ;
+//STRIP001      TEXT[ chinese_simplified ] = "使用的样�?";
+//STRIP001      TEXT[ russian ] = "������������ ����?";
+//STRIP001      TEXT[ polish ] = "Zastosowane style";
+//STRIP001      TEXT[ japanese ] = "使用したスタイル";
+//STRIP001      TEXT[ chinese_traditional ] = "使用的樣�?";
+//STRIP001      TEXT[ arabic ] = "����?��?��������?";
+//STRIP001      TEXT[ greek ] = "����������?������?";
+//STRIP001      TEXT[ korean ] = "적용�?스타�?";
+//STRIP001      TEXT[ turkish ] = "Kullan�lan bi�imler";
+//STRIP001      TEXT[ catalan ] = "Estils aplicats";
+//STRIP001      TEXT[ thai ] = "ลักษณะประยุกต์";
+//STRIP001      TEXT[ czech ] = "Použité styly";
+//STRIP001      TEXT[ hebrew ] = "‮סגנונו�?מיושמים�?";
+//STRIP001      TEXT[ hindi ] = "लागू किया हु�?शैलिया�?";
+//STRIP001      TEXT[ slovak ] = "Použité štýly";
+//STRIP001 };
 
 
 
-String STR_STYLE_FILTER_USERDEF
-{
-    Text [ de ] = "Benutzervorlagen" ;
-    Text [ en-US ] = "Custom Styles" ;
-    Text[ pt ] = "Estilos do utilizador";
-    Text[ ru ] = "Стили пользователя";
-    Text[ el ] = "Στυλ χρήστη";
-    Text[ nl ] = "Eigen opmaakprofielen";
-    Text[ fr ] = "Styles personnalisés";
-    Text[ es ] = "Estilos del usuario";
-    Text[ fi ] = "Mukautetut tyylit";
-    Text[ ca ] = "Estils personalitzats";
-    Text[ it ] = "Modelli utente";
-    Text[ sk ] = "Vlastné štýly";
-    Text[ da ] = "Brugertypografier";
-    Text[ sv ] = "Användardefinierade formatmallar";
-    Text[ pl ] = "Style niestandardowe";
-    Text[ pt-BR ] = "Estilos personalizados";
-    Text[ th ] = "ลักษณะกำหนดเอง";
-    Text[ ja ] = "ユーザー定義のスタイル";
-    Text[ ko ] = "사용자 정의 스타일";
-    Text[ zh-CN ] = "使用者样式";
-    Text[ zh-TW ] = "自訂樣式";
-    Text[ tr ] = "Kullanıcı tanımlı biçimler";
-    Text[ hi-IN ] = "शैलियों को व्यवस्था करो";
-    Text[ ar ] = "أنماط مخصصة";
-    Text[ he ] = "‮סגנונות מותאמים‬";
-};
+//STRIP001 String STR_STYLE_FILTER_USERDEF
+//STRIP001 {
+//STRIP001      TEXT = "Benutzervorlagen" ;
+//STRIP001      TEXT [ English ] = "User styles" ;
+//STRIP001      TEXT [ norwegian ] = "Brukerstiler" ;
+//STRIP001      TEXT [ italian ] = "Modelli utente" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "Estilos personalizados" ;
+//STRIP001      TEXT [ portuguese ] = "Estilos do utilizador" ;
+//STRIP001      TEXT [ finnish ] = "Mukautetut tyylit" ;
+//STRIP001      TEXT [ danish ] = "Brugertypografier" ;
+//STRIP001      TEXT [ french ] = "Styles personnalis�s" ;
+//STRIP001      TEXT [ swedish ] = "Anv�ndardefinierade formatmallar" ;
+//STRIP001      TEXT [ dutch ] = "Eigen opmaakprofielen" ;
+//STRIP001      TEXT [ spanish ] = "Estilos del usuario" ;
+//STRIP001      TEXT [ english_us ] = "Custom Styles" ;
+//STRIP001      TEXT[ chinese_simplified ] = "使用者样�?";
+//STRIP001      TEXT[ russian ] = "����?����������?";
+//STRIP001      TEXT[ polish ] = "Style niestandardowe";
+//STRIP001      TEXT[ japanese ] = "ユーザー定義のスタイ�?";
+//STRIP001      TEXT[ chinese_traditional ] = "自訂樣式";
+//STRIP001      TEXT[ arabic ] = "����?����?";
+//STRIP001      TEXT[ greek ] = "���� ������";
+//STRIP001      TEXT[ korean ] = "사용�?정의 스타�?";
+//STRIP001      TEXT[ turkish ] = "Kullan�c?tan�ml?bi�imler";
+//STRIP001      TEXT[ catalan ] = "Estils personalitzats";
+//STRIP001      TEXT[ thai ] = "ลักษณะกำหนดเอง";
+//STRIP001      TEXT[ czech ] = "Vlastní styly";
+//STRIP001      TEXT[ hebrew ] = "‮סגנונו�?מותאמים�?";
+//STRIP001      TEXT[ hindi ] = "शैलियो�?को व्यवस्था कर�?";
+//STRIP001      TEXT[ slovak ] = "Vlastné štýly";
+//STRIP001 };
 
-String STR_STYLE_FILTER_ALL
-{
-    Text [ de ] = "Alle Vorlagen" ;
-    Text [ en-US ] = "All Styles" ;
-    Text[ pt ] = "Estilos todos";
-    Text[ ru ] = "Все стили";
-    Text[ el ] = "Όλα τα πρότυπα";
-    Text[ nl ] = "Alle opmaakprofielen";
-    Text[ fr ] = "Tous les styles";
-    Text[ es ] = "Todos los estilos";
-    Text[ fi ] = "Kaikki tyylit";
-    Text[ ca ] = "Tots els estils";
-    Text[ it ] = "Tutti i modelli";
-    Text[ sk ] = "Všetky štýly";
-    Text[ da ] = "Alle typografier";
-    Text[ sv ] = "Alla mallar";
-    Text[ pl ] = "Wszystkie style";
-    Text[ pt-BR ] = "Todos os estilos";
-    Text[ th ] = "ลักษณะทั้งหมด";
-    Text[ ja ] = "すべてのスタイル";
-    Text[ ko ] = "모든 스타일";
-    Text[ zh-CN ] = "全部样式";
-    Text[ zh-TW ] = "全部樣式";
-    Text[ tr ] = "Tüm biçimler";
-    Text[ hi-IN ] = "सब शैलियाँ";
-    Text[ ar ] = "كل الأنماط";
-    Text[ he ] = "‮כל הסגנונות‬";
-};
+//STRIP001 String STR_STYLE_FILTER_ALL
+//STRIP001 {
+//STRIP001      TEXT = "Alle Vorlagen" ;
+//STRIP001      TEXT [ English ] = "All styles" ;
+//STRIP001      TEXT [ norwegian ] = "Alle stiler" ;
+//STRIP001      TEXT [ italian ] = "Tutti i modelli" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "Todos os estilos" ;
+//STRIP001      TEXT [ portuguese ] = "Estilos todos" ;
+//STRIP001      TEXT [ finnish ] = "Kaikki tyylit" ;
+//STRIP001      TEXT [ danish ] = "Alle typografier" ;
+//STRIP001      TEXT [ french ] = "Tous les styles" ;
+//STRIP001      TEXT [ swedish ] = "Alla mallar" ;
+//STRIP001      TEXT [ dutch ] = "Alle opmaakprofielen" ;
+//STRIP001      TEXT [ spanish ] = "Todos los estilos" ;
+//STRIP001      TEXT [ english_us ] = "All Styles" ;
+//STRIP001      TEXT[ chinese_simplified ] = "全部样式";
+//STRIP001      TEXT[ russian ] = "��?����?";
+//STRIP001      TEXT[ polish ] = "Wszystkie style";
+//STRIP001      TEXT[ japanese ] = "すべてのスタイル";
+//STRIP001      TEXT[ chinese_traditional ] = "全部樣式";
+//STRIP001      TEXT[ arabic ] = "�� ������?";
+//STRIP001      TEXT[ greek ] = "��?�� ������?";
+//STRIP001      TEXT[ korean ] = "모든 스타�?";
+//STRIP001      TEXT[ turkish ] = "T�m bi�imler";
+//STRIP001      TEXT[ catalan ] = "Tots els estils";
+//STRIP001      TEXT[ thai ] = "ลักษณะทั้งหม�?";
+//STRIP001      TEXT[ czech ] = "Všechny styly";
+//STRIP001      TEXT[ hebrew ] = "‮כ�?הסגנונות�?";
+//STRIP001      TEXT[ hindi ] = "सब शैलिया�?";
+//STRIP001      TEXT[ slovak ] = "Všetky štýly";
+//STRIP001 };
 
 String STR_STANDARD
 {
@@ -295,185 +310,198 @@ String STR_STANDARD
     Text[ ar ] = "قياسي";
     Text[ he ] = "‮רגיל‬";
 };
-String STR_STANDARD_SHORTCUT
-{
-    Text [ de ] = "~Standard" ;
-    Text [ en-US ] = "Standard" ;
-    Text[ pt ] = "~Padrão";
-    Text[ ru ] = "Стандарт";
-    Text[ el ] = "Προεπιλογή";
-    Text[ nl ] = "Standaar~d";
-    Text[ fr ] = "Standard";
-    Text[ es ] = "~Predeterminado";
-    Text[ fi ] = "Vakio";
-    Text[ ca ] = "~Estàndard";
-    Text[ it ] = "Standard";
-    Text[ sk ] = "Štandardný";
-    Text[ da ] = "Standard";
-    Text[ sv ] = "Standard";
-    Text[ pl ] = "Domyślnie";
-    Text[ pt-BR ] = "~Definir como impressora padrão";
-    Text[ th ] = "~ค่าเริ่มต้น";
-    Text[ ja ] = "標準";
-    Text[ ko ] = "표준";
-    Text[ zh-CN ] = "标准";
-    Text[ zh-TW ] = "標準";
-    Text[ tr ] = "Standart";
-    Text[ hi-IN ] = "Standard";
-    Text[ ar ] = "قياسي";
-    Text[ he ] = "‮רגיל‬";
-};
 
-String STR_FILTERNAME_ALL
-{
-    Text [ de ] = "Alle Dateien (*.*)" ;
-    Text [ en-US ] = "All files (*.*)" ;
-    Text[ pt ] = "<Todos>";
-    Text[ ru ] = "Все файлы (*.*)";
-    Text[ el ] = "Όλα τα αρχεία (*.*)";
-    Text[ nl ] = "Alle bestanden (*.*)";
-    Text[ fr ] = "Tous les fichiers (*.*)";
-    Text[ es ] = "Todos los archivos (*.*)";
-    Text[ fi ] = "Kaikki tiedostot (*.*)";
-    Text[ ca ] = "<Tot>";
-    Text[ it ] = "Tutti i file (*.*)";
-    Text[ sk ] = "Všetky súbory (*.*)";
-    Text[ da ] = "Alle filer (*.*)";
-    Text[ sv ] = "Alla filer (*.*)";
-    Text[ pl ] = "Wszystkie pliki (*.*)";
-    Text[ pt-BR ] = "Todos os arquivos (*.*)";
-    Text[ th ] = "ทุกไฟล์ (*.*)";
-    Text[ ja ] = "すべてのファイル (*.*)";
-    Text[ ko ] = "모든 파일(*.*)";
-    Text[ zh-CN ] = "全部文件 (*.*)";
-    Text[ zh-TW ] = "全部的檔案(*.*)";
-    Text[ tr ] = "Tüm dosyalar (*.*)";
-    Text[ hi-IN ] = "सब फाइलें (*.*)";
-    Text[ ar ] = "<الكل>";
-    Text[ he ] = "‮כל הקבצים (*.*)‬";
-};
+//STRIP001 String STR_STANDARD_SHORTCUT
+//STRIP001 {
+//STRIP001     Text = "~Standard" ;
+//STRIP001     Text [ English ] = "~Standard" ;
+//STRIP001     Text [ english_us ] = "Standard" ;
+//STRIP001      Text[ portuguese ] = "~Padr�o";
+//STRIP001      Text[ russian ] = "��������";
+//STRIP001      Text[ greek ] = "����������";
+//STRIP001      Text[ dutch ] = "Standaar~d";
+//STRIP001      Text[ french ] = "Standard";
+//STRIP001      Text[ spanish ] = "~Predeterminado";
+//STRIP001      Text[ finnish ] = "Vakio";
+//STRIP001      Text[ italian ] = "Standard";
+//STRIP001      Text[ danish ] = "Standard";
+//STRIP001      Text[ swedish ] = "Standard";
+//STRIP001      Text[ polish ] = "Domy�lnie";
+//STRIP001      Text[ japanese ] = "標準";
+//STRIP001      Text[ korean ] = "표준";
+//STRIP001      Text[ chinese_simplified ] = "标准";
+//STRIP001      Text[ chinese_traditional ] = "標準";
+//STRIP001      Text[ turkish ] = "Standart";
+//STRIP001      Text[ arabic ] = "����?";
+//STRIP001      Text[ catalan ] = "~Est�ndard";
+//STRIP001      Text[ thai ] = "~ค่าเริ่มต้�?";
+//STRIP001      Text[ portuguese_brazilian ] = "~Definir como impressora padr�o";
+//STRIP001      Text[ czech ] = "Standardní";
+//STRIP001      Text[ hebrew ] = "‮רגיל�?";
+//STRIP001      Text[ hindi ] = "Standard";
+//STRIP001      Text[ slovak ] = "Štandardný";
+//STRIP001 };
+
+//STRIP001 String STR_FILTERNAME_ALL
+//STRIP001 {
+//STRIP001      Text = "Alle Dateien (*.*)" ;
+//STRIP001      Text [ english ] = "All files (*.*)" ;
+//STRIP001      Text [ english_us ] = "All files (*.*)" ;
+//STRIP001      Text[ portuguese ] = "<Todos>";
+//STRIP001      Text[ russian ] = "��?����?(*.*)";
+//STRIP001      Text[ greek ] = "��?�� ������ (*.*)";
+//STRIP001      Text[ dutch ] = "Alle bestanden (*.*)";
+//STRIP001      Text[ french ] = "Tous les fichiers (*.*)";
+//STRIP001      Text[ spanish ] = "Todos los archivos (*.*)";
+//STRIP001      Text[ finnish ] = "Kaikki tiedostot (*.*)";
+//STRIP001      Text[ italian ] = "Tutti i file (*.*)";
+//STRIP001      Text[ danish ] = "Alle filer (*.*)";
+//STRIP001      Text[ swedish ] = "Alla filer (*.*)";
+//STRIP001      Text[ polish ] = "Wszystkie pliki (*.*)";
+//STRIP001      Text[ portuguese_brazilian ] = "Todos os arquivos (*.*)";
+//STRIP001      Text[ japanese ] = "すべてのファイル (*.*)";
+//STRIP001      Text[ korean ] = "모든 파일(*.*)";
+//STRIP001      Text[ chinese_simplified ] = "全部文件 (*.*)";
+//STRIP001      Text[ chinese_traditional ] = "全部的檔�?*.*)";
+//STRIP001      Text[ turkish ] = "T�m dosyalar (*.*)";
+//STRIP001      Text[ arabic ] = "<����>";
+//STRIP001      Text[ catalan ] = "<Tot>";
+//STRIP001      Text[ thai ] = "ทุกไฟล�?(*.*)";
+//STRIP001      Text[ czech ] = "Všechny soubory (*.*)";
+//STRIP001      Text[ hebrew ] = "‮כ�?הקבצים (*.*)�?";
+//STRIP001      Text[ hindi ] = "सब फाइलें (*.*)";
+//STRIP001      Text[ slovak ] = "Všetky súbory (*.*)";
+//STRIP001 };
 
 String STR_HUMAN_APPNAME
 {
     Text  = "%PRODUCTNAME" ;
 };
 
-String STR_BYTES
-{
-    Text [ de ] = "Bytes" ;
-    Text [ en-US ] = "Bytes" ;
-    Text[ pt ] = "Bytes";
-    Text[ ru ] = "байт";
-    Text[ el ] = "Bytes";
-    Text[ nl ] = "Bytes";
-    Text[ fr ] = "Octets";
-    Text[ es ] = "Bytes";
-    Text[ fi ] = "Tavua";
-    Text[ ca ] = "Bytes";
-    Text[ it ] = "Byte";
-    Text[ sk ] = "Bajtov";
-    Text[ da ] = "Bytes";
-    Text[ sv ] = "Byte";
-    Text[ pl ] = "B";
-    Text[ pt-BR ] = "Bytes";
-    Text[ th ] = "ไบต์";
-    Text[ ja ] = "バイト";
-    Text[ ko ] = "바이트";
-    Text[ zh-CN ] = "字节";
-    Text[ zh-TW ] = "Bytes";
-    Text[ tr ] = "Byte";
-    Text[ hi-IN ] = "बइट्स";
-    Text[ ar ] = "بايت";
-    Text[ he ] = "‮בתים‬";
-};
+//STRIP001 String STR_BYTES
+//STRIP001 {
+//STRIP001      Text = "Bytes" ;
+//STRIP001      Text [ ENGLISH ] = "Bytes" ;
+//STRIP001      Text [ english_us ] = "Bytes" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Bytes" ;
+//STRIP001      Text [ swedish ] = "Byte" ;
+//STRIP001      Text [ danish ] = "Bytes" ;
+//STRIP001      Text [ italian ] = "Byte" ;
+//STRIP001      Text [ spanish ] = "Bytes" ;
+//STRIP001      Text [ french ] = "Octets" ;
+//STRIP001      Text [ dutch ] = "Bytes" ;
+//STRIP001      Text [ portuguese ] = "Bytes" ;
+//STRIP001      Text[ chinese_simplified ] = "字节";
+//STRIP001      Text[ russian ] = "����";
+//STRIP001      Text[ polish ] = "B";
+//STRIP001      Text[ japanese ] = "バイ�?";
+//STRIP001      Text[ chinese_traditional ] = "Bytes";
+//STRIP001      Text[ arabic ] = "����";
+//STRIP001      Text[ greek ] = "Bytes";
+//STRIP001      Text[ korean ] = "바이�?";
+//STRIP001      Text[ turkish ] = "Byte";
+//STRIP001      Text[ catalan ] = "Bytes";
+//STRIP001      Text[ finnish ] = "Tavua";
+//STRIP001      Text[ thai ] = "ไบต์";
+//STRIP001      Text[ czech ] = "Bajtů";
+//STRIP001      Text[ hebrew ] = "‮בתים�?";
+//STRIP001      Text[ hindi ] = "बइट्�?";
+//STRIP001      Text[ slovak ] = "Bajtov";
+//STRIP001 };
 
-String STR_KB
-{
-    Text [ de ] = "KB" ;
-    Text [ en-US ] = "KB" ;
-    Text[ pt ] = "KB";
-    Text[ ru ] = "Кб";
-    Text[ el ] = "KB";
-    Text[ nl ] = "KB";
-    Text[ fr ] = "Ko";
-    Text[ es ] = "KB";
-    Text[ fi ] = "Kt";
-    Text[ ca ] = "kB";
-    Text[ it ] = "KB";
-    Text[ sk ] = "kB";
-    Text[ da ] = "kB";
-    Text[ sv ] = "kB";
-    Text[ pl ] = "KB";
-    Text[ pt-BR ] = "KB";
-    Text[ th ] = "KB";
-    Text[ ja ] = "キロバイト";
-    Text[ ko ] = "KB";
-    Text[ zh-CN ] = "千字节";
-    Text[ zh-TW ] = "KB";
-    Text[ tr ] = "KB";
-    Text[ hi-IN ] = "KB";
-    Text[ ar ] = "كيلوبايت";
-    Text[ he ] = "‮KB‬";
-};
+//STRIP001 String STR_KB
+//STRIP001 {
+//STRIP001      Text = "KB" ;
+//STRIP001      Text [ ENGLISH ] = "KB" ;
+//STRIP001      Text [ portuguese ] = "KB" ;
+//STRIP001      Text [ english_us ] = "KB" ;
+//STRIP001      Text [ portuguese_brazilian ] = "KB" ;
+//STRIP001      Text [ swedish ] = "kB" ;
+//STRIP001      Text [ danish ] = "kB" ;
+//STRIP001      Text [ italian ] = "KB" ;
+//STRIP001      Text [ spanish ] = "KB" ;
+//STRIP001      Text [ french ] = "Ko" ;
+//STRIP001      Text [ dutch ] = "KB" ;
+//STRIP001      Text[ chinese_simplified ] = "千字�?";
+//STRIP001      Text[ russian ] = "��";
+//STRIP001      Text[ polish ] = "KB";
+//STRIP001      Text[ japanese ] = "キロバイ�?";
+//STRIP001      Text[ chinese_traditional ] = "KB";
+//STRIP001      Text[ arabic ] = "��������";
+//STRIP001      Text[ greek ] = "KB";
+//STRIP001      Text[ korean ] = "KB";
+//STRIP001      Text[ turkish ] = "KB";
+//STRIP001      Text[ catalan ] = "kB";
+//STRIP001      Text[ finnish ] = "Kt";
+//STRIP001      Text[ thai ] = "KB";
+//STRIP001      Text[ czech ] = "KB";
+//STRIP001      Text[ hebrew ] = "‮KB�?";
+//STRIP001      Text[ hindi ] = "KB";
+//STRIP001      Text[ slovak ] = "kB";
+//STRIP001 };
 
-String STR_MB
-{
-    Text [ de ] = "MB" ;
-    Text [ en-US ] = "MB" ;
-    Text[ pt ] = "MB";
-    Text[ ru ] = "Мб";
-    Text[ el ] = "MB";
-    Text[ nl ] = "MB";
-    Text[ fr ] = "Mo";
-    Text[ es ] = "MB";
-    Text[ fi ] = "Mt";
-    Text[ ca ] = "MB";
-    Text[ it ] = "MB";
-    Text[ sk ] = "MB";
-    Text[ da ] = "MB";
-    Text[ sv ] = "MB";
-    Text[ pl ] = "MB";
-    Text[ pt-BR ] = "MB";
-    Text[ th ] = "MB";
-    Text[ ja ] = "MB";
-    Text[ ko ] = "MB";
-    Text[ zh-CN ] = "兆字节";
-    Text[ zh-TW ] = "MB";
-    Text[ tr ] = "MB";
-    Text[ hi-IN ] = "MB";
-    Text[ ar ] = "ميغابايت";
-    Text[ he ] = "MB";
-};
+//STRIP001 String STR_MB
+//STRIP001 {
+//STRIP001      Text = "MB" ;
+//STRIP001      Text [ ENGLISH ] = "MB" ;
+//STRIP001      Text [ portuguese ] = "MB" ;
+//STRIP001      Text [ english_us ] = "MB" ;
+//STRIP001      Text [ portuguese_brazilian ] = "MB" ;
+//STRIP001      Text [ swedish ] = "MB" ;
+//STRIP001      Text [ danish ] = "MB" ;
+//STRIP001      Text [ italian ] = "MB" ;
+//STRIP001      Text [ spanish ] = "MB" ;
+//STRIP001      Text [ french ] = "Mo" ;
+//STRIP001      Text [ dutch ] = "MB" ;
+//STRIP001      Text[ chinese_simplified ] = "兆字�?";
+//STRIP001      Text[ russian ] = "��";
+//STRIP001      Text[ polish ] = "MB";
+//STRIP001      Text[ japanese ] = "MB";
+//STRIP001      Text[ chinese_traditional ] = "MB";
+//STRIP001      Text[ arabic ] = "��������";
+//STRIP001      Text[ greek ] = "MB";
+//STRIP001      Text[ korean ] = "MB";
+//STRIP001      Text[ turkish ] = "MB";
+//STRIP001      Text[ catalan ] = "MB";
+//STRIP001      Text[ finnish ] = "Mt";
+//STRIP001      Text[ thai ] = "MB";
+//STRIP001      Text[ czech ] = "MB";
+//STRIP001      Text[ hebrew ] = "MB";
+//STRIP001      Text[ hindi ] = "MB";
+//STRIP001      Text[ slovak ] = "MB";
+//STRIP001 };
 
 
-String STR_GB
-{
-    Text [ de ] = "GB" ;
-    Text [ en-US ] = "GB" ;
-    Text[ pt ] = "GB";
-    Text[ ru ] = "Гб";
-    Text[ el ] = "GB";
-    Text[ nl ] = "GB";
-    Text[ fr ] = "Go";
-    Text[ es ] = "GB";
-    Text[ fi ] = "Gt";
-    Text[ ca ] = "GB";
-    Text[ it ] = "GB";
-    Text[ sk ] = "GB";
-    Text[ da ] = "GB";
-    Text[ sv ] = "GB";
-    Text[ pl ] = "GB";
-    Text[ pt-BR ] = "GB";
-    Text[ th ] = "GB";
-    Text[ ja ] = "GB";
-    Text[ ko ] = "GB";
-    Text[ zh-CN ] = "千兆";
-    Text[ zh-TW ] = "GB";
-    Text[ tr ] = "GB";
-    Text[ hi-IN ] = "GB";
-    Text[ ar ] = "جيجابايت";
-    Text[ he ] = "‮GB‬";
-};
+//STRIP001 String STR_GB
+//STRIP001 {
+//STRIP001      Text = "GB" ;
+//STRIP001      Text [ ENGLISH ] = "GB" ;
+//STRIP001      Text [ portuguese ] = "GB" ;
+//STRIP001      Text [ english_us ] = "GB" ;
+//STRIP001      Text [ portuguese_brazilian ] = "GB" ;
+//STRIP001      Text [ swedish ] = "GB" ;
+//STRIP001      Text [ danish ] = "GB" ;
+//STRIP001      Text [ italian ] = "GB" ;
+//STRIP001      Text [ spanish ] = "GB" ;
+//STRIP001      Text [ french ] = "Go" ;
+//STRIP001      Text [ dutch ] = "GB" ;
+//STRIP001      Text[ chinese_simplified ] = "千兆";
+//STRIP001      Text[ russian ] = "��";
+//STRIP001      Text[ polish ] = "GB";
+//STRIP001      Text[ japanese ] = "GB";
+//STRIP001      Text[ chinese_traditional ] = "GB";
+//STRIP001      Text[ arabic ] = "��������";
+//STRIP001      Text[ greek ] = "GB";
+//STRIP001      Text[ korean ] = "GB";
+//STRIP001      Text[ turkish ] = "GB";
+//STRIP001      Text[ catalan ] = "GB";
+//STRIP001      Text[ finnish ] = "Gt";
+//STRIP001      Text[ thai ] = "GB";
+//STRIP001      Text[ czech ] = "GB";
+//STRIP001      Text[ hebrew ] = "‮GB�?";
+//STRIP001      Text[ hindi ] = "GB";
+//STRIP001      Text[ slovak ] = "GB";
+//STRIP001 };
 
 String STR_UNDO
 {
@@ -563,34 +591,37 @@ String STR_REPEAT
     Text[ he ] = "‮בצוע חוזר:‬";
 };
 
-String RID_STR_NEW_TASK
-{
-    Text [ de ] = "Neue Task";
-    Text [ en-US ] = "New task";
-    Text[ pt ] = "Nova tarefa";
-    Text[ ru ] = "Создать задачу";
-    Text[ el ] = "Νέα εργασία";
-    Text[ nl ] = "Nieuwe taak";
-    Text[ fr ] = "Nouvelle tâche";
-    Text[ es ] = "Tarea nueva";
-    Text[ fi ] = "Uusi tehtävä";
-    Text[ ca ] = "Tasca nova";
-    Text[ it ] = "Nuovo compito";
-    Text[ sk ] = "Nová úloha";
-    Text[ da ] = "Ny opgave";
-    Text[ sv ] = "Ny aktivitet";
-    Text[ pl ] = "Nowe zadanie";
-    Text[ pt-BR ] = "Nova tarefa";
-    Text[ th ] = "งานใหม่";
-    Text[ ja ] = "新しいウィンドウ";
-    Text[ ko ] = "새 작업";
-    Text[ zh-CN ] = "新增视窗";
-    Text[ zh-TW ] = "開新檔案";
-    Text[ tr ] = "Yeni görev";
-    Text[ hi-IN ] = "नया कार्य";
-    Text[ ar ] = "مهمة جديدة";
-    Text[ he ] = "‮משימה חדשה‬";
-};
+//STRIP001 String RID_STR_NEW_TASK
+//STRIP001 {
+//STRIP001      Text = "Neue Task";
+//STRIP001      Text [ english ] = "New task";
+//STRIP001      Text[ english_us ] = "New task";
+//STRIP001      Text[ portuguese ] = "Nova tarefa";
+//STRIP001      Text[ russian ] = "������?������";
+//STRIP001      Text[ dutch ] = "Nieuwe taak";
+//STRIP001      Text[ french ] = "Nouvelle t�che";
+//STRIP001      Text[ spanish ] = "Tarea nueva";
+//STRIP001      Text[ italian ] = "Nuovo compito";
+//STRIP001      Text[ danish ] = "Ny opgave";
+//STRIP001      Text[ swedish ] = "Ny aktivitet";
+//STRIP001      Text[ polish ] = "Nowe zadanie";
+//STRIP001      Text[ portuguese_brazilian ] = "Nova tarefa";
+//STRIP001      Text[ japanese ] = "新しいウィンドウ";
+//STRIP001      Text[ chinese_simplified ] = "新增视窗";
+//STRIP001      Text[ chinese_traditional ] = "開新檔案";
+//STRIP001      Text[ arabic ] = "���� ����?";
+//STRIP001      Text[ greek ] = "��?������?";
+//STRIP001      Text[ korean ] = "�?작업";
+//STRIP001      Text[ turkish ] = "Yeni g�rev";
+//STRIP001      Text[ catalan ] = "Tasca nova";
+//STRIP001      Text[ finnish ] = "Uusi teht�v?";
+//STRIP001      Text[ thai ] = "งานใหม�?";
+//STRIP001      Text[ czech ] = "Nový úkol";
+//STRIP001      Text[ hebrew ] = "‮משימ�?חדשה�?";
+//STRIP001      Text[ hindi ] = "नय�?कार्�?";
+//STRIP001      Text[ slovak ] = "Nová úloha";
+//STRIP001 };
+
 QueryBox MSG_QUERY_LASTVERSION
 {
     Buttons = WB_YES_NO ;
@@ -622,36 +653,4 @@ QueryBox MSG_QUERY_LASTVERSION
     Message[ ar ] = "هل تريد رفض كل التغييرات؟";
     Message[ he ] = "‮האם לבטל כל השינויים?‬";
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
