@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:41:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,51 +65,55 @@
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX //autogen
-#include <bf_sfx2/childwin.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_CHILDWIN_HXX //autogen
+// auto strip #include <bf_sfx2/childwin.hxx>
+// auto strip #endif
 #ifndef _SFX_BINDINGS_HXX //autogen
 #include <bf_sfx2/bindings.hxx>
 #endif
-#ifndef _SVDMARK_HXX //autogen
-#include <bf_svx/svdmark.hxx>
-#endif
-#ifndef _SVDVIEW_HXX //autogen
-#include <bf_svx/svdview.hxx>
-#endif
-#ifndef _SVX_FMGLOB_HXX
-#include <bf_svx/fmglob.hxx>
-#endif
-#ifndef _SVDOUNO_HXX //autogen
-#include <bf_svx/svdouno.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
-#include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
-#ifndef _SVX_HTMLMODE_HXX
-#include <bf_svx/htmlmode.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _SVDMARK_HXX //autogen
+// auto strip #include <bf_svx/svdmark.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDVIEW_HXX //autogen
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FMGLOB_HXX
+// auto strip #include <bf_svx/fmglob.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOUNO_HXX //autogen
+// auto strip #include <bf_svx/svdouno.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
+// auto strip #include <com/sun/star/form/FormButtonType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _SVX_HTMLMODE_HXX
+// auto strip #include <bf_svx/htmlmode.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 #ifndef _SFXVIEWFRM_HXX
 #include <bf_sfx2/viewfrm.hxx>
 #endif
 
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "wrtsh.hxx"
 #include "view.hxx"
-#include "bookmrk.hxx"
-#include "doc.hxx"
+// auto strip #include "bookmrk.hxx"
+// auto strip #include "doc.hxx"
 #include "wrtsh.hrc"
 namespace binfilter {
 
