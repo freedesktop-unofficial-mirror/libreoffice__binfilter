@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdomeas.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:26:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,33 +61,33 @@
 
 #include "svdomeas.hxx"
 #include <math.h>
-#include "svditext.hxx" // enthaelt u.a. define ITEMID_FIELD fuer include flditem
-#include "xpoly.hxx"
+// auto strip #include "svditext.hxx" // enthaelt u.a. define ITEMID_FIELD fuer include flditem
+// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
-#include "svdtrans.hxx"
-#include "svdtouch.hxx"
-#include "svdhdl.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdtouch.hxx"
+// auto strip #include "svdhdl.hxx"
 #include "svdoutl.hxx"
-#include "svddrag.hxx"
+// auto strip #include "svddrag.hxx"
 #include "svdpool.hxx"
 #include "svdattrx.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdio.hxx"
 #include "svdview.hxx"
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
 
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLNSTIT_HXX //autogen
 #include "xlnstit.hxx"
@@ -117,32 +117,40 @@
 #include "xlnedcit.hxx"
 #endif
 
-#ifndef _OUTLOBJ_HXX //autogen
-#include <outlobj.hxx>
-#endif
+// auto strip #ifndef _OUTLOBJ_HXX //autogen
+// auto strip #include <outlobj.hxx>
+// auto strip #endif
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
 #ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
 #endif
 
-#include "svdfield.hxx"
-#include "flditem.hxx"
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
 
-#include "svdogrp.hxx"
-#include "svdopath.hxx"
-#include "svdpage.hxx"
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+#include "svdfield.hxx"
+// auto strip #include "flditem.hxx"
+
+// auto strip #include "svdogrp.hxx"
+// auto strip #include "svdopath.hxx"
+// auto strip #include "svdpage.hxx"
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 
-#ifndef _SVX_SVDOIMP_HXX
-#include "svdoimp.hxx"
-#endif
+// auto strip #ifndef _SVX_SVDOIMP_HXX
+// auto strip #include "svdoimp.hxx"
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
