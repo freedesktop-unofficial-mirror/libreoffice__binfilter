@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChartTitle.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:23:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,12 +61,12 @@
 #include "ChartTitle.hxx"
 
 #include "mapprov.hxx"
-#include "defines.hxx"
+// auto strip #include "defines.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -74,16 +74,21 @@
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
 #endif
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 
 #include "schattr.hxx"
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
 #endif
-#include "chtmodel.hxx"
+
+// auto strip #include <bf_svx/chrtitem.hxx>
+#endif
+// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 namespace binfilter {
 
