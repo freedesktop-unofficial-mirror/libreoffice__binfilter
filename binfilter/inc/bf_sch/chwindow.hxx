@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chwindow.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:51:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,9 +72,9 @@
 #ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
 #endif
-#ifndef _SVDOBJ_HXX //autogen wg. SdrObject
-#include <bf_svx/svdobj.hxx>
-#endif
+// auto strip #ifndef _SVDOBJ_HXX //autogen wg. SdrObject
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
 #ifndef _TRANSFER_HXX //autogen
 #include <svtools/transfer.hxx>
 #endif
