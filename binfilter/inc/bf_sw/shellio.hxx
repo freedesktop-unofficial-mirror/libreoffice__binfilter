@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:46:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,15 +61,15 @@
 #ifndef _SHELLIO_HXX
 #define _SHELLIO_HXX
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
-#ifndef _DATE_HXX //autogen
-#include <tools/date.hxx>
-#endif
-#ifndef _TIME_HXX //autogen
-#include <tools/time.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif
@@ -80,9 +80,9 @@
 #include <sot/formats.hxx>
 #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _DOCFAC_HXX
 #include <docfac.hxx>   // SwDocFac
 #endif
