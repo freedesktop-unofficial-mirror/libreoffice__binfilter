@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_controlpropertymap.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:57:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include "maptype.hxx"
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
-#include "xmltypes.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
+// auto strip #include "maptype.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
+// auto strip #include "xmltypes.hxx"
+// auto strip #endif
 #ifndef __SGI_STL_ALGORITHM
 #include <algorithm>
 #endif
