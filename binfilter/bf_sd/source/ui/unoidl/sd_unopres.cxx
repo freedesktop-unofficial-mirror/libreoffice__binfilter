@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unopres.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:08:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,54 +59,54 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
-#include <com/sun/star/presentation/XPresentationPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONSUPPLIER_HPP_
-#include <com/sun/star/presentation/XPresentationSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATION_HPP_
-#include <com/sun/star/presentation/XPresentation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_XCUSTOMPRESENTATIONSUPPLIER_HPP_
-#include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-#include <com/sun/star/presentation/ClickAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
-#include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-#include <com/sun/star/presentation/AnimationEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
-#include <com/sun/star/presentation/PresentationRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
-#include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
+// auto strip #include <com/sun/star/presentation/XPresentationPage.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONSUPPLIER_HPP_
+// auto strip #include <com/sun/star/presentation/XPresentationSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATION_HPP_
+// auto strip #include <com/sun/star/presentation/XPresentation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_XCUSTOMPRESENTATIONSUPPLIER_HPP_
+// auto strip #include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
+// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
+// auto strip #include <com/sun/star/presentation/FadeEffect.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
+// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
+// auto strip #include <com/sun/star/presentation/PresentationRange.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
+// auto strip #include <com/sun/star/presentation/AnimationSpeed.hpp>
+// auto strip #endif
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 
 #include <bf_sfx2/dispatch.hxx>
 
 #include <bf_svx/dialogs.hrc>              // fuer SID_REHEARSE_TIMINGS
 #include <bf_svx/unoprov.hxx>
 
-#include "drawdoc.hxx"
-#include "unomodel.hxx"
+// auto strip #include "drawdoc.hxx"
+// auto strip #include "unomodel.hxx"
 #include "unopres.hxx"
 #include "unocpres.hxx"
 #include "app.hrc"                      // SID_LIVE_PRESENTATION
 #include "viewshel.hxx"
-#include "drawview.hxx"
+// auto strip #include "drawview.hxx"
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
 #endif
