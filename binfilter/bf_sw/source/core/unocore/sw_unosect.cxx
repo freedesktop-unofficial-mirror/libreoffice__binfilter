@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:14:14 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:45:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,6 +159,7 @@
 #ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -662,7 +663,7 @@ void SwXTextSection::setPropertyValues(
                                     aSection.SetType(FILE_LINK_SECTION);
                                 String sFileName;
                                 if(aLink.FileURL.getLength())
-                                    sFileName += URIHelper::SmartRelToAbs( aLink.FileURL);
+                                    sFileName += so3::StaticBaseUrl::SmartRelToAbs( aLink.FileURL);
                                 sFileName += ::so3::cTokenSeperator;
                                 sFileName += String(aLink.FilterName);
                                 sFileName += ::so3::cTokenSeperator;

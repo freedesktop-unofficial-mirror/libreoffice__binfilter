@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdnds.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:47:02 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:45:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -141,6 +141,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
@@ -757,7 +758,7 @@ namespace binfilter {
 //STRIP001          else
 //STRIP001          {
 //STRIP001              pGrf = NULL, bLink = TRUE;
-//STRIP001              aGrfName = URIHelper::SmartRelToAbs( aGrfName );
+//STRIP001              aGrfName = so3::StaticBaseUrl::SmartRelToAbs( aGrfName );
 //STRIP001          }
 //STRIP001          r.skip( pos );
 //STRIP001          r.next();
