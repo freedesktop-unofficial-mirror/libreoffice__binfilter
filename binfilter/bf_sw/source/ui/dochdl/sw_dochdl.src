@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dochdl.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:13 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:32:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 
 #include "dochdl.hrc"
@@ -69,37 +70,32 @@ String STR_NOGLOS1
     /* ### ACHTUNG: Neuer Text in Resource? AutoText zum K�rzel ' : AutoText zum K�rzel '' */
     /* ### ACHTUNG: Neuer Text in Resource? AutoText zum K�rzel ' : AutoText zum K�rzel '' */
     /* ### ACHTUNG: Neuer Text in Resource? AutoText zum K�rzel ' : AutoText zum K�rzel ' */
-    TEXT = "AutoText zum K�rzel '" ;
-    TEXT [ English ] = "AutoText for Short Name '" ;
-    TEXT [ norwegian ] = "AutoText for Short Name '" ;
-    TEXT [ italian ] = "Testo automatico per la sigla '" ;
-    TEXT [ portuguese_brazilian ] = "AutoTexto para Atalho " ;
-    TEXT [ portuguese ] = "AutoTexto para abreviatura '" ;
-    TEXT [ finnish ] = "Automaattista teksti� pikavalinnalle" ;
-    TEXT [ danish ] = "AutoTekst til genvej '" ;
-    TEXT [ french ] = "AutoTexte pour raccourci '" ;
-    TEXT [ swedish ] = "AutoText till genv�gen '" ;
-    TEXT [ dutch ] = "AutoTekst voor afkortingen'" ;
-    TEXT [ spanish ] = "Texto autom�tico para la abreviatura '" ;
-    TEXT [ english_us ] = "AutoText for Shortcut '" ;
-    TEXT[ chinese_simplified ] = "自动图文集的缩写 '";
-    TEXT[ russian ] = "��������� � ���������� '";
-    TEXT[ polish ] = "Autotekst skr�tu '";
-    TEXT[ japanese ] = "入力支援のショートカット「";
-    TEXT[ chinese_traditional ] = "自動圖文集的縮寫<";
-    TEXT[ arabic ] = "�� ������ �������� '";
-    TEXT[ dutch ] = "AutoTekst voor afkortingen'";
-    TEXT[ chinese_simplified ] = "自动图文集的缩写 '";
-    TEXT[ greek ] = "�������� ������� ��� �� ������ '";
-    TEXT[ korean ] = "자동 텍스트 바로 가기 '";
-    TEXT[ turkish ] = "Otomatik metin k�saltmas� '";
-    TEXT[ language_user1 ] = " ";
-    TEXT[ catalan ] = "AutoText per al nom curt '";
-    TEXT[ thai ] = "ข้อความอัตโนมัติสำหรับเป็นทางลัด '";
-    TEXT[ czech ] = "Automatický text pro zkratku '";
-    TEXT[ hebrew ] = "AutoText zum Kürzel '";
-    TEXT[ hindi ] = "सरलविधि केलिए स्वचालित ढंग से टेक्स्ट्  '";
-    TEXT[ slovak ] = "Automatický text pre skratku '";
+    Text [ de ] = "AutoText zum K�rzel '" ;
+    Text [ en-US ] = "AutoText for Shortcut '" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "AutoTexto para abreviatura '";
+    Text[ ru ] = "Автотекст к сокращению '";
+    Text[ el ] = "Αυτόματο κείμενο για τα αρχικά '";
+    Text[ nl ] = "AutoTekst voor afkortingen'";
+    Text[ fr ] = "AutoTexte pour raccourci '";
+    Text[ es ] = "Texto automático para la abreviatura '";
+    Text[ fi ] = "Automaattista tekstiä pikavalinnalle";
+    Text[ ca ] = "AutoText per al nom curt '";
+    Text[ it ] = "Testo automatico per la sigla '";
+    Text[ sk ] = "Automatický text pre skratku '";
+    Text[ da ] = "AutoTekst til genvej '";
+    Text[ sv ] = "AutoText till genvägen '";
+    Text[ pl ] = "Autotekst skrótu '";
+    Text[ pt-BR ] = "AutoTexto para Atalho ";
+    Text[ th ] = "ข้อความอัตโนมัติสำหรับเป็นทางลัด '";
+    Text[ ja ] = "入力支援のショートカット「";
+    Text[ ko ] = "자동 텍스트 바로 가기 '";
+    Text[ zh-CN ] = "自动图文集的缩写 '";
+    Text[ zh-TW ] = "自動圖文集的縮寫<";
+    Text[ tr ] = "Otomatik metin kısaltması '";
+    Text[ hi-IN ] = "सरलविधि केलिए स्वचालित ढंग से टेक्स्ट्  '";
+    Text[ ar ] = "نص تلقائي للاختصار '";
+    Text[ he ] = "AutoText zum Kürzel '";
 };
 String STR_NOGLOS2
 {
@@ -107,71 +103,62 @@ String STR_NOGLOS2
     /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
     /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
     /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
-    TEXT = "' nicht gefunden." ;
-    TEXT [ English ] = "' not found." ;
-    TEXT [ norwegian ] = "' not found." ;
-    TEXT [ italian ] = "' non trovato." ;
-    TEXT [ portuguese_brazilian ] = " n�o encontrado." ;
-    TEXT [ portuguese ] = "' n�o localizado." ;
-    TEXT [ finnish ] = "ei l�ydy." ;
-    TEXT [ danish ] = "' blev ikke fundet." ;
-    TEXT [ french ] = "' introuvable." ;
-    TEXT [ swedish ] = "' hittades inte." ;
-    TEXT [ dutch ] = "' niet gevonden." ;
-    TEXT [ spanish ] = "' no se encontr�." ;
-    TEXT [ english_us ] = "' not found." ;
-    TEXT[ chinese_simplified ] = "' 没有被找到。";
-    TEXT[ russian ] = "' �� ������.";
-    TEXT[ polish ] = "' nie znaleziono.";
-    TEXT[ japanese ] = "」が見つかりません。";
-    TEXT[ chinese_traditional ] = ">沒有找到。";
-    TEXT[ arabic ] = "' ��� �����.";
-    TEXT[ dutch ] = "' niet gevonden.";
-    TEXT[ chinese_simplified ] = "' 没有被找到。";
-    TEXT[ greek ] = "' ��� �������.";
-    TEXT[ korean ] = "' 을(를) 찾지 못했습니다.";
-    TEXT[ turkish ] = "' bulunamad�.";
-    TEXT[ language_user1 ] = " ";
-    TEXT[ catalan ] = "' no s'ha trobat.";
-    TEXT[ thai ] = "' ไม่พบ";
-    TEXT[ czech ] = "' nebyl nalezen.";
-    TEXT[ hebrew ] = "' nicht gefunden.";
-    TEXT[ hindi ] = "' नहीं मिला ।";
-    TEXT[ slovak ] = "' nebol nájdený.";
+    Text [ de ] = "' nicht gefunden." ;
+    Text [ en-US ] = "' not found." ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "' não localizado.";
+    Text[ ru ] = "' не найден.";
+    Text[ el ] = "' δεν βρέθηκε.";
+    Text[ nl ] = "' niet gevonden.";
+    Text[ fr ] = "' introuvable.";
+    Text[ es ] = "' no se encontró.";
+    Text[ fi ] = "ei löydy.";
+    Text[ ca ] = "' no s'ha trobat.";
+    Text[ it ] = "' non trovato.";
+    Text[ sk ] = "' nebol nájdený.";
+    Text[ da ] = "' blev ikke fundet.";
+    Text[ sv ] = "' hittades inte.";
+    Text[ pl ] = "' nie znaleziono.";
+    Text[ pt-BR ] = " não encontrado.";
+    Text[ th ] = "' ไม่พบ";
+    Text[ ja ] = "」が見つかりません。";
+    Text[ ko ] = "' 을(를) 찾지 못했습니다.";
+    Text[ zh-CN ] = "' 没有被找到。";
+    Text[ zh-TW ] = ">沒有找到。";
+    Text[ tr ] = "' bulunamadı.";
+    Text[ hi-IN ] = "' नहीं मिला ।";
+    Text[ ar ] = "' غير موجود.";
+    Text[ he ] = "' nicht gefunden.";
 };
 
 String STR_NO_TABLE
 {
-    Text = "Eine Tabelle kann nicht in eine andere Tabelle eingef�gt werden. Sie k�nnen die Daten jedoch einf�gen, wenn sich der Cursor nicht in einer Tabelle befindet." ;
-    Text [ english_us ] = "A table cannot be inserted into another table. However, you can paste the data into the document when the cursor is not in a table.";
-    Text [ norwegian ] = "Inserting a table is impossible now." ;
-    Text [ italian ] = "Impossibile inserire una tabella in un'altra tabella. Tuttavia potete inserire i dati nel documento quando il cursore non � posizionato in una tabella." ;
-    Text [ portuguese_brazilian ] = "N�o � poss�vel inserir uma tabela no momento" ;
-    Text [ portuguese ] = "De momento n�o � poss�vel inserir a tabela." ;
-    Text [ finnish ] = "T�ll� hetkell� taulukkoa ei voi lis�t�" ;
-    Text [ danish ] = "Det er for tiden ikke muligt at inds�tte en tabel" ;
-    Text [ french ] = "Impossible d'ins�rer un tableau dans un autre tableau ! Vous pouvez toutefois ins�rer les donn�es tant que le curseur ne se trouve pas dans un tableau." ;
-    Text [ swedish ] = "En tabell kan inte infogas i en annan tabell. Men du kan klistra in data i dokumentet om mark�ren inte �r placerad i en tabell." ;
-    Text [ dutch ] = "Tabel kan op dit ogenblik niet worden ingevoegd." ;
-    Text [ spanish ] = "No se puede insertar una tabla dentro de otra. Sin embargo, puede pegar los datos en el documento cuando el cursor no est� en la tabla." ;
-    Text[ chinese_simplified ] = "在一个表格之内无法插入表格。如果鼠标不是位于一个表格之内，您也还是能够插入数据。";
-    Text[ russian ] = "������ ���������� �������� �������";
-    Text[ polish ] = "Obecnie wstawienie tabeli jest niemo�liwe.";
-    Text[ japanese ] = "表を別の表に挿入することはできません。ただし、表以外の場所にカーソルを置けば、ドキュメントに表のデータを貼り付けることができます。";
-    Text[ chinese_traditional ] = "表格無法插入其他表格中。但是當游標不在表格中時，您可以將資料貼到文件中。";
-    Text[ arabic ] = "����� ���� ��� ���� ������.";
-    Text[ dutch ] = "Tabel kan op dit ogenblik niet worden ingevoegd.";
-    Text[ chinese_simplified ] = "在一个表格之内无法插入表格。如果鼠标不是位于一个表格之内，您也还是能够插入数据。";
-    Text[ greek ] = "���� �� ����� ����� �������� �� �������� �������.";
-    Text[ korean ] = "표 안에 또 다른 표를 삽입할 수는 없으나 커서가 표 안에 놓여있지 않은 한 데이터는 표문서 안으로 삽입할 수 있습니다.";
-    Text[ turkish ] = "Bir tablo ba�ka bir tablo i�ine eklenemez. Ancak, fare imle�i tablo i�inde olmad��� zaman verileri belgeye yapi�t�rabilirsiniz.";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Ara no es pot inserir cap taula.";
-    Text[ thai ] = "มันเป็นไปไม่ได้ที่จะแทรกตารางปัจจุบัน";
-    Text[ czech ] = "Není možno vložit tabulku";
-    Text[ hebrew ] = "Eine Tabelle kann nicht in eine andere Tabelle eingefügt werden. Sie können die Daten jedoch einfügen, wenn sich der Cursor nicht in einer Tabelle befindet.";
-    Text[ hindi ] = "वर्तमान में सारणी को जोड़ना संभव नहीं है ";
-    Text[ slovak ] = "Nemožno vložiť tabuľku";
+    Text [ de ] = "Eine Tabelle kann nicht in eine andere Tabelle eingef�gt werden. Sie k�nnen die Daten jedoch einf�gen, wenn sich der Cursor nicht in einer Tabelle befindet." ;
+    Text [ en-US ] = "A table cannot be inserted into another table. However, you can paste the data into the document when the cursor is not in a table.";
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "De momento não é possível inserir a tabela.";
+    Text[ ru ] = "Сейчас невозможно вставить таблицу";
+    Text[ el ] = "Προς το παρόν είναι αδύνατον να εισαχθεί πίνακας.";
+    Text[ nl ] = "Tabel kan op dit ogenblik niet worden ingevoegd.";
+    Text[ fr ] = "Impossible d'insérer un tableau dans un autre tableau ! Vous pouvez toutefois insérer les données tant que le curseur ne se trouve pas dans un tableau.";
+    Text[ es ] = "No se puede insertar una tabla dentro de otra. Sin embargo, puede pegar los datos en el documento cuando el cursor no esté en la tabla.";
+    Text[ fi ] = "Tällä hetkellä taulukkoa ei voi lisätä";
+    Text[ ca ] = "Ara no es pot inserir cap taula.";
+    Text[ it ] = "Impossibile inserire una tabella in un'altra tabella. Tuttavia potete inserire i dati nel documento quando il cursore non è posizionato in una tabella.";
+    Text[ sk ] = "Nemožno vložiť tabuľku";
+    Text[ da ] = "Det er for tiden ikke muligt at indsætte en tabel";
+    Text[ sv ] = "En tabell kan inte infogas i en annan tabell. Men du kan klistra in data i dokumentet om markören inte är placerad i en tabell.";
+    Text[ pl ] = "Obecnie wstawienie tabeli jest niemożliwe.";
+    Text[ pt-BR ] = "Não é possível inserir uma tabela no momento";
+    Text[ th ] = "มันเป็นไปไม่ได้ที่จะแทรกตารางปัจจุบัน";
+    Text[ ja ] = "表を別の表に挿入することはできません。ただし、表以外の場所にカーソルを置けば、ドキュメントに表のデータを貼り付けることができます。";
+    Text[ ko ] = "표 안에 또 다른 표를 삽입할 수는 없으나 커서가 표 안에 놓여있지 않은 한 데이터는 표문서 안으로 삽입할 수 있습니다.";
+    Text[ zh-CN ] = "在一个表格之内无法插入表格。如果鼠标不是位于一个表格之内，您也还是能够插入数据。";
+    Text[ zh-TW ] = "表格無法插入其他表格中。但是當游標不在表格中時，您可以將資料貼到文件中。";
+    Text[ tr ] = "Bir tablo başka bir tablo içine eklenemez. Ancak, fare imleçi tablo içinde olmadığı zaman verileri belgeye yapiştırabilirsiniz.";
+    Text[ hi-IN ] = "वर्तमान में सारणी को जोड़ना संभव नहीं है ";
+    Text[ ar ] = "إدراج جدول غير ممكن حالياً.";
+    Text[ he ] = "Eine Tabelle kann nicht in eine andere Tabelle eingefügt werden. Sie können die Daten jedoch einfügen, wenn sich der Cursor nicht in einer Tabelle befindet.";
 };
 
 
@@ -287,129 +274,118 @@ String STR_NO_TABLE
 String STR_PRIVATETEXT
 {
     /* ### ACHTUNG: Neuer Text in Resource? StarWriter : Formatierter Text [StarWriter] */
-    Text = "%PRODUCTNAME Writer" ;
-    Text [ dutch ] = "%PRODUCTNAME Writer" ;
-    Text [ english_us ] = "%PRODUCTNAME Writer" ;
-    Text [ italian ] = "%PRODUCTNAME Writer" ;
-    Text [ spanish ] = "%PRODUCTNAME Writer" ;
-    Text [ french ] = "%PRODUCTNAME Writer" ;
-    Text [ swedish ] = "%PRODUCTNAME Writer" ;
-    Text [ danish ] = "%PRODUCTNAME Writer" ;
-    Text [ portuguese ] = "%PRODUCTNAME Writer" ;
-    Text [ portuguese_brazilian ] = "%PRODUCTNAME Writer" ;
-    Text[ chinese_simplified ] = "%PRODUCTNAME Writer";
-    Text[ russian ] = "%PRODUCTNAME Writer";
-    Text[ polish ] = "%PRODUCTNAME Writer";
-    Text[ japanese ] = "%PRODUCTNAME Writer";
-    Text[ chinese_traditional ] = "%PRODUCTNAME Writer";
-    Text[ arabic ] = "%PRODUCTNAME Writer";
-    Text[ greek ] = "%PRODUCTNAME Writer";
-    Text[ korean ] = "%PRODUCTNAME Writer";
-    Text[ turkish ] = "%PRODUCTNAME Writer";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "%PRODUCTNAME Writer";
-    Text[ finnish ] = "%PRODUCTNAME Writer";
-    Text[ thai ] = "%PRODUCTNAME Writer";
-    Text[ czech ] = "%PRODUCTNAME Writer";
-    Text[ hebrew ] = "%PRODUCTNAME Writer";
-    Text[ hindi ] = "%PRODUCTNAME लेखक";
-    Text[ slovak ] = "%PRODUCTNAME Writer";
+    Text [ de ] = "%PRODUCTNAME Writer" ;
+    Text [ en-US ] = "%PRODUCTNAME Writer" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "%PRODUCTNAME Writer";
+    Text[ ru ] = "%PRODUCTNAME Writer";
+    Text[ el ] = "%PRODUCTNAME Writer";
+    Text[ nl ] = "%PRODUCTNAME Writer";
+    Text[ fr ] = "%PRODUCTNAME Writer";
+    Text[ es ] = "%PRODUCTNAME Writer";
+    Text[ fi ] = "%PRODUCTNAME Writer";
+    Text[ ca ] = "%PRODUCTNAME Writer";
+    Text[ it ] = "%PRODUCTNAME Writer";
+    Text[ sk ] = "%PRODUCTNAME Writer";
+    Text[ da ] = "%PRODUCTNAME Writer";
+    Text[ sv ] = "%PRODUCTNAME Writer";
+    Text[ pl ] = "%PRODUCTNAME Writer";
+    Text[ pt-BR ] = "%PRODUCTNAME Writer";
+    Text[ th ] = "%PRODUCTNAME Writer";
+    Text[ ja ] = "%PRODUCTNAME Writer";
+    Text[ ko ] = "%PRODUCTNAME Writer";
+    Text[ zh-CN ] = "%PRODUCTNAME Writer";
+    Text[ zh-TW ] = "%PRODUCTNAME Writer";
+    Text[ tr ] = "%PRODUCTNAME Writer";
+    Text[ hi-IN ] = "%PRODUCTNAME लेखक";
+    Text[ ar ] = "%PRODUCTNAME Writer";
+    Text[ he ] = "%PRODUCTNAME Writer";
 };
 String STR_PRIVATEGRAPHIC
 {
-    Text = "Grafik [%PRODUCTNAME Writer]" ;
-    Text [ ENGLISH ] = "Graphic [%PRODUCTNAME Writer]" ;
-    Text [ norwegian ] = "Graphic [%PRODUCTNAME Writer]" ;
-    Text [ italian ] = "Immagine [%PRODUCTNAME Writer]" ;
-    Text [ portuguese_brazilian ] = "Figura [%PRODUCTNAME Writer]" ;
-    Text [ portuguese ] = "Imagem [%PRODUCTNAME Writer]" ;
-    Text [ finnish ] = "Grafiikka [%PRODUCTNAME Writer]" ;
-    Text [ danish ] = "Grafik [%PRODUCTNAME Writer]" ;
-    Text [ french ] = "Image [%PRODUCTNAME Writer]" ;
-    Text [ swedish ] = "Grafik [%PRODUCTNAME Writer]" ;
-    Text [ dutch ] = "Afbeelding [%PRODUCTNAME Writer]" ;
-    Text [ spanish ] = "Imagen [%PRODUCTNAME Writer]" ;
-    Text [ english_us ] = "Graphics [%PRODUCTNAME Writer]" ;
-    Text[ chinese_simplified ] = "图形 [%PRODUCTNAME Writer]";
-    Text[ russian ] = "����������� ������ [%PRODUCTNAME Writer]";
-    Text[ polish ] = "[%PRODUCTNAME Writer] - Grafika";
-    Text[ japanese ] = "図 [%PRODUCTNAME Writer]";
-    Text[ greek ] = "������� [%PRODUCTNAME Writer]";
-    Text[ korean ] = "그림 [%PRODUCTNAME Writer]";
-    Text[ chinese_traditional ] = "圖形 [%PRODUCTNAME Writer]";
-    Text[ arabic ] = "[%PRODUCTNAME Writer] ������";
-    Text[ turkish ] = "Grafik [%PRODUCTNAME Writer]";
-    Text[ catalan ] = "Imatge [%PRODUCTNAME Writer]";
-    Text[ thai ] = "กราฟิค [%PRODUCTNAME Writer]";
-    Text[ czech ] = "Obrázek [%PRODUCTNAME Writer]";
-    Text[ hebrew ] = "Grafik [%PRODUCTNAME Writer]";
-    Text[ hindi ] = "सुचित्र [%PRODUCTNAME लेखक]";
-    Text[ slovak ] = "Obrázok [%PRODUCTNAME Writer]";
+    Text [ de ] = "Grafik [%PRODUCTNAME Writer]" ;
+    Text [ en-US ] = "Graphics [%PRODUCTNAME Writer]" ;
+    Text[ pt ] = "Imagem [%PRODUCTNAME Writer]";
+    Text[ ru ] = "Графический объект [%PRODUCTNAME Writer]";
+    Text[ el ] = "Γραφικό [%PRODUCTNAME Writer]";
+    Text[ nl ] = "Afbeelding [%PRODUCTNAME Writer]";
+    Text[ fr ] = "Image [%PRODUCTNAME Writer]";
+    Text[ es ] = "Imagen [%PRODUCTNAME Writer]";
+    Text[ fi ] = "Grafiikka [%PRODUCTNAME Writer]";
+    Text[ ca ] = "Imatge [%PRODUCTNAME Writer]";
+    Text[ it ] = "Immagine [%PRODUCTNAME Writer]";
+    Text[ sk ] = "Obrázok [%PRODUCTNAME Writer]";
+    Text[ da ] = "Grafik [%PRODUCTNAME Writer]";
+    Text[ sv ] = "Grafik [%PRODUCTNAME Writer]";
+    Text[ pl ] = "[%PRODUCTNAME Writer] - Grafika";
+    Text[ pt-BR ] = "Figura [%PRODUCTNAME Writer]";
+    Text[ th ] = "กราฟิค [%PRODUCTNAME Writer]";
+    Text[ ja ] = "図 [%PRODUCTNAME Writer]";
+    Text[ ko ] = "그림 [%PRODUCTNAME Writer]";
+    Text[ zh-CN ] = "图形 [%PRODUCTNAME Writer]";
+    Text[ zh-TW ] = "圖形 [%PRODUCTNAME Writer]";
+    Text[ tr ] = "Grafik [%PRODUCTNAME Writer]";
+    Text[ hi-IN ] = "सुचित्र [%PRODUCTNAME लेखक]";
+    Text[ ar ] = "[%PRODUCTNAME Writer] رسومات";
+    Text[ he ] = "Grafik [%PRODUCTNAME Writer]";
 };
 String STR_PRIVATEOLE
 {
-    Text = "Objekt [%PRODUCTNAME Writer]" ;
-    Text [ ENGLISH ] = "Object [%PRODUCTNAME Writer]" ;
-    Text [ english_us ] = "Object [%PRODUCTNAME Writer]" ;
-    Text [ italian ] = "Oggetto [%PRODUCTNAME Writer]" ;
-    Text [ spanish ] = "Objeto [%PRODUCTNAME Writer]" ;
-    Text [ french ] = "Objet [%PRODUCTNAME Writer]" ;
-    Text [ dutch ] = "Object [%PRODUCTNAME Writer]" ;
-    Text [ swedish ] = "Objekt [%PRODUCTNAME Writer]" ;
-    Text [ danish ] = "Objekt [%PRODUCTNAME Writer]" ;
-    Text [ portuguese ] = "Objecto [%PRODUCTNAME Writer]" ;
-    Text [ portuguese_brazilian ] = "Objeto [%PRODUCTNAME Writer]" ;
-    Text[ chinese_simplified ] = "对象 [%PRODUCTNAME Writer]";
-    Text[ russian ] = "������ [%PRODUCTNAME Writer]";
-    Text[ polish ] = "Obiekt [%PRODUCTNAME Writer]";
-    Text[ japanese ] = "オブジェクト [%PRODUCTNAME Writer]";
-    Text[ greek ] = "����������� [%PRODUCTNAME Writer]";
-    Text[ korean ] = "개체 [%PRODUCTNAME Writer]";
-    Text[ chinese_traditional ] = "物件 [%PRODUCTNAME Writer]";
-    Text[ arabic ] = "[%PRODUCTNAME Writer]���� ";
-    Text[ turkish ] = "Nesne [%PRODUCTNAME Writer]";
-    Text[ catalan ] = "Objecte [%PRODUCTNAME Writer]";
-    Text[ finnish ] = "Objekti [%PRODUCTNAME Writer]";
-    Text[ thai ] = "วัตถุ [%PRODUCTNAME Writer]";
-    Text[ czech ] = "Objekt [%PRODUCTNAME Writer]";
-    Text[ hebrew ] = "Objekt [%PRODUCTNAME Writer]";
-    Text[ hindi ] = "वस्तु [%PRODUCTNAME लेखक]";
-    Text[ slovak ] = "Objekt [%PRODUCTNAME Writer]";
+    Text [ de ] = "Objekt [%PRODUCTNAME Writer]" ;
+    Text [ en-US ] = "Object [%PRODUCTNAME Writer]" ;
+    Text[ pt ] = "Objecto [%PRODUCTNAME Writer]";
+    Text[ ru ] = "Объект [%PRODUCTNAME Writer]";
+    Text[ el ] = "Αντικείμενο [%PRODUCTNAME Writer]";
+    Text[ nl ] = "Object [%PRODUCTNAME Writer]";
+    Text[ fr ] = "Objet [%PRODUCTNAME Writer]";
+    Text[ es ] = "Objeto [%PRODUCTNAME Writer]";
+    Text[ fi ] = "Objekti [%PRODUCTNAME Writer]";
+    Text[ ca ] = "Objecte [%PRODUCTNAME Writer]";
+    Text[ it ] = "Oggetto [%PRODUCTNAME Writer]";
+    Text[ sk ] = "Objekt [%PRODUCTNAME Writer]";
+    Text[ da ] = "Objekt [%PRODUCTNAME Writer]";
+    Text[ sv ] = "Objekt [%PRODUCTNAME Writer]";
+    Text[ pl ] = "Obiekt [%PRODUCTNAME Writer]";
+    Text[ pt-BR ] = "Objeto [%PRODUCTNAME Writer]";
+    Text[ th ] = "วัตถุ [%PRODUCTNAME Writer]";
+    Text[ ja ] = "オブジェクト [%PRODUCTNAME Writer]";
+    Text[ ko ] = "개체 [%PRODUCTNAME Writer]";
+    Text[ zh-CN ] = "对象 [%PRODUCTNAME Writer]";
+    Text[ zh-TW ] = "物件 [%PRODUCTNAME Writer]";
+    Text[ tr ] = "Nesne [%PRODUCTNAME Writer]";
+    Text[ hi-IN ] = "वस्तु [%PRODUCTNAME लेखक]";
+    Text[ ar ] = "[%PRODUCTNAME Writer]كائن ";
+    Text[ he ] = "Objekt [%PRODUCTNAME Writer]";
 };
 String STR_DDEFORMAT
 {
     /* ### ACHTUNG: Neuer Text in Resource? DDE Verkn�pfung : DDE Verkn�pfung */
-    Text = "DDE Verkn�pfung" ;
-    Text [ ENGLISH ] = "DDE link" ;
-    Text [ norwegian ] = "DDE link" ;
-    Text [ italian ] = "Collegamento DDE" ;
-    Text [ portuguese_brazilian ] = "V�nculo DDE" ;
-    Text [ portuguese ] = "Liga��o DDE" ;
-    Text [ finnish ] = "DDE-linkki" ;
-    Text [ danish ] = "DDE-k�de" ;
-    Text [ french ] = "Lien DDE" ;
-    Text [ swedish ] = "DDE-l�nk" ;
-    Text [ dutch ] = "DDE-koppeling" ;
-    Text [ spanish ] = "V�nculo DDE" ;
-    Text [ english_us ] = "DDE link" ;
-    Text[ chinese_simplified ] = "DDE 链接";
-    Text[ russian ] = "����� �� DDE";
-    Text[ polish ] = "��cza DDE ";
-    Text[ japanese ] = "DDE リンク";
-    Text[ chinese_traditional ] = "DDE 捷徑";
-    Text[ arabic ] = "������ DDE";
-    Text[ dutch ] = "DDE-koppeling";
-    Text[ chinese_simplified ] = "DDE 链接";
-    Text[ greek ] = "��������� DDE";
-    Text[ korean ] = "DDE 연결";
-    Text[ turkish ] = "DDE ba�lant�s�";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Enlla� DDE";
-    Text[ thai ] = "เชื่อมโยง DDE ";
-    Text[ czech ] = "Odkaz DDE";
-    Text[ hebrew ] = "DDE Verknüpfung";
-    Text[ hindi ] = "DDE लिंक";
-    Text[ slovak ] = "Odkaz DDE";
+    Text [ de ] = "DDE Verkn�pfung" ;
+    Text [ en-US ] = "DDE link" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Ligação DDE";
+    Text[ ru ] = "Связь по DDE";
+    Text[ el ] = "Σύνδεσμος DDE";
+    Text[ nl ] = "DDE-koppeling";
+    Text[ fr ] = "Lien DDE";
+    Text[ es ] = "Vínculo DDE";
+    Text[ fi ] = "DDE-linkki";
+    Text[ ca ] = "Enllaç DDE";
+    Text[ it ] = "Collegamento DDE";
+    Text[ sk ] = "Odkaz DDE";
+    Text[ da ] = "DDE-kæde";
+    Text[ sv ] = "DDE-länk";
+    Text[ pl ] = "Łącza DDE ";
+    Text[ pt-BR ] = "Vínculo DDE";
+    Text[ th ] = "เชื่อมโยง DDE ";
+    Text[ ja ] = "DDE リンク";
+    Text[ ko ] = "DDE 연결";
+    Text[ zh-CN ] = "DDE 链接";
+    Text[ zh-TW ] = "DDE 捷徑";
+    Text[ tr ] = "DDE bağlantısı";
+    Text[ hi-IN ] = "DDE लिंक";
+    Text[ ar ] = "ارتباط DDE";
+    Text[ he ] = "DDE Verknüpfung";
 };
 //STRIP001 Bitmap BMP_SW_TEAM_MUGSHOT
 //STRIP001 {
