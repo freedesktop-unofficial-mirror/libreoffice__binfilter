@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrflyin.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:59:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,11 +62,16 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 #include "cntfrm.hxx"       // _GetFly
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "pam.hxx"          // fuer SwTxtFlyCnt
-#include "flyfrm.hxx"       // fuer SwTxtFlyCnt
+// auto strip #include "flyfrm.hxx"       // fuer SwTxtFlyCnt
 #include "ndtxt.hxx"        // SwFlyFrmFmt
 #include "frmfmt.hxx"       // SwFlyFrmFmt
 
@@ -79,7 +84,7 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#include "swfont.hxx"
+// auto strip #include "swfont.hxx"
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
 namespace binfilter {

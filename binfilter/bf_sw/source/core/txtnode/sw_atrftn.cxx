@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:59:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,16 +64,21 @@
 
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>       // ASSERT in ~SwTxtFtn()
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>      // RemoveFtn()
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>       // ASSERT in ~SwTxtFtn()
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>      // RemoveFtn()
+// auto strip #endif
 #ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
 #endif
@@ -86,18 +91,18 @@
 #ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _FTNFRM_HXX
-#include <ftnfrm.hxx>
-#endif
+// auto strip #ifndef _FTNFRM_HXX
+// auto strip #include <ftnfrm.hxx>
+// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
