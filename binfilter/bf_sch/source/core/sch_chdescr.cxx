@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chdescr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:43:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,14 +58,18 @@
  *
  *
  ************************************************************************/
-#include "chdescr.hxx"
-#include "chaxis.hxx"
-
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
 #endif
+
+#include "chdescr.hxx"
+// auto strip #include "chaxis.hxx"
+
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 #include "float.h"
-#include "globfunc.hxx"
+// auto strip #include "globfunc.hxx"
 #include "schgroup.hxx"
 #include "chtscene.hxx"
 namespace binfilter {
