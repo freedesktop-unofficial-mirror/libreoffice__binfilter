@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:13 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 09:56:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,10 @@
 #include <sfxresid.hxx>
 #include <sfxuno.hxx>
 #include "doc.hrc"
+//added by jmeng for include sleep() function for i31251
+#if ( defined UNX ) || ( defined OS2 )   //Unix
+#include <unistd.h>
+#endif
 namespace binfilter {
 
 //========================================================================
@@ -251,8 +255,26 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   }
 /*N*/ }
 
+//added by jmeng for i31251 begin
+extern "C"{
+    sal_Bool legcy_getBinfilterInitState(void);
+}
+void lc_bfsleep(int _nSec)
+{
+#ifdef WNT                               //Windows
+    Sleep( _nSec * 1000 );
+#endif
+#if ( defined UNX ) || ( defined OS2 )   //Unix
+        sleep( _nSec );
+#endif
+}
+//added by jmeng for i31251 end
+
 /*N*/ IMPL_LINK_INLINE( SfxObjectFactory, InitFactoryHdl, void*, EMPTYARG,
 /*N*/ {
+//added by jmeng  for i31251 begin
+    while( !legcy_getBinfilterInitState()) lc_bfsleep(1);
+//added by jmeng  for i31251 end
 /*N*/   SFX_APP()->Get_Impl()->aPendingInitFactories.Remove( this );
 /*N*/   DoInitFactory();
 /*N*/   return 0;
