@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shell.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:04:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,7 +71,7 @@
 #include <svtools/brdcst.hxx>
 #endif
 
-#include <bf_sfx2/sfxuno.hxx>
+// auto strip #include <bf_sfx2/sfxuno.hxx>
 class ResMgr;
 class Window;
 class ToolBox;
