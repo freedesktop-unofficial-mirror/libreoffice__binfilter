@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdnum.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:47:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,19 +64,28 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
-#include <vcl/font.hxx>
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_FONT_HXX //autogen
+// auto strip #include <vcl/font.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#include "doc.hxx"
-#include "pam.hxx"
-#include "rdswg.hxx"
-#include "ndtxt.hxx"
-#include "numrule.hxx"
-#include "poolfmt.hxx"
+// auto strip #include "doc.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
+// auto strip #include "pam.hxx"
+// auto strip #include "rdswg.hxx"
+// auto strip #include "ndtxt.hxx"
+// auto strip #include "numrule.hxx"
+// auto strip #include "poolfmt.hxx"
 namespace binfilter {
 
 
