@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-12 08:16:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:43:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,30 +64,30 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SCHATTR_HXX
-#include "schattr.hxx"
-#endif
+// auto strip #ifndef _SCHATTR_HXX
+// auto strip #include "schattr.hxx"
+// auto strip #endif
 
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
 
-#ifndef _XPOLY_HXX //autogen
-#include <bf_svx/xpoly.hxx>
-#endif
+// auto strip #ifndef _XPOLY_HXX //autogen
+// auto strip #include <bf_svx/xpoly.hxx>
+// auto strip #endif
 
-#include "itempool.hxx"
+// auto strip #include "itempool.hxx"
 
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -97,12 +97,12 @@
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
 #endif
-#ifndef _SVDORECT_HXX //autogen
-#include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _OUTLINER_HXX //autogen
-#include <bf_svx/svdoutl.hxx>
-#endif
+// auto strip #ifndef _SVDORECT_HXX //autogen
+// auto strip #include <bf_svx/svdorect.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include <bf_svx/svdoutl.hxx>
+// auto strip #endif
 #ifndef _XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
 #endif
@@ -110,15 +110,20 @@
 #ifndef _XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
 #endif
-#ifndef _XFLCLIT_HXX
-#include <bf_svx/xflclit.hxx>
-#endif
+// auto strip #ifndef _XFLCLIT_HXX
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
-#include <bf_svx/chrtitem.hxx>
+
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
@@ -127,7 +132,7 @@
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/colritem.hxx>
+// auto strip #include <bf_svx/colritem.hxx>
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
@@ -135,9 +140,9 @@
 #include "float.h"
 #include "chaxis.hxx"
 #include "pairs.hxx"
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "glob.hrc"
-#include "schresid.hxx"
+// auto strip #include "schresid.hxx"
 #include "axisobj.hxx"
 #include "globfunc.hxx"
 #include    <algorithm>
