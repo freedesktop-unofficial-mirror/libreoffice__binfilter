@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:02:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,17 +73,17 @@
 #ifndef _EDITOBJ_HXX //autogen
 #include <bf_svx/editobj.hxx>
 #endif
-#ifndef _EDITSTAT_HXX //autogen
-#include <bf_svx/editstat.hxx>
-#endif
+// auto strip #ifndef _EDITSTAT_HXX //autogen
+// auto strip #include <bf_svx/editstat.hxx>
+// auto strip #endif
 
 #include "cell.hxx"
-#include "compiler.hxx"
-#include "document.hxx"
+// auto strip #include "compiler.hxx"
+// auto strip #include "document.hxx"
 #include "rangenam.hxx"
 #include "rechead.hxx"
 #include "refupdat.hxx"
-#include "scmatrix.hxx"
+// auto strip #include "scmatrix.hxx"
 #include "editutil.hxx"
 #include "chgtrack.hxx"
 #include "indexmap.hxx"
