@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:46:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,49 +62,49 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
-#ifndef _SVX_SVXENUM_HXX
-#include <bf_svx/svxenum.hxx>
-#endif
-#ifndef _SVX_ALGITEM_HXX
-#include <bf_svx/algitem.hxx>
-#endif
+// auto strip #include <bf_svx/eeitem.hxx>
+// auto strip #ifndef _SVX_SVXENUM_HXX
+// auto strip #include <bf_svx/svxenum.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ALGITEM_HXX
+// auto strip #include <bf_svx/algitem.hxx>
+// auto strip #endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <svtools/securityoptions.hxx>
-#include <tools/stream.hxx>
-#include <tools/string.hxx>
-#include <tools/urlobj.hxx>
-#include <vcl/msgbox.hxx>
-#include <vcl/virdev.hxx>
-#include <vcl/waitobj.hxx>
+// auto strip #include <svtools/securityoptions.hxx>
+// auto strip #include <tools/stream.hxx>
+// auto strip #include <tools/string.hxx>
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #include <vcl/waitobj.hxx>
 #include <svtools/ctrltool.hxx>
 #include <svtools/sfxecode.hxx>
-#include <svtools/zforlist.hxx>
-#include <bf_sfx2/app.hxx>
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/bindings.hxx>
 #include <bf_sfx2/dinfdlg.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/docfilt.hxx>
-#include <bf_sfx2/evntconf.hxx>
+// auto strip #include <bf_sfx2/evntconf.hxx>
 #include <bf_sfx2/sfx.hrc>
-#include <bf_sfx2/topfrm.hxx>
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_sfx2/topfrm.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/svxmsbas.hxx>
 #include <bf_offmgr/app.hxx>
 #include <bf_offmgr/fltrcfg.hxx>
 #include <so3/clsids.hxx>
-#include <unotools/charclass.hxx>
-#ifndef _SV_VIRDEV_HXX
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #ifndef _SV_VIRDEV_HXX
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
 #ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
@@ -123,42 +123,42 @@ SO2_DECL_REF(SvStorageStream)
 
 // INCLUDE ---------------------------------------------------------------
 
-#include "cell.hxx"
-#include "global.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "global.hxx"
 #include "filter.hxx"
 #include "scmod.hxx"
 #include "tabvwsh.hxx"
 #include "docfunc.hxx"
-#include "imoptdlg.hxx"
+// auto strip #include "imoptdlg.hxx"
 #include "impex.hxx"
 #include "scresid.hxx"
 #include "bf_sc.hrc"
 #include "globstr.hrc"
-#include "tpstat.hxx"
+// auto strip #include "tpstat.hxx"
 #include "scerrors.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "stlpool.hxx"
 #include "autostyl.hxx"
-#include "attrib.hxx"
+// auto strip #include "attrib.hxx"
 #include "asciiopt.hxx"
-#include "waitoff.hxx"
+// auto strip #include "waitoff.hxx"
 #include "docpool.hxx"      // LoadCompleted
 #include "progress.hxx"
 #include "pntlock.hxx"
-#include "collect.hxx"
+// auto strip #include "collect.hxx"
 #include "docuno.hxx"
 #include "appoptio.hxx"
 #include "detdata.hxx"
 #include "printfun.hxx"
-#include "dociter.hxx"
-#include "cellform.hxx"
+// auto strip #include "dociter.hxx"
+// auto strip #include "cellform.hxx"
 #include "chartlis.hxx"
 #include "hints.hxx"
 #include "xmlwrap.hxx"
 #include "drwlayer.hxx"
-#include "refreshtimer.hxx"
+// auto strip #include "refreshtimer.hxx"
 #include "dbcolect.hxx"
-#include "scextopt.hxx"
+// auto strip #include "scextopt.hxx"
 
 #include "docsh.hxx"
 
