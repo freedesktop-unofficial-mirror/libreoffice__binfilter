@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_polyob3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 #include <stdio.h>
 
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
 #ifndef _INC_FLOAT
 #include <float.h>
@@ -72,29 +72,29 @@
 #include "svdopath.hxx"
 #endif
 
-#ifndef _SVDITER_HXX //autogen
-#include "svditer.hxx"
-#endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include "svditer.hxx"
+// auto strip #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
-#ifndef _XATTR_HXX
-#include "xattr.hxx"
-#endif
+// auto strip #ifndef _XATTR_HXX
+// auto strip #include "xattr.hxx"
+// auto strip #endif
 
-#ifndef _SVDHDL_HXX
-#include "svdhdl.hxx"
-#endif
+// auto strip #ifndef _SVDHDL_HXX
+// auto strip #include "svdhdl.hxx"
+// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
 
-#ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
-#endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include <goodies/base3d.hxx>
+// auto strip #endif
 
 // FG: wegen der DEBUG-Ausgabe in Dateien (temporaer)
 #ifndef _INC_STDIO
