@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:51:27 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:48:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -965,9 +965,9 @@ void OListBoxModel::loadData()
     if (bUseNULL && m_nNULLPos == -1)
     {
         if (m_bBoundComponent)
-            aValueList.insert(aValueList.begin());
+            aValueList.insert(aValueList.begin(), ::rtl::OUString());
 
-        aStringList.insert(aStringList.begin());
+        aStringList.insert(aStringList.begin(), ::rtl::OUString());
         m_nNULLPos = 0;
     }
 
