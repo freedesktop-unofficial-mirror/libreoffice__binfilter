@@ -2,9 +2,9 @@
  *
  *  $RCSfile: authratr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:36:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <tools/solar.h>
 #endif
 
-#ifndef _COLOR_HXX //autogen
-#include <tools/color.hxx>
-#endif
+// auto strip #ifndef _COLOR_HXX //autogen
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #define COL_NONE        TRGB_COLORDATA( 0x80, 0xFF, 0xFF, 0xFF )
