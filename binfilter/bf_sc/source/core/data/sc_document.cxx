@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:05:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,46 +69,46 @@
 
 #define _ZFORLIST_DECLARE_TABLE
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/frmdiritem.hxx>
-#include <bf_svx/pageitem.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/editeng.hxx>
-#include <bf_sfx2/app.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 #include <svtools/poolcach.hxx>
 #include <svtools/saveopt.hxx>
 #include <svtools/zforlist.hxx>
-#include <unotools/charclass.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
 
-#include "document.hxx"
-#include "table.hxx"
-#include "attrib.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "table.hxx"
+// auto strip #include "attrib.hxx"
 #include "attarray.hxx"
-#include "markarr.hxx"
+// auto strip #include "markarr.hxx"
 #include "patattr.hxx"
 #include "rangenam.hxx"
 #include "poolhelp.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
-#include "stlsheet.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "globstr.hrc"
 #include "rechead.hxx"
 #include "dbcolect.hxx"
 #include "pivot.hxx"
 #include "chartlis.hxx"
-#include "rangelst.hxx"
-#include "markdata.hxx"
+// auto strip #include "rangelst.hxx"
+// auto strip #include "markdata.hxx"
 #include "drwlayer.hxx"
-#include "conditio.hxx"
+// auto strip #include "conditio.hxx"
 #include "validat.hxx"
 #include "prnsave.hxx"
 #include "chgtrack.hxx"
