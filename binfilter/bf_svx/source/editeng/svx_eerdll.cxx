@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_eerdll.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:12:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:35:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,17 +59,55 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
 #include <svtools/solar.hrc>
 #include <eerdll.hxx>
+
+// auto strip #ifndef _LINK_HXX
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
+
+#ifndef _SV_OUTDEV_HXX
+#include <vcl/outdev.hxx>
+#endif
+
 #include <eerdll2.hxx>
+
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
+
 #include <lspcitem.hxx>
 #include <adjitem.hxx>
 #include <tstpitem.hxx>
 #include <bulitem.hxx>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+
 #include <flditem.hxx>
 #include <emphitem.hxx>
 #include <scriptspaceitem.hxx>
@@ -88,7 +126,7 @@
 
 #include <akrnitem.hxx>
 #include <cntritem.hxx>
-#include <colritem.hxx>
+// auto strip #include <colritem.hxx>
 #include <crsditem.hxx>
 #include <cscoitem.hxx>
 #include <escpitem.hxx>
@@ -109,9 +147,9 @@
 #include <frmdiritem.hxx>
 #include <xmlcnitm.hxx>
 
-#include <forbiddencharacterstable.hxx>
+// auto strip #include <forbiddencharacterstable.hxx>
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
