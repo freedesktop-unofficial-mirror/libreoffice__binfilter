@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:01:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -77,18 +77,18 @@
 #ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
 #endif
-#ifndef _SV_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
-#endif
+// auto strip #ifndef _SV_FONTCVT_HXX
+// auto strip #include <vcl/fontcvt.hxx>
+// auto strip #endif
 
 #include "attarray.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
 #include "stlsheet.hxx"
 #include "stlpool.hxx"
-#include "markarr.hxx"
+// auto strip #include "markarr.hxx"
 #include "rechead.hxx"
 #include "globstr.hrc"
 namespace binfilter {
