@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdhnt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:46:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,191 +68,200 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
-#include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX //autogen
-#include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_PRNTITEM_HXX //autogen
-#include <bf_svx/prntitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_PBINITEM_HXX //autogen
-#include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
-#include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
-#include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
-#include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
-#include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_ORPHITEM_HXX //autogen
-#include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX //autogen
-#include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
-#include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
-#include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX //autogen
-#include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_NHYPITEM_HXX //autogen
-#include <bf_svx/nhypitem.hxx>
-#endif
-#ifndef _SVX_PRSZITEM_HXX //autogen
-#include <bf_svx/prszitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
-#include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
-#include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX //autogen
-#include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
-#include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX //autogen
-#include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_CNTRITEM_HXX //autogen
-#include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
-#include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
-#include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
-#include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
-#include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
+// auto strip #ifndef _SVX_PAPERINF_HXX //autogen
+// auto strip #include <bf_svx/paperinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMACITEM_HXX //autogen
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_WRLMITEM_HXX //autogen
+// auto strip #include <bf_svx/wrlmitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PRNTITEM_HXX //autogen
+// auto strip #include <bf_svx/prntitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PBINITEM_HXX //autogen
+// auto strip #include <bf_svx/pbinitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SHADITEM_HXX //autogen
+// auto strip #include <bf_svx/shaditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UDLNITEM_HXX //autogen
+// auto strip #include <bf_svx/udlnitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_HYZNITEM_HXX //autogen
+// auto strip #include <bf_svx/hyznitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_TSTPITEM_HXX //autogen
+// auto strip #include <bf_svx/tstpitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ORPHITEM_HXX //autogen
+// auto strip #include <bf_svx/orphitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_WIDWITEM_HXX //autogen
+// auto strip #include <bf_svx/widwitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SPLTITEM_HXX //autogen
+// auto strip #include <bf_svx/spltitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ADJITEM_HXX //autogen
+// auto strip #include <bf_svx/adjitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LSPCITEM_HXX //autogen
+// auto strip #include <bf_svx/lspcitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_NHYPITEM_HXX //autogen
+// auto strip #include <bf_svx/nhypitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PRSZITEM_HXX //autogen
+// auto strip #include <bf_svx/prszitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
+// auto strip #include <bf_svx/escpitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX //autogen
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CMAPITEM_HXX //autogen
+// auto strip #include <bf_svx/cmapitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CRSDITEM_HXX //autogen
+// auto strip #include <bf_svx/crsditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_KERNITEM_HXX //autogen
+// auto strip #include <bf_svx/kernitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CNTRITEM_HXX //autogen
+// auto strip #include <bf_svx/cntritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SHDDITEM_HXX //autogen
+// auto strip #include <bf_svx/shdditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX //autogen
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_WGHTITEM_HXX //autogen
+// auto strip #include <bf_svx/wghtitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_POSTITEM_HXX //autogen
+// auto strip #include <bf_svx/postitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
 
 
-#ifndef _DOC_HXX
-#include <doc.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>      //fuer MIN_BORDER_DIST
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>        //fuer MIN_BORDER_DIST
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _PARATR_HXX
-#include <paratr.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
-#include <fmtrfmrk.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
-#include <fmtflcnt.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
-#include <fchrfmt.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
-#include <fmtftn.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FMTFORDR_HXX //autogen
-#include <fmtfordr.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
-#include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
-#ifndef _RDSWG_HXX
-#include <rdswg.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
-#ifndef _OLDHNTID_HXX
-#include <oldhntid.hxx>
-#endif
-#ifndef _SWGIDS_HXX
-#include <swgids.hxx>
-#endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _PARATR_HXX
+// auto strip #include <paratr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTRFMRK_HXX //autogen
+// auto strip #include <fmtrfmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLCNT_HXX //autogen
+// auto strip #include <fmtflcnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FCHRFMT_HXX //autogen
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFTN_HXX //autogen
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFORDR_HXX //autogen
+// auto strip #include <fmtfordr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHDFT_HXX //autogen
+// auto strip #include <fmthdft.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
+// auto strip #ifndef _RDSWG_HXX
+// auto strip #include <rdswg.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _OLDHNTID_HXX
+// auto strip #include <oldhntid.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWGIDS_HXX
+// auto strip #include <swgids.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 namespace binfilter {
 
 

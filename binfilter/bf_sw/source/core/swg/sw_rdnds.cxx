@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdnds.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:47:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,73 +66,78 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _PERSIST_HXX //autogen
-#include <so3/persist.hxx>
-#endif
-#ifndef _EMBOBJ_HXX //autogen
-#include <so3/embobj.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
-#include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _PERSIST_HXX //autogen
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
+// auto strip #ifndef _EMBOBJ_HXX //autogen
+// auto strip #include <so3/embobj.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX //autogen
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
-#ifndef _FCHRFMT_HXX //autogen
-#include <fchrfmt.hxx>
+// auto strip #ifndef _FCHRFMT_HXX //autogen
+// auto strip #include <fchrfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARFMT_HXX //autogen
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
-#include <charfmt.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _RDSWG_HXX
-#include <rdswg.hxx>
-#endif
-#ifndef _SW3IO_HXX
-#include <sw3io.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _NDGRF_HXX
-#include <ndgrf.hxx>
-#endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>
-#endif
-#ifndef _SWGPAR_HXX
-#include <swgpar.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _RDSWG_HXX
+// auto strip #include <rdswg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SW3IO_HXX
+// auto strip #include <sw3io.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDGRF_HXX
+// auto strip #include <ndgrf.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWGPAR_HXX
+// auto strip #include <swgpar.hxx>
+// auto strip #endif
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
