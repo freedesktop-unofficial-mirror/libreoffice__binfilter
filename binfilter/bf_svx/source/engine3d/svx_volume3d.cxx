@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_volume3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:42:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,17 +59,17 @@
  *
  ************************************************************************/
 
-#ifndef _VOLUME3D_HXX
-#include "volume3d.hxx"
-#endif
+// auto strip #ifndef _VOLUME3D_HXX
+// auto strip #include "volume3d.hxx"
+// auto strip #endif
 
 #ifndef _POLY3D_HXX
 #include "poly3d.hxx"
 #endif
 
-#ifndef _SVX_MATRIX3D_HXX
-#include "matrix3d.hxx"
-#endif
+// auto strip #ifndef _SVX_MATRIX3D_HXX
+// auto strip #include "matrix3d.hxx"
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
