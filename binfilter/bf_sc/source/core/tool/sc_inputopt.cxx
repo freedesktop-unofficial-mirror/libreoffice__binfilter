@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_inputopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:30 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,53 +149,53 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator>>( SvStream& rStream, ScInputOptions& rOpt )
-//STRIP001 {
-//STRIP001  rOpt.SetDefaults();
-//STRIP001
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001
-//STRIP001  rStream >> rOpt.nMoveDir;
-//STRIP001  rStream >> rOpt.bMoveSelection;
-//STRIP001  rStream >> rOpt.bEnterEdit;
-//STRIP001  rStream >> rOpt.bExtendFormat;
-//STRIP001
-//STRIP001  if (aHdr.BytesLeft())
-//STRIP001      rStream >> rOpt.bRangeFinder;           // ab 363
-//STRIP001
-//STRIP001  if (aHdr.BytesLeft())
-//STRIP001      rStream >> rOpt.bExpandRefs;            // ab 364v
-//STRIP001
-//STRIP001  if (aHdr.BytesLeft())
-//STRIP001      rStream >> rOpt.bMarkHeader;            // ab 364irgendwas
-//STRIP001
-//STRIP001  if (aHdr.BytesLeft())
-//STRIP001      rStream >> rOpt.bUseTabCol;             // ab 373d
-//STRIP001
-//STRIP001  // newer additions are not in old file format
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator>>( SvStream& rStream, ScInputOptions& rOpt )
+/*N*/ {
+/*N*/   rOpt.SetDefaults();
+/*N*/
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/
+/*N*/   rStream >> rOpt.nMoveDir;
+/*N*/   rStream >> rOpt.bMoveSelection;
+/*N*/   rStream >> rOpt.bEnterEdit;
+/*N*/   rStream >> rOpt.bExtendFormat;
+/*N*/
+/*N*/   if (aHdr.BytesLeft())
+/*N*/       rStream >> rOpt.bRangeFinder;           // ab 363
+/*N*/
+/*N*/   if (aHdr.BytesLeft())
+/*N*/       rStream >> rOpt.bExpandRefs;            // ab 364v
+/*N*/
+/*N*/   if (aHdr.BytesLeft())
+/*N*/       rStream >> rOpt.bMarkHeader;            // ab 364irgendwas
+/*N*/
+/*N*/   if (aHdr.BytesLeft())
+/*N*/       rStream >> rOpt.bUseTabCol;             // ab 373d
+/*N*/
+/*N*/   // newer additions are not in old file format
+/*N*/
+/*N*/   return rStream;
+/*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator<<( SvStream& rStream, const ScInputOptions& rOpt )
-//STRIP001 {
-//STRIP001  ScWriteHeader aHdr( rStream, 6 );
-//STRIP001
-//STRIP001  rStream << rOpt.nMoveDir;
-//STRIP001  rStream << rOpt.bMoveSelection;
-//STRIP001  rStream << rOpt.bEnterEdit;
-//STRIP001  rStream << rOpt.bExtendFormat;
-//STRIP001  rStream << rOpt.bRangeFinder;
-//STRIP001  rStream << rOpt.bExpandRefs;
-//STRIP001  rStream << rOpt.bMarkHeader;
-//STRIP001  rStream << rOpt.bUseTabCol;
-//STRIP001
-//STRIP001  // newer additions are not in old file format
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator<<( SvStream& rStream, const ScInputOptions& rOpt )
+/*N*/ {
+/*N*/   ScWriteHeader aHdr( rStream, 6 );
+/*N*/
+/*N*/   rStream << rOpt.nMoveDir;
+/*N*/   rStream << rOpt.bMoveSelection;
+/*N*/   rStream << rOpt.bEnterEdit;
+/*N*/   rStream << rOpt.bExtendFormat;
+/*N*/   rStream << rOpt.bRangeFinder;
+/*N*/   rStream << rOpt.bExpandRefs;
+/*N*/   rStream << rOpt.bMarkHeader;
+/*N*/   rStream << rOpt.bUseTabCol;
+/*N*/
+/*N*/   // newer additions are not in old file format
+/*N*/
+/*N*/   return rStream;
+/*N*/ }
 
 //==================================================================
 //  Config Item containing input options

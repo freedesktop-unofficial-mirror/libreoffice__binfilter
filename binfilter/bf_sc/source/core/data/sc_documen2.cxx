@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -843,12 +843,12 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*N*/               case SCID_CHARTS:
 /*N*/                   pChartCollection->Load( this, rStream );
 /*N*/                   break;
-/*?*/               case SCID_COLNAMERANGES:
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  xColNameRanges->Load( rStream, nVersion );
-/*?*/                   break;
-/*?*/               case SCID_ROWNAMERANGES:
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 xRowNameRanges->Load( rStream, nVersion );
-/*?*/                   break;
+/*N*/               case SCID_COLNAMERANGES:
+/*N*/                   xColNameRanges->Load( rStream, nVersion );
+/*N*/                   break;
+/*N*/               case SCID_ROWNAMERANGES:
+/*N*/                   xRowNameRanges->Load( rStream, nVersion );
+/*N*/                   break;
 /*N*/               case SCID_CONDFORMATS:
 /*N*/                   if (!pCondFormList)
 /*N*/                       pCondFormList = new ScConditionalFormatList;
@@ -899,11 +899,11 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*N*/ /*?*/                         StartChangeTracking();
 /*N*/ /*?*/                     pChangeTrack->Load( rStream, nVersion );
 /*?*/                   break;
-/*?*/               case SCID_CHGVIEWSET:
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  if (!pChangeViewSettings)
-//STRIP001 /*?*/                        pChangeViewSettings = new ScChangeViewSettings;
-//STRIP001 /*?*/                    pChangeViewSettings->Load( rStream, nVersion );
-/*?*/                   break;
+/*N*/               case SCID_CHGVIEWSET:
+/*N*/                   if (!pChangeViewSettings)
+/*N*/                       pChangeViewSettings = new ScChangeViewSettings;
+/*N*/                   pChangeViewSettings->Load( rStream, nVersion );
+/*N*/                   break;
 /*N*/               default:
 /*N*/                   {
 /*N*/                       DBG_ERROR("unbekannter Sub-Record in ScDocument::Load");
@@ -1180,13 +1180,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*N*/
 /*N*/       if ( xColNameRanges->Count() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 rStream << (USHORT) SCID_COLNAMERANGES;
-//STRIP001 /*?*/            xColNameRanges->Store( rStream );
+/*N*/           rStream << (USHORT) SCID_COLNAMERANGES;
+/*N*/           xColNameRanges->Store( rStream );
 /*N*/       }
 /*N*/       if ( xRowNameRanges->Count() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 rStream << (USHORT) SCID_ROWNAMERANGES;
-//STRIP001 /*?*/            xRowNameRanges->Store( rStream );
+/*N*/           rStream << (USHORT) SCID_ROWNAMERANGES;
+/*N*/           xRowNameRanges->Store( rStream );
 /*N*/       }
 /*N*/
 /*N*/       if (pCondFormList)
@@ -1287,13 +1287,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*N*/           }
 /*N*/           if ( pChangeTrack )
 /*N*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  rStream << (USHORT) SCID_CHANGETRACK;
-//STRIP001 /*?*/                pChangeTrack->Store( rStream );
+/*N*/               rStream << (USHORT) SCID_CHANGETRACK;
+/*N*/               pChangeTrack->Store( rStream );
 /*N*/           }
 /*N*/           if ( pChangeViewSettings )
 /*N*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  rStream << (USHORT) SCID_CHGVIEWSET;
-//STRIP001 /*?*/                pChangeViewSettings->Store( rStream );
+/*N*/               rStream << (USHORT) SCID_CHGVIEWSET;
+/*N*/               pChangeViewSettings->Store( rStream );
 /*N*/           }
 /*N*/       }
 /*N*/   }

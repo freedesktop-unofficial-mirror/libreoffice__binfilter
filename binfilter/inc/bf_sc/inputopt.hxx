@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inputopt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:54 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,8 +118,8 @@ public:
     BOOL        GetReplaceCellsWarn() const     { return bReplCellsWarn; }
 
     const ScInputOptions&   operator=   ( const ScInputOptions& rOpt );
-//STRIP001  friend SvStream&        operator>>  ( SvStream& rStream, ScInputOptions& rOpt );
-//STRIP001  friend SvStream&        operator<<  ( SvStream& rStream, const ScInputOptions& rOpt );
+/*N*/   friend SvStream&        operator>>  ( SvStream& rStream, ScInputOptions& rOpt );
+/*N*/   friend SvStream&        operator<<  ( SvStream& rStream, const ScInputOptions& rOpt );
 };
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangeutl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:34 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -418,27 +418,27 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator>> ( SvStream& rStream, ScArea& rArea )
-//STRIP001 {
-//STRIP001  rStream >> rArea.nTab;
-//STRIP001  rStream >> rArea.nColStart;
-//STRIP001  rStream >> rArea.nRowStart;
-//STRIP001  rStream >> rArea.nColEnd;
-//STRIP001  rStream >> rArea.nRowEnd;
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator>> ( SvStream& rStream, ScArea& rArea )
+/*N*/ {
+/*N*/   rStream >> rArea.nTab;
+/*N*/   rStream >> rArea.nColStart;
+/*N*/   rStream >> rArea.nRowStart;
+/*N*/   rStream >> rArea.nColEnd;
+/*N*/   rStream >> rArea.nRowEnd;
+/*N*/   return rStream;
+/*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator<< ( SvStream& rStream, const ScArea& rArea )
-//STRIP001 {
-//STRIP001  rStream << rArea.nTab;
-//STRIP001  rStream << rArea.nColStart;
-//STRIP001  rStream << rArea.nRowStart;
-//STRIP001  rStream << rArea.nColEnd;
-//STRIP001  rStream << rArea.nRowEnd;
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator<< ( SvStream& rStream, const ScArea& rArea )
+/*N*/ {
+/*N*/   rStream << rArea.nTab;
+/*N*/   rStream << rArea.nColStart;
+/*N*/   rStream << rArea.nRowStart;
+/*N*/   rStream << rArea.nColEnd;
+/*N*/   rStream << rArea.nRowEnd;
+/*N*/   return rStream;
+/*N*/ }
 
 //------------------------------------------------------------------------
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rangelst.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:59 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,7 @@ namespace binfilter {
 class ScDocument;
 
 typedef ScRange* ScRangePtr;
-DECLARE_LIST( ScRangeListBase, ScRangePtr )//STRIP008 DECLARE_LIST( ScRangeListBase, ScRangePtr );
+DECLARE_LIST( ScRangeListBase, ScRangePtr );
 class ScRangeList : public ScRangeListBase, public SvRefBase
 {
 public:
@@ -94,8 +94,8 @@ public:
                                     short nDx, short nDy, short nDz );
 //STRIP001  ScRange*        Find( const ScAddress& ) const;
 //STRIP001  ScRange*        Find( const ScRange& ) const;
-//STRIP001  BOOL            Load( SvStream&, USHORT nVer );
-//STRIP001  BOOL            Store( SvStream& ) const;
+/*N*/   BOOL            Load( SvStream&, USHORT nVer );
+/*N*/   BOOL            Store( SvStream& ) const;
 //STRIP001  BOOL            operator==( const ScRangeList& ) const;
 //STRIP001  BOOL            Intersects( const ScRange& ) const;
 //STRIP001  BOOL            In( const ScRange& ) const;
@@ -106,7 +106,7 @@ SV_DECL_IMPL_REF( ScRangeList );
 
 // RangePairList: erster Range (aRange[0]) eigentlicher Range, zweiter
 // Range (aRange[1]) Daten zu diesem Range, z.B. Rows eines ColName
-DECLARE_LIST( ScRangePairListBase, ScRangePair* )//STRIP008 DECLARE_LIST( ScRangePairListBase, ScRangePair* );
+DECLARE_LIST( ScRangePairListBase, ScRangePair* );
 class ScRangePairList : public ScRangePairListBase, public SvRefBase
 {
 #if defined( ICC ) && defined( OS2 )
@@ -133,8 +133,8 @@ public:
                                     short nDx, short nDy, short nDz );
     ScRangePair*    Find( const ScAddress& ) const;
     ScRangePair*    Find( const ScRange& ) const;
-//STRIP001  BOOL            Load( SvStream&, USHORT nVer );
-//STRIP001  BOOL            Store( SvStream& ) const;
+/*N*/   BOOL            Load( SvStream&, USHORT nVer );
+/*N*/   BOOL            Store( SvStream& ) const;
 //STRIP001  ScRangePair**   CreateNameSortedArray( ULONG& nCount, ScDocument* ) const;
 //STRIP001  BOOL            operator==( const ScRangePairList& ) const;
 };

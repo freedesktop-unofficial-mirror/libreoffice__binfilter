@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chgviset.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:27 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -136,91 +136,91 @@ namespace binfilter {
 
 /*N*/ void ScChangeViewSettings::SetTheComment(const String& rString)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  aComment=rString;
-//STRIP001  if(pCommentSearcher!=NULL)
-//STRIP001  {
-//STRIP001      delete pCommentSearcher;
-//STRIP001      pCommentSearcher=NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(rString.Len()>0)
-//STRIP001  {
-//STRIP001      utl::SearchParam aSearchParam( rString,
-//STRIP001          utl::SearchParam::SRCH_REGEXP,FALSE,FALSE,FALSE );
-//STRIP001
-//STRIP001      pCommentSearcher = new utl::TextSearch( aSearchParam, *ScGlobal::pCharClass );
-//STRIP001  }
+/*N*/   aComment=rString;
+/*N*/   if(pCommentSearcher!=NULL)
+/*N*/   {
+/*N*/       delete pCommentSearcher;
+/*N*/       pCommentSearcher=NULL;
+/*N*/   }
+/*N*/
+/*N*/   if(rString.Len()>0)
+/*N*/   {
+/*N*/       utl::SearchParam aSearchParam( rString,
+/*N*/           utl::SearchParam::SRCH_REGEXP,FALSE,FALSE,FALSE );
+/*N*/
+/*N*/       pCommentSearcher = new utl::TextSearch( aSearchParam, *ScGlobal::pCharClass );
+/*N*/   }
 /*N*/ }
 
-//STRIP001 void ScChangeViewSettings::Load( SvStream& rStream, USHORT nVer )
-//STRIP001 {
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001
-//STRIP001  BYTE nByte;
-//STRIP001  UINT32 nDT;
-//STRIP001  rStream >> bShowIt;
-//STRIP001  rStream >> bIsDate;
-//STRIP001  rStream >> nByte; eDateMode = (ScChgsDateMode)nByte;
-//STRIP001  rStream >> nDT; aFirstDateTime.SetDate( nDT );
-//STRIP001  rStream >> nDT; aFirstDateTime.SetTime( nDT );
-//STRIP001  rStream >> nDT; aLastDateTime.SetDate( nDT );
-//STRIP001  rStream >> nDT; aLastDateTime.SetTime( nDT );
-//STRIP001  rStream >> bIsAuthor;
-//STRIP001  rStream >> bEveryoneButMe;
-//STRIP001  rStream.ReadByteString( aAuthorToShow, rStream.GetStreamCharSet() );
-//STRIP001  rStream >> bIsRange;
-//STRIP001  aRangeList.Load( rStream, nVer );
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      rStream >> bShowAccepted;
-//STRIP001      rStream >> bShowRejected;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      bShowAccepted = FALSE;
-//STRIP001      bShowRejected = FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Zusaetzlich Kommentar-Informationen lesen (src509)
-//STRIP001  if ( aHdr.BytesLeft() )  //#59103#
-//STRIP001  {
-//STRIP001      rStream >> bIsComment;
-//STRIP001      rStream.ReadByteString( aComment, rStream.GetStreamCharSet() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      bIsComment = FALSE;
-//STRIP001      aComment.Erase();
-//STRIP001  }
-//STRIP001  SetTheComment(aComment);
-//STRIP001 }
+/*N*/ void ScChangeViewSettings::Load( SvStream& rStream, USHORT nVer )
+/*N*/ {
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/
+/*N*/   BYTE nByte;
+/*N*/   UINT32 nDT;
+/*N*/   rStream >> bShowIt;
+/*N*/   rStream >> bIsDate;
+/*N*/   rStream >> nByte; eDateMode = (ScChgsDateMode)nByte;
+/*N*/   rStream >> nDT; aFirstDateTime.SetDate( nDT );
+/*N*/   rStream >> nDT; aFirstDateTime.SetTime( nDT );
+/*N*/   rStream >> nDT; aLastDateTime.SetDate( nDT );
+/*N*/   rStream >> nDT; aLastDateTime.SetTime( nDT );
+/*N*/   rStream >> bIsAuthor;
+/*N*/   rStream >> bEveryoneButMe;
+/*N*/   rStream.ReadByteString( aAuthorToShow, rStream.GetStreamCharSet() );
+/*N*/   rStream >> bIsRange;
+/*N*/   aRangeList.Load( rStream, nVer );
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       rStream >> bShowAccepted;
+/*N*/       rStream >> bShowRejected;
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       bShowAccepted = FALSE;
+/*N*/       bShowRejected = FALSE;
+/*N*/   }
+/*N*/
+/*N*/   // Zusaetzlich Kommentar-Informationen lesen (src509)
+/*N*/   if ( aHdr.BytesLeft() )  //#59103#
+/*N*/   {
+/*N*/       rStream >> bIsComment;
+/*N*/       rStream.ReadByteString( aComment, rStream.GetStreamCharSet() );
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       bIsComment = FALSE;
+/*N*/       aComment.Erase();
+/*N*/   }
+/*N*/   SetTheComment(aComment);
+/*N*/ }
 
-//STRIP001 void ScChangeViewSettings::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  ScWriteHeader aHdr( rStream, 42 );      // Groesse, wenn String und RangeList leer sind
-//STRIP001
-//STRIP001  rStream << bShowIt;
-//STRIP001  rStream << bIsDate;
-//STRIP001  rStream << (BYTE) eDateMode;
-//STRIP001  rStream << (UINT32) aFirstDateTime.GetDate();
-//STRIP001  rStream << (UINT32) aFirstDateTime.GetTime();
-//STRIP001  rStream << (UINT32) aLastDateTime.GetDate();
-//STRIP001  rStream << (UINT32) aLastDateTime.GetTime();
-//STRIP001  rStream << bIsAuthor;
-//STRIP001  rStream << bEveryoneButMe;
-//STRIP001  rStream.WriteByteString( aAuthorToShow, rStream.GetStreamCharSet() );
-//STRIP001  rStream << bIsRange;
-//STRIP001  aRangeList.Store( rStream );
-//STRIP001  rStream << bShowAccepted;
-//STRIP001  rStream << bShowRejected;
-//STRIP001
-//STRIP001  // Zusaetzlich Kommentar-Informationen schreiben (src509)
-//STRIP001  if(bIsComment || aComment.Len()>0) //#59103#
-//STRIP001  {
-//STRIP001      rStream << bIsComment;
-//STRIP001      rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScChangeViewSettings::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   ScWriteHeader aHdr( rStream, 42 );      // Groesse, wenn String und RangeList leer sind
+/*N*/
+/*N*/   rStream << bShowIt;
+/*N*/   rStream << bIsDate;
+/*N*/   rStream << (BYTE) eDateMode;
+/*N*/   rStream << (UINT32) aFirstDateTime.GetDate();
+/*N*/   rStream << (UINT32) aFirstDateTime.GetTime();
+/*N*/   rStream << (UINT32) aLastDateTime.GetDate();
+/*N*/   rStream << (UINT32) aLastDateTime.GetTime();
+/*N*/   rStream << bIsAuthor;
+/*N*/   rStream << bEveryoneButMe;
+/*N*/   rStream.WriteByteString( aAuthorToShow, rStream.GetStreamCharSet() );
+/*N*/   rStream << bIsRange;
+/*N*/   aRangeList.Store( rStream );
+/*N*/   rStream << bShowAccepted;
+/*N*/   rStream << bShowRejected;
+/*N*/
+/*N*/   // Zusaetzlich Kommentar-Informationen schreiben (src509)
+/*N*/   if(bIsComment || aComment.Len()>0) //#59103#
+/*N*/   {
+/*N*/       rStream << bIsComment;
+/*N*/       rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
+/*N*/   }
+/*N*/ }
 
 
 //STRIP001 void ScChangeViewSettings::AdjustDateMode( const ScDocument& rDoc )

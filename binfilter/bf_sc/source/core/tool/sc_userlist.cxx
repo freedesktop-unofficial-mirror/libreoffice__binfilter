@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_userlist.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:38 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -125,17 +125,17 @@ namespace binfilter {
 /*N*/   delete[] pUpperSub;
 /*N*/ }
 
-//STRIP001 ScUserListData::ScUserListData( SvStream& rStream )
-//STRIP001 {
-//STRIP001  rStream.ReadByteString( aStr, rStream.GetStreamCharSet() );
-//STRIP001  InitTokens();
-//STRIP001 }
+/*N*/ ScUserListData::ScUserListData( SvStream& rStream )
+/*N*/ {
+/*N*/   rStream.ReadByteString( aStr, rStream.GetStreamCharSet() );
+/*N*/   InitTokens();
+/*N*/ }
 
-//STRIP001 BOOL ScUserListData::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  rStream.WriteByteString( aStr, rStream.GetStreamCharSet() );
-//STRIP001  return TRUE;
-//STRIP001 }
+/*N*/ BOOL ScUserListData::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   rStream.WriteByteString( aStr, rStream.GetStreamCharSet() );
+/*N*/   return TRUE;
+/*N*/ }
 
 //STRIP001 void ScUserListData::SetString( const String& rStr )
 //STRIP001 {
@@ -292,33 +292,33 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-//STRIP001 BOOL ScUserList::Load( SvStream& rStream )
-//STRIP001 {
-//STRIP001  BOOL    bSuccess = TRUE;
-//STRIP001  USHORT  nNewCount;
-//STRIP001
-//STRIP001  while( nCount > 0 )
-//STRIP001      AtFree(0);                  // alles loeschen
-//STRIP001
-//STRIP001  rStream >> nNewCount;
-//STRIP001
-//STRIP001  for ( USHORT i=0; i<nNewCount && bSuccess; i++ )
-//STRIP001      Insert( new ScUserListData( rStream ) );
-//STRIP001
-//STRIP001  return bSuccess;
-//STRIP001 }
+/*N*/ BOOL ScUserList::Load( SvStream& rStream )
+/*N*/ {
+/*N*/   BOOL    bSuccess = TRUE;
+/*N*/   USHORT  nNewCount;
+/*N*/
+/*N*/   while( nCount > 0 )
+/*N*/       AtFree(0);                  // alles loeschen
+/*N*/
+/*N*/   rStream >> nNewCount;
+/*N*/
+/*N*/   for ( USHORT i=0; i<nNewCount && bSuccess; i++ )
+/*N*/       Insert( new ScUserListData( rStream ) );
+/*N*/
+/*N*/   return bSuccess;
+/*N*/ }
 
-//STRIP001 BOOL ScUserList::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  BOOL bSuccess = TRUE;
-//STRIP001
-//STRIP001  rStream << nCount;
-//STRIP001
-//STRIP001  for ( USHORT i=0; i<nCount && bSuccess; i++ )
-//STRIP001      bSuccess = ((const ScUserListData*)At(i))->Store( rStream );
-//STRIP001
-//STRIP001  return bSuccess;
-//STRIP001 }
+/*N*/ BOOL ScUserList::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   BOOL bSuccess = TRUE;
+/*N*/
+/*N*/   rStream << nCount;
+/*N*/
+/*N*/   for ( USHORT i=0; i<nCount && bSuccess; i++ )
+/*N*/       bSuccess = ((const ScUserListData*)At(i))->Store( rStream );
+/*N*/
+/*N*/   return bSuccess;
+/*N*/ }
 
 /*N*/ DataObject* ScUserList::Clone() const
 /*N*/ {

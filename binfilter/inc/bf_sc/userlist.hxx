@@ -2,9 +2,9 @@
  *
  *  $RCSfile: userlist.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:08 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,11 +85,11 @@ friend class ScUserList;
 public:
                     ScUserListData(const String& rStr);
                     ScUserListData(const ScUserListData& rData);
-//STRIP001                  ScUserListData( SvStream& rStream );
+/*N*/                   ScUserListData( SvStream& rStream );
     virtual         ~ScUserListData();
 
     virtual DataObject*     Clone() const { return new ScUserListData(*this); }
-//STRIP001          BOOL            Store( SvStream& rStream ) const;
+/*N*/           BOOL            Store( SvStream& rStream ) const;
     const   String&         GetString() const { return aStr; }
 //STRIP001          void            SetString( const String& rStr);
 //STRIP001          USHORT          GetSubCount() const;
@@ -109,8 +109,8 @@ public:
     virtual DataObject*     Clone() const;
 
             ScUserListData* GetData( const String& rSubStr ) const;
-//STRIP001          BOOL            Load( SvStream& rStream );
-//STRIP001          BOOL            Store( SvStream& rStream ) const;
+/*N*/           BOOL            Load( SvStream& rStream );
+/*N*/           BOOL            Store( SvStream& rStream ) const;
             /// If the list in rStr is already inserted
             BOOL            HasEntry( const String& rStr ) const;
 

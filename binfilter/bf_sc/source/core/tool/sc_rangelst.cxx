@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangelst.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:33 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -255,40 +255,40 @@ namespace binfilter {
 //STRIP001 }
 
 
-//STRIP001 BOOL ScRangeList::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  ULONG nCount = Count();
-//STRIP001  ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRange);
-//STRIP001  ScWriteHeader aHdr( rStream, nBytes );
-//STRIP001  rStream << (UINT32) nCount;
-//STRIP001  for ( ULONG j = 0; j < nCount && bOk; j++ )
-//STRIP001  {
-//STRIP001      rStream << *GetObject( j );
-//STRIP001      if( rStream.GetError() != SVSTREAM_OK )
-//STRIP001          bOk = FALSE;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
+/*N*/ BOOL ScRangeList::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   BOOL bOk = TRUE;
+/*N*/   ULONG nCount = Count();
+/*N*/   ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRange);
+/*N*/   ScWriteHeader aHdr( rStream, nBytes );
+/*N*/   rStream << (UINT32) nCount;
+/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   {
+/*N*/       rStream << *GetObject( j );
+/*N*/       if( rStream.GetError() != SVSTREAM_OK )
+/*N*/           bOk = FALSE;
+/*N*/   }
+/*N*/   return bOk;
+/*N*/ }
 
 
-//STRIP001 BOOL ScRangeList::Load( SvStream& rStream, USHORT nVer )
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001  ScRange aRange;
-//STRIP001  UINT32 n;
-//STRIP001  rStream >> n;
-//STRIP001  ULONG nCount = n;
-//STRIP001  for ( ULONG j = 0; j < nCount && bOk; j++ )
-//STRIP001  {
-//STRIP001      rStream >> aRange;
-//STRIP001      Append( aRange );
-//STRIP001      if( rStream.GetError() != SVSTREAM_OK )
-//STRIP001          bOk = FALSE;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
+/*N*/ BOOL ScRangeList::Load( SvStream& rStream, USHORT nVer )
+/*N*/ {
+/*N*/   BOOL bOk = TRUE;
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/   ScRange aRange;
+/*N*/   UINT32 n;
+/*N*/   rStream >> n;
+/*N*/   ULONG nCount = n;
+/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   {
+/*N*/       rStream >> aRange;
+/*N*/       Append( aRange );
+/*N*/       if( rStream.GetError() != SVSTREAM_OK )
+/*N*/           bOk = FALSE;
+/*N*/   }
+/*N*/   return bOk;
+/*N*/ }
 
 
 /*N*/ BOOL ScRangeList::UpdateReference( UpdateRefMode eUpdateRefMode,
@@ -545,61 +545,61 @@ namespace binfilter {
 //STRIP001 }
 
 
-//STRIP001 BOOL ScRangePairList::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  ULONG nCount = Count();
-//STRIP001  ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRangePair);
-//STRIP001  ScWriteHeader aHdr( rStream, nBytes );
-//STRIP001  rStream << (UINT32) nCount;
-//STRIP001  for ( ULONG j = 0; j < nCount && bOk; j++ )
-//STRIP001  {
-//STRIP001      rStream << *GetObject( j );
-//STRIP001      if( rStream.GetError() != SVSTREAM_OK )
-//STRIP001          bOk = FALSE;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
+/*N*/ BOOL ScRangePairList::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   BOOL bOk = TRUE;
+/*N*/   ULONG nCount = Count();
+/*N*/   ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRangePair);
+/*N*/   ScWriteHeader aHdr( rStream, nBytes );
+/*N*/   rStream << (UINT32) nCount;
+/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   {
+/*N*/       rStream << *GetObject( j );
+/*N*/       if( rStream.GetError() != SVSTREAM_OK )
+/*N*/           bOk = FALSE;
+/*N*/   }
+/*N*/   return bOk;
+/*N*/ }
 
 
-//STRIP001 BOOL ScRangePairList::Load( SvStream& rStream, USHORT nVer )
-//STRIP001 {
-//STRIP001  BOOL bOk = TRUE;
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001  ScRangePair aRangePair;
-//STRIP001  ScRange aRange;
-//STRIP001  UINT32 n;
-//STRIP001  rStream >> n;
-//STRIP001  ULONG nCount = n;
-//STRIP001  for ( ULONG j = 0; j < nCount && bOk; j++ )
-//STRIP001  {
-//STRIP001      if ( nVer < SC_COLROWNAME_RANGEPAIR )
-//STRIP001      {   // aus technical Beta 4.0 versuchen mit altem Verhalten zu uebernehmen
-//STRIP001          rStream >> aRange;
-//STRIP001          aRangePair.GetRange(0) = aRange;
-//STRIP001          ScRange& r = aRangePair.GetRange(1);
-//STRIP001          r = aRange;
-//STRIP001          USHORT nCol2 = aRange.aEnd.Col();
-//STRIP001          USHORT nRow2 = aRange.aEnd.Row();
-//STRIP001          if ( nCol2 - aRange.aStart.Col() >= nRow2 - aRange.aStart.Row() )
-//STRIP001          {   // ColNames
-//STRIP001              r.aStart.SetRow( (USHORT) Min( (ULONG)nRow2 + 1, (ULONG)MAXROW ) );
-//STRIP001              r.aEnd.SetRow( MAXROW );
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {   // RowNames
-//STRIP001              r.aStart.SetCol( (USHORT) Min( (ULONG)(nCol2 + 1), (ULONG)MAXCOL ) );
-//STRIP001              r.aEnd.SetCol( MAXCOL );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rStream >> aRangePair;
-//STRIP001      Append( aRangePair );
-//STRIP001      if( rStream.GetError() != SVSTREAM_OK )
-//STRIP001          bOk = FALSE;
-//STRIP001  }
-//STRIP001  return bOk;
-//STRIP001 }
+/*N*/ BOOL ScRangePairList::Load( SvStream& rStream, USHORT nVer )
+/*N*/ {
+/*N*/   BOOL bOk = TRUE;
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/   ScRangePair aRangePair;
+/*N*/   ScRange aRange;
+/*N*/   UINT32 n;
+/*N*/   rStream >> n;
+/*N*/   ULONG nCount = n;
+/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   {
+/*N*/       if ( nVer < SC_COLROWNAME_RANGEPAIR )
+/*N*/       {   // aus technical Beta 4.0 versuchen mit altem Verhalten zu uebernehmen
+/*N*/           rStream >> aRange;
+/*N*/           aRangePair.GetRange(0) = aRange;
+/*N*/           ScRange& r = aRangePair.GetRange(1);
+/*N*/           r = aRange;
+/*N*/           USHORT nCol2 = aRange.aEnd.Col();
+/*N*/           USHORT nRow2 = aRange.aEnd.Row();
+/*N*/           if ( nCol2 - aRange.aStart.Col() >= nRow2 - aRange.aStart.Row() )
+/*N*/           {   // ColNames
+/*N*/               r.aStart.SetRow( (USHORT) Min( (ULONG)nRow2 + 1, (ULONG)MAXROW ) );
+/*N*/               r.aEnd.SetRow( MAXROW );
+/*N*/           }
+/*N*/           else
+/*N*/           {   // RowNames
+/*N*/               r.aStart.SetCol( (USHORT) Min( (ULONG)(nCol2 + 1), (ULONG)MAXCOL ) );
+/*N*/               r.aEnd.SetCol( MAXCOL );
+/*N*/           }
+/*N*/       }
+/*N*/       else
+/*N*/           rStream >> aRangePair;
+/*N*/       Append( aRangePair );
+/*N*/       if( rStream.GetError() != SVSTREAM_OK )
+/*N*/           bOk = FALSE;
+/*N*/   }
+/*N*/   return bOk;
+/*N*/ }
 
 
 /*N*/ BOOL ScRangePairList::UpdateReference( UpdateRefMode eUpdateRefMode,

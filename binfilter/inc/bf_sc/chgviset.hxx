@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgviset.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:36 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -172,8 +172,8 @@ public:
     void                SetShowRejected( BOOL bVal ) { bShowRejected = bVal; }
 
 
-//STRIP001  void                Load( SvStream& rStream, USHORT nVer );
-//STRIP001  void                Store( SvStream& rStream ) const;
+/*N*/   void                Load( SvStream& rStream, USHORT nVer );
+/*N*/   void                Store( SvStream& rStream ) const;
 
 //STRIP001  ScChangeViewSettings&   operator=   ( const ScChangeViewSettings& r );
 

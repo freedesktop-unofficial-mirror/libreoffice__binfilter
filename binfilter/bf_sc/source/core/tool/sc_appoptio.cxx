@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_appoptio.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:25 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:22:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -171,114 +171,114 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator>>( SvStream& rStream, ScAppOptions& rOpt )
-//STRIP001 {
-//STRIP001  rOpt.SetDefaults();
-//STRIP001
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001
-//STRIP001  BYTE n;
-//STRIP001  rStream >> n; rOpt.eMetric = (FieldUnit)n;
-//STRIP001
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      rStream >> n; rOpt.nLRUFuncCount = (USHORT)n;
-//STRIP001
-//STRIP001      delete [] rOpt.pLRUList;
-//STRIP001      rOpt.pLRUList = new USHORT[rOpt.nLRUFuncCount];
-//STRIP001
-//STRIP001      for ( USHORT i=0; i<rOpt.nLRUFuncCount; i++ )
-//STRIP001          rStream >> rOpt.pLRUList[i];
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 31.10.95: globale benutzerdefinierte Listen einlesen :-/
-//STRIP001  //              (kleiner Hack :-/)
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      ScUserList* pUserList = ScGlobal::GetUserList();
-//STRIP001      pUserList->Load( rStream );
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 11.12.95 (304)
-//STRIP001  // Zoom-Faktor
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      USHORT e;
-//STRIP001      rStream >> e; rOpt.eZoomType = (SvxZoomType)e;
-//STRIP001      rStream >> rOpt.nZoom;
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      rStream >> rOpt.nStatusFunc;
-//STRIP001      rStream >> rOpt.bAutoComplete;
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 15.3.98: Farben fuer Change-Tracking
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      rStream >> rOpt.nTrackContentColor;
-//STRIP001      rStream >> rOpt.nTrackInsertColor;
-//STRIP001      rStream >> rOpt.nTrackDeleteColor;
-//STRIP001      rStream >> rOpt.nTrackMoveColor;
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 22.6.98: Automatisches Detektiv-Update
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001      rStream >> rOpt.bDetectiveAuto;
-//STRIP001
-//STRIP001  if ( aHdr.BytesLeft() )
-//STRIP001  {
-//STRIP001      BYTE nLinkMode;
-//STRIP001      rStream >> nLinkMode;
-//STRIP001      rOpt.eLinkMode=(ScLkUpdMode) nLinkMode;
-//STRIP001  }
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator>>( SvStream& rStream, ScAppOptions& rOpt )
+/*N*/ {
+/*N*/   rOpt.SetDefaults();
+/*N*/
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/
+/*N*/   BYTE n;
+/*N*/   rStream >> n; rOpt.eMetric = (FieldUnit)n;
+/*N*/
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       rStream >> n; rOpt.nLRUFuncCount = (USHORT)n;
+/*N*/
+/*N*/       delete [] rOpt.pLRUList;
+/*N*/       rOpt.pLRUList = new USHORT[rOpt.nLRUFuncCount];
+/*N*/
+/*N*/       for ( USHORT i=0; i<rOpt.nLRUFuncCount; i++ )
+/*N*/           rStream >> rOpt.pLRUList[i];
+/*N*/   }
+/*N*/
+/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen einlesen :-/
+/*N*/   //              (kleiner Hack :-/)
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       ScUserList* pUserList = ScGlobal::GetUserList();
+/*N*/       pUserList->Load( rStream );
+/*N*/   }
+/*N*/
+/*N*/   // ab 11.12.95 (304)
+/*N*/   // Zoom-Faktor
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       USHORT e;
+/*N*/       rStream >> e; rOpt.eZoomType = (SvxZoomType)e;
+/*N*/       rStream >> rOpt.nZoom;
+/*N*/   }
+/*N*/
+/*N*/   // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       rStream >> rOpt.nStatusFunc;
+/*N*/       rStream >> rOpt.bAutoComplete;
+/*N*/   }
+/*N*/
+/*N*/   // ab 15.3.98: Farben fuer Change-Tracking
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       rStream >> rOpt.nTrackContentColor;
+/*N*/       rStream >> rOpt.nTrackInsertColor;
+/*N*/       rStream >> rOpt.nTrackDeleteColor;
+/*N*/       rStream >> rOpt.nTrackMoveColor;
+/*N*/   }
+/*N*/
+/*N*/   // ab 22.6.98: Automatisches Detektiv-Update
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/       rStream >> rOpt.bDetectiveAuto;
+/*N*/
+/*N*/   if ( aHdr.BytesLeft() )
+/*N*/   {
+/*N*/       BYTE nLinkMode;
+/*N*/       rStream >> nLinkMode;
+/*N*/       rOpt.eLinkMode=(ScLkUpdMode) nLinkMode;
+/*N*/   }
+/*N*/
+/*N*/   return rStream;
+/*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SvStream& operator<<( SvStream& rStream, const ScAppOptions& rOpt )
-//STRIP001 {
-//STRIP001  ScWriteHeader aHdr( rStream, 25 );
-//STRIP001
-//STRIP001  rStream << (BYTE)rOpt.eMetric;
-//STRIP001  rStream << (BYTE)rOpt.nLRUFuncCount;
-//STRIP001
-//STRIP001  if ( rOpt.nLRUFuncCount > 0 )
-//STRIP001  {
-//STRIP001      for ( USHORT i=0; i<rOpt.nLRUFuncCount; i++ )
-//STRIP001          rStream << rOpt.pLRUList[i];
-//STRIP001  }
-//STRIP001
-//STRIP001  // ab 31.10.95: globale benutzerdefinierte Listen speichern
-//STRIP001  //              (kleiner Hack :-/)
-//STRIP001  ScUserList* pUserList = ScGlobal::GetUserList();
-//STRIP001  pUserList->Store( rStream );
-//STRIP001
-//STRIP001  // ab 11.12.95 (304)
-//STRIP001  // Zoom-Faktor
-//STRIP001  rStream << (USHORT)rOpt.eZoomType;
-//STRIP001  rStream << rOpt.nZoom;
-//STRIP001
-//STRIP001  // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
-//STRIP001  rStream << rOpt.nStatusFunc;
-//STRIP001  rStream << rOpt.bAutoComplete;
-//STRIP001
-//STRIP001  // ab 15.3.98: Farben fuer Change-Tracking
-//STRIP001  rStream << rOpt.nTrackContentColor;
-//STRIP001  rStream << rOpt.nTrackInsertColor;
-//STRIP001  rStream << rOpt.nTrackDeleteColor;
-//STRIP001  rStream << rOpt.nTrackMoveColor;
-//STRIP001
-//STRIP001  // ab 22.6.98: Automatisches Detektiv-Update
-//STRIP001  rStream << rOpt.bDetectiveAuto;
-//STRIP001  rStream << (BYTE) rOpt.eLinkMode;
-//STRIP001
-//STRIP001  return rStream;
-//STRIP001 }
+/*N*/ SvStream& operator<<( SvStream& rStream, const ScAppOptions& rOpt )
+/*N*/ {
+/*N*/   ScWriteHeader aHdr( rStream, 25 );
+/*N*/
+/*N*/   rStream << (BYTE)rOpt.eMetric;
+/*N*/   rStream << (BYTE)rOpt.nLRUFuncCount;
+/*N*/
+/*N*/   if ( rOpt.nLRUFuncCount > 0 )
+/*N*/   {
+/*N*/       for ( USHORT i=0; i<rOpt.nLRUFuncCount; i++ )
+/*N*/           rStream << rOpt.pLRUList[i];
+/*N*/   }
+/*N*/
+/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen speichern
+/*N*/   //              (kleiner Hack :-/)
+/*N*/   ScUserList* pUserList = ScGlobal::GetUserList();
+/*N*/   pUserList->Store( rStream );
+/*N*/
+/*N*/   // ab 11.12.95 (304)
+/*N*/   // Zoom-Faktor
+/*N*/   rStream << (USHORT)rOpt.eZoomType;
+/*N*/   rStream << rOpt.nZoom;
+/*N*/
+/*N*/   // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
+/*N*/   rStream << rOpt.nStatusFunc;
+/*N*/   rStream << rOpt.bAutoComplete;
+/*N*/
+/*N*/   // ab 15.3.98: Farben fuer Change-Tracking
+/*N*/   rStream << rOpt.nTrackContentColor;
+/*N*/   rStream << rOpt.nTrackInsertColor;
+/*N*/   rStream << rOpt.nTrackDeleteColor;
+/*N*/   rStream << rOpt.nTrackMoveColor;
+/*N*/
+/*N*/   // ab 22.6.98: Automatisches Detektiv-Update
+/*N*/   rStream << rOpt.bDetectiveAuto;
+/*N*/   rStream << (BYTE) rOpt.eLinkMode;
+/*N*/
+/*N*/   return rStream;
+/*N*/ }
 
 //------------------------------------------------------------------------
 

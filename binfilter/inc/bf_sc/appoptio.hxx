@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appoptio.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:28 $
+ *  last change: $Author: er $ $Date: 2004-03-30 13:21:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -130,8 +130,8 @@ public:
 
 
     const ScAppOptions& operator=   ( const ScAppOptions& rOpt );
-//STRIP001  friend SvStream&    operator>>  ( SvStream& rStream, ScAppOptions& rOpt );
-//STRIP001  friend SvStream&    operator<<  ( SvStream& rStream, const ScAppOptions& rOpt );
+/*N*/   friend SvStream&    operator>>  ( SvStream& rStream, ScAppOptions& rOpt );
+/*N*/   friend SvStream&    operator<<  ( SvStream& rStream, const ScAppOptions& rOpt );
 
 private:
     FieldUnit   eMetric;
