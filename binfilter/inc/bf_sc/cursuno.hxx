@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cursuno.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:43:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #ifndef _COM_SUN_STAR_TABLE_XCELLCURSOR_HPP_
 #include <com/sun/star/table/XCellCursor.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCELLCURSOR_HPP_
-#include <com/sun/star/sheet/XSheetCellCursor.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLCURSOR_HPP_
+// auto strip #include <com/sun/star/sheet/XSheetCellCursor.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XUSEDAREACURSOR_HPP_
 #include <com/sun/star/sheet/XUsedAreaCursor.hpp>
 #endif
