@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_index.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:57:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,11 @@
 #include "errhdl.hxx"           // fuers ASSERT
 #include "index.hxx"
 #include "error.h"              // fuers ASSERT
+
+#ifndef _STRING_HXX
+#include <tools/string.hxx>
+#endif
+
 namespace binfilter {
 
 #ifndef PRODUCT
