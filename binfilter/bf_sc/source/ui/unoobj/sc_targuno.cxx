@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_targuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:24:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,21 +60,21 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <vcl/image.hxx>
-#include <vcl/virdev.hxx>
+// auto strip #include <vcl/image.hxx>
+// auto strip #include <vcl/virdev.hxx>
 //#include <toolkit/unoiface.hxx>
-#include <toolkit/unohlp.hxx>
-#include <svtools/itemprop.hxx>
-#include <svtools/smplhint.hxx>
+// auto strip #include <toolkit/unohlp.hxx>
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _SV_SETTINGS_HXX
 #include <vcl/settings.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unodoc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-10 14:08:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:25:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,12 +61,12 @@
 
 // System - Includes -----------------------------------------------------
 
-#include <tools/string.hxx>
-#include <bf_sfx2/docfac.hxx>
+// auto strip #include <tools/string.hxx>
+// auto strip #include <bf_sfx2/docfac.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #include "scmod.hxx"
 
