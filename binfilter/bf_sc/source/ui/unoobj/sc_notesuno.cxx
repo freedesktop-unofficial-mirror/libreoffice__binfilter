@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_notesuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:23:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,16 +60,16 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 
 #pragma hdrstop
 
-#include "rangelst.hxx"
-#include <bf_svx/unotext.hxx>
+// auto strip #include "rangelst.hxx"
+// auto strip #include <bf_svx/unotext.hxx>
 
 #include "notesuno.hxx"
 #include "textuno.hxx"
