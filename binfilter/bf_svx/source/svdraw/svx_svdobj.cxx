@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:24:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,45 +59,45 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-#include <com/sun/star/lang/XComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
 
 #include <math.h>
-#include <vcl/metaact.hxx>   // fuer TakeContour
+// auto strip #include <vcl/metaact.hxx>   // fuer TakeContour
 #include <vcl/cvtsvm.hxx>
 #include <tools/line.hxx>
-#include <tools/bigint.hxx>
+// auto strip #include <tools/bigint.hxx>
 #include <vector>
-#include "svdobj.hxx"
-#include "xpoly.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdobj.hxx"
+// auto strip #include "xpoly.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdetc.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdhdl.hxx"
-#include "svddrag.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdhdl.hxx"
+// auto strip #include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdpage.hxx"
 #include "svdovirt.hxx"  // Fuer Add/Del Ref
-#include "svdpagv.hxx"   // fuer PaintGluePoints
+// auto strip #include "svdpagv.hxx"   // fuer PaintGluePoints
 #include "svdview.hxx"   // fuer Dragging (Ortho abfragen)
-#include "svdscrol.hxx"
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdscrol.hxx"
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 #include "svdogrp.hxx"   // Factory
 #include "svdopath.hxx"  // Factory
-#include "svdoedge.hxx"  // Factory
-#include "svdorect.hxx"  // Factory
+// auto strip #include "svdoedge.hxx"  // Factory
+// auto strip #include "svdorect.hxx"  // Factory
 #include "svdocirc.hxx"  // Factory
-#include "svdotext.hxx"  // Factory
+// auto strip #include "svdotext.hxx"  // Factory
 #include "svdomeas.hxx"  // Factory
 #include "svdograf.hxx"  // Factory
 #include "svdoole2.hxx"  // Factory
 #include "svdocapt.hxx"  // Factory
 #include "svdopage.hxx"  // Factory
 #include "svdouno.hxx"   // Factory
-#include "svdattrx.hxx" // NotPersistItems
+// auto strip #include "svdattrx.hxx" // NotPersistItems
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,20 +110,20 @@
 #include "xlnedcit.hxx"
 #include "xlndsit.hxx"
 #include "xlnclit.hxx"
-#include "xflclit.hxx"
+// auto strip #include "xflclit.hxx"
 #include "svditer.hxx"
 #include "xlntrit.hxx"
-#include "xfltrit.hxx"
-#include "xfltrit.hxx"
-#include "xflftrit.hxx"
+// auto strip #include "xfltrit.hxx"
+// auto strip #include "xfltrit.hxx"
+// auto strip #include "xflftrit.hxx"
 #include "xlinjoit.hxx"
 #include "unopage.hxx"
 #include "eeitem.hxx"
-#include "xenum.hxx"
-#include "xgrad.hxx"
-#include "xhatch.hxx"
-#include "xflhtit.hxx"
-#include "xbtmpit.hxx"
+// auto strip #include "xenum.hxx"
+// auto strip #include "xgrad.hxx"
+// auto strip #include "xhatch.hxx"
+// auto strip #include "xflhtit.hxx"
+// auto strip #include "xbtmpit.hxx"
 
 #ifndef _SVDPOOL_HXX
 #include "svdpool.hxx"
@@ -154,6 +154,10 @@
 #include <bf_sfx2/objface.hxx>
 #endif
 
+#ifndef _SVX_RECTENUM_HXX
+#include "rectenum.hxx"
+#endif
+
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
@@ -162,9 +166,14 @@
 #include <svtools/graphictools.hxx>
 #endif
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
