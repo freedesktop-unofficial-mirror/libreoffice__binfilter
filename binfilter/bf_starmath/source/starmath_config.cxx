@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_config.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:11:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,15 +64,15 @@
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
 #endif
-#ifndef _SFXHINT_HXX //autogen
-#include <svtools/hint.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
+// auto strip #ifndef _SFXHINT_HXX //autogen
+// auto strip #include <svtools/hint.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
 #ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
 #endif
@@ -82,26 +82,26 @@
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 
 
 #ifndef CONFIG_HXX
 #include "config.hxx"
 #endif
-#ifndef FORMAT_HXX
-#include "format.hxx"
-#endif
-#ifndef _SMMOD_HXX
-#include "smmod.hxx"
-#endif
+// auto strip #ifndef FORMAT_HXX
+// auto strip #include "format.hxx"
+// auto strip #endif
+// auto strip #ifndef _SMMOD_HXX
+// auto strip #include "smmod.hxx"
+// auto strip #endif
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
