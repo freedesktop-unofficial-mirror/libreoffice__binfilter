@@ -2,9 +2,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:56:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,62 +58,62 @@
  *
  *
  ************************************************************************/
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include "legacy_binfilters_smgr.hxx"
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include "legacy_binfilters_smgr.hxx"
+// auto strip #endif
 #include <hash_map>
 #include <hash_set>
 #include <list>
 
 #include "osl/diagnose.h"
-#include "osl/mutex.hxx"
+// auto strip #include "osl/mutex.hxx"
 #include "osl/file.hxx"
 #include "osl/process.h"
 #include "osl/module.hxx"
-#include "rtl/string.hxx"
+// auto strip #include "rtl/string.hxx"
 #include "rtl/ustrbuf.hxx"
 #include "rtl/unload.h"
 
-#include "uno/mapping.hxx"
+// auto strip #include "uno/mapping.hxx"
 #include "uno/dispatcher.h"
 
-#include "cppuhelper/implbase1.hxx"
+// auto strip #include "cppuhelper/implbase1.hxx"
 #include "cppuhelper/compbase6.hxx"
 #include "cppuhelper/implementationentry.hxx"
-#include <cppuhelper/queryinterface.hxx>
-#include <cppuhelper/weakref.hxx>
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #include <cppuhelper/weakref.hxx>
 #include <cppuhelper/component.hxx>
 #include <cppuhelper/typeprovider.hxx>
 #include <cppuhelper/component_context.hxx>
-#include <cppuhelper/bootstrap.hxx>
+// auto strip #include <cppuhelper/bootstrap.hxx>
 #include <cppuhelper/compbase8.hxx>
 
 
 
-#include "com/sun/star/lang/XComponent.hpp"
-#include "com/sun/star/lang/XServiceInfo.hpp"
-#include "com/sun/star/registry/XSimpleRegistry.hpp"
+// auto strip #include "com/sun/star/lang/XComponent.hpp"
+// auto strip #include "com/sun/star/lang/XServiceInfo.hpp"
+// auto strip #include "com/sun/star/registry/XSimpleRegistry.hpp"
 #include "com/sun/star/registry/XImplementationRegistration.hpp"
-#include "com/sun/star/beans/XPropertySet.hpp"
-#include "com/sun/star/container/XSet.hpp"
-#include "com/sun/star/container/XContentEnumerationAccess.hpp"
+// auto strip #include "com/sun/star/beans/XPropertySet.hpp"
+// auto strip #include "com/sun/star/container/XSet.hpp"
+// auto strip #include "com/sun/star/container/XContentEnumerationAccess.hpp"
 
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#include <com/sun/star/lang/XMultiComponentFactory.hpp>
+// auto strip #include <com/sun/star/lang/XMultiComponentFactory.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#include <com/sun/star/lang/XSingleServiceFactory.hpp>
+// auto strip #include <com/sun/star/lang/XSingleServiceFactory.hpp>
 #include <com/sun/star/lang/XInitialization.hpp>
-#include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
 #include <com/sun/star/lang/DisposedException.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
-#include <com/sun/star/registry/XSimpleRegistry.hpp>
+// auto strip #include <com/sun/star/registry/XSimpleRegistry.hpp>
 #include <com/sun/star/container/XSet.hpp>
-#include <com/sun/star/container/XElementAccess.hpp>
-#include <com/sun/star/container/XEnumeration.hpp>
+// auto strip #include <com/sun/star/container/XElementAccess.hpp>
+// auto strip #include <com/sun/star/container/XEnumeration.hpp>
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
-#include <com/sun/star/container/XHierarchicalNameAccess.hpp>
+// auto strip #include <com/sun/star/container/XHierarchicalNameAccess.hpp>
 #include <com/sun/star/uno/XUnloadingPreference.hpp>
 
 #include "tools/solar.h"
