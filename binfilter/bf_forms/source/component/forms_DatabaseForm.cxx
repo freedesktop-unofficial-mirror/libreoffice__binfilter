@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2004-08-13 14:08:44 $
+ *  last change: $Author: obo $ $Date: 2005-01-06 08:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,9 +78,9 @@
 #include "frm_resource.hrc"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
-// auto strip #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-// auto strip #endif
+#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
+#include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
+#endif
 // auto strip #ifndef _COM_SUN_STAR_UTIL_XCANCELLABLE_HPP_
 // auto strip #include <com/sun/star/util/XCancellable.hpp>
 // auto strip #endif
@@ -1541,144 +1541,7 @@ void ODatabaseForm::onError(SQLException& _rException, const ::rtl::OUString& _r
 //------------------------------------------------------------------------------
 void ODatabaseForm::createParameterInfo()
 {
-    DELETEZ( m_pParameterInfo );
-    m_pParameterInfo = new OParameterInfoImpl;
-
-    // create and fill a composer
-    Reference<XSQLQueryComposer>  xComposer;
-    try
-    {
-        xComposer = getCurrentSettingsComposer(m_xAggregateSet, m_xServiceFactory);
-    }
-    catch(SQLException&)
-    {
-    }
-    Reference<XParametersSupplier>  xSetParameters = Reference<XParametersSupplier> (xComposer, UNO_QUERY);
-
-    // if there is no parsable statement return
-    if (!xSetParameters.is())
-        return;
-
-    Reference<XIndexAccess>  xParamsAsIndicies = xSetParameters->getParameters();
-    sal_Int32 nParamCount = xParamsAsIndicies.is() ? xParamsAsIndicies->getCount() : 0;
-    // without parameters return
-    if ( nParamCount == 0 )
-        return;
-
-    // now evaluate the parameters
-    m_pParameterInfo->nCount = nParamCount;
-    m_pParameterInfo->xParamsAsIndex = xParamsAsIndicies;
-    m_pParameterInfo->pParameters = new OParametersImpl();
-    m_pParameterInfo->pParameters->acquire();
-    OParametersImpl::Parameters& rParams = m_pParameterInfo->pParameters->getParameters();
-
-    // we need to map the parameter names (which is all we can get from our parent) to indicies (which are
-    // needed by the XParameters interface of the row set)
-    MapUString2INT32& rParamMapping = m_pParameterInfo->aParamMapping;
-    Reference<XPropertySet> xParam;
-    for (sal_Int32 i = 0; i<nParamCount; ++i)
-    {
-        ::cppu::extractInterface(xParam, xParamsAsIndicies->getByIndex(i));
-
-        // remember the param fields
-        ::rtl::OUString sName;
-        xParam->getPropertyValue(PROPERTY_NAME) >>= sName;
-        // only append additonal paramters when they are not already in the list
-        if ( rParamMapping.end() == rParamMapping.find(sName) )
-            rParams.push_back(xParam);
-        rParamMapping.insert(MapUString2INT32::value_type(sName, i));
-    }
-
-    // check for a matching of my param master fields with the parent's columns
-    Reference<XColumnsSupplier>  xParentColsSuppl(m_xParent, UNO_QUERY);
-    if (xParentColsSuppl.is())
-    {
-        Reference<XNameAccess>  xParentCols = xParentColsSuppl->getColumns();
-        if (xParentCols.is())
-        {
-            sal_Int32 nMasterLen = m_aMasterFields.getLength();
-            sal_Int32 nSlaveLen = m_aDetailFields.getLength();
-            if (xParentCols->hasElements() && (nMasterLen == nSlaveLen) && (nMasterLen > 0))
-            {
-                const ::rtl::OUString* pMasterFields = m_aMasterFields.getConstArray();
-                const ::rtl::OUString* pDetailFields = m_aDetailFields.getConstArray();
-
-                OParametersImpl::ParametersIterator iter;
-                for (sal_Int32 i = 0; i < nMasterLen; ++i, ++pMasterFields, ++pDetailFields)
-                {
-                    Reference<XPropertySet>  xMasterField, xDetailField;
-
-                    MapUString2INT32::const_iterator aFind;
-                    if (xParentCols->hasByName(*pMasterFields) &&
-                        (aFind = rParamMapping.find(*pDetailFields)) != rParamMapping.end())
-                    {
-                        // parameter defined by master slave definition
-                        ::cppu::extractInterface(xDetailField, xParamsAsIndicies->getByIndex(aFind->second));
-
-                        DBG_ASSERT(rParamMapping.find(*pDetailFields) != rParamMapping.end(), "ODatabaseForm::createParameterInfo: invalid XParametersSupplier !");
-                            // the mapping was build from the XParametersSupplier interface of the composer, and the
-                            // XNameAccess interface of the composer said hasByName(...)==sal_True ... so what ?
-
-                        // delete the wrapper as the parameter is set
-                        iter = find(rParams.begin(), rParams.end(), xDetailField);
-                        DBG_ASSERT(iter != rParams.end(), "ODatabaseForm::createParameterInfo: Parameter not found");
-                        if (iter != rParams.end())
-                            rParams.erase(iter);
-                    }
-                }
-            }
-        }
-    }
-
-    // now set the remaining params
-    sal_Int32 nParamsLeft = rParams.size();
-    if (nParamsLeft)
-    {
-        Reference<XParameters>  xExecutionParams(m_xAggregate, UNO_QUERY);
-
-        ::rtl::OUString sName;
-        Reference<XPropertySet>  xParam;
-        Reference<XPropertySet>  xWrapper;
-        for (sal_Int32 j = nParamsLeft; j; )
-        {
-            --j;
-            xParam = rParams[j];
-            xParam->getPropertyValue(PROPERTY_NAME) >>= sName;
-            // need a wrapper for this .... the params supplied by xMyParamsAsIndicies don't have a "Value"
-            // property, but the parameter listeners expect such a property. So we need an object "aggregating"
-            // xParam and supplying an additional property ("Value")
-            // (it's no real aggregation of course ...)
-
-            // get the position of the parameter
-            MapUString2INT32::const_iterator aFind = m_pParameterInfo->aParamMapping.find(sName);
-            if ( aFind != m_pParameterInfo->aParamMapping.end() )
-            {
-                ::std::vector<sal_Int32> aPositions;
-                do
-                {
-                    sal_Int32 nPos = aFind->second;
-                    if ((sal_Int32)m_aParameterVisited.size() > nPos && m_aParameterVisited[nPos] == true)
-                    {
-                        // parameter already set from outside
-                        OParametersImpl::ParametersIterator aPos = rParams.begin() + j;
-                        if (aPos != rParams.end())
-                            rParams.erase(aPos);
-                    }
-                    else
-                    {
-                        aPositions.push_back(nPos);
-                    }
-                    ++aFind;
-                }
-                while ( aFind != m_pParameterInfo->aParamMapping.end() );
-                if ( !aPositions.empty() )
-                {
-                    xWrapper = new OParameterWrapper(xParam, xExecutionParams, aPositions);
-                    rParams[j] = xWrapper;
-                }
-            }
-        }
-    }
+    DBG_ERROR( "ODatabaseForm::createParameterInfo: why is this still used in binfilter?!!" );
 }
 
 //------------------------------------------------------------------------------
