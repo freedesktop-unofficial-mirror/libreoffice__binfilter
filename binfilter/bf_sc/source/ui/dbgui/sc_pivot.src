@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pivot.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:02:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:43:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,7 +85,7 @@
 //STRIP001  Text[ dutch ] = "DataPiloot";
 //STRIP001  Text[ spanish ] = "Piloto de datos";
 //STRIP001  Text[ chinese_simplified ] = "ζ•°ζ®ε©η†";
-//STRIP001  Text[ russian ] = "Ρβξδνΰÿ ςΰαλθφ?;
+//STRIP001  Text[ russian ] = "Ρβξδνΰÿ ςΰαλθφ?";
 //STRIP001  Text[ polish ] = "Pilot danych";
 //STRIP001  Text[ japanese ] = "γƒ‡γƒΌγ‚Ώγƒ‘γ‚¤γƒ­γƒƒγƒ";
 //STRIP001  Text[ chinese_traditional ] = "θ³‡ζ–™ε©η†";
@@ -95,8 +95,8 @@
 //STRIP001  Text [ dutch ] = "DataPiloot" ;
 //STRIP001  Text [ swedish ] = "Datapilot" ;
 //STRIP001  Text [ danish ] = "DataPilot" ;
-//STRIP001  Text[ greek ] = "Πιλότο?δεδομένω?;
-//STRIP001  Text[ korean ] = "λ°μ΄ν„?νμΌλ?;
+//STRIP001  Text[ greek ] = "Πιλότο?δεδομένω?";
+//STRIP001  Text[ korean ] = "λ°μ΄ν„?νμΌλ?";
 //STRIP001  Text[ turkish ] = "Veri pilotu";
 //STRIP001  Text[ language_user1 ] = " ";
 //STRIP001  Text[ catalan ] = "DataPilot";
@@ -110,8 +110,8 @@
 //STRIP001         Text[ ENGLISH ] = "Column" ;
 //STRIP001         Text[ english_us ] = "Column" ;
 //STRIP001      Text[ portuguese ] = "Coluna";
-//STRIP001      Text[ russian ] = "Κξλξνκ?;
-//STRIP001      Text[ greek ] = "Στήλ?;
+//STRIP001      Text[ russian ] = "Κξλξνκ?";
+//STRIP001      Text[ greek ] = "Στήλ?";
 //STRIP001      Text[ dutch ] = "Kolom";
 //STRIP001      Text[ french ] = "Colonne";
 //STRIP001      Text[ spanish ] = "Columna";
@@ -121,14 +121,14 @@
 //STRIP001      Text[ swedish ] = "Kolumn";
 //STRIP001      Text[ polish ] = "Kolumna";
 //STRIP001      Text[ portuguese_brazilian ] = "Column";
-//STRIP001      Text[ japanese ] = "ε?;
-//STRIP001      Text[ korean ] = "μ—?;
-//STRIP001      Text[ chinese_simplified ] = "ε?;
-//STRIP001      Text[ chinese_traditional ] = "ζ¬?;
+//STRIP001      Text[ japanese ] = "ε?";
+//STRIP001      Text[ korean ] = "μ—?";
+//STRIP001      Text[ chinese_simplified ] = "ε?";
+//STRIP001      Text[ chinese_traditional ] = "ζ¬?";
 //STRIP001      Text[ turkish ] = "Sόtun";
 //STRIP001      Text[ arabic ] = "ΪγζΟ";
 //STRIP001      Text[ catalan ] = "Column";
-//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ­ΰΈ¥ΰΈ±ΰΈ΅ΰΈ™ΰΉ?;
+//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ­ΰΈ¥ΰΈ±ΰΈ΅ΰΈ™ΰΉ?";
 //STRIP001      Text[ czech ] = "Sloupec";
 //STRIP001      Text[ hebrew ] = "Spalte";
 //STRIP001      Text[ hindi ] = "Column";
@@ -158,10 +158,10 @@
 //STRIP001      Text[ swedish ] = "Rad";
 //STRIP001      Text[ polish ] = "Wiersz";
 //STRIP001      Text[ portuguese_brazilian ] = "Row";
-//STRIP001      Text[ japanese ] = "θ΅?;
-//STRIP001      Text[ korean ] = "ν–?;
-//STRIP001      Text[ chinese_simplified ] = "θ΅?;
-//STRIP001      Text[ chinese_traditional ] = "ε?;
+//STRIP001      Text[ japanese ] = "θ΅?";
+//STRIP001      Text[ korean ] = "ν–?";
+//STRIP001      Text[ chinese_simplified ] = "θ΅?";
+//STRIP001      Text[ chinese_traditional ] = "ε?";
 //STRIP001      Text[ turkish ] = "Satύr";
 //STRIP001      Text[ arabic ] = "Υέ";
 //STRIP001      Text[ catalan ] = "fila";
@@ -195,8 +195,8 @@
 //STRIP001      Text[ swedish ] = "Data";
 //STRIP001      Text[ polish ] = "DANE";
 //STRIP001      Text[ portuguese_brazilian ] = "Data";
-//STRIP001      Text[ japanese ] = "γƒ‡γƒΌγ‚?;
-//STRIP001      Text[ korean ] = "λ°μ΄ν„?;
+//STRIP001      Text[ japanese ] = "γƒ‡γƒΌγ‚?";
+//STRIP001      Text[ korean ] = "λ°μ΄ν„?";
 //STRIP001      Text[ chinese_simplified ] = "ζ•°ζ®";
 //STRIP001      Text[ chinese_traditional ] = "θ³‡ζ–™";
 //STRIP001      Text[ turkish ] = "Veri";
@@ -240,8 +240,8 @@
 //STRIP001      Text[ japanese ] = "ιΈζη―„ε›²";
 //STRIP001      Text[ korean ] = "μμ—­ μ„ νƒ";
 //STRIP001      Text[ chinese_simplified ] = "ι€‰ζ‹©εΊε";
-//STRIP001      Text[ chinese_traditional ] = "ιΈε–ε€ε?;
-//STRIP001      Text[ turkish ] = "Seηim alan?;
+//STRIP001      Text[ chinese_traditional ] = "ιΈε–ε€ε?";
+//STRIP001      Text[ turkish ] = "Seηim alan?";
 //STRIP001      Text[ arabic ] = "Selection area";
 //STRIP001      Text[ catalan ] = "Selection area";
 //STRIP001      Text[ thai ] = "Selection area";
@@ -274,21 +274,21 @@
 //STRIP001      Text [ dutch ] = "Sleep de velden aan de rechterzijde met de muis naar het gewenste bereik." ;
 //STRIP001      Text [ spanish ] = "Arrastre los campos de la pαgina derecha hacia el αrea deseada." ;
 //STRIP001      Text [ english_us ] = "Drag the fields from the right into the desired position." ;
-//STRIP001      Text[ chinese_simplified ] = "η”¨ιΌ ζ ‡ε°†ε³ι΅µδΈ­η„ε­—ζ®µη§»ε°ζ‡ε®η„εΊεγ€?;
+//STRIP001      Text[ chinese_simplified ] = "η”¨ιΌ ζ ‡ε°†ε³ι΅µδΈ­η„ε­—ζ®µη§»ε°ζ‡ε®η„εΊεγ€?";
 //STRIP001      Text[ russian ] = "Οεπεςΰωθςε οξ? ?οπΰβξι ρςξπξν??ζελΰεμσώ ξαλΰρς?";
 //STRIP001      Text[ polish ] = "PrzeciΉgnij pola z prawej strony w ΏΉdane miejsce.";
-//STRIP001      Text[ japanese ] = "ε³ε΄γ«γ‚γ‚‹γƒ•γ‚£γƒΌγƒ«γƒ‰γƒγ‚Ώγƒ³γ‚’δ»»ζ„γ®η―„ε›²γ«γƒ‰γƒ©γƒƒγ‚°γ—γΎγ™γ€?;
-//STRIP001      Text[ chinese_traditional ] = "θ«‹δ½Ώη”¨ζ»‘ιΌ ιµε°‡ζ¬„δ½ζ‹–ζ‹‰ε°ε³ι η„δ»»ζ„δΈ€ε€‹ε€εγ€?;
+//STRIP001      Text[ japanese ] = "ε³ε΄γ«γ‚γ‚‹γƒ•γ‚£γƒΌγƒ«γƒ‰γƒγ‚Ώγƒ³γ‚’δ»»ζ„γ®η―„ε›²γ«γƒ‰γƒ©γƒƒγ‚°γ—γΎγ™γ€?";
+//STRIP001      Text[ chinese_traditional ] = "θ«‹δ½Ώη”¨ζ»‘ιΌ ιµε°‡ζ¬„δ½ζ‹–ζ‹‰ε°ε³ι η„δ»»ζ„δΈ€ε€‹ε€εγ€?";
 //STRIP001      Text[ arabic ] = "ΗΣΝΘ ΗαΝήζα γδ ΗαΥέΝΙ Ηανγδμ ΘζΗΣΨΙ ΗαγΗζΣ Εα?ΗαγδΗΨ?ΗαΚν ΚΡΫΘ ένεΗ.";
 //STRIP001      Text[ greek ] = "Σύρετε με το ποντίκ?τα πεδί?τη?δεξιάς σελίδα?στις περιοχές πο?επιθυμείτε.";
 //STRIP001      Text[ korean ] = "λ§μ°μ¤λ¥Ό μ΄μ©ν•μ—¬ μ¤λ¥Έμª½μ—μ„λ¶€ν„?μ›ν•λ?μμ—­μΌλ΅ ν•„λ“λ¥?λ„μ‹­μ‹μ¤";
 //STRIP001      Text[ turkish ] = "Saπdaki alanlar?istenilen konuma sόrόkleyin.";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Arrossega els camps de la dreta fins a la posici?desitjada.";
-//STRIP001      Text[ thai ] = "ΰΈ¥ΰΈ²ΰΈΰΉ€ΰΈ‚ΰΈ•ΰΈ‚ΰΉ‰ΰΈ­ΰΈ΅ΰΈΉΰΈ¥ΰΈΰΈ²ΰΈΰΈ‚ΰΈ§ΰΈ²ΰΈ΅ΰΈ·ΰΈ­ΰΉ„ΰΈ›ΰΈΆΰΈ±ΰΈ‡ΰΈ•ΰΈ³ΰΉΰΈ«ΰΈ™ΰΉΰΈ‡ΰΈ—ΰΈµΰΉΰΈ•ΰΉ‰ΰΈ­ΰΈ‡ΰΈΰΈ²ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ¥ΰΈ²ΰΈΰΉ€ΰΈ‚ΰΈ•ΰΈ‚ΰΉ‰ΰΈ­ΰΈ΅ΰΈΉΰΈ¥ΰΈΰΈ²ΰΈΰΈ‚ΰΈ§ΰΈ²ΰΈ΅ΰΈ·ΰΈ­ΰΉ„ΰΈ›ΰΈΆΰΈ±ΰΈ‡ΰΈ•ΰΈ³ΰΉΰΈ«ΰΈ™ΰΉΰΈ‡ΰΈ—ΰΈµΰΉΰΈ•ΰΉ‰ΰΈ­ΰΈ‡ΰΈΰΈ²ΰΈ?";
 //STRIP001      Text[ czech ] = "PΕ™etΓ΅hnΔ›te pole z pravΓ© ΔΓ΅sti na poΕΎadovanΓ© mΓ­sto.";
 //STRIP001      Text[ hebrew ] = "Ziehen Sie die Felder auf der rechten Seite mit der Maus in die gewΓΌnschten Bereiche.";
-//STRIP001      Text[ hindi ] = "ΰ¤•ΰ¥ΰ¤·ΰ¥‡ΰ¤¤ΰ¥ΰ¤°ΰ¥‹ΰ¤?ΰ¤•ΰ¥‹ ΰ¤¦ΰ¤Ύΰ¤Ήΰ¤Ώΰ¤¨ΰ¥€ ΰ¤“ΰ¤° ΰ¤Έΰ¥‡ ΰ¤–ΰ¥€ΰ¤‚ΰ¤ΰ¤•ΰ¤° ΰ¤‡ΰ¤·ΰ¥ΰ¤ ΰ¤Έΰ¥ΰ¤¥ΰ¤Ύΰ¤?ΰ¤®ΰ¥‡ΰ¤?ΰ¤°ΰ¤–ΰ¥?ΰ¥?;
+//STRIP001      Text[ hindi ] = "ΰ¤•ΰ¥ΰ¤·ΰ¥‡ΰ¤¤ΰ¥ΰ¤°ΰ¥‹ΰ¤?ΰ¤•ΰ¥‹ ΰ¤¦ΰ¤Ύΰ¤Ήΰ¤Ώΰ¤¨ΰ¥€ ΰ¤“ΰ¤° ΰ¤Έΰ¥‡ ΰ¤–ΰ¥€ΰ¤‚ΰ¤ΰ¤•ΰ¤° ΰ¤‡ΰ¤·ΰ¥ΰ¤ ΰ¤Έΰ¥ΰ¤¥ΰ¤Ύΰ¤?ΰ¤®ΰ¥‡ΰ¤?ΰ¤°ΰ¤–ΰ¥?ΰ¥?";
 //STRIP001  };
 //STRIP001     FixedLine FL_LAYOUT
 //STRIP001  {
@@ -299,7 +299,7 @@
 //STRIP001      Text[ english_us ] = "Layout";
 //STRIP001      Text[ portuguese ] = "Configuraηγo";
 //STRIP001      Text[ russian ] = "Πΰημεςκΰ";
-//STRIP001      Text[ greek ] = "Διάταξ?;
+//STRIP001      Text[ greek ] = "Διάταξ?";
 //STRIP001      Text[ dutch ] = "Lay-out";
 //STRIP001      Text[ french ] = "Mise en page";
 //STRIP001      Text[ spanish ] = "Diseρo";
@@ -309,16 +309,16 @@
 //STRIP001      Text[ swedish ] = "Layout";
 //STRIP001      Text[ polish ] = "Uk³ad";
 //STRIP001      Text[ portuguese_brazilian ] = "Layout";
-//STRIP001      Text[ japanese ] = "γƒ¬γ‚¤γ‚Άγ‚¦γƒ?;
+//STRIP001      Text[ japanese ] = "γƒ¬γ‚¤γ‚Άγ‚¦γƒ?";
 //STRIP001      Text[ korean ] = "λ μ΄μ•„μ›ƒ";
 //STRIP001      Text[ chinese_simplified ] = "η‰εΌ";
 //STRIP001      Text[ chinese_traditional ] = "η‰εΌ";
 //STRIP001      Text[ turkish ] = "Yerleώim";
-//STRIP001      Text[ arabic ] = "ΚΞΨν?;
+//STRIP001      Text[ arabic ] = "ΚΞΨν?";
 //STRIP001      Text[ catalan ] = "Disseny";
-//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ„ΰΉ‰ΰΈ²ΰΉ‚ΰΈ„ΰΈ£ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ„ΰΉ‰ΰΈ²ΰΉ‚ΰΈ„ΰΈ£ΰΈ?";
 //STRIP001      Text[ czech ] = "RozloΕΎenΓ­";
-//STRIP001      Text[ hebrew ] = "β€®Χ¤Χ¨Χ™Χ΅Χ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ¤Χ¨Χ™Χ΅Χ”β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤…ΰ¤­ΰ¤Ώΰ¤¨ΰ¥ΰ¤―ΰ¤Ύΰ¤Έ";
 //STRIP001  };
 //STRIP001  OKButton BTN_OK
@@ -358,18 +358,18 @@
 //STRIP001      Text[ italian ] = "Deinstallazione";
 //STRIP001      Text[ danish ] = "Fjern";
 //STRIP001      Text[ swedish ] = "Ta bort";
-//STRIP001      Text[ polish ] = "usu?;
+//STRIP001      Text[ polish ] = "usu?";
 //STRIP001      Text[ portuguese_brazilian ] = "Remove";
 //STRIP001      Text[ japanese ] = "ε‰ι™¤";
 //STRIP001      Text[ korean ] = "μ κ±°";
 //STRIP001      Text[ chinese_simplified ] = "η§»ι™¤";
 //STRIP001      Text[ chinese_traditional ] = "η§»ι™¤";
 //STRIP001      Text[ turkish ] = "Sil";
-//STRIP001      Text[ arabic ] = "ΕÒΗα?;
+//STRIP001      Text[ arabic ] = "ΕÒΗα?";
 //STRIP001      Text[ catalan ] = "Remove";
-//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ­ΰΈ²ΰΈ­ΰΈ­ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ­ΰΈ²ΰΈ­ΰΈ­ΰΈ?";
 //STRIP001      Text[ czech ] = "Odstranit";
-//STRIP001      Text[ hebrew ] = "β€®Χ”Χ΅Χ¨Χ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ”Χ΅Χ¨Χ”β€?";
 //STRIP001      Text[ hindi ] = "Remove";
 //STRIP001  };
 //STRIP001     PushButton BTN_OPTIONS
@@ -401,7 +401,7 @@
 //STRIP001      Text[ catalan ] = "Options...";
 //STRIP001      Text[ thai ] = "Options...";
 //STRIP001      Text[ czech ] = "Volby...";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¤Χ©Χ¨Χ•Χ™Χ•Χªβ€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¤Χ©Χ¨Χ•Χ™Χ•Χªβ€?";
 //STRIP001      Text[ hindi ] = "Options...";
 //STRIP001  };
 //STRIP001  MoreButton BTN_MORE
@@ -442,17 +442,17 @@
 //STRIP001      Text [ english_us ] = "Result" ;
 //STRIP001      Hide = TRUE ;
 //STRIP001      Text[ chinese_simplified ] = "η»“ζ";
-//STRIP001      Text[ russian ] = "Πεησλόςΰ?;
+//STRIP001      Text[ russian ] = "Πεησλόςΰ?";
 //STRIP001      Text[ polish ] = "Wynik";
 //STRIP001      Text[ japanese ] = "ηµζ";
 //STRIP001      Text[ chinese_traditional ] = "ηµζ";
-//STRIP001      Text[ arabic ] = "ΗαδΚνΜ?;
+//STRIP001      Text[ arabic ] = "ΗαδΚνΜ?";
 //STRIP001      Text[ greek ] = "Αποτέλεσμα";
 //STRIP001      Text[ korean ] = "κ²°κ³Ό";
-//STRIP001      Text[ turkish ] = "Sonu?;
+//STRIP001      Text[ turkish ] = "Sonu?";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Resultat";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΈ¥ΰΈ±ΰΈΰΈΰΉ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΈ¥ΰΈ±ΰΈΰΈΰΉ?";
 //STRIP001      Text[ czech ] = "VΓ½sledek";
 //STRIP001      Text[ hebrew ] = "Ergebnis";
 //STRIP001      Text[ hindi ] = "ΰ¤¨ΰ¤¤ΰ¥€ΰ¤ΰ¤Ύ";
@@ -475,13 +475,13 @@
 //STRIP001      Text [ dutch ] = "~Weergave vanaf" ;
 //STRIP001      Text [ spanish ] = "Resultado en" ;
 //STRIP001      Text [ english_us ] = "Results to" ;
-//STRIP001      Text[ chinese_simplified ] = "θΎ“ε‡ΊεΊεδ»?;
-//STRIP001      Text[ russian ] = "Πεησλόςΰ??;
+//STRIP001      Text[ chinese_simplified ] = "θΎ“ε‡ΊεΊεδ»?";
+//STRIP001      Text[ russian ] = "Πεησλόςΰ??";
 //STRIP001      Text[ polish ] = "Wyniki do";
-//STRIP001      Text[ japanese ] = "ηµζθ²Όγ‚δ»γ‘ε…?;
+//STRIP001      Text[ japanese ] = "ηµζθ²Όγ‚δ»γ‘ε…?";
 //STRIP001      Text[ chinese_traditional ] = "ε―ε‡Ίε€εεΎ";
-//STRIP001      Text[ arabic ] = "ΗαδΚΗΖ?Εα?;
-//STRIP001      Text[ greek ] = "Εξ~αγωγ?απ?;
+//STRIP001      Text[ arabic ] = "ΗαδΚΗΖ?Εα?";
+//STRIP001      Text[ greek ] = "Εξ~αγωγ?απ?";
 //STRIP001      Text[ korean ] = "κ²°κ³Ό";
 //STRIP001      Text[ turkish ] = "Sonuηlar";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -525,13 +525,13 @@
 //STRIP001      QuickHelpText [ spanish ] = "Reducir" ;
 //STRIP001      QuickHelpText [ french ] = "Rιduire" ;
 //STRIP001      QuickHelpText [ dutch ] = "Verkleinen" ;
-//STRIP001      QuickHelpText[ russian ] = "Σμενόψθς?;
+//STRIP001      QuickHelpText[ russian ] = "Σμενόψθς?";
 //STRIP001      QuickHelpText[ polish ] = "Pomniejsz";
 //STRIP001      QuickHelpText[ japanese ] = "ηΈ®ε°";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ηΌ©ε°";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ηΈ®ε°";
-//STRIP001      QuickHelpText[ arabic ] = "ΚΥΫν?;
-//STRIP001      QuickHelpText[ greek ] = "Σμίκρυνσ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΚΥΫν?";
+//STRIP001      QuickHelpText[ greek ] = "Σμίκρυνσ?";
 //STRIP001      QuickHelpText[ korean ] = "μ¶•μ†";
 //STRIP001      QuickHelpText[ language_user1 ] = " ";
 //STRIP001      QuickHelpText[ turkish ] = "Verkleinern";
@@ -540,7 +540,7 @@
 //STRIP001      QuickHelpText[ thai ] = "Shrink";
 //STRIP001      QuickHelpText[ czech ] = "ZmenΕ΅it";
 //STRIP001      QuickHelpText[ hebrew ] = "Verkleinern";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤Ώΰ¤•ΰ¥ΰ¤΅ΰ¤¨ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤Ώΰ¤•ΰ¥ΰ¤΅ΰ¤¨ΰ¤?";
 //STRIP001  };
 //STRIP001  CheckBox BTN_IGNEMPTYROWS
 //STRIP001  {
@@ -566,8 +566,8 @@
 //STRIP001      Text[ polish ] = "Ignoruj ~puste wiersze";
 //STRIP001      Text[ japanese ] = "η©Ίη™½θ΅γ‚’η„΅θ¦–γ™γ‚‹(~E)";
 //STRIP001      Text[ chinese_traditional ] = "εΏ½η•¥η©Ίε—(~E)";
-//STRIP001      Text[ arabic ] = "ΚΜΗε?ΗαΥέζέ ΗαέΗΡΫ?;
-//STRIP001      Text[ greek ] = "Παράβλεψ?κενώ?γραμμώ?;
+//STRIP001      Text[ arabic ] = "ΚΜΗε?ΗαΥέζέ ΗαέΗΡΫ?";
+//STRIP001      Text[ greek ] = "Παράβλεψ?κενώ?γραμμώ?";
 //STRIP001      Text[ korean ] = "λΉ?ν–?λ¬΄μ‹(~E)";
 //STRIP001      Text[ turkish ] = "Bo?satύrlar?~yoksay";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -575,7 +575,7 @@
 //STRIP001      Text[ thai ] = "ΰΉ€ΰΈ¥ΰΈ΄ΰΈΰΉΰΈ–ΰΈ§~ΰΈ§ΰΉΰΈ²ΰΈ‡";
 //STRIP001      Text[ czech ] = "Ignorovat prΓ΅zdnΓ© Ε™Γ΅dky";
 //STRIP001      Text[ hebrew ] = "Leerzeilen ~ignorieren";
-//STRIP001      Text[ hindi ] = "~ΰ¤–ΰ¤Ύΰ¤²ΰ¥€ ΰ¤ªΰ¤‚ΰ¤•ΰ¥ΰ¤¤ΰ¤Ώΰ¤―ΰ¥‹ΰ¤?ΰ¤•ΰ¥‹ ΰ¤‰ΰ¤ªΰ¥‡ΰ¤•ΰ¥ΰ¤·ΰ¤?ΰ¤•ΰ¤°ΰ¥?;
+//STRIP001      Text[ hindi ] = "~ΰ¤–ΰ¤Ύΰ¤²ΰ¥€ ΰ¤ªΰ¤‚ΰ¤•ΰ¥ΰ¤¤ΰ¤Ώΰ¤―ΰ¥‹ΰ¤?ΰ¤•ΰ¥‹ ΰ¤‰ΰ¤ªΰ¥‡ΰ¤•ΰ¥ΰ¤·ΰ¤?ΰ¤•ΰ¤°ΰ¥?";
 //STRIP001  };
 //STRIP001  CheckBox BTN_DETECTCAT
 //STRIP001  {
@@ -597,11 +597,11 @@
 //STRIP001      Text [ spanish ] = "I~dentificar las categorνas" ;
 //STRIP001      Text [ english_us ] = "~Identify categories" ;
 //STRIP001      Text[ chinese_simplified ] = "θ―†ε«ε†η±»(~I)";
-//STRIP001      Text[ russian ] = "Πΰροξηνΰβΰνθ?κΰςεγξπθ?;
+//STRIP001      Text[ russian ] = "Πΰροξηνΰβΰνθ?κΰςεγξπθ?";
 //STRIP001      Text[ polish ] = "~Identyfikuj kategorie";
 //STRIP001      Text[ japanese ] = "ε†ι΅ι …η›®γ®θªθ­?~I)";
 //STRIP001      Text[ chinese_traditional ] = "θ­ε¥ε†ι΅(~I)";
-//STRIP001      Text[ arabic ] = "ΚΪΡν?ΗαέΖ?;
+//STRIP001      Text[ arabic ] = "ΚΪΡν?ΗαέΖ?";
 //STRIP001      Text[ greek ] = "Αναγνώριση κατηγοριών";
 //STRIP001      Text[ korean ] = "λ¶„λ¥ ν•­λª© μ‹λ³„(~I)";
 //STRIP001      Text[ turkish ] = "~Kategorileri tanύmla";
@@ -610,7 +610,7 @@
 //STRIP001      Text[ thai ] = "~ΰΈ£ΰΈ°ΰΈΰΈΈΰΈ›ΰΈ£ΰΈ°ΰΉ€ΰΈ ΰΈ—";
 //STRIP001      Text[ czech ] = "Identifikovat kategorie";
 //STRIP001      Text[ hebrew ] = "~Kategorieerkennung";
-//STRIP001      Text[ hindi ] = "ΰ¤µΰ¤°ΰ¥ΰ¤—ΰ¥‹ΰ¤‚ ΰ¤•ΰ¥€ ~ΰ¤ªΰ¤Ήΰ¤ΰ¤Ύΰ¤?;
+//STRIP001      Text[ hindi ] = "ΰ¤µΰ¤°ΰ¥ΰ¤—ΰ¥‹ΰ¤‚ ΰ¤•ΰ¥€ ~ΰ¤ªΰ¤Ήΰ¤ΰ¤Ύΰ¤?";
 //STRIP001  };
 //STRIP001  CheckBox BTN_TOTALCOL
 //STRIP001  {
@@ -634,14 +634,14 @@
 //STRIP001      Text[ polish ] = "Suma ~kolumn";
 //STRIP001      Text[ japanese ] = "ε—γ®η·θ¨";
 //STRIP001      Text[ chinese_traditional ] = "ηΈ½θ¨η„ζ¬„";
-//STRIP001      Text[ arabic ] = "ΓΪγΟ?ΗαγΜγζ?;
+//STRIP001      Text[ arabic ] = "ΓΪγΟ?ΗαγΜγζ?";
 //STRIP001      Text[ greek ] = "Συνολικό άθροισμα στηλών";
 //STRIP001      Text[ korean ] = "μ—?ν•©κ³„";
-//STRIP001      Text[ turkish ] = "Toplam ~sόtun sayύs?;
+//STRIP001      Text[ turkish ] = "Toplam ~sόtun sayύs?";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Total de ~columnes";
-//STRIP001      Text[ finnish ] = "~Sarakkeita yhteens?;
-//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΈ£ΰΈ§ΰΈ΅~ΰΈ„ΰΈ­ΰΈ¥ΰΈ±ΰΈ΅ΰΈ™ΰΉ?;
+//STRIP001      Text[ finnish ] = "~Sarakkeita yhteens?";
+//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΈ£ΰΈ§ΰΈ΅~ΰΈ„ΰΈ­ΰΈ¥ΰΈ±ΰΈ΅ΰΈ™ΰΉ?";
 //STRIP001      Text[ czech ] = "SeΔΓ­st sloupce";
 //STRIP001      Text[ hebrew ] = "Gesamtergebnis-Spalten";
 //STRIP001      Text[ hindi ] = "~ΰ¤Έΰ¥ΰ¤¤ΰ¤‚ΰ¤­ΰ¥‹ΰ¤?ΰ¤•ΰ¥€ ΰ¤•ΰ¥ΰ¤?ΰ¤Έΰ¤‚ΰ¤–ΰ¥ΰ¤―ΰ¤Ύ";
@@ -664,17 +664,17 @@
 //STRIP001      Text [ dutch ] = "~Saldo rijen" ;
 //STRIP001      Text [ portuguese_brazilian ] = "Total das ~linhas" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ€»θ®΅η„θ΅(~T)";
-//STRIP001      Text[ russian ] = "Βρεγ?ρςπξ?;
+//STRIP001      Text[ russian ] = "Βρεγ?ρςπξ?";
 //STRIP001      Text[ polish ] = "£Ήczni~e wierszy";
 //STRIP001      Text[ japanese ] = "θ΅γ®η·θ¨(~T)";
 //STRIP001      Text[ chinese_traditional ] = "ηΈ½θ¨η„ε—(~T)";
-//STRIP001      Text[ arabic ] = "Υέζέ ΗαγΜγζ?;
-//STRIP001      Text[ greek ] = "Συνολικό άθροισμα γραμμώ?;
+//STRIP001      Text[ arabic ] = "Υέζέ ΗαγΜγζ?";
+//STRIP001      Text[ greek ] = "Συνολικό άθροισμα γραμμώ?";
 //STRIP001      Text[ korean ] = "ν–?ν•©κ³„(~T)";
-//STRIP001      Text[ turkish ] = "~Toplam satύr sayύs?;
+//STRIP001      Text[ turkish ] = "~Toplam satύr sayύs?";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Total de files";
-//STRIP001      Text[ finnish ] = "~Rivej?yhteens?;
+//STRIP001      Text[ finnish ] = "~Rivej?yhteens?";
 //STRIP001      Text[ thai ] = "~ΰΈΰΈ¥ΰΈ£ΰΈ§ΰΈ΅ΰΉΰΈ–ΰΈ§";
 //STRIP001      Text[ czech ] = "SeΔΓ­st Ε™Γ΅dky";
 //STRIP001      Text[ hebrew ] = "~Gesamtergebnis-Zeilen";
@@ -708,7 +708,7 @@
 //STRIP001      Text[ catalan ] = "Suma - ";
 //STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΈ£ΰΈ§ΰΈ?- ";
 //STRIP001      Text[ czech ] = "SouΔet - ";
-//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ›Χ•Χ?-β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ›Χ•Χ?-β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ΰ¥‹ΰ¤?- ";
 //STRIP001  };
 //STRIP001  String PIVOTSTR_COUNT
