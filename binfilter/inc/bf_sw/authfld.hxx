@@ -2,9 +2,9 @@
  *
  *  $RCSfile: authfld.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:02 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:40:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,7 +168,7 @@ public:
     USHORT              GetEntryCount() const;
     const SwAuthEntry*  GetEntryByPosition(USHORT nPos) const;
 
-//STRIP001     USHORT              GetSequencePos(long nHandle);
+    USHORT              GetSequencePos(long nHandle);
 
     BOOL                IsSequence() const      {return m_bIsSequence;}
     void                SetSequence(BOOL bSet)
@@ -198,8 +198,8 @@ public:
 //STRIP001
 //STRIP001  //initui.cxx
 //STRIP001  static const String&    GetAuthFieldName(ToxAuthorityField eType);
-//STRIP001  static const String&    GetAuthTypeName(ToxAuthorityType eType);
-//STRIP001
+    static const String&    GetAuthTypeName(ToxAuthorityType eType);
+
     LanguageType    GetLanguage() const {return m_eLanguage;}
     void            SetLanguage(LanguageType nLang)  {m_eLanguage = nLang;}
 
