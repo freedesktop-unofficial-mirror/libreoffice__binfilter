@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:14:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,19 +60,19 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include <string.h>
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
 #include "rechead.hxx"
 #include "collect.hxx"
