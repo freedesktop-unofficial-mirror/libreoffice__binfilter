@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvlfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,18 +73,18 @@
 #ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
 #endif
-#ifndef _SV_SETTINGS_HXX //autogen
-#include <vcl/settings.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _SV_SETTINGS_HXX //autogen
+// auto strip #include <vcl/settings.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
@@ -92,51 +92,56 @@
 #ifndef _PAGEFRM_HXX //autogen
 #include <pagefrm.hxx>
 #endif
-#ifndef _ROOTFRM_HXX //autogen
-#include <rootfrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX //autogen
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX //autogen
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX //autogen
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _FTNFRM_HXX //autogen
 #include <ftnfrm.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FLYFRM_HXX //autogen
 #include <flyfrm.hxx>
 #endif
 #ifndef _TABFRM_HXX //autogen
 #include <tabfrm.hxx>
 #endif
-#ifndef _CELLFRM_HXX //autogen
-#include <cellfrm.hxx>
-#endif
+// auto strip #ifndef _CELLFRM_HXX //autogen
+// auto strip #include <cellfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX //autogen
 #include <txtfrm.hxx>
 #endif
-#ifndef _VIEWSH_HXX //autogen
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _VIEWSH_HXX //autogen
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
-#ifndef _VISCRS_HXX //autogen
-#include <viscrs.hxx>
-#endif
+// auto strip #ifndef _VISCRS_HXX //autogen
+// auto strip #include <viscrs.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX //autogen
 #include <pam.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX //autogen
 #include <swtable.hxx>
 #endif
-#ifndef _DFLYOBJ_HXX //autogen
-#include <dflyobj.hxx>
-#endif
+// auto strip #ifndef _DFLYOBJ_HXX //autogen
+// auto strip #include <dflyobj.hxx>
+// auto strip #endif
 #ifndef _CRSTATE_HXX //autogen
 #include <crstate.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tabfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:39:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,19 +63,24 @@
 #pragma hdrstop
 
 #include "pagefrm.hxx"
-#include "rootfrm.hxx"
-#include "cntfrm.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "cntfrm.hxx"
 #include "viewsh.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "docsh.hxx"
+// auto strip #include "docsh.hxx"
 #include "viewimp.hxx"
 #include "swtable.hxx"
 #include "dflyobj.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
-#include "viewopt.hxx"
+// auto strip #include "viewopt.hxx"
 #include "hints.hxx"
 #include "dbg_lay.hxx"
 
@@ -91,12 +96,12 @@
 #ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
 #endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
