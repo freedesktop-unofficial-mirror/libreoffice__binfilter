@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartAxis.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:20:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #include "schattr.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
@@ -87,13 +87,18 @@
 #define ITEMID_DOUBLE 0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #include "charttyp.hxx"
 // header for SvxUnoTextRangeBase
-#ifndef _SVX_UNOTEXT_HXX
-#include <bf_svx/unotext.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <bf_svx/unotext.hxx>
+// auto strip #endif
 // for OWN_ATTR_...
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
@@ -110,10 +115,15 @@
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
 #endif
 
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "chaxis.hxx"
 #include "mapprov.hxx"
 #include "pairs.hxx"
+
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
+#endif
+
 namespace binfilter {
 
 using namespace vos;
