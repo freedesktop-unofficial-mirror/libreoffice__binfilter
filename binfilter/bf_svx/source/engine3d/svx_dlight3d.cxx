@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_dlight3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:38:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,9 +75,9 @@
 #include "dlight3d.hxx"
 #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dDistantLight, E3dLight);
