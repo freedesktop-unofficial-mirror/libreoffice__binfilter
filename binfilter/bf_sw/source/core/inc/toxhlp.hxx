@@ -2,9 +2,9 @@
  *
  *  $RCSfile: toxhlp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:32:54 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:35:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,33 +89,33 @@ namespace binfilter {
 
 
 
-//STRIP001 class IndexEntrySupplierWrapper
-//STRIP001 {
-//STRIP001  STAR_NMSPC::lang::Locale aLcl;
-//STRIP001     STAR_NMSPC::uno::Reference < ::com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
-//STRIP001
-//STRIP001 public:
-//STRIP001  IndexEntrySupplierWrapper(
-//STRIP001          const STAR_NMSPC::lang::Locale& rLcl,
-//STRIP001          STAR_REFERENCE( lang::XMultiServiceFactory )& rxMSF );
-//STRIP001  ~IndexEntrySupplierWrapper();
-//STRIP001
-//STRIP001     String GetIndexKey( const String& rTxt, const String& rTxtReading,
-//STRIP001                         const STAR_NMSPC::lang::Locale& rLocale ) const;
-//STRIP001
-//STRIP001     String GetFollowingText( BOOL bMorePages ) const;
-//STRIP001
-//STRIP001     STAR_NMSPC::uno::Sequence< ::rtl::OUString >
-//STRIP001     GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const;
-//STRIP001
-//STRIP001     sal_Bool LoadAlgorithm( const STAR_NMSPC::lang::Locale& rLcl,
-//STRIP001                             const String& sSortAlgorithm, long nOptions ) const;
-//STRIP001
-//STRIP001     sal_Int16 CompareIndexEntry( const String& rTxt1, const String& rTxtReading1,
-//STRIP001                                  const STAR_NMSPC::lang::Locale& rLcl1,
-//STRIP001                                  const String& rTxt2, const String& rTxtReading2,
-//STRIP001                                  const STAR_NMSPC::lang::Locale& rLcl2 ) const;
-//STRIP001 };
+ class IndexEntrySupplierWrapper
+ {
+    STAR_NMSPC::lang::Locale aLcl;
+     STAR_NMSPC::uno::Reference < ::com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
+
+ public:
+    IndexEntrySupplierWrapper(
+            const STAR_NMSPC::lang::Locale& rLcl,
+            STAR_REFERENCE( lang::XMultiServiceFactory )& rxMSF );
+    ~IndexEntrySupplierWrapper();
+
+     String GetIndexKey( const String& rTxt, const String& rTxtReading,
+                         const STAR_NMSPC::lang::Locale& rLocale ) const;
+
+     String GetFollowingText( BOOL bMorePages ) const;
+
+     STAR_NMSPC::uno::Sequence< ::rtl::OUString >
+    GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const;
+
+     sal_Bool LoadAlgorithm( const STAR_NMSPC::lang::Locale& rLcl,
+                             const String& sSortAlgorithm, long nOptions ) const;
+
+     sal_Int16 CompareIndexEntry( const String& rTxt1, const String& rTxtReading1,
+                                  const STAR_NMSPC::lang::Locale& rLcl1,
+                                  const String& rTxt2, const String& rTxtReading2,
+                                  const STAR_NMSPC::lang::Locale& rLcl2 ) const;
+ };
 
 } //namespace binfilter
 #endif
