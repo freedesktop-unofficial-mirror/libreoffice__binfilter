@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:27:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -209,6 +209,11 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
