@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:40:44 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:55:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -316,6 +316,7 @@
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 extern BOOL bFrmDrag;
@@ -873,8 +874,8 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001  {
 //STRIP001      //JP 12.04.96: fuer die absoluten/relative Namen -> absolut lassen!
 //STRIP001      SwDoc* pDoc = (SwDoc*)pObject;
-//STRIP001      String sSave( INetURLObject::GetBaseURL() );
-//STRIP001      INetURLObject::SetBaseURL( aEmptyStr );
+//STRIP001      String sSave( so3::StaticBaseUrl::GetBaseURL() );
+//STRIP001      so3::StaticBaseUrl::SetBaseURL( aEmptyStr );
 //STRIP001
 //STRIP001      xWrt->bWriteClipboardDoc = TRUE;
 //STRIP001      xWrt->bWriteOnlyFirstTable = 0 != (TRNSFR_TABELLE & eBufferType);
@@ -886,7 +887,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001          xStream->Commit();
 //STRIP001          bRet = sal_True;
 //STRIP001      }
-//STRIP001      INetURLObject::SetBaseURL( sSave );
+//STRIP001      so3::StaticBaseUrl::SetBaseURL( sSave );
 //STRIP001  }
 //STRIP001
 //STRIP001  return bRet;
@@ -1706,7 +1707,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001  int nRet = 0;
 //STRIP001
 //STRIP001  MSE40HTMLClipFormatObj aMSE40ClpObj;
-//STRIP001  String sTmpBaseURL( INetURLObject::GetBaseURL() );
+//STRIP001  String sTmpBaseURL( so3::StaticBaseUrl::GetBaseURL() );
 //STRIP001
 //STRIP001  SotStorageStreamRef xStrm;
 //STRIP001  SvStream* pStream = 0;
@@ -1745,7 +1746,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001              pStream = aMSE40ClpObj.IsValid( *xStrm );
 //STRIP001              pRead = ReadHTML;
 //STRIP001              pRead->SetReadUTF8( TRUE );
-//STRIP001              INetURLObject::SetBaseURL( aMSE40ClpObj.GetBaseURL() );
+//STRIP001              so3::StaticBaseUrl::SetBaseURL( aMSE40ClpObj.GetBaseURL() );
 //STRIP001
 //STRIP001                 BOOL bNoComments =
 //STRIP001                     ( nFmt == SOT_FORMATSTR_ID_HTML_NO_COMMENT );
@@ -1774,7 +1775,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001      else
 //STRIP001          nResId = 0, nRet = 1;
 //STRIP001
-//STRIP001      INetURLObject::SetBaseURL( sTmpBaseURL );
+//STRIP001      so3::StaticBaseUrl::SetBaseURL( sTmpBaseURL );
 //STRIP001
 //STRIP001      rSh.SetChgLnk( aOldLink );
 //STRIP001      if( nRet )
@@ -2273,7 +2274,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001              SwTransferable::_CheckForURLOrLNKFile( rData, sTxt, &sDesc );
 //STRIP001
 //STRIP001              aBkmk = INetBookmark(
-//STRIP001                  URIHelper::SmartRelToAbs( sTxt ), sDesc );
+//STRIP001                  so3::StaticBaseUrl::SmartRelToAbs( sTxt ), sDesc );
 //STRIP001              bCheckForGrf = TRUE;
 //STRIP001              bCheckForImageMap = SW_PASTESDR_REPLACE == nAction;
 //STRIP001          }
@@ -2508,7 +2509,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001     // und dann per PostUser Event den Bereich-Einfuegen-Dialog hochreissen
 //STRIP001                     SwSection* pSect = new SwSection( FILE_LINK_SECTION,
 //STRIP001                                     rSh.GetDoc()->GetUniqueSectionName() );
-//STRIP001                     pSect->SetLinkFileName( URIHelper::SmartRelToAbs( sFile ) );
+//STRIP001                     pSect->SetLinkFileName( so3::StaticBaseUrl::SmartRelToAbs( sFile ) );
 //STRIP001                     pSect->SetProtect( TRUE );
 //STRIP001
 //STRIP001                     Application::PostUserEvent( STATIC_LINK( &rSh, SwWrtShell,
