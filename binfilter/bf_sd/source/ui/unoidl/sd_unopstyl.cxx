@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unopstyl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:08:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,13 +59,13 @@
  *
  ************************************************************************/
 
-#ifndef _UNO_COM_SUN_STAR_BEANS_PROPERTYSTATE_H_
-#include <com/sun/star/beans/PropertyState.hpp>
-#endif
+// auto strip #ifndef _UNO_COM_SUN_STAR_BEANS_PROPERTYSTATE_H_
+// auto strip #include <com/sun/star/beans/PropertyState.hpp>
+// auto strip #endif
 
-#ifndef _SFXSMPLHINT_HXX
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _SFXSMPLHINT_HXX
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
@@ -75,15 +75,15 @@
 #include <vcl/svapp.hxx>
 #endif
 
-#ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #include <bf_svx/unoshprp.hxx>
 
-#ifndef _SVX_UNOTEXT_HXX
-#include <bf_svx/unotext.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <bf_svx/unotext.hxx>
+// auto strip #endif
 
 #ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
@@ -92,7 +92,7 @@
 #include <svtools/smplhint.hxx>
 #endif
 
-#include <comphelper/extract.hxx>
+// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -103,7 +103,7 @@
 #include <bf_svx/xflbmtit.hxx>
 #endif
 
-#include <bf_svx/unoprov.hxx>
+// auto strip #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unoshape.hxx>
 #ifndef _SVX_XIT_HXX
 #include <bf_svx/xit.hxx>
@@ -113,11 +113,11 @@
 #include "stlpool.hxx"
 #endif
 
-#include "unohelp.hxx"
+// auto strip #include "unohelp.hxx"
 #include <unopsfm.hxx>
 #include <unopstyl.hxx>
 #include <unokywds.hxx>
-#include <unomodel.hxx>
+// auto strip #include <unomodel.hxx>
 #include <unoprnms.hxx>
 #include <glob.hxx>
 #include <helpids.h>
