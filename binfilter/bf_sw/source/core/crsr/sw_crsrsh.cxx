@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_crsrsh.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:59:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
-#include <com/sun/star/util/SearchOptions.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
+// auto strip #include <com/sun/star/util/SearchOptions.hpp>
+// auto strip #endif
 
 
 #pragma hdrstop
@@ -70,14 +70,18 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
 
 #ifdef BIDI
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX
@@ -89,21 +93,21 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>           // fuer ASSERT
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>         // fuer ASSERT
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
@@ -113,21 +117,21 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>
-#endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _CALLNK_HXX
 #include <callnk.hxx>
 #endif
@@ -137,21 +141,21 @@
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>
-#endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>
+// auto strip #endif
 #ifndef _SWGLOBDOCSH_HXX //autogen
 #include <globdoc.hxx>
 #endif
-#ifndef _PAMTYP_HXX
-#include <pamtyp.hxx>
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>           // ...Percent()
-#endif
+// auto strip #ifndef _PAMTYP_HXX
+// auto strip #include <pamtyp.hxx>
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>         // ...Percent()
+// auto strip #endif
 #ifndef _FMTEIRO_HXX //autogen
 #include <fmteiro.hxx>
 #endif
