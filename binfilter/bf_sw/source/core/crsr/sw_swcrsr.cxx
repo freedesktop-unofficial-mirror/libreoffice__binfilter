@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swcrsr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:01:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
@@ -78,75 +78,85 @@
 #endif
 
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_CTLOPTIONS_HXX
+// auto strip #include <svtools/ctloptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTBLFMT_HXX //autogen
+// auto strip #include <swtblfmt.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
-#include <svtools/ctloptions.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX //autogen
-#include <swtblfmt.hxx>
-#endif
-#ifndef _SWCRSR_HXX
-#include <swcrsr.hxx>
-#endif
+
+// auto strip #ifndef _SWCRSR_HXX
+// auto strip #include <swcrsr.hxx>
+// auto strip #endif
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>
-#endif
-#ifndef _CRSTATE_HXX
-#include <crstate.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>
+// auto strip #endif
+// auto strip #ifndef _CRSTATE_HXX
+// auto strip #include <crstate.hxx>
+// auto strip #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
-#ifndef _SV_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>           // ...Percent()
 #endif
