@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdsnpv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:31:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,12 @@
 #include "svdsnpv.hxx"
 #include <math.h>
 
-#include "svdetc.hxx"
+// auto strip #include "svdetc.hxx"
 #include "svdio.hxx"
-#include "svdobj.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdpagv.hxx"
-#include "svdpage.hxx"
-#include "svditer.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svditer.hxx"
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
