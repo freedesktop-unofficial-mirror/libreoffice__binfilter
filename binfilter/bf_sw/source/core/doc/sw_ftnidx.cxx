@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ftnidx.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:10:45 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:33:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -441,39 +441,39 @@ namespace binfilter {
 /*N*/ USHORT SwUpdFtnEndNtAtEnd::GetNumber( const SwTxtFtn& rTxtFtn,
 /*N*/                                   const SwSectionNode& rNd )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  USHORT nRet = 0, nWh;
-//STRIP001  SvPtrarr* pArr;
-//STRIP001  SvUShorts* pNum;
-//STRIP001  if( rTxtFtn.GetFtn().IsEndNote() )
-//STRIP001  {
-//STRIP001      pArr = &aEndSects;
-//STRIP001      pNum = &aEndNums;
-//STRIP001      nWh = RES_END_AT_TXTEND;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pArr = &aFtnSects;
-//STRIP001      pNum = &aFtnNums;
-//STRIP001      nWh = RES_FTN_AT_TXTEND;
-//STRIP001  }
-//STRIP001  void* pNd = (void*)&rNd;
-//STRIP001
-//STRIP001  for( USHORT n = pArr->Count(); n; )
-//STRIP001      if( pArr->GetObject( --n ) == pNd )
-//STRIP001      {
-//STRIP001          nRet = ++pNum->GetObject( n );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001  if( !nRet )
-//STRIP001  {
-//STRIP001      pArr->Insert( pNd, pArr->Count() );
-//STRIP001      nRet = ((SwFmtFtnEndAtTxtEnd&)rNd.GetSection().GetFmt()->
-//STRIP001                              GetAttr( nWh )).GetOffset();
-//STRIP001      ++nRet;
-//STRIP001      pNum->Insert( nRet, pNum->Count() );
-//STRIP001  }
-//STRIP001  return nRet;
+            USHORT nRet = 0, nWh;
+            SvPtrarr* pArr;
+            SvUShorts* pNum;
+            if( rTxtFtn.GetFtn().IsEndNote() )
+            {
+                pArr = &aEndSects;
+                pNum = &aEndNums;
+                nWh = RES_END_AT_TXTEND;
+            }
+            else
+            {
+                pArr = &aFtnSects;
+                pNum = &aFtnNums;
+                nWh = RES_FTN_AT_TXTEND;
+            }
+            void* pNd = (void*)&rNd;
+
+            for( USHORT n = pArr->Count(); n; )
+                if( pArr->GetObject( --n ) == pNd )
+                {
+                    nRet = ++pNum->GetObject( n );
+                    break;
+                }
+
+            if( !nRet )
+            {
+                pArr->Insert( pNd, pArr->Count() );
+                nRet = ((SwFmtFtnEndAtTxtEnd&)rNd.GetSection().GetFmt()->
+                                        GetAttr( nWh )).GetOffset();
+                ++nRet;
+                pNum->Insert( nRet, pNum->Count() );
+            }
+            return nRet;
 /*N*/ }
 
 /*N*/ USHORT SwUpdFtnEndNtAtEnd::ChkNumber( const SwTxtFtn& rTxtFtn )
