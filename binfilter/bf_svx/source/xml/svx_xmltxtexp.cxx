@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmltxtexp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:49:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,74 +68,74 @@
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 
-#ifndef _SFXBRDCST_HXX
-#include <svtools/brdcst.hxx>
-#endif
+// auto strip #ifndef _SFXBRDCST_HXX
+// auto strip #include <svtools/brdcst.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCFILE_HXX
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include <bf_xmloff/xmluconv.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include <bf_xmloff/xmluconv.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "bf_xmloff/xmlnmspe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "bf_xmloff/xmlnmspe.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "bf_xmloff/nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "bf_xmloff/nmspmap.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLMETAE_HXX
-#include "bf_xmloff/xmlmetae.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLMETAE_HXX
+// auto strip #include "bf_xmloff/xmlmetae.hxx"
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
 
-#ifndef _MyEDITENG_HXX
-#include "editeng.hxx"
-#endif
+// auto strip #ifndef _MyEDITENG_HXX
+// auto strip #include "editeng.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "bf_xmloff/xmlexp.hxx"
 #endif
 
-#ifndef _SVX_UNOEDSRC_HXX
-#include "unoedsrc.hxx"
-#endif
+// auto strip #ifndef _SVX_UNOEDSRC_HXX
+// auto strip #include "unoedsrc.hxx"
+// auto strip #endif
 
 #ifndef _SVX_UNOFORED_HXX
 #include "unofored.hxx"

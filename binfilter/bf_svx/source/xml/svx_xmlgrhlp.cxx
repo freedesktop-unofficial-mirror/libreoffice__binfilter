@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlgrhlp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $
+ *  last change: $Author: hr $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/streamwrap.hxx>
 #include <unotools/tempfile.hxx>
-#include <tools/debug.hxx>
-#include <vcl/cvtgrf.hxx>
-#include <vcl/gfxlink.hxx>
+// auto strip #include <tools/debug.hxx>
+// auto strip #include <vcl/cvtgrf.hxx>
+// auto strip #include <vcl/gfxlink.hxx>
 
 #include "impgrf.hxx"
 #include "xmlgrhlp.hxx"
