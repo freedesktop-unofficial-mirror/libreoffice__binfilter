@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmldpimp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:31:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,19 +60,19 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include "xmldpimp.hxx"
+// auto strip #include "xmldpimp.hxx"
 #include "xmlimprt.hxx"
 #include "xmlfilti.hxx"
-#include "xmlsorti.hxx"
+// auto strip #include "xmlsorti.hxx"
 #include "document.hxx"
-#include "docuno.hxx"
+// auto strip #include "docuno.hxx"
 #include "dpshttab.hxx"
 #include "dpsdbtab.hxx"
 #include "attrib.hxx"
@@ -81,11 +81,11 @@
 #include "XMLConverter.hxx"
 #endif
 
-#include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //#include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
