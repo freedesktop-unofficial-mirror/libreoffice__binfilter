@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_scriptcont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:29:50 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:19:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -161,21 +161,21 @@ using namespace osl;
 /*N*/ }
 
 // OldBasicPassword interface
-/*?*/ void SfxScriptLibraryContainer::setLibraryPassword
-/*?*/     ( const String& rLibraryName, const String& rPassword )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     try
-//STRIP001     {
-//STRIP001         SfxLibrary_Impl* pImplLib = getImplLib( rLibraryName );
-//STRIP001         if( rPassword.Len() )
-//STRIP001         {
-//STRIP001          pImplLib->mbDoc50Password = sal_True;
-//STRIP001             pImplLib->mbPasswordProtected = sal_True;
-//STRIP001             pImplLib->maPassword = rPassword;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     catch( NoSuchElementException& ) {}
-/*?*/ }
+void SfxScriptLibraryContainer::setLibraryPassword(
+    const String& rLibraryName, const String& rPassword )
+{
+    try
+    {
+        SfxLibrary_Impl* pImplLib = getImplLib( rLibraryName );
+        if ( rPassword.Len() )
+        {
+            pImplLib->mbDoc50Password = sal_True;
+            pImplLib->mbPasswordProtected = sal_True;
+            pImplLib->maPassword = rPassword;
+        }
+    }
+    catch( NoSuchElementException& ) {}
+}
 
 /*N*/ String SfxScriptLibraryContainer::getLibraryPassword( const String& rLibraryName )
 /*N*/ {
@@ -377,23 +377,23 @@ using namespace osl;
 // Storing with password encryption
 
 // Methods XLibraryContainerPassword
-/*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordProtected( const OUString& Name )
-/*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001  sal_Bool bRet = pImplLib->mbPasswordProtected;
-//STRIP001  return bRet;
-/*?*/ }
+sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordProtected( const OUString& Name )
+    throw (NoSuchElementException, RuntimeException)
+{
+    SfxLibrary_Impl* pImplLib = getImplLib( Name );
+    sal_Bool bRet = pImplLib->mbPasswordProtected;
+    return bRet;
+}
 
-/*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OUString& Name )
-/*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-//STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
-//STRIP001  if( !pImplLib->mbPasswordProtected )
-//STRIP001      throw IllegalArgumentException();
-//STRIP001  sal_Bool bRet = pImplLib->mbPasswordVerified;
-//STRIP001  return bRet;
-/*?*/ }
+sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OUString& Name )
+    throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
+{
+    SfxLibrary_Impl* pImplLib = getImplLib( Name );
+    if( !pImplLib->mbPasswordProtected )
+        throw IllegalArgumentException();
+    sal_Bool bRet = pImplLib->mbPasswordVerified;
+    return bRet;
+}
 
 /*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::verifyLibraryPassword
 /*?*/     ( const OUString& Name, const OUString& Password )
