@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:09:13 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:37:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -177,6 +177,7 @@
 // auto strip #ifndef _LEGACYBINFILTERMGR_HXX
 // auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
 // auto strip #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star::lang;
@@ -1485,11 +1486,11 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //STRIP001          BOOL bHasTemplateConfig = HasTemplateConfig();
 //STRIP001          SetTemplateConfig( FALSE );
 //STRIP001          BOOL bOK = FALSE;
-//STRIP001          const String aOldURL( INetURLObject::GetBaseURL() );
+//STRIP001          const String aOldURL( so3::StaticBaseUrl::GetBaseURL() );
 //STRIP001          if( ShallSetBaseURL_Impl( aMedium ) )
-//STRIP001              INetURLObject::SetBaseURL( aMedium.GetBaseURL() );
+//STRIP001              so3::StaticBaseUrl::SetBaseURL( aMedium.GetBaseURL() );
 //STRIP001          else
-//STRIP001              INetURLObject::SetBaseURL( String() );
+//STRIP001              so3::StaticBaseUrl::SetBaseURL( String() );
 //STRIP001
 //STRIP001             aMedium.CreateTempFileNoCopy();
 //STRIP001
@@ -1517,7 +1518,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //STRIP001              pTemplates->NewTemplate( nRegion, aTemplateName, aFileName );
 //STRIP001          }
 //STRIP001
-//STRIP001          INetURLObject::SetBaseURL( aOldURL );
+//STRIP001          so3::StaticBaseUrl::SetBaseURL( aOldURL );
 //STRIP001
 //STRIP001          DELETEX(pDlg);
 //STRIP001
