@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmluconv.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:48:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,25 +67,25 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include <xmlement.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include <xmlement.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmluconv.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <xmltoken.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
@@ -118,9 +118,9 @@
 #ifndef _COM_SUN_STAR_TEXT_XNUMBERINGTYPEINFO_HPP_
 #include <com/sun/star/text/XNumberingTypeInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _SVX_VECTOR3D_HXX
 #include <goodies/vector3d.hxx>
