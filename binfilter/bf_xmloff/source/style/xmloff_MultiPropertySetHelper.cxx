@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_MultiPropertySetHelper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:06:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include "MultiPropertySetHelper.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
