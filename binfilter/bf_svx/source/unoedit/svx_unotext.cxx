@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unotext.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:47:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,15 +63,15 @@
 #include <vcl/svapp.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
-#include <com/sun/star/style/LineSpacing.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
-#include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
-#include <com/sun/star/text/ControlCharacter.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
+// auto strip #include <com/sun/star/style/LineSpacing.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
+// auto strip #include <com/sun/star/text/HoriOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
+// auto strip #include <com/sun/star/text/ControlCharacter.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
 #endif
@@ -82,29 +82,29 @@
 #include <com/sun/star/text/XTextField.hdl>
 #endif
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
 #include <eeitem.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
 #define ITEMID_FONT EE_CHAR_FONTINFO
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <fontitem.hxx>
-#endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <fontitem.hxx>
+// auto strip #endif
 
 #define ITEMID_TABSTOP EE_PARA_TABS
-#ifndef _SVX_TSPTITEM_HXX //autogen
-#include <tstpitem.hxx>
-#endif
+// auto strip #ifndef _SVX_TSPTITEM_HXX //autogen
+// auto strip #include <tstpitem.hxx>
+// auto strip #endif
 
 #ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
@@ -119,14 +119,27 @@
 #include <rtl/memory.h>
 
 #include "unoshtxt.hxx"
-#include "unoprnms.hxx"
-#include "unotext.hxx"
-#include "unoedsrc.hxx"
-#include "unomid.hxx"
+// auto strip #include "unoprnms.hxx"
+// auto strip #include "unotext.hxx"
+// auto strip #include "unoedsrc.hxx"
+// auto strip #include "unomid.hxx"
 #include "unonrule.hxx"
 #include "unofdesc.hxx"
-#include "unoapi.hxx"
+// auto strip #include "unoapi.hxx"
 #include "unofield.hxx"
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
 #include "flditem.hxx"
 #include "unoshprp.hxx"
 #include "numitem.hxx"
