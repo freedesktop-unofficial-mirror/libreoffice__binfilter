@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_ximpbody.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:54:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,17 +73,17 @@
 #include "ximpnote.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
-#include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
+// auto strip #include <com/sun/star/drawing/XDrawPage.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGES_HPP_
 #include <com/sun/star/drawing/XDrawPages.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
 #include <com/sun/star/presentation/XPresentationPage.hpp>
@@ -97,21 +97,21 @@
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XIMPSHOW_HXX
 #include "ximpshow.hxx"
