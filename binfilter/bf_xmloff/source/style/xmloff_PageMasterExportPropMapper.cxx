@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_PageMasterExportPropMapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:07:18 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:52:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -389,37 +389,37 @@ void XMLPageMasterExportPropMapper::ContextFilter(
 
         switch( nSimpleId )
         {
-            case CTF_PM_BORDERALL:          pBuffer->pPMBorderAll           = pProp;    break;
-            case CTF_PM_BORDERTOP:          pBuffer->pPMBorderTop           = pProp;    break;
-            case CTF_PM_BORDERBOTTOM:       pBuffer->pPMBorderBottom        = pProp;    break;
-            case CTF_PM_BORDERLEFT:         pBuffer->pPMBorderLeft          = pProp;    break;
-            case CTF_PM_BORDERRIGHT:        pBuffer->pPMBorderRight         = pProp;    break;
-            case CTF_PM_BORDERWIDTHALL:     pBuffer->pPMBorderWidthAll      = pProp;    break;
-            case CTF_PM_BORDERWIDTHTOP:     pBuffer->pPMBorderWidthTop      = pProp;    break;
-            case CTF_PM_BORDERWIDTHBOTTOM:  pBuffer->pPMBorderWidthBottom   = pProp;    break;
-            case CTF_PM_BORDERWIDTHLEFT:    pBuffer->pPMBorderWidthLeft     = pProp;    break;
-            case CTF_PM_BORDERWIDTHRIGHT:   pBuffer->pPMBorderWidthRight    = pProp;    break;
-            case CTF_PM_PADDINGALL:         pBuffer->pPMPaddingAll          = pProp;    break;
-            case CTF_PM_PADDINGTOP:         pBuffer->pPMPaddingTop          = pProp;    break;
-            case CTF_PM_PADDINGBOTTOM:      pBuffer->pPMPaddingBottom       = pProp;    break;
-            case CTF_PM_PADDINGLEFT:        pBuffer->pPMPaddingLeft         = pProp;    break;
-            case CTF_PM_PADDINGRIGHT:       pBuffer->pPMPaddingRight        = pProp;    break;
+            case CTF_PM_BORDERALL:          pBuffer->pPMBorderAll           = &(*pProp);    break;
+            case CTF_PM_BORDERTOP:          pBuffer->pPMBorderTop           = &(*pProp);    break;
+            case CTF_PM_BORDERBOTTOM:       pBuffer->pPMBorderBottom        = &(*pProp);    break;
+            case CTF_PM_BORDERLEFT:         pBuffer->pPMBorderLeft          = &(*pProp);    break;
+            case CTF_PM_BORDERRIGHT:        pBuffer->pPMBorderRight         = &(*pProp);    break;
+            case CTF_PM_BORDERWIDTHALL:     pBuffer->pPMBorderWidthAll      = &(*pProp);    break;
+            case CTF_PM_BORDERWIDTHTOP:     pBuffer->pPMBorderWidthTop      = &(*pProp);    break;
+            case CTF_PM_BORDERWIDTHBOTTOM:  pBuffer->pPMBorderWidthBottom   = &(*pProp);    break;
+            case CTF_PM_BORDERWIDTHLEFT:    pBuffer->pPMBorderWidthLeft     = &(*pProp);    break;
+            case CTF_PM_BORDERWIDTHRIGHT:   pBuffer->pPMBorderWidthRight    = &(*pProp);    break;
+            case CTF_PM_PADDINGALL:         pBuffer->pPMPaddingAll          = &(*pProp);    break;
+            case CTF_PM_PADDINGTOP:         pBuffer->pPMPaddingTop          = &(*pProp);    break;
+            case CTF_PM_PADDINGBOTTOM:      pBuffer->pPMPaddingBottom       = &(*pProp);    break;
+            case CTF_PM_PADDINGLEFT:        pBuffer->pPMPaddingLeft         = &(*pProp);    break;
+            case CTF_PM_PADDINGRIGHT:       pBuffer->pPMPaddingRight        = &(*pProp);    break;
         }
 
         switch( nContextId )
         {
-            case CTF_PM_HEADERHEIGHT:       pPMHeaderHeight     = pProp;    break;
-            case CTF_PM_HEADERMINHEIGHT:    pPMHeaderMinHeight  = pProp;    break;
-            case CTF_PM_HEADERDYNAMIC:      pPMHeaderDynamic    = pProp;    break;
-            case CTF_PM_FOOTERHEIGHT:       pPMFooterHeight     = pProp;    break;
-            case CTF_PM_FOOTERMINHEIGHT:    pPMFooterMinHeight  = pProp;    break;
-            case CTF_PM_FOOTERDYNAMIC:      pPMFooterDynamic    = pProp;    break;
-            case CTF_PM_SCALETO:            pPMScaleTo          = pProp;    break;
-            case CTF_PM_SCALETOPAGES:       pPMScaleToPages     = pProp;    break;
+            case CTF_PM_HEADERHEIGHT:       pPMHeaderHeight     = &(*pProp);    break;
+            case CTF_PM_HEADERMINHEIGHT:    pPMHeaderMinHeight  = &(*pProp);    break;
+            case CTF_PM_HEADERDYNAMIC:      pPMHeaderDynamic    = &(*pProp);    break;
+            case CTF_PM_FOOTERHEIGHT:       pPMFooterHeight     = &(*pProp);    break;
+            case CTF_PM_FOOTERMINHEIGHT:    pPMFooterMinHeight  = &(*pProp);    break;
+            case CTF_PM_FOOTERDYNAMIC:      pPMFooterDynamic    = &(*pProp);    break;
+            case CTF_PM_SCALETO:            pPMScaleTo          = &(*pProp);    break;
+            case CTF_PM_SCALETOPAGES:       pPMScaleToPages     = &(*pProp);    break;
         }
         if (nPrintId == CTF_PM_PRINTMASK)
         {
-            pPrint = pProp;
+            pPrint = &(*pProp);
             lcl_RemoveState(pPrint);
         }
     }
