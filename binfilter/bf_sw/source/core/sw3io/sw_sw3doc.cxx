@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:41:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,17 +59,16 @@
  *
  ************************************************************************/
 
-
 #pragma hdrstop
 
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
 #endif
@@ -90,18 +89,22 @@
 #include <frmatr.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "docary.hxx"
+// auto strip #include "docary.hxx"
 #include "swrect.hxx"
 #include "swerror.h"
 #include "pam.hxx"
-#include "fldbas.hxx"
+// auto strip #include "fldbas.hxx"
 #include "rootfrm.hxx"
 #include "pagedesc.hxx"
 #include "ndtxt.hxx"
 #include "ndole.hxx"
 #include "sw3imp.hxx"
-#include "poolfmt.hxx"
+// auto strip #include "poolfmt.hxx"
 namespace binfilter {
 
 
