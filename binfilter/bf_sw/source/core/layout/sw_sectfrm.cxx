@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sectfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:38:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,28 +81,33 @@
 #include "sectfrm.hxx"
 #include "section.hxx"      // SwSection
 #include "frmtool.hxx"      // StackHack
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"          // SwDoc
-#include "cntfrm.hxx"       // SwCntntFrm
-#include "rootfrm.hxx"      // SwRootFrm
+// auto strip #include "cntfrm.hxx"     // SwCntntFrm
+// auto strip #include "rootfrm.hxx"        // SwRootFrm
 #include "pagefrm.hxx"      // SwPageFrm
-#include "fmtpdsc.hxx"      // SwFmtPageDesc
-#include "fmtcntnt.hxx"     // SwFmtCntnt
-#include "ndindex.hxx"      // SwNodeIndex
-#include "ftnidx.hxx"
+// auto strip #include "fmtpdsc.hxx"        // SwFmtPageDesc
+// auto strip #include "fmtcntnt.hxx"       // SwFmtCntnt
+// auto strip #include "ndindex.hxx"        // SwNodeIndex
+// auto strip #include "ftnidx.hxx"
 #include "txtfrm.hxx"       // SwTxtFrm
 #include "fmtclds.hxx"      // SwFmtCol
 #include "colfrm.hxx"       // SwColumnFrm
 #include "tabfrm.hxx"       // SwTabFrm
 #include "flyfrm.hxx"       // SwFlyFrm
 #include "ftnfrm.hxx"       // SwFtnFrm
-#include "layouter.hxx"     // SwLayouter
+// auto strip #include "layouter.hxx"       // SwLayouter
 #include "dbg_lay.hxx"
-#include "viewsh.hxx"
-#include "viewimp.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "viewimp.hxx"
 #include "frmsh.hxx"
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
