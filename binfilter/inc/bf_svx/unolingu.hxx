@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unolingu.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:34:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,28 +68,28 @@
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
+// auto strip #ifndef _VOS_REFERNCE_HXX_
+// auto strip #include <vos/refernce.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UTIL_LANGUAGE_HPP_
-#include <com/sun/star/util/Language.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_LANGUAGE_HPP_
+// auto strip #include <com/sun/star/util/Language.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
 #endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
-#include <com/sun/star/linguistic2/XThesaurus.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
+// auto strip #include <com/sun/star/linguistic2/XHyphenator.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
+// auto strip #include <com/sun/star/linguistic2/XThesaurus.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYLIST_HPP_
 #include <com/sun/star/linguistic2/XDictionaryList.hpp>
 #endif
