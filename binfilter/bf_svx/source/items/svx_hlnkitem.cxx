@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_hlnkitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:03:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,17 +67,17 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
 #endif
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 
 #ifndef _MEMBERID_HRC
 #include <memberid.hrc>
 #endif
 
-#ifndef __SBX_SBXVARIABLE_HXX
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef __SBX_SBXVARIABLE_HXX
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 
 #include "hlnkitem.hxx"
 namespace binfilter {
