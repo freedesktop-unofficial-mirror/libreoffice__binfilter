@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 10:42:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #ifndef SC_DOCSHELL_HXX
 #define SC_DOCSHELL_HXX
 
@@ -159,6 +158,8 @@ class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxList
     VirtualDevice*      pVirtualDevice_100th_mm;
 
     ScDocShellModificator* pModificator; // #109979#; is used to load XML (created in BeforeXMLLoading and destroyed in AfterXMLLoading)
+
+    String              aUserData;      // #116578# loaded manually, as no view is created
 
     void            InitItems();
 //STRIP001  void            DoEnterHandler();
@@ -415,6 +416,8 @@ public:
 
     void            BeforeXMLLoading();
     void            AfterXMLLoading(sal_Bool bRet);
+
+    const String&   GetUserData() const { return aUserData; }   // #116578#
 };
 
 SO2_DECL_REF(ScDocShell)

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewdata.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:45 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 10:42:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #ifndef SC_VIEWDATA_HXX
 #define SC_VIEWDATA_HXX
 
@@ -157,7 +156,7 @@ private:
                     ~ScViewDataTable();
 
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
-//STRIP001  void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
+    void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings); // #116578#
 };
 
 // ---------------------------------------------------------------------------
@@ -219,6 +218,8 @@ private:
     BYTE                nFillMode;                  // Modus
     BOOL                bPagebreak;                 // Seitenumbruch-Vorschaumodus
 
+    long                nTabBarWidth;               // #116578# from user data
+
 //STRIP001  DECL_LINK (EmptyEditHdl, EditStatus*);
 //STRIP001  DECL_LINK (EditEngineHdl, EditStatus*);
 
@@ -252,11 +253,11 @@ public:
 //STRIP001  void            UpdateInputHandler( BOOL bForce = FALSE, BOOL bStopEditing = TRUE );
 
     void            WriteUserData(String& rData);
-//STRIP001  void            ReadUserData(const String& rData);
+    void            ReadUserData(const String& rData);      // #116578#
 //STRIP001  void            WriteExtOptions(ScExtDocOptions& rOpt);
 //STRIP001  void            ReadExtOptions(const ScExtDocOptions& rOpt);
     void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
-//STRIP001  void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
+    void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);  // #116578#
 
     ScDocument*     GetDocument() const;
 
@@ -304,7 +305,7 @@ public:
     void            SetVSplitPos( long nPos )                       { pThisTab->nVSplitPos = nPos; }
     void            SetFixPosX( USHORT nPos )                       { pThisTab->nFixPosX = nPos; }
     void            SetFixPosY( USHORT nPos )                       { pThisTab->nFixPosY = nPos; }
-//STRIP001  void            SetPagebreakMode( BOOL bSet );
+    void            SetPagebreakMode( BOOL bSet );      // #116578#
 
     void            SetZoom( const Fraction& rNewX, const Fraction& rNewY );
 
@@ -415,7 +416,7 @@ public:
 //STRIP001  Rectangle       GetEditArea( ScSplitPos eWhich, USHORT nPosX, USHORT nPosY, Window* pWin,
 //STRIP001                                  const ScPatternAttr* pPattern, BOOL bForceToTop );
 
-//STRIP001  void            SetTabNo( USHORT nNewTab );
+    void            SetTabNo( USHORT nNewTab );     // #116578#
 //STRIP001  void            SetActivePart( ScSplitPos eNewActive );
 
     Point           GetScrPos( USHORT nWhereX, USHORT nWhereY, ScSplitPos eWhich,
