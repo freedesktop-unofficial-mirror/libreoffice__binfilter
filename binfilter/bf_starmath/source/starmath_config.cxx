@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_config.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:11:31 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,7 +155,7 @@ namespace binfilter {
 //STRIP001         {
 //STRIP001             SetIgnoreSpacesRight( bVal );
 //STRIP001
-//STRIP001          // (angezeigte) Formeln müssen entsprechen neu formatiert werden.
+//STRIP001          // (angezeigte) Formeln muessen entsprechen neu formatiert werden.
 //STRIP001          // Das erreichen wir mit:
 //STRIP001          Broadcast(SfxSimpleHint(HINT_FORMATCHANGED));
 //STRIP001      }
