@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_layerexport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:00:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,33 +64,33 @@
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #include "layerexport.hxx"
 #endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
-#include "strings.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_STRINGS_HXX_
+// auto strip #include "strings.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
-#include "prhdlfac.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "xmlnmspe.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include "xmluconv.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
+// auto strip #include "prhdlfac.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #include "elementexport.hxx"
 #endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
 #endif
@@ -109,36 +109,36 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #include "controlpropertymap.hxx"
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
-#include <com/sun/star/container/XIndexAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
+// auto strip #include <com/sun/star/container/XIndexAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #endif
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
-#include <com/sun/star/container/XChild.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
+// auto strip #include <com/sun/star/container/XChild.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 #endif
-#ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
-#include "eventexport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
+// auto strip #include "eventexport.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
 #endif
 #ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
 #include "formevents.hxx"
 #endif
-#ifndef _XMLOFF_XMLNUMFE_HXX
-#include "xmlnumfe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
+// auto strip #include "xmlnumfe.hxx"
+// auto strip #endif
 namespace binfilter {
 
 //.........................................................................
