@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_callnk.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:58:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
@@ -75,21 +75,26 @@
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
 #ifndef _CALLNK_HXX
 #include <callnk.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
