@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:07 $
+ *  last change: $Author: kz $ $Date: 2004-07-30 14:53:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -205,7 +205,7 @@ public:
        0 falls *pElem1=*pElem2
       +1 falls *pElem1>*pElem2
 #endif
-    virtual int Compare(const void* pElem1, const void* pElem2) const=NULL;
+    virtual int Compare(const void* pElem1, const void* pElem2) const = 0;
 private: // damit keiner vergessen wird
 //STRIP001 virtual
 //STRIP001 #if SUPD <= 355
