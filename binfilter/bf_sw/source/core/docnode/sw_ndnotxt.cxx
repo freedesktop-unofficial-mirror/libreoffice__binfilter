@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndnotxt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:15:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,44 +62,54 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _IPOBJ_HXX
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 #ifndef _CONTDLG_HXX_
 #include <bf_svx/contdlg.hxx>
 #endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
-#ifndef _NDGRF_HXX
-#include <ndgrf.hxx>
-#endif
+
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDGRF_HXX
+// auto strip #include <ndgrf.hxx>
+// auto strip #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
 #endif
