@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,6 +122,7 @@
 #ifdef WNT
 #include <tools/svwin.h>
 #endif
+namespace binfilter {
 
 #ifdef UNX
 #define stricmp(a,b) strcmp(a,b)
@@ -179,7 +180,7 @@ static SfxItemInfo __READONLY_DATA aItemInfos[] =
 //===================================================================
 
 typedef Link* LinkPtr;
-SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4);
+SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
 
 /*N*/ TYPEINIT1(SfxSysChangeHint, SfxHint);
 /*N*/ TYPEINIT2(SfxApplication,SfxShell,SfxBroadcaster);
@@ -495,3 +496,4 @@ void SfxApplication::Main( )
 //STRIP001  return FALSE;
 //STRIP001 #endif
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: adiasync.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,8 @@
 #endif
 
 #include "callform.hxx"
+class String;
+namespace binfilter {
 
 extern "C" {
 void CALLTYPE ScAddInAsyncCallBack( double& nHandle, void* pData );
@@ -75,14 +77,13 @@ void CALLTYPE ScAddInAsyncCallBack( double& nHandle, void* pData );
 
 class ScAddInAsync;
 typedef ScAddInAsync* ScAddInAsyncPtr;
-SV_DECL_PTRARR_SORT( ScAddInAsyncs, ScAddInAsyncPtr, 4, 4 );
+SV_DECL_PTRARR_SORT( ScAddInAsyncs, ScAddInAsyncPtr, 4, 4 )//STRIP008 ;
 extern ScAddInAsyncs theAddInAsyncTbl;  // in adiasync.cxx
 
 class ScDocument;
 typedef ScDocument* ScAddInDocPtr;
-SV_DECL_PTRARR_SORT( ScAddInDocs, ScAddInDocPtr, 1, 1 );
+SV_DECL_PTRARR_SORT( ScAddInDocs, ScAddInDocPtr, 1, 1 )//STRIP008 ;
 
-class String;
 
 class ScAddInAsync : public SfxBroadcaster
 {
@@ -124,4 +125,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #ifndef _CLONELIST_HXX_
 #include <clonelist.hxx>
 #endif
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,10 +177,10 @@
 //STRIP001  pMod->SetChanged();
 //STRIP001  return pNewLayer;
 //STRIP001 }
-
+} //namespace binfilter
 #include "svdogrp.hxx"
 #include "scene3d.hxx"
-
+namespace binfilter {//STRIP009
 //STRIP001 BOOL SdrEditView::ImpDelLayerCheck(SdrObjList* pOL, SdrLayerID nDelID) const
 //STRIP001 {
 //STRIP001  sal_Bool bDelAll(sal_True);
@@ -912,3 +913,4 @@
 //STRIP001 }
 #endif
 
+}

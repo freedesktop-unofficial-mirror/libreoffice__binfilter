@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:30:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,17 +94,21 @@
 #include <docstat.hxx>
 #endif
 #include <list>
-
-class Crypter;
 class ImageMap;
 class SfxItemSet;
 class SfxPoolItem;
-class SvStorageInfoList;
 class SvStream;
 class SvStringsDtor;
 class SvUShorts;
 class SvXub_StrLens;
 class SvStrings;
+class SvxMacroTableDtor;
+class SvStorageInfoList;
+namespace binfilter {
+
+class Crypter;
+
+
 class Sw3Io;
 class SwAttrSet;
 class SwBlockNames;
@@ -144,7 +148,7 @@ class SwTxtNode;
 class SwgReaderOption;
 class SwpHints;
 class SwFlyFrm;
-class SvxMacroTableDtor;
+
 class Sw3RecordSizeTable;
 class SvxTabStopItem;
 class Sw3TOXBase;
@@ -894,4 +898,5 @@ void lcl_sw3io__ConvertNumTabStop( SvxTabStopItem& rTStop, long nOffset );
 
 void lcl_sw3io__ConvertMarkToOutline( String& rURL );
 
+} //namespace binfilter
 #endif

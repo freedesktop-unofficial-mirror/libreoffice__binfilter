@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:58:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,7 @@
 #include "..\ui\inc\strings.hrc"
 #endif
 #endif
+namespace binfilter {
 
 #endif // !SVX_LIGHT
 
@@ -1905,3 +1906,4 @@ IMPL_LINK( SdDrawDocument, NotifyUndoActionHdl, SfxUndoAction *, pUndoAction )
 //STRIP001         pPage->SetMasterPageVisibleLayers(aVisibleLayers, 0);
 //STRIP001     }
 //STRIP001 }
+}

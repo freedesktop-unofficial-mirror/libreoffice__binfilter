@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #ifdef PCH
 #include "core_pch.hxx"
 #endif
+
 
 #pragma hdrstop
 
@@ -161,8 +162,8 @@
 #include "hints.hxx"
 #include "dpobject.hxx"
 #include "unoguard.hxx"
-
-using namespace com::sun::star;
+namespace binfilter {
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -1859,3 +1860,4 @@ using namespace com::sun::star;
 
 
 
+} //namespace binfilter

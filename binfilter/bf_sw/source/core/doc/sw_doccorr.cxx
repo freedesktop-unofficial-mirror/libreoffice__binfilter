@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doccorr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,6 +111,7 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
+namespace binfilter {
 
 /*  */
 
@@ -265,7 +266,7 @@
 /*N*/   }
 /*N*/
 /*N*/   if( bMoveCrsr )
-/*N*/       ::PaMCorrAbs( rOldNode, rNewPos, nOffset );
+/*N*/       ::binfilter::PaMCorrAbs( rOldNode, rNewPos, nOffset );
 /*N*/ }
 
 /*  */
@@ -397,7 +398,7 @@
 /*N*/       _DelBookmarks( rStartNode, rEndNode );
 /*N*/
 /*N*/   if( bMoveCrsr )
-/*N*/       ::PaMCorrAbs( rStartNode, rEndNode, rNewPos );
+/*N*/       ::binfilter::PaMCorrAbs( rStartNode, rEndNode, rNewPos );
 /*N*/ }
 
 
@@ -602,7 +603,7 @@
 /*N*/   }
 /*N*/
 /*N*/   if( bMoveCrsr )
-/*N*/       ::PaMCorrRel( rOldNode, rNewPos, nOffset );
+/*N*/       ::binfilter::PaMCorrRel( rOldNode, rNewPos, nOffset );
 /*N*/ }
 
 
@@ -663,3 +664,4 @@
 //STRIP001         pTempAuto->Delete(aWrong);
 //STRIP001 }
 // <- #102505#
+}

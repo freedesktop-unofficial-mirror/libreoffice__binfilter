@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unodraw.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -160,6 +160,7 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
+namespace binfilter {
 
 
 using namespace ::com::sun::star;
@@ -335,7 +336,7 @@ uno::Reference< uno::XInterface >   SwFmDrawPage::GetInterface( SdrObject* pObj 
     uno::Reference< XInterface >  xShape;
     if( pObj )
     {
-        SwFrmFmt* pFmt = ::FindFrmFmt( pObj );
+        SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pObj );
         SwXShape* pxShape = (SwXShape*)SwClientIter( *pFmt ).
                                                 First( TYPE( SwXShape ));
         if(pxShape)
@@ -682,7 +683,7 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
         pTemp = pPam;
     UnoActionContext aAction(pDoc);
     pDoc->Insert( *pTemp, *pObj, &aSet );
-    SwFrmFmt* pFmt = ::FindFrmFmt( pObj );
+    SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pObj );
     if(pFmt)
         pFmt->Add(pShape);
     pShape->m_bDescriptor = sal_False;
@@ -724,7 +725,7 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
                 for ( sal_uInt16 i = 0; !bFlyInCnt && i < rMarkList.GetMarkCount(); ++i )
                 {
                     const SdrObject *pObj = rMarkList.GetMark( i )->GetObj();
-                    if ( FLY_IN_CNTNT == ::FindFrmFmt( (SdrObject*)pObj )->GetAnchor().GetAnchorId() )
+                    if ( FLY_IN_CNTNT == ::binfilter::FindFrmFmt( (SdrObject*)pObj )->GetAnchor().GetAnchorId() )
                         bFlyInCnt = sal_True;
                 }
                 if( bFlyInCnt )
@@ -811,7 +812,7 @@ TYPEINIT1(SwXShape, SwClient);
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXShape::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -874,7 +875,7 @@ SwXShape::SwXShape(uno::Reference< uno::XInterface > & xShape) :
         SdrObject* pObj = pShape ? pShape->GetSdrObject() : 0;
         if(pObj)
         {
-            SwFrmFmt* pFmt = ::FindFrmFmt( pObj );
+            SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pObj );
             if(pFmt)
                 pFmt->Add(this);
         }
@@ -1808,7 +1809,7 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
             }
             pSwShape->m_bDescriptor = sal_False;
             //add the group member to the format of the group
-            SwFrmFmt* pFmt = ::FindFrmFmt( pSvxShape->GetSdrObject() );
+            SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pSvxShape->GetSdrObject() );
             if(pFmt)
                 pFmt->Add(pSwShape);
         }
@@ -1904,3 +1905,4 @@ sal_Bool SwXGroupShape::hasElements(  ) throw(RuntimeException)
     return xAcc->hasElements();
 }
 
+}

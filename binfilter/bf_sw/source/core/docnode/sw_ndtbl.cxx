@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -243,6 +243,7 @@
 
 #include <node.hxx>
 #include <ndtxt.hxx>
+namespace binfilter {
 
 const sal_Unicode T2T_PARA = 0x0a;
 
@@ -372,7 +373,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/       if( USHRT_MAX != nCols )
 /*N*/           pBoxFmt->SetAttr( SwFmtFrmSize( ATT_VAR_SIZE,
 /*N*/                                           USHRT_MAX / nCols, 0 ));
-/*N*/       ::lcl_SetDfltBoxAttr( *pBoxFmt, nId );
+/*N*/       ::binfilter::lcl_SetDfltBoxAttr( *pBoxFmt, nId );
 /*N*/       rBoxFmtArr.Replace( pBoxFmt, nId );
 /*N*/   }
 /*N*/   return (SwTableBoxFmt*)rBoxFmtArr[nId];
@@ -670,7 +671,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/           else if( bDfltBorders )
 /*N*/           {
 /*N*/               BYTE nBoxId = (i < nCols - 1 ? 0 : 1) + (n ? 2 : 0 );
-/*N*/               pBoxF = ::lcl_CreateDfltBoxFmt( *this, aBoxFmtArr, nCols, nBoxId);
+/*N*/               pBoxF = ::binfilter::lcl_CreateDfltBoxFmt( *this, aBoxFmtArr, nCols, nBoxId);
 /*N*/           }
 /*N*/           else
 /*?*/               pBoxF = pBoxFmt;
@@ -1470,7 +1471,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 //STRIP001
 //STRIP001  // lasse ueber das Layout die Boxen suchen
 //STRIP001  SwSelBoxes aBoxes;
-//STRIP001  ::GetTblSel( rCursor, aBoxes, TBLSEARCH_COL );
+//STRIP001  ::binfilter::GetTblSel( rCursor, aBoxes, TBLSEARCH_COL );
 //STRIP001
 //STRIP001  BOOL bRet = FALSE;
 //STRIP001  if( aBoxes.Count() )
@@ -1599,7 +1600,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 //STRIP001  // lasse ueber das Layout die Boxen suchen
 //STRIP001  SwSelBoxes aBoxes;
 //STRIP001  GetTblSel( rCursor, aBoxes, TBLSEARCH_ROW );
-//STRIP001  if( ::HasProtectedCells( aBoxes ))
+//STRIP001  if( ::binfilter::HasProtectedCells( aBoxes ))
 //STRIP001      return FALSE;
 //STRIP001
 //STRIP001  // die Crsr aus dem Loeschbereich entfernen.
@@ -1700,7 +1701,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 //STRIP001  // lasse ueber das Layout die Boxen suchen
 //STRIP001  SwSelBoxes aBoxes;
 //STRIP001  GetTblSel( rCursor, aBoxes, TBLSEARCH_COL );
-//STRIP001  if( ::HasProtectedCells( aBoxes ))
+//STRIP001  if( ::binfilter::HasProtectedCells( aBoxes ))
 //STRIP001      return FALSE;
 //STRIP001
 //STRIP001  // die Crsr muessen noch aus dem Loesch Bereich entfernt
@@ -1719,7 +1720,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 
 //STRIP001 BOOL SwDoc::DeleteRowCol( const SwSelBoxes& rBoxes )
 //STRIP001 {
-//STRIP001  if( ::HasProtectedCells( rBoxes ))
+//STRIP001  if( ::binfilter::HasProtectedCells( rBoxes ))
 //STRIP001      return FALSE;
 //STRIP001
 //STRIP001  // uebers SwDoc fuer Undo !!
@@ -4024,3 +4025,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   DelFrms();
 //STRIP001 }
 
 
+}

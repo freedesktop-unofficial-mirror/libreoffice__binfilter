@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unocoll.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -170,6 +170,7 @@
 #ifndef _SW_XTEXT_DEFAULTS_HXX
 #include <SwXTextDefaults.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -1534,7 +1535,7 @@ uno::Any SwXBookmarks::getByIndex(sal_Int32 nIndex)
 /*-- 14.01.99 09:05:49---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-uno::Any SwXBookmarks::getByName(const rtl::OUString& rName)
+uno::Any SwXBookmarks::getByName(const ::rtl::OUString& rName)
     throw( NoSuchElementException, WrappedTargetException, uno::RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
@@ -1937,3 +1938,4 @@ void SwUnoCollection::Invalidate()
     pDoc = 0;
 }
 
+}

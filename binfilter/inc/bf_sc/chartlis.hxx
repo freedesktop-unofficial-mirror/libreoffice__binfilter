@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chartlis.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,8 +77,8 @@
 #include "rangelst.hxx"
 #endif
 
-class ScDocument;
-class ScChartUnoData;
+//STRIP008 class ScDocument;
+//STRIP008 class ScChartUnoData;
 
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
@@ -86,6 +86,9 @@ class ScChartUnoData;
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATACHANGEEVENTLISTENER_HPP_
 #include <com/sun/star/chart/XChartDataChangeEventListener.hpp>
 #endif
+namespace binfilter {
+class ScDocument;
+class ScChartUnoData;
 
 class ScChartListener : public StrData, public SfxListener
 {
@@ -109,10 +112,10 @@ public:
     virtual         ~ScChartListener();
     virtual DataObject* Clone() const;
 
-    void            SetUno( const com::sun::star::uno::Reference< com::sun::star::chart::XChartDataChangeEventListener >& rListener,
-                            const com::sun::star::uno::Reference< com::sun::star::chart::XChartData >& rSource );
-    com::sun::star::uno::Reference< com::sun::star::chart::XChartDataChangeEventListener >  GetUnoListener() const;
-    com::sun::star::uno::Reference< com::sun::star::chart::XChartData >                     GetUnoSource() const;
+    void            SetUno( const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDataChangeEventListener >& rListener,
+                            const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartData >& rSource );
+    ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDataChangeEventListener >  GetUnoListener() const;
+    ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartData >                     GetUnoSource() const;
 
     BOOL            IsUno() const   { return (pUnoData != NULL); }
 
@@ -167,8 +170,8 @@ public:
                                     BOOL bDirty = FALSE );
     // FreeUnused nur wie in ScDocument::UpdateChartListenerCollection verwenden!
     void            FreeUnused();
-    void            FreeUno( const com::sun::star::uno::Reference< com::sun::star::chart::XChartDataChangeEventListener >& rListener,
-                             const com::sun::star::uno::Reference< com::sun::star::chart::XChartData >& rSource );
+    void            FreeUno( const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDataChangeEventListener >& rListener,
+                             const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartData >& rSource );
     void            StartTimer();
     void            UpdateDirtyCharts();
     void            SetDirty();
@@ -184,5 +187,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porfld.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
+namespace binfilter {
 
 class SwFont;
 class SvxBrushItem;
@@ -272,4 +273,5 @@ CLASSIO( SwGrfNumPortion )
 //STRIP001 CLASSIO( SwCombinedPortion )
 
 
+} //namespace binfilter
 #endif

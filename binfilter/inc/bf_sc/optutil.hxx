@@ -2,9 +2,9 @@
  *
  *  $RCSfile: optutil.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif
+namespace binfilter {
 
 
 class ScOptionsUtil
@@ -80,31 +81,32 @@ public:
 
 //  ConfigItem for classes that use items from several sub trees
 
-class ScLinkConfigItem : public utl::ConfigItem
+class ScLinkConfigItem : public ::utl::ConfigItem
 {
     Link    aCommitLink;
 
 public:
-            ScLinkConfigItem( const rtl::OUString rSubTree );
+            ScLinkConfigItem( const ::rtl::OUString rSubTree );
     void    SetCommitLink( const Link& rLink );
 
-//STRIP001  virtual void    Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );
+//STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );
 //STRIP001  virtual void    Commit();
 
     void    SetModified()   { ConfigItem::SetModified(); }
-    com::sun::star::uno::Sequence< com::sun::star::uno::Any>
-            GetProperties(const com::sun::star::uno::Sequence< rtl::OUString >& rNames)
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>
+            GetProperties(const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames)
                             { return ConfigItem::GetProperties( rNames ); }
-    sal_Bool PutProperties( const com::sun::star::uno::Sequence< rtl::OUString >& rNames,
-                            const com::sun::star::uno::Sequence< com::sun::star::uno::Any>& rValues)
+    sal_Bool PutProperties( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames,
+                            const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& rValues)
                             { return ConfigItem::PutProperties( rNames, rValues ); }
-    sal_Bool EnableNotification(com::sun::star::uno::Sequence< rtl::OUString >& rNames)
+    sal_Bool EnableNotification(::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames)
                             { return ConfigItem::EnableNotification( rNames ); }
 
-    com::sun::star::uno::Sequence< rtl::OUString > GetNodeNames(rtl::OUString& rNode)
+    ::com::sun::star::uno::Sequence< ::rtl::OUString > GetNodeNames(::rtl::OUString& rNode)
                             { return ConfigItem::GetNodeNames( rNode ); }
 };
 
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mutexhlp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
 #endif
+namespace binfilter {
 
 //  used in XComponent implementations to construct a Mutex before the
 //  OComponentHelper base class
@@ -78,5 +79,6 @@ public:
     ::osl::Mutex& getMutex() { return maMutex; }
 };
 
+} //namespace binfilter
 #endif
 

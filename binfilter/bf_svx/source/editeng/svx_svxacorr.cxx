@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxacorr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,6 +189,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::uno;
@@ -231,9 +232,9 @@ void DecryptBlockName_Imp( String& rName );
 //STRIP001 TYPEINIT0(SvxAutoCorrect)
 
 /*N*/ typedef SvxAutoCorrectLanguageLists* SvxAutoCorrectLanguageListsPtr;
-/*N*/ DECLARE_TABLE( SvxAutoCorrLanguageTable_Impl,  SvxAutoCorrectLanguageListsPtr);
+/*N*/ DECLARE_TABLE( SvxAutoCorrLanguageTable_Impl,  SvxAutoCorrectLanguageListsPtr)//STRIP008 ;
 
-/*N*/ DECLARE_TABLE( SvxAutoCorrLastFileAskTable_Impl, long );
+/*N*/ DECLARE_TABLE( SvxAutoCorrLastFileAskTable_Impl, long )//STRIP008 ;
 
 
 //STRIP001 inline int IsWordDelim( const sal_Unicode c )
@@ -3075,3 +3076,4 @@ void DecryptBlockName_Imp( String& rName );
 //STRIP001  }
 //STRIP001  return bRet;
 //STRIP001 }
+}

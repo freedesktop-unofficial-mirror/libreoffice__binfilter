@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_addinhelpid.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:42:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef SC_SC_HRC
 #include "bf_sc.hrc"
 #endif
+namespace binfilter {
 
 
 // ============================================================================
@@ -260,3 +261,4 @@ const ScUnoAddInHelpId pDateFuncHelpIds[] =
 
 // ============================================================================
 
+}

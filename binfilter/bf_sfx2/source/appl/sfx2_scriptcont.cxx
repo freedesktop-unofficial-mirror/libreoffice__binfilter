@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_scriptcont.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,16 +114,17 @@
 #include <basic/sbmod.hxx>
 #include <xmlscript/xmlmod_imexp.hxx>
 #include <app.hxx>
+namespace binfilter {
 
 
-using namespace com::sun::star::container;
-using namespace com::sun::star::io;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::ucb;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::script;
-using namespace com::sun::star::xml::sax;
-using namespace com::sun::star;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::io;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::ucb;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::script;
+using namespace ::com::sun::star::xml::sax;
+using namespace ::com::sun::star;
 using namespace cppu;
 using namespace rtl;
 using namespace osl;
@@ -288,7 +289,7 @@ using namespace osl;
 /*N*/
 /*N*/   if( bStorage )
 /*N*/   {
-/*?*/       xInput = new utl::OInputStreamWrapper( *xElementStream );
+/*?*/       xInput = new ::utl::OInputStreamWrapper( *xElementStream );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1118,3 +1119,4 @@ using namespace osl;
 /*N*/ }
 
 //============================================================================
+}

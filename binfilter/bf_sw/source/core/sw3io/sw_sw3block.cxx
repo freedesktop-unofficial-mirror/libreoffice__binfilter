@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3block.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,6 +118,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+namespace binfilter {
 
 #define STREAM_STGREAD  ( STREAM_READ | STREAM_SHARE_DENYWRITE | STREAM_NOCREATE )
 #define STREAM_STGWRITE ( STREAM_READ | STREAM_WRITE | STREAM_SHARE_DENYWRITE )
@@ -870,3 +871,4 @@ sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,10 +95,11 @@
 #include <sfxresid.hxx>
 #include <sfxuno.hxx>
 #include "doc.hrc"
+namespace binfilter {
 
 //========================================================================
 
-DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 );
+DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 )//STRIP008 ;
 
 //========================================================================
 
@@ -683,3 +684,4 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 );
 //STRIP001     else
 /*?*/         return String();
 /*?*/ }
+}

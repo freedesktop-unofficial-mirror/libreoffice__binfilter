@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pormulti.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,8 @@
 
 #include "porlay.hxx"
 #include "porexp.hxx"
+class SfxPoolItem;
+namespace binfilter {
 
 class SwTxtFormatInfo;
 class SwFldPortion;
@@ -72,7 +74,7 @@ class SwLineLayout;
 class SwBlankPortion;
 class SwTxtPaintInfo;
 class SwTxtAttr;
-class SfxPoolItem;
+
 class SwFont;
 
 /*-----------------02.02.01 15:01-------------------
@@ -344,4 +346,5 @@ inline sal_Bool SwMultiPortion::ChgSpaceAdd(SwLineLayout* pCurr,short nSpaceAdd)
 
 CLASSIO( SwMultiPortion )
 
+} //namespace binfilter
 #endif

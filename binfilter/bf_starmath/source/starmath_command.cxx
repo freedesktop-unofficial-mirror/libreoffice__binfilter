@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_command.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef MATH_COMMAND_HXX
 #include "command.hxx"
 #endif
+namespace binfilter {
 
 SmCommandDesc::SmCommandDesc(const ResId& rResId) :
     Resource(rResId)
@@ -110,3 +111,4 @@ SmCommandDesc::~SmCommandDesc()
 }
 
 
+}

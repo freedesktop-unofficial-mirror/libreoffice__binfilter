@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -132,6 +132,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 // -----------------------------------------------------------------------
 
@@ -272,7 +273,7 @@ public:
 /*N*/                 , maUIName( rUIName ) {}
 /*N*/ };
 
-/*?*/ DECLARE_LIST( SfxEventList_Impl, EventNames_Impl* );
+/*?*/ DECLARE_LIST( SfxEventList_Impl, EventNames_Impl* )//STRIP008 ;
 /*?*/
 /*?*/ SfxEventList_Impl   *gp_Id_SortList = NULL;
 /*?*/ SfxEventList_Impl   *gp_Name_SortList = NULL;
@@ -575,7 +576,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 //STRIP001  {
 //STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >
 //STRIP001                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-//STRIP001                         rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
+//STRIP001                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
 //STRIP001  }
 //STRIP001
 //STRIP001     // fill in the bindings
@@ -743,7 +744,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/   {
 /*N*/       xSupplier = REFERENCE< XEVENTSSUPPLIER >
 /*N*/                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*N*/                         rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
+/*N*/                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
 /*N*/   }
 /*N*/
 /*N*/     if ( xSupplier.is() )
@@ -823,7 +824,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 //STRIP001  {
 //STRIP001      xSupplier = REFERENCE< XEVENTSSUPPLIER >
 //STRIP001                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-//STRIP001                         rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
+//STRIP001                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
 //STRIP001  }
 //STRIP001
 //STRIP001     if ( xSupplier.is() )
@@ -1149,3 +1150,4 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 //STRIP001 }
 
 
+}

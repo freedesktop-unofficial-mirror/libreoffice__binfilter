@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_htmltbl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,6 +105,7 @@
 
 #include "htmltbl.hxx"
 #include "ndindex.hxx"
+namespace binfilter {
 
 #define COLFUZZY 20
 #define MAX_TABWIDTH (USHRT_MAX - 2001)
@@ -1992,3 +1993,4 @@
 //STRIP001 }
 
 
+}

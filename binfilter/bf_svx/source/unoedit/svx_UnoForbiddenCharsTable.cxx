@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_UnoForbiddenCharsTable.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 #ifndef _UNO_LINGU_HXX
 #include "unolingu.hxx"
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -187,4 +188,5 @@ sal_Bool SAL_CALL SvxUnoForbiddenCharsTable::hasLocale( const Locale& aLocale )
     OGuard aGuard( Application::GetSolarMutex() );
 
     return hasForbiddenCharacters( aLocale );
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #include "inimgr.hxx"
 #endif
 #include "helper.hxx"
+namespace binfilter {
 
 //========================================================================
 
@@ -307,7 +308,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 
 //--------------------------------------------------------------------
 
-//STRIP001 so3::SvLinkSource* SfxApplication::DdeCreateLinkSource
+//STRIP001 ::so3::SvLinkSource* SfxApplication::DdeCreateLinkSource
 //STRIP001 (
 //STRIP001  const String&   rItem      // das zu erzeugende Item
 //STRIP001 )
@@ -759,11 +760,12 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  {
 //STRIP001      // dann richten wir auch einen entsprechenden SvBaseLink ein
 //STRIP001      String sNm, sTmp( Application::GetAppName() );
-//STRIP001      so3::MakeLnkName( sNm, &sTmp, pSh->GetTitle(SFX_TITLE_FULLNAME), GetCurItem() );
-//STRIP001      new so3::SvBaseLink( sNm, OBJECT_DDE_EXTERN, pNewObj );
+//STRIP001      ::so3::MakeLnkName( sNm, &sTmp, pSh->GetTitle(SFX_TITLE_FULLNAME), GetCurItem() );
+//STRIP001      new ::so3::SvBaseLink( sNm, OBJECT_DDE_EXTERN, pNewObj );
 //STRIP001      bRet = TRUE;
 //STRIP001  }
 //STRIP001  return bRet;
 /*?*/ }
 
 
+}

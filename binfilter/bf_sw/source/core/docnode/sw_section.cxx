@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -166,6 +166,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
@@ -516,8 +517,8 @@
 /*N*/                   refLink->GetLinkManager()->GetDisplayNames(
 /*N*/                       refLink, 0, &sTmp, &sRange, &sFilter ) )
 /*N*/               {
-/*N*/                     ( sTmp += so3::cTokenSeperator ) += sFilter;
-/*N*/                     ( sTmp += so3::cTokenSeperator ) += sRange;
+/*N*/                     ( sTmp += ::so3::cTokenSeperator ) += sFilter;
+/*N*/                     ( sTmp += ::so3::cTokenSeperator ) += sRange;
 /*N*/               }
 /*N*/               else if( GetFmt() && !GetFmt()->GetSectionNode() )
 /*N*/               {
@@ -1357,7 +1358,7 @@
 /*N*/                   aSave++;
 /*N*/
 /*N*/                   if( !bCreateFrm )
-/*N*/                       ::MakeFrms( pDoc, aSave, rInsPos );
+/*N*/                       ::binfilter::MakeFrms( pDoc, aSave, rInsPos );
 /*N*/
 /*N*/                   // den letzten Node noch loeschen, aber nur wenn
 /*N*/                   // erfolgreich kopiert werden konnte, also der Bereich
@@ -1497,7 +1498,7 @@
 /*N*/   if( !pFmt || CONTENT_SECTION == eType )
 /*?*/       return ;
 /*N*/
-/*N*/     USHORT nUpdateType = so3::LINKUPDATE_ALWAYS;
+/*N*/     USHORT nUpdateType = ::so3::LINKUPDATE_ALWAYS;
 /*N*/
 /*N*/   if( !refLink.Is() )
 /*N*/       // dann mal den BaseLink aufbauen
@@ -1525,10 +1526,10 @@
 /*N*/   case FILE_LINK_SECTION:
 /*N*/       {
 /*N*/           pLnk->SetContentType( FORMAT_FILE );
-/*N*/             String sFltr( sCmd.GetToken( 1, so3::cTokenSeperator ) );
-/*N*/             String sRange( sCmd.GetToken( 2, so3::cTokenSeperator ) );
+/*N*/             String sFltr( sCmd.GetToken( 1, ::so3::cTokenSeperator ) );
+/*N*/             String sRange( sCmd.GetToken( 2, ::so3::cTokenSeperator ) );
 /*N*/           pFmt->GetDoc()->GetLinkManager().InsertFileLink( *pLnk, eType,
-/*N*/                                 sCmd.GetToken( 0, so3::cTokenSeperator ),
+/*N*/                                 sCmd.GetToken( 0, ::so3::cTokenSeperator ),
 /*N*/                               ( sFltr.Len() ? &sFltr : 0 ),
 /*N*/                               ( sRange.Len() ? &sRange : 0 ) );
 /*N*/       }
@@ -1566,3 +1567,4 @@
 
 
 
+}

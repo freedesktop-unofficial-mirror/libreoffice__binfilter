@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unolayer.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 #include <unotools/servicehelper.hxx>
 
 #include <unomodel.hxx>
+namespace binfilter {
 
 class SdrLayer;
 class SdView;
@@ -217,6 +218,7 @@ public:
     ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XLayer> GetLayer (SdrLayer* pLayer);
 };
 
+} //namespace binfilter
 #endif
 
 

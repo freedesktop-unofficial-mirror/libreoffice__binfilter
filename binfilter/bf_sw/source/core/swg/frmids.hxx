@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmids.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:32:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _FRMIDS_HXX
 
 // Aktuelle Version:
+namespace binfilter {
 
 #define FRMVER_NEWFLY   0x0002      // Neue Ablage der absatzgebundenen Flys
 #define FRMVER_EXTINFO  0x0003      // Optionales Extended-Info-Byte
@@ -107,4 +108,5 @@
 #define FRMF_INVALID    0x8000      // Frames ungueltig setzen
 
 
+} //namespace binfilter
 #endif

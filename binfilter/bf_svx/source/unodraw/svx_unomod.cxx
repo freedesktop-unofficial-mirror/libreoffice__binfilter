@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unomod.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,6 +139,7 @@
 #include "svdobj.hxx"
 #include "svdpage.hxx"
 #include "unoshape.hxx"
+namespace binfilter {
 
 extern UHashMapEntry pSdrShapeIdentifierMap[];
 
@@ -421,7 +422,7 @@ uno::Any SAL_CALL SvxUnoDrawingModel::queryInterface( const uno::Type & rType ) 
     QUERYINT(lang::XServiceInfo);
     else QUERYINT(lang::XMultiServiceFactory);
     else QUERYINT(drawing::XDrawPagesSupplier);
-    else QUERYINT(com::sun::star::ucb::XAnyCompareFactory);
+    else QUERYINT(::com::sun::star::ucb::XAnyCompareFactory);
     else
         return SfxBaseModel::queryInterface( rType );
 
@@ -455,7 +456,7 @@ uno::Sequence< uno::Type > SAL_CALL SvxUnoDrawingModel::getTypes(  ) throw(uno::
         *pTypes++ = ITYPE(lang::XServiceInfo);
         *pTypes++ = ITYPE(lang::XMultiServiceFactory);
         *pTypes++ = ITYPE(drawing::XDrawPagesSupplier);
-        *pTypes++ = ITYPE(com::sun::star::ucb::XAnyCompareFactory);
+        *pTypes++ = ITYPE(::com::sun::star::ucb::XAnyCompareFactory);
 
         for( sal_Int32 nType = 0; nType < nBaseTypes; nType++ )
             *pTypes++ = *pBaseTypes++;
@@ -711,7 +712,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoDrawingModel::getSupportedServiceNames(
 }
 
 // XAnyCompareFactory
-uno::Reference< com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& PropertyName )
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& PropertyName )
     throw(uno::RuntimeException)
 {
     return SvxCreateNumRuleCompare();
@@ -862,3 +863,4 @@ uno::Sequence< OUString > SAL_CALL SvxUnoDrawPagesAccess::getSupportedServiceNam
 }
 
 #endif
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ImageButton.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _COM_SUN_STAR_AWT_XMOUSELISTENER_HPP_
 #include <com/sun/star/awt/XMouseListener.hpp>
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -146,5 +147,6 @@ public:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FRM_IMAGE_BUTTON_HXX_
 

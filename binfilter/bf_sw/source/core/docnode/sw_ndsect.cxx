@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,6 +158,7 @@
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>
 #endif
+namespace binfilter {
 
 /*N*/ int lcl_IsInSameTblBox( SwNodes& rNds, const SwNode& rNd,
 /*N*/                           const SwNodeIndex& rIdx2 )
@@ -675,8 +676,8 @@
 /*N*/   }
 /*N*/
 /*N*/   // #56167# Der LinkFileName koennte auch nur aus Separatoren bestehen
-/*N*/     String sCompareString = so3::cTokenSeperator;
-/*N*/     sCompareString += so3::cTokenSeperator;
+/*N*/     String sCompareString = ::so3::cTokenSeperator;
+/*N*/     sCompareString += ::so3::cTokenSeperator;
 /*N*/   BOOL bUpdate = ( !pSection->IsLinkType() && rSect.IsLinkType() ) ||
 /*N*/                       ( rSect.GetLinkFileName().Len() &&
 /*N*/                           rSect.GetLinkFileName() != sCompareString &&
@@ -1165,7 +1166,7 @@
 /*N*/   {
 /*N*/       SwNodeIndex *pEnd = pEndIdx ? pEndIdx :
 /*N*/                           new SwNodeIndex( *EndOfSectionNode(), 1 );
-/*N*/       ::MakeFrms( pDoc, *pIdxBehind, *pEnd );
+/*N*/       ::binfilter::MakeFrms( pDoc, *pIdxBehind, *pEnd );
 /*N*/       if( !pEndIdx )
 /*N*/           delete pEnd;
 /*N*/   }
@@ -1411,3 +1412,4 @@
 /*N*/ }
 
 
+}

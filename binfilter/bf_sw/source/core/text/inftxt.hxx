@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inftxt.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,9 +83,11 @@
 #ifndef _SVX_PARAVERTALIGNITEM_HXX //autogen
 #include <bf_svx/paravertalignitem.hxx>
 #endif
-
 class Font;
 class OutputDevice;
+namespace binfilter {
+
+
 class SvxBrushItem;
 class SvxLineSpacingItem;
 class SvxTabStop;
@@ -541,7 +543,7 @@ public:
 class SwTxtFormatInfo : public SwTxtPaintInfo
 {
     // temporary arguments for hyphenation
-    com::sun::star::beans::PropertyValues   aHyphVals;
+    ::com::sun::star::beans::PropertyValues aHyphVals;
 
     SwLineLayout    *pRoot;       // die Root der aktuellen Zeile (pCurr)
     SwLinePortion   *pLast;       // die letzte Portion
@@ -737,7 +739,7 @@ public:
 //STRIP001  ::com::sun::star::uno::Reference<
 //STRIP001      ::com::sun::star::linguistic2::XHyphenatedWord >
 //STRIP001              HyphWord( const String &rTxt, const USHORT nMinTrail );
-    const com::sun::star::beans::PropertyValues &
+    const ::com::sun::star::beans::PropertyValues   &
                 GetHyphValues() const;
 
     sal_Bool CheckFtnPortion( SwLineLayout* pCurr )
@@ -937,5 +939,6 @@ inline sal_Bool SwTxtFormatInfo::IsSoftHyph( const xub_StrLen nPos ) const
 
 
 
+} //namespace binfilter
 #endif
 

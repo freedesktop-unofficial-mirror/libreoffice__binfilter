@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoframe.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -245,9 +245,9 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
-#ifndef _XMLOFF_XMLCNITM_HXX
-#include <xmloff/xmlcnitm.hxx>
-#endif
+#ifndef _SVX_XMLCNITM_HXX  //STRIP008 #ifndef _XMLOFF_XMLCNITM_HXX
+#include <bf_svx/xmlcnitm.hxx>  //STRIP008 #include <xmloff/xmlcnitm.hxx>
+#endif  //STRIP008 #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
@@ -268,6 +268,7 @@
 #endif
 
 #include <so3/outplace.hxx>
+namespace binfilter {
 
 // from fefly1.cxx
 extern sal_Bool lcl_ChkAndSetNewAnchor( const SwFlyFrm& rFly, SfxItemSet& rSet );
@@ -283,9 +284,9 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::drawing;
 using namespace ::rtl;
 
-using com::sun::star::frame::XModel;
-using com::sun::star::container::XNameAccess;
-using com::sun::star::style::XStyleFamiliesSupplier;
+using ::com::sun::star::frame::XModel;
+using ::com::sun::star::container::XNameAccess;
+using ::com::sun::star::style::XStyleFamiliesSupplier;
 
 const sal_Char __FAR_DATA sPackageProtocol[] = "vnd.sun.star.Package:";
 const sal_Char __FAR_DATA sGraphicObjectProtocol[] = "vnd.sun.star.GraphicObject:";
@@ -853,7 +854,7 @@ sal_Bool    SwGraphicProperties_Impl::AnyToItemSet(
         BYTE nMId = RES_GRFATR_CROPGRF == nIDs[nIndex] ? CONVERT_TWIPS : 0;
         if(GetProperty(nIDs[nIndex], nMId, pAny ))
         {
-            SfxPoolItem* pItem = ::GetDfltAttr( nIDs[nIndex] )->Clone();
+            SfxPoolItem* pItem = ::binfilter::GetDfltAttr( nIDs[nIndex] )->Clone();
             bRet &= pItem->PutValue(*pAny, nMId );
             rGrSet.Put(*pItem);
             delete pItem;
@@ -898,7 +899,7 @@ sal_Bool  SwOLEProperties_Impl::AnyToItemSet(
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXFrame::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -1257,7 +1258,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                     {
                         pSet = new SfxItemSet( pDoc->GetAttrPool(), aFrmFmtSetRange );
                         pSet->Put( *pItem );
-                        if( !::lcl_ChkAndSetNewAnchor( *pFly, *pSet ))
+                        if( !::binfilter::lcl_ChkAndSetNewAnchor( *pFly, *pSet ))
                             delete pSet, pSet = 0;
                     }
                 }
@@ -1451,7 +1452,7 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                     if( SFX_ITEM_SET == aSet.GetItemState( RES_ANCHOR, sal_False, &pItem ))
                     {
                         aSet.Put( *pItem );
-                        ::lcl_ChkAndSetNewAnchor( *pFly, aSet );
+                        ::binfilter::lcl_ChkAndSetNewAnchor( *pFly, aSet );
                     }
                 }
 
@@ -3278,3 +3279,4 @@ sal_uInt16 SwXOLEListener::FindEntry( const EventObject& rEvent,SwOLENode** ppNd
     return nRet;
 }
 
+}

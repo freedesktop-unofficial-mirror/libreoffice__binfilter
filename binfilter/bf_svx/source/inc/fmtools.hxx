@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtools.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -256,9 +256,10 @@
 #ifndef _FM_STATIC_HXX_
 #include "fmstatic.hxx"
 #endif
-
-
 class Window;
+namespace binfilter {
+
+
 
 //==================================================================
 // allgemeine Typen
@@ -504,7 +505,7 @@ typedef ::cppu::WeakComponentImplHelper3<   ::com::sun::star::frame::XDispatchPr
 class FmXDispatchInterceptorImpl : public FmXDispatchInterceptorImpl_BASE
 {
     ::osl::Mutex                    m_aFallback;
-    ::form::OImplementationIdsRef   m_aHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;//STRIP008  ::form::OImplementationIdsRef   m_aHoldImplIdHelper;
 
     // the component which's dispatches we're intercepting
     ::com::sun::star::uno::WeakReference< ::com::sun::star::frame::XDispatchProviderInterception>
@@ -592,5 +593,6 @@ protected:
 //STRIP001 sal_Bool isRowSetAlive(const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>& _rxRowSet);
     // checks if the ::com::sun::star::sdbcx::XColumnsSupplier provided by _rxRowSet supllies any columns
 
+}//end of namespace binfilter
 #endif // _SVX_FMTOOLS_HXX
 

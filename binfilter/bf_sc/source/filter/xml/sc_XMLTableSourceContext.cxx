@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableSourceContext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,8 +99,9 @@
 #ifndef _COM_SUN_STAR_SHEET_XSHEETLINKABLE_HPP_
 #include <com/sun/star/sheet/XSheetLinkable.hpp>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -121,11 +122,11 @@ ScXMLTableSourceContext::ScXMLTableSourceContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
         if(nPrefix == XML_NAMESPACE_XLINK)
         {
             if (IsXMLToken(aLocalName, XML_HREF))
@@ -203,3 +204,4 @@ void ScXMLTableSourceContext::EndElement()
     }
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ptqueue.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _PTQUEUE_HXX
 #define _PTQUEUE_HXX
+namespace binfilter {
 
 //Leider vertragen wir es nicht so gut, wenn wir mehr als ein Paint
 //gleichzeitig verarbeiten sollen. Insbesondere beim Drucken kommt dies
@@ -93,4 +94,5 @@ public:
 //STRIP001  static void Repaint();
 };
 
+} //namespace binfilter
 #endif

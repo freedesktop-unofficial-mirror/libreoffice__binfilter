@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tphf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #ifndef _SVX_HDFT_HXX //autogen
 #include <bf_svx/hdft2.hxx>
 #endif
+namespace binfilter {
 
 class ScStyleDlg;
 
@@ -131,5 +132,6 @@ private:
 };
 
 
+} //namespace binfilter
 #endif // SC_TPHF_HXX
 

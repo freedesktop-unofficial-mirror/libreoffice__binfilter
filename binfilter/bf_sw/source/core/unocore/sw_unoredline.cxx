@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoredline.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,6 +118,7 @@
 #ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
@@ -884,3 +885,4 @@ Sequence<sal_Int8> SwXRedline::getImplementationId()
     return aId;
 }
 
+}

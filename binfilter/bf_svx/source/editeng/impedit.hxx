@@ -2,9 +2,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,9 +116,13 @@
 #endif
 
 #include <vos/ref.hxx>
+class SvKeyValueIterator;
+class SvtCTLOptions;
+class SvUShorts;
+namespace binfilter {
 
-DBG_NAMEEX( EditView );
-DBG_NAMEEX( EditEngine );
+DBG_NAMEEX( EditView )//STRIP008 ;
+DBG_NAMEEX( EditEngine )//STRIP008 ;
 
 #define PIMPEE      pImpEditView->pEditEngine->pImpEditEngine
 
@@ -139,7 +143,7 @@ DBG_NAMEEX( EditEngine );
 #define LINE_SEP    0x0A
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 );    // IMPL is in outliner.cxx, move to EE later and share declaration, or use BlockNotifications from EE directly
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;    // IMPL is in outliner.cxx, move to EE later and share declaration, or use BlockNotifications from EE directly
 
 
 class EditView;
@@ -150,13 +154,10 @@ class SvxColorList;
 class SvxSearchItem;
 class SvxLRSpaceItem;
 class TextRanger;
-class SvKeyValueIterator;
 class SvxForbiddenCharactersTable;
-class SvtCTLOptions;
 
 
-class SvUShorts;
-
+}//end of namespace binfilter
 namespace com {
 namespace sun {
 namespace star {
@@ -168,7 +169,7 @@ namespace clipboard {
 namespace svtools {
     class ColorConfig;
 }
-
+namespace binfilter {
 //STRIP001 struct DragAndDropInfo
 //STRIP001 {
 //STRIP001  Rectangle           aCurCursor;
@@ -419,7 +420,7 @@ public:
 //  ----------------------------------------------------------------------
 
 typedef EditView* EditViewPtr;
-SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 );
+SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 )//STRIP008 ;
 
 class ImpEditEngine : public SfxListener
 {
@@ -466,7 +467,7 @@ private:
     VirtualDevice*      pVirtDev;
     OutputDevice*       pRefDev;
 
-    svtools::ColorConfig*   pColorConfig;
+    ::svtools::ColorConfig*   pColorConfig;
     SvtCTLOptions*      pCTLOptions;
 
     SfxItemSet*         pEmptyItemSet;
@@ -865,7 +866,7 @@ public:
     void            FormatAndUpdate( EditView* pCurView = 0 );
     inline void     IdleFormatAndUpdate( EditView* pCurView = 0 );
 
-    svtools::ColorConfig& GetColorConfig();
+    ::svtools::ColorConfig& GetColorConfig();
     BOOL            IsVisualCursorTravelingEnabled();
     BOOL            DoVisualCursorTraveling( const ContentNode* pNode );
 
@@ -1152,6 +1153,7 @@ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit
 BYTE GetCharTypeForCompression( xub_Unicode cChar );
 Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin );
 
+}//end of namespace binfilter
 #endif // _IMPEDIT_HXX
 
 

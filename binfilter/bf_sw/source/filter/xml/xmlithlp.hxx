@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlithlp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,12 +77,15 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx> // for SvxGraphicsPosition
 #endif
-
-class SvxBorderLine;
+namespace rtl { class OUString; }
 struct SvXMLEnumMapEntry;
 class SvXMLUnitConverter;
 class Color;
-namespace rtl { class OUString; }
+
+namespace binfilter {
+
+class SvxBorderLine;
+//STRIP008 namespace rtl { class OUString; }
 
 
 
@@ -142,4 +145,5 @@ extern const struct SvXMLEnumMapEntry aXMLTableAlignMap[];
 extern const struct SvXMLEnumMapEntry aXMLTableVAlignMap[];
 
 
+} //namespace binfilter
 #endif

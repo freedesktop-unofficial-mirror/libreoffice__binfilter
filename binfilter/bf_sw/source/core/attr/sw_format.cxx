@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_format.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:03:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@
 #ifndef _SWCACHE_HXX
 #include <swcache.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ TYPEINIT1( SwFmt, SwClient ); //rtti fuer SwFmt
@@ -716,3 +717,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( !aSet.Count() )
 /*M*/ {
 /*M*/     return sal_False;
 /*M*/ }
+}

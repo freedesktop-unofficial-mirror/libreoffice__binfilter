@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingImportHelper.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,7 @@
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmloff/xmluconv.hxx>
 #endif
+namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
 
@@ -104,7 +105,7 @@ ScMyCellInfo::ScMyCellInfo()
 {
 }
 
-ScMyCellInfo::ScMyCellInfo(ScBaseCell* pTempCell, const rtl::OUString& rFormulaAddress, const rtl::OUString& rFormula,
+ScMyCellInfo::ScMyCellInfo(ScBaseCell* pTempCell, const ::rtl::OUString& rFormulaAddress, const ::rtl::OUString& rFormula,
             const double& rValue, const sal_uInt16 nTempType, const sal_uInt8 nTempMatrixFlag, const sal_Int32 nTempMatrixCols,
             const sal_Int32 nTempMatrixRows)
     : pCell(pTempCell),
@@ -305,7 +306,7 @@ void ScXMLChangeTrackingImportHelper::StartChangeAction(const ScChangeActionType
     }
 }
 
-sal_uInt32 ScXMLChangeTrackingImportHelper::GetIDFromString(const rtl::OUString& sID)
+sal_uInt32 ScXMLChangeTrackingImportHelper::GetIDFromString(const ::rtl::OUString& sID)
 {
     sal_uInt32 nResult(0);
     sal_uInt32 nLength(sID.getLength());
@@ -313,7 +314,7 @@ sal_uInt32 ScXMLChangeTrackingImportHelper::GetIDFromString(const rtl::OUString&
     {
         if (sID.compareTo(sIDPrefix, nPrefixLength) == 0)
         {
-            rtl::OUString sValue(sID.copy(nPrefixLength, nLength - nPrefixLength));
+            ::rtl::OUString sValue(sID.copy(nPrefixLength, nLength - nPrefixLength));
             sal_Int32 nValue;
             SvXMLUnitConverter::convertNumber(nValue, sValue);
             DBG_ASSERT(nValue > 0, "wrong change action ID");
@@ -787,8 +788,8 @@ void ScXMLChangeTrackingImportHelper::SetNewCell(ScMyContentAction* pAction)
                             sal_uInt8 nMatrixFlag = static_cast<ScFormulaCell*>(pCell)->GetMatrixFlag();
                             String sFormula;
                             static_cast<ScFormulaCell*>(pCell)->GetFormula(sFormula);
-                            rtl::OUString sOUFormula(sFormula);
-                            rtl::OUString sOUFormula2(sOUFormula.copy(2, sOUFormula.getLength() - 3));
+                            ::rtl::OUString sOUFormula(sFormula);
+                            ::rtl::OUString sOUFormula2(sOUFormula.copy(2, sOUFormula.getLength() - 3));
                             String sFormula2(sOUFormula2);
                             pNewCell = new ScFormulaCell(pDoc, aAddress, sFormula2, nMatrixFlag);
                             if (pNewCell)
@@ -905,4 +906,5 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
 
         pDoc->SetChangeTrack(pTrack);
     }
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unopsfm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,11 +85,12 @@
 
 #include "unomodel.hxx"
 #include "prlayout.hxx"
+class SfxStyleSheet;
+class SfxStyleSheetBase;
+namespace binfilter {
 
 class SvUnoWeakContainer;
 class SdPage;
-class SfxStyleSheet;
-class SfxStyleSheetBase;
 
 class SdUnoPseudoStyleFamily : public ::cppu::WeakImplHelper4<
                                     ::com::sun::star::container::XNameAccess,
@@ -143,3 +144,4 @@ public:
     virtual ::com::sun::star::uno::Any SAL_CALL getByIndex( sal_Int32 Index ) throw(::com::sun::star::lang::IndexOutOfBoundsException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter

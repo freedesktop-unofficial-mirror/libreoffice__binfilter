@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_blink.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #include "blink.hxx"
 #include "porlin.hxx"
 #include "porlay.hxx"   // SwLineLayout
+namespace binfilter {
 
 // Sichtbare Zeit:
 #define BLINK_ON_TIME       2400L
@@ -233,3 +234,4 @@
 
 
 
+}

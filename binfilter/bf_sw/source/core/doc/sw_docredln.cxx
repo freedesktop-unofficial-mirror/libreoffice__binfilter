@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
+namespace binfilter {
 
 #ifdef PRODUCT
 
@@ -1038,7 +1039,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this
 //STRIP001          pRedlineTbl->Insert( pNewRedl );
 //STRIP001
 //STRIP001      if( bCompress )
-//STRIP001          CompressRedlines();
+//STRIP001          ::com::pressRedlines();
 //STRIP001  }
 //STRIP001  else
 //STRIP001  {
@@ -1903,7 +1904,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001
 //STRIP001      if( bRet )
 //STRIP001      {
-//STRIP001          CompressRedlines();
+//STRIP001          ::com::pressRedlines();
 //STRIP001          SetModified();
 //STRIP001      }
 //STRIP001
@@ -1936,7 +1937,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001                                      bCallDelete, aPam );
 //STRIP001  if( bRet )
 //STRIP001  {
-//STRIP001      CompressRedlines();
+//STRIP001      ::com::pressRedlines();
 //STRIP001      SetModified();
 //STRIP001  }
 //STRIP001  if( DoesUndo() )
@@ -1990,7 +1991,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001
 //STRIP001      if( bRet )
 //STRIP001      {
-//STRIP001          CompressRedlines();
+//STRIP001          ::com::pressRedlines();
 //STRIP001          SetModified();
 //STRIP001      }
 //STRIP001
@@ -2023,7 +2024,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001                                      bCallDelete, aPam );
 //STRIP001  if( bRet )
 //STRIP001  {
-//STRIP001      CompressRedlines();
+//STRIP001      ::com::pressRedlines();
 //STRIP001      SetModified();
 //STRIP001  }
 //STRIP001  if( DoesUndo() )
@@ -3535,3 +3536,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( pIdx && !pCntntSect )
 /*N*/
 /*N*/     return nResult;
 /*N*/ }
+}

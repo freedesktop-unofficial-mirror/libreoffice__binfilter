@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableShapeImportHelper.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
 #endif
+namespace binfilter {
 
 #define SC_LAYERID "LayerID"
 
@@ -112,9 +113,9 @@ XMLTableShapeImportHelper::~XMLTableShapeImportHelper()
 {
 }
 
-void XMLTableShapeImportHelper::SetLayer(uno::Reference<drawing::XShape>& rShape, sal_Int16 nLayerID, const rtl::OUString& sType) const
+void XMLTableShapeImportHelper::SetLayer(uno::Reference<drawing::XShape>& rShape, sal_Int16 nLayerID, const ::rtl::OUString& sType) const
 {
-    if (sType.equals(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.ControlShape"))))
+    if (sType.equals(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.ControlShape"))))
         nLayerID = SC_LAYER_CONTROLS;
     if (nLayerID != -1)
     {
@@ -138,14 +139,14 @@ void XMLTableShapeImportHelper::finishShape(
         sal_Int32 nEndY(-1);
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         table::CellAddress aEndCell;
-        rtl::OUString* pRangeList = NULL;
+        ::rtl::OUString* pRangeList = NULL;
         sal_Int16 nLayerID(-1);
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            const rtl::OUString& rAttrName = xAttrList->getNameByIndex( i );
-            const rtl::OUString& rValue = xAttrList->getValueByIndex( i );
+            const ::rtl::OUString& rAttrName = xAttrList->getNameByIndex( i );
+            const ::rtl::OUString& rValue = xAttrList->getValueByIndex( i );
 
-            rtl::OUString aLocalName;
+            ::rtl::OUString aLocalName;
             sal_uInt16 nPrefix =
                 static_cast<ScXMLImport&>(mrImporter).GetNamespaceMap().GetKeyByAttrName( rAttrName,
                                                                 &aLocalName );
@@ -167,7 +168,7 @@ void XMLTableShapeImportHelper::finishShape(
             else if(nPrefix == XML_NAMESPACE_DRAW)
             {
                 if (IsXMLToken(aLocalName, XML_NOTIFY_ON_UPDATE_OF_RANGES))
-                    pRangeList = new rtl::OUString(rValue);
+                    pRangeList = new ::rtl::OUString(rValue);
             }
         }
         SetLayer(rShape, nLayerID, rShape->getShapeType());
@@ -201,10 +202,10 @@ void XMLTableShapeImportHelper::finishShape(
         sal_Int16 nLayerID(-1);
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            const rtl::OUString& rAttrName = xAttrList->getNameByIndex( i );
-            const rtl::OUString& rValue = xAttrList->getValueByIndex( i );
+            const ::rtl::OUString& rAttrName = xAttrList->getNameByIndex( i );
+            const ::rtl::OUString& rValue = xAttrList->getValueByIndex( i );
 
-            rtl::OUString aLocalName;
+            ::rtl::OUString aLocalName;
             sal_uInt16 nPrefix =
                 static_cast<ScXMLImport&>(mrImporter).GetNamespaceMap().GetKeyByAttrName( rAttrName,
                                                                 &aLocalName );
@@ -218,4 +219,5 @@ void XMLTableShapeImportHelper::finishShape(
         SetLayer(rShape, nLayerID, rShape->getShapeType());
     }
     static_cast<ScXMLImport&>(mrImporter).UnlockSolarMutex();
+}
 }

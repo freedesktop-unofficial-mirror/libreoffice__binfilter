@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTableMasterPageExport.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@
 #endif
 
 #include "xmlexprt.hxx"
+namespace binfilter {
 
 namespace com { namespace sun { namespace star {
     namespace text { class XText; }
@@ -85,7 +86,7 @@ namespace com { namespace sun { namespace star {
 
 class XMLTableMasterPageExport : public XMLTextMasterPageExport
 {
-    void exportHeaderFooter(const com::sun::star::uno::Reference < com::sun::star::sheet::XHeaderFooterContent >& xHeaderFooter,
+    void exportHeaderFooter(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XHeaderFooterContent >& xHeaderFooter,
                             const xmloff::token::XMLTokenEnum aName,
                             const sal_Bool bDisplay);
 
@@ -106,5 +107,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif  //  _XMLOFF_XMLTABLEMASTERPAGEEXPORT_HXX
 

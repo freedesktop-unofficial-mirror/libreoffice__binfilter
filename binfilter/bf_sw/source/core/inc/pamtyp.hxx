@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pamtyp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif
+namespace binfilter {
 
 class SwpHints;
 struct SwPosition;
@@ -117,7 +118,7 @@ typedef void (*GoDoc)( SwPosition* );
 typedef void (*GoSection)( SwPosition* );
 typedef FASTBOOL (SwPosition:: *CmpOp)( const SwPosition& ) const;
 typedef const SwTxtAttr* (*GetHint)( const SwpHints&, USHORT&, xub_StrLen );
-typedef int (utl::TextSearch:: *SearchTxt)( const String&, xub_StrLen*,
+typedef int (::utl::TextSearch:: *SearchTxt)( const String&, xub_StrLen*,
                     xub_StrLen*, ::com::sun::star::util::SearchResult* );
 typedef void (SwNodes:: *MvSection)( SwNodeIndex * ) const;
 
@@ -139,4 +140,5 @@ SwCntntNode* GetNode( SwPaM&, FASTBOOL&, SwMoveFn, FASTBOOL bInReadOnly = FALSE 
 
 
 
+} //namespace binfilter
 #endif

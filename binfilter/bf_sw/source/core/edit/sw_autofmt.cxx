@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_autofmt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:16:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -195,6 +195,7 @@
 #ifndef _SV_MSGBOX_HXX
 #include <vcl/msgbox.hxx>
 #endif
+namespace binfilter {
 
 //-------------------------------------------------------------------
 
@@ -479,7 +480,7 @@
 //STRIP001  } while( !pNewNd->IsTxtNode() );
 //STRIP001
 //STRIP001  if( !aFlags.bAFmtByInput )
-//STRIP001      ::SetProgressState( aNdIdx.GetIndex() + nEndNdIdx - aEndNdIdx.GetIndex(),
+//STRIP001      ::binfilter::SetProgressState( aNdIdx.GetIndex() + nEndNdIdx - aEndNdIdx.GetIndex(),
 //STRIP001                          pDoc->GetDocShell() );
 //STRIP001
 //STRIP001  pAktTxtNd = (SwTxtNode*)pNewNd;
@@ -2884,3 +2885,4 @@
 /*N*/   pEditFlags->aByInputBulletFont  = pFlags->aByInputBulletFont;
 /*N*/ }
 
+}

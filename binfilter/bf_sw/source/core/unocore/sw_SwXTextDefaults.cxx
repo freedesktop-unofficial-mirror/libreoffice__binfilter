@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXTextDefaults.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:42:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,13 +104,14 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::lang;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::lang;
 
 // declarations
 void lcl_setPageDesc(SwDoc*, const uno::Any&, SfxItemSet& ); // from unoobj.cxx
@@ -350,3 +351,4 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwXTextDefaults::getSupportedServiceNa
 
 
 
+}

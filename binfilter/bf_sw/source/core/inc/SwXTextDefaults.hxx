@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwXTextDefaults.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,12 +83,13 @@
 #ifndef _SFX_ITEMPROP_HXX
 #include <svtools/itemprop.hxx>
 #endif
+namespace binfilter {
 
 class SwXTextDefaults :  public cppu::WeakImplHelper3
                         <
-                            com::sun::star::beans::XPropertyState,
-                            com::sun::star::beans::XPropertySet,
-                            com::sun::star::lang::XServiceInfo
+                            ::com::sun::star::beans::XPropertyState,
+                            ::com::sun::star::beans::XPropertySet,
+                            ::com::sun::star::lang::XServiceInfo
                         >
 {
     SfxItemPropertySet  aPropSet;
@@ -128,4 +129,5 @@ public:
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName ) throw (::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  ) throw (::com::sun::star::uno::RuntimeException);
 };
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvlfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,6 +149,7 @@
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
+namespace binfilter {
 
 
 //Fuer SwFlyFrm::GetCrsrOfst
@@ -1084,7 +1085,7 @@
 /*N*/              Min( rPt1.Y(), rPt2.Y() );
 /*N*/   BigInt dX1( dX ), dY1( dY );
 /*N*/   dX1 *= dX1; dY1 *= dY1;
-/*N*/   return ::SqRt( dX1 + dY1 );
+/*N*/   return ::binfilter::SqRt( dX1 + dY1 );
 /*N*/ }
 
 // lcl_Inside ueberprueft, ob der Punkt innerhalb des Seitenteils liegt, in dem
@@ -1153,7 +1154,7 @@
 /*N*/               //Wenn der Cntnt in einem geschuetzen Bereich (Zelle, Ftn, Section)
 /*N*/               //liegt, wird der nachste Cntnt der nicht geschuetzt ist gesucht.
 /*N*/               const SwCntntFrm *pComp = pCntnt;
-/*N*/               pCntnt = ::lcl_MissProtectedFrames( pCntnt, lcl_GetNxtCnt, FALSE,
+/*N*/               pCntnt = ::binfilter::lcl_MissProtectedFrames( pCntnt, lcl_GetNxtCnt, FALSE,
 /*N*/                                       pCMS ? pCMS->bSetInReadOnly : FALSE );
 /*N*/               if ( pComp != pCntnt )
 /*N*/                   continue;
@@ -1192,7 +1193,7 @@
 /*N*/                   if( !pInside || ( pInside->IsAnLower( pCntnt ) &&
 /*N*/                       ( !pCntnt->IsInFtn() || pInside->IsFtnContFrm() ) ) )
 /*N*/                   {
-/*N*/                       const ULONG nDiff = ::CalcDiff( aCntntPoint, rPoint );
+/*N*/                       const ULONG nDiff = ::binfilter::CalcDiff( aCntntPoint, rPoint );
 /*N*/                       BOOL bBetter = nDiff < nDistance;  // Dichter dran
 /*N*/                       if( !pInside )
 /*N*/                       {
@@ -1381,7 +1382,7 @@
 /*N*/       else if ( aCntFrm.Right() < rPt.X() )
 /*N*/           aPoint.X() = aCntFrm.Right();
 /*N*/
-/*N*/       const ULONG nDiff = ::CalcDiff( aPoint, rPt );
+/*N*/       const ULONG nDiff = ::binfilter::CalcDiff( aPoint, rPt );
 /*N*/       if ( nDiff < nDist )
 /*N*/       {
 /*N*/           aAct    = aPoint;
@@ -2569,3 +2570,4 @@
 //STRIP001 }
 
 
+}

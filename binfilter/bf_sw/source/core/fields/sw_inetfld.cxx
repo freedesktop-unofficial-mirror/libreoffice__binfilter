@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_inetfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #include "inetfld.hxx"
 #include "poolfmt.hxx"
 #include "hints.hxx"
+namespace binfilter {
 
 
 /*--------------------------------------------------------------------
@@ -270,3 +271,4 @@ String SwINetField::GetBookmark() const
 
 
 
+}

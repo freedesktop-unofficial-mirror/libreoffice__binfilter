@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #include "docsh.hxx"
 #include "bf_sc.hrc"
 #include "scdll0.hxx"
+namespace binfilter {
 
 
 //------------------------------------------------------------------
@@ -123,7 +124,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 //  filter detection can't use ScFilterOptions (in sc-dll),
 //  so access to wk3 flag must be implemented here again
 
-/*N*/ class ScLibOptions : public utl::ConfigItem
+/*N*/ class ScLibOptions : public ::utl::ConfigItem
 /*N*/ {
 /*N*/   BOOL        bWK3Flag;
 /*N*/
@@ -136,12 +137,12 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 #define ENTRYSTR_WK3            "WK3"
 
 /*N*/ ScLibOptions::ScLibOptions() :
-/*N*/   ConfigItem( rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
+/*N*/   ConfigItem( ::rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
 /*N*/   bWK3Flag( FALSE )
 /*N*/ {
-/*N*/   com::sun::star::uno::Sequence<rtl::OUString> aNames(1);
-/*N*/   aNames[0] = rtl::OUString::createFromAscii( ENTRYSTR_WK3 );
-/*N*/   com::sun::star::uno::Sequence<com::sun::star::uno::Any> aValues = GetProperties(aNames);
+/*N*/   ::com::sun::star::uno::Sequence<rtl::OUString> aNames(1);
+/*N*/   aNames[0] = ::rtl::OUString::createFromAscii( ENTRYSTR_WK3 );
+/*N*/   ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any> aValues = GetProperties(aNames);
 /*N*/   if ( aValues.getLength() == 1 && aValues[0].hasValue() )
 /*N*/       bWK3Flag = comphelper::getBOOL( aValues[0] );
 /*N*/ }
@@ -154,7 +155,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/                           String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME ) ))
 /*N*/ {
 /*N*/   ((SfxObjectFactory&)Factory()).
-/*N*/           SetDocumentServiceName( rtl::OUString::createFromAscii(
+/*N*/           SetDocumentServiceName( ::rtl::OUString::createFromAscii(
 /*N*/                   "com.sun.star.sheet.SpreadsheetDocument" ) );
 /*N*/
 /*N*/   const String    aEmptyStr;
@@ -753,3 +754,4 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_datarow.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 /*************************************************************************
 |*
 |* Datenreihen-Index ermitteln
@@ -193,3 +194,4 @@
 
 
 
+}

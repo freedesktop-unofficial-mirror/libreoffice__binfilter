@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_node.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -190,6 +190,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 using namespace ::com::sun::star::i18n;
 
 /*N*/ TYPEINIT2( SwCntntNode, SwModify, SwIndexReg )
@@ -1132,7 +1133,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                               const SwPosition *pPos,
 /*N*/                               const BOOL bCalcFrm ) const
 /*N*/ {
-/*N*/   return (SwCntntFrm*) ::GetFrmOfModify( *(SwModify*)this, FRM_CNTNT,
+/*N*/   return (SwCntntFrm*) ::binfilter::GetFrmOfModify( *(SwModify*)this, FRM_CNTNT,
 /*N*/                                           pPoint, pPos, bCalcFrm );
 /*N*/ }
 
@@ -1887,3 +1888,4 @@ using namespace ::com::sun::star::i18n;
 
 
 
+}

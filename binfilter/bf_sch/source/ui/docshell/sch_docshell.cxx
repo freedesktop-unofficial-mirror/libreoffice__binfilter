@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-16 17:12:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,6 +158,7 @@
 #ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
 #endif
+namespace binfilter {
 
 #define POOL_BUFFER_SIZE        (USHORT)32768
 #define BASIC_BUFFER_SIZE       (USHORT)8192
@@ -168,7 +169,7 @@
 #define SCH_DEFAULT_CHART_SIZE_WIDTH  8000
 #define SCH_DEFAULT_CHART_SIZE_HEIGHT 7000
 
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 
 // STATIC DATA -----------------------------------------------------------
@@ -223,7 +224,7 @@ private:
 /*N*/ // from macro: void SchChartDocShell::InitInterface_Impl()
 /*N*/ {}
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 /*N*/ SFX_IMPL_OBJECTFACTORY_DLL(SchChartDocShell, schart,
 /*N*/                          SvGlobalName(BF_SO3_SCH_CLASSID), Sch)
@@ -651,7 +652,7 @@ using namespace com::sun::star;
 //STRIP001
 //STRIP001          if( pStor )
 //STRIP001          {
-//STRIP001                 Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001                 Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001              SchXMLWrapper aFilter( xModel, *pStor, TRUE );
 //STRIP001                 sal_Int32 nWarning = aFilter.Import();
 //STRIP001                 if( nWarning )
@@ -865,7 +866,7 @@ using namespace com::sun::star;
 //STRIP001      SvStorage* pStorage = rMedium.GetOutputStorage( sal_True );
 //STRIP001      if( pStorage )
 //STRIP001      {
-//STRIP001             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001          SchXMLWrapper aFilter( xModel, *pStorage, TRUE );
 //STRIP001
 //STRIP001          // update user info before writing
@@ -898,7 +899,7 @@ using namespace com::sun::star;
 //STRIP001      SvStorage* pStorage = rMedium.GetStorage();
 //STRIP001      if( pStorage )
 //STRIP001      {
-//STRIP001             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001          SchXMLWrapper aFilter( xModel, *pStorage, TRUE );
 //STRIP001             sal_Int32 nWarning = aFilter.Import();
 //STRIP001             if( nWarning )
@@ -951,7 +952,7 @@ using namespace com::sun::star;
          **********************************************************************/
 /*N*/       if( pStor )
 /*N*/       {
-/*N*/             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*N*/           SchXMLWrapper aFilter( xModel, *pStor,
 /*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
 /*N*/
@@ -1100,7 +1101,7 @@ using namespace com::sun::star;
           **********************************************************************/
 /*N*/       if( pStor )
 /*N*/       {
-/*N*/             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*N*/           SchXMLWrapper aFilter( xModel, *pStor,
 /*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
 /*N*/
@@ -1390,3 +1391,4 @@ using namespace com::sun::star;
 //STRIP001  }
 //STRIP001  SfxInPlaceObject::InPlaceActivate( b );
 //STRIP001 }
+}

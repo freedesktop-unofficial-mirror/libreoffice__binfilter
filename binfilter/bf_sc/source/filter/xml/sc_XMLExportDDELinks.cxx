@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLExportDDELinks.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,10 +97,11 @@
 #ifndef _COM_SUN_STAR_SHEET_XDDELINK_HPP_
 #include <com/sun/star/sheet/XDDELink.hpp>
 #endif
+namespace binfilter {
 
 class ScMatrix;
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 ScXMLExportDDELinks::ScXMLExportDDELinks(ScXMLExport& rTempExport)
@@ -131,12 +132,12 @@ sal_Bool ScXMLExportDDELinks::CellsEqual(const sal_Bool bPrevEmpty, const sal_Bo
 
 void ScXMLExportDDELinks::WriteCell(const sal_Bool bEmpty, const sal_Bool bString, const String& sValue, const double& fValue, const sal_Int32 nRepeat)
 {
-    rtl::OUStringBuffer sBuffer;
+    ::rtl::OUStringBuffer sBuffer;
     if (!bEmpty)
         if (bString)
         {
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_STRING);
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_STRING_VALUE, rtl::OUString(sValue));
+            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_STRING_VALUE, ::rtl::OUString(sValue));
         }
         else
         {
@@ -164,7 +165,7 @@ void ScXMLExportDDELinks::WriteTable(const sal_Int32 nPos)
         nRowCount = nuRow;
         nColCount = nuCol;
         SvXMLElementExport aTableElem(rExport, XML_NAMESPACE_TABLE, XML_TABLE, sal_True, sal_True);
-        rtl::OUStringBuffer sBuffer;
+        ::rtl::OUStringBuffer sBuffer;
         if (nColCount > 1)
         {
             rExport.GetMM100UnitConverter().convertNumber(sBuffer, nColCount);
@@ -217,7 +218,7 @@ void ScXMLExportDDELinks::WriteDDELinks(uno::Reference<sheet::XSpreadsheetDocume
     uno::Reference <beans::XPropertySet> xPropertySet (xSpreadDoc, uno::UNO_QUERY);
     if (xPropertySet.is())
     {
-        uno::Any aDDELinks = xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_DDELINKS)));
+        uno::Any aDDELinks = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_DDELINKS)));
         uno::Reference<container::XIndexAccess> xIndex;
         if (aDDELinks >>= xIndex)
         {
@@ -257,4 +258,5 @@ void ScXMLExportDDELinks::WriteDDELinks(uno::Reference<sheet::XSpreadsheetDocume
             }
         }
     }
+}
 }

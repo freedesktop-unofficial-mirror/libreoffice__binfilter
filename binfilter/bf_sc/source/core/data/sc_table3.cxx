@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table3.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,6 +99,7 @@
 #include "cellform.hxx"
 
 #include <vector>
+namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -111,7 +112,7 @@ struct ScSortInfo
     DECL_FIXEDMEMPOOL_NEWDEL( ScSortInfo );
 };
 /*N*/ const USHORT nMemPoolSortInfo = (0x8000 - 64) / sizeof(ScSortInfo);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )//STRIP008 ;
 
 // END OF STATIC DATA -----------------------------------------------------
 
@@ -1764,3 +1765,4 @@ return FALSE;//STRIP001     return bValid;
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlxtexp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@ namespace com { namespace sun { namespace star {
     namespace document { class XGraphicObjectResolver; }
     namespace xml { namespace sax { class XDocumentHandler; } }
 } } }
+namespace binfilter {
 
 class SvxXMLXTableExportComponent : public SvXMLExport
 {
@@ -82,14 +83,14 @@ public:
     // #110680#
     SvxXMLXTableExportComponent(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        const rtl::OUString& rFileName,
-        const com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler > & xHandler,
-        const com::sun::star::uno::Reference< com::sun::star::container::XNameContainer > & xTable,
-        com::sun::star::uno::Reference< com::sun::star::document::XGraphicObjectResolver >& xGrfResolver);
+        const ::rtl::OUString& rFileName,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & xHandler,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & xTable,
+        ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver >& xGrfResolver);
 
     ~SvxXMLXTableExportComponent();
 
-    static sal_Bool save( const rtl::OUString& rURL, const com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >& xTable ) throw();
+    static sal_Bool save( const ::rtl::OUString& rURL, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >& xTable ) throw();
 
     sal_Bool exportTable() throw();
 
@@ -99,8 +100,9 @@ public:
     virtual void _ExportContent();
 
 private:
-    const com::sun::star::uno::Reference< com::sun::star::container::XNameContainer > & mxTable;
+    const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & mxTable;
 };
 
+}//end of namespace binfilter
 #endif
 

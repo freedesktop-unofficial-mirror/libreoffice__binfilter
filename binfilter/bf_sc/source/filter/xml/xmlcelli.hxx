@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlcelli.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,25 +98,26 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
 struct ScMyImportAnnotation
 {
-    rtl::OUString sAuthor;
-    rtl::OUString sCreateDate;
-    rtl::OUString sText;
+    ::rtl::OUString sAuthor;
+    ::rtl::OUString sCreateDate;
+    ::rtl::OUString sText;
     sal_Bool bDisplay : 1;
 };
 
 class ScXMLTableRowCellContext : public SvXMLImportContext
 {
-    com::sun::star::uno::Reference<com::sun::star::table::XCell> xBaseCell;
-    com::sun::star::uno::Reference<com::sun::star::document::XActionLockable> xLockable;
-    rtl::OUString* pOUTextValue;
-    rtl::OUString* pOUTextContent;
-    rtl::OUString* pOUFormula;
-    rtl::OUString* pContentValidationName;
+    ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell> xBaseCell;
+    ::com::sun::star::uno::Reference< ::com::sun::star::document::XActionLockable> xLockable;
+    ::rtl::OUString* pOUTextValue;
+    ::rtl::OUString* pOUTextContent;
+    ::rtl::OUString* pOUFormula;
+    ::rtl::OUString* pContentValidationName;
     ScMyImportAnnotation*   pMyAnnotation;
     ScMyImpDetectiveObjVec* pDetectiveObjVec;
     ScMyImpCellRangeSource* pCellRangeSource;
@@ -140,23 +141,23 @@ class ScXMLTableRowCellContext : public SvXMLImportContext
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
     ScXMLImport& GetScImport() { return (ScXMLImport&)GetImport(); }
 
-    sal_Int16 GetCellType(const rtl::OUString& sOUValue) const;
+    sal_Int16 GetCellType(const ::rtl::OUString& sOUValue) const;
 
-    sal_Bool IsMerged (const com::sun::star::uno::Reference <com::sun::star::table::XCellRange>& xCellRange,
+    sal_Bool IsMerged (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCellRange>& xCellRange,
                 const sal_Int32 nCol, const sal_Int32 nRow,
-                com::sun::star::table::CellRangeAddress& aCellAddress) const;
-    void DoMerge(const com::sun::star::table::CellAddress& aCellPos,
+                ::com::sun::star::table::CellRangeAddress& aCellAddress) const;
+    void DoMerge(const ::com::sun::star::table::CellAddress& aCellPos,
                  const sal_Int32 nCols, const sal_Int32 nRows);
 
-    void SetContentValidation(com::sun::star::uno::Reference<com::sun::star::beans::XPropertySet>& xPropSet);
-    void SetCellProperties(const com::sun::star::uno::Reference<com::sun::star::table::XCellRange>& xCellRange,
-                                                const com::sun::star::table::CellAddress& aCellAddress);
-    void SetCellProperties(const com::sun::star::uno::Reference<com::sun::star::table::XCell>& xCell);
+    void SetContentValidation(::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& xPropSet);
+    void SetCellProperties(const ::com::sun::star::uno::Reference< ::com::sun::star::table::XCellRange>& xCellRange,
+                                                const ::com::sun::star::table::CellAddress& aCellAddress);
+    void SetCellProperties(const ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell>& xCell);
 
     void LockSolarMutex();
     void UnlockSolarMutex();
 
-    sal_Bool CellExists(const com::sun::star::table::CellAddress& aCellPos) const
+    sal_Bool CellExists(const ::com::sun::star::table::CellAddress& aCellPos) const
     {
         return (aCellPos.Column <= MAXCOL && aCellPos.Row <= MAXROW);
     }
@@ -176,13 +177,13 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    void SetString(const rtl::OUString& rOUTempText) {
+    void SetString(const ::rtl::OUString& rOUTempText) {
         if (pOUTextContent)
             delete pOUTextContent;
         pOUTextContent = new ::rtl::OUString(rOUTempText); }
-    void SetCursorOnTextImport(const rtl::OUString& rOUTempText);
+    void SetCursorOnTextImport(const ::rtl::OUString& rOUTempText);
 
-    void SetAnnotation(const com::sun::star::uno::Reference<com::sun::star::table::XCell>& xCell);
+    void SetAnnotation(const ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell>& xCell);
     void SetDetectiveObj( const ::com::sun::star::table::CellAddress& rPosition );
     void SetCellRangeSource( const ::com::sun::star::table::CellAddress& rPosition );
 
@@ -191,4 +192,5 @@ public:
     void AddAnnotation(ScMyImportAnnotation* pValue) { pMyAnnotation = pValue; }
 };
 
+} //namespace binfilter
 #endif

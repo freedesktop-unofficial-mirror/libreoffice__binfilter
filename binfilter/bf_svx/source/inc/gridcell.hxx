@@ -2,9 +2,9 @@
  *
  *  $RCSfile: gridcell.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,9 +116,10 @@
 #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
 #endif
+class Edit;
+namespace binfilter {
 
 class DbCellControl;
-class Edit;
 class FmXGridCell;
 
 //==================================================================
@@ -267,7 +268,7 @@ public:
 //==================================================================
 class DbCellControl
 //STRIP001      :public ::svxform::OTypeConversionClient
-        :public ::svxform::OStaticDataAccessTools//STRIP001         ,public ::svxform::OStaticDataAccessTools
+:public ::binfilter::svxform::OStaticDataAccessTools//STRIP001      ,public ::svxform::OStaticDataAccessTools
         ,public FmMutexHelper           // _before_ the listener, so the listener is to be destroyed first!
         ,public ::comphelper::OPropertyChangeListener
 {
@@ -573,7 +574,7 @@ private:
     sal_Int16   m_nStandardAlign;
 
 protected:
-    DbSpinField( DbGridColumn& _rColumn, sal_Int16 _nStandardAlign = com::sun::star::awt::TextAlign::RIGHT );
+    DbSpinField( DbGridColumn& _rColumn, sal_Int16 _nStandardAlign = ::com::sun::star::awt::TextAlign::RIGHT );
 
 public:
     virtual void                        Init( Window* pParent, const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XRowSet >& _rxCursor );
@@ -691,7 +692,7 @@ protected:
 //==================================================================
 class DbFilterField
         :public DbCellControl
-        ,public ::svxform::OSQLParserClient
+        ,public ::binfilter::svxform::OSQLParserClient//STRIP008        ,public ::svxform::OSQLParserClient
 {
     ::com::sun::star::uno::Sequence< ::rtl::OUString >  m_aValueList;
     XubString   m_aText;
@@ -998,5 +999,6 @@ protected:
     DECL_LINK( OnCommit, void* );
 };
 
+}//end of namespace binfilter
 #endif // _SVX_GRIDCELL_HXX
 

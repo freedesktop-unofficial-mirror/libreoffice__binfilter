@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDataRow.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,11 +139,12 @@
 
 #include "chtmodel.hxx"
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
+namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ChXDataRow::ChXDataRow( sal_Int32 _Row, ChartModel* _Model ) :
         maPropSet( aSchMapProvider.GetMap( _Model? CHMAP_DATAROW: CHMAP_NONE, _Model )),
@@ -363,7 +364,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                         break;
                     case SCHATTR_SYMBOL_BRUSH:
                         {
-                            rtl::OUString aURL;
+                            ::rtl::OUString aURL;
                             aValue >>= aURL;
                             GraphicObject aGraphObj = CreateGraphicObjectFromURL( aURL );
                             SvxBrushItem aItem( SCHATTR_SYMBOL_BRUSH );
@@ -381,7 +382,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case XATTR_LINEDASH:
                         if( pMap->nMemberId == MID_NAME )
                         {
-                            rtl::OUString aStr;
+                            ::rtl::OUString aStr;
                             if( aValue >>= aStr )
                                 SvxShape::SetFillAttribute( nWID, aStr, *pSet, mpModel );
                             break;
@@ -597,13 +598,13 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                 }
                 else if( nWID == SCHATTR_SYMBOL_BRUSH )
                 {
-                    rtl::OUString aURL;
+                    ::rtl::OUString aURL;
                     const GraphicObject* pGraphObj =
                         ((const SvxBrushItem &)(pSet->Get( nWID ))).GetGraphicObject();
                     if( pGraphObj )
                     {
-                        aURL = rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
-                        aURL += rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
+                        aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                        aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                     }
                     aAny <<= aURL;
                 }
@@ -738,7 +739,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXDataRow::getPropertyStates(
     OGuard aGuard( Application::GetSolarMutex() );
 
     const sal_Int32 nCount = aPropertyName.getLength();
-    const rtl::OUString* pNames = aPropertyName.getConstArray();
+    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
 
     uno::Sequence< beans::PropertyState > aRet( nCount );
     beans::PropertyState* pState = aRet.getArray();
@@ -850,10 +851,10 @@ sal_Bool SAL_CALL ChXDataRow::supportsService( const ::rtl::OUString& ServiceNam
     return SvxServiceInfoHelper::supportsService( ServiceName, getSupportedServiceNames() );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXDataRow::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXDataRow::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    uno::Sequence< rtl::OUString > aSeq;
+    uno::Sequence< ::rtl::OUString > aSeq;
     SvxServiceInfoHelper::addToSequence(
         aSeq, 7,
         "com.sun.star.chart.ChartDataPointProperties",
@@ -886,3 +887,4 @@ sal_Int64 SAL_CALL ChXDataRow::getSomething( const uno::Sequence< sal_Int8 >& aI
     return 0;
 }
 
+}

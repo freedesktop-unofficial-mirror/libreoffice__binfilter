@@ -2,9 +2,9 @@
  *
  *  $RCSfile: convuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,12 +80,13 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 class ScUnoConversion
 {
 public:
-    static LanguageType GetLanguage( const com::sun::star::lang::Locale& rLocale );
-    static void FillLocale( com::sun::star::lang::Locale& rLocale, LanguageType eLang );
+    static LanguageType GetLanguage( const ::com::sun::star::lang::Locale& rLocale );
+    static void FillLocale( ::com::sun::star::lang::Locale& rLocale, LanguageType eLang );
 
     // CellAddress -> ScAddress
     static inline void  FillScAddress(
@@ -218,5 +219,6 @@ inline sal_Bool operator!=(
     return !(rApiRange1 == rApiRange2);
 }
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlxtimp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,13 +175,14 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
-using namespace com::sun::star::container;
-using namespace com::sun::star::document;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::awt;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::xml::sax;
+namespace binfilter {
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::document;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::awt;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::xml::sax;
 using namespace ::rtl;
 using namespace cppu;
 
@@ -396,7 +397,7 @@ private:
 /*N*/               }
 /*N*/
 /*N*/               xIStm->SetBufferSize( 16 * 1024 );
-/*N*/               aParserInput.aInputStream = new utl::OInputStreamWrapper( *xIStm );
+/*N*/               aParserInput.aInputStream = new ::utl::OInputStreamWrapper( *xIStm );
 /*N*/
 /*N*/               pGraphicHelper = SvXMLGraphicHelper::Create( *pStorage, GRAPHICHELPER_MODE_READ );
 /*N*/               xGrfResolver = pGraphicHelper;
@@ -476,3 +477,4 @@ private:
 /*?*/   return new SvXMLImportContext( *this, nPrefix, rLocalName );
 /*N*/ }
 
+}

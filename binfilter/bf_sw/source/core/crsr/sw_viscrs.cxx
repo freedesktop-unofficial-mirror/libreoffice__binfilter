@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viscrs.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,6 +135,7 @@
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>          // ResId fuer Abfrage wenn zu Search & Replaces
 #endif
+namespace binfilter {
 
 
 // OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
@@ -1139,3 +1140,4 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 //STRIP001  return SwShellCrsr::IsAtValidPos( bPoint );
 //STRIP001 }
 
+}

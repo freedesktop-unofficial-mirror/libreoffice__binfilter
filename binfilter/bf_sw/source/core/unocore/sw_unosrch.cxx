@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosrch.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -521,7 +522,7 @@ SwXTextSearch::~SwXTextSearch()
  ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXTextSearch::getUnoTunnelId()
 {
-    static Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -819,3 +820,4 @@ void SwXTextSearch::FillSearchOptions( SearchOptions& rSearchOpt ) const
 
 
 
+}

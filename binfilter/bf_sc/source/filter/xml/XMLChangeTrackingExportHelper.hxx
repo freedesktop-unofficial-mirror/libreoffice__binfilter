@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLChangeTrackingExportHelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,8 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
+class DateTime;
+namespace binfilter {
 
 class ScChangeAction;
 class ScChangeTrack;
@@ -83,7 +85,6 @@ class ScChangeActionDel;
 class ScBigRange;
 class ScEditEngineTextObj;
 class ScChangeActionTable;
-class DateTime;
 
 typedef std::list<ScChangeActionDel*> ScMyDeletionsList;
 
@@ -94,10 +95,10 @@ class ScChangeTrackingExportHelper
     ScChangeTrack*  pChangeTrack;
     ScEditEngineTextObj* pEditTextObj;
     ScChangeActionTable* pDependings;
-    rtl::OUString   sChangeIDPrefix;
-    com::sun::star::uno::Reference<com::sun::star::text::XText> xText;
+    ::rtl::OUString sChangeIDPrefix;
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XText>    xText;
 
-    rtl::OUString GetChangeID(const sal_uInt32 nActionNumber);
+    ::rtl::OUString GetChangeID(const sal_uInt32 nActionNumber);
     void GetAcceptanceState(const ScChangeAction* pAction);
 
     void WriteBigRange(const ScBigRange& rBigRange, xmloff::token::XMLTokenEnum aName);
@@ -137,4 +138,5 @@ public:
     void CollectAndWriteChanges();
 };
 
+} //namespace binfilter
 #endif

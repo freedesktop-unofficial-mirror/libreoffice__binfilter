@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_unomodel.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace ::vos;
 using namespace ::rtl;
 using namespace ::cppu;
@@ -160,7 +161,7 @@ using namespace ::com::sun::star::script;
 #define TWIP_TO_MM100(TWIP)     ((TWIP) >= 0 ? (((TWIP)*127L+36L)/72L) : (((TWIP)*127L-36L)/72L))
 #define MM100_TO_TWIP(MM100)    ((MM100) >= 0 ? (((MM100)*72L+63L)/127L) : (((MM100)*72L-63L)/127L))
 
-#define C2U(cChar)  rtl::OUString::createFromAscii(cChar)
+#define C2U(cChar)  ::rtl::OUString::createFromAscii(cChar)
 
 ////////////////////////////////////////
 //
@@ -1023,3 +1024,4 @@ void SAL_CALL SmModel::render(
     }
 }
 
+}

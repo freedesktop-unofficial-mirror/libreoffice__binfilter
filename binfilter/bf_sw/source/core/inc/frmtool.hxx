@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmtool.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,9 @@
 #include "layfrm.hxx"
 #include "frmatr.hxx"
 #include "swcache.hxx"
+class BigInt;
+class OutputDevice;
+namespace binfilter {
 
 class SwPageFrm;
 class SwFlyFrm;
@@ -73,11 +76,11 @@ class SwFtnContFrm;
 class SwDoc;
 class SwAttrSet;
 class SdrObject;
-class BigInt;
+
 class SvxBrushItem;
 class SdrMarkList;
 class SwNodeIndex;
-class OutputDevice;
+
 class SwPageDesc;
 class SwCrsrShell;
 // OD 21.05.2003 #108789#
@@ -495,4 +498,5 @@ inline USHORT SwBorderAttrs::CalcBottom() const
 //STRIP001      ((SwBorderAttrs*)this)->_IsLine();
 //STRIP001  return bIsLine;
 //STRIP001 }
+} //namespace binfilter
 #endif  //_FRMTOOL_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: printfun.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,16 +74,17 @@
 #ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
 #endif
+class SfxItemSet;
+class MultiSelection;
+namespace binfilter {
 
 class SfxPrinter;
 class SfxProgress;
 class ScDocShell;
 class ScDocument;
 class ScViewData;
-class SfxItemSet;
 class ScPageHFItem;
 class EditTextObject;
-class MultiSelection;
 class ScHeaderEditEngine;
 class ScPageBreakData;
 class ScPreviewLocationData;
@@ -385,5 +386,6 @@ private:
 
 
 
+} //namespace binfilter
 #endif
 

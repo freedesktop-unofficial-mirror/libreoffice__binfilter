@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw6file.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #endif
 
 #include "sw6file.hxx"
+namespace binfilter {
 
 #ifdef __BORLANDC__
     #pragma warn +lvc
@@ -475,3 +476,4 @@ Sw6File::~Sw6File(void)
     DelTree(&aNode.pRts);
 }
 
+}

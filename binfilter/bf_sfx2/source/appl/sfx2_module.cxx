@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_module.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@
 #include "viewfrm.hxx"
 
 #define SfxModule
+namespace binfilter {
 #include "sfxslots.hxx"
 
 static SfxModuleArr_Impl* pModules=0;
@@ -477,3 +478,4 @@ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,
 //STRIP001             Invalidate_Impl( pFrame->GetBindings(), nId );
 /*?*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fielduno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,6 +113,7 @@
 #ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
 #endif
+namespace binfilter {
 
 class SvxEditSource;
 class SvxFieldItem;
@@ -125,11 +126,11 @@ class ScHeaderFooterContentObj;
 
 
 class ScCellFieldsObj : public cppu::WeakImplHelper5<
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::container::XIndexAccess,
-                            com::sun::star::container::XContainer,
-                            com::sun::star::util::XRefreshable,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::container::XIndexAccess,
+                            ::com::sun::star::container::XContainer,
+                            ::com::sun::star::util::XRefreshable,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -303,9 +304,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScCellFieldObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::text::XTextContent> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScCellFieldObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::text::XTextContent> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -325,11 +326,11 @@ public:
 //------------------------------------------------------------------
 
 class ScHeaderFieldsObj : public cppu::WeakImplHelper5<
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::container::XIndexAccess,
-                            com::sun::star::container::XContainer,
-                            com::sun::star::util::XRefreshable,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::container::XIndexAccess,
+                            ::com::sun::star::container::XContainer,
+                            ::com::sun::star::util::XRefreshable,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScHeaderFooterContentObj*   pContentObj;
@@ -498,9 +499,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScHeaderFieldObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::text::XTextContent> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScHeaderFieldObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::text::XTextContent> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -517,5 +518,6 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

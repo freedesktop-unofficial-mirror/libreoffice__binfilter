@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -119,6 +119,7 @@
 
 #include "poolfmt.hxx"      // fuer InSetExpField
 #include "poolfmt.hrc"      // fuer InSetExpField
+namespace binfilter {
 
 #if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC)
 
@@ -683,7 +684,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/   ByteString s8;
 /*N*/   rIo.pStrm->ReadByteString( s8 );
-/*N*/     sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : so3::cTokenSeperator;
+/*N*/     sal_Char cSrch = rIo.nVersion < SWG_DDESEP ? ' ' : ::so3::cTokenSeperator;
 /*N*/
 /*N*/   {
 /*N*/       // die ersten beiden Blanks gegen den neuen Trenner austauschen
@@ -692,17 +693,17 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       if( STRING_NOTFOUND != nFnd++ )
 /*N*/       {
 /*N*/           xub_StrLen nFnd2 = s8.Search( cSrch, nFnd );
-/*N*/             ( aCmd += so3::cTokenSeperator) +=
+/*N*/             ( aCmd += ::so3::cTokenSeperator) +=
 /*N*/               String( s8, nFnd, nFnd2 - nFnd, rIo.eSrcSet );
 /*N*/           if( STRING_NOTFOUND != nFnd2++ )
-/*N*/                 ( aCmd += so3::cTokenSeperator) +=
+/*N*/                 ( aCmd += ::so3::cTokenSeperator) +=
 /*N*/                   String( s8, nFnd2, aCmd.Len() - nFnd2, rIo.eSrcSet );
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   // JP 15.08.00: our dialog have set the wrong format id's
-/*N*/     if( so3::LINKUPDATE_ALWAYS != nType && so3::LINKUPDATE_ONCALL != nType )
-/*?*/         nType = so3::LINKUPDATE_ONCALL;
+/*N*/     if( ::so3::LINKUPDATE_ALWAYS != nType && ::so3::LINKUPDATE_ONCALL != nType )
+/*?*/         nType = ::so3::LINKUPDATE_ONCALL;
 /*N*/
 /*N*/   SwDDEFieldType aType( aName, aCmd, nType );
 /*N*/   return (SwDDEFieldType*) rIo.pDoc->InsertFldType( aType );
@@ -713,7 +714,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   *rIo.pStrm << (USHORT) pType->GetType()
 /*N*/              << (UINT16) rIo.aStringPool.Find( pType->GetName(), USHRT_MAX );
 /*N*/     ByteString s8 = rIo.ConvertStringNoDelim( pType->GetCmd(),
-/*N*/                         so3::cTokenSeperator, '\xff', rIo.eSrcSet );
+/*N*/                         ::so3::cTokenSeperator, '\xff', rIo.eSrcSet );
 /*N*/   rIo.pStrm->WriteByteString( s8 );
 /*N*/ }
 
@@ -1893,7 +1894,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/       USHORT n = (USHORT)pFld->GetValue();
 /*N*/
-/*N*/       aExpand = ::FormatNumber( n, rFmt );
+/*N*/       aExpand = ::binfilter::FormatNumber( n, rFmt );
 /*N*/
 /*N*/       if( cFlags & 0x20 )
 /*N*/           pFld->SetSeqNumber( nSeqNo );
@@ -1953,7 +1954,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/
 /*N*/       pFld->SetValue( nSeqVal );
 /*N*/       if( !(cFlags & 0x40) )
-/*N*/           aExpand = ::FormatNumber( nSeqVal, rFmt );
+/*N*/           aExpand = ::binfilter::FormatNumber( nSeqVal, rFmt );
 /*N*/
 /*N*/       pFld->SetSeqNumber( nSeqNo );
 /*N*/   }
@@ -1979,7 +1980,7 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   if( GSE_SEQ & ((SwSetExpFieldType *)pFld->GetTyp())->GetType() )
 /*N*/   {
 /*N*/       USHORT n = (USHORT)((SwSetExpField*)pFld)->GetValue();
-/*N*/       sStr = ::FormatNumber( n, SVX_NUM_ARABIC );
+/*N*/       sStr = ::binfilter::FormatNumber( n, SVX_NUM_ARABIC );
 /*N*/       if( !rIo.IsSw31Export() )
 /*N*/           cFlags |= 0x20;
 /*N*/   }
@@ -3096,3 +3097,4 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 /*N*/   return TRUE;
 /*N*/ }
 
+}

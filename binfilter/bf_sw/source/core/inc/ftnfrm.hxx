@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ftnfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _FTNFRM_HXX
 
 #include "layfrm.hxx"
+namespace binfilter {
 
 class SwCntntFrm;
 class SwTxtFtn;
@@ -158,4 +159,5 @@ public:
     inline void ColUnlock()     { bColLocked = FALSE; }
 };
 
+} //namespace binfilter
 #endif  //_FTNFRM_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: layouter.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _LAYOUTER_HXX
 
 #include "swtypes.hxx"
+namespace binfilter {
 
 //STRIP001 class SwEndnoter;
 class SwDoc;
@@ -93,6 +94,7 @@ public:
     static BOOL StartLoopControl( SwDoc* pDoc, SwPageFrm *pPage );
 };
 
+} //namespace binfilter
 #endif  //_LAYOUTER_HXX
 
 

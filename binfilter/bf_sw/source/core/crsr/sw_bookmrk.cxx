@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_bookmrk.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@
 #ifndef _ERRHDL_HXX //autogen
 #include <errhdl.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
@@ -184,3 +185,4 @@
 /*N*/   eMarkType = UNO_BOOKMARK;
 /*N*/ }
 
+}

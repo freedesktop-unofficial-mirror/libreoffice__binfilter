@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -243,6 +243,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 //________________________________________________________________________________________________________
 //  defines
@@ -317,7 +318,7 @@ struct IMPL_SfxBaseModel_DataContainer
     sal_Bool                                        m_bLoadState            ;
     sal_Bool                                        m_bClosed               ;
     sal_Bool                                        m_bClosing              ;
-    REFERENCE< com::sun::star::view::XPrintJob>     m_xPrintJob             ;
+    REFERENCE< ::com::sun::star::view::XPrintJob>     m_xPrintJob               ;
     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > m_aPrintOptions;
 
     IMPL_SfxBaseModel_DataContainer::IMPL_SfxBaseModel_DataContainer(   MUTEX&          aMutex          ,
@@ -363,7 +364,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 //STRIP001 class SfxPrintJob_Impl : public cppu::WeakImplHelper1
 //STRIP001 <
-//STRIP001  com::sun::star::view::XPrintJob
+//STRIP001  ::com::sun::star::view::XPrintJob
 //STRIP001 >
 //STRIP001 {
 //STRIP001      IMPL_SfxBaseModel_DataContainer* m_pData;
@@ -734,7 +735,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/       {
 /*N*/           close( sal_True );
 /*N*/       }
-/*N*/       catch ( com::sun::star::util::CloseVetoException& )
+/*N*/       catch ( ::com::sun::star::util::CloseVetoException& )
 /*N*/       {
 /*N*/       }
 /*N*/
@@ -1956,7 +1957,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/       SfxAllItemSet *pParams = new SfxAllItemSet( SFX_APP()->GetPool() );
 /*N*/       TransformParameters( SID_OPENDOC, seqArguments, *pParams );
 /*N*/
-/*N*/       rtl::OUString aFilterName;
+/*N*/       ::rtl::OUString aFilterName;
 /*N*/       SFX_ITEMSET_ARG( pParams, pFilterNameItem, SfxStringItem, SID_FILTER_NAME, sal_False );
 /*N*/       if( pFilterNameItem )
 /*N*/           aFilterName = pFilterNameItem->GetValue();
@@ -2390,7 +2391,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/           {DBG_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/                view::PrintJobEvent aEvent;
 //STRIP001 /*?*/                aEvent.Source = m_pData->m_xPrintJob;
-//STRIP001 /*?*/                aEvent.State = (com::sun::star::view::PrintableState) pPrintHint->GetWhich();
+//STRIP001 /*?*/                aEvent.State = (::com::sun::star::view::PrintableState) pPrintHint->GetWhich();
 //STRIP001 /*?*/                ::cppu::OInterfaceContainerHelper* pContainer = m_pData->m_aInterfaceContainer.getContainer( ::getCppuType( ( const uno::Reference< view::XPrintJobListener >*) NULL ) );
 //STRIP001 /*?*/                if ( pContainer!=NULL )
 //STRIP001 /*?*/                {
@@ -2660,3 +2661,4 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //STRIP001  m_pData->m_aInterfaceContainer.removeInterface( ::getCppuType((const REFERENCE< XPRINTJOBLISTENER >*)0), xListener );
 //STRIP001 }
 
+}

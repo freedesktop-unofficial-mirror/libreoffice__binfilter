@@ -2,9 +2,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,9 @@
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
+class SvStringsDtor;
+class SimpleResMgr;
+namespace binfilter {
 
 // defines ---------------------------------------------------------------
 
@@ -82,7 +85,7 @@ class MailServer;
 class OfaHtmlOptions;
 class OfaAutoCorrCfg;
 class SvxAutoCorrect;
-class SvStringsDtor;
+
 //class BasicIDE;
 class SchDLL;
 class SimDLL;
@@ -92,7 +95,7 @@ class XOutdevItemPool;
 class OfaTabAppearanceCfg;
 class CntAnchor;
 class SfxTabPage;
-class SimpleResMgr;
+
 class OfaFilterOptions;
 
 class  OfficeData_Impl;
@@ -213,5 +216,6 @@ public:
 
 #define OFF_APP()   ( (OfficeApplication*)SfxGetpApp() )
 
+} //namespace binfilter
 #endif // #ifndef _OFF_APP_HXX
 

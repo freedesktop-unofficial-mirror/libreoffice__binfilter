@@ -2,9 +2,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,22 +94,33 @@
 #ifndef SC_TABOPPARAMS_HXX
 #include "tabopparams.hxx"
 #endif
-
+namespace com { namespace sun { namespace star {
+    namespace lang {
+        class XMultiServiceFactory;
+    }
+    namespace i18n {
+        class XBreakIterator;
+    }
+} } }
 class KeyEvent;
 class OutputDevice;
-class SdrObject;
 class SfxBroadcaster;
 class SfxHint;
 class SfxItemSet;
-class SfxObjectShell;
-class SfxBindings;
 class SfxPoolItem;
 class SfxItemPool;
-class SfxPrinter;
-class SfxStatusBarManager;
 class SfxStyleSheetBase;
 class SvMemoryStream;
 class SvNumberFormatter;
+class Window;
+class List;
+namespace binfilter {
+
+class SdrObject;
+class SfxObjectShell;
+class SfxBindings;
+class SfxPrinter;
+class SfxStatusBarManager;
 class SvxBorderLine;
 class SvxBoxInfoItem;
 class SvxBoxItem;
@@ -118,9 +129,7 @@ class SvxForbiddenCharactersTable;
 class SvxLinkManager;
 class SvxSearchItem;
 class SvxShadowItem;
-class Window;
 class XColorTable;
-class List;
 
 class ScAutoFormatData;
 class ScBaseCell;
@@ -170,15 +179,16 @@ class ScImpExpLogMsg;
 struct ScSortParam;
 class ScRefreshTimerControl;
 
-namespace com { namespace sun { namespace star {
-    namespace lang {
-        class XMultiServiceFactory;
-    }
-    namespace i18n {
-        class XBreakIterator;
-    }
-} } }
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008     namespace lang {
+//STRIP008         class XMultiServiceFactory;
+//STRIP008     }
+//STRIP008     namespace i18n {
+//STRIP008         class XBreakIterator;
+//STRIP008     }
+//STRIP008 } } }
 
+} //namespace binfilter
 
 #ifdef _ZFORLIST_DECLARE_TABLE
 class SvULONGTable;
@@ -186,8 +196,7 @@ class SvULONGTable;
 class Table;
 typedef Table SvULONGTable;
 #endif
-
-
+namespace binfilter {//STRIP009
 #define SC_TAB_APPEND       0xFFFF
 #define SC_DOC_NEW          0xFFFF
 #define REPEAT_NONE         0xFFFF
@@ -390,7 +399,7 @@ private:
 
     ScFieldEditEngine*  pCacheFieldEditEngine;
 
-    com::sun::star::uno::Sequence<sal_Int8> aProtectPass;
+    ::com::sun::star::uno::Sequence<sal_Int8>   aProtectPass;
     String              aDocName;                       // opt: Dokumentname
     ScRangePairListRef  xColNameRanges;
     ScRangePairListRef  xRowNameRanges;
@@ -596,13 +605,13 @@ public:
     inline USHORT   GetTableCount() const { return nMaxTableNumber; }
     SvULONGTable*   GetFormatExchangeList() const { return pFormatExchangeList; }
 
-    void            SetDocProtection( BOOL bProtect, const com::sun::star::uno::Sequence <sal_Int8>& aPass );
-    void            SetTabProtection( USHORT nTab, BOOL bProtect, const com::sun::star::uno::Sequence <sal_Int8>& aPass );
+    void            SetDocProtection( BOOL bProtect, const ::com::sun::star::uno::Sequence <sal_Int8>& aPass );
+    void            SetTabProtection( USHORT nTab, BOOL bProtect, const ::com::sun::star::uno::Sequence <sal_Int8>& aPass );
     BOOL            IsDocProtected() const;
     BOOL            IsDocEditable() const;
     BOOL            IsTabProtected( USHORT nTab ) const;
-    const com::sun::star::uno::Sequence <sal_Int8>& GetDocPassword() const;
-    const com::sun::star::uno::Sequence <sal_Int8>& GetTabPassword( USHORT nTab ) const;
+    const ::com::sun::star::uno::Sequence <sal_Int8>&   GetDocPassword() const;
+    const ::com::sun::star::uno::Sequence <sal_Int8>&   GetTabPassword( USHORT nTab ) const;
 
     void            LockTable(USHORT nTab);
     void            UnlockTable(USHORT nTab);
@@ -1677,6 +1686,7 @@ inline USHORT ScDocument::FastGetRowHeight( USHORT nRow, USHORT nTab ) const
 
 
 
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: notxtfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,11 +64,14 @@
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
+class OutputDevice;
+class Bitmap;
+namespace binfilter {
 
 class SwNoTxtNode;
-class OutputDevice;
+
 class SwBorderAttrs;
-class Bitmap;
+
 struct SwCrsrMoveState;
 
 class SwNoTxtFrm: public SwCntntFrm
@@ -114,4 +117,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif

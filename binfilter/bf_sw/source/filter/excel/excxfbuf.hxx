@@ -2,9 +2,9 @@
  *
  *  $RCSfile: excxfbuf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,11 @@
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
+class SfxItemSet;
+namespace binfilter {
 
 class SvxBorderLine;
-class SfxItemSet;
+
 
 
 enum ExcHorizAlign { EHA_General = 0, EHA_Left = 1, EHA_Center = 2,
@@ -272,5 +274,6 @@ inline void XF_Buffer::GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
 
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLExportDataPilot.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 class ScXMLExport;
 class ScDocument;
@@ -82,15 +83,16 @@ class ScXMLExportDataPilot
     ScXMLExport&        rExport;
     ScDocument*         pDoc;
 
-    rtl::OUString getDPOperatorXML(const ScQueryOp aFilterOperator, const sal_Bool bUseRegularExpressions,
+    ::rtl::OUString getDPOperatorXML(const ScQueryOp aFilterOperator, const sal_Bool bUseRegularExpressions,
                                     const sal_Bool bIsString, const double dVal, const String& sVal) const;
     void WriteDPCondition(const ScQueryEntry& aQueryEntry, sal_Bool bIsCaseSensitive, sal_Bool bUseRegularExpressions);
     void WriteDPFilter(const ScQueryParam& aQueryParam);
 public:
     ScXMLExportDataPilot(ScXMLExport& rExport);
     ~ScXMLExportDataPilot();
-    void WriteDataPilots(const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheetDocument>& xSpreaDoc);
+    void WriteDataPilots(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheetDocument>& xSpreaDoc);
 };
 
+} //namespace binfilter
 #endif
 

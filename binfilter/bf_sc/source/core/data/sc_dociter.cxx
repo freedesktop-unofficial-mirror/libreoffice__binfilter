@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "attarray.hxx"
 #include "patattr.hxx"
 #include "docoptio.hxx"
+namespace binfilter {
 
 
 // STATIC DATA -----------------------------------------------------------
@@ -1471,3 +1472,4 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/   return NULL;        // is nix mehr
 /*N*/ }
 
+}

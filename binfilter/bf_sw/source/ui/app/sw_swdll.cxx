@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdll.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef _CFGID_H
 #include <cfgid.h>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -146,9 +147,9 @@
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "Init Core/UI/Filter" );
 /*N*/
 /*N*/   //Initialisierung der Statics
-/*N*/   ::_InitCore();
-/*N*/   ::_InitFilter();
-/*N*/   ::_InitUI();
+/*N*/   ::binfilter::_InitCore();
+/*N*/   ::binfilter::_InitFilter();
+/*N*/   ::binfilter::_InitUI();
 /*N*/
 /*N*/   pModule->InitAttrPool();
 /*N*/   //jetzt darf das SwModule seinen Pool anlegen
@@ -179,9 +180,9 @@
 /*N*/   // der Pool muss vor den statics geloescht werden
 /*N*/   SW_MOD()->RemoveAttrPool();
 /*N*/
-/*N*/   ::_FinitUI();
-/*N*/   ::_FinitFilter();
-/*N*/   ::_FinitCore();
+/*N*/   ::binfilter::_FinitUI();
+/*N*/   ::binfilter::_FinitFilter();
+/*N*/   ::binfilter::_FinitCore();
 /*N*/   // Objekt-Factory austragen
 /*N*/   SdrObjFactory::RemoveMakeObjectHdl(LINK(&aSwObjectFactory, SwObjectFactory, MakeObject ));
 /*N*/    // the SwModule must be destroyed
@@ -190,3 +191,4 @@
 /*N*/   (*ppShlPtr) = NULL;
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #include "compiler.hxx"
 #include "brdcst.hxx"
 #include "markdata.hxx"
+namespace binfilter {
 
 //#pragma optimize ( "", off )
 //  nur Search ohne Optimierung!
@@ -2177,3 +2178,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nIndex;
 //STRIP001 }
 
 
+}

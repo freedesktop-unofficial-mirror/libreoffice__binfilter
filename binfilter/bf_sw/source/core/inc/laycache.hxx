@@ -2,9 +2,9 @@
  *
  *  $RCSfile: laycache.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _LAYCACHE_HXX
 #define _LAYCACHE_HXX
+namespace binfilter {
 
 
 class SwDoc;
@@ -106,4 +107,5 @@ public:
 #endif
 };
 
+} //namespace binfilter
 #endif

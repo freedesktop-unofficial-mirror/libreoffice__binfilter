@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlnexpi.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _XMLOFF_XMLIMP_HXX
 #include <xmloff/xmlimp.hxx>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -90,7 +91,7 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    sal_Int32   GetRangeType(const rtl::OUString sRangeType) const;
+    sal_Int32   GetRangeType(const ::rtl::OUString sRangeType) const;
     virtual void EndElement();
 };
 
@@ -138,4 +139,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

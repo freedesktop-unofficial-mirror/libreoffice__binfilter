@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtio.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,6 +107,7 @@
 #ifndef _DFLYOBJ_HXX //autogen
 #include <dflyobj.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ void lcl_OutFollow( XubString &rTmp, const SwFrm* pFrm )
@@ -309,9 +310,9 @@
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
-
+} //namespace binfilter
 /*N*/ #endif
-
+namespace binfilter {//STRIP009
 /*N*/ SvStream &operator<<( SvStream &rOs, const SwpHints &rHints ) //$ ostream
 /*N*/ {
 /*N*/   rOs << " {HINTS:";
@@ -372,9 +373,10 @@
 /*N*/   else
 /*N*/       return sal_False;
 /*N*/ }
+} //namespace binfilter
 
 /*N*/ #if OSL_DEBUG_LEVEL < 2
-
+namespace binfilter {//STRIP009
 /*N*/ static void Error()
 /*N*/ {
 /*N*/   // wegen PM und BCC
@@ -451,13 +453,13 @@
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
-
+} //namespace binfilter
 #else
 # include <limits.h>
 # include <stdlib.h>
 # include "swtypes.hxx"      // ZTCCONST
 # include "swfont.hxx"     // SwDropPortion
-
+namespace binfilter {//STRIP009
 /*N*/ CONSTCHAR( pClose, "} " );
 
 /*************************************************************************
@@ -1146,7 +1148,8 @@
 /*N*/   rOs << pClose;
 /*N*/   return rOs;
 /*N*/ }
-/*N*/
+} //namespace binfilter
 /*N*/ #endif /* OSL_DEBUG_LEVEL */
+
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_forbiddencharacterstable.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
 /*STRIP001*/#include <tools/debug.hxx>
+namespace binfilter {
 /*N*/ SvxForbiddenCharactersTable::SvxForbiddenCharactersTable( ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF, USHORT nISize, USHORT nGrow )
 /*N*/  : SvxForbiddenCharactersTableImpl( nISize, nGrow )
 /*N*/ {
@@ -83,7 +84,7 @@
 
 
 
-/*N*/ const com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::GetForbiddenCharacters( USHORT nLanguage, BOOL bGetDefault ) const
+/*N*/ const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::GetForbiddenCharacters( USHORT nLanguage, BOOL bGetDefault ) const
 /*N*/ {
 /*N*/   ForbiddenCharactersInfo* pInf = Get( nLanguage );
 /*N*/   if ( !pInf && bGetDefault && mxMSF.is() )
@@ -99,7 +100,7 @@
 
 
 
-/*N*/ void SvxForbiddenCharactersTable::SetForbiddenCharacters( USHORT nLanguage, const com::sun::star::i18n::ForbiddenCharacters& rForbiddenChars )
+/*N*/ void SvxForbiddenCharactersTable::SetForbiddenCharacters( USHORT nLanguage, const ::com::sun::star::i18n::ForbiddenCharacters& rForbiddenChars )
 /*N*/ {
 /*N*/   ForbiddenCharactersInfo* pInf = Get( nLanguage );
 /*N*/   if ( !pInf )
@@ -120,3 +121,4 @@
 //STRIP001      delete pInf;
 //STRIP001  }
 /*N*/ }
+}

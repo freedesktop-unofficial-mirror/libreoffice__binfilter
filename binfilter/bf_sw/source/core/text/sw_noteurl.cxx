@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_noteurl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 
 
+
 /*N*/  #pragma hdrstop
 /*N*/
 /*N*/  #include "swtypes.hxx"
@@ -76,7 +77,7 @@
 /*N*/
 /*N*/  #include "txttypes.hxx"
 /*N*/  #include "noteurl.hxx"
-/*N*/
+/*N*/  namespace binfilter {
 /*N*/  // globale Variable, wird in noteurl.Hxx bekanntgegeben
 /*N*/  SwNoteURL *pNoteURL = NULL;
 //STRIP001
@@ -124,3 +125,4 @@
 
 
 
+}

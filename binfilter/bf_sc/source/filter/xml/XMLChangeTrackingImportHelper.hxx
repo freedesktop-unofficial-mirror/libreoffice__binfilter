@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLChangeTrackingImportHelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,23 +75,24 @@
 #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
 #endif
+class DateTime;
+namespace binfilter {
 
 class ScBaseCell;
 class ScDocument;
-class DateTime;
 
 struct ScMyActionInfo
 {
-    rtl::OUString sUser;
-    rtl::OUString sComment;
-    com::sun::star::util::DateTime aDateTime;
+    ::rtl::OUString sUser;
+    ::rtl::OUString sComment;
+    ::com::sun::star::util::DateTime aDateTime;
 };
 
 struct ScMyCellInfo
 {
     ScBaseCell*     pCell;
-    rtl::OUString   sFormulaAddress;
-    rtl::OUString   sFormula;
+    ::rtl::OUString sFormulaAddress;
+    ::rtl::OUString sFormula;
     String          sResult;
     double          fValue;
     sal_Int32       nMatrixCols;
@@ -100,7 +101,7 @@ struct ScMyCellInfo
     sal_uInt8       nMatrixFlag;
 
     ScMyCellInfo();
-    ScMyCellInfo(ScBaseCell* pCell, const rtl::OUString& sFormulaAddress, const rtl::OUString& sFormula,
+    ScMyCellInfo(ScBaseCell* pCell, const ::rtl::OUString& sFormulaAddress, const ::rtl::OUString& sFormula,
                 const double& fValue, const sal_uInt16 nType, const sal_uInt8 nMatrixFlag, const sal_Int32 nMatrixCols,
                 const sal_Int32 nMatrixRows);
     ~ScMyCellInfo();
@@ -227,11 +228,11 @@ class ScXMLChangeTrackingImportHelper
 {
     StrCollection       aUsers;
     ScMyActions         aActions;
-    com::sun::star::uno::Sequence<sal_Int8> aProtect;
+    ::com::sun::star::uno::Sequence<sal_Int8>   aProtect;
     ScDocument*         pDoc;
     ScChangeTrack*      pTrack;
     ScMyBaseAction*     pCurrentAction;
-    rtl::OUString       sIDPrefix;
+    ::rtl::OUString     sIDPrefix;
     sal_uInt32          nPrefixLength;
     sal_Int16           nMultiSpanned;
     sal_Int16           nMultiSpannedSlaveCount;
@@ -252,10 +253,10 @@ public:
     ~ScXMLChangeTrackingImportHelper();
 
     void SetChangeTrack(sal_Bool bValue) { bChangeTrack = bValue; }
-    void SetProtection(const com::sun::star::uno::Sequence<sal_Int8>& rProtect) { aProtect = rProtect; }
+    void SetProtection(const ::com::sun::star::uno::Sequence<sal_Int8>& rProtect) { aProtect = rProtect; }
     void StartChangeAction(const ScChangeActionType nActionType);
 
-    sal_uInt32 GetIDFromString(const rtl::OUString& sID);
+    sal_uInt32 GetIDFromString(const ::rtl::OUString& sID);
 
     void SetActionNumber(const sal_uInt32 nActionNumber) { pCurrentAction->nActionNumber = nActionNumber; }
     void SetActionState(const ScChangeActionState nActionState) { pCurrentAction->nActionState = nActionState; }
@@ -286,4 +287,5 @@ public:
     void CreateChangeTrack(ScDocument* pDoc);
 };
 
+} //namespace binfilter
 #endif

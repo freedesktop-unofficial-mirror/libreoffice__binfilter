@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appluno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,28 +91,29 @@
 #ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
 #endif
+namespace binfilter {
 
 class ScFunctionDescriptionObj;
 
 
 
-com::sun::star::uno::Reference<com::sun::star::uno::XInterface> SAL_CALL
+com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> SAL_CALL
     ScSpreadsheetSettings_CreateInstance(
-        const com::sun::star::uno::Reference<
-            com::sun::star::lang::XMultiServiceFactory>& rSMgr );
-com::sun::star::uno::Reference<com::sun::star::uno::XInterface> SAL_CALL
+        const ::com::sun::star::uno::Reference<
+            ::com::sun::star::lang::XMultiServiceFactory>& rSMgr );
+com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> SAL_CALL
     ScRecentFunctionsObj_CreateInstance(
-        const com::sun::star::uno::Reference<
-            com::sun::star::lang::XMultiServiceFactory>& rSMgr );
-com::sun::star::uno::Reference<com::sun::star::uno::XInterface> SAL_CALL
+        const ::com::sun::star::uno::Reference<
+            ::com::sun::star::lang::XMultiServiceFactory>& rSMgr );
+com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> SAL_CALL
     ScFunctionListObj_CreateInstance(
-        const com::sun::star::uno::Reference<
-            com::sun::star::lang::XMultiServiceFactory>& rSMgr );
+        const ::com::sun::star::uno::Reference<
+            ::com::sun::star::lang::XMultiServiceFactory>& rSMgr );
 
 
 class ScSpreadsheetSettings : public cppu::WeakImplHelper2<
-                                        com::sun::star::beans::XPropertySet,
-                                        com::sun::star::lang::XServiceInfo>
+                                        ::com::sun::star::beans::XPropertySet,
+                                        ::com::sun::star::lang::XServiceInfo>
 {
 private:
     SfxItemPropertySet      aPropSet;
@@ -176,8 +177,8 @@ public:
 
 
 class ScRecentFunctionsObj : public cppu::WeakImplHelper2<
-                                        com::sun::star::sheet::XRecentFunctions,
-                                        com::sun::star::lang::XServiceInfo>
+                                        ::com::sun::star::sheet::XRecentFunctions,
+                                        ::com::sun::star::lang::XServiceInfo>
 {
 public:
                             ScRecentFunctionsObj();
@@ -206,10 +207,10 @@ public:
 
 
 class ScFunctionListObj : public cppu::WeakImplHelper4<
-                                        com::sun::star::sheet::XFunctionDescriptions,
-                                        com::sun::star::container::XEnumerationAccess,
-                                        com::sun::star::container::XNameAccess,
-                                        com::sun::star::lang::XServiceInfo>
+                                        ::com::sun::star::sheet::XFunctionDescriptions,
+                                        ::com::sun::star::container::XEnumerationAccess,
+                                        ::com::sun::star::container::XNameAccess,
+                                        ::com::sun::star::lang::XServiceInfo>
 {
 public:
                             ScFunctionListObj();
@@ -261,5 +262,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

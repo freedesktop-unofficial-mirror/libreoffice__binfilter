@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlxtexp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,13 +159,14 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
-using namespace com::sun::star::container;
-using namespace com::sun::star::document;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::awt;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::xml::sax;
+namespace binfilter {
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::document;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::awt;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::xml::sax;
 using namespace ::rtl;
 using namespace cppu;
 
@@ -323,7 +324,7 @@ using namespace cppu;
 /*N*/
 /*N*/               pGraphicHelper = SvXMLGraphicHelper::Create( *pStorage, GRAPHICHELPER_MODE_WRITE );
 /*N*/               xGrfResolver = pGraphicHelper;
-/*N*/               xOut = new utl::OOutputStreamWrapper( *xStream );
+/*N*/               xOut = new ::utl::OOutputStreamWrapper( *xStream );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -336,7 +337,7 @@ using namespace cppu;
 /*N*/                   DBG_ERROR( "no output stream!" );
 /*N*/                   break;
 /*N*/               }
-/*N*/               xOut = new utl::OOutputStreamWrapper( *pStream );
+/*N*/               xOut = new ::utl::OOutputStreamWrapper( *pStream );
 /*N*/           }
 /*N*/
 /*N*/
@@ -575,3 +576,4 @@ using namespace cppu;
 /*N*/ {
 /*N*/   maImageStyle.exportXML( rStrName, rValue, mrExport );
 /*N*/ }
+}

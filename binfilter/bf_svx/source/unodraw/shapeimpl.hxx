@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shapeimpl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,8 +62,9 @@
 #define _SVX_SHAPEIMPL_HXX
 
 #include "unoshape.hxx"
-
 class SvGlobalName;
+namespace binfilter {
+
 
 /***********************************************************************
 *                                                                      *
@@ -100,13 +101,13 @@ public:
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-
+}//end of namespace binfilter
 #ifndef SVX_LIGHT
 
 #ifndef _PLUGIN_HXX
 #include <so3/plugin.hxx>
 #endif
-
+namespace binfilter {
 class SvxPluginShape : public SvxOle2Shape
 {
 private:
@@ -122,7 +123,7 @@ public:
     virtual void SAL_CALL   setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue )  throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #endif
 
 /***********************************************************************
@@ -134,7 +135,7 @@ public:
 #ifndef _APPLET_HXX
 #include <so3/applet.hxx>
 #endif
-
+namespace binfilter {
 class SvxAppletShape : public SvxOle2Shape
 {
 private:
@@ -150,7 +151,7 @@ public:
     virtual void SAL_CALL   setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue )  throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #endif
 
 /***********************************************************************
@@ -162,7 +163,7 @@ public:
 #ifndef _FRAMEOBJ_HXX
 #include <bf_sfx2/frameobj.hxx>
 #endif
-
+namespace binfilter {
 class SvxFrameShape : public SvxOle2Shape
 {
 public:
@@ -175,7 +176,7 @@ public:
     virtual void SAL_CALL   setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue )  throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #endif
 
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #include "scmod.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
+namespace binfilter {
 
 #define GET_SCALEVALUE(set,id)  ((const SfxUInt16Item&)(set.Get( id ))).GetValue()
 
@@ -750,7 +751,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( bIdleDisabled || IsInLi
 //STRIP001                          ScEditUtil::ModifyDelimiters( pEngine->GetWordDelimiters() ) );
 //STRIP001              pDefaults = new SfxItemSet( pEngine->GetEmptyItemSet() );
 //STRIP001
-//STRIP001                 com::sun::star::uno::Reference<com::sun::star::linguistic2::XSpellChecker1> xXSpellChecker1( LinguMgr::GetSpellChecker() );
+//STRIP001                 ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XSpellChecker1> xXSpellChecker1( LinguMgr::GetSpellChecker() );
 //STRIP001
 //STRIP001              pEngine->SetSpeller( xXSpellChecker1 );
 //STRIP001          }
@@ -1604,7 +1605,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
 //STRIP001                  nLanguage = ((const SvxLanguageItem&)aAttr.Get(nWhich)).GetValue();
 //STRIP001              }
 //STRIP001
-//STRIP001              com::sun::star::uno::Sequence<sal_Int32> aOffsets;
+//STRIP001              ::com::sun::star::uno::Sequence<sal_Int32> aOffsets;
 //STRIP001              String aNewStr = rTranslitarationWrapper.transliterate( aOldStr, nLanguage, 0, aOldStr.Len(), &aOffsets );
 //STRIP001
 //STRIP001              if ( aNewStr != aOldStr )
@@ -1661,7 +1662,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
 //STRIP001                      nLanguage = ((const SvxLanguageItem*)GetAttr( nCol, nRow, nTab, nWhich ))->GetValue();
 //STRIP001                  }
 //STRIP001
-//STRIP001                  com::sun::star::uno::Sequence<sal_Int32> aOffsets;
+//STRIP001                  ::com::sun::star::uno::Sequence<sal_Int32> aOffsets;
 //STRIP001                  String aNewStr = aTranslitarationWrapper.transliterate( aOldStr, nLanguage, 0, nOldLen, &aOffsets );
 //STRIP001
 //STRIP001                  if ( aNewStr != aOldStr )
@@ -1714,3 +1715,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
 //STRIP001  delete pEngine;
 //STRIP001 }
 
+}

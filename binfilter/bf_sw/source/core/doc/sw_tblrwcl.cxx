@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblrwcl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -157,12 +157,13 @@
 #ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
 #endif
+namespace binfilter {
 
 #define COLFUZZY 20
 #define ROWFUZZY 10
 
 typedef SwTableLine* SwTableLinePtr;
-//STRIP001 SV_DECL_PTRARR_SORT( SwSortTableLines, SwTableLinePtr, 16, 16 );
+//STRIP001 SV_DECL_PTRARR_SORT( SwSortTableLines, SwTableLinePtr, 16, 16 )//STRIP008 ;
 //STRIP001 SV_IMPL_PTRARR_SORT( SwSortTableLines, SwTableLinePtr );
 
 /*N*/ SV_IMPL_PTRARR( _SwShareBoxFmts, SwShareBoxFmt* )
@@ -4588,3 +4589,4 @@ typedef SwTableLine* SwTableLinePtr;
 //STRIP001 }
 
 
+}

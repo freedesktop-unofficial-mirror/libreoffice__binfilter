@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshtxt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -133,6 +133,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 
 using namespace ::osl;
@@ -1155,3 +1156,4 @@ sal_Bool SvxTextEditSource::hasLevels( const SdrObject* pObject )
     return sal_False;
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -261,6 +261,7 @@
 #ifndef _SWLINGUCONFIG_HXX
 #include <swlinguconfig.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace ::com::sun::star::i18n;
@@ -671,7 +672,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001          // fuer MWERKS (Mac-Compiler): kann 
 /*?*/             {
 /*?*/                 SfxMedium* pMedium = GetMedium();
 /*?*/                 SFX_ITEMSET_ARG( pMedium->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-/*?*/                 nUpdateDocMode = pUpdateDocItem ? pUpdateDocItem->GetValue() : com::sun::star::document::UpdateDocMode::NO_UPDATE;
+/*?*/                 nUpdateDocMode = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 /*?*/             }
 /*?*/
 /*N*/       }
@@ -969,3 +970,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001          // fuer MWERKS (Mac-Compiler): kann 
 /*M*/ }
 
 
+}

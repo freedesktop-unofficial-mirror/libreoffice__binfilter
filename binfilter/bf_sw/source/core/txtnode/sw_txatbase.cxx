@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txatbase.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ SwTxtAttr::SwTxtAttr( const SfxPoolItem& rAttr, xub_StrLen nStt )
 /*N*/   : pAttr( &rAttr ), nStart( nStt )
@@ -109,3 +110,4 @@
 /*N*/ {
 /*N*/   return &nEnd;
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_TextCursorHelper.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #include "TextCursorHelper.hxx"
 #endif
 #include "unoobj.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 /* -----------------------------03.03.03 11:07--------------------------------
@@ -69,7 +70,7 @@ using namespace ::com::sun::star;
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & OTextCursorHelper::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------03.03.03 11:07--------------------------------
@@ -90,3 +91,4 @@ sal_Int64 SAL_CALL OTextCursorHelper::getSomething(
 }
 // -----------------------------------------------------------------------------
 
+}

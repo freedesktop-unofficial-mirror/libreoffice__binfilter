@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,11 +92,12 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL_
 #include <com/sun/star/beans/PropertyValues.hdl>
 #endif
+namespace binfilter {
 
 using namespace rtl;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::linguistic2;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::linguistic2;
 
 
 /*N*/ DBG_NAME( EditView );
@@ -578,28 +579,28 @@ using namespace com::sun::star::linguistic2;
 /*N*/ void EditView::Cut()
 /*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
-//STRIP001     Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+//STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->CutCopy( aClipBoard, sal_True );
 /*N*/ }
 
 /*N*/ void EditView::Copy()
 /*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
-//STRIP001     Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+//STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->CutCopy( aClipBoard, sal_False );
 /*N*/ }
 
 /*N*/ void EditView::Paste()
 /*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
-//STRIP001     Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+//STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->Paste( aClipBoard, sal_False );
 /*N*/ }
 
 //STRIP001 void EditView::PasteSpecial()
 //STRIP001 {
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
-//STRIP001     Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+//STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->Paste(aClipBoard, sal_True );
 //STRIP001 }
 
@@ -1291,3 +1292,4 @@ using namespace com::sun::star::linguistic2;
 //STRIP001 }
 
 
+}

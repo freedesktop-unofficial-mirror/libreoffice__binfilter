@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbdocfun.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #endif
 
 class String;
+namespace binfilter {
 
 struct ScImportParam;
 struct ScQueryParam;
@@ -84,7 +85,7 @@ class ScDocShell;
 class ScAddress;
 class ScRange;
 class ScDPObject;
-
+} //namespace binfilter
 namespace com { namespace sun { namespace star {
     namespace beans {
         struct PropertyValue;
@@ -93,7 +94,7 @@ namespace com { namespace sun { namespace star {
         class XResultSet;
     }
 } } }
-
+namespace binfilter {//STRIP009
 // ---------------------------------------------------------------------------
 
 class ScDBDocFunc
@@ -121,8 +122,8 @@ public:
                         BOOL bAddrInsert = FALSE );
 
     BOOL            DoImportUno( const ScAddress& rPos,
-                                const com::sun::star::uno::Sequence<
-                                    com::sun::star::beans::PropertyValue>& aArgs );
+                                const ::com::sun::star::uno::Sequence<
+                                    ::com::sun::star::beans::PropertyValue>& aArgs );
 
 //STRIP001  static void     ShowInBeamer( const ScImportParam& rParam, SfxViewFrame* pFrame );
 
@@ -149,4 +150,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

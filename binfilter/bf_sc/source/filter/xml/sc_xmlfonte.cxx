@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlfonte.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
 #endif
+namespace binfilter {
 
 class ScXMLFontAutoStylePool_Impl: public XMLFontAutoStylePool
 {
@@ -203,4 +204,5 @@ ScXMLFontAutoStylePool_Impl::ScXMLFontAutoStylePool_Impl(
 XMLFontAutoStylePool* ScXMLExport::CreateFontAutoStylePool()
 {
     return new ScXMLFontAutoStylePool_Impl( *this );
+}
 }

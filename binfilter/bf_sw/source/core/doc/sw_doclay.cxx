@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -251,6 +251,7 @@
 #ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -663,7 +664,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/       sal_Bool bModel = xModel.is();
 /*?*/       uno::Any aVal;
 /*?*/       uno::Reference< beans::XPropertySet >  xSet(xModel, uno::UNO_QUERY);
-/*?*/       OUString sName( rtl::OUString::createFromAscii("Name") );
+/*?*/       OUString sName( ::rtl::OUString::createFromAscii("Name") );
 /*?*/       if( xSet.is() )
 /*?*/           aVal = xSet->getPropertyValue( sName );
 /*?*/       if( bInsInPage )
@@ -1024,7 +1025,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/     // OD 24.06.2003 #108784# - allow drawing objects in header/footer, but
 /*N*/     // control objects aren't allowed in header/footer.
 /*N*/     if( pChkIdx &&
-/*N*/         ::CheckControlLayer( &rDrawObj ) &&
+/*N*/         ::binfilter::CheckControlLayer( &rDrawObj ) &&
 /*N*/         IsInHeaderFooter( *pChkIdx ) )
 /*N*/     {
 /*N*/        pFmt->SetAttr( SwFmtAnchor( eAnchorId = FLY_PAGE ) );
@@ -1889,17 +1890,17 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 
 /*N*/ String SwDoc::GetUniqueGrfName() const
 /*N*/ {
-/*N*/   return ::lcl_GetUniqueFlyName( this, STR_GRAPHIC_DEFNAME );
+/*N*/   return ::binfilter::lcl_GetUniqueFlyName( this, STR_GRAPHIC_DEFNAME );
 /*N*/ }
 
 /*N*/ String SwDoc::GetUniqueOLEName() const
 /*N*/ {
-/*N*/   return ::lcl_GetUniqueFlyName( this, STR_OBJECT_DEFNAME );
+/*N*/   return ::binfilter::lcl_GetUniqueFlyName( this, STR_OBJECT_DEFNAME );
 /*N*/ }
 
 /*N*/ String SwDoc::GetUniqueFrameName() const
 /*N*/ {
-/*N*/   return ::lcl_GetUniqueFlyName( this, STR_FRAME_DEFNAME );
+/*N*/   return ::binfilter::lcl_GetUniqueFlyName( this, STR_FRAME_DEFNAME );
 /*N*/ }
 
 /*N*/ const SwFlyFrmFmt* SwDoc::FindFlyByName( const String& rName, sal_Int8 nNdTyp ) const
@@ -1942,7 +1943,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 /*?*/           case ND_GRFNODE:    nTyp = STR_GRAPHIC_DEFNAME; break;
 /*?*/           case ND_OLENODE:    nTyp = STR_OBJECT_DEFNAME;  break;
 /*?*/           }
-/*?*/       sName = ::lcl_GetUniqueFlyName( this, nTyp );
+/*?*/       sName = ::binfilter::lcl_GetUniqueFlyName( this, nTyp );
 /*N*/   }
 /*N*/   rFmt.SetName( sName, sal_True );
 /*N*/ }
@@ -2235,3 +2236,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 //STRIP001 }
 
 #endif
+}

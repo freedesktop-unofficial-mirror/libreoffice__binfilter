@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbconfig.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,10 +64,11 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 struct SwDBData;
-class SwDBConfig : public utl::ConfigItem
+class SwDBConfig : public ::utl::ConfigItem
 {
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     SwDBData*       pAdrImpl;
     SwDBData*       pBibImpl;
 public:
@@ -79,5 +80,6 @@ public:
     const SwDBData&         GetBibliographySource();
 };
 
+}
 #endif
 

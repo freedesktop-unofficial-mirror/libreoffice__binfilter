@@ -2,9 +2,9 @@
  *
  *  $RCSfile: limitedformats.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
 #include <com/sun/star/beans/XFastPropertySet.hpp>
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -141,5 +142,6 @@ namespace frm
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FORMS_LIMITED_FORMATS_HXX_
 

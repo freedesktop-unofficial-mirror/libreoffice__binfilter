@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmshimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -200,8 +200,9 @@
 #endif
 
 #include <queue>
+namespace binfilter {
 
-SV_DECL_PTRARR(SdrObjArray, SdrObject*, 32, 16);
+SV_DECL_PTRARR(SdrObjArray, SdrObject*, 32, 16)//STRIP008 ;
 //  SV_DECL_OBJARR(FmFormArray, ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm>, 32, 16);
 DECLARE_STL_VECTOR( ::com::sun::star::uno::Reference< ::com::sun::star::form::XForm > ,FmFormArray);
 
@@ -325,7 +326,7 @@ typedef ::utl::ConfigItem                   FmXFormShell_CFGBASE;
 class FmXFormShell  :public FmXFormShell_BASE
                     ,public FmXFormShell_CFGBASE
                     ,public FmDispatchInterceptor
-                    ,public ::svxform::OStaticDataAccessTools
+                    ,public ::binfilter::svxform::OStaticDataAccessTools//STRIP008                  ,public ::svxform::OStaticDataAccessTools
 {
     friend class FmFormShell;
     friend class FmFormView;
@@ -348,7 +349,7 @@ class FmXFormShell  :public FmXFormShell_BASE
     DECLARE_STL_USTRINGACCESS_MAP(SingleFormDispatchers, FormsDispatchers);
     FormsDispatchers        m_aNavigationDispatcher;
 
-    ::form::OImplementationIdsRef   m_aHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;//STRIIP008 ::form::OImplementationIdsRef   m_aHoldImplIdHelper;
 
     SvUShorts   m_arrInvalidSlots;
     SvBytes     m_arrInvalidSlots_Flags;
@@ -625,7 +626,7 @@ private:
         // closes the task-local beamer displaying a grid view for a form
 
     // ConfigItem related stuff
-//STRIP001  virtual void Notify( const com::sun::star::uno::Sequence< rtl::OUString >& _rPropertyNames);
+//STRIP001  virtual void Notify( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& _rPropertyNames);
     void implAdjustConfigCache();
 
     // ---------------------------------------------------
@@ -845,4 +846,5 @@ void classname::RunImpl()                                       \
 
 
 
+}//end of namespace binfilter
 #endif          // _SVX_FMSHIMP_HXX

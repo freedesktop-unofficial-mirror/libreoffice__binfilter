@@ -2,9 +2,9 @@
  *
  *  $RCSfile: UnoNameItemTable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,13 +82,14 @@
 #endif
 
 #include "xdef.hxx"
-
-class SdrModel;
 class SfxItemPool;
 class SfxItemSet;
+namespace binfilter {
+
+class SdrModel;
 
 typedef std::vector< SfxItemSet* > ItemPoolVector;
-class SvxUnoNameItemTable : public cppu::WeakImplHelper2< com::sun::star::container::XNameContainer, com::sun::star::lang::XServiceInfo >,
+class SvxUnoNameItemTable : public cppu::WeakImplHelper2< ::com::sun::star::container::XNameContainer, ::com::sun::star::lang::XServiceInfo >,
                             public SfxListener
 {
 private:
@@ -99,7 +100,7 @@ private:
 
     ItemPoolVector maItemSetVector;
 
-    void SAL_CALL ImplInsertByName( const rtl::OUString& aName, const com::sun::star::uno::Any& aElement );
+    void SAL_CALL ImplInsertByName( const ::rtl::OUString& aName, const ::com::sun::star::uno::Any& aElement );
 
 public:
     SvxUnoNameItemTable( SdrModel* pModel, USHORT nWhich, BYTE nMemberId = 0 ) throw();
@@ -112,22 +113,23 @@ public:
     virtual void Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw ();
 
     // XServiceInfo
-    virtual sal_Bool SAL_CALL supportsService( const  rtl::OUString& ServiceName ) throw( com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL supportsService( const  ::rtl::OUString& ServiceName ) throw( ::com::sun::star::uno::RuntimeException);
 
     // XNameContainer
-    virtual void SAL_CALL insertByName( const  rtl::OUString& aName, const  com::sun::star::uno::Any& aElement ) throw( com::sun::star::lang::IllegalArgumentException, com::sun::star::container::ElementExistException, com::sun::star::lang::WrappedTargetException, com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removeByName( const  rtl::OUString& Name ) throw( com::sun::star::container::NoSuchElementException, com::sun::star::lang::WrappedTargetException, com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL insertByName( const  ::rtl::OUString& aName, const  ::com::sun::star::uno::Any& aElement ) throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::container::ElementExistException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL removeByName( const  ::rtl::OUString& Name ) throw( ::com::sun::star::container::NoSuchElementException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 
     // XNameReplace
-    virtual void SAL_CALL replaceByName( const  rtl::OUString& aName, const  com::sun::star::uno::Any& aElement ) throw( com::sun::star::lang::IllegalArgumentException, com::sun::star::container::NoSuchElementException, com::sun::star::lang::WrappedTargetException, com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL replaceByName( const  ::rtl::OUString& aName, const  ::com::sun::star::uno::Any& aElement ) throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::container::NoSuchElementException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 
     // XNameAccess
-    virtual com::sun::star::uno::Any SAL_CALL getByName( const  rtl::OUString& aName ) throw( com::sun::star::container::NoSuchElementException, com::sun::star::lang::WrappedTargetException, com::sun::star::uno::RuntimeException);
-    virtual com::sun::star::uno::Sequence<  rtl::OUString > SAL_CALL getElementNames(  ) throw( com::sun::star::uno::RuntimeException);
-    virtual sal_Bool SAL_CALL hasByName( const  rtl::OUString& aName ) throw( com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Any SAL_CALL getByName( const  ::rtl::OUString& aName ) throw( ::com::sun::star::container::NoSuchElementException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Sequence<  ::rtl::OUString > SAL_CALL getElementNames(  ) throw( ::com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL hasByName( const  ::rtl::OUString& aName ) throw( ::com::sun::star::uno::RuntimeException);
 
     // XElementAccess
-    virtual sal_Bool SAL_CALL hasElements(  ) throw( com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL hasElements(  ) throw( ::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif // _SVX_UNONAMEITEMTABLE_HXX_

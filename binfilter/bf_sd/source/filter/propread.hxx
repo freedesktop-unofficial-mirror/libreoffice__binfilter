@@ -2,9 +2,9 @@
  *
  *  $RCSfile: propread.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #endif
 
 #include <tools/string.hxx>
+namespace binfilter {
 
 // SummaryInformation
 #define PID_TITLE               0x02
@@ -231,5 +232,6 @@ class PropRead : private List
 };
 
 
+} //namespace binfilter
 #endif
 

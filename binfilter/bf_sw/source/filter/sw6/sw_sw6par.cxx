@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -241,6 +241,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 #ifdef __BORLANDC__
   #pragma warn +lvc
@@ -5712,3 +5713,4 @@ ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,6 +124,7 @@
 #ifndef _SVX_XFLGRIT_HXX
 #include "xflgrit.hxx"
 #endif
+namespace binfilter {
 
 // #104018# replace macros above with type-safe methods
 inline double ImplTwipsToMM(double fVal) { return (fVal * (127.0 / 72.0)); }
@@ -2030,7 +2031,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if( pOutlinerParaObject )
 /*N*/   {
 /*N*/       ImpForceItemSet();
-/*N*/       mpObjectItemSet->Put( SvxWritingModeItem( pOutlinerParaObject->IsVertical() ? com::sun::star::text::WritingMode_TB_RL : com::sun::star::text::WritingMode_LR_TB ) );
+/*N*/       mpObjectItemSet->Put( SvxWritingModeItem( pOutlinerParaObject->IsVertical() ? ::com::sun::star::text::WritingMode_TB_RL : ::com::sun::star::text::WritingMode_LR_TB ) );
 /*N*/   }
 /*N*/
 /*N*/   SetTextSizeDirty();
@@ -2229,7 +2230,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/       if( pOutlinerParaObject->IsVertical() )
 /*N*/       {
 /*?*/           ImpForceItemSet();
-/*?*/           mpObjectItemSet->Put( SvxWritingModeItem( com::sun::star::text::WritingMode_TB_RL ) );
+/*?*/           mpObjectItemSet->Put( SvxWritingModeItem( ::com::sun::star::text::WritingMode_TB_RL ) );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -2741,3 +2742,4 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+}

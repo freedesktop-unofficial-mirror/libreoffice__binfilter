@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlversion.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,9 +92,10 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+class DateTime;
+namespace binfilter {
 
 class SfxVersionTableDtor;
-class DateTime;
 
 // ------------------------------------------------------------------------
 class SfxXMLVersListExport_Impl : public SvXMLExport
@@ -106,8 +107,8 @@ public:
     SfxXMLVersListExport_Impl(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         const SfxVersionTableDtor *pVersions,
-        const rtl::OUString &rFileName,
-        com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler > &rHandler );
+        const ::rtl::OUString &rFileName,
+        ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > &rHandler );
     virtual     ~SfxXMLVersListExport_Impl() {}
 
     sal_uInt32  exportDoc( enum ::xmloff::token::XMLTokenEnum eClass );
@@ -152,14 +153,14 @@ public:
 
     SfxXMLVersListContext_Impl( SfxXMLVersListImport_Impl& rImport,
                            sal_uInt16 nPrefix,
-                           const rtl::OUString& rLocalName,
+                           const ::rtl::OUString& rLocalName,
                            const ::com::sun::star::uno::Reference<
                            ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 
     ~SfxXMLVersListContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
-                           const rtl::OUString& rLocalName,
+                           const ::rtl::OUString& rLocalName,
                            const ::com::sun::star::uno::Reference<
                            ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 
@@ -172,14 +173,14 @@ private:
     SfxXMLVersListImport_Impl&  rLocalRef;
 
     static sal_Bool         ParseISODateTimeString(
-                                const rtl::OUString& rString,
+                                const ::rtl::OUString& rString,
                                 DateTime& rDateTime );
 
 public:
 
     SfxXMLVersionContext_Impl( SfxXMLVersListImport_Impl& rImport,
                           sal_uInt16 nPrefix,
-                          const rtl::OUString& rLocalName,
+                          const ::rtl::OUString& rLocalName,
                           const ::com::sun::star::uno::Reference<
                           ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 
@@ -198,4 +199,5 @@ public:
 
 
 
+}//end of namespace binfilter
 #endif

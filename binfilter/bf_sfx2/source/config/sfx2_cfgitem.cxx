@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include "sfx.hrc"
 #include "cfgimpl.hxx"
 #include <tools/debug.hxx>
+namespace binfilter {
 // class SfxConfigItem ---------------------------------------------------
 
 /*N*/ SfxConfigItem::SfxConfigItem( USHORT nType, SfxConfigManager* pCfgMgr )
@@ -159,3 +160,4 @@
 /*N*/ {
 /*N*/   m_pCfgMgr = pMgr; pMgr->AddConfigItem(*this);
 /*N*/ }
+}

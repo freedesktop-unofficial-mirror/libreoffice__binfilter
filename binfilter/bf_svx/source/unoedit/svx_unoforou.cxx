@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoforou.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 
 #include "unoforou.hxx"
 #include "unofored.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -439,7 +440,7 @@ sal_Bool SvxOutlinerForwarder::GetIndexAtPoint( const Point& rPos, USHORT& nPara
 
 sal_Bool SvxOutlinerForwarder::GetWordIndices( USHORT nPara, USHORT nIndex, USHORT& nStart, USHORT& nEnd ) const
 {
-    ESelection aRes = rOutliner.GetEditEngine().GetWord( ESelection(nPara, nIndex, nPara, nIndex), com::sun::star::i18n::WordType::DICTIONARY_WORD );
+    ESelection aRes = rOutliner.GetEditEngine().GetWord( ESelection(nPara, nIndex, nPara, nIndex), ::com::sun::star::i18n::WordType::DICTIONARY_WORD );
 
     if( aRes.nStartPara == nPara &&
         aRes.nStartPara == aRes.nEndPara )
@@ -545,3 +546,4 @@ sal_Bool SvxOutlinerForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
 }
 
 //------------------------------------------------------------------------
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "docinf.hxx"
 #include "docfile.hxx"
 #include "sfxtypes.hxx"
+namespace binfilter {
 
 //========================================================================
 
@@ -433,7 +434,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 //=========================================================================
 
 /*N*/ typedef SfxPSProperty_Impl *SfxPSPropertyPtr_Impl;
-/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10);
+/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)//STRIP008 ;
 /*N*/ SV_IMPL_PTRARR(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl);
 
 /*N*/ struct SfxPSSection_Impl
@@ -1659,3 +1660,4 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   SetTime( 0L );
 /*N*/   SetDocumentNumber( 1 );
 /*N*/ }
+}

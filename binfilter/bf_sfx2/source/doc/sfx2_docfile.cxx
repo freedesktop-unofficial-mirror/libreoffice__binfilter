@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -227,6 +227,7 @@ using namespace ::com::sun::star::io;
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 #define MAX_REDIRECT 5
 
@@ -291,15 +292,15 @@ using namespace ::com::sun::star::io;
 /*N*/     xLockBytes->Cancel();
 /*N*/ }
 
-/*N*/ class SfxMediumHandler_Impl : public ::cppu::WeakImplHelper1< com::sun::star::task::XInteractionHandler >
+/*N*/ class SfxMediumHandler_Impl : public ::cppu::WeakImplHelper1< ::com::sun::star::task::XInteractionHandler >
 /*N*/ {
-/*N*/     com::sun::star::uno::Reference< com::sun::star::task::XInteractionHandler > m_xInter;
+/*N*/     ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler > m_xInter;
 /*N*/
 /*N*/ public:
-/*N*/     virtual void SAL_CALL handle( const com::sun::star::uno::Reference< com::sun::star::task::XInteractionRequest >& xRequest )
-/*N*/             throw( com::sun::star::uno::RuntimeException );
+/*N*/     virtual void SAL_CALL handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
+/*N*/             throw( ::com::sun::star::uno::RuntimeException );
 /*N*/
-/*N*/     SfxMediumHandler_Impl( com::sun::star::uno::Reference< com::sun::star::task::XInteractionHandler > xInteraction )
+/*N*/     SfxMediumHandler_Impl( ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler > xInteraction )
 /*N*/         : m_xInter( xInteraction )
 /*N*/         {}
 /*N*/
@@ -310,15 +311,15 @@ using namespace ::com::sun::star::io;
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const com::sun::star::uno::Reference< com::sun::star::task::XInteractionRequest >& xRequest )
-/*N*/         throw( com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
+/*N*/         throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( !m_xInter.is() )
 //STRIP001      return;
 //STRIP001
-//STRIP001     com::sun::star::uno::Any aRequest = xRequest->getRequest();
-//STRIP001     com::sun::star::ucb::InteractiveIOException aIoException;
-//STRIP001     com::sun::star::ucb::UnsupportedDataSinkException aSinkException;
+//STRIP001     ::com::sun::star::uno::Any aRequest = xRequest->getRequest();
+//STRIP001     ::com::sun::star::ucb::InteractiveIOException aIoException;
+//STRIP001     ::com::sun::star::ucb::UnsupportedDataSinkException aSinkException;
 //STRIP001     if ( (aRequest >>= aIoException) && ( aIoException.Code == IOErrorCode_ACCESS_DENIED || aIoException.Code == IOErrorCode_LOCKING_VIOLATION ) )
 //STRIP001         return;
 //STRIP001     else
@@ -904,7 +905,7 @@ using namespace ::com::sun::star::io;
 //STRIP001
 //STRIP001     // unpack all files to temp dir
 //STRIP001     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
-//STRIP001     com::sun::star::uno::Reference< com::sun::star::task::XInteractionHandler > xInteractionHandler = GetInteractionHandler();
+//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler > xInteractionHandler = GetInteractionHandler();
 //STRIP001     if (xInteractionHandler.is())
 //STRIP001     {
 //STRIP001         aArgs.realloc(1);
@@ -1041,7 +1042,7 @@ using namespace ::com::sun::star::io;
 /*?*/                   SFX_ITEMSET_ARG( GetItemSet(), pxProgressItem, SfxUnoAnyItem, SID_PROGRESS_STATUSBAR_CONTROL, sal_False );
 /*?*/                   if( pxProgressItem && ( pxProgressItem->GetValue() >>= xStatusIndicator ) )
 /*?*/                       xProgressHandler = Reference< ::com::sun::star::ucb::XProgressHandler >(
-/*?*/                                               new utl::ProgressHandlerWrap( xStatusIndicator ) );
+/*?*/                                               new ::utl::ProgressHandlerWrap( xStatusIndicator ) );
 /*?*/
 /*?*/                       INetURLObject aObj( aName );
 /*?*/                       if ( aObj.GetProtocol() == INET_PROT_NOT_VALID )
@@ -1742,7 +1743,7 @@ using namespace ::com::sun::star::io;
 /*N*/
 /*N*/             Reference < ::com::sun::star::io::XInputStream > xStream;
 /*N*/             if ( ( pStreamItem->GetValue() >>= xStream ) && xStream.is() )
-/*N*/                 pImp->xLockBytes = utl::UcbLockBytes::CreateInputLockBytes( xStream );
+/*N*/                 pImp->xLockBytes = ::utl::UcbLockBytes::CreateInputLockBytes( xStream );
 /*N*/             Done_Impl( pImp->xLockBytes.Is() ? pImp->xLockBytes->GetError() : ERRCODE_IO_NOTSUPPORTED );
 /*N*/         }
 /*N*/         else
@@ -2086,7 +2087,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xFactory = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*?*/     if ( xFactory.is() )
 /*?*/     {
-/*?*/         pImp->xInteraction = ::com::sun::star::uno::Reference< com::sun::star::task::XInteractionHandler >( xFactory->createInstance( DEFINE_CONST_UNICODE("com.sun.star.task.InteractionHandler") ), ::com::sun::star::uno::UNO_QUERY );
+/*?*/         pImp->xInteraction = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >( xFactory->createInstance( DEFINE_CONST_UNICODE("com.sun.star.task.InteractionHandler") ), ::com::sun::star::uno::UNO_QUERY );
 /*?*/         return pImp->xInteraction;
 /*?*/     }
 /*?*/
@@ -3080,3 +3081,4 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 //STRIP001     return pList;
 //STRIP001 }
 
+}

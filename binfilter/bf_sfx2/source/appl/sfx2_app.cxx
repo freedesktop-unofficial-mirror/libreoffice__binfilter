@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -249,6 +249,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 // Static member
 SfxApplication* SfxApplication::pApp = NULL;
@@ -420,9 +421,9 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   // SFX on demand
 /*N*/     if ( !pApp )
 /*N*/     {
-/*N*/       com::sun::star::uno::Reference < com::sun::star::lang::XInitialization >
-/*N*/           xWrp(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( DEFINE_CONST_UNICODE("com.sun.star.office.OfficeWrapper")), com::sun::star::uno::UNO_QUERY );
-/*N*/           xWrp->initialize( com::sun::star::uno::Sequence < com::sun::star::uno::Any >() );
+/*N*/       ::com::sun::star::uno::Reference < ::com::sun::star::lang::XInitialization >
+/*N*/           xWrp(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( DEFINE_CONST_UNICODE("com.sun.star.office.OfficeWrapper")), ::com::sun::star::uno::UNO_QUERY );
+/*N*/           xWrp->initialize( ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any >() );
 /*N*/ //        SfxApplication *pNew = new SfxApplication;
 /*N*/ //        pNew->StartUpScreen( NULL );
 /*N*/ //        SetApp( pNew );
@@ -1630,3 +1631,4 @@ String GetURL_Impl( const String& rName )
 //STRIP001     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst(); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame ) )
 //STRIP001         Invalidate_Impl( pFrame->GetBindings(), nId );
 /*?*/ }
+}

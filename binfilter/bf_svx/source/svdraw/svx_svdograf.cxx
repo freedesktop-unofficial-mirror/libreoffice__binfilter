@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,6 +104,7 @@
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -117,7 +118,7 @@
 // - SdrGraphicLink -
 // ------------------
 
-/*N*/ class SdrGraphicLink : public so3::SvBaseLink
+/*N*/ class SdrGraphicLink : public ::so3::SvBaseLink
 /*N*/ {
 /*N*/   SdrGrafObj*         pGrafObj;
 /*N*/
@@ -2229,3 +2230,4 @@
 //STRIP001     return 0;
 //STRIP001 }
 
+}

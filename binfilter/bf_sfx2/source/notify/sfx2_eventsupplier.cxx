@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------
 
@@ -311,7 +312,7 @@
 /*?*/       if ( aType.compareToAscii( STAR_BASIC ) == 0 && aScript.getLength() )
 /*?*/       {
 /*?*/           aGuard.clear();
-/*?*/           com::sun::star::uno::Any aAny;
+/*?*/           ::com::sun::star::uno::Any aAny;
 /*?*/             SfxMacroLoader::loadMacro( aScript, aAny, mpObjShell );
 /*?*/       }
 /*?*/         else if ( aType.compareToAscii( "Service" ) == 0  || ( aType.compareToAscii( "Script" ) == 0 ) )
@@ -322,7 +323,7 @@
 /*?*/                 ::com::sun::star::util::URL aURL;
 /*?*/                 aURL.Complete = aScript;
 /*?*/                 ::com::sun::star::uno::Reference < ::com::sun::star::util::XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*?*/                         rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
+/*?*/                         ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
 /*?*/                 xTrans->parseStrict( aURL );
 /*?*/
 /*?*/                 ::com::sun::star::uno::Reference < ::com::sun::star::frame::XDispatchProvider > xProv( pView->GetFrame()->GetFrameInterface(), UNO_QUERY );
@@ -332,7 +333,7 @@
 /*?*/                 if ( xDisp.is() )
 /*?*/                 {
 /*?*/                     //::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs(1);
-/*?*/                     //aArgs[0].Name = rtl::OUString::createFromAscii("Referer");
+/*?*/                     //aArgs[0].Name = ::rtl::OUString::createFromAscii("Referer");
 /*?*/                     //aArs[0].Value <<= ::rtl::OUString( mpObjShell->GetMedium()->GetName() );
 /*?*/                     //xDisp->dispatch( aURL, aArgs );
 /*?*/                     xDisp->dispatch( aURL, ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >() );
@@ -573,7 +574,7 @@
 /*N*/ SFX_IMPL_XSERVICEINFO( SfxGlobalEvents_Impl, "com.sun.star.frame.GlobalEventBroadcaster", "com.sun.star.comp.sfx2.GlobalEventBroadcaster" )
 /*N*/ SFX_IMPL_ONEINSTANCEFACTORY( SfxGlobalEvents_Impl );
 
-/*N*/ SfxGlobalEvents_Impl::SfxGlobalEvents_Impl( const com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& xSmgr )
+/*N*/ SfxGlobalEvents_Impl::SfxGlobalEvents_Impl( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& xSmgr )
 /*N*/   : m_aInterfaceContainer( m_aMutex )
 /*N*/ {
 /*N*/   m_refCount++;
@@ -639,4 +640,4 @@
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/ }
+/*N*/ }}

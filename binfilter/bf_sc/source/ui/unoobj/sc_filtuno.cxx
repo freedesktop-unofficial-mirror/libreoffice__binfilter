@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_filtuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@
 #include "asciiopt.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -115,16 +116,16 @@ uno::Reference<uno::XInterface> SAL_CALL ScFilterOptionsObj_CreateInstance(
     return (::cppu::OWeakObject*) new ScFilterOptionsObj;
 }
 
-rtl::OUString ScFilterOptionsObj::getImplementationName_Static()
+::rtl::OUString ScFilterOptionsObj::getImplementationName_Static()
 {
-    return rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_IMPLNAME );
+    return ::rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_IMPLNAME );
 }
 
-uno::Sequence<rtl::OUString> ScFilterOptionsObj::getSupportedServiceNames_Static()
+uno::Sequence< ::rtl::OUString> ScFilterOptionsObj::getSupportedServiceNames_Static()
 {
-    uno::Sequence<rtl::OUString> aRet(1);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(1);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_SERVICE );
     return aRet;
 }
 
@@ -135,7 +136,7 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScFilterOptionsObj::getPropertyValu
     uno::Sequence<beans::PropertyValue> aRet(1);
     beans::PropertyValue* pArray = aRet.getArray();
 
-    pArray[0].Name = rtl::OUString::createFromAscii( SC_UNONAME_FILTEROPTIONS );
+    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_FILTEROPTIONS );
     pArray[0].Value <<= aFilterOptions;
 
     return aRet;
@@ -190,7 +191,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
 
         SvStream* pInStream = NULL;
         if ( xInputStream.is() )
-            pInStream = utl::UcbStreamHelper::CreateStream( xInputStream );
+            pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
         DBG_ASSERT(0, "STRIP"); //STRIP001 ScImportAsciiDlg* pDlg = new ScImportAsciiDlg( NULL, aPrivDatName, pInStream, cAsciiDel );
 //STRIP001      if ( pDlg->Execute() == RET_OK )
@@ -308,3 +309,4 @@ void SAL_CALL ScFilterOptionsObj::setSourceDocument( const uno::Reference<lang::
     bExport = sal_True;
 }
 
+}

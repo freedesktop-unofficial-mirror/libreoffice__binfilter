@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartObject.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -132,12 +132,13 @@
 #endif
 
 #include <memory>
+namespace binfilter {
 
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -438,7 +439,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
                 case XATTR_LINEDASH:
                     if( pMap->nMemberId == MID_NAME )
                     {
-                        rtl::OUString aStr;
+                        ::rtl::OUString aStr;
                         if( aValue >>= aStr )
                             SvxShape::SetFillAttribute( nWID, aStr, *pSet, mpModel );
                         break;
@@ -842,7 +843,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
             case XATTR_LINEDASH:
                 if (pProperty->nMemberId == MID_NAME )
                 {
-                    rtl::OUString aString;
+                    ::rtl::OUString aString;
                     if (*pValue >>= aString)
                         SvxShape::SetFillAttribute (nWID, aString, aModifications, mpModel);
                     break;
@@ -1050,7 +1051,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
     OGuard aGuard( Application::GetSolarMutex() );
 
     const sal_Int32 nCount = aPropertyNames.getLength();
-    const rtl::OUString * pName = aPropertyNames.getConstArray();
+    const ::rtl::OUString * pName = aPropertyNames.getConstArray();
     Sequence<PropertyState > aStates (nCount);
     PropertyState * pState = aStates.getArray();
 
@@ -1477,4 +1478,5 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                     }
             }
     }
+}
 }

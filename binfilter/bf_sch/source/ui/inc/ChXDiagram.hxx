@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXDiagram.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,10 +120,11 @@
 #ifndef _SVX_UNOIPSET_HXX_
 #include <bf_svx/unoipset.hxx>
 #endif
+namespace binfilter {
 
 class ChartModel;
 class SchChartDocShell;
-
+} //namespace binfilter
 // GrP gcc 2.95.2 on Mac OS X chokes on this huge template class.
 // Expand the template by hand.
 #if ! (defined(MACOSX) && ( __GNUC__ < 3 ))
@@ -163,20 +164,20 @@ namespace cppu {
 
     class SAL_NO_VTABLE ImplHelperBase14
         : public ::com::sun::star::lang::XTypeProvider
-        , public com::sun::star::chart::XDiagram,
-                      public com::sun::star::chart::XAxisZSupplier,
-                      public com::sun::star::chart::XTwoAxisXSupplier,
-                      public com::sun::star::chart::XTwoAxisYSupplier,
-                      public com::sun::star::chart::XStatisticDisplay,
-                      public com::sun::star::chart::X3DDisplay,
-                      public com::sun::star::beans::XPropertySet,
-                      public com::sun::star::beans::XMultiPropertySet,
-                      public com::sun::star::beans::XPropertyState,
-                      public com::sun::star::beans::XMultiPropertyStates,
-                      public com::sun::star::lang::XServiceInfo,
-                      public com::sun::star::lang::XUnoTunnel,
-                      public com::sun::star::lang::XComponent,
-                      public com::sun::star::lang::XEventListener
+        , public ::com::sun::star::chart::XDiagram,
+                      public ::com::sun::star::chart::XAxisZSupplier,
+                      public ::com::sun::star::chart::XTwoAxisXSupplier,
+                      public ::com::sun::star::chart::XTwoAxisYSupplier,
+                      public ::com::sun::star::chart::XStatisticDisplay,
+                      public ::com::sun::star::chart::X3DDisplay,
+                      public ::com::sun::star::beans::XPropertySet,
+                      public ::com::sun::star::beans::XMultiPropertySet,
+                      public ::com::sun::star::beans::XPropertyState,
+                      public ::com::sun::star::beans::XMultiPropertyStates,
+                      public ::com::sun::star::lang::XServiceInfo,
+                      public ::com::sun::star::lang::XUnoTunnel,
+                      public ::com::sun::star::lang::XComponent,
+                      public ::com::sun::star::lang::XEventListener
     {
     protected:
         ClassData & SAL_CALL getClassData( ClassDataBase & s_aCD ) SAL_THROW( () )
@@ -188,34 +189,34 @@ namespace cppu {
                     if (! rCD.bOffsetsInit)
                     {
                         char * pBase = (char *)this;
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::XDiagram > *)0 ),
-                                             (char *)(com::sun::star::chart::XDiagram *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::XAxisZSupplier > *)0 ),
-                                             (char *)(com::sun::star::chart::XAxisZSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::XTwoAxisXSupplier > *)0 ),
-                                             (char *)(com::sun::star::chart::XTwoAxisXSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::XTwoAxisYSupplier > *)0 ),
-                                             (char *)(com::sun::star::chart::XTwoAxisYSupplier *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::XStatisticDisplay > *)0 ),
-                                             (char *)(com::sun::star::chart::XStatisticDisplay *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::chart::X3DDisplay > *)0 ),
-                                             (char *)(com::sun::star::chart::X3DDisplay *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > *)0 ),
-                                             (char *)(com::sun::star::beans::XPropertySet *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::beans::XMultiPropertySet > *)0 ),
-                                             (char *)(com::sun::star::beans::XMultiPropertySet *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::beans::XPropertyState > *)0 ),
-                                             (char *)(com::sun::star::beans::XPropertyState *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::beans::XMultiPropertyStates > *)0 ),
-                                             (char *)(com::sun::star::beans::XMultiPropertyStates *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::lang::XServiceInfo > *)0 ),
-                                             (char *)(com::sun::star::lang::XServiceInfo *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::lang::XUnoTunnel > *)0 ),
-                                             (char *)(com::sun::star::lang::XUnoTunnel *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::lang::XComponent > *)0 ),
-                                             (char *)(com::sun::star::lang::XComponent *)this - pBase );
-                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< com::sun::star::lang::XEventListener > *)0 ),
-                                             (char *)(com::sun::star::lang::XEventListener *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XDiagram > *)0 ),
+                                             (char *)(::com::sun::star::chart::XDiagram *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XAxisZSupplier > *)0 ),
+                                             (char *)(::com::sun::star::chart::XAxisZSupplier *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XTwoAxisXSupplier > *)0 ),
+                                             (char *)(::com::sun::star::chart::XTwoAxisXSupplier *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XTwoAxisYSupplier > *)0 ),
+                                             (char *)(::com::sun::star::chart::XTwoAxisYSupplier *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::XStatisticDisplay > *)0 ),
+                                             (char *)(::com::sun::star::chart::XStatisticDisplay *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::chart::X3DDisplay > *)0 ),
+                                             (char *)(::com::sun::star::chart::X3DDisplay *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > *)0 ),
+                                             (char *)(::com::sun::star::beans::XPropertySet *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XMultiPropertySet > *)0 ),
+                                             (char *)(::com::sun::star::beans::XMultiPropertySet *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyState > *)0 ),
+                                             (char *)(::com::sun::star::beans::XPropertyState *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XMultiPropertyStates > *)0 ),
+                                             (char *)(::com::sun::star::beans::XMultiPropertyStates *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XServiceInfo > *)0 ),
+                                             (char *)(::com::sun::star::lang::XServiceInfo *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XUnoTunnel > *)0 ),
+                                             (char *)(::com::sun::star::lang::XUnoTunnel *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > *)0 ),
+                                             (char *)(::com::sun::star::lang::XComponent *)this - pBase );
+                        rCD.writeTypeOffset( ::getCppuType( (const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *)0 ),
+                                             (char *)(::com::sun::star::lang::XEventListener *)this - pBase );
                         rCD.bOffsetsInit = sal_True;
                     }
                 }
@@ -262,26 +263,25 @@ namespace cppu {
   // namespace ::cppu
 }
 
-
 #endif
-
-class ChXDiagram : public cppu::WeakImplHelper14
+namespace binfilter {//STRIP009
+    class ChXDiagram : public ::cppu::WeakImplHelper14
 #if ! (defined(MACOSX) && ( __GNUC__ < 3 ) )
 <
-    com::sun::star::chart::XDiagram,
-    com::sun::star::chart::XAxisZSupplier,
-    com::sun::star::chart::XTwoAxisXSupplier,   //  : XAxisXSupplier
-    com::sun::star::chart::XTwoAxisYSupplier,   //  : XAxisYSupplier
-    com::sun::star::chart::XStatisticDisplay,
-    com::sun::star::chart::X3DDisplay,
-    com::sun::star::beans::XPropertySet,
-    com::sun::star::beans::XMultiPropertySet,
-    com::sun::star::beans::XPropertyState,
-    com::sun::star::beans::XMultiPropertyStates,
-    com::sun::star::lang::XServiceInfo,
-    com::sun::star::lang::XUnoTunnel,
-       com::sun::star::lang::XComponent,
-       com::sun::star::lang::XEventListener
+    ::com::sun::star::chart::XDiagram,
+    ::com::sun::star::chart::XAxisZSupplier,
+    ::com::sun::star::chart::XTwoAxisXSupplier, //  : XAxisXSupplier
+    ::com::sun::star::chart::XTwoAxisYSupplier, //  : XAxisYSupplier
+    ::com::sun::star::chart::XStatisticDisplay,
+    ::com::sun::star::chart::X3DDisplay,
+    ::com::sun::star::beans::XPropertySet,
+    ::com::sun::star::beans::XMultiPropertySet,
+    ::com::sun::star::beans::XPropertyState,
+    ::com::sun::star::beans::XMultiPropertyStates,
+    ::com::sun::star::lang::XServiceInfo,
+    ::com::sun::star::lang::XUnoTunnel,
+       ::com::sun::star::lang::XComponent,
+       ::com::sun::star::lang::XEventListener
 >
 #endif
 {
@@ -292,154 +292,154 @@ private:
     SvxItemPropertySet maPropSet;
 
     // some shape references (ChXChartObjects)
-    com::sun::star::uno::Reference< com::sun::star::drawing::XShape > mxXAxisTitle;
-    com::sun::star::uno::Reference< com::sun::star::drawing::XShape > mxYAxisTitle;
-    com::sun::star::uno::Reference< com::sun::star::drawing::XShape > mxZAxisTitle;
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > mxXAxisTitle;
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > mxYAxisTitle;
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > mxZAxisTitle;
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxXAxis;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxYAxis;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxZAxis;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxSecXAxis;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxSecYAxis;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxXAxis;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxYAxis;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxZAxis;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxSecXAxis;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxSecYAxis;
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMajorGridX;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMajorGridY;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMajorGridZ;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMajorGridX;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMajorGridY;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMajorGridZ;
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMinorGridX;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMinorGridY;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMinorGridZ;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMinorGridX;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMinorGridY;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMinorGridZ;
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxMinMaxLine;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxUpBar;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxDownBar;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxMinMaxLine;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxUpBar;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxDownBar;
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxWall;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > mxFloor;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxWall;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > mxFloor;
 
 
-    com::sun::star::uno::Any GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* pMap );
+    ::com::sun::star::uno::Any GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* pMap );
 
 public:
     ChXDiagram( SchChartDocShell* pShell, sal_Bool bPreInit = sal_True );
     virtual ~ChXDiagram();
 
-    void SetServiceName( const rtl::OUString& u ) throw()   { maServiceName = u; }
-    const rtl::OUString& getServiceName() throw()           { return maServiceName; }
+    void SetServiceName( const ::rtl::OUString& u ) throw() { maServiceName = u; }
+    const ::rtl::OUString& getServiceName() throw()         { return maServiceName; }
     sal_Bool SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepModel = sal_False ) throw();
 
-    static const com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static ChXDiagram* getImplementation( com::sun::star::uno::Reference< com::sun::star::uno::XInterface > ) throw();
+    static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+    static ChXDiagram* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // XDiagram
-    virtual ::rtl::OUString SAL_CALL getDiagramType() throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getDataRowProperties( sal_Int32 Row )
-        throw( com::sun::star::uno::RuntimeException,
-               com::sun::star::lang::IndexOutOfBoundsException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getDataPointProperties( sal_Int32 Column, sal_Int32 Row )
-        throw( com::sun::star::uno::RuntimeException,
-               com::sun::star::lang::IndexOutOfBoundsException );
+    virtual ::rtl::OUString SAL_CALL getDiagramType() throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getDataRowProperties( sal_Int32 Row )
+        throw( ::com::sun::star::uno::RuntimeException,
+               ::com::sun::star::lang::IndexOutOfBoundsException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getDataPointProperties( sal_Int32 Column, sal_Int32 Row )
+        throw( ::com::sun::star::uno::RuntimeException,
+               ::com::sun::star::lang::IndexOutOfBoundsException );
 
     // XShape ( ::XDiagram )
-    virtual com::sun::star::awt::Size SAL_CALL getSize()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL setSize( const com::sun::star::awt::Size& )
-        throw( com::sun::star::beans::PropertyVetoException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::awt::Point SAL_CALL getPosition()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL setPosition( const com::sun::star::awt::Point& )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::awt::Size SAL_CALL getSize()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL setSize( const ::com::sun::star::awt::Size& )
+        throw( ::com::sun::star::beans::PropertyVetoException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::awt::Point SAL_CALL getPosition()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL setPosition( const ::com::sun::star::awt::Point& )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XShapeDescriptor ( ::XShape ::XDiagram )
-    virtual rtl::OUString SAL_CALL getShapeType() throw( com::sun::star::uno::RuntimeException );
+    virtual ::rtl::OUString SAL_CALL getShapeType() throw( ::com::sun::star::uno::RuntimeException );
 
 
     // XAxisXSupplier, XAxisYSupplier, XAxisZSupplier,
     // XTwoAxisXSupplier, XTwoAxisYSupplier
-    virtual com::sun::star::uno::Reference< com::sun::star::drawing::XShape > SAL_CALL getXAxisTitle()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::drawing::XShape > SAL_CALL getYAxisTitle()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::drawing::XShape > SAL_CALL getZAxisTitle()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > SAL_CALL getXAxisTitle()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > SAL_CALL getYAxisTitle()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > SAL_CALL getZAxisTitle()
+        throw( ::com::sun::star::uno::RuntimeException );
 
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getXAxis()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getYAxis()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getZAxis()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getXAxis()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getYAxis()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getZAxis()
+        throw( ::com::sun::star::uno::RuntimeException );
 
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getSecondaryXAxis()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getSecondaryYAxis()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getSecondaryXAxis()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getSecondaryYAxis()
+        throw( ::com::sun::star::uno::RuntimeException );
 
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getXMainGrid()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getYMainGrid()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getZMainGrid()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getXMainGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getYMainGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getZMainGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
 
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getXHelpGrid()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getYHelpGrid()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getZHelpGrid()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getXHelpGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getYHelpGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getZHelpGrid()
+        throw( ::com::sun::star::uno::RuntimeException );
 
 
     // XStatisticDisplay
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getMinMaxLine()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getUpBar()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getDownBar()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getMinMaxLine()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getUpBar()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getDownBar()
+        throw( ::com::sun::star::uno::RuntimeException );
 
 
     // X3DDisplay
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getWall()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getFloor()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getWall()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getFloor()
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XPropertySet
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo()
+        throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL setPropertyValue( const ::rtl::OUString& aPropertyName,
-                                            const com::sun::star::uno::Any& aValue )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::beans::PropertyVetoException,
-               com::sun::star::lang::IllegalArgumentException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                                            const ::com::sun::star::uno::Any& aValue )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::beans::PropertyVetoException,
+               ::com::sun::star::lang::IllegalArgumentException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XPropertyChangeListener >& xListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& xListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XPropertyChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XVetoableChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XVetoableChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
 
     //  XMultiPropertySet
     virtual void SAL_CALL setPropertyValues (
@@ -465,20 +465,20 @@ public:
         throw (::com::sun::star::uno::RuntimeException);
 
     // XPropertyState
-    virtual com::sun::star::beans::PropertyState SAL_CALL getPropertyState( const ::rtl::OUString& PropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyState > SAL_CALL getPropertyStates(
-        const com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::beans::PropertyState SAL_CALL getPropertyState( const ::rtl::OUString& PropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyState > SAL_CALL getPropertyStates(
+        const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL setPropertyToDefault( const ::rtl::OUString& PropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Any SAL_CALL getPropertyDefault( const ::rtl::OUString& aPropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyDefault( const ::rtl::OUString& aPropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
 
     //  XMultiPropertyStates
     //  getPropertyStates   already part of interface XPropertyState
@@ -497,23 +497,23 @@ public:
     // XServiceInfo
     // supportsService is handled by SvxServiceInfoHelper
     virtual ::rtl::OUString SAL_CALL getImplementationName()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName )
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL getSupportedServiceNames()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames()
+        throw( ::com::sun::star::uno::RuntimeException );
 
 
     // XUnoTunnel
-    virtual sal_Int64 SAL_CALL getSomething( const com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XComponent
-    virtual void SAL_CALL dispose() throw( com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL addEventListener( const com::sun::star::uno::Reference< com::sun::star::lang::XEventListener >& xListener )
-        throw( com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL removeEventListener( const com::sun::star::uno::Reference< com::sun::star::lang::XEventListener >& aListener )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL dispose() throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL addEventListener( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& xListener )
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL removeEventListener( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& aListener )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     //  XEventListener
     virtual void SAL_CALL disposing (const ::com::sun::star::lang::EventObject & Source)
@@ -539,5 +539,6 @@ private:
     ::cppu::OInterfaceContainerHelper   maListenerList;
 };
 
+} //namespace binfilter
 #endif  // _CHART_DIAGRAM_HXX
 

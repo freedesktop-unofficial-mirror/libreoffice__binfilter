@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,6 +104,7 @@
 #include "cell.hxx"
 #include "dociter.hxx"
 #include "docoptio.hxx"
+namespace binfilter {
 
 
 /*N*/ String* ScCompiler::pSymbolTableNative = NULL;
@@ -414,7 +415,7 @@
 /*N*/   }
 /*N*/  }
 
-/*N*/ void ScCompiler::MakeColStr( rtl::OUStringBuffer& rBuffer, USHORT nCol )
+/*N*/ void ScCompiler::MakeColStr( ::rtl::OUStringBuffer& rBuffer, USHORT nCol )
 /*N*/ {
 /*N*/   if ( nCol > MAXCOL )
 /*?*/       rBuffer.append(ScGlobal::GetRscString(STR_NO_REF_TABLE));
@@ -440,7 +441,7 @@
 /*N*/       return String::CreateFromInt32( nRow + 1 );
 /*N*/  }
 
-/*N*/ void ScCompiler::MakeRowStr( rtl::OUStringBuffer& rBuffer, USHORT nRow )
+/*N*/ void ScCompiler::MakeRowStr( ::rtl::OUStringBuffer& rBuffer, USHORT nRow )
 /*N*/ {
 /*N*/   if ( nRow > MAXROW )
 /*?*/       rBuffer.append(ScGlobal::GetRscString(STR_NO_REF_TABLE));
@@ -501,12 +502,12 @@
 
 /*N*/  String ScCompiler::MakeRefStr( ComplRefData& rRef, BOOL bSingleRef )
 /*N*/  {
-/*N*/      rtl::OUStringBuffer aBuffer;
+/*N*/      ::rtl::OUStringBuffer aBuffer;
 /*N*/      MakeRefStr( aBuffer, rRef, bSingleRef );
 /*N*/      return String( aBuffer );
 /*N*/  }
 
-/*N*/ void ScCompiler::MakeRefStr( rtl::OUStringBuffer& rBuffer, ComplRefData& rRef, BOOL bSingleRef )
+/*N*/ void ScCompiler::MakeRefStr( ::rtl::OUStringBuffer& rBuffer, ComplRefData& rRef, BOOL bSingleRef )
 /*N*/ {
 /*N*/   if (bCompileXML)
 /*N*/       rBuffer.append(sal_Unicode('['));
@@ -3574,13 +3575,13 @@
 /*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/  {
-/*N*/      rtl::OUStringBuffer aBuffer;
+/*N*/      ::rtl::OUStringBuffer aBuffer;
 /*N*/      ScToken* p = CreateStringFromToken( aBuffer, pToken, bAllowArrAdvance );
 /*N*/      rFormula += aBuffer;
 /*N*/      return p;
 /*N*/  }
 
-/*N*/ ScToken* ScCompiler::CreateStringFromToken( rtl::OUStringBuffer& rBuffer, ScToken* pToken,
+/*N*/ ScToken* ScCompiler::CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/ {
 /*N*/   BOOL bNext = TRUE;
@@ -3696,7 +3697,7 @@
 /*N*/           break;
 /*N*/       case svIndex:
 /*N*/       {
-/*N*/           rtl::OUStringBuffer aBuffer;
+/*N*/           ::rtl::OUStringBuffer aBuffer;
 /*N*/           switch ( eOp )
 /*N*/           {
 /*N*/               case ocName:
@@ -3757,12 +3758,12 @@
 
 /*N*/ void ScCompiler::CreateStringFromTokenArray( String& rFormula )
 /*N*/ {
-/*N*/     rtl::OUStringBuffer aBuffer( pArr->GetLen() * 2 );
+/*N*/     ::rtl::OUStringBuffer aBuffer( pArr->GetLen() * 2 );
 /*N*/     CreateStringFromTokenArray( aBuffer );
 /*N*/     rFormula = aBuffer;
 /*N*/ }
 
-/*N*/ void ScCompiler::CreateStringFromTokenArray( rtl::OUStringBuffer& rBuffer )
+/*N*/ void ScCompiler::CreateStringFromTokenArray( ::rtl::OUStringBuffer& rBuffer )
 /*N*/ {
 /*N*/   rBuffer.setLength(0);
 /*N*/   if( !pArr->GetLen() )
@@ -3815,3 +3816,4 @@
 /*N*/ }
 
 
+}

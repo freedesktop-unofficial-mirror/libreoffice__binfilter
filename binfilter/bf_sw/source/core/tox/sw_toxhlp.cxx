@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_toxhlp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:37:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 //STRIP001 IndexEntrySupplierWrapper::IndexEntrySupplierWrapper()
 //STRIP001 {
@@ -98,7 +99,7 @@
 //STRIP001      if( xI.is() )
 //STRIP001      {
 //STRIP001          UNO_NMSPC::Any x = xI->queryInterface( ::getCppuType(
-//STRIP001                     (const com::sun::star::uno::Reference< com::sun::star::i18n::XExtendedIndexEntrySupplier>*)0) );
+//STRIP001                     (const ::com::sun::star::uno::Reference< ::com::sun::star::i18n::XExtendedIndexEntrySupplier>*)0) );
 //STRIP001          x >>= xIES;
 //STRIP001      }
 //STRIP001  }
@@ -171,10 +172,10 @@
 //STRIP001  return sRet;
 //STRIP001 }
 
-//STRIP001 STAR_NMSPC::uno::Sequence < com::sun::star::lang::Locale >
+//STRIP001 STAR_NMSPC::uno::Sequence < ::com::sun::star::lang::Locale >
 //STRIP001 IndexEntrySupplierWrapper::GetLocaleList() const
 //STRIP001 {
-//STRIP001     ::com::sun::star::uno::Sequence< com::sun::star::lang::Locale > sRet;
+//STRIP001     ::com::sun::star::uno::Sequence< ::com::sun::star::lang::Locale > sRet;
 //STRIP001
 //STRIP001     try {
 //STRIP001         sRet = xIES->getLocaleList();
@@ -230,3 +231,4 @@
 //STRIP001  }
 //STRIP001     return nRet;
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appbas.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,10 @@
 #ifndef _SBXDEF_HXX //autogen
 #include <svtools/sbxdef.hxx>
 #endif
-
 class StarBASIC;
 class SbxObject;
+namespace binfilter {
+
 
 //=========================================================================
 
@@ -76,5 +77,6 @@ SbxVariable* MakeVariable( StarBASIC *pBas, SbxObject *pObject,
                    SbxClassType = SbxCLASS_PROPERTY );
 
 
+}//end of namespace binfilter
 #endif
 

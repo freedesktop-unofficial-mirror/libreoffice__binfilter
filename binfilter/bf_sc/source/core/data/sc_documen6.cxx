@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen6.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,8 +78,9 @@
 #include "patattr.hxx"
 #include "scrdata.hxx"
 #include "poolhelp.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #define SC_BREAKITER_SERVICE    "com.sun.star.i18n.BreakIterator"
 
@@ -112,7 +113,7 @@ using namespace com::sun::star;
 //STRIP001         uno::Reference<i18n::XBreakIterator> xBreakIter = GetBreakIterator();
 //STRIP001      if ( xBreakIter.is() )
 //STRIP001      {
-//STRIP001          rtl::OUString aText = rString;
+//STRIP001          ::rtl::OUString aText = rString;
 //STRIP001          sal_Int32 nLen = aText.getLength();
 //STRIP001
 //STRIP001          sal_Int32 nPos = 0;
@@ -140,7 +141,7 @@ using namespace com::sun::star;
 /*N*/         uno::Reference<i18n::XBreakIterator> xBreakIter = GetBreakIterator();
 /*N*/       if ( xBreakIter.is() )
 /*N*/       {
-/*N*/           rtl::OUString aText = rString;
+/*N*/           ::rtl::OUString aText = rString;
 /*N*/           sal_Int32 nLen = aText.getLength();
 /*N*/
 /*N*/           sal_Int32 nPos = 0;
@@ -218,3 +219,4 @@ using namespace com::sun::star;
 /*N*/ }
 
 
+}

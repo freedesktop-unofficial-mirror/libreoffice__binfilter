@@ -2,9 +2,9 @@
  *
  *  $RCSfile: splargs.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@ class SpellCheck;
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATEDWORD_HPP_
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 #endif
+namespace binfilter {
 
 /*************************************************************************
  *                      struct SwConversionArgs
@@ -113,7 +114,7 @@ struct SwArgsBase     // used for text conversion (Hangul/Hanja, ...)
 
 struct SwConversionArgs : SwArgsBase
 {
-    rtl::OUString   aConvText;
+    ::rtl::OUString   aConvText;
     sal_Bool        bConvTextFound;     // convertible text portion found
 
     SwConversionArgs(
@@ -202,4 +203,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: blink.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@ class SwTxtFrm;
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif
+namespace binfilter {
 
 class SwBlinkPortion
 {
@@ -125,5 +126,6 @@ public:
 extern SwBlink *pBlink;
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,14 +113,15 @@
 
 #define SC_CHGTRACK_CXX
 #include "chgtrack.hxx"
+namespace binfilter {
 
 //STRIP001 DECLARE_STACK( ScChangeActionStack, ScChangeAction* );
 
 const USHORT nMemPoolChangeActionCellListEntry = (0x2000 - 64) / sizeof(ScChangeActionCellListEntry);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionCellListEntry, nMemPoolChangeActionCellListEntry, nMemPoolChangeActionCellListEntry );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionCellListEntry, nMemPoolChangeActionCellListEntry, nMemPoolChangeActionCellListEntry )//STRIP008 ;
 
 const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActionLinkEntry);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionLinkEntry, nMemPoolChangeActionLinkEntry, nMemPoolChangeActionLinkEntry );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionLinkEntry, nMemPoolChangeActionLinkEntry, nMemPoolChangeActionLinkEntry )//STRIP008 ;
 
 // loaded MSB > eigenes => inkompatibel
 #define SC_CHGTRACK_FILEFORMAT_FIRST    0x0001
@@ -1657,7 +1658,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      if ( nActionNumber )
 // --- ScChangeActionContent -----------------------------------------------
 
 const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeActionContent);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionContent, nMemPoolChangeActionContent, nMemPoolChangeActionContent );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeActionContent, nMemPoolChangeActionContent, nMemPoolChangeActionContent )//STRIP008 ;
 
 
 /*N*/ ScChangeActionContent::ScChangeActionContent( SvStream& rStrm,
@@ -2501,7 +2502,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT( !pNewCell, "ScChangeActionConten
 
 // --- ScChangeTrack -------------------------------------------------------
 
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeTrackMsgInfo, 16, 16 );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeTrackMsgInfo, 16, 16 )//STRIP008 ;
 
 const USHORT ScChangeTrack::nContentRowsPerSlot = InitContentRowsPerSlot();
 const USHORT ScChangeTrack::nContentSlots =
@@ -5020,3 +5021,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      ScChangeActionContent* pAct = new ScChan
 /*N*/   return 0;
 /*N*/ }
 
+}

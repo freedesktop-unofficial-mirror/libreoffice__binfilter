@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLColumnRowGroupExport.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
+namespace binfilter {
 
 struct ScMyColumnRowGroup
 {
@@ -90,7 +91,7 @@ class ScXMLExport;
 class ScMyOpenCloseColumnRowGroup
 {
     ScXMLExport&                rExport;
-    const rtl::OUString         rName;
+    const ::rtl::OUString           rName;
     ScMyColumnRowGroupVec       aTableStart;
     ScMyFieldGroupVec           aTableEnd;
 
@@ -110,5 +111,6 @@ public:
     void Sort();
 };
 
+} //namespace binfilter
 #endif
 

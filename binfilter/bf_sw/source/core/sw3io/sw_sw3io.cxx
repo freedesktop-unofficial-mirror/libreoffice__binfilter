@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "sw3io.hxx"
 #include "sw3imp.hxx"
 #include "ndgrf.hxx"
+namespace binfilter {
 
 
 /*N*/ Sw3Io::Sw3Io( SwDoc& r )
@@ -524,3 +525,4 @@
 //STRIP001  return nRes;
 //STRIP001 }
 
+}

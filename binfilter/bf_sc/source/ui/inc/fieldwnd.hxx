@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fieldwnd.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
 #endif
+namespace binfilter {
 
 #define MAX_LABELS  256
 #define PAGE_SIZE   16      // count of visible fields for scrollbar
@@ -118,7 +119,7 @@ private:
     long                    nFieldCount;    /// Count of existing fields.
     long                    nFieldSelected; /// Currently selected field.
 
-    com::sun::star::uno::WeakReference< ::com::sun::star::accessibility::XAccessible > xAccessible;
+    ::com::sun::star::uno::WeakReference< ::com::sun::star::accessibility::XAccessible > xAccessible;
     ScAccessibleDataPilotControl* pAccessible;
 
     /** Initilize the object. */
@@ -246,4 +247,5 @@ public:
 
 //===================================================================
 
+} //namespace binfilter
 #endif // SC_FIELDWND_HXX

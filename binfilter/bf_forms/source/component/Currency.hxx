@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Currency.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -138,5 +139,6 @@ public:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FORMS_CURRENCY_HXX_
 

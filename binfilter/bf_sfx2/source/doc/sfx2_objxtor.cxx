@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,13 +165,14 @@ using namespace ::com::sun::star::script;
 #endif
 
 //====================================================================
+namespace binfilter {
 
 /*N*/ DBG_NAME(SfxObjectShell);
 
 #define DocumentInfo
 #include "sfxslots.hxx"
 
-extern svtools::AsynchronLink* pPendingCloser;
+extern ::svtools::AsynchronLink* pPendingCloser;
 static SfxObjectShell* pWorkingDoc = NULL;
 
 //=========================================================================
@@ -779,7 +780,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/     pBas->Insert( xUnoObj );
 /*N*/
 /*N*/   // Standard lib name
-/*N*/   rtl::OUString aStdLibName( RTL_CONSTASCII_USTRINGPARAM( "Standard" ) );
+/*N*/   ::rtl::OUString aStdLibName( RTL_CONSTASCII_USTRINGPARAM( "Standard" ) );
 /*N*/
 /*N*/   // Basic container
 /*N*/   if ( xBasicCont.is() && !xBasicCont->hasByName( aStdLibName ) )
@@ -962,3 +963,4 @@ XModel* SfxObjectShell::GetModel()
 //STRIP001 {
 //STRIP001  return pWorkingDoc;
 //STRIP001 }
+}

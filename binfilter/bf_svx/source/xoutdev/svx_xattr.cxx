@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,6 +128,7 @@
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -982,7 +983,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   {
 /*N*/       case MID_NAME:
 /*N*/       {
-/*N*/           rtl::OUString aApiName;
+/*N*/           ::rtl::OUString aApiName;
 /*N*/           SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/           rVal <<= aApiName;
 /*N*/           break;
@@ -1062,7 +1063,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   {
 /*N*/       case MID_NAME:
 /*N*/       {
-/*?*/           rtl::OUString aName;
+/*?*/           ::rtl::OUString aName;
 /*?*/           if (!(rVal >>= aName))
 /*?*/               return sal_False;
 /*?*/           SetName( aName );
@@ -1626,13 +1627,13 @@ XubString aNameOrIndexEmptyString;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
-/*N*/       rtl::OUString aApiName;
+/*N*/       ::rtl::OUString aApiName;
 /*N*/       SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/       rVal <<= aApiName;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       com::sun::star::drawing::PolyPolygonBezierCoords aBezier;
+/*N*/       ::com::sun::star::drawing::PolyPolygonBezierCoords aBezier;
 /*N*/       SvxConvertXPolygonToPolyPolygonBezier( aXPolygon, aBezier );
 /*N*/       rVal <<= aBezier;
 /*N*/   }
@@ -1653,11 +1654,11 @@ XubString aNameOrIndexEmptyString;
 /*N*/       aXPolygon.SetSize( 0 );
 /*N*/       if( rVal.hasValue() && rVal.getValue() )
 /*N*/       {
-/*N*/           if( rVal.getValueType() != ::getCppuType((const com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
+/*N*/           if( rVal.getValueType() != ::getCppuType((const ::com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
 /*?*/               return sal_False;
 /*N*/
 /*N*/           aXPolygon.SetSize(0);
-/*N*/           com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
+/*N*/           ::com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (::com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
 /*N*/           if( pCoords->Coordinates.getLength() > 0 )
 /*N*/               SvxConvertPolyPolygonBezierToXPolygon( pCoords, aXPolygon );
 /*N*/       }
@@ -2325,13 +2326,13 @@ XubString aNameOrIndexEmptyString;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
-/*N*/       rtl::OUString aApiName;
+/*N*/       ::rtl::OUString aApiName;
 /*N*/       SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/       rVal <<= aApiName;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       com::sun::star::drawing::PolyPolygonBezierCoords aBezier;
+/*N*/       ::com::sun::star::drawing::PolyPolygonBezierCoords aBezier;
 /*N*/       SvxConvertXPolygonToPolyPolygonBezier( aXPolygon, aBezier );
 /*N*/       rVal <<= aBezier;
 /*N*/   }
@@ -2352,11 +2353,11 @@ XubString aNameOrIndexEmptyString;
 /*N*/       aXPolygon.SetSize( 0 );
 /*N*/       if( rVal.hasValue() && rVal.getValue() )
 /*N*/       {
-/*N*/           if( rVal.getValueType() != ::getCppuType((const com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
+/*N*/           if( rVal.getValueType() != ::getCppuType((const ::com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
 /*N*/               return sal_False;
 /*N*/
 /*N*/           aXPolygon.SetSize(0);
-/*N*/           com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
+/*N*/           ::com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (::com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
 /*N*/           if( pCoords->Coordinates.getLength() > 0 )
 /*N*/               SvxConvertPolyPolygonBezierToXPolygon( pCoords, aXPolygon );
 /*N*/       }
@@ -3428,7 +3429,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_NAME:
 /*N*/       {
-/*N*/           rtl::OUString aApiName;
+/*N*/           ::rtl::OUString aApiName;
 /*N*/           SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/           rVal <<= aApiName;
 /*N*/           break;
@@ -3461,7 +3462,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   {
 /*N*/       case MID_NAME:
 /*N*/       {
-/*?*/           rtl::OUString aName;
+/*?*/           ::rtl::OUString aName;
 /*?*/           if (!(rVal >>= aName ))
 /*?*/               return sal_False;
 /*?*/           SetName( aName );
@@ -4052,7 +4053,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_NAME:
 /*N*/       {
-/*N*/           rtl::OUString aApiName;
+/*N*/           ::rtl::OUString aApiName;
 /*N*/           SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/           rVal <<= aApiName;
 /*N*/           break;
@@ -4096,7 +4097,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_NAME:
 /*N*/       {
-/*?*/           rtl::OUString aName;
+/*?*/           ::rtl::OUString aName;
 /*?*/           if (!(rVal >>= aName ))
 /*?*/               return sal_False;
 /*?*/           SetName( aName );
@@ -5344,3 +5345,4 @@ XubString aNameOrIndexEmptyString;
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -203,6 +203,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 // 50 cm 28350
 //
 #define MAXHEIGHT 28350
@@ -338,7 +339,7 @@
 /*N*/           SwFrmFmt *pHeaderFmt = aHeaderFmt.GetHeaderFmt();
 /*N*/           ASSERT(pHeaderFmt != 0, "kein HeaderFormat");
 /*N*/
-/*N*/           ::FillHdFt(pHeaderFmt, rHeaderSet);
+/*N*/           ::binfilter::FillHdFt(pHeaderFmt, rHeaderSet);
 /*N*/
 /*N*/           rPageDesc.ChgHeaderShare(((const SfxBoolItem&)
 /*N*/                       rHeaderSet.Get(SID_ATTR_PAGE_SHARED)).GetValue());
@@ -374,7 +375,7 @@
 /*N*/           SwFrmFmt *pFooterFmt = aFooterFmt.GetFooterFmt();
 /*N*/           ASSERT(pFooterFmt != 0, "kein FooterFormat");
 /*N*/
-/*N*/           ::FillHdFt(pFooterFmt, rFooterSet);
+/*N*/           ::binfilter::FillHdFt(pFooterFmt, rFooterSet);
 /*N*/
 /*N*/           rPageDesc.ChgFooterShare(((const SfxBoolItem&)
 /*N*/                       rFooterSet.Get(SID_ATTR_PAGE_SHARED)).GetValue());
@@ -897,3 +898,4 @@
 //STRIP001  ( sRet += ' ' ) += rAppLclData.getTime( rDT, FALSE, FALSE );
 //STRIP001  return sRet;
 //STRIP001 }
+}

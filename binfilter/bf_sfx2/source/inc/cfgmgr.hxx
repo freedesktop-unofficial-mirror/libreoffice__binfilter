@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cfgmgr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,10 +62,11 @@
 #define _SFXCFGMGR_HXX
 
 #include <sot/storage.hxx>
-
-class SfxObjectShell;
 class SvStream;
 class String;
+namespace binfilter {
+
+class SfxObjectShell;
 class SfxConfigItem;
 class SfxConfigItemArr_Impl;
 struct SfxConfigItem_Impl;
@@ -146,5 +147,6 @@ public:
                     { return pObjShell; }
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SFXCFGMGR_HXX
 

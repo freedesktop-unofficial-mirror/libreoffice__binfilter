@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrtw4w.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,11 @@
 #ifndef _WRT_FN_HXX
 #include <wrt_fn.hxx>
 #endif
+class SvMemoryStream;
+namespace binfilter {
 
 // einige Forward Deklarationen
-class SvMemoryStream;
+
 class SvxBoxItem;
 class SvxFontItem;
 class SwAttrSet;
@@ -284,4 +286,5 @@ SvStream& W4WOutULong( SvStream& rStrm, ULONG nVal );
 void OutW4W_SwFmtPageDesc1( SwW4WWriter& rW4WWrt, const SwPageDesc* pPg );
 
 
+} //namespace binfilter
 #endif  //  _WRTW4W_HXX

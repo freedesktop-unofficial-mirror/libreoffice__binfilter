@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartData.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,13 +80,14 @@
 
 #include "chtmodel.hxx"
 #include "memchrt.hxx"
+namespace binfilter {
 
 #ifndef SCH_ASCII_TO_OU
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
 #endif
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #define SCH_BIN_MIN(a,b) ( ((a)<(b))? (a) : (b) )
 
@@ -173,12 +174,12 @@ void SAL_CALL ChXChartData::removeChartDataChangeEventListener(
         maListeners.removeInterface( xIntf );
 }
 
-double SAL_CALL ChXChartData::getNotANumber() throw( com::sun::star::uno::RuntimeException )
+double SAL_CALL ChXChartData::getNotANumber() throw( ::com::sun::star::uno::RuntimeException )
 {
     return DBL_MIN;
 }
 
-sal_Bool SAL_CALL ChXChartData::isNotANumber( double nNumber ) throw( com::sun::star::uno::RuntimeException )
+sal_Bool SAL_CALL ChXChartData::isNotANumber( double nNumber ) throw( ::com::sun::star::uno::RuntimeException )
 {
     return (nNumber == getNotANumber());
 }
@@ -197,10 +198,10 @@ sal_Bool SAL_CALL ChXChartData::supportsService( const ::rtl::OUString& ServiceN
     return SvxServiceInfoHelper::supportsService( ServiceName, getSupportedServiceNames() );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXChartData::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartData::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    uno::Sequence< rtl::OUString > aSeq;
+    uno::Sequence< ::rtl::OUString > aSeq;
     SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartData");
     return aSeq;
 }
@@ -508,11 +509,12 @@ sal_Bool SAL_CALL ChXChartDataArray::supportsService( const ::rtl::OUString& Ser
     return ChXChartData::supportsService( ServiceName );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXChartDataArray::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    uno::Sequence< rtl::OUString > aSeq( ChXChartData::getSupportedServiceNames() );
+    uno::Sequence< ::rtl::OUString > aSeq( ChXChartData::getSupportedServiceNames() );
     SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartDataArray" );
     return aSeq;
 }
 
+}

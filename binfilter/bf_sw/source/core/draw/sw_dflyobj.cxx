@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dflyobj.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:15:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #include "ndnotxt.hxx"
 #include "grfatr.hxx"
 #include "pagefrm.hxx"
+namespace binfilter {
 
 static FASTBOOL bInResize = FALSE;
 
@@ -535,7 +536,7 @@ static FASTBOOL bInResize = FALSE;
 //STRIP001  FASTBOOL bPut = FALSE;
 //STRIP001
 //STRIP001  if( !GetFlyFrm()->IsFlyLayFrm() &&
-//STRIP001      ::GetHtmlMode(pFmt->GetDoc()->GetDocShell()) )
+//STRIP001      ::binfilter::GetHtmlMode(pFmt->GetDoc()->GetDocShell()) )
 //STRIP001  {
 //STRIP001      //Im HTML-Modus sind nur automatische Ausrichtungen erlaubt.
 //STRIP001      //Einzig einen Snap auf Links/Rechts bzw. Linker-/Rechter-Rand koennen
@@ -794,3 +795,4 @@ static FASTBOOL bInResize = FALSE;
 //STRIP001 }
 
 
+}

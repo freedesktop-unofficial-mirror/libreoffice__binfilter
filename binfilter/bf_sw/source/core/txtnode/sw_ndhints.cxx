@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndhints.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 
 #include "txatbase.hxx"
 #include "ndhints.hxx"
+namespace binfilter {
 
 /*N*/ _SV_IMPL_SORTAR_ALG( SwpHtStart, SwTxtAttr* )
 /*N*/ _SV_IMPL_SORTAR_ALG( SwpHtEnd, SwTxtAttr* )
@@ -451,3 +452,4 @@
 /*N*/ }
 
 
+}

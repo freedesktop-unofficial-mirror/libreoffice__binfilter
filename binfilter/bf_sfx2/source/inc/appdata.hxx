@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,40 +69,42 @@
 #include "rtl/ref.hxx"
 
 #include "bitset.hxx"
-
-class SfxApplication;
 class SvStrings;
 class Config;
-class SfxBmkMenu;
 class SvVerbList;
+class DdeService;
+class SfxItemPool;
+class SvUShorts;
+class SfxCancelManager;
+class SvtSaveOptions;
+class SvtUndoOptions;
+class SvtHelpOptions;
+class ResMgr;
+class Window;
+namespace binfilter {
+
+class SfxApplication;
+
+class SfxBmkMenu;
 class SfxProgress;
 class SfxChildWinFactArr_Impl;
 class SfxToolBoxConfig;
 class SfxDdeDocTopics_Impl;
-class DdeService;
 class SfxEventConfiguration;
 class SfxMacroConfig;
-class SfxItemPool;
 class SfxInitLinkList;
 class SfxFilterMatcher;
-class SvUShorts;
 struct SfxFrameObjectFactoryPtr;
 struct SfxPluginObjectFactoryPtr;
 class ISfxTemplateCommon;
 class SfxFilterMatcher;
-class SfxCancelManager;
 class SfxStatusDispatcher;
 class SfxDdeTriggerTopic_Impl;
 class SfxMiscCfg;
 class SfxDocumentTemplates;
 class SfxFrameArr_Impl;
-class SvtSaveOptions;
-class SvtUndoOptions;
-class SvtHelpOptions;
 class SfxObjectFactory;
 class SfxObjectShell;
-class ResMgr;
-class Window;
 namespace sfx2 { namespace appl { class ImeStatusWindow; } }
 
 //=========================================================================
@@ -173,7 +175,7 @@ public:
     USHORT                              nAsynchronCalls;
     USHORT                              nAppEvent;                  // command line interpretation
 
-    rtl::Reference< sfx2::appl::ImeStatusWindow > m_xImeStatusWindow;
+    ::rtl::Reference< sfx2::appl::ImeStatusWindow > m_xImeStatusWindow;
 
     BOOL                                bDirectAliveCount : 1;
     BOOL                                bInQuit : 1;
@@ -195,6 +197,7 @@ public:
     void                                DeInitDDE();
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SFX_APPDATA_HXX
 
 

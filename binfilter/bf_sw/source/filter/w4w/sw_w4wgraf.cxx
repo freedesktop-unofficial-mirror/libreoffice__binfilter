@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wgraf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #ifndef _W4WGRAF_HXX
 #include <w4wgraf.hxx>         // eigenes
 #endif
+namespace binfilter {
 
 #define MAX_MEM_GRAF 300000         // ab 300K im File statt im Speicher
 
@@ -403,7 +404,7 @@ if( 24 > n4ColBits )
     if ( !pBuf ) return -1;       // Fehler: kein Speicher da
 
     String sExt(String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM( ".bmp" )));
-    utl::TempFile aTempFile(aEmptyStr, &sExt, 0);
+    ::utl::TempFile aTempFile(aEmptyStr, &sExt, 0);
     aTempFile.EnableKillingFile();
 
     SvStream* pOut = aTempFile.GetStream( STREAM_READ | STREAM_WRITE |
@@ -1139,3 +1140,4 @@ short SwW4WGraf::Read( long nTyp, long nWidth, long nHeight )
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode9.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -173,6 +173,7 @@
 #include "chdescr.hxx"
 #include "chartbar.hxx"
 #include "calculat.hxx"
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -1873,7 +1874,7 @@
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ using namespace com::sun::star;
+/*N*/ using namespace ::com::sun::star;
 
 /*N*/ void ChartModel::SetNumberFormatter( SvNumberFormatter* pFormatter )
 /*N*/ {
@@ -2003,7 +2004,7 @@
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ using namespace com::sun::star;
+/*N*/ using namespace ::com::sun::star;
 
 /*N*/ void ChartModel::SetChartAddIn( uno::Reference< util::XRefreshable >& xChartAddIn )
 /*N*/ {
@@ -2196,3 +2197,4 @@
 //STRIP001 {
 //STRIP001     return pOwnNumFormatter;
 //STRIP001 }
+}

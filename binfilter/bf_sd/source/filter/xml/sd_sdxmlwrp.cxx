@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdxmlwrp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -161,11 +161,12 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::document;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::document;
 using namespace rtl;
 using namespace comphelper;
 
@@ -796,18 +797,18 @@ sal_Bool SdXMLFilter::Export()
                     xDocStream->SetVersion( pStorage->GetVersion() );
 //                  xDocStream->SetKey( pStorage->GetKey() );
                     xDocStream->SetBufferSize( 16*1024 );
-                    xDocOut = new utl::OOutputStreamWrapper( *xDocStream );
+                    xDocOut = new ::utl::OOutputStreamWrapper( *xDocStream );
 
                     uno::Any aAny; aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM("text/xml") );
-                    xDocStream->SetProperty(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("MediaType")), aAny);
+                    xDocStream->SetProperty(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("MediaType")), aAny);
 
                     if( pServices->mbPlain )
                     {
-                        xDocStream->SetProperty( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Compressed") ), uno::makeAny( (sal_Bool) sal_False ) );
+                        xDocStream->SetProperty( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Compressed") ), uno::makeAny( (sal_Bool) sal_False ) );
                     }
                     else
                     {
-                        xDocStream->SetProperty( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Encrypted") ), uno::makeAny( (sal_Bool)sal_True ) );
+                        xDocStream->SetProperty( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Encrypted") ), uno::makeAny( (sal_Bool)sal_True ) );
                     }
 
                 }
@@ -869,4 +870,5 @@ sal_Bool SdXMLFilter::Export()
 
 
     return bDocRet;
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,7 @@
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
 #endif
+namespace binfilter {
 
 #ifndef SVX_LIGHT
 
@@ -134,12 +135,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 class ImpSdrObjGroupLink: public so3::SvBaseLink
+//STRIP001 class ImpSdrObjGroupLink: public ::so3::SvBaseLink
 //STRIP001 {
 //STRIP001  SdrObject* pSdrObj;
 //STRIP001 public:
 //STRIP001  ImpSdrObjGroupLink( SdrObject* pObj1 )
-//STRIP001      : ::so3::SvBaseLink( so3::LINKUPDATE_ONCALL, FORMAT_FILE ),
+//STRIP001      : ::so3::SvBaseLink( ::so3::LINKUPDATE_ONCALL, FORMAT_FILE ),
 //STRIP001      pSdrObj( pObj1 )
 //STRIP001  {}
 //STRIP001  virtual ~ImpSdrObjGroupLink();
@@ -1645,3 +1646,4 @@
 //STRIP001  }
 //STRIP001 }
 
+}

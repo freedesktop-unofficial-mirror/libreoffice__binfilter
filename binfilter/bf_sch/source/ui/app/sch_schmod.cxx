@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schmod.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,16 +121,20 @@
 #include "res_bmp.hrc"
 #include "cfgids.hxx"
 
-/*N*/ TYPEINIT1( SchModuleDummy, SfxModule );
-/*N*/ TYPEINIT1( SchModule, SchModuleDummy );
+//STRIP008 /*N*/ TYPEINIT1( SchModuleDummy, SfxModule );
+//STRIP008 /*N*/ TYPEINIT1( SchModule, SchModuleDummy );
 
 
 #define SchModule
-#include "schslots.hxx"
+//STRIP008 #include "schslots.hxx"
 
 #ifndef _SVX_MODCTRL_HXX //autogen
 #include <bf_svx/modctrl.hxx>
 #endif
+namespace binfilter {
+#include "schslots.hxx"
+/*N*/ TYPEINIT1( SchModuleDummy, SfxModule );
+/*N*/ TYPEINIT1( SchModule, SchModuleDummy );
 
 /*N*/ SFX_IMPL_INTERFACE( SchModule, SfxModule, SchResId( STR_APPLICATIONOBJECTBAR ) )
 /*N*/ // from macro: void SchModule::InitInterface_Impl()
@@ -321,3 +325,4 @@ void SchModule::Execute(SfxRequest& rReq)
 /*N*/       delete pChartOptions, pChartOptions = NULL;
 /*N*/   }
 /*N*/ }
+}

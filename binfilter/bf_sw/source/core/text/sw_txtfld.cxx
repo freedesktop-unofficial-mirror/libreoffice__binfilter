@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:36:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -106,6 +106,7 @@
 #ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
 #endif
+namespace binfilter {
 
 
 /*************************************************************************
@@ -212,7 +213,7 @@
 /*N*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
 /*N*/           {
 /*N*/               SwGetExpField* pExpFld = (SwGetExpField*)pFld;
-/*N*/               if( !::lcl_IsInBody( pFrame ) )
+                        /*N*/               if( !::binfilter::lcl_IsInBody( pFrame ) )
 /*N*/               {
 /*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pExpFld->ChgBodyTxtFlag( sal_False );
 //STRIP001 /*?*/                    pExpFld->ChangeExpansion( *pFrame, *((SwTxtFld*)pHint) );
@@ -232,10 +233,10 @@
 /*N*/           if( !bName )
 /*N*/           {
 /*N*/               SwDBField* pDBFld = (SwDBField*)pFld;
-/*N*/               pDBFld->ChgBodyTxtFlag( ::lcl_IsInBody( pFrame ) );
+/*N*/               pDBFld->ChgBodyTxtFlag( ::binfilter::lcl_IsInBody( pFrame ) );
  /* Solange das ChangeExpansion auskommentiert ist.
   * Aktualisieren in Kopf/Fuszeilen geht aktuell nicht.
-                 if( !::lcl_IsInBody( pFrame ) )
+                 if( !::binfilter::lcl_IsInBody( pFrame ) )
                  {
                      pDBFld->ChgBodyTxtFlag( sal_False );
                      pDBFld->ChangeExpansion( pFrame, (SwTxtFld*)pHint );
@@ -484,3 +485,4 @@ void SwTxtFld::NotifyContentChange(SwFmtFld& rFmtFld)
 }
 
 
+}

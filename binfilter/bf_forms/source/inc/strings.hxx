@@ -2,9 +2,9 @@
  *
  *  $RCSfile: strings.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #ifndef _FRM_STRINGS_HXX_
 #define _FRM_STRINGS_HXX_
 
+namespace binfilter {
 //.........................................................................
 namespace frm
 {
@@ -106,10 +107,10 @@ inline ConstAsciiString::operator const ::rtl::OUString () const
 }
 
 #define DECLARE_CONSTASCII_USTRING(name)    \
-    extern ::frm::ConstAsciiString name
+    extern ::binfilter::frm::ConstAsciiString name
 
 #define IMPLEMENT_CONSTASCII_USTRING(name, asciivalue)  \
-    ::frm::ConstAsciiString name(asciivalue, sizeof(asciivalue) - 1)
+    ::binfilter::frm::ConstAsciiString name(asciivalue, sizeof(asciivalue) - 1)
 
 //#define DECLARE_CONSTASCII_USTRING(name)                  extern ::rtl::OUString name;
 //#define IMPLEMENT_CONSTASCII_USTRING(name, asciivalue)    ::rtl::OUString name = ::rtl::OUString::createFromAscii(asciivalue)
@@ -118,5 +119,6 @@ inline ConstAsciiString::operator const ::rtl::OUString () const
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif _FRM_STRINGS_HXX_
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode8.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 
 #include "chtmodel.hxx"
+namespace binfilter {
 
 /*
   ------------------------------------------------------------
@@ -736,3 +737,4 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/   return FALSE;
 /*N*/ }
 
+}

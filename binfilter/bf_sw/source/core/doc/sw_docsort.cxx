@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsort.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -145,6 +145,7 @@
 #include <cellatr.hxx>
 #endif
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::lang;
 
@@ -1090,3 +1091,4 @@ using namespace ::com::sun::star::lang;
 //STRIP001 }
 
 
+}

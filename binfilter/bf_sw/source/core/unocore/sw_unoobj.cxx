@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -325,6 +325,7 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
 #include <memory>
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -618,7 +619,7 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
         sal_Bool bPut = sal_False;
         if(sDescName.Len())
         {
-            SwPageDesc* pPageDesc = ::GetPageDescByName_Impl(*pDoc, sDescName);
+            SwPageDesc* pPageDesc = ::binfilter::GetPageDescByName_Impl(*pDoc, sDescName);
             if(pPageDesc)
             {
                 pPageDesc->Add( pNewDesc );
@@ -1110,7 +1111,7 @@ void SwXTextCursor::DeleteAndInsert(const String& rText)
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextCursor::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2418,4 +2419,5 @@ Sequence< Any > SAL_CALL SwXTextCursor::getPropertyDefaults( const Sequence< OUS
             throw UnknownPropertyException();
     }
     return aRet;
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXMLSectionList.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:33:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@ using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::xmloff::token;
 #include <tools/debug.hxx>  //STRIP001
+namespace binfilter {
 sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 
 // #110680#
@@ -131,8 +132,8 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 //STRIP001    SwXMLSectionList& rImport,
 //STRIP001    sal_uInt16 nPrefix,
 //STRIP001    const OUString& rLocalName,
-//STRIP001    const com::sun::star::uno::Reference<
-//STRIP001    com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
+//STRIP001    const ::com::sun::star::uno::Reference<
+//STRIP001    ::com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
 //STRIP001    rLocalRef(rImport),
 //STRIP001    SvXMLImportContext ( rImport, nPrefix, rLocalName )
 //STRIP001 {
@@ -175,8 +176,8 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 //STRIP001    SwXMLSectionList& rImport,
 //STRIP001    sal_uInt16 nPrefix,
 //STRIP001    const OUString& rLocalName,
-//STRIP001    const com::sun::star::uno::Reference<
-//STRIP001    com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
+//STRIP001    const ::com::sun::star::uno::Reference<
+//STRIP001    ::com::sun::star::xml::sax::XAttributeList > & xAttrList ) :
 //STRIP001    rLocalRef(rImport),
 //STRIP001    SvXMLImportContext ( rImport, nPrefix, rLocalName )
 //STRIP001 {
@@ -192,3 +193,4 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 //STRIP001 {
 //STRIP001  return  new SvXMLIgnoreSectionListContext (rLocalRef, nPrefix, rLocalName, xAttrList);
 //STRIP001 }
+}

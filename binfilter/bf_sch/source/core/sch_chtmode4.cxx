@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode4.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,7 @@
 #include "ChXChartDocument.hxx"
 
 #include "ReBuildHint.hxx"
+namespace binfilter {
 
 /************************************************************************/
 
@@ -2041,7 +2042,7 @@ private:
 /*?*/                       catch( ::com::sun::star::uno::Exception aEx )
 /*?*/                       {
 /*?*/ #ifdef DBG_UTIL
-/*?*/                           // convert rtl::OUString => tools String => ByteString
+/*?*/                           // convert ::rtl::OUString => tools String => ByteString
 /*?*/                           String aStr( aEx.Message );
 /*?*/                           ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/                           DBG_ERROR1( "AddIn threw exception during refresh(): %s", aBStr.GetBuffer());
@@ -2435,3 +2436,4 @@ private:
 //STRIP001          pObj->SetItemSetAndBroadcast(GetFullDataPointAttr(nCol,nRow));
 //STRIP001  }
 //STRIP001 }
+}

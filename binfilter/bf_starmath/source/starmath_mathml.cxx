@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_mathml.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -161,12 +161,12 @@ one go*/
 #include <svtools/itemprop.hxx>
 #endif
 
-using namespace com::sun::star::uno;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::document;
-using namespace com::sun::star::container;
-using namespace com::sun::star::beans;
-using namespace com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::document;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star;
 using namespace ::xmloff::token;
 using ::rtl::OUString;
 using ::rtl::OUStringBuffer;
@@ -184,6 +184,7 @@ using ::rtl::OUStringBuffer;
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 #define IMPORT_SVC_NAME RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.XMLImportFilter")
 #define EXPORT_SVC_NAME RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.XMLExportFilter")
@@ -405,7 +406,7 @@ ULONG SmXMLWrapper::Import(SfxMedium &rMedium)
     else
     {
         Reference<io::XInputStream> xInputStream =
-            new utl::OInputStreamWrapper(rMedium.GetInStream());
+            new ::utl::OInputStreamWrapper(rMedium.GetInStream());
 
         if (xStatusIndicator.is())
             xStatusIndicator->setValue(nSteps++);
@@ -439,8 +440,8 @@ SmXMLImport::SmXMLImport(
 
 SmXMLImport::SmXMLImport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-    com::sun::star::uno::Reference<com::sun::star::frame::XModel> &rModel,
-    const rtl::OUString &rFileName)
+    ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rModel,
+    const ::rtl::OUString &rFileName)
 :   SvXMLImport( xServiceFactory, rModel ) ,
     pMathElemTokenMap(0),
     pPresLayoutElemTokenMap(0),
@@ -486,8 +487,8 @@ SmXMLExport::SmXMLExport(
 SmXMLExport::SmXMLExport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
     const SmNode *pIn,
-    const rtl::OUString &rFileName,
-    com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler> &rHandler)
+    const ::rtl::OUString &rFileName,
+    ::com::sun::star::uno::Reference<   ::com::sun::star::xml::sax::XDocumentHandler> &rHandler)
 :   SvXMLExport( xServiceFactory, rFileName, rHandler ),
     pTree(pIn),
     bSuccess(sal_False)
@@ -891,7 +892,7 @@ sal_Bool SmXMLWrapper::WriteThroughComponent(
 
     // set buffer and create outputstream
     xDocStream->SetBufferSize( 16*1024 );
-    xOutputStream = new utl::OOutputStreamWrapper( *xDocStream );
+    xOutputStream = new ::utl::OOutputStreamWrapper( *xDocStream );
 
     // write the stuff
     sal_Bool bRet = WriteThroughComponent( xOutputStream, xComponent, rFactory,
@@ -961,7 +962,7 @@ sal_Bool SmXMLWrapper::Export(SfxMedium &rMedium)
 
 
     // create XPropertySet with three properties for status indicator
-    comphelper::PropertyMapEntry aInfoMap[] =
+    ::comphelper::PropertyMapEntry aInfoMap[] =
     {
         { "UsePrettyPrinting", sizeof("UsePrettyPrinting")-1, 0,
               &::getBooleanCppuType(),
@@ -969,7 +970,7 @@ sal_Bool SmXMLWrapper::Export(SfxMedium &rMedium)
         { NULL, 0, 0, NULL, 0, 0 }
     };
     uno::Reference< beans::XPropertySet > xInfoSet(
-                comphelper::GenericPropertySet_CreateInstance(
+                ::comphelper::GenericPropertySet_CreateInstance(
                             new comphelper::PropertySetInfo( aInfoMap ) ) );
 
     SvtSaveOptions aSaveOpt;
@@ -1020,7 +1021,7 @@ sal_Bool SmXMLWrapper::Export(SfxMedium &rMedium)
     {
         SvStream *pStream = rMedium.GetOutStream();
         uno::Reference<io::XOutputStream> xOut(
-            new utl::OOutputStreamWrapper(*pStream) );
+            new ::utl::OOutputStreamWrapper(*pStream) );
 
         if (xStatusIndicator.is())
             xStatusIndicator->setValue(nSteps++);
@@ -4284,4 +4285,5 @@ void SmXMLExport::ExportNodes(const SmNode *pNode, int nLevel)
             break;
 #endif
     }
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: conttrans.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef _SFXLSTNER_HXX
 #include <svtools/lstner.hxx>
 #endif
+namespace binfilter {
 
 //=========================================================================
 
@@ -111,17 +112,17 @@
 
 class ContentTransmitter : public SfxListener,
                            public cppu::WeakImplHelper2<
-                                com::sun::star::ucb::XContentTransmitter,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::ucb::XContentTransmitter,
+                                ::com::sun::star::lang::XServiceInfo >
 {
-    com::sun::star::uno::Reference < com::sun::star::lang::XMultiServiceFactory > m_xFact;
-    rtl::OUString   m_aSource;
-    rtl::OUString   m_aDest;
+    ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory > m_xFact;
+    ::rtl::OUString m_aSource;
+    ::rtl::OUString m_aDest;
     long            m_nFlags;
 
 public:
 
-    ContentTransmitter( const com::sun::star::uno::Reference < com::sun::star::lang::XMultiServiceFactory >& rFact )
+    ContentTransmitter( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& rFact )
         : m_xFact( rFact )
     {}
 
@@ -131,34 +132,35 @@ public:
 
     // XContentTransmitter
     virtual void SAL_CALL
-    transmit( const rtl::OUString& Source,
-              const rtl::OUString& Destination,
+    transmit( const ::rtl::OUString& Source,
+              const ::rtl::OUString& Destination,
               long                 Flags )
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XServiceInfo
-    virtual rtl::OUString SAL_CALL
+    virtual ::rtl::OUString SAL_CALL
     getImplementationName()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
 
     virtual sal_Bool SAL_CALL
-    supportsService( const rtl::OUString& ServiceName )
-        throw( com::sun::star::uno::RuntimeException );
+    supportsService( const ::rtl::OUString& ServiceName )
+        throw( ::com::sun::star::uno::RuntimeException );
 
-    virtual com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL
     getSupportedServiceNames()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // static Helper functions
-    static com::sun::star::uno::Sequence< rtl::OUString >
+    static ::com::sun::star::uno::Sequence< ::rtl::OUString >
     getSupportedServiceNames_Static();
 
-    static rtl::OUString
+    static ::rtl::OUString
     getImplementationName_Static() { return CT_SERVICE_NAME; }
 
-    com::sun::star::uno::Reference< com::sun::star::lang::XSingleServiceFactory >
-    createServiceFactory( const com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory >& rxServiceMgr );
+    ::com::sun::star::uno::Reference< ::com::sun::star::lang::XSingleServiceFactory >
+    createServiceFactory( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& rxServiceMgr );
 };
 
 
+}//end of namespace binfilter
 #endif

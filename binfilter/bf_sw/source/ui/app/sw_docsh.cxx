@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -280,13 +280,14 @@ using namespace ::com::sun::star::uno;
 #ifndef _ITEMDEF_HXX
 #include <itemdef.hxx>
 #endif
-#ifndef _SWSLOTS_HXX
-#include <swslots.hxx>
-#endif
+
 #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
 #endif
-
+namespace binfilter {
+#ifndef _SWSLOTS_HXX
+#include <swslots.hxx>
+#endif
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::container;
@@ -710,11 +711,11 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/       WriterRef xWrt;
 /*N*/       if( bXML )
 /*N*/       {
-/*?*/           ::GetXMLWriter( aEmptyStr, xWrt );
+/*?*/           ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           ::GetSw3Writer( aEmptyStr, xWrt );
+/*N*/           ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
 /*N*/           ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, TRUE );
 /*N*/       }
 
@@ -801,7 +802,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 //STRIP001             Reference< XLibraryContainer > xLibCont(GetBasicContainer(), UNO_QUERY);
 //STRIP001             Reference< XNameAccess > xLib;
 //STRIP001             Sequence<rtl::OUString> aNames = xLibCont->getElementNames();
-//STRIP001             const rtl::OUString* pNames = aNames.getConstArray();
+//STRIP001             const ::rtl::OUString* pNames = aNames.getConstArray();
 //STRIP001             for(sal_Int32 nLib = 0; nLib < aNames.getLength(); nLib++)
 //STRIP001             {
 //STRIP001                 Any aLib = xLibCont->getByName(pNames[nLib]);
@@ -1217,7 +1218,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*?*/       }
 /*?*/       break;
 /*?*/       case SID_HTML_MODE:
-/*?*/           rSet.Put(SfxUInt16Item(SID_HTML_MODE, ::GetHtmlMode(this)));
+/*?*/           rSet.Put(SfxUInt16Item(SID_HTML_MODE, ::binfilter::GetHtmlMode(this)));
 /*?*/       break;
 /*?*/
 /*?*/       case FN_ABSTRACT_STARIMPRESS:
@@ -1585,3 +1586,4 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 
 
+}

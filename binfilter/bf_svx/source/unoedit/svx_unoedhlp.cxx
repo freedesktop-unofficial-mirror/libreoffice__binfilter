@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoedhlp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #include "unoedhlp.hxx"
 #include "editdata.hxx"
 #include "editeng.hxx"
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -230,4 +231,5 @@ Rectangle SvxEditSourceHelper::UserSpaceToEE( const Rectangle& rRect, const Size
     // #106775# Don't touch rect if not vertical
     return bIsVertical ? Rectangle( UserSpaceToEE(rRect.TopRight(), rEESize, bIsVertical),
                                     UserSpaceToEE(rRect.BottomLeft(), rEESize, bIsVertical) ) : rRect;
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vprint.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:44:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,6 +187,7 @@
 #ifndef _FMTPDSC_HXX
 #include <fmtpdsc.hxx>      // SwFmtPageDesc
 #endif
+namespace binfilter {
 
 #define JOBSET_ERR_DEFAULT          0
 #define JOBSET_ERR_ERROR            1
@@ -1836,3 +1837,4 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 //STRIP001         }
 //STRIP001  }
 //STRIP001 }
+}

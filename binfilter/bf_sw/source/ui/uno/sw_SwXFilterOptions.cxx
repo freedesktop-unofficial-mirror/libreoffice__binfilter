@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXFilterOptions.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,6 +103,7 @@
 #ifndef _UNOTXDOC_HXX //autogen
 #include <unotxdoc.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::ui::dialogs;
@@ -148,7 +149,7 @@ uno::Sequence< beans::PropertyValue > SwXFilterOptions::getPropertyValues() thro
     uno::Sequence<beans::PropertyValue> aRet(1);
     beans::PropertyValue* pArray = aRet.getArray();
 
-    pArray[0].Name = rtl::OUString( FILTER_OPTIONS_NAME );
+    pArray[0].Name = ::rtl::OUString( FILTER_OPTIONS_NAME );
     pArray[0].Value <<= sFilterOptions;
 
     return aRet;
@@ -191,7 +192,7 @@ sal_Int16 SwXFilterOptions::execute() throw (uno::RuntimeException)
 
     SvStream* pInStream = NULL;
     if ( xInputStream.is() )
-        pInStream = utl::UcbStreamHelper::CreateStream( xInputStream );
+        pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
     uno::Reference< XUnoTunnel > xTunnel(xModel, uno::UNO_QUERY);
     SwDocShell* pDocShell = 0;
@@ -271,3 +272,4 @@ uno::Reference<uno::XInterface> SAL_CALL SwXFilterOptions_createInstance(
     return (::cppu::OWeakObject*) new SwXFilterOptions;
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unocrsr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,7 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwUnoCrsrTbl, SwUnoCrsrPtr )
 
@@ -307,3 +308,4 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 /*N*/   return pNew;
 /*N*/ }
 
+}

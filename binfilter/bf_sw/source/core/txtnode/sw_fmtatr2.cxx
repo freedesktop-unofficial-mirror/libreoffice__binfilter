@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtatr2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,6 +115,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -421,9 +422,9 @@ using namespace ::rtl;
 /*N*/   else
 /*N*/   {
 /*N*/       // all string properties:
-/*N*/       if(rVal.getValueType() != ::getCppuType((rtl::OUString*)0))
+/*N*/       if(rVal.getValueType() != ::getCppuType((::rtl::OUString*)0))
 /*N*/           return FALSE;
-/*N*/       XubString sVal = *(rtl::OUString*)rVal.getValue();
+/*N*/       XubString sVal = *(::rtl::OUString*)rVal.getValue();
 /*N*/       switch(nMemberId)
 /*N*/       {
 /*N*/           case MID_URL_URL:
@@ -513,7 +514,7 @@ using namespace ::rtl;
 //STRIP001  return new SwFmtRuby( *this );
 //STRIP001 }
 
-//STRIP001 BOOL SwFmtRuby::QueryValue( com::sun::star::uno::Any& rVal,
+//STRIP001 BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
 //STRIP001                              BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  BOOL bRet = TRUE;
@@ -540,7 +541,7 @@ using namespace ::rtl;
 //STRIP001  }
 //STRIP001  return bRet;
 //STRIP001 }
-/*N*/ BOOL SwFmtRuby::PutValue( const com::sun::star::uno::Any& rVal,
+/*N*/ BOOL SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                           BYTE nMemberId  )
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
@@ -557,7 +558,7 @@ using namespace ::rtl;
 /*N*/       case MID_RUBY_ADJUST:
 /*N*/       {
 /*N*/           sal_Int16 nSet; rVal >>= nSet;
-/*N*/           if(nSet >= 0 && nSet <= com::sun::star::text::RubyAdjust_INDENT_BLOCK)
+/*N*/           if(nSet >= 0 && nSet <= ::com::sun::star::text::RubyAdjust_INDENT_BLOCK)
 /*N*/               nAdjustment = nSet;
 /*N*/           else
 /*N*/               bRet = sal_False;
@@ -587,3 +588,4 @@ using namespace ::rtl;
 /*N*/   return bRet;
 /*N*/ }
 
+}

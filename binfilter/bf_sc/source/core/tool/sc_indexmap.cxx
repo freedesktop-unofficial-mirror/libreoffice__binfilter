@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_indexmap.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #include <memory.h>
 
 #include "indexmap.hxx"
+namespace binfilter {
 
 
 /*N*/ ScIndexMap::ScIndexMap( USHORT nEntries )
@@ -110,3 +111,4 @@
 /*N*/  }
 
 
+}

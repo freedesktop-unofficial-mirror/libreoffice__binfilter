@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,7 +122,8 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 
 using namespace ::com::sun::star::sdbc;
 using namespace ::com::sun::star;
@@ -196,7 +197,7 @@ using namespace ::rtl;
 /* -----------------24.02.99 14:51-------------------
  *
  * --------------------------------------------------*/
-/*N*/ BOOL SwDBFieldType::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBFieldType::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -221,7 +222,7 @@ using namespace ::rtl;
 /* -----------------24.02.99 14:51-------------------
  *
  * --------------------------------------------------*/
-/*N*/ BOOL SwDBFieldType::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+/*N*/ BOOL SwDBFieldType::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -235,7 +236,7 @@ using namespace ::rtl;
 /*?*/   case FIELD_PROP_PAR1:
 /*?*/       {
 /*?*/           String sTmp;
-/*?*/           ::GetString( rAny, sTmp );
+/*?*/           ::binfilter::GetString( rAny, sTmp );
 /*?*/           if( sTmp != sColumn )
 /*?*/           {
 /*?*/               sColumn = sTmp;
@@ -310,7 +311,7 @@ using namespace ::rtl;
 /*N*/           rExpansion.GetChar(rExpansion.Len() - 1) == '>')
 /*N*/       {
 /*N*/           String sColumn( rExpansion.Copy( 1, rExpansion.Len() - 2 ) );
-/*N*/           if( ::GetAppCmpStrIgnore().isEqual( sColumn,
+/*N*/           if( ::binfilter::GetAppCmpStrIgnore().isEqual( sColumn,
 /*N*/                           ((SwDBFieldType *)GetTyp())->GetColumnName() ))
 /*N*/           {
 /*N*/               InitContent();
@@ -333,7 +334,7 @@ using namespace ::rtl;
 /*N*/   InitContent();
 /*N*/   bInitialized = bOldInit;
 /*N*/
-/*N*/   if( ::GetAppCmpStrIgnore().isEqual( sNewExpand, Expand() ) )
+/*N*/   if( ::binfilter::GetAppCmpStrIgnore().isEqual( sNewExpand, Expand() ) )
 /*N*/   {
 /*N*/       sNewExpand = '<';
 /*N*/       sNewExpand += ((SwDBFieldType *)GetTyp())->GetColumnName();
@@ -508,7 +509,7 @@ using namespace ::rtl;
 /*-----------------06.03.98 16:15-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -540,7 +541,7 @@ using namespace ::rtl;
 /*-----------------06.03.98 16:15-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+/*N*/ BOOL SwDBField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -589,7 +590,7 @@ using namespace ::rtl;
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR1:
-/*N*/       ::GetString( rAny, aContent );
+/*N*/       ::binfilter::GetString( rAny, aContent );
 /*N*/       break;
 /*N*/   default:
 /*?*/       DBG_ERROR("illegal property");
@@ -642,7 +643,7 @@ using namespace ::rtl;
 /*-----------------06.03.98 16:55-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBNameInfField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBNameInfField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -670,7 +671,7 @@ using namespace ::rtl;
 /*-----------------06.03.98 16:55-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNameInfField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+//STRIP001 BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 //STRIP001 {
 //STRIP001     nMId &= ~CONVERT_TWIPS;
 //STRIP001  switch( nMId )
@@ -806,14 +807,14 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNextSetFieldType
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNextSetField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+//STRIP001 BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 //STRIP001 {
 //STRIP001     nMId &= ~CONVERT_TWIPS;
 //STRIP001  BOOL bRet = TRUE;
 //STRIP001  switch( nMId )
 //STRIP001  {
 //STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::GetString( rAny, aCond );
+//STRIP001      ::binfilter::GetString( rAny, aCond );
 //STRIP001      break;
 //STRIP001  default:
 //STRIP001      bRet = SwDBNameInfField::PutValue( rAny, nMId );
@@ -927,7 +928,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBNumSetField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBNumSetField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   BOOL bRet = TRUE;
@@ -947,14 +948,14 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNumSetFieldType*
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNumSetField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+//STRIP001 BOOL SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 //STRIP001 {
 //STRIP001     nMId &= ~CONVERT_TWIPS;
 //STRIP001  BOOL bRet = TRUE;
 //STRIP001  switch( nMId )
 //STRIP001  {
 //STRIP001  case FIELD_PROP_PAR3:
-//STRIP001      ::GetString( rAny, aCond );
+//STRIP001      ::binfilter::GetString( rAny, aCond );
 //STRIP001      break;
 //STRIP001  case FIELD_PROP_FORMAT:
 //STRIP001      {
@@ -1031,14 +1032,14 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBNameFieldType *p
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBNameField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBNameField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   return SwDBNameInfField::QueryValue(rAny, nMId );
 /*N*/ }
 /*-----------------06.03.98 16:16-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBNameField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+//STRIP001 BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 //STRIP001 {
 //STRIP001  return SwDBNameInfField::PutValue(rAny, nMId );
 //STRIP001 }
@@ -1110,7 +1111,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBSetNumberFieldTy
 /*-----------------06.03.98 16:15-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwDBSetNumberField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwDBSetNumberField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -1130,7 +1131,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBSetNumberFieldTy
 /*-----------------06.03.98 16:15-------------------
 
 --------------------------------------------------*/
-//STRIP001 BOOL SwDBSetNumberField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+//STRIP001 BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 //STRIP001 {
 //STRIP001  BOOL bRet = TRUE;
 //STRIP001     nMId &= ~CONVERT_TWIPS;
@@ -1157,3 +1158,4 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDBSetNumberFieldTy
 //STRIP001 }
 
 
+}

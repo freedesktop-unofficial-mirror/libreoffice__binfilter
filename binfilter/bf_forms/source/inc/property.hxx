@@ -2,9 +2,9 @@
  *
  *  $RCSfile: property.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,8 +88,9 @@
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
+namespace binfilter {
 
-using namespace comphelper;
+    using namespace ::comphelper;
 
 //=========================================================================
 //= property helper classes
@@ -257,5 +258,6 @@ pProps[nPos++] = com::sun::star::beans::Property(PROPERTY_##varname, PROPERTY_ID
 }
 //... namespace frm .......................................................
 
+}//end of namespace binfilter
 #endif // _FRM_PROPERTY_HXX_
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "ndtxt.hxx"        // SwTxtNode
 #include "calc.hxx"         // Update fuer UserFields
 #include "hints.hxx"
+namespace binfilter {
 
 /*N*/ TYPEINIT2( SwFmtFld, SfxPoolItem, SwClient )
 
@@ -371,3 +372,4 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrtsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,11 +71,19 @@
 #include <swurl.hxx>
 #endif
 #include <tools/debug.hxx>
+namespace com { namespace sun { namespace star { namespace util {
+    struct SearchOptions;
+} } } }
 class Window;
 class SbxArray;
-class SwDoc;
 class SvInPlaceObjectRef;
 class SvEmbeddedObjectRef;
+class SvGlobalName;
+class Timer;
+class SvxMacro;
+
+namespace binfilter {
+class SwDoc;
 class SpellCheck;
 class SwViewOption;
 class SwFlyFrmAttrMgr;
@@ -83,11 +91,8 @@ class SwField;
 class SwTOXBase;
 class SdrView;
 class SwView;
-class SvGlobalName;
 class SwInputFieldList;
 class SwSection;
-class Timer;
-class SvxMacro;
 class SwFmtINetFmt;
 class SvxINetBookmark;
 class SvxAutoCorrect;
@@ -97,9 +102,9 @@ class DropEvent;
 struct ChartSelectionInfo;
 class SfxStringListItem;
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
+//STRIP008 namespace com { namespace sun { namespace star { namespace util {
+//STRIP008  struct SearchOptions;
+//STRIP008 } } } }
 
 
 class SwWrtShell: public SwFEShell
@@ -360,7 +365,7 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
 //STRIP001  USHORT  GetDoStrings( DoType eDoType, SfxStringListItem& rStrLstItem ) const;
 
     //Suchen oder Ersetzen
-//STRIP001  ULONG SearchPattern(const com::sun::star::util::SearchOptions& rSearchOpt,
+//STRIP001  ULONG SearchPattern(const ::com::sun::star::util::SearchOptions& rSearchOpt,
 //STRIP001                       SwDocPositions eStart, SwDocPositions eEnde,
 //STRIP001                       FindRanges eFlags = FND_IN_BODY,
 //STRIP001                       int bReplace = FALSE );
@@ -374,7 +379,7 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
 //STRIP001                       BOOL bNoColls,
 //STRIP001                       SwDocPositions eStart,SwDocPositions eEnde,
 //STRIP001                       FindRanges eFlags = FND_IN_BODY,
-//STRIP001                       const com::sun::star::util::SearchOptions* pSearchOpt = 0,
+//STRIP001                       const ::com::sun::star::util::SearchOptions* pSearchOpt = 0,
 //STRIP001                       const SfxItemSet* pReplaceSet = 0);
 
 //STRIP001  void AutoCorrect( SvxAutoCorrect& rACorr, sal_Unicode cChar = ' ' );
@@ -614,4 +619,5 @@ inline BOOL SwWrtShell::IsInClickToEdit() const { return bIsInClickToEdit; }
 //STRIP001 #endif
 //STRIP001 }
 
+} //namespace binfilter
 #endif

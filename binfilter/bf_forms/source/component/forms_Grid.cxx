@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Grid.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,6 +107,7 @@
 #ifndef _TOOLKIT_UNOHLP_HXX
 #include <toolkit/helper/vclunohelper.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 
@@ -424,7 +425,7 @@ void OGridControlModel::removeSelectionChangeListener(const Reference< XSelectio
 Reference<XPropertySet> SAL_CALL OGridControlModel::createColumn(const ::rtl::OUString& ColumnType) throw ( :: com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
 {
     const Sequence< ::rtl::OUString >& rColumnTypes = frm::getColumnTypes();
-    return createColumn(::internal::findPos(ColumnType, rColumnTypes));
+    return createColumn(::binfilter::internal::findPos(ColumnType, rColumnTypes));//STRIP008    return createColumn(::internal::findPos(ColumnType, rColumnTypes));
 }
 
 //------------------------------------------------------------------------------
@@ -1417,3 +1418,4 @@ void OGridControlModel::read(const Reference<XObjectInputStream>& _rxInStream) t
 }   // namespace frm
 //.........................................................................
 
+}

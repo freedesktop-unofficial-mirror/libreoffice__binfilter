@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porftn.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _PORFTN_HXX
 
 #include "porfld.hxx"
+namespace binfilter {
 
 class SwTxtFrm;
 class SwTxtFtn;
@@ -152,4 +153,5 @@ CLASSIO( SwQuoVadisPortion )
 CLASSIO( SwErgoSumPortion )
 
 
+} //namespace binfilter
 #endif

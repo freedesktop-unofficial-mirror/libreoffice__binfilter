@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_notesuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,8 +86,9 @@
 #include "detfunc.hxx"
 #include "undocell.hxx"
 #include "unoguard.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -196,7 +197,7 @@ uno::Reference<text::XTextCursor> SAL_CALL ScAnnotationObj::createTextCursorByRa
     return GetUnoText().createTextCursorByRange(aTextPosition);
 }
 
-rtl::OUString SAL_CALL ScAnnotationObj::getString() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScAnnotationObj::getString() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     ScPostIt aNote;
@@ -208,7 +209,7 @@ rtl::OUString SAL_CALL ScAnnotationObj::getString() throw(uno::RuntimeException)
     return aNote.GetText();
 }
 
-void SAL_CALL ScAnnotationObj::setString( const rtl::OUString& aText ) throw(uno::RuntimeException)
+void SAL_CALL ScAnnotationObj::setString( const ::rtl::OUString& aText ) throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     if ( pDocShell )
@@ -224,7 +225,7 @@ void SAL_CALL ScAnnotationObj::setString( const rtl::OUString& aText ) throw(uno
 }
 
 void SAL_CALL ScAnnotationObj::insertString( const uno::Reference<text::XTextRange>& xRange,
-                                            const rtl::OUString& aString, sal_Bool bAbsorb )
+                                            const ::rtl::OUString& aString, sal_Bool bAbsorb )
                                 throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -269,7 +270,7 @@ table::CellAddress SAL_CALL ScAnnotationObj::getPosition() throw(uno::RuntimeExc
     return aAdr;
 }
 
-rtl::OUString SAL_CALL ScAnnotationObj::getAuthor() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScAnnotationObj::getAuthor() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     ScPostIt aNote;
@@ -281,7 +282,7 @@ rtl::OUString SAL_CALL ScAnnotationObj::getAuthor() throw(uno::RuntimeException)
     return aNote.GetAuthor();
 }
 
-rtl::OUString SAL_CALL ScAnnotationObj::getDate() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScAnnotationObj::getDate() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     ScPostIt aNote;
@@ -360,3 +361,4 @@ void SAL_CALL ScAnnotationObj::setIsVisible( sal_Bool bIsVisible ) throw(uno::Ru
 
 
 
+}

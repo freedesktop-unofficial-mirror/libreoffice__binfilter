@@ -2,9 +2,9 @@
  *
  *  $RCSfile: portxt.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 
 #include "porlin.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
+namespace binfilter {
 class SwTxtGuess;
 
 /*************************************************************************
@@ -134,4 +135,5 @@ CLASSIO( SwTxtPortion )
 CLASSIO( SwHolePortion )
 
 
+} //namespace binfilter
 #endif

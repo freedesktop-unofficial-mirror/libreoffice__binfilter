@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_mapprov.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,8 +129,9 @@
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 // ----------------------------------
 // create one global instance for use
@@ -492,4 +493,5 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartM
     }
 
     return pMapArr[ nPropertyId ];
+}
 }

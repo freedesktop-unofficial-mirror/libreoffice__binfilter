@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scmatrix.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,8 @@
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif
-
 class SvStream;
+namespace binfilter {
 
 #define SC_MATVAL_STRING    0x01
 #define SC_MATVAL_EMPTY     0x03    // EMPTY is empty string plus flag
@@ -218,5 +218,6 @@ public:
 #define SC_OLD_MAX_MAT_ELEMENTS     ((SC_OLD_MAX_MAT_DIM) * (SC_OLD_MAX_MAT_DIM))
 
 
+} //namespace binfilter
 #endif
 

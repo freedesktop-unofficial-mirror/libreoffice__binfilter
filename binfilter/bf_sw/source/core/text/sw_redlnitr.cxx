@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_redlnitr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,6 +149,7 @@
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -240,7 +241,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   SwDoc* pDoc = rTxtNode.GetDoc();
 /*N*/
 /*N*/   const SwExtTextInput* pExtInp = pDoc->GetExtTextInput( rTxtNode );
-/*N*/   sal_Bool bShow = ::IsShowChanges( pDoc->GetRedlineMode() );
+/*N*/   sal_Bool bShow = ::binfilter::IsShowChanges( pDoc->GetRedlineMode() );
 /*N*/     if( pExtInp || bShow )
 /*N*/   {
 /*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
@@ -593,3 +594,4 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 //STRIP001  }
 //STRIP001  return nNext;
 //STRIP001 }
+}

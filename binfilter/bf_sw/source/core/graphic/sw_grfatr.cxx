@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_grfatr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:20:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,6 +121,7 @@
 #ifndef _UNOMID_H
 #include <unomid.h>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -363,7 +364,7 @@ using namespace ::com::sun::star;
 /*N*/   return new SwTransparencyGrf( *this );
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::QueryValue( com::sun::star::uno::Any& rVal,
+/*N*/ BOOL SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId  ) const
 /*N*/ {
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!")
@@ -373,7 +374,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::PutValue( const com::sun::star::uno::Any& rVal,
+/*N*/ BOOL SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId  )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
@@ -410,7 +411,7 @@ using namespace ::com::sun::star;
 //STRIP001  return GRAPHICDRAWMODE_WATERMARK + 1;
 //STRIP001 }
 
-/*N*/ BOOL SwDrawModeGrf::QueryValue( com::sun::star::uno::Any& rVal,
+/*N*/ BOOL SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                               BYTE nMemberId ) const
 /*N*/ {
 /*N*/   drawing::ColorMode eRet = (drawing::ColorMode)GetEnumValue();
@@ -418,7 +419,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL SwDrawModeGrf::PutValue( const com::sun::star::uno::Any& rVal,
+/*N*/ BOOL SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                               BYTE nMemberId  )
 /*N*/ {
 /*N*/   sal_Int32 eVal = SWUnoHelper::GetEnumAsInt32( rVal );
@@ -432,3 +433,4 @@ using namespace ::com::sun::star;
 
 
 
+}

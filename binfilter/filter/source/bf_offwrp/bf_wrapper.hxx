@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_wrapper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,8 +102,9 @@
 #include <osl/mutex.hxx>
 #include <bf_sfx2/sfxuno.hxx>
 
-#pragma hdrstop
 
+#pragma hdrstop
+namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 
@@ -134,6 +135,7 @@ public:
     virtual void SAL_CALL initialize( const Sequence< Any >& aArguments ) throw( Exception );
 };
 
+}//end of namespace binfilter
 #endif // _BF_WRAPPER_HXX
 
 // eof

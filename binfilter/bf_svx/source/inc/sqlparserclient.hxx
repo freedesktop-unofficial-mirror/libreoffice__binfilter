@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sqlparserclient.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
+namespace binfilter {
 
 //........................................................................
 namespace svxform
@@ -81,7 +82,7 @@ namespace svxform
     //= OSQLParserClient
     //====================================================================
     class OSQLParserClient : public ODbtoolsClient
-                            ,public ::svxform::OParseContextClient
+        ,public ::binfilter::svxform::OParseContextClient//STRIP008                             ,public ::svxform::OParseContextClient
     {
     private:
         //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
@@ -117,6 +118,7 @@ namespace svxform
 }   // namespace svxform
 //........................................................................
 
+}//end of namespace binfilter
 #endif // SVX_SQLPARSERCLIENT_HXX
 
 

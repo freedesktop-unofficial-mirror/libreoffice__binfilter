@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drwtxtsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include <bf_sfx2/shell.hxx>
 #endif
 #include "shellid.hxx"
+namespace binfilter {
 
 class OutlinerView;
 class SdrOutliner;
@@ -121,4 +122,5 @@ public:
 //STRIP001  void        StateStatusline(SfxItemSet &rSet);
 };
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_calculat.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,6 +98,7 @@
 
 #include <algorithm>
 #include <functional>
+namespace binfilter {
 
 using namespace ::std;
 
@@ -227,13 +228,13 @@ using namespace ::std;
 /*N*/                       //  At least a part is visible.
 /*N*/                       if (fTL < 1)
 /*N*/                       {
-/*N*/                           //  Compute the new end point.
+/*N*/                           //  ::com::pute the new end point.
 /*N*/                           rPoint1.X() = (long)(rPoint0.X() + fTL * aD.X() + 0.5);
 /*N*/                           rPoint1.Y() = (long)(rPoint0.Y() + fTL * aD.Y() + 0.5);
 /*N*/                       }
 /*N*/                       if (fTE > 0)
 /*N*/                       {
-/*N*/                           //  Compute the new starting point.
+/*N*/                           //  ::com::pute the new starting point.
 /*N*/                           rPoint0.X() = (long)(rPoint0.X() + fTE * aD.X() + 0.5);
 /*N*/                           rPoint0.Y() = (long)(rPoint0.Y() + fTE * aD.Y() + 0.5);
 /*N*/                       }
@@ -659,3 +660,4 @@ using namespace ::std;
 //STRIP001
 //STRIP001     OSL_TRACE( "CalculateCubicSplines: result has %d polygons", rOutResult.Count() );
 //STRIP001 }
+}

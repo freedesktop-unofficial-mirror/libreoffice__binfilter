@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgviset.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,14 +72,16 @@
 #ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
 #endif
+namespace utl {
+    class TextSearch;
+}
+namespace binfilter {
 
 enum ScChgsDateMode{    SCDM_DATE_BEFORE=0,SCDM_DATE_SINCE=1,SCDM_DATE_EQUAL=2,
                         SCDM_DATE_NOTEQUAL=3,SCDM_DATE_BETWEEN=4, SCDM_DATE_SAVE=5,
                         SCDM_NO_DATEMODE=6};
 
-namespace utl {
-    class TextSearch;
-}
+
 
 class ScDocument;
 
@@ -87,7 +89,7 @@ class ScChangeViewSettings
 {
 private:
 
-    utl::TextSearch*    pCommentSearcher;
+    ::utl::TextSearch*  pCommentSearcher;
     DateTime            aFirstDateTime;
     DateTime            aLastDateTime;
     String              aAuthorToShow;
@@ -182,5 +184,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

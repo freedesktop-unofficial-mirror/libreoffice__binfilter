@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swxml.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,6 +159,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 #define LOGFILE_AUTHOR "mb93740"
+namespace binfilter {
 
 
 using namespace ::com::sun::star;
@@ -503,7 +504,7 @@ sal_uInt32 XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
     // the user.
 
     // create XPropertySet with three properties for status indicator
-    comphelper::PropertyMapEntry aInfoMap[] =
+    ::comphelper::PropertyMapEntry aInfoMap[] =
     {
         { "ProgressRange", sizeof("ProgressRange")-1, 0,
               &::getCppuType((sal_Int32*)0),
@@ -533,7 +534,7 @@ sal_uInt32 XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
         { NULL, 0, 0, NULL, 0, 0 }
     };
     uno::Reference< beans::XPropertySet > xInfoSet(
-                comphelper::GenericPropertySet_CreateInstance(
+                ::comphelper::GenericPropertySet_CreateInstance(
                             new comphelper::PropertySetInfo( aInfoMap ) ) );
 
     // try to get an XStatusIndicator from the Medium
@@ -786,3 +787,4 @@ USHORT XMLReader::GetSectionList( SfxMedium& rMedium,
     return rStrings.Count();
 }
 
+}

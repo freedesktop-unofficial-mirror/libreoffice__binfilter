@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flyfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,10 @@
 #define _FLYFRM_HXX
 
 #include "layfrm.hxx"
+#include <orntenum.hxx>
 
+class PolyPolygon;
+namespace binfilter {
 class SwPageFrm;
 class SwFlyFrmFmt;
 class SwFmtFrmSize;
@@ -71,9 +74,8 @@ class SwBorderAttrs;
 class SwVirtFlyDrawObj;
 class SwSpzFrmFmts;
 class SwAttrSetChg;
-class PolyPolygon;
 
-#include <orntenum.hxx>
+
 
 //Sucht ausgehend von pOldAnch einen Anker fuer Absatzgebundene Rahmen.
 //Wird beim Draggen von Absatzgebundenen Objekten zur Ankeranzeige sowie
@@ -275,4 +277,5 @@ inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const
     return pLower->IsLowerOf( this );
 }
 
+} //namespace binfilter
 #endif

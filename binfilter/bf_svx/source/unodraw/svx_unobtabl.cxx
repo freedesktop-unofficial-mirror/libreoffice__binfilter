@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unobtabl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,6 +90,7 @@
 #include "impgrf.hxx"
 #include "unomid.hxx"
 #include "unoprnms.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -152,7 +153,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
 {
     return *new SvxUnoBitmapTable(pModel);
 }
-
+} //STRIP009 namespace bifilter
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
@@ -160,6 +161,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
 #include <unotools/localfilehelper.hxx>
 #endif
 
+namespace binfilter {//STRIP009
 /** returns a GraphicObject for this URL */
 GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 {
@@ -183,7 +185,7 @@ GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
             GraphicConverter::Import( *pStream, aGraphic );
 #else
         String aSystemPath( rURL );
-        utl::LocalFileHelper::ConvertURLToSystemPath( aSystemPath, aSystemPath );
+        ::utl::LocalFileHelper::ConvertURLToSystemPath( aSystemPath, aSystemPath );
         SvFileStream aFile( aSystemPath, STREAM_READ );
         GraphicConverter::Import( aFile, aGraphic );
 #endif
@@ -191,4 +193,5 @@ GraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 
         return GraphicObject( aGraphic );
     }
+}
 }

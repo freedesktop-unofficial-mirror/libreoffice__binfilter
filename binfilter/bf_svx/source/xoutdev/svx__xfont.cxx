@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,6 +98,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
@@ -289,7 +290,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   const long* pDXArray = pInfo->pDXArray;
 /*N*/   sal_Bool bUseBreakIterator(sal_False);
 /*N*/
-/*N*/   Reference < com::sun::star::i18n::XBreakIterator > xBreak;
+/*N*/   Reference < ::com::sun::star::i18n::XBreakIterator > xBreak;
 /*N*/   Reference < XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   Reference < XInterface > xInterface = xMSF->createInstance(::rtl::OUString::createFromAscii("com.sun.star.i18n.BreakIterator"));
 /*N*/   ::com::sun::star::lang::Locale aFontLocale = SvxCreateLocale(pInfo->rFont.GetLanguage());
@@ -784,3 +785,4 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 // eof
+}

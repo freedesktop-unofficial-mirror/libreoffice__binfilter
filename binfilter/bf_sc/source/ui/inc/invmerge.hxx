@@ -2,9 +2,9 @@
  *
  *  $RCSfile: invmerge.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #endif
 
 class Window;
+namespace binfilter {
 
 class ScInvertMerger
 {
@@ -88,6 +89,7 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 
 

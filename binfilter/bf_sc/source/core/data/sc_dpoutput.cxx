@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dpoutput.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,8 +93,9 @@
 #include <com/sun/star/sheet/MemberResultFlags.hpp>
 #include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
 #include <com/sun/star/container/XNamed.hpp>
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
@@ -230,14 +231,14 @@ struct ScDPOutLevelData
 //STRIP001          {
 //STRIP001              sheet::DataPilotFieldOrientation eDimOrient =
 //STRIP001                  (sheet::DataPilotFieldOrientation) ScUnoHelpFunctions::GetEnumProperty(
-//STRIP001                      xDimProp, rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+//STRIP001                      xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
 //STRIP001                      sheet::DataPilotFieldOrientation_HIDDEN );
 //STRIP001              if ( eDimOrient == sheet::DataPilotFieldOrientation_DATA )
 //STRIP001              {
 //STRIP001                  aDataNames[nDataCount] = String( xDimName->getName() );
 //STRIP001                  long nFormat = ScUnoHelpFunctions::GetLongProperty(
 //STRIP001                                          xDimProp,
-//STRIP001                                          rtl::OUString::createFromAscii(DP_PROP_NUMBERFORMAT) );
+//STRIP001                                          ::rtl::OUString::createFromAscii(DP_PROP_NUMBERFORMAT) );
 //STRIP001                  nDataFormats[nDataCount] = nFormat;
 //STRIP001                  if ( nFormat != 0 )
 //STRIP001                      bAnySet = TRUE;
@@ -350,13 +351,13 @@ ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsS
 //STRIP001          {
 //STRIP001              sheet::DataPilotFieldOrientation eDimOrient =
 //STRIP001                  (sheet::DataPilotFieldOrientation) ScUnoHelpFunctions::GetEnumProperty(
-//STRIP001                      xDimProp, rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+//STRIP001                      xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
 //STRIP001                      sheet::DataPilotFieldOrientation_HIDDEN );
 //STRIP001              long nDimPos = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-//STRIP001                      rtl::OUString::createFromAscii(DP_PROP_POSITION) );
+//STRIP001                      ::rtl::OUString::createFromAscii(DP_PROP_POSITION) );
 //STRIP001              BOOL bIsDataLayout = ScUnoHelpFunctions::GetBoolProperty(
 //STRIP001                                              xDimProp,
-//STRIP001                                              rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+//STRIP001                                              ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 //STRIP001
 //STRIP001              if ( eDimOrient != sheet::DataPilotFieldOrientation_HIDDEN )
 //STRIP001              {
@@ -364,7 +365,7 @@ ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsS
 //STRIP001                          new ScNameToIndexAccess( xDimSupp->getHierarchies() );
 //STRIP001                  long nHierarchy = ScUnoHelpFunctions::GetLongProperty(
 //STRIP001                                          xDimProp,
-//STRIP001                                          rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
+//STRIP001                                          ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
 //STRIP001                  if ( nHierarchy >= xHiers->getCount() )
 //STRIP001                      nHierarchy = 0;
 //STRIP001
@@ -461,8 +462,8 @@ ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsS
 //STRIP001      try
 //STRIP001      {
 //STRIP001          uno::Any aAny = xSrcProp->getPropertyValue(
-//STRIP001                  rtl::OUString::createFromAscii(DP_PROP_DATADESCR) );
-//STRIP001          rtl::OUString aUStr;
+//STRIP001                  ::rtl::OUString::createFromAscii(DP_PROP_DATADESCR) );
+//STRIP001          ::rtl::OUString aUStr;
 //STRIP001          aAny >>= aUStr;
 //STRIP001          aDataDescription = String( aUStr );
 //STRIP001      }
@@ -1025,3 +1026,4 @@ ScDPOutput::~ScDPOutput()
 
 
 
+}

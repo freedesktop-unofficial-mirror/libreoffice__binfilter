@@ -2,9 +2,9 @@
  *
  *  $RCSfile: olinewin.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
 #endif
+namespace binfilter {
 
 //STRIP001 class ScOutlineEntry;
 class ScOutlineArray;
@@ -277,5 +278,6 @@ private:
 
 // ============================================================================
 
+} //namespace binfilter
 #endif
 

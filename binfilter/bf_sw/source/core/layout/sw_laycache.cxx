@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_laycache.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -146,6 +146,7 @@
 #endif
 
 #include <set>
+namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwPageFlyCache, SwFlyCachePtr )
 
@@ -728,7 +729,7 @@
 /*N*/           bOdd = !bOdd;
 /*N*/           bInsertEmpty = TRUE;
 /*N*/       }
-/*N*/       ::InsertNewPage( (SwPageDesc&)*pDesc, rpPage->GetUpper(),
+/*N*/       ::binfilter::InsertNewPage( (SwPageDesc&)*pDesc, rpPage->GetUpper(),
 /*N*/                        bOdd, bInsertEmpty, FALSE, rpPage->GetNext() );
 /*N*/       if ( bEnd )
 /*N*/       {
@@ -1368,3 +1369,4 @@
 /*?*/           pStream->Seek( nFlagRecEnd );
 /*N*/   }
 /*N*/ }
+}

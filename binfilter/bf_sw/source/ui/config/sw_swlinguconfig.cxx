@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swlinguconfig.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
+namespace binfilter {
 
 // init static member
 static SvtLinguConfig* mpImplLinguConfig = 0L;
@@ -96,7 +97,7 @@ static sal_uInt32 mnImplUseCount = 0L;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 sal_Bool SwLinguConfig::SetProperty(const rtl::OUString &rPropertyName, const com::sun::star::uno::Any &rValue)
+//STRIP001 sal_Bool SwLinguConfig::SetProperty(const ::rtl::OUString &rPropertyName, const ::com::sun::star::uno::Any &rValue)
 //STRIP001 {
 //STRIP001  ImplCreateOnDemand();
 //STRIP001  return mpImplLinguConfig->SetProperty(rPropertyName, rValue);
@@ -108,10 +109,11 @@ static sal_uInt32 mnImplUseCount = 0L;
 /*N*/   return mpImplLinguConfig->GetOptions(rOptions);
 /*N*/ }
 
-//STRIP001 com::sun::star::uno::Any SwLinguConfig::GetProperty(const rtl::OUString &rPropertyName) const
+//STRIP001 ::com::sun::star::uno::Any SwLinguConfig::GetProperty(const ::rtl::OUString &rPropertyName) const
 //STRIP001 {
 //STRIP001  ImplCreateOnDemand();
 //STRIP001  return mpImplLinguConfig->GetProperty(rPropertyName);
 //STRIP001 }
 
 // eof
+}

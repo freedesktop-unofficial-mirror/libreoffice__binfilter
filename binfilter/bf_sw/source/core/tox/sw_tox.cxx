@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:37:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,6 +105,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ const sal_Char* SwForm::aFormEntry        = "<E>";
 /*N*/ const sal_Char* SwForm::aFormTab      = "<T>";
@@ -479,7 +480,7 @@
 /*N*/   return nRet;
 /*N*/ }
 /* -----------------15.06.99 13:39-------------------
-    compatibilty methods: Version 5.0 and 5.1 need
+    ::com::patibilty methods: Version 5.0 and 5.1 need
     a value for the first tab stop
  --------------------------------------------------*/
 /*N*/ USHORT lcl_GetPatternCount( const String& rPattern, const sal_Char* pToken )
@@ -515,7 +516,7 @@
 /*N*/   DBG_WARNING("compatibility")
 /*N*/   String sFirstLevelPattern = aPattern[ 1 ];
 /*N*/   USHORT nRet = 0;
-/*N*/   if( 2 <= ::lcl_GetPatternCount( sFirstLevelPattern, SwForm::aFormTab ))
+/*N*/   if( 2 <= ::binfilter::lcl_GetPatternCount( sFirstLevelPattern, SwForm::aFormTab ))
 /*N*/   {
 /*N*/       //sTab is in the Form "<T ,,value>" where value is the tab position an may be empty
 /*N*/       String sTab = lcl_GetPattern( sFirstLevelPattern, SwForm::aFormTab );
@@ -657,7 +658,7 @@
 /*N*/               bChanged = TRUE;
 /*N*/               const SvxTabStop& rTab = rTabStops[nTab];
 /*N*/               xub_StrLen nStart, nEnd;
-/*N*/               if( ::lcl_FindTabToken( sCurrentPattern, nLastTabFoundEndPos,
+/*N*/               if( ::binfilter::lcl_FindTabToken( sCurrentPattern, nLastTabFoundEndPos,
 /*N*/                                       nStart, nEnd ))
 /*N*/               {
 /*N*/                   sCurrentPattern.Erase( nStart, nEnd - nStart + 1 );
@@ -839,7 +840,7 @@
 /*N*/   aTitle(rTitle),
 /*N*/   aForm(rForm),
 /*N*/   eCaptionDisplay(CAPTION_COMPLETE),
-/*N*/     eLanguage((LanguageType)::GetAppLanguage()),
+/*N*/     eLanguage((LanguageType)::binfilter::GetAppLanguage()),
 /*N*/   bProtected( TRUE ),
 /*N*/   bFromChapter(FALSE),
 /*N*/   bFromObjectNames(FALSE),
@@ -1264,3 +1265,4 @@
 
 
 
+}

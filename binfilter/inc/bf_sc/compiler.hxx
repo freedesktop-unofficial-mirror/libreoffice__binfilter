@@ -2,9 +2,9 @@
  *
  *  $RCSfile: compiler.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,8 +83,9 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-/*STRIP001*/ #include <tools/debug.hxx>
+#include <tools/debug.hxx>
 #include <hash_map>
+namespace binfilter {
 
 //-----------------------------------------------
 
@@ -553,12 +554,12 @@ private:
     OpCode Expression();
 
     String MakeColStr( USHORT nCol );
-    void MakeColStr( rtl::OUStringBuffer& rBuffer, USHORT nCol );
+    void MakeColStr( ::rtl::OUStringBuffer& rBuffer, USHORT nCol );
     String MakeRowStr( USHORT nRow );
-    void MakeRowStr( rtl::OUStringBuffer& rBuffer, USHORT nRow );
+    void MakeRowStr( ::rtl::OUStringBuffer& rBuffer, USHORT nRow );
     String MakeTabStr( USHORT nTab, String& aDoc );
     String MakeRefStr( ComplRefData& rRefData, BOOL bSingleRef );
-    void MakeRefStr( rtl::OUStringBuffer& rBuffer, ComplRefData& rRefData, BOOL bSingleRef );
+    void MakeRefStr( ::rtl::OUStringBuffer& rBuffer, ComplRefData& rRefData, BOOL bSingleRef );
 
     void SetError(USHORT nError);
     xub_StrLen NextSymbol();
@@ -610,10 +611,10 @@ public:
 
     ScToken* CreateStringFromToken( String& rFormula, ScToken* pToken,
                                     BOOL bAllowArrAdvance = FALSE );
-    ScToken* CreateStringFromToken( rtl::OUStringBuffer& rBuffer, ScToken* pToken,
+    ScToken* CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pToken,
                                     BOOL bAllowArrAdvance = FALSE );
     void CreateStringFromTokenArray( String& rFormula );
-    void CreateStringFromTokenArray( rtl::OUStringBuffer& rBuffer );
+    void CreateStringFromTokenArray( ::rtl::OUStringBuffer& rBuffer );
 
     void MoveRelWrap();
     static void MoveRelWrap( ScTokenArray& rArr, ScDocument* pDoc,
@@ -665,4 +666,5 @@ public:
         }
 };
 
+} //namespace binfilter
 #endif

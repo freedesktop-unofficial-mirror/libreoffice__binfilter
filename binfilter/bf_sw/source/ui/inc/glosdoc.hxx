@@ -2,9 +2,9 @@
  *
  *  $RCSfile: glosdoc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,17 +73,21 @@
 #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HPP_
 #include <com/sun/star/text/XAutoTextGroup.hpp>
 #endif
-
-class SwTextBlocks;
 class SvStrings;
+namespace binfilter {//STRIP009
+class SwTextBlocks;
+
 class SwDocShell;
+} //namespace binfilter
 
 #ifndef SW_DECL_SWDOCSHELL_DEFINED
 #define SW_DECL_SWDOCSHELL_DEFINED
 #ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
+#endif namespace
+namespace binfilter {//STRIP009
 SV_DECL_REF( SwDocShell )
+} //namespace binfilter
 #endif
 
 #ifndef _CPPUHELPER_WEAKREF_HXX_
@@ -91,6 +95,7 @@ SV_DECL_REF( SwDocShell )
 #endif
 
 #include <vector>
+namespace binfilter {
 
 typedef ::com::sun::star::uno::WeakReference< ::com::sun::star::text::XAutoTextGroup > AutoTextGroupRef;
 typedef ::std::vector< AutoTextGroupRef > UnoAutoTextGroups;
@@ -185,4 +190,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif // _GLOSDOC_HXX

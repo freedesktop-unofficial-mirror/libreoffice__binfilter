@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_view3d.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -198,6 +198,7 @@
 #endif
 
 #include "xlnwtit.hxx"
+namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
 
@@ -2323,3 +2324,4 @@ long DistPoint2Line (Point u,
 
 
 
+}

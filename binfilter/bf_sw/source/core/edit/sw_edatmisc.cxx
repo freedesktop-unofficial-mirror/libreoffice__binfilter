@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edatmisc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:16:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,7 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>    // fuer Get-/ChgFmt Set-/GetAttrXXX
 #endif
+namespace binfilter {
 
 
 
@@ -228,3 +229,4 @@ void SwEditShell::SetDefault( const SfxItemSet& rSet )
 
 
 
+}

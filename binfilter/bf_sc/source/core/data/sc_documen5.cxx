@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-10-13 06:53:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,6 +92,7 @@ SO2_DECL_REF(SvInPlaceObject)
 #ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
 #endif
+namespace binfilter {
 
 // -----------------------------------------------------------------------
 
@@ -662,3 +663,4 @@ SO2_DECL_REF(SvInPlaceObject)
 
 
 
+}

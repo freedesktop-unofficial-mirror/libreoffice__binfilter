@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unopstyl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,8 +93,9 @@
 #endif
 
 #include <cppuhelper/implbase5.hxx>
-
 class SfxStyleSheetBase;
+namespace binfilter {
+
 class SdPage;
 class SdXImpressDocument;
 
@@ -166,5 +167,6 @@ public:
     virtual ::com::sun::star::uno::Any SAL_CALL getPropertyDefault( const ::rtl::OUString& aPropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

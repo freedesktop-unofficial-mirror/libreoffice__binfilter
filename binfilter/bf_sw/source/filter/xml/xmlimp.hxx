@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,15 +77,18 @@
 #ifndef _XMLOFF_XMLIMP_HXX
 #include <xmloff/xmlimp.hxx>
 #endif
+class SvXMLUnitConverter;
+class SvXMLTokenMap;
+class SfxItemSet;
+class XMLTextImportHelper;
+namespace binfilter {
 
 class SwDoc;
 class SwPaM;
-class SvXMLUnitConverter;
-class SvXMLTokenMap;
 class SvXMLImportItemMapper;
-class SfxItemSet;
+
 class SwNodeIndex;
-class XMLTextImportHelper;
+
 class SvXMLGraphicHelper;
 class SvXMLEmbeddedObjectHelper;
 
@@ -232,8 +235,8 @@ public:
                              ::rtl::OUString *pParent=0 ) const;
 
     virtual void SetStatisticAttributes(const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttribs);
-    virtual void SetViewSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aViewProps);
-    virtual void SetConfigurationSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aConfigProps);
+    virtual void SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps);
+    virtual void SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aConfigProps);
 
     SvStorage *GetPackage() { return &xPackage; }
 
@@ -256,4 +259,5 @@ inline void SwXMLImport::SetProgressValue( sal_Int32 nValue )
         GetProgressBarHelper()->SetValue(nValue);
 }
 
+} //namespace binfilter
 #endif  //  _XMLIMP_HXX

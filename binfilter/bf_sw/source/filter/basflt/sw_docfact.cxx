@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfact.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
+namespace binfilter {
 
 
 /******************************************************************************
@@ -140,3 +141,4 @@
 //STRIP001 }
 
 
+}

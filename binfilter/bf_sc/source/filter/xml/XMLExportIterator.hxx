@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLExportIterator.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,6 +101,7 @@
 #ifndef SC_DETDATA_HXX
 #include "detdata.hxx"
 #endif
+namespace binfilter {
 
 class   ScHorizontalCellIterator;
 struct  ScMyCell;
@@ -130,7 +131,7 @@ struct ScMyShape
 {
     ScAddress   aAddress;
     ScAddress   aEndAddress;
-    com::sun::star::uno::Reference<com::sun::star::drawing::XShape> xShape;
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape> xShape;
     sal_Int16   nLayerID;
 
     sal_Bool operator<(const ScMyShape& aShape) const;
@@ -160,7 +161,7 @@ public:
 
 struct ScMyMergedRange
 {
-    com::sun::star::table::CellRangeAddress aCellRange;
+    ::com::sun::star::table::CellRangeAddress aCellRange;
     sal_Int32                   nRows;
     sal_Bool                    bIsFirst : 1;
     sal_Bool                    operator<(const ScMyMergedRange& aRange) const;
@@ -177,7 +178,7 @@ protected:
 public:
                                 ScMyMergedRangesContainer();
     virtual                     ~ScMyMergedRangesContainer();
-    void                        AddRange(const com::sun::star::table::CellRangeAddress aMergedRange);
+    void                        AddRange(const ::com::sun::star::table::CellRangeAddress aMergedRange);
 
                                 ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
@@ -226,9 +227,9 @@ public:
 
 //==============================================================================
 
-struct ScMyCellRangeAddress : com::sun::star::table::CellRangeAddress
+struct ScMyCellRangeAddress : ::com::sun::star::table::CellRangeAddress
 {
-    ScMyCellRangeAddress(const com::sun::star::table::CellRangeAddress& rRange);
+    ScMyCellRangeAddress(const ::com::sun::star::table::CellRangeAddress& rRange);
     sal_Bool                    operator<(const ScMyCellRangeAddress& rCellRangeAddress ) const;
 };
 
@@ -243,7 +244,7 @@ protected:
 public:
                                 ScMyEmptyDatabaseRangesContainer();
     virtual                     ~ScMyEmptyDatabaseRangesContainer();
-    void                        AddNewEmptyDatabaseRange(const com::sun::star::table::CellRangeAddress& aCellRangeAddress);
+    void                        AddNewEmptyDatabaseRange(const ::com::sun::star::table::CellRangeAddress& aCellRangeAddress);
 
                                 ScMyIteratorBase::UpdateAddress;
     virtual void                SetCellData( ScMyCell& rMyCell );
@@ -320,15 +321,15 @@ public:
 // contains data to export for the current cell position
 struct ScMyCell
 {
-    com::sun::star::uno::Reference<com::sun::star::table::XCell> xCell;
-    com::sun::star::uno::Reference<com::sun::star::text::XText> xText;
-    com::sun::star::uno::Reference<com::sun::star::sheet::XSheetAnnotation> xAnnotation;
-    com::sun::star::table::CellAddress      aCellAddress;
-    com::sun::star::table::CellRangeAddress aMergeRange;
-    com::sun::star::table::CellRangeAddress aMatrixRange;
+    ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell> xCell;
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XText> xText;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSheetAnnotation> xAnnotation;
+    ::com::sun::star::table::CellAddress        aCellAddress;
+    ::com::sun::star::table::CellRangeAddress   aMergeRange;
+    ::com::sun::star::table::CellRangeAddress   aMatrixRange;
 
-    rtl::OUString               sStringValue;
-    rtl::OUString               sAnnotationText;
+    ::rtl::OUString             sStringValue;
+    ::rtl::OUString             sAnnotationText;
 
     ScMyAreaLink                aAreaLink;
     ScMyShapeList               aShapeList;
@@ -339,7 +340,7 @@ struct ScMyCell
     sal_Int32                   nValidationIndex;
     sal_Int32                   nStyleIndex;
     sal_Int32                   nNumberFormat;
-    com::sun::star::table::CellContentType  nType;
+    ::com::sun::star::table::CellContentType    nType;
 
     sal_Bool                    bIsAutoStyle : 1;
 
@@ -369,8 +370,8 @@ struct ScMyCell
 
 struct ScMyExportAnnotation
 {
-    com::sun::star::uno::Reference<com::sun::star::sheet::XSheetAnnotation> xAnnotation;
-    com::sun::star::table::CellAddress      aCellAddress;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSheetAnnotation> xAnnotation;
+    ::com::sun::star::table::CellAddress        aCellAddress;
     sal_Bool operator<(const ScMyExportAnnotation& rAnno) const;
 };
 
@@ -378,9 +379,9 @@ typedef ::std::list< ScMyExportAnnotation > ScMyExportAnnotationList;
 
 class ScMyNotEmptyCellsIterator
 {
-    com::sun::star::uno::Reference<com::sun::star::sheet::XSpreadsheet> xTable;
-    com::sun::star::uno::Reference<com::sun::star::table::XCellRange> xCellRange;
-    com::sun::star::table::CellAddress  aLastAddress;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSpreadsheet> xTable;
+    ::com::sun::star::uno::Reference< ::com::sun::star::table::XCellRange> xCellRange;
+    ::com::sun::star::table::CellAddress    aLastAddress;
     ScMyExportAnnotationList            aAnnotations;
 
     ScMyShapesContainer*                pShapes;
@@ -422,10 +423,11 @@ public:
                                     { pDetectiveOp = pNewDetectiveOp; }
 
     void                        SetCurrentTable(const sal_Int32 nTable,
-                                    com::sun::star::uno::Reference<com::sun::star::sheet::XSpreadsheet>& rxTable);
+                                    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSpreadsheet>& rxTable);
 
     sal_Bool                    GetNext(ScMyCell& aCell, ScFormatRangeStyles* pCellStyles);
 };
 
+} //namespace binfilter
 #endif
 

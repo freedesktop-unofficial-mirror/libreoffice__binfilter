@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paminit.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ static SwMoveFnCollection aFwrd = {
@@ -74,7 +75,7 @@
 /*N*/   /* fnSections   */  &GoEndSection,
 /*N*/   /* fnCmpOp      */  &SwPosition::operator<,
 /*N*/   /* fnGetHint    */  &GetFrwrdTxtHint,
-/*N*/   /* fnSearch     */  &utl::TextSearch::SearchFrwrd,
+/*N*/   /* fnSearch     */  &::utl::TextSearch::SearchFrwrd,
 /*N*/   /* fnSection    */  &SwNodes::GoStartOfSection
 /*N*/ };
 
@@ -85,7 +86,7 @@
 /*N*/   /* fnSections   */  &GoStartSection,
 /*N*/   /* fnCmpOp      */  &SwPosition::operator>,
 /*N*/   /* fnGetHint    */  &GetBkwrdTxtHint,
-/*N*/   /* fnSearch     */  &utl::TextSearch::SearchBkwrd,
+/*N*/   /* fnSearch     */  &::utl::TextSearch::SearchBkwrd,
 /*N*/   /* fnSection    */  &SwNodes::GoEndOfSection
 /*N*/ };
 
@@ -164,3 +165,4 @@
 #endif
 
 
+}

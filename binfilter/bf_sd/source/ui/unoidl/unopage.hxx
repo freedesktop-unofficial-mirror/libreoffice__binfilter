@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unopage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,11 +101,12 @@
 #include <unotools/servicehelper.hxx>
 
 #include "unosrch.hxx"
+struct SfxItemPropertyMap;
+namespace binfilter {
 
 class SdPage;
 class SvxShape;
 class SdrObject;
-struct SfxItemPropertyMap;
 
 #ifdef SVX_LIGHT
 #define SvxFmDrawPage SvxDrawPage
@@ -140,8 +141,8 @@ protected:
     virtual void setBackground( const ::com::sun::star::uno::Any& rValue ) throw(::com::sun::star::lang::IllegalArgumentException);
     virtual void getBackground( ::com::sun::star::uno::Any& rValue ) throw();
 
-    rtl::OUString getBookmarkURL() const;
-    void setBookmarkURL( rtl::OUString& rURL );
+    ::rtl::OUString getBookmarkURL() const;
+    void setBookmarkURL( ::rtl::OUString& rURL );
 
     void SetLftBorder( sal_Int32 nValue );
     void SetRgtBorder( sal_Int32 nValue );
@@ -208,13 +209,13 @@ public:
     // XServiceInfo
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
-
+} //namespace binfilter
 #endif
 
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-
+namespace binfilter {//STRIP009
 class SdDrawPage : public ::com::sun::star::drawing::XMasterPageTarget,
                    public ::com::sun::star::presentation::XPresentationPage,
                    public SdGenericDrawPage
@@ -362,4 +363,4 @@ public:
     virtual sal_Bool SAL_CALL hasElements() throw(::com::sun::star::uno::RuntimeException);
 };
 
-
+} //namespace binfilter

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: uivwimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,11 +82,6 @@
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
 #endif
-
-class SwXTextView;
-class SfxRequest;
-class SwTransferable;
-
 namespace com{ namespace sun{ namespace star {
     namespace frame {
         class XDispatchProviderInterceptor;
@@ -95,6 +90,20 @@ namespace com{ namespace sun{ namespace star {
         class XUnoTunnel;
     }
 }}}
+namespace binfilter {
+
+class SwXTextView;
+class SfxRequest;
+class SwTransferable;
+
+//STRIP008 namespace com{ namespace sun{ namespace star {
+//STRIP008  namespace frame {
+//STRIP008      class XDispatchProviderInterceptor;
+//STRIP008  }
+//STRIP008     namespace lang {
+//STRIP008         class XUnoTunnel;
+//STRIP008     }
+//STRIP008 }}}
 
 /* -----------------------------29.05.00 08:22--------------------------------
 
@@ -124,12 +133,12 @@ class SwClipboardChangeListener : public ::cppu::WeakImplHelper1<
     SwView* pView;
 
     // XEventListener
-    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( com::sun::star::uno::RuntimeException ){DBG_ASSERT(0, "STRIP");} ;//STRIP001    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
-//STRIP001      throw ( com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( ::com::sun::star::uno::RuntimeException ){DBG_ASSERT(0, "STRIP");} ;//STRIP001  virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
+//STRIP001      throw ( ::com::sun::star::uno::RuntimeException );
 
     // XClipboardListener
     virtual void SAL_CALL changedContents( const CLIP_NMSPC::ClipboardEvent& rEventObject )
-        throw ( com::sun::star::uno::RuntimeException );
+        throw ( ::com::sun::star::uno::RuntimeException );
 
 public:
     SwClipboardChangeListener( SwView& rView ) : pView( &rView ) {}
@@ -150,7 +159,7 @@ class SwView_Impl
     STAR_REFERENCE( lang::XEventListener )  xClipEvtLstnr;
     STAR_REFERENCE( frame::XDispatchProviderInterceptor )   xDisProvInterceptor;
     STAR_REFERENCE( view::XSelectionSupplier )              *pxXTextView;       // UNO object
-    com::sun::star::uno::WeakReference< com::sun::star::lang::XUnoTunnel > xTransferable;
+    ::com::sun::star::uno::WeakReference< ::com::sun::star::lang::XUnoTunnel > xTransferable;
 
     // temporary document for printing text of selection / multi selection
     // in PDF export.
@@ -184,5 +193,6 @@ public:
 
     void                            AddTransferable(SwTransferable& rTransferable);
 };
+} //namespace binfilter
 #endif
 

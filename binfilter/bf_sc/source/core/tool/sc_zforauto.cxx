@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_zforauto.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 
 #include "zforauto.hxx"
 #include "global.hxx"
+namespace binfilter {
 
 static const sal_Char __FAR_DATA pStandardName[] = "Standard";
 
@@ -174,3 +175,4 @@ static const sal_Char __FAR_DATA pStandardName[] = "Standard";
 
 
 
+}

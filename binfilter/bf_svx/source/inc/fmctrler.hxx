@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmctrler.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -254,6 +254,8 @@
 #ifndef _COMPHELPER_BROADCASTHELPER_HXX_
 #include <comphelper/broadcasthelper.hxx>
 #endif
+class Window;
+namespace binfilter {
 
 struct FmXTextComponentLess : public binary_function< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XTextComponent >, ::com::sun::star::uno::Reference< ::com::sun::star::awt::XTextComponent> , sal_Bool>
 {
@@ -271,7 +273,6 @@ typedef vector< ::com::sun::star::uno::Reference< ::com::sun::star::form::XFormC
 struct FmFieldInfo;
 class FmXFormController;
 class FmFormView;
-class Window;
 
 typedef ::cppu::WeakAggComponentImplHelper12<   ::com::sun::star::form::XFormController
                                             ,::com::sun::star::container::XChild
@@ -312,7 +313,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
                             ,public ::cppu::OPropertySetHelper
                             ,public FmDispatchInterceptor
                             ,public ::comphelper::OAggregationArrayUsageHelper< FmXFormController>
-                            ,public ::svxform::OSQLParserClient
+                            ,public ::binfilter::svxform::OSQLParserClient//STRIP008                            ,public ::svxform::OSQLParserClient
 {
     friend class FmXPageViewWinRec;
 
@@ -338,7 +339,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
     FmFormControllers           m_aChilds;
     FmFilterControls            m_aFilterControls;
     FmFilterRows                m_aFilters;
-    ::form::OImplementationIdsRef   m_aHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;//STRIP008 ::form::OImplementationIdsRef    m_aHoldImplIdHelper;
 
     Timer                       m_aInsertTimer;
 
@@ -388,7 +389,7 @@ public:
 // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw(::com::sun::star::uno::RuntimeException)
     {
-        return ::form::OImplementationIds::getImplementationId(getTypes());
+        return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());//STRIP008        return ::form::OImplementationIds::getImplementationId(getTypes());
     }
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
 
@@ -492,7 +493,7 @@ public:
     virtual void SAL_CALL activateFirst() throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL activateLast() throw( ::com::sun::star::uno::RuntimeException );
 
-// com::sun::star::sdbc::XRowSetListener
+// ::com::sun::star::sdbc::XRowSetListener
     virtual void SAL_CALL cursorMoved(const ::com::sun::star::lang::EventObject& event) throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL rowChanged(const ::com::sun::star::lang::EventObject& event) throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL rowSetChanged(const ::com::sun::star::lang::EventObject& event) throw( ::com::sun::star::uno::RuntimeException );
@@ -621,5 +622,6 @@ protected:
 };
 
 
+}//end of namespace binfilter
 #endif  // _SVX_FMCTRLER_HXX
 

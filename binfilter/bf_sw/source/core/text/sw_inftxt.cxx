@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_inftxt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:48 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -180,13 +180,14 @@
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::linguistic2;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 
-#define C2U(cChar) rtl::OUString::createFromAscii(cChar)
+#define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
 #define CHAR_UNDERSCORE ((sal_Unicode)0x005F)
 #define CHAR_LEFT_ARROW ((sal_Unicode)0x25C0)
 #define CHAR_RIGHT_ARROW ((sal_Unicode)0x25B6)
@@ -384,7 +385,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     else if ( SvtCTLOptions::NUMERALS_ARABIC == rCTLOptions.GetCTLTextNumerals() )
 /*N*/         eLang = LANGUAGE_ENGLISH;
 /*N*/     else
-/*N*/         eLang = (LanguageType)::GetAppLanguage();
+/*N*/         eLang = (LanguageType)::binfilter::GetAppLanguage();
 /*N*/
 /*N*/     pOut->SetDigitLanguage( eLang );
 /*N*/     pRef->SetDigitLanguage( eLang );
@@ -1499,7 +1500,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/   if( LANGUAGE_DONTKNOW == eTmp || LANGUAGE_NONE == eTmp )
 /*N*/       return sal_False;
 /*N*/
-/*N*/   uno::Reference< XHyphenator > xHyph = ::GetHyphenator();
+/*N*/   uno::Reference< XHyphenator > xHyph = ::binfilter::GetHyphenator();
 /*N*/   if (bInterHyph && xHyph.is())
 /*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SvxSpellWrapper::CheckHyphLang( xHyph, eTmp );
 /*N*/
@@ -1948,3 +1949,4 @@ extern Color aGlobalRetoucheColor;
 /*N*/ }
 
 
+}

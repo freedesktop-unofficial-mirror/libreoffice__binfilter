@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlfilti.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,8 +83,9 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -111,11 +112,11 @@ ScXMLFilterContext::ScXMLFilterContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetFilterAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -325,11 +326,11 @@ ScXMLConditionContext::ScXMLConditionContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetFilterConditionAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -379,7 +380,7 @@ SvXMLImportContext *ScXMLConditionContext::CreateChildContext( USHORT nPrefix,
     return pContext;
 }
 
-void ScXMLConditionContext::getOperatorXML(const rtl::OUString sTempOperator, sheet::FilterOperator& aFilterOperator, sal_Bool& bUseRegularExpressions) const
+void ScXMLConditionContext::getOperatorXML(const ::rtl::OUString sTempOperator, sheet::FilterOperator& aFilterOperator, sal_Bool& bUseRegularExpressions) const
 {
     bUseRegularExpressions = sal_False;
     if (IsXMLToken(sTempOperator, XML_MATCH))
@@ -468,11 +469,11 @@ ScXMLDPFilterContext::ScXMLDPFilterContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetFilterAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -694,11 +695,11 @@ ScXMLDPConditionContext::ScXMLDPConditionContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetFilterConditionAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -748,7 +749,7 @@ SvXMLImportContext *ScXMLDPConditionContext::CreateChildContext( USHORT nPrefix,
     return pContext;
 }
 
-void ScXMLDPConditionContext::getOperatorXML(const rtl::OUString sTempOperator, ScQueryOp& aFilterOperator, sal_Bool& bUseRegularExpressions,
+void ScXMLDPConditionContext::getOperatorXML(const ::rtl::OUString sTempOperator, ScQueryOp& aFilterOperator, sal_Bool& bUseRegularExpressions,
                                             double& dVal) const
 {
     bUseRegularExpressions = sal_False;
@@ -823,3 +824,4 @@ void ScXMLDPConditionContext::EndElement()
 
 
 
+}

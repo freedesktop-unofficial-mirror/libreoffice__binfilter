@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_RefreshListenerContainer.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #ifndef _COM_SUN_STAR_UTIL_XREFRESHLISTENER_HPP_
 #include <com/sun/star/util/XRefreshListener.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -97,4 +98,5 @@ void SwRefreshListenerContainer::Refreshed ()
         Reference < XRefreshListener > xRefreshListener = Reference < XRefreshListener > ( *pListenerArr->GetObject(i), UNO_QUERY );
         xRefreshListener->refreshed(aObj);
     }
+}
 }

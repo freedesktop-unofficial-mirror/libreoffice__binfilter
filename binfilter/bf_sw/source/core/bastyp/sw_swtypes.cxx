@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,6 +163,7 @@
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -240,7 +241,7 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 //STRIP001  if (LANGUAGE_NONE != eLanguage)
 //STRIP001      ConvertLanguageToIsoNames( eLanguage, aLangStr, aCtryStr );
 //STRIP001
-//STRIP001 /*?*/    return Locale( aLangStr, aCtryStr, rtl::OUString() );
+//STRIP001 /*?*/    return Locale( aLangStr, aCtryStr, ::rtl::OUString() );
 /*N*/ }
 
 
@@ -274,3 +275,4 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 //STRIP001 }
 
 
+}

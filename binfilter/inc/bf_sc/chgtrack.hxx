@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,6 +105,8 @@
 #endif
 #endif
 /*STRIP001 */#include <tools/debug.hxx>
+class SvStream;
+namespace binfilter {
 
 class ScBaseCell;
 class ScDocument;
@@ -141,7 +143,6 @@ enum ScChangeActionClipMode
     SC_CACM_PASTE
 };
 
-class SvStream;
 class ScMultipleReadHeader;
 class ScMultipleWriteHeader;
 
@@ -1072,7 +1073,7 @@ enum ScChangeTrackMergeState
 
 // zusaetzlich zu pFirst/pNext/pLast/pPrev eine Table, um schnell sowohl
 // per ActionNumber als auch ueber Liste zugreifen zu koennen
-DECLARE_TABLE( ScChangeActionTable, ScChangeAction* );
+DECLARE_TABLE( ScChangeActionTable, ScChangeAction* )//STRIP008 ;
 
 // Intern generierte Actions beginnen bei diesem Wert (fast alle Bits gesetzt)
 // und werden runtergezaehlt, um sich in einer Table wertemaessig nicht mit den
@@ -1092,7 +1093,7 @@ class ScChangeTrack : public SfxListener
     static  const USHORT        nContentRowsPerSlot;
     static  const USHORT        nContentSlots;
 
-     com::sun::star::uno::Sequence< sal_Int8 >  aProtectPass;
+     ::com::sun::star::uno::Sequence< sal_Int8 >    aProtectPass;
              ScChangeActionTable    aTable;
              ScChangeActionTable    aGeneratedTable;
              ScChangeActionTable    aPasteCutTable;
@@ -1447,9 +1448,9 @@ public:
              void               SetActionMax(ULONG nTempActionMax)
                                     { nActionMax = nTempActionMax; } // only to use in the XML import
 //STRIP001
-            void                SetProtection( const com::sun::star::uno::Sequence< sal_Int8 >& rPass )
+            void                SetProtection( const ::com::sun::star::uno::Sequence< sal_Int8 >& rPass )
                                     { aProtectPass = rPass; }
-     com::sun::star::uno::Sequence< sal_Int8 >   GetProtection() const
+     ::com::sun::star::uno::Sequence< sal_Int8 >   GetProtection() const
                                      { return aProtectPass; }
              BOOL                IsProtected() const
                                      { return aProtectPass.getLength() != 0; }
@@ -1464,6 +1465,7 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 
 

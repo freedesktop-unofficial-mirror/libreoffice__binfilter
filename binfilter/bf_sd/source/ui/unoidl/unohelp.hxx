@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unohelp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,7 @@
  *
  *
  ************************************************************************/
-
+namespace binfilter {//STRIP009
 namespace sd
 {
 inline sal_Bool any2bool( const ::com::sun::star::uno::Any& rAny, sal_Bool& rBool )
@@ -91,3 +91,5 @@ inline void bool2any( sal_Bool bBool, ::com::sun::star::uno::Any& rAny )
 #define QUERYINT( xint ) \
     if( rType == ::getCppuType((const uno::Reference< xint >*)0) ) \
         aAny <<= uno::Reference< xint >(this)
+
+} //namespace binfilter

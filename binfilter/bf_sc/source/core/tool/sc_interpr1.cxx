@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #include "docoptio.hxx"
 #include "globstr.hrc"
 #include "attrib.hxx"
+namespace binfilter {
 
 
 // PI jetzt als F_PI aus solar.h
@@ -5222,11 +5223,11 @@ void ScInterpreter::ScSearch()
             SetNoValue();
         else
         {
-            utl::SearchParam::SearchType eSearchType =
+            ::utl::SearchParam::SearchType eSearchType =
                 (MayBeRegExp( SearchStr, pDok ) ?
-                utl::SearchParam::SRCH_REGEXP : utl::SearchParam::SRCH_NORMAL);
-            utl::SearchParam sPar(SearchStr, eSearchType, FALSE, FALSE, FALSE);
-            utl::TextSearch sT( sPar, *ScGlobal::pCharClass );
+                ::utl::SearchParam::SRCH_REGEXP : ::utl::SearchParam::SRCH_NORMAL);
+            ::utl::SearchParam sPar(SearchStr, eSearchType, FALSE, FALSE, FALSE);
+            ::utl::TextSearch sT( sPar, *ScGlobal::pCharClass );
             int nBool = sT.SearchFrwrd(sStr, &nPos, &nEndPos);
             if (!nBool)
                 SetNoValue();
@@ -5448,3 +5449,4 @@ void ScInterpreter::ScConcat()
 /*N*/   return FALSE;
 /*N*/ }
 
+}

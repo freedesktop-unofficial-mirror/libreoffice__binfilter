@@ -2,9 +2,9 @@
  *
  *  $RCSfile: layact.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 
 #include "swtypes.hxx"
 #include "swrect.hxx"
+namespace binfilter {
 
 class SwRootFrm;
 class SwLayoutFrm;
@@ -273,4 +274,5 @@ inline void SwLayAction::SetCheckPageNum( USHORT nNew )
         nCheckPageNum = nNew;
 }
 
+} //namespace binfilter
 #endif  //_LAYACT_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmundo.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,14 +113,17 @@
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
+FORWARD_DECLARE_INTERFACE(awt,XControl)
+FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
+namespace binfilter {
 
 class FmFormModel;
 class FmFormObj;
 class SdrObject;
 class FmXFormView;
 
-FORWARD_DECLARE_INTERFACE(awt,XControl)
-FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
+//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
+//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
 
 //==================================================================
@@ -271,5 +274,6 @@ public:
 };
 
 
+}//end of namespace binfilter
 #endif  //_SVX_FMUNDO_HXX
 

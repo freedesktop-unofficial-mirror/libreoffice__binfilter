@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_zoomitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #pragma hdrstop
 
 #include "zoomitem.hxx"
+namespace binfilter {
 
 // -----------------------------------------------------------------------
 
@@ -148,7 +149,7 @@
 /*N*/            eType      == rItem.GetType()          );
 /*N*/ }
 
-//STRIP001 sal_Bool SvxZoomItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxZoomItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -164,7 +165,7 @@
 //STRIP001     return sal_True;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxZoomItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+//STRIP001 sal_Bool SvxZoomItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -182,3 +183,4 @@
 //STRIP001
 //STRIP001     return sal_True;
 //STRIP001 }
+}

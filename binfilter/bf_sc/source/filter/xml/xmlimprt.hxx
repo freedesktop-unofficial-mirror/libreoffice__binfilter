@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlimprt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,12 +115,17 @@
 #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HPP_
 #include <com/sun/star/sheet/XSheetCellRangeContainer.hpp>
 #endif
+class XMLNumberFormatAttributesExportHelper;
+class SvXMLTokenMap;
+class SvXMLStyleContext;
+class SfxItemSet;
+class XMLShapeImportHelper;
+namespace binfilter {
 
 class ScRangeList;
 class ScMyStyleNumberFormats;
-class XMLNumberFormatAttributesExportHelper;
 
-using namespace rtl;
+using namespace ::rtl;
 
 enum ScXMLDocTokens
 {
@@ -619,12 +624,8 @@ enum ScXMLConsolidationAttrTokens
 
 
 class SvI18NMap;
-class SvXMLTokenMap;
 //class SvXMLImportItemMapper;
-class SvXMLStyleContext;
-class SfxItemSet;
 class SvXMLNumFmtHelper;
-class XMLShapeImportHelper;
 class ScXMLChangeTrackingImportHelper;
 class ScUnoGuard;
 
@@ -637,10 +638,10 @@ struct tScMyCellRange
 
 struct ScMyNamedExpression
 {
-    rtl::OUString   sName;
-    rtl::OUString   sContent;
-    rtl::OUString   sBaseCellAddress;
-    rtl::OUString   sRangeType;
+    ::rtl::OUString     sName;
+    ::rtl::OUString     sContent;
+    ::rtl::OUString     sBaseCellAddress;
+    ::rtl::OUString     sRangeType;
     sal_Bool        bIsExpression : 1;
 };
 
@@ -648,18 +649,18 @@ typedef std::list<const ScMyNamedExpression*> ScMyNamedExpressions;
 
 struct ScMyImportValidation
 {
-    rtl::OUString                                   sName;
-    rtl::OUString                                   sImputTitle;
-    rtl::OUString                                   sImputMessage;
-    rtl::OUString                                   sErrorTitle;
-    rtl::OUString                                   sErrorMessage;
-    rtl::OUString                                   sFormula1;
-    rtl::OUString                                   sFormula2;
-    rtl::OUString                                   sBaseCellAddress;
-    com::sun::star::table::CellAddress              aBaseCellAddress;
-    com::sun::star::sheet::ValidationAlertStyle     aAlertStyle;
-    com::sun::star::sheet::ValidationType           aValidationType;
-    com::sun::star::sheet::ConditionOperator        aOperator;
+    ::rtl::OUString                                 sName;
+    ::rtl::OUString                                 sImputTitle;
+    ::rtl::OUString                                 sImputMessage;
+    ::rtl::OUString                                 sErrorTitle;
+    ::rtl::OUString                                 sErrorMessage;
+    ::rtl::OUString                                 sFormula1;
+    ::rtl::OUString                                 sFormula2;
+    ::rtl::OUString                                 sBaseCellAddress;
+    ::com::sun::star::table::CellAddress                aBaseCellAddress;
+    ::com::sun::star::sheet::ValidationAlertStyle       aAlertStyle;
+    ::com::sun::star::sheet::ValidationType         aValidationType;
+    ::com::sun::star::sheet::ConditionOperator      aOperator;
     sal_Bool                                        bShowErrorMessage : 1;
     sal_Bool                                        bShowImputMessage : 1;
     sal_Bool                                        bIgnoreBlanks : 1;
@@ -675,11 +676,11 @@ class ScXMLImport: public SvXMLImport
     ScXMLChangeTrackingImportHelper*    pChangeTrackingImportHelper;
     ScMyViewContextList                 aViewContextList;
     ScMyStylesImportHelper*             pStylesImportHelper;
-    rtl::OUString                       sNumberFormat;
-    rtl::OUString                       sLocale;
-    rtl::OUString                       sCellStyle;
-    rtl::OUString                       sStandardFormat;
-    rtl::OUString                       sType;
+    ::rtl::OUString                     sNumberFormat;
+    ::rtl::OUString                     sLocale;
+    ::rtl::OUString                     sCellStyle;
+    ::rtl::OUString                     sStandardFormat;
+    ::rtl::OUString                     sType;
 
 //  SvXMLAutoStylePoolP     *pScAutoStylePool;
     UniReference < XMLPropertyHandlerFactory >  xScPropHdlFactory;
@@ -765,17 +766,17 @@ class ScXMLImport: public SvXMLImport
     ScMyImpDetectiveOpArray*    pDetectiveOpArray;
     ScUnoGuard*             pScUnoGuard;
 
-    rtl::OUString           sFirstTableStyle;
+    ::rtl::OUString         sFirstTableStyle;
     XMLNumberFormatAttributesExportHelper* pNumberFormatAttributesExportHelper;
     ScMyStyleNumberFormats* pStyleNumberFormats;
-    com::sun::star::uno::Reference <com::sun::star::util::XNumberFormats> xNumberFormats;
-    com::sun::star::uno::Reference <com::sun::star::util::XNumberFormatTypes> xNumberFormatTypes;
+    ::com::sun::star::uno::Reference < ::com::sun::star::util::XNumberFormats> xNumberFormats;
+    ::com::sun::star::uno::Reference < ::com::sun::star::util::XNumberFormatTypes> xNumberFormatTypes;
 
-    com::sun::star::uno::Reference <com::sun::star::sheet::XSheetCellRangeContainer> xSheetCellRanges;
+    ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSheetCellRangeContainer> xSheetCellRanges;
 
-    rtl::OUString           sEmpty;
-    rtl::OUString           sPrevStyleName;
-    rtl::OUString           sPrevCurrency;
+    ::rtl::OUString         sEmpty;
+    ::rtl::OUString         sPrevStyleName;
+    ::rtl::OUString         sPrevCurrency;
     sal_uInt32              nSolarMutexLocked;
     sal_uInt16              nStyleFamilyMask;// Mask of styles to load
     sal_Int16               nPrevCellType;
@@ -808,16 +809,16 @@ public:
     SvXMLImportContext *CreateMetaContext(
                                     const ::rtl::OUString& rLocalName );
     SvXMLImportContext *CreateFontDeclsContext(const USHORT nPrefix, const ::rtl::OUString& rLocalName,
-                                     const com::sun::star::uno::Reference<com::sun::star::xml::sax::XAttributeList>& xAttrList);
+                                     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList);
     SvXMLImportContext *CreateScriptContext(
                                     const ::rtl::OUString& rLocalName );
     SvXMLImportContext *CreateStylesContext(const ::rtl::OUString& rLocalName,
-                                     const com::sun::star::uno::Reference<com::sun::star::xml::sax::XAttributeList>& xAttrList, sal_Bool bAutoStyles );
+                                     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList, sal_Bool bAutoStyles );
 //  SvXMLImportContext *CreateUseStylesContext(const ::rtl::OUString& rLocalName ,
-//                                  const ::com::sun::star::uno::Reference<com::sun::star::xml::sax::XAttributeList>& xAttrList);
+//                                  const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList);
     SvXMLImportContext *CreateBodyContext(
                                     const ::rtl::OUString& rLocalName,
-                                    const ::com::sun::star::uno::Reference<com::sun::star::xml::sax::XAttributeList>& xAttrList );
+                                    const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
     virtual void SetStatisticAttributes( const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
@@ -927,7 +928,7 @@ public:
         if (!pValidations)
             pValidations = new ScMyImportValidations();
         pValidations->push_back(rValidation); }
-    sal_Bool GetValidation(const rtl::OUString& sName, ScMyImportValidation& aValidation);
+    sal_Bool GetValidation(const ::rtl::OUString& sName, ScMyImportValidation& aValidation);
 
     inline ScMyImpDetectiveOpArray* GetDetectiveOpArray()   {
         if (!pDetectiveOpArray)
@@ -941,25 +942,25 @@ public:
     void AddViewContext(SvXMLImportContext* pContext) { aViewContextList.push_back(pContext); }
     void InsertStyles();
 
-    void SetChangeTrackingViewSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rChangeProps);
-    virtual void SetViewSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aViewProps);
-    virtual void SetConfigurationSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aConfigProps);
+    void SetChangeTrackingViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rChangeProps);
+    virtual void SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps);
+    virtual void SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aConfigProps);
 
-    void SetFirstTableStyle(const rtl::OUString& rValue) { sFirstTableStyle = rValue; }
-    rtl::OUString GetFirstTableStyle() { return sFirstTableStyle; }
+    void SetFirstTableStyle(const ::rtl::OUString& rValue) { sFirstTableStyle = rValue; }
+    ::rtl::OUString GetFirstTableStyle() { return sFirstTableStyle; }
     ScMyStylesImportHelper* GetStylesImportHelper() { return pStylesImportHelper; }
-    sal_Int32 SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUString& rCurrency);
-    sal_Bool IsCurrencySymbol(const sal_Int32 nNumberFormat, const rtl::OUString& sCurrencySymbol);
-    void SetType(com::sun::star::uno::Reference <com::sun::star::beans::XPropertySet>& rProperties,
+    sal_Int32 SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUString& rCurrency);
+    sal_Bool IsCurrencySymbol(const sal_Int32 nNumberFormat, const ::rtl::OUString& sCurrencySymbol);
+    void SetType(::com::sun::star::uno::Reference < ::com::sun::star::beans::XPropertySet>& rProperties,
         sal_Int32& rNumberFormat,
         const sal_Int16 nCellType,
-        const rtl::OUString& rCurrency);
+        const ::rtl::OUString& rCurrency);
 private:
-    void AddStyleRange(const com::sun::star::table::CellRangeAddress& rCellRange);
+    void AddStyleRange(const ::com::sun::star::table::CellRangeAddress& rCellRange);
     void SetStyleToRanges();
 public:
-    void SetStyleToRange(const ScRange& rRange, const rtl::OUString* pStyleName,
-        const sal_Int16 nCellType, const rtl::OUString* pCurrency);
+    void SetStyleToRange(const ScRange& rRange, const ::rtl::OUString* pStyleName,
+        const sal_Int16 nCellType, const ::rtl::OUString* pCurrency);
     sal_Bool SetNullDateOnUnitConverter();
     XMLNumberFormatAttributesExportHelper* GetNumberFormatAttributesExportHelper();
     ScMyStyleNumberFormats* GetStyleNumberFormats();
@@ -988,5 +989,6 @@ public:
     sal_uInt32 GetRangeOverflowType() const { return nRangeOverflowType; }
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -183,6 +183,7 @@
 #ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>      // fuer InitFldTypes
 #endif
+namespace binfilter {
 
 
 #ifndef SO2_DECL_SVLINKNAME_DEFINED
@@ -1595,7 +1596,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/   pMgr->CloseAll(FALSE);
 /*N*/   // HashTabelle wieder loeschen
-/*N*/   ::DeleteHashTable( pHashStrTbl, nStrFmtCnt );
+/*N*/   ::binfilter::DeleteHashTable( pHashStrTbl, nStrFmtCnt );
 /*N*/
 /*N*/   // Referenzfelder updaten
 /*N*/   if( bUpdRefFlds )
@@ -2058,7 +2059,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 //STRIP001  String  sOldName( rCC.upper( rOldName ));
 //STRIP001  xub_StrLen nPos;
 //STRIP001
-//STRIP001  if( !FindOperator( rOldName ) &&
+//STRIP001  if( !::binfilter::FindOperator( rOldName ) &&
 //STRIP001      !sOldName.Equals( rCC.upper( rNewName ) ) )
 //STRIP001  {
 //STRIP001      nPos = 0;
@@ -2868,3 +2869,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bIsModified = IsModified();
 
 
 
+}

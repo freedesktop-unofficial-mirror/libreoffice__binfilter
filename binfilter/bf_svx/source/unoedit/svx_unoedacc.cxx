@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoedacc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -183,6 +183,7 @@
 #include "editdata.hxx"
 #include "editeng.hxx"
 #include "editview.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -2559,7 +2560,7 @@ uno::Reference< accessibility::XAccessibleStateSet > SAL_CALL SvxAccessibleEdita
 {
     ::vos::OGuard aGuard( Application::GetSolarMutex() );
 
-    utl::AccessibleStateSetHelper* aStateSet = new utl::AccessibleStateSetHelper();
+    utl::AccessibleStateSetHelper* aStateSet = new ::utl::AccessibleStateSetHelper();
     uno::Reference< accessibility::XAccessibleStateSet > xStateSet( static_cast< cppu::OWeakObject* > (aStateSet), uno::UNO_QUERY );
 
     // are we defunc?
@@ -3662,3 +3663,4 @@ uno::Sequence< ::rtl::OUString> SAL_CALL SvxAccessibleEditableTextPara::getSuppo
 }
 
 //------------------------------------------------------------------------
+}

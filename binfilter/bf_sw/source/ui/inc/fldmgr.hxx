@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fldmgr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,15 +86,17 @@ namespace com{namespace sun{namespace star{
         class XNumberingTypeInfo;
     }
 }}}
+class SvxMacroItem;
+class ListBox;
+class SvNumberFormatter;
+
+namespace binfilter {
 
 class SwWrtShell;
 class SwField;
 class SwFieldType;
 class SwFmtRefMark;
 class SbModule;
-class SvxMacroItem;
-class ListBox;
-class SvNumberFormatter;
 
 /*--------------------------------------------------------------------
     Beschreibung: Shell setzen auf der der SwFldMgr arbeitet
@@ -177,10 +179,10 @@ private:
 
     USHORT          GetCurrLanguage() const;
 
-    com::sun::star::uno::Reference<com::sun::star::container::XNameAccess> xDBContext;
-    com::sun::star::uno::Reference<com::sun::star::container::XNameAccess> GetDBContext();
-    com::sun::star::uno::Reference<com::sun::star::text::XNumberingTypeInfo> xNumberingInfo;
-    com::sun::star::uno::Reference<com::sun::star::text::XNumberingTypeInfo> GetNumberingInfo()const;
+    ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess> xDBContext;
+    ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess> GetDBContext();
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XNumberingTypeInfo> xNumberingInfo;
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XNumberingTypeInfo> GetNumberingInfo()const;
 public:
     SwFldMgr(SwWrtShell* pSh = 0);
     ~SwFldMgr();
@@ -291,5 +293,6 @@ inline const ULONG   SwFldMgr::GetCurFldFmt() const
     { return nCurFmt; }
 
 
+} //namespace binfilter
 #endif
 

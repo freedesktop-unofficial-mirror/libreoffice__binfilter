@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,6 +208,7 @@ class SbxArray;
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -228,7 +229,7 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 /*N*/ ChartModel::ChartModel( const String& rPalettePath, SfxObjectShell* pDocSh ) :
 /*N*/   pChartDataBuffered(NULL),
@@ -439,7 +440,7 @@ using namespace com::sun::star;
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
-/*N*/         // convert rtl::OUString => tools String => ByteString
+/*N*/         // convert ::rtl::OUString => tools String => ByteString
 /*N*/         String aStr( aEx.Message );
 /*N*/         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*N*/         DBG_ERROR1( "LinguProperties threw exception: %s", aBStr.GetBuffer());
@@ -1451,4 +1452,4 @@ IMPL_LINK( ChartModel, NotifyUndoActionHdl, SfxUndoAction*, pUndo )
         m_pUndoActionFromDraw = pUndo;
     }
     return 1;
-}
+}}

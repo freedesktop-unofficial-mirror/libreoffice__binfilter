@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chartlis.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,8 +70,10 @@
 #include "chartlis.hxx"
 #include "brdcst.hxx"
 #include "document.hxx"
-/*STRIP001*/ #include <tools/debug.hxx>
-using namespace com::sun::star;
+#include <tools/debug.hxx>
+namespace binfilter {
+
+using namespace ::com::sun::star;
 
 
 //2do: DocOption TimeOut?
@@ -520,3 +522,4 @@ using namespace com::sun::star;
 
 
 
+}

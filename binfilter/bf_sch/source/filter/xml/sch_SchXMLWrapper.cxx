@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_SchXMLWrapper.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,6 +142,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 #define XML_STRING(i, x) sal_Char __READONLY_DATA i[sizeof(x)] = x
 #define MAP_LEN(x) x, sizeof(x) - 1
@@ -245,7 +246,7 @@ using namespace comphelper;
 /*?*/             return ERRCODE_SFX_WRONGPASSWORD;
 /*?*/
 /*?*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -261,7 +262,7 @@ using namespace comphelper;
 /*?*/             return ERRCODE_SFX_WRONGPASSWORD;
 /*?*/
 /*?*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -274,7 +275,7 @@ using namespace comphelper;
 /*?*/       catch( io::IOException& aEx )
 /*?*/     {
 /*?*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -287,7 +288,7 @@ using namespace comphelper;
 /*?*/       catch( packages::zip::ZipIOException& aEx )
 /*?*/     {
 /*?*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -300,7 +301,7 @@ using namespace comphelper;
 /*?*/   catch( uno::Exception& aEx )
 /*?*/   {
 /*?*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -405,7 +406,7 @@ using namespace comphelper;
 /*N*/       SvStorageStreamRef rOutputStream( mrStorage.OpenStream(
 /*N*/           String( rsStreamName ), STREAM_WRITE | STREAM_SHARE_DENYWRITE | STREAM_TRUNC ));
 /*N*/
-/*N*/       rtl::OUString sMIMEType( RTL_CONSTASCII_USTRINGPARAM( "text/xml" ) );
+/*N*/       ::rtl::OUString sMIMEType( RTL_CONSTASCII_USTRINGPARAM( "text/xml" ) );
 /*N*/       uno::Any aAny;
 /*N*/       aAny <<= sMIMEType;
 /*N*/       rOutputStream->SetProperty( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "MediaType" )), aAny );
@@ -443,7 +444,7 @@ using namespace comphelper;
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
-/*N*/       // convert rtl::OUString => tools String => ByteString
+/*N*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
@@ -561,7 +562,7 @@ using namespace comphelper;
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
-/*?*/       // convert rtl::OUString => tools String => ByteString
+/*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       DBG_ERROR1( "Exception caught during Export of : %s", aBStr.GetBuffer());
@@ -570,3 +571,4 @@ using namespace comphelper;
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
+}

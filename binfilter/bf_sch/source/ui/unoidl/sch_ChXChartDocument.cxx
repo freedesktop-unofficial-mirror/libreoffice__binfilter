@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -141,11 +141,12 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
+namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using ::rtl::OUString;
 
 sal_Int32              ChXChartDocument::mnInstanceCounter = 0;
@@ -230,7 +231,7 @@ void ChXChartDocument::setDiagramType( const ::rtl::OUString& aType,
     if( 0 == aType.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE )))
     {
         // get postfix using copy( beginIndex )
-        rtl::OUString aPostfix = aType.copy( RTL_CONSTASCII_LENGTH( SCH_X_STR_CHTYPE_NAMESPACE ));
+        ::rtl::OUString aPostfix = aType.copy( RTL_CONSTASCII_LENGTH( SCH_X_STR_CHTYPE_NAMESPACE ));
 
         if( aPostfix.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_LINE )) == 0 )
             m_pModel->SetBaseType( CHTYPE_LINE );
@@ -386,7 +387,7 @@ uno::Reference< uno::XInterface > SAL_CALL ChXChartDocument::createInstance( con
     // 1. create a new built-in diagram type
     if( 0 == aServiceSpecifier.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE )))
     {
-        rtl::OUString aPostfix = aServiceSpecifier.copy( RTL_CONSTASCII_LENGTH( SCH_X_STR_CHTYPE_NAMESPACE ));
+        ::rtl::OUString aPostfix = aServiceSpecifier.copy( RTL_CONSTASCII_LENGTH( SCH_X_STR_CHTYPE_NAMESPACE ));
 
         if( 0 == aPostfix.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_LINE )) ||
             0 == aPostfix.compareToAscii( RTL_CONSTASCII_STRINGPARAM( SCH_X_STR_CHTYPE_AREA )) ||
@@ -407,7 +408,7 @@ uno::Reference< uno::XInterface > SAL_CALL ChXChartDocument::createInstance( con
     // 2. create drawing services for XML
     else if( 0 == aServiceSpecifier.compareToAscii( RTL_CONSTASCII_STRINGPARAM( "com.sun.star.drawing." )))
     {
-        rtl::OUString aPostfix = aServiceSpecifier.copy( RTL_CONSTASCII_LENGTH( "com.sun.star.drawing." ));
+        ::rtl::OUString aPostfix = aServiceSpecifier.copy( RTL_CONSTASCII_LENGTH( "com.sun.star.drawing." ));
 
         bServiceFound = true;
 
@@ -632,7 +633,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             {
                                 case CHATTR_ADDR_CATEGORIES:
                                     {
-                                        rtl::OUString aCatAddr;
+                                        ::rtl::OUString aCatAddr;
                                         aValue >>= aCatAddr;
                                         pData->SetCategoriesRangeAddress( aCatAddr );
                                     }
@@ -1494,7 +1495,7 @@ sal_Bool SAL_CALL ChXChartDocument::supportsService( const ::rtl::OUString& Serv
     return SvxServiceInfoHelper::supportsService( ServiceName, getSupportedServiceNames() );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXChartDocument::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDocument::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
     uno::Sequence< ::rtl::OUString > aSeq( 3 );
@@ -1554,26 +1555,26 @@ void SAL_CALL ChXChartDocument::disposing (const lang::EventObject & Source)
     throw (uno::RuntimeException)
 {
     sal_Bool bChangeProperty = sal_False;
-    rtl::OUString aProperty;
+    ::rtl::OUString aProperty;
 
     if (Source.Source == m_rXDiagram)
         m_rXDiagram = NULL;
     else if (Source.Source == mxMainTitle)
     {
         mxMainTitle = NULL;
-        aProperty = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_TITLE_SHOW_MAIN ));
+        aProperty = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_TITLE_SHOW_MAIN ));
         bChangeProperty = sal_True;
     }
     else if (Source.Source == mxSubTitle)
     {
         mxSubTitle = NULL;
-        aProperty = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_TITLE_SHOW_SUB ));
+        aProperty = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_TITLE_SHOW_SUB ));
         bChangeProperty = sal_True;
     }
     else if (Source.Source == mxLegend)
     {
         mxLegend = NULL;
-        aProperty = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_HASLEGEND ));
+        aProperty = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( UNONAME_HASLEGEND ));
         bChangeProperty = sal_True;
     }
     else if (Source.Source == mxArea)
@@ -1755,4 +1756,5 @@ bool ChXChartDocument::SetTransSequence( SchMemChart* pData, bool bColumns, cons
     }
 
     return bResult;
+}
 }

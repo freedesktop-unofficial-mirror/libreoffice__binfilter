@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_optgrid.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,7 @@
 #include "dialogs.hrc"
 #include "optgrid.hrc"
 #include "dlgutil.hxx"
+namespace binfilter {
 
 /* -----------------18.08.98 17:41-------------------
  * local functions
@@ -451,3 +452,4 @@
 //STRIP001 }
 
 
+}

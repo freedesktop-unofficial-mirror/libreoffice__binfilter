@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mathtype.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #endif
 
 #include <set>
+namespace binfilter {
 
 #define EQNOLEFILEHDR_SIZE 28
 class EQNOLEFILEHDR
@@ -221,4 +222,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlstyli.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,6 +93,7 @@
 #include <com/sun/star/sheet/ConditionOperator.hpp>
 #endif
 #include "xmlimprt.hxx"
+namespace binfilter {
 
 class ScXMLCellImportPropertyMapper : public SvXMLImportPropertyMapper
 {
@@ -146,11 +147,11 @@ struct ScXMLMapContent;
 class XMLTableStyleContext : public XMLPropStyleContext
 {
     ::rtl::OUString             sDataStyleName;
-    rtl::OUString               sPageStyle;
-    const rtl::OUString         sNumberFormat;
+    ::rtl::OUString             sPageStyle;
+    const ::rtl::OUString           sNumberFormat;
     SvXMLStylesContext*         pStyles;
     std::vector<ScXMLMapContent>    aMaps;
-    com::sun::star::uno::Any    aConditionalFormat;
+    ::com::sun::star::uno::Any  aConditionalFormat;
     sal_Int32                   nNumberFormat;
     sal_Bool                    bConditionalFormatCreated : 1;
     sal_Bool                    bParentSet : 1;
@@ -158,22 +159,22 @@ class XMLTableStyleContext : public XMLPropStyleContext
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
     ScXMLImport& GetScImport() { return (ScXMLImport&)GetImport(); }
 
-    void SetOperator(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const com::sun::star::sheet::ConditionOperator aOp) const;
-    void SetBaseCellAddress(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const rtl::OUString& sBaseCell) const;
-    void SetStyle(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const rtl::OUString& sApplyStyle) const;
-    void SetFormula1(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const rtl::OUString& sFormula) const;
-    void SetFormula2(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const rtl::OUString& sFormula) const;
-    void SetFormulas(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps,
-        const rtl::OUString& sFormulas) const;
+    void SetOperator(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::com::sun::star::sheet::ConditionOperator aOp) const;
+    void SetBaseCellAddress(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::rtl::OUString& sBaseCell) const;
+    void SetStyle(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::rtl::OUString& sApplyStyle) const;
+    void SetFormula1(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::rtl::OUString& sFormula) const;
+    void SetFormula2(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::rtl::OUString& sFormula) const;
+    void SetFormulas(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps,
+        const ::rtl::OUString& sFormulas) const;
 
     void GetConditionalFormat(
-        ::com::sun::star::uno::Any& aAny, const rtl::OUString& sCondition,
-        const rtl::OUString& sApplyStyle, const rtl::OUString& sBaseCell) const;
+        ::com::sun::star::uno::Any& aAny, const ::rtl::OUString& sCondition,
+        const ::rtl::OUString& sApplyStyle, const ::rtl::OUString& sBaseCell) const;
 protected:
 
     virtual void SetAttribute( sal_uInt16 nPrefixKey,
@@ -200,7 +201,7 @@ public:
 
     virtual void SetDefaults();
 
-      void AddProperty(sal_Int16 nContextID, const com::sun::star::uno::Any& aValue);
+      void AddProperty(sal_Int16 nContextID, const ::com::sun::star::uno::Any& aValue);
 
     sal_Int32 GetNumberFormat() { return nNumberFormat; }
 };
@@ -309,12 +310,12 @@ namespace com { namespace sun { namespace star {
 
 class ScMasterPageContext : public XMLTextMasterPageContext
 {
-    com::sun::star::uno::Reference<com::sun::star::beans::XPropertySet> xPropSet;
-    const rtl::OUString     sEmpty;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet> xPropSet;
+    const ::rtl::OUString       sEmpty;
     sal_Bool                bContainsRightHeader : 1;
     sal_Bool                bContainsRightFooter : 1;
 
-    void ClearContent(const rtl::OUString& rContent);
+    void ClearContent(const ::rtl::OUString& rContent);
 public:
 
     TYPEINFO();
@@ -341,4 +342,5 @@ public:
     virtual void Finish( sal_Bool bOverwrite );
 };
 
+} //namespace binfilter
 #endif

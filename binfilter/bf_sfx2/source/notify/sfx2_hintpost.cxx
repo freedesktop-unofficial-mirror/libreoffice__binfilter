@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_hintpost.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #include "hintpost.hxx"
 #include "app.hxx"
 #include "sfxtypes.hxx"
+namespace binfilter {
 
 //====================================================================
 
@@ -138,3 +139,4 @@
     aStrm << x.GetStr() << '\n';                                \
 }
 #endif
+}

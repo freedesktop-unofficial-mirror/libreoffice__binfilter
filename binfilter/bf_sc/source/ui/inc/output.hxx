@@ -2,9 +2,9 @@
  *
  *  $RCSfile: output.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,11 +71,13 @@
 #ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
 #endif
-
 class Rectangle;
 class Font;
 class OutputDevice;
 class Window;
+class SvInPlaceObjectRef;
+namespace binfilter {
+
 class EditEngine;
 class ScDocument;
 class ScBaseCell;
@@ -85,7 +87,6 @@ class SdrObject;
 class SdrOle2Obj;
 struct RowInfo;
 class ScTabViewShell;
-class SvInPlaceObjectRef;
 class ScPageBreakData;
 
 // ---------------------------------------------------------------------------
@@ -271,5 +272,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,6 +90,7 @@
 
 #include "bf_sc.hrc"
 #include "globstr.hrc"
+namespace binfilter {
 
 
 // -----------------------------------------------------------------------
@@ -289,13 +290,13 @@
 /*N*/   rStream.WriteByteString( *pStr, rStream.GetStreamCharSet() );
 /*N*/ }
 
-/*N*/ utl::TextSearch* ScQueryEntry::GetSearchTextPtr( BOOL bCaseSens )
+/*N*/ ::utl::TextSearch* ScQueryEntry::GetSearchTextPtr( BOOL bCaseSens )
 /*N*/ {
 /*N*/   if ( !pSearchParam )
 /*N*/   {
-/*N*/       pSearchParam = new utl::SearchParam( *pStr, utl::SearchParam::SRCH_REGEXP,
+/*N*/       pSearchParam = new ::utl::SearchParam( *pStr, utl::SearchParam::SRCH_REGEXP,
 /*N*/           bCaseSens, FALSE, FALSE );
-/*N*/       pSearchText = new utl::TextSearch( *pSearchParam, *ScGlobal::pCharClass );
+/*N*/       pSearchText = new ::utl::TextSearch( *pSearchParam, *ScGlobal::pCharClass );
 /*N*/   }
 /*N*/   return pSearchText;
 /*N*/ }
@@ -1786,3 +1787,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      ClearPivotArrays();
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rootfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,8 @@
 #define _ROOTFRM_HXX
 
 #include "layfrm.hxx"
+class OutputDevice;
+namespace binfilter {
 
 class SwCntntFrm;
 class ViewShell;
@@ -72,7 +74,7 @@ class SwCursor;
 class SwShellCrsr;
 class SwTableCursor;
 class SwRegionRects;
-class OutputDevice;
+
 class SwLayVout;
 class SwDestroyList;
 class SwCurrShells;
@@ -368,5 +370,6 @@ inline  void SwRootFrm::SetVirtPageNum( const BOOL bOf) const
     ((SwRootFrm*)this)->bIsVirtPageNum = bOf;
 }
 
+} //namespace binfilter
 #endif  //_ROOTFRM_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fews.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:19:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,6 +147,7 @@
 #ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ TYPEINIT1(SwFEShell,SwEditShell)
 
@@ -192,7 +193,7 @@
 /*N*/                                       const SvEmbeddedObject *pObj ) const
 /*N*/ {
 /*N*/   const SwFrm *pFrm = Imp()->HasDrawView()
-/*N*/               ? ::GetFlyFromMarked( &Imp()->GetDrawView()->GetMarkList(),
+    /*N*/               ? ::binfilter::GetFlyFromMarked( &Imp()->GetDrawView()->GetMarkList(),
 /*N*/                                     (ViewShell*)this)
 /*N*/               : 0;
 /*N*/
@@ -463,7 +464,7 @@ bool SwFEShell::IsDirectlyInSection() const
 
 /*N*/ void SwFEShell::ShGetFcs( BOOL bUpdate )
 /*N*/ {
-/*N*/   ::SetShell( this );
+/*N*/   ::binfilter::SetShell( this );
 /*N*/   SwCrsrShell::ShGetFcs( bUpdate );
 /*N*/
 /*N*/   if ( HasDrawView() )
@@ -1165,3 +1166,4 @@ bool SwFEShell::IsDirectlyInSection() const
 /*M*/     return bVert;
 /*M*/ }
 
+}

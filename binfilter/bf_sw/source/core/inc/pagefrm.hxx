@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pagefrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,8 @@
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif
+class SvPtrarr;
+namespace binfilter {
 
 class SwFlyFrm;
 class SwFrmFmt;
@@ -83,9 +85,9 @@ class SwFmtAnchor;
 class SdrObject;
 class SwDrawContact;
 class SwAttrSetChg;
-class SvPtrarr;
 
-SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2);
+
+SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2)//STRIP008 ;
 
 enum SwPageChg
 {
@@ -493,4 +495,5 @@ inline BOOL SwPageFrm::IsInvalidFly() const
 #endif
 
 
+} //namespace binfilter
 #endif  //_PAGEFRM_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schresid.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #include <tools/shl.hxx>
 #include "schmod.hxx"
 #include "schresid.hxx"
+namespace binfilter {
 
 
 /*************************************************************************
@@ -81,3 +82,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Button.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
 #include <com/sun/star/beans/PropertyChangeEvent.hpp>
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -170,5 +171,6 @@ private:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FRM_BUTTON_HXX_
 

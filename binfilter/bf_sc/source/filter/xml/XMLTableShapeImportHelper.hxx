@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTableShapeImportHelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -81,10 +82,10 @@ public:
     XMLTableShapeImportHelper( ScXMLImport& rImp, SvXMLImportPropertyMapper *pImpMapper=0 );
     ~XMLTableShapeImportHelper();
 
-    void SetLayer(com::sun::star::uno::Reference<com::sun::star::drawing::XShape>& rShape, sal_Int16 nLayerID, const rtl::OUString& sType) const;
-    virtual void finishShape(com::sun::star::uno::Reference< com::sun::star::drawing::XShape >& rShape,
-            const com::sun::star::uno::Reference< com::sun::star::xml::sax::XAttributeList >& xAttrList,
-            com::sun::star::uno::Reference< com::sun::star::drawing::XShapes >& rShapes);
+    void SetLayer(::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape>& rShape, sal_Int16 nLayerID, const ::rtl::OUString& sType) const;
+    virtual void finishShape(::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& rShape,
+            const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList,
+            ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& rShapes);
 
 
     void SetCell (const ::com::sun::star::table::CellAddress& rAddress) { aStartCell = rAddress; }
@@ -92,4 +93,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif

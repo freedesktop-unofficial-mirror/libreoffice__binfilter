@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -136,6 +136,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 /*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
 /*N*/ TYPEINIT1( SdModule, SdModuleDummy );
@@ -427,3 +428,4 @@ void SdModule::Free()
 //STRIP001 */
 //STRIP001  return ::com::sun::star::text::WritingMode_LR_TB;
 //STRIP001 }
+} //namespace binfilter

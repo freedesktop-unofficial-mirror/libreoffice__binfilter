@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bcaslot.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "docoptio.hxx"
 #include "refupdat.hxx"
 #include "table.hxx"
+namespace binfilter {
 
 // Anzahl der Slots je Dimension
 // muessen ganzzahlige Teiler von MAXCOL+1 bzw. MAXROW+1 sein
@@ -99,7 +100,7 @@
 #error BCA_SLOTS DOOMed!
 #endif
 
-DECLARE_LIST( ScBroadcastAreaList, ScBroadcastArea* );
+DECLARE_LIST( ScBroadcastAreaList, ScBroadcastArea* )//STRIP008 ;
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -626,7 +627,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001 {
 //STRIP001     BOOL bBroadcasted = FALSE;
 //STRIP001  USHORT nStart, nEnd, nRowBreak;
-//STRIP001  ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
+//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
 //STRIP001  USHORT nOff = nStart;
 //STRIP001  USHORT nBreak = nOff + nRowBreak;
 //STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
@@ -656,7 +657,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001  )
 //STRIP001 {
 //STRIP001  USHORT nStart, nEnd, nRowBreak;
-//STRIP001  ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
+//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
 //STRIP001  USHORT nOff = nStart;
 //STRIP001  USHORT nBreak = nOff + nRowBreak;
 //STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
@@ -688,7 +689,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001 {
 //STRIP001  USHORT nStart, nEnd, nRowBreak;
 //STRIP001  // Betroffene austragen und verketten
-//STRIP001  ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
+//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
 //STRIP001  USHORT nOff = nStart;
 //STRIP001  USHORT nBreak = nOff + nRowBreak;
 //STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
@@ -746,7 +747,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001      }
 //STRIP001
 //STRIP001      // in die Slots eintragen
-//STRIP001      ComputeAreaPoints( aRange, nStart, nEnd, nRowBreak );
+//STRIP001      ::com::puteAreaPoints( aRange, nStart, nEnd, nRowBreak );
 //STRIP001      nOff = nStart;
 //STRIP001      nBreak = nOff + nRowBreak;
 //STRIP001      pp = ppSlots + nOff;
@@ -775,3 +776,4 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001  pEOUpdateChain = NULL;
 //STRIP001 }
 
+}

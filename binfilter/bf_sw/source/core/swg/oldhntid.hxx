@@ -2,9 +2,9 @@
  *
  *  $RCSfile: oldhntid.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:32:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,10 @@
  *
  ************************************************************************/
 
+
 #ifndef _OLDHNTID_HXX
 #define _OLDHNTID_HXX
-
+namespace binfilter {
 // ID-s fuer die Formate
 
 enum OLDRES_FMT
@@ -227,4 +228,5 @@ OLDRES_GRFATR_CROPGRF,
 OLDRES_GRFATR_END
 };
 
+} //namespace binfilter
 #endif

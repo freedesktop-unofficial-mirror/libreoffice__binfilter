@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmvwimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,19 +113,24 @@
 #ifndef _SVDMARK_HXX
 #include "svdmark.hxx"
 #endif
+FORWARD_DECLARE_INTERFACE(awt,XControl)
+FORWARD_DECLARE_INTERFACE(awt,XWindow)
+FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
+FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
+class Window;
+class OutputDevice;
+namespace binfilter {
 
 class SdrPageViewWinRec;
 class SdrPageView;
 class SdrObject;
 class FmFormObj;
 class FmFormModel;
-class Window;
-class OutputDevice;
 
-FORWARD_DECLARE_INTERFACE(awt,XControl)
-FORWARD_DECLARE_INTERFACE(awt,XWindow)
-FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
-FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
+//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
+//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XWindow)
+//STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
+//STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 
 class FmXFormController;
 
@@ -303,5 +308,6 @@ private:
 
 
 
+}//end of namespace binfilter
 #endif // _SVX_FMVWIMP_HXX
 

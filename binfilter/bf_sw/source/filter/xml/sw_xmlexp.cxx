@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -193,6 +193,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star::frame;
@@ -710,7 +711,7 @@ void SwXMLExport::_ExportContent()
         aAny >>= nYear;
         if (nYear != 1930 )
         {
-            rtl::OUStringBuffer sBuffer;
+            ::rtl::OUStringBuffer sBuffer;
             GetMM100UnitConverter().convertNumber(sBuffer, nYear);
             AddAttribute(XML_NAMESPACE_TABLE, XML_NULL_YEAR, sBuffer.makeStringAndClear());
             SvXMLElementExport aCalcSettings(*this, XML_NAMESPACE_TABLE, XML_CALCULATION_SETTINGS, sal_True, sal_True);
@@ -859,7 +860,7 @@ Reference< XInterface > SAL_CALL SwXMLExportSettings_createInstance(
 
 const Sequence< sal_Int8 > & SwXMLExport::getUnoTunnelId() throw()
 {
-    static Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 
@@ -966,3 +967,4 @@ void SwXMLExport::ExportCurPaM( sal_Bool bExportWholePaM )
     ExportListChange( aPrevNumInfo, aNextNumInfo );
 }
 #endif
+}

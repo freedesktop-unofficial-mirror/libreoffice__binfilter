@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-16 17:12:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,7 @@ SO2_DECL_REF(SvStorageStream)
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
+namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -253,14 +254,15 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/   }
 /*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_60 )
 /*N*/   {
-            // for binfilter, we need the FormatIDs to be set. Not setting them
+/*N*/       // for binfilter, we need the FormatIDs to be set. Not setting them
             // has always been an error (!)
-             *pClassName        = SvGlobalName( BF_SO3_SC_CLASSID_60 );
-            *pFormat        = SOT_FORMATSTR_ID_STARCALC_60;
-             *pAppName      = String( ScResId( SCSTR_APPLICATION ) );
-
+/*N*/       *pClassName     = SvGlobalName( BF_SO3_SC_CLASSID_60 );
+/*N*/       *pFormat        = SOT_FORMATSTR_ID_STARCALC_60;
+/*N*/       *pAppName       = String( ScResId( SCSTR_APPLICATION ) );
+/*N*/
 /*N*/       *pFullTypeName  = String( ScResId( SCSTR_LONG_SCDOC_NAME ) );
 /*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
+
 /*N*/   }
 /*N*/   else
 /*N*/       DBG_ERROR("wat fuer ne Version?");
@@ -571,7 +573,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 //STRIP001                      if ( *pNameBuffer == '\'' && // all docnames have to have a ' character on the first pos
 //STRIP001                          ScGlobal::UnicodeStrChr( pNameBuffer, SC_COMPILER_FILE_TAB_SEP ) )
 //STRIP001                      {
-//STRIP001                          rtl::OUStringBuffer aDocURLBuffer;
+//STRIP001                          ::rtl::OUStringBuffer aDocURLBuffer;
 //STRIP001                          BOOL bQuote = TRUE;         // Dokumentenname ist immer quoted
 //STRIP001                          ++pNameBuffer;
 //STRIP001                          while ( bQuote && *pNameBuffer )
@@ -680,7 +682,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/         if (GetMedium())
 /*N*/         {
 /*N*/             SFX_ITEMSET_ARG( GetMedium()->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-/*N*/             nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : com::sun::star::document::UpdateDocMode::NO_UPDATE;
+/*N*/             nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 /*N*/         }
 /*N*/
 /*N*/         if (bXML)
@@ -772,7 +774,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 //STRIP001     if (GetMedium())
 //STRIP001     {
 //STRIP001         SFX_ITEMSET_ARG( GetMedium()->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-//STRIP001         nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : com::sun::star::document::UpdateDocMode::NO_UPDATE;
+//STRIP001         nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 //STRIP001     }
 //STRIP001
 //STRIP001  if ( bXML )
@@ -854,7 +856,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/   rMedium.GetPhysicalName();  //! CreateFileStream direkt rufen, wenn verfuegbar
 /*N*/
 /*N*/     SFX_ITEMSET_ARG( rMedium.GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-/*N*/     nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : com::sun::star::document::UpdateDocMode::NO_UPDATE;
+/*N*/     nCanUpdate = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 /*N*/
 /*N*/     const SfxFilter* pFilter = rMedium.GetFilter();
 /*N*/   if (pFilter)
@@ -2172,7 +2174,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
         bIsInUndo       ( FALSE ), \
         bDocumentModifiedPending( FALSE ), \
         nDocumentLock   ( 0 ), \
-        nCanUpdate (com::sun::star::document::UpdateDocMode::ACCORDING_TO_CONFIG), \
+        nCanUpdate (::com::sun::star::document::UpdateDocMode::ACCORDING_TO_CONFIG), \
         bUpdateEnabled  ( TRUE ), \
         pVirtualDevice_100th_mm ( NULL ), \
         pModificator    ( NULL )
@@ -2470,3 +2472,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*?*/       pDoc->BroadcastUno( SfxSimpleHint( SFX_HINT_DATACHANGED ) );
 /*N*/   }
 /*N*/ }
+}

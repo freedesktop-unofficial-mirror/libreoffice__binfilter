@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshcol.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 
 #include "unoshcol.hxx"
 #include "unoprov.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::cppu;
@@ -276,3 +277,4 @@ uno::Sequence< OUString > SAL_CALL SvxShapeCollection::getSupportedServiceNames(
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlxtimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@ namespace com { namespace sun { namespace star {
     namespace container { class XNameContainer; }
 
 } } }
+namespace binfilter {
 
 class SvxXMLXTableImport : public SvXMLImport
 {
@@ -82,10 +83,10 @@ public:
     SvxXMLXTableImport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & rTable,
-        com::sun::star::uno::Reference< com::sun::star::document::XGraphicObjectResolver >& xGrfResolver);
+        ::com::sun::star::uno::Reference<   ::com::sun::star::document::XGraphicObjectResolver >& xGrfResolver);
     virtual ~SvxXMLXTableImport() throw ();
 
-    static sal_Bool load( const rtl::OUString& rUrl, const com::sun::star::uno::Reference< com::sun::star::container::XNameContainer >& xTable ) throw();
+    static sal_Bool load( const ::rtl::OUString& rUrl, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >& xTable ) throw();
 protected:
     virtual SvXMLImportContext *CreateContext( sal_uInt16 nPrefix,
                                       const ::rtl::OUString& rLocalName,
@@ -95,5 +96,6 @@ private:
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & mrTable;
 };
 
+}//end of namespace binfilter
 #endif
 

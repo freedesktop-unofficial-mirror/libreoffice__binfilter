@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unopage.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef _E3D_LATHE3D_HXX
 #include <lathe3d.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::vos;
 using namespace ::rtl;
@@ -126,7 +127,7 @@ using namespace ::com::sun::star::drawing;
     if( rType == ::getCppuType((const Reference< xint >*)0) ) \
         aAny <<= Reference< xint >(this)
 
-DECLARE_LIST( SvxDrawPageList, SvxDrawPage * );
+DECLARE_LIST( SvxDrawPageList, SvxDrawPage * )//STRIP008 ;
 
 extern SfxItemPropertyMap* ImplGetSvxOle2PropertyMap();
 extern SfxItemPropertyMap* ImplGetSvxPageShapePropertyMap();
@@ -827,3 +828,4 @@ SvxShape* CreateSvxShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt32 nInvento
 }
 
 
+}

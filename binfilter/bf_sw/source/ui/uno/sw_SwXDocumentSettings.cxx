@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXDocumentSettings.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,15 +128,16 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace rtl;
 using namespace comphelper;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::i18n;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::i18n;
 
 enum SwDocumentSettingsPropertyHandles
 {
@@ -751,3 +752,4 @@ Sequence< OUString > SAL_CALL SwXDocumentSettings::getSupportedServiceNames(  )
 }
 
 
+}

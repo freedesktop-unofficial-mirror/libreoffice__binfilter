@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdorect.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,7 @@
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -910,3 +911,4 @@
 /*N*/   SetXPolyDirty();
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_refreshtimer.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:42:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 
 #include "refreshtimer.hxx"
 #include <tools/debug.hxx>//STRIP001
+namespace binfilter {
 
 /*N*/ ScRefreshTimerProtector::ScRefreshTimerProtector( ScRefreshTimerControl * const * pp )
 /*N*/       :
@@ -114,3 +115,4 @@
 //STRIP001  }
 //STRIP001 }
 
+}

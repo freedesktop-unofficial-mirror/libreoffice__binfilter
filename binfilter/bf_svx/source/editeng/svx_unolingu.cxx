@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,6 +118,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace ::rtl;
 using namespace ::comphelper;
 using namespace ::com::sun::star;
@@ -502,7 +503,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Sequence< uno::Reference< linguistic2::XMeaning > > SAL_CALL
 /*N*/         ThesDummy_Impl::queryMeanings(
-/*N*/                 const rtl::OUString& rTerm,
+/*N*/                 const ::rtl::OUString& rTerm,
 /*N*/                 const lang::Locale& rLocale,
 /*N*/                 const beans::PropertyValues& rProperties )
 /*N*/             throw(lang::IllegalArgumentException,
@@ -595,7 +596,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ sal_Bool SAL_CALL
-/*N*/     SpellDummy_Impl::isValid( const rtl::OUString& rWord, sal_Int16 nLanguage,
+/*N*/     SpellDummy_Impl::isValid( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
 /*N*/             const beans::PropertyValues& rProperties )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
@@ -609,7 +610,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ uno::Reference< linguistic2::XSpellAlternatives > SAL_CALL
-/*N*/     SpellDummy_Impl::spell( const rtl::OUString& rWord, sal_Int16 nLanguage,
+/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
 /*N*/             const beans::PropertyValues& rProperties )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
@@ -715,7 +716,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Reference< linguistic2::XHyphenatedWord > SAL_CALL
 /*N*/     HyphDummy_Impl::hyphenate(
-/*N*/             const rtl::OUString& rWord,
+/*N*/             const ::rtl::OUString& rWord,
 /*N*/             const lang::Locale& rLocale,
 /*N*/             sal_Int16 nMaxLeading,
 /*N*/             const beans::PropertyValues& rProperties )
@@ -732,7 +733,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Reference< linguistic2::XHyphenatedWord > SAL_CALL
 /*N*/     HyphDummy_Impl::queryAlternativeSpelling(
-/*N*/             const rtl::OUString& rWord,
+/*N*/             const ::rtl::OUString& rWord,
 /*N*/             const lang::Locale& rLocale,
 /*N*/             sal_Int16 nIndex,
 /*N*/             const PropertyValues& rProperties )
@@ -749,7 +750,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Reference< linguistic2::XPossibleHyphens > SAL_CALL
 /*N*/     HyphDummy_Impl::createPossibleHyphens(
-/*N*/             const rtl::OUString& rWord,
+/*N*/             const ::rtl::OUString& rWord,
 /*N*/             const lang::Locale& rLocale,
 /*N*/             const beans::PropertyValues& rProperties )
 /*N*/         throw(lang::IllegalArgumentException,
@@ -1097,7 +1098,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 //STRIP001                         DictionaryType_POSITIVE,
 //STRIP001                         SvxGetDictionaryURL( aDicName, sal_True ) );
 //STRIP001         }
-//STRIP001         catch(com::sun::star::uno::Exception &)
+//STRIP001         catch(::com::sun::star::uno::Exception &)
 //STRIP001         {
 //STRIP001         }
 //STRIP001
@@ -1331,7 +1332,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 //STRIP001                  xStor->store();
 //STRIP001          }
 //STRIP001      }
-//STRIP001         catch(com::sun::star::uno::Exception &)
+//STRIP001         catch(::com::sun::star::uno::Exception &)
 //STRIP001      {
 //STRIP001          bRet = sal_False;
 //STRIP001      }
@@ -1373,3 +1374,4 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_hffrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,7 @@
 #include "frmsh.hxx"
 #include "ndindex.hxx"
 #include "hfspacingitem.hxx"
+namespace binfilter {
 
 /*N*/ extern FASTBOOL bObjsDirect;  //frmtool.cxx
 
@@ -170,7 +171,7 @@
 /*M*/   FASTBOOL bOld = bObjsDirect;
 /*M*/   bObjsDirect = TRUE;
 /*M*/   ULONG nIndex = rCnt.GetCntntIdx()->GetIndex();
-/*M*/   ::_InsertCnt( this, pFmt->GetDoc(), ++nIndex );
+/*M*/   ::binfilter::_InsertCnt( this, pFmt->GetDoc(), ++nIndex );
 /*M*/   bObjsDirect = bOld;
 /*M*/ }
 
@@ -735,7 +736,7 @@
 /*N*/       if ( pLay->IsHeaderFrm() )
 /*N*/       {   SwLayoutFrm *pDel = pLay;
 /*N*/           pLay = (SwLayoutFrm*)pLay->GetNext();
-/*N*/           ::DelFlys( pDel, this );
+/*N*/           ::binfilter::DelFlys( pDel, this );
 /*N*/           pDel->Cut();
 /*N*/           delete pDel;
 /*N*/       }
@@ -743,11 +744,11 @@
 /*N*/       SwHeaderFrm *pH = new SwHeaderFrm( (SwFrmFmt*)rH.GetHeaderFmt() );
 /*N*/       pH->Paste( this, pLay );
 /*N*/       if ( GetUpper() )
-/*N*/           ::RegistFlys( this, pH );
+/*N*/           ::binfilter::RegistFlys( this, pH );
 /*N*/   }
 /*N*/   else if ( pLay && pLay->IsHeaderFrm() )
 /*N*/   {   //Header entfernen falls vorhanden.
-/*N*/       ::DelFlys( pLay, this );
+/*N*/       ::binfilter::DelFlys( pLay, this );
 /*N*/       pLay->Cut();
 /*N*/       delete pLay;
 /*N*/   }
@@ -784,18 +785,18 @@
 /*?*/           return; //Der Footer ist bereits der richtige.
 /*N*/
 /*N*/       if ( pLay->IsFooterFrm() )
-/*?*/       {   ::DelFlys( pLay, this );
+/*?*/       {   ::binfilter::DelFlys( pLay, this );
 /*?*/           pLay->Cut();
 /*?*/           delete pLay;
 /*N*/       }
 /*N*/       SwFooterFrm *pF = new SwFooterFrm( (SwFrmFmt*)rF.GetFooterFmt() );
 /*N*/       pF->Paste( this );
 /*N*/       if ( GetUpper() )
-/*N*/           ::RegistFlys( this, pF );
+/*N*/           ::binfilter::RegistFlys( this, pF );
 /*N*/   }
 /*N*/   else if ( pLay && pLay->IsFooterFrm() )
 /*N*/   {   //Footer entfernen falls vorhanden.
-/*N*/       ::DelFlys( pLay, this );
+/*N*/       ::binfilter::DelFlys( pLay, this );
 /*N*/       ViewShell *pSh;
 /*N*/       if ( pLay->GetPrev() && 0 != (pSh = GetShell()) &&
 /*N*/            pSh->VisArea().HasArea() )
@@ -807,3 +808,4 @@
 
 
 
+}

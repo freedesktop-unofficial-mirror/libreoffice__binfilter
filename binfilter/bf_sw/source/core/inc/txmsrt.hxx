@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txmsrt.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,8 +67,10 @@
 #ifndef _TOX_HXX
 #include <tox.hxx>
 #endif
-
 class CharClass;
+namespace binfilter {
+
+
 class SwCntntNode;
 class SwTxtNode;
 class SwTxtTOXMark;
@@ -316,4 +318,5 @@ private:
 //STRIP001 };
 
 
+} //namespace binfilter
 #endif // _TXMSRT_HXX

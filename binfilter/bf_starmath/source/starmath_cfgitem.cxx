@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_cfgitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,13 +70,14 @@
 #include "starmath.hrc"
 #include "smdll.hxx"
 #include "format.hxx"
+namespace binfilter {
 
 using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
 
-#define A2OU(x)        rtl::OUString::createFromAscii( x )
+#define A2OU(x)        ::rtl::OUString::createFromAscii( x )
 
 static const char* aRootName = "Office.Math";
 
@@ -498,8 +499,8 @@ static const char* aRootName = "Office.Math";
 
 
 /*N*/ SmSym SmMathConfig::ReadSymbol( SmMathConfigItem &rCfg,
-/*N*/                       const rtl::OUString &rSymbolName,
-/*N*/                       const rtl::OUString &rBaseNode ) const
+/*N*/                       const ::rtl::OUString &rSymbolName,
+/*N*/                       const ::rtl::OUString &rBaseNode ) const
 /*N*/ {
 /*N*/   SmSym aRes;
 /*N*/
@@ -1358,3 +1359,4 @@ static const char* aRootName = "Office.Math";
 
 /////////////////////////////////////////////////////////////////
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bodyfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #endif
 
 #include "layfrm.hxx"
+namespace binfilter {
 
 class SwBorderAttrs;
 
@@ -83,4 +84,5 @@ public:
     DECL_FIXEDMEMPOOL_NEWDEL(SwBodyFrm)
 };
 
+} //namespace binfilter
 #endif  //_BODYFRM_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingExportHelper.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,11 +107,12 @@
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
+namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
 
 using namespace ::com::sun::star;
-using namespace xmloff::token;
+using namespace ::xmloff::token;
 
 ScChangeTrackingExportHelper::ScChangeTrackingExportHelper(ScXMLExport& rTempExport)
     : rExport(rTempExport),
@@ -132,7 +133,7 @@ ScChangeTrackingExportHelper::~ScChangeTrackingExportHelper()
 
 rtl::OUString ScChangeTrackingExportHelper::GetChangeID(const sal_uInt32 nActionNumber)
 {
-    rtl::OUStringBuffer sBuffer(sChangeIDPrefix);
+    ::rtl::OUStringBuffer sBuffer(sChangeIDPrefix);
     SvXMLUnitConverter::convertNumber(sBuffer, static_cast<sal_Int32>(nActionNumber));
     return sBuffer.makeStringAndClear();
 }
@@ -157,7 +158,7 @@ void ScChangeTrackingExportHelper::WriteBigRange(const ScBigRange& rBigRange, XM
         nEndColumn, nEndRow, nEndSheet);
     if ((nStartColumn == nEndColumn) && (nStartRow == nEndRow) && (nStartSheet == nEndSheet))
     {
-        rtl::OUStringBuffer sBuffer;
+        ::rtl::OUStringBuffer sBuffer;
         SvXMLUnitConverter::convertNumber(sBuffer, nStartColumn);
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_COLUMN, sBuffer.makeStringAndClear());
         SvXMLUnitConverter::convertNumber(sBuffer, nStartRow);
@@ -167,7 +168,7 @@ void ScChangeTrackingExportHelper::WriteBigRange(const ScBigRange& rBigRange, XM
     }
     else
     {
-        rtl::OUStringBuffer sBuffer;
+        ::rtl::OUStringBuffer sBuffer;
         SvXMLUnitConverter::convertNumber(sBuffer, nStartColumn);
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_START_COLUMN, sBuffer.makeStringAndClear());
         SvXMLUnitConverter::convertNumber(sBuffer, nStartRow);
@@ -186,13 +187,13 @@ void ScChangeTrackingExportHelper::WriteBigRange(const ScBigRange& rBigRange, XM
 
 void ScChangeTrackingExportHelper::WriteChangeInfo(const ScChangeAction* pAction)
 {
-    rtl::OUString sAuthor(pAction->GetUser());
+    ::rtl::OUString sAuthor(pAction->GetUser());
     rExport.AddAttribute(XML_NAMESPACE_OFFICE, XML_CHG_AUTHOR, sAuthor);
-    rtl::OUStringBuffer sDate;
+    ::rtl::OUStringBuffer sDate;
     ScXMLConverter::ConvertDateTimeToString(pAction->GetDateTimeUTC(), sDate);
     rExport.AddAttribute(XML_NAMESPACE_OFFICE, XML_CHG_DATE_TIME, sDate.makeStringAndClear());
     SvXMLElementExport aElemInfo (rExport, XML_NAMESPACE_OFFICE, XML_CHANGE_INFO, sal_True, sal_True);
-    rtl::OUString sComment(pAction->GetComment());
+    ::rtl::OUString sComment(pAction->GetComment());
     if (sComment.getLength())
     {
         SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TEXT, XML_P, sal_True, sal_False);
@@ -336,7 +337,7 @@ void ScChangeTrackingExportHelper::SetValueAttributes(const double& fValue, cons
                         if ( rExport.GetMM100UnitConverter().setNullDate(rExport.GetModel()) )
                         {
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_DATE);
-                            rtl::OUStringBuffer sBuffer;
+                            ::rtl::OUStringBuffer sBuffer;
                             rExport.GetMM100UnitConverter().convertDateTime(sBuffer, fTempValue);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATE_VALUE, sBuffer.makeStringAndClear());
                             bSetAttributes = sal_True;
@@ -346,7 +347,7 @@ void ScChangeTrackingExportHelper::SetValueAttributes(const double& fValue, cons
                 case NUMBERFORMAT_TIME:
                     {
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_TIME);
-                        rtl::OUStringBuffer sBuffer;
+                        ::rtl::OUStringBuffer sBuffer;
                         rExport.GetMM100UnitConverter().convertTime(sBuffer, fTempValue);
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_TIME_VALUE, sBuffer.makeStringAndClear());
                         bSetAttributes = sal_True;
@@ -358,9 +359,9 @@ void ScChangeTrackingExportHelper::SetValueAttributes(const double& fValue, cons
     if (!bSetAttributes)
     {
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_FLOAT);
-        rtl::OUStringBuffer sBuffer;
+        ::rtl::OUStringBuffer sBuffer;
         SvXMLUnitConverter::convertDouble(sBuffer, fValue);
-        rtl::OUString sValue(sBuffer.makeStringAndClear());
+        ::rtl::OUString sValue(sBuffer.makeStringAndClear());
         if (sValue.getLength())
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE, sValue);
     }
@@ -390,7 +391,7 @@ void ScChangeTrackingExportHelper::WriteStringCell(const ScBaseCell* pCell)
     {
         String sString;
         pStringCell->GetString(sString);
-        rtl::OUString sOUString(sString);
+        ::rtl::OUString sOUString(sString);
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_STRING);
         SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TABLE, XML_CHANGE_TRACK_TABLE_CELL, sal_True, sal_True);
         if (sOUString.getLength())
@@ -431,12 +432,12 @@ void ScChangeTrackingExportHelper::WriteFormulaCell(const ScBaseCell* pCell, con
     ScFormulaCell* pFormulaCell = static_cast<ScFormulaCell*>(pBaseCell);
     if (pFormulaCell)
     {
-        rtl::OUString sAddress;
+        ::rtl::OUString sAddress;
         ScXMLConverter::GetStringFromAddress(sAddress, pFormulaCell->aPos, rExport.GetDocument());
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_CELL_ADDRESS, sAddress);
         String sFormula;
         pFormulaCell->GetEnglishFormula(sFormula, sal_True);
-        rtl::OUString sOUFormula(sFormula);
+        ::rtl::OUString sOUFormula(sFormula);
         sal_uInt8 nMatrixFlag(pFormulaCell->GetMatrixFlag());
         if (nMatrixFlag)
         {
@@ -444,8 +445,8 @@ void ScChangeTrackingExportHelper::WriteFormulaCell(const ScBaseCell* pCell, con
             {
                 sal_uInt16 nColumns, nRows;
                 pFormulaCell->GetMatColsRows(nColumns, nRows);
-                rtl::OUStringBuffer sColumns;
-                rtl::OUStringBuffer sRows;
+                ::rtl::OUStringBuffer sColumns;
+                ::rtl::OUStringBuffer sRows;
                 SvXMLUnitConverter::convertNumber(sColumns, static_cast<sal_Int32>(nColumns));
                 SvXMLUnitConverter::convertNumber(sRows, static_cast<sal_Int32>(nRows));
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_MATRIX_COLUMNS_SPANNED, sColumns.makeStringAndClear());
@@ -455,7 +456,7 @@ void ScChangeTrackingExportHelper::WriteFormulaCell(const ScBaseCell* pCell, con
             {
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_MATRIX_COVERED, XML_TRUE);
             }
-            rtl::OUString sMatrixFormula = sOUFormula.copy(1, sOUFormula.getLength() - 2);
+            ::rtl::OUString sMatrixFormula = sOUFormula.copy(1, sOUFormula.getLength() - 2);
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_FORMULA, sMatrixFormula);
         }
         else
@@ -470,7 +471,7 @@ void ScChangeTrackingExportHelper::WriteFormulaCell(const ScBaseCell* pCell, con
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_STRING);
             String sValue;
             pFormulaCell->GetString(sValue);
-            rtl::OUString sOUValue(sValue);
+            ::rtl::OUString sOUValue(sValue);
             SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TABLE, XML_CHANGE_TRACK_TABLE_CELL, sal_True, sal_True);
             if (sOUValue.getLength())
             {
@@ -573,7 +574,7 @@ void ScChangeTrackingExportHelper::AddInsertionAttributes(const ScChangeAction* 
     }
     nPosition = nStartPosition;
     nCount = nEndPosition - nStartPosition + 1;
-    rtl::OUStringBuffer sBuffer;
+    ::rtl::OUStringBuffer sBuffer;
     SvXMLUnitConverter::convertNumber(sBuffer, nPosition);
     rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_POSITION, sBuffer.makeStringAndClear());
     DBG_ASSERT(nCount > 0, "wrong insertion count");
@@ -636,7 +637,7 @@ void ScChangeTrackingExportHelper::AddDeletionAttributes(const ScChangeActionDel
         }
         break;
     }
-    rtl::OUStringBuffer sBuffer;
+    ::rtl::OUStringBuffer sBuffer;
     SvXMLUnitConverter::convertNumber(sBuffer, nPosition);
     rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_POSITION, sBuffer.makeStringAndClear());
     if (pDelAction->GetType() != SC_CAT_DELETE_TABS)
@@ -679,7 +680,7 @@ void ScChangeTrackingExportHelper::WriteCutOffs(const ScChangeActionDel* pAction
     if (pCutOffIns || pLinkMove)
     {
         SvXMLElementExport aCutOffsElem (rExport, XML_NAMESPACE_TABLE, XML_CUT_OFFS, sal_True, sal_True);
-        rtl::OUStringBuffer sBuffer;
+        ::rtl::OUStringBuffer sBuffer;
         if (pCutOffIns)
         {
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_ID, GetChangeID(pCutOffIns->GetActionNumber()));
@@ -837,7 +838,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                     {
                         case SCDM_DATE_BEFORE:
                         {
-                            rtl::OUStringBuffer sDate;
+                            ::rtl::OUStringBuffer sDate;
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATE_TIME, sDate.makeStringAndClear());
                             SvXMLElementExport aDateBeforeElem(rExport, XML_NAMESPACE_TABLE, XML_BEFORE_DATE_TIME, sal_True, sal_True);
@@ -845,7 +846,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         break;
                         case SCDM_DATE_SINCE:
                         {
-                            rtl::OUStringBuffer sDate;
+                            ::rtl::OUStringBuffer sDate;
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATE_TIME, sDate.makeStringAndClear());
                             SvXMLElementExport aDateSinceElem(rExport, XML_NAMESPACE_TABLE, XML_SINCE_DATE_TIME, sal_True, sal_True);
@@ -853,7 +854,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         break;
                         case SCDM_DATE_EQUAL:
                         {
-                            rtl::OUStringBuffer sDate;
+                            ::rtl::OUStringBuffer sDate;
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATE, sDate.makeStringAndClear());
                             SvXMLElementExport aDateEqualElem(rExport, XML_NAMESPACE_TABLE, XML_EQUAL_DATE, sal_True, sal_True);
@@ -861,7 +862,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         break;
                         case SCDM_DATE_NOTEQUAL:
                         {
-                            rtl::OUStringBuffer sDate;
+                            ::rtl::OUStringBuffer sDate;
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATE, sDate.makeStringAndClear());
                             SvXMLElementExport aDateNotEqualElem(rExport, XML_NAMESPACE_TABLE, XML_NOT_EQUAL_DATE, sal_True, sal_True);
@@ -869,7 +870,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         break;
                         case SCDM_DATE_BETWEEN:
                         {
-                            rtl::OUStringBuffer sDate;
+                            ::rtl::OUStringBuffer sDate;
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_FIRST_DATE_TIME, sDate.makeStringAndClear());
                             ScXMLConverter::ConvertDateTimeToString(pViewSettings->GetTheFirstDateTime(), sDate);
@@ -889,7 +890,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         break;
                     }
                 }
-                rtl::OUString sAuthor (pViewSettings->GetTheAuthorToShow());
+                ::rtl::OUString sAuthor (pViewSettings->GetTheAuthorToShow());
                 if (sAuthor.getLength() && !pViewSettings->HasAuthor())
                 {
                     if (pViewSettings->HasAuthor())
@@ -898,7 +899,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_AUTHOR, sAuthor);
                     SvXMLElementExport aEqualAuthorElem(rExport, XML_NAMESPACE_TABLE, XML_EQUAL_AUTHOR, sal_True, sal_True);
                 }
-                rtl::OUString sComment (pViewSettings->GetTheComment());
+                ::rtl::OUString sComment (pViewSettings->GetTheComment());
                 if (sComment.getLength() && !pViewSettings->HasComment())
                 {
                     if (pViewSettings->HasComment())
@@ -907,7 +908,7 @@ void ScChangeTrackingExportHelper::WriteChangeViewSettings()
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_COMMENT, sComment);
                     SvXMLElementExport aEqualCommentElem(rExport, XML_NAMESPACE_TABLE, XML_EQUAL_COMMENT, sal_True, sal_True);
                 }
-                rtl::OUString sRangeList;
+                ::rtl::OUString sRangeList;
                 ScXMLConverter::GetStringFromRangeList(sRangeList, &(pViewSettings->GetTheRangeList()), rExport.GetDocument());
                 if (sRangeList.getLength() && !pViewSettings->HasRange())
                 {
@@ -928,7 +929,7 @@ void ScChangeTrackingExportHelper::CollectAndWriteChanges()
     {
         if (pChangeTrack->IsProtected())
         {
-            rtl::OUStringBuffer aBuffer;
+            ::rtl::OUStringBuffer aBuffer;
             SvXMLUnitConverter::encodeBase64(aBuffer, pChangeTrack->GetProtection());
             if (aBuffer.getLength())
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
@@ -948,4 +949,5 @@ void ScChangeTrackingExportHelper::CollectAndWriteChanges()
             }
         }
     }
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,6 +118,7 @@
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ SV_IMPL_OP_PTRARR_SORT(SwBookmarks, SwBookmarkPtr)
@@ -790,14 +791,14 @@
 /*N*/               register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/               if( _pStkCrsr )
 /*N*/               do {
-/*N*/                   ::_ChkPaM( rSaveArr, nNode, nCntnt, *_pStkCrsr,
+/*N*/                   ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *_pStkCrsr,
 /*N*/                               aSave, FALSE );
 /*N*/                   aSave.IncCount();
 /*N*/               } while ( (_pStkCrsr != 0 ) &&
 /*N*/                   ((_pStkCrsr=(SwPaM *)_pStkCrsr->GetNext()) != PCURSH->GetStkCrsr()) );
 /*N*/
 /*N*/               FOREACHPAM_START( PCURSH->_GetCrsr() )
-/*N*/                   ::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR,
+/*N*/                   ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR,
 /*N*/                               aSave, FALSE );
 /*N*/                   aSave.IncCount();
 /*N*/               FOREACHPAM_END()
@@ -812,7 +813,7 @@
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*N*/           FOREACHPAM_START( rTbl[ n ] )
-/*N*/               ::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR, aSave, FALSE );
+/*N*/               ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR, aSave, FALSE );
 /*N*/               aSave.IncCount();
 /*N*/           FOREACHPAM_END()
 /*N*/
@@ -820,7 +821,7 @@
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
 /*N*/               FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
-/*N*/                   ::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR, aSave, FALSE );
+/*N*/                   ::binfilter::_ChkPaM( rSaveArr, nNode, nCntnt, *PCURCRSR, aSave, FALSE );
 /*N*/                   aSave.IncCount();
 /*N*/               FOREACHPAM_END()
 /*N*/           }
@@ -1117,3 +1118,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   const SwDoc* pDoc = rNd.GetDoc()
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndole.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:28:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,23 +115,24 @@
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>
 #endif
+namespace binfilter {
 
-using namespace utl;
-using namespace rtl;
-using namespace com::sun::star::uno;
+using namespace ::utl;
+using namespace ::rtl;
+using namespace ::com::sun::star::uno;
 
 
-class SwOLELRUCache : private SvPtrarr, private utl::ConfigItem
+class SwOLELRUCache : private SvPtrarr, private ::utl::ConfigItem
 {
     sal_uInt16 nLRU_InitSize;
     sal_Bool bInUnload;
-    com::sun::star::uno::Sequence< rtl::OUString > GetPropertyNames();
+    ::com::sun::star::uno::Sequence< ::rtl::OUString > GetPropertyNames();
 
 public:
     SwOLELRUCache();
 
-//STRIP001  virtual void Notify( const com::sun::star::uno::Sequence<
-//STRIP001                              rtl::OUString>& aPropertyNames );
+//STRIP001  virtual void Notify( const ::com::sun::star::uno::Sequence<
+//STRIP001                              ::rtl::OUString>& aPropertyNames );
 //STRIP001  virtual void Commit();
     void Load();
 
@@ -585,7 +586,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
 /*N*/ SwOLELRUCache::SwOLELRUCache()
 /*N*/   : SvPtrarr( 64, 16 ),
-/*N*/   utl::ConfigItem( OUString::createFromAscii( "Office.Common/Cache" )),
+/*N*/   ::utl::ConfigItem( OUString::createFromAscii( "Office.Common/Cache" )),
 /*N*/   bInUnload( sal_False ),
 /*N*/   nLRU_InitSize( 20 )
 /*N*/ {
@@ -593,7 +594,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   Load();
 /*N*/ }
 
-/*N*/ com::sun::star::uno::Sequence< rtl::OUString > SwOLELRUCache::GetPropertyNames()
+/*N*/ ::com::sun::star::uno::Sequence< ::rtl::OUString > SwOLELRUCache::GetPropertyNames()
 /*N*/ {
 /*N*/   Sequence< OUString > aNames( 1 );
 /*N*/   OUString* pNames = aNames.getArray();
@@ -601,8 +602,8 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   return aNames;
 /*N*/ }
 
-//STRIP001 void SwOLELRUCache::Notify( const com::sun::star::uno::Sequence<
-//STRIP001                              rtl::OUString>& rPropertyNames )
+//STRIP001 void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence<
+//STRIP001                              ::rtl::OUString>& rPropertyNames )
 //STRIP001 {
 //STRIP001  Load();
 //STRIP001 }
@@ -687,3 +688,4 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
 
 
+}

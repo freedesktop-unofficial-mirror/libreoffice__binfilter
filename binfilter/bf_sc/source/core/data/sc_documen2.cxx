@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #ifdef PCH
 #include "core_pch.hxx"
 #endif
+
 
 #pragma hdrstop
 
@@ -313,6 +314,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
 
 /*N*/ ScDocument::ScDocument( ScDocumentMode    eMode,
@@ -1881,3 +1883,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if (pChangeViewSettings==NULL)
 /*N*/   rpEditEngine = NULL;
 /*N*/ }
 
+} //namespace binfilter

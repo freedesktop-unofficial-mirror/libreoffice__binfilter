@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlgrhlp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $
+ *  last change: $Author: mwu $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,15 +68,16 @@
 
 #include "impgrf.hxx"
 #include "xmlgrhlp.hxx"
+namespace binfilter {
 
 // -----------
 // - Defines -
 // -----------
 
 using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::io;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::io;
 
 #define XML_GRAPHICSTORAGE_NAME     "Pictures"
 #define XML_PACKAGE_URL_BASE        "vnd.sun.star.Package:"
@@ -841,3 +842,4 @@ public:
 /*N*/
 /*N*/     return aRet;
 /*N*/ }
+}

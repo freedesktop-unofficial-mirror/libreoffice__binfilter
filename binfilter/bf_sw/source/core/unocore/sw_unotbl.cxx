@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unotbl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -242,6 +242,7 @@
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -353,7 +354,7 @@ void lcl_SetSpecialProperty(SwFrmFmt* pFmt, const SfxItemPropertyMap* pMap, cons
             if(sPageStyle.Len())
             {
                 SwStyleNameMapper::FillUIName(sPageStyle, sPageStyle, GET_POOLID_PAGEDESC, sal_True );
-                pDesc = ::GetPageDescByName_Impl(*pFmt->GetDoc(), sPageStyle);
+                pDesc = ::binfilter::GetPageDescByName_Impl(*pFmt->GetDoc(), sPageStyle);
             }
             SwFmtPageDesc aDesc( pDesc );
             pFmt->GetDoc()->SetAttr(aDesc, *pFmt);
@@ -669,7 +670,7 @@ void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBo
 /* -----------------30.04.02 08:00-------------------
  *
  * --------------------------------------------------*/
-inline rtl::OUString lcl_getString( SwXCell &rCell )
+inline ::rtl::OUString lcl_getString( SwXCell &rCell )
 {
     // getString is a member function of the base class...
     return rCell.getString();
@@ -677,7 +678,7 @@ inline rtl::OUString lcl_getString( SwXCell &rCell )
 /* -----------------30.04.02 08:00-------------------
  * non UNO function call to set string in SwXCell
  * --------------------------------------------------*/
-void lcl_setString( SwXCell &rCell, const rtl::OUString &rTxt )
+void lcl_setString( SwXCell &rCell, const ::rtl::OUString &rTxt )
 {
     if(rCell.IsValid())
     {
@@ -811,7 +812,7 @@ SwXCell::~SwXCell()
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXCell::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2103,7 +2104,7 @@ void    SwTableProperties_Impl::ApplyTblAttr(const SwTable& rTbl, SwDoc& rDoc)
         if(sPageStyle.Len())
         {
             SwStyleNameMapper::FillUIName(sPageStyle, sPageStyle, GET_POOLID_PAGEDESC, sal_True );
-            const SwPageDesc* pDesc = ::GetPageDescByName_Impl(rDoc, sPageStyle);
+            const SwPageDesc* pDesc = ::binfilter::GetPageDescByName_Impl(rDoc, sPageStyle);
             if(pDesc)
             {
                 SwFmtPageDesc aDesc( pDesc );
@@ -2238,7 +2239,7 @@ SwXTextTable* SwXTextTable::GetImplementation(Reference< XInterface> xRef )
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextTable::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2814,7 +2815,7 @@ void SAL_CALL SwXTextTable::setDataArray(
                 {
                     const uno::Any &rAny = pColArray[nCol];
                     if (TypeClass_STRING == rAny.getValueTypeClass())
-                        lcl_setString( *pXCell, *(rtl::OUString *) rAny.getValue() );
+                        lcl_setString( *pXCell, *(::rtl::OUString *) rAny.getValue() );
                     else
                     {
                         double d;
@@ -3740,7 +3741,7 @@ uno::Sequence< OUString > SwXTextTable::getSupportedServiceNames(void) throw( un
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXCellRange::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -4280,7 +4281,7 @@ void SAL_CALL SwXCellRange::setDataArray(
                 {
                     const uno::Any &rAny = pColArray[nCol];
                     if (TypeClass_STRING == rAny.getValueTypeClass())
-                        lcl_setString( *pXCell, *(rtl::OUString *) rAny.getValue() );
+                        lcl_setString( *pXCell, *(::rtl::OUString *) rAny.getValue() );
                     else
                     {
                         double d;
@@ -5124,3 +5125,4 @@ void SwChartEventListenerContainer::ChartDataChanged()
     }
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3marks.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:30:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _CNTNRSRT_HXX
 #include <svtools/cntnrsrt.hxx>
 #endif
+namespace binfilter {
 
 enum Sw3MarkType {
     SW3_TOX_POINT, SW3_TOX_MARK,
@@ -103,4 +104,5 @@ public:
 
 DECLARE_CONTAINER_SORT_DEL( Sw3Marks, Sw3Mark )
 
+} //namespace binfilter
 #endif

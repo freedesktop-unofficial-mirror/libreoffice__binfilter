@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pam.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
+namespace binfilter {
 
 
 // fuer den dummen ?MSC-? Compiler
@@ -913,7 +914,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   SwCntntNode *pNd = (*fnMove->fnNds)( &rPam.GetPoint()->nNode, TRUE );
 /*N*/   if( pNd )
 /*N*/       rPam.GetPoint()->nContent.Assign( pNd,
-/*N*/                       ::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
+/*N*/                       ::binfilter::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
 /*N*/   return 0 != pNd;
 /*N*/ }
 
@@ -974,7 +975,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/           GoNextNds( &rPos.nNode, TRUE ))) )
 /*N*/   {
 /*N*/       rPos.nContent.Assign( pNd,
-/*N*/                       ::GetSttOrEnd( aPosPara == fnMoveForward, *pNd ));
+/*N*/                       ::binfilter::GetSttOrEnd( aPosPara == fnMoveForward, *pNd ));
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
@@ -989,7 +990,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/       SwPosition& rPos = *rPam.GetPoint();
 /*N*/       SwCntntNode * pNd = rPos.nNode.GetNode().GetCntntNode();
 /*N*/       rPos.nContent.Assign( pNd,
-/*N*/                       ::GetSttOrEnd( aPosPara == fnMoveForward, *pNd ) );
+/*N*/                       ::binfilter::GetSttOrEnd( aPosPara == fnMoveForward, *pNd ) );
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
@@ -1012,7 +1013,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   }
 /*N*/
 /*N*/   rPos.nContent.Assign( pNd,
-/*N*/                       ::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
+/*N*/                       ::binfilter::GetSttOrEnd( fnMove == fnMoveForward, *pNd ) );
 /*N*/   return aSavePos != rPos;
 /*N*/ }
 
@@ -1061,3 +1062,4 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 
+}

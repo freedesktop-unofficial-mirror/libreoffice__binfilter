@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dbdocimp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,7 +102,8 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
+namespace binfilter {
+using namespace ::com::sun::star;
 
 #define SC_SERVICE_ROWSET           "com.sun.star.sdb.RowSet"
 #define SC_SERVICE_INTHANDLER       "com.sun.star.sdb.InteractionHandler"
@@ -128,7 +129,7 @@ using namespace com::sun::star;
 //STRIP001  uno::Reference<frame::XDispatchProvider> xDP(xFrame, uno::UNO_QUERY);
 //STRIP001
 //STRIP001  uno::Reference<frame::XFrame> xBeamerFrame = xFrame->findFrame(
-//STRIP001                                      rtl::OUString::createFromAscii("_beamer"),
+//STRIP001                                      ::rtl::OUString::createFromAscii("_beamer"),
 //STRIP001                                      frame::FrameSearchFlag::CHILDREN);
 //STRIP001  if (xBeamerFrame.is())
 //STRIP001  {
@@ -141,8 +142,8 @@ using namespace com::sun::star;
 //STRIP001                                                      sdb::CommandType::TABLE );
 //STRIP001
 //STRIP001             ::svx::ODataAccessDescriptor aSelection;
-//STRIP001             aSelection[svx::daDataSource]   <<= rtl::OUString( rParam.aDBName );
-//STRIP001             aSelection[svx::daCommand]      <<= rtl::OUString( rParam.aStatement );
+//STRIP001             aSelection[svx::daDataSource]   <<= ::rtl::OUString( rParam.aDBName );
+//STRIP001             aSelection[svx::daCommand]      <<= ::rtl::OUString( rParam.aStatement );
 //STRIP001             aSelection[svx::daCommandType]  <<= nType;
 //STRIP001
 //STRIP001          xControllerSelection->select(uno::makeAny(aSelection.createPropertyValueSequence()));
@@ -167,7 +168,7 @@ using namespace com::sun::star;
 /*M*/   uno::Reference<sdbc::XResultSet> xResSet;
 /*M*/   uno::Sequence<uno::Any> aSelection;
 /*M*/
-/*M*/   rtl::OUString aStrVal;
+/*M*/   ::rtl::OUString aStrVal;
 /*M*/   const beans::PropertyValue* pPropArray = aArgs.getConstArray();
 /*M*/   long nPropCount = aArgs.getLength();
 /*M*/   long i;
@@ -322,7 +323,7 @@ using namespace com::sun::star;
 /*M*/             bDispose = sal_True;
 /*M*/             xRowSet = uno::Reference<sdbc::XRowSet>(
 /*M*/                     ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                         rtl::OUString::createFromAscii( SC_SERVICE_ROWSET ) ),
+/*M*/                         ::rtl::OUString::createFromAscii( SC_SERVICE_ROWSET ) ),
 /*M*/                     uno::UNO_QUERY);
 /*M*/             uno::Reference<beans::XPropertySet> xRowProp( xRowSet, uno::UNO_QUERY );
 /*M*/             DBG_ASSERT( xRowProp.is(), "can't get RowSet" );
@@ -337,24 +338,24 @@ using namespace com::sun::star;
 /*M*/                                                             sdb::CommandType::TABLE );
 /*M*/                 uno::Any aAny;
 /*M*/
-/*M*/                 aAny <<= rtl::OUString( rParam.aDBName );
+/*M*/                 aAny <<= ::rtl::OUString( rParam.aDBName );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             rtl::OUString::createFromAscii(SC_DBPROP_DATASOURCENAME), aAny );
+/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_DATASOURCENAME), aAny );
 /*M*/
-/*M*/                 aAny <<= rtl::OUString( rParam.aStatement );
+/*M*/                 aAny <<= ::rtl::OUString( rParam.aStatement );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             rtl::OUString::createFromAscii(SC_DBPROP_COMMAND), aAny );
+/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMAND), aAny );
 /*M*/
 /*M*/                 aAny <<= nType;
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             rtl::OUString::createFromAscii(SC_DBPROP_COMMANDTYPE), aAny );
+/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMANDTYPE), aAny );
 /*M*/
 /*M*/                 uno::Reference<sdb::XCompletedExecution> xExecute( xRowSet, uno::UNO_QUERY );
 /*M*/                 if ( xExecute.is() )
 /*M*/                 {
 /*M*/                     uno::Reference<task::XInteractionHandler> xHandler(
 /*M*/                             ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                                 rtl::OUString::createFromAscii( SC_SERVICE_INTHANDLER ) ),
+/*M*/                                 ::rtl::OUString::createFromAscii( SC_SERVICE_INTHANDLER ) ),
 /*M*/                             uno::UNO_QUERY);
 /*M*/                     xExecute->executeWithCompletion( xHandler );
 /*M*/                 }
@@ -749,3 +750,4 @@ using namespace com::sun::star;
 
 
 
+}

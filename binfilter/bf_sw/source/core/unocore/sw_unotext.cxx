@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unotext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -138,6 +138,7 @@
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
@@ -555,7 +556,7 @@ void SwXText::insertTextContent(const uno::Reference< XTextRange > & xRange,
             if(!xContentTunnel.is())
             {
                 IllegalArgumentException aArgException;
-                aArgException.Message = C2U("text content doesn't support com::sun::star::lang::XUnoTunnel");
+                aArgException.Message = C2U("text content doesn't support ::com::sun::star::lang::XUnoTunnel");
                 throw aArgException;
             }
             SwXDocumentIndexMark* pDocumentIndexMark =
@@ -1340,7 +1341,7 @@ void SwXText::removeVetoableChangeListener(
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXText::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------08.01.01 09:07--------------------------------
@@ -1842,3 +1843,4 @@ void    SwXHeadFootText::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
     ClientModify( this, pOld, pNew);
 }
 
+}

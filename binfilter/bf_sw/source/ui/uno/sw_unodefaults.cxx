@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unodefaults.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #endif
 #include <bf_svx/unoprov.hxx>
 #include <doc.hxx>
+namespace binfilter {
 
 /* -----------------------------13.03.01 14:16--------------------------------
 
@@ -101,3 +102,4 @@ SfxItemPool* SwSvxUnoDrawPool::getModelPool( sal_Bool bReadOnly ) throw()
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unotxdoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -281,6 +281,7 @@
 #ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
@@ -331,7 +332,7 @@ SwTxtFmtColl *lcl_GetParaStyle(const String& rCollName, SwDoc* pDoc)
  ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXTextDocument::getUnoTunnelId()
 {
-    static Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -3308,3 +3309,4 @@ void SwXDocumentPropertyHelper::Invalidate()
     SvxUnoForbiddenCharsTable::mxForbiddenChars.unbind();
 }
 
+}

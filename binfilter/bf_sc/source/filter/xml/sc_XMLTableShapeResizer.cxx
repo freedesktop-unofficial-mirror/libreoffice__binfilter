@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableShapeResizer.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -107,12 +108,12 @@ ScMyShapeResizer::~ScMyShapeResizer()
 
 sal_Bool ScMyShapeResizer::IsOLE(uno::Reference< drawing::XShape >& rShape) const
 {
-    return rShape->getShapeType().equals(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.OLE2Shape")));
+    return rShape->getShapeType().equals(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.OLE2Shape")));
 }
 
 void ScMyShapeResizer::CreateChartListener(ScDocument* pDoc,
-    const rtl::OUString& rName,
-    const rtl::OUString* pRangeList)
+    const ::rtl::OUString& rName,
+    const ::rtl::OUString* pRangeList)
 {
     if(pDoc)
     {
@@ -144,7 +145,7 @@ void ScMyShapeResizer::CreateChartListener(ScDocument* pDoc,
 }
 
 void ScMyShapeResizer::AddShape(uno::Reference <drawing::XShape>& rShape,
-    rtl::OUString* pRangeList,
+    ::rtl::OUString* pRangeList,
     table::CellAddress& rStartAddress, table::CellAddress& rEndAddress,
     sal_Int32 nEndX, sal_Int32 nEndY)
 {
@@ -186,15 +187,15 @@ void ScMyShapeResizer::ResizeShapes()
 {
     if (!aShapes.empty() && rImport.GetModel().is())
     {
-        rtl::OUString sRowHeight(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLHGT));
-        rtl::OUString sPersistName (RTL_CONSTASCII_USTRINGPARAM("PersistName"));
-        rtl::OUString sCaptionPoint( RTL_CONSTASCII_USTRINGPARAM( "CaptionPoint" ));
-        rtl::OUString sConnectorShape( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.ConnectorShape") );
-        rtl::OUString sCaptionShape( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.CaptionShape") );
-        rtl::OUString sStartShape(RTL_CONSTASCII_USTRINGPARAM("StartShape"));
-        rtl::OUString sEndShape(RTL_CONSTASCII_USTRINGPARAM("EndShape"));
-        rtl::OUString sStartPosition(RTL_CONSTASCII_USTRINGPARAM("StartPosition"));
-        rtl::OUString sEndPosition(RTL_CONSTASCII_USTRINGPARAM("EndPosition"));
+        ::rtl::OUString sRowHeight(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLHGT));
+        ::rtl::OUString sPersistName (RTL_CONSTASCII_USTRINGPARAM("PersistName"));
+        ::rtl::OUString sCaptionPoint( RTL_CONSTASCII_USTRINGPARAM( "CaptionPoint" ));
+        ::rtl::OUString sConnectorShape( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.ConnectorShape") );
+        ::rtl::OUString sCaptionShape( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.CaptionShape") );
+        ::rtl::OUString sStartShape(RTL_CONSTASCII_USTRINGPARAM("StartShape"));
+        ::rtl::OUString sEndShape(RTL_CONSTASCII_USTRINGPARAM("EndShape"));
+        ::rtl::OUString sStartPosition(RTL_CONSTASCII_USTRINGPARAM("StartPosition"));
+        ::rtl::OUString sEndPosition(RTL_CONSTASCII_USTRINGPARAM("EndPosition"));
         uno::Reference<table::XCellRange> xTableRow;
         uno::Reference<sheet::XSpreadsheet> xSheet;
         uno::Reference<table::XTableRows> xTableRows;
@@ -275,7 +276,7 @@ void ScMyShapeResizer::ResizeShapes()
                                                 {
                                                     // only one point is connected, the other should be moved
 
-                                                    rtl::OUString sProperty;
+                                                    ::rtl::OUString sProperty;
                                                     if (xStartShape.is())
                                                     {
                                                         awt::Point aEndPoint;
@@ -380,7 +381,7 @@ void ScMyShapeResizer::ResizeShapes()
                             if (xShapeInfo->hasPropertyByName(sPersistName))
                             {
                                 uno::Any aAny = xShapeProps->getPropertyValue(sPersistName);
-                                rtl::OUString sName;
+                                ::rtl::OUString sName;
                                 if (aAny >>= sName)
                                     CreateChartListener(pDoc, sName, aItr->pRangeList);
                             }
@@ -396,4 +397,5 @@ void ScMyShapeResizer::ResizeShapes()
             }
         }
     }
+}
 }

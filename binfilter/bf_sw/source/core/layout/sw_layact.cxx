@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -134,6 +134,7 @@
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
+namespace binfilter {
 
 //#pragma optimize("ity",on)
 
@@ -194,7 +195,7 @@
 /*N*/       if ( IsReschedule() )  \
 /*N*/         { \
 /*N*/             if (pProgress) pProgress->Reschedule(); \
-/*N*/           ::RescheduleProgress( pImp->GetShell()->GetDoc()->GetDocShell() ); \
+/*N*/           ::binfilter::RescheduleProgress( pImp->GetShell()->GetDoc()->GetDocShell() ); \
 /*N*/         } \
 /*N*/   }
 
@@ -496,7 +497,7 @@
 /*?*/             aPaintRect.Pos().X() += nOfst;
 /*N*/         else
 /*N*/       aPaintRect.Pos().Y() -= nOfst;
-/*N*/       if ( ::lcl_IsOverObj( pCntnt, pPage, aPaintRect, aRect, 0 ) )
+/*N*/       if ( ::binfilter::lcl_IsOverObj( pCntnt, pPage, aPaintRect, aRect, 0 ) )
 /*N*/           bScroll = FALSE;
 /*N*/         if( bVert )
 /*?*/             aPaintRect.Pos().X() -= nOfst;
@@ -554,7 +555,7 @@
 /*N*/   nEndPage( USHRT_MAX ),
 /*N*/   pProgress(NULL)
 /*N*/ {
-/*N*/   bPaintExtraData = ::IsExtraData( pImp->GetShell()->GetDoc() );
+/*N*/   bPaintExtraData = ::binfilter::IsExtraData( pImp->GetShell()->GetDoc() );
 /*N*/   bPaint = bComplete = bWaitAllowed = bCheckPages = TRUE;
 /*N*/   bInput = bAgain = bNextCycle = bCalcLayout = bIdle = bReschedule =
 /*N*/   bUpdateExpFlds = bBrowseActionStop = bActionInProgress = FALSE;
@@ -791,7 +792,7 @@
 /*N*/       if ( nEndPage != USHRT_MAX && pPage->GetPhyPageNum() > nPercentPageNum )
 /*N*/       {
 /*?*/           nPercentPageNum = pPage->GetPhyPageNum();
-/*?*/           ::SetProgressState( nPercentPageNum, pImp->GetShell()->GetDoc()->GetDocShell());
+/*?*/           ::binfilter::SetProgressState( nPercentPageNum, pImp->GetShell()->GetDoc()->GetDocShell());
 /*N*/       }
 /*N*/       pOptTab = 0;
 /*N*/            //Kein ShortCut fuer Idle oder CalcLayout
@@ -1176,7 +1177,7 @@
 /*N*/                pFrm->Frm().Top() < nBottom )
 /*N*/               return pFrm;
 /*N*/           const SwFrm *pTmp;
-/*N*/           if ( 0 != (pTmp = ::lcl_FindFirstInvaLay( pFrm, nBottom )) )
+/*N*/           if ( 0 != (pTmp = ::binfilter::lcl_FindFirstInvaLay( pFrm, nBottom )) )
 /*N*/               return pTmp;
 /*N*/       }
 /*N*/       pFrm = pFrm->GetNext();
@@ -1749,7 +1750,7 @@
 /*N*/   {
 /*N*/       if ( pLow->IsCompletePaint() || !pLow->IsValid() )
 /*N*/           return FALSE;
-/*N*/       if ( pLow->IsLayoutFrm() && !::lcl_AreLowersScrollable( (SwLayoutFrm*)pLow ))
+/*N*/       if ( pLow->IsLayoutFrm() && !::binfilter::lcl_AreLowersScrollable( (SwLayoutFrm*)pLow ))
 /*N*/           return FALSE;
 /*N*/       pLow = pLow->GetNext();
 /*N*/   }
@@ -1766,7 +1767,7 @@
 /*N*/       SwLayoutFrm *pRow = (SwLayoutFrm*)pTab->Lower();
 /*N*/       while ( pRow )
 /*N*/       {
-/*N*/           if ( !::lcl_AreLowersScrollable( pRow ) )
+/*N*/           if ( !::binfilter::lcl_AreLowersScrollable( pRow ) )
 /*N*/               pUnchgdRow = 0;
 /*N*/           else if ( !pUnchgdRow )
 /*N*/               pUnchgdRow = pRow;
@@ -1808,7 +1809,7 @@
 /*N*/       }
 /*N*/       if ( pLow->IsLayoutFrm() )
 /*N*/       {
-/*N*/           ::lcl_ValidateLowers( (SwLayoutFrm*)pLow, nOfst, 0, pPage, bResetOnly);
+/*N*/           ::binfilter::lcl_ValidateLowers( (SwLayoutFrm*)pLow, nOfst, 0, pPage, bResetOnly);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1828,7 +1829,7 @@
 /*N*/                           if ( pFly->IsFlyInCntFrm() )
 /*N*/                               ((SwFlyInCntFrm*)pFly)->AddRefOfst( nOfst );
 /*N*/                       }
-/*N*/                       ::lcl_ValidateLowers( pFly, nOfst, 0, pPage, bResetOnly);
+/*N*/                       ::binfilter::lcl_ValidateLowers( pFly, nOfst, 0, pPage, bResetOnly);
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
@@ -1836,12 +1837,12 @@
 /*N*/                         if ( pO->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pO);
-/*N*/                             pDrawVirtObj->SetAnchorPos( pLow->GetFrmAnchorPos( ::HasWrap( pO ) ) );
+/*N*/                             pDrawVirtObj->SetAnchorPos( pLow->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
 /*N*/                             pDrawVirtObj->AdjustRelativePosToReference();
 /*N*/                         }
 /*N*/                         else
 /*N*/                         {
-/*N*/                             pO->SetAnchorPos( pLow->GetFrmAnchorPos( ::HasWrap( pO ) ) );
+/*N*/                             pO->SetAnchorPos( pLow->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
 /*N*/                             SwFrmFmt *pFrmFmt = FindFrmFmt( pO );
 /*N*/                             if( !pFrmFmt ||
 /*N*/                                 FLY_IN_CNTNT != pFrmFmt->GetAnchor().GetAnchorId() )
@@ -1882,7 +1883,7 @@
 /*N*/   aRect.Pos().Y() += nOfst;
 /*N*/   if ( pPage->GetSortedObjs() )
 /*N*/   {
-/*N*/       if ( ::lcl_IsOverObj( pTab, pPage, rRect, aRect, pTab ) )
+/*N*/       if ( ::binfilter::lcl_IsOverObj( pTab, pPage, rRect, aRect, pTab ) )
 /*N*/           return;
 /*N*/   }
 /*N*/   if ( pPage->GetFmt()->GetBackground().GetGraphicPos() != GPOS_NONE )
@@ -1891,7 +1892,7 @@
 /*N*/   ViewShell *pSh = pPage->GetShell();
 /*N*/   if ( pSh )
 /*N*/       pSh->AddScrollRect( pTab, aRect, nOfst );
-/*N*/   ::lcl_ValidateLowers( pTab, nOfst, pRow, pTab->FindPageFrm(),
+/*N*/   ::binfilter::lcl_ValidateLowers( pTab, nOfst, pRow, pTab->FindPageFrm(),
 /*N*/                                               pTab->IsLowersFormatted() );
 /*N*/ }
 
@@ -1954,7 +1955,7 @@
 /*N*/             // OD 31.10.2002 #104100# - vertical layout support
 /*N*/             (aScrollRect.*fnRect->fnSetBottom)( (pRow->Frm().*fnRect->fnGetBottom)() );
 /*N*/           //Die Oberkante wird ggf. durch die erste unveraenderte Zeile bestimmt.
-/*N*/           pRow = ::lcl_IsTabScrollable( pTab );
+/*N*/           pRow = ::binfilter::lcl_IsTabScrollable( pTab );
 /*N*/           if ( pRow && pRow != pTab->Lower() )
 /*N*/                 // OD 31.10.2002 #104100# - vertical layout support
 /*N*/                 (aScrollRect.*fnRect->fnSetTop)( (pRow->Frm().*fnRect->fnGetTop)() );
@@ -1981,7 +1982,7 @@
 /*N*/               if ( pRow->GetPrev() )
 /*N*/               {
 /*N*/                   if ( pRow->GetPrev()->IsValid() ||
-/*N*/                        ::CheckPos( pRow->GetPrev() ) )
+/*N*/                        ::binfilter::CheckPos( pRow->GetPrev() ) )
 /*N*/                     {
 /*N*/                         // OD 31.10.2002 #104100# - vertical layout support
 /*N*/                         nOfst = -(pRow->Frm().*fnRect->fnTopDist)( (pRow->GetPrev()->Frm().*fnRect->fnGetBottom)() );
@@ -1995,7 +1996,7 @@
 /*N*/
 /*N*/               if ( nOfst )
 /*N*/               {
-/*N*/                    ::lcl_AddScrollRectTab( pTab, pRow, aScrollRect, nOfst );
+/*N*/                    ::binfilter::lcl_AddScrollRectTab( pTab, pRow, aScrollRect, nOfst );
 /*N*/                    bPainted = TRUE;
 /*N*/               }
 /*N*/           }
@@ -3012,3 +3013,4 @@
 /*N*/   pImp->pIdleAct = 0;
 /*N*/ }
 
+}

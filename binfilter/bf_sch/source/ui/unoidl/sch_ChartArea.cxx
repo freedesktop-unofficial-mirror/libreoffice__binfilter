@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChartArea.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,8 +77,9 @@
 #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
 #include <cppuhelper/queryinterface.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ChartArea::ChartArea( ChartModel* pModel, sal_Int32 nObjectId ) :
         ChXChartObject( CHMAP_AREA, pModel, nObjectId )
@@ -165,4 +166,5 @@ ChartArea* ChartArea::getImplementation( uno::Reference< uno::XInterface > xData
         return (ChartArea*)xUT->getSomething( ChartArea::getUnoTunnelId() );
     else
         return NULL;
+}
 }

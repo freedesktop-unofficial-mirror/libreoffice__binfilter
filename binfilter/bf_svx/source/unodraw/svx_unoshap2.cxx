@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,6 +110,7 @@
 #include "svdmodel.hxx"
 #include "svdouno.hxx"
 #include "shapeimpl.hxx"
+namespace binfilter {
 
 using namespace ::osl;
 using namespace ::vos;
@@ -127,12 +128,13 @@ using namespace ::com::sun::star::container;
     if( rType == ::getCppuType((const Reference< xint >*)0) ) \
         aAny <<= Reference< xint >(this)
 
-class GDIMetaFile;
-class SvStream;
+} class GDIMetaFile; namespace binfilter {//STRIP009
+} class SvStream; namespace binfilter {//STRIP009
+} //namespace binfilter
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream,
                               PFilterCallback pCallback=NULL, void * pCallerData=NULL,
                               sal_Bool bPlaceable=sal_True);
-
+namespace binfilter {//STRIP009
 /***********************************************************************
 * class SvxShapeGroup                                                  *
 ***********************************************************************/
@@ -819,7 +821,7 @@ void SvxShapeControl::valueParaAdjustToAlign(Any& rValue)
 }
 
 void SAL_CALL SvxShapeControl::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
-    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, com::sun::star::beans::PropertyVetoException, com::sun::star::lang::IllegalArgumentException)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
 {
     OUString aFormsName;
     sal_Bool bNeedConversion;
@@ -1039,12 +1041,12 @@ uno::Sequence< OUString > SAL_CALL SvxShapeCircle::getSupportedServiceNames() th
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-
+}//namespace binfilter
 #include "svdopath.hxx"
-
+namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
 SvxShapePolyPolygon::SvxShapePolyPolygon( SdrObject* pObj , drawing::PolygonKind eNew )
- throw( com::sun::star::beans::PropertyVetoException, com::sun::star::lang::IllegalArgumentException)
+ throw( ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
 : SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGON) ),
     ePolygonKind( eNew )
 {
@@ -1093,7 +1095,7 @@ void SAL_CALL ImplSvxPolyPolygonToPointSequenceSequence( const drawing::PointSeq
 //----------------------------------------------------------------------
 
 void SAL_CALL SvxShapePolyPolygon::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
-    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, com::sun::star::beans::PropertyVetoException, com::sun::star::lang::IllegalArgumentException)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
 {
     OGuard aGuard( Application::GetSolarMutex() );
 
@@ -1295,13 +1297,14 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygon::getSupportedServiceNames
 /***********************************************************************
 * class SvxShapePolyPolygonBezier                                      *
 ***********************************************************************/
-
+}
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
 #endif
 #ifndef _COM_SUN_STAR_DRAWING_FLAGSEQUENCE_HPP_
 #include <com/sun/star/drawing/FlagSequence.hpp>
 #endif
+namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
 SvxShapePolyPolygonBezier::SvxShapePolyPolygonBezier( SdrObject* pObj , drawing::PolygonKind eNew ) throw()
 :   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGONBEZIER) ),
@@ -1429,7 +1432,7 @@ void SAL_CALL ImplSvxPolyPolygonBezierCoordsToPolyPolygon( drawing::PolyPolygonB
 
 //----------------------------------------------------------------------
 void SAL_CALL SvxShapePolyPolygonBezier::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
-    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, com::sun::star::beans::PropertyVetoException, com::sun::star::lang::IllegalArgumentException )
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException )
 {
     OGuard aGuard( Application::GetSolarMutex() );
 
@@ -1578,7 +1581,7 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 /***********************************************************************
 * class SvxGraphicObject                                               *
 ***********************************************************************/
-
+}
 #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
 #endif
@@ -1601,7 +1604,7 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 #endif
 
 #include "toolkit/unohlp.hxx"
-
+namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
 SvxGraphicObject::SvxGraphicObject( SdrObject* pObj ) throw()
 :   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_GRAPHICOBJECT) )
@@ -1615,7 +1618,7 @@ SvxGraphicObject::~SvxGraphicObject() throw()
 
 //----------------------------------------------------------------------
 void SAL_CALL SvxGraphicObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
-    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, com::sun::star::beans::PropertyVetoException, com::sun::star::lang::IllegalArgumentException)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
 {
     OGuard aGuard( Application::GetSolarMutex() );
 
@@ -1861,4 +1864,5 @@ SvxShapeCaption::SvxShapeCaption( SdrObject* pObj ) throw()
 
 SvxShapeCaption::~SvxShapeCaption() throw()
 {
+}
 }

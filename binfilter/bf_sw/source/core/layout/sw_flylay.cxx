@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flylay.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,6 +111,7 @@
 #include <frmsh.hxx>
 #endif
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -163,7 +164,7 @@
 /*N*/ void SwFlyFreeFrm::NotifyBackground( SwPageFrm *pPage,
 /*N*/                                    const SwRect& rRect, PrepareHint eHint )
 /*N*/ {
-/*N*/   ::Notify_Background( GetVirtDrawObj(), pPage, rRect, eHint, TRUE );
+/*N*/   ::binfilter::Notify_Background( GetVirtDrawObj(), pPage, rRect, eHint, TRUE );
 /*N*/ }
 
 /*************************************************************************
@@ -295,8 +296,8 @@
 /*N*/
 /*N*/   const SwVirtFlyDrawObj *pObj = GetVirtDrawObj();
 /*N*/   SwRect aClip, aTmpStretch;
-/*N*/   ::CalcClipRect( pObj, aClip, TRUE );
-/*N*/   ::CalcClipRect( pObj, aTmpStretch, FALSE );
+/*N*/   ::binfilter::CalcClipRect( pObj, aClip, TRUE );
+/*N*/   ::binfilter::CalcClipRect( pObj, aTmpStretch, FALSE );
 /*N*/   aClip._Intersection( aTmpStretch );
 /*N*/
 /*N*/     const long nBot = Frm().Top() + Frm().Height();
@@ -436,7 +437,7 @@
 /*?*/                   ((SwLayoutFrm*)pLow)->Lower()->Calc();
 /*?*/                   pLow = pLow->GetNext();
 /*?*/               } while ( pLow );
-/*?*/               ::CalcCntnt( this );
+/*?*/               ::binfilter::CalcCntnt( this );
 /*?*/               ColUnlock();
 /* MA 02. Sep. 96: Wenn das Attribut gesetzt wird funktionieren Flys in Flys
  * nicht  (30095 30096)
@@ -935,7 +936,7 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   {   ASSERT( pFmt, ":-( kein Format fuer Fly uebergeben." );
 /*N*/       pFly = new SwFlyLayFrm( (SwFlyFrmFmt*)pFmt, this );
 /*N*/       SwFrm::AppendFly( pFly );
-/*N*/       ::RegistFlys( this, pFly );
+/*N*/       ::binfilter::RegistFlys( this, pFly );
 /*N*/   }
 /*N*/   return pFly;
 /*N*/ }
@@ -1193,3 +1194,4 @@ BOOL CalcClipRect( const SdrObject *pSdrObj, SwRect &rRect, BOOL bMove )
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ftnfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,6 +122,7 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -1542,13 +1543,13 @@
 /*N*/
 /*N*/   //Damit die Position herausgefunden werden kann.
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/   const ULONG nStPos = ::lcl_FindFtnPos( pDoc, pNew->GetAttr() );
+/*N*/   const ULONG nStPos = ::binfilter::lcl_FindFtnPos( pDoc, pNew->GetAttr() );
 /*N*/
 /*N*/   ULONG nCmpPos, nLastPos;
 /*N*/   SwFtnContFrm *pParent = 0;
 /*N*/   if( pSibling )
 /*N*/   {
-/*?*/       nCmpPos = ::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
+/*?*/       nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
 /*?*/       if( nCmpPos > nStPos )
 /*?*/           pSibling = NULL;
 /*N*/   }
@@ -1569,7 +1570,7 @@
 /*?*/               if ( pFtn )
 /*?*/               {
 /*?*/
-/*?*/                   nCmpPos = ::lcl_FindFtnPos( pDoc, pFtn->GetAttr() );
+/*?*/                   nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pFtn->GetAttr() );
 /*?*/                   if ( nCmpPos > nStPos )
 /*?*/                       pParent = 0;
 /*?*/               }
@@ -1591,7 +1592,7 @@
 /*?*/           {   ASSERT( !this, "Keinen Platz fuer Fussnote gefunden.");
 /*?*/               return;
 /*?*/           }
-/*?*/           nCmpPos  = ::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
+/*?*/           nCmpPos  = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
 /*?*/
 /*?*/           SwFtnBossFrm *pNxtB = this; //Immer den letzten merken, damit wir nicht
 /*?*/           SwFtnFrm  *pLastSib = 0;    //ueber das Ziel hinausschiessen.
@@ -1628,7 +1629,7 @@
 /*?*/               }
 /*?*/               if ( pSibling )
 /*?*/               {
-/*?*/                   nCmpPos = ::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
+/*?*/                   nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
 /*?*/                   ASSERT( nCmpPos > nLastPos, "InsertFtn: Order of FtnFrm's buggy" );
 /*?*/               }
 /*?*/           }
@@ -1701,7 +1702,7 @@
 /*?*/                   bEnd = TRUE;
 /*?*/           }
 /*?*/           if ( !bEnd && pSibling )
-/*?*/               nCmpPos = ::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
+/*?*/               nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
 /*?*/           if ( pSibling && pLastSib && (pSibling != pLastSib) )
 /*?*/           {   //Sind wir vielleicht bereits ueber das Ziel hinausgeschossen?
 /*?*/               if ( (nLastPos < nCmpPos) && (nCmpPos > nStPos) )
@@ -1714,7 +1715,7 @@
 /*N*/   }
 /*N*/   if ( pSibling )
 /*N*/   {
-/*?*/       nCmpPos = ::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
+/*?*/       nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
 /*?*/       if ( nCmpPos < nStPos )
 /*?*/       {
 /*?*/           while ( pSibling->GetFollow() )
@@ -1792,7 +1793,7 @@
 /*?*/           if ( !pPage->IsEndNotePage() )
 /*?*/           {
 /*?*/               SwPageDesc *pDesc = pDoc->GetEndNoteInfo().GetPageDesc( *pDoc );
-/*?*/               pPage = ::InsertNewPage( *pDesc, pPage->GetUpper(),
+/*?*/               pPage = ::binfilter::InsertNewPage( *pDesc, pPage->GetUpper(),
 /*?*/                       !pPage->OnRightPage(), FALSE, TRUE, 0 );
 /*?*/               pPage->SetEndNotePage( TRUE );
 /*?*/               bChgPage = TRUE;
@@ -1803,14 +1804,14 @@
 /*?*/               //suchen. Damit stellen wir sicher das wir auch bei hunderten
 /*?*/               //Fussnoten noch in endlicher Zeit fertig werden.
 /*?*/               SwPageFrm *pNxt = (SwPageFrm*)pPage->GetNext();
-/*?*/               const ULONG nStPos = ::lcl_FindFtnPos( pDoc, pAttr );
+/*?*/               const ULONG nStPos = ::binfilter::lcl_FindFtnPos( pDoc, pAttr );
 /*?*/               while ( pNxt && pNxt->IsEndNotePage() )
 /*?*/               {
 /*?*/                   SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/                   if ( pCont && pCont->Lower() )
 /*?*/                   {
 /*?*/                       ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
-/*?*/                       if ( nStPos > ::lcl_FindFtnPos( pDoc,
+/*?*/                       if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                       {
 /*?*/                           pPage = pNxt;
@@ -1836,7 +1837,7 @@
 /*?*/       if ( !pPage->IsFtnPage() )
 /*?*/       {
 /*?*/           SwPageDesc *pDesc = pDoc->GetFtnInfo().GetPageDesc( *pDoc );
-/*?*/           pPage = ::InsertNewPage( *pDesc, pPage->GetUpper(),
+/*?*/           pPage = ::binfilter::InsertNewPage( *pDesc, pPage->GetUpper(),
 /*?*/               !pPage->OnRightPage(), FALSE, TRUE, pPage->GetNext() );
 /*?*/           bChgPage = TRUE;
 /*?*/       }
@@ -1846,14 +1847,14 @@
 /*?*/           //suchen. Damit stellen wir sicher das wir auch bei hunderten
 /*?*/           //Fussnoten noch in endlicher Zeit fertig werden.
 /*?*/           SwPageFrm *pNxt = (SwPageFrm*)pPage->GetNext();
-/*?*/           const ULONG nStPos = ::lcl_FindFtnPos( pDoc, pAttr );
+/*?*/           const ULONG nStPos = ::binfilter::lcl_FindFtnPos( pDoc, pAttr );
 /*?*/           while ( pNxt && pNxt->IsFtnPage() && !pNxt->IsEndNotePage() )
 /*?*/           {
 /*?*/               SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/               if ( pCont && pCont->Lower() )
 /*?*/               {
 /*?*/                   ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
-/*?*/                   if ( nStPos > ::lcl_FindFtnPos( pDoc,
+/*?*/                   if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                   {
 /*?*/                       pPage = pNxt;
@@ -1895,7 +1896,7 @@
 /*N*/   SwFtnFrm *pNew = new SwFtnFrm( pDoc->GetDfltFrmFmt(), pRef, pAttr );
 /*N*/   {
 /*N*/       SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
-/*N*/       ::_InsertCnt( pNew, pDoc, aIdx.GetIndex() );
+/*N*/       ::binfilter::_InsertCnt( pNew, pDoc, aIdx.GetIndex() );
 /*N*/   }
 /*N*/   // Wenn die Seite gewechselt (oder gar neu angelegt) wurde,
 /*N*/   // muessen wir uns dort in die erste Spalte setzen
@@ -1911,7 +1912,7 @@
 /*N*/   pBoss->InsertFtn( pNew );
 /*N*/   if ( pNew->GetUpper() )         //Eingesetzt oder nicht?
 /*N*/   {
-/*N*/       ::RegistFlys( pNew->FindPageFrm(), pNew );
+/*N*/       ::binfilter::RegistFlys( pNew->FindPageFrm(), pNew );
 /*N*/       SwSectionFrm* pSect = FindSctFrm();
 /*N*/       // Der Inhalt des FtnContainers in einem (spaltigen) Bereich
 /*N*/       // braucht nur kalkuliert zu werden,
@@ -2454,7 +2455,7 @@
 /*?*/       pFtn = FindFirstFtn();
 /*N*/   }
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/   const ULONG nFtnPos = pAttr ? ::lcl_FindFtnPos( pDoc, pAttr ) : 0;
+/*N*/   const ULONG nFtnPos = pAttr ? ::binfilter::lcl_FindFtnPos( pDoc, pAttr ) : 0;
 /*N*/   SwFrm *pCnt = pFtn ? pFtn->ContainsAny() : 0;
 /*N*/   if ( pCnt )
 /*N*/   {
@@ -2463,7 +2464,7 @@
 /*N*/       do
 /*N*/       {
 /*N*/           if( !bStart )
-/*N*/               bStart = ::lcl_FindFtnPos( pDoc, pCnt->FindFtnFrm()->GetAttr() )
+/*N*/               bStart = ::binfilter::lcl_FindFtnPos( pDoc, pCnt->FindFtnFrm()->GetAttr() )
 /*N*/                        == nFtnPos;
 /*N*/           if( bStart )
 /*N*/             {
@@ -2542,7 +2543,7 @@
 /*N*/               //Nicht weiter als bis zur angegebenen Fussnote, falls eine
 /*N*/               //angegeben wurde.
 /*N*/               if ( pAttr &&
-/*N*/                    (::lcl_FindFtnPos( pDoc,
+/*N*/                    (::binfilter::lcl_FindFtnPos( pDoc,
 /*N*/                                   pCnt->FindFtnFrm()->GetAttr()) > nFtnPos ) )
 /*N*/                   bMore = FALSE;
 /*N*/           }
@@ -3107,3 +3108,4 @@
 /*N*/   return pCFrm;
 /*N*/ }
 
+}

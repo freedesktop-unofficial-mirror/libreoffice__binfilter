@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #include "editutil.hxx"
 #include "chgtrack.hxx"
 #include "indexmap.hxx"
+namespace binfilter {
 
 
 // STATIC DATA -----------------------------------------------------------
@@ -325,13 +326,13 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScFormulaCell::GetEnglishFormula( rtl::OUStringBuffer& rBuffer, BOOL bCompileXML ) const
+/*N*/ void ScFormulaCell::GetEnglishFormula( ::rtl::OUStringBuffer& rBuffer, BOOL bCompileXML ) const
 /*N*/ {
 /*N*/   //! mit GetFormula zusammenfassen !!!
 /*N*/
 /*N*/   if( pCode->GetError() && !pCode->GetLen() )
 /*N*/   {
-/*?*/       rBuffer = rtl::OUStringBuffer(ScGlobal::GetErrorString( pCode->GetError() )); return;
+/*?*/       rBuffer = ::rtl::OUStringBuffer(ScGlobal::GetErrorString( pCode->GetError() )); return;
 /*N*/   }
 /*N*/   else if( cMatrixFlag == MM_REFERENCE )
 /*N*/   {
@@ -1585,3 +1586,4 @@ DBG_ASSERT(0, "STRIP"); /*N*/   if( !pDocument->IsClipOrUndo() )
 
 
 
+}

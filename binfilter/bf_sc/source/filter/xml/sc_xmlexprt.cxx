@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -174,9 +174,9 @@
 #ifndef _XMLOFF_TXTPARAE_HXX
 #include <xmloff/txtparae.hxx>
 #endif
-#ifndef _XMLOFF_XMLCNITM_HXX
-#include <xmloff/xmlcnitm.hxx>
-#endif
+#ifndef _SVX_XMLCNITM_HXX  //STRIP008 #ifndef _XMLOFF_XMLCNITM_HXX
+#include <bf_svx/xmlcnitm.hxx>  //STRIP008 #include <xmloff/xmlcnitm.hxx>
+#endif  //STRIP008 #endif
 
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
@@ -288,6 +288,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 //! not found in unonames.hxx
 #define SC_STANDARDFORMAT "StandardFormat"
 #define SC_LAYERID "LayerID"
@@ -308,21 +309,21 @@
 #define SC_SHOW_CHANGES_BY_RANGES                   11
 #define SC_SHOW_CHANGES_BY_RANGES_LIST              12
 
-using namespace rtl;
-using namespace com::sun::star;
-using namespace xmloff::token;
+using namespace ::rtl;
+using namespace ::com::sun::star;
+using namespace ::xmloff::token;
 
 //----------------------------------------------------------------------------
 
 OUString SAL_CALL ScXMLExport_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLExporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLExporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLExport_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLExport_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -336,13 +337,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_createInstance(
 
 OUString SAL_CALL ScXMLExport_Meta_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLMetaExporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLMetaExporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Meta_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Meta_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLExport_Meta_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLExport_Meta_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -356,13 +357,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Meta_createInstance(
 
 OUString SAL_CALL ScXMLExport_Styles_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLStylesExporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLStylesExporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Styles_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Styles_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLExport_Styles_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLExport_Styles_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -376,13 +377,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Styles_createInstance(
 
 OUString SAL_CALL ScXMLExport_Content_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLContentExporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLContentExporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Content_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Content_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLExport_Content_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLExport_Content_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -396,13 +397,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Content_createInstance(
 
 OUString SAL_CALL ScXMLExport_Settings_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLSettingsExporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLSettingsExporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Settings_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Settings_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLExport_Settings_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLExport_Settings_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -436,7 +437,7 @@ void ScXMLShapeExport::onExport( const uno::Reference < drawing::XShape >& xShap
     if( xShapeProp.is() )
     {
         sal_Int16 nLayerID;
-        if( (xShapeProp->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_LAYERID ))) >>= nLayerID) && (nLayerID == SC_LAYER_BACK) )
+        if( (xShapeProp->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_LAYERID ))) >>= nLayerID) && (nLayerID == SC_LAYER_BACK) )
             GetExport().AddAttribute(XML_NAMESPACE_TABLE, XML_TABLE_BACKGROUND, XML_TRUE);
     }
 }
@@ -445,13 +446,13 @@ void ScXMLShapeExport::onExport( const uno::Reference < drawing::XShape >& xShap
 
 sal_Int16 ScXMLExport::GetFieldUnit()
 {
-    com::sun::star::uno::Reference<com::sun::star::beans::XPropertySet> xProperties(
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet> xProperties(
                 ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-                    rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.sheet.GlobalSheetSettings" )) ),
-                com::sun::star::uno::UNO_QUERY);
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.sheet.GlobalSheetSettings" )) ),
+                ::com::sun::star::uno::UNO_QUERY);
     if (xProperties.is())
     {
-        com::sun::star::uno::Any aAny = xProperties->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Metric")));
+        ::com::sun::star::uno::Any aAny = xProperties->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Metric")));
         sal_Int16 nFieldUnit;
         if (aAny >>= nFieldUnit)
             return nFieldUnit;
@@ -516,14 +517,14 @@ ScXMLExport::ScXMLExport(
     xRowStylesExportPropertySetMapper = new ScXMLRowExportPropertyMapper(xRowStylesPropertySetMapper);
     xTableStylesExportPropertySetMapper = new ScXMLTableExportPropertyMapper(xTableStylesPropertySetMapper);
 
-    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_CELL, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)),
-        xCellStylesExportPropertySetMapper, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_PREFIX)));
-    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_COLUMN, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_NAME)),
-        xColumnStylesExportPropertySetMapper, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_PREFIX)));
-    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_ROW, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_NAME)),
-        xRowStylesExportPropertySetMapper, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_PREFIX)));
-    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_TABLE, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_TABLE_STYLES_NAME)),
-        xTableStylesExportPropertySetMapper, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_TABLE_STYLES_PREFIX)));
+    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_CELL, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)),
+        xCellStylesExportPropertySetMapper, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_PREFIX)));
+    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_COLUMN, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_NAME)),
+        xColumnStylesExportPropertySetMapper, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_PREFIX)));
+    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_ROW, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_NAME)),
+        xRowStylesExportPropertySetMapper, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_PREFIX)));
+    GetAutoStylePool()->AddFamily(XML_STYLE_FAMILY_TABLE_TABLE, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_TABLE_STYLES_NAME)),
+        xTableStylesExportPropertySetMapper, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_TABLE_STYLES_PREFIX)));
 
     if( (getExportFlags() & (EXPORT_STYLES|EXPORT_AUTOSTYLES|EXPORT_MASTERSTYLES|EXPORT_CONTENT) ) != 0 )
     {
@@ -578,7 +579,7 @@ sal_Bool ScXMLExport::HasDrawPages(uno::Reference <sheet::XSpreadsheetDocument>&
     uno::Reference <beans::XPropertySet> xDocProps( xDoc, uno::UNO_QUERY );
     if (xDocProps.is())
     {
-        uno::Any aAny(xDocProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_HASDRAWPAGES))));
+        uno::Any aAny(xDocProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_HASDRAWPAGES))));
         bRet = ::cppu::any2bool( aAny );
     }
     return bRet;
@@ -601,7 +602,7 @@ void ScXMLExport::CollectSharedData(sal_Int32& nTableCount, sal_Int32& nShapesCo
                 pCellStyles->AddNewTable(nTableCount - 1);
                 if (HasDrawPages(xSpreadDoc))
                 {
-                    rtl::OUString sCaptionPoint( RTL_CONSTASCII_USTRINGPARAM( "CaptionPoint" ));
+                    ::rtl::OUString sCaptionPoint( RTL_CONSTASCII_USTRINGPARAM( "CaptionPoint" ));
                     for (sal_Int32 nTable = 0; nTable < nTableCount; nTable++)
                     {
                         uno::Any aTable = xIndex->getByIndex(nTable);
@@ -651,7 +652,7 @@ void ScXMLExport::CollectSharedData(sal_Int32& nTableCount, sal_Int32& nShapesCo
 
                                                                         awt::Point aPoint(xShape->getPosition());
                                                                         awt::Size aSize(xShape->getSize());
-                                                                        rtl::OUString sType(xShape->getShapeType());
+                                                                        ::rtl::OUString sType(xShape->getShapeType());
                                                                         Rectangle aRectangle(aPoint.X, aPoint.Y, aPoint.X + aSize.Width, aPoint.Y + aSize.Height);
                                                                         if ( sType.equals(sCaptionShape) )
                                                                         {
@@ -757,7 +758,7 @@ void ScXMLExport::_ExportMeta()
     sal_Int32 nShapesCount(0);
     GetAutoStylePool()->ClearEntries();
     CollectSharedData(nTableCount, nShapesCount, nCellCount);
-    rtl::OUStringBuffer sBuffer;
+    ::rtl::OUStringBuffer sBuffer;
     if (nTableCount)
     {
         GetMM100UnitConverter().convertNumber(sBuffer, nTableCount);
@@ -918,7 +919,7 @@ void ScXMLExport::CloseHeaderColumn()
 void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeAddress& aColumnHeaderRange, const sal_Bool bHasColumnHeader)
 {
     sal_Int32 nColsRepeated (1);
-    rtl::OUString sParent;
+    ::rtl::OUString sParent;
     sal_Int32 nIndex;
     sal_Int32 nPrevColumn(0);
     sal_Bool bPrevIsVisible (sal_True);
@@ -1058,7 +1059,7 @@ void ScXMLExport::WriteRowContent()
                     AddAttribute(XML_NAMESPACE_TABLE, XML_CONTENT_VALIDATION_NAME, pValidationsContainer->GetValidationName(nPrevValidationIndex));
                 if (nCols > 1)
                 {
-                    rtl::OUStringBuffer aBuf;
+                    ::rtl::OUStringBuffer aBuf;
                     GetMM100UnitConverter().convertNumber(aBuf, nCols);
                     AddAttribute(sAttrColumnsRepeated, aBuf.makeStringAndClear());
                 }
@@ -1082,7 +1083,7 @@ void ScXMLExport::WriteRowContent()
             AddAttribute(XML_NAMESPACE_TABLE, XML_CONTENT_VALIDATION_NAME, pValidationsContainer->GetValidationName(nPrevValidationIndex));
         if (nCols > 1)
         {
-            rtl::OUStringBuffer aBuf;
+            ::rtl::OUStringBuffer aBuf;
             GetMM100UnitConverter().convertNumber(aBuf, nCols);
             AddAttribute(sAttrColumnsRepeated, aBuf.makeStringAndClear());
         }
@@ -1104,7 +1105,7 @@ void ScXMLExport::WriteRowStartTag(const sal_Int32 nRow, const sal_Int32 nIndex,
         }
     if (nEqualRows > 1)
     {
-        rtl::OUStringBuffer aBuf;
+        ::rtl::OUStringBuffer aBuf;
         GetMM100UnitConverter().convertNumber(aBuf, nEqualRows);
         AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_ROWS_REPEATED, aBuf.makeStringAndClear());
     }
@@ -1328,7 +1329,7 @@ void ScXMLExport::ExportFormatRanges(const sal_Int32 nStartCol, const sal_Int32 
     }
 }
 
-sal_Bool ScXMLExport::GetColumnHeader(com::sun::star::table::CellRangeAddress& aColumnHeaderRange) const
+sal_Bool ScXMLExport::GetColumnHeader(::com::sun::star::table::CellRangeAddress& aColumnHeaderRange) const
 {
     sal_Bool bResult(sal_False);
     uno::Reference <sheet::XPrintAreas> xPrintAreas (xCurrentTable, uno::UNO_QUERY);
@@ -1340,7 +1341,7 @@ sal_Bool ScXMLExport::GetColumnHeader(com::sun::star::table::CellRangeAddress& a
     return bResult;
 }
 
-sal_Bool ScXMLExport::GetRowHeader(com::sun::star::table::CellRangeAddress& aRowHeaderRange) const
+sal_Bool ScXMLExport::GetRowHeader(::com::sun::star::table::CellRangeAddress& aRowHeaderRange) const
 {
     sal_Bool bResult(sal_False);
     uno::Reference <sheet::XPrintAreas> xPrintAreas (xCurrentTable, uno::UNO_QUERY);
@@ -1396,7 +1397,7 @@ void ScXMLExport::SetBodyAttributes()
     if (pDoc && pDoc->IsDocProtected())
     {
         AddAttribute(XML_NAMESPACE_TABLE, XML_STRUCTURE_PROTECTED, XML_TRUE);
-        rtl::OUStringBuffer aBuffer;
+        ::rtl::OUStringBuffer aBuffer;
         SvXMLUnitConverter::encodeBase64(aBuffer, pDoc->GetDocPassword());
         if (aBuffer.getLength())
             AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
@@ -1459,7 +1460,7 @@ void ScXMLExport::_ExportContent()
                         if ( xName.is() )
                         {
                             nCurrentTable = nTable;
-                            rtl::OUString sOUTableName = xName->getName();
+                            ::rtl::OUString sOUTableName = xName->getName();
                             AddAttribute(sAttrName, sOUTableName);
                             AddAttribute(sAttrStyleName, aTableStyles[nTable]);
                             uno::Reference<util::XProtectable> xProtectable (xTable, uno::UNO_QUERY);
@@ -1467,13 +1468,13 @@ void ScXMLExport::_ExportContent()
                                 if (xProtectable->isProtected())
                                 {
                                     AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTED, XML_TRUE);
-                                    rtl::OUStringBuffer aBuffer;
+                                    ::rtl::OUStringBuffer aBuffer;
                                     if (pDoc)
                                         SvXMLUnitConverter::encodeBase64(aBuffer, pDoc->GetTabPassword(nTable));
                                     if (aBuffer.getLength())
                                         AddAttribute(XML_NAMESPACE_TABLE, XML_PROTECTION_KEY, aBuffer.makeStringAndClear());
                                 }
-                            rtl::OUString sPrintRanges( GetPrintRanges() );
+                            ::rtl::OUString sPrintRanges( GetPrintRanges() );
                             if( sPrintRanges.getLength() )
                                 AddAttribute( XML_NAMESPACE_TABLE, XML_PRINT_RANGES, sPrintRanges );
                             SvXMLElementExport aElemT(*this, sElemTab, sal_True, sal_True);
@@ -1591,23 +1592,23 @@ void ScXMLExport::_ExportStyles( sal_Bool bUsed )
         CollectSharedData(nTableCount, nShapesCount, nCellCount);
         //DBG_ERROR("no shared data setted");
     }
-    ScXMLStyleExport aStylesExp(*this, rtl::OUString(), GetAutoStylePool().get());
+    ScXMLStyleExport aStylesExp(*this, ::rtl::OUString(), GetAutoStylePool().get());
     if (GetModel().is())
     {
         uno::Reference <lang::XMultiServiceFactory> xMultiServiceFactory(GetModel(), uno::UNO_QUERY);
         if (xMultiServiceFactory.is())
         {
-            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.Defaults")));
+            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.Defaults")));
             uno::Reference <beans::XPropertySet> xProperties(xInterface, uno::UNO_QUERY);
             if (xProperties.is())
-                aStylesExp.exportDefaultStyle(xProperties, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)), xCellStylesExportPropertySetMapper);
+                aStylesExp.exportDefaultStyle(xProperties, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)), xCellStylesExportPropertySetMapper);
             if (pSharedData->HasShapes())
             {
                 GetShapeExport()->ExportGraphicDefaults();
-/*              xInterface = xMultiServiceFactory->createInstance(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.Defaults")));
+/*              xInterface = xMultiServiceFactory->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.Defaults")));
                 uno::Reference <beans::XPropertySet> xDrawProperties(xInterface, uno::UNO_QUERY);
                 if (xDrawProperties.is())
-                    aStylesExp.exportDefaultStyle(xDrawProperties, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), GetShapeExport()->CreateShapePropMapper(*this));*/
+                    aStylesExp.exportDefaultStyle(xDrawProperties, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), GetShapeExport()->CreateShapePropMapper(*this));*/
             }
         }
         uno::Reference <style::XStyleFamiliesSupplier> xStyleFamiliesSupplier (GetModel(), uno::UNO_QUERY);
@@ -1616,12 +1617,12 @@ void ScXMLExport::_ExportStyles( sal_Bool bUsed )
             uno::Reference <container::XNameAccess> aStylesFamilies = xStyleFamiliesSupplier->getStyleFamilies();
             if (aStylesFamilies.is())
             {
-                uno::Any aStyleFamily = aStylesFamilies->getByName(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("CellStyles")));
+                uno::Any aStyleFamily = aStylesFamilies->getByName(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("CellStyles")));
                 uno::Reference <container::XIndexAccess> aCellStyles;
                 if (aStyleFamily >>= aCellStyles)
                 {
                     sal_Int32 nCount = aCellStyles->getCount();
-                    rtl::OUString sNumberFormat(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT));
+                    ::rtl::OUString sNumberFormat(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT));
                     for (sal_Int32 i = 0; i < nCount; i++)
                     {
                         uno::Any aCellStyle = aCellStyles->getByIndex(i);
@@ -1640,8 +1641,8 @@ void ScXMLExport::_ExportStyles( sal_Bool bUsed )
     }
     exportDataStyles();
 
-    aStylesExp.exportStyleFamily(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("CellStyles")),
-        rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)), xCellStylesExportPropertySetMapper, FALSE, XML_STYLE_FAMILY_TABLE_CELL);
+    aStylesExp.exportStyleFamily(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("CellStyles")),
+        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_NAME)), xCellStylesExportPropertySetMapper, FALSE, XML_STYLE_FAMILY_TABLE_CELL);
 
     SvXMLExport::_ExportStyles(bUsed);
 }
@@ -1667,10 +1668,10 @@ void ScXMLExport::_ExportAutoStyles()
                         CollectSharedData(nTableCount, nShapesCount, nCellCount);
                         //DBG_ERROR("no shared data setted");
                     }
-                    rtl::OUString SC_SCOLUMNPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_PREFIX));
-                    rtl::OUString SC_SROWPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_PREFIX));
-                    rtl::OUString SC_SCELLPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_PREFIX));
-                    rtl::OUString SC_NUMBERFORMAT(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT));
+                    ::rtl::OUString SC_SCOLUMNPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_PREFIX));
+                    ::rtl::OUString SC_SROWPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_PREFIX));
+                    ::rtl::OUString SC_SCELLPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_CELL_STYLES_PREFIX));
+                    ::rtl::OUString SC_NUMBERFORMAT(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT));
                     sal_Int32 nTableCount = xIndex->getCount();
                     pCellStyles->AddNewTable(nTableCount - 1);
                     CollectShapesAutoStyles(nTableCount);
@@ -1686,8 +1687,8 @@ void ScXMLExport::_ExportAutoStyles()
                                 std::vector<XMLPropertyState> xPropStates = xTableStylesExportPropertySetMapper->Filter(xTableProperties);
                                 if(xPropStates.size())
                                 {
-                                    rtl::OUString sParent;
-                                    rtl::OUString sName;
+                                    ::rtl::OUString sParent;
+                                    ::rtl::OUString sName;
                                     GetAutoStylePool()->Add(sName, XML_STYLE_FAMILY_TABLE_TABLE, sParent, xPropStates);
                                     aTableStyles.push_back(sName);
                                 }
@@ -1709,7 +1710,7 @@ void ScXMLExport::_ExportAutoStyles()
                                             uno::Reference <beans::XPropertySet> xProperties (xCellRanges, uno::UNO_QUERY);
                                             if (xProperties.is())
                                             {
-                                                rtl::OUString sStyleName;
+                                                ::rtl::OUString sStyleName;
                                                 sal_Int32 nNumberFormat(-1);
                                                 sal_Int32 nValidationIndex(-1);
                                                 std::vector< XMLPropertyState > xPropStates = xCellStylesExportPropertySetMapper->Filter( xProperties );
@@ -1773,11 +1774,11 @@ void ScXMLExport::_ExportAutoStyles()
                                                     if (xPropStates.size())
                                                     {
                                                         sal_Int32 nIndex;
-                                                        rtl::OUString sName;
+                                                        ::rtl::OUString sName;
                                                         sal_Bool bIsAutoStyle = sal_True;
                                                         if (GetAutoStylePool()->Add(sName, XML_STYLE_FAMILY_TABLE_CELL, sStyleName, xPropStates))
                                                         {
-                                                            rtl::OUString* pTemp = new rtl::OUString(sName);
+                                                            ::rtl::OUString* pTemp = new ::rtl::OUString(sName);
                                                             if (!pCellStyles->AddStyleName(pTemp, nIndex))
                                                                 delete pTemp;
                                                         }
@@ -1797,7 +1798,7 @@ void ScXMLExport::_ExportAutoStyles()
                                                     }
                                                     else
                                                     {
-                                                        rtl::OUString* pTemp = new rtl::OUString(sStyleName);
+                                                        ::rtl::OUString* pTemp = new ::rtl::OUString(sStyleName);
                                                         sal_Int32 nIndex(0);
                                                         if (!pCellStyles->AddStyleName(pTemp, nIndex, sal_False))
                                                         {
@@ -1871,11 +1872,11 @@ void ScXMLExport::_ExportAutoStyles()
                                                             }
                                                             aItr++;
                                                         }
-                                                        rtl::OUString sParent;
-                                                        rtl::OUString sName;
+                                                        ::rtl::OUString sParent;
+                                                        ::rtl::OUString sName;
                                                         if (GetAutoStylePool()->Add(sName, XML_STYLE_FAMILY_TABLE_COLUMN, sParent, xPropStates))
                                                         {
-                                                            rtl::OUString* pTemp = new rtl::OUString(sName);
+                                                            ::rtl::OUString* pTemp = new ::rtl::OUString(sName);
                                                             nIndex = pColumnStyles->AddStyleName(pTemp);
                                                         }
                                                         else
@@ -1928,11 +1929,11 @@ void ScXMLExport::_ExportAutoStyles()
                                                     std::vector<XMLPropertyState> xPropStates = xRowStylesExportPropertySetMapper->Filter(xRowProperties);
                                                     if(xPropStates.size())
                                                     {
-                                                        rtl::OUString sParent;
-                                                        rtl::OUString sName;
+                                                        ::rtl::OUString sParent;
+                                                        ::rtl::OUString sName;
                                                         if (GetAutoStylePool()->Add(sName, XML_STYLE_FAMILY_TABLE_ROW, sParent, xPropStates))
                                                         {
-                                                            rtl::OUString* pTemp = new rtl::OUString(sName);
+                                                            ::rtl::OUString* pTemp = new ::rtl::OUString(sName);
                                                             nIndex = pRowStyles->AddStyleName(pTemp);
                                                         }
                                                         else
@@ -2135,7 +2136,7 @@ sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCellRange>& xCellR
     uno::Reference <sheet::XArrayFormulaRange> xArrayFormulaRange (xMatrixCellRange, uno::UNO_QUERY);
     if (xMatrixCellRange.is() && xArrayFormulaRange.is())
     {
-        rtl::OUString sArrayFormula = xArrayFormulaRange->getArrayFormula();
+        ::rtl::OUString sArrayFormula = xArrayFormulaRange->getArrayFormula();
         if (sArrayFormula.getLength())
         {
             uno::Reference<sheet::XSheetCellRange> xMatrixSheetCellRange (xMatrixCellRange, uno::UNO_QUERY);
@@ -2180,7 +2181,7 @@ sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCell>& xCell,
     uno::Reference <sheet::XArrayFormulaRange> xArrayFormulaRange (xCell, uno::UNO_QUERY);
     if (xArrayFormulaRange.is())
     {
-        rtl::OUString sArrayFormula = xArrayFormulaRange->getArrayFormula();
+        ::rtl::OUString sArrayFormula = xArrayFormulaRange->getArrayFormula();
         if (sArrayFormula.getLength())
         {
             uno::Reference<sheet::XSheetCellRange> xMatrixSheetCellRange (xCell, uno::UNO_QUERY);
@@ -2216,8 +2217,8 @@ sal_Bool ScXMLExport::IsMatrix (const uno::Reference <table::XCell>& xCell,
     return sal_False;
 }
 
-sal_Bool ScXMLExport::GetCellText (const com::sun::star::uno::Reference <com::sun::star::table::XCell>& xCell,
-        rtl::OUString& sOUTemp) const
+sal_Bool ScXMLExport::GetCellText (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
+        ::rtl::OUString& sOUTemp) const
 {
     uno::Reference <text::XText> xText (xCell, uno::UNO_QUERY);
     if (xText.is())
@@ -2251,7 +2252,7 @@ sal_Bool ScXMLExport::GetCellText (ScMyCell& rMyCell) const
 
 OUString ScXMLExport::GetPrintRanges()
 {
-    rtl::OUString sPrintRanges;
+    ::rtl::OUString sPrintRanges;
     uno::Reference< sheet::XPrintAreas > xPrintAreas( xCurrentTable, uno::UNO_QUERY );
     if( xPrintAreas.is() )
     {
@@ -2273,8 +2274,8 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
     {
         sal_Int32 nColumns = aCell.aMatrixRange.EndColumn - aCell.aMatrixRange.StartColumn + 1;
         sal_Int32 nRows = aCell.aMatrixRange.EndRow - aCell.aMatrixRange.StartRow + 1;
-        rtl::OUStringBuffer sColumns;
-        rtl::OUStringBuffer sRows;
+        ::rtl::OUStringBuffer sColumns;
+        ::rtl::OUStringBuffer sRows;
         SvXMLUnitConverter::convertNumber(sColumns, nColumns);
         SvXMLUnitConverter::convertNumber(sRows, nRows);
         AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_MATRIX_COLUMNS_SPANNED, sColumns.makeStringAndClear());
@@ -2303,7 +2304,7 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
         {
             if (GetCellText(aCell))
             {
-                rtl::OUString sFormula(aCell.xCell->getFormula());
+                ::rtl::OUString sFormula(aCell.xCell->getFormula());
                 if (sFormula[0] == '\'')
                     sFormula = sFormula.copy(1);
                 GetNumberFormatAttributesExportHelper()->SetNumberFormatAttributes(
@@ -2319,24 +2320,24 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
             ScBaseCell* pBaseCell = GetDocument() ? GetDocument()->GetCell(aCoreAddress) : NULL;
             if (pBaseCell && pBaseCell->GetCellType() == CELLTYPE_FORMULA)
             {
-                rtl::OUStringBuffer sFormula;
+                ::rtl::OUStringBuffer sFormula;
                 ScFormulaCell* pFormulaCell = (ScFormulaCell*) pBaseCell;
                 if (!bIsMatrix || (bIsMatrix && bIsFirstMatrixCell))
                 {
                     pFormulaCell->GetEnglishFormula(sFormula, sal_True);
-                    rtl::OUString sOUFormula(sFormula.makeStringAndClear());
+                    ::rtl::OUString sOUFormula(sFormula.makeStringAndClear());
                     if (!bIsMatrix)
                         AddAttribute(sAttrFormula, sOUFormula);
                     else
                     {
-                        rtl::OUString sMatrixFormula = sOUFormula.copy(1, sOUFormula.getLength() - 2);
+                        ::rtl::OUString sMatrixFormula = sOUFormula.copy(1, sOUFormula.getLength() - 2);
                         AddAttribute(sAttrFormula, sMatrixFormula);
                     }
                 }
                 if (pFormulaCell->IsValue())
                 {
                     sal_Bool bIsStandard;
-                    rtl::OUString sCurrency;
+                    ::rtl::OUString sCurrency;
                     GetNumberFormatAttributesExportHelper()->GetCellType(aCell.nNumberFormat, sCurrency, bIsStandard);
                     if (bIsStandard)
                     {
@@ -2359,7 +2360,7 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
         }
         break;
     }
-    rtl::OUString* pCellString = &sElemCell;
+    ::rtl::OUString* pCellString = &sElemCell;
     if (aCell.bIsCovered)
     {
         pCellString = &sElemCoveredCell;
@@ -2370,8 +2371,8 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
         {
             sal_Int32 nColumns = aCell.aMergeRange.EndColumn - aCell.aMergeRange.StartColumn + 1;
             sal_Int32 nRows = aCell.aMergeRange.EndRow - aCell.aMergeRange.StartRow + 1;
-            rtl::OUStringBuffer sColumns;
-            rtl::OUStringBuffer sRows;
+            ::rtl::OUStringBuffer sColumns;
+            ::rtl::OUStringBuffer sRows;
             SvXMLUnitConverter::convertNumber(sColumns, nColumns);
             SvXMLUnitConverter::convertNumber(sRows, nRows);
             AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_COLUMNS_SPANNED, sColumns.makeStringAndClear());
@@ -2412,15 +2413,15 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
 {
     uno::Reference < beans::XPropertySet > xShapeProps ( xShape, uno::UNO_QUERY );
     sal_Bool bMemChart(sal_False);
-    rtl::OUString sPropCLSID (RTL_CONSTASCII_USTRINGPARAM("CLSID"));
-    rtl::OUString sPersistName (RTL_CONSTASCII_USTRINGPARAM("PersistName"));
+    ::rtl::OUString sPropCLSID (RTL_CONSTASCII_USTRINGPARAM("CLSID"));
+    ::rtl::OUString sPersistName (RTL_CONSTASCII_USTRINGPARAM("PersistName"));
     if (xShapeProps.is())
     {
-        uno::Any aAny = xShapeProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ZOrder")));
+        uno::Any aAny = xShapeProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ZOrder")));
         sal_Int32 nZOrder;
         if (aAny >>= nZOrder)
         {
-            rtl::OUStringBuffer sBuffer;
+            ::rtl::OUStringBuffer sBuffer;
             GetMM100UnitConverter().convertNumber(sBuffer, nZOrder);
             AddAttribute(XML_NAMESPACE_DRAW, XML_ZINDEX, sBuffer.makeStringAndClear());
         }
@@ -2428,13 +2429,13 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
         if( xPropSetInfo->hasPropertyByName( sPropCLSID ) )
         {
             uno::Any aAny = xShapeProps->getPropertyValue( sPropCLSID );
-            rtl::OUString sCLSID;
+            ::rtl::OUString sCLSID;
             if (aAny >>= sCLSID)
             {
                 if ( sCLSID.equalsIgnoreAsciiCase(GetChartExport()->getChartCLSID()) )
                 {
                     aAny = xShapeProps->getPropertyValue(sPersistName);
-                    rtl::OUString sOUName;
+                    ::rtl::OUString sOUName;
                     aAny >>= sOUName;
                     String sName(sOUName);
                     if (!pChartListener)
@@ -2455,7 +2456,7 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
                             if (rRangeListRef.Is())
                             {
                                 bMemChart = sal_True;
-                                rtl::OUString sRanges;
+                                ::rtl::OUString sRanges;
                                 ScXMLConverter::GetStringFromRangeList(sRanges, rRangeListRef, GetDocument());
                                 if (sRanges.getLength())
                                     AddAttribute(XML_NAMESPACE_DRAW, XML_NOTIFY_ON_UPDATE_OF_RANGES, sRanges);
@@ -2465,7 +2466,7 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
                         else
                         {
                             bMemChart = sal_True;
-                            AddAttribute(XML_NAMESPACE_DRAW, XML_NOTIFY_ON_UPDATE_OF_RANGES, rtl::OUString());
+                            AddAttribute(XML_NAMESPACE_DRAW, XML_NOTIFY_ON_UPDATE_OF_RANGES, ::rtl::OUString());
                             GetShapeExport()->exportShape(xShape, SEF_EXPORT_NO_CHART_DATA | SEF_DEFAULT, pPoint);
                         }
                     }
@@ -2473,7 +2474,7 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
                     if (pMemChart && pMemChart->GetSeriesAddresses().getLength())
                     {
                         bMemChart = sal_True;
-                        rtl::OUString sRanges(pMemChart->getXMLStringForChartRange());
+                        ::rtl::OUString sRanges(pMemChart->getXMLStringForChartRange());
                         if (sRanges.getLength())
                             AddAttribute(XML_NAMESPACE_DRAW, XML_NOTIFY_ON_UPDATE_OF_RANGES, sRanges);
                         GetShapeExport()->exportShape(xShape, SEF_EXPORT_NO_CHART_DATA | SEF_DEFAULT, pPoint);
@@ -2507,7 +2508,7 @@ void ScXMLExport::WriteShapes(const ScMyCell& rMyCell)
                     awt::Point aEndPoint;
                     Rectangle aEndRec = pDoc->GetMMRect(aItr->aEndAddress.Col(), aItr->aEndAddress.Row(),
                         aItr->aEndAddress.Col(), aItr->aEndAddress.Row(), aItr->aEndAddress.Tab());
-                    rtl::OUString sEndAddress;
+                    ::rtl::OUString sEndAddress;
                     ScXMLConverter::GetStringFromAddress(sEndAddress, aItr->aEndAddress, pDoc);
                     AddAttribute(XML_NAMESPACE_TABLE, XML_END_CELL_ADDRESS, sEndAddress);
                     aEndPoint.X = aEndRec.Left();
@@ -2516,7 +2517,7 @@ void ScXMLExport::WriteShapes(const ScMyCell& rMyCell)
                     awt::Size aSize = aItr->xShape->getSize();
                     sal_Int32 nEndX = aStartPoint.X + aSize.Width - aEndPoint.X;
                     sal_Int32 nEndY = aStartPoint.Y + aSize.Height - aEndPoint.Y;
-                    rtl::OUStringBuffer sBuffer;
+                    ::rtl::OUStringBuffer sBuffer;
                     GetMM100UnitConverter().convertMeasure(sBuffer, nEndX);
                     AddAttribute(XML_NAMESPACE_TABLE, XML_END_X, sBuffer.makeStringAndClear());
                     GetMM100UnitConverter().convertMeasure(sBuffer, nEndY);
@@ -2576,7 +2577,7 @@ void ScXMLExport::WriteAnnotation(const ScMyCell& rMyCell)
 {
     if( rMyCell.bHasAnnotation && rMyCell.xAnnotation.is())
     {
-        rtl::OUString sAuthor(rMyCell.xAnnotation->getAuthor());
+        ::rtl::OUString sAuthor(rMyCell.xAnnotation->getAuthor());
         if (sAuthor.getLength())
             AddAttribute(XML_NAMESPACE_OFFICE, XML_AUTHOR, sAuthor);
         String aDate(rMyCell.xAnnotation->getDate());
@@ -2587,23 +2588,23 @@ void ScXMLExport::WriteAnnotation(const ScMyCell& rMyCell)
             sal_uInt32 nfIndex = pNumForm->GetFormatIndex(NF_DATE_SYS_DDMMYYYY, LANGUAGE_SYSTEM);
             if (pNumForm->IsNumberFormat(aDate, nfIndex, fDate))
             {
-                rtl::OUStringBuffer sBuf;
+                ::rtl::OUStringBuffer sBuf;
                 GetMM100UnitConverter().convertDateTime(sBuf, fDate);
                 AddAttribute(XML_NAMESPACE_OFFICE, XML_CREATE_DATE, sBuf.makeStringAndClear());
             }
             else
-                AddAttribute(XML_NAMESPACE_OFFICE, XML_CREATE_DATE_STRING, rtl::OUString(aDate));
+                AddAttribute(XML_NAMESPACE_OFFICE, XML_CREATE_DATE_STRING, ::rtl::OUString(aDate));
         }
         else
-            AddAttribute(XML_NAMESPACE_OFFICE, XML_CREATE_DATE_STRING, rtl::OUString(aDate));
+            AddAttribute(XML_NAMESPACE_OFFICE, XML_CREATE_DATE_STRING, ::rtl::OUString(aDate));
         if (rMyCell.xAnnotation->getIsVisible())
             AddAttribute(XML_NAMESPACE_OFFICE, XML_DISPLAY, XML_TRUE);
         SvXMLElementExport aElemA(*this, XML_NAMESPACE_OFFICE, XML_ANNOTATION, sal_True, sal_True);
         sal_Int32 i = 0;
-        rtl::OUStringBuffer sTemp;
+        ::rtl::OUStringBuffer sTemp;
         sal_Bool bPrevCharWasSpace(sal_True);
         String sText(rMyCell.sAnnotationText);
-        rtl::OUString sOUText2 (sText.ConvertLineEnd(LINEEND_LF));
+        ::rtl::OUString sOUText2 (sText.ConvertLineEnd(LINEEND_LF));
         while(i < sOUText2.getLength())
         {
             if (sOUText2[i] == '\n')
@@ -2684,7 +2685,7 @@ sal_Bool ScXMLExport::IsCellTypeEqual (const ScMyCell& aCell1, const ScMyCell& a
     return (aCell1.nType == aCell2.nType);
 }
 
-sal_Bool ScXMLExport::IsEditCell(const com::sun::star::table::CellAddress& aAddress) const
+sal_Bool ScXMLExport::IsEditCell(const ::com::sun::star::table::CellAddress& aAddress) const
 {
     ScAddress aCoreAddress(static_cast<sal_uInt16>(aAddress.Column),
                         static_cast<sal_uInt16>(aAddress.Row),
@@ -2695,7 +2696,7 @@ sal_Bool ScXMLExport::IsEditCell(const com::sun::star::table::CellAddress& aAddr
     return sal_False;
 }
 
-sal_Bool ScXMLExport::IsEditCell(const com::sun::star::uno::Reference <com::sun::star::table::XCell>& xCell) const
+sal_Bool ScXMLExport::IsEditCell(const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell) const
 {
     uno::Reference<sheet::XCellAddressable> xAddressable (xCell, uno::UNO_QUERY);
     if ( xAddressable.is() )
@@ -2729,8 +2730,8 @@ sal_Bool ScXMLExport::IsAnnotationEqual(const uno::Reference<table::XCell>& xCel
         if (xSheetAnnotation1.is() && xSimpleText1.is() &&
             xSheetAnnotation2.is() && xSimpleText2.is())
         {
-            rtl::OUString sText1 = xSimpleText1->getString();
-            rtl::OUString sText2 = xSimpleText2->getString();
+            ::rtl::OUString sText1 = xSimpleText1->getString();
+            ::rtl::OUString sText2 = xSimpleText2->getString();
             sal_Int32 nLength1 = sText1.getLength();
             sal_Int32 nLength2 = sText2.getLength();
             if (nLength1 && nLength2)
@@ -2837,20 +2838,20 @@ void ScXMLExport::WriteCalculationSettings(const uno::Reference <sheet::XSpreads
     uno::Reference<beans::XPropertySet> xPropertySet(xSpreadDoc, uno::UNO_QUERY);
     if (xPropertySet.is())
     {
-        sal_Bool bCalcAsShown (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_CALCASSHOWN))) ));
-        sal_Bool bIgnoreCase (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_IGNORECASE))) ));
-        sal_Bool bLookUpLabels (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_LOOKUPLABELS))) ));
-        sal_Bool bMatchWholeCell (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_MATCHWHOLE))) ));
-        sal_Bool bUseRegularExpressions (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_REGEXENABLED))) ));
-        sal_Bool bIsIterationEnabled (::cppu::any2bool( xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITERENABLED))) ));
+        sal_Bool bCalcAsShown (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_CALCASSHOWN))) ));
+        sal_Bool bIgnoreCase (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_IGNORECASE))) ));
+        sal_Bool bLookUpLabels (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_LOOKUPLABELS))) ));
+        sal_Bool bMatchWholeCell (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_MATCHWHOLE))) ));
+        sal_Bool bUseRegularExpressions (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_REGEXENABLED))) ));
+        sal_Bool bIsIterationEnabled (::cppu::any2bool( xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITERENABLED))) ));
         sal_uInt16 nYear2000 (pDoc ? pDoc->GetDocOptions().GetYear2000() : 0);
-        uno::Any aAny = xPropertySet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITERCOUNT)));
+        uno::Any aAny = xPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITERCOUNT)));
         sal_Int32 nIterationCount(100);
         aAny >>= nIterationCount;
-        aAny = xPropertySet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITEREPSILON)));
+        aAny = xPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITEREPSILON)));
         double fIterationEpsilon;
         aAny >>= fIterationEpsilon;
-        aAny = xPropertySet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_NULLDATE)));
+        aAny = xPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_NULLDATE)));
         util::Date aNullDate;
         aAny >>= aNullDate;
         if (bCalcAsShown || bIgnoreCase || !bLookUpLabels || !bMatchWholeCell || !bUseRegularExpressions ||
@@ -2869,7 +2870,7 @@ void ScXMLExport::WriteCalculationSettings(const uno::Reference <sheet::XSpreads
                 AddAttribute(XML_NAMESPACE_TABLE, XML_USE_REGULAR_EXPRESSIONS, XML_FALSE);
             if (nYear2000 != 1930)
             {
-                rtl::OUStringBuffer sBuffer;
+                ::rtl::OUStringBuffer sBuffer;
                 GetMM100UnitConverter().convertNumber(sBuffer, nYear2000);
                 AddAttribute(XML_NAMESPACE_TABLE, XML_NULL_YEAR, sBuffer.makeStringAndClear());
             }
@@ -2877,14 +2878,14 @@ void ScXMLExport::WriteCalculationSettings(const uno::Reference <sheet::XSpreads
             {
                 if (aNullDate.Day != 30 || aNullDate.Month != 12 || aNullDate.Year != 1899)
                 {
-                    rtl::OUStringBuffer sDate;
+                    ::rtl::OUStringBuffer sDate;
                     GetMM100UnitConverter().convertDateTime(sDate, 0.0, aNullDate);
                     AddAttribute(XML_NAMESPACE_TABLE, XML_DATE_VALUE, sDate.makeStringAndClear());
                     SvXMLElementExport aElemNullDate(*this, XML_NAMESPACE_TABLE, XML_NULL_DATE, sal_True, sal_True);
                 }
                 if (bIsIterationEnabled || nIterationCount != 100 || !::rtl::math::approxEqual(fIterationEpsilon, 0.001))
                 {
-                    rtl::OUStringBuffer sBuffer;
+                    ::rtl::OUStringBuffer sBuffer;
                     if (bIsIterationEnabled)
                         AddAttribute(XML_NAMESPACE_TABLE, XML_STATUS, XML_ENABLE);
                     if (nIterationCount != 100)
@@ -2912,11 +2913,11 @@ void ScXMLExport::WriteTableSource()
         sheet::SheetLinkMode nMode (xLinkable->getLinkMode());
         if (nMode != sheet::SheetLinkMode_NONE)
         {
-            rtl::OUString sLink (xLinkable->getLinkUrl());
+            ::rtl::OUString sLink (xLinkable->getLinkUrl());
             uno::Reference <beans::XPropertySet> xProps (GetModel(), uno::UNO_QUERY);
             if (xProps.is())
             {
-                uno::Any aAny = xProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_SHEETLINKS)));
+                uno::Any aAny = xProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_SHEETLINKS)));
                 uno::Reference <container::XIndexAccess> xIndex;
                 if (aAny >>= xIndex)
                 {
@@ -2930,23 +2931,23 @@ void ScXMLExport::WriteTableSource()
                             uno::Any aSheetLink = xIndex->getByIndex(i);
                             if (aSheetLink >>= xLinkProps)
                             {
-                                aAny = xLinkProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_LINKURL)));
-                                rtl::OUString sNewLink;
+                                aAny = xLinkProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_LINKURL)));
+                                ::rtl::OUString sNewLink;
                                 if (aAny >>= sNewLink)
                                     bFound = sLink.equals(sNewLink);
                             }
                         }
                         if (bFound && xLinkProps.is())
                         {
-                            rtl::OUString sFilter;
-                            rtl::OUString sFilterOptions;
-                            rtl::OUString sTableName (xLinkable->getLinkSheetName());
+                            ::rtl::OUString sFilter;
+                            ::rtl::OUString sFilterOptions;
+                            ::rtl::OUString sTableName (xLinkable->getLinkSheetName());
                             sal_Int32 nRefresh(0);
-                            aAny = xLinkProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_FILTER)));
+                            aAny = xLinkProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_FILTER)));
                             aAny >>= sFilter;
-                            aAny = xLinkProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_FILTOPT)));
+                            aAny = xLinkProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_FILTOPT)));
                             aAny >>= sFilterOptions;
-                            aAny = xLinkProps->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_REFDELAY)));
+                            aAny = xLinkProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_REFDELAY)));
                             aAny >>= nRefresh;
                             if (sLink.getLength())
                             {
@@ -2961,7 +2962,7 @@ void ScXMLExport::WriteTableSource()
                                     AddAttribute(XML_NAMESPACE_TABLE, XML_MODE, XML_COPY_RESULTS_ONLY);
                                 if( nRefresh )
                                 {
-                                    rtl::OUStringBuffer sBuffer;
+                                    ::rtl::OUStringBuffer sBuffer;
                                     SvXMLUnitConverter::convertTime( sBuffer, (double)nRefresh / 86400 );
                                     AddAttribute( XML_NAMESPACE_TABLE, XML_REFRESH_DELAY, sBuffer.makeStringAndClear() );
                                 }
@@ -2986,7 +2987,7 @@ void ScXMLExport::WriteScenario()
         pDoc->GetScenarioData(nCurrentTable, sComment, aColor, nFlags);
         if (!(nFlags & SC_SCENARIO_SHOWFRAME))
             AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_BORDER, XML_FALSE);
-        rtl::OUStringBuffer aBuffer;
+        ::rtl::OUStringBuffer aBuffer;
         SvXMLUnitConverter::convertColor(aBuffer, aColor);
         AddAttribute(XML_NAMESPACE_TABLE, XML_BORDER_COLOR, aBuffer.makeStringAndClear());
         if (!(nFlags & SC_SCENARIO_TWOWAY))
@@ -2998,11 +2999,11 @@ void ScXMLExport::WriteScenario()
         SvXMLUnitConverter::convertBool(aBuffer, pDoc->IsActiveScenario(nCurrentTable));
         AddAttribute(XML_NAMESPACE_TABLE, XML_IS_ACTIVE, aBuffer.makeStringAndClear());
         const ScRangeList* pRangeList = pDoc->GetScenarioRanges(nCurrentTable);
-        rtl::OUString sRangeListStr;
+        ::rtl::OUString sRangeListStr;
         ScXMLConverter::GetStringFromRangeList( sRangeListStr, pRangeList, pDoc );
         AddAttribute(XML_NAMESPACE_TABLE, XML_SCENARIO_RANGES, sRangeListStr);
         if (sComment.Len())
-            AddAttribute(XML_NAMESPACE_TABLE, XML_COMMENT, rtl::OUString(sComment));
+            AddAttribute(XML_NAMESPACE_TABLE, XML_COMMENT, ::rtl::OUString(sComment));
         SvXMLElementExport aElem(*this, XML_NAMESPACE_TABLE, XML_SCENARIO, sal_True, sal_True);
     }
 }
@@ -3060,12 +3061,12 @@ void ScXMLExport::WriteLabelRanges( const uno::Reference< container::XIndexAcces
     }
 }
 
-void ScXMLExport::WriteNamedExpressions(const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc)
+void ScXMLExport::WriteNamedExpressions(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc)
 {
     uno::Reference <beans::XPropertySet> xPropertySet (xSpreadDoc, uno::UNO_QUERY);
     if (xPropertySet.is())
     {
-        uno::Any aNamedRanges = xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_NAMEDRANGES)));
+        uno::Any aNamedRanges = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_NAMEDRANGES)));
         uno::Reference <sheet::XNamedRanges> xNamedRanges;
         CheckAttrList();
         if (aNamedRanges >>= xNamedRanges)
@@ -3081,7 +3082,7 @@ void ScXMLExport::WriteNamedExpressions(const com::sun::star::uno::Reference <co
                     for (sal_Int32 i = 0; i < nNamedRangesCount; i++)
                     {
                         CheckAttrList();
-                        rtl::OUString sNamedRange = aRangesNames[i];
+                        ::rtl::OUString sNamedRange = aRangesNames[i];
                         uno::Any aNamedRange = xNamedRanges->getByName(sNamedRange);
                         uno::Reference <sheet::XNamedRange> xNamedRange;
                         if (aNamedRange >>= xNamedRange)
@@ -3090,7 +3091,7 @@ void ScXMLExport::WriteNamedExpressions(const com::sun::star::uno::Reference <co
                             uno::Reference <sheet::XCellRangeReferrer> xCellRangeReferrer (xNamedRange, uno::UNO_QUERY);
                             if (xNamed.is() && xCellRangeReferrer.is())
                             {
-                                rtl::OUString sOUName = xNamed->getName();
+                                ::rtl::OUString sOUName = xNamed->getName();
                                 AddAttribute(sAttrName, sOUName);
 
                                 OUString sOUBaseCellAddress;
@@ -3104,14 +3105,14 @@ void ScXMLExport::WriteNamedExpressions(const com::sun::star::uno::Reference <co
                                 ScRangeData* pNamedRange = (*pNamedRanges)[nRangeIndex]; //should get directly and not with ScDocument
                                 String sContent(xNamedRange->getContent());
                                 pNamedRange->GetEnglishSymbol(sContent, sal_True);
-                                rtl::OUString sOUTempContent(sContent);
+                                ::rtl::OUString sOUTempContent(sContent);
                                 uno::Reference <table::XCellRange> xCellRange = xCellRangeReferrer->getReferredCells();
                                 if(xCellRange.is())
                                 {
-                                    rtl::OUString sOUContent = sOUTempContent.copy(1, sOUTempContent.getLength() - 2);
+                                    ::rtl::OUString sOUContent = sOUTempContent.copy(1, sOUTempContent.getLength() - 2);
                                     AddAttribute(XML_NAMESPACE_TABLE, XML_CELL_RANGE_ADDRESS, sOUContent);
                                     sal_Int32 nRangeType = xNamedRange->getType();
-                                    rtl::OUStringBuffer sBufferRangeType;
+                                    ::rtl::OUStringBuffer sBufferRangeType;
                                     if ((nRangeType & sheet::NamedRangeFlag::COLUMN_HEADER) == sheet::NamedRangeFlag::COLUMN_HEADER)
                                         sBufferRangeType.append(GetXMLToken(XML_REPEAT_COLUMN));
                                     if ((nRangeType & sheet::NamedRangeFlag::ROW_HEADER) == sheet::NamedRangeFlag::ROW_HEADER)
@@ -3132,7 +3133,7 @@ void ScXMLExport::WriteNamedExpressions(const com::sun::star::uno::Reference <co
                                             sBufferRangeType.appendAscii(" ");
                                         sBufferRangeType.append(GetXMLToken(XML_PRINT_RANGE));
                                     }
-                                    rtl::OUString sRangeType = sBufferRangeType.makeStringAndClear();
+                                    ::rtl::OUString sRangeType = sBufferRangeType.makeStringAndClear();
                                     if (sRangeType.getLength())
                                         AddAttribute(XML_NAMESPACE_TABLE, XML_RANGE_USABLE_AS, sRangeType);
                                     SvXMLElementExport aElemNR(*this, XML_NAMESPACE_TABLE, XML_NAMED_RANGE, sal_True, sal_True);
@@ -3211,39 +3212,39 @@ void ScXMLExport::GetChangeTrackViewSettings(uno::Sequence<beans::PropertyValue>
             beans::PropertyValue* pChangeProps = aChangeProps.getArray();
             if (pChangeProps)
             {
-                pChangeProps[SC_SHOW_CHANGES].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChanges"));
+                pChangeProps[SC_SHOW_CHANGES].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChanges"));
                 pChangeProps[SC_SHOW_CHANGES].Value <<= pViewSettings->ShowChanges();
-                pChangeProps[SC_SHOW_ACCEPTED_CHANGES].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowAcceptedChanges"));
+                pChangeProps[SC_SHOW_ACCEPTED_CHANGES].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowAcceptedChanges"));
                 pChangeProps[SC_SHOW_ACCEPTED_CHANGES].Value <<= pViewSettings->IsShowAccepted();
-                pChangeProps[SC_SHOW_REJECTED_CHANGES].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowRejectedChanges"));
+                pChangeProps[SC_SHOW_REJECTED_CHANGES].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowRejectedChanges"));
                 pChangeProps[SC_SHOW_REJECTED_CHANGES].Value <<= pViewSettings->IsShowRejected();
-                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetime"));
+                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetime"));
                 pChangeProps[SC_SHOW_CHANGES_BY_DATETIME].Value <<= pViewSettings->HasDate();
-                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_MODE].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeMode"));
+                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_MODE].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeMode"));
                 pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_MODE].Value <<= static_cast<sal_Int16>(pViewSettings->GetTheDateMode());
                 util::DateTime aDateTime;
                 ScXMLConverter::ConvertCoreToAPIDateTime(pViewSettings->GetTheFirstDateTime(), aDateTime);
-                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_FIRST_DATETIME].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeFirstDatetime"));
+                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_FIRST_DATETIME].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeFirstDatetime"));
                 pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_FIRST_DATETIME].Value <<= aDateTime;
                 ScXMLConverter::ConvertCoreToAPIDateTime(pViewSettings->GetTheLastDateTime(), aDateTime);
-                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_SECOND_DATETIME].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeSecondDatetime"));
+                pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_SECOND_DATETIME].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByDatetimeSecondDatetime"));
                 pChangeProps[SC_SHOW_CHANGES_BY_DATETIME_SECOND_DATETIME].Value <<= aDateTime;
-                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByAuthor"));
+                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByAuthor"));
                 pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR].Value <<= pViewSettings->HasAuthor();
-                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR_NAME].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByAuthorName"));
-                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR_NAME].Value <<= rtl::OUString (pViewSettings->GetTheAuthorToShow());
-                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByComment"));
+                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR_NAME].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByAuthorName"));
+                pChangeProps[SC_SHOW_CHANGES_BY_AUTHOR_NAME].Value <<= ::rtl::OUString (pViewSettings->GetTheAuthorToShow());
+                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByComment"));
                 pChangeProps[SC_SHOW_CHANGES_BY_COMMENT].Value <<= pViewSettings->HasComment();
-                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT_TEXT].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByCommentText"));
-                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT_TEXT].Value <<= rtl::OUString (pViewSettings->GetTheComment());
-                pChangeProps[SC_SHOW_CHANGES_BY_RANGES].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByRanges"));
+                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT_TEXT].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByCommentText"));
+                pChangeProps[SC_SHOW_CHANGES_BY_COMMENT_TEXT].Value <<= ::rtl::OUString (pViewSettings->GetTheComment());
+                pChangeProps[SC_SHOW_CHANGES_BY_RANGES].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByRanges"));
                 pChangeProps[SC_SHOW_CHANGES_BY_RANGES].Value <<= pViewSettings->HasRange();
-                rtl::OUString sRangeList;
+                ::rtl::OUString sRangeList;
                 ScXMLConverter::GetStringFromRangeList(sRangeList, &(pViewSettings->GetTheRangeList()), GetDocument());
-                pChangeProps[SC_SHOW_CHANGES_BY_RANGES_LIST].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByRangesList"));
+                pChangeProps[SC_SHOW_CHANGES_BY_RANGES_LIST].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowChangesByRangesList"));
                 pChangeProps[SC_SHOW_CHANGES_BY_RANGES_LIST].Value <<= sRangeList;
 
-                pProps[nChangePos].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("TrackedChangesViewSettings"));
+                pProps[nChangePos].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("TrackedChangesViewSettings"));
                 pProps[nChangePos].Value <<= aChangeProps;
             }
         }
@@ -3266,13 +3267,13 @@ void ScXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& rProps)
                 {
                     Rectangle aRect(pEmbeddedObj->GetVisArea());
                     sal_uInt16 i(0);
-                    pProps[i].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaTop"));
+                    pProps[i].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaTop"));
                     pProps[i++].Value <<= aRect.getY();
-                    pProps[i].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaLeft"));
+                    pProps[i].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaLeft"));
                     pProps[i++].Value <<= aRect.getX();
-                    pProps[i].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaWidth"));
+                    pProps[i].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaWidth"));
                     pProps[i++].Value <<= aRect.getWidth();
-                    pProps[i].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaHeight"));
+                    pProps[i].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaHeight"));
                     pProps[i++].Value <<= aRect.getHeight();
                 }
             }
@@ -3288,7 +3289,7 @@ void ScXMLExport::GetConfigurationSettings(uno::Sequence<beans::PropertyValue>& 
         uno::Reference <lang::XMultiServiceFactory> xMultiServiceFactory(GetModel(), uno::UNO_QUERY);
         if (xMultiServiceFactory.is())
         {
-            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.SpreadsheetSettings")));
+            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.SpreadsheetSettings")));
             uno::Reference <beans::XPropertySet> xProperties(xInterface, uno::UNO_QUERY);
             if (xProperties.is())
                 SvXMLUnitConverter::convertPropertySet(rProps, xProperties);
@@ -3322,7 +3323,7 @@ void ScXMLExport::CollectUserDefinedNamespaces(const SfxItemPool* pPool, sal_uIn
         if( 0 != (pItem = pPool->GetItem( nAttrib, i ) ) )
         {
             const SvXMLAttrContainerItem *pUnknown =
-                        (const SvXMLAttrContainerItem *)pItem;
+                (const SvXMLAttrContainerItem *)pItem;
             if( (pUnknown->GetAttrCount() > 0) )
             {
                 sal_uInt16 nIdx = pUnknown->GetFirstNamespaceIndex();
@@ -3465,3 +3466,4 @@ void ScXMLExport::DisposingModel()
     xCurrentTable = 0;
 }
 
+}

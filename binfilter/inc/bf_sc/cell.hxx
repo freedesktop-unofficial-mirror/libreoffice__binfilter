@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cell.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,8 @@
 #ifndef _SV_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>
 #endif
+class SfxBroadcaster;
+namespace binfilter {
 
 #define USE_MEMPOOL
 #define TEXTWIDTH_DIRTY     0xffff
@@ -101,7 +103,6 @@ class ScDocument;
 class EditTextObject;
 class ScMatrix;
 class ScCompiler;
-class SfxBroadcaster;
 class ScBroadcasterList;
 class ScCodeArray;
 class ScTokenArray;
@@ -332,7 +333,7 @@ public:
 
     void            GetFormula( String& rFormula ) const;
     void            GetEnglishFormula( String& rFormula, BOOL bCompileXML = FALSE ) const;
-    void            GetEnglishFormula( rtl::OUStringBuffer& rBuffer, BOOL bCompileXML = FALSE ) const;
+    void            GetEnglishFormula( ::rtl::OUStringBuffer& rBuffer, BOOL bCompileXML = FALSE ) const;
 
     void            Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
 
@@ -625,5 +626,6 @@ inline ScBaseCell* ScNoteCell::Clone() const
 }
 
 
+} //namespace binfilter
 #endif
 

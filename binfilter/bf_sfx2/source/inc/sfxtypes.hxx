@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxtypes.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,8 @@
 #ifndef _VOS_MUTEX_HXX //autogen
 #include <vos/mutex.hxx>
 #endif
+class Timer;
+namespace binfilter {
 
 #ifndef DELETEZ
 #define DELETEZ(pPtr) ( delete pPtr, pPtr = 0 )
@@ -100,7 +102,6 @@
 #endif
 
 class SfxShell;
-class Timer;
 
 #if !defined(_SFX_APPCTOR_CXX) && defined(WNT)
 #ifndef _DLL_
@@ -189,7 +190,7 @@ String SearchAndReplace( const String &rSource,
                          const String &rToReplace,
                          const String &rReplacement );
 
-#define SFX_PASSWORD_CODE "_:;*š?()/&[&"
+#define SFX_PASSWORD_CODE "_:;*?()/&[&"
 String SfxStringEncode( const String &rSource,
                        const char *pKey = SFX_PASSWORD_CODE );
 String SfxStringDecode( const String &rSource,
@@ -234,6 +235,7 @@ public:
 
 #define GPF() *(int*)0 = 0
 
+}//end of namespace binfilter
 #endif // #ifndef _SFX_SFXTYPES_HXX
 
 

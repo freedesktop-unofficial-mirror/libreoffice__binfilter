@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cfgitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,57 +88,59 @@
 
 #include <symbol.hxx>
 #include <types.hxx>
+class Font;
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 class SmSym;
 class SmFormat;
-class Font;
+
 struct SmCfgOther;
 
 /////////////////////////////////////////////////////////////////
 
-class SmMathConfigItem : public utl::ConfigItem
+class SmMathConfigItem : public ::utl::ConfigItem
 {
     // disallow copy-constructor and assignment-operator for now
     SmMathConfigItem( const SmMathConfigItem & );
     SmMathConfigItem & operator = ( const SmMathConfigItem & );
 
 public:
-    inline SmMathConfigItem( const rtl::OUString &rPath,
+    inline SmMathConfigItem( const ::rtl::OUString &rPath,
                       sal_Int16 nMode = CONFIG_MODE_IMMEDIATE_UPDATE );
 
-    uno::Sequence< rtl::OUString > GetFormatPropertyNames();
-    uno::Sequence< rtl::OUString > GetOtherPropertyNames();
+    uno::Sequence< ::rtl::OUString > GetFormatPropertyNames();
+    uno::Sequence< ::rtl::OUString > GetOtherPropertyNames();
 
     uno::Sequence< uno::Any >
-        GetProperties( const uno::Sequence< rtl::OUString > &rNames )
+        GetProperties( const uno::Sequence< ::rtl::OUString > &rNames )
         {
             return ConfigItem::GetProperties(rNames);
         }
 
     sal_Bool
-        PutProperties( const uno::Sequence< rtl::OUString > &rNames,
+        PutProperties( const uno::Sequence< ::rtl::OUString > &rNames,
                        const uno::Sequence< uno::Any > &rValues)
         {
             return ConfigItem::PutProperties( rNames, rValues);
         }
 
     sal_Bool
-        SetSetProperties( const rtl::OUString &rNode,
+        SetSetProperties( const ::rtl::OUString &rNode,
                           uno::Sequence< beans::PropertyValue > rValues )
         {
             return ConfigItem::SetSetProperties( rNode, rValues );
         }
 
-    uno::Sequence< rtl::OUString >
-        GetNodeNames( const rtl::OUString &rNode )
+    uno::Sequence< ::rtl::OUString >
+        GetNodeNames( const ::rtl::OUString &rNode )
         {
             return ConfigItem::GetNodeNames( rNode );
         }
 
     sal_Bool
-        ReplaceSetProperties( const rtl::OUString& rNode,
+        ReplaceSetProperties( const ::rtl::OUString& rNode,
                               uno::Sequence< beans::PropertyValue > rValues )
         {
             return ConfigItem::ReplaceSetProperties( rNode, rValues );
@@ -147,7 +149,7 @@ public:
 
 
 inline SmMathConfigItem::SmMathConfigItem(
-        const rtl::OUString &rPath,
+        const ::rtl::OUString &rPath,
         sal_Int16 nMode ) :
     ConfigItem( rPath, nMode )
 {
@@ -183,7 +185,7 @@ struct SmFntFmtListEntry
 };
 
 
-SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 );
+SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 )//STRIP008 ;
 
 
 class SmFontFormatList
@@ -247,11 +249,11 @@ class SmMathConfig
     void    Save();
 
     SmSym           ReadSymbol( SmMathConfigItem &rCfg,
-                        const rtl::OUString &rSymbolName,
-                        const rtl::OUString &rBaseNode ) const;
+                        const ::rtl::OUString &rSymbolName,
+                        const ::rtl::OUString &rBaseNode ) const;
     SmFontFormat    ReadFontFormat( SmMathConfigItem &rCfg,
-                        const rtl::OUString &rSymbolName,
-                        const rtl::OUString &rBaseNode ) const;
+                        const ::rtl::OUString &rSymbolName,
+                        const ::rtl::OUString &rBaseNode ) const;
 
 //STRIP001     void            SetOtherIfNotEqual( BOOL &rbItem, BOOL bNewVal );
 
@@ -303,5 +305,6 @@ public:
 
 /////////////////////////////////////////////////////////////////
 
+} //namespace binfilter
 #endif
 

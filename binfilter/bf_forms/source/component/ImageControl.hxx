@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ImageControl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,8 +81,9 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
+namespace binfilter {
 
-using namespace comphelper;
+    using namespace ::comphelper;
 
 //.........................................................................
 namespace frm
@@ -220,5 +221,6 @@ private:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FRM_IMAGE_CONTROL_HXX_
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chartbar.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #include "chtmodel.hxx"
 #include "chartbar.hxx"
 #include "chaxis.hxx"
+namespace binfilter {
 
 //STRIP001 void ChartBarDescriptor::ChangeModel( ChartModel* pNewModel )
 //STRIP001 {
@@ -217,3 +218,4 @@
 /*N*/
 /*N*/   nLeft = nCurrent = (bVerticalX ? aRect.Top() : aRect.Left()) + nGap/2;
 /*N*/ }
+}

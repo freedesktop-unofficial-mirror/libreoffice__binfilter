@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_optutil.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------
 
@@ -89,7 +90,7 @@
 
 //------------------------------------------------------------------
 
-/*N*/ ScLinkConfigItem::ScLinkConfigItem( const rtl::OUString rSubTree ) :
+/*N*/ ScLinkConfigItem::ScLinkConfigItem( const ::rtl::OUString rSubTree ) :
 /*N*/   ConfigItem( rSubTree )
 /*N*/ {
 /*N*/ }
@@ -99,7 +100,7 @@
 /*N*/   aCommitLink = rLink;
 /*N*/ }
 
-//STRIP001 void ScLinkConfigItem::Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames )
+//STRIP001 void ScLinkConfigItem::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames )
 //STRIP001 {
 //STRIP001  //! not implemented yet...
 //STRIP001 }
@@ -110,3 +111,4 @@
 //STRIP001 }
 
 
+}

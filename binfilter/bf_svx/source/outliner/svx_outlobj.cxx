@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlobj.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ DBG_NAME(OutlinerParaObject);
 
@@ -324,3 +325,4 @@
 /*N*/   return pText->IsVertical();
 /*N*/ }
 
+}

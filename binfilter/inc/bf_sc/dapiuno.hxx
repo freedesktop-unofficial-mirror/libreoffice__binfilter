@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dapiuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,7 @@
 #ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
 #endif
+namespace binfilter {
 
 
 class ScDocShell;
@@ -127,8 +128,8 @@ class ScDataPilotFieldObj;
 class ScDataPilotConversion
 {
 public:
-    static com::sun::star::sheet::GeneralFunction   FirstFunc( USHORT nBits );
-    static USHORT           FunctionBit( com::sun::star::sheet::GeneralFunction eFunc );
+    static ::com::sun::star::sheet::GeneralFunction FirstFunc( USHORT nBits );
+    static USHORT           FunctionBit( ::com::sun::star::sheet::GeneralFunction eFunc );
 };
 
 
@@ -136,10 +137,10 @@ public:
 //  DataPilotTables Collection ist pro Tabelle
 
 class ScDataPilotTablesObj : public cppu::WeakImplHelper4<
-                                        com::sun::star::sheet::XDataPilotTables,
-                                        com::sun::star::container::XEnumerationAccess,
-                                        com::sun::star::container::XIndexAccess,
-                                        com::sun::star::lang::XServiceInfo>,
+                                        ::com::sun::star::sheet::XDataPilotTables,
+                                        ::com::sun::star::container::XEnumerationAccess,
+                                        ::com::sun::star::container::XIndexAccess,
+                                        ::com::sun::star::lang::XServiceInfo>,
                                     public SfxListener
 {
 private:
@@ -203,10 +204,10 @@ public:
 
 
 //  ScDataPilotDescriptorBase is never instantiated directly
-class ScDataPilotDescriptorBase : public com::sun::star::sheet::XDataPilotDescriptor,
-                                  public com::sun::star::lang::XServiceInfo,
-                                  public com::sun::star::lang::XUnoTunnel,
-                                  public com::sun::star::lang::XTypeProvider,
+class ScDataPilotDescriptorBase : public ::com::sun::star::sheet::XDataPilotDescriptor,
+                                  public ::com::sun::star::lang::XServiceInfo,
+                                  public ::com::sun::star::lang::XUnoTunnel,
+                                  public ::com::sun::star::lang::XTypeProvider,
                                   public cppu::OWeakObject,
                                   public SfxListener
 {
@@ -260,9 +261,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScDataPilotDescriptorBase* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XDataPilotDescriptor> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScDataPilotDescriptorBase* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XDataPilotDescriptor> xObj );
 
                             // XTypeProvider (overloaded in ScDataPilotTableObj)
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes()
@@ -310,7 +311,7 @@ public:
 
 
 class ScDataPilotTableObj : public ScDataPilotDescriptorBase,
-                            public com::sun::star::sheet::XDataPilotTable
+                            public ::com::sun::star::sheet::XDataPilotTable
 {
 private:
     USHORT                  nTab;
@@ -360,10 +361,10 @@ public:
 
 
 class ScDataPilotFieldsObj : public cppu::WeakImplHelper4<
-                                        com::sun::star::container::XEnumerationAccess,
-                                        com::sun::star::container::XIndexAccess,
-                                        com::sun::star::container::XNameAccess,
-                                        com::sun::star::lang::XServiceInfo>
+                                        ::com::sun::star::container::XEnumerationAccess,
+                                        ::com::sun::star::container::XIndexAccess,
+                                        ::com::sun::star::container::XNameAccess,
+                                        ::com::sun::star::lang::XServiceInfo>
 {
 private:
     ScDataPilotDescriptorBase*  pParent;
@@ -413,9 +414,9 @@ public:
 
 
 class ScDataPilotFieldObj : public cppu::WeakImplHelper3<
-                                        com::sun::star::container::XNamed,
-                                        com::sun::star::beans::XPropertySet,
-                                        com::sun::star::lang::XServiceInfo>
+                                        ::com::sun::star::container::XNamed,
+                                        ::com::sun::star::beans::XPropertySet,
+                                        ::com::sun::star::lang::XServiceInfo>
 {
 private:
     SfxItemPropertySet          aPropSet;
@@ -477,10 +478,10 @@ public:
                                     ::com::sun::star::uno::RuntimeException);
 
                             // nur noch aus Property-Funktionen gerufen:
-    com::sun::star::sheet::DataPilotFieldOrientation getOrientation(void) const;
-    void setOrientation(com::sun::star::sheet::DataPilotFieldOrientation Orientation);
-    com::sun::star::sheet::GeneralFunction getFunction(void) const;
-    void setFunction(com::sun::star::sheet::GeneralFunction Function);
+    ::com::sun::star::sheet::DataPilotFieldOrientation getOrientation(void) const;
+    void setOrientation(::com::sun::star::sheet::DataPilotFieldOrientation Orientation);
+    ::com::sun::star::sheet::GeneralFunction getFunction(void) const;
+    void setFunction(::com::sun::star::sheet::GeneralFunction Function);
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -492,5 +493,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

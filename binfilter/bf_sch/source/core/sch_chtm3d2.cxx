@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtm3d2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _SVX3DITEMS_HXX
 #include <bf_svx/svx3ditems.hxx>
 #endif
+namespace binfilter {
 
 #define SCH_MIN(a, b) (((a) < (b))? (a): (b))
 
@@ -729,3 +730,4 @@
 //-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
 //-/};
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: eventsupplier.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,8 @@
 #include <vos/mutex.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
 #include <svtools/lstner.hxx>
+class SvxMacro;
+namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------
 
@@ -140,7 +142,6 @@
 
 class SfxObjectShell;
 class SfxBaseModel;
-class SvxMacro;
 
 //--------------------------------------------------------------------------------------------------------
 
@@ -199,7 +200,7 @@ class SfxGlobalEvents_Impl : public ::cppu::WeakImplHelper3< ::com::sun::star::d
 
                                 void Notify( SfxBroadcaster& aBC, const SfxHint& aHint );
 public:
-                                SfxGlobalEvents_Impl( const com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& xSmgr );
+                                SfxGlobalEvents_Impl( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& xSmgr );
                                 ~SfxGlobalEvents_Impl();
     SFX_DECL_XSERVICEINFO
     virtual REFERENCE< XNAMEREPLACE > SAL_CALL getEvents() throw( RUNTIMEEXCEPTION );
@@ -207,4 +208,5 @@ public:
     virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION ) {DBG_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION );
 };
 
+}//end of namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlbrshi.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,16 +65,14 @@
 #ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
 #endif
-
 class SvXMLImport;
 class SvXMLUnitConverter;
-class SvxBrushItem;
-
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {
     namespace io { class XOutputStream; }
 } } }
-
+namespace binfilter {//STRIP009
+class SvxBrushItem;
 class SwXMLBrushItemImportContext : public SvXMLImportContext
 {
 private:
@@ -120,5 +118,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif  //  _XMLBRSHI_HXX
 

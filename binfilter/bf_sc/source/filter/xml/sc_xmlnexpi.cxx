@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlnexpi.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #ifndef _COM_SUN_STAR_SHEET_XNAMEDRANGE_HPP_
 #include <com/sun/star/sheet/XNamedRange.hpp>
 #endif
+namespace binfilter {
 
 #define SC_NAMEDRANGES "NamedRanges"
 #define SC_REPEAT_COLUMN "repeat-column"
@@ -94,7 +95,7 @@
 #define SC_FILTER "filter"
 #define SC_PRINT_RANGE "print-range"
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------
 
@@ -108,11 +109,11 @@ ScXMLNamedExpressionsContext::ScXMLNamedExpressionsContext( ScXMLImport& rImport
 /*  sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetNamedRangeAttrTokenMap();
 
@@ -158,16 +159,16 @@ SvXMLImportContext *ScXMLNamedExpressionsContext::CreateChildContext( USHORT nPr
     return pContext;
 }
 
-sal_Int32 ScXMLNamedExpressionsContext::GetRangeType(const rtl::OUString sRangeType) const
+sal_Int32 ScXMLNamedExpressionsContext::GetRangeType(const ::rtl::OUString sRangeType) const
 {
     sal_Int32 nRangeType = 0;
-    rtl::OUStringBuffer sBuffer;
+    ::rtl::OUStringBuffer sBuffer;
     sal_Int16 i = 0;
     while (i <= sRangeType.getLength())
     {
         if ((sRangeType[i] == ' ') || (i == sRangeType.getLength()))
         {
-            rtl::OUString sTemp = sBuffer.makeStringAndClear();
+            ::rtl::OUString sTemp = sBuffer.makeStringAndClear();
             if (sTemp.compareToAscii(SC_REPEAT_COLUMN) == 0)
                 nRangeType |= sheet::NamedRangeFlag::COLUMN_HEADER;
             else if (sTemp.compareToAscii(SC_REPEAT_ROW) == 0)
@@ -191,7 +192,7 @@ void ScXMLNamedExpressionsContext::EndElement()
         uno::Reference <beans::XPropertySet> xPropertySet (GetScImport().GetModel(), uno::UNO_QUERY);
         if (xPropertySet.is())
         {
-            uno::Any aNamedRanges = xPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_NAMEDRANGES)));
+            uno::Any aNamedRanges = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_NAMEDRANGES)));
             uno::Reference <sheet::XNamedRanges> xNamedRanges;
             if (aNamedRanges >>= xNamedRanges)
             {
@@ -199,7 +200,7 @@ void ScXMLNamedExpressionsContext::EndElement()
                 ScMyNamedExpressions::iterator aItr = pNamedExpressions->begin();
                 ScMyNamedExpressions::const_iterator aEndItr = pNamedExpressions->end();
                 table::CellAddress aCellAddress;
-                rtl::OUString sTempContent(RTL_CONSTASCII_USTRINGPARAM("0"));
+                ::rtl::OUString sTempContent(RTL_CONSTASCII_USTRINGPARAM("0"));
                 while (aItr != aEndItr)
                 {
                     sal_Int32 nOffset(0);
@@ -219,12 +220,12 @@ void ScXMLNamedExpressionsContext::EndElement()
                                 sal_Int32 nMax(xIndex->getCount());
                                 sal_Bool bInserted(sal_False);
                                 sal_Int32 nCount(1);
-                                rtl::OUStringBuffer sName((*aItr)->sName);
+                                ::rtl::OUStringBuffer sName((*aItr)->sName);
                                 sName.append(sal_Unicode('_'));
                                 while (!bInserted && nCount <= nMax)
                                 {
-                                    rtl::OUStringBuffer sTemp(sName);
-                                    sTemp.append(rtl::OUString::valueOf(nCount));
+                                    ::rtl::OUStringBuffer sTemp(sName);
+                                    sTemp.append(::rtl::OUString::valueOf(nCount));
                                     try
                                     {
                                         xNamedRanges->addNewByName(sTemp.makeStringAndClear(), sTempContent, aCellAddress, GetRangeType((*aItr)->sRangeType));
@@ -274,11 +275,11 @@ ScXMLNamedRangeContext::ScXMLNamedRangeContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetNamedRangeAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -346,11 +347,11 @@ ScXMLNamedExpressionContext::ScXMLNamedExpressionContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetNamedExpressionAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -401,3 +402,4 @@ void ScXMLNamedExpressionContext::EndElement()
 {
 }
 
+}

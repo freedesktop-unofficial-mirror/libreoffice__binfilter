@@ -2,9 +2,9 @@
  *
  *  $RCSfile: numpara.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include "ndarr.hxx"
 #endif
 #include "ndindex.hxx"
+namespace binfilter {
 
 class SwTxtNode;
 class SwDoc;
@@ -100,4 +101,5 @@ public:
 BOOL _NumUpDown( const SwNodePtr& rpNode, void* pPara );
 
 
+} //namespace binfilter
 #endif  // _NUMPARA_HXX

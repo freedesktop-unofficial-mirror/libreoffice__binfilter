@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_register.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include <bf_sfx2/sfxuno.hxx>
 
 #include "schdll.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -95,7 +96,7 @@ sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
     RTL_CONSTASCII_USTRINGPARAM("/") ) + SchDocument_getImplementationName() +
     ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES") )  );
 
-    uno::Sequence< rtl::OUString > rServices = SchDocument_getSupportedServiceNames();
+    uno::Sequence< ::rtl::OUString > rServices = SchDocument_getSupportedServiceNames();
     for(i = 0; i < rServices.getLength(); i++ )
         xNewKey->createKey( rServices.getConstArray()[i]);
 
@@ -137,3 +138,4 @@ void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName 
 
 
 
+}

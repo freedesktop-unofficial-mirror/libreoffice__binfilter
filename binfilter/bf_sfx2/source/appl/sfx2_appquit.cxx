@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,10 +123,11 @@
 #include "scriptcont.hxx"
 #include <misccfg.hxx>
 #include "docfac.hxx"
+namespace binfilter {
 
 #ifndef PRODUCT
 DECLARE_LIST( SfxFrameWindowFactoryArray_Impl, SfxFrameWindowFactory* )
-SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2);
+SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)//STRIP008 ;
 #endif
 
 //===================================================================
@@ -333,3 +334,4 @@ void SfxApplication::Quit()
 /*?*/   NoChaos::ReleaseItemPool();
 /*?*/   pAppData_Impl->pPool = NULL;
 /*?*/ }
+}

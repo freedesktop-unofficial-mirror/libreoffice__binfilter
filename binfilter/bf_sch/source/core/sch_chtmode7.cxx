@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode7.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,6 +111,7 @@
 #include "pairs.hxx"
 
 #include "chaxis.hxx"
+namespace binfilter {
 
 // Hier abhaengig von der Reihe den Style zurückgeben, vorerst ist nur aufsplitten der
 // Verbundcharts von nöten:
@@ -1360,3 +1361,4 @@ UINT32& ChartModel::Percent DescrF ormat ()
 /*N*/   return bNoBuildChart;
 /*N*/ }
 
+}

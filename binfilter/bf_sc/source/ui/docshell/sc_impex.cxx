@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,7 @@ class StarBASIC;
 #ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
+namespace binfilter {
 
 //========================================================================
 
@@ -438,10 +439,10 @@ class StarBASIC;
 //STRIP001      aStrm << (sal_Unicode) 0;
 //STRIP001      aStrm.Seek( STREAM_SEEK_TO_END );
 //STRIP001
-//STRIP001      rText = rtl::OUString( (const sal_Unicode*) aStrm.GetData() );
+//STRIP001      rText = ::rtl::OUString( (const sal_Unicode*) aStrm.GetData() );
 //STRIP001      return TRUE;
 //STRIP001  }
-//STRIP001  rText = rtl::OUString();
+//STRIP001  rText = ::rtl::OUString();
 //STRIP001  return FALSE;
 //STRIP001
 //STRIP001  // ExportStream must handle RTL_TEXTENCODING_UNICODE
@@ -1754,3 +1755,4 @@ enum DoubledQuoteMode
 //STRIP001 }
 
 
+}

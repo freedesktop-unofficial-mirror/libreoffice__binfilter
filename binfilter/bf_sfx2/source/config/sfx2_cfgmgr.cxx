@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #include "objsh.hxx"
 #include "cfgimpl.hxx"
 #include "docfile.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -115,7 +116,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/       {
 /*N*/           aAny = aContent.getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("IsDocument")) );
 /*N*/       }
-/*N*/       catch(com::sun::star::ucb::InteractiveAugmentedIOException&)
+/*N*/       catch(::com::sun::star::ucb::InteractiveAugmentedIOException&)
 /*N*/       {
 /*N*/       }
 /*N*/       sal_Bool bIsDocument;
@@ -124,13 +125,13 @@ static const char pStorageName[] = "Configurations";
 /*N*/       else
 /*N*/           return new SotStorage( aContent, rName, nMode, STORAGE_TRANSACTED );
 /*N*/   }
-/*N*/     catch( com::sun::star::uno::Exception& e)
+/*N*/     catch( ::com::sun::star::uno::Exception& e)
 /*N*/     {
 /*N*/       // Fatal error, possible corrupted configuration
-/*N*/       com::sun::star::lang::WrappedTargetException wte;
-/*N*/       rtl::OUString ouName = rName;
-/*N*/       wte.Message = rtl::OUString::createFromAscii("GetStorage, name: '") + ouName +
-/*N*/           rtl::OUString::createFromAscii("'");
+/*N*/       ::com::sun::star::lang::WrappedTargetException wte;
+/*N*/       ::rtl::OUString ouName = rName;
+/*N*/       wte.Message = ::rtl::OUString::createFromAscii("GetStorage, name: '") + ouName +
+/*N*/           ::rtl::OUString::createFromAscii("'");
 /*N*/       wte.TargetException <<= e;
 /*N*/       throw wte;
 /*N*/   }
@@ -852,3 +853,4 @@ static const char pStorageName[] = "Configurations";
 //STRIP001     }
 /*?*/ }
 
+}

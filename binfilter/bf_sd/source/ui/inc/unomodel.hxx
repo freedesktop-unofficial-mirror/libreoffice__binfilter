@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unomodel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -136,11 +136,12 @@
 #include <bf_svx/unoipset.hxx>
 
 #include <unotools/servicehelper.hxx>
+class List;
+namespace binfilter {
 
 class SdDrawDocShell;
 class SdDrawDocument;
 class SdPage;
-class List;
 class SdXCustomPresentations;
 
 /***********************************************************************
@@ -295,13 +296,13 @@ public:
     virtual void SAL_CALL setPrinter( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& seqPrinter )
         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
 };
-
+} //namespace binfilter
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 
 #include <cppuhelper/implbase3.hxx>
-
+namespace binfilter {//STRIP009
 class SdDrawPagesAccess : public ::cppu::WeakImplHelper3< ::com::sun::star::drawing::XDrawPages, ::com::sun::star::container::XNameAccess, ::com::sun::star::lang::XServiceInfo >
 {
 private:
@@ -333,13 +334,13 @@ public:
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName ) throw(::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  ) throw(::com::sun::star::uno::RuntimeException);
 };
-
+} //namespace binfilter
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 
 #include <cppuhelper/implbase2.hxx>
-
+namespace binfilter {//STRIP009
 class SdMasterPagesAccess : public ::cppu::WeakImplHelper2< ::com::sun::star::drawing::XDrawPages, ::com::sun::star::lang::XServiceInfo >
 {
 private:
@@ -366,12 +367,12 @@ public:
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName ) throw(::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  ) throw(::com::sun::star::uno::RuntimeException);
 };
-
+} //namespace binfilter
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 #include <cppuhelper/implbase2.hxx>
-
+namespace binfilter {//STRIP009
 class SdDocLinkTargets : public ::cppu::WeakImplHelper2< ::com::sun::star::container::XNameAccess,
                                                          ::com::sun::star::lang::XServiceInfo >
 {
@@ -400,6 +401,7 @@ public:
     SdPage* FindPage( const ::rtl::OUString& rName ) const throw();
 };
 
+} //namespace binfilter
 #endif
 
 

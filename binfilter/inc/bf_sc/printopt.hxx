@@ -2,9 +2,9 @@
  *
  *  $RCSfile: printopt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 
 
 class ScPrintOptions
@@ -122,9 +123,9 @@ public:
 // config item
 //==================================================================
 
-class ScPrintCfg : public ScPrintOptions, public utl::ConfigItem
+class ScPrintCfg : public ScPrintOptions, public ::utl::ConfigItem
 {
-//STRIP001  com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+//STRIP001  ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
 
 public:
     ScPrintCfg();
@@ -135,5 +136,6 @@ public:
 //STRIP001  virtual void    Commit();
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3ids.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:30:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef _SW3IDS_HXX
 #define _SW3IDS_HXX
+namespace binfilter {
 
 #define SWGF_NO_FRAMES  0x0001      // keine Layout-Frames einlesen
 #define SWGF_BLOCKNAME  0x0002      // Header hat Textbaustein-Namen
@@ -255,4 +256,5 @@
 
 #define SW_OLE_CHARTNAME    '1'     // Name der Tabelle des Chart-Objectes
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_appluno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,58 +85,59 @@
 #include "unonames.hxx"
 
 #include <com/sun/star/sheet/FunctionArgument.hpp>
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
 // Calc document
-extern uno::Sequence< rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScDocument_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScDocument_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScDocument_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
 
 // Calc XML import
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLImport_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLImport_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Meta_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLImport_Meta_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Meta_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLImport_Meta_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Meta_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Styles_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLImport_Styles_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Styles_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLImport_Styles_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Styles_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Content_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLImport_Content_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Content_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLImport_Content_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Content_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Settings_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLImport_Settings_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Settings_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLImport_Settings_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Settings_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
 
 // Calc XML export
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLExport_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLExport_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Meta_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLExport_Meta_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Meta_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLExport_Meta_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Meta_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Styles_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLExport_Styles_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Styles_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLExport_Styles_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Styles_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Content_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLExport_Content_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Content_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLExport_Content_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Content_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
-extern uno::Sequence< rtl::OUString > SAL_CALL ScXMLExport_Settings_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL ScXMLExport_Settings_getImplementationName() throw();
+extern uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLExport_Settings_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL ScXMLExport_Settings_getImplementationName() throw();
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Settings_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
 
@@ -177,7 +178,7 @@ const SfxItemPropertyMap* lcl_GetSettingsPropertyMap()
         {MAP_CHAR_LEN(SC_UNONAME_RANGEFIN), 0,  &getBooleanCppuType(),              0},
         {MAP_CHAR_LEN(SC_UNONAME_SCALE),    0,  &getCppuType((sal_Int16*)0),        0},
         {MAP_CHAR_LEN(SC_UNONAME_STBFUNC),  0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_ULISTS),   0,  &getCppuType((uno::Sequence<rtl::OUString>*)0), 0},
+        {MAP_CHAR_LEN(SC_UNONAME_ULISTS),   0,  &getCppuType((uno::Sequence< ::rtl::OUString>*)0),  0},
         {MAP_CHAR_LEN(SC_UNONAME_PRMETRICS),0,  &getBooleanCppuType(),              0},
         {MAP_CHAR_LEN(SC_UNONAME_USETABCOL),0,  &getBooleanCppuType(),              0},
         {MAP_CHAR_LEN(SC_UNONAME_REPLWARN), 0,  &getBooleanCppuType(),              0},
@@ -199,16 +200,16 @@ SC_SIMPLE_SERVICE_INFO( ScSpreadsheetSettings, "ScSpreadsheetSettings", SCSPREAD
 //------------------------------------------------------------------------
 
 void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
-                        const rtl::OUString& rImplementationName,
-                        const uno::Sequence< rtl::OUString >& rServices )
+                        const ::rtl::OUString& rImplementationName,
+                        const uno::Sequence< ::rtl::OUString >& rServices )
                     throw( registry::InvalidRegistryException )
 {
-    rtl::OUString aImpl = rtl::OUString::createFromAscii( "/" );
+    ::rtl::OUString aImpl = ::rtl::OUString::createFromAscii( "/" );
     aImpl += rImplementationName;
-    aImpl += rtl::OUString::createFromAscii( "/UNO/SERVICES" );
+    aImpl += ::rtl::OUString::createFromAscii( "/UNO/SERVICES" );
     uno::Reference<registry::XRegistryKey> xNewKey = pRegistryKey->createKey(aImpl);
 
-    const rtl::OUString* pArray = rServices.getConstArray();
+    const ::rtl::OUString* pArray = rServices.getConstArray();
     for( sal_Int32 i = 0; i < rServices.getLength(); i++ )
         xNewKey->createKey( pArray[i]);
 }
@@ -313,7 +314,7 @@ void * SAL_CALL component_getFactory(
         return NULL;
 
     uno::Reference<lang::XSingleServiceFactory> xFactory;
-    rtl::OUString aImpl = rtl::OUString::createFromAscii(pImplName);
+    ::rtl::OUString aImpl = ::rtl::OUString::createFromAscii(pImplName);
 
     if ( aImpl == ScSpreadsheetSettings::getImplementationName_Static() )
         xFactory = cppu::createOneInstanceFactory(
@@ -466,16 +467,16 @@ uno::Reference<uno::XInterface> SAL_CALL ScSpreadsheetSettings_CreateInstance(
     return xInst;
 }
 
-rtl::OUString ScSpreadsheetSettings::getImplementationName_Static()
+::rtl::OUString ScSpreadsheetSettings::getImplementationName_Static()
 {
-    return rtl::OUString::createFromAscii( "stardiv.StarCalc.ScSpreadsheetSettings" );
+    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScSpreadsheetSettings" );
 }
 
-uno::Sequence<rtl::OUString> ScSpreadsheetSettings::getSupportedServiceNames_Static()
+uno::Sequence< ::rtl::OUString> ScSpreadsheetSettings::getSupportedServiceNames_Static()
 {
-    uno::Sequence<rtl::OUString> aRet(1);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCSPREADSHEETSETTINGS_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(1);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCSPREADSHEETSETTINGS_SERVICE );
     return aRet;
 }
 
@@ -491,7 +492,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScSpreadsheetSettings::getPrope
 }
 
 void SAL_CALL ScSpreadsheetSettings::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -600,7 +601,7 @@ void SAL_CALL ScSpreadsheetSettings::setPropertyValue(
     else if (aString.EqualsAscii( SC_UNONAME_ULISTS ))
     {
         ScUserList* pUserList = ScGlobal::GetUserList();
-        uno::Sequence<rtl::OUString> aSeq;
+        uno::Sequence< ::rtl::OUString> aSeq;
         if ( pUserList && ( aValue >>= aSeq ) )
         {
             //  es wird direkt die "lebende" Liste veraendert,
@@ -608,7 +609,7 @@ void SAL_CALL ScSpreadsheetSettings::setPropertyValue(
 
             pUserList->FreeAll();                   // alle Eintraege raus
             USHORT nCount = (USHORT)aSeq.getLength();
-            const rtl::OUString* pAry = aSeq.getConstArray();
+            const ::rtl::OUString* pAry = aSeq.getConstArray();
             for (USHORT i=0; i<nCount; i++)
             {
                 String aEntry = pAry[i];
@@ -639,7 +640,7 @@ void SAL_CALL ScSpreadsheetSettings::setPropertyValue(
         pScMod->SetInputOptions( aInpOpt );
 }
 
-uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -684,8 +685,8 @@ uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const rtl::OUString& 
         if (pUserList)
         {
             USHORT nCount = pUserList->GetCount();
-            uno::Sequence<rtl::OUString> aSeq(nCount);
-            rtl::OUString* pAry = aSeq.getArray();
+            uno::Sequence< ::rtl::OUString> aSeq(nCount);
+            ::rtl::OUString* pAry = aSeq.getArray();
             for (USHORT i=0; i<nCount; i++)
             {
                 String aEntry = (*pUserList)[i]->GetString();
@@ -725,16 +726,16 @@ uno::Reference<uno::XInterface> SAL_CALL ScRecentFunctionsObj_CreateInstance(
     return xInst;
 }
 
-rtl::OUString ScRecentFunctionsObj::getImplementationName_Static()
+::rtl::OUString ScRecentFunctionsObj::getImplementationName_Static()
 {
-    return rtl::OUString::createFromAscii( "stardiv.StarCalc.ScRecentFunctionsObj" );
+    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScRecentFunctionsObj" );
 }
 
-uno::Sequence<rtl::OUString> ScRecentFunctionsObj::getSupportedServiceNames_Static()
+uno::Sequence< ::rtl::OUString> ScRecentFunctionsObj::getSupportedServiceNames_Static()
 {
-    uno::Sequence<rtl::OUString> aRet(1);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCRECENTFUNCTIONSOBJ_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(1);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCRECENTFUNCTIONSOBJ_SERVICE );
     return aRet;
 }
 
@@ -806,16 +807,16 @@ uno::Reference<uno::XInterface> SAL_CALL ScFunctionListObj_CreateInstance(
     return xInst;
 }
 
-rtl::OUString ScFunctionListObj::getImplementationName_Static()
+::rtl::OUString ScFunctionListObj::getImplementationName_Static()
 {
-    return rtl::OUString::createFromAscii( "stardiv.StarCalc.ScFunctionListObj" );
+    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScFunctionListObj" );
 }
 
-uno::Sequence<rtl::OUString> ScFunctionListObj::getSupportedServiceNames_Static()
+uno::Sequence< ::rtl::OUString> ScFunctionListObj::getSupportedServiceNames_Static()
 {
-    uno::Sequence<rtl::OUString> aRet(1);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCFUNCTIONLISTOBJ_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(1);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONLISTOBJ_SERVICE );
     return aRet;
 }
 
@@ -826,21 +827,21 @@ void lcl_FillSequence( uno::Sequence<beans::PropertyValue>& rSequence, const ScF
 
     beans::PropertyValue* pArray = rSequence.getArray();
 
-    pArray[0].Name = rtl::OUString::createFromAscii( SC_UNONAME_ID );
+    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ID );
     pArray[0].Value <<= (sal_Int32) rDesc.nFIndex;
 
-    pArray[1].Name = rtl::OUString::createFromAscii( SC_UNONAME_CATEGORY );
+    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_CATEGORY );
     pArray[1].Value <<= (sal_Int32) rDesc.nCategory;
 
-    pArray[2].Name = rtl::OUString::createFromAscii( SC_UNONAME_NAME );
+    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_NAME );
     if (rDesc.pFuncName)
-        pArray[2].Value <<= rtl::OUString( *rDesc.pFuncName );
+        pArray[2].Value <<= ::rtl::OUString( *rDesc.pFuncName );
 
-    pArray[3].Name = rtl::OUString::createFromAscii( SC_UNONAME_DESCRIPTION );
+    pArray[3].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_DESCRIPTION );
     if (rDesc.pFuncDesc)
-        pArray[3].Value <<= rtl::OUString( *rDesc.pFuncDesc );
+        pArray[3].Value <<= ::rtl::OUString( *rDesc.pFuncDesc );
 
-    pArray[4].Name = rtl::OUString::createFromAscii( SC_UNONAME_ARGUMENTS );
+    pArray[4].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ARGUMENTS );
     if (rDesc.aDefArgNames && rDesc.aDefArgDescs && rDesc.aDefArgOpt )
     {
         USHORT nCount = rDesc.nArgCount;
@@ -895,7 +896,7 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScFunctionListObj::getById( sal_Int
 
 // XNameAccess
 
-uno::Any SAL_CALL ScFunctionListObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScFunctionListObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -974,7 +975,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScFunctionListObj::createEnumer
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.FunctionDescriptionEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.FunctionDescriptionEnumeration")));
 }
 
 // XElementAccess
@@ -991,15 +992,15 @@ sal_Bool SAL_CALL ScFunctionListObj::hasElements() throw(uno::RuntimeException)
     return ( getCount() > 0 );
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScFunctionListObj::getElementNames() throw(uno::RuntimeException)
+uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionListObj::getElementNames() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
     {
         USHORT nCount = (USHORT)pFuncList->GetCount();
-        uno::Sequence<rtl::OUString> aSeq(nCount);
-        rtl::OUString* pAry = aSeq.getArray();
+        uno::Sequence< ::rtl::OUString> aSeq(nCount);
+        ::rtl::OUString* pAry = aSeq.getArray();
         for (USHORT nIndex=0; nIndex<nCount; nIndex++)
         {
             const ScFuncDesc* pDesc = pFuncList->GetFunction(nIndex);
@@ -1008,10 +1009,10 @@ uno::Sequence<rtl::OUString> SAL_CALL ScFunctionListObj::getElementNames() throw
         }
         return aSeq;
     }
-    return uno::Sequence<rtl::OUString>(0);
+    return uno::Sequence< ::rtl::OUString>(0);
 }
 
-sal_Bool SAL_CALL ScFunctionListObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScFunctionListObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1036,3 +1037,4 @@ sal_Bool SAL_CALL ScFunctionListObj::hasByName( const rtl::OUString& aName )
 
 
 
+}

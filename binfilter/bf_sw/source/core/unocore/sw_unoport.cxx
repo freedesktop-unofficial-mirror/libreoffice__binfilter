@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,7 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
@@ -776,7 +777,7 @@ uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumerat
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextPortion::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------04.07.01 08:52--------------------------------
@@ -952,3 +953,4 @@ SwXRubyPortion::~SwXRubyPortion()
 {
 }
 
+}

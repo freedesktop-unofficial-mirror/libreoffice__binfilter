@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rechead.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,8 @@
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
+class SvStream;
+namespace binfilter {
 
 //      ID's fuer Dateien:
 
@@ -159,7 +161,6 @@
 // btw: 10 nach 09 ist kein Zaehlfehler sondern eine absichtliche Luecke,
 // weil nicht klar war, wie lange die RelRefs Entwicklung dauern wuerde.. :)
 
-class SvStream;
 
 // -----------------------------------------------------------------------
 
@@ -228,6 +229,7 @@ public:
     void    EndEntry();
 };
 
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_macrconf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -118,6 +118,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 static const sal_uInt16 nCompatVersion = 2;
 static const sal_uInt16 nVersion = 3;
@@ -959,3 +960,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 /*N*/ }
 
 
+}

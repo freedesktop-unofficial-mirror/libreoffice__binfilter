@@ -2,7 +2,7 @@
 // class SfxRequest
 //
 // (C) 1996 - 2000 StarDivision GmbH, Hamburg, Germany
-// $Author: hjs $ $Date: 2003-10-01 12:23:06 $ $Revision: 1.1.1.1 $
+// $Author: mwu $ $Date: 2003-11-06 07:38:44 $ $Revision: 1.2 $
 // $Logfile:   T:/bf_sfx2/source/control/request.cxv  $ $Workfile:   REQUEST.CXX  $
 //------------------------------------------------------------------*/
 
@@ -60,6 +60,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 //===================================================================
 
@@ -89,7 +90,7 @@
 /*N*/   SfxAllItemSet*      pInternalArgs;
 /*N*/     SfxViewFrame*       pViewFrame;
 /*N*/
-/*N*/     com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > xRecorder;
+/*N*/     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > xRecorder;
 /*N*/
 /*N*/                       SfxRequest_Impl( SfxRequest *pOwner )
 /*N*/                       : pAnti( pOwner), bCancelled(FALSE),
@@ -359,15 +360,15 @@
 //STRIP001          }
 //STRIP001      }
 //STRIP001
-//STRIP001         com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory > xFactory(
+//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xFactory(
 //STRIP001                 ::legacy_binfilters::getLegacyProcessServiceFactory(),
-//STRIP001                 com::sun::star::uno::UNO_QUERY);
+//STRIP001                 ::com::sun::star::uno::UNO_QUERY);
 //STRIP001
-//STRIP001         com::sun::star::uno::Reference< com::sun::star::util::XURLTransformer > xTransform(
-//STRIP001                 xFactory->createInstance(rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")),
-//STRIP001                 com::sun::star::uno::UNO_QUERY);
+//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::util::XURLTransformer > xTransform(
+//STRIP001                 xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")),
+//STRIP001                 ::com::sun::star::uno::UNO_QUERY);
 //STRIP001
-//STRIP001         com::sun::star::util::URL aURL;
+//STRIP001         ::com::sun::star::util::URL aURL;
 //STRIP001         aURL.Complete = aCmd;
 //STRIP001         xTransform->parseStrict(aURL);
 //STRIP001
@@ -384,7 +385,7 @@
 /*?*/ (
 /*?*/     SfxShell& rSh,    // die <SfxShell>, die den Request ausgef"uhrt hat
 /*?*/   const SfxSlot&  rSlot,  // der <SfxSlot>, der den Request ausgef"uhrt hat
-/*?*/     com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > xRecorder,  // der Recorder, mit dem aufgezeichnet wird
+/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > xRecorder,  // der Recorder, mit dem aufgezeichnet wird
 /*?*/     SfxViewFrame* pViewFrame
 /*?*/ )
 
@@ -815,7 +816,7 @@
 
 //--------------------------------------------------------------------
 
-//STRIP001 com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > SfxRequest::GetMacroRecorder( SfxViewFrame* pView )
+//STRIP001 ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > SfxRequest::GetMacroRecorder( SfxViewFrame* pView )
 
 /*  [Beschreibung]
 
@@ -826,16 +827,16 @@
 */
 
 //STRIP001 {
-//STRIP001     com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > xRecorder;
+//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > xRecorder;
 //STRIP001
-//STRIP001     com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > xSet(
+//STRIP001     ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > xSet(
 //STRIP001         (pView ? pView : SfxViewFrame::Current())->GetFrame()->GetFrameInterface(),
-//STRIP001         com::sun::star::uno::UNO_QUERY);
+//STRIP001         ::com::sun::star::uno::UNO_QUERY);
 //STRIP001
 //STRIP001     if(xSet.is())
 //STRIP001     {
-//STRIP001         com::sun::star::uno::Any aProp = xSet->getPropertyValue(rtl::OUString::createFromAscii("DispatchRecorderSupplier"));
-//STRIP001         com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorderSupplier > xSupplier;
+//STRIP001         ::com::sun::star::uno::Any aProp = xSet->getPropertyValue(::rtl::OUString::createFromAscii("DispatchRecorderSupplier"));
+//STRIP001         ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorderSupplier > xSupplier;
 //STRIP001         aProp >>= xSupplier;
 //STRIP001         if(xSupplier.is())
 //STRIP001             xRecorder = xSupplier->getDispatchRecorder();
@@ -933,3 +934,4 @@
 /*N*/                  ( SFX_CALLMODE_RECORD == ( SFX_CALLMODE_RECORD & pImp->nCallMode ) );
 /*N*/     return bAllow;
 /*N*/ }
+}

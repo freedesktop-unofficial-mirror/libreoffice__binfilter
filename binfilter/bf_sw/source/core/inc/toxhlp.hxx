@@ -2,9 +2,9 @@
  *
  *  $RCSfile: toxhlp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,14 +84,15 @@ namespace lang {
     class XMultiServiceFactory;
 }
 }}}};
-
-
 //STRIP001 class String;
+namespace binfilter {
+
+
 
 //STRIP001 class IndexEntrySupplierWrapper
 //STRIP001 {
 //STRIP001  STAR_NMSPC::lang::Locale aLcl;
-//STRIP001     STAR_NMSPC::uno::Reference < com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
+//STRIP001     STAR_NMSPC::uno::Reference < ::com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
 //STRIP001
 //STRIP001 public:
 //STRIP001  IndexEntrySupplierWrapper(
@@ -116,4 +117,5 @@ namespace lang {
 //STRIP001                                  const STAR_NMSPC::lang::Locale& rLcl2 ) const;
 //STRIP001 };
 
+} //namespace binfilter
 #endif

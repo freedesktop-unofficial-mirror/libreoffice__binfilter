@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdouno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -148,6 +148,7 @@ using namespace ::com::sun::star;
 #endif
 
 #include <cppuhelper/implbase1.hxx>
+namespace binfilter {
 
 /*N*/ class SdrControlEventListenerImpl : public ::cppu::WeakImplHelper1< ::com::sun::star::lang::XEventListener >
 /*N*/ {
@@ -440,9 +441,9 @@ using namespace ::com::sun::star;
 //STRIP001                      if (xP.is())
 //STRIP001                      {
 //STRIP001                          uno::Reference< beans::XPropertySetInfo > xPropInfo = xP->getPropertySetInfo();
-//STRIP001                          if( xPropInfo.is() && xPropInfo->hasPropertyByName( rtl::OUString::createFromAscii("Printable")) )
+//STRIP001                          if( xPropInfo.is() && xPropInfo->hasPropertyByName( ::rtl::OUString::createFromAscii("Printable")) )
 //STRIP001                          {
-//STRIP001                              uno::Any aVal( xP->getPropertyValue( rtl::OUString::createFromAscii("Printable")) );
+//STRIP001                              uno::Any aVal( xP->getPropertyValue( ::rtl::OUString::createFromAscii("Printable")) );
 //STRIP001                              if( aVal.hasValue() && aVal.getValueType() == ::getCppuBooleanType() )
 //STRIP001                                  bDrawIt = *(sal_Bool*)aVal.getValue();
 //STRIP001                          }
@@ -486,9 +487,9 @@ using namespace ::com::sun::star;
 //STRIP001              if (xP.is())
 //STRIP001              {
 //STRIP001                  uno::Reference< beans::XPropertySetInfo > xPropInfo = xP->getPropertySetInfo();
-//STRIP001                  if( xPropInfo.is() && xPropInfo->hasPropertyByName( rtl::OUString::createFromAscii("Printable")) )
+//STRIP001                  if( xPropInfo.is() && xPropInfo->hasPropertyByName( ::rtl::OUString::createFromAscii("Printable")) )
 //STRIP001                  {
-//STRIP001                      uno::Any aVal( xP->getPropertyValue( rtl::OUString::createFromAscii("Printable")) );
+//STRIP001                      uno::Any aVal( xP->getPropertyValue( ::rtl::OUString::createFromAscii("Printable")) );
 //STRIP001                      if( aVal.hasValue() && aVal.getValueType() == ::getCppuBooleanType() && *(sal_Bool*)aVal.getValue() )
 //STRIP001                      {
 //STRIP001                          uno::Reference< awt::XGraphics > x = pOut->CreateUnoGraphics(); // UNO3
@@ -571,21 +572,21 @@ using namespace ::com::sun::star;
 //STRIP001      if ( xObj.is() && xFactory.is() )
 //STRIP001      {
 //STRIP001          // creating a pipe
-//STRIP001          uno::Reference< io::XOutputStream > xOutPipe(xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.io.Pipe")), uno::UNO_QUERY);
+//STRIP001          uno::Reference< io::XOutputStream > xOutPipe(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.Pipe")), uno::UNO_QUERY);
 //STRIP001          uno::Reference< io::XInputStream > xInPipe(xOutPipe, uno::UNO_QUERY);
 //STRIP001
 //STRIP001          // creating the mark streams
-//STRIP001          uno::Reference< io::XInputStream > xMarkIn(xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.io.MarkableInputStream")), uno::UNO_QUERY);
+//STRIP001          uno::Reference< io::XInputStream > xMarkIn(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.MarkableInputStream")), uno::UNO_QUERY);
 //STRIP001          uno::Reference< io::XActiveDataSink > xMarkSink(xMarkIn, uno::UNO_QUERY);
 //STRIP001
-//STRIP001          uno::Reference< io::XOutputStream > xMarkOut(xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.io.MarkableOutputStream")), uno::UNO_QUERY);
+//STRIP001          uno::Reference< io::XOutputStream > xMarkOut(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.MarkableOutputStream")), uno::UNO_QUERY);
 //STRIP001          uno::Reference< io::XActiveDataSource > xMarkSource(xMarkOut, uno::UNO_QUERY);
 //STRIP001
 //STRIP001          // connect mark and sink
-//STRIP001          uno::Reference< io::XActiveDataSink > xSink(xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), uno::UNO_QUERY);
+//STRIP001          uno::Reference< io::XActiveDataSink > xSink(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), uno::UNO_QUERY);
 //STRIP001
 //STRIP001          // connect mark and source
-//STRIP001          uno::Reference< io::XActiveDataSource > xSource(xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.io.ObjectOutputStream")), uno::UNO_QUERY);
+//STRIP001          uno::Reference< io::XActiveDataSource > xSource(xFactory->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectOutputStream")), uno::UNO_QUERY);
 //STRIP001
 //STRIP001          uno::Reference< io::XObjectOutputStream > xOutStrm(xSource, uno::UNO_QUERY);
 //STRIP001          uno::Reference< io::XObjectInputStream > xInStrm(xSink, uno::UNO_QUERY);
@@ -615,7 +616,7 @@ using namespace ::com::sun::star;
 //STRIP001  uno::Reference< beans::XPropertySet > xSet(xUnoControlModel, uno::UNO_QUERY);
 //STRIP001  if (xSet.is())
 //STRIP001  {
-//STRIP001      uno::Any aValue( xSet->getPropertyValue( rtl::OUString::createFromAscii("DefaultControl")) );
+//STRIP001      uno::Any aValue( xSet->getPropertyValue( ::rtl::OUString::createFromAscii("DefaultControl")) );
 //STRIP001      OUString aStr;
 //STRIP001
 //STRIP001      if( aValue >>= aStr )
@@ -1008,3 +1009,4 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 
+}

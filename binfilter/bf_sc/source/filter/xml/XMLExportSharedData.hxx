@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLExportSharedData.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,16 +72,17 @@
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
+namespace binfilter {
 
 struct ScMyDrawPage
 {
-    com::sun::star::uno::Reference<com::sun::star::drawing::XDrawPage> xDrawPage;
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage> xDrawPage;
     sal_Bool bHasForms : 1;
 
     ScMyDrawPage() : bHasForms(sal_False) {}
 };
 
-typedef std::list< com::sun::star::uno::Reference<com::sun::star::drawing::XShape> > ScMyTableXShapes;
+typedef std::list< ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape> > ScMyTableXShapes;
 typedef std::vector<ScMyTableXShapes> ScMyTableShapes;
 typedef std::vector<ScMyDrawPage> ScMyDrawPages;
 
@@ -108,17 +109,18 @@ public:
     sal_Int32 GetLastRow(const sal_Int32 nTable);
     void AddDrawPage(const ScMyDrawPage& aDrawPage, const sal_Int32 nTable);
     void SetDrawPageHasForms(const sal_Int32 nTable, sal_Bool bHasForms);
-    com::sun::star::uno::Reference<com::sun::star::drawing::XDrawPage> GetDrawPage(const sal_Int32 nTable);
+    ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage> GetDrawPage(const sal_Int32 nTable);
     sal_Bool HasDrawPage() { return pDrawPages != NULL; }
-    sal_Bool HasForm(const sal_Int32 nTable, com::sun::star::uno::Reference<com::sun::star::drawing::XDrawPage>& xDrawPage);
+    sal_Bool HasForm(const sal_Int32 nTable, ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage>& xDrawPage);
     void AddNewShape(const ScMyShape& aMyShape);
     void SortShapesContainer();
     ScMyShapesContainer* GetShapesContainer() { return pShapesContainer; }
     sal_Bool HasShapes();
-    void AddTableShape(const sal_Int32 nTable, const com::sun::star::uno::Reference<com::sun::star::drawing::XShape>& xShape);
+    void AddTableShape(const sal_Int32 nTable, const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape>& xShape);
     ScMyTableShapes* GetTableShapes() { return pTableShapes; }
     ScMyDetectiveObjContainer* GetDetectiveObjContainer() { return pDetectiveObjContainer; }
 };
 
+} //namespace binfilter
 #endif
 

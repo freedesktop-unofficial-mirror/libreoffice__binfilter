@@ -2,9 +2,9 @@
  *
  *  $RCSfile: uiitems.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,10 @@
 #ifndef _SFXINTITEM_HXX
 #include <svtools/intitem.hxx>
 #endif
-class SwNumRule;
 class IntlWrapper;
+namespace binfilter {
+class SwNumRule;
+
 
 /*--------------------------------------------------------------------
     Beschreibung: Container fuer FootNote
@@ -90,8 +92,8 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwPageFtnInfo& GetPageFtnInfo()             { return aFtnInfo; }
     const SwPageFtnInfo& GetPageFtnInfo() const { return aFtnInfo; }
@@ -130,8 +132,8 @@ public:
 //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 //STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
 
-//STRIP001  virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  const SwNumRule* GetNumRule() const         { return pRule; }
 //STRIP001        SwNumRule* GetNumRule()               { return pRule; }
@@ -148,4 +150,5 @@ public:
 //STRIP001  virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
 //STRIP001 };
 
+} //namespace binfilter
 #endif // _UIITEMS_HXX

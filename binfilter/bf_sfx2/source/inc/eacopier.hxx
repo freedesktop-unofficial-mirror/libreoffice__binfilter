@@ -2,9 +2,9 @@
  *
  *  $RCSfile: eacopier.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _SFX_EACOPIER_HXX
 
 #include <tools/eacopier.hxx>
+namespace binfilter {
 class SvFileStream;
 
 // class SfxEA_Copier ----------------------------------------------------
@@ -75,6 +76,7 @@ public:
     virtual BOOL    Copy( const SvFileStream& rFrom, const SvFileStream& rTo ) const;
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SFX_EACOPIER_HXX
 
 

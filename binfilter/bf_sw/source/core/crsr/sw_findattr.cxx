@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findattr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,10 +135,11 @@
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::util;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::util;
 
 //STRIP001 SV_DECL_PTRARR_SORT( SwpFmts, SwFmt*, 0, 4 )
 //STRIP001 SV_IMPL_PTRARR_SORT( SwpFmts, SwFmt* )
@@ -1273,7 +1274,7 @@ struct SwFindParaAttr : public SwFindParas
     const SfxItemSet *pSet, *pReplSet;
     const SearchOptions *pSearchOpt;
     SwCursor& rCursor;
-    utl::TextSearch* pSTxt;
+    ::utl::TextSearch* pSTxt;
 
     SwFindParaAttr( const SfxItemSet& rSet, BOOL bNoCollection,
                     const SearchOptions* pOpt, const SfxItemSet* pRSet,
@@ -1334,7 +1335,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     // String ersetzen ?? (nur wenn 
 //STRIP001
 //STRIP001              String aLang, aCntry;
 //STRIP001              ConvertLanguageToIsoNames( LANGUAGE_SYSTEM, aLang, aCntry );
-//STRIP001              aTmp.Locale = Locale( aLang, aCntry, rtl::OUString() );
+//STRIP001              aTmp.Locale = Locale( aLang, aCntry, ::rtl::OUString() );
 //STRIP001
 //STRIP001              pSTxt = new utl::TextSearch( aTmp );
 //STRIP001          }
@@ -1494,3 +1495,4 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     return ( pSearchOpt && pSearchOp
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impgrf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:42:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -106,7 +106,7 @@
 #endif
 
 using namespace ::ucb;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 #include "dialogs.hrc"
 #include "impgrf.hrc"
@@ -117,6 +117,7 @@ using namespace com::sun::star::uno;
 #include "dialmgr.hxx"
 #include "svxerr.hxx"
 #include "helpid.hrc"
+namespace binfilter {
 
 // defines ---------------------------------------------------------------
 
@@ -136,7 +137,7 @@ using namespace com::sun::star::uno;
 /*N*/ #else
 /*N*/       pGrapicFilter = new GraphicFilter(sal_False);
 /*N*/ #endif
-/*N*/       ::FillFilter( *pGrapicFilter );
+/*N*/       ::binfilter::FillFilter( *pGrapicFilter );
 /*N*/   }
 /*N*/   const Link aLink;
 /*N*/   pGrapicFilter->SetStartFilterHdl( aLink );
@@ -226,3 +227,4 @@ using namespace com::sun::star::uno;
 
 #pragma optimize( "", on )
 
+}

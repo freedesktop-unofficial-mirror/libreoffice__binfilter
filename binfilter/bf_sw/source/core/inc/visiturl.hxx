@@ -2,9 +2,9 @@
  *
  *  $RCSfile: visiturl.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _SFXLSTNER_HXX //autogen
 #include <svtools/lstner.hxx>
 #endif
+namespace binfilter {
 class SwDoc;
 
 class SwURLStateChanged : public SfxListener
@@ -81,5 +82,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

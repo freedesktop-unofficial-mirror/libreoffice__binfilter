@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #include <charscaleitem.hxx>
 
 #include <vcl/svapp.hxx>    // Fuer AppWindow...
+namespace binfilter {
 
 /*N*/ DBG_NAME( EE_ParaPortion );
 
@@ -520,3 +521,4 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 //STRIP001  }
 //STRIP001 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #include "objsh.hxx"
 //#include "objshimp.hxx"
 #include "objitem.hxx"
+namespace binfilter {
 
 //====================================================================
 
@@ -114,3 +115,4 @@
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl1.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,6 +115,7 @@
 #include "docary.hxx"
 #include "ndindex.hxx"
 #include "undobj.hxx"
+namespace binfilter {
 
 
 extern void ClearFEShellTabCols();
@@ -183,7 +184,7 @@ extern void ClearFEShellTabCols();
 /*N*/ {
 /*N*/   const SwTableCursor* pTblCrsr = rCursor;
 /*N*/   if( pTblCrsr )
-/*?*/       ::GetTblSelCrs( *pTblCrsr, rBoxes );
+/*?*/       ::binfilter::GetTblSelCrs( *pTblCrsr, rBoxes );
 /*N*/   else
 /*N*/   {
 /*N*/       const SwPaM *pCurPam = &rCursor, *pSttPam = pCurPam;
@@ -265,7 +266,7 @@ extern void ClearFEShellTabCols();
 /*N*/           if ( rpBox->GetLines().Count() == rLines.Count() )
 /*N*/           {
 /*N*/               for ( USHORT i = 0; i < rLines.Count(); ++i )
-/*N*/                   ::InsertLine( ((LinesAndTable*)pPara)->rLines,
+/*N*/                   ::binfilter::InsertLine( ((LinesAndTable*)pPara)->rLines,
 /*N*/                                 (SwTableLine*)rLines[i] );
 /*N*/           }
 /*N*/           else
@@ -273,7 +274,7 @@ extern void ClearFEShellTabCols();
 /*N*/       }
 /*N*/   }
 /*N*/   else if ( rpBox->GetBox() )
-/*N*/       ::InsertLine( ((LinesAndTable*)pPara)->rLines,
+/*N*/       ::binfilter::InsertLine( ((LinesAndTable*)pPara)->rLines,
 /*N*/                     (SwTableLine*)rpBox->GetBox()->GetUpper() );
 /*N*/   return TRUE;
 /*N*/ }
@@ -288,7 +289,7 @@ extern void ClearFEShellTabCols();
 /*N*/ {
 /*N*/   //Zuerst die selektierten Boxen einsammeln.
 /*N*/   SwSelBoxes aBoxes;
-/*N*/   if( !::lcl_GetBoxSel( rCursor, aBoxes ))
+/*N*/   if( !::binfilter::lcl_GetBoxSel( rCursor, aBoxes ))
 /*?*/       return ;
 /*N*/
 /*N*/   //Die selektierte Struktur kopieren.
@@ -302,7 +303,7 @@ extern void ClearFEShellTabCols();
 /*N*/
 /*N*/   //Diejenigen Lines einsammeln, die nur selektierte Boxen enthalten.
 /*N*/   const _FndBox *pTmp = &aFndBox;
-/*N*/   ::_FindBox( pTmp, &aPara );
+/*N*/   ::binfilter::_FindBox( pTmp, &aPara );
 /*N*/
 /*N*/   //Jetzt die Lines entfernen, die von einer gemeinsamen uebergeordneten Line
 /*N*/   //erfasst werden.
@@ -423,7 +424,7 @@ extern void ClearFEShellTabCols();
 /*N*/   if( pTblNd )
 /*N*/   {
 /*N*/       SvPtrarr aRowArr( 25, 50 ); //Zum sammeln der Lines.
-/*N*/       ::lcl_CollectLines( aRowArr, rCursor );
+/*N*/       ::binfilter::lcl_CollectLines( aRowArr, rCursor );
 /*N*/
 /*N*/       if( 1 < aRowArr.Count() )
 /*N*/       {
@@ -558,7 +559,7 @@ extern void ClearFEShellTabCols();
 /*?*/           pCell = pCell->GetUpper();
 /*N*/       ASSERT( pCell, "Frame ist keine Zelle." );
 /*N*/       if ( rUnion.IsOver( pCell->Frm() ) )
-/*N*/           ::InsertCell( rArr, (SwCellFrm*)pCell );
+/*N*/           ::binfilter::InsertCell( rArr, (SwCellFrm*)pCell );
 /*N*/       //Dafuer sorgen, dass die Zelle auch verlassen wird (Bereiche)
 /*N*/       SwLayoutFrm *pTmp = pCell;
 /*N*/       do
@@ -896,10 +897,10 @@ extern void ClearFEShellTabCols();
 /*?*/       return ;
 /*N*/
 /*N*/   SwLayoutFrm *pStart, *pEnd;
-/*N*/   ::lcl_GetStartEndCell( rCursor, pStart, pEnd );
+/*N*/   ::binfilter::lcl_GetStartEndCell( rCursor, pStart, pEnd );
 /*N*/
 /*N*/   SwSelUnions aUnions;
-/*N*/   ::MakeSelUnions( aUnions, pStart, pEnd );
+/*N*/   ::binfilter::MakeSelUnions( aUnions, pStart, pEnd );
 /*N*/
 /*N*/   if( aUnions.Count() )
 /*N*/   {
@@ -925,7 +926,7 @@ extern void ClearFEShellTabCols();
 /*N*/           const BOOL bLast  = i == aUnions.Count() - 1 ? TRUE : FALSE;
 /*N*/
 /*N*/           SvPtrarr aCellArr( 255, 255 );
-/*N*/           ::lcl_CollectCells( aCellArr, rUnion, (SwTabFrm*)pTab );
+/*N*/           ::binfilter::lcl_CollectCells( aCellArr, rUnion, (SwTabFrm*)pTab );
 /*N*/
 /*N*/           for ( USHORT j = 0; j < aCellArr.Count(); ++j )
 /*N*/           {
@@ -1203,7 +1204,7 @@ extern void ClearFEShellTabCols();
 /*N*/   USHORT nAlign = USHRT_MAX;
 /*N*/   SwTableNode* pTblNd = rCursor.GetPoint()->nNode.GetNode().FindTableNode();
 /*N*/   SwSelBoxes aBoxes;
-/*N*/   if( pTblNd && ::lcl_GetBoxSel( rCursor, aBoxes ))
+/*N*/   if( pTblNd && ::binfilter::lcl_GetBoxSel( rCursor, aBoxes ))
 /*N*/       for( USHORT i = 0; i < aBoxes.Count(); ++i )
 /*N*/       {
 /*N*/           const SwFmtVertOrient &rOri =
@@ -1544,3 +1545,4 @@ extern void ClearFEShellTabCols();
 //STRIP001  SetModified();
 //STRIP001 }
 
+}

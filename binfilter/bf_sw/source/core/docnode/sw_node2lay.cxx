@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_node2lay.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,7 @@
 #include "frmtool.hxx"
 #include "section.hxx"
 #include "node2lay.hxx"
+namespace binfilter {
 
 
 /* -----------------25.02.99 10:31-------------------
@@ -349,7 +350,7 @@
 /*N*/                   ((SwSectionFrm*)pNxt)->UnlockJoin();
 /*N*/               pUp = (SwLayoutFrm*)(*pUpperFrms)[x++];
 /*N*/               ASSERT( pUp->GetUpper() || pUp->IsFlyFrm(), "Lost Upper" );
-/*N*/               ::_InsertCnt( pUp, pDoc, pNd->GetIndex(), FALSE, nStt+1, pNxt );
+/*N*/               ::binfilter::_InsertCnt( pUp, pDoc, pNd->GetIndex(), FALSE, nStt+1, pNxt );
 /*N*/               pNxt = pUp->Lower();
 /*N*/               if( pNxt )
 /*N*/                   while( pNxt->GetNext() )
@@ -418,3 +419,4 @@
 //STRIP001 }
 
 
+}

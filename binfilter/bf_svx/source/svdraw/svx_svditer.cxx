@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svditer.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
 #endif
+namespace binfilter {
 
 /*N*/ SdrObjListIter::SdrObjListIter(const SdrObjList& rObjList, SdrIterMode eMode, BOOL bReverse)
 /*N*/ : maObjList(1024, 64, 64),
@@ -114,3 +115,4 @@
 /*N*/   }
 /*N*/ }
 
+}

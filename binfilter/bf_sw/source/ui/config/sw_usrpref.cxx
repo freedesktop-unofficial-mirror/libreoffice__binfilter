@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_usrpref.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,11 +94,12 @@
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
+namespace binfilter {
 
 using namespace utl;
 using namespace rtl;
 using namespace ::com::sun::star;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
@@ -699,3 +700,4 @@ using namespace com::sun::star::uno;
 /*N*/ }
 
 
+}

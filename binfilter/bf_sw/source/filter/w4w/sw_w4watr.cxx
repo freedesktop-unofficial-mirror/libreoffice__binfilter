@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4watr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -207,6 +207,7 @@
 #ifndef _WRTW4W_HXX
 #include <wrtw4w.hxx>
 #endif
+namespace binfilter {
 
 
 /*
@@ -1880,3 +1881,4 @@ SwNodeFnTab aW4WNodeFnTab = {
 };
 
 
+}

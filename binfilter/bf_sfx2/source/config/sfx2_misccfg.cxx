@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_misccfg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #include <tools/debug.hxx>
 #endif
 #include "misccfg.hxx"
+namespace binfilter {
 
 #define DEFAULT_TAB 2000
 
@@ -76,7 +77,7 @@
 #define DEF_RELTWIP 1440L
 
 using namespace rtl;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------
@@ -191,7 +192,7 @@ using namespace com::sun::star::uno;
 /* -----------------------------02.03.01 15:31--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*?*/ void SfxMiscCfg::Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames)
+/*?*/ void SfxMiscCfg::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames)
 /*?*/ {
 /*?*/   Load();
 /*?*/ }
@@ -219,3 +220,4 @@ using namespace com::sun::star::uno;
 //STRIP001  PutProperties(aNames, aValues);
 /*?*/ }
 
+}

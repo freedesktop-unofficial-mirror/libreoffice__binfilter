@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unotext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -131,6 +131,7 @@
 #include "unoshprp.hxx"
 #include "numitem.hxx"
 #include "editeng.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::vos;
@@ -206,7 +207,7 @@ void CheckSelection( struct ESelection& rSel, SvxTextForwarder* pForwarder ) thr
     {
         if( rSel.nStartPara == 0xffff )
         {
-            ::GetSelection( rSel, pForwarder );
+            ::binfilter::GetSelection( rSel, pForwarder );//STRIP008            ::GetSelection( rSel, pForwarder );
         }
         else
         {
@@ -268,7 +269,7 @@ SvxUnoTextRangeBase::SvxUnoTextRangeBase( const SvxEditSource* pSource, const Sf
 
     pEditSource = pSource->Clone();
     ESelection aSelection;
-    ::GetSelection( aSelection, pEditSource->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, pEditSource->GetTextForwarder() );//STRIP008 ::GetSelection( aSelection, pEditSource->GetTextForwarder() );
     SetSelection( aSelection );
 }
 
@@ -1556,7 +1557,7 @@ SvxUnoTextBase::SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPrope
 : SvxUnoTextRangeBase( pSource, _pMap )
 {
     ESelection aSelection;
-    ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
     SetSelection( aSelection );
 }
 
@@ -1565,7 +1566,7 @@ SvxUnoTextBase::SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPrope
 {
     xParentText = xParent;
     ESelection aSelection;
-    ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
     SetSelection( aSelection );
 }
 
@@ -1705,7 +1706,7 @@ void SAL_CALL SvxUnoTextBase::insertString( const uno::Reference< text::XTextRan
         return;
 
     ESelection aSelection;
-    ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
     SetSelection( aSelection );
 
     SvxUnoTextRangeBase* pRange = SvxUnoTextRange::getImplementation( xRange );
@@ -1734,7 +1735,7 @@ void SAL_CALL SvxUnoTextBase::insertControlCharacter( const uno::Reference< text
     if( pForwarder )
     {
         ESelection aSelection;
-        ::GetSelection( aSelection, pForwarder );
+        ::binfilter::GetSelection( aSelection, pForwarder );//STRIP008      ::GetSelection( aSelection, pForwarder );
         SetSelection( aSelection );
 
         switch( nControlCharacter )
@@ -1864,7 +1865,7 @@ uno::Reference< text::XText > SAL_CALL SvxUnoTextBase::getText()
     OGuard aGuard( Application::GetSolarMutex() );
 
     ESelection aSelection;
-    ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
     ((SvxUnoTextBase*)this)->SetSelection( aSelection );
 
     return (text::XText*)this;
@@ -1900,7 +1901,7 @@ uno::Reference< container::XEnumeration > SAL_CALL SvxUnoTextBase::createEnumera
     OGuard aGuard( Application::GetSolarMutex() );
 
     ESelection aSelection;
-    ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
     SetSelection( aSelection );
 
     uno::Reference< container::XEnumeration > xEnum( (container::XEnumeration*) new SvxUnoTextContentEnumeration( *this ) );
@@ -2280,4 +2281,5 @@ sal_Bool SvxDummyTextSource::Delete( const ESelection& )
 sal_Bool SvxDummyTextSource::InsertText( const String&, const ESelection& )
 {
     return sal_False;
+}
 }

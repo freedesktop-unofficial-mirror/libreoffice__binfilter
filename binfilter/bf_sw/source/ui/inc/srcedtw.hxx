@@ -2,9 +2,9 @@
  *
  *  $RCSfile: srcedtw.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,8 +80,10 @@
 #ifndef _XTEXTEDT_HXX //autogen
 #include <svtools/xtextedt.hxx>
 #endif
-
 class ScrollBar;
+namespace binfilter {
+
+
 class SwSrcView;
 //STRIP001 class SwSrcEditWindow;
 class TextEngine;
@@ -195,4 +197,5 @@ namespace svt{ class SourceViewConfig;}
 //STRIP001     void            SetTextEncoding(rtl_TextEncoding eEncoding);
 //STRIP001 };
 
+} //namespace binfilter
 #endif

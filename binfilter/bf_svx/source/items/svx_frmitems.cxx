@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -223,6 +223,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 
+namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 
@@ -4345,7 +4346,7 @@ GraphicFilter* GetGrfFilter();
 //STRIP001     return eRet;
 //STRIP001 }
 
-/*N*/ sal_Bool SvxFrameDirectionItem::PutValue( const com::sun::star::uno::Any& rVal,
+/*N*/ sal_Bool SvxFrameDirectionItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE )
 /*N*/ {
 /*N*/     sal_Int16 nVal;
@@ -4379,7 +4380,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ sal_Bool SvxFrameDirectionItem::QueryValue( com::sun::star::uno::Any& rVal,
+/*N*/ sal_Bool SvxFrameDirectionItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const
 /*N*/ {
 /*N*/     // translate SvxFrameDirection into WritingDirection2
@@ -4416,3 +4417,4 @@ GraphicFilter* GetGrfFilter();
 /*N*/   return bRet;
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDataPoint.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,12 +128,13 @@
 
 #include "chtmodel.hxx"
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
+namespace binfilter {
 
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ChXDataPoint::ChXDataPoint( sal_Int32 _Col, sal_Int32 _Row, ChartModel* _Model ) :
         maPropSet( aSchMapProvider.GetMap( _Model? CHMAP_DATAPOINT: CHMAP_NONE, _Model )),
@@ -350,7 +351,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
                         break;
                     case SCHATTR_SYMBOL_BRUSH:
                         {
-                            rtl::OUString aURL;
+                            ::rtl::OUString aURL;
                             aValue >>= aURL;
                             GraphicObject aGraphObj = CreateGraphicObjectFromURL( aURL );
                             SvxBrushItem aItem( SCHATTR_SYMBOL_BRUSH );
@@ -368,7 +369,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     case XATTR_LINEDASH:
                         if( pMap->nMemberId == MID_NAME )
                         {
-                            rtl::OUString aStr;
+                            ::rtl::OUString aStr;
                             if( aValue >>= aStr )
                                 SvxShape::SetFillAttribute( nWID, aStr, *pSet, mpModel );
                             break;
@@ -536,13 +537,13 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                 }
                 else if( nWID == SCHATTR_SYMBOL_BRUSH )
                 {
-                    rtl::OUString aURL;
+                    ::rtl::OUString aURL;
                     const GraphicObject* pGraphObj =
                         ((const SvxBrushItem &)(pSet->Get( nWID ))).GetGraphicObject();
                     if( pGraphObj )
                     {
-                        aURL = rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
-                        aURL += rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
+                        aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                        aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                     }
                     aAny <<= aURL;
                 }
@@ -688,7 +689,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXDataPoint::getPropertyStates(
     OGuard aGuard( Application::GetSolarMutex() );
 
     const sal_Int32 nCount = aPropertyName.getLength();
-    const rtl::OUString* pNames = aPropertyName.getConstArray();
+    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
 
     uno::Sequence< beans::PropertyState > aRet( nCount );
     beans::PropertyState* pState = aRet.getArray();
@@ -709,7 +710,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL
     OGuard aGuard (Application::GetSolarMutex());
 
     const sal_Int32 nCount = aPropertyName.getLength();
-    const rtl::OUString* pNames = aPropertyName.getConstArray();
+    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
 
     uno::Sequence<beans::PropertyState> aResult (nCount);
     beans::PropertyState * pStateArray = aResult.getArray();
@@ -909,9 +910,9 @@ sal_Bool SAL_CALL ChXDataPoint::supportsService( const ::rtl::OUString& ServiceN
     return SvxServiceInfoHelper::supportsService( ServiceName, getSupportedServiceNames() );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXDataPoint::getSupportedServiceNames() throw( uno::RuntimeException )
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXDataPoint::getSupportedServiceNames() throw( uno::RuntimeException )
 {
-    uno::Sequence< rtl::OUString > aSeq;
+    uno::Sequence< ::rtl::OUString > aSeq;
     SvxServiceInfoHelper::addToSequence(
         aSeq, 5,
         "com.sun.star.chart.ChartDataPointProperties",
@@ -944,3 +945,4 @@ sal_Int64 SAL_CALL ChXDataPoint::getSomething( const uno::Sequence< sal_Int8 >& 
     return 0;
 }
 
+}

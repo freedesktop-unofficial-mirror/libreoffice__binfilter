@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_callform.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,7 +83,9 @@
 #include "callform.hxx"
 #include "global.hxx"
 #include "adiasync.hxx"
-/*STRIP001*/ #include <tools/debug.hxx>
+#include <tools/debug.hxx>
+namespace binfilter {
+
 using namespace ::vos;
 
 //------------------------------------------------------------------------
@@ -272,7 +274,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-//STRIP001 BOOL InitExternalFunc(const rtl::OUString& rModuleName)
+//STRIP001 BOOL InitExternalFunc(const ::rtl::OUString& rModuleName)
 //STRIP001 {
 //STRIP001  String aModuleName( rModuleName );
 //STRIP001
@@ -281,7 +283,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 //STRIP001  if (aModuleCollection.SearchModule(aModuleName, pTemp))
 //STRIP001      return FALSE;
 //STRIP001
-//STRIP001  rtl::OUString aNP;
+//STRIP001  ::rtl::OUString aNP;
 //STRIP001  aNP = rModuleName;
 //STRIP001
 //STRIP001  BOOL bRet = FALSE;
@@ -531,3 +533,4 @@ typedef void (CALLTYPE* FARPROC) ( void );
 //STRIP001 }
 
 
+}

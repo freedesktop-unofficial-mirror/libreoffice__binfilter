@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltexti.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,11 +76,13 @@
 #ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
 #endif
+class SvPlugInObjectRef;
+class SvXMLImport;
+namespace binfilter {
 
 class XMLRedlineImportHelper;
 class SwApplet_Impl;
-class SvPlugInObjectRef;
-class SvXMLImport;
+
 
 class SwXMLTextImportHelper : public XMLTextImportHelper
 {
@@ -168,5 +170,6 @@ public:
         const ::com::sun::star::uno::Sequence<sal_Int8> & rKey );
 };
 
+} //namespace binfilter
 #endif  //  _XMLTEXTI_HXX
 

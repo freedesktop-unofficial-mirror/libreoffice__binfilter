@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,6 +135,7 @@
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace ::com::sun::star;
@@ -144,7 +145,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if( nLng == LANGUAGE_NONE ) // wegen Bug #60010
 /*?*/       nLng = LANGUAGE_SYSTEM;
-/*N*/   else if( nLng == ::GetAppLanguage() )
+/*N*/   else if( nLng == ::binfilter::GetAppLanguage() )
 /*N*/       switch( rFormatter.GetIndexTableOffset( nFmt ))
 /*N*/       {
 /*?*/       case NF_NUMBER_SYSTEM:
@@ -732,7 +733,7 @@ using namespace ::com::sun::star;
 /*N*/   Color* pCol = 0;
 /*N*/
 /*N*/   // wegen Bug #60010
-/*N*/   USHORT nFmtLng = ::lcl_GetLanguageOfFormat( nLng, nFmt, *pFormatter );
+/*N*/   USHORT nFmtLng = ::binfilter::lcl_GetLanguageOfFormat( nLng, nFmt, *pFormatter );
 /*N*/
 /*N*/   if( nFmt < SV_COUNTRY_LANGUAGE_OFFSET && LANGUAGE_SYSTEM != nFmtLng )
 /*N*/   {
@@ -903,7 +904,7 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/   {
 /*N*/       // wegen Bug #60010
 /*N*/       SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
-/*N*/       USHORT nFmtLng = ::lcl_GetLanguageOfFormat( nLng, GetFormat(),
+/*N*/       USHORT nFmtLng = ::binfilter::lcl_GetLanguageOfFormat( nLng, GetFormat(),
 /*N*/                                                   *pFormatter );
 /*N*/
 /*N*/       if( (GetFormat() >= SV_COUNTRY_LANGUAGE_OFFSET ||
@@ -1049,3 +1050,4 @@ void SwValueField::ChangeFormat(ULONG n)
 //STRIP001  else
 //STRIP001      return GetFormula();
 //STRIP001 }
+}

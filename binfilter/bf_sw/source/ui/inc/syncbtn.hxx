@@ -2,9 +2,9 @@
  *
  *  $RCSfile: syncbtn.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
 #endif
+namespace binfilter {
 
 class SwWrtShell;
 
@@ -91,12 +92,13 @@ class SwWrtShell;
 //STRIP001  SwSyncBtnDlg(SfxBindings*, SfxChildWindow*, Window *pParent);
 //STRIP001  ~SwSyncBtnDlg();
 //STRIP001 };
+} //namespace binfilter
 #endif
 
 /*------------------------------------------------------------------------
     Beschreibung:
 ------------------------------------------------------------------------*/
-
+namespace binfilter {//STRIP009
 class SwSyncChildWin : public SfxChildWindow
 {
 public:
@@ -109,5 +111,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTextPContext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 class ScXMLTableRowCellContext;
@@ -77,8 +78,8 @@ class ScXMLTextPContext : public SvXMLImportContext
     ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList> xAttrList;
     SvXMLImportContext*         pTextPContext;
     ScXMLTableRowCellContext*   pCellContext;
-    rtl::OUString               sLName;
-    rtl::OUStringBuffer         sOUText;
+    ::rtl::OUString             sLName;
+    ::rtl::OUStringBuffer           sOUText;
     USHORT                      nPrefix;
     sal_Bool                    bIsOwn : 1;
 
@@ -106,4 +107,5 @@ public:
     void AddSpaces(sal_Int32 nSpaceCount);
 };
 
+} //namespace binfilter
 #endif

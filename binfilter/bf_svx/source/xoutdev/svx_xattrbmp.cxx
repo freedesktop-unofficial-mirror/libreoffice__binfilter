@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
 #endif
+namespace binfilter {
 
 #define GLOBALOVERFLOW
 
@@ -752,7 +753,7 @@
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
-/*N*/       rtl::OUString aApiName;
+/*N*/       ::rtl::OUString aApiName;
 /*N*/       SvxUnogetApiNameForItem( Which(), GetName(), aApiName );
 /*N*/       rVal <<= aApiName;
 /*N*/   }
@@ -857,3 +858,4 @@
 /*N*/
 /*N*/   return (XFillBitmapItem*)this;
 /*N*/ }
+}

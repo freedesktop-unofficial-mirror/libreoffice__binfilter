@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unitconv.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,10 +71,11 @@
 #include "unitconv.hxx"
 #include "global.hxx"
 #include "viewopti.hxx"         //! move ScLinkConfigItem to separate header!
+namespace binfilter {
 
 using namespace utl;
 using namespace rtl;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 // --------------------------------------------------------------------
 
@@ -211,3 +212,4 @@ using namespace com::sun::star::uno;
 /*N*/ }
 
 
+}

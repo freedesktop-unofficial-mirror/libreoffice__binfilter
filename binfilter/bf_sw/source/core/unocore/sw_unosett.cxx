@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unosett.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -195,6 +195,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -219,7 +220,7 @@ struct PropValData
 };
 
 typedef PropValData* PropValDataPtr;
-SV_DECL_PTRARR(PropValDataArr, PropValDataPtr, 5, 5 );
+SV_DECL_PTRARR(PropValDataArr, PropValDataPtr, 5, 5 )//STRIP008 ;
 SV_IMPL_PTRARR(PropValDataArr, PropValDataPtr)
 
 
@@ -1323,7 +1324,7 @@ const String&   SwXNumberingRules::GetInvalidStyle()
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXNumberingRules::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 17:05--------------------------------
@@ -2144,7 +2145,7 @@ void SwXNumberingRules::setNumberingRuleByIndex(
                     {
                         const Graphic* pGraphic = pSetBrush->GetGraphic();
                         if(pGraphic)
-                            *pSetSize = ::GetGraphicSizeTwip(*pGraphic, 0);
+                            *pSetSize = ::binfilter::GetGraphicSizeTwip(*pGraphic, 0);
                     }
                 }
                 SvxFrameVertOrient eOrient = pSetVOrient ?
@@ -2704,7 +2705,7 @@ void SwXTextColumns::removeVetoableChangeListener(
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextColumns::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2722,3 +2723,4 @@ sal_Int64 SAL_CALL SwXTextColumns::getSomething( const uno::Sequence< sal_Int8 >
     return 0;
 }
 
+}

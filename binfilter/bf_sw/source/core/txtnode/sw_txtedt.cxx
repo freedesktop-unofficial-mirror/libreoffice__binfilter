@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:39:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -186,6 +186,7 @@
 #ifndef _DRAWFONT_HXX
 #include <drawfont.hxx> // SwDrawTextInfo
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::i18n;
@@ -193,7 +194,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;
 
-#define C2U(cChar) rtl::OUString::createFromAscii(cChar)
+#define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
 
 // Wir ersparen uns in Hyphenate ein GetFrm()
 // Achtung: in edlingu.cxx stehen die Variablen!
@@ -1535,3 +1536,4 @@ SwLinguStatistik aSwLinguStat;
 //STRIP001  SwInsTxt aHint( nPos, nTLen );
 //STRIP001  SwModify::Modify( 0, &aHint );
 //STRIP001 }
+}

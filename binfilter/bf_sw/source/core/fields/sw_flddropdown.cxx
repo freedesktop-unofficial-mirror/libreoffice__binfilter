@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flddropdown.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,7 +68,8 @@
 #include <unoprnms.hxx>
 #endif
 #include <flddropdown.hxx>
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 static String aEmptyString;
 
 SwDropDownFieldType::SwDropDownFieldType()
@@ -203,7 +204,7 @@ Sequence<OUString> SwDropDownField::GetItemSequence() const
 
     for (aIt = aValues.begin(); aIt != aValues.end(); aIt++)
     {
-        pSeq[i] = rtl::OUString(*aIt);
+        pSeq[i] = ::rtl::OUString(*aIt);
 
         i++;
     }
@@ -251,10 +252,10 @@ BOOL SwDropDownField::QueryValue(Any &rVal, BYTE nMId)
     switch( nMId )
     {
     case FIELD_PROP_PAR1:
-        rVal <<= rtl::OUString(GetSelectedItem());
+        rVal <<= ::rtl::OUString(GetSelectedItem());
         break;
     case FIELD_PROP_PAR2:
-        rVal <<= rtl::OUString(GetName());
+        rVal <<= ::rtl::OUString(GetName());
         break;
     case FIELD_PROP_STRINGS:
         rVal <<= GetItemSequence();
@@ -276,7 +277,7 @@ BOOL SwDropDownField::PutValue(const Any &rVal,
     case FIELD_PROP_PAR1:
         {
             String aTmpStr;
-            ::GetString( rVal, aTmpStr );
+            ::binfilter::GetString( rVal, aTmpStr );
 
             SetSelectedItem(aTmpStr);
         }
@@ -285,7 +286,7 @@ BOOL SwDropDownField::PutValue(const Any &rVal,
     case FIELD_PROP_PAR2:
         {
             String aTmpStr;
-            ::GetString( rVal, aTmpStr );
+            ::binfilter::GetString( rVal, aTmpStr );
 
             SetName(aTmpStr);
         }
@@ -303,4 +304,5 @@ BOOL SwDropDownField::PutValue(const Any &rVal,
         DBG_ERROR("illegal property");
     }
     return sal_True;
+}
 }

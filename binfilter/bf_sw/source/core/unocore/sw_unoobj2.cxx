@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -336,6 +336,7 @@
 #ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -1288,7 +1289,7 @@ TYPEINIT1(SwXTextRange, SwClient);
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRange::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:02--------------------------------
@@ -2242,7 +2243,7 @@ Any SAL_CALL SwXTextRange::getPropertyDefault( const OUString& rPropertyName )
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRanges::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2502,7 +2503,7 @@ SwXParaFrameEnumeration::SwXParaFrameEnumeration(const SwUnoCrsr& rUnoCrsr,
     pUnoCrsr->Add(this);
 
     if(PARAFRAME_PORTION_PARAGRAPH == nParaFrameMode)
-        ::CollectFrameAtNode( *this, rUnoCrsr.GetPoint()->nNode,
+        ::binfilter::CollectFrameAtNode( *this, rUnoCrsr.GetPoint()->nNode,
                                 aFrameArr, FALSE );
     else if(pFmt)
     {
@@ -2687,3 +2688,4 @@ void    SwXParaFrameEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 IMPLEMENT_FORWARD_XINTERFACE2(SwXTextCursor,SwXTextCursor_Base,OTextCursorHelper)
 
 
+}

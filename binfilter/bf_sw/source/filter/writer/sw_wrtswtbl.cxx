@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtswtbl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,6 +103,7 @@
 #ifndef _HTMLTBL_HXX
 #include <htmltbl.hxx>
 #endif
+namespace binfilter {
 
 
 //STRIP001 SV_IMPL_PTRARR( SwWriteTableCells, SwWriteTableCellPtr )
@@ -936,3 +937,4 @@
 //STRIP001      nBorder = nInnerBorder;
 //STRIP001 }
 
+}

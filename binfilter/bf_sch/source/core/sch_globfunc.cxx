@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_globfunc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,6 +59,7 @@
  *
  ************************************************************************/
 #pragma optimize("e",off)
+
 
 #pragma hdrstop
 #define ITEMID_FONTLIST         0
@@ -204,7 +205,7 @@
 |* Objekt attributieren
 |*
 \************************************************************************/
-
+namespace binfilter {
 /*N*/ SdrObject *SetObjectAttr (SdrObject  *pObj,
 /*N*/                         UINT16     nID,
 /*N*/                         BOOL       bProtect,
@@ -1883,7 +1884,7 @@
 //STRIP001  }
 //STRIP001 }
 
-
+} //namespace binfilter
 #ifdef DBG_UTIL
 
 // ==================== DEBUG SfxItemSets ====================
@@ -1897,7 +1898,7 @@
 
 #include <cstdio>       // for snprintf
 #include <cstring>      // for strncat
-
+namespace binfilter {//STRIP009
 /*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel, long num )
 /*N*/ {
 /*N*/   SfxItemPool *pItemPool=&( pModel->GetItemPool() );
@@ -1972,7 +1973,8 @@
 /*N*/   DBG_TRACE4( "SCH:ItemDBG - Info: this=%lx, #=%ld, WID-able=%ld, invalid=%ld", (long)pModel, nCnt, nCnv, nInv );
 /*N*/   DBG_TRACE5( "... Chart=%ld, RGB=(%d, %d, %d), Mat=%ld", nCns, r, g, b, nMat );
 /*N*/ }
-
+} //namespace binfilter
 #endif
+
 
 

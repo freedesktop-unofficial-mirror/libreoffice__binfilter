@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlexprt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,9 +81,12 @@
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HDL_
 #include <com/sun/star/drawing/XShapes.hdl>
 #endif
+class SvXMLExportPropertyMapper;
+class XMLNumberFormatAttributesExportHelper;
+class SfxItemPool;
+namespace binfilter {
 
 class ScOutlineArray;
-class SvXMLExportPropertyMapper;
 class ScMyShapesContainer;
 class ScMyMergedRangesContainer;
 class ScMyValidationsContainer;
@@ -100,16 +103,14 @@ struct ScMyCell;
 class ScDocument;
 class ScMySharedData;
 class ScMyDefaultStyles;
-class XMLNumberFormatAttributesExportHelper;
 class ScChartListener;
-class SfxItemPool;
 
-typedef std::vector< com::sun::star::uno::Reference < com::sun::star::drawing::XShapes > > ScMyXShapesVec;
+typedef std::vector< ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShapes > > ScMyXShapesVec;
 
 class ScXMLExport : public SvXMLExport
 {
     ScDocument*                 pDoc;
-    com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheet> xCurrentTable;
+    ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet> xCurrentTable;
 
     UniReference < XMLPropertyHandlerFactory >  xScPropHdlFactory;
     UniReference < XMLPropertySetMapper >       xCellStylesPropertySetMapper;
@@ -127,7 +128,7 @@ class ScXMLExport : public SvXMLExport
     ScFormatRangeStyles*                pCellStyles;
     ScRowFormatRanges*                  pRowFormatRanges;
     std::vector<rtl::OUString>          aTableStyles;
-    com::sun::star::table::CellRangeAddress aRowHeaderRange;
+    ::com::sun::star::table::CellRangeAddress   aRowHeaderRange;
     ScMyOpenCloseColumnRowGroup*        pGroupColumns;
     ScMyOpenCloseColumnRowGroup*        pGroupRows;
     ScMyDefaultStyles*                  pDefaults;
@@ -137,19 +138,19 @@ class ScXMLExport : public SvXMLExport
     ScMyValidationsContainer*   pValidationsContainer;
     ScMyNotEmptyCellsIterator*  pCellsItr;
     ScChangeTrackingExportHelper*   pChangeTrackingExportHelper;
-    const rtl::OUString         sLayerID;
-    const rtl::OUString         sCaptionShape;
-    rtl::OUString               sAttrName;
-    rtl::OUString               sAttrStyleName;
-    rtl::OUString               sAttrColumnsRepeated;
-    rtl::OUString               sAttrFormula;
-    rtl::OUString               sAttrStringValue;
-    rtl::OUString               sElemCell;
-    rtl::OUString               sElemCoveredCell;
-    rtl::OUString               sElemCol;
-    rtl::OUString               sElemRow;
-    rtl::OUString               sElemTab;
-    rtl::OUString               sElemP;
+    const ::rtl::OUString           sLayerID;
+    const ::rtl::OUString           sCaptionShape;
+    ::rtl::OUString               sAttrName;
+    ::rtl::OUString               sAttrStyleName;
+    ::rtl::OUString               sAttrColumnsRepeated;
+    ::rtl::OUString               sAttrFormula;
+    ::rtl::OUString               sAttrStringValue;
+    ::rtl::OUString               sElemCell;
+    ::rtl::OUString               sElemCoveredCell;
+    ::rtl::OUString               sElemCol;
+    ::rtl::OUString               sElemRow;
+    ::rtl::OUString               sElemTab;
+    ::rtl::OUString               sElemP;
     sal_Int32                   nOpenRow;
     sal_uInt16                  nCurrentTable;
     sal_Bool                    bHasRowHeader : 1;
@@ -157,11 +158,11 @@ class ScXMLExport : public SvXMLExport
     sal_Bool                    mbShowProgress : 1;
 
 
-    sal_Bool        HasDrawPages(com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheetDocument>& xDoc);
+    sal_Bool        HasDrawPages(::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheetDocument>& xDoc);
     void            CollectSharedData(sal_Int32& nTableCount, sal_Int32& nShapesCount, const sal_Int32 nCellCount);
     void            CollectShapesAutoStyles(const sal_Int32 nTableCount);
-    void            WriteTablesView(const com::sun::star::uno::Any& aTableView);
-    void            WriteView(const com::sun::star::uno::Any& aView);
+    void            WriteTablesView(const ::com::sun::star::uno::Any& aTableView);
+    void            WriteView(const ::com::sun::star::uno::Any& aView);
     virtual void _ExportFontDecls();
     virtual void _ExportStyles( sal_Bool bUsed );
     virtual void _ExportAutoStyles();
@@ -172,10 +173,10 @@ class ScXMLExport : public SvXMLExport
 
     void CollectInternalShape( ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape > xShape );
 
-    com::sun::star::table::CellRangeAddress GetEndAddress(com::sun::star::uno::Reference<com::sun::star::sheet::XSpreadsheet>& xTable,
+    ::com::sun::star::table::CellRangeAddress GetEndAddress(::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSpreadsheet>& xTable,
                                                         const sal_uInt16 nTable);
 //  ScMyEmptyDatabaseRangesContainer GetEmptyDatabaseRanges();
-    void GetAreaLinks( com::sun::star::uno::Reference< com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc, ScMyAreaLinksContainer& rAreaLinks );
+    void GetAreaLinks( ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc, ScMyAreaLinksContainer& rAreaLinks );
     void GetDetectiveOpList( ScMyDetectiveOpContainer& rDetOp );
     void WriteSingleColumn(const sal_Int32 nRepeatColumns, const sal_Int32 nStyleIndex,
         const sal_Int32 nIndex, const sal_Bool bIsAutoStyle, const sal_Bool bIsVisible);
@@ -183,7 +184,7 @@ class ScXMLExport : public SvXMLExport
         const sal_Int32 nStyleIndex, const sal_Bool bIsVisible);
     void OpenHeaderColumn();
     void CloseHeaderColumn();
-    void ExportColumns(const sal_uInt16 nTable, const com::sun::star::table::CellRangeAddress& aColumnHeaderRange, const sal_Bool bHasColumnHeader);
+    void ExportColumns(const sal_uInt16 nTable, const ::com::sun::star::table::CellRangeAddress& aColumnHeaderRange, const sal_Bool bHasColumnHeader);
     void ExportFormatRanges(const sal_Int32 nStartCol, const sal_Int32 nStartRow,
         const sal_Int32 nEndCol, const sal_Int32 nEndRow, const sal_uInt16 nSheet);
     void WriteRowContent();
@@ -195,46 +196,46 @@ class ScXMLExport : public SvXMLExport
         const sal_Int32 nStartRow, const sal_Int32 nEmptyRows);
     void OpenRow(const sal_uInt16 nTable, const sal_Int32 nStartRow, const sal_Int32 nRepeatRow);
     void CloseRow(const sal_Int32 nRow);
-    sal_Bool GetColumnHeader(com::sun::star::table::CellRangeAddress& aColumnHeaderRange) const;
-    sal_Bool GetRowHeader(com::sun::star::table::CellRangeAddress& aRowHeaderRange) const;
+    sal_Bool GetColumnHeader(::com::sun::star::table::CellRangeAddress& aColumnHeaderRange) const;
+    sal_Bool GetRowHeader(::com::sun::star::table::CellRangeAddress& aRowHeaderRange) const;
     void FillFieldGroup(ScOutlineArray* pFields, ScMyOpenCloseColumnRowGroup* pGroups);
     void FillColumnRowGroups();
 
-    sal_Bool GetMerge (const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheet>& xTable,
+    sal_Bool GetMerge (const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
         sal_Int32 nCol, sal_Int32 nRow,
-        com::sun::star::table::CellRangeAddress& aCellAddress);
-    sal_Bool GetMerged (const com::sun::star::table::CellRangeAddress* pCellRange,
-        const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheet>& xTable);
+        ::com::sun::star::table::CellRangeAddress& aCellAddress);
+    sal_Bool GetMerged (const ::com::sun::star::table::CellRangeAddress* pCellRange,
+        const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable);
 
-    sal_Bool GetCellText (const com::sun::star::uno::Reference <com::sun::star::table::XCell>& xCell,
-        rtl::OUString& sOUTemp) const;
+    sal_Bool GetCellText (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
+        ::rtl::OUString& sOUTemp) const;
     sal_Bool GetCellText (ScMyCell& rMyCell) const;
 
-    rtl::OUString GetPrintRanges();
+    ::rtl::OUString GetPrintRanges();
 
     void WriteCell (ScMyCell& aCell);
     void WriteAreaLink(const ScMyCell& rMyCell);
     void WriteAnnotation(const ScMyCell& rMyCell);
     void WriteDetective(const ScMyCell& rMyCell);
-    void ExportShape(const com::sun::star::uno::Reference < com::sun::star::drawing::XShape >& xShape, com::sun::star::awt::Point* pPoint);
+    void ExportShape(const ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShape >& xShape, ::com::sun::star::awt::Point* pPoint);
     void WriteShapes(const ScMyCell& rMyCell);
     void WriteTableShapes();
     void SetRepeatAttribute (const sal_Int32 nEqualCellCount);
 
     sal_Bool IsCellTypeEqual (const ScMyCell& aCell1, const ScMyCell& aCell2) const;
-    sal_Bool IsEditCell(const com::sun::star::table::CellAddress& aAddress) const;
-    sal_Bool IsEditCell(const com::sun::star::uno::Reference <com::sun::star::table::XCell>& xCell) const;
+    sal_Bool IsEditCell(const ::com::sun::star::table::CellAddress& aAddress) const;
+    sal_Bool IsEditCell(const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell) const;
     sal_Bool IsEditCell(ScMyCell& rCell) const;
-    sal_Bool IsAnnotationEqual(const com::sun::star::uno::Reference<com::sun::star::table::XCell>& xCell1,
-                                const com::sun::star::uno::Reference<com::sun::star::table::XCell>& xCell2);
+    sal_Bool IsAnnotationEqual(const ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell>& xCell1,
+                                const ::com::sun::star::uno::Reference< ::com::sun::star::table::XCell>& xCell2);
     sal_Bool IsCellEqual (ScMyCell& aCell1, ScMyCell& aCell2);
 
-    void WriteCalculationSettings(const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc);
+    void WriteCalculationSettings(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc);
     void WriteTableSource();
     void WriteScenario();   // core implementation
-    void WriteTheLabelRanges(const com::sun::star::uno::Reference< com::sun::star::sheet::XSpreadsheetDocument >& xSpreadDoc);
-    void WriteLabelRanges( const com::sun::star::uno::Reference< com::sun::star::container::XIndexAccess >& xRangesIAccess, sal_Bool bColumn );
-    void WriteNamedExpressions(const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc);
+    void WriteTheLabelRanges(const ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSpreadsheetDocument >& xSpreadDoc);
+    void WriteLabelRanges( const ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess >& xRangesIAccess, sal_Bool bColumn );
+    void WriteNamedExpressions(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheetDocument>& xSpreadDoc);
     void WriteConsolidation();  // core implementation
 
     void CollectUserDefinedNamespaces(const SfxItemPool* pPool, sal_uInt16 nAttrib);
@@ -254,21 +255,21 @@ public:
     static sal_Int16 GetFieldUnit();
     inline ScDocument*          GetDocument()           { return pDoc; }
     inline const ScDocument*    GetDocument() const     { return pDoc; }
-    sal_Bool IsMatrix (const com::sun::star::uno::Reference <com::sun::star::table::XCellRange>& xCellRange,
-        const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheet>& xTable,
+    sal_Bool IsMatrix (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCellRange>& xCellRange,
+        const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
         const sal_Int32 nCol, const sal_Int32 nRow,
-        com::sun::star::table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const;
-    sal_Bool IsMatrix (const com::sun::star::uno::Reference <com::sun::star::table::XCell>& xCell,
-        const com::sun::star::uno::Reference <com::sun::star::sheet::XSpreadsheet>& xTable,
+        ::com::sun::star::table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const;
+    sal_Bool IsMatrix (const ::com::sun::star::uno::Reference < ::com::sun::star::table::XCell>& xCell,
+        const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XSpreadsheet>& xTable,
         const sal_Int32 nCol, const sal_Int32 nRow,
-        com::sun::star::table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const;
+        ::com::sun::star::table::CellRangeAddress& aCellAddress, sal_Bool& bIsFirst) const;
 
     UniReference < XMLPropertySetMapper > GetCellStylesPropertySetMapper() { return xCellStylesPropertySetMapper; }
     UniReference < XMLPropertySetMapper > GetTableStylesPropertySetMapper() { return xTableStylesPropertySetMapper; }
 
-    void GetChangeTrackViewSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rProps);
-    virtual void GetViewSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rProps);
-    virtual void GetConfigurationSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rProps);
+    void GetChangeTrackViewSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rProps);
+    virtual void GetViewSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rProps);
+    virtual void GetConfigurationSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rProps);
 
     void CreateSharedData(const sal_Int32 nTableCount);
     void SetSharedData(ScMySharedData* pTemp) { pSharedData = pTemp; }
@@ -299,5 +300,6 @@ public:
     virtual void DisposingModel();
 };
 
+} //namespace binfilter
 #endif
 

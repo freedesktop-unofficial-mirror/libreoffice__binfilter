@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,6 +142,7 @@
 #include "globfunc.hxx"
 #include    <algorithm>
 #include    <limits>
+namespace binfilter {
 
 /*N*/ void ChartAxis::SetDefaults()
 /*N*/ {
@@ -1679,7 +1680,7 @@
 /*N*/                 Size aSize;
 /*N*/                 if (meTextOrient == CHTXTORIENT_STACKED)
 /*N*/                 {
-/*?*/                     aSize.Width() = pOut->GetTextWidth( ::StackString( aNumStr ));
+/*?*/                     aSize.Width() = pOut->GetTextWidth( ::binfilter::StackString( aNumStr ));
 /*?*/                     aSize.Height() = pOut->GetTextHeight();
 /*N*/                 }
 /*N*/                 else
@@ -2833,3 +2834,4 @@
 /*N*/
 /*N*/     return nResult;
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,7 +94,8 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 using namespace ::com::sun::star;
 using namespace ::rtl;
 /*--------------------------------------------------------------------
@@ -408,7 +409,7 @@ using namespace ::rtl;
 /*N*/       rAny <<= (double) nValue;
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR2:
-/*N*/       rAny <<= rtl::OUString(aContent);
+/*N*/       rAny <<= ::rtl::OUString(aContent);
 /*N*/       break;
 /*N*/   case FIELD_PROP_BOOL1:
 /*N*/       {
@@ -443,7 +444,7 @@ using namespace ::rtl;
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR2:
-/*N*/       ::GetString( rAny, aContent );
+/*N*/       ::binfilter::GetString( rAny, aContent );
 /*N*/       break;
 /*N*/   case FIELD_PROP_BOOL1:
 /*N*/       if(*(sal_Bool*)rAny.getValue())
@@ -465,3 +466,4 @@ using namespace ::rtl;
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SchTransferable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,11 +67,13 @@
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
+
 /*N*/ #include <tools/debug.hxx> //for stripping
-class SdrModel;
-class SdrExchangeView;
 class Graphic;
 class VirtualDevice;
+namespace binfilter {
+class SdrModel;
+class SdrExchangeView;
 
 class SchTransferable :
     public TransferableHelper
@@ -121,14 +123,15 @@ public:
 //STRIP001
 //STRIP001  virtual ~SchTransferable();
 //STRIP001
-//STRIP001  static const com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-//STRIP001  static SchTransferable* getImplementation( com::sun::star::uno::Reference< com::sun::star::uno::XInterface > ) throw();
+//STRIP001  static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+//STRIP001  static SchTransferable* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 //STRIP001
 //STRIP001     // XUnoTunnel ( ::TransferableHelper )
-//STRIP001     virtual sal_Int64 SAL_CALL getSomething( const com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
-//STRIP001      throw( com::sun::star::uno::RuntimeException );
+//STRIP001     virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
+//STRIP001      throw( ::com::sun::star::uno::RuntimeException );
 //STRIP001
       const SdrExchangeView* GetView() throw()      { return mpSourceView; }
 };
 
+} //namespace binfilter
 #endif  // _SCH_TRANSFERABLE_HXX_

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXDiagram.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,12 +150,13 @@
 #endif
 
 #include "pairs.hxx"
+namespace binfilter {
 
-using namespace vos;
-using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
+using namespace ::vos;
+using namespace ::rtl;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
@@ -353,13 +354,13 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
 
         case SCHATTR_SYMBOL_BRUSH:
             {
-                rtl::OUString aURL;
+                ::rtl::OUString aURL;
                 const GraphicObject* pGraphObj =
                     ((const SvxBrushItem &)(aSet.Get( SCHATTR_SYMBOL_BRUSH ))).GetGraphicObject();
                 if( pGraphObj )
                 {
-                    aURL = rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
-                    aURL += rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
+                    aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                    aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                 }
                 aAny <<= aURL;
             }
@@ -632,7 +633,7 @@ uno::Reference< drawing::XShape > SAL_CALL ChXDiagram::getZAxisTitle()
     return mxZAxisTitle;
 }
 
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXAxis() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXAxis() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxXAxis.is())
     {
@@ -642,7 +643,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXAxis() throw( com
 
     return mxXAxis;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYAxis() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYAxis() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxYAxis.is())
     {
@@ -652,7 +653,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYAxis() throw( com
 
     return mxYAxis;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZAxis() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZAxis() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxZAxis.is())
     {
@@ -662,7 +663,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZAxis() throw( com
 
     return mxZAxis;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryXAxis() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryXAxis() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxSecXAxis.is())
     {
@@ -672,7 +673,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryXAxis() t
 
     return mxSecXAxis;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryYAxis() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryYAxis() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxSecYAxis.is())
     {
@@ -682,7 +683,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getSecondaryYAxis() t
 
     return mxSecYAxis;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXMainGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXMainGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     // attention: x and y grids are interchanged
     if( ! mxMajorGridX.is())
@@ -693,7 +694,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXMainGrid() throw(
 
     return mxMajorGridX;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYMainGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYMainGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     // attention: x and y grids are interchanged
     if( ! mxMajorGridY.is())
@@ -704,7 +705,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYMainGrid() throw(
 
     return mxMajorGridY;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZMainGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZMainGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxMajorGridZ.is())
     {
@@ -714,7 +715,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZMainGrid() throw(
 
     return mxMajorGridZ;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXHelpGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXHelpGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     // attention: x and y grids are interchanged
     if( ! mxMinorGridX.is())
@@ -725,7 +726,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getXHelpGrid() throw(
 
     return mxMinorGridX;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYHelpGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYHelpGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     // attention: x and y grids are interchanged
     if( ! mxMinorGridY.is())
@@ -736,7 +737,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getYHelpGrid() throw(
 
     return mxMinorGridY;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZHelpGrid() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZHelpGrid() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxMinorGridZ.is())
     {
@@ -748,7 +749,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getZHelpGrid() throw(
 }
 
 // XStatisticDisplay
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getMinMaxLine() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getMinMaxLine() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxMinMaxLine.is())
     {
@@ -758,7 +759,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getMinMaxLine() throw
 
     return mxMinMaxLine;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getUpBar() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getUpBar() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxUpBar.is())
     {
@@ -768,7 +769,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getUpBar() throw( com
 
     return mxUpBar;
 }
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDownBar() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDownBar() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxDownBar.is())
     {
@@ -780,7 +781,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDownBar() throw( c
 }
 
 // X3DDisplay
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getFloor() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getFloor() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxFloor.is())
     {
@@ -791,7 +792,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getFloor() throw( com
     return mxFloor;
 }
 // note: this method is also valid for 2d charts
-uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getWall() throw( com::sun::star::uno::RuntimeException )
+uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getWall() throw( ::com::sun::star::uno::RuntimeException )
 {
     if( ! mxWall.is())
     {
@@ -1093,7 +1094,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case XATTR_LINEDASH:
                         if( pMap->nMemberId == MID_NAME )
                         {
-                            rtl::OUString aStr;
+                            ::rtl::OUString aStr;
                             if( aValue >>= aStr )
                                 SvxShape::SetFillAttribute( nWID, aStr, *pSet, mpModel );
                         }
@@ -1140,7 +1141,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                     case SCHATTR_SYMBOL_BRUSH:
                         {
-                            rtl::OUString aURL;
+                            ::rtl::OUString aURL;
                             aValue >>= aURL;
                             GraphicObject aGraphObj = CreateGraphicObjectFromURL( aURL );
                             SvxBrushItem aItem( SCHATTR_SYMBOL_BRUSH );
@@ -1762,7 +1763,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
     //  Old implementation.
 
     const sal_Int32 nCount = aPropertyName.getLength();
-    const rtl::OUString* pNames = aPropertyName.getConstArray();
+    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
 
     uno::Sequence< beans::PropertyState > aRet( nCount );
     beans::PropertyState* pState = aRet.getArray();
@@ -1930,7 +1931,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyDefaults (
 
 
 //=====  XServiceInfo  ========================================================
-rtl::OUString SAL_CALL ChXDiagram::getImplementationName() throw( uno::RuntimeException )
+::rtl::OUString SAL_CALL ChXDiagram::getImplementationName() throw( uno::RuntimeException )
 {
     return SCH_ASCII_TO_OU( "ChXDiagram" );
 }
@@ -1941,9 +1942,9 @@ sal_Bool SAL_CALL ChXDiagram::supportsService( const ::rtl::OUString& ServiceNam
     return SvxServiceInfoHelper::supportsService( ServiceName, getSupportedServiceNames() );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames() throw( uno::RuntimeException )
+uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames() throw( uno::RuntimeException )
 {
-    uno::Sequence< rtl::OUString > aSeq;
+    uno::Sequence< ::rtl::OUString > aSeq;
     SvxServiceInfoHelper::addToSequence(
         aSeq, 2,
         "com.sun.star.chart.Diagram",
@@ -2189,3 +2190,4 @@ void    ChXDiagram::AdvanceToName   (const SfxItemPropertyMap *& pProperty,
 }
 
 
+} //namespace binfilter

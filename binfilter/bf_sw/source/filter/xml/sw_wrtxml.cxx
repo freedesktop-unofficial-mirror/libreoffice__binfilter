@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtxml.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -130,6 +130,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -189,7 +190,7 @@ sal_uInt32 SwXMLWriter::_Write()
     // the user.
 
     // create XPropertySet with three properties for status indicator
-    comphelper::PropertyMapEntry aInfoMap[] =
+    ::comphelper::PropertyMapEntry aInfoMap[] =
     {
         { "ProgressRange", sizeof("ProgressRange")-1, 0,
               &::getCppuType((sal_Int32*)0),
@@ -212,7 +213,7 @@ sal_uInt32 SwXMLWriter::_Write()
         { NULL, 0, 0, NULL, 0, 0 }
     };
     uno::Reference< beans::XPropertySet > xInfoSet(
-                comphelper::GenericPropertySet_CreateInstance(
+                ::comphelper::GenericPropertySet_CreateInstance(
                             new comphelper::PropertySetInfo( aInfoMap ) ) );
 
     // create XStatusIndicator
@@ -523,7 +524,7 @@ sal_Bool SwXMLWriter::WriteThroughComponent(
 
     // set buffer and create outputstream
     xDocStream->SetBufferSize( 16*1024 );
-    xOutputStream = new utl::OOutputStreamWrapper( *xDocStream );
+    xOutputStream = new ::utl::OOutputStreamWrapper( *xDocStream );
 
     // write the stuff
     sal_Bool bRet = WriteThroughComponent(
@@ -617,3 +618,4 @@ void GetXMLWriter( const String& rName, WriterRef& xRet )
 }
 
 // -----------------------------------------------------------------------
+}

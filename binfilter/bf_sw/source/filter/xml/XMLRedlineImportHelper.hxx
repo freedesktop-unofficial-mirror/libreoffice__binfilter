@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLRedlineImportHelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,15 +87,21 @@
 #endif
 
 #include <map>
-
-class RedlineInfo;
-class SwRedlineData;
-class SwDoc;
 namespace com { namespace sun { namespace star {
     namespace text { class XTextCursor; }
     namespace text { class XTextRange; }
     namespace frame { class XModel; }
 } } }
+namespace binfilter {
+
+class RedlineInfo;
+class SwRedlineData;
+class SwDoc;
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008  namespace text { class XTextCursor; }
+//STRIP008  namespace text { class XTextRange; }
+//STRIP008  namespace frame { class XModel; }
+//STRIP008 } } }
 
 
 typedef ::std::map< ::rtl::OUString, RedlineInfo* > RedlineMapType;
@@ -213,5 +219,6 @@ private:
 
 };
 
+} //namespace binfilter
 #endif
 

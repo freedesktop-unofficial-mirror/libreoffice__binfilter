@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rangeseq.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,9 @@
 #ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
 #endif
-
 class SvNumberFormatter;
+namespace binfilter {
+
 class ScDocument;
 class ScRange;
 class ScMatrix;
@@ -78,22 +79,22 @@ class ScMatrix;
 class ScRangeToSequence
 {
 public:
-    static BOOL FillLongArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillLongArray( ::com::sun::star::uno::Any& rAny,
                                 ScDocument* pDoc, const ScRange& rRange );
-    static BOOL FillLongArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillLongArray( ::com::sun::star::uno::Any& rAny,
                                 const ScMatrix* pMatrix );
-    static BOOL FillDoubleArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillDoubleArray( ::com::sun::star::uno::Any& rAny,
                                 ScDocument* pDoc, const ScRange& rRange );
-    static BOOL FillDoubleArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillDoubleArray( ::com::sun::star::uno::Any& rAny,
                                 const ScMatrix* pMatrix );
-    static BOOL FillStringArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillStringArray( ::com::sun::star::uno::Any& rAny,
                                 ScDocument* pDoc, const ScRange& rRange );
-    static BOOL FillStringArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillStringArray( ::com::sun::star::uno::Any& rAny,
                                 const ScMatrix* pMatrix, SvNumberFormatter* pFormatter );
-    static BOOL FillMixedArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillMixedArray( ::com::sun::star::uno::Any& rAny,
                                 ScDocument* pDoc, const ScRange& rRange,
                                 BOOL bAllowNV = FALSE );
-    static BOOL FillMixedArray( com::sun::star::uno::Any& rAny,
+    static BOOL FillMixedArray( ::com::sun::star::uno::Any& rAny,
                                 const ScMatrix* pMatrix );
 };
 
@@ -103,9 +104,10 @@ public:
 //STRIP001 public:
 //STRIP001  //  rAny must contain Sequence<sal_Int8>,
 //STRIP001  //  may or may not contain 0-bytes at the end
-//STRIP001  static BOOL GetString( String& rString, const com::sun::star::uno::Any& rAny,
+//STRIP001  static BOOL GetString( String& rString, const ::com::sun::star::uno::Any& rAny,
 //STRIP001                          sal_uInt16 nEncoding );
 //STRIP001 };
 
+} //namespace binfilter
 #endif
 

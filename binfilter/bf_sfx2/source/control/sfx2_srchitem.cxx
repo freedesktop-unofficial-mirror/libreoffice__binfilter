@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,14 +99,15 @@
 #include "srchitem.hxx"
 
 #include <sfxuno.hxx>
+namespace binfilter {
 
 //using namespace uno;
 using namespace rtl;
 using namespace utl;
-using namespace com::sun::star::util;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::i18n;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::util;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::i18n;
+using namespace ::com::sun::star::uno;
 
 #define CFG_ROOT_NODE   "Office.Common/SearchOptions"
 
@@ -250,7 +251,7 @@ using namespace com::sun::star::uno;
 /*N*/   nAppFlag        ( rItem.nAppFlag ),
 /*N*/   bAsianOptions   ( rItem.bAsianOptions )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  EnableNotification( lcl_GetNotifyNames() );
+/*N*/   EnableNotification( lcl_GetNotifyNames() );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -460,7 +461,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  EnableNotification( lcl_GetNotifyNames() );
 DBG_ASSERT(0, "STRIP"); //STRIP001  aSearchOpt.transliterateFlags = nFlags;
 /*N*/ }
 
-/*N*/ sal_Bool SvxSearchItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {DBG_ASSERT(0, "STRIP"); return sal_True;//STRIP001
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -520,7 +521,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  aSearchOpt.transliterateFlags = nFlags;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxSearchItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ sal_Bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {DBG_ASSERT(0, "STRIP"); return sal_True;//STRIP001
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -589,3 +590,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  aSearchOpt.transliterateFlags = nFlags;
 /*N*/ }
 
 
+}

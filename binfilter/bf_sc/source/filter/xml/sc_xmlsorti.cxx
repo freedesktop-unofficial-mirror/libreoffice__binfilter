@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlsorti.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,10 +89,11 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+namespace binfilter {
 
 #define SC_USERLIST "UserList"
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -119,11 +120,11 @@ ScXMLSortContext::ScXMLSortContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetSortAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -203,31 +204,31 @@ void ScXMLSortContext::EndElement()
     uno::Any aTemp;
     beans::PropertyValue aPropertyValue;
     aTemp = ::cppu::bool2any(bBindFormatsToContent);
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_BINDFMT);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_BINDFMT);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[0] = aPropertyValue;
     aTemp = ::cppu::bool2any(bCopyOutputData);
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_COPYOUT);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_COPYOUT);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[1] = aPropertyValue;
     aTemp = ::cppu::bool2any(bIsCaseSensitive);
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_ISCASE);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_ISCASE);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[2] = aPropertyValue;
     aTemp = ::cppu::bool2any(bEnabledUserList);
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_ISULIST);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_ISULIST);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[3] = aPropertyValue;
     aTemp <<= aOutputPosition;
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_OUTPOS);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_OUTPOS);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[4] = aPropertyValue;
     aTemp <<= nUserListIndex;
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_UINDEX);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_UINDEX);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[5] = aPropertyValue;
     aTemp <<= aSortFields;
-    aPropertyValue.Name = rtl::OUString::createFromAscii(SC_UNONAME_SORTFLD);
+    aPropertyValue.Name = ::rtl::OUString::createFromAscii(SC_UNONAME_SORTFLD);
     aPropertyValue.Value = aTemp;
     aSortDescriptor[6] = aPropertyValue;
     if (nLangLength || nCountryLength)
@@ -236,21 +237,21 @@ void ScXMLSortContext::EndElement()
         aLocale.Language = sLanguage;
         aLocale.Country = sCountry;
         aTemp <<= aLocale;
-        aPropertyValue.Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COLLLOC));
+        aPropertyValue.Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COLLLOC));
         aPropertyValue.Value = aTemp;
         aSortDescriptor[7] = aPropertyValue;
     }
     if (nAlgoLength)
     {
         aTemp <<= sAlgorithm;
-        aPropertyValue.Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COLLALG));
+        aPropertyValue.Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COLLALG));
         aPropertyValue.Value = aTemp;
         aSortDescriptor[6 + i] = aPropertyValue;
     }
     pDatabaseRangeContext->SetSortSequence(aSortDescriptor);
 }
 
-void ScXMLSortContext::AddSortField(const rtl::OUString& sFieldNumber, const rtl::OUString& sDataType, const rtl::OUString& sOrder)
+void ScXMLSortContext::AddSortField(const ::rtl::OUString& sFieldNumber, const ::rtl::OUString& sDataType, const ::rtl::OUString& sOrder)
 {
     util::SortField aSortField;
     aSortField.Field = sFieldNumber.toInt32();
@@ -260,7 +261,7 @@ void ScXMLSortContext::AddSortField(const rtl::OUString& sFieldNumber, const rtl
         aSortField.SortAscending = sal_False;
     if (sDataType.getLength() > 8)
     {
-        rtl::OUString sTemp = sDataType.copy(0, 8);
+        ::rtl::OUString sTemp = sDataType.copy(0, 8);
         if (sTemp.compareToAscii(SC_USERLIST) == 0)
         {
             bEnabledUserList = sal_True;
@@ -299,11 +300,11 @@ ScXMLSortByContext::ScXMLSortByContext( ScXMLImport& rImport,
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetSortSortByAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -348,3 +349,4 @@ void ScXMLSortByContext::EndElement()
     pSortContext->AddSortField(sFieldNumber, sDataType, sOrder);
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdflds.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:33:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+namespace binfilter {
 
 
 //STRIP001 #pragma hdrstop
@@ -192,17 +193,17 @@
 //STRIP001  String aName( rPar.GetText() );
 //STRIP001  String aCmd( rPar.GetText() );
 //STRIP001  if( !nType )
-//STRIP001         nType = so3::LINKUPDATE_ONCALL;
+//STRIP001         nType = ::so3::LINKUPDATE_ONCALL;
 //STRIP001  else
-//STRIP001         nType = so3::LINKUPDATE_ALWAYS;
+//STRIP001         nType = ::so3::LINKUPDATE_ALWAYS;
 //STRIP001
 //STRIP001  // die ersten beiden Blanks gegen den neuen Trenner austauschen
 //STRIP001  xub_StrLen nFnd = aCmd.Search( ' ' );
 //STRIP001  if( STRING_NOTFOUND != nFnd )
-//STRIP001         aCmd.SetChar( nFnd, so3::cTokenSeperator );
+//STRIP001         aCmd.SetChar( nFnd, ::so3::cTokenSeperator );
 //STRIP001  nFnd = aCmd.Search( ' ', nFnd );
 //STRIP001  if( STRING_NOTFOUND != nFnd )
-//STRIP001         aCmd.SetChar( nFnd, so3::cTokenSeperator );
+//STRIP001         aCmd.SetChar( nFnd, ::so3::cTokenSeperator );
 //STRIP001
 //STRIP001  //JP 13.02.96: Bug 25321 - Felder ohne Namen nie einlesen
 //STRIP001  if( !aName.Len() || !aCmd.Len() )
@@ -806,3 +807,4 @@
 
 
 
+}

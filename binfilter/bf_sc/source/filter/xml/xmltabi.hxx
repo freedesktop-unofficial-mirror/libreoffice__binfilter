@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltabi.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,12 +64,13 @@
 #ifndef _XMLOFF_XMLICTXT_HXX
 #include <xmloff/xmlictxt.hxx>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
 class ScXMLTableContext : public SvXMLImportContext
 {
-    rtl::OUString   sPrintRanges;
+    ::rtl::OUString sPrintRanges;
     sal_Bool        bStartFormPage : 1;
 
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
@@ -94,4 +95,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flyfrms.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _FLYFRMS_HXX
 
 #include "flyfrm.hxx"
+namespace binfilter {
 
 //Basisklasse fuer diejenigen Flys, die sich relativ frei Bewegen koennen -
 //also die nicht _im_ Inhalt gebundenen Flys.
@@ -197,4 +198,5 @@ inline void SwFlyInCntFrm::ValidateCntnt() const
     ((SwFlyInCntFrm*)this)->bInvalidCntnt = FALSE;
 }
 
+} //namespace binfilter
 #endif

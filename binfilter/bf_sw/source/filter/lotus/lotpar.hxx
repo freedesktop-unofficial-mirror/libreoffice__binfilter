@@ -2,9 +2,9 @@
  *
  *  $RCSfile: lotpar.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,15 @@
 #define __LOTPAR_HXX__
 
 #include "fltbase.hxx"
+class SvStream;
+class String;
+namespace binfilter {
 
 // einige Forward-Deklaratioen
-class SvStream;
+
 class SwPaM;
 class SwDoc;
-class String;
+
 
 enum WKTyp {
     WKUnknown = 0,  // = unbekanntes Format
@@ -113,6 +116,7 @@ public:
 
 
 
+} //namespace binfilter
 #endif
     // _EXLPAR_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dpobject.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,13 +73,14 @@
 #ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
 #endif
+class Rectangle;
+class SvStream;
+namespace binfilter {
 
 
 //------------------------------------------------------------------
 
 
-class Rectangle;
-class SvStream;
 class ScDPSaveData;
 class ScDPOutput;
 struct ScDPPositionData;
@@ -127,7 +128,7 @@ private:
     ScImportSourceDesc*     pImpDesc;       //  for database data
     ScDPServiceDesc*        pServDesc;      //  for external service
                                             // cached data
-    com::sun::star::uno::Reference<com::sun::star::sheet::XDimensionsSupplier> xSource;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XDimensionsSupplier> xSource;
     ScDPOutput*             pOutput;
     BOOL                    bSettingsChanged;
     BOOL                    bAlive;         // FALSE if only used to hold settings
@@ -167,7 +168,7 @@ public:
     const ScImportSourceDesc* GetImportSourceDesc() const   { return pImpDesc; }
     const ScDPServiceDesc* GetDPServiceDesc() const { return pServDesc; }
 
-//STRIP001  com::sun::star::uno::Reference<com::sun::star::sheet::XDimensionsSupplier> GetSource();
+//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XDimensionsSupplier> GetSource();
 
     BOOL                IsSheetData() const;
     BOOL                IsImportData() const { return(pImpDesc != NULL); }
@@ -201,15 +202,15 @@ public:
     void                WriteRefsTo( ScDPObject& r ) const;
 
 //STRIP001  static BOOL         HasRegisteredSources();
-//STRIP001  static com::sun::star::uno::Sequence<rtl::OUString> GetRegisteredSources();
-//STRIP001  static com::sun::star::uno::Reference<com::sun::star::sheet::XDimensionsSupplier>
+//STRIP001  static ::com::sun::star::uno::Sequence<rtl::OUString> GetRegisteredSources();
+//STRIP001  static ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XDimensionsSupplier>
 //STRIP001                      CreateSource( const ScDPServiceDesc& rDesc );
 
     static void         ConvertOrientation( ScDPSaveData& rSaveData,
                             PivotField* pFields, USHORT nCount, USHORT nOrient,
                             ScDocument* pDoc, USHORT nRow, USHORT nTab,
-                            const com::sun::star::uno::Reference<
-                                com::sun::star::sheet::XDimensionsSupplier>& xSource,
+                            const ::com::sun::star::uno::Reference<
+                                ::com::sun::star::sheet::XDimensionsSupplier>& xSource,
                             BOOL bOldDefaults,
                             PivotField* pRefColFields = NULL, USHORT nRefColCount = 0,
                             PivotField* pRefRowFields = NULL, USHORT nRefRowCount = 0 );
@@ -247,5 +248,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

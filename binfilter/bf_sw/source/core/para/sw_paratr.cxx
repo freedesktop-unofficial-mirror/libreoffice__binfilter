@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paratr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:29:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,6 +117,7 @@
 #include "paratr.hxx"
 #include "charfmt.hxx"
 #include "cmdid.h"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -269,7 +270,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       case MID_DROPCAP_CHAR_STYLE_NAME :
 /*N*/       {
-/*N*/           rtl::OUString sName;
+/*N*/           ::rtl::OUString sName;
 /*N*/           if(GetCharFmt())
 /*N*/               sName = SwStyleNameMapper::GetProgName(
 /*N*/                       GetCharFmt()->GetName(), GET_POOLID_CHRFMT );
@@ -355,18 +356,18 @@ using namespace ::com::sun::star;
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ BOOL    SwNumRuleItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ BOOL    SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/   rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );
+/*N*/   ::rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );
 /*N*/   rVal <<= sRet;
 /*N*/   return TRUE;
 /*N*/ }
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ BOOL  SwNumRuleItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ BOOL  SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/   rtl::OUString uName;
+/*N*/   ::rtl::OUString uName;
 /*N*/   rVal >>= uName;
 /*N*/   SetValue(SwStyleNameMapper::GetUIName(uName, GET_POOLID_NUMRULE));
 /*N*/   return TRUE;
@@ -381,3 +382,4 @@ using namespace ::com::sun::star;
 
 
 
+}

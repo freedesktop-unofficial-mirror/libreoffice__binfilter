@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLColumnRowGroupExport.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 #endif
 
 #include <algorithm>
+namespace binfilter {
 
 using namespace xmloff::token;
 
@@ -225,3 +226,4 @@ void ScMyOpenCloseColumnRowGroup::Sort()
     aTableEnd.sort();
 }
 
+}

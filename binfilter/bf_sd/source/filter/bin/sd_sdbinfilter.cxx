@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdbinfilter.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,6 +127,7 @@
 #include "drawdoc.hxx"
 #include "strmname.h"
 #include "sdbinfilter.hxx"
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -259,7 +260,7 @@ static void ImplPostLoadCheckStyleSheetPool( SfxStyleSheetPool* pStyleSheetPool,
                 for( nLevel = 0; !bNeedsFix && (nLevel < nLevelCount); nLevel++ )
                 {
                     const SvxNumberFormat& rLevel = pRule->GetLevel(nLevel);
-                    bNeedsFix = (rLevel.GetNumberingType() == com::sun::star::style::NumberingType::CHAR_SPECIAL) &&
+                    bNeedsFix = (rLevel.GetNumberingType() == ::com::sun::star::style::NumberingType::CHAR_SPECIAL) &&
                                 (rLevel.GetBulletChar() == 0 );
                 }
 
@@ -270,8 +271,8 @@ static void ImplPostLoadCheckStyleSheetPool( SfxStyleSheetPool* pStyleSheetPool,
                     for( nLevel = 0; !bNeedsFix && (nLevel < nLevelCount); nLevel++ )
                     {
                         SvxNumberFormat aLevel(pRule->GetLevel(nLevel)) ;
-                        if( (aLevel.GetNumberingType() == com::sun::star::style::NumberingType::CHAR_SPECIAL) && (aLevel.GetBulletChar() == 0 ) )
-                            aLevel.SetNumberingType( com::sun::star::style::NumberingType::NUMBER_NONE );
+                        if( (aLevel.GetNumberingType() == ::com::sun::star::style::NumberingType::CHAR_SPECIAL) && (aLevel.GetBulletChar() == 0 ) )
+                            aLevel.SetNumberingType( ::com::sun::star::style::NumberingType::NUMBER_NONE );
 
                         aNewRule.SetLevel(nLevel, aLevel);
                     }
@@ -635,4 +636,5 @@ IMPL_LINK( SdBINFilter, IOProgressHdl, USHORT*, pPercent )
         mpProgress->SetState( *pPercent );
 
     return 0;
+}
 }

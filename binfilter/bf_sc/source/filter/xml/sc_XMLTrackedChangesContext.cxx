@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTrackedChangesContext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,8 +112,9 @@
 #ifndef _COM_SUN_STAR_text_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //-----------------------------------------------------------------------------
@@ -121,7 +122,7 @@ using namespace xmloff::token;
 class ScXMLChangeInfoContext : public SvXMLImportContext
 {
     ScMyActionInfo                      aInfo;
-    rtl::OUStringBuffer                 sBuffer;
+    ::rtl::OUStringBuffer                   sBuffer;
     ScXMLChangeTrackingImportHelper*    pChangeTrackingImportHelper;
     sal_uInt32                          nParagraphCount;
 
@@ -171,8 +172,8 @@ public:
 
 class ScXMLCellContentDeletionContext : public SvXMLImportContext
 {
-    rtl::OUString                       sFormulaAddress;
-    rtl::OUString                       sFormula;
+    ::rtl::OUString                     sFormulaAddress;
+    ::rtl::OUString                     sFormula;
     ScBigRange                          aBigRange;
     double                              fValue;
     ScXMLChangeTrackingImportHelper*    pChangeTrackingImportHelper;
@@ -306,8 +307,8 @@ class ScXMLChangeCellContext;
 class ScXMLChangeTextPContext : public SvXMLImportContext
 {
     ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList> xAttrList;
-    rtl::OUString               sLName;
-    rtl::OUStringBuffer         sText;
+    ::rtl::OUString             sLName;
+    ::rtl::OUStringBuffer           sText;
     ScXMLChangeCellContext*     pChangeCellContext;
     SvXMLImportContext*         pTextPContext;
     USHORT                      nPrefix;
@@ -339,7 +340,7 @@ public:
 
 class ScXMLChangeCellContext : public SvXMLImportContext
 {
-    rtl::OUString           sText;
+    ::rtl::OUString         sText;
     ScBaseCell*&            rOldCell;
     ScEditEngineTextObj*    pEditTextObj;
     double&                 rDateTimeValue;
@@ -359,7 +360,7 @@ public:
     ScXMLChangeCellContext( ScXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
-                                      ScBaseCell*& rOldCell, rtl::OUString& sAddress, rtl::OUString& sFormula,
+                                      ScBaseCell*& rOldCell, ::rtl::OUString& sAddress, ::rtl::OUString& sFormula,
                                       double& fValue, sal_uInt16& nType,
                                       sal_uInt8& nMatrixFlag, sal_Int32& nMatrixCols, sal_Int32& nMatrixRows);
     virtual ~ScXMLChangeCellContext();
@@ -371,7 +372,7 @@ public:
 
     void CreateTextPContext(sal_Bool bIsNewParagraph);
     sal_Bool IsEditCell() { return pEditTextObj != 0; }
-    void SetText(const rtl::OUString& sTempText) { sText = sTempText; }
+    void SetText(const ::rtl::OUString& sTempText) { sText = sTempText; }
 
     virtual void EndElement();
 };
@@ -380,8 +381,8 @@ public:
 
 class ScXMLPreviousContext : public SvXMLImportContext
 {
-    rtl::OUString                       sFormulaAddress;
-    rtl::OUString                       sFormula;
+    ::rtl::OUString                     sFormulaAddress;
+    ::rtl::OUString                     sFormula;
     double                              fValue;
     ScXMLChangeTrackingImportHelper*    pChangeTrackingImportHelper;
     ScBaseCell*                         pOldCell;
@@ -612,11 +613,11 @@ ScXMLTrackedChangesContext::ScXMLTrackedChangesContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
             if (IsXMLToken(aLocalName, XML_PROTECTION_KEY))
@@ -691,11 +692,11 @@ ScXMLChangeInfoContext::ScXMLChangeInfoContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_OFFICE)
         {
@@ -765,11 +766,11 @@ ScXMLBigRangeContext::ScXMLBigRangeContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -852,11 +853,11 @@ ScXMLCellContentDeletionContext::ScXMLCellContentDeletionContext(  ScXMLImport& 
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -921,11 +922,11 @@ ScXMLDependenceContext::ScXMLDependenceContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1009,11 +1010,11 @@ ScXMLChangeDeletionContext::ScXMLChangeDeletionContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1123,9 +1124,9 @@ SvXMLImportContext *ScXMLChangeTextPContext::CreateChildContext( USHORT nTempPre
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
-            rtl::OUString aLocalName;
+            ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString aLocalName;
             USHORT nPrfx = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                                 sAttrName, &aLocalName );
             if ((nPrfx == XML_NAMESPACE_TEXT) && (IsXMLToken(aLocalName, XML_C)))
@@ -1180,7 +1181,7 @@ ScXMLChangeCellContext::ScXMLChangeCellContext(  ScXMLImport& rImport,
                                               USHORT nPrfx,
                                                    const ::rtl::OUString& rLName,
                                               const uno::Reference<xml::sax::XAttributeList>& xAttrList,
-                                            ScBaseCell*& rTempOldCell, rtl::OUString& rAddress, rtl::OUString& rFormula,
+                                            ScBaseCell*& rTempOldCell, ::rtl::OUString& rAddress, ::rtl::OUString& rFormula,
                                             double& fDateTimeValue, sal_uInt16& nType,
                                             sal_uInt8& nMatrixFlag, sal_Int32& nMatrixCols, sal_Int32& nMatrixRows ) :
     SvXMLImportContext( rImport, nPrfx, rLName ),
@@ -1198,11 +1199,11 @@ ScXMLChangeCellContext::ScXMLChangeCellContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1395,11 +1396,11 @@ ScXMLPreviousContext::ScXMLPreviousContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1452,11 +1453,11 @@ ScXMLContentChangeContext::ScXMLContentChangeContext(  ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1548,11 +1549,11 @@ ScXMLInsertionContext::ScXMLInsertionContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1647,11 +1648,11 @@ ScXMLInsertionCutOffContext::ScXMLInsertionCutOffContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1706,11 +1707,11 @@ ScXMLMovementCutOffContext::ScXMLMovementCutOffContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1818,11 +1819,11 @@ ScXMLDeletionContext::ScXMLDeletionContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -1928,11 +1929,11 @@ ScXMLMovementContext::ScXMLMovementContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -2014,11 +2015,11 @@ ScXMLRejectionContext::ScXMLRejectionContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -2081,3 +2082,4 @@ void ScXMLRejectionContext::EndElement()
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appcfg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -184,6 +184,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
@@ -1436,7 +1437,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 /*N*/     if ( !pCfgMgr->StoreConfiguration() )
 /*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         HandleConfigError_Impl( (sal_uInt16)pCfgMgr->GetErrorCode() );
 /*N*/
-/*N*/     utl::ConfigManager::GetConfigManager()->StoreConfigItems();
+/*N*/     ::utl::ConfigManager::GetConfigManager()->StoreConfigItems();
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -1512,3 +1513,4 @@ static void CorrectUpdateNumber_Impl(String& rName)
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:16:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,9 +120,10 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star::uno;
-using namespace com::sun::star::container;
-using namespace com::sun::star::lang;
+namespace binfilter {
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::lang;
 using namespace ::rtl;
 
 
@@ -792,3 +793,4 @@ static const USHORT nMaxLookup = 40;
 //STRIP001     return TRUE;
 //STRIP001 }
 
+}

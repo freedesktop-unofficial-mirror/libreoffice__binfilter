@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdfilter.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #include "pres.hxx"
 #include "drawdoc.hxx"
 #include "sdfilter.hxx"
+namespace binfilter {
 
 // --------------
 // - Namespaces -
@@ -205,4 +206,5 @@ sal_Bool SdFilter::Export()
 {
     DBG_ERROR( "Not implemented" );
     return sal_False;
+}
 }

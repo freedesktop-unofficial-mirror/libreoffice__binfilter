@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChartLine.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,8 +77,9 @@
 #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
 #include <cppuhelper/queryinterface.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ChartLine::ChartLine( ChartModel* pModel, sal_Int32 nObjectId, sal_Int32 nIndex ) :
         ChXChartObject( CHMAP_LINE, pModel, nObjectId, nIndex )
@@ -164,4 +165,5 @@ ChartLine* ChartLine::getImplementation( uno::Reference< uno::XInterface > xData
         return (ChartLine*)xUT->getSomething( ChartLine::getUnoTunnelId() );
     else
         return NULL;
+}
 }

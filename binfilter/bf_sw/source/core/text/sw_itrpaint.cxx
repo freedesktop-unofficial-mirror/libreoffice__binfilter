@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrpaint.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -138,6 +138,7 @@
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porrst.hxx"   // SwArrowPortion
 #include "pormulti.hxx"
+namespace binfilter {
 
 /*************************************************************************
  *                  IsUnderlineBreak
@@ -792,3 +793,4 @@
 //STRIP001         // I'm sorry, we do not have a special underlining font for you.
 //STRIP001         GetInfo().SetUnderFnt( 0 );
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wpar1.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -253,6 +253,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
 #endif
+namespace binfilter {
 
 #define HOR_SICHER 100      // Horizontale Bereiche werden mindestens so
                             // gross gemacht ( z.B. Tab-Boxengroesse - LRSpace )
@@ -519,7 +520,7 @@ void SwW4WParser::DoSplit()
 
 void SwW4WParser::UpdatePercent( ULONG nPos, ULONG nFileSize )
 {
-    ::SetProgressState( 38 + nPos * 62 / nFileSize, pDoc->GetDocShell() );
+    ::binfilter::SetProgressState( 38 + nPos * 62 / nFileSize, pDoc->GetDocShell() );
 }
 
 
@@ -736,7 +737,7 @@ SwW4WParser::SwW4WParser( const SwPaM & rPaM, SvStream& rIstream,
         qsort( (void*)aRecordTab,
             sizeof( aRecordTab ) / sizeof (W4WRecord),
             sizeof( W4WRecord ),
-            CompRecord );
+            ::com::pRecord );
         bSortRecordTab = TRUE;
     }
     nError = 0;     // kein Fehler
@@ -1103,7 +1104,7 @@ int SwW4WParser::GetNextRecord()    // Typ muss int sein, damit Vergleich mit EO
                                 (char *) aRecordTab,
                                 sizeof( aRecordTab ) / sizeof( W4WRecord ),
                                 sizeof( W4WRecord ),
-                                CompRecord ) ))
+                                ::com::pRecord ) ))
             {
                 if( bNixNoughtNothingExec )
                 {
@@ -3903,3 +3904,4 @@ void W4WReader::SetFltName( const String& rFltName )
 }
 
 
+}

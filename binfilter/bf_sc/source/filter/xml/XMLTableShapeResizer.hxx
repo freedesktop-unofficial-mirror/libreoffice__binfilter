@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTableShapeResizer.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,18 +74,19 @@
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
+class Rectangle;
+namespace binfilter {
 
 class ScXMLImport;
 class ScChartListenerCollection;
 class ScDocument;
-class Rectangle;
 
 struct ScMyToResizeShape
 {
-    com::sun::star::uno::Reference <com::sun::star::drawing::XShape> xShape;
-    rtl::OUString* pRangeList;
-    com::sun::star::table::CellAddress  aEndCell;
-    com::sun::star::table::CellAddress  aStartCell;
+    ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShape> xShape;
+    ::rtl::OUString* pRangeList;
+    ::com::sun::star::table::CellAddress    aEndCell;
+    ::com::sun::star::table::CellAddress    aStartCell;
     sal_Int32 nEndX;
     sal_Int32 nEndY;
 
@@ -100,24 +101,25 @@ class ScMyShapeResizer
     ScMyToResizeShapes          aShapes;
     ScChartListenerCollection*  pCollection;
 
-    sal_Bool IsOLE(com::sun::star::uno::Reference< com::sun::star::drawing::XShape >& rShape) const;
+    sal_Bool IsOLE(::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& rShape) const;
     void CreateChartListener(ScDocument* pDoc,
-        const rtl::OUString& rName,
-        const rtl::OUString* pRangeList);
+        const ::rtl::OUString& rName,
+        const ::rtl::OUString* pRangeList);
     void GetNewShapeSizePos(ScDocument* pDoc, const Rectangle& rStartRect,
-                            const com::sun::star::table::CellAddress& rEndCell,
-                            com::sun::star::awt::Point& rPoint, com::sun::star::awt::Size& rSize,
+                            const ::com::sun::star::table::CellAddress& rEndCell,
+                            ::com::sun::star::awt::Point& rPoint, ::com::sun::star::awt::Size& rSize,
                             sal_Int32& rEndX, sal_Int32& rEndY) const;
 public:
     ScMyShapeResizer(ScXMLImport& rImport);
     ~ScMyShapeResizer();
 
-    void    AddShape(com::sun::star::uno::Reference <com::sun::star::drawing::XShape>& rShape,
-                    rtl::OUString* pRangeList,
-                    com::sun::star::table::CellAddress& rStartAddress,
-                    com::sun::star::table::CellAddress& rEndAddress,
+    void    AddShape(::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShape>& rShape,
+                    ::rtl::OUString* pRangeList,
+                    ::com::sun::star::table::CellAddress& rStartAddress,
+                    ::com::sun::star::table::CellAddress& rEndAddress,
                     sal_Int32 nEndX, sal_Int32 nEndY);
     void    ResizeShapes();
 };
 
+} //namespace binfilter
 #endif

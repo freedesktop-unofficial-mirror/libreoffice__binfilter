@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
+using namespace ::binfilter;
 
 #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/request.hxx>
@@ -163,7 +164,7 @@ using namespace ::rtl;
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 #endif
-
+namespace binfilter {
 BinFilterDetect::BinFilterDetect( const REFERENCE < ::com::sun::star::lang::XMultiServiceFactory >& xFactory )
 {
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxLegServFact;
@@ -421,6 +422,7 @@ UNOREFERENCE< UNOXINTERFACE > SAL_CALL BinFilterDetect::impl_createInstance( con
     return UNOREFERENCE< UNOXINTERFACE >( *new BinFilterDetect( xServiceManager ) );
 }
 
+}
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**          ppEnvironmentTypeName   ,
@@ -495,4 +497,5 @@ void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName 
     return pReturn ;
 }
 } // extern "C"
+
 

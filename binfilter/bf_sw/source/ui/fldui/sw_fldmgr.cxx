@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldmgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -238,14 +238,15 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace rtl;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::container;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::text;
-using namespace com::sun::star::style;
-using namespace com::sun::star::sdbc;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::text;
+using namespace ::com::sun::star::style;
+using namespace ::com::sun::star::sdbc;
 
 /*--------------------------------------------------------------------
     Beschreibung: Gruppen der Felder
@@ -994,8 +995,8 @@ String* SwFldMgr::pTime = 0;
 //STRIP001  case TYP_DDEFLD:
 //STRIP001      switch ( aSwFlds[ GetPos( nTypeId ) ].nFmtBegin + nFormatId )
 //STRIP001      {
-//STRIP001         case FMT_DDE_NORMAL:    nId = so3::LINKUPDATE_ONCALL; break;
-//STRIP001         case FMT_DDE_HOT:       nId = so3::LINKUPDATE_ALWAYS; break;
+//STRIP001         case FMT_DDE_NORMAL:    nId = ::so3::LINKUPDATE_ONCALL; break;
+//STRIP001         case FMT_DDE_HOT:       nId = ::so3::LINKUPDATE_ALWAYS; break;
 //STRIP001      }
 //STRIP001      break;
 //STRIP001  }
@@ -1231,8 +1232,8 @@ String* SwFldMgr::pTime = 0;
 //STRIP001          //JP 28.08.95: DDE-Topics/-Items koennen Blanks in ihren
 //STRIP001          //              Namen haben! Wird hier noch nicht beachtet.
 //STRIP001             String sCmd( rData.sPar2 );
-//STRIP001             USHORT nTmpPos = sCmd.SearchAndReplace( ' ', so3::cTokenSeperator );
-//STRIP001             sCmd.SearchAndReplace( ' ', so3::cTokenSeperator, nTmpPos );
+//STRIP001             USHORT nTmpPos = sCmd.SearchAndReplace( ' ', ::so3::cTokenSeperator );
+//STRIP001             sCmd.SearchAndReplace( ' ', ::so3::cTokenSeperator, nTmpPos );
 //STRIP001
 //STRIP001             SwDDEFieldType* pTyp = (SwDDEFieldType*)pCurShell->InsertFldType(
 //STRIP001                     SwDDEFieldType( rData.sPar1, sCmd, (USHORT)nFormatId ));
@@ -1643,8 +1644,8 @@ String* SwFldMgr::pTime = 0;
 //STRIP001      {
 //STRIP001          //JP 28.08.95: DDE-Topics/-Items koennen Blanks in ihren
 //STRIP001          //              Namen haben! Wird hier noch nicht beachtet.
-//STRIP001             USHORT nTmpPos = sPar2.SearchAndReplace( ' ', so3::cTokenSeperator );
-//STRIP001             sPar2.SearchAndReplace( ' ', so3::cTokenSeperator, nTmpPos );
+//STRIP001             USHORT nTmpPos = sPar2.SearchAndReplace( ' ', ::so3::cTokenSeperator );
+//STRIP001             sPar2.SearchAndReplace( ' ', ::so3::cTokenSeperator, nTmpPos );
 //STRIP001          break;
 //STRIP001      }
 //STRIP001
@@ -2106,7 +2107,7 @@ String* SwFldMgr::pTime = 0;
 //STRIP001      if( xMgr.is() )
 //STRIP001      {
 //STRIP001          Reference<XInterface> xInstance = xMgr->createInstance(
-//STRIP001                  rtl::OUString::createFromAscii(
+//STRIP001                  ::rtl::OUString::createFromAscii(
 //STRIP001                                  "com.sun.star.sdb.DatabaseContext" ));
 //STRIP001          xDBContext = Reference<XNameAccess>(xInstance, UNO_QUERY) ;
 //STRIP001      }
@@ -2131,3 +2132,4 @@ String* SwFldMgr::pTime = 0;
 //STRIP001  }
 //STRIP001  return xNumberingInfo;
 //STRIP001 }
+}

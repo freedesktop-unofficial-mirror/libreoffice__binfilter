@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_writingmodeitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _SVXITEMS_HRC
 #include "svxitems.hrc"
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
@@ -139,7 +140,7 @@ using namespace ::com::sun::star::text;
 //STRIP001     return eRet;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxWritingModeItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
+//STRIP001 sal_Bool SvxWritingModeItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE )
 //STRIP001 {
 //STRIP001     sal_Int32 nVal;
 //STRIP001     sal_Bool bRet = ( rVal >>= nVal );
@@ -174,7 +175,7 @@ using namespace ::com::sun::star::text;
 //STRIP001  return bRet;
 //STRIP001 }
 
-/*N*/ sal_Bool SvxWritingModeItem::QueryValue( com::sun::star::uno::Any& rVal,
+/*N*/ sal_Bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const
 /*N*/ {
 /*N*/   rVal <<= (WritingMode)GetValue();
@@ -186,3 +187,4 @@ using namespace ::com::sun::star::text;
 /*N*/   SetValue( rItem.GetValue() );
 /*N*/   return *this;
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -370,6 +370,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 extern void _FrmFinit();
 extern void ClearFEShellTabCols();
@@ -886,7 +887,7 @@ public:
 /*N*/               new SvXMLAttrContainerItem( RES_UNKNOWNATR_CONTAINER );
 /*N*/
 /*N*/   // get the correct fonts:
-/*N*/   ::GetDefaultFonts( *(SvxFontItem*)aAttrTab[ RES_CHRATR_FONT- POOLATTR_BEGIN ],
+/*N*/   ::binfilter::GetDefaultFonts( *(SvxFontItem*)aAttrTab[ RES_CHRATR_FONT- POOLATTR_BEGIN ],
 /*N*/                      *(SvxFontItem*)aAttrTab[ RES_CHRATR_CJK_FONT - POOLATTR_BEGIN ],
 /*N*/                      *(SvxFontItem*)aAttrTab[ RES_CHRATR_CTL_FONT - POOLATTR_BEGIN ] );
 /*N*/
@@ -1040,7 +1041,7 @@ public:
 /*N*/       if( 0 != ( pHt = aAttrTab[n] ))
 /*N*/           delete pHt;
 /*N*/
-/*N*/   ::ClearFEShellTabCols();
+/*N*/   ::binfilter::ClearFEShellTabCols();
 /*N*/
 /*N*/   delete SwIndexReg::pEmptyIndexArray;
 /*N*/     delete[] SwAttrPool::pVersionMap1;
@@ -1094,7 +1095,7 @@ public:
 /*?*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
 /*?*/                                   ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*?*/
-/*?*/       pCollator = new CollatorWrapper( xMSF );
+/*?*/       pCollator = new ::CollatorWrapper( xMSF );
 /*?*/       pCollator->loadDefaultCollator( rLcl, SW_COLLATOR_IGNORES );
 /*?*/   }
 /*?*/   return *pCollator;
@@ -1132,3 +1133,4 @@ public:
 /*N*/   return *pTransWrp;
 /*N*/ }
 
+}

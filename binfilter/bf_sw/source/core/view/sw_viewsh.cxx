@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewsh.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:44:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -182,6 +182,7 @@
 #ifndef _PAGEPREVIEWLAYOUT_HXX
 #include <pagepreviewlayout.hxx>
 #endif
+namespace binfilter {
 
 BOOL ViewShell::bLstAct = FALSE;
 ShellResource *ViewShell::pShellRes = 0;
@@ -235,7 +236,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( Imp()->GetRegion() && Imp()->GetRegion()->GetOrigin() != VisArea() )
 /*N*/       Imp()->DelRegions();
 /*N*/
-/*N*/   const FASTBOOL bExtraData = ::IsExtraData( GetDoc() );
+/*N*/   const FASTBOOL bExtraData = ::binfilter::IsExtraData( GetDoc() );
 /*N*/
 /*N*/   if ( !bIdleEnd )
 /*N*/   {
@@ -534,7 +535,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*N*/       if ( pSh->IsPreView() && pSh->GetWin() )
 /*N*/ //            pSh->GetWin()->Invalidate();
-/*?*/           ::RepaintPagePreview( pSh, rRect );
+/*?*/           ::binfilter::RepaintPagePreview( pSh, rRect );
 /*N*/       else
 /*N*/           bRet |= pSh->Imp()->AddPaintRect( rRect );
 /*N*/       pSh = (ViewShell*)pSh->GetNext();
@@ -563,7 +564,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/           {
 /*N*/               if ( pSh->IsPreView() )
 /*N*/ //                    pSh->GetWin()->Invalidate();
-/*?*/                   ::RepaintPagePreview( pSh, rRect );
+/*?*/                   ::binfilter::RepaintPagePreview( pSh, rRect );
 /*N*/               else if ( pSh->VisArea().IsOver( rRect ) )
 /*N*/                   pSh->GetWin()->Invalidate( rRect.SVRect() );
 /*N*/           }
@@ -888,7 +889,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*N*/       USHORT nEndPage = GetLayout()->GetPageNum();
 /*N*/       nEndPage += nEndPage * 10 / 100;
-/*N*/       ::StartProgress( STR_STATSTR_REFORMAT, 0, nEndPage, GetDoc()->GetDocShell() );
+/*N*/       ::binfilter::StartProgress( STR_STATSTR_REFORMAT, 0, nEndPage, GetDoc()->GetDocShell() );
 /*N*/   }
 /*N*/
 /*N*/   SwLayAction aAction( GetLayout(), Imp() );
@@ -919,7 +920,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( VisArea().HasArea() )
 /*N*/       InvalidateWindows( VisArea() );
 /*N*/   if ( bEndProgress )
-/*N*/       ::EndProgress( GetDoc()->GetDocShell() );
+/*N*/       ::binfilter::EndProgress( GetDoc()->GetDocShell() );
 /*N*/ }
 
 /******************************************************************************
@@ -974,7 +975,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   else
 /*N*/   {
 /*N*/       bDocSizeChgd = FALSE;
-/*N*/       ::SizeNotify( this, GetLayout()->Frm().SSize() );
+/*N*/       ::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/   }
 /*N*/ }
 
@@ -2068,7 +2069,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( !bBrowseChgd && !GetDoc()->
 //STRIP001  *pOpt = rOpt;   // Erst jetzt werden die Options uebernommen.
 //STRIP001  pOpt->SetUIOptions(rOpt);
 //STRIP001
-//STRIP001  pDoc->SetHTMLMode( 0 != ::GetHtmlMode(pDoc->GetDocShell()) );
+//STRIP001  pDoc->SetHTMLMode( 0 != ::binfilter::GetHtmlMode(pDoc->GetDocShell()) );
 //STRIP001
 //STRIP001  pWin->Invalidate();
 //STRIP001  if ( bReformat )
@@ -2194,7 +2195,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( !bBrowseChgd && !GetDoc()->
 /*N*/       bDocSizeChgd = FALSE;
 /*N*/       FASTBOOL bOld = bInSizeNotify;
 /*N*/       bInSizeNotify = TRUE;
-/*N*/       ::SizeNotify( this, GetLayout()->Frm().SSize() );
+/*N*/       ::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/       bInSizeNotify = bOld;
 /*N*/   }
 /*N*/ }
@@ -2309,3 +2310,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( !bBrowseChgd && !GetDoc()->
 //STRIP001     GetDoc()->SetUseVirtualDevice( bNew );
 //STRIP001 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfly.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,6 +168,7 @@
 #ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
+namespace binfilter {
 
 extern USHORT GetHtmlMode( const SwDocShell* );
 
@@ -348,8 +349,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/         return DONTMAKEFRMS;
 /*M*/
 /*M*/
-/*M*/   Point aOldAnchorPos( ::lcl_FindAnchorLayPos( *this, rOldAnch, &rFmt ));
-/*M*/   Point aNewAnchorPos( ::lcl_FindAnchorLayPos( *this, aNewAnch, 0 ));
+/*M*/   Point aOldAnchorPos( ::binfilter::lcl_FindAnchorLayPos( *this, rOldAnch, &rFmt ));
+/*M*/   Point aNewAnchorPos( ::binfilter::lcl_FindAnchorLayPos( *this, aNewAnch, 0 ));
 /*M*/
 /*M*/   //Die alten Frms vernichten. Dabei werden die Views implizit gehidet und
 /*M*/   //doppeltes hiden waere so eine art Show!
@@ -731,7 +732,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                   pOldAnch = pContact->GetAnchor();
 /*?*/               }
 /*?*/               pOldAnch->Calc();
-/*?*/                 pObj->ImpSetAnchorPos( pOldAnch->GetFrmAnchorPos( ::HasWrap( pObj ) ) );
+/*?*/                 pObj->ImpSetAnchorPos( pOldAnch->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) ) );
 /*?*/           }
 /*?*/
 /*?*/           if ( bSameOnly )
@@ -753,7 +754,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                                              aPt;
 /*?*/
 /*?*/                     // OD 18.06.2003 #108784# - allow drawing objects in header/footer
-/*?*/                     pNewAnch = ::FindAnchor( pOldAnch, aNewPoint, false );
+/*?*/                     pNewAnch = ::binfilter::FindAnchor( pOldAnch, aNewPoint, false );
 /*?*/                     if( pNewAnch->IsTxtFrm() && ((SwTxtFrm*)pNewAnch)->IsFollow() )
 /*?*/                         pNewAnch = ((SwTxtFrm*)pNewAnch)->FindMaster();
 /*?*/                     if( pNewAnch->IsProtected() )
@@ -783,7 +784,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                         pTxtFrm = aPos.nNode.GetNode().
 /*?*/                                         GetCntntNode()->GetFrm( &aPt, 0, FALSE );
 /*?*/                   }
-/*?*/                   const SwFrm *pTmp = ::FindAnchor( pTxtFrm, aPt );
+/*?*/                   const SwFrm *pTmp = ::binfilter::FindAnchor( pTxtFrm, aPt );
 /*?*/                   pNewAnch = pTmp->FindFlyFrm();
 /*?*/                   if( pNewAnch && !pNewAnch->IsProtected() )
 /*?*/                   {
@@ -842,7 +843,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/               else            // Ankerwechsel
 /*?*/               {
 /*?*/                     // OD 18.06.2003 #108784# - allow drawing objects in header/footer
-/*?*/                     pNewAnch = ::FindAnchor( pOldAnch, aPt, false );
+/*?*/                     pNewAnch = ::binfilter::FindAnchor( pOldAnch, aPt, false );
 /*?*/                   if( pNewAnch->IsProtected() )
 /*?*/                   {
 /*?*/                       pNewAnch = 0;
@@ -908,14 +909,14 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                 if ( nOld == FLY_PAGE &&
 /*?*/                      pContact->GetAnchor()->FindFooterOrHeader() )
 /*?*/                 {
-/*?*/                     aProposedAnchorPos = pContact->GetAnchor()->GetFrmAnchorPos( ::HasWrap( pObj ) );
+/*?*/                     aProposedAnchorPos = pContact->GetAnchor()->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) );
 /*?*/                 }
 /*?*/                 else
 /*?*/                 {
 /*?*/                     // SetAttr() removes the ParaPortion of pNewAnch, which is required by
 /*?*/                     // GetFrmAnchorPos. Therefore aTmpPoint has to be calculated before
 /*?*/                     // the call of SetAttr().
-/*?*/                     aProposedAnchorPos = pNewAnch->GetFrmAnchorPos( ::HasWrap( pObj ) );
+/*?*/                     aProposedAnchorPos = pNewAnch->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) );
 /*?*/                 }
 /*?*/ #endif
 /*?*/                 SetAttr( aNewAnch, *pContact->GetFmt() );
@@ -1128,3 +1129,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwFmtChain aChain( rFmt.GetChain() );
 
 
 
+}

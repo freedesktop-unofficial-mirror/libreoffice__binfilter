@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_txencbox.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:42:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #ifndef _OSL_NLSUPPORT_H_
 #include <osl/nlsupport.h>
 #endif
+namespace binfilter {
 
 //========================================================================
 //  class SvxTextEncodingBox
@@ -324,3 +325,4 @@
 //STRIP001      return FALSE;
 //STRIP001 }
 
+}

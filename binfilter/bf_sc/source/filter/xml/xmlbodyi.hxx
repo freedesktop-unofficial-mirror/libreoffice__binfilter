@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlbodyi.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,13 +69,14 @@
 #ifndef _XMLOFF_XMLIMP_HXX
 #include <xmloff/xmlimp.hxx>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 class ScXMLChangeTrackingImportHelper;
 
 class ScXMLBodyContext : public SvXMLImportContext
 {
-    rtl::OUString   sPassword;
+    ::rtl::OUString sPassword;
     sal_Bool        bProtected : 1;
 
     ScXMLChangeTrackingImportHelper*    pChangeTrackingImportHelper;
@@ -84,7 +85,7 @@ class ScXMLBodyContext : public SvXMLImportContext
 
 public:
     ScXMLBodyContext( ScXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
-                        const ::com::sun::star::uno::Reference<com::sun::star::xml::sax::XAttributeList>& xAttrList );
+                        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
     virtual ~ScXMLBodyContext();
 
     virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
@@ -94,5 +95,6 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: addinlis.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
+namespace binfilter {
 
 
 
@@ -88,21 +89,21 @@ class ScDocument;
 
 
 class ScAddInListener : public cppu::WeakImplHelper2<
-                            com::sun::star::sheet::XResultListener,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::sheet::XResultListener,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxBroadcaster
 {
 private:
-    com::sun::star::uno::Reference<com::sun::star::sheet::XVolatileResult> xVolRes;
-    com::sun::star::uno::Any    aResult;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XVolatileResult> xVolRes;
+    ::com::sun::star::uno::Any  aResult;
     ScAddInDocs*                pDocs;          // documents where this is used
 
     static List                 aAllListeners;
 
                             // always allocated via CreateListener
                             ScAddInListener(
-                                com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XVolatileResult> xVR,
+                                ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XVolatileResult> xVR,
                                 ScDocument* pD );
 
 public:
@@ -110,17 +111,17 @@ public:
 
                             // create Listener and put it into global list
     static ScAddInListener* CreateListener(
-                                com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XVolatileResult> xVR,
+                                ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XVolatileResult> xVR,
                                 ScDocument* pDoc );
 
-    static ScAddInListener* Get( com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XVolatileResult> xVR );
+    static ScAddInListener* Get( ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XVolatileResult> xVR );
     static void             RemoveDocument( ScDocument* pDocument );
 
     BOOL                    HasDocument( ScDocument* pDoc ) const   { return pDocs->Seek_Entry( pDoc ); }
     void                    AddDocument( ScDocument* pDoc )         { pDocs->Insert( pDoc ); }
-    const com::sun::star::uno::Any& GetResult() const               { return aResult; }
+    const ::com::sun::star::uno::Any& GetResult() const             { return aResult; }
 
 
                             // XResultListener
@@ -141,5 +142,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

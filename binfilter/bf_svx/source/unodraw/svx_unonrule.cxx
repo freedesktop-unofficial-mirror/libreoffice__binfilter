@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unonrule.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,6 +121,7 @@ using namespace ::std;
  ******************************************************************/
 
 #include <cppuhelper/implbase3.hxx>
+namespace binfilter {
 
 
 class SvxUnoNumberingRules : public ::cppu::WeakAggImplHelper3< container::XIndexReplace, lang::XUnoTunnel, lang::XServiceInfo >
@@ -636,7 +637,7 @@ uno::Reference< container::XIndexReplace > SvxCreateNumRule( SdrModel* pModel ) 
 
 #include <cppuhelper/implbase1.hxx>
 
-class SvxUnoNumberingRulesCompare : public ::cppu::WeakAggImplHelper1< com::sun::star::ucb::XAnyCompare >
+class SvxUnoNumberingRulesCompare : public ::cppu::WeakAggImplHelper1< ::com::sun::star::ucb::XAnyCompare >
 {
 public:
     virtual sal_Int16 SAL_CALL compare( const uno::Any& Any1, const uno::Any& Any2 ) throw(uno::RuntimeException);
@@ -690,7 +691,8 @@ sal_Int16 SAL_CALL SvxUnoNumberingRulesCompare::compare( const uno::Any& Any1, c
     return -1;
 }
 
-uno::Reference< com::sun::star::ucb::XAnyCompare > SvxCreateNumRuleCompare() throw()
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SvxCreateNumRuleCompare() throw()
 {
     return new SvxUnoNumberingRulesCompare();
+}
 }

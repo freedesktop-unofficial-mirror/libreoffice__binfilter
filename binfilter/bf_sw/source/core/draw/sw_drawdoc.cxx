@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_drawdoc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:15:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,6 +120,7 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -134,7 +135,7 @@
 /*N*/ }
 
 /*N*/ SwDrawDocument::SwDrawDocument( SwDoc* pD ) :
-/*N*/   FmFormModel( ::GetPalettePath(), &pD->GetAttrPool(),
+    /*N*/   FmFormModel( ::binfilter::GetPalettePath(), &pD->GetAttrPool(),
 /*N*/                pD->GetDocShell(), TRUE ),
 /*N*/   pDoc( pD )
 /*N*/ {
@@ -372,3 +373,4 @@
 
 
 
+}

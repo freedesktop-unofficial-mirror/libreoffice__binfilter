@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_fielduno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,8 +92,9 @@
 #include "unoguard.hxx"
 #include "unonames.hxx"
 #include "editutil.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -105,10 +106,10 @@ const SfxItemPropertyMap* lcl_GetURLPropertyMap()
     {
         {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY },
         {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_REPR),     0,  &getCppuType((rtl::OUString*)0),    0},
-        {MAP_CHAR_LEN(SC_UNONAME_TARGET),   0,  &getCppuType((rtl::OUString*)0),    0},
+        {MAP_CHAR_LEN(SC_UNONAME_REPR),     0,  &getCppuType((::rtl::OUString*)0),  0},
+        {MAP_CHAR_LEN(SC_UNONAME_TARGET),   0,  &getCppuType((::rtl::OUString*)0),  0},
         {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_URL),      0,  &getCppuType((rtl::OUString*)0),    0},
+        {MAP_CHAR_LEN(SC_UNONAME_URL),      0,  &getCppuType((::rtl::OUString*)0),  0},
         {0,0,0,0}
     };
     return aURLPropertyMap_Impl;
@@ -384,7 +385,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScCellFieldsObj::createEnumerat
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextFieldEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextFieldEnumeration")));
 }
 
 void SAL_CALL ScCellFieldsObj::addContainerListener(
@@ -631,7 +632,7 @@ void ScCellFieldObj::DeleteField()
 
 // XTextField
 
-rtl::OUString SAL_CALL ScCellFieldObj::getPresentation( sal_Bool bShowCommand )
+::rtl::OUString SAL_CALL ScCellFieldObj::getPresentation( sal_Bool bShowCommand )
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -716,14 +717,14 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScCellFieldObj::getPropertySetI
 }
 
 void SAL_CALL ScCellFieldObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     String aNameString = aPropertyName;
-    rtl::OUString aStrVal;
+    ::rtl::OUString aStrVal;
     if (pEditSource)
     {
         //! Feld-Funktionen muessen an den Forwarder !!!
@@ -783,7 +784,7 @@ void SAL_CALL ScCellFieldObj::setPropertyValue(
     }
 }
 
-uno::Any SAL_CALL ScCellFieldObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScCellFieldObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -817,21 +818,21 @@ uno::Any SAL_CALL ScCellFieldObj::getPropertyValue( const rtl::OUString& aProper
             SvxURLField* pURL = (SvxURLField*)pField;
 
             if ( aNameString.EqualsAscii( SC_UNONAME_URL ) )
-                aRet <<= rtl::OUString( pURL->GetURL() );
+                aRet <<= ::rtl::OUString( pURL->GetURL() );
             else if ( aNameString.EqualsAscii( SC_UNONAME_REPR ) )
-                aRet <<= rtl::OUString( pURL->GetRepresentation() );
+                aRet <<= ::rtl::OUString( pURL->GetRepresentation() );
             else if ( aNameString.EqualsAscii( SC_UNONAME_TARGET ) )
-                aRet <<= rtl::OUString( pURL->GetTargetFrame() );
+                aRet <<= ::rtl::OUString( pURL->GetTargetFrame() );
         }
     }
     else        // noch nicht eingefuegt
     {
         if ( aNameString.EqualsAscii( SC_UNONAME_URL ) )
-            aRet <<= rtl::OUString( aUrl );
+            aRet <<= ::rtl::OUString( aUrl );
         else if ( aNameString.EqualsAscii( SC_UNONAME_REPR ) )
-            aRet <<= rtl::OUString( aRepresentation );
+            aRet <<= ::rtl::OUString( aRepresentation );
         else if ( aNameString.EqualsAscii( SC_UNONAME_TARGET ) )
-            aRet <<= rtl::OUString( aTarget );
+            aRet <<= ::rtl::OUString( aTarget );
     }
     return aRet;
 }
@@ -882,12 +883,12 @@ ScCellFieldObj* ScCellFieldObj::getImplementation(
 
 // XServiceInfo
 
-rtl::OUString SAL_CALL ScCellFieldObj::getImplementationName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScCellFieldObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return rtl::OUString::createFromAscii( "ScCellFieldObj" );
+    return ::rtl::OUString::createFromAscii( "ScCellFieldObj" );
 }
 
-sal_Bool SAL_CALL ScCellFieldObj::supportsService( const rtl::OUString& rServiceName )
+sal_Bool SAL_CALL ScCellFieldObj::supportsService( const ::rtl::OUString& rServiceName )
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
@@ -895,13 +896,13 @@ sal_Bool SAL_CALL ScCellFieldObj::supportsService( const rtl::OUString& rService
            aServiceStr.EqualsAscii( SCTEXTCONTENT_SERVICE );
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScCellFieldObj::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScCellFieldObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence<rtl::OUString> aRet(2);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
-    pArray[1] = rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(2);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
+    pArray[1] = ::rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
     return aRet;
 }
 
@@ -1042,7 +1043,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScHeaderFieldsObj::createEnumer
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextFieldEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextFieldEnumeration")));
 }
 
 void SAL_CALL ScHeaderFieldsObj::addContainerListener(
@@ -1339,7 +1340,7 @@ void ScHeaderFieldObj::DeleteField()
 
 // XTextField
 
-rtl::OUString SAL_CALL ScHeaderFieldObj::getPresentation( sal_Bool bShowCommand )
+::rtl::OUString SAL_CALL ScHeaderFieldObj::getPresentation( sal_Bool bShowCommand )
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1432,7 +1433,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScHeaderFieldObj::getPropertySe
 }
 
 void SAL_CALL ScHeaderFieldObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -1466,7 +1467,7 @@ void SAL_CALL ScHeaderFieldObj::setPropertyValue(
     }
 }
 
-uno::Any SAL_CALL ScHeaderFieldObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScHeaderFieldObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -1560,12 +1561,12 @@ ScHeaderFieldObj* ScHeaderFieldObj::getImplementation(
 
 // XServiceInfo
 
-rtl::OUString SAL_CALL ScHeaderFieldObj::getImplementationName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScHeaderFieldObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return rtl::OUString::createFromAscii( "ScHeaderFieldObj" );
+    return ::rtl::OUString::createFromAscii( "ScHeaderFieldObj" );
 }
 
-sal_Bool SAL_CALL ScHeaderFieldObj::supportsService( const rtl::OUString& rServiceName )
+sal_Bool SAL_CALL ScHeaderFieldObj::supportsService( const ::rtl::OUString& rServiceName )
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
@@ -1573,13 +1574,13 @@ sal_Bool SAL_CALL ScHeaderFieldObj::supportsService( const rtl::OUString& rServi
            aServiceStr.EqualsAscii( SCTEXTCONTENT_SERVICE );
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScHeaderFieldObj::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScHeaderFieldObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence<rtl::OUString> aRet(2);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
-    pArray[1] = rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(2);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
+    pArray[1] = ::rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
     return aRet;
 }
 
@@ -1588,3 +1589,4 @@ uno::Sequence<rtl::OUString> SAL_CALL ScHeaderFieldObj::getSupportedServiceNames
 
 
 
+}

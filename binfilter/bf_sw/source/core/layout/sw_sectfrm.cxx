@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sectfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,7 @@
 #ifndef _FMTFTNTX_HXX //autogen
 #include <fmtftntx.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR_SORT( SwDestroyList, SwSectionFrmPtr )
 
@@ -572,7 +573,7 @@
 /*N*/   {
 /*N*/       PROTOCOL( this, PROT_SECTION, ACT_MERGE, pNxt )
 /*N*/
-/*N*/       SwFrm* pTmp = ::SaveCntnt( pNxt );
+/*N*/       SwFrm* pTmp = ::binfilter::SaveCntnt( pNxt );
 /*N*/       if( pTmp )
 /*N*/       {
 /*N*/           SwFrm* pLast = Lower();
@@ -590,7 +591,7 @@
 /*?*/                           pLast = pLast->GetNext();
 /*N*/               }
 /*N*/           }
-/*N*/           ::RestoreCntnt( pTmp, pLay, pLast );
+/*N*/           ::binfilter::RestoreCntnt( pTmp, pLay, pLast );
 /*N*/       }
 /*N*/       SetFollow( pNxt->GetFollow() );
 /*N*/       pNxt->SetFollow( NULL );
@@ -732,7 +733,7 @@
 /*N*/       pPrvSct = pNxtSct = NULL;
 /*N*/   }
 /*N*/   // Jetzt wird der Inhalt beseite gestellt und der Frame zerstoert
-/*N*/   SwFrm *pSave = bSave ? ::SaveCntnt( pDel ) : NULL;
+/*N*/   SwFrm *pSave = bSave ? ::binfilter::SaveCntnt( pDel ) : NULL;
 /*N*/   BOOL bOldFtn = TRUE;
 /*N*/   if( pSave && pUp->IsFtnFrm() )
 /*N*/   {
@@ -1132,13 +1133,13 @@
 /*N*/           if( Lower()->IsColumnFrm() )
 /*N*/           {
 /*?*/               lcl_ColumnRefresh( this, FALSE );
-/*?*/               ::CalcCntnt( this );
+/*?*/               ::binfilter::CalcCntnt( this );
 /*N*/           }
 /*N*/           else
 /*N*/           {
 /*N*/               ChgLowersProp( aOldSz );
 /*N*/               if( !bMaximize && !IsCntntLocked() )
-/*N*/                   ::CalcCntnt( this );
+/*N*/                   ::binfilter::CalcCntnt( this );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -1291,7 +1292,7 @@
 /*N*/                   // unser Inhalt ggf. kalkuliert werden.
 /*N*/                   if( pFrm && !pFrm->IsValid() && IsInFly() &&
 /*N*/                       FindFlyFrm()->IsColLocked() )
-/*N*/                       ::CalcCntnt( this );
+/*N*/                       ::binfilter::CalcCntnt( this );
 /*N*/                   nRemaining += InnerHeight();
 /*N*/                   bMaximize = HasFollow();
 /*N*/               }
@@ -1352,7 +1353,7 @@
 /*N*/                       pFrm = pFrm->GetNext();
 /*N*/                   }
 /*N*/                   if( bUnderSz && !IsCntntLocked() )
-/*N*/                       ::CalcCntnt( this );
+/*N*/                       ::binfilter::CalcCntnt( this );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -2580,3 +2581,4 @@
 /*N*/ }
 
 /*N*/ #endif
+}

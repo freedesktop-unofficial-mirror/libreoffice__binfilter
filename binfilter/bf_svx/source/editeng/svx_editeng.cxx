@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,6 +142,7 @@
 #if OSL_DEBUG_LEVEL > 1
 #include <frmdiritem.hxx>
 #endif
+namespace binfilter {
 
 // Spaeter -> TOOLS\STRING.H (fuer Grep: WS_TARGET)
 
@@ -158,7 +159,7 @@ using namespace ::com::sun::star::linguistic2;
 
 
 /*N*/ DBG_NAME( EditEngine );
-/*N*/ DBG_NAMEEX( EditView );
+/*N*/ DBG_NAMEEX( EditView )//STRIP008 ;
 
 #if (OSL_DEBUG_LEVEL > 1) || defined ( DBG_UTIL )
 /*N*/ static sal_Bool bDebugPaint = sal_False;
@@ -960,7 +961,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 //STRIP001 /*?*/                    aCurSel = pImpEditEngine->MoveCursor( rKeyEvent, pEditView );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                     if ( aCurSel.HasRange() ) {
-//STRIP001 /*?*/                         Reference<com::sun::star::datatransfer::clipboard::XClipboard> aSelection(pEditView->GetWindow()->GetSelection());
+//STRIP001 /*?*/                         Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aSelection(pEditView->GetWindow()->GetSelection());
 //STRIP001 /*?*/                         pEditView->pImpEditView->CutCopy( aSelection, FALSE );
 //STRIP001 /*?*/                     }
 //STRIP001 /*?*/
@@ -2771,3 +2772,4 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 //STRIP001
 //STRIP001     return *this;
 //STRIP001 }
+}

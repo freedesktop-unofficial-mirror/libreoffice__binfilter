@@ -2,9 +2,9 @@
  *
  *  $RCSfile: addincol.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,9 +92,10 @@
 #endif
 
 #include <hash_map>
-
-
 class String;
+namespace binfilter {
+
+
 class SfxObjectShell;
 class ScUnoAddInFuncData;
 class ScMatrix;
@@ -139,8 +140,8 @@ private:
     BOOL                    bInitialized;
 
     void        Initialize();
-    void        ReadFromAddIn( const com::sun::star::uno::Reference<
-                                com::sun::star::uno::XInterface>& xInterface );
+    void        ReadFromAddIn( const ::com::sun::star::uno::Reference<
+                                ::com::sun::star::uno::XInterface>& xInterface );
 
 public:
                 ScUnoAddInCollection();
@@ -165,9 +166,9 @@ class ScUnoAddInCall
 {
 private:
     const ScUnoAddInFuncData*   pFuncData;
-    com::sun::star::uno::Sequence<com::sun::star::uno::Any>         aArgs;
-    com::sun::star::uno::Sequence<com::sun::star::uno::Any>         aVarArg;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xCaller;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>            aArgs;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>            aVarArg;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>    xCaller;
     BOOL                        bValidCount;
     // result:
     USHORT                      nErrCode;
@@ -175,10 +176,10 @@ private:
     double                      fValue;
     String                      aString;
     ScMatrix*                   pMatrix;
-    com::sun::star::uno::Reference<com::sun::star::sheet::XVolatileResult> xVarRes;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XVolatileResult> xVarRes;
 
     void            ExecuteCallWithArgs(
-                        com::sun::star::uno::Sequence<com::sun::star::uno::Any>& rCallArgs);
+                        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& rCallArgs);
 
 public:
                     // exact name
@@ -187,17 +188,17 @@ public:
                     ~ScUnoAddInCall();
 
     BOOL                NeedsCaller() const;
-    void                SetCaller( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface>& rInterface );
+    void                SetCaller( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface>& rInterface );
     void                SetCallerFromObjectShell( SfxObjectShell* pSh );
 
     BOOL                ValidParamCount();
     ScAddInArgumentType GetArgType( long nPos );
-    void                SetParam( long nPos, const com::sun::star::uno::Any& rValue );
+    void                SetParam( long nPos, const ::com::sun::star::uno::Any& rValue );
 
     void                ExecuteCall();
 
-    void                SetResult( const com::sun::star::uno::Any& rNewRes );
+    void                SetResult( const ::com::sun::star::uno::Any& rNewRes );
 
     USHORT              GetErrCode() const      { return nErrCode; }
     BOOL                HasString() const       { return bHasString; }
@@ -206,10 +207,11 @@ public:
     double              GetValue() const        { return fValue; }
     const String&       GetString() const       { return aString; }
     const ScMatrix*     GetMatrix() const       { return pMatrix; }
-    com::sun::star::uno::Reference<com::sun::star::sheet::XVolatileResult>
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XVolatileResult>
                         GetVarRes() const       { return xVarRes; }
 };
 
 
+} //namespace binfilter
 #endif
 

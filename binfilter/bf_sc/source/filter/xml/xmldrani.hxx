@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmldrani.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
 #include <com/sun/star/table/TableOrientation.hpp>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -118,17 +119,17 @@ public:
 
 class ScXMLDatabaseRangeContext : public SvXMLImportContext
 {
-    rtl::OUString   sDatabaseRangeName;
-    rtl::OUString   sRangeAddress;
-    rtl::OUString   sDatabaseName;
-    rtl::OUString   sSourceObject;
-    com::sun::star::uno::Sequence <com::sun::star::sheet::SubTotalColumn> aSubTotalColumns;
-    com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue> aSortSequence;
-    com::sun::star::uno::Sequence <com::sun::star::sheet::TableFilterField> aFilterFields;
-    com::sun::star::table::CellAddress aFilterOutputPosition;
-    com::sun::star::table::CellRangeAddress aFilterConditionSourceRangeAddress;
-    com::sun::star::sheet::DataImportMode nSourceType;
-    com::sun::star::table::TableOrientation eOrientation;
+    ::rtl::OUString     sDatabaseRangeName;
+    ::rtl::OUString sRangeAddress;
+    ::rtl::OUString sDatabaseName;
+    ::rtl::OUString sSourceObject;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::sheet::SubTotalColumn> aSubTotalColumns;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue> aSortSequence;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::sheet::TableFilterField> aFilterFields;
+    ::com::sun::star::table::CellAddress aFilterOutputPosition;
+    ::com::sun::star::table::CellRangeAddress aFilterConditionSourceRangeAddress;
+    ::com::sun::star::sheet::DataImportMode nSourceType;
+    ::com::sun::star::table::TableOrientation eOrientation;
     sal_Int32       nRefresh;
     sal_Int16       nSubTotalsUserListIndex;
     sal_Int16       nSubTotalRuleGroupFieldNumber;
@@ -172,9 +173,9 @@ public:
 
     virtual void EndElement();
 
-    void SetDatabaseName(const rtl::OUString sTempDatabaseName) { sDatabaseName = sTempDatabaseName; }
-    void SetSourceObject(const rtl::OUString sTempSourceObject) { sSourceObject = sTempSourceObject; }
-    void SetSourceType(const com::sun::star::sheet::DataImportMode nTempSourceType) { nSourceType = nTempSourceType; }
+    void SetDatabaseName(const ::rtl::OUString sTempDatabaseName) { sDatabaseName = sTempDatabaseName; }
+    void SetSourceObject(const ::rtl::OUString sTempSourceObject) { sSourceObject = sTempSourceObject; }
+    void SetSourceType(const ::com::sun::star::sheet::DataImportMode nTempSourceType) { nSourceType = nTempSourceType; }
     void SetNative(const sal_Bool bTempNative) { bNative = bTempNative; }
     void SetSubTotalsBindFormatsToContent(const sal_Bool bTemp ) { bSubTotalsBindFormatsToContent = bTemp; }
     void SetSubTotalsIsCaseSensitive(const sal_Bool bTemp) { bSubTotalsIsCaseSensitive = bTemp; }
@@ -184,16 +185,16 @@ public:
     void SetSubTotalsAscending(const sal_Bool bTemp) { bSubTotalsAscending = bTemp; }
     void SetSubTotalsSortGroups(const sal_Bool bTemp) { bSubTotalsSortGroups = bTemp; }
     void SetSubTotalRuleGroupFieldNumber(const sal_Int16 nTemp) { nSubTotalRuleGroupFieldNumber = nTemp; }
-    void AddSubTotalColumn(const com::sun::star::sheet::SubTotalColumn aSubTotalColumn)
+    void AddSubTotalColumn(const ::com::sun::star::sheet::SubTotalColumn aSubTotalColumn)
         { aSubTotalColumns.realloc(aSubTotalColumns.getLength() + 1); aSubTotalColumns[aSubTotalColumns.getLength() - 1] = aSubTotalColumn; }
-    void SetSortSequence(const com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue>& aTempSortSequence) { aSortSequence = aTempSortSequence; }
+    void SetSortSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& aTempSortSequence) { aSortSequence = aTempSortSequence; }
     void SetFilterCopyOutputData(const sal_Bool bTemp) { bFilterCopyOutputData = bTemp; }
     void SetFilterIsCaseSensitive(const sal_Bool bTemp) { bFilterIsCaseSensitive = bTemp; }
     void SetFilterSkipDuplicates(const sal_Bool bTemp) { bFilterSkipDuplicates = bTemp; }
     void SetFilterUseRegularExpressions(const sal_Bool bTemp) { bFilterUseRegularExpressions = bTemp; }
-    void SetFilterFields(const com::sun::star::uno::Sequence <com::sun::star::sheet::TableFilterField>& aTemp) { aFilterFields = aTemp; }
-    void SetFilterOutputPosition(const com::sun::star::table::CellAddress& aTemp) { aFilterOutputPosition = aTemp; }
-    void SetFilterConditionSourceRangeAddress(const com::sun::star::table::CellRangeAddress& aTemp) { aFilterConditionSourceRangeAddress = aTemp;
+    void SetFilterFields(const ::com::sun::star::uno::Sequence < ::com::sun::star::sheet::TableFilterField>& aTemp) { aFilterFields = aTemp; }
+    void SetFilterOutputPosition(const ::com::sun::star::table::CellAddress& aTemp) { aFilterOutputPosition = aTemp; }
+    void SetFilterConditionSourceRangeAddress(const ::com::sun::star::table::CellRangeAddress& aTemp) { aFilterConditionSourceRangeAddress = aTemp;
                                                                                                     bFilterConditionSourceRange = sal_True; }
 };
 
@@ -350,8 +351,8 @@ public:
 class ScXMLSubTotalFieldContext : public SvXMLImportContext
 {
     ScXMLDatabaseRangeContext* pDatabaseRangeContext;
-    rtl::OUString sFieldNumber;
-    rtl::OUString sFunction;
+    ::rtl::OUString sFieldNumber;
+    ::rtl::OUString sFunction;
 
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
     ScXMLImport& GetScImport() { return (ScXMLImport&)GetImport(); }
@@ -374,4 +375,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

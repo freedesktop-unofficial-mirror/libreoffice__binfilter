@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,6 +105,7 @@
 #include "chartarr.hxx"
 #include "detfunc.hxx"      // for UpdateAllComments
 #include "editutil.hxx"
+namespace binfilter {
 
 
 // -----------------------------------------------------------------------
@@ -1017,3 +1018,4 @@ BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHOR
 /*N*/       pDrawLayer->SetKernAsianPunctuation( (BOOL)nAsianKerning );
 /*N*/ }
 
+}

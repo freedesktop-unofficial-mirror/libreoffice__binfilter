@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txthyph.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef _PORRST_HXX
 #include <porrst.hxx>   // SwKernPortion
 #endif
+namespace binfilter {
 
 #ifndef PRODUCT
 extern const sal_Char *GetLangName( const MSHORT nLang );
@@ -749,3 +750,4 @@ using namespace ::com::sun::star::i18n;
 
 
 
+}

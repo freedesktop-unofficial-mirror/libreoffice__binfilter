@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmtools.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -270,6 +270,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 namespace svxform
 {
@@ -291,7 +292,7 @@ using namespace ::com::sun::star::sdbc;
 using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::task;
-using namespace ::svxform;
+using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 using namespace ::connectivity::simple;
 
 //  ------------------------------------------------------------------------------
@@ -1185,7 +1186,7 @@ using namespace ::connectivity::simple;
 //------------------------------------------------------------------------------
 /*N*/ Sequence< sal_Int8 > SAL_CALL FmXDispatchInterceptorImpl::getImplementationId() throw(RuntimeException)
 /*N*/ {DBG_ASSERT(0, "STRIP"); Sequence< sal_Int8 > a; return a;//STRIP001
-//STRIP001  return ::form::OImplementationIds::getImplementationId(getTypes());
+//STRIP001  return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());//STRIP008 return ::form::OImplementationIds::getImplementationId(getTypes());
 /*N*/ }
 //------------------------------------------------------------------------------
 /*N*/ Reference< ::com::sun::star::frame::XDispatch > SAL_CALL FmXDispatchInterceptorImpl::queryDispatch( const URL& aURL, const ::rtl::OUString& aTargetFrameName, sal_Int32 nSearchFlags ) throw(RuntimeException)
@@ -1357,3 +1358,4 @@ using namespace ::connectivity::simple;
 //STRIP001
 //STRIP001  return bIsAlive;
 //STRIP001 }
+}

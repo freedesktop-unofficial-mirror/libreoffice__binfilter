@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshdrw.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
+namespace binfilter {
 
 /*--------------------------------------------------------------------
     Beschreibung: Document laden
@@ -119,10 +120,11 @@
 /*N*/       PutItem( SvxLineEndListItem( pDrDoc->GetLineEndList() ) );
 /*N*/
 /*N*/       Outliner& rOutliner = pDrDoc->GetDrawOutliner();
-/*N*/         com::sun::star::uno::Reference<com::sun::star::linguistic2::XHyphenator> xHyphenator( ::GetHyphenator() );
+    /*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XHyphenator> xHyphenator( ::binfilter::GetHyphenator() );
 /*N*/       rOutliner.SetHyphenator( xHyphenator );
 /*N*/   }
 /*N*/   else
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ));
 /*N*/ }
 
+}

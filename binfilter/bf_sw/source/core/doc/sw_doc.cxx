@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -230,6 +230,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // StatLine-String
 #endif
+namespace binfilter {
 
 // Seiten-Deskriptoren
 /*N*/ SV_IMPL_PTRARR(SwPageDescs,SwPageDescPtr);
@@ -953,7 +954,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwGrfNode *pGrfNd;
 //STRIP001      SwNodeIndex aEndOfDoc( pExtDoc->GetNodes().GetEndOfContent(), -1 );
 //STRIP001      for( i = 0; i < rOutNds.Count(); ++i )
 //STRIP001      {
-//STRIP001          ::SetProgressState( i, GetDocShell() );
+//STRIP001          ::binfilter::SetProgressState( i, GetDocShell() );
 //STRIP001          ULONG nIndex = rOutNds[ i ]->GetIndex();
 //STRIP001          BYTE nLvl = ((SwTxtNode*)GetNodes()[ nIndex ])->GetTxtColl()
 //STRIP001                       ->GetOutlineLevel();
@@ -1238,3 +1239,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwGrfNode *pGrfNd;
 
 
 
+}

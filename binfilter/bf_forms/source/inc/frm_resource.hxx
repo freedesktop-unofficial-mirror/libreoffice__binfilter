@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frm_resource.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,8 +65,9 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
-
 class SimpleResMgr;
+namespace binfilter {
+
 //.........................................................................
 namespace frm
 {
@@ -109,5 +110,6 @@ namespace frm
 }
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FRM_RESOURCE_HXX_
 

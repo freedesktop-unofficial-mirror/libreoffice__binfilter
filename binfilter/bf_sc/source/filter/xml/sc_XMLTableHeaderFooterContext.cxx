@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableHeaderFooterContext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #endif
 
 #include "unonames.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -335,4 +336,5 @@ void XMLHeaderFooterRegionContext::EndElement()
     }
     if (xOldTextCursor.is())
         GetImport().GetTextImport()->SetCursor(xOldTextCursor);
+}
 }

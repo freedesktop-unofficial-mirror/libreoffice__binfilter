@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdcont.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:33:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #include "mdiexp.hxx"       // Progress
 #include "swddetbl.hxx"
 #include "swtblfmt.hxx"
+namespace binfilter {
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -137,7 +138,7 @@
 //STRIP001  }
 //STRIP001  for( USHORT i = 1; i <= nNodes && r.good(); i++)
 //STRIP001  {
-//STRIP001      ::SetProgressState( r.tell(), pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( r.tell(), pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      switch( r.cur() )
 //STRIP001      {
@@ -315,7 +316,7 @@
 //STRIP001  r.next();
 //STRIP001  for( USHORT i = 1; i <= nNodes && r.good(); i++)
 //STRIP001  {
-//STRIP001      ::SetProgressState( r.tell(), pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( r.tell(), pDoc->GetDocShell() );
 //STRIP001      switch( r.cur() )
 //STRIP001      {
 //STRIP001          case SWG_TEXTNODE:
@@ -685,3 +686,4 @@
 //STRIP001 }
 
 
+}

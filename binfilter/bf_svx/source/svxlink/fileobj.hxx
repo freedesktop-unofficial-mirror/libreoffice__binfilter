@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fileobj.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,12 +70,13 @@
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-
 class Graphic;
+namespace binfilter {
+
 struct Impl_DownLoadData;
 
 
-class SvFileObject : public so3::SvLinkSource
+class SvFileObject : public ::so3::SvLinkSource
 {
     String sFileNm;
     String sFilter;
@@ -115,8 +116,8 @@ public:
                             const String & rMimeType,
                             BOOL bSynchron = FALSE );
 
-    virtual BOOL Connect( so3::SvBaseLink* );
-//STRIP001  virtual String Edit( Window*, so3::SvBaseLink* );
+    virtual BOOL Connect( ::so3::SvBaseLink* );
+//STRIP001  virtual String Edit( Window*, ::so3::SvBaseLink* );
 
     // erfrage ob das man direkt auf die Daten zugreifen kann oder ob das
     // erst angestossen werden muss
@@ -128,5 +129,6 @@ public:
 };
 
 
+}//end of namespace binfilter
 #endif
 

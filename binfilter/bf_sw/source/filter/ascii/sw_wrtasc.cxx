@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtasc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,6 +98,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
 #endif
+namespace binfilter {
 
 //-----------------------------------------------------------------
 
@@ -179,7 +180,7 @@
 /*N*/   long nMaxNode = pDoc->GetNodes().Count();
 /*N*/
 /*N*/   if( bShowProgress )
-/*N*/       ::StartProgress( STR_STATSTR_W4WWRITE, 0, nMaxNode, pDoc->GetDocShell() );
+/*N*/       ::binfilter::StartProgress( STR_STATSTR_W4WWRITE, 0, nMaxNode, pDoc->GetDocShell() );
 /*N*/
 /*N*/   SwPaM* pPam = pOrigPam;
 /*N*/
@@ -260,7 +261,7 @@
 /*N*/               break;
 /*N*/
 /*N*/           if( bShowProgress )
-/*N*/               ::SetProgressState( pCurPam->GetPoint()->nNode.GetIndex(),
+/*N*/               ::binfilter::SetProgressState( pCurPam->GetPoint()->nNode.GetIndex(),
 /*N*/                                   pDoc->GetDocShell() );   // Wie weit ?
 /*N*/
 /*N*/       }
@@ -269,7 +270,7 @@
 /*N*/   Strm().SetStreamCharSet( eOld );
 /*N*/
 /*N*/   if( bShowProgress )
-/*N*/       ::EndProgress( pDoc->GetDocShell() );
+/*N*/       ::binfilter::EndProgress( pDoc->GetDocShell() );
 /*N*/
 /*N*/   return 0;
 /*N*/ }
@@ -281,3 +282,4 @@
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdvmark.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #ifndef NOOLDSV //autogen
 #include <vcl/system.hxx>
 #endif
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -705,3 +706,4 @@
 //STRIP001  return Pointer(POINTER_ARROW);
 //STRIP001 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scmod2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,9 +73,10 @@
 #include <com/sun/star/linguistic2/XThesaurus.hpp>
 #include <com/sun/star/lang/Locale.hpp>
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #include "scmod.hxx"
+namespace binfilter {
 
 //------------------------------------------------------------------
 
@@ -114,7 +115,7 @@ using namespace com::sun::star;
 //STRIP001
 //STRIP001  uno::Any aAny;
 //STRIP001  aAny <<= bSet;
-//STRIP001  aConfig.SetProperty( rtl::OUString::createFromAscii( LINGUPROP_AUTOSPELL ), aAny );
+//STRIP001  aConfig.SetProperty( ::rtl::OUString::createFromAscii( LINGUPROP_AUTOSPELL ), aAny );
 //STRIP001 }
 
 // static
@@ -126,7 +127,7 @@ using namespace com::sun::star;
 //STRIP001
 //STRIP001  uno::Any aAny;
 //STRIP001  aAny <<= bSet;
-//STRIP001  aConfig.SetProperty( rtl::OUString::createFromAscii( LINGUPROP_HIDEAUTO ), aAny );
+//STRIP001  aConfig.SetProperty( ::rtl::OUString::createFromAscii( LINGUPROP_HIDEAUTO ), aAny );
 //STRIP001 }
 
 
@@ -155,3 +156,4 @@ using namespace com::sun::star;
 //STRIP001 }
 
 
+}

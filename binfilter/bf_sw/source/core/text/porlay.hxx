@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porlay.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,10 +74,12 @@
 #include "swrect.hxx"   // SwRepaint
 #include "portxt.hxx"
 #include "swfont.hxx"
+class SvStream;
+namespace binfilter {
 
 class SwMarginPortion;
 class SwDropPortion;
-class SvStream;
+
 class SwTxtFormatter;
 
 /*************************************************************************
@@ -406,4 +408,5 @@ inline SwLinePortion *SwLineLayout::GetFirstPortion() const
 CLASSIO( SwLineLayout )
 CLASSIO( SwParaPortion )
 
+} //namespace binfilter
 #endif

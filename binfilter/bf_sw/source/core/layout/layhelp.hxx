@@ -2,9 +2,9 @@
  *
  *  $RCSfile: layhelp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,8 @@
 #ifndef _SWRECT_HXX
 #include <swrect.hxx>
 #endif
+class SvStream;
+namespace binfilter {
 
 class SwDoc;
 class SwFrm;
@@ -80,7 +82,7 @@ class SwFlyFrm;
 class SwSectionFrm;
 class SwSectionNode;
 class SwLayoutCache;
-class SvStream;
+
 
 /*************************************************************************
  *                      class SwLayCacheImpl
@@ -267,4 +269,5 @@ public:
         SwRect( nX, nY, nW, nH ), nOrdNum( nO ), nPageNum( nP ){}
 };
 
+} //namespace binfilter
 #endif

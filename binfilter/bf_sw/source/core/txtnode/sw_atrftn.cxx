@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrftn.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,6 +107,7 @@
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -553,3 +554,4 @@ int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
 
 
 
+}

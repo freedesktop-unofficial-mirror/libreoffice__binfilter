@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,16 +124,17 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
-using namespace com::sun::star::container;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::io;
-using namespace com::sun::star::ucb;
-using namespace com::sun::star::script;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::xml::sax;
-using namespace com::sun::star;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::io;
+using namespace ::com::sun::star::ucb;
+using namespace ::com::sun::star::script;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::xml::sax;
+using namespace ::com::sun::star;
 using namespace cppu;
 using namespace rtl;
 using namespace osl;
@@ -518,7 +519,7 @@ namespace SfxContainer_Impl
 /*N*/
 /*N*/               if( xStream->GetError() == ERRCODE_NONE )
 /*N*/               {
-/*N*/                   xInput = new utl::OInputStreamWrapper( *xStream );
+/*N*/                   xInput = new ::utl::OInputStreamWrapper( *xStream );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1196,7 +1197,7 @@ namespace SfxContainer_Impl
 /*?*/       xInfoStream = xStorage->OpenSotStream( aLibInfoPath, STREAM_READ );
 /*?*/       if( xInfoStream->GetError() == ERRCODE_NONE )
 /*?*/       {
-/*?*/           xInput = new utl::OInputStreamWrapper( *xInfoStream );
+/*?*/           xInput = new ::utl::OInputStreamWrapper( *xInfoStream );
 /*?*/       }
 /*N*/   }
 /*N*/   else
@@ -1452,7 +1453,7 @@ namespace SfxContainer_Impl
 /*?*/           aAny <<= sal_True;
 /*?*/           xInfoStream->SetProperty( aPropName, aAny );
 /*?*/
-/*?*/           xOut = new utl::OOutputStreamWrapper( *xInfoStream );
+/*?*/           xOut = new ::utl::OOutputStreamWrapper( *xInfoStream );
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -2266,3 +2267,4 @@ namespace SfxContainer_Impl
 
 //============================================================================
 
+}

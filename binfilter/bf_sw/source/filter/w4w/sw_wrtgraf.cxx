@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtgraf.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #ifndef _WRTW4W_HXX
 #include <wrtw4w.hxx>
 #endif
+namespace binfilter {
 
 void SwW4WWriter::OutW4W_Grf( const SwGrfNode* )
 {
@@ -81,3 +82,4 @@ void SwW4WWriter::OutW4W_Grf( const SwGrfNode* )
                 // WIN
 
 
+}

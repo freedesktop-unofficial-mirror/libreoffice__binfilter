@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,6 +128,7 @@
 
 #include <sot/exchange.hxx>
 #include <sot/formats.hxx>
+namespace binfilter {
 
 
 using namespace ::com::sun::star;
@@ -1062,7 +1063,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           {
 /*?*/               if ( !bReadOnly )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                    CutCopy( aClipBoard, sal_True );
 //STRIP001 /*?*/                    bDone = sal_True;
 /*?*/               }
@@ -1070,7 +1071,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           break;
 /*?*/           case KEYFUNC_COPY:
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001   Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001   Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                CutCopy( aClipBoard, sal_False );
 //STRIP001 /*?*/                 bDone = TRUE;
 /*?*/           }
@@ -1080,7 +1081,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               if ( !bReadOnly && IsPasteEnabled() )
 /*?*/               {
 /*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pEditEngine->pImpEditEngine->UndoActionStart( EDITUNDO_PASTE );
-//STRIP001 /*?*/                     Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+//STRIP001 /*?*/                     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                    Paste( aClipBoard, pEditEngine->pImpEditEngine->GetStatus().AllowPasteSpecial() );
 //STRIP001 /*?*/                    pEditEngine->pImpEditEngine->UndoActionEnd( EDITUNDO_PASTE );
 //STRIP001 /*?*/                    bDone = sal_True;
@@ -1114,12 +1115,12 @@ using namespace ::com::sun::star::linguistic2;
 //STRIP001     if ( rMouseEvent.IsMiddle() && !bReadOnly &&
 //STRIP001          ( GetWindow()->GetSettings().GetMouseSettings().GetMiddleButtonAction() == MOUSE_MIDDLE_PASTESELECTION ) )
 //STRIP001     {
-//STRIP001         Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetSelection());
+//STRIP001         Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetSelection());
 //STRIP001         Paste( aClipBoard );
 //STRIP001     }
 //STRIP001     else if ( rMouseEvent.IsLeft() && GetEditSelection().HasRange() )
 //STRIP001     {
-//STRIP001         Reference<com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetSelection());
+//STRIP001         Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetSelection());
 //STRIP001         CutCopy( aClipBoard, FALSE );
 //STRIP001     }
 //STRIP001
@@ -2030,4 +2031,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/         bActiveDragAndDropListener = FALSE;
 /*N*/     }
-/*N*/ }
+/*N*/ }}

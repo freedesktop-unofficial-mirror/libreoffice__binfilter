@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlconti.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,13 +71,14 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
 class ScXMLContentContext : public SvXMLImportContext
 {
-    rtl::OUStringBuffer sOUText;
-    rtl::OUStringBuffer& sValue;
+    ::rtl::OUStringBuffer sOUText;
+    ::rtl::OUStringBuffer& sValue;
 
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
     ScXMLImport& GetScImport() { return (ScXMLImport&)GetImport(); }
@@ -88,7 +89,7 @@ public:
                        const ::rtl::OUString& rLName,
                        const ::com::sun::star::uno::Reference<
                                         ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
-                        rtl::OUStringBuffer& sValue);
+                        ::rtl::OUStringBuffer& sValue);
 
     virtual ~ScXMLContentContext();
 
@@ -102,4 +103,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

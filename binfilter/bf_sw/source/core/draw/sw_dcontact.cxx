@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dcontact.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:15:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -172,6 +172,7 @@
 
 // OD 18.06.2003 #108784#
 #include <algorithm>
+namespace binfilter {
 
 
 /*N*/ TYPEINIT1( SwContact, SwClient )
@@ -209,7 +210,7 @@
 /*N*/ {
 /*N*/     if ( pObj )
 /*N*/     {
-/*N*/         const SwFrmFmt* pFmt = ::FindFrmFmt( pObj );
+/*N*/         const SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pObj );
 /*N*/         if ( pFmt )
 /*N*/         {
 /*N*/             return SURROUND_THROUGHT != pFmt->GetSurround().GetSurround();
@@ -398,7 +399,7 @@
 /*N*/   {
 /*N*/       const SdrObjList *pLst = ((SdrObjGroup*)pObj)->GetSubList();
 /*N*/       for ( USHORT i = 0; i < pLst->GetObjCount(); ++i )
-/*N*/             if ( ::CheckControlLayer( pLst->GetObj( i ) ) )
+/*N*/             if ( ::binfilter::CheckControlLayer( pLst->GetObj( i ) ) )
 /*N*/                 return false;
 /*N*/   }
 /*N*/     return false;
@@ -414,7 +415,7 @@
 /*N*/
 /*N*/     //Controls muessen immer im Control-Layer liegen. Das gilt auch fuer
 /*N*/   //Gruppenobjekte, wenn diese Controls enthalten.
-/*N*/     if ( ::CheckControlLayer( pObj ) )
+/*N*/     if ( ::binfilter::CheckControlLayer( pObj ) )
 /*N*/     {
 /*N*/         // OD 25.06.2003 #108784# - set layer of object to corresponding invisible layer.
 /*N*/         pObj->SetLayer( pToRegisterIn->GetDoc()->GetInvisibleControlsId() );
@@ -602,7 +603,7 @@
 /*N*/                 if ( !pPg )
 /*N*/                     pPg = pDrawVirtObj->GetAnchorFrm()->FindPageFrm();
 /*N*/                 if ( pPg )
-/*N*/                     pPg = (SwPageFrm*)::FindPage( aRect, pPg );
+/*N*/                     pPg = (SwPageFrm*)::binfilter::FindPage( aRect, pPg );
 /*N*/                 if( pPg )
 /*N*/                     Notify_Background( pDrawVirtObj, pPg, aRect,
 /*N*/                                         PREP_FLY_ARRIVE, TRUE );
@@ -1161,7 +1162,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
     {
         if( bSetAnchorPos )
         {
-            GetMaster()->SetAnchorPos( GetAnchor()->GetFrmAnchorPos( ::HasWrap( GetMaster() ) ) );
+            GetMaster()->SetAnchorPos( GetAnchor()->GetFrmAnchorPos( ::binfilter::HasWrap( GetMaster() ) ) );
     }
         if ( !pDrawFrmFmt->GetDoc()->IsVisibleLayerId( GetMaster()->GetLayer() ) )
         {
@@ -1242,7 +1243,7 @@ SwPageFrm* SwDrawContact::FindPage( const SwRect &rRect )
     if ( !pPg && pAnchor )
         pPg = pAnchor->FindPageFrm();
     if ( pPg )
-        pPg = (SwPageFrm*)::FindPage( rRect, pPg );
+        pPg = (SwPageFrm*)::binfilter::FindPage( rRect, pPg );
     return pPg;
 }
 
@@ -1754,3 +1755,4 @@ void SwDrawVirtObj::SetLayer(SdrLayerID nLayer)
 
 
 
+}

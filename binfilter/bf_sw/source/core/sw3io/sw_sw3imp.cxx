@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -252,6 +252,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -1422,7 +1423,7 @@ public:
 /*N*/   {
 /*N*/       nCurPercent = n1;
 /*N*/       nEndPercent = n2;
-/*N*/       ::StartProgress( bOut ? STR_STATSTR_SWGWRITE : STR_STATSTR_SWGREAD,
+/*N*/       ::binfilter::StartProgress( bOut ? STR_STATSTR_SWGWRITE : STR_STATSTR_SWGREAD,
 /*N*/                        n1, n2, pDoc->GetDocShell() );
 /*N*/   }
 /*N*/ }
@@ -1430,7 +1431,7 @@ public:
 /*N*/ void Sw3IoImp::ClosePercentBar()
 /*N*/ {
 /*N*/   if( !bBlock )
-/*N*/       ::EndProgress( pDoc->GetDocShell() );
+/*N*/       ::binfilter::EndProgress( pDoc->GetDocShell() );
 /*N*/ }
 
 /*N*/ void Sw3IoImp::SetPercentBar( sal_uInt32 n )
@@ -1438,7 +1439,7 @@ public:
 /*N*/   //ASSERT( pStrm!=pContents || (n-nCurPercent)<1024, "SetPercentBar zu lange nicht mehr aufgerufen!" );
 /*N*/   if( !bBlock && (pStrm == &pContents ) &&    // nicht fuer SwPageStyles
 /*N*/       ( n > nCurPercent ) && ( n <= nEndPercent ) )
-/*N*/       ::SetProgressState( nCurPercent = n, pDoc->GetDocShell() );
+/*N*/       ::binfilter::SetProgressState( nCurPercent = n, pDoc->GetDocShell() );
 /*N*/ }
 
 /*************************************************************************
@@ -2872,3 +2873,4 @@ const RES_POOLCOLL_HTML_DT_40 = 0x3007;
 #endif
 
 
+}

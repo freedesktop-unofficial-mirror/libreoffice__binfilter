@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flowfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,6 +124,7 @@
 #include "section.hxx"
 #include "dbg_lay.hxx"
 #include "lineinfo.hxx"
+namespace binfilter {
 
 /*N*/ BOOL SwFlowFrm::bMoveBwdJump = FALSE;
 
@@ -375,7 +376,7 @@
 /*N*/
 /*N*/               //Nicht wenn das Objekt im Textfluss hinter mir verankert ist,
 /*N*/               //denn dann weiche ich ihm nicht aus.
-/*N*/               if ( ::IsFrmInSameKontext( pAnchor, &rThis ) )
+/*N*/               if ( ::binfilter::IsFrmInSameKontext( pAnchor, &rThis ) )
 /*N*/               {
 /*N*/                   if ( pFmt->GetAnchor().GetAnchorId() == FLY_AT_CNTNT )
 /*N*/                   {
@@ -1983,3 +1984,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calcmove.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,6 +105,7 @@
 #include "ftninfo.hxx"
 #include "sectfrm.hxx"
 #include "dbg_lay.hxx"
+namespace binfilter {
 
 
 //------------------------------------------------------------------------
@@ -285,7 +286,7 @@
 /*N*/       {
 /*N*/           pThis = (SwTabFrm*)this;
 /*N*/           bOldTabLock = ((SwTabFrm*)this)->IsJoinLocked();
-/*N*/           ::PrepareLock( (SwTabFrm*)this );
+/*N*/           ::binfilter::PrepareLock( (SwTabFrm*)this );
 /*N*/           bFoll = pThis->IsFollow();
 /*N*/       }
 /*N*/       else if( IsSctFrm() )
@@ -359,7 +360,7 @@
 /*N*/       ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
 /*N*/
 /*N*/       if ( bTab && !bOldTabLock )
-/*N*/           ::PrepareUnlock( (SwTabFrm*)this );
+/*N*/           ::binfilter::PrepareUnlock( (SwTabFrm*)this );
 /*N*/   }
 /*N*/   MakeAll();
 /*N*/ }
@@ -933,7 +934,7 @@
 /*N*/               for (USHORT i = 0; GetDrawObjs() && i < GetDrawObjs()->Count();++i)
 /*N*/               {
 /*N*/                   SdrObject *pObj = (*GetDrawObjs())[i];
-/*N*/                   SwFrmFmt *pFmt = ::FindFrmFmt( pObj );
+/*N*/                   SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
 /*N*/                   const FASTBOOL bFly = pObj->IsWriterFlyFrame();
 /*N*/                   if ( bFly &&
 /*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
@@ -1175,7 +1176,7 @@
 /*N*/                   //Der Vorgaenger wurde Invalidiert, das ist jetzt auch obsolete.
 /*N*/                   ASSERT( pPre, "missing old Prev" );
 /*N*/                   if( !pPre->IsSctFrm() )
-/*N*/                       ::ValidateSz( pPre );
+/*N*/                       ::binfilter::ValidateSz( pPre );
 /*N*/               }
 /*N*/               bMoveable = IsMoveable();
 /*N*/           }
@@ -1520,7 +1521,7 @@
 /*N*/       {   //Unuetz gewordene Invalidierungen zuruecknehmen.
 /*N*/           GetUpper()->ResetCompletePaint();
 /*N*/           if( pPre && !pPre->IsSctFrm() )
-/*N*/               ::ValidateSz( pPre );
+/*N*/               ::binfilter::ValidateSz( pPre );
 /*N*/       }
 /*N*/
 /*N*/       if ( bValidPos && bValidSize && bValidPrtArea && GetDrawObjs() &&
@@ -1788,3 +1789,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLDDELinksContext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -94,7 +95,7 @@ public:
 
 struct ScDDELinkCell
 {
-    rtl::OUString sValue;
+    ::rtl::OUString sValue;
     double fValue;
     sal_Bool bString : 1;
     sal_Bool bEmpty : 1;
@@ -106,9 +107,9 @@ class ScXMLDDELinkContext : public SvXMLImportContext
 {
     ScDDELinkCells  aDDELinkTable;
     ScDDELinkCells  aDDELinkRow;
-    rtl::OUString   sApplication;
-    rtl::OUString   sTopic;
-    rtl::OUString   sItem;
+    ::rtl::OUString sApplication;
+    ::rtl::OUString sTopic;
+    ::rtl::OUString sItem;
     sal_Int32       nPosition;
     sal_Int32       nColumns;
     sal_Int32       nRows;
@@ -129,9 +130,9 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    void SetApplication(const rtl::OUString& sValue) { sApplication = sValue; }
-    void SetTopic(const rtl::OUString& sValue) { sTopic = sValue; }
-    void SetItem(const rtl::OUString& sValue) { sItem = sValue; }
+    void SetApplication(const ::rtl::OUString& sValue) { sApplication = sValue; }
+    void SetTopic(const ::rtl::OUString& sValue) { sTopic = sValue; }
+    void SetItem(const ::rtl::OUString& sValue) { sItem = sValue; }
     void SetMode(const sal_uInt8 nValue) { nMode = nValue; }
     void CreateDDELink();
     void AddColumns(const sal_Int32 nValue) { nColumns += nValue; }
@@ -237,7 +238,7 @@ public:
 
 class ScXMLDDECellContext : public SvXMLImportContext
 {
-    rtl::OUString   sValue;
+    ::rtl::OUString sValue;
     double          fValue;
     sal_Int32       nCells;
     sal_Bool        bString : 1;
@@ -265,4 +266,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

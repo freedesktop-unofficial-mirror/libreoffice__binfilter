@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_optuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,8 +74,9 @@
 #include "unonames.hxx"
 #include "docoptio.hxx"
 #include "unoguard.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -103,7 +104,7 @@ const SfxItemPropertyMap* ScDocOptionsHelper::GetPropertyMap()
 
 // static
 sal_Bool ScDocOptionsHelper::setPropertyValue( ScDocOptions& rOptions,
-                const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 {
     //! use map (with new identifiers)
 
@@ -162,7 +163,7 @@ sal_Bool ScDocOptionsHelper::setPropertyValue( ScDocOptions& rOptions,
 
 // static
 uno::Any ScDocOptionsHelper::getPropertyValue(
-                const ScDocOptions& rOptions, const rtl::OUString& aPropertyName )
+                const ScDocOptions& rOptions, const ::rtl::OUString& aPropertyName )
 {
     //! use map (with new identifiers)
 
@@ -215,7 +216,7 @@ ScDocOptionsObj::~ScDocOptionsObj()
 }
 
 void SAL_CALL ScDocOptionsObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -228,7 +229,7 @@ void SAL_CALL ScDocOptionsObj::setPropertyValue(
         ScModelObj::setPropertyValue( aPropertyName, aValue );
 }
 
-uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -241,3 +242,4 @@ uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const rtl::OUString& aPrope
     return aRet;
 }
 
+}

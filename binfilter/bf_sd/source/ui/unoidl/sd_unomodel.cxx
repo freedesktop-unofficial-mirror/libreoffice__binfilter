@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -198,6 +198,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::osl;
 using namespace ::rtl;
@@ -388,7 +389,7 @@ uno::Any SAL_CALL SdXImpressDocument::queryInterface( const uno::Type & rType ) 
     else QUERYINT(document::XLinkTargetSupplier);
     else QUERYINT(style::XStyleFamiliesSupplier);
     else QUERYINT(lang::XUnoTunnel);
-    else QUERYINT(com::sun::star::ucb::XAnyCompareFactory);
+    else QUERYINT(::com::sun::star::ucb::XAnyCompareFactory);
     else QUERYINT(view::XRenderable);
     else if( mbImpressDoc && rType == ITYPE(presentation::XPresentationSupplier) )
             aAny <<= uno::Reference< presentation::XPresentationSupplier >(this);
@@ -434,7 +435,7 @@ uno::Sequence< uno::Type > SAL_CALL SdXImpressDocument::getTypes(  ) throw(uno::
         *pTypes++ = ITYPE(document::XLinkTargetSupplier);
         *pTypes++ = ITYPE(style::XStyleFamiliesSupplier);
         *pTypes++ = ITYPE(lang::XUnoTunnel);
-        *pTypes++ = ITYPE(com::sun::star::ucb::XAnyCompareFactory);
+        *pTypes++ = ITYPE(::com::sun::star::ucb::XAnyCompareFactory);
         *pTypes++ = ITYPE(view::XRenderable);
         if( mbImpressDoc )
         {
@@ -676,11 +677,11 @@ sal_Bool SAL_CALL SdXImpressDocument::hasControllersLocked(  )
 {
     return pDoc && pDoc->isLocked();
 }
-
+} //namespace binfilter
 #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
 #endif
-
+namespace binfilter {//STRIP009
 uno::Reference < container::XIndexAccess > SAL_CALL SdXImpressDocument::getViewData() throw( uno::RuntimeException )
 {
     if( NULL == pDoc )
@@ -1394,7 +1395,7 @@ uno::Reference< container::XNameAccess > SAL_CALL SdXImpressDocument::getStyleFa
 }
 
 // XAnyCompareFactory
-uno::Reference< com::sun::star::ucb::XAnyCompare > SAL_CALL SdXImpressDocument::createAnyCompareByName( const OUString& PropertyName )
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SdXImpressDocument::createAnyCompareByName( const OUString& PropertyName )
     throw (uno::RuntimeException)
 {
     return SvxCreateNumRuleCompare();
@@ -2270,3 +2271,4 @@ uno::Sequence< OUString > SAL_CALL SdDocLinkTargets::getSupportedServiceNames()
 }
 
 
+}

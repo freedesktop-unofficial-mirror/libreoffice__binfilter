@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmimplids.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,9 @@
 #ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
 #endif
+namespace binfilter {
 
 /*N*/ IMPLEMENT_IMPLEMENTATIONID_HELPER(form, OImplementationIds)
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fontcfg.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #ifndef _LANG_HXX
 #include <tools/lang.hxx>
 #endif
+namespace binfilter {
 
 #define FONT_STANDARD       0
 #define FONT_OUTLINE        1
@@ -94,11 +95,11 @@
 #define FONT_GROUP_CJK      1
 #define FONT_GROUP_CTL      2
 
-class SwStdFontConfig : public utl::ConfigItem
+class SwStdFontConfig : public ::utl::ConfigItem
 {
     String      sDefaultFonts[DEF_FONT_COUNT];
 
-    com::sun::star::uno::Sequence<rtl::OUString>    GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString>    GetPropertyNames();
 
     void ChangeString(USHORT nFontType, const String& rSet)
         {
@@ -137,6 +138,7 @@ public:
 
     static String   GetDefaultFor(USHORT nFontType, LanguageType eLang);
 };
+} //namespace binfilter
 #endif
 
 

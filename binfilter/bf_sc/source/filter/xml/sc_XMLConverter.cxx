@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLConverter.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -750,16 +751,16 @@ void ScXMLConverter::ParseFormula(OUString& sFormula, const sal_Bool bIsFormula)
 
 //_____________________________________________________________________
 
-void ScXMLConverter::ConvertDateTimeToString(const DateTime& aDateTime, rtl::OUStringBuffer& sDate)
+void ScXMLConverter::ConvertDateTimeToString(const DateTime& aDateTime, ::rtl::OUStringBuffer& sDate)
 {
     util::DateTime aAPIDateTime;
     ConvertCoreToAPIDateTime(aDateTime, aAPIDateTime);
     SvXMLUnitConverter::convertDateTime(sDate, aAPIDateTime);
 }
 
-void ScXMLConverter::ConvertStringToDateTime(const rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter)
+void ScXMLConverter::ConvertStringToDateTime(const ::rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter)
 {
-    com::sun::star::util::DateTime aAPIDateTime;
+    ::com::sun::star::util::DateTime aAPIDateTime;
     pUnitConverter->convertDateTime(aAPIDateTime, sDate);
     ConvertAPIToCoreDateTime(aAPIDateTime, aDateTime);
 }
@@ -783,3 +784,4 @@ void ScXMLConverter::ConvertAPIToCoreDateTime(const util::DateTime& aDateTime, D
     rDateTime = aTempDateTime;
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_UnoDocumentSettings.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,6 +155,7 @@
 #ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
 #endif
+namespace binfilter {
 
 #define MAP_LEN(x) x, sizeof(x)-1
 
@@ -304,7 +305,7 @@ enum SdDocumentSettingsPropertyHandles
     }
 }
 
-using namespace ::sd;
+using namespace ::binfilter::sd;
 
 DocumentSettings::DocumentSettings( SdXImpressDocument* pModel )
 :   PropertySetHelper( createSettingsInfoImpl( !pModel->IsImpressDocument() ) ),
@@ -1216,3 +1217,4 @@ Sequence< OUString > SAL_CALL DocumentSettings::getSupportedServiceNames(  )
     return aSeq;
 }
 
+}

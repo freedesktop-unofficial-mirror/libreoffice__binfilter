@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chdescr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #include "globfunc.hxx"
 #include "schgroup.hxx"
 #include "chtscene.hxx"
+namespace binfilter {
 
 /*N*/ ChartDataDescription::ChartDataDescription(long nCols, long nRows, SdrObjList *pList,
 /*N*/                                          ChartModel* pModel, BOOL bEnable) :
@@ -211,3 +212,4 @@
 /*N*/   }
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fltoptint.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #endif
 
 using namespace ::framework;
+namespace binfilter {
 
 class FilterOptionsContinuation : public ContinuationBase< ::com::sun::star::document::XInteractionFilterOptions >
 {
@@ -115,4 +116,4 @@ public:
             > SAL_CALL getContinuations()
         throw( ::com::sun::star::uno::RuntimeException );
 };
-
+}//end of namespace binfilter

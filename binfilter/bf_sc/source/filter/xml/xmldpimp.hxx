@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmldpimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #include "global.hxx"
 #include "dpobject.hxx"
 #include "dpsave.hxx"
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -111,17 +112,17 @@ class ScXMLDataPilotTableContext : public SvXMLImportContext
     ScDocument*     pDoc;
     ScDPObject*     pDPObject;
     ScDPSaveData*   pDPSave;
-    rtl::OUString   sDataPilotTableName;
-    rtl::OUString   sApplicationData;
-    rtl::OUString   sGrandTotal;
-    rtl::OUString   sDatabaseName;
-    rtl::OUString   sSourceObject;
-    rtl::OUString   sServiceName;
-    rtl::OUString   sServiceSourceName;
-    rtl::OUString   sServiceSourceObject;
-    rtl::OUString   sServiceUsername;
-    rtl::OUString   sServicePassword;
-    rtl::OUString   sButtons;
+    ::rtl::OUString sDataPilotTableName;
+    ::rtl::OUString sApplicationData;
+    ::rtl::OUString sGrandTotal;
+    ::rtl::OUString sDatabaseName;
+    ::rtl::OUString sSourceObject;
+    ::rtl::OUString sServiceName;
+    ::rtl::OUString sServiceSourceName;
+    ::rtl::OUString sServiceSourceObject;
+    ::rtl::OUString sServiceUsername;
+    ::rtl::OUString sServicePassword;
+    ::rtl::OUString sButtons;
     ScRange         aSourceCellRangeAddress;
     ScRange         aTargetRangeAddress;
     ScRange         aFilterSourceRange;
@@ -158,14 +159,14 @@ public:
 
     virtual void EndElement();
 
-    void SetDatabaseName(const rtl::OUString& sValue) { sDatabaseName = sValue; }
-    void SetSourceObject(const rtl::OUString& sValue) { sSourceObject = sValue; }
+    void SetDatabaseName(const ::rtl::OUString& sValue) { sDatabaseName = sValue; }
+    void SetSourceObject(const ::rtl::OUString& sValue) { sSourceObject = sValue; }
     void SetNative(const sal_Bool bValue) { bIsNative = bValue; }
-    void SetServiceName(const rtl::OUString& sValue) { sServiceName = sValue; }
-    void SetServiceSourceName(const rtl::OUString& sValue) { sServiceSourceName = sValue; }
-    void SetServiceSourceObject(const rtl::OUString& sValue) { sServiceSourceObject = sValue; }
-    void SetServiceUsername(const rtl::OUString& sValue) { sServiceUsername = sValue; }
-    void SetServicePassword(const rtl::OUString& sValue) { sServicePassword = sValue; }
+    void SetServiceName(const ::rtl::OUString& sValue) { sServiceName = sValue; }
+    void SetServiceSourceName(const ::rtl::OUString& sValue) { sServiceSourceName = sValue; }
+    void SetServiceSourceObject(const ::rtl::OUString& sValue) { sServiceSourceObject = sValue; }
+    void SetServiceUsername(const ::rtl::OUString& sValue) { sServiceUsername = sValue; }
+    void SetServicePassword(const ::rtl::OUString& sValue) { sServicePassword = sValue; }
     void SetSourceCellRangeAddress(const ScRange& aValue) { aSourceCellRangeAddress = aValue; bSourceCellRange = sal_True; }
     void SetSourceQueryParam(const ScQueryParam& aValue) { aSourceQueryParam = aValue; }
 //  void SetFilterUseRegularExpressions(const sal_Bool bValue) { aSourceQueryParam.bRegExp = bValue; }
@@ -448,7 +449,7 @@ class ScXMLDataPilotMemberContext : public SvXMLImportContext
 {
     ScXMLDataPilotFieldContext* pDataPilotField;
 
-    rtl::OUString sName;
+    ::rtl::OUString sName;
     sal_Bool    bDisplay : 1;
     sal_Bool    bDisplayDetails : 1;
 
@@ -473,5 +474,6 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif
 

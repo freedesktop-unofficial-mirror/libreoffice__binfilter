@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,6 +149,7 @@
 #ifndef _HTMLTBL_HXX
 #include <htmltbl.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd );
 
@@ -249,7 +250,7 @@
 /*N*/           ( GRAPHIC_DEFAULT != aGrf.GetType() ||
 /*N*/             GRAPHIC_DEFAULT != rGrfObj.GetType() ) )
 /*N*/       {
-/*N*/           aGrfSz = ::GetGraphicSizeTwip( aGrf, 0 );
+/*N*/           aGrfSz = ::binfilter::GetGraphicSizeTwip( aGrf, 0 );
 /*N*/           if( static_cast< const SwGrfNode * >( pCntntNode )->IsChgTwipSizeFromPixel() )
 /*N*/           {
 /*N*/               const MapMode aMapTwip( MAP_TWIP );
@@ -357,13 +358,13 @@
 /*?*/                                                   IsGrafikArrived() );
 /*?*/
 /*?*/                       // Fly der Grafik anpassen !
-/*?*/                       if( !::SetGrfFlySize( aGrfSz, aFrmFmtSz, pGrfNd ) )
-/*?*/                           ::lcl_CallModify( *pGrfNd, aMsgHint );
+/*?*/                       if( !::binfilter::SetGrfFlySize( aGrfSz, aFrmFmtSz, pGrfNd ) )
+/*?*/                           ::binfilter::lcl_CallModify( *pGrfNd, aMsgHint );
 /*N*/                   }
 /*N*/                   else if( pBLink == this &&
-/*N*/                           !::SetGrfFlySize( aGrfSz, aFrmFmtSz, pGrfNd ) )
+/*N*/                           !::binfilter::SetGrfFlySize( aGrfSz, aFrmFmtSz, pGrfNd ) )
 /*N*/                       // Fly der Grafik anpassen !
-/*N*/                       ::lcl_CallModify( *pGrfNd, aMsgHint );
+/*N*/                       ::binfilter::lcl_CallModify( *pGrfNd, aMsgHint );
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -597,3 +598,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: global.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,11 +68,18 @@
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif
-
+namespace com { namespace sun { namespace star { namespace lang {
+    struct Locale;
+}}}}
+namespace utl {
+    class TransliterationWrapper;
+}
 class ImageList;
 class Bitmap;
 class SfxItemSet;
 class Color;
+namespace binfilter {
+
 
 
 #ifdef WIN
@@ -506,9 +513,18 @@ struct ScImportParam
 //STRIP001  BOOL            operator==  ( const ScImportParam& r ) const;
 //STRIP001  void            Clear       ();
 };
-
+} //namespace binfilter
 // -----------------------------------------------------------------------
-
+class SfxItemPool;
+class SvNumberFormatter;
+class CharClass;
+class LocaleDataWrapper;
+class SvtSysLocale;
+class CalendarWrapper;
+class CollatorWrapper;
+class IntlWrapper;
+class OutputDevice;
+namespace binfilter {
 class ScDocument;
 class ScDocShell;
 class ScDocShellRef;
@@ -520,26 +536,17 @@ class ScUserList;
 class SvxBrushItem;
 class ScFunctionList;
 class ScFunctionMgr;
-class SfxItemPool;
 class SdrModel;
 class EditTextObject;
 class SfxObjectShell;
-class SvNumberFormatter;
 class ScUnitConverter;
-class CharClass;
-class LocaleDataWrapper;
-class SvtSysLocale;
-class CalendarWrapper;
-class CollatorWrapper;
-class IntlWrapper;
-class OutputDevice;
 
-namespace com { namespace sun { namespace star { namespace lang {
-    struct Locale;
-}}}}
-namespace utl {
-    class TransliterationWrapper;
-}
+//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
+//STRIP008  struct Locale;
+//STRIP008 }}}}
+//STRIP008 namespace utl {
+//STRIP008     class TransliterationWrapper;
+//STRIP008 }
 
 #ifndef _SCALC_EXE
 class ScGlobal
@@ -1393,13 +1400,13 @@ enum ScSubTotalFunc
 
 #define SC_EMPTYFIELDS      ((double)0x0042)
 #define SC_NONEMPTYFIELDS   ((double)0x0043)
-
+} //namespace binfilter
 namespace utl
 {
     class SearchParam;
     class TextSearch;
 }
-
+namespace binfilter {//STRIP009
 struct ScQueryEntry
 {
     BOOL            bDoQuery;
@@ -1409,15 +1416,15 @@ struct ScQueryEntry
     ScQueryConnect  eConnect;
     String*         pStr;
     double          nVal;
-    utl::SearchParam*   pSearchParam;       // falls RegExp, nicht gespeichert
-    utl::TextSearch*    pSearchText;        // falls RegExp, nicht gespeichert
+    ::utl::SearchParam* pSearchParam;       // falls RegExp, nicht gespeichert
+    ::utl::TextSearch*  pSearchText;        // falls RegExp, nicht gespeichert
 
     ScQueryEntry();
     ScQueryEntry(const ScQueryEntry& r);
     ~ScQueryEntry();
 
     // legt ggbf. pSearchParam und pSearchText an, immer RegExp!
-    utl::TextSearch*    GetSearchTextPtr( BOOL bCaseSens );
+    ::utl::TextSearch*  GetSearchTextPtr( BOOL bCaseSens );
 
     void            Clear();
     ScQueryEntry&   operator=( const ScQueryEntry& r );
@@ -1645,4 +1652,5 @@ struct ScTabOpParam
 //STRIP001  BOOL            operator==      ( const ScTabOpParam& r ) const;
 };
 
+} //namespace binfilter
 #endif

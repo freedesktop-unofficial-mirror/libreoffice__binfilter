@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_drwlayer.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,7 @@
 #include "globstr.hrc"
 #include "scmod.hxx"
 #include "chartarr.hxx"
+namespace binfilter {
 
 #define DET_ARROW_OFFSET    1000
 
@@ -346,7 +347,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 //STRIP001 {
 //STRIP001  if (!bHyphenatorSet)
 //STRIP001  {
-//STRIP001      com::sun::star::uno::Reference< com::sun::star::linguistic2::XHyphenator >
+//STRIP001      ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XHyphenator >
 //STRIP001                                  xHyphenator = LinguMgr::GetHyphenator();
 //STRIP001
 //STRIP001      GetDrawOutliner().SetHyphenator( xHyphenator );
@@ -1984,3 +1985,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                RecalcPos( pObj, pData )
 
 
 
+}

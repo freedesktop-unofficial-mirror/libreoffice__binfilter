@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #include "validat.hxx"
 #include "progress.hxx"
 #include "bclist.hxx"
+namespace binfilter {
 
 // jetzt fuer alle Systeme niedriger Wert, Rest wird per FormulaTree ausgebuegelt,
 // falls wirklich eine tiefe Rekursion ist, geht das schneller, als zu versuchen
@@ -143,7 +144,7 @@ static const sal_Char __FAR_DATA msgDbgInfinity[] =
 
 // -----------------------------------------------------------------------
 
-DECLARE_LIST (ScFormulaCellList, ScFormulaCell*);
+DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 
 
 /*N*/ ScBaseCell* ScBaseCell::Clone(ScDocument* pDoc) const
@@ -1722,3 +1723,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            ULONG nValidation = ((const 
 
 
 
+}

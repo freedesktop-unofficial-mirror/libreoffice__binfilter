@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartDrawPage.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,10 +75,11 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
+namespace binfilter {
 
 
 using namespace vos;
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #define CHART_DRAW_PAGE_WIDTH_ID 1
 #define CHART_DRAW_PAGE_HEIGHT_ID 2
@@ -289,3 +290,4 @@ void SAL_CALL ChXChartDrawPage::removeVetoableChangeListener( const ::rtl::OUStr
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
+}

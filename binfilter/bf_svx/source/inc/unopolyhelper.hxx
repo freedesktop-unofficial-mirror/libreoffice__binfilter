@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unopolyhelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _COM_SUN_STAR_LANG_ILLEGALARGUMENTEXCEPTION_HPP_
 #include <com/sun/star/lang/IllegalArgumentException.hpp>
 #endif
+namespace binfilter {
 
 namespace com { namespace sun { namespace star { namespace drawing {
     struct PolyPolygonBezierCoords;
@@ -74,14 +75,15 @@ class XPolygon;
 
 /** convert a drawing::PolyPolygonBezierCoords to a XPolygon
 */
-void SvxConvertPolyPolygonBezierToXPolygon( const com::sun::star::drawing::PolyPolygonBezierCoords* pSourcePolyPolygon, XPolygon& rNewPolygon )
-    throw( com::sun::star::lang::IllegalArgumentException );
+void SvxConvertPolyPolygonBezierToXPolygon( const ::com::sun::star::drawing::PolyPolygonBezierCoords* pSourcePolyPolygon, XPolygon& rNewPolygon )
+    throw( ::com::sun::star::lang::IllegalArgumentException );
 
 /** convert a XPolygon to a drawing::PolyPolygonBezierCoords
 */
-void SvxConvertXPolygonToPolyPolygonBezier( const XPolygon& rPolygon, com::sun::star::drawing::PolyPolygonBezierCoords& rRetval )
+void SvxConvertXPolygonToPolyPolygonBezier( const XPolygon& rPolygon, ::com::sun::star::drawing::PolyPolygonBezierCoords& rRetval )
     throw();
 
+}//end of namespace binfilter
 #endif
 
 

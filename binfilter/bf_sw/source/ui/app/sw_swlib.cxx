@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swlib.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,7 @@
 #ifndef _IODETECT_HXX
 #include <iodetect.hxx>
 #endif
+namespace binfilter {
 
 #define C2S(cChar) String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(cChar))
 //os: the Icon Id is unused since start of VCL
@@ -220,4 +221,5 @@ void    SwDLL::LibExit()
 SfxModule* SwModuleDummy::Load()
 {
     return (LoadLibSw() ? SW_MOD() : NULL);
+}
 }

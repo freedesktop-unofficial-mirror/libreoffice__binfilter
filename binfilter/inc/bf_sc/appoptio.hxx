@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appoptio.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
 #endif
+namespace binfilter {
 
 
 class ScAppOptions
@@ -174,12 +175,12 @@ class ScAppCfg : public ScAppOptions
     DECL_LINK( SortListCommitHdl, void* );
     DECL_LINK( MiscCommitHdl, void* );
 
-    com::sun::star::uno::Sequence<rtl::OUString> GetLayoutPropertyNames();
-    com::sun::star::uno::Sequence<rtl::OUString> GetInputPropertyNames();
-    com::sun::star::uno::Sequence<rtl::OUString> GetRevisionPropertyNames();
-    com::sun::star::uno::Sequence<rtl::OUString> GetContentPropertyNames();
-    com::sun::star::uno::Sequence<rtl::OUString> GetSortListPropertyNames();
-    com::sun::star::uno::Sequence<rtl::OUString> GetMiscPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetLayoutPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetInputPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetRevisionPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetContentPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetSortListPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetMiscPropertyNames();
 
 public:
             ScAppCfg();
@@ -189,5 +190,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

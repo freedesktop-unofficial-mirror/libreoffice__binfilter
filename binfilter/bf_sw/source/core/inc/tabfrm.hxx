@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tabfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #endif
 #include "layfrm.hxx"
 #include "flowfrm.hxx"
+namespace binfilter {
 
 class SwTable;
 class SwBorderAttrs;
@@ -189,4 +190,5 @@ inline SwTabFrm *SwTabFrm::FindMaster()
     return (SwTabFrm*)SwFlowFrm::FindMaster();
 }
 
+} //namespace binfilter
 #endif  //_TABFRM_HXX

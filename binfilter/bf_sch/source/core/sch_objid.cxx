@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_objid.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #include "defines.hxx"
 
 #include <tools/debug.hxx> //STRIP001
+namespace binfilter {
 /*************************************************************************
 |*
 |* Objekt-Id ermitteln;
@@ -295,3 +296,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_nodes.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,17 +109,18 @@
 #ifndef _FRAME_HXX
 #include <frame.hxx>
 #endif
-
+namespace binfilter {//STRIP009
 /*N*/ extern FASTBOOL CheckNodesRange( const SwNodeIndex& rStt,
 /*N*/                           const SwNodeIndex& rEnd, FASTBOOL bChkSection );
 
-SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2);
-
+SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)//STRIP008 ;
+} //namespace binfilter
 
 //#define JP_DEBUG
 #ifdef JP_DEBUG
 #include "shellio.hxx"
 #endif
+namespace binfilter {
 
 
 // Funktion zum bestimmen des hoechsten Levels innerhalb des Bereiches
@@ -2407,7 +2408,7 @@ SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2);
 /*N*/
 /*N*/               // suche nach vorne/hinten nach einem Content Node
 /*N*/           else if( 0 != ( pFrmNd = GoPrevSection( &aIdx, TRUE, FALSE )) &&
-/*N*/                   ::CheckNodesRange( aIdx, rFrmIdx, TRUE ) &&
+/*N*/                   ::binfilter::CheckNodesRange( aIdx, rFrmIdx, TRUE ) &&
 /*N*/                   // nach vorne nie aus der Tabelle hinaus!
 /*N*/                   pFrmNd->FindTableNode() == pSttNd->FindTableNode() &&
 /*N*/                   // Bug 37652: nach hinten nie aus der Tabellenzelle hinaus!
@@ -2429,7 +2430,7 @@ SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2);
 /*N*/               // JP 19.09.93: aber nie die Section dafuer verlassen !!
 /*N*/               if( ( pEnd && ( pFrmNd = &aIdx.GetNode())->IsCntntNode() ) ||
 /*N*/                   ( 0 != ( pFrmNd = GoNextSection( &aIdx, TRUE, FALSE )) &&
-/*N*/                   ::CheckNodesRange( aIdx, rFrmIdx, TRUE ) &&
+/*N*/                   ::binfilter::CheckNodesRange( aIdx, rFrmIdx, TRUE ) &&
 /*N*/                   // JP 27.01.99: wenn der "Start"Node ein TabellenNode ist,
 /*N*/                   // dann kann der dahinter liegende nie der gleiche sein!
 /*N*/                   ( pSttNd->IsTableNode() ||
@@ -2642,3 +2643,4 @@ SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2);
 /*N*/   BigPtrArray::Insert( pIns, nPos );
 /*N*/ }
 
+}

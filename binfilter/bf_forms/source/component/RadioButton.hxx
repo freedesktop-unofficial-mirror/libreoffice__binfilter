@@ -2,9 +2,9 @@
  *
  *  $RCSfile: RadioButton.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -165,5 +166,6 @@ protected:
 }
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FORMS_RADIOBUTTON_HXX_
 

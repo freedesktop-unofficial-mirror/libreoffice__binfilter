@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,6 +187,7 @@
 #ifndef _SVDPAGV_HXX
 #include <bf_svx/svdpagv.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::linguistic2;
@@ -491,7 +492,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDraw
 /*N*/   else
 /*N*/           ASSERT( !this, "was ist das fuer ein Format?" );
 /*N*/ }
-
+} //namespace binfilter
 /*************************************************************************/
 // Wird auch vom Sw3-Reader gerufen, wenn ein Fehler beim Einlesen
 // des Drawing Layers auftrat. In diesem Fall wird der Layer komplett
@@ -502,6 +503,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDraw
 #include <bf_svx/sxenditm.hxx>
 #endif
 
+namespace binfilter {//STRIP009
 /*N*/ void SwDoc::InitDrawModel()
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::InitDrawModel" );
@@ -571,9 +573,9 @@ DBG_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDraw
 /*N*/
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "before create Spellchecker/Hyphenator" );
 /*N*/   SdrOutliner& rOutliner = pDrawModel->GetDrawOutliner();
-/*N*/   uno::Reference< XSpellChecker1 > xSpell = ::GetSpellChecker();
+/*N*/   uno::Reference< XSpellChecker1 > xSpell = ::binfilter::GetSpellChecker();
 /*N*/   rOutliner.SetSpeller( xSpell );
-/*N*/     uno::Reference<XHyphenator> xHyphenator( ::GetHyphenator() );
+/*N*/     uno::Reference<XHyphenator> xHyphenator( ::binfilter::GetHyphenator() );
 /*N*/   rOutliner.SetHyphenator( xHyphenator );
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "after create Spellchecker/Hyphenator" );
 /*N*/
@@ -881,3 +883,4 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 //STRIP001
 /*N*/  return(0);
 /*N*/ }
+}

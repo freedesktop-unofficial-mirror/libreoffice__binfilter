@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -318,3 +319,4 @@
 /*N*/   aName += aFilterName;
 /*N*/     return aName;
 /*N*/ }
+}

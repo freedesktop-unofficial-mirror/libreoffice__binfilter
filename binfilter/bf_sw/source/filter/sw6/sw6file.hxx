@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw6file.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 
 #include "swtypes.hxx"
 #include "swerror.h"
+namespace binfilter {
 
 class SwCharFmt;
 class SwTxtFmtColl;
@@ -473,12 +474,13 @@ public:
     BOOL ReadLn(String &rStr);         // Lese eine PC-Zeile ein (CR/LF)
 
     Sw6File(                         // ctor
-        SvStream &rInp,              // Input-Stream, muá offen sein //$ istream
-        size_t nBufSize,             // Lesepuffer-Groesse, muá<>0 sein
+        SvStream &rInp,              // Input-Stream, mu?offen sein //$ istream
+        size_t nBufSize,             // Lesepuffer-Groesse, mu?>0 sein
         size_t nCtrSize,             // Maximale L„nge Ctrl-Zeichenkette
         ULONG *pErrno );             // Optionale Fehlernummer
    ~Sw6File(void);                   // dtor
 };
 
 
+} //namespace binfilter
 #endif // _SW6FILE_HXX

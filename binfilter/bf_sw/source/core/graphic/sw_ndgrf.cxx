@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:20:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,6 +149,7 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
+namespace binfilter {
 
 // --------------------
 // SwGrfNode
@@ -242,7 +243,7 @@
 /*?*/                   nNewType = OBJECT_CLIENT_DDE;
 /*?*/               else
 /*?*/               {
-/*?*/                     so3::MakeLnkName( sCmd, 0, rGrfName, aEmptyStr, &rFltName );
+/*?*/                     ::so3::MakeLnkName( sCmd, 0, rGrfName, aEmptyStr, &rFltName );
 /*?*/                   nNewType = OBJECT_CLIENT_GRF;
 /*?*/               }
 /*?*/
@@ -360,7 +361,7 @@
 /*N*/   // Bug 39281: Size nicht sofort loeschen - Events auf ImageMaps
 /*N*/   //            sollten nicht beim Austauschen nicht ins "leere greifen"
 /*N*/   if( bSetTwipSize )
-/*N*/       SetTwipSize( ::GetGraphicSizeTwip( aGrfObj.GetGraphic(), 0 ) );
+/*N*/       SetTwipSize( ::binfilter::GetGraphicSizeTwip( aGrfObj.GetGraphic(), 0 ) );
 /*N*/
 /*N*/   // erzeuge noch einen Update auf die Frames
 /*N*/   if( bReadGrf && bNewGrf )
@@ -792,8 +793,8 @@
 /*?*/           if( refLink->GetLinkManager()->GetDisplayNames(
 /*?*/                   refLink, &sApp, &sTopic, &sItem ) )
 /*?*/           {
-/*?*/                 ( *pFileNm = sApp ) += so3::cTokenSeperator;
-/*?*/                 ( *pFileNm += sTopic ) += so3::cTokenSeperator;
+/*?*/                 ( *pFileNm = sApp ) += ::so3::cTokenSeperator;
+/*?*/                 ( *pFileNm += sTopic ) += ::so3::cTokenSeperator;
 /*?*/               *pFileNm += sItem;
 /*?*/               pFilterNm->AssignAscii( RTL_CONSTASCII_STRINGPARAM( "DDE" ));
 /*?*/               bRet = TRUE;
@@ -850,7 +851,7 @@
 
 /*N*/ void SwGrfNode::InsertLink( const String& rGrfName, const String& rFltName )
 /*N*/ {
-/*N*/     refLink = new SwBaseLink( so3::LINKUPDATE_ONCALL, FORMAT_GDIMETAFILE, this );
+/*N*/     refLink = new SwBaseLink( ::so3::LINKUPDATE_ONCALL, FORMAT_GDIMETAFILE, this );
 /*N*/   SwDoc* pDoc = GetDoc();
 /*N*/   if( GetNodes().IsDocNodes() )
 /*N*/   {
@@ -859,8 +860,8 @@
 /*N*/       {
 /*?*/           USHORT nTmp = 0;
 /*?*/           String sApp, sTopic, sItem;
-/*?*/             sApp = rGrfName.GetToken( 0, so3::cTokenSeperator, nTmp );
-/*?*/             sTopic = rGrfName.GetToken( 0, so3::cTokenSeperator, nTmp );
+/*?*/             sApp = rGrfName.GetToken( 0, ::so3::cTokenSeperator, nTmp );
+/*?*/             sTopic = rGrfName.GetToken( 0, ::so3::cTokenSeperator, nTmp );
 /*?*/           sItem = rGrfName.Copy( nTmp );
 /*?*/           pDoc->GetLinkManager().InsertDDELink( refLink,
 /*N*/                                           sApp, sTopic, sItem );
@@ -1090,7 +1091,7 @@
 /*N*/       aTmpGrf = aGrfObj.GetGraphic();
 /*N*/   }
 /*N*/
-/*N*/   const so3::SvLinkManager& rMgr = GetDoc()->GetLinkManager();
+/*N*/   const ::so3::SvLinkManager& rMgr = GetDoc()->GetLinkManager();
 /*N*/   String sFile, sFilter;
 /*N*/   if( IsLinkedFile() )
 /*N*/       rMgr.GetDisplayNames( refLink, 0, &sFile, 0, &sFilter );
@@ -1098,7 +1099,7 @@
 /*N*/   {
 /*?*/       String sTmp1, sTmp2;
 /*?*/       rMgr.GetDisplayNames( refLink, &sTmp1, &sTmp2, &sFilter );
-/*?*/         so3::MakeLnkName( sFile, &sTmp1, sTmp2, sFilter );
+/*?*/         ::so3::MakeLnkName( sFile, &sTmp1, sTmp2, sFilter );
 /*?*/       sFilter.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "DDE" ));
 /*N*/   }
 /*N*/
@@ -1307,3 +1308,4 @@
 //STRIP001  }
 //STRIP001  return bRet;
 //STRIP001 }
+}

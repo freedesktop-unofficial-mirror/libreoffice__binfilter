@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _POLY3D_HXX
 #include "poly3d.hxx"
 #endif
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -739,7 +740,7 @@
 //STRIP001  INT32                       mnLength;
 //STRIP001 };
 
-//STRIP001 DECLARE_LIST(ImpDistributeEntryList, ImpDistributeEntry*);
+//STRIP001 DECLARE_LIST(ImpDistributeEntryList, ImpDistributeEntry*)//STRIP008 ;
 
 //STRIP001 void SdrEditView::DistributeMarkedObjects()
 //STRIP001 {
@@ -1751,3 +1752,4 @@
 //STRIP001  EndUndo();
 //STRIP001 }
 
+}

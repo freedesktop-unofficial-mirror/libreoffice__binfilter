@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbg_lay.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #ifndef _DBG_LAY_HXX
 #define _DBG_LAY_HXX
 
+
 #define PROT_FILE_INIT  0x00000000
 #define PROT_INIT       0x00000001
 #define PROT_MAKEALL    0x00000002
@@ -100,7 +101,8 @@
 #ifndef PRODUCT
 
 #include "swtypes.hxx"
-/*STRIP001*/ #include <tools/debug.hxx>
+#include <tools/debug.hxx>
+namespace binfilter {
 class SwImplProtocol;
 class SwFrm;
 class SwImplEnterLeave;
@@ -139,16 +141,16 @@ public:
 #define PROTOCOL_ENTER( pFrm, nFunc, nAct, pPar ) SwEnterLeave aEnter( pFrm, nFunc, nAct, pPar );
 #define PROTOCOL_SNAPSHOT( pFrm, nFlags ) SwProtocol::SnapShot( pFrm, nFlags );
 #define GET_VARIABLE( nNo, nVar ) SwProtocol::GetVar( nNo, nVar );
-
+} //STRIP008 end of namespace binfilter
 #else
-
+namespace binfilter {
 #define PROTOCOL( pFrm, nFunc, nAct, pPar )
 #define PROTOCOL_INIT
 #define PROTOCOL_STOP
 #define PROTOCOL_ENTER( pFrm, nFunc, nAct, pPar )
 #define PROTOCOL_SNAPSHOT( pFrm, nFlags )
 #define GET_VARIABLE( nNo, nVar )
-
+} //namespace binfilter
 #endif
 
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: imestatuswindow.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,13 +71,15 @@ namespace com { namespace sun { namespace star {
     namespace beans { class XPropertySet; }
     namespace lang { class XMultiServiceFactory; }
 } } }
+namespace binfilter {
+
 class SfxApplication;
 
 namespace sfx2 { namespace appl {
 
 // The MS compiler needs this typedef work-around to accept the using
 // declarations within ImeStatusWindow:
-typedef cppu::WeakImplHelper1< com::sun::star::beans::XPropertyChangeListener >
+typedef cppu::WeakImplHelper1< ::com::sun::star::beans::XPropertyChangeListener >
 ImeStatusWindow_Impl;
 
 /** Control the behavior of any (platform-dependent) IME status windows.
@@ -91,8 +93,8 @@ class ImeStatusWindow: private ImeStatusWindow_Impl
 {
 public:
     ImeStatusWindow(SfxApplication & rApplication,
-                    com::sun::star::uno::Reference<
-                            com::sun::star::lang::XMultiServiceFactory > const &
+                    ::com::sun::star::uno::Reference<
+                            ::com::sun::star::lang::XMultiServiceFactory > const &
                         rServiceFactory);
 
     /** Set up VCL according to the configuration.
@@ -142,26 +144,27 @@ private:
     virtual ~ImeStatusWindow();
 
     virtual void SAL_CALL
-    disposing(com::sun::star::lang::EventObject const & rSource)
-        throw (com::sun::star::uno::RuntimeException);
+    disposing(::com::sun::star::lang::EventObject const & rSource)
+        throw (::com::sun::star::uno::RuntimeException);
 
     virtual void SAL_CALL
-    propertyChange(com::sun::star::beans::PropertyChangeEvent const & rEvent)
-        throw (com::sun::star::uno::RuntimeException);
+    propertyChange(::com::sun::star::beans::PropertyChangeEvent const & rEvent)
+        throw (::com::sun::star::uno::RuntimeException);
 
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet >
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
     getConfig();
 
     SfxApplication & m_rApplication;
-    com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory >
+    ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >
         m_xServiceFactory;
 
     osl::Mutex m_aMutex;
-    com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet >
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
         m_xConfig;
     bool m_bDisposed;
 };
 
 } }
 
+}//end of namespace binfilter
 #endif // INCLUDED_SFX2_APPL_IMESTATUSWINDOW_HXX

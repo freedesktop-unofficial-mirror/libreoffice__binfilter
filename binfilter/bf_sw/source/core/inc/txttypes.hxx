@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txttypes.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _TXTTYPES_HXX
 
 #include "swtypes.hxx"
+namespace binfilter {
 
 // Ueberpruefte USHORTs, z.B. Indizes auf Arrays oder garantiert kleine
 // Integerwerte, auch von aussen vorgegebene
@@ -131,4 +132,5 @@
 
 #define POR_TABLEFT     0x0740
 
+} //namespace binfilter
 #endif  //_TXTTYPES_HXX

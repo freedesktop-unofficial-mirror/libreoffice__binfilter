@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,6 +111,7 @@
 
 #include <osl/mutex.hxx>
 #include <vos/mutex.hxx>
+namespace binfilter {
 
 using namespace vos;
 using namespace ::com::sun::star;
@@ -677,43 +678,43 @@ using namespace ::com::sun::star::frame;
 /*N*/               break;
 /*N*/           }
 /*N*/           case WID_KEYWORDS :
-/*N*/               aValue <<= rtl::OUString( _pInfo->GetKeywords() );
+/*N*/               aValue <<= ::rtl::OUString( _pInfo->GetKeywords() );
 /*N*/               break;
 /*N*/           case WID_PRIORITY :
 /*N*/               aValue <<= _pInfo->GetPriority() ;
 /*N*/               break;
 /*N*/           case WID_CC :
-/*N*/               aValue <<= rtl::OUString( _pInfo->GetCopiesTo() );
+/*N*/               aValue <<= ::rtl::OUString( _pInfo->GetCopiesTo() );
 /*N*/               break;
 /*N*/           case WID_MESSAGE_ID :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetOriginal() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetOriginal() );
 /*N*/               break;
 /*N*/           case WID_REFERENCES :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetReferences() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetReferences() );
 /*N*/               break;
 /*N*/           case WID_TO :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetRecipient() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetRecipient() );
 /*N*/               break;
 /*N*/           case WID_REPLY_TO :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetReplyTo() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetReplyTo() );
 /*N*/               break;
 /*N*/           case WID_BCC :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetBlindCopies() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetBlindCopies() );
 /*N*/               break;
 /*N*/           case WID_IN_REPLY_TO :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetInReplyTo() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetInReplyTo() );
 /*N*/               break;
 /*N*/           case WID_NEWSGROUPS :
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetNewsgroups() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetNewsgroups() );
 /*N*/               break;
 /*N*/           case MID_DOCINFO_DESCRIPTION:
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetComment() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetComment() );
 /*N*/               break;
 /*N*/           case MID_DOCINFO_TEMPLATE:
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetTemplateName() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetTemplateName() );
 /*N*/               break;
 /*N*/           case SID_TEMPLATE_NAME:
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetTemplateFileName() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetTemplateFileName() );
 /*N*/               break;
 /*N*/           case MID_DOCINFO_TEMPLATEDATE:
 /*N*/               aValue <<= impl_DateTime_Object2Struct(_pInfo->GetTemplateDate());
@@ -722,13 +723,13 @@ using namespace ::com::sun::star::frame;
 /*N*/               aValue <<=  _pInfo->IsReloadEnabled() ;
 /*N*/               break;
 /*N*/           case MID_DOCINFO_AUTOLOADURL:
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetReloadURL() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetReloadURL() );
 /*N*/               break;
 /*N*/           case MID_DOCINFO_AUTOLOADSECS:
 /*N*/               aValue <<=  _pInfo->GetReloadDelay() ;
 /*N*/               break;
 /*N*/           case MID_DOCINFO_DEFAULTTARGET:
-/*N*/               aValue <<=  rtl::OUString( _pInfo->GetDefaultTarget() );
+/*N*/               aValue <<=  ::rtl::OUString( _pInfo->GetDefaultTarget() );
 /*N*/               break;
 /*N*/           default:
 /*N*/               aValue <<= ::rtl::OUString();
@@ -905,7 +906,7 @@ using namespace ::com::sun::star::frame;
 /*N*/                 aParserInput.sSystemId = aURL;
 /*N*/
 /*N*/                 SvStorageStreamRef xDocStream;
-/*N*/                 String sDocName( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("meta.xml")) );
+/*N*/                 String sDocName( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("meta.xml")) );
 /*N*/                 if ( pStorage->IsStream(sDocName) )
 /*N*/                     xDocStream = pStorage->OpenStream( sDocName, STREAM_READ | STREAM_NOCREATE );
 /*N*/                 xDocStream->SetBufferSize( 16*1024 );
@@ -913,7 +914,7 @@ using namespace ::com::sun::star::frame;
 /*N*/
 /*N*/                 // create importer service
 /*N*/                 Reference < xml::sax::XDocumentHandler > xDocHandler( _xFactory->createInstanceWithArguments(
-/*N*/                         rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.XMLMetaImporter")),
+/*N*/                         ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.XMLMetaImporter")),
 /*N*/                         Sequence < Any >() ), UNO_QUERY );
 /*N*/
 /*N*/                 // connect importer with this object
@@ -993,3 +994,4 @@ using namespace ::com::sun::star::frame;
 */
 
 
+}

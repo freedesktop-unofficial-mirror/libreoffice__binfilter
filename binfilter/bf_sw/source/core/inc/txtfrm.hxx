@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,8 @@
 #endif
 #include "cntfrm.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
+class OutputDevice;
+namespace binfilter {
 #define STRSIZE(x) (sizeof(x)-1)
 
 class SwCharRange;
@@ -85,7 +87,7 @@ class SwCache;
 class SwBorderAttrs;
 class SwFrmFmt;
 class SwFldPortion;
-class OutputDevice;
+
 class SwTestFormat;
 class SwStripes;
 struct SwCrsrMoveState;
@@ -772,4 +774,5 @@ public:
 
 #endif
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_chpfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -227,7 +228,7 @@ using namespace ::com::sun::star;
 /*-----------------05.03.98 16:19-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwChapterField::QueryValue( com::sun::star::uno::Any& rAny, BYTE nMId ) const
+/*N*/ BOOL SwChapterField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
@@ -264,7 +265,7 @@ using namespace ::com::sun::star;
 /*-----------------05.03.98 16:19-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwChapterField::PutValue( const com::sun::star::uno::Any& rAny, BYTE nMId )
+/*N*/ BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -305,3 +306,4 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_docshell.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:35:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,7 +163,7 @@
 #define BASIC_BUFFER_SIZE               (USHORT)8192
 #define DOCUMENT_BUFFER_SIZE            (USHORT)32768
 
-
+namespace binfilter {
 GraphicFilter* GetGrfFilter();
 
 SfxProgress* SdDrawDocShell::mpSpecialProgress = NULL;
@@ -175,10 +175,12 @@ Link*        SdDrawDocShell::mpSpecialProgressHdl = NULL;
 |*
 \************************************************************************/
 /*N*/ TYPEINIT1( SdDrawDocShell, SfxObjectShell );
+}//namespace binfilter
 
+
+namespace binfilter {
 #define SdDrawDocShell
 #include "sdslots.hxx"
-
 
 /*N*/ SFX_IMPL_INTERFACE(SdDrawDocShell, SfxObjectShell, SdResId(0))
 /*N*/ {
@@ -645,3 +647,4 @@ SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode,
 //STRIP001 }
 //STRIP001 #endif // !SVX_LIGHT
 
+}

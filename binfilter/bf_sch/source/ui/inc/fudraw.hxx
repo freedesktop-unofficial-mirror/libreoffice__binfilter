@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fudraw.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _SCH_FUDRAW_HXX
 
 #include "fupoor.hxx"
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -224,6 +225,7 @@ public:
 //STRIP001  virtual void DoubleClick();
 };
 
+} //namespace binfilter
 #endif  // _SCH_FUDRAW_HXX
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #include "conditio.hxx"
 #include "chartlis.hxx"
 #include "globstr.hrc"
+namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -3098,3 +3099,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (VALIDROW(nRow) && pRowFlags)
 /*N*/   return n;
 /*N*/ }
 
+}

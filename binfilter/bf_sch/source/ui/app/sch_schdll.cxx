@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schdll.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,7 @@
 #include "res_bmp.hrc"  // contains define for RID_MENU, RID_ACCEL
 
 #include "globopt.hxx"
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -165,7 +166,7 @@
 /*N*/   SvxPosSizeStatusBarControl::RegisterControl(SID_ATTR_SIZE, pMod);
 /*N*/   SvxModifyControl::RegisterControl(SID_DOC_MODIFIED, pMod);
 /*N*/
-/*N*/     pMod->PutItem( SfxUInt16Item( SID_ATTR_METRIC, ::sch::util::GetMeasureUnit() ));
+    /*N*/     pMod->PutItem( SfxUInt16Item( SID_ATTR_METRIC, ::binfilter::sch::util::GetMeasureUnit() ));
 /*N*/ }
 
 /*************************************************************************
@@ -235,8 +236,8 @@
 /*N*/           rDoc.CheckForNewAxisNumFormat();
 /*N*/           rDoc.SetChanged();                              // #72576#
 /*N*/
-/*N*/           com::sun::star::chart::ChartDataChangeEvent aEvent;
-/*N*/           aEvent.Type = com::sun::star::chart::ChartDataChangeType_ALL;
+/*N*/           ::com::sun::star::chart::ChartDataChangeEvent aEvent;
+/*N*/           aEvent.Type = ::com::sun::star::chart::ChartDataChangeType_ALL;
 /*N*/           aEvent.StartColumn = 0;
 /*N*/           aEvent.EndColumn = 0;
 /*N*/           aEvent.StartRow = 0;
@@ -483,3 +484,4 @@
 /*N*/ }
 
 
+}

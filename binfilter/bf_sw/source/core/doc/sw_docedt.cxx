@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docedt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -182,6 +182,7 @@
 #endif
 #include "comcore.hrc"
 #include "editsh.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::linguistic2;
@@ -1398,7 +1399,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               pOldTxtNd->FmtToTxtAttr( pTxtNd );
 /*N*/
 /*N*/               SvULongs aBkmkArr( 15, 15 );
-/*N*/               ::_SaveCntntIdx( pDoc, aOldIdx.GetIndex(),
+/*N*/               ::binfilter::_SaveCntntIdx( pDoc, aOldIdx.GetIndex(),
 /*N*/                                   pOldTxtNd->Len(), aBkmkArr );
 /*N*/
 /*N*/               SwIndex aAlphaIdx(pTxtNd);
@@ -1512,7 +1513,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/       // anderen Sichten aus dem Loeschbereich zu verschieben
 /*N*/       // ABER NICHT SICH SELBST !!
 /*N*/       SwPaM aDelPam( *rPam.GetMark(), *rPam.GetPoint() );
-/*N*/       ::PaMCorrAbs( aDelPam, *aDelPam.GetPoint() );
+/*N*/       ::binfilter::PaMCorrAbs( aDelPam, *aDelPam.GetPoint() );
 /*N*/
 /*N*/       if( !Delete( aDelPam ) )
 /*N*/           return sal_False;
@@ -1673,7 +1674,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   } while( sal_False );
 /*?*/
 /*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    CompressRedlines();
+/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    ::com::pressRedlines();
 /*?*/   SetModified();
 /*?*/
 /*?*/   return sal_True;
@@ -1749,7 +1750,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 //STRIP001                              nStat = bReverse ?
 //STRIP001                                  *pPageSt - nPageNr + 1 :
 //STRIP001                                  nPageNr + *pPageCnt - *pPageSt + 1;
-//STRIP001                          ::SetProgressState( nStat, (SwDocShell*)GetDocShell() );
+//STRIP001                          ::binfilter::SetProgressState( nStat, (SwDocShell*)GetDocShell() );
 //STRIP001                      }
 //STRIP001                         if( (!bIsConversion &&
 //STRIP001                                 ((SwTxtNode*)pNd)->Spell( pSpellArgs )) ||
@@ -1906,7 +1907,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 //STRIP001              }
 //STRIP001              long nStat = nPageNr >= *pPageSt ? nPageNr - *pPageSt + 1
 //STRIP001                                       : nPageNr + *pPageCnt - *pPageSt + 1;
-//STRIP001              ::SetProgressState( nStat, (SwDocShell*)pNode->GetDoc()->GetDocShell() );
+//STRIP001              ::binfilter::SetProgressState( nStat, (SwDocShell*)pNode->GetDoc()->GetDocShell() );
 //STRIP001          }
 //STRIP001          pHyphArgs->SetRange( rpNd );
 //STRIP001          if( pNode->Hyphenate( *pHyphArgs ) )
@@ -2442,3 +2443,4 @@ DBG_ASSERT(0, "STRIP");  //STRIP001     if( !rPam.HasMark() || *rPam.GetPoint() 
 //STRIP001 }
 // -----------------------------------------------------------------------------
 
+}

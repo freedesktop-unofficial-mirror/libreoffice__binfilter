@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwXDocumentSettings.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
+namespace binfilter {
 
 
 class SwXTextDocument;
@@ -94,12 +95,12 @@ class SfxPrinter;
 
 class SwXDocumentSettings :
         public comphelper::MasterPropertySet,
-        public com::sun::star::lang::XServiceInfo,
-        public com::sun::star::lang::XTypeProvider,
+        public ::com::sun::star::lang::XServiceInfo,
+        public ::com::sun::star::lang::XTypeProvider,
         public cppu::OWeakObject
 {
 protected:
-    com::sun::star::uno::Reference< com::sun::star::text::XTextDocument >       mxModel;
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextDocument >       mxModel;
     SwXTextDocument*        mpModel;
     SwDocShell*             mpDocSh;
     SwDoc*                  mpDoc;
@@ -140,14 +141,15 @@ public:
 
     // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName(  )
-        throw(com::sun::star::uno::RuntimeException);
+        throw(::com::sun::star::uno::RuntimeException);
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName )
-        throw(com::sun::star::uno::RuntimeException);
-    virtual com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  )
-        throw(com::sun::star::uno::RuntimeException);
+        throw(::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  )
+        throw(::com::sun::star::uno::RuntimeException);
 
     // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw (::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw (::com::sun::star::uno::RuntimeException);
 };
+} //namespace binfilter
 #endif

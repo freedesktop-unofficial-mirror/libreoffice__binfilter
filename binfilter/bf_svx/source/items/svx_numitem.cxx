@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_numitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 #define MM100_TO_TWIP(MM100)    ((MM100*72L+63L)/127L)
 
@@ -123,7 +124,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::style;
 
 sal_Int32 SvxNumberType::nRefCount = 0;
-com::sun::star::uno::Reference<com::sun::star::text::XNumberingFormatter> SvxNumberType::xFormatter = 0;
+::com::sun::star::uno::Reference< ::com::sun::star::text::XNumberingFormatter> SvxNumberType::xFormatter = 0;
 /* -----------------------------22.02.01 14:24--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -199,9 +200,9 @@ com::sun::star::uno::Reference<com::sun::star::text::XNumberingFormatter> SvxNum
 /*N*/                   {
 /*N*/                       Sequence< PropertyValue > aProperties(2);
 /*N*/                       PropertyValue* pValues = aProperties.getArray();
-/*N*/                       pValues[0].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("NumberingType"));
+/*N*/                       pValues[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("NumberingType"));
 /*N*/                       pValues[0].Value <<= nNumType;
-/*N*/                       pValues[1].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Value"));
+/*N*/                       pValues[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Value"));
 /*N*/                       pValues[1].Value <<= (sal_Int32)nNo;
 /*N*/
 /*N*/                       try
@@ -1086,13 +1087,13 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
  *
  * --------------------------------------------------*/
 
-//STRIP001 sal_Bool SvxNumBulletItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxNumBulletItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  rVal <<= SvxCreateNumRule( pNumRule );
 //STRIP001  return sal_True;
 //STRIP001 }
 
-/*N*/ sal_Bool SvxNumBulletItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ sal_Bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   uno::Reference< container::XIndexReplace > xRule;
 /*N*/   if( rVal >>= xRule )
@@ -1141,3 +1142,4 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/
 /*N*/   return pNewRule;
 /*N*/ }
+}

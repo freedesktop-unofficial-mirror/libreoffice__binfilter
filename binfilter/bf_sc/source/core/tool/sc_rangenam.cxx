@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangenam.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #include "refupdat.hxx"
 #include "document.hxx"
 #include "indexmap.hxx"
+namespace binfilter {
 
 
 //========================================================================
@@ -341,7 +342,7 @@
 /*N*/   delete pTemp;
 /*N*/ }
 
-/*N*/ void ScRangeData::UpdateSymbol(   rtl::OUStringBuffer& rBuffer, const ScAddress& rPos,
+/*N*/ void ScRangeData::UpdateSymbol(   ::rtl::OUStringBuffer& rBuffer, const ScAddress& rPos,
 /*N*/                               BOOL bEnglish, BOOL bCompileXML )
 /*N*/ {
 /*N*/   ScTokenArray* pTemp = pCode->Clone();
@@ -933,3 +934,4 @@
 
 
 
+}

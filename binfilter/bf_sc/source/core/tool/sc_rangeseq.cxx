@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangeseq.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,9 @@
 #include "document.hxx"
 #include "scmatrix.hxx"
 #include "cell.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -216,11 +217,11 @@ using namespace com::sun::star;
 /*N*/   for (long nRow = 0; nRow < nRowCount; nRow++)
 /*N*/   {
 /*N*/       uno::Sequence<rtl::OUString> aColSeq( nColCount );
-/*N*/       rtl::OUString* pColAry = aColSeq.getArray();
+/*N*/       ::rtl::OUString* pColAry = aColSeq.getArray();
 /*N*/       for (long nCol = 0; nCol < nColCount; nCol++)
 /*N*/       {
 /*N*/           pDoc->GetString( (USHORT)(nStartCol+nCol), (USHORT)(nStartRow+nRow), nTab, aDocStr );
-/*N*/           pColAry[nCol] = rtl::OUString( aDocStr );
+/*N*/           pColAry[nCol] = ::rtl::OUString( aDocStr );
 /*N*/       }
 /*N*/       pRowAry[nRow] = aColSeq;
 /*N*/   }
@@ -244,7 +245,7 @@ using namespace com::sun::star;
 /*N*/   for (USHORT nRow = 0; nRow < nRowCount; nRow++)
 /*N*/   {
 /*N*/       uno::Sequence<rtl::OUString> aColSeq( nColCount );
-/*N*/       rtl::OUString* pColAry = aColSeq.getArray();
+/*N*/       ::rtl::OUString* pColAry = aColSeq.getArray();
 /*N*/       for (USHORT nCol = 0; nCol < nColCount; nCol++)
 /*N*/       {
 /*N*/           String aStr;
@@ -259,7 +260,7 @@ using namespace com::sun::star;
 /*N*/               Color* pColor;
 /*N*/               pFormatter->GetOutputString( fVal, 0, aStr, &pColor );
 /*N*/           }
-/*N*/           pColAry[nCol] = rtl::OUString( aStr );
+/*N*/           pColAry[nCol] = ::rtl::OUString( aStr );
 /*N*/       }
 /*N*/
 /*N*/       pRowAry[nRow] = aColSeq;
@@ -320,10 +321,10 @@ using namespace com::sun::star;
 /*N*/               else if ( pCell->HasValueData() )
 /*N*/                   rElement <<= (double) lcl_GetValueFromCell( *pCell );
 /*N*/               else
-/*N*/                   rElement <<= rtl::OUString( pCell->GetStringData() );
+/*N*/                   rElement <<= ::rtl::OUString( pCell->GetStringData() );
 /*N*/           }
 /*N*/           else
-/*N*/               rElement <<= rtl::OUString();       // empty: empty string
+/*N*/               rElement <<= ::rtl::OUString();     // empty: empty string
 /*N*/       }
 /*N*/       pRowAry[nRow] = aColSeq;
 /*N*/   }
@@ -354,7 +355,7 @@ using namespace com::sun::star;
 /*N*/               String aStr;
 /*N*/               if ( !pMatrix->IsEmpty( nCol, nRow ) )
 /*N*/                   aStr = pMatrix->GetString( nCol, nRow );
-/*N*/               pColAry[nCol] <<= rtl::OUString( aStr );
+/*N*/               pColAry[nCol] <<= ::rtl::OUString( aStr );
 /*N*/           }
 /*N*/           else
 /*N*/               pColAry[nCol] <<= (double) pMatrix->GetDouble( nCol, nRow );
@@ -386,3 +387,4 @@ using namespace com::sun::star;
 
 //------------------------------------------------------------------------
 
+}

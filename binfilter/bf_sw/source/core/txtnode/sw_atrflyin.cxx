@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrflyin.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #include "swfont.hxx"
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
+namespace binfilter {
 
 /*N*/ SwFmtFlyCnt::SwFmtFlyCnt( SwFrmFmt *pFrmFmt )
 /*N*/   : SfxPoolItem( RES_TXTATR_FLYCNT ),
@@ -322,3 +323,4 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ }
 
 
+}

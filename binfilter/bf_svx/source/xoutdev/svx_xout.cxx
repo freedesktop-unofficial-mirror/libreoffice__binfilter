@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xout.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #include "xpoly.hxx"
 #include "xoutx.hxx"
 #include "xoutbmp.hxx"
+namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
 #define MTF_DIVISOR 2
@@ -877,3 +878,4 @@
 /*N*/   eFillStyle = ( rColor.GetColor() == COL_TRANSPARENT ) ? XFILL_NONE : XFILL_SOLID;
 /*N*/   pOut->SetFillColor( rColor );
 /*N*/ }
+}

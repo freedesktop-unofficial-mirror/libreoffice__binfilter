@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLDDELinksContext.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,8 +93,9 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -514,4 +515,5 @@ void ScXMLDDECellContext::EndElement()
     aCell.bString = bString2;
     for(sal_Int32 i = 0; i < nCells; i++)
         pDDELink->AddCellToRow(aCell);
+}
 }

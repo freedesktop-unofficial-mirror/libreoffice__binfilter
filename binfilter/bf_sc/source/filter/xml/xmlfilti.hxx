@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlfilti.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 
 #include "xmldrani.hxx"
 #include "xmldpimp.hxx"
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -92,9 +93,9 @@ class ScXMLFilterContext : public SvXMLImportContext
 {
     ScXMLDatabaseRangeContext* pDatabaseRangeContext;
 
-    com::sun::star::uno::Sequence <com::sun::star::sheet::TableFilterField> aFilterFields;
-    com::sun::star::table::CellAddress aOutputPosition;
-    com::sun::star::table::CellRangeAddress aConditionSourceRangeAddress;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::sheet::TableFilterField> aFilterFields;
+    ::com::sun::star::table::CellAddress aOutputPosition;
+    ::com::sun::star::table::CellRangeAddress aConditionSourceRangeAddress;
     sal_Int16   nUserListIndex;
     sal_Bool    bSkipDuplicates : 1;
     sal_Bool    bCopyOutputData : 1;
@@ -133,7 +134,7 @@ public:
                             aConnectionOrStack.Push(pTemp);}
     void CloseConnection() { sal_Bool* pTemp = static_cast <sal_Bool*> (aConnectionOrStack.Pop()); bConnectionOr = *pTemp; bNextConnectionOr = *pTemp; delete pTemp;}
     sal_Bool GetConnection() { sal_Bool bTemp = bConnectionOr; bConnectionOr = bNextConnectionOr; return bTemp; }
-    void AddFilterField (const com::sun::star::sheet::TableFilterField aFilterField) { aFilterFields.realloc(aFilterFields.getLength() + 1);
+    void AddFilterField (const ::com::sun::star::sheet::TableFilterField aFilterField) { aFilterFields.realloc(aFilterFields.getLength() + 1);
                                                                                 aFilterFields[aFilterFields.getLength() - 1] = aFilterField; }
 };
 
@@ -191,9 +192,9 @@ class ScXMLConditionContext : public SvXMLImportContext
 {
     ScXMLFilterContext* pFilterContext;
 
-    rtl::OUString sDataType;
-    rtl::OUString sConditionValue;
-    rtl::OUString sOperator;
+    ::rtl::OUString sDataType;
+    ::rtl::OUString sConditionValue;
+    ::rtl::OUString sOperator;
     sal_Int32   nField;
     sal_Bool    bIsCaseSensitive : 1;
 
@@ -215,7 +216,7 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    void getOperatorXML(const rtl::OUString sTempOperator, com::sun::star::sheet::FilterOperator& aFilterOperator, sal_Bool& bUseRegularExpressions) const;
+    void getOperatorXML(const ::rtl::OUString sTempOperator, ::com::sun::star::sheet::FilterOperator& aFilterOperator, sal_Bool& bUseRegularExpressions) const;
     virtual void EndElement();
 };
 
@@ -324,9 +325,9 @@ class ScXMLDPConditionContext : public SvXMLImportContext
 {
     ScXMLDPFilterContext* pFilterContext;
 
-    rtl::OUString sDataType;
-    rtl::OUString sConditionValue;
-    rtl::OUString sOperator;
+    ::rtl::OUString sDataType;
+    ::rtl::OUString sConditionValue;
+    ::rtl::OUString sOperator;
     sal_Int32   nField;
     sal_Bool    bIsCaseSensitive : 1;
 
@@ -348,9 +349,10 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    void getOperatorXML(const rtl::OUString sTempOperator, ScQueryOp& aFilterOperator, sal_Bool& bUseRegularExpressions,
+    void getOperatorXML(const ::rtl::OUString sTempOperator, ScQueryOp& aFilterOperator, sal_Bool& bUseRegularExpressions,
                         double& dVal) const;
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

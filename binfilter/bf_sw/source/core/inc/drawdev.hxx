@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawdev.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
  *                          class SwDrawDev
@@ -171,4 +172,5 @@ inline void SwDrawDev::DrawRect( const SwRect& rRect,
 }
 
 
+} //namespace binfilter
 #endif

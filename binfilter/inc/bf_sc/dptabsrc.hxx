@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dptabsrc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
+namespace binfilter {
 
 
 class ScDPResultMember;
@@ -153,11 +154,11 @@ class ScDPMember;
 
 
 class ScDPSource : public cppu::WeakImplHelper5<
-                            com::sun::star::sheet::XDimensionsSupplier,
-                            com::sun::star::sheet::XDataPilotResults,
-                            com::sun::star::util::XRefreshable,
-                            com::sun::star::beans::XPropertySet,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XDimensionsSupplier,
+                            ::com::sun::star::sheet::XDataPilotResults,
+                            ::com::sun::star::util::XRefreshable,
+                            ::com::sun::star::beans::XPropertySet,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPTableData*          pData;              // data source
@@ -182,8 +183,8 @@ private:
     ScDPResultData*         pResData;           // keep the rest in this!
     ScDPResultMember*       pColResRoot;
     ScDPResultMember*       pRowResRoot;
-    com::sun::star::uno::Sequence<com::sun::star::sheet::MemberResult>* pColResults;
-    com::sun::star::uno::Sequence<com::sun::star::sheet::MemberResult>* pRowResults;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::MemberResult>* pColResults;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::MemberResult>* pRowResults;
     List                    aColLevelList;
     List                    aRowLevelList;
     ScSubTotalFunc          eDataFunctions[SC_DAPI_MAXFIELDS];
@@ -220,7 +221,7 @@ public:
 
     long                    GetSourceDim(long nDim);
 
-//STRIP001  const com::sun::star::uno::Sequence<com::sun::star::sheet::MemberResult>*
+//STRIP001  const ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::MemberResult>*
 //STRIP001                          GetMemberResults( ScDPLevel* pLevel );
 
     ScDPDimensions*         GetDimensionsObject();
@@ -310,8 +311,8 @@ public:
 };
 
 class ScDPDimensions : public cppu::WeakImplHelper2<
-                            com::sun::star::container::XNameAccess,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::container::XNameAccess,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*         pSource;
@@ -352,11 +353,11 @@ public:
 };
 
 class ScDPDimension : public cppu::WeakImplHelper5<
-                            com::sun::star::sheet::XHierarchiesSupplier,
-                            com::sun::star::container::XNamed,
-                            com::sun::star::util::XCloneable,
-                            com::sun::star::beans::XPropertySet,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XHierarchiesSupplier,
+                            ::com::sun::star::container::XNamed,
+                            ::com::sun::star::util::XCloneable,
+                            ::com::sun::star::beans::XPropertySet,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*         pSource;
@@ -451,8 +452,8 @@ public:
 };
 
 class ScDPHierarchies : public cppu::WeakImplHelper2<
-                            com::sun::star::container::XNameAccess,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::container::XNameAccess,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*         pSource;
@@ -492,9 +493,9 @@ public:
 };
 
 class ScDPHierarchy : public cppu::WeakImplHelper3<
-                            com::sun::star::sheet::XLevelsSupplier,
-                            com::sun::star::container::XNamed,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XLevelsSupplier,
+                            ::com::sun::star::container::XNamed,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*     pSource;
@@ -527,8 +528,8 @@ public:
 };
 
 class ScDPLevels : public cppu::WeakImplHelper2<
-                            com::sun::star::container::XNameAccess,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::container::XNameAccess,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*     pSource;
@@ -569,11 +570,11 @@ public:
 };
 
 class ScDPLevel : public cppu::WeakImplHelper5<
-                            com::sun::star::sheet::XMembersSupplier,
-                            com::sun::star::container::XNamed,
-                            com::sun::star::sheet::XDataPilotMemberResults,
-                            com::sun::star::beans::XPropertySet,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XMembersSupplier,
+                            ::com::sun::star::container::XNamed,
+                            ::com::sun::star::sheet::XDataPilotMemberResults,
+                            ::com::sun::star::beans::XPropertySet,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScDPSource*                 pSource;
@@ -581,7 +582,7 @@ private:
     long                        nHier;
     long                        nLev;
     ScDPMembers*                pMembers;
-    com::sun::star::uno::Sequence<com::sun::star::sheet::GeneralFunction> aSubTotals;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::GeneralFunction> aSubTotals;
     BOOL                        bShowEmpty;
 
 public:
@@ -652,9 +653,9 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames()
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    virtual com::sun::star::uno::Sequence<com::sun::star::sheet::GeneralFunction> getSubTotals() const;
-//STRIP001  virtual void            setSubTotals(const com::sun::star::uno::Sequence<
-//STRIP001                                          com::sun::star::sheet::GeneralFunction>& rNew);
+    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::GeneralFunction> getSubTotals() const;
+//STRIP001  virtual void            setSubTotals(const ::com::sun::star::uno::Sequence<
+//STRIP001                                          ::com::sun::star::sheet::GeneralFunction>& rNew);
 //STRIP001  virtual BOOL            getShowEmpty() const;
     virtual void            setShowEmpty(BOOL bSet);
 
@@ -662,8 +663,8 @@ public:
 };
 
 //STRIP001 class ScDPMembers : public cppu::WeakImplHelper2<
-//STRIP001                          com::sun::star::container::XNameAccess,
-//STRIP001                          com::sun::star::lang::XServiceInfo >
+//STRIP001                          ::com::sun::star::container::XNameAccess,
+//STRIP001                          ::com::sun::star::lang::XServiceInfo >
 //STRIP001 {
 //STRIP001 private:
 //STRIP001  ScDPSource*     pSource;
@@ -707,9 +708,9 @@ public:
 //STRIP001 };
 
 //STRIP001 class ScDPMember : public cppu::WeakImplHelper3<
-//STRIP001                          com::sun::star::container::XNamed,
-//STRIP001                          com::sun::star::beans::XPropertySet,
-//STRIP001                          com::sun::star::lang::XServiceInfo >
+//STRIP001                          ::com::sun::star::container::XNamed,
+//STRIP001                          ::com::sun::star::beans::XPropertySet,
+//STRIP001                          ::com::sun::star::lang::XServiceInfo >
 //STRIP001 {
 //STRIP001 private:
 //STRIP001  ScDPSource*     pSource;
@@ -794,5 +795,6 @@ public:
 //STRIP001 };
 
 
+} //namespace binfilter
 #endif
 

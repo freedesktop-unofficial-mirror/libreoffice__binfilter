@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swrect.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 /*N*/ SwRect::SwRect( const Rectangle &rRect ) :
 /*N*/   nX( rRect.Left() ),
 /*N*/   nY( rRect.Top() )
@@ -363,3 +364,4 @@
 #endif
 
 
+}

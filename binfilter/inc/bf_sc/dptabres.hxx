@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dptabres.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // enum ScSubTotalFunc
 #endif
+namespace binfilter {
 
 
 class ScAddress;
@@ -213,16 +214,16 @@ public:
 //STRIP001                                      const ScDPItemData* pDataMembers,
 //STRIP001                                      const ScDPValueData* pValues );
 
-//STRIP001  void                FillMemberResults( com::sun::star::uno::Sequence<
-//STRIP001                                              com::sun::star::sheet::MemberResult>* pSequences,
+//STRIP001  void                FillMemberResults( ::com::sun::star::uno::Sequence<
+//STRIP001                                              ::com::sun::star::sheet::MemberResult>* pSequences,
 //STRIP001                                          long& rPos, long nMeasure, BOOL bRoot,
 //STRIP001                                          const String* pMemberName,
 //STRIP001                                          const String* pMemberCaption );
 
 //STRIP001  void                FillDataResults( const ScDPResultMember* pRefMember,
-//STRIP001                                  com::sun::star::uno::Sequence<
-//STRIP001                                      com::sun::star::uno::Sequence<
-//STRIP001                                          com::sun::star::sheet::DataResult> >& rSequence,
+//STRIP001                                  ::com::sun::star::uno::Sequence<
+//STRIP001                                      ::com::sun::star::uno::Sequence<
+//STRIP001                                          ::com::sun::star::sheet::DataResult> >& rSequence,
 //STRIP001                                  long& rRow, long nMeasure ) const;
 
                         //! this will be removed!
@@ -260,7 +261,7 @@ public:
 //STRIP001  double              GetAggregate(long nMeasure) const;
 
 //STRIP001  void                FillDataRow( const ScDPResultMember* pRefMember,
-//STRIP001                                  com::sun::star::uno::Sequence<com::sun::star::sheet::DataResult>& rSequence,
+//STRIP001                                  ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::DataResult>& rSequence,
 //STRIP001                                  long& rCol, long nMeasure, BOOL bIsSubTotalRow ) const;
 
                         //! this will be removed!
@@ -271,10 +272,10 @@ public:
 //! replace PtrArr with 32-bit array ????
 
 //STRIP001 typedef ScDPResultMember* ScDPResultMemberPtr;
-//STRIP001 SV_DECL_PTRARR_DEL(ScDPResultMembers, ScDPResultMemberPtr, SC_DP_RES_GROW, SC_DP_RES_GROW);
+//STRIP001 SV_DECL_PTRARR_DEL(ScDPResultMembers, ScDPResultMemberPtr, SC_DP_RES_GROW, SC_DP_RES_GROW)//STRIP008 ;
 
 //STRIP001 typedef ScDPDataMember* ScDPDataMemberPtr;
-//STRIP001 SV_DECL_PTRARR_DEL(ScDPDataMembers, ScDPDataMemberPtr, SC_DP_RES_GROW, SC_DP_RES_GROW);
+//STRIP001 SV_DECL_PTRARR_DEL(ScDPDataMembers, ScDPDataMemberPtr, SC_DP_RES_GROW, SC_DP_RES_GROW)//STRIP008 ;
 
 
 //  result dimension contains only members
@@ -304,14 +305,14 @@ public:
 //STRIP001                                      const ScDPItemData* pDataMembers,
 //STRIP001                                      const ScDPValueData* pValues ); //! Test
 
-//STRIP001  void                FillMemberResults( com::sun::star::uno::Sequence<
-//STRIP001                                              com::sun::star::sheet::MemberResult>* pSequences,
+//STRIP001  void                FillMemberResults( ::com::sun::star::uno::Sequence<
+//STRIP001                                              ::com::sun::star::sheet::MemberResult>* pSequences,
 //STRIP001                                          long nStart, long nMeasure );
 
 //STRIP001  void                FillDataResults( const ScDPResultMember* pRefMember,
-//STRIP001                                  com::sun::star::uno::Sequence<
-//STRIP001                                      com::sun::star::uno::Sequence<
-//STRIP001                                          com::sun::star::sheet::DataResult> >& rSequence,
+//STRIP001                                  ::com::sun::star::uno::Sequence<
+//STRIP001                                      ::com::sun::star::uno::Sequence<
+//STRIP001                                          ::com::sun::star::sheet::DataResult> >& rSequence,
 //STRIP001                                  long nRow, long nMeasure ) const;
 
                         //  for ScDPDataDimension::InitFrom
@@ -338,9 +339,10 @@ public:
 //STRIP001  void                ProcessData( const ScDPItemData* pDataMembers, const ScDPValueData* pValues );
 
 //STRIP001  void                FillDataRow( const ScDPResultDimension* pRefDim,
-//STRIP001                                  com::sun::star::uno::Sequence<com::sun::star::sheet::DataResult>& rSequence,
+//STRIP001                                  ::com::sun::star::uno::Sequence< ::com::sun::star::sheet::DataResult>& rSequence,
 //STRIP001                                  long nCol, long nMeasure, BOOL bIsSubTotalRow ) const;
 //STRIP001 };
 
+} //namespace binfilter
 #endif
 

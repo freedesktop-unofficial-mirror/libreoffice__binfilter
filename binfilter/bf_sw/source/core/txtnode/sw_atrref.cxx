@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrref.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef _SWFONT_HXX
 #include <swfont.hxx>
 #endif
+namespace binfilter {
 
 
 /****************************************************************************
@@ -139,3 +140,4 @@ int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   return pEnd;
 /*N*/ }
 
+}

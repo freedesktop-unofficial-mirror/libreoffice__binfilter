@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_bparr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #include <string.h>
 #include <limits.h>
 #include "bparr.hxx"
+namespace binfilter {
 
 // die Blockverwaltung waechst/schrumpft immer um 20 Bloecke, das sind dann
 // immer ~ 20 * MAXENTRY == 20000 Eintraege
@@ -631,3 +632,4 @@ const USHORT nBlockGrowSize = 20;
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_newfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ #ifndef VERTICAL_LAYOUT
 /*N*/ PtPtr pX = &Point::nA;
@@ -583,7 +584,7 @@
 /*N*/   const BOOL bOdd = !nPgNum || 0 != ( nPgNum % 2 );
 /*N*/
 /*N*/   //Eine Seite erzeugen und in das Layout stellen
-/*N*/   SwPageFrm *pPage = ::InsertNewPage( *pDesc, this, bOdd, FALSE, FALSE, 0 );
+/*N*/   SwPageFrm *pPage = ::binfilter::InsertNewPage( *pDesc, this, bOdd, FALSE, FALSE, 0 );
 /*N*/
 /*N*/   //Erstes Blatt im Bodytext-Bereich suchen.
 /*N*/   SwLayoutFrm *pLay = pPage->FindBodyCont();
@@ -591,7 +592,7 @@
 /*N*/       pLay = (SwLayoutFrm*)pLay->Lower();
 /*N*/
 /*N*/   SwNodeIndex aTmp( *pDoc->GetNodes().GetEndOfContent().StartOfSectionNode(), 1 );
-/*N*/   ::_InsertCnt( pLay, pDoc, aTmp.GetIndex(), TRUE );
+/*N*/   ::binfilter::_InsertCnt( pLay, pDoc, aTmp.GetIndex(), TRUE );
 /*N*/   //Noch nicht ersetzte Master aus der Liste entfernen.
 /*N*/   RemoveMasterObjs( pDrawPage );
 /*N*/   if( pDoc->IsGlobalDoc() )
@@ -685,3 +686,4 @@
 
 
 
+}

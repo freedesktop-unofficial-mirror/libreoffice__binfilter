@@ -2,9 +2,9 @@
  *
  *  $RCSfile: taborder.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,12 +103,14 @@ class ImageList;
 #include <comphelper/uno3.hxx>
 #endif
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
+namespace binfilter {
+//STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
 
 //========================================================================
 class FmOrderTreeListBox : public SvTreeListBox
 {
 protected:
-    ::svxform::OControlExchangeHelper   m_aFieldExchange;
+    ::binfilter::svxform::OControlExchangeHelper    m_aFieldExchange;//STRIP008     ::svxform::OControlExchangeHelper   m_aFieldExchange;
 
 public:
     FmOrderTreeListBox( Window* pParent );
@@ -164,5 +166,6 @@ public:
 //STRIP001  void SetModified();
 };
 
+}//end of namespace binfilter
 #endif
 

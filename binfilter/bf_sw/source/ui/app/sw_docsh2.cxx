@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-16 17:12:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -302,13 +302,14 @@
 #endif
 
 #include <sw3io.hxx>
+namespace binfilter {
 
-using namespace com::sun::star::ui::dialogs;
+using namespace ::com::sun::star::ui::dialogs;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
-using namespace ::sfx2;
+using namespace sfx2;
 
 //STRIP001 extern FASTBOOL FindPhyStyle( SwDoc& , const String& , SfxStyleFamily );
 
@@ -1569,7 +1570,6 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 /*N*/   *pUserName = SW_RESSTR(STR_HUMAN_SWDOC_NAME);
 /*N*/ }
 
-
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
@@ -1848,3 +1848,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 
 
 
+}

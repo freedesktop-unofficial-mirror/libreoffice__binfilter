@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ring.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #pragma hdrstop
 
 #include "ring.hxx"
+namespace binfilter {
 
 
 /*************************************************************************
@@ -143,3 +144,4 @@
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: uitool.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,18 +73,22 @@
 #include <swtypes.hxx>
 #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
-class MetricFormatter;
 class SfxItemSet;
+class Printer;
+class ListBox;
+class DateTime;
+namespace binfilter {
+class MetricFormatter;
 class SfxMedium;
 class SwPageDesc;
-class Printer;
+
 class SvxTabStopItem;
 class SwWrtShell;
-class ListBox;
+
 class SwDocShell;
 class SwFrmFmt;
 class SwTabCols;
-class DateTime;
+
 
 // Umschalten einer Metric
 //STRIP001 void SetMetric(MetricFormatter& rCtrl, FieldUnit eUnit);
@@ -134,4 +138,5 @@ void PageDescToItemSet( const SwPageDesc& rPageDesc, SfxItemSet& rSet);
 
 //STRIP001 String GetAppLangDateTimeString( const DateTime& );
 
+} //namespace binfilter
 #endif // _UITOOL_HXX

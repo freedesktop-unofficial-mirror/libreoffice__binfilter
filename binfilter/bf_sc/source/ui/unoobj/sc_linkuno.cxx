@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_linkuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,8 +79,9 @@
 #include "unoguard.hxx"
 #include "hints.hxx"
 #include "unonames.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -89,9 +90,9 @@ const SfxItemPropertyMap* lcl_GetSheetLinkMap()
 {
     static SfxItemPropertyMap aSheetLinkMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_FILTER),   0,  &getCppuType((rtl::OUString*)0),    0, 0 },
-        {MAP_CHAR_LEN(SC_UNONAME_FILTOPT),  0,  &getCppuType((rtl::OUString*)0),    0, 0 },
-        {MAP_CHAR_LEN(SC_UNONAME_LINKURL),  0,  &getCppuType((rtl::OUString*)0),    0, 0 },
+        {MAP_CHAR_LEN(SC_UNONAME_FILTER),   0,  &getCppuType((::rtl::OUString*)0),  0, 0 },
+        {MAP_CHAR_LEN(SC_UNONAME_FILTOPT),  0,  &getCppuType((::rtl::OUString*)0),  0, 0 },
+        {MAP_CHAR_LEN(SC_UNONAME_LINKURL),  0,  &getCppuType((::rtl::OUString*)0),  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_REFDELAY), 0,  &getCppuType((sal_Int32*)0),        0, 0 },
         {0,0,0,0}
     };
@@ -165,13 +166,13 @@ ScTableLink* ScSheetLinkObj::GetLink_Impl() const
 
 // XNamed
 
-rtl::OUString SAL_CALL ScSheetLinkObj::getName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScSheetLinkObj::getName() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     return getFileName();   // Name ist der Dateiname (URL)
 }
 
-void SAL_CALL ScSheetLinkObj::setName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+void SAL_CALL ScSheetLinkObj::setName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     setFileName(aName);     // Name ist der Dateiname (URL)
@@ -247,14 +248,14 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScSheetLinkObj::getPropertySetI
 }
 
 void SAL_CALL ScSheetLinkObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     String aNameString = aPropertyName;
-    rtl::OUString aValStr;
+    ::rtl::OUString aValStr;
     if ( aNameString.EqualsAscii( SC_UNONAME_LINKURL ) )
     {
         if ( aValue >>= aValStr )
@@ -278,7 +279,7 @@ void SAL_CALL ScSheetLinkObj::setPropertyValue(
     }
 }
 
-uno::Any SAL_CALL ScSheetLinkObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScSheetLinkObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -300,13 +301,13 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScSheetLinkObj )
 
 // internal:
 
-rtl::OUString ScSheetLinkObj::getFileName(void) const
+::rtl::OUString ScSheetLinkObj::getFileName(void) const
 {
     ScUnoGuard aGuard;
     return aFileName;
 }
 
-void ScSheetLinkObj::setFileName(const rtl::OUString& rNewName)
+void ScSheetLinkObj::setFileName(const ::rtl::OUString& rNewName)
 {
     ScUnoGuard aGuard;
     ScTableLink* pLink = GetLink_Impl();
@@ -344,17 +345,17 @@ void ScSheetLinkObj::setFileName(const rtl::OUString& rNewName)
     }
 }
 
-rtl::OUString ScSheetLinkObj::getFilter(void) const
+::rtl::OUString ScSheetLinkObj::getFilter(void) const
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScTableLink* pLink = GetLink_Impl();
     if (pLink)
         aRet = pLink->GetFilterName();
     return aRet;
 }
 
-void ScSheetLinkObj::setFilter(const rtl::OUString& Filter)
+void ScSheetLinkObj::setFilter(const ::rtl::OUString& Filter)
 {
     ScUnoGuard aGuard;
     ScTableLink* pLink = GetLink_Impl();
@@ -365,17 +366,17 @@ void ScSheetLinkObj::setFilter(const rtl::OUString& Filter)
     }
 }
 
-rtl::OUString ScSheetLinkObj::getFilterOptions(void) const
+::rtl::OUString ScSheetLinkObj::getFilterOptions(void) const
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScTableLink* pLink = GetLink_Impl();
     if (pLink)
         aRet = pLink->GetOptions();
     return aRet;
 }
 
-void ScSheetLinkObj::setFilterOptions(const rtl::OUString& FilterOptions)
+void ScSheetLinkObj::setFilterOptions(const ::rtl::OUString& FilterOptions)
 {
     ScUnoGuard aGuard;
     ScTableLink* pLink = GetLink_Impl();
@@ -455,7 +456,7 @@ ScSheetLinkObj* ScSheetLinksObj::GetObjectByIndex_Impl(INT32 nIndex)
     return NULL;    // kein Dokument oder Index zu gross
 }
 
-ScSheetLinkObj* ScSheetLinksObj::GetObjectByName_Impl(const rtl::OUString& aName)
+ScSheetLinkObj* ScSheetLinksObj::GetObjectByName_Impl(const ::rtl::OUString& aName)
 {
     //  Name ist der Dateiname
 
@@ -484,7 +485,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScSheetLinksObj::createEnumerat
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetLinksEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetLinksEnumeration")));
 }
 
 // XIndexAccess
@@ -538,7 +539,7 @@ sal_Bool SAL_CALL ScSheetLinksObj::hasElements() throw(uno::RuntimeException)
     return ( getCount() != 0 );
 }
 
-uno::Any SAL_CALL ScSheetLinksObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScSheetLinksObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -552,7 +553,7 @@ uno::Any SAL_CALL ScSheetLinksObj::getByName( const rtl::OUString& aName )
     return aAny;
 }
 
-sal_Bool SAL_CALL ScSheetLinksObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScSheetLinksObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -576,7 +577,7 @@ sal_Bool SAL_CALL ScSheetLinksObj::hasByName( const rtl::OUString& aName )
     return FALSE;
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScSheetLinksObj::getElementNames() throw(uno::RuntimeException)
+uno::Sequence< ::rtl::OUString> SAL_CALL ScSheetLinksObj::getElementNames() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     //  Name ist der Dateiname
@@ -589,8 +590,8 @@ uno::Sequence<rtl::OUString> SAL_CALL ScSheetLinksObj::getElementNames() throw(u
         String aName;
 
         INT32 nLinkCount = getCount();
-        uno::Sequence<rtl::OUString> aSeq(nLinkCount);
-        rtl::OUString* pAry = aSeq.getArray();
+        uno::Sequence< ::rtl::OUString> aSeq(nLinkCount);
+        ::rtl::OUString* pAry = aSeq.getArray();
         USHORT nPos = 0;
         for (USHORT nTab=0; nTab<nTabCount; nTab++)
         {
@@ -607,7 +608,7 @@ uno::Sequence<rtl::OUString> SAL_CALL ScSheetLinksObj::getElementNames() throw(u
         DBG_ASSERT( nPos==nLinkCount, "verzaehlt" );
         return aSeq;
     }
-    return uno::Sequence<rtl::OUString>();
+    return uno::Sequence< ::rtl::OUString>();
 }
 
 //------------------------------------------------------------------------
@@ -672,8 +673,8 @@ void ScAreaLinkObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 
 // XFileLink
 
-void ScAreaLinkObj::Modify_Impl( const rtl::OUString* pNewFile, const rtl::OUString* pNewFilter,
-                                 const rtl::OUString* pNewOptions, const rtl::OUString* pNewSource,
+void ScAreaLinkObj::Modify_Impl( const ::rtl::OUString* pNewFile, const ::rtl::OUString* pNewFilter,
+                                 const ::rtl::OUString* pNewOptions, const ::rtl::OUString* pNewSource,
                                  const table::CellRangeAddress* pNewDest )
 {
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
@@ -786,14 +787,14 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScAreaLinkObj::getPropertySetIn
 }
 
 void SAL_CALL ScAreaLinkObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     String aNameString = aPropertyName;
-    rtl::OUString aValStr;
+    ::rtl::OUString aValStr;
     if ( aNameString.EqualsAscii( SC_UNONAME_LINKURL ) )
     {
         if ( aValue >>= aValStr )
@@ -817,7 +818,7 @@ void SAL_CALL ScAreaLinkObj::setPropertyValue(
     }
 }
 
-uno::Any SAL_CALL ScAreaLinkObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScAreaLinkObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -839,49 +840,49 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScAreaLinkObj )
 
 //  internal:
 
-rtl::OUString ScAreaLinkObj::getFileName(void) const
+::rtl::OUString ScAreaLinkObj::getFileName(void) const
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
     if (pLink)
         aRet = pLink->GetFile();
     return aRet;
 }
 
-void ScAreaLinkObj::setFileName(const rtl::OUString& rNewName)
+void ScAreaLinkObj::setFileName(const ::rtl::OUString& rNewName)
 {
     ScUnoGuard aGuard;
     Modify_Impl( &rNewName, NULL, NULL, NULL, NULL );
 }
 
-rtl::OUString ScAreaLinkObj::getFilter(void) const
+::rtl::OUString ScAreaLinkObj::getFilter(void) const
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
     if (pLink)
         aRet = pLink->GetFilter();
     return aRet;
 }
 
-void ScAreaLinkObj::setFilter(const rtl::OUString& Filter)
+void ScAreaLinkObj::setFilter(const ::rtl::OUString& Filter)
 {
     ScUnoGuard aGuard;
     Modify_Impl( NULL, &Filter, NULL, NULL, NULL );
 }
 
-rtl::OUString ScAreaLinkObj::getFilterOptions(void) const
+::rtl::OUString ScAreaLinkObj::getFilterOptions(void) const
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
     if (pLink)
         aRet = pLink->GetOptions();
     return aRet;
 }
 
-void ScAreaLinkObj::setFilterOptions(const rtl::OUString& FilterOptions)
+void ScAreaLinkObj::setFilterOptions(const ::rtl::OUString& FilterOptions)
 {
     ScUnoGuard aGuard;
     Modify_Impl( NULL, NULL, &FilterOptions, NULL, NULL );
@@ -905,17 +906,17 @@ void ScAreaLinkObj::setRefreshDelay(sal_Int32 nRefreshDelay)
 
 // XAreaLink
 
-rtl::OUString SAL_CALL ScAreaLinkObj::getSourceArea() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScAreaLinkObj::getSourceArea() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     ScAreaLink* pLink = lcl_GetAreaLink(pDocShell, nPos);
     if (pLink)
         aRet = pLink->GetSource();
     return aRet;
 }
 
-void SAL_CALL ScAreaLinkObj::setSourceArea( const rtl::OUString& aSourceArea )
+void SAL_CALL ScAreaLinkObj::setSourceArea( const ::rtl::OUString& aSourceArea )
                                             throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -975,10 +976,10 @@ ScAreaLinkObj* ScAreaLinksObj::GetObjectByIndex_Impl(INT32 nIndex)
 }
 
 void SAL_CALL ScAreaLinksObj::insertAtPosition( const table::CellAddress& aDestPos,
-                                                const rtl::OUString& aFileName,
-                                                const rtl::OUString& aSourceArea,
-                                                const rtl::OUString& aFilter,
-                                                const rtl::OUString& aFilterOptions )
+                                                const ::rtl::OUString& aFileName,
+                                                const ::rtl::OUString& aSourceArea,
+                                                const ::rtl::OUString& aFilter,
+                                                const ::rtl::OUString& aFilterOptions )
                                             throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1018,7 +1019,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScAreaLinksObj::createEnumerati
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.CellAreaLinksEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.CellAreaLinksEnumeration")));
 }
 
 // XIndexAccess
@@ -1119,13 +1120,13 @@ String lcl_BuildDDEName( const String& rAppl, const String& rTopic, const String
     return aRet;
 }
 
-rtl::OUString SAL_CALL ScDDELinkObj::getName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScDDELinkObj::getName() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     return lcl_BuildDDEName( aAppl, aTopic, aItem );
 }
 
-void SAL_CALL ScDDELinkObj::setName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+void SAL_CALL ScDDELinkObj::setName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 {
     //  name can't be changed (formulas wouldn't find the link)
     throw uno::RuntimeException();
@@ -1133,7 +1134,7 @@ void SAL_CALL ScDDELinkObj::setName( const rtl::OUString& aName ) throw(uno::Run
 
 // XDDELink
 
-rtl::OUString SAL_CALL ScDDELinkObj::getApplication() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScDDELinkObj::getApplication() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     //! Test, ob Link noch im Dokument enthalten?
@@ -1141,7 +1142,7 @@ rtl::OUString SAL_CALL ScDDELinkObj::getApplication() throw(uno::RuntimeExceptio
     return aAppl;
 }
 
-rtl::OUString SAL_CALL ScDDELinkObj::getTopic() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScDDELinkObj::getTopic() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     //! Test, ob Link noch im Dokument enthalten?
@@ -1149,7 +1150,7 @@ rtl::OUString SAL_CALL ScDDELinkObj::getTopic() throw(uno::RuntimeException)
     return aTopic;
 }
 
-rtl::OUString SAL_CALL ScDDELinkObj::getItem() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScDDELinkObj::getItem() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     //! Test, ob Link noch im Dokument enthalten?
@@ -1250,7 +1251,7 @@ ScDDELinkObj* ScDDELinksObj::GetObjectByIndex_Impl(INT32 nIndex)
     return NULL;
 }
 
-ScDDELinkObj* ScDDELinksObj::GetObjectByName_Impl(const rtl::OUString& aName)
+ScDDELinkObj* ScDDELinksObj::GetObjectByName_Impl(const ::rtl::OUString& aName)
 {
     if (pDocShell)
     {
@@ -1275,7 +1276,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScDDELinksObj::createEnumeratio
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.DDELinksEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.DDELinksEnumeration")));
 }
 
 // XIndexAccess
@@ -1315,7 +1316,7 @@ sal_Bool SAL_CALL ScDDELinksObj::hasElements() throw(uno::RuntimeException)
     return ( getCount() != 0 );
 }
 
-uno::Any SAL_CALL ScDDELinksObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScDDELinksObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -1329,7 +1330,7 @@ uno::Any SAL_CALL ScDDELinksObj::getByName( const rtl::OUString& aName )
     return aAny;
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScDDELinksObj::getElementNames() throw(uno::RuntimeException)
+uno::Sequence< ::rtl::OUString> SAL_CALL ScDDELinksObj::getElementNames() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     if (pDocShell)
@@ -1338,8 +1339,8 @@ uno::Sequence<rtl::OUString> SAL_CALL ScDDELinksObj::getElementNames() throw(uno
 
         ScDocument* pDoc = pDocShell->GetDocument();
         USHORT nCount = pDoc->GetDdeLinkCount();
-        uno::Sequence<rtl::OUString> aSeq(nCount);
-        rtl::OUString* pAry = aSeq.getArray();
+        uno::Sequence< ::rtl::OUString> aSeq(nCount);
+        ::rtl::OUString* pAry = aSeq.getArray();
 
         for (USHORT i=0; i<nCount; i++)
         {
@@ -1348,10 +1349,10 @@ uno::Sequence<rtl::OUString> SAL_CALL ScDDELinksObj::getElementNames() throw(uno
         }
         return aSeq;
     }
-    return uno::Sequence<rtl::OUString>();
+    return uno::Sequence< ::rtl::OUString>();
 }
 
-sal_Bool SAL_CALL ScDDELinksObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScDDELinksObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1377,3 +1378,4 @@ sal_Bool SAL_CALL ScDDELinksObj::hasByName( const rtl::OUString& aName )
 
 
 
+}

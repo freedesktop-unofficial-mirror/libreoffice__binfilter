@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tabfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,6 +127,7 @@
 #include "htmltbl.hxx"
 #include "frmsh.hxx"
 #include "sectfrm.hxx"  //SwSectionFrm
+namespace binfilter {
 
 /*N*/ extern void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
 /*N*/                       SwFrm *pFrm, SwPageFrm *pPage );
@@ -418,7 +419,7 @@
 /*N*/       if( pFrm->IsLayoutFrm() )
 /*N*/       {
 /*N*/           if ( ((SwLayoutFrm*)pFrm)->Lower() )
-/*N*/               ::SwInvalidatePositions( ((SwLayoutFrm*)pFrm)->Lower(), nBottom);
+/*N*/               ::binfilter::SwInvalidatePositions( ((SwLayoutFrm*)pFrm)->Lower(), nBottom);
 /*N*/       }
 /*N*/       else
 /*N*/           pFrm->Prepare( PREP_ADJUST_FRM );
@@ -548,8 +549,8 @@
 /*N*/           pFirstRow = (SwLayoutFrm*)pTab->Lower();
 /*N*/           rNotify.SetLowersComplete( TRUE );
 /*N*/       }
-/*N*/       ::SwInvalidatePositions( pFirstRow, LONG_MAX );
-/*N*/       ::lcl_CalcLayout( pFirstRow, LONG_MAX );
+/*N*/       ::binfilter::SwInvalidatePositions( pFirstRow, LONG_MAX );
+/*N*/       ::binfilter::lcl_CalcLayout( pFirstRow, LONG_MAX );
 /*N*/         SwTwips nNew = (pTab->Frm().*fnRect->fnGetHeight)();
 /*N*/         if ( nOldHeight < nNew )
 /*N*/             rNotify.AddHeightOfst( nNew - nOldHeight );
@@ -783,7 +784,7 @@
 /*N*/                           }
 /*N*/                       }
 /*N*/                   }
-/*N*/                   ::lcl_FirstTabCalc( this );
+/*N*/                   ::binfilter::lcl_FirstTabCalc( this );
 /*N*/                   bValidSize = bValidPrtArea = FALSE;
 /*N*/                   Format( pAttrs );
 /*N*/                   aNotify.SetLowersComplete( TRUE );
@@ -845,7 +846,7 @@
 /*N*/                       bValidPrtArea = FALSE;
 /*N*/                       Format( pAttrs );
 /*N*/                   }
-/*N*/                   ::lcl_Recalc( this, 0, aNotify );
+/*N*/                   ::binfilter::lcl_Recalc( this, 0, aNotify );
 /*N*/                   bLowersFormatted = TRUE;
 /*N*/                   if ( bKeep && KEEPTAB )
 /*N*/                   {
@@ -936,7 +937,7 @@
 /*N*/                               GetUpper()->Calc();
 /*N*/
 /*N*/                         if ( pRow && nOld != (Frm().*fnRect->fnGetHeight)() )
-/*N*/                           ::lcl_Recalc( this, (SwLayoutFrm*)pRow, aNotify );
+/*N*/                           ::binfilter::lcl_Recalc( this, (SwLayoutFrm*)pRow, aNotify );
 /*N*/                       continue;
 /*N*/                   }
 /*N*/               }
@@ -953,7 +954,7 @@
 /*N*/           {
 /*N*/               if ( bCalcLowers )
 /*N*/               {
-/*N*/                   ::lcl_Recalc( this, 0, aNotify );
+/*N*/                   ::binfilter::lcl_Recalc( this, 0, aNotify );
 /*N*/                   bLowersFormatted = TRUE;
 /*N*/                   bCalcLowers = FALSE;
 /*N*/               }
@@ -991,7 +992,7 @@
 /*N*/
 /*N*/         if ( bCalcLowers && IsValid() )
 /*N*/       {
-/*N*/           ::lcl_Recalc( this, 0, aNotify );
+/*N*/           ::binfilter::lcl_Recalc( this, 0, aNotify );
 /*N*/           bLowersFormatted = TRUE;
 /*N*/           bCalcLowers = FALSE;
 /*N*/             if( !IsValid() )
@@ -1014,7 +1015,7 @@
 /*N*/                 if( IsInSct() )
 /*N*/                     nDeadLine = (*fnRect->fnYInc)( nDeadLine,
 /*N*/                                         GetUpper()->Grow( LONG_MAX, TRUE ) );
-/*N*/               ::lcl_CalcLayout( (SwLayoutFrm*)Lower(), nDeadLine );
+/*N*/               ::binfilter::lcl_CalcLayout( (SwLayoutFrm*)Lower(), nDeadLine );
 /*N*/               bLowersFormatted = TRUE;
 /*N*/               aNotify.SetLowersComplete( TRUE );
 /*N*/                 if( (Frm().*fnRect->fnBottomDist)( nDeadLine ) > 0 )
@@ -1051,7 +1052,7 @@
 /*N*/                                                              this );
 /*N*/                             pAttrs = pAccess->Get();
 /*N*/                           ((SwTabFrm*)GetFollow())->SetLowersFormatted(FALSE);
-/*N*/                           ::lcl_CalcLayout((SwLayoutFrm*)GetFollow()->Lower(),
+/*N*/                           ::binfilter::lcl_CalcLayout((SwLayoutFrm*)GetFollow()->Lower(),
 /*N*/                               (GetFollow()->GetUpper()->Frm().*fnRect->fnGetBottom)() );
 /*N*/                           if ( !GetFollow()->GetFollow() )
 /*N*/                           {
@@ -1107,7 +1108,7 @@
 /*N*/
 /*N*/         if ( bCalcLowers && IsValid() )
 /*N*/       {
-/*N*/           ::lcl_Recalc( this, 0, aNotify );
+/*N*/           ::binfilter::lcl_Recalc( this, 0, aNotify );
 /*N*/           bLowersFormatted = TRUE;
 /*N*/           bCalcLowers = FALSE;
 /*N*/       }
@@ -2142,7 +2143,7 @@
 |*************************************************************************/
 /*N*/ void SwRowFrm::RegistFlys( SwPageFrm *pPage )
 /*N*/ {
-/*N*/   ::RegistFlys( pPage ? pPage : FindPageFrm(), this );
+/*N*/   ::binfilter::RegistFlys( pPage ? pPage : FindPageFrm(), this );
 /*N*/ }
 
 /*************************************************************************
@@ -2268,10 +2269,10 @@
 /*N*/                 long nLowHeight = (pLow->Frm().*fnRect->fnGetHeight)();
 /*N*/                 nHeight += nLowHeight;
 /*N*/                 nFlyAdd = Max( 0L, nFlyAdd - nLowHeight );
-/*N*/               nFlyAdd = Max( nFlyAdd, ::CalcHeightWidthFlys( pLow ) );
+/*N*/               nFlyAdd = Max( nFlyAdd, ::binfilter::CalcHeightWidthFlys( pLow ) );
 /*N*/           }
 /*N*/           else
-/*N*/               nHeight += ::lcl_CalcMinRowHeight( (SwLayoutFrm*)pLow );
+/*N*/               nHeight += ::binfilter::lcl_CalcMinRowHeight( (SwLayoutFrm*)pLow );
 /*N*/
 /*N*/           pLow = pLow->GetNext();
 /*N*/       }
@@ -2302,7 +2303,7 @@
 /*N*/   SwLayoutFrm *pLow = (SwLayoutFrm*)pRow->Lower();
 /*N*/   while ( pLow )
 /*N*/   {
-/*N*/       SwTwips nTmp = ::lcl_CalcMinCellHeight( pLow );
+/*N*/       SwTwips nTmp = ::binfilter::lcl_CalcMinCellHeight( pLow );
 /*N*/       if ( nTmp > nHeight )
 /*N*/           nHeight = nTmp;
 /*N*/       pLow = (SwLayoutFrm*)pLow->GetNext();
@@ -2344,7 +2345,7 @@
 /*N*/ #endif
 /*N*/         const SwTwips nDiff = (Frm().*fnRect->fnGetHeight)() - (HasFixSize() ?
 /*N*/                                                 pAttrs->GetSize().Height() :
-/*N*/                                                 ::lcl_CalcMinRowHeight( this ));
+/*N*/                                                 ::binfilter::lcl_CalcMinRowHeight( this ));
 /*N*/         if ( nDiff )
 /*N*/       {
 /*N*/             BFIXHEIGHT = FALSE;
@@ -2495,7 +2496,7 @@
 /*N*/           SwLayoutFrm *pCell = (SwLayoutFrm*)Lower();
 /*N*/           while ( pCell )
 /*N*/           {
-/*N*/               SwTwips nAct = ::lcl_CalcMinCellHeight( pCell );
+/*N*/               SwTwips nAct = ::binfilter::lcl_CalcMinCellHeight( pCell );
 /*N*/               if ( nAct > nMinHeight )
 /*N*/                   nMinHeight = nAct;
 /*N*/                 if ( nMinHeight >= (Frm().*fnRect->fnGetHeight)() )
@@ -2582,7 +2583,7 @@
 /*N*/   if ( rBox.GetSttIdx() )
 /*N*/   {
 /*N*/       ULONG nIndex = rBox.GetSttIdx();
-/*N*/       ::_InsertCnt( this, rBox.GetFrmFmt()->GetDoc(), ++nIndex );
+/*N*/       ::binfilter::_InsertCnt( this, rBox.GetFrmFmt()->GetDoc(), ++nIndex );
 /*N*/   }
 /*N*/   else
 /*N*/   {   const SwTableLines &rLines = rBox.GetTabLines();
@@ -2675,7 +2676,7 @@
 /*N*/                             if( pFly->IsAutoPos() )
 /*?*/                                 ((SwFlyAtCntFrm*)pFly)->AddLastCharY( lDiff );
 /*N*/                         }
-/*N*/                         if( ::lcl_ArrangeLowers( pFly,
+/*N*/                         if( ::binfilter::lcl_ArrangeLowers( pFly,
 /*N*/                             (pFly->*fnRect->fnGetPrtTop)(), bInva ) )
 /*N*/                           pFly->SetCompletePaint();
 /*N*/                   }
@@ -2686,12 +2687,12 @@
 /*N*/                         if ( pO->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pO);
-/*N*/                             pDrawVirtObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::HasWrap( pO ) ) );
+/*N*/                             pDrawVirtObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
 /*N*/                             pDrawVirtObj->AdjustRelativePosToReference();
 /*N*/                         }
 /*N*/                         else
 /*N*/                         {
-/*N*/                             pO->SetAnchorPos( pFrm->GetFrmAnchorPos( ::HasWrap( pO ) ) );
+/*N*/                             pO->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
 /*N*/                             // OD 30.06.2003 #108784# - correct relative position
 /*N*/                             // of 'virtual' drawing objects.
 /*N*/                             SwDrawContact* pDrawContact =
@@ -2731,7 +2732,7 @@
 /*N*/         long nBottomSpace = pAttrs->CalcBottom();
 /*N*/         (this->*fnRect->fnSetYMargins)( nTopSpace, nBottomSpace );
 /*N*/   }
-/*N*/   long nRemaining = ::lcl_CalcMinCellHeight( this, pAttrs );
+/*N*/   long nRemaining = ::binfilter::lcl_CalcMinCellHeight( this, pAttrs );
 /*N*/   if ( !bValidSize )
 /*N*/   {
 /*N*/       bValidSize = TRUE;
@@ -2930,3 +2931,4 @@
 /*M*/
 /*N*/   SwLayoutFrm::Modify( pOld, pNew );
 /*N*/ }
+}

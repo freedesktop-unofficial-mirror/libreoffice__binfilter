@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,7 @@
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "hints.hxx"
+namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -2190,3 +2191,4 @@ void ScInterpreter::ScArabic()
 }
 
 
+}

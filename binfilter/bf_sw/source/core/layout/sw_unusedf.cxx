@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unusedf.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include "cntfrm.hxx"
 #include "flyfrm.hxx"
 #include "errhdl.hxx"
+namespace binfilter {
 
 
 //STRIP001 void SwFrm::Format( const SwBorderAttrs * )
@@ -117,3 +118,4 @@
 /*N*/ }
 
 
+}

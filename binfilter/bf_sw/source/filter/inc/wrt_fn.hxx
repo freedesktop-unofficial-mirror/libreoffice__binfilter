@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrt_fn.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,14 +62,16 @@
 #define _WRT_FN_HXX
 
 #include "hintids.hxx"      // fuer die Konstanten
+class SfxPoolItem;
+class SfxItemSet;
+
+namespace binfilter {
 
 // einige Forward-Deklarationen
 class SwFmt;
 class SwNode;
 class SwCntntNode;
 class Writer;
-class SfxPoolItem;
-class SfxItemSet;
 
 
 /* Funktionspointer auf die Attribut-Write-Funktionen */
@@ -100,4 +102,5 @@ Writer& Out( const SwNodeFnTab, SwNode&, Writer & rWrt );
 
 
 
+} //namespace binfilter
 #endif  //  _WRT_FN_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,7 @@
 #endif
 
 #include "node.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
 
@@ -426,8 +427,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/   BOOL bIsDelim = *pDelim != 0;
 /*N*/
 /*N*/   INT16 nTypJp = SM_MOD1()->GetSysLocale().GetCharClass().getType( rTxt, nPos );
-/*N*/   bIsDelim |= nTypJp == com::sun::star::i18n::UnicodeType::SPACE_SEPARATOR ||
-/*N*/               nTypJp == com::sun::star::i18n::UnicodeType::CONTROL;
+/*N*/   bIsDelim |= nTypJp == ::com::sun::star::i18n::UnicodeType::SPACE_SEPARATOR ||
+/*N*/               nTypJp == ::com::sun::star::i18n::UnicodeType::CONTROL;
 /*N*/
 /*N*/   return bIsDelim;
 /*N*/ }
@@ -2494,3 +2495,4 @@ const sal_Int32 coNumContFlags =
 //STRIP001 }
 
 
+}

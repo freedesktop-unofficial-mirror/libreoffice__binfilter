@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cellsuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -236,6 +236,7 @@
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
+namespace binfilter {
 
 class ScDocShell;
 class ScMarkData;
@@ -253,11 +254,11 @@ class SvxBoxInfoItem;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertyChangeListener >* XPropertyChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XPropertyChangeListenerArr_Impl, XPropertyChangeListenerPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( XPropertyChangeListenerArr_Impl, XPropertyChangeListenerPtr, 4, 4 )//STRIP008 ;
 
 class ScNamedEntry;
 typedef ScNamedEntry* ScNamedEntryPtr;
-SV_DECL_PTRARR_DEL( ScNamedEntryArr_Impl, ScNamedEntryPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( ScNamedEntryArr_Impl, ScNamedEntryPtr, 4, 4 )//STRIP008 ;
 
 
 //  ScCellRangesBase - Basisklasse fuer ScCellRangesObj (mit Index-Access)
@@ -268,27 +269,27 @@ SV_DECL_PTRARR_DEL( ScNamedEntryArr_Impl, ScNamedEntryPtr, 4, 4 );
 class ScHelperFunctions
 {
 public:
-    static const SvxBorderLine* GetBorderLine( SvxBorderLine& rLine, const com::sun::star::table::BorderLine& rStruct );
-    static void FillBoxItems( SvxBoxItem& rOuter, SvxBoxInfoItem& rInner, const com::sun::star::table::TableBorder& rBorder );
-    static void FillBorderLine( com::sun::star::table::BorderLine& rStruct, const SvxBorderLine* pLine );
-    static void FillTableBorder( com::sun::star::table::TableBorder& rBorder,
+    static const SvxBorderLine* GetBorderLine( SvxBorderLine& rLine, const ::com::sun::star::table::BorderLine& rStruct );
+    static void FillBoxItems( SvxBoxItem& rOuter, SvxBoxInfoItem& rInner, const ::com::sun::star::table::TableBorder& rBorder );
+    static void FillBorderLine( ::com::sun::star::table::BorderLine& rStruct, const SvxBorderLine* pLine );
+    static void FillTableBorder( ::com::sun::star::table::TableBorder& rBorder,
                             const SvxBoxItem& rOuter, const SvxBoxInfoItem& rInner );
     static void ApplyBorder( ScDocShell* pDocShell, const ScRangeList& rRanges,
                         const SvxBoxItem& rOuter, const SvxBoxInfoItem& rInner );
 };
 
-class ScCellRangesBase : public com::sun::star::beans::XPropertySet,
-                         public com::sun::star::beans::XMultiPropertySet,
-                         public com::sun::star::beans::XPropertyState,
-                         public com::sun::star::sheet::XSheetOperation,
-                         public com::sun::star::chart::XChartDataArray,
-                         public com::sun::star::util::XIndent,
-                         public com::sun::star::sheet::XCellRangesQuery,
-                         public com::sun::star::sheet::XFormulaQuery,
-                         public com::sun::star::util::XReplaceable,
-                         public com::sun::star::lang::XServiceInfo,
-                         public com::sun::star::lang::XUnoTunnel,
-                         public com::sun::star::lang::XTypeProvider,
+class ScCellRangesBase : public ::com::sun::star::beans::XPropertySet,
+                         public ::com::sun::star::beans::XMultiPropertySet,
+                         public ::com::sun::star::beans::XPropertyState,
+                         public ::com::sun::star::sheet::XSheetOperation,
+                         public ::com::sun::star::chart::XChartDataArray,
+                         public ::com::sun::star::util::XIndent,
+                         public ::com::sun::star::sheet::XCellRangesQuery,
+                         public ::com::sun::star::sheet::XFormulaQuery,
+                         public ::com::sun::star::util::XReplaceable,
+                         public ::com::sun::star::lang::XServiceInfo,
+                         public ::com::sun::star::lang::XUnoTunnel,
+                         public ::com::sun::star::lang::XTypeProvider,
                          public cppu::OWeakObject,
                          public SfxListener
 {
@@ -311,7 +312,7 @@ private:
     XPropertyChangeListenerArr_Impl aValueListeners;
 
     DECL_LINK( ValueListenerHdl, SfxHint* );
-    DECL_LINK( ValueChanged, com::sun::star::beans::PropertyChangeEvent* );
+    DECL_LINK( ValueChanged, ::com::sun::star::beans::PropertyChangeEvent* );
 
 private:
     void            PaintRanges_Impl( USHORT nPart );
@@ -325,12 +326,12 @@ private:
     const ScMarkData*       GetMarkData();
     void                    ForgetCurrentAttrs();
 
-    com::sun::star::uno::Reference<com::sun::star::sheet::XSheetCellRanges>
-                            QueryDifferences_Impl(const com::sun::star::table::CellAddress& aCompare,
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSheetCellRanges>
+                            QueryDifferences_Impl(const ::com::sun::star::table::CellAddress& aCompare,
                                                     BOOL bColumnDiff);
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface>
-                            Find_Impl(const com::sun::star::uno::Reference<
-                                        com::sun::star::util::XSearchDescriptor>& xDesc,
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>
+                            Find_Impl(const ::com::sun::star::uno::Reference<
+                                        ::com::sun::star::util::XSearchDescriptor>& xDesc,
                                     const ScAddress* pLastPos);
 
 protected:
@@ -566,9 +567,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScCellRangesBase* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScCellRangesBase* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 
                             // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes()
@@ -579,9 +580,9 @@ public:
 
 
 class ScCellRangesObj : public ScCellRangesBase,
-                        public com::sun::star::sheet::XSheetCellRangeContainer,
-                        public com::sun::star::container::XNameContainer,
-                        public com::sun::star::container::XEnumerationAccess
+                        public ::com::sun::star::sheet::XSheetCellRangeContainer,
+                        public ::com::sun::star::container::XNameContainer,
+                        public ::com::sun::star::container::XEnumerationAccess
 {
 private:
     ScNamedEntryArr_Impl    aNamedEntries;
@@ -687,22 +688,22 @@ public:
 
 
 class ScCellRangeObj : public ScCellRangesBase,
-                       public com::sun::star::sheet::XCellRangeAddressable,
-                       public com::sun::star::sheet::XSheetCellRange,
-                       public com::sun::star::sheet::XArrayFormulaRange,
-                       public com::sun::star::sheet::XCellRangeData,
-                       public com::sun::star::sheet::XCellRangeFormula,
-                       public com::sun::star::sheet::XMultipleOperation,
-                       public com::sun::star::util::XMergeable,
-                       public com::sun::star::sheet::XCellSeries,
-                       public com::sun::star::table::XAutoFormattable,
-                       public com::sun::star::util::XSortable,
-                       public com::sun::star::sheet::XSheetFilterableEx,
-                       public com::sun::star::sheet::XSubTotalCalculatable,
-                       public com::sun::star::util::XImportable,
-                       public com::sun::star::sheet::XCellFormatRangesSupplier,
-                       public com::sun::star::sheet::XUniqueCellFormatRangesSupplier,
-                       public com::sun::star::table::XColumnRowRange
+                       public ::com::sun::star::sheet::XCellRangeAddressable,
+                       public ::com::sun::star::sheet::XSheetCellRange,
+                       public ::com::sun::star::sheet::XArrayFormulaRange,
+                       public ::com::sun::star::sheet::XCellRangeData,
+                       public ::com::sun::star::sheet::XCellRangeFormula,
+                       public ::com::sun::star::sheet::XMultipleOperation,
+                       public ::com::sun::star::util::XMergeable,
+                       public ::com::sun::star::sheet::XCellSeries,
+                       public ::com::sun::star::table::XAutoFormattable,
+                       public ::com::sun::star::util::XSortable,
+                       public ::com::sun::star::sheet::XSheetFilterableEx,
+                       public ::com::sun::star::sheet::XSubTotalCalculatable,
+                       public ::com::sun::star::util::XImportable,
+                       public ::com::sun::star::sheet::XCellFormatRangesSupplier,
+                       public ::com::sun::star::sheet::XUniqueCellFormatRangesSupplier,
+                       public ::com::sun::star::table::XColumnRowRange
 {
 private:
     SfxItemPropertySet      aRangePropSet;
@@ -730,7 +731,7 @@ public:
     virtual                 ~ScCellRangeObj();
 
                             // uses ObjectShell from document, if set (returns NULL otherwise)
-    static com::sun::star::uno::Reference<com::sun::star::table::XCellRange>
+    static ::com::sun::star::uno::Reference< ::com::sun::star::table::XCellRange>
                             CreateRangeFromDoc( ScDocument* pDoc, const ScRange& rR );
 
     virtual ::com::sun::star::uno::Any SAL_CALL queryInterface(
@@ -891,13 +892,13 @@ public:
 //! really derive cell from range?
 
 class ScCellObj : public ScCellRangeObj,
-                  public com::sun::star::text::XText,
-                  public com::sun::star::container::XEnumerationAccess,
-                  public com::sun::star::table::XCell,
-                  public com::sun::star::sheet::XCellAddressable,
-                  public com::sun::star::sheet::XSheetAnnotationAnchor,
-                  public com::sun::star::text::XTextFieldsSupplier,
-                    public com::sun::star::document::XActionLockable
+                  public ::com::sun::star::text::XText,
+                  public ::com::sun::star::container::XEnumerationAccess,
+                  public ::com::sun::star::table::XCell,
+                  public ::com::sun::star::sheet::XCellAddressable,
+                  public ::com::sun::star::sheet::XSheetAnnotationAnchor,
+                  public ::com::sun::star::text::XTextFieldsSupplier,
+                    public ::com::sun::star::document::XActionLockable
 {
 private:
     SvxUnoText*             pUnoText;
@@ -911,7 +912,7 @@ private:
     void        SetString_Impl(const String& rString, BOOL bInterpret, BOOL bEnglish);
     double      GetValue_Impl() const;
     void        SetValue_Impl(double fValue);
-    com::sun::star::table::CellContentType GetResultType_Impl();
+    ::com::sun::star::table::CellContentType GetResultType_Impl();
 
 protected:
     virtual const SfxItemPropertyMap* GetItemPropertyMap();
@@ -1050,21 +1051,21 @@ public:
 
 
 class ScTableSheetObj : public ScCellRangeObj,
-                        public com::sun::star::sheet::XSpreadsheet,
-                        public com::sun::star::container::XNamed,
-                        public com::sun::star::sheet::XSheetPageBreak,
-                        public com::sun::star::sheet::XCellRangeMovement,
-                        public com::sun::star::table::XTableChartsSupplier,
-                        public com::sun::star::sheet::XDataPilotTablesSupplier,
-                        public com::sun::star::sheet::XScenariosSupplier,
-                        public com::sun::star::sheet::XSheetAnnotationsSupplier,
-                        public com::sun::star::drawing::XDrawPageSupplier,
-                        public com::sun::star::sheet::XPrintAreas,
-                        public com::sun::star::sheet::XSheetLinkable,
-                        public com::sun::star::sheet::XSheetAuditing,
-                        public com::sun::star::sheet::XSheetOutline,
-                        public com::sun::star::util::XProtectable,
-                        public com::sun::star::sheet::XScenario
+                        public ::com::sun::star::sheet::XSpreadsheet,
+                        public ::com::sun::star::container::XNamed,
+                        public ::com::sun::star::sheet::XSheetPageBreak,
+                        public ::com::sun::star::sheet::XCellRangeMovement,
+                        public ::com::sun::star::table::XTableChartsSupplier,
+                        public ::com::sun::star::sheet::XDataPilotTablesSupplier,
+                        public ::com::sun::star::sheet::XScenariosSupplier,
+                        public ::com::sun::star::sheet::XSheetAnnotationsSupplier,
+                        public ::com::sun::star::drawing::XDrawPageSupplier,
+                        public ::com::sun::star::sheet::XPrintAreas,
+                        public ::com::sun::star::sheet::XSheetLinkable,
+                        public ::com::sun::star::sheet::XSheetAuditing,
+                        public ::com::sun::star::sheet::XSheetOutline,
+                        public ::com::sun::star::util::XProtectable,
+                        public ::com::sun::star::sheet::XScenario
 {
     friend class ScTableSheetsObj;      // fuer insertByName()
 
@@ -1277,9 +1278,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScTableSheetObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScTableSheetObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 
                             // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes()
@@ -1290,7 +1291,7 @@ public:
 
 
 class ScTableColumnObj : public ScCellRangeObj,
-                         public com::sun::star::container::XNamed
+                         public ::com::sun::star::container::XNamed
 {
 private:
     SfxItemPropertySet      aColPropSet;
@@ -1376,8 +1377,8 @@ public:
 
 
 class ScCellsObj : public cppu::WeakImplHelper2<
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -1410,8 +1411,8 @@ public:
 
 
 class ScCellsEnumeration : public cppu::WeakImplHelper2<
-                                com::sun::star::container::XEnumeration,
-                                com::sun::star::lang::XServiceInfo >,
+                                ::com::sun::star::container::XEnumeration,
+                                ::com::sun::star::lang::XServiceInfo >,
                             public SfxListener
 {
 private:
@@ -1448,9 +1449,9 @@ public:
 };
 
 class ScCellFormatsObj : public cppu::WeakImplHelper3<
-                            com::sun::star::container::XIndexAccess,
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::container::XIndexAccess,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -1493,8 +1494,8 @@ public:
 
 
 class ScCellFormatsEnumeration : public cppu::WeakImplHelper2<
-                                    com::sun::star::container::XEnumeration,
-                                    com::sun::star::lang::XServiceInfo >,
+                                    ::com::sun::star::container::XEnumeration,
+                                    ::com::sun::star::lang::XServiceInfo >,
                                  public SfxListener
 {
 private:
@@ -1534,9 +1535,9 @@ public:
 typedef std::vector< ScRangeList > ScMyRangeLists;
 
 class ScUniqueCellFormatsObj : public cppu::WeakImplHelper3<
-                            com::sun::star::container::XIndexAccess,
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::container::XIndexAccess,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -1579,8 +1580,8 @@ public:
 };
 
 class ScUniqueCellFormatsEnumeration : public cppu::WeakImplHelper2<
-                                    com::sun::star::container::XEnumeration,
-                                    com::sun::star::lang::XServiceInfo >,
+                                    ::com::sun::star::container::XEnumeration,
+                                    ::com::sun::star::lang::XServiceInfo >,
                                  public SfxListener
 {
 private:
@@ -1611,5 +1612,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

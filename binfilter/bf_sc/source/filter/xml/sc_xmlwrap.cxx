@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlwrap.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,6 +152,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 #ifndef SEQTYPE
+namespace binfilter {
  #if defined(__SUNPRO_CC) && (__SUNPRO_CC == 0x500)
   #define SEQTYPE(x) (new ::com::sun::star::uno::Type( x ))
  #else
@@ -161,7 +162,7 @@
 
 #define MAP_LEN(x) x, sizeof(x) - 1
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
@@ -225,8 +226,8 @@ uno::Reference <task::XStatusIndicator> ScXMLImportWrapper::GetStatusIndicator()
 sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiServiceFactory>& xServiceFactory,
     uno::Reference<frame::XModel>& xModel, uno::Reference<uno::XInterface>& xXMLParser,
     xml::sax::InputSource& aParserInput,
-    const rtl::OUString& sComponentName, const rtl::OUString& sDocName,
-    const rtl::OUString& sOldDocName, uno::Sequence<uno::Any>& aArgs,
+    const ::rtl::OUString& sComponentName, const ::rtl::OUString& sDocName,
+    const ::rtl::OUString& sOldDocName, uno::Sequence<uno::Any>& aArgs,
     sal_Bool bMustBeSuccessfull)
 {
     SvStorageStreamRef xDocStream;
@@ -433,11 +434,11 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
     SfxObjectShell* pObjSh = rDoc.GetDocumentShell();
     if ( pObjSh )
     {
-        rtl::OUString sEmpty;
+        ::rtl::OUString sEmpty;
         uno::Reference<frame::XModel> xModel = pObjSh->GetModel();
 
         /** property map for export info set */
-        comphelper::PropertyMapEntry aImportInfoMap[] =
+        ::comphelper::PropertyMapEntry aImportInfoMap[] =
         {
             { MAP_LEN( "ProgressRange" ), 0, &::getCppuType((sal_Int32*)0), ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
             { MAP_LEN( "ProgressMax" ), 0, &::getCppuType((sal_Int32*)0), ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
@@ -451,10 +452,10 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
         if (xStatusIndicator.is())
         {
             sal_Int32 nProgressRange(1000000);
-            xStatusIndicator->start(rtl::OUString(ScGlobal::GetRscString(STR_LOAD_DOC)), nProgressRange);
+            xStatusIndicator->start(::rtl::OUString(ScGlobal::GetRscString(STR_LOAD_DOC)), nProgressRange);
             uno::Any aProgRange;
             aProgRange <<= nProgressRange;
-            xInfoSet->setPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ProgressRange")), aProgRange);
+            xInfoSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ProgressRange")), aProgRange);
         }
 
         sal_uInt32 nMetaRetval(0);
@@ -467,9 +468,9 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "meta import start" );
 
             nMetaRetval = ImportFromComponent(xServiceFactory, xModel, xXMLParser, aParserInput,
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLMetaImporter")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("meta.xml")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Meta.xml")), aMetaArgs,
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLMetaImporter")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("meta.xml")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Meta.xml")), aMetaArgs,
                 sal_False);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "meta import end" );
@@ -511,8 +512,8 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "settings import start" );
 
             nSettingsRetval = ImportFromComponent(xServiceFactory, xModel, xXMLParser, aParserInput,
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLSettingsImporter")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("settings.xml")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLSettingsImporter")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("settings.xml")),
                 sEmpty, aSettingsArgs, sal_False);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "settings import end" );
@@ -523,8 +524,8 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "styles import start" );
 
             nStylesRetval = ImportFromComponent(xServiceFactory, xModel, xXMLParser, aParserInput,
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLStylesImporter")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("styles.xml")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLStylesImporter")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("styles.xml")),
                 sEmpty, aStylesArgs, sal_True);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "styles import end" );
@@ -543,9 +544,9 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "content import start" );
 
             nDocRetval = ImportFromComponent(xServiceFactory, xModel, xXMLParser, aParserInput,
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLContentImporter")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("content.xml")),
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Content.xml")), aDocArgs,
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLContentImporter")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("content.xml")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Content.xml")), aDocArgs,
                 sal_True);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "content import end" );
@@ -596,8 +597,8 @@ sal_Bool ScXMLImportWrapper::Import(sal_Bool bStylesOnly)
 
 sal_Bool ScXMLImportWrapper::ExportToComponent(uno::Reference<lang::XMultiServiceFactory>& xServiceFactory,
     uno::Reference<frame::XModel>& xModel, uno::Reference<uno::XInterface>& xWriter,
-    uno::Sequence<beans::PropertyValue>& aDescriptor, const rtl::OUString& sName,
-    const rtl::OUString& sMediaType, const rtl::OUString& sComponentName,
+    uno::Sequence<beans::PropertyValue>& aDescriptor, const ::rtl::OUString& sName,
+    const ::rtl::OUString& sMediaType, const ::rtl::OUString& sComponentName,
     const sal_Bool bPlainText, uno::Sequence<uno::Any>& aArgs, ScMySharedData*& pSharedData)
 {
     sal_Bool bRet(sal_False);
@@ -613,19 +614,19 @@ sal_Bool ScXMLImportWrapper::ExportToComponent(uno::Reference<lang::XMultiServic
         xStream = pStorage->OpenStream( sName,
                                 STREAM_WRITE | STREAM_SHARE_DENYWRITE | STREAM_TRUNC );
         uno::Any aAny; aAny <<= sMediaType;
-        xStream->SetProperty(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("MediaType")), aAny);
+        xStream->SetProperty(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("MediaType")), aAny);
         if (bPlainText)
         {
             aAny = ::cppu::bool2any(sal_False);
-            xStream->SetProperty(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Compressed")), aAny);
+            xStream->SetProperty(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Compressed")), aAny);
         }
         else
         {
             aAny = ::cppu::bool2any(sal_True);
-            xStream->SetProperty(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Encrypted")), aAny);
+            xStream->SetProperty(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Encrypted")), aAny);
         }
         xStream->SetBufferSize( 16*1024 );
-        xOut = new utl::OOutputStreamWrapper( *xStream );
+        xOut = new ::utl::OOutputStreamWrapper( *xStream );
     }
     // #99667#; no longer necessary
 /*  else if ( pMedium )
@@ -692,7 +693,7 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
     pProps[0].Value <<= sFileName;
 
     /** property map for export info set */
-    comphelper::PropertyMapEntry aExportInfoMap[] =
+    ::comphelper::PropertyMapEntry aExportInfoMap[] =
     {
         { MAP_LEN( "ProgressRange" ), 0, &::getCppuType((sal_Int32*)0), ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
         { MAP_LEN( "ProgressMax" ), 0, &::getCppuType((sal_Int32*)0), ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
@@ -711,16 +712,16 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
         uno::Reference<task::XStatusIndicator> xStatusIndicator = GetStatusIndicator(xModel);
         sal_Int32 nProgressRange(1000000);
         if(xStatusIndicator.is())
-            xStatusIndicator->start(rtl::OUString(ScGlobal::GetRscString(STR_SAVE_DOC)), nProgressRange);
+            xStatusIndicator->start(::rtl::OUString(ScGlobal::GetRscString(STR_SAVE_DOC)), nProgressRange);
         uno::Any aProgRange;
         aProgRange <<= nProgressRange;
-        xInfoSet->setPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ProgressRange")), aProgRange);
+        xInfoSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ProgressRange")), aProgRange);
 
         SvtSaveOptions aSaveOpt;
         sal_Bool bUsePrettyPrinting(aSaveOpt.IsPrettyPrinting());
         uno::Any aUsePrettyPrinting;
         aUsePrettyPrinting <<= bUsePrettyPrinting;
-        xInfoSet->setPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("UsePrettyPrinting")), aUsePrettyPrinting);
+        xInfoSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("UsePrettyPrinting")), aUsePrettyPrinting);
 
         sal_Bool bMetaRet(pObjSh->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED);
         sal_Bool bStylesRet (sal_False);
@@ -740,8 +741,8 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "meta export start" );
 
             bMetaRet = ExportToComponent(xServiceFactory, xModel, xWriter, aDescriptor,
-                rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("meta.xml")),
-                sTextMediaType, rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLMetaExporter")),
+                ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("meta.xml")),
+                sTextMediaType, ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLMetaExporter")),
                 sal_True, aMetaArgs, pSharedData);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "meta export end" );
@@ -780,8 +781,8 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "styles export start" );
 
             bStylesRet = ExportToComponent(xServiceFactory, xModel, xWriter, aDescriptor,
-                rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("styles.xml")),
-                sTextMediaType, rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLStylesExporter")),
+                ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("styles.xml")),
+                sTextMediaType, ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLStylesExporter")),
                 sal_False, aStylesArgs, pSharedData);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "styles export end" );
@@ -802,8 +803,8 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "content export start" );
 
             bDocRet = ExportToComponent(xServiceFactory, xModel, xWriter, aDescriptor,
-                rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("content.xml")),
-                sTextMediaType, rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLContentExporter")),
+                ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("content.xml")),
+                sTextMediaType, ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLContentExporter")),
                 sal_False, aDocArgs, pSharedData);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "content export end" );
@@ -828,8 +829,8 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "settings export start" );
 
             bSettingsRet = ExportToComponent(xServiceFactory, xModel, xWriter, aDescriptor,
-                rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("settings.xml")),
-                sTextMediaType, rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLSettingsExporter")),
+                ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("settings.xml")),
+                sTextMediaType, ::rtl::OUString (RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.Calc.XMLSettingsExporter")),
                 sal_False, aSettingsArgs, pSharedData);
 
             RTL_LOGFILE_CONTEXT_TRACE( aLog, "settings export end" );
@@ -850,3 +851,4 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
 
 
 
+}

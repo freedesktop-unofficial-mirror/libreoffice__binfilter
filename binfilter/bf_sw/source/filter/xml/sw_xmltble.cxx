@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,6 +163,7 @@
 #ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
+namespace binfilter {
 
 
 using namespace ::rtl;
@@ -1163,14 +1164,14 @@ void SwXMLExport::ExportTable( const SwTableNode& rTblNd )
             // DDE command
             const String sCmd = pDDEFldType->GetCmd();
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_APPLICATION,
-                          sCmd.GetToken(0, so3::cTokenSeperator) );
+                          sCmd.GetToken(0, ::so3::cTokenSeperator) );
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_ITEM,
-                          sCmd.GetToken(1, so3::cTokenSeperator) );
+                          sCmd.GetToken(1, ::so3::cTokenSeperator) );
             AddAttribute( XML_NAMESPACE_OFFICE, XML_DDE_TOPIC,
-                          sCmd.GetToken(2, so3::cTokenSeperator) );
+                          sCmd.GetToken(2, ::so3::cTokenSeperator) );
 
             // auto update
-            if (pDDEFldType->GetType() == so3::LINKUPDATE_ALWAYS)
+            if (pDDEFldType->GetType() == ::so3::LINKUPDATE_ALWAYS)
             {
                 AddAttribute( XML_NAMESPACE_OFFICE,
                               XML_AUTOMATIC_UPDATE, XML_TRUE );
@@ -1228,4 +1229,5 @@ void SwXMLTextParagraphExport::exportTable(
     }
 
     ((SwXMLExport&)GetExport()).SetShowProgress( bOldShowProgress );
+}
 }

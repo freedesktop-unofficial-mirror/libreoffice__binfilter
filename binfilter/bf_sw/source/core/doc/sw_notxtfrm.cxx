@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -207,6 +207,7 @@
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
 #endif
+namespace binfilter {
 
 #define DEFTEXTSIZE  12
 
@@ -975,7 +976,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/               if( pSh->IsPreView() )
 /*N*/               {
 /*?*/                   if( pSh->GetWin() )
-/*?*/                       ::RepaintPagePreview( pSh, aRect );
+/*?*/                       ::binfilter::RepaintPagePreview( pSh, aRect );
 /*?*/               }
 /*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
 /*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )
@@ -1188,3 +1189,4 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 
 
+}

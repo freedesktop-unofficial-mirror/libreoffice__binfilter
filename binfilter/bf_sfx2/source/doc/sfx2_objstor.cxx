@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -213,6 +213,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 #define S2BS(s) ByteString( s, RTL_TEXTENCODING_MS_1252 )
 
@@ -698,8 +699,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   {
 /*N*/         try
 /*?*/ /*N*/         {
-/*?*/             ::ucb::Content aContent( pMedium->GetName(), com::sun::star::uno::Reference < XCommandEnvironment >() );
-/*?*/             com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
+/*?*/             ::ucb::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+/*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
 /*?*/             if ( xProps.is() )
 /*?*/             {
 /*?*/                 ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
@@ -804,11 +805,11 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   SFX_ITEMSET_ARG( pSet, pData, SfxUsrAnyItem, SID_FILTER_DATA, sal_False );
 /*N*/   if ( !pData && !pOptions )
 /*N*/   {
-/*N*/       com::sun::star::uno::Reference< XMultiServiceFactory > xServiceManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/       com::sun::star::uno::Reference< XNameAccess > xFilterCFG;
+/*N*/       ::com::sun::star::uno::Reference< XMultiServiceFactory > xServiceManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
+/*N*/       ::com::sun::star::uno::Reference< XNameAccess > xFilterCFG;
 /*N*/       if( xServiceManager.is() )
 /*N*/       {
-/*N*/           xFilterCFG = com::sun::star::uno::Reference< XNameAccess >(
+/*N*/           xFilterCFG = ::com::sun::star::uno::Reference< XNameAccess >(
 /*N*/               xServiceManager->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.document.FilterFactory" ) ),
 /*N*/               UNO_QUERY );
 /*N*/       }
@@ -831,7 +832,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/                           aProps[nProperty].Value >>= aServiceName;
 /*N*/                           if( aServiceName.getLength() )
 /*?*/                           {
-/*?*/                               com::sun::star::uno::Reference< XInteractionHandler > rHandler = pMedium->GetInteractionHandler();
+/*?*/                               ::com::sun::star::uno::Reference< XInteractionHandler > rHandler = pMedium->GetInteractionHandler();
 /*?*/                               if( rHandler.is() )
 /*?*/                               {
 /*?*/                                   // we need some properties in the media descriptor, so we have to make sure that they are in
@@ -848,7 +849,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/                                   TransformItems( SID_OPENDOC, *pSet, rProperties, NULL );
 /*?*/                                   RequestFilterOptions* pFORequest = new RequestFilterOptions( pDoc->GetModel(), rProperties );
 /*?*/
-/*?*/                                   com::sun::star::uno::Reference< XInteractionRequest > rRequest( pFORequest );
+/*?*/                                   ::com::sun::star::uno::Reference< XInteractionRequest > rRequest( pFORequest );
 /*?*/                                   rHandler->handle( rRequest );
 /*?*/
 /*?*/                                   if ( !pFORequest->isAbort() )
@@ -1292,8 +1293,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/         try
 /*N*/         {
-/*?*/             ::ucb::Content aContent( rMedium.GetName(), com::sun::star::uno::Reference < XCommandEnvironment >() );
-/*?*/             com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
+/*?*/             ::ucb::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+/*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
 /*?*/             if ( xProps.is() )
 /*?*/             {
 /*?*/                 ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
@@ -1605,9 +1606,9 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //STRIP001 /*?*/         rMedium.GetItemSet()->Put( SfxStringItem( SID_FILE_NAME, rMedium.GetName() ) );
 //STRIP001 /*?*/         TransformItems( SID_OPENDOC, *rMedium.GetItemSet(), lDescriptor );
 //STRIP001 /*?*/
-//STRIP001 /*?*/        com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue > aArgs ( lDescriptor.getLength() + 1);
-//STRIP001 /*?*/        com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
-//STRIP001 /*?*/        const com::sun::star::beans::PropertyValue * pOldValue = lDescriptor.getConstArray();
+//STRIP001 /*?*/        ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs ( lDescriptor.getLength() + 1);
+//STRIP001 /*?*/        ::com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
+//STRIP001 /*?*/        const ::com::sun::star::beans::PropertyValue * pOldValue = lDescriptor.getConstArray();
 //STRIP001 /*?*/        const OUString sInputStream ( RTL_CONSTASCII_USTRINGPARAM ( "InputStream" ) );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        sal_Bool bHasInputStream = sal_False;
@@ -1620,7 +1621,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //STRIP001 /*?*/        if ( !bHasInputStream )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            pNewValue[i].Name = sInputStream;
-//STRIP001 /*?*/            pNewValue[i].Value <<= com::sun::star::uno::Reference < com::sun::star::io::XInputStream > ( new utl::OSeekableInputStreamWrapper ( *rMedium.GetInStream() ) );
+//STRIP001 /*?*/            pNewValue[i].Value <<= ::com::sun::star::uno::Reference < ::com::sun::star::io::XInputStream > ( new utl::OSeekableInputStreamWrapper ( *rMedium.GetInStream() ) );
 //STRIP001 /*?*/        }
 //STRIP001 /*?*/        else
 //STRIP001 /*?*/            aArgs.realloc ( i-1 );
@@ -1672,13 +1673,13 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter > xFilter( xExporter, ::com::sun::star::uno::UNO_QUERY );
 /*N*/         xExporter->setSourceDocument( xComp );
 /*N*/
-/*N*/         com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue > aOldArgs;
+/*N*/         ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aOldArgs;
 /*N*/         SfxItemSet* pItems = rMedium.GetItemSet();
 /*N*/         TransformItems( SID_SAVEASDOC, *pItems, aOldArgs );
 /*N*/
-/*N*/       const com::sun::star::beans::PropertyValue * pOldValue = aOldArgs.getConstArray();
-/*N*/       com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue > aArgs ( aOldArgs.getLength() + 1 );
-/*N*/       com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
+/*N*/       const ::com::sun::star::beans::PropertyValue * pOldValue = aOldArgs.getConstArray();
+/*N*/       ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs ( aOldArgs.getLength() + 1 );
+/*N*/       ::com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
 /*N*/
 /*N*/       // put in the REAL file name, and copy all PropertyValues
 /*N*/         const OUString sOutputStream ( RTL_CONSTASCII_USTRINGPARAM ( "OutputStream" ) );
@@ -1695,7 +1696,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/         if ( !bHasStream )
 /*N*/       {
 /*N*/             pNewValue[i].Name = sOutputStream;
-/*N*/             pNewValue[i].Value <<= com::sun::star::uno::Reference < com::sun::star::io::XOutputStream > ( new utl::OOutputStreamWrapper ( *rMedium.GetOutStream() ) );
+/*N*/             pNewValue[i].Value <<= ::com::sun::star::uno::Reference < ::com::sun::star::io::XOutputStream > ( new ::utl::OOutputStreamWrapper ( *rMedium.GetOutStream() ) );
 /*N*/       }
 /*N*/       else
 /*N*/           aArgs.realloc ( i-1 );
@@ -1831,7 +1832,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //STRIP001 /*?*/
 //STRIP001 /*?*/    // an interaction handler here can aquire only in case of GUI Saving
 //STRIP001 /*?*/    // and should be removed after the saving is done
-//STRIP001 /*?*/    com::sun::star::uno::Reference< XInteractionHandler > xInteract;
+//STRIP001 /*?*/    ::com::sun::star::uno::Reference< XInteractionHandler > xInteract;
 //STRIP001 /*?*/    SFX_ITEMSET_ARG( pArgs, pxInteractionItem, SfxUnoAnyItem, SID_INTERACTIONHANDLER, sal_False );
 //STRIP001 /*?*/    if ( pxInteractionItem && ( pxInteractionItem->GetValue() >>= xInteract ) && xInteract.is() )
 //STRIP001 /*?*/        pMediumTmp->GetItemSet()->Put( SfxUnoAnyItem( SID_INTERACTIONHANDLER, makeAny( xInteract ) ) );
@@ -2416,3 +2417,4 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       }
 /*N*/   }
 /*N*/ }
+}

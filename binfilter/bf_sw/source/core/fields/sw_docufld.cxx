@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -233,7 +233,8 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 #define URL_DECODE  INetURLObject::DECODE_UNAMBIGUOUS
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::rtl;
@@ -450,7 +451,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwPageNumberFieldTyp
 /*N*/       }
 /*N*/       break;
 /*?*/   case FIELD_PROP_PAR1:
-/*?*/       ::GetString( rAny, sUserStr );
+/*?*/       ::binfilter::GetString( rAny, sUserStr );
 /*?*/       break;
 /*?*/
 /*?*/   default:
@@ -530,7 +531,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwAuthorF
 /*N*/       break;
 /*N*/
 /*N*/   case FIELD_PROP_PAR1:
-/*?*/       rAny <<= rtl::OUString(GetContent());
+/*?*/       rAny <<= ::rtl::OUString(GetContent());
 /*?*/       break;
 /*?*/
 /*?*/   default:
@@ -744,7 +745,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwFieldType *pTmp = 
 /*?*/       break;
 /*?*/
 /*?*/   case FIELD_PROP_PAR3:
-/*?*/       ::GetString( rAny, aContent );
+/*?*/       ::binfilter::GetString( rAny, aContent );
 /*?*/       break;
 /*?*/
 /*?*/   default:
@@ -1291,7 +1292,7 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   SwDocInfoFieldType* 
 /*?*/       }
 /*?*/       break;
 /*?*/   case FIELD_PROP_PAR3:
-/*?*/       rAny <<= rtl::OUString(Expand());
+/*?*/       rAny <<= ::rtl::OUString(Expand());
 /*?*/       break;
 /*N*/   case FIELD_PROP_BOOL2:
 /*N*/       {
@@ -2660,14 +2661,14 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwCombine
 //STRIP001  sCharacters = rStr.Copy( 0, MAX_COMBINED_CHARACTERS );
 //STRIP001 }
 
-//STRIP001 BOOL SwCombinedCharField::QueryValue( com::sun::star::uno::Any& rAny,
+//STRIP001 BOOL SwCombinedCharField::QueryValue( ::com::sun::star::uno::Any& rAny,
 //STRIP001                                      BYTE nMId ) const
 //STRIP001 {
 //STRIP001     nMId &= ~CONVERT_TWIPS;
 //STRIP001  switch( nMId )
 //STRIP001  {
 //STRIP001  case FIELD_PROP_PAR1:
-//STRIP001      rAny <<= rtl::OUString( sCharacters );
+//STRIP001      rAny <<= ::rtl::OUString( sCharacters );
 //STRIP001      break;
 //STRIP001  default:
 //STRIP001      DBG_ERROR("illegal property");
@@ -2675,7 +2676,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwCombine
 //STRIP001  return sal_True;
 //STRIP001 }
 
-//STRIP001 BOOL SwCombinedCharField::PutValue( const com::sun::star::uno::Any& rAny,
+//STRIP001 BOOL SwCombinedCharField::PutValue( const ::com::sun::star::uno::Any& rAny,
 //STRIP001                                      BYTE nMId )
 //STRIP001 {
 //STRIP001     nMId &= ~CONVERT_TWIPS;
@@ -2690,3 +2691,4 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwCombine
 //STRIP001  return sal_True;
 //STRIP001 }
 
+}

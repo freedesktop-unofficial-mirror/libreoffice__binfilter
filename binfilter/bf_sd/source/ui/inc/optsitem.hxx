@@ -2,9 +2,9 @@
  *
  *  $RCSfile: optsitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 #ifndef _SVX_DLGUTIL_HXX
 #include <bf_svx/dlgutil.hxx>
 #endif
+namespace binfilter {
 
 
 // -----------------
@@ -131,8 +132,8 @@ public:
 
     ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > GetProperties(
                                 const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames );
-//STRIP001  sal_Bool                PutProperties( const com::sun::star::uno::Sequence< rtl::OUString >& rNames,
-//STRIP001                                         const com::sun::star::uno::Sequence< com::sun::star::uno::Any>& rValues );
+//STRIP001  sal_Bool                PutProperties( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames,
+//STRIP001                                         const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& rValues );
     void                    SetModified();
 };
 
@@ -715,4 +716,5 @@ public:
 //STRIP001  void                StoreConfig( ULONG nOptionRange = SD_OPTIONS_ALL );
 };
 
+} //namespace binfilter
 #endif // _SD_OPTSITEM_HXX

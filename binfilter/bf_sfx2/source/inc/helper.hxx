@@ -2,9 +2,9 @@
  *
  *  $RCSfile: helper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #include <tools/string.hxx>
 #include <tools/errcode.hxx>
 #include <tools/bigint.hxx>
+namespace binfilter {
 
 // class SfxContentHelper ------------------------------------------------
 
@@ -100,7 +101,7 @@ public:
 //STRIP001  static sal_Bool             IsHelpErrorDocument( const String& rURL );
 
 //STRIP001  static sal_Bool             CopyTo( const String& rSource, const String& rDest );
-//STRIP001     static sal_Bool             MoveTo( const String& rSource, const String& rDest, sal_Int32 nNameClash = com::sun::star::ucb::NameClash::ERROR );
+//STRIP001     static sal_Bool             MoveTo( const String& rSource, const String& rDest, sal_Int32 nNameClash = ::com::sun::star::ucb::NameClash::ERROR );
 
 //STRIP001  static sal_Bool             MakeFolder( const String& rFolder );
 //STRIP001  static ErrCode              QueryDiskSpace( const String& rPath, sal_Int64& rFreeBytes );
@@ -112,6 +113,7 @@ public:
 //STRIP001  static sal_Bool             Find( const String& rFolder, const String& rName, String& rFile );
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SFX_HELPER_HXX
 
 

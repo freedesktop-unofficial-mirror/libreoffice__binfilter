@@ -2,9 +2,9 @@
  *
  *  $RCSfile: addinhelpid.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
+namespace binfilter {
 
 
 // ============================================================================
@@ -92,5 +93,6 @@ public:
 
 // ============================================================================
 
+} //namespace binfilter
 #endif
 

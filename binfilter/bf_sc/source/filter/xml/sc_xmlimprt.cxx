@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlimprt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -172,23 +172,24 @@
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
+namespace binfilter {
 
 #define SC_LOCALE           "Locale"
 #define SC_STANDARDFORMAT   "StandardFormat"
 #define SC_CURRENCYSYMBOL   "CurrencySymbol"
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace ::xmloff::token;
 
 OUString SAL_CALL ScXMLImport_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLImporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLImporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLImport_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLImport_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -202,13 +203,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_createInstance(
 
 OUString SAL_CALL ScXMLImport_Meta_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLMetaImporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLMetaImporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Meta_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Meta_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLImport_Meta_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLImport_Meta_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -222,13 +223,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Meta_createInstance(
 
 OUString SAL_CALL ScXMLImport_Styles_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLStylesImporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLStylesImporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Styles_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Styles_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLImport_Styles_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLImport_Styles_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -242,13 +243,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Styles_createInstance(
 
 OUString SAL_CALL ScXMLImport_Content_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLContentImporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLContentImporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Content_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Content_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLImport_Content_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLImport_Content_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -262,13 +263,13 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Content_createInstance(
 
 OUString SAL_CALL ScXMLImport_Settings_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLSettingsImporter" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLSettingsImporter" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScXMLImport_Settings_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScXMLImport_Settings_getSupportedServiceNames() throw()
 {
-    const rtl::OUString aServiceName( ScXMLImport_Settings_getImplementationName() );
-    const uno::Sequence< rtl::OUString > aSeq( &aServiceName, 1 );
+    const ::rtl::OUString aServiceName( ScXMLImport_Settings_getImplementationName() );
+    const uno::Sequence< ::rtl::OUString > aSeq( &aServiceName, 1 );
     return aSeq;
 }
 
@@ -857,7 +858,7 @@ public:
     virtual ~ScXMLDocContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
-                                     const rtl::OUString& rLocalName,
+                                     const ::rtl::OUString& rLocalName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList );
 };
 
@@ -874,7 +875,7 @@ ScXMLDocContext_Impl::~ScXMLDocContext_Impl()
 }
 
 SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nPrefix,
-                                     const rtl::OUString& rLocalName,
+                                     const ::rtl::OUString& rLocalName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
@@ -1699,13 +1700,13 @@ void ScXMLImport::SetStatisticAttributes( const uno::Reference<xml::sax::XAttrib
     INT16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( INT16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         sal_uInt16 nPrefix = GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
         if ( nPrefix == XML_NAMESPACE_META)
         {
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
             sal_Int32 nValue(0);
             if (IsXMLToken(aLocalName, XML_TABLE_COUNT))
             {
@@ -1739,12 +1740,12 @@ XMLShapeImportHelper* ScXMLImport::CreateShapeImport()
     return new XMLTableShapeImportHelper( *this/*, pShapeStylesImportPropertySetMapper*/ );
 }
 
-sal_Bool ScXMLImport::GetValidation(const rtl::OUString& sName, ScMyImportValidation& aValidation)
+sal_Bool ScXMLImport::GetValidation(const ::rtl::OUString& sName, ScMyImportValidation& aValidation)
 {
     if (pValidations)
     {
         sal_Bool bFound(sal_False);
-        rtl::OUString sEmpty;
+        ::rtl::OUString sEmpty;
         ScMyImportValidations::iterator aItr = pValidations->begin();
         while(aItr != pValidations->end() && !bFound)
         {
@@ -1783,7 +1784,7 @@ void ScXMLImport::InsertStyles()
     GetStyles()->CopyStylesToDoc(sal_True);
 }
 
-void ScXMLImport::SetChangeTrackingViewSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rChangeProps)
+void ScXMLImport::SetChangeTrackingViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rChangeProps)
 {
     if (pDoc)
     {
@@ -1796,7 +1797,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const com::sun::star::uno::Seque
             ScChangeViewSettings* pViewSettings = new ScChangeViewSettings();
             for (sal_Int32 i = 0; i < nCount; i++)
             {
-                rtl::OUString sName(rChangeProps[i].Name);
+                ::rtl::OUString sName(rChangeProps[i].Name);
                 if (sName.compareToAscii("ShowChanges") == 0)
                     pViewSettings->SetShowChanges(::cppu::any2bool(rChangeProps[i].Value));
                 else if (sName.compareToAscii("ShowAcceptedChanges") == 0)
@@ -1834,7 +1835,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const com::sun::star::uno::Seque
                     pViewSettings->SetHasAuthor(::cppu::any2bool(rChangeProps[i].Value));
                 else if (sName.compareToAscii("ShowChangesByAuthorName") == 0)
                 {
-                    rtl::OUString sOUName;
+                    ::rtl::OUString sOUName;
                     if (rChangeProps[i].Value >>= sOUName)
                     {
                         String sName(sOUName);
@@ -1845,7 +1846,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const com::sun::star::uno::Seque
                     pViewSettings->SetHasComment(::cppu::any2bool(rChangeProps[i].Value));
                 else if (sName.compareToAscii("ShowChangesByCommentText") == 0)
                 {
-                    rtl::OUString sOUComment;
+                    ::rtl::OUString sOUComment;
                     if (rChangeProps[i].Value >>= sOUComment)
                     {
                         String sComment(sOUComment);
@@ -1856,7 +1857,7 @@ void ScXMLImport::SetChangeTrackingViewSettings(const com::sun::star::uno::Seque
                     pViewSettings->SetHasRange(::cppu::any2bool(rChangeProps[i].Value));
                 else if (sName.compareToAscii("ShowChangesByRangesList") == 0)
                 {
-                    rtl::OUString sRanges;
+                    ::rtl::OUString sRanges;
                     if ((rChangeProps[i].Value >>= sRanges) && sRanges.getLength())
                     {
                         ScRangeList aRangeList;
@@ -1880,7 +1881,7 @@ void ScXMLImport::SetViewSettings(const uno::Sequence<beans::PropertyValue>& aVi
     sal_Int32 nWidth(0);
     for (sal_Int32 i = 0; i < nCount; i++)
     {
-        rtl::OUString sName(aViewProps[i].Name);
+        ::rtl::OUString sName(aViewProps[i].Name);
         if (sName.compareToAscii("VisibleAreaHeight") == 0)
             aViewProps[i].Value >>= nHeight;
         else if (sName.compareToAscii("VisibleAreaLeft") == 0)
@@ -1925,7 +1926,7 @@ void ScXMLImport::SetConfigurationSettings(const uno::Sequence<beans::PropertyVa
         uno::Reference <lang::XMultiServiceFactory> xMultiServiceFactory(GetModel(), uno::UNO_QUERY);
         if (xMultiServiceFactory.is())
         {
-            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.SpreadsheetSettings")));
+            uno::Reference <uno::XInterface> xInterface = xMultiServiceFactory->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.SpreadsheetSettings")));
             uno::Reference <beans::XPropertySet> xProperties(xInterface, uno::UNO_QUERY);
             if (xProperties.is())
                 SvXMLUnitConverter::convertPropertySet(xProperties, aConfigProps);
@@ -1933,7 +1934,7 @@ void ScXMLImport::SetConfigurationSettings(const uno::Sequence<beans::PropertyVa
     }
 }
 
-sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUString& rCurrency)
+sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUString& rCurrency)
 {
     uno::Reference <util::XNumberFormatsSupplier> xNumberFormatsSupplier = GetNumberFormatsSupplier();
     if (xNumberFormatsSupplier.is())
@@ -1941,7 +1942,7 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUStri
         uno::Reference <util::XNumberFormats> xNumberFormats = xNumberFormatsSupplier->getNumberFormats();
         if (xNumberFormats.is())
         {
-            rtl::OUString sFormatString;
+            ::rtl::OUString sFormatString;
             try
             {
                 uno::Reference <beans::XPropertySet> xProperties = xNumberFormats->getByKey(nKey);
@@ -1953,7 +1954,7 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUStri
                     {
                         LockSolarMutex();
                         LocaleDataWrapper aLocaleData( GetDocument()->GetServiceManager(), aLocale );
-                        rtl::OUStringBuffer aBuffer(15);
+                        ::rtl::OUStringBuffer aBuffer(15);
                         aBuffer.appendAscii("#");
                         aBuffer.append( aLocaleData.getNumThousandSep() );
                         aBuffer.appendAscii("##0");
@@ -1972,10 +1973,10 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUStri
             }
             catch ( util::MalformedNumberFormatException& rException )
             {
-                rtl::OUString sErrorMessage(RTL_CONSTASCII_USTRINGPARAM("Fehler im Formatstring "));
+                ::rtl::OUString sErrorMessage(RTL_CONSTASCII_USTRINGPARAM("Fehler im Formatstring "));
                 sErrorMessage += sFormatString;
-                sErrorMessage += rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(" an Position "));
-                sErrorMessage += rtl::OUString::valueOf(rException.CheckPos);
+                sErrorMessage += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(" an Position "));
+                sErrorMessage += ::rtl::OUString::valueOf(rException.CheckPos);
                 uno::Sequence<rtl::OUString> aSeq(1);
                 aSeq[0] = sErrorMessage;
                 uno::Reference<xml::sax::XLocator> xLocator;
@@ -1986,7 +1987,7 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const rtl::OUStri
        return nKey;
 }
 
-sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const rtl::OUString& sCurrencySymbol)
+sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const ::rtl::OUString& sCurrencySymbol)
 {
     uno::Reference <util::XNumberFormatsSupplier> xNumberFormatsSupplier = GetNumberFormatsSupplier();
     if (xNumberFormatsSupplier.is())
@@ -1999,8 +2000,8 @@ sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const rtl:
                 uno::Reference <beans::XPropertySet> xNumberPropertySet = xNumberFormats->getByKey(nNumberFormat);
                 if (xNumberPropertySet.is())
                 {
-                    uno::Any aCurrencySymbol = xNumberPropertySet->getPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CURRENCYSYMBOL)));
-                    rtl::OUString sTemp;
+                    uno::Any aCurrencySymbol = xNumberPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CURRENCYSYMBOL)));
+                    ::rtl::OUString sTemp;
                     if ( aCurrencySymbol >>= sTemp)
                         return sCurrencySymbol.equals(sTemp);
                 }
@@ -2017,7 +2018,7 @@ sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const rtl:
 void ScXMLImport::SetType(uno::Reference <beans::XPropertySet>& rProperties,
     sal_Int32& rNumberFormat,
     const sal_Int16 nCellType,
-    const rtl::OUString& rCurrency)
+    const ::rtl::OUString& rCurrency)
 {
     if ((nCellType != util::NumberFormat::TEXT) && (nCellType != util::NumberFormat::UNDEFINED))
     {
@@ -2028,7 +2029,7 @@ void ScXMLImport::SetType(uno::Reference <beans::XPropertySet>& rProperties,
         }
         DBG_ASSERT(rNumberFormat != -1, "no NumberFormat");
         sal_Bool bIsStandard;
-        rtl::OUString sCurrentBankCurrency;
+        ::rtl::OUString sCurrentBankCurrency;
         sal_Int32 nCurrentCellType(
             GetNumberFormatAttributesExportHelper()->GetCellType(
                 rNumberFormat, sCurrentBankCurrency, bIsStandard) & ~util::NumberFormat::DEFINED);
@@ -2111,7 +2112,7 @@ void ScXMLImport::AddStyleRange(const table::CellRangeAddress& rCellRange)
     {
         uno::Reference <lang::XMultiServiceFactory> xMultiServiceFactory(GetModel(), uno::UNO_QUERY);
         if (xMultiServiceFactory.is())
-            xSheetCellRanges = uno::Reference <sheet::XSheetCellRangeContainer>(xMultiServiceFactory->createInstance(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetCellRanges"))), uno::UNO_QUERY);
+            xSheetCellRanges = uno::Reference <sheet::XSheetCellRangeContainer>(xMultiServiceFactory->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetCellRanges"))), uno::UNO_QUERY);
         DBG_ASSERT(xSheetCellRanges.is(), "didn't get SheetCellRanges");
 
     }
@@ -2153,14 +2154,14 @@ void ScXMLImport::SetStyleToRanges()
         if (xMultiServiceFactory.is())
             xSheetCellRanges = uno::Reference <sheet::XSheetCellRangeContainer>(
                 xMultiServiceFactory->createInstance(
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetCellRanges"))),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.SheetCellRanges"))),
                 uno::UNO_QUERY);
     }
     DBG_ASSERT(xSheetCellRanges.is(), "didn't get SheetCellRanges");
 }
 
-void ScXMLImport::SetStyleToRange(const ScRange& rRange, const rtl::OUString* pStyleName,
-        const sal_Int16 nCellType, const rtl::OUString* pCurrency)
+void ScXMLImport::SetStyleToRange(const ScRange& rRange, const ::rtl::OUString* pStyleName,
+        const sal_Int16 nCellType, const ::rtl::OUString* pCurrency)
 {
     if (!sPrevStyleName.getLength())
     {
@@ -2309,10 +2310,10 @@ void SAL_CALL ScXMLImport::endDocument(void)
                         sal_Int32 nCount (aSeq.getLength());
                         for (sal_Int32 i = 0; i < nCount; ++i)
                         {
-                            rtl::OUString sName(aSeq[i].Name);
+                            ::rtl::OUString sName(aSeq[i].Name);
                             if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
                             {
-                                rtl::OUString sName;
+                                ::rtl::OUString sName;
                                 if(aSeq[i].Value >>= sName)
                                 {
                                     String sTabName(sName);
@@ -2380,4 +2381,5 @@ void ScXMLImport::UnlockSolarMutex()
             pScUnoGuard = NULL;
         }
     }
+}
 }

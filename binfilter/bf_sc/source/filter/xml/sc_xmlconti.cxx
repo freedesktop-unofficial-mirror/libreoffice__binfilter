@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlconti.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,7 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+namespace binfilter {
 
 using namespace xmloff::token;
 
@@ -90,7 +91,7 @@ ScXMLContentContext::ScXMLContentContext( ScXMLImport& rImport,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
-                                      rtl::OUStringBuffer& sTempValue) :
+                                      ::rtl::OUStringBuffer& sTempValue) :
     SvXMLImportContext( rImport, nPrfx, rLName ),
     sOUText(),
     sValue(sTempValue)
@@ -114,9 +115,9 @@ SvXMLImportContext *ScXMLContentContext::CreateChildContext( USHORT nPrefix,
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
-            rtl::OUString aLocalName;
+            ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString aLocalName;
             USHORT nPrfx = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                                 sAttrName, &aLocalName );
             if ((nPrfx == XML_NAMESPACE_TEXT) && IsXMLToken(aLocalName, XML_C))
@@ -143,4 +144,5 @@ void ScXMLContentContext::Characters( const ::rtl::OUString& rChars )
 void ScXMLContentContext::EndElement()
 {
     sValue.append(sOUText);
+}
 }

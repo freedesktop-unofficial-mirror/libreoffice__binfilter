@@ -2,9 +2,9 @@
  *
  *  $RCSfile: datauno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,6 +135,7 @@
 #ifndef _CPPUHELPER_IMPLBASE6_HXX_
 #include <cppuhelper/implbase6.hxx>
 #endif
+namespace binfilter {
 
 class ScDBData;
 class ScDocShell;
@@ -149,8 +150,8 @@ struct ScSortParam;
 class ScDataUnoConversion
 {
 public:
-    static ScSubTotalFunc   GeneralToSubTotal( com::sun::star::sheet::GeneralFunction eSummary );
-    static com::sun::star::sheet::GeneralFunction SubTotalToGeneral( ScSubTotalFunc eSubTotal );
+    static ScSubTotalFunc   GeneralToSubTotal( ::com::sun::star::sheet::GeneralFunction eSummary );
+    static ::com::sun::star::sheet::GeneralFunction SubTotalToGeneral( ScSubTotalFunc eSubTotal );
 };
 
 
@@ -161,9 +162,9 @@ class ScImportDescriptor
 public:
     static void FillImportParam(
                     ScImportParam& rParam,
-                    const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rSeq );
+                    const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rSeq );
     static void FillProperties(
-                    com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rSeq,
+                    ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rSeq,
                     const ScImportParam& rParam );
     static long GetPropertyCount();
 };
@@ -175,9 +176,9 @@ class ScSortDescriptor
 public:
     static void FillSortParam(
                     ScSortParam& rParam,
-                    const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rSeq );
+                    const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rSeq );
     static void FillProperties(
-                    com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& rSeq,
+                    ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& rSeq,
                     const ScSortParam& rParam );
     static long GetPropertyCount();
 };
@@ -188,12 +189,12 @@ public:
 //  to uno, both look the same
 
 class ScSubTotalDescriptorBase : public cppu::WeakImplHelper6<
-                                        com::sun::star::sheet::XSubTotalDescriptor,
-                                        com::sun::star::container::XEnumerationAccess,
-                                        com::sun::star::container::XIndexAccess,
-                                        com::sun::star::beans::XPropertySet,
-                                        com::sun::star::lang::XUnoTunnel,
-                                        com::sun::star::lang::XServiceInfo >
+                                        ::com::sun::star::sheet::XSubTotalDescriptor,
+                                        ::com::sun::star::container::XEnumerationAccess,
+                                        ::com::sun::star::container::XIndexAccess,
+                                        ::com::sun::star::beans::XPropertySet,
+                                        ::com::sun::star::lang::XUnoTunnel,
+                                        ::com::sun::star::lang::XServiceInfo >
 {
 private:
     SfxItemPropertySet      aPropSet;
@@ -278,9 +279,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScSubTotalDescriptorBase* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XSubTotalDescriptor> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScSubTotalDescriptorBase* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XSubTotalDescriptor> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -331,11 +332,11 @@ public:
 
 
 class ScSubTotalFieldObj : public cppu::WeakImplHelper2<
-                                com::sun::star::sheet::XSubTotalField,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::sheet::XSubTotalField,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 private:
-    com::sun::star::uno::Reference<com::sun::star::sheet::XSubTotalDescriptor> xRef;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sheet::XSubTotalDescriptor> xRef;
     ScSubTotalDescriptorBase&   rParent;
     USHORT                      nPos;
 
@@ -364,8 +365,8 @@ public:
 
 
 class ScConsolidationDescriptor : public cppu::WeakImplHelper2<
-                                        com::sun::star::sheet::XConsolidationDescriptor,
-                                        com::sun::star::lang::XServiceInfo >
+                                        ::com::sun::star::sheet::XConsolidationDescriptor,
+                                        ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScConsolidateParam      aParam;
@@ -418,9 +419,9 @@ public:
 //  to uno, all three look the same
 
 class ScFilterDescriptorBase : public cppu::WeakImplHelper3<
-                                    com::sun::star::sheet::XSheetFilterDescriptor,
-                                    com::sun::star::beans::XPropertySet,
-                                    com::sun::star::lang::XServiceInfo >,
+                                    ::com::sun::star::sheet::XSheetFilterDescriptor,
+                                    ::com::sun::star::beans::XPropertySet,
+                                    ::com::sun::star::lang::XServiceInfo >,
                                public SfxListener
 {
 private:
@@ -552,11 +553,11 @@ public:
 
 
 class ScDatabaseRangeObj : public cppu::WeakImplHelper5<
-                                com::sun::star::sheet::XDatabaseRange,
-                                com::sun::star::container::XNamed,
-                                com::sun::star::sheet::XCellRangeReferrer,
-                                com::sun::star::beans::XPropertySet,
-                                com::sun::star::lang::XServiceInfo >,
+                                ::com::sun::star::sheet::XDatabaseRange,
+                                ::com::sun::star::container::XNamed,
+                                ::com::sun::star::sheet::XCellRangeReferrer,
+                                ::com::sun::star::beans::XPropertySet,
+                                ::com::sun::star::lang::XServiceInfo >,
                            public SfxListener
 {
 private:
@@ -659,10 +660,10 @@ public:
 
 
 class ScDatabaseRangesObj : public cppu::WeakImplHelper4<
-                                com::sun::star::sheet::XDatabaseRanges,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::container::XIndexAccess,
-                                com::sun::star::lang::XServiceInfo >,
+                                ::com::sun::star::sheet::XDatabaseRanges,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::container::XIndexAccess,
+                                ::com::sun::star::lang::XServiceInfo >,
                             public SfxListener
 {
 private:
@@ -721,5 +722,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmod2a.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:56:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,7 +127,9 @@
 
 
 #include "pairs.hxx"
+#ifndef _CHTMODEL_HXX
 #include "chtmodel.hxx"
+#endif
 #include "globfunc.hxx"
 
 #ifndef _SVX_FILLITEM_HXX //autogen
@@ -145,6 +147,7 @@
 #include "chaxis.hxx"
 #include "chdescr.hxx"
 #include "calculat.hxx"
+namespace binfilter {
 
 #define SCH_SIN(a)      (sin((double)a * F_PI / 18000.0))
 #define SCH_COS(a)      (cos((double)a * F_PI / 18000.0))
@@ -1933,3 +1936,4 @@
 /*N*/   pRectObj->InsertUserData(new SchDataPoint((short) nCol, (short) nRow));
 /*N*/   return pRectObj;
 /*N*/ }
+}

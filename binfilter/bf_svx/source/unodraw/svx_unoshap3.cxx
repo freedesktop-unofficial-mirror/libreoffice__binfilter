@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap3.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,6 +99,7 @@
 #include "polygn3d.hxx"
 #include "poly3d.hxx"
 #include "svdmodel.hxx"
+namespace binfilter {
 
 using namespace ::vos;
 using namespace ::rtl;
@@ -359,10 +360,11 @@ sal_Bool SAL_CALL Svx3DSceneObject::hasElements()
     return uno::Any( &aHomMat, ::getCppuType((const drawing::HomogenMatrix*)0) );
 
 //----------------------------------------------------------------------
+} //namespace binfilter
 #ifndef _SVDITER_HXX
 #include <svditer.hxx>
 #endif
-
+namespace binfilter {//STRIP009
 struct ImpRememberTransAndRect
 {
     Matrix4D                    maMat;
@@ -756,11 +758,11 @@ uno::Sequence< OUString > SAL_CALL Svx3DSphereObject::getSupportedServiceNames()
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-
+} //namespace binfilter
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
 #endif
-
+namespace binfilter {//STRIP009
 
 
 //----------------------------------------------------------------------
@@ -1195,3 +1197,4 @@ uno::Sequence< OUString > SAL_CALL Svx3DPolygonObject::getSupportedServiceNames(
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoparagraph.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,6 +107,7 @@
 #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP_
 #include <com/sun/star/text/TextContentAnchorType.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -137,7 +138,7 @@ SwXParagraph* SwXParagraph::GetImplementation(Reference< XInterface> xRef )
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXParagraph::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -883,3 +884,4 @@ void SwXParagraph::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         aLstnrCntnr.Disposing();
 }
 
+}

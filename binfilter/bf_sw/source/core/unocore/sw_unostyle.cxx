@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unostyle.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -216,6 +216,7 @@
 #define TYPE_SHADOW     4
 #define TYPE_LRSPACE    5
 #define TYPE_BOX        6
+namespace binfilter {
 
 const unsigned short aStyleByIndex[] =
 {
@@ -234,7 +235,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::container;
 using namespace ::rtl;
-using com::sun::star::frame::XModel;
+using ::com::sun::star::frame::XModel;
 /******************************************************************************
  *
  ******************************************************************************/
@@ -1290,7 +1291,7 @@ void SwStyleProperties_Impl::GetProperty( const OUString &rPropertyName, const R
  ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXStyle::getUnoTunnelId()
 {
-    static Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -1460,7 +1461,7 @@ SwXStyle::SwXStyle(SfxStyleSheetBasePool& rPool, SfxStyleFamily eFam,
         {
             const sal_uInt16 nId = SwStyleNameMapper::GetPoolIdFromUIName(sStyleName, GET_POOLID_TXTCOLL);
             if(nId != USHRT_MAX)
-                ::IsConditionalByPoolId( nId );
+                ::binfilter::IsConditionalByPoolId( nId );
             else
                 bIsConditional = RES_CONDTXTFMTCOLL == ((SwDocStyleSheet*)pBase)->GetCollection()->Which();
         }
@@ -1983,7 +1984,7 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
                 sal_Bool bPut = sal_False;
                 if(sDescName.Len())
                 {
-                    SwPageDesc* pPageDesc = ::GetPageDescByName_Impl(*pDoc, sDescName);
+                    SwPageDesc* pPageDesc = ::binfilter::GetPageDescByName_Impl(*pDoc, sDescName);
                     if(pPageDesc)
                     {
                         pPageDesc->Add( pNewDesc );
@@ -3484,3 +3485,4 @@ Reference< XNameReplace > SwXFrameStyle::getEvents(  ) throw(RuntimeException)
     return new SwFrameStyleEventDescriptor( *this );
 }
 
+}

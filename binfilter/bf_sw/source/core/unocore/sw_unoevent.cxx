@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoevent.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,6 +110,7 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP
 #include <com/sun/star/beans/PropertyValue.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -515,3 +516,4 @@ sal_uInt16 SwFrameStyleEventDescriptor::getMacroItemWhich() const
     return RES_FRMMACRO;
 }
 
+}

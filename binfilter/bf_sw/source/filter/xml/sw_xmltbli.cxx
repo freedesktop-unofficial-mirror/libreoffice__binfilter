@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltbli.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -170,6 +170,7 @@
 #ifndef _NDTXT_HXX
 #include "ndtxt.hxx"
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -1189,13 +1190,13 @@ SwDDEFieldType* lcl_GetDDEFieldType(SwXMLDDETableContext_Impl* pContext,
 {
     // make command string
     String sCommand(pContext->GetDDEApplication());
-    sCommand += so3::cTokenSeperator;
+    sCommand += ::so3::cTokenSeperator;
     sCommand += String(pContext->GetDDEItem());
-    sCommand += so3::cTokenSeperator;
+    sCommand += ::so3::cTokenSeperator;
     sCommand += String(pContext->GetDDETopic());
 
-    sal_uInt16 nType = pContext->GetIsAutomaticUpdate() ? so3::LINKUPDATE_ALWAYS
-                                                        : so3::LINKUPDATE_ONCALL;
+    sal_uInt16 nType = pContext->GetIsAutomaticUpdate() ? ::so3::LINKUPDATE_ALWAYS
+                                                        : ::so3::LINKUPDATE_ONCALL;
 
     String sName(pContext->GetConnectionName());
 
@@ -2847,4 +2848,5 @@ void SwXMLTableContext::EndElement()
 Reference < XTextContent > SwXMLTableContext::GetXTextContent() const
 {
     return xTextContent;
+}
 }

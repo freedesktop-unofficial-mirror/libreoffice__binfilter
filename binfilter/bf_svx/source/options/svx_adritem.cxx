@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_adritem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 
 #include "adritem.hxx"
 #include "svxids.hrc"
+namespace binfilter {
 
 #define INVALID_TOKEN ((USHORT)0xFFFF)
 
@@ -213,7 +214,7 @@
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxAddressItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxAddressItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -249,7 +250,7 @@
 
 // -----------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxAddressItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+//STRIP001 sal_Bool SvxAddressItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 //STRIP001 {
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -318,7 +319,7 @@
 /*N*/
 /*N*/   // gefunden
 /*N*/   aAdress.Erase( nStart, nEnd-nStart-1 );
-/*N*/   aAdress.Insert( ::ConvertToStore_Impl( rVal ), nStart );
+/*N*/   aAdress.Insert( ::binfilter::ConvertToStore_Impl( rVal ), nStart );
 /*N*/   SetValue( aAdress );
 /*N*/   return TRUE;
 /*N*/ }
@@ -392,3 +393,4 @@
 //STRIP001  return SvtUserOptions().IsTokenReadonly( nToken );
 //STRIP001 }
 
+}

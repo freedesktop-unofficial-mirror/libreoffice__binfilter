@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlexp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,13 +75,17 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+class SvXMLUnitConverter;
+class SvXMLAutoStylePoolP;
+class XMLPropertySetMapper;
+namespace binfilter {
 
 class SwPaM;
 class SwFmt;
 class SwFrmFmt;
-class SvXMLUnitConverter;
+
 class SvXMLExportItemMapper;
-class SvXMLAutoStylePoolP;
+
 class SwTableLine;
 class SwTableLines;
 class SwTableBox;
@@ -92,7 +96,7 @@ class SwXMLTableColumnsSortByWidth_Impl;
 class SwXMLTableFrmFmtsSort_Impl;
 class SwXMLTableInfo_Impl;
 class SwTableNode;
-class XMLPropertySetMapper;
+
 
 #ifndef XML_PROGRESS_REF_NOT_SET
 #define XML_PROGRESS_REF_NOT_SET ((sal_Int32)-1)
@@ -156,8 +160,8 @@ class SwXMLExport : public SvXMLExport
     virtual void _ExportAutoStyles();
     virtual void _ExportMasterStyles();
     virtual void _ExportContent();
-    virtual void GetViewSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps);
-    virtual void GetConfigurationSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps);
+    virtual void GetViewSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
+    virtual void GetConfigurationSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
 
 #ifdef XML_CORE_API
     void SetCurPaM( SwPaM& rPaM, sal_Bool bWhole, sal_Bool bTabOnly );
@@ -232,5 +236,6 @@ inline const SvXMLUnitConverter& SwXMLExport::GetTwipUnitConverter() const
 }
 
 
+} //namespace binfilter
 #endif  //  _XMLEXP_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlvw.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,6 +89,7 @@
 #ifndef _EDITSTAT_HXX //autogen
 #include <editstat.hxx>
 #endif
+namespace binfilter {
 
 
 // Breite der Randzonen innerhalb derer beim D&D gescrollt wird
@@ -1616,3 +1617,4 @@
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  return pEditView->GetSelectedScriptType();
 //STRIP001 }
+}

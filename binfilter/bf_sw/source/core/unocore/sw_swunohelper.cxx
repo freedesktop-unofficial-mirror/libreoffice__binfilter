@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swunohelper.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,6 +135,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 namespace SWUnoHelper {
 
 sal_Int32 GetEnumAsInt32( const UNO_NMSPC::Any& rVal )
@@ -162,7 +163,7 @@ BOOL UCB_DeleteFile( const String& rURL )
         ucb::Content aTempContent( rURL,
                                 STAR_REFERENCE( ucb::XCommandEnvironment )());
         aTempContent.executeCommand(
-                        rtl::OUString::createFromAscii( "delete" ),
+                        ::rtl::OUString::createFromAscii( "delete" ),
                         UNO_NMSPC::makeAny( sal_Bool( sal_True ) ) );
         bRemoved = TRUE;
     }
@@ -195,7 +196,7 @@ BOOL UCB_CopyFile( const String& rURL, const String& rNewURL, BOOL bCopyIsMove )
         aInfo.MoveData = bCopyIsMove;
         aAny <<= aInfo;
         aTempContent.executeCommand(
-                            rtl::OUString::createFromAscii( "transfer" ),
+                            ::rtl::OUString::createFromAscii( "transfer" ),
                             aAny );
     }
     catch( UNO_NMSPC::Exception& )
@@ -246,7 +247,7 @@ BOOL UCB_IsReadOnlyFileName( const String& rURL )
     {
         ucb::Content aCnt( rURL, STAR_REFERENCE( ucb::XCommandEnvironment )());
         UNO_NMSPC::Any aAny = aCnt.getPropertyValue(
-                            rtl::OUString::createFromAscii( "IsReadOnly" ));
+                            ::rtl::OUString::createFromAscii( "IsReadOnly" ));
         if(aAny.hasValue())
             bIsReadOnly = *(sal_Bool*)aAny.getValue();
     }
@@ -301,11 +302,11 @@ BOOL UCB_GetFileListOfFolder( const String& rURL, SvStrings& rList,
         STAR_REFERENCE( sdbc::XResultSet ) xResultSet;
 
         USHORT nSeqSize = pDateTimeList ? 2 : 1;
-        UNO_NMSPC::Sequence < rtl::OUString > aProps( nSeqSize );
-        rtl::OUString* pProps = aProps.getArray();
-        pProps[ 0 ] = rtl::OUString::createFromAscii( "Title" );
+        UNO_NMSPC::Sequence < ::rtl::OUString > aProps( nSeqSize );
+        ::rtl::OUString* pProps = aProps.getArray();
+        pProps[ 0 ] = ::rtl::OUString::createFromAscii( "Title" );
         if( pDateTimeList )
-            pProps[ 1 ] = rtl::OUString::createFromAscii( "DateModified" );
+            pProps[ 1 ] = ::rtl::OUString::createFromAscii( "DateModified" );
 
         try
         {
@@ -369,4 +370,5 @@ BOOL UCB_GetFileListOfFolder( const String& rURL, SvStrings& rList,
     return bOk;
 }
 
+}
 }

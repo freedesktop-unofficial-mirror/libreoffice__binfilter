@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swgpar.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:33:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 
 #include "rdswg.hxx"
 #include "swgpar.hxx"
+namespace binfilter {
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -110,3 +111,4 @@
 //STRIP001  return pRdr->GetDocInfo();
 //STRIP001 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdoimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,9 @@
 #ifndef _XENUM_HXX
 #include "xenum.hxx"
 #endif
+class PolyPolygon;
+class SfxItemSet;
+namespace binfilter {
 
 class SdrObject;
 class ExtOutputDevice;
@@ -115,8 +118,6 @@ class XFillAttrSetItem;
 class XLineAttrSetItem;
 class XPolyPolygon;
 class XPolygon;
-class PolyPolygon;
-class SfxItemSet;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -325,4 +326,5 @@ public:
     BOOL DoForceTwoPixel() const { return mbForceTwoPixel; }
 };
 
+}//end of namespace binfilter
 #endif // _SVX_SVDOIMP_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 
 #include <functional>
 #include <algorithm>
+namespace binfilter {
 
 // ========================================
 // Helper objects
@@ -1015,7 +1016,7 @@
 /*?*/       return String();
 /*N*/ }
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 // ========================================
 
@@ -1498,9 +1499,9 @@ using namespace com::sun::star;
 /*N*/   while( sNm.Len() )
 /*N*/   {
 /*N*/       SchSingleCell aCell;
-/*N*/       aCell.mnColumn = ::lcl_GetWriterBoxNum( sNm, bFirst );
+/*N*/       aCell.mnColumn = ::binfilter::lcl_GetWriterBoxNum( sNm, bFirst );
 /*N*/       bFirst = FALSE;
-/*N*/       aCell.mnRow = ::lcl_GetWriterBoxNum( sNm, bFirst );
+/*N*/       aCell.mnRow = ::binfilter::lcl_GetWriterBoxNum( sNm, bFirst );
 /*N*/       rToFill.maCells.push_back( aCell );
 /*N*/   }
 /*N*/ }
@@ -1564,8 +1565,8 @@ using namespace com::sun::star;
 /*N*/           DBG_ASSERT( STRING_NOTFOUND != nTrenner, "no valid selection" );
 /*N*/
 /*N*/           SchCellRangeAddress aCRA;
-/*N*/           ::lcl_GetWriterTblBox( sBox.Copy( 0, nTrenner ), aCRA.maUpperLeft );
-/*N*/           ::lcl_GetWriterTblBox( sBox.Copy( nTrenner+1 ), aCRA.maLowerRight );
+/*N*/           ::binfilter::lcl_GetWriterTblBox( sBox.Copy( 0, nTrenner ), aCRA.maUpperLeft );
+/*N*/           ::binfilter::lcl_GetWriterTblBox( sBox.Copy( nTrenner+1 ), aCRA.maLowerRight );
 /*N*/           aRange.maRanges.push_back( aCRA );
 /*N*/       }
 /*N*/       if( aSomeData2.Len() )
@@ -1584,9 +1585,9 @@ using namespace com::sun::star;
 /*N*/           ::std::vector< SchCellRangeAddress >::const_iterator
 /*N*/                                               aIter = rRg.maRanges.begin();
 /*N*/           sData1.Assign( '<' )
-/*N*/                 .Append( ::lcl_GetWriterBoxName( aIter->maUpperLeft ))
+/*N*/                 .Append( ::binfilter::lcl_GetWriterBoxName( aIter->maUpperLeft ))
 /*N*/                 .Append( ':' )
-/*N*/                 .Append( ::lcl_GetWriterBoxName( aIter->maLowerRight ))
+/*N*/                 .Append( ::binfilter::lcl_GetWriterBoxName( aIter->maLowerRight ))
 /*N*/                 .Append( '>' );
 /*N*/
 /*N*/           sData2.Assign( rRg.mbFirstRowContainsLabels ? '1' : '0' )
@@ -1732,3 +1733,4 @@ using namespace com::sun::star;
 //STRIP001         SomeData3() = aSheetNames;
 //STRIP001     }
 //STRIP001 }
+}

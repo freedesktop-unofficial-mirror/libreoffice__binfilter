@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editundo.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #include <editundo.hxx>
 #include <editview.hxx>
 #include <editeng.hxx>
+namespace binfilter {
 
 DBG_NAME( EditUndo );
 
@@ -839,3 +840,4 @@ DBG_NAME( EditUndo );
 //STRIP001  DBG_ERROR( "EditUndoMarkSelection::Repeat nicht implementiert!" );
 //STRIP001 }
 
+}

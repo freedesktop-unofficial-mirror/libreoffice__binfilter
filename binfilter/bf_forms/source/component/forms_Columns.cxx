@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Columns.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,6 +115,7 @@
 #ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
 #endif
+namespace binfilter {
 
 namespace internal {
 sal_Int32 findPos(const ::rtl::OUString& aStr, const StringSequence& rList);
@@ -190,7 +191,7 @@ sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
             : aModelName.copy(aCompatibleModelPrefix.getLength());
 
         const StringSequence& rColumnTypes = getColumnTypes();
-        nTypeId = ::internal::findPos(aColumnType, rColumnTypes);
+        nTypeId = ::binfilter::internal::findPos(aColumnType, rColumnTypes);//STRIP008         nTypeId = ::internal::findPos(aColumnType, rColumnTypes);
     }
     return nTypeId;
 }
@@ -727,3 +728,4 @@ IMPL_COLUMN(FormattedFieldColumn,   FRM_SUN_COMPONENT_FORMATTEDFIELD,   sal_Fals
 }   // namespace frm
 //.........................................................................
 
+}

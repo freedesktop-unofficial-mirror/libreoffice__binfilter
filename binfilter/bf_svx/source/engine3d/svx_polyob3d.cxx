@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_polyob3d.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,7 @@
 #ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
 #endif
+namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPolyObj, E3dObject);
 
@@ -791,3 +792,4 @@
 //STRIP001 }
 
 
+}

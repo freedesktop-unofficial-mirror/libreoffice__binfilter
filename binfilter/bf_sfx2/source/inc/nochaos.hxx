@@ -2,9 +2,9 @@
  *
  *  $RCSfile: nochaos.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,8 +60,9 @@
  ************************************************************************/
 #ifndef _SFX_NOCHAOS_HXX
 #define _SFX_NOCHAOS_HXX
-
 class SfxItemPool;
+namespace binfilter {
+
 
 class NoChaos
 {
@@ -70,5 +71,6 @@ public:
     static USHORT           ReleaseItemPool();
 };
 
+}//end of namespace binfilter
 #endif
 

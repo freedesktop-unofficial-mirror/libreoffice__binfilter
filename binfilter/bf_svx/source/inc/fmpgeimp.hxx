@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmpgeimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,20 +91,24 @@
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
-
+FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
+FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
+FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
 class SvStream;
+namespace binfilter {
+
 class SdrIOHeader;
 class FmFormObj;
 class SdrObject;
 
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
-FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
-FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
-FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
+//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
+//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
+//STRIP008 FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
 
 class SdrObjList;
 
-DECLARE_LIST(FmObjectList, FmFormObj*);
+DECLARE_LIST(FmObjectList, FmFormObj*)//STRIP008 DECLARE_LIST(FmObjectList, FmFormObj*);
 
 //==================================================================
 // FmFormPageImpl
@@ -188,5 +192,6 @@ public:
 };
 
 
+}//end of namespace binfilter
 #endif // _SVX_FMUNOPGE_HXX
 

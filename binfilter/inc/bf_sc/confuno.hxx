@@ -2,9 +2,9 @@
  *
  *  $RCSfile: confuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,12 +79,13 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
+namespace binfilter {
 
 class ScDocShell;
 
 class ScDocumentConfiguration : public cppu::WeakImplHelper2<
-                                        com::sun::star::beans::XPropertySet,
-                                        com::sun::star::lang::XServiceInfo>,
+                                        ::com::sun::star::beans::XPropertySet,
+                                        ::com::sun::star::lang::XServiceInfo>,
                                 public SfxListener
 {
 private:
@@ -149,5 +150,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

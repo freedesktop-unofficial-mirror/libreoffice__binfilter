@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLExportSharedData.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,9 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ScMySharedData::ScMySharedData(const sal_Int32 nTempTableCount) :
     nLastColumns(nTempTableCount, 0),
@@ -184,4 +185,5 @@ void ScMySharedData::AddTableShape(const sal_Int32 nTable, const uno::Reference<
     if (!pTableShapes)
         pTableShapes = new ScMyTableShapes(nTableCount);
     (*pTableShapes)[nTable].push_back(xShape);
+}
 }

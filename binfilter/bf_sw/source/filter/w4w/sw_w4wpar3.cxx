@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wpar3.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -145,6 +145,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 
 SV_IMPL_PTRARR( W4WPDTInfos, W4WPDTInfo_Ptr )
@@ -1506,3 +1507,4 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 }
 
 
+}

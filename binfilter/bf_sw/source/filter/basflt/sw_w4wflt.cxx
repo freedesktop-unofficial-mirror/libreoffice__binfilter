@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wflt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -131,7 +131,7 @@ typedef int(**CHand)( void*, void*, void*, void*, void* );
 #endif
 
 
-#define C2U(s) rtl::OUString::createFromAscii(s)
+#define C2U(s) ::rtl::OUString::createFromAscii(s)
 #define CREATE_CONST_ASC(s) String::CreateFromAscii( \
     RTL_CONSTASCII_STRINGPARAM(s))
 // ---------------------------------------------------------------------
@@ -160,6 +160,7 @@ typedef int (FAR PASCAL *FNw4wf)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
 
 // definition for the INSO Filters
 #include <os2.h>
+namespace binfilter {
 
 #define FNDisp int
 
@@ -167,9 +168,9 @@ typedef int ( _System *FN32Display)( int );
 typedef int ( _System *FN32autorec)( PSZ, int, int FAR* );
 typedef int ( _System *FN32w4wt)( PSZ, PSZ, PSZ, PSZ, FN32Display );
 typedef int ( _System *FN32w4wf)( PSZ, PSZ, PSZ, PSZ, FN32Display );
-
+} //namespace binfilter
 #endif // PM2
-
+namespace binfilter {//STRIP009
 // ---------------------------------------------------------------------
 
 //Same as osl::Module, except will search for its modules in the filter subdir
@@ -185,8 +186,8 @@ typedef int ( _System *FN32w4wf)( PSZ, PSZ, PSZ, PSZ, FN32Display );
 //STRIP001  SvtPathOptions aOpt;
 //STRIP001  if (aOpt.SearchFile(rStr, SvtPathOptions::PATH_FILTER))
 //STRIP001  {
-//STRIP001      rtl::OUString aPathURL;
-//STRIP001      osl::FileBase::getFileURLFromSystemPath(rtl::OUString(rStr),aPathURL);
+//STRIP001      ::rtl::OUString aPathURL;
+//STRIP001      osl::FileBase::getFileURLFromSystemPath(::rtl::OUString(rStr),aPathURL);
 //STRIP001      bRet = load(aPathURL);
 //STRIP001  }
 //STRIP001  return bRet;
@@ -369,13 +370,13 @@ typedef int ( _System *FN32w4wf)( PSZ, PSZ, PSZ, PSZ, FN32Display );
 
 //STRIP001 FNDisp W4WReadDisplayHandler( int nPercent )
 //STRIP001 {
-//STRIP001  ::SetProgressState( nPercent  / 3, 0 );
+//STRIP001  ::binfilter::SetProgressState( nPercent  / 3, 0 );
 //STRIP001  return 0;       // -1 fuehrt zu Abbruch
 //STRIP001 }
 
 //STRIP001 FNDisp W4WWriteDisplayHandler( int nPercent )
 //STRIP001 {
-//STRIP001  ::SetProgressState( 67 + nPercent  / 3, 0 );
+//STRIP001  ::binfilter::SetProgressState( 67 + nPercent  / 3, 0 );
 //STRIP001  return 0;       // -1 fuehrt zu Abbruch
 //STRIP001 }
 
@@ -744,3 +745,4 @@ typedef int ( _System *FN32w4wf)( PSZ, PSZ, PSZ, PSZ, FN32Display );
 //STRIP001 }
 
 //STRIP001 #endif   // _DLL_
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,6 +208,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 #define URL_DECODE  \
     , INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS
@@ -634,10 +635,10 @@ public:
 /*N*/ }
 
 typedef const SvxFontItem *SvxFontItemPtr;
-SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 );
+SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 )//STRIP008 ;
 
 typedef SwTxtAttr *SwTxtAttrPtr;
-SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 );
+SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 
 /*N*/ void Sw3IoImp::ConvertText( ByteString& rText8, String& rText,
 /*N*/                           xub_StrLen nOffset, SwTxtNode& rNd,
@@ -2918,3 +2919,4 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 );
 //STRIP001 }
 
 
+}

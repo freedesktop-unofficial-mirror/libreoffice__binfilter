@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_XPropertyTable.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,11 +101,12 @@
 
 #include "unoapi.hxx"
 #include "unoprnms.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::container;
-using namespace com::sun::star::lang;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::lang;
 using namespace ::cppu;
 using namespace ::rtl;
 using namespace ::vos;
@@ -800,4 +801,5 @@ uno::Sequence<  OUString > SAL_CALL SvxUnoXBitmapTable::getSupportedServiceNames
     const OUString aServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.BitmapTable" ) );
     Sequence< OUString > aServices( &aServiceName, 1 );
     return aServices;
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,6 +150,7 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------
 
@@ -530,12 +531,12 @@
 /*N*/                   nSet=aAppOptions.GetLinkMode();
 /*N*/               }
 /*N*/
-/*N*/                 if (nCanUpdate == com::sun::star::document::UpdateDocMode::NO_UPDATE)
+/*N*/                 if (nCanUpdate == ::com::sun::star::document::UpdateDocMode::NO_UPDATE)
 /*N*/                     nSet = LM_NEVER;
-/*N*/                 else if (nCanUpdate == com::sun::star::document::UpdateDocMode::QUIET_UPDATE &&
+/*N*/                 else if (nCanUpdate == ::com::sun::star::document::UpdateDocMode::QUIET_UPDATE &&
 /*N*/                     nSet == LM_ON_DEMAND)
 /*N*/                     nSet = LM_NEVER;
-/*N*/                 else if (nCanUpdate == com::sun::star::document::UpdateDocMode::FULL_UPDATE)
+/*N*/                 else if (nCanUpdate == ::com::sun::star::document::UpdateDocMode::FULL_UPDATE)
 /*N*/                     nSet = LM_ALWAYS;
 /*N*/
 /*N*/               if(nSet==LM_ON_DEMAND)
@@ -568,8 +569,8 @@
 /*?*/               BOOL bDone = FALSE;
 /*?*/                 ScDBCollection* pDBColl = aDocument.GetDBCollection();
 /*?*/
-/*?*/                 if ((nCanUpdate != com::sun::star::document::UpdateDocMode::NO_UPDATE) &&
-/*?*/                    (nCanUpdate != com::sun::star::document::UpdateDocMode::QUIET_UPDATE))
+/*?*/                 if ((nCanUpdate != ::com::sun::star::document::UpdateDocMode::NO_UPDATE) &&
+/*?*/                    (nCanUpdate != ::com::sun::star::document::UpdateDocMode::QUIET_UPDATE))
 /*?*/                 {
 /*?*/                   ScRange aRange;
 /*?*/                   ScTabViewShell* pViewSh = GetBestViewShell();
@@ -1022,7 +1023,7 @@
 //STRIP001                         bDone = TRUE;
 //STRIP001                     else
 //STRIP001                         pChangeTrack->SetProtection(
-//STRIP001                             com::sun::star::uno::Sequence< sal_Int8 > (0) );
+//STRIP001                             ::com::sun::star::uno::Sequence< sal_Int8 > (0) );
 //STRIP001                 }
 //STRIP001                 else
 //STRIP001                 {
@@ -1033,7 +1034,7 @@
 //STRIP001             }
 //STRIP001             else
 //STRIP001             {
-//STRIP001                 com::sun::star::uno::Sequence< sal_Int8 > aPass;
+//STRIP001                 ::com::sun::star::uno::Sequence< sal_Int8 > aPass;
 //STRIP001                 SvPasswordHelper::GetHashPassword( aPass, aPassword );
 //STRIP001                 pChangeTrack->SetProtection( aPass );
 //STRIP001             }
@@ -2314,3 +2315,4 @@
 
 
 
+}

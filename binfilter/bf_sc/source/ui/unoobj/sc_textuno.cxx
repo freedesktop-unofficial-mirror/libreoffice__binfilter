@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,8 +100,9 @@
 #include "cell.hxx"
 #include "docfunc.hxx"
 #include "scmod.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -443,10 +444,10 @@ void ScHeaderFooterTextObj::FillDummyFieldData( ScHeaderFieldData& rData )  // s
     rData.nTotalPages   = 99;
 }
 
-rtl::OUString SAL_CALL ScHeaderFooterTextObj::getString() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScHeaderFooterTextObj::getString() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    rtl::OUString aRet;
+    ::rtl::OUString aRet;
     const EditTextObject* pData;
 
     USHORT nPart = aTextData.GetPart();
@@ -473,7 +474,7 @@ rtl::OUString SAL_CALL ScHeaderFooterTextObj::getString() throw(uno::RuntimeExce
     return aRet;
 }
 
-void SAL_CALL ScHeaderFooterTextObj::setString( const rtl::OUString& aText ) throw(uno::RuntimeException)
+void SAL_CALL ScHeaderFooterTextObj::setString( const ::rtl::OUString& aText ) throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     String aString = aText;
@@ -486,7 +487,7 @@ void SAL_CALL ScHeaderFooterTextObj::setString( const rtl::OUString& aText ) thr
 }
 
 void SAL_CALL ScHeaderFooterTextObj::insertString( const uno::Reference<text::XTextRange>& xRange,
-                                            const rtl::OUString& aString, sal_Bool bAbsorb )
+                                            const ::rtl::OUString& aString, sal_Bool bAbsorb )
                                 throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -978,7 +979,7 @@ void ScEditEngineTextObj::SetText( const String& rStr )
     GetEditEngine()->SetText( rStr );
 
     ESelection aSel;
-    ::GetSelection( aSel, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSel, GetEditSource()->GetTextForwarder() );
     SetSelection( aSel );
 }
 
@@ -987,7 +988,7 @@ void ScEditEngineTextObj::SetText( const EditTextObject& rTextObject )
     GetEditEngine()->SetText( rTextObject );
 
     ESelection aSel;
-    ::GetSelection( aSel, GetEditSource()->GetTextForwarder() );
+    ::binfilter::GetSelection( aSel, GetEditSource()->GetTextForwarder() );
     SetSelection( aSel );
 }
 
@@ -1166,3 +1167,4 @@ ScCellTextObj::~ScCellTextObj() throw()
 {
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartDataChangeEventListener.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 
 #include "ChXChartDataChangeEventListener.hxx"
 #include "ChXChartDocument.hxx"
+namespace binfilter {
 
 #ifndef SCH_ASCII_TO_OU
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
@@ -78,9 +79,9 @@
 // using namespace osl;
 using namespace rtl;
 using namespace vos;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::lang;
-using namespace com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star;
 
 ChXChartDataChangeEventListener::ChXChartDataChangeEventListener()
 {
@@ -141,3 +142,4 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataChangeEventListener::getSu
     return aServSeq;
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: AccessibleContextBase.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,8 +117,9 @@
 #endif
 #include <unotools/servicehelper.hxx>
 #include <comphelper/broadcasthelper.hxx>
-
 class Rectangle;
+namespace binfilter {
+
 
 /** @descr
         This base class provides an implementation of the
@@ -279,14 +280,14 @@ public:
         addEventListener(
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::accessibility::XAccessibleEventListener>& xListener)
-        throw (com::sun::star::uno::RuntimeException);
+        throw (::com::sun::star::uno::RuntimeException);
 
     //  Remove an existing event listener.
     virtual void SAL_CALL
         removeEventListener(
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::accessibility::XAccessibleEventListener>& xListener)
-        throw (com::sun::star::uno::RuntimeException);
+        throw (::com::sun::star::uno::RuntimeException);
 
     ///=====  XAccessibleEventListener  ========================================
 
@@ -355,7 +356,7 @@ protected:
 public:
     /// Calls all Listener to tell they the change.
     void
-        CommitChange(const com::sun::star::accessibility::AccessibleEventObject& rEvent) const;
+        CommitChange(const ::com::sun::star::accessibility::AccessibleEventObject& rEvent) const;
 
     /// change the name and call the listener to tell they the change
     void
@@ -377,9 +378,9 @@ protected:
         throw (::com::sun::star::lang::DisposedException);
 
     /// Use this method to set initial Name without notification
-    void SetName(const rtl::OUString& rName) { msName = rName; }
+    void SetName(const ::rtl::OUString& rName) { msName = rName; }
     /// Use this method to set initial Description without notification
-    void SetDescription(const rtl::OUString& rDesc) { msDescription = rDesc; }
+    void SetDescription(const ::rtl::OUString& rDesc) { msDescription = rDesc; }
 
     /// Reference to the parent object.
     ::com::sun::star::uno::Reference<
@@ -406,4 +407,5 @@ private:
 };
 
 
+} //namespace binfilter
 #endif

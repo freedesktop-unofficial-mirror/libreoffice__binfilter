@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_consoli.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 #include "subtotal.hxx"
 #include "compiler.hxx"                 // fuer errNoValue
 #include "cell.hxx"
+namespace binfilter {
 
 #define SC_CONS_NOTFOUND    0xFFFF
 
@@ -884,3 +885,4 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 
 
+}

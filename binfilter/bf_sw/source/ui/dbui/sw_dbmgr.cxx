@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -304,19 +304,20 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace svx;
 using namespace ::com::sun::star;
-using namespace com::sun::star::text;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::container;
-using namespace com::sun::star::frame;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::sdb;
-using namespace com::sun::star::sdbc;
-using namespace com::sun::star::sdbcx;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::util;
-using namespace com::sun::star::task;
+using namespace ::com::sun::star::text;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::frame;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::sdb;
+using namespace ::com::sun::star::sdbc;
+using namespace ::com::sun::star::sdbcx;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::util;
+using namespace ::com::sun::star::task;
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
 #define C2U(cChar) ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(cChar))
@@ -346,7 +347,7 @@ namespace
  * --------------------------------------------------*/
 
 /*N*/ class SwConnectionDisposedListener_Impl : public cppu::WeakImplHelper1
-/*N*/ < com::sun::star::lang::XEventListener >
+/*N*/ < ::com::sun::star::lang::XEventListener >
 /*N*/ {
 /*N*/     SwNewDBMgr&     rDBMgr;
 /*N*/
@@ -748,7 +749,7 @@ namespace
 //STRIP001      {
 //STRIP001          String sStr;
 //STRIP001             Sequence<rtl::OUString> aColNames = xCols->getElementNames();
-//STRIP001             const rtl::OUString* pColNames = aColNames.getConstArray();
+//STRIP001             const ::rtl::OUString* pColNames = aColNames.getConstArray();
 //STRIP001          long nLength = aColNames.getLength();
 //STRIP001          for(long i = 0; i < nLength; i++)
 //STRIP001          {
@@ -779,7 +780,7 @@ namespace
 //STRIP001         xConnection = pParam->xConnection;
 //STRIP001     else
 //STRIP001     {
-//STRIP001         rtl::OUString sDBName(rDBName);
+//STRIP001         ::rtl::OUString sDBName(rDBName);
 //STRIP001         xConnection = RegisterConnection( sDBName );
 //STRIP001     }
 //STRIP001  if(xConnection.is())
@@ -789,7 +790,7 @@ namespace
 //STRIP001      {
 //STRIP001          Reference<XNameAccess> xTbls = xTSupplier->getTables();
 //STRIP001             Sequence<rtl::OUString> aTbls = xTbls->getElementNames();
-//STRIP001             const rtl::OUString* pTbls = aTbls.getConstArray();
+//STRIP001             const ::rtl::OUString* pTbls = aTbls.getConstArray();
 //STRIP001          for(long i = 0; i < aTbls.getLength(); i++)
 //STRIP001             {
 //STRIP001                 USHORT nEntry = pListBox->InsertEntry(pTbls[i]);
@@ -801,7 +802,7 @@ namespace
 //STRIP001      {
 //STRIP001          Reference<XNameAccess> xQueries = xQSupplier->getQueries();
 //STRIP001             Sequence<rtl::OUString> aQueries = xQueries->getElementNames();
-//STRIP001             const rtl::OUString* pQueries = aQueries.getConstArray();
+//STRIP001             const ::rtl::OUString* pQueries = aQueries.getConstArray();
 //STRIP001          for(long i = 0; i < aQueries.getLength(); i++)
 //STRIP001             {
 //STRIP001                 USHORT nEntry = pListBox->InsertEntry(pQueries[i]);
@@ -829,7 +830,7 @@ namespace
 //STRIP001         xConnection = pParam->xConnection;
 //STRIP001     else
 //STRIP001     {
-//STRIP001         rtl::OUString sDBName(rDBName);
+//STRIP001         ::rtl::OUString sDBName(rDBName);
 //STRIP001         xConnection = RegisterConnection( sDBName );
 //STRIP001     }
 //STRIP001  Reference< XColumnsSupplier> xColsSupp = SwNewDBMgr::GetColumnSupplier(xConnection, rTableName);
@@ -837,7 +838,7 @@ namespace
 //STRIP001  {
 //STRIP001      Reference <XNameAccess> xCols = xColsSupp->getColumns();
 //STRIP001         const Sequence<rtl::OUString> aColNames = xCols->getElementNames();
-//STRIP001         const rtl::OUString* pColNames = aColNames.getConstArray();
+//STRIP001         const ::rtl::OUString* pColNames = aColNames.getConstArray();
 //STRIP001      for(int nCol = 0; nCol < aColNames.getLength(); nCol++)
 //STRIP001      {
 //STRIP001          pListBox->InsertEntry(pColNames[nCol]);
@@ -859,7 +860,7 @@ namespace
 //STRIP001  {
 //STRIP001      Reference <XNameAccess> xCols = xColsSupp->getColumns();
 //STRIP001         const Sequence<rtl::OUString> aColNames = xCols->getElementNames();
-//STRIP001         const rtl::OUString* pColNames = aColNames.getConstArray();
+//STRIP001         const ::rtl::OUString* pColNames = aColNames.getConstArray();
 //STRIP001      for(int nCol = 0; nCol < aColNames.getLength(); nCol++)
 //STRIP001      {
 //STRIP001          pListBox->InsertEntry(pColNames[nCol]);
@@ -987,7 +988,7 @@ namespace
 //STRIP001     pViewProperties[9].Name = C2U("PrintFaxName");
 //STRIP001     pViewProperties[9].Value <<= rOpt.GetFaxName();
 //STRIP001     pViewProperties[10].Name = C2U("PrintAnnotationMode");
-//STRIP001     pViewProperties[10].Value <<= (com::sun::star::text::NotePrintMode) rOpt.GetPrintPostIts();
+//STRIP001     pViewProperties[10].Value <<= (::com::sun::star::text::NotePrintMode) rOpt.GetPrintPostIts();
 //STRIP001     pViewProperties[11].Name = C2U("PrintProspect");
 //STRIP001     pViewProperties[11].Value <<= (sal_Bool)rOpt.IsPrintProspect();
 //STRIP001     pViewProperties[12].Name = C2U("PrintPageBackground");
@@ -1434,7 +1435,7 @@ namespace
 //STRIP001                 xConnection = pParam->xConnection;
 //STRIP001             else
 //STRIP001             {
-//STRIP001                 rtl::OUString sDBName(rDBName);
+//STRIP001                 ::rtl::OUString sDBName(rDBName);
 //STRIP001                 xConnection = RegisterConnection( sDBName );
 //STRIP001             }
 //STRIP001             if(bUseMergeData)
@@ -1522,9 +1523,9 @@ namespace
 //STRIP001                     Reference<XPropertySet> xNumProps = xNumberFormats->getByKey( nFmt );
 //STRIP001                     Any aFormat = xNumProps->getPropertyValue(C2U("FormatString"));
 //STRIP001                     Any aLocale = xNumProps->getPropertyValue(C2U("Locale"));
-//STRIP001                     rtl::OUString sFormat;
+//STRIP001                     ::rtl::OUString sFormat;
 //STRIP001                     aFormat >>= sFormat;
-//STRIP001                     com::sun::star::lang::Locale aLoc;
+//STRIP001                     ::com::sun::star::lang::Locale aLoc;
 //STRIP001                     aLocale >>= aLoc;
 //STRIP001                     nFmt = xDocNumberFormats->queryKey( sFormat, aLoc, sal_False );
 //STRIP001                     if(NUMBERFORMAT_ENTRY_NOT_FOUND == nFmt)
@@ -1557,7 +1558,7 @@ namespace
 //STRIP001         xConnection = pParam->xConnection;
 //STRIP001     else
 //STRIP001     {
-//STRIP001         rtl::OUString sDBName(rDBName);
+//STRIP001         ::rtl::OUString sDBName(rDBName);
 //STRIP001         xConnection = RegisterConnection( sDBName );
 //STRIP001     }
 //STRIP001  Reference< XColumnsSupplier> xColsSupp = SwNewDBMgr::GetColumnSupplier(xConnection, rTableName);
@@ -1995,7 +1996,7 @@ namespace
 /*?*/         pFound->xConnection = pParam->xConnection;
 /*?*/     else
 /*?*/     {
-/*?*/         rtl::OUString sDataSource(rDataSource);
+/*?*/         ::rtl::OUString sDataSource(rDataSource);
 /*?*/         pFound->xConnection = RegisterConnection( sDataSource );
 /*?*/     }
 /*?*/   if(pFound->xConnection.is())
@@ -2014,8 +2015,8 @@ namespace
 /*?*/                 pFound->bScrollable = TRUE;
 /*?*/             }
 /*?*/           pFound->xStatement = pFound->xConnection->createStatement();
-/*?*/             rtl::OUString aQuoteChar = xMetaData->getIdentifierQuoteString();
-/*?*/             rtl::OUString sStatement(C2U("SELECT * FROM "));
+/*?*/             ::rtl::OUString aQuoteChar = xMetaData->getIdentifierQuoteString();
+/*?*/             ::rtl::OUString sStatement(C2U("SELECT * FROM "));
 /*?*/             sStatement = C2U("SELECT * FROM ");
 /*?*/             sStatement += aQuoteChar;
 /*?*/             sStatement += rTableOrQuery;
@@ -2040,7 +2041,7 @@ namespace
 /* -----------------------------14.08.2001 10:26------------------------------
 
  ---------------------------------------------------------------------------*/
-/*?*/ Reference< XConnection> SwNewDBMgr::RegisterConnection(rtl::OUString& rDataSource)
+/*?*/ Reference< XConnection> SwNewDBMgr::RegisterConnection(::rtl::OUString& rDataSource)
 /*?*/ {
 /*?*/     SwDSParam* pFound = SwNewDBMgr::FindDSConnection(rDataSource, TRUE);
 /*?*/     Reference< XDataSource> xSource;
@@ -2169,7 +2170,7 @@ namespace
 /* -----------------------------14.08.2001 10:27------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ SwDSParam*  SwNewDBMgr::FindDSConnection(const rtl::OUString& rDataSource, BOOL bCreate)
+/*N*/ SwDSParam*  SwNewDBMgr::FindDSConnection(const ::rtl::OUString& rDataSource, BOOL bCreate)
 /*N*/ {
 /*N*/   SwDSParam* pFound = 0;
 /*N*/   for(USHORT nPos = 0; nPos < aDataSourceParams.Count(); nPos++)
@@ -2272,7 +2273,7 @@ namespace
 //STRIP001  //prevent second call
 //STRIP001     if(pImpl->pMergeDialog)
 //STRIP001      return ;
-//STRIP001     rtl::OUString sDataSource, sDataTableOrQuery;
+//STRIP001     ::rtl::OUString sDataSource, sDataTableOrQuery;
 //STRIP001     Sequence<Any> aSelection;
 //STRIP001
 //STRIP001  sal_Int32 nSelectionPos = 0;
@@ -2328,7 +2329,7 @@ namespace
 /*N*/ void SwNewDBMgr::InsertText(SwWrtShell& rSh,
 /*N*/                       const Sequence< PropertyValue>& rProperties)
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 rtl::OUString sDataSource, sDataTableOrQuery;
+/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 ::rtl::OUString sDataSource, sDataTableOrQuery;
 //STRIP001 /*?*/    Reference<XResultSet>  xResSet;
 //STRIP001 /*?*/     Sequence<Any> aSelection;
 //STRIP001 /*?*/    BOOL bHasSelectionProperty = FALSE;
@@ -2380,7 +2381,7 @@ namespace
 //STRIP001 /*?*/            aDBData );
 //STRIP001 /*?*/    if( RET_OK == pDlg->Execute() )
 //STRIP001 /*?*/    {
-//STRIP001 /*?*/         rtl::OUString sDummy;
+//STRIP001 /*?*/         ::rtl::OUString sDummy;
 //STRIP001 /*?*/         if(!xConnection.is())
 //STRIP001 /*?*/             xConnection = xSource->getConnection(sDummy, sDummy);
 //STRIP001 /*?*/         try
@@ -2501,3 +2502,4 @@ void SwNewDBMgr::RemoveDbtoolsClient()
 /*N*/ }
 
 
+}

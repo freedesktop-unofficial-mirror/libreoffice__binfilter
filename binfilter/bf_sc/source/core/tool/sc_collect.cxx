@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,10 @@
 
 #include "rechead.hxx"
 #include "collect.hxx"
-#include "document.hxx"         // fuer TypedStrData Konstruktor
-/*STRIP001*/ #include <tools/debug.hxx>
+#include "document.hxx"
+#include <tools/debug.hxx>// fuer TypedStrData Konstruktor
+namespace binfilter {
+
 // -----------------------------------------------------------------------
 
 /*N*/ DataObject::~DataObject()
@@ -572,3 +574,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( pKey1 && pKey2 )
 
 
 
+}

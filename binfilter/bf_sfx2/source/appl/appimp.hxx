@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appimp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,13 @@
 
 #include <tools/time.hxx>
 #include <tools/string.hxx>
+class MenuBar;
+class ResMgr;
+class UniqueIndex;
+class BasicManager;
+class Timer;
+class SimpleResMgr;
+namespace binfilter {
 
 class SfxTbxCtrlFactArr_Impl;
 class SfxStbCtrlFactArr_Impl;
@@ -70,17 +77,11 @@ class SfxMenuCtrlFactArr_Impl;
 class SfxViewFrameArr_Impl;
 class SfxViewShellArr_Impl;
 class SfxObjectShellArr_Impl;
-class MenuBar;
 class IntroWindow_Impl;
-class ResMgr;
-class UniqueIndex;
 class SfxTemplateDialog;
-class BasicManager;
 class SfxDialogLibraryContainer;
 class SfxScriptLibraryContainer;
 class SfxBasicTestWin;
-class Timer;
-class SimpleResMgr;
 
 struct SfxApplication_Impl
 {
@@ -114,5 +115,6 @@ struct SfxApplication_Impl
     BOOL                        bAutoSaveNow:1;     // ist TRUE, wenn der Timer abgelaufen ist, wenn die App nicht aktiv war
 };
 
+}//end of namespace binfilter
 #endif
 

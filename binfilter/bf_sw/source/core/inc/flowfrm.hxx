@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flowfrm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _FLOWFRM_HXX
 #define _FLOWFRM_HXX
+namespace binfilter {
 
 //Der FlowFrm gibt die Funktionalitaet fuer alle Frms vor, die fliessen und
 //die sich aufspalten koennen (wie CntntFrm oder TabFrm).
@@ -218,4 +219,5 @@ inline BOOL SwFlowFrm::IsFwdMoveAllowed()
 }
 
 
+} //namespace binfilter
 #endif

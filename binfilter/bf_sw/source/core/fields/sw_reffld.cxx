@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_reffld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -166,7 +166,8 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::lang;
@@ -213,8 +214,8 @@ using namespace ::rtl;
 /*N*/       return FALSE;
 /*N*/
 /*N*/   SvPtrarr aRefArr( 10, 10 ), aArr( 10, 10 );
-/*N*/   ::lcl_GetLayTree( pFrm, aRefArr );
-/*N*/   ::lcl_GetLayTree( pMyFrm, aArr );
+/*N*/   ::binfilter::lcl_GetLayTree( pFrm, aRefArr );
+/*N*/   ::binfilter::lcl_GetLayTree( pMyFrm, aArr );
 /*N*/
 /*N*/   USHORT nRefCnt = aRefArr.Count() - 1, nCnt = aArr.Count() - 1;
 /*N*/ #ifdef VERTICAL_LAYOUT
@@ -529,7 +530,7 @@ using namespace ::rtl;
 /*N*/               break;
 /*N*/           }
 /*N*/
-/*N*/           sTxt = ::IsFrameBehind( *pTFld->GetpTxtNode(), *pTFld->GetStart(),
+/*N*/           sTxt = ::binfilter::IsFrameBehind( *pTFld->GetpTxtNode(), *pTFld->GetStart(),
 /*N*/                                   *pTxtNd, nStt )
 /*N*/                       ? aLocaleData.getAboveWord()
 /*N*/                       : aLocaleData.getBelowWord();
@@ -626,11 +627,11 @@ using namespace ::rtl;
 /*N*/                 break;
 /*N*/             }
 /*N*/         }
-/*N*/         rAny <<= rtl::OUString(sTmp);
+/*N*/         rAny <<= ::rtl::OUString(sTmp);
 /*N*/     }
 /*N*/     break;
 /*N*/   case FIELD_PROP_PAR3:
-/*?*/       rAny <<= rtl::OUString(Expand());
+/*?*/       rAny <<= ::rtl::OUString(Expand());
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       rAny <<= (sal_Int16)nSeqNo;
@@ -698,7 +699,7 @@ using namespace ::rtl;
 /*?*/     }
 /*?*/     break;
 /*?*/   case FIELD_PROP_PAR3:
-/*?*/       SetExpand( ::GetString( rAny, sTmp ));
+/*?*/       SetExpand( ::binfilter::GetString( rAny, sTmp ));
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       {
@@ -1061,3 +1062,4 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwGetRefF
 /*N*/   }
 /*N*/ }
 
+}

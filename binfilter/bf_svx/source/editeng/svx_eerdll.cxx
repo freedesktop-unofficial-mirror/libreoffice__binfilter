@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_eerdll.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,6 +116,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 /*N*/ GlobalEditData::GlobalEditData()
 /*N*/ {
@@ -262,3 +263,4 @@
 /*N*/   delete pResMgr;
 /*N*/   delete pGlobalData;
 /*N*/ }
+}

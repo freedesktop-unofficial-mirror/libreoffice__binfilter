@@ -2,9 +2,9 @@
  *
  *  $RCSfile: idxmrk.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef  _COM_SUN_STAR_I18N_XEXTENDEDINDEXENTRYSUPPLIER_HPP_
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
 #endif
+namespace binfilter {
 class SwWrtShell;
 class SwTOXMgr;
 class SwTOXMark;
@@ -171,7 +172,7 @@ class SwIndexMarkModalDlg;
 //STRIP001  BOOL            bPhoneticED2_ChangedByUser;
 //STRIP001  LanguageType    nLangForPhoneticReading; //Language of current text used for phonetic reading proposal
 //STRIP001  BOOL            bIsPhoneticReadingEnabled; //this value states wether phopentic reading is enabled in principle dependend of global cjk settings and language of current entry
-//STRIP001  com::sun::star::uno::Reference< com::sun::star::i18n::XExtendedIndexEntrySupplier >
+//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::i18n::XExtendedIndexEntrySupplier >
 //STRIP001                  xExtendedIndexEntrySupplier;
 //STRIP001
 //STRIP001  SwTOXMgr*       pTOXMgr;
@@ -375,5 +376,6 @@ public:
 //STRIP001 };
 
 
+} //namespace binfilter
 #endif // _IDXMRK_HXX
 

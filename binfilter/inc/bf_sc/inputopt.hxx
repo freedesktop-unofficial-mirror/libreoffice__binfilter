@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inputopt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 
 class SvStream;
 
+namespace binfilter {
 
 class ScInputOptions
 {
@@ -127,9 +128,9 @@ public:
 //==================================================================
 
 class ScInputCfg : public ScInputOptions,
-                  public utl::ConfigItem
+    public ::utl::ConfigItem
 {
-    com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
 
 public:
             ScInputCfg();
@@ -137,10 +138,11 @@ public:
     void            SetOptions( const ScInputOptions& rNew ){DBG_ASSERT(0, "STRIP");} //STRIP001    void            SetOptions( const ScInputOptions& rNew );
 //STRIP001  void            OptionsChanged();   // after direct access to SetOptions base class
 //STRIP001
-//STRIP001  virtual void    Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );
+//STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );
 //STRIP001  virtual void    Commit();
 };
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlcoli.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,8 +101,9 @@
 #ifndef _COM_SUN_STAR_SHEET_XPRINTAREAS_HPP_
 #include <com/sun/star/sheet/XPrintAreas.hpp>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -121,11 +122,11 @@ ScXMLTableColContext::ScXMLTableColContext( ScXMLImport& rImport,
 
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -223,7 +224,7 @@ void ScXMLTableColContext::EndElement()
                             if (pStyle)
                                 pStyle->FillPropertySet(xColumnProperties);
                         }
-                        rtl::OUString sVisible(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLVIS));
+                        ::rtl::OUString sVisible(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLVIS));
                         uno::Any aAny = xColumnProperties->getPropertyValue(sVisible);
                         if (IsXMLToken(sVisibility, XML_VISIBLE))
                         {
@@ -269,11 +270,11 @@ ScXMLTableColsContext::ScXMLTableColsContext( ScXMLImport& rImport,
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            rtl::OUString aLocalName;
+            ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+            ::rtl::OUString aLocalName;
             sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                                 sAttrName, &aLocalName );
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
             if (nPrfx == XML_NAMESPACE_TABLE && IsXMLToken(aLocalName, XML_DISPLAY))
             {
@@ -383,4 +384,5 @@ void ScXMLTableColsContext::EndElement()
             }
         }
     }
+}
 }

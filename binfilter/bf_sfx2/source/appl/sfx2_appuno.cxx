@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -233,6 +233,7 @@ using namespace ::com::sun::star::io;
 #include "sfxbasecontroller.hxx"
 #include "brokenpackageint.hxx"
 #include "eventsupplier.hxx"
+namespace binfilter {
 
 #define FRAMELOADER_SERVICENAME         "com.sun.star.frame.FrameLoader"
 #define PROTOCOLHANDLER_SERVICENAME     "com.sun.star.frame.ProtocolHandler"
@@ -1560,11 +1561,11 @@ static const String sDocumentTitle  = String::CreateFromAscii( "DocumentTitle" )
 /*N*/         throw (::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
-
+} //namespace binfilter
 extern ::com::sun::star::uno::Any sbxToUnoValue( SbxVariable* pVar );
-
+namespace binfilter {//STRIP009
 // -----------------------------------------------------------------------
-/*N*/ ErrCode SfxMacroLoader::loadMacro( const ::rtl::OUString& rURL, com::sun::star::uno::Any& rRetval, SfxObjectShell* pSh )
+/*N*/ ErrCode SfxMacroLoader::loadMacro( const ::rtl::OUString& rURL, ::com::sun::star::uno::Any& rRetval, SfxObjectShell* pSh )
 /*N*/   throw ( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/     SfxApplication* pApp = SFX_APP();
@@ -1793,12 +1794,12 @@ extern ::com::sun::star::uno::Any sbxToUnoValue( SbxVariable* pVar );
 
 class TestKeyHandler: public ::cppu::WeakImplHelper2
 <
-    com::sun::star::awt::XKeyHandler,
-    com::sun::star::lang::XServiceInfo
+    ::com::sun::star::awt::XKeyHandler,
+    ::com::sun::star::lang::XServiceInfo
 >
 {
 public:
-    TestKeyHandler( const com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& ){}
+    TestKeyHandler( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& ){}
 
     SFX_DECL_XSERVICEINFO
     virtual sal_Bool SAL_CALL keyPressed( const ::com::sun::star::awt::KeyEvent& aEvent ) throw (::com::sun::star::uno::RuntimeException);
@@ -1809,12 +1810,12 @@ public:
 
 class TestMouseClickHandler: public ::cppu::WeakImplHelper2
 <
-    com::sun::star::awt::XMouseClickHandler,
-    com::sun::star::lang::XServiceInfo
+    ::com::sun::star::awt::XMouseClickHandler,
+    ::com::sun::star::lang::XServiceInfo
 >
 {
 public:
-    TestMouseClickHandler( const com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& ){}
+    TestMouseClickHandler( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& ){}
 
     SFX_DECL_XSERVICEINFO
     virtual sal_Bool SAL_CALL mousePressed( const ::com::sun::star::awt::MouseEvent& e ) throw (::com::sun::star::uno::RuntimeException);
@@ -2148,3 +2149,4 @@ extern "C" {
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_arealink.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,6 +90,7 @@
 #include "attrib.hxx"           // raus, wenn ResetAttrib am Dokument
 #include "patattr.hxx"          // raus, wenn ResetAttrib am Dokument
 #include "docpool.hxx"          // raus, wenn ResetAttrib am Dokument
+namespace binfilter {
 
 /*N*/ TYPEINIT1(ScAreaLink,::so3::SvBaseLink);
 
@@ -137,7 +138,7 @@
 //STRIP001
 //STRIP001      //  copy source data from members (set in Refresh) into link name for dialog
 //STRIP001      String aLinkName;
-//STRIP001      so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
+//STRIP001      ::so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
 //STRIP001      SetName( aLinkName );
 //STRIP001  }
 //STRIP001  delete pDlg;
@@ -173,7 +174,7 @@
 //STRIP001
 //STRIP001          // adjust in dialog:
 //STRIP001          String aLinkName;
-//STRIP001          so3::MakeLnkName( aLinkName, NULL, aFile, aArea, &aFilter );
+//STRIP001          ::so3::MakeLnkName( aLinkName, NULL, aFile, aArea, &aFilter );
 //STRIP001          SetName( aLinkName );
 //STRIP001      }
 //STRIP001
@@ -214,7 +215,7 @@
 //STRIP001
 //STRIP001  //  also update link name for dialog
 //STRIP001  String aLinkName;
-//STRIP001  so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
+//STRIP001  ::so3::MakeLnkName( aLinkName, NULL, aFileName, aSourceArea, &aFilterName );
 //STRIP001  SetName( aLinkName );
 //STRIP001 }
 
@@ -527,3 +528,4 @@
 //STRIP001  return nRes;
 /*N*/ }
 
+}

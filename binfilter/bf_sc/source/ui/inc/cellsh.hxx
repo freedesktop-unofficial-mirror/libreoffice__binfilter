@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cellsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,10 +81,11 @@
 #ifndef SC_FORMATSH_HXX
 #include "formatsh.hxx"
 #endif
-
-class SvxClipboardFmtItem;
 class TransferableDataHelper;
 class TransferableClipboardListener;
+namespace binfilter {
+
+class SvxClipboardFmtItem;
 
 
 class ScCellShell: public ScFormatShell
@@ -132,4 +133,5 @@ public:
 
 };
 
+} //namespace binfilter
 #endif

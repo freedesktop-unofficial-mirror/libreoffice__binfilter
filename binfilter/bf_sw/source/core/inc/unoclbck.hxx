@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoclbck.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _CALBCK_HXX
 #include <calbck.hxx>
 #endif
+namespace binfilter {
 
 class SwXReferenceMark;
 class SwFmtRefMark;
@@ -84,4 +85,5 @@ public:
     SwXFootnote*        GetFootnote(const SwFmtFtn& rMark);
     SwXDocumentIndexMark* GetTOXMark(const SwTOXMark& rMark);
 };
+} //namespace binfilter
 #endif

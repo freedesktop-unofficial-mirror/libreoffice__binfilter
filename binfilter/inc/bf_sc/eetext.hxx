@@ -2,9 +2,9 @@
  *
  *  $RCSfile: eetext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef SC_EETEXT_HXX
 #define SC_EETEXT_HXX
+namespace binfilter {
 
 //  hier nur Items, die nicht in scitems.hxx sind!
 
@@ -72,6 +73,7 @@
 
 #define ITEMID_LINESPACING      SID_ATTR_CHAR_FONTLIST
 
+} //namespace binfilter
 #endif
 
 

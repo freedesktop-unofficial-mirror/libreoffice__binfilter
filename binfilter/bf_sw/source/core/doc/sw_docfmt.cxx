@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -204,6 +204,7 @@ SO2_DECL_REF(SvLinkName)
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
@@ -580,7 +581,7 @@ struct ParaRstFmt
 /*M*/   else if( !rRg.HasMark() )
 /*M*/   {
 /*M*/       aPara.bResetAll = FALSE;
-/*M*/       ::lcl_RstAttr( &pStt->nNode.GetNode(), &aPara );
+/*M*/       ::binfilter::lcl_RstAttr( &pStt->nNode.GetNode(), &aPara );
 /*M*/       aPara.bResetAll = TRUE;
 /*M*/   }
 /*M*/
@@ -2268,3 +2269,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      FASTBOOL bNotifyLayout = FALSE;
 //STRIP001  SetRedlineMode_intern( eOld );
 //STRIP001 }
 
+}

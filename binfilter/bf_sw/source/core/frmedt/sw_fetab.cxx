@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fetab.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:19:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -162,6 +162,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+namespace binfilter {
 
 //siehe auch swtable.cxx
 #define COLFUZZY 20L
@@ -917,7 +918,7 @@
 //STRIP001  if ( IsTableMode() )
 //STRIP001  {
 //STRIP001      SwSelBoxes aBoxes;
-//STRIP001      ::GetTblSelCrs( *this, aBoxes );
+//STRIP001      ::binfilter::GetTblSelCrs( *this, aBoxes );
 //STRIP001      if( aBoxes.Count() )
 //STRIP001      {
 //STRIP001          const SwTableNode *pTblNd = IsCrsrInTbl();
@@ -1014,7 +1015,7 @@
 //STRIP001
 //STRIP001  SwSelBoxes aBoxes;
 //STRIP001  if( IsTableMode() )
-//STRIP001      ::GetTblSelCrs( *this, aBoxes );
+//STRIP001      ::binfilter::GetTblSelCrs( *this, aBoxes );
 //STRIP001  else
 //STRIP001  {
 //STRIP001      SwFrm *pFrm = GetCurrFrm();
@@ -1057,7 +1058,7 @@
 //STRIP001  {
 //STRIP001      SwSelBoxes aBoxes;
 //STRIP001      if( IsTableMode() )
-//STRIP001          ::GetTblSelCrs( *this, aBoxes );
+//STRIP001          ::binfilter::GetTblSelCrs( *this, aBoxes );
 //STRIP001      else
 //STRIP001      {
 //STRIP001          SwFrm *pFrm = GetCurrFrm();
@@ -1071,7 +1072,7 @@
 //STRIP001          }
 //STRIP001      }
 //STRIP001      if( aBoxes.Count() )
-//STRIP001          bUnProtectAvailable = ::HasProtectedCells( aBoxes );
+//STRIP001          bUnProtectAvailable = ::binfilter::HasProtectedCells( aBoxes );
 //STRIP001  }
 //STRIP001  return bUnProtectAvailable;
 //STRIP001 }
@@ -1166,7 +1167,7 @@
 /*?*/       return FALSE;
 /*N*/
 /*N*/   SwSelBoxes aBoxes;
-/*N*/   ::GetTblSelCrs( *this, aBoxes );
+/*N*/   ::binfilter::GetTblSelCrs( *this, aBoxes );
 /*N*/
 /*N*/   if ( bBalance )
 /*N*/       return aBoxes.Count() > 1;
@@ -1254,7 +1255,7 @@
 //STRIP001
 //STRIP001  // gesamte Tabelle oder nur auf die akt. Selektion
 //STRIP001  if( IsTableMode() )
-//STRIP001      ::GetTblSelCrs( *this, aBoxes );
+//STRIP001      ::binfilter::GetTblSelCrs( *this, aBoxes );
 //STRIP001  else
 //STRIP001  {
 //STRIP001      const SwTableSortBoxes& rTBoxes = pTblNd->GetTable().GetTabSortBoxes();
@@ -1936,3 +1937,4 @@
 //STRIP001 /*?*/     return pTabFrm ? pTabFrm->IsRightToLeft() : FALSE;
 /*M*/ }
 
+}

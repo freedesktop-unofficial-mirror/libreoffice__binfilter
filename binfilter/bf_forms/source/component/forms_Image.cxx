@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Image.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -125,6 +125,7 @@
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
+namespace binfilter {
 
 #define LOCAL_URL_PREFIX    '#'
 
@@ -993,3 +994,4 @@ void OImageControlThread_Impl::processEvent( ::cppu::OComponentHelper *pCompImpl
 }   // namespace frm
 //.........................................................................
 
+}

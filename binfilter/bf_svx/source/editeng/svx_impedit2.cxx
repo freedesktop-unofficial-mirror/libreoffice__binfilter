@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -132,6 +132,7 @@
 #include <sot/formats.hxx>
 
 #include <unicode/ubidi.h>
+namespace binfilter {
 
 #if defined(MACOSX) && ( __GNUC__ < 3 )
 // moved from editundo.hxx
@@ -4217,3 +4218,4 @@ using namespace ::com::sun::star;
 /*N*/     aModifyHdl.Call( NULL /*GetEditEnginePtr()*/ ); // NULL, because also used for Outliner
 /*N*/     return 0;
 /*N*/ }
+}

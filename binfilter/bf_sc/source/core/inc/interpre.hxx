@@ -2,9 +2,9 @@
  *
  *  $RCSfile: interpre.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,13 +86,14 @@
 #if SC_SPEW_ENABLED
 #include "scspew.hxx"
 #endif
+class SbxVariable;
+class SvNumberFormatter;
+namespace binfilter {
 
 class ScDocument;
 class ScMatrix;
-class SbxVariable;
 class ScBaseCell;
 class ScFormulaCell;
-class SvNumberFormatter;
 
 #define MAX_ANZ_MAT 150
                                         // Maximale Anzahl fuer Zwischenergebnis
@@ -760,4 +761,5 @@ inline BOOL ScInterpreter::CheckStringResultLen( String& rResult, const String& 
     return TRUE;
 }
 
+} //namespace binfilter
 #endif

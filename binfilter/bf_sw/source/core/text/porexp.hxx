@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porexp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _POREXP_HXX
 
 #include "portxt.hxx"
+namespace binfilter {
 
 /*************************************************************************
  *                      class SwExpandPortion
@@ -139,4 +140,5 @@ CLASSIO( SwBlankPortion )
 //STRIP001 CLASSIO( SwPostItsPortion )
 
 
+} //namespace binfilter
 #endif

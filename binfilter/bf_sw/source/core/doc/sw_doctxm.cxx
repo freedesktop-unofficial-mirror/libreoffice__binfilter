@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doctxm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -194,6 +194,7 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
+namespace binfilter {
 
 const sal_Unicode cNumRepl      = '@';
 const sal_Unicode cEndPageNum   = '~';
@@ -215,7 +216,7 @@ struct LinkStruct
 };
 
 typedef LinkStruct* LinkStructPtr;
-//STRIP001 SV_DECL_PTRARR(LinkStructArr, LinkStructPtr, 0, 5 );
+//STRIP001 SV_DECL_PTRARR(LinkStructArr, LinkStructPtr, 0, 5 )//STRIP008 ;
 //STRIP001 SV_IMPL_PTRARR(LinkStructArr, LinkStructPtr)
 
 //STRIP001 USHORT SwDoc::GetTOIKeys( SwTOIKeyType eTyp, SvStringsSort& rArr ) const
@@ -1163,7 +1164,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001  SwNodeIndex aInsPos( *pFirstEmptyNd, 1 );
 //STRIP001  for( nCnt = 0; nCnt < aSortArr.Count(); ++nCnt )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      // setze den Text in das Verzeichniss
 //STRIP001      USHORT nLvl = aSortArr[ nCnt ]->GetLevel();
@@ -1253,7 +1254,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001  USHORT  i = 0;
 //STRIP001  while( i < aSortArr.Count() )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      USHORT nLevel = aSortArr[i]->GetLevel();
 //STRIP001
@@ -1360,7 +1361,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001  for( pMark = (SwTOXMark*)aIter.First( TYPE( SwTOXMark )); pMark;
 //STRIP001      pMark = (SwTOXMark*)aIter.Next() )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      if( pMark->GetTOXType()->GetType() == eTOXTyp &&
 //STRIP001          0 != ( pTxtMark = pMark->GetTxtTOXMark() ) )
@@ -1430,7 +1431,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001  const SwOutlineNodes& rOutlNds = rNds.GetOutLineNds();
 //STRIP001  for( USHORT n = 0; n < rOutlNds.Count(); ++n )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001      SwTxtNode* pTxtNd = rOutlNds[ n ]->GetTxtNode();
 //STRIP001      if( pTxtNd && pTxtNd->Len() && pTxtNd->GetDepends() &&
 //STRIP001          USHORT(pTxtNd->GetTxtColl()->GetOutlineLevel()+1) <= GetLevel() &&
@@ -1471,7 +1472,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001          SwTxtNode* pTxtNd = (SwTxtNode*)aIter.First( TYPE( SwTxtNode ));
 //STRIP001          for( ; pTxtNd; pTxtNd = (SwTxtNode*)aIter.Next() )
 //STRIP001          {
-//STRIP001              ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001              ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001              if( pTxtNd->GetTxt().Len() && pTxtNd->GetFrm() &&
 //STRIP001                  pTxtNd->GetNodes().IsDocNodes() &&
@@ -1504,7 +1505,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001      if(!pTxtFld)
 //STRIP001          continue;
 //STRIP001      const SwTxtNode& rTxtNode = pTxtFld->GetTxtNode();
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      if( rTxtNode.GetTxt().Len() && rTxtNode.GetFrm() &&
 //STRIP001          rTxtNode.GetNodes().IsDocNodes() &&
@@ -1546,7 +1547,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001      if(!pTxtFld)
 //STRIP001          continue;
 //STRIP001      const SwTxtNode& rTxtNode = pTxtFld->GetTxtNode();
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001 //       const SwTxtNode* pChapterCompareNode = 0;
 //STRIP001
@@ -1659,7 +1660,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001
 //STRIP001  while( nIdx < nEndIdx )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      SwNode* pNd = rNds[ nIdx ];
 //STRIP001      SwCntntNode* pCNd = 0;
@@ -1755,7 +1756,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001
 //STRIP001  for( USHORT n = 0; n < rArr.Count(); ++n )
 //STRIP001  {
-//STRIP001      ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001      ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001      SwTable* pTmpTbl = SwTable::FindTable( rArr[ n ] );
 //STRIP001      SwTableBox* pFBox;
@@ -1830,7 +1831,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001 {
 //STRIP001  LinkStructArr   aLinkArr;
 //STRIP001  SwDoc* pDoc = (SwDoc*)GetFmt()->GetDoc();
-//STRIP001  ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001  ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001
 //STRIP001  //pTOXNd is only set at the first mark
 //STRIP001  SwTxtNode* pTOXNd = (SwTxtNode*)aSortArr[nArrayIdx]->pTOXNd;
@@ -2132,7 +2133,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 //STRIP001 /*?*/            USHORT nSize = pSortBase->aTOXSources.Count();
 //STRIP001 /*?*/            for( USHORT j = 0; j < nSize; ++j )
 //STRIP001 /*?*/            {
-//STRIP001 /*?*/                ::SetProgressState( 0, pDoc->GetDocShell() );
+//STRIP001 /*?*/                ::binfilter::SetProgressState( 0, pDoc->GetDocShell() );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                SwTOXSource& rTOXSource = pSortBase->aTOXSources[j];
 //STRIP001 /*?*/                if( rTOXSource.pNd )
@@ -2586,3 +2587,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 /*  */
 
 
+}

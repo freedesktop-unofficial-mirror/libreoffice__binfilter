@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flyincnt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 #endif
 #include "txtfrm.hxx"       //fuer IsLocked()
 #include "flyfrms.hxx"
+namespace binfilter {
 
 //aus FlyCnt.cxx
 /*N*/ void DeepCalc( const SwFrm *pFrm );
@@ -246,7 +247,7 @@
 /*N*/   if ( !bValidPos )
 /*N*/   {
 /*N*/       if ( !GetAnchor()->IsTxtFrm() || !((SwTxtFrm*)GetAnchor())->IsLocked() )
-/*N*/           ::DeepCalc( GetAnchor() );
+/*N*/           ::binfilter::DeepCalc( GetAnchor() );
 /*N*/       if( GetAnchor()->IsTxtFrm() )
 /*N*/           ((SwTxtFrm*)GetAnchor())->GetFormatted();
 /*N*/       bValidPos = TRUE;
@@ -321,7 +322,7 @@
 /*N*/   // vgl. SwRowFrm::RegistFlys()
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   ASSERT( pPage, "Flys ohne Seite anmelden?" );
-/*N*/   ::RegistFlys( pPage, this );
+/*N*/   ::binfilter::RegistFlys( pPage, this );
 /*N*/ }
 
 /*************************************************************************
@@ -390,3 +391,4 @@
 /*N*/   Unlock();
 /*N*/ }
 
+}

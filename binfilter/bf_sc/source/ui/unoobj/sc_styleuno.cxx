@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_styleuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #include "unonames.hxx"
 #include "unowids.hxx"
 #include "globstr.hrc"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -132,15 +133,15 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_CFFAMIL),  ATTR_FONT,          &getCppuType((sal_Int16*)0),            0, MID_FONT_FAMILY },
         {MAP_CHAR_LEN(SC_UNO_CJK_CFFAMIL),  ATTR_CJK_FONT,      &getCppuType((sal_Int16*)0),            0, MID_FONT_FAMILY },
         {MAP_CHAR_LEN(SC_UNO_CTL_CFFAMIL),  ATTR_CTL_FONT,      &getCppuType((sal_Int16*)0),            0, MID_FONT_FAMILY },
-        {MAP_CHAR_LEN(SC_UNONAME_CFNAME),   ATTR_FONT,          &getCppuType((rtl::OUString*)0),        0, MID_FONT_FAMILY_NAME },
-        {MAP_CHAR_LEN(SC_UNO_CJK_CFNAME),   ATTR_CJK_FONT,      &getCppuType((rtl::OUString*)0),        0, MID_FONT_FAMILY_NAME },
-        {MAP_CHAR_LEN(SC_UNO_CTL_CFNAME),   ATTR_CTL_FONT,      &getCppuType((rtl::OUString*)0),        0, MID_FONT_FAMILY_NAME },
+        {MAP_CHAR_LEN(SC_UNONAME_CFNAME),   ATTR_FONT,          &getCppuType((::rtl::OUString*)0),      0, MID_FONT_FAMILY_NAME },
+        {MAP_CHAR_LEN(SC_UNO_CJK_CFNAME),   ATTR_CJK_FONT,      &getCppuType((::rtl::OUString*)0),      0, MID_FONT_FAMILY_NAME },
+        {MAP_CHAR_LEN(SC_UNO_CTL_CFNAME),   ATTR_CTL_FONT,      &getCppuType((::rtl::OUString*)0),      0, MID_FONT_FAMILY_NAME },
         {MAP_CHAR_LEN(SC_UNONAME_CFPITCH),  ATTR_FONT,          &getCppuType((sal_Int16*)0),            0, MID_FONT_PITCH },
         {MAP_CHAR_LEN(SC_UNO_CJK_CFPITCH),  ATTR_CJK_FONT,      &getCppuType((sal_Int16*)0),            0, MID_FONT_PITCH },
         {MAP_CHAR_LEN(SC_UNO_CTL_CFPITCH),  ATTR_CTL_FONT,      &getCppuType((sal_Int16*)0),            0, MID_FONT_PITCH },
-        {MAP_CHAR_LEN(SC_UNONAME_CFSTYLE),  ATTR_FONT,          &getCppuType((rtl::OUString*)0),        0, MID_FONT_STYLE_NAME },
-        {MAP_CHAR_LEN(SC_UNO_CJK_CFSTYLE),  ATTR_CJK_FONT,      &getCppuType((rtl::OUString*)0),        0, MID_FONT_STYLE_NAME },
-        {MAP_CHAR_LEN(SC_UNO_CTL_CFSTYLE),  ATTR_CTL_FONT,      &getCppuType((rtl::OUString*)0),        0, MID_FONT_STYLE_NAME },
+        {MAP_CHAR_LEN(SC_UNONAME_CFSTYLE),  ATTR_FONT,          &getCppuType((::rtl::OUString*)0),      0, MID_FONT_STYLE_NAME },
+        {MAP_CHAR_LEN(SC_UNO_CJK_CFSTYLE),  ATTR_CJK_FONT,      &getCppuType((::rtl::OUString*)0),      0, MID_FONT_STYLE_NAME },
+        {MAP_CHAR_LEN(SC_UNO_CTL_CFSTYLE),  ATTR_CTL_FONT,      &getCppuType((::rtl::OUString*)0),      0, MID_FONT_STYLE_NAME },
         {MAP_CHAR_LEN(SC_UNONAME_CHEIGHT),  ATTR_FONT_HEIGHT,   &::getCppuType((const float*)0),            0, MID_FONTHEIGHT | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_CJK_CHEIGHT),  ATTR_CJK_FONT_HEIGHT,&::getCppuType((const float*)0),           0, MID_FONTHEIGHT | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_CTL_CHEIGHT),  ATTR_CTL_FONT_HEIGHT,&::getCppuType((const float*)0),           0, MID_FONTHEIGHT | CONVERT_TWIPS },
@@ -160,7 +161,7 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNO_CJK_CWEIGHT),  ATTR_CJK_FONT_WEIGHT,&::getCppuType((const float*)0),           0, MID_WEIGHT },
         {MAP_CHAR_LEN(SC_UNO_CTL_CWEIGHT),  ATTR_CTL_FONT_WEIGHT,&::getCppuType((const float*)0),           0, MID_WEIGHT },
         {MAP_CHAR_LEN(SC_UNONAME_CWORDMOD), ATTR_FONT_WORDLINE, &getBooleanCppuType(),                  0, 0 },
-        {MAP_CHAR_LEN(SC_UNONAME_DISPNAME), SC_WID_UNO_DISPNAME,&::getCppuType((rtl::OUString*)0),  beans::PropertyAttribute::READONLY, 0 },
+        {MAP_CHAR_LEN(SC_UNONAME_DISPNAME), SC_WID_UNO_DISPNAME,&::getCppuType((::rtl::OUString*)0),    beans::PropertyAttribute::READONLY, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLHJUS), ATTR_HOR_JUSTIFY,   &::getCppuType((const table::CellHoriJustify*)0),   0, MID_HORJUST_HORJUST },
         {MAP_CHAR_LEN(SC_UNONAME_CELLTRAN), ATTR_BACKGROUND,    &::getBooleanCppuType(),            0, MID_GRAPHIC_TRANSPARENT },
         {MAP_CHAR_LEN(SC_UNONAME_WRAP),     ATTR_LINEBREAK,     &::getBooleanCppuType(),            0, 0 },
@@ -211,7 +212,7 @@ const SfxItemPropertyMap* lcl_GetPageStyleMap()
         {MAP_CHAR_LEN(SC_UNO_PAGE_BOTTMARGIN),  ATTR_ULSPACE,       &::getCppuType((const sal_Int32*)0),            0, MID_LO_MARGIN | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_PAGE_CENTERHOR),   ATTR_PAGE_HORCENTER,&::getBooleanCppuType(),            0, 0 },
         {MAP_CHAR_LEN(SC_UNO_PAGE_CENTERVER),   ATTR_PAGE_VERCENTER,&::getBooleanCppuType(),            0, 0 },
-        {MAP_CHAR_LEN(SC_UNONAME_DISPNAME),     SC_WID_UNO_DISPNAME,&::getCppuType((rtl::OUString*)0),  beans::PropertyAttribute::READONLY, 0 },
+        {MAP_CHAR_LEN(SC_UNONAME_DISPNAME),     SC_WID_UNO_DISPNAME,&::getCppuType((::rtl::OUString*)0),    beans::PropertyAttribute::READONLY, 0 },
         {MAP_CHAR_LEN(SC_UNO_PAGE_FIRSTPAGE),   ATTR_PAGE_FIRSTPAGENO,&::getCppuType((const sal_Int16*)0),      0, 0 },
 //
         {MAP_CHAR_LEN(SC_UNO_PAGE_FTRBACKCOL),  SC_WID_UNO_FOOTERSET,&::getCppuType((const sal_Int32*)0),           0, 0 },
@@ -620,7 +621,7 @@ ScStyleFamilyObj* ScStyleFamiliesObj::GetObjectByIndex_Impl(UINT32 nIndex) const
     return NULL;    // ungueltiger Index
 }
 
-ScStyleFamilyObj* ScStyleFamiliesObj::GetObjectByName_Impl(const rtl::OUString& aName) const
+ScStyleFamilyObj* ScStyleFamiliesObj::GetObjectByName_Impl(const ::rtl::OUString& aName) const
 {
     if ( pDocShell )
     {
@@ -669,7 +670,7 @@ sal_Bool SAL_CALL ScStyleFamiliesObj::hasElements() throw(uno::RuntimeException)
 
 // container::XNameAccess
 
-uno::Any SAL_CALL ScStyleFamiliesObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScStyleFamiliesObj::getByName( const ::rtl::OUString& aName )
                     throw(container::NoSuchElementException,
                         lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -683,18 +684,18 @@ uno::Any SAL_CALL ScStyleFamiliesObj::getByName( const rtl::OUString& aName )
     return aAny;
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScStyleFamiliesObj::getElementNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamiliesObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    uno::Sequence<rtl::OUString> aNames(SC_STYLE_FAMILY_COUNT);
-    rtl::OUString* pNames = aNames.getArray();
-    pNames[0] = rtl::OUString::createFromAscii( SC_FAMILYNAME_CELL );
-    pNames[1] = rtl::OUString::createFromAscii( SC_FAMILYNAME_PAGE );
+    uno::Sequence< ::rtl::OUString> aNames(SC_STYLE_FAMILY_COUNT);
+    ::rtl::OUString* pNames = aNames.getArray();
+    pNames[0] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_CELL );
+    pNames[1] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_PAGE );
     return aNames;
 }
 
-sal_Bool SAL_CALL ScStyleFamiliesObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScStyleFamiliesObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -704,7 +705,7 @@ sal_Bool SAL_CALL ScStyleFamiliesObj::hasByName( const rtl::OUString& aName )
 
 // style::XStyleLoader
 
-void SAL_CALL ScStyleFamiliesObj::loadStylesFromURL( const rtl::OUString& aURL,
+void SAL_CALL ScStyleFamiliesObj::loadStylesFromURL( const ::rtl::OUString& aURL,
                         const uno::Sequence<beans::PropertyValue>& aOptions )
                                 throw(io::IOException, uno::RuntimeException)
 {
@@ -752,13 +753,13 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScStyleFamiliesObj::getStyleLoaderO
     uno::Sequence<beans::PropertyValue> aSequence(3);
     beans::PropertyValue* pArray = aSequence.getArray();
 
-    pArray[0].Name = rtl::OUString::createFromAscii( SC_UNONAME_OVERWSTL );
+    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_OVERWSTL );
     ScUnoHelpFunctions::SetBoolInAny( pArray[0].Value, TRUE );
 
-    pArray[1].Name = rtl::OUString::createFromAscii( SC_UNONAME_LOADCELL );
+    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADCELL );
     ScUnoHelpFunctions::SetBoolInAny( pArray[1].Value, TRUE );
 
-    pArray[2].Name = rtl::OUString::createFromAscii( SC_UNONAME_LOADPAGE );
+    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADPAGE );
     ScUnoHelpFunctions::SetBoolInAny( pArray[2].Value, TRUE );
 
     return aSequence;
@@ -813,7 +814,7 @@ ScStyleObj* ScStyleFamilyObj::GetObjectByIndex_Impl(UINT32 nIndex)
     return NULL;
 }
 
-ScStyleObj* ScStyleFamilyObj::GetObjectByName_Impl(const rtl::OUString& aName)
+ScStyleObj* ScStyleFamilyObj::GetObjectByName_Impl(const ::rtl::OUString& aName)
 {
     if ( pDocShell )
     {
@@ -827,7 +828,7 @@ ScStyleObj* ScStyleFamilyObj::GetObjectByName_Impl(const rtl::OUString& aName)
     return NULL;
 }
 
-void SAL_CALL ScStyleFamilyObj::insertByName( const rtl::OUString& aName, const uno::Any& aElement )
+void SAL_CALL ScStyleFamilyObj::insertByName( const ::rtl::OUString& aName, const uno::Any& aElement )
                             throw(lang::IllegalArgumentException, container::ElementExistException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -870,7 +871,7 @@ void SAL_CALL ScStyleFamilyObj::insertByName( const rtl::OUString& aName, const 
     }
 }
 
-void SAL_CALL ScStyleFamilyObj::replaceByName( const rtl::OUString& aName, const uno::Any& aElement )
+void SAL_CALL ScStyleFamilyObj::replaceByName( const ::rtl::OUString& aName, const uno::Any& aElement )
                             throw(lang::IllegalArgumentException, container::NoSuchElementException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -880,7 +881,7 @@ void SAL_CALL ScStyleFamilyObj::replaceByName( const rtl::OUString& aName, const
     insertByName( aName, aElement );
 }
 
-void SAL_CALL ScStyleFamilyObj::removeByName( const rtl::OUString& aName )
+void SAL_CALL ScStyleFamilyObj::removeByName( const ::rtl::OUString& aName )
                                 throw(container::NoSuchElementException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -979,7 +980,7 @@ sal_Bool SAL_CALL ScStyleFamilyObj::hasElements() throw(uno::RuntimeException)
 
 // container::XNameAccess
 
-uno::Any SAL_CALL ScStyleFamilyObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScStyleFamilyObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -994,7 +995,7 @@ uno::Any SAL_CALL ScStyleFamilyObj::getByName( const rtl::OUString& aName )
     return aAny;
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1007,8 +1008,8 @@ uno::Sequence<rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
         UINT16 nCount = aIter.Count();
 
         String aName;
-        uno::Sequence<rtl::OUString> aSeq(nCount);
-        rtl::OUString* pAry = aSeq.getArray();
+        uno::Sequence< ::rtl::OUString> aSeq(nCount);
+        ::rtl::OUString* pAry = aSeq.getArray();
         SfxStyleSheetBase* pStyle = aIter.First();
         UINT16 nPos = 0;
         while (pStyle)
@@ -1021,10 +1022,10 @@ uno::Sequence<rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
         }
         return aSeq;
     }
-    return uno::Sequence<rtl::OUString>();
+    return uno::Sequence< ::rtl::OUString>();
 }
 
-sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1163,16 +1164,16 @@ sal_Bool SAL_CALL ScStyleObj::isInUse() throw(uno::RuntimeException)
     return sal_False;
 }
 
-rtl::OUString SAL_CALL ScStyleObj::getParentStyle() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScStyleObj::getParentStyle() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return ScStyleNameConversion::DisplayToProgrammaticName( pStyle->GetParent(), eFamily );
-    return rtl::OUString();
+    return ::rtl::OUString();
 }
 
-void SAL_CALL ScStyleObj::setParentStyle( const rtl::OUString& rParentStyle )
+void SAL_CALL ScStyleObj::setParentStyle( const ::rtl::OUString& rParentStyle )
                 throw(container::NoSuchElementException, uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1219,16 +1220,16 @@ void SAL_CALL ScStyleObj::setParentStyle( const rtl::OUString& rParentStyle )
 
 // container::XNamed
 
-rtl::OUString SAL_CALL ScStyleObj::getName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScStyleObj::getName() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return ScStyleNameConversion::DisplayToProgrammaticName( pStyle->GetName(), eFamily );
-    return rtl::OUString();
+    return ::rtl::OUString();
 }
 
-void SAL_CALL ScStyleObj::setName( const rtl::OUString& aNewName )
+void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
                                                 throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1306,7 +1307,7 @@ const SfxItemSet* ScStyleObj::GetStyleItemSet_Impl( const String& rPropName,
     return NULL;
 }
 
-beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const rtl::OUString& aPropertyName )
+beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const ::rtl::OUString& aPropertyName )
                                 throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1339,14 +1340,14 @@ beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const rtl::OUString&
 }
 
 uno::Sequence<beans::PropertyState> SAL_CALL ScStyleObj::getPropertyStates(
-                            const uno::Sequence<rtl::OUString>& aPropertyNames )
+                            const uno::Sequence< ::rtl::OUString>& aPropertyNames )
                     throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
     //  duemmliche Default-Implementierung: alles einzeln per getPropertyState holen
     //! sollte optimiert werden!
 
     ScUnoGuard aGuard;
-    const rtl::OUString* pNames = aPropertyNames.getConstArray();
+    const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
     uno::Sequence<beans::PropertyState> aRet(aPropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
     for(sal_Int32 i = 0; i < aPropertyNames.getLength(); i++)
@@ -1354,7 +1355,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScStyleObj::getPropertyStates(
     return aRet;
 }
 
-void SAL_CALL ScStyleObj::setPropertyToDefault( const rtl::OUString& aPropertyName )
+void SAL_CALL ScStyleObj::setPropertyToDefault( const ::rtl::OUString& aPropertyName )
                             throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1367,7 +1368,7 @@ void SAL_CALL ScStyleObj::setPropertyToDefault( const rtl::OUString& aPropertyNa
     SetOnePropertyValue( pMap, NULL );
 }
 
-uno::Any SAL_CALL ScStyleObj::getPropertyDefault( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScStyleObj::getPropertyDefault( const ::rtl::OUString& aPropertyName )
                             throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                                     uno::RuntimeException)
 {
@@ -1425,7 +1426,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyDefault( const rtl::OUString& aProperty
 
 // XMultiPropertySet
 
-void SAL_CALL ScStyleObj::setPropertyValues( const uno::Sequence< rtl::OUString >& aPropertyNames,
+void SAL_CALL ScStyleObj::setPropertyValues( const uno::Sequence< ::rtl::OUString >& aPropertyNames,
                                                 const uno::Sequence< uno::Any >& aValues )
                                 throw (beans::PropertyVetoException, lang::IllegalArgumentException,
                                         lang::WrappedTargetException, uno::RuntimeException)
@@ -1438,7 +1439,7 @@ void SAL_CALL ScStyleObj::setPropertyValues( const uno::Sequence< rtl::OUString 
 
     if ( nCount )
     {
-        const rtl::OUString* pNames = aPropertyNames.getConstArray();
+        const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
         const uno::Any* pValues = aValues.getConstArray();
 
         const SfxItemPropertyMap* pPropertyMap = aPropSet.getPropertyMap();
@@ -1457,7 +1458,7 @@ void SAL_CALL ScStyleObj::setPropertyValues( const uno::Sequence< rtl::OUString 
 }
 
 uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyValues(
-                                    const uno::Sequence< rtl::OUString >& aPropertyNames )
+                                    const uno::Sequence< ::rtl::OUString >& aPropertyNames )
                                 throw (uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1475,7 +1476,7 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyValues(
     return aSequence;
 }
 
-void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence<rtl::OUString>& aPropertyNames,
+void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
                                     const uno::Reference<beans::XPropertiesChangeListener>& xListener )
                                 throw (uno::RuntimeException)
 {
@@ -1489,7 +1490,7 @@ void SAL_CALL ScStyleObj::removePropertiesChangeListener(
     // no bound properties
 }
 
-void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence<rtl::OUString>& aPropertyNames,
+void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
                                     const uno::Reference<beans::XPropertiesChangeListener>& xListener )
                                 throw (uno::RuntimeException)
 {
@@ -1537,7 +1538,7 @@ void SAL_CALL ScStyleObj::setAllPropertiesToDefault() throw (uno::RuntimeExcepti
     }
 }
 
-void SAL_CALL ScStyleObj::setPropertiesToDefault( const uno::Sequence<rtl::OUString>& aPropertyNames )
+void SAL_CALL ScStyleObj::setPropertiesToDefault( const uno::Sequence< ::rtl::OUString>& aPropertyNames )
                                 throw (beans::UnknownPropertyException, uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -1545,7 +1546,7 @@ void SAL_CALL ScStyleObj::setPropertiesToDefault( const uno::Sequence<rtl::OUStr
     sal_Int32 nCount = aPropertyNames.getLength();
     if ( nCount )
     {
-        const rtl::OUString* pNames = aPropertyNames.getConstArray();
+        const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
 
         const SfxItemPropertyMap* pPropertyMap = aPropSet.getPropertyMap();
         const SfxItemPropertyMap* pMap = pPropertyMap;
@@ -1563,7 +1564,7 @@ void SAL_CALL ScStyleObj::setPropertiesToDefault( const uno::Sequence<rtl::OUStr
 }
 
 uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyDefaults(
-                                const uno::Sequence<rtl::OUString>& aPropertyNames )
+                                const uno::Sequence< ::rtl::OUString>& aPropertyNames )
                         throw (beans::UnknownPropertyException, lang::WrappedTargetException,
                                 uno::RuntimeException)
 {
@@ -1592,7 +1593,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScStyleObj::getPropertySetInfo(
 }
 
 void SAL_CALL ScStyleObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -1755,7 +1756,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                                 BYTE nTray = PAPERBIN_PRINTER_SETTINGS;
                                 BOOL bFound = FALSE;
 
-                                rtl::OUString aName;
+                                ::rtl::OUString aName;
                                 if ( *pValue >>= aName )
                                 {
                                     if ( aName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( SC_PAPERBIN_DEFAULTNAME ) ) )
@@ -1834,7 +1835,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
     }
 }
 
-uno::Any SAL_CALL ScStyleObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScStyleObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -1904,9 +1905,9 @@ uno::Any SAL_CALL ScStyleObj::getPropertyValue( const rtl::OUString& aPropertyNa
                     // property PrinterPaperTray is the name of the tray
 
                     BYTE nValue = ((const SvxPaperBinItem&)pItemSet->Get(nWhich)).GetValue();
-                    rtl::OUString aName;
+                    ::rtl::OUString aName;
                     if ( nValue == PAPERBIN_PRINTER_SETTINGS )
-                        aName = rtl::OUString::createFromAscii( SC_PAPERBIN_DEFAULTNAME );
+                        aName = ::rtl::OUString::createFromAscii( SC_PAPERBIN_DEFAULTNAME );
                     else
                     {
                         Printer* pPrinter = pDocShell->GetPrinter();
@@ -1936,7 +1937,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyValue( const rtl::OUString& aPropertyNa
         //  core always has the display name
         SfxStyleSheetBase* pStyle = GetStyle_Impl();
         if (pStyle)
-            aAny <<= rtl::OUString( pStyle->GetName() );
+            aAny <<= ::rtl::OUString( pStyle->GetName() );
     }
 
     return aAny;
@@ -1946,12 +1947,12 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScStyleObj )
 
 // lang::XServiceInfo
 
-rtl::OUString SAL_CALL ScStyleObj::getImplementationName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScStyleObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return rtl::OUString::createFromAscii( "ScStyleObj" );
+    return ::rtl::OUString::createFromAscii( "ScStyleObj" );
 }
 
-sal_Bool SAL_CALL ScStyleObj::supportsService( const rtl::OUString& rServiceName )
+sal_Bool SAL_CALL ScStyleObj::supportsService( const ::rtl::OUString& rServiceName )
                                                     throw(uno::RuntimeException)
 {
     BOOL bPage = ( eFamily == SFX_STYLE_FAMILY_PAGE );
@@ -1961,14 +1962,14 @@ sal_Bool SAL_CALL ScStyleObj::supportsService( const rtl::OUString& rServiceName
                                           : SCCELLSTYLE_SERVICE );
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
     BOOL bPage = ( eFamily == SFX_STYLE_FAMILY_PAGE );
-    uno::Sequence<rtl::OUString> aRet(2);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCSTYLE_SERVICE );
-    pArray[1] = rtl::OUString::createFromAscii( bPage ? SCPAGESTYLE_SERVICE
+    uno::Sequence< ::rtl::OUString> aRet(2);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCSTYLE_SERVICE );
+    pArray[1] = ::rtl::OUString::createFromAscii( bPage ? SCPAGESTYLE_SERVICE
                                                       : SCCELLSTYLE_SERVICE );
     return aRet;
 }
@@ -1976,3 +1977,4 @@ uno::Sequence<rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
 //------------------------------------------------------------------------
 
 
+}

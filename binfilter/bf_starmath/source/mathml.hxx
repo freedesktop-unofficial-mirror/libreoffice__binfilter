@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mathml.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,27 +76,35 @@
 #ifndef NODE_HXX
 #include <node.hxx>
 #endif
-
-class SfxMedium;
-class SvStorage;
 namespace com { namespace sun { namespace star {
     namespace io {
         class XInputStream;
         class XOutputStream; }
         namespace beans { XPropertySet; }
 } } }
+class SvStorage;
+namespace binfilter {
+
+class SfxMedium;
+
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008  namespace io {
+//STRIP008      class XInputStream;
+//STRIP008      class XOutputStream; }
+//STRIP008      namespace beans { XPropertySet; }
+//STRIP008 } } }
 
 
 class SmXMLWrapper
 {
 public:
-    SmXMLWrapper(com::sun::star::uno::Reference<com::sun::star::frame::XModel> &rRef)
+    SmXMLWrapper(::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rRef)
         : xModel(rRef), bFlat(sal_True) {}
     ULONG Import(SfxMedium &rMedium);
     sal_Bool Export(SfxMedium &rMedium);
     void SetFlat(sal_Bool bIn) {bFlat = bIn;}
 private:
-    com::sun::star::uno::Reference<com::sun::star::frame::XModel> xModel;
+    ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> xModel;
     sal_Bool bFlat;     //set true for export to flat .mml, set false for
                         //export to a .sxm (or whatever) package
 
@@ -150,8 +158,8 @@ public:
     // #110680#
     SmXMLImport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        com::sun::star::uno::Reference<com::sun::star::frame::XModel> &rModel,
-        const rtl::OUString &rFileName);
+        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rModel,
+        const ::rtl::OUString &rFileName);
 
     // XServiceInfo (override parent method)
     ::rtl::OUString SAL_CALL getImplementationName()
@@ -165,133 +173,133 @@ public:
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId()
         throw();
     SvXMLImportContext *CreateContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateMathContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateRowContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateFracContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateNumberContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateTextContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateAnnotationContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateStringContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateIdentifierContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateOperatorContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateSpaceContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateSqrtContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateRootContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateStyleContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreatePaddedContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreatePhantomContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateFencedContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateErrorContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateSubContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateSupContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateSubSupContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateUnderContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateOverContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateUnderOverContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateMultiScriptsContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateNoneContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreatePrescriptsContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateTableContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateTableRowContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateTableCellContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateAlignGroupContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     SvXMLImportContext *CreateActionContext(sal_uInt16 nPrefix,
-        const rtl::OUString &rLocalName,
-        const com::sun::star::uno::Reference <
-        com::sun::star::xml::sax::XAttributeList> &xAttrList);
+        const ::rtl::OUString &rLocalName,
+        const ::com::sun::star::uno::Reference <
+        ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
     const SvXMLTokenMap &GetMathElemTokenMap();
     const SvXMLTokenMap &GetPresLayoutElemTokenMap();
     const SvXMLTokenMap &GetPresLayoutAttrTokenMap();
@@ -308,8 +316,8 @@ public:
     sal_Bool GetSuccess() { return bSuccess; }
     String &GetText() { return aText;}
 
-    virtual void SetViewSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aViewProps);
-    virtual void SetConfigurationSettings(const com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aViewProps);
+    virtual void SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps);
+    virtual void SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps);
 
 private:
         SvXMLTokenMap *pMathElemTokenMap;
@@ -420,8 +428,8 @@ public:
     SmXMLExport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         const SmNode *pIn,
-        const rtl::OUString &rFileName,
-        com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler> &rHandler);
+        const ::rtl::OUString &rFileName,
+        ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler> &rHandler);
 
     virtual ~SmXMLExport() {};
 
@@ -434,8 +442,8 @@ public:
     void _ExportContent();
     sal_uInt32 exportDoc(enum ::xmloff::token::XMLTokenEnum eClass);
 
-    virtual void GetViewSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps);
-    virtual void GetConfigurationSettings(com::sun::star::uno::Sequence<com::sun::star::beans::PropertyValue>& aProps);
+    virtual void GetViewSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
+    virtual void GetConfigurationSettings(::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aProps);
 
     sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence<
         sal_Int8 >& rId ) throw(::com::sun::star::uno::RuntimeException);
@@ -468,4 +476,5 @@ private:
     String        aText;
     sal_Bool bSuccess;
 };
+} //namespace binfilter
 #endif

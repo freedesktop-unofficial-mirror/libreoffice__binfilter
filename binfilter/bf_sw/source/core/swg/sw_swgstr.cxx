@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swgstr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:33:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 
 #include "swgstr.hxx"
 #include "swgids.hxx"
+namespace binfilter {
 
 #define BUFSIZE 4096                // Groesse des Datenpuffers
 
@@ -291,3 +292,4 @@
 //STRIP001 }
 
 
+}

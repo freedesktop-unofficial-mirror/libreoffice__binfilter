@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoftn.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,6 +101,7 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
@@ -118,7 +119,7 @@ using namespace ::rtl;
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXFootnote::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -633,3 +634,4 @@ void SwXFootnote::removeVetoableChangeListener( const OUString& PropertyName,
 }
 
 
+}

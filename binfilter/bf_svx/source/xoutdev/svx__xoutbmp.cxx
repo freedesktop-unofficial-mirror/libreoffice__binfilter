@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xoutbmp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #include "impgrf.hxx"
 #include "xoutbmp.hxx"
 #include <svtools/FilterConfigItem.hxx>
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -529,7 +530,7 @@ GraphicFilter* XOutBitmap::pGrfFilter = NULL;
 /*N*/ USHORT XOutBitmap::ExportGraphic( const Graphic& rGraphic, const INetURLObject& rURL,
 /*N*/                                 GraphicFilter& rFilter, const USHORT nFormat,
 /*N*/                                 BOOL bIgnoreOptions,
-/*N*/                                 const com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >* pFilterData )
+/*N*/                                 const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData )
 /*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001 #ifndef SVX_LIGHT
 //STRIP001  DBG_ASSERT( rURL.GetProtocol() != INET_PROT_NOT_VALID, "XOutBitmap::ExportGraphic(...): invalid URL" );
@@ -805,3 +806,4 @@ GraphicFilter* XOutBitmap::pGrfFilter = NULL;
 //STRIP001
 //STRIP001  return bRet;
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: InterfaceContainer.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -140,8 +140,9 @@
 #ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx>
 #endif
+namespace binfilter {
 
-using namespace comphelper;
+    using namespace ::comphelper;
 
 //.........................................................................
 namespace frm
@@ -383,5 +384,6 @@ public:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif          // _FRM_INTERFACE_CONTAINER_HXX_
 

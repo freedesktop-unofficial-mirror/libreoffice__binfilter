@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ImageControl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -145,6 +145,7 @@
 #ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
 #endif
+namespace binfilter {
 
 #define ID_OPEN_GRAPHICS            1
 #define ID_CLEAR_GRAPHICS           2
@@ -703,7 +704,7 @@ void OImageControlControl::implInsertGraphics()
     // build some arguments for the upcoming dialog
     try
     {
-        ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
+        ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );//STRIP008       ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
         aDialog.SetTitle( sTitle );
 
         Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);
@@ -828,3 +829,4 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
 }   // namespace frm
 //.........................................................................
 
+}

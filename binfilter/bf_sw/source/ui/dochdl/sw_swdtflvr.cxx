@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:13 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -308,6 +308,7 @@
 #ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
 #endif
+namespace binfilter {
 
 extern BOOL bFrmDrag;
 extern BOOL bDDINetAttr;
@@ -323,7 +324,7 @@ extern BOOL bExecuteDrag;
 #define SWTRANSFER_OBJECTTYPE_SWOLE             0x00000010
 #define SWTRANSFER_OBJECTTYPE_DDE               0x00000020
 
-using namespace ::svx;
+using namespace ::binfilter::svx;
 using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::datatransfer;
@@ -794,7 +795,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001          }
 //STRIP001
 //STRIP001          {
-//STRIP001              com::sun::star::uno::Reference<com::sun::star::io::XOutputStream> xDocOut( new utl::OOutputStreamWrapper( *xStream ) );
+//STRIP001              ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xDocOut( new utl::OOutputStreamWrapper( *xStream ) );
 //STRIP001              if( SvxDrawingLayerExport( pModel, xDocOut ) )
 //STRIP001                  xStream->Commit();
 //STRIP001          }
@@ -1702,7 +1703,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001  SotStorageStreamRef xStrm;
 //STRIP001  SvStream* pStream = 0;
 //STRIP001  SwRead pRead = 0;
-//STRIP001  rtl::OUString sData;
+//STRIP001  ::rtl::OUString sData;
 //STRIP001  switch( nFmt )
 //STRIP001  {
 //STRIP001  case SOT_FORMAT_STRING:
@@ -2043,7 +2044,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001  }
 //STRIP001
 //STRIP001  String aCmd;
-//STRIP001  so3::MakeLnkName( aCmd, &aApp, aTopic, aItem );
+//STRIP001  ::so3::MakeLnkName( aCmd, &aApp, aTopic, aItem );
 //STRIP001
 //STRIP001  // wollen wir jetzt eine Grafik einlesen ?
 //STRIP001  ULONG nFormat;
@@ -2084,7 +2085,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001          {
 //STRIP001              String sTmp( ((SwDDEFieldType*)pTyp)->GetCmd() );
 //STRIP001              if( rColl.isEqual( sTmp, aCmd ) &&
-//STRIP001                  so3::LINKUPDATE_ALWAYS == ((SwDDEFieldType*)pTyp)->GetType() )
+//STRIP001                  ::so3::LINKUPDATE_ALWAYS == ((SwDDEFieldType*)pTyp)->GetType() )
 //STRIP001              {
 //STRIP001                  aName = pTyp->GetName();
 //STRIP001                  bDoublePaste = TRUE;
@@ -2106,7 +2107,7 @@ using namespace ::com::sun::star::datatransfer;
 //STRIP001
 //STRIP001  if( !bDoublePaste )
 //STRIP001  {
-//STRIP001      SwDDEFieldType aType( aName, aCmd, so3::LINKUPDATE_ALWAYS );
+//STRIP001      SwDDEFieldType aType( aName, aCmd, ::so3::LINKUPDATE_ALWAYS );
 //STRIP001      pTyp = rWrtShell.InsertFldType( aType );
 //STRIP001  }
 //STRIP001
@@ -3776,3 +3777,4 @@ using namespace ::com::sun::star::datatransfer;
 
 
 
+}

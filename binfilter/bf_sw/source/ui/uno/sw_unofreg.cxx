@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unofreg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,10 +74,11 @@
 #ifndef _SWXFILTEROPTIONS_HXX
 #include <SwXFilterOptions.hxx>
 #endif
+namespace binfilter {
 
 using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::lang;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::lang;
 
 // writer documents
 extern uno::Sequence< OUString > SAL_CALL SwTextDocument_getSupportedServiceNames() throw();
@@ -392,3 +393,4 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName,
 #ifdef __cplusplus
 }
 #endif
+}

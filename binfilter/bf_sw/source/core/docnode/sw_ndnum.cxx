@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndnum.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,7 @@
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>           // UpdateFlds der KapitelNummerierung
 #endif
+namespace binfilter {
 
 
 //-------------------------------------------------------
@@ -406,3 +407,4 @@
 /*N*/       UpdateOutlineNode( *(*pOutlineNds)[ 0 ], 0, 0 );
 /*N*/ }
 
+}

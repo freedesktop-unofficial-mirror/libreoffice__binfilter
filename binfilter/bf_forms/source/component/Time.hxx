@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Time.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _FORMS_LIMITED_FORMATS_HXX_
 #include "limitedformats.hxx"
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -152,5 +153,6 @@ public:
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FORMS_TIME_HXX_
 

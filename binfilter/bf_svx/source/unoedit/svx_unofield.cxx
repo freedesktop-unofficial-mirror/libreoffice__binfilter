@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unofield.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,6 +92,7 @@
 #include "unoprov.hxx"
 #include "unotext.hxx"
 #include "adritem.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::vos;
@@ -1113,3 +1114,4 @@ sal_Bool SAL_CALL SvxUnoTextField::supportsService( const OUString& ServiceName 
 }
 
 
+}

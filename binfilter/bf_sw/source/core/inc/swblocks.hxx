@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swblocks.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,11 +71,13 @@
 #include <svtools/svarray.hxx>
 #endif
 /*N*/#include <tools/debug.hxx> //addded for stripping
+class SvxMacroTableDtor;
+namespace binfilter {
 
 class SfxMedium;
 class SwPaM;
 class SwDoc;
-class SvxMacroTableDtor;
+
 class SvXMLTextBlocks;
 // Name eines Textblocks:
 
@@ -101,7 +103,7 @@ class SvXMLTextBlocks;
 //STRIP001  int operator< ( const SwBlockName& r ) { return aShort <  r.aShort; }
 //STRIP001 };
 
-//STRIP001 SV_DECL_PTRARR_SORT( SwBlockNames, SwBlockName*, 10, 10 );
+//STRIP001 SV_DECL_PTRARR_SORT( SwBlockNames, SwBlockName*, 10, 10 )//STRIP008 ;
 
 
 class SwImpBlocks
@@ -273,4 +275,5 @@ public:
 //STRIP001  void ReadInfo();
 };
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_globalx.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,6 +89,7 @@
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
+namespace binfilter {
 
 
 // static
@@ -109,7 +110,7 @@ using namespace ::com::sun::star::ucb;
 /*N*/               //  use LocalFileHelper to convert the path to a URL that always points
 /*N*/               //  to the file on the server
 /*N*/               String aUrl;
-/*N*/               if ( utl::LocalFileHelper::ConvertPhysicalNameToURL( aPath, aUrl ) )
+/*N*/               if ( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aPath, aUrl ) )
 /*N*/                   aPath = aUrl;
 /*N*/
 /*N*/               INetURLObject aObj;
@@ -120,7 +121,7 @@ using namespace ::com::sun::star::ucb;
 /*N*/                   ::ucb::Content aCnt( aObj.GetMainURL(INetURLObject::NO_DECODE),
 /*N*/                       Reference< XCommandEnvironment > () );
 /*N*/                   Reference< sdbc::XResultSet > xResultSet;
-/*N*/                   Sequence< rtl::OUString > aProps;
+/*N*/                   Sequence< ::rtl::OUString > aProps;
 /*N*/                   try
 /*N*/                   {
 /*N*/                       xResultSet = aCnt.createCursor(
@@ -144,9 +145,9 @@ using namespace ::com::sun::star::ucb;
 /*N*/                               do
 /*?*/                               {
 /*?*/ #if SUPD>611
-/*?*/                                   rtl::OUString aId( xContentAccess->queryContentIdentifierString() );
+/*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentifierString() );
 /*?*/ #else
-/*?*/                                   rtl::OUString aId( xContentAccess->queryContentIdentfierString() );
+/*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentfierString() );
 /*?*/ #endif
 /*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001                          InitExternalFunc( aId );
 /*?*/                               }
@@ -175,3 +176,4 @@ using namespace ::com::sun::star::ucb;
 
 
 
+}

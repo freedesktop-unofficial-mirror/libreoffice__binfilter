@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlsorti.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #endif
 
 #include "xmldrani.hxx"
+namespace binfilter {
 
 class ScXMLImport;
 
@@ -82,11 +83,11 @@ class ScXMLSortContext : public SvXMLImportContext
 {
     ScXMLDatabaseRangeContext* pDatabaseRangeContext;
 
-    com::sun::star::uno::Sequence <com::sun::star::util::SortField> aSortFields;
-    com::sun::star::table::CellAddress aOutputPosition;
-    rtl::OUString   sCountry;
-    rtl::OUString   sLanguage;
-    rtl::OUString   sAlgorithm;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::util::SortField> aSortFields;
+    ::com::sun::star::table::CellAddress aOutputPosition;
+    ::rtl::OUString sCountry;
+    ::rtl::OUString sLanguage;
+    ::rtl::OUString sAlgorithm;
     sal_Int16   nUserListIndex;
     sal_Bool    bCopyOutputData : 1;
     sal_Bool    bBindFormatsToContent : 1;
@@ -113,16 +114,16 @@ public:
 
     virtual void EndElement();
 
-    void AddSortField(const rtl::OUString& sFieldNumber, const rtl::OUString& sDataType, const rtl::OUString& sOrder);
+    void AddSortField(const ::rtl::OUString& sFieldNumber, const ::rtl::OUString& sDataType, const ::rtl::OUString& sOrder);
 };
 
 class ScXMLSortByContext : public SvXMLImportContext
 {
     ScXMLSortContext* pSortContext;
 
-    rtl::OUString   sFieldNumber;
-    rtl::OUString   sDataType;
-    rtl::OUString   sOrder;
+    ::rtl::OUString sFieldNumber;
+    ::rtl::OUString sDataType;
+    ::rtl::OUString sOrder;
 
     const ScXMLImport& GetScImport() const { return (const ScXMLImport&)GetImport(); }
     ScXMLImport& GetScImport() { return (ScXMLImport&)GetImport(); }
@@ -145,4 +146,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

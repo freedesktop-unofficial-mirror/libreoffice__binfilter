@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 // bis SO5PF
 const USHORT AUTOFORMAT_ID_X        = 9501;
@@ -259,7 +260,7 @@ SV_IMPL_PTRARR( _SwTableAutoFmtTbl, SwTableAutoFmt* )
 /*?*/    aCTLPosture( ITALIC_NONE, RES_CHRATR_CTL_POSTURE ),
 /*?*/   aRotateMode( SVX_ROTATE_MODE_STANDARD, 0 )
 /*?*/{
-/*?*/   eSysLanguage = eNumFmtLanguage = ::GetAppLanguage();
+/*?*/   eSysLanguage = eNumFmtLanguage = ::binfilter::GetAppLanguage();
 /*?*/   aBox.SetDistance( 55 );
 /*?*/}
 
@@ -682,12 +683,12 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 /*?*/           0 != (pNumFormat = pNFmtr->GetEntry( pNumFmtItem->GetValue() )) )
 /*?*/           pFmt->SetValueFormat( ((SvNumberformat*)pNumFormat)->GetFormatstring(),
 /*?*/                                   pNumFormat->GetLanguage(),
-/*?*/                                   ::GetAppLanguage() );
+/*?*/                                   ::binfilter::GetAppLanguage() );
 /*?*/       else
 /*?*/       {
 /*?*/           // defaulten
 /*?*/           pFmt->SetValueFormat( aEmptyStr, LANGUAGE_SYSTEM,
-/*?*/                                   ::GetAppLanguage() );
+/*?*/                                   ::binfilter::GetAppLanguage() );
 /*?*/       }
 /*?*/   }
 /*?*/   // den Rest koennen wir nicht, StarCalc spezifisch
@@ -763,14 +764,14 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 /*?*/           if( sFmt.Len() )
 /*?*/           {
 /*?*/               ULONG nKey = 0;
-/*?*/               if ( eLng == LANGUAGE_SYSTEM && eSys != ::GetAppLanguage() )
+/*?*/               if ( eLng == LANGUAGE_SYSTEM && eSys != ::binfilter::GetAppLanguage() )
 /*?*/               {
 /*?*/                   //  #53381# wenn System beim Speichern etwas anderes war,
 /*?*/                   //  muss konvertiert werden (geht nur mit eingebauten Formaten)
 /*?*/                   ULONG nOrig = pNFmtr->GetEntryKey( sFmt, eSys );
 /*?*/                   if ( nOrig != NUMBERFORMAT_ENTRY_NOT_FOUND )
 /*?*/                       nKey = pNFmtr->GetFormatForLanguageIfBuiltIn( nOrig,
-/*?*/                                       ::GetAppLanguage() );
+/*?*/                                       ::binfilter::GetAppLanguage() );
 /*?*/               }
 /*?*/               else    // sonst einfach suchen oder anlegen
 /*?*/               {
@@ -1127,3 +1128,4 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
 
 
 
+}

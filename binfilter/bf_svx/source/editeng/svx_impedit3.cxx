@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -132,6 +132,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -139,7 +140,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
 
-/*N*/ SV_DECL_VARARR_SORT( SortedPositions, sal_uInt32, 16, 8 );
+/*N*/ SV_DECL_VARARR_SORT( SortedPositions, sal_uInt32, 16, 8 )//STRIP008 ;
 /*N*/ SV_IMPL_VARARR_SORT( SortedPositions, sal_uInt32 );
 
 #define CH_HYPH     '-'
@@ -4137,3 +4138,4 @@ struct TabInfo
 //STRIP001
 //STRIP001     aCompressedPortions.Remove( 0, aCompressedPortions.Count() );
 //STRIP001 }
+}

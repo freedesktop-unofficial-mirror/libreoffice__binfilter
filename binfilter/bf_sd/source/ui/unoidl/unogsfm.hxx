@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unogsfm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,10 +83,11 @@
 #include <cppuhelper/implbase5.hxx>
 
 #include <unomodel.hxx>
+class SfxStyleSheetBase;
+namespace binfilter {
 
 class SvUnoWeakContainer;
 class SdPage;
-class SfxStyleSheetBase;
 class SdUnoGraphicStyle;
 
 class SdUnoGraphicStyleFamily : public ::cppu::WeakImplHelper5<
@@ -144,5 +145,6 @@ public:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL createInstanceWithArguments( const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArguments ) throw(::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

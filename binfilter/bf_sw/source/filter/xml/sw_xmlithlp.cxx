@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlithlp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,7 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmloff/xmltoken.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace ::rtl;
@@ -487,3 +488,4 @@ const struct  SvXMLEnumMapEntry aXMLTableVAlignMap[] =
     { XML_BOTTOM,               VERT_BOTTOM     },
     { XML_TOKEN_INVALID, 0 }
 };
+}

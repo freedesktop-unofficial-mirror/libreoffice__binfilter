@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fltglbls.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,10 @@
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
-
-
 class SfxPoolItem;
+class SvNumberFormatter;
+namespace binfilter {
+
 class SwDoc;
 class SwPaM;
 class SwTable;
@@ -80,7 +81,7 @@ class SwTable;
 class XF_Buffer;
 class ColorBuffer;
 class FontBuffer;
-class SvNumberFormatter;
+
 
 
 class ExcGlob;
@@ -214,5 +215,6 @@ inline BOOL FilterGlobals::RowRangeLimitter( USHORT &rRS, USHORT &rRE )
 #endif
 
 
+} //namespace binfilter
 #endif
 

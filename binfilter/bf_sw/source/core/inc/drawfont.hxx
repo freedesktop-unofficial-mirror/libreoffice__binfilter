@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawfont.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,14 +82,15 @@
 #ifndef _LANG_HXX
 #include <tools/lang.hxx>
 #endif
-
-
 class OutputDevice;
 class Point;
-class SwWrongList;
 class Size;
-class SwFont;
 class Font;
+namespace binfilter {
+
+class SwWrongList;
+class SwFont;
+
 class ViewShell;
 class SwTxtNode;
 class SwAttrHandler;
@@ -860,4 +861,5 @@ public:
 //STRIP001     sal_Bool ApplyAutoColor( Font* pFnt = 0 );
 };
 
+} //namespace binfilter
 #endif

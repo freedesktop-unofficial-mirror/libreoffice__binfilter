@@ -2,9 +2,9 @@
  *
  *  $RCSfile: modcfg.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 
 //-----------------------------------------------------------------------------
 
@@ -100,7 +101,7 @@ protected:
 
  ---------------------------------------------------------------------------*/
 class SwModuleOptions;
-class SwRevisionConfig : public utl::ConfigItem
+class SwRevisionConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
 
@@ -113,7 +114,7 @@ class SwRevisionConfig : public utl::ConfigItem
     USHORT          nMarkAlign;     //Revision/LinesChanged/Mark
     Color           aMarkColor;     //Revision/LinesChanged/Color
 
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     public:
         SwRevisionConfig();
         ~SwRevisionConfig();
@@ -125,7 +126,7 @@ class SwRevisionConfig : public utl::ConfigItem
 /* -----------------------------11.10.00 09:00--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwInsertConfig : public utl::ConfigItem
+class SwInsertConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
 
@@ -141,7 +142,7 @@ class SwInsertConfig : public utl::ConfigItem
                                                 //Insert/Table/Border
     sal_Bool            bIsWeb;
 
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     public:
         SwInsertConfig(sal_Bool bWeb);
         ~SwInsertConfig();
@@ -153,7 +154,7 @@ class SwInsertConfig : public utl::ConfigItem
 /* -----------------------------11.10.00 09:00--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwTableConfig : public utl::ConfigItem
+class SwTableConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
 
@@ -167,7 +168,7 @@ class SwTableConfig : public utl::ConfigItem
     sal_Bool    bInsTblChangeNumFormat; // Table/Input/NumberFormatRecognition  // Automatische Zahlenformaterkennung
     sal_Bool    bInsTblAlignNum;        // Table/Input/Alignment                // Zahlen ausrichten
 
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     public:
         SwTableConfig(sal_Bool bWeb);
         ~SwTableConfig();
@@ -179,7 +180,7 @@ class SwTableConfig : public utl::ConfigItem
 /* -----------------------------18.01.01 16:57--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwMiscConfig : public utl::ConfigItem
+class SwMiscConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
 
@@ -195,7 +196,7 @@ class SwMiscConfig : public utl::ConfigItem
     String      sMailingPath;               // FormLetter/FileOutput/Path
     String      sMailName;                  // FormLetter/FileOutput/FileName/FromManualSetting (string!)
 
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     public:
         SwMiscConfig();
         ~SwMiscConfig();
@@ -354,5 +355,6 @@ public:
     BOOL        IsHideFieldTips() const {return bHideFieldTips;}
     void        SetHideFieldTips(BOOL bSet) {bHideFieldTips = bSet;}
 };
+} //namespace binfilter
 #endif
 

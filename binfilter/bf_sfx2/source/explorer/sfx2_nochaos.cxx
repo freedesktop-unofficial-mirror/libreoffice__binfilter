@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_nochaos.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #include <svtools/stritem.hxx>
 #include <nochaos.hxx>
 #include "sfxuno.hxx"
+namespace binfilter {
 
 
 #define WID_CHAOS_START 500
@@ -245,3 +246,4 @@ CntItemPool* CntItemPool::_pThePool = NULL;
 /*N*/       0,
 /*N*/       SFX_ITEM_POOLABLE );
 /*N*/ }
+}

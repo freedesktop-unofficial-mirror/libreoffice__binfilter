@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 #define SWG_CONDSTYLES_BUG  1       //Versionsnummern fuer die StyleSheets
 #define SWG_CONDSTYLES      2       //Versionsnummern fuer die StyleSheets
@@ -146,7 +147,7 @@ struct SwStyleCondColl
     {}
 };
 typedef SwStyleCondColl* SwStyleCondCollPtr;
-SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 );
+SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )//STRIP008 ;
 //FEATURE::CONDCOLL
 
 // Unsere Ableitungen der Klassen SfxStyleSheetBase und SfxStyleSheetBasePool
@@ -1326,3 +1327,4 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/   delete pPool;
 /*N*/ }
 
+}

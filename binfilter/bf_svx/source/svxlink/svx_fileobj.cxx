@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,6 +113,7 @@
 #include "xoutbmp.hxx"
 #include "opengrf.hxx"
 #include "impgrf.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 
@@ -185,7 +186,7 @@ using namespace ::com::sun::star::uno;
 /*N*/           // das Medium muss in der Applikation geoffnet werden, um die
 /*N*/           // relativen Datei Links aufzuloesen!!!! Wird ueber den
 /*N*/           // LinkManager und damit von dessen Storage erledigt.
-/*N*/           rData <<= rtl::OUString( sFileNm );
+/*N*/           rData <<= ::rtl::OUString( sFileNm );
 /*N*/
 /*
 ===========================================================================
@@ -332,7 +333,7 @@ JP 28.02.96: noch eine Baustelle:
 
 
 
-/*N*/ BOOL SvFileObject::Connect( so3::SvBaseLink* pLink )
+/*N*/ BOOL SvFileObject::Connect( ::so3::SvBaseLink* pLink )
 /*N*/ {
 /*N*/   if( !pLink || !pLink->GetLinkManager() )
 /*N*/       return FALSE;
@@ -531,7 +532,7 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/ }
 
 
-//STRIP001 String SvFileObject::Edit( Window* pParent, so3::SvBaseLink* pLink )
+//STRIP001 String SvFileObject::Edit( Window* pParent, ::so3::SvBaseLink* pLink )
 //STRIP001 {
 //STRIP001  String sFile, sRange, sTmpFilter;
 //STRIP001  if( !pLink || !pLink->GetLinkManager() )
@@ -774,7 +775,7 @@ JP 28.02.96: noch eine Baustelle:
 /*N*/   if( !bStateChangeCalled && HasDataLinks() )
 /*N*/   {
 /*N*/       Any aAny;
-/*N*/       aAny <<= rtl::OUString::valueOf( (sal_Int32)nState );
+/*N*/       aAny <<= ::rtl::OUString::valueOf( (sal_Int32)nState );
 /*N*/       DataChanged( SotExchange::GetFormatName(
 /*N*/                       SvxLinkManager::RegisterStatusInfoId()), aAny );
 /*N*/       bStateChangeCalled = TRUE;
@@ -782,3 +783,4 @@ JP 28.02.96: noch eine Baustelle:
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -177,6 +177,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
@@ -1337,10 +1338,10 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //STRIP001                 }
 //STRIP001             }
 //STRIP001 /*
-//STRIP001          com::sun::star::uno::Reference < ::com::sun::star::frame::XFramesSupplier >
+//STRIP001          ::com::sun::star::uno::Reference < ::com::sun::star::frame::XFramesSupplier >
 //STRIP001                  xDesktop( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.frame.Desktop")) ),
-//STRIP001                  com::sun::star::uno::UNO_QUERY );
-//STRIP001          com::sun::star::uno::Reference < ::com::sun::star::container::XIndexAccess > xList ( xDesktop->getFrames(), ::com::sun::star::uno::UNO_QUERY );
+//STRIP001                  ::com::sun::star::uno::UNO_QUERY );
+//STRIP001          ::com::sun::star::uno::Reference < ::com::sun::star::container::XIndexAccess > xList ( xDesktop->getFrames(), ::com::sun::star::uno::UNO_QUERY );
 //STRIP001          sal_Int32 nCount = xList->getCount();
 //STRIP001          if ( nCount == nFrames )
 //STRIP001          {
@@ -1934,3 +1935,4 @@ svtools::AsynchronLink* pPendingCloser = 0;
 /*N*/ {
 /*N*/ }
 
+}

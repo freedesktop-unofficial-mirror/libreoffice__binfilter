@@ -2,9 +2,9 @@
  *
  *  $RCSfile: conditio.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
+namespace binfilter {
 
 class ScBaseCell;
 class ScFormulaCell;
@@ -289,7 +290,7 @@ public:
 typedef ScConditionalFormat* ScConditionalFormatPtr;
 
 SV_DECL_PTRARR_SORT(ScConditionalFormats_Impl, ScConditionalFormatPtr,
-                        SC_COND_GROW, SC_COND_GROW);
+                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
 
 class ScConditionalFormatList : public ScConditionalFormats_Impl
 {
@@ -319,6 +320,7 @@ public:
 //STRIP001  BOOL    operator==( const ScConditionalFormatList& r ) const;       // fuer Ref-Undo
 };
 
+} //namespace binfilter
 #endif
 
 

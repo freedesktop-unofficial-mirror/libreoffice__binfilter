@@ -2,9 +2,9 @@
  *
  *  $RCSfile: usrpref.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,17 +74,18 @@
 #ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
 #endif
+namespace binfilter {
 
 /* -----------------------------28.09.00 09:45--------------------------------
 
  ---------------------------------------------------------------------------*/
 class SwMasterUsrPref;
-class SwContentViewConfig : public utl::ConfigItem
+class SwContentViewConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&        rParent;
     BOOL                    bWeb;
 
-    com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
     public:
         SwContentViewConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwContentViewConfig();
@@ -96,12 +97,12 @@ class SwContentViewConfig : public utl::ConfigItem
 /* -----------------------------28.09.00 09:45--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwLayoutViewConfig : public utl::ConfigItem
+class SwLayoutViewConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
     BOOL                bWeb;
 
-    com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
     public:
         SwLayoutViewConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwLayoutViewConfig();
@@ -113,12 +114,12 @@ class SwLayoutViewConfig : public utl::ConfigItem
 /* -----------------------------19.01.01 13:06--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwGridConfig : public utl::ConfigItem
+class SwGridConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
     BOOL                bWeb;
 
-    com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
     public:
         SwGridConfig(BOOL bWeb, SwMasterUsrPref& rParent);
         ~SwGridConfig();
@@ -130,11 +131,11 @@ class SwGridConfig : public utl::ConfigItem
 /* -----------------------------19.01.01 13:06--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwCursorConfig : public utl::ConfigItem
+class SwCursorConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
 
-    com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+    ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
     public:
         SwCursorConfig(SwMasterUsrPref& rParent);
         ~SwCursorConfig();
@@ -146,10 +147,10 @@ class SwCursorConfig : public utl::ConfigItem
 /* -----------------------------28.09.00 09:45--------------------------------
 
  ---------------------------------------------------------------------------*/
-class SwWebColorConfig : public utl::ConfigItem
+class SwWebColorConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&        rParent;
-    com::sun::star::uno::Sequence<rtl::OUString> aPropNames;
+    ::com::sun::star::uno::Sequence<rtl::OUString> aPropNames;
 
     public:
         SwWebColorConfig(SwMasterUsrPref& rParent);
@@ -298,5 +299,6 @@ public:
 
 };
 
+} //namespace binfilter
 #endif
 

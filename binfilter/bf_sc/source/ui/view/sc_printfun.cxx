@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_printfun.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -133,6 +133,7 @@
 
 #define _PRINTFUN_CXX
 #include "printfun.hxx"
+namespace binfilter {
 
 
 
@@ -2974,3 +2975,4 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 
 
 
+}

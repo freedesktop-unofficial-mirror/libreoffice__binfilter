@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,7 @@
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <svtools/colorcfg.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -1729,7 +1730,7 @@ class ImpSkeleton;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 DECLARE_LIST(ImpSkeletonNodeList, ImpSkeletonNode*);
+//STRIP001 DECLARE_LIST(ImpSkeletonNodeList, ImpSkeletonNode*)//STRIP008 ;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -4968,3 +4969,4 @@ class ImpSkeleton;
 /*N*/   rLL.RemoveLink(rLink);
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -317,14 +317,15 @@ using namespace ::com::sun::star;
 #define _ExecAddress ExecOther
 #define _StateAddress StateOther
 #include "itemdef.hxx"
-#include <bf_svx/svxslots.hxx>
-#include "swslots.hxx"
+
 #ifndef _CFGID_H
 #include <cfgid.h>
 #endif
 
 #include <shells.hrc>
-
+namespace binfilter {
+#include <bf_svx/svxslots.hxx>
+#include "swslots.hxx"
 /*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
 /*N*/ {
 /*N*/   SFX_CHILDWINDOW_REGISTRATION(SvxHyperlinkDlgWrapper::GetChildWindowId());
@@ -379,7 +380,7 @@ using namespace ::com::sun::star;
 /*M*/   sal_uInt16 nWhich = aIter.FirstWhich();
 /*M*/   SfxBoolItem aBool;
 /*M*/   const SwViewOption* pOpt = 0;
-/*M*/   SwView* pActView = ::GetActiveView();
+    /*M*/   SwView* pActView = ::binfilter::GetActiveView();
 /*M*/   SwDoc *pDoc = 0;
 /*M*/   if(pActView)
 /*M*/   {
@@ -1224,3 +1225,4 @@ SvtCTLOptions& SwModule::GetCTLOptions()
 /*N*/ }
 
 
+}

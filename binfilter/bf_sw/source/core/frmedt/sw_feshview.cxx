@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_feshview.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:19:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -184,6 +184,7 @@
 #include "txtfrm.hxx"
 #include "txatbase.hxx"
 #include "mdiexp.hxx"                   // fuer Update der Statuszeile bei drag
+namespace binfilter {
 
 #define SCROLLVAL 75
 
@@ -640,7 +641,7 @@ USHORT SwFEShell::GetSelFrmType() const
     {
         // obtain marked item as fly frame; if no fly frame, it must
         // be a draw object
-        const SwFlyFrm* pFly = ::GetFlyFromMarked(pMarkList, (ViewShell*)this);
+        const SwFlyFrm* pFly = ::binfilter::GetFlyFromMarked(pMarkList, (ViewShell*)this);
         if ( pFly != NULL )
         {
             if( pFly->IsFlyLayFrm() )
@@ -1119,7 +1120,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*N*/   if ( !Imp()->HasDrawView() )
 /*N*/       return FALSE;
 /*N*/   else
-/*N*/       return 0 != ::GetFlyFromMarked( &Imp()->GetDrawView()->GetMarkList(),
+/*N*/       return 0 != ::binfilter::GetFlyFromMarked( &Imp()->GetDrawView()->GetMarkList(),
 /*N*/                                       (ViewShell*)this );
 /*N*/ }
 
@@ -1750,7 +1751,7 @@ bool SwFEShell::IsSelContainsControl() const
 //STRIP001          aRect.Right() += MM50*2;
 //STRIP001          aRect.Bottom()+= MM50*2;
 //STRIP001
-//STRIP001          if( !aRect.IsOver( rBound ) && !::GetHtmlMode( GetDoc()->GetDocShell() ))
+//STRIP001          if( !aRect.IsOver( rBound ) && !::binfilter::GetHtmlMode( GetDoc()->GetDocShell() ))
 //STRIP001              bCharBound = FALSE;
 //STRIP001
 //STRIP001              //Bindung in Kopf-/Fusszeilen ist ebenfalls nicht erlaubt.
@@ -1900,7 +1901,7 @@ bool SwFEShell::IsSelContainsControl() const
 //STRIP001
 //STRIP001      SwFlyFrm* pFlyFrm;
 //STRIP001      if( NewFlyFrm( aSet, TRUE ) &&
-//STRIP001          ::GetHtmlMode( GetDoc()->GetDocShell() ) &&
+//STRIP001          ::binfilter::GetHtmlMode( GetDoc()->GetDocShell() ) &&
 //STRIP001          0 != ( pFlyFrm = FindFlyFrm() ))
 //STRIP001      {
 //STRIP001          SfxItemSet aHtmlSet( GetDoc()->GetAttrPool(), RES_VERT_ORIENT, RES_HORI_ORIENT );
@@ -3219,3 +3220,4 @@ bool SwFEShell::IsSelContainsControl() const
 //STRIP001     return aRet;
 //STRIP001 }
 
+}

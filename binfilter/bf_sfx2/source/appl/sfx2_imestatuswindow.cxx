@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_imestatuswindow.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,8 +86,9 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
-namespace css = com::sun::star;
+namespace css = ::com::sun::star;
 
 using sfx2::appl::ImeStatusWindow;
 
@@ -107,7 +108,7 @@ void ImeStatusWindow::init()
         {
             sal_Bool bShow;
             if (getConfig()->getPropertyValue(
-                    rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
                                       "ShowStatusWindow")))
                 >>= bShow)
                 Application::ShowImeStatusWindow(bShow);
@@ -126,7 +127,7 @@ bool ImeStatusWindow::isShowing()
     {
         sal_Bool bShow;
         if (getConfig()->getPropertyValue(
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")))
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")))
             >>= bShow)
             return bShow;
     }
@@ -145,7 +146,7 @@ void ImeStatusWindow::show(bool bShow)
     {
         css::uno::Reference< css::beans::XPropertySet > xConfig(getConfig());
         xConfig->setPropertyValue(
-            rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
+            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
             css::uno::makeAny(static_cast< sal_Bool >(bShow)));
         css::uno::Reference< css::util::XChangesBatch > xCommit(
             xConfig, css::uno::UNO_QUERY);
@@ -174,7 +175,7 @@ ImeStatusWindow::~ImeStatusWindow()
         try
         {
             m_xConfig->removePropertyChangeListener(
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
                 this);
         }
         catch (css::uno::Exception &)
@@ -211,26 +212,26 @@ css::uno::Reference< css::beans::XPropertySet > ImeStatusWindow::getConfig()
                 throw css::lang::DisposedException();
             if (!m_xServiceFactory.is())
                 throw css::uno::RuntimeException(
-                    rtl::OUString(
+                    ::rtl::OUString(
                         RTL_CONSTASCII_USTRINGPARAM(
                             "null ::legacy_binfilters::getLegacyProcessServiceFactory()")),
                     0);
             css::uno::Reference< css::lang::XMultiServiceFactory > xProvider(
                 m_xServiceFactory->createInstance(
-                    rtl::OUString(
+                    ::rtl::OUString(
                         RTL_CONSTASCII_USTRINGPARAM(
                           "com.sun.star.configuration.ConfigurationProvider"))),
                 css::uno::UNO_QUERY);
             if (!xProvider.is())
                 throw css::uno::RuntimeException(
-                    rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
                                       "null com.sun.star.configuration."
                                       "ConfigurationProvider")),
                     0);
             css::beans::PropertyValue aArg(
-                rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("nodepath")), -1,
+                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("nodepath")), -1,
                 css::uno::makeAny(
-                    rtl::OUString(
+                    ::rtl::OUString(
                         RTL_CONSTASCII_USTRINGPARAM(
                             "/org.openoffice.Office.Common/I18N/InputMethod"))),
                 css::beans::PropertyState_DIRECT_VALUE);
@@ -239,14 +240,14 @@ css::uno::Reference< css::beans::XPropertySet > ImeStatusWindow::getConfig()
             m_xConfig
                 = css::uno::Reference< css::beans::XPropertySet >(
                     xProvider->createInstanceWithArguments(
-                        rtl::OUString(
+                        ::rtl::OUString(
                             RTL_CONSTASCII_USTRINGPARAM(
                        "com.sun.star.configuration.ConfigurationUpdateAccess")),
                         aArgs),
                     css::uno::UNO_QUERY);
             if (!m_xConfig.is())
                 throw css::uno::RuntimeException(
-                    rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
                                       "null com.sun.star.configuration."
                                       "ConfigurationUpdateAccess")),
                     0);
@@ -259,8 +260,9 @@ css::uno::Reference< css::beans::XPropertySet > ImeStatusWindow::getConfig()
         // degradation (no update notification mechanism in this case---but also
         // no dispose notifications):
         xConfig->addPropertyChangeListener(
-            rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
+            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
             this);
     return xConfig;
 }
 
+}

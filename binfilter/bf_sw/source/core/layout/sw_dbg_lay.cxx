@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbg_lay.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,7 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ ULONG SwProtocol::nRecord = 0;
 /*N*/ SwImplProtocol* SwProtocol::pImpl = NULL;
@@ -899,3 +900,4 @@
 //STRIP001 }
 
 
+}

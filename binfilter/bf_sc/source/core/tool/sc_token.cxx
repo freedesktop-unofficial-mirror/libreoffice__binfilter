@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_token.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:42:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 
 #include "compiler.hxx"
 #include "rechead.hxx"
+namespace binfilter {
 
 /*N*/ struct ImpTokenIterator
 /*N*/ {
@@ -95,32 +96,32 @@
 
 // ImpTokenIterator wird je Interpreter angelegt, mehrfache auch durch
 // SubCode via ScTokenIterator Push/Pop moeglich
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ImpTokenIterator, 32, 16 );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ImpTokenIterator, 32, 16 )//STRIP008 ;
 
 // Align MemPools on 4k boundaries - 64 bytes (4k is a MUST for OS/2)
 
 // Since RawTokens are temporary for the compiler, don't align on 4k and waste memory.
 // ScRawToken size is FixMembers + MAXSTRLEN ~= 264
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScRawToken, 8, 4 );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScRawToken, 8, 4 )//STRIP008 ;
 // Some ScDoubleRawToken, FixMembers + sizeof(double) ~= 16
 /*N*/ const USHORT nMemPoolDoubleRawToken = 0x0400 / sizeof(ScDoubleRawToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRawToken, nMemPoolDoubleRawToken, nMemPoolDoubleRawToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRawToken, nMemPoolDoubleRawToken, nMemPoolDoubleRawToken )//STRIP008 ;
 
 // Need a whole bunch of ScSingleRefToken
 /*N*/ const USHORT nMemPoolSingleRefToken = (0x4000 - 64) / sizeof(ScSingleRefToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSingleRefToken, nMemPoolSingleRefToken, nMemPoolSingleRefToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSingleRefToken, nMemPoolSingleRefToken, nMemPoolSingleRefToken )//STRIP008 ;
 // Need a lot of ScDoubleToken
 /*N*/ const USHORT nMemPoolDoubleToken = (0x3000 - 64) / sizeof(ScDoubleToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleToken, nMemPoolDoubleToken, nMemPoolDoubleToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleToken, nMemPoolDoubleToken, nMemPoolDoubleToken )//STRIP008 ;
 // Need a lot of ScByteToken
 /*N*/ const USHORT nMemPoolByteToken = (0x3000 - 64) / sizeof(ScByteToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScByteToken, nMemPoolByteToken, nMemPoolByteToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScByteToken, nMemPoolByteToken, nMemPoolByteToken )//STRIP008 ;
 // Need quite a lot of ScDoubleRefToken
 /*N*/ const USHORT nMemPoolDoubleRefToken = (0x2000 - 64) / sizeof(ScDoubleRefToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRefToken, nMemPoolDoubleRefToken, nMemPoolDoubleRefToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRefToken, nMemPoolDoubleRefToken, nMemPoolDoubleRefToken )//STRIP008 ;
 // Need several ScStringToken
 /*N*/ const USHORT nMemPoolStringToken = (0x1000 - 64) / sizeof(ScStringToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringToken, nMemPoolStringToken, nMemPoolStringToken );
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringToken, nMemPoolStringToken, nMemPoolStringToken )//STRIP008 ;
 
 
 // --- helpers --------------------------------------------------------------
@@ -2316,3 +2317,4 @@
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlbodyi.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,9 +123,10 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
-using namespace xmloff::token;
+using namespace ::com::sun::star;
+using namespace ::xmloff::token;
 
 //------------------------------------------------------------------
 
@@ -141,11 +142,11 @@ ScXMLBodyContext::ScXMLBodyContext( ScXMLImport& rImport,
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         if (nPrefix == XML_NAMESPACE_TABLE)
         {
@@ -291,7 +292,7 @@ void ScXMLBodyContext::EndElement()
                     if (xProperties.is())
                     {
                         XMLTableStylesContext *pStyles = (XMLTableStylesContext *)GetScImport().GetAutoStyles();
-                        rtl::OUString sTableStyleName(GetScImport().GetFirstTableStyle());
+                        ::rtl::OUString sTableStyleName(GetScImport().GetFirstTableStyle());
                         if (sTableStyleName.getLength())
                         {
                             XMLTableStyleContext* pStyle = (XMLTableStyleContext *)pStyles->FindStyleChildContext(
@@ -307,3 +308,4 @@ void ScXMLBodyContext::EndElement()
     GetScImport().UnlockSolarMutex();
 }
 
+}

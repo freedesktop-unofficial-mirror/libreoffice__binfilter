@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vnew.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:44:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,6 +117,7 @@
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -161,7 +162,7 @@
 /*N*/   }
 /*N*/
 /*N*/   SwDocShell* pDShell = pDoc->GetDocShell();
-/*N*/   pDoc->SetHTMLMode( 0 != ::GetHtmlMode( pDShell ) );
+/*N*/   pDoc->SetHTMLMode( 0 != ::binfilter::GetHtmlMode( pDShell ) );
 /*N*/
 /*N*/   // JP 02.02.99: Bug 61335 - Readonly-Flag an den ViewOptions setzen,
 /*N*/   //              bevor das Layout angelegt wird. Ansonsten muesste man
@@ -409,3 +410,4 @@
 //STRIP001  pDView->ValidateMarkList();
 //STRIP001  return pDView;
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porrst.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,6 +151,7 @@
 #ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
 #endif
+namespace binfilter {
 /*************************************************************************
  *                      class SwTmpEndPortion
  *************************************************************************/
@@ -382,7 +383,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   }
 /*N*/
 /*N*/   const SwDoc* pDoc = rTxtNode.GetDoc();
-/*N*/   if( ::IsShowChanges( pDoc->GetRedlineMode() ) )
+  /*N*/     if( ::binfilter::IsShowChanges( pDoc->GetRedlineMode() ) )
 /*N*/   {
 /*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
 /*N*/         if( MSHRT_MAX != nRedlPos )
@@ -588,3 +589,4 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/   }
 /*N*/   return ( 0 != rRegDiff );
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdesc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -190,6 +190,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>
 #endif
+namespace binfilter {
 
 /*N*/ void lcl_DefaultPageFmt( sal_uInt16 nPoolFmtId, SwFrmFmt &rFmt1,
 /*N*/                        SwFrmFmt &rFmt2, SfxPrinter *pPrt, BOOL bCheck )
@@ -356,7 +357,7 @@
 /*N*/       ((SwPageDesc&)rChged).Mirror();
 /*N*/   else
 /*N*/       //sonst Werte aus Master nach Left uebertragen.
-/*N*/       ::lcl_DescSetAttr( ((SwPageDesc&)rChged).GetMaster(),
+/*N*/       ::binfilter::lcl_DescSetAttr( ((SwPageDesc&)rChged).GetMaster(),
 /*N*/                      ((SwPageDesc&)rChged).GetLeft() );
 /*N*/
 /*N*/   //NumType uebernehmen.
@@ -416,7 +417,7 @@
 /*?*/           SwFmtHeader aHead( MakeLayoutFmt( RND_STD_HEADERL ) );
 /*?*/           pDesc->GetLeft().SetAttr( aHead );
 /*?*/           //Weitere Attribute (Raender, Umrandung...) uebernehmen.
-/*?*/           ::lcl_DescSetAttr( *rHead.GetHeaderFmt(), *aHead.GetHeaderFmt(), FALSE);
+/*?*/           ::binfilter::lcl_DescSetAttr( *rHead.GetHeaderFmt(), *aHead.GetHeaderFmt(), FALSE);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -427,7 +428,7 @@
 /*N*/           {
 /*N*/               SwFrmFmt *pFmt = new SwFrmFmt( GetAttrPool(), "Header",
 /*N*/                                               GetDfltFrmFmt() );
-/*N*/               ::lcl_DescSetAttr( *pRight, *pFmt, FALSE );
+/*N*/               ::binfilter::lcl_DescSetAttr( *pRight, *pFmt, FALSE );
 /*N*/               //Der Bereich auf den das rechte Kopfattribut zeigt wird
 /*N*/               //kopiert und der Index auf den StartNode in das linke
 /*N*/               //Kopfattribut gehaengt.
@@ -442,7 +443,7 @@
 /*N*/               pDesc->GetLeft().SetAttr( SwFmtHeader( pFmt ) );
 /*N*/           }
 /*N*/           else
-/*N*/               ::lcl_DescSetAttr( *pRight,
+/*N*/               ::binfilter::lcl_DescSetAttr( *pRight,
 /*N*/                              *(SwFrmFmt*)rLeftHead.GetHeaderFmt(), FALSE );
 /*N*/
 /*N*/       }
@@ -480,7 +481,7 @@
 /*?*/           SwFmtFooter aFoot( MakeLayoutFmt( RND_STD_FOOTER ) );
 /*?*/           pDesc->GetLeft().SetAttr( aFoot );
 /*?*/           //Weitere Attribute (Raender, Umrandung...) uebernehmen.
-/*?*/           ::lcl_DescSetAttr( *rFoot.GetFooterFmt(), *aFoot.GetFooterFmt(), FALSE);
+/*?*/           ::binfilter::lcl_DescSetAttr( *rFoot.GetFooterFmt(), *aFoot.GetFooterFmt(), FALSE);
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -491,7 +492,7 @@
 /*?*/           {
 /*?*/               SwFrmFmt *pFmt = new SwFrmFmt( GetAttrPool(), "Footer",
 /*?*/                                               GetDfltFrmFmt() );
-/*?*/               ::lcl_DescSetAttr( *pRight, *pFmt, FALSE );
+/*?*/               ::binfilter::lcl_DescSetAttr( *pRight, *pFmt, FALSE );
 /*?*/               //Der Bereich auf den das rechte Kopfattribut zeigt wird
 /*?*/               //kopiert und der Index auf den StartNode in das linke
 /*?*/               //Kopfattribut gehaengt.
@@ -506,7 +507,7 @@
 /*?*/               pDesc->GetLeft().SetAttr( SwFmtFooter( pFmt ) );
 /*?*/           }
 /*?*/           else
-/*?*/               ::lcl_DescSetAttr( *pRight,
+/*?*/               ::binfilter::lcl_DescSetAttr( *pRight,
 /*?*/                              *(SwFrmFmt*)rLeftFoot.GetFooterFmt(), FALSE );
 /*?*/       }
 /*N*/   }
@@ -544,8 +545,8 @@
 /*N*/       GetRootFrm()->CheckPageDescs( (SwPageFrm*)GetRootFrm()->Lower() );
 /*N*/
 /*N*/   //Jetzt noch die Seiten-Attribute uebernehmen.
-/*N*/   ::lcl_DescSetAttr( rChged.GetMaster(), pDesc->GetMaster() );
-/*N*/   ::lcl_DescSetAttr( rChged.GetLeft(), pDesc->GetLeft() );
+/*N*/   ::binfilter::lcl_DescSetAttr( rChged.GetMaster(), pDesc->GetMaster() );
+/*N*/   ::binfilter::lcl_DescSetAttr( rChged.GetLeft(), pDesc->GetLeft() );
 /*N*/
 /*N*/   //Wenn sich FussnotenInfo veraendert, so werden die Seiten
 /*N*/   //angetriggert.
@@ -707,7 +708,7 @@
 /*N*/   {
 /*N*/       pNew = new SwPageDesc( rName, GetDfltFrmFmt(), this );
 /*N*/       //Default-Seitenformat einstellen.
-/*N*/       ::lcl_DefaultPageFmt( USHRT_MAX, pNew->GetMaster(), pNew->GetLeft(),
+/*N*/       ::binfilter::lcl_DefaultPageFmt( USHRT_MAX, pNew->GetMaster(), pNew->GetLeft(),
 /*N*/                             GetPrt(), FALSE );
 /*N*/
 /*N*/         SvxFrameDirection aFrameDirection = bRegardLanguage ?
@@ -859,13 +860,13 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/
 /*N*/       if ( pNodes )
 /*N*/       {
-/*N*/           ::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
+/*N*/           ::binfilter::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
 /*N*/                            0, pNodes->Count(), GetDocShell());
 /*N*/           GetRootFrm()->StartAllAction();
 /*N*/
 /*N*/           for( USHORT i = 0; i < pNodes->Count(); ++i )
 /*N*/           {
-/*N*/               ::SetProgressState( i, GetDocShell() );
+/*N*/               ::binfilter::SetProgressState( i, GetDocShell() );
 /*N*/
 /*N*/               SwOLENode* pOLENd = (*pNodes)[i];
 /*N*/               pOLENd->SetOLESizeInvalid( FALSE );
@@ -923,7 +924,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/           }
 /*N*/           delete pNodes;
 /*N*/           GetRootFrm()->EndAllAction();
-/*N*/           ::EndProgress( GetDocShell() );
+/*N*/           ::binfilter::EndProgress( GetDocShell() );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -964,7 +965,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/         for ( USHORT i = 0; i < GetPageDescCnt(); ++i )
 /*N*/         {
 /*N*/             SwPageDesc& rDesc = _GetPageDesc( i );
-/*N*/             ::lcl_DefaultPageFmt( rDesc.GetPoolFmtId(), rDesc.GetMaster(),
+/*N*/             ::binfilter::lcl_DefaultPageFmt( rDesc.GetPoolFmtId(), rDesc.GetMaster(),
 /*N*/                                   rDesc.GetLeft(), pPrt, TRUE );
 /*N*/         }
 /*N*/     }
@@ -1026,14 +1027,14 @@ SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
 /*N*/
 /*N*/       if( aOLENodes.Count() )
 /*N*/       {
-/*N*/           ::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
+/*N*/           ::binfilter::StartProgress( STR_STATSTR_SWGPRTOLENOTIFY,
 /*N*/                            0, aOLENodes.Count(), GetDocShell());
 /*N*/           GetRootFrm()->StartAllAction();
 /*N*/           SwMsgPoolItem aMsgHint( RES_UPDATE_ATTR );
 /*N*/
 /*N*/           for( USHORT i = 0; i < aOLENodes.Count(); ++i )
 /*N*/           {
-/*N*/               ::SetProgressState( i, GetDocShell() );
+/*N*/               ::binfilter::SetProgressState( i, GetDocShell() );
 /*N*/
 /*N*/               SwOLENode* pOLENd = aOLENodes[i];
 /*N*/               pOLENd->SetOLESizeInvalid( FALSE );
@@ -1060,7 +1061,7 @@ SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
 /*N*/               }
 /*N*/           }
 /*N*/           GetRootFrm()->EndAllAction();
-/*N*/           ::EndProgress( GetDocShell() );
+/*N*/           ::binfilter::EndProgress( GetDocShell() );
 /*N*/       }
 /*N*/   }
 /*N*/   return 0;
@@ -1069,3 +1070,4 @@ SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
 
 
 
+}

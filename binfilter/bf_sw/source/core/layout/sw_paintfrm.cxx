@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paintfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -218,6 +218,7 @@
 #ifndef _SVDOGRP_HXX
 #include <bf_svx/svdogrp.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ #define GETOBJSHELL()     ((SfxObjectShell*)rSh.GetDoc()->GetDocShell())
 
@@ -277,7 +278,7 @@
 //STRIP001  BOOL MakeUnion( const SwRect &rRect );
 //STRIP001 };
 
-//STRIP001 SV_DECL_VARARR( SwLRects, SwLineRect, 100, 100 );
+//STRIP001 SV_DECL_VARARR( SwLRects, SwLineRect, 100, 100 )//STRIP008 ;
 
 //STRIP001 class SwLineRects : public SwLRects
 //STRIP001 {
@@ -5609,3 +5610,4 @@ void lcl_CompPxPosAndAdjustPos( const OutputDevice&  _rOut,
 //STRIP001  }
 //STRIP001  return aRet;
 //STRIP001 }
+}

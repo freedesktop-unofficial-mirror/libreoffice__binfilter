@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tphfedit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
 #endif
+namespace binfilter {
 
 //===================================================================
 
@@ -149,7 +150,7 @@ private:
     EditView*           pEdView;
     ScEditWindowLocation eLocation;
 
-    com::sun::star::uno::WeakReference< ::com::sun::star::accessibility::XAccessible > xAcc;
+    ::com::sun::star::uno::WeakReference< ::com::sun::star::accessibility::XAccessible > xAcc;
     ScAccessibleEditObject* pAcc;
 };
 
@@ -286,5 +287,6 @@ private:
 
 
 
+} //namespace binfilter
 #endif // SC_TPHFEDIT_HXX
 

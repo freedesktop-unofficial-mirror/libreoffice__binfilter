@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLConverter.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,12 +96,13 @@
 #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
 #endif
+class DateTime;
+class SvXMLUnitConverter;
+namespace binfilter {
 
 class ScArea;
 class ScDocument;
 class ScRangeList;
-class DateTime;
-class SvXMLUnitConverter;
 
 
 //___________________________________________________________________
@@ -277,15 +278,16 @@ public:
                             ::rtl::OUString& sFormula,
                             const sal_Bool bIsFormula = sal_True);
 // EXPORT: Core Date Time
-    static void         ConvertDateTimeToString(const DateTime& aDateTime, rtl::OUStringBuffer& sDate);
+    static void         ConvertDateTimeToString(const DateTime& aDateTime, ::rtl::OUStringBuffer& sDate);
 // IMPORT: Core Date Time
-    static void         ConvertStringToDateTime(const rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter);
+    static void         ConvertStringToDateTime(const ::rtl::OUString& sDate, DateTime& aDateTime, SvXMLUnitConverter* pUnitConverter);
 
-    static void         ConvertCoreToAPIDateTime(const DateTime& aDateTime, com::sun::star::util::DateTime& rDateTime);
+    static void         ConvertCoreToAPIDateTime(const DateTime& aDateTime, ::com::sun::star::util::DateTime& rDateTime);
 
-    static void         ConvertAPIToCoreDateTime(const com::sun::star::util::DateTime& aDateTime, DateTime& rDateTime);
+    static void         ConvertAPIToCoreDateTime(const ::com::sun::star::util::DateTime& aDateTime, DateTime& rDateTime);
 };
 
 
+} //namespace binfilter
 #endif
 

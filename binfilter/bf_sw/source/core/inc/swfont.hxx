@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swfont.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,9 +80,11 @@
 #ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>     // SwDrawTextInfo
 #endif
+class SfxItemSet;
+namespace binfilter {
 
 class LinguBase;        // SetLingu()
-class SfxItemSet;
+
 class SwAttrSet;
 class SwDoCapitals;     // DoCapitals
 class SwWrongList;
@@ -926,5 +928,6 @@ inline void SvStatistics::PrintOn( SvStream &rOS ) const //$ ostream
         rOS << "\tnGetFontMetric: " << nGetFontMetric   << '\n';        rOS << "}"  << '\n';    }
 #endif  /*  PRODUCT */
 
+} //namespace binfilter
 #endif
 

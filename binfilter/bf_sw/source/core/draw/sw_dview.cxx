@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dview.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:15:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,6 +111,7 @@
 #include <bf_svx/svdvmark.hxx>
 #endif
 #include <vector>
+namespace binfilter {
 
 class SwSdrHdl : public SdrHdl
 {
@@ -197,7 +198,7 @@ public:
 /*M*/       return;
 /*M*/
 /*?*/   SdrObject *pObj = rMrkList.GetMark(0)->GetObj();
-/*?*/   const SwFmtAnchor &rAnchor = ::FindFrmFmt(pObj)->GetAnchor();
+/*?*/   const SwFmtAnchor &rAnchor = ::binfilter::FindFrmFmt(pObj)->GetAnchor();
 /*?*/
 /*?*/   if(FLY_IN_CNTNT == rAnchor.GetAnchorId())
 /*?*/       return;
@@ -867,3 +868,4 @@ const SdrMarkList& SwDrawView::GetMarkList() const
 
 
 
+}

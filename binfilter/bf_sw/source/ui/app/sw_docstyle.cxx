@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docstyle.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,6 +163,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 // MD 06.02.95: Die Formatnamen in der Liste aller Namen haben als
 // erstes Zeichen die Familie:
@@ -599,7 +600,7 @@
 /*?*/       if( !pFmt )         // noch nicht vorhanden, also dflt. Parent
 /*?*/       {
 /*?*/           USHORT i = SwStyleNameMapper::GetPoolIdFromUIName( aName, eGetType );
-/*?*/           i = ::GetPoolParent( i );
+/*?*/           i = ::binfilter::GetPoolParent( i );
 /*?*/           if( i && USHRT_MAX != i )
 /*?*/               SwStyleNameMapper::FillUIName( i, sTmp );
 /*?*/       }
@@ -1113,7 +1114,7 @@
 /*N*/       case SFX_STYLE_FAMILY_PAGE :
 /*N*/           {
 /*N*/               ASSERT(pDesc, "Kein PageDescriptor");
-/*N*/               ::PageDescToItemSet(*((SwPageDesc*)pDesc), aCoreSet);
+/*N*/               ::binfilter::PageDescToItemSet(*((SwPageDesc*)pDesc), aCoreSet);
 /*N*/           }
 /*N*/           break;
 /*N*/
@@ -1333,7 +1334,7 @@
 /*N*/
 /*N*/       if( pNewDsc )
 /*N*/       {
-/*N*/           ::ItemSetToPageDesc( aSet, *pNewDsc );
+/*N*/           ::binfilter::ItemSetToPageDesc( aSet, *pNewDsc );
 /*N*/           rDoc.ChgPageDesc( nPgDscPos, *pNewDsc );
 /*N*/           pDesc = &rDoc.GetPageDesc( nPgDscPos );
 /*N*/           delete pNewDsc;
@@ -2795,3 +2796,4 @@
 /*N*/ }
 
 
+}

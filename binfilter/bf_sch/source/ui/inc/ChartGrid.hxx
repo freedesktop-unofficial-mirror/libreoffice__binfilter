@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChartGrid.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _CHARTGRID_HXX_
 
 #include "ChXChartObject.hxx"
+namespace binfilter {
 
 class ChartGrid : public ChXChartObject
 {
@@ -70,26 +71,27 @@ public:
     virtual ~ChartGrid();
 
     // helpers for XUnoTunnel
-    static const com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static ChartGrid* getImplementation( com::sun::star::uno::Reference< com::sun::star::uno::XInterface > ) throw();
+    static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+    static ChartGrid* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL getSupportedServiceNames()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames()
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XTypeProvider
-    virtual com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId()
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XShapeDescriptor
     virtual ::rtl::OUString SAL_CALL getShapeType() throw( ::com::sun::star::uno::RuntimeException );
 
     // XUnoTunnel
-    virtual sal_Int64 SAL_CALL getSomething( const com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
+        throw( ::com::sun::star::uno::RuntimeException );
 
 };
 
+} //namespace binfilter
 #endif  // _CHARTGRID_HXX_

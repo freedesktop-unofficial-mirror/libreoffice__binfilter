@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrstck.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -164,6 +164,7 @@
 #ifndef _SWFONT_HXX
 #include <swfont.hxx>
 #endif
+namespace binfilter {
 
 #define STACK_INCREMENT 4
 
@@ -916,3 +917,4 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     }
 /*M*/ }
 
+}

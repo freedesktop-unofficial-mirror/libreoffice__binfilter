@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoipset.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,7 @@
 #include "svdobj.hxx"
 
 #include <algorithm>
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -274,7 +275,7 @@ struct SvxIDPropertyCombine
     uno::Any    aAny;
 };
 
-DECLARE_LIST( SvxIDPropertyCombineList, SvxIDPropertyCombine * );
+DECLARE_LIST( SvxIDPropertyCombineList, SvxIDPropertyCombine * )//STRIP008 ;
 
 SvxItemPropertySet::SvxItemPropertySet( const SfxItemPropertyMap* pMap, sal_Bool bConvertTwips )
 :   _pMap(SvxInfoSetCache::getSortedPropertyMap(pMap)), mbConvertTwips(bConvertTwips)
@@ -651,7 +652,7 @@ Reference< ::com::sun::star::beans::XPropertySetInfo >  SvxItemPropertySet::getP
 #endif
 
 /** converts the given any with a metric to 100th/mm if needed */
-void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, com::sun::star::uno::Any & rMetric ) throw()
+void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, ::com::sun::star::uno::Any & rMetric ) throw()
 {
     // map the metric of the itempool to 100th mm
     switch(eSourceMapUnit)
@@ -690,7 +691,7 @@ void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, com::sun::star::uno::An
 //----------------------------------------------------------------------
 
 /** converts the given any with a metric from 100th/mm to the given metric if needed */
-void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, com::sun::star::uno::Any & rMetric ) throw()
+void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, ::com::sun::star::uno::Any & rMetric ) throw()
 {
     switch(eDestinationMapUnit)
     {
@@ -725,3 +726,4 @@ void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, com::sun::star::
     }
 }
 
+}

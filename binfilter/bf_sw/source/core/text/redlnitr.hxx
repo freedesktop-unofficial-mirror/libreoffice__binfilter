@@ -2,9 +2,9 @@
  *
  *  $RCSfile: redlnitr.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,10 +69,12 @@
 #define _SVSTDARR_USHORTS
 #include <svtools/svstdarr.hxx>
 #endif
+class SfxItemSet;
+namespace binfilter {
 
 class SwTxtNode;
 class SwDoc;
-class SfxItemSet;
+
 class SwAttrHandler;
 
 class SwExtend
@@ -150,5 +152,6 @@ xub_StrLen nStart = STRING_LEN ){DBG_ASSERT(0, "STRIP");} ;//STRIP001        xub
 };
 
 
+} //namespace binfilter
 #endif
 

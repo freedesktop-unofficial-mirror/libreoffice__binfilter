@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -145,7 +145,7 @@
 #include "preview.hxx"
 
 #define ScModule
-#include "scslots.hxx"
+//STRIP008 #include "scslots.hxx"
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
@@ -153,6 +153,8 @@
 #define SC_IDLE_MAX     3000
 #define SC_IDLE_STEP    75
 #define SC_IDLE_COUNT   50
+namespace binfilter {
+#include "scslots.hxx"
 
 static USHORT nIdleCount = 0;
 
@@ -674,7 +676,7 @@ static USHORT nIdleCount = 0;
 //STRIP001         {
 //STRIP001          try
 //STRIP001          {
-//STRIP001              com::sun::star::uno::Reference < ::com::sun::star::ui::dialogs::XExecutableDialog > xDialog(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(rtl::OUString::createFromAscii("com.sun.star.comp.ui.XSLTFilterDialog")), com::sun::star::uno::UNO_QUERY);
+//STRIP001              ::com::sun::star::uno::Reference < ::com::sun::star::ui::dialogs::XExecutableDialog > xDialog(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.comp.ui.XSLTFilterDialog")), ::com::sun::star::uno::UNO_QUERY);
 //STRIP001              if( xDialog.is() )
 //STRIP001              {
 //STRIP001                  xDialog->execute();
@@ -2217,3 +2219,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (pInfo)
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frame.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,7 +67,8 @@
 #include "swtypes.hxx"  // fuer SwTwips
 #include "swrect.hxx"
 #include "calbck.hxx"   // fuer SwClient
-/*STRIP001*/ #include <tools/debug.hxx>
+#include <tools/debug.hxx>
+
 #define SZPTR
 #define PHEIGHT
 #define PWIDTH
@@ -76,7 +77,11 @@
 #define SIZEPTR SizePtr
 typedef long Size::* SizePtr;
 typedef long Point::* PointPtr;
+class SfxPoolItem;
+class Brush;
+class Color;
 
+namespace binfilter {
 
 class SwLayoutFrm;
 class SwRootFrm;
@@ -90,11 +95,9 @@ class SwFtnBossFrm;
 class SwTabFrm;
 class SwFlowFrm;
 class SwCntntFrm;
-class SfxPoolItem;
+
 class SwAttrSet;
 class ViewShell;
-class Brush;
-class Color;
 class SwBorderAttrs;
 class SwCache;
 class SvxBrushItem;
@@ -338,7 +341,7 @@ enum MakePageType
 };
 
 typedef SdrObject* SdrObjectPtr;
-SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1);
+SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1)//STRIP008 ;
 
 class SwFrm: public SwClient
 {
@@ -1152,4 +1155,5 @@ inline BOOL SwFrm::IsAccessibleFrm() const
 }
 #endif
 
+} //namespace binfilter
 #endif

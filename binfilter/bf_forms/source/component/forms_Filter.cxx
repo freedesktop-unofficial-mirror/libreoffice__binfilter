@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Filter.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,11 +165,12 @@
 #ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
 #endif
+namespace binfilter {
 
 //--------------------------------------------------------------------------
 extern "C" void SAL_CALL createRegistryInfo_OFilterControl()
 {
-    static ::frm::OMultiInstanceAutoRegistration< ::frm::OFilterControl > aAutoRegistration;
+    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::OFilterControl > aAutoRegistration;//STRIP008    static ::frm::OMultiInstanceAutoRegistration< ::frm::OFilterControl > aAutoRegistration;
 }
 
 //.........................................................................
@@ -1056,3 +1057,4 @@ namespace frm
 //.........................................................................
 }   // namespace frm
 //.........................................................................
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: attrib.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -178,8 +179,8 @@ public:
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
     virtual SvStream&       Store( SvStream& rStream, USHORT nVer ) const;
 
-    virtual BOOL            QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             BOOL            GetProtection() const { return bProtection; }
 //STRIP001          BOOL            SetProtection( BOOL bProtect);
@@ -335,8 +336,8 @@ public:
 
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-    virtual BOOL            QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     const EditTextObject* GetLeftArea() const       { return pLeftArea; }
     const EditTextObject* GetCenterArea() const     { return pCenterArea; }
@@ -402,5 +403,6 @@ private:
 };
 
 
+} //namespace binfilter
 #endif
 

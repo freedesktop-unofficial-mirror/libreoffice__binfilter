@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xtabgrdt.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,10 +96,11 @@
 #ifndef _SVX_XFLGRIT_HXX //autogen
 #include <xflgrit.hxx>
 #endif
+namespace binfilter {
 
 #define GLOBALOVERFLOW
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace rtl;
 
 sal_Unicode const pszExtGradient[]  = {'s','o','g'};
@@ -374,7 +375,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/       // check if file exists, SfxMedium shows an errorbox else
 /*N*/       {
-/*N*/           com::sun::star::uno::Reference < com::sun::star::task::XInteractionHandler > xHandler;
+/*N*/           ::com::sun::star::uno::Reference < ::com::sun::star::task::XInteractionHandler > xHandler;
 /*N*/           SvStream* pIStm = ::utl::UcbStreamHelper::CreateStream( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_READ, xHandler );
 /*N*/
 /*N*/           sal_Bool bOk = pIStm && ( pIStm->GetError() == 0);
@@ -779,3 +780,4 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,8 @@
 #ifndef SC_MARKDATA_HXX
 #include "markdata.hxx"
 #endif
+class Window;
+namespace binfilter {
 
 
 // ---------------------------------------------------------------------------
@@ -111,7 +113,6 @@ class ScEditEngineDefaulter;
 class EditView;
 class EditStatus;
 class Outliner;
-class Window;
 class SfxObjectShell;
 class SfxBindings;
 class SfxDispatcher;
@@ -155,8 +156,8 @@ private:
 //STRIP001                  ScViewDataTable( const ScViewDataTable& rDataTable );
                     ~ScViewDataTable();
 
-    void            WriteUserDataSequence(com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue>& rSettings);
-//STRIP001  void            ReadUserDataSequence(const com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue>& rSettings);
+    void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
+//STRIP001  void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
 };
 
 // ---------------------------------------------------------------------------
@@ -254,8 +255,8 @@ public:
 //STRIP001  void            ReadUserData(const String& rData);
 //STRIP001  void            WriteExtOptions(ScExtDocOptions& rOpt);
 //STRIP001  void            ReadExtOptions(const ScExtDocOptions& rOpt);
-    void            WriteUserDataSequence(com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue>& rSettings);
-//STRIP001  void            ReadUserDataSequence(const com::sun::star::uno::Sequence <com::sun::star::beans::PropertyValue>& rSettings);
+    void            WriteUserDataSequence(::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
+//STRIP001  void            ReadUserDataSequence(const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue>& rSettings);
 
     ScDocument*     GetDocument() const;
 
@@ -518,5 +519,6 @@ inline ScSplitPos Which( ScVSplitPos eVPos )
 
 
 
+} //namespace binfilter
 #endif
 

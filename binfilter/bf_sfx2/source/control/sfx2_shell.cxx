@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #include "mnumgr.hxx"
 #include "statcach.hxx"
 #include "macrconf.hxx"
+namespace binfilter {
 
 //====================================================================
 
@@ -111,7 +112,7 @@
 
 //====================================================================
 /*N*/ typedef SfxSlot* SfxSlotPtr;
-/*N*/ SV_DECL_PTRARR_DEL( SfxVerbSlotArr_Impl, SfxSlotPtr, 4, 4);
+/*N*/ SV_DECL_PTRARR_DEL( SfxVerbSlotArr_Impl, SfxSlotPtr, 4, 4)//STRIP008 ;
 /*N*/ SV_IMPL_PTRARR( SfxVerbSlotArr_Impl, SfxSlotPtr);
 
 /*N*/ struct SfxVerbList
@@ -1558,3 +1559,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 
 
 
+}

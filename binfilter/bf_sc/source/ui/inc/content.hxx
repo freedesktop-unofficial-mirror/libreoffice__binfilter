@@ -2,9 +2,9 @@
  *
  *  $RCSfile: content.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 //STRIP001 class ScNavigatorDlg;
 //STRIP001 class ScNavigatorSettings;
@@ -198,5 +199,6 @@ const ULONG SC_CONTENT_NOCHILD  = ~0UL;
 
 
 
+} //namespace binfilter
 #endif // SC_NAVIPI_HXX
 

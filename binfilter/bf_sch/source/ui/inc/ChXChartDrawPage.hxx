@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXChartDrawPage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,26 +72,27 @@
 #ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
 #endif
+namespace binfilter {
 
 class ChartModel;
 
 class ChXChartDrawPage :
-    public com::sun::star::beans::XPropertySet,
+    public ::com::sun::star::beans::XPropertySet,
     public SvxDrawPage
 {
 private:
     ChartModel*         mpModel;
     SvxItemPropertySet  maPropSet;
 
-    com::sun::star::uno::Sequence< com::sun::star::uno::Type > maTypeSequence;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
     ChXChartDrawPage( ChartModel* pModel );
     virtual ~ChXChartDrawPage() throw();
 
     // XInterface
-    virtual com::sun::star::uno::Any SAL_CALL queryInterface( const com::sun::star::uno::Type & rType )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType )
+        throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL acquire() throw();
     virtual void SAL_CALL release() throw();
 
@@ -102,39 +103,40 @@ public:
         throw( ::com::sun::star::uno::RuntimeException );
 
     // XPropertySet
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo()
+        throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL setPropertyValue( const ::rtl::OUString& aPropertyName,
-                                            const com::sun::star::uno::Any& aValue )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::beans::PropertyVetoException,
-               com::sun::star::lang::IllegalArgumentException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                                            const ::com::sun::star::uno::Any& aValue )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::beans::PropertyVetoException,
+               ::com::sun::star::lang::IllegalArgumentException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XPropertyChangeListener >& xListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& xListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XPropertyChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XVetoableChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                const com::sun::star::uno::Reference< com::sun::star::beans::XVetoableChangeListener >& aListener )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
 };
 
+} //namespace binfilter
 #endif  // _CHXCHARTDRAWPAGE_HXX_

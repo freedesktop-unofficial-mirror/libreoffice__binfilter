@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unodoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,17 +76,18 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
 ::rtl::OUString SAL_CALL ScDocument_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.SpreadsheetDocument" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.SpreadsheetDocument" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< rtl::OUString > aSeq( 2 );
+    uno::Sequence< ::rtl::OUString > aSeq( 2 );
     aSeq[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.OfficeDocument" ));
     aSeq[1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.sheet.SpreadsheetDocument" ));
     return aSeq;
@@ -116,3 +117,4 @@ uno::Reference< uno::XInterface > SAL_CALL ScDocument_createInstance(
 }
 
 
+}

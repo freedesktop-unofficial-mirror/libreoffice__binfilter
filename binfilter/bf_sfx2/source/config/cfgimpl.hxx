@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cfgimpl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,12 @@
 #include <svtools/svarray.hxx>
 
 #include "cfgitem.hxx"
+class SotStorage;
+class SvStream;
+namespace binfilter {
 
 typedef SfxConfigItem* SfxConfigItemPtr;
-SV_DECL_PTRARR( SfxConfigItems_Impl, SfxConfigItemPtr, 2, 2);
+SV_DECL_PTRARR( SfxConfigItems_Impl, SfxConfigItemPtr, 2, 2)//STRIP008 ;
 
 struct SfxConfigItem_Impl
 {
@@ -87,10 +90,8 @@ struct SfxConfigItem_Impl
 };
 
 typedef SfxConfigItem_Impl* SfxConfigItemPtr_Impl;
-SV_DECL_PTRARR( SfxConfigItemArr_Impl, SfxConfigItemPtr_Impl, 2, 2);
+SV_DECL_PTRARR( SfxConfigItemArr_Impl, SfxConfigItemPtr_Impl, 2, 2)//STRIP008 ;
 
-class SotStorage;
-class SvStream;
 class SfxObjectShell;
 class SfxIFConfig_Impl;
 class SfxConfigManagerImExport_Impl
@@ -118,3 +119,4 @@ public:
     static BOOL     HasConfiguration( SotStorage& rStorage );
 };
 
+}//end of namespace binfilter

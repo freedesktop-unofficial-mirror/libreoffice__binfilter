@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtsh3.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,8 +111,9 @@
 #include "bookmrk.hxx"
 #include "doc.hxx"
 #include "wrtsh.hrc"
+namespace binfilter {
 
-#define C2U(cChar) rtl::OUString::createFromAscii(cChar)
+#define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -327,3 +328,4 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dlgcont.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 
 #include <namecont.hxx>
 #include <tools/debug.hxx> //for strip
+namespace binfilter {
 
 //============================================================================
 
@@ -148,6 +149,7 @@ public:
     );
 };
 
+}//end of namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoidx.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:43:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -161,6 +161,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
@@ -301,7 +302,7 @@ SwDocIdxProperties_Impl::SwDocIdxProperties_Impl(const SwTOXType* pType)
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXDocumentIndex::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -1315,7 +1316,7 @@ void SwXDocumentIndex::setName(const OUString& rName) throw( RuntimeException )
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXDocumentIndexMark::getUnoTunnelId()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 /* -----------------------------10.03.00 18:04--------------------------------
@@ -2808,3 +2809,4 @@ sal_Bool SwXIndexTokenAccess_Impl::hasElements(void) throw( RuntimeException )
     return sal_True;
 }
 
+}

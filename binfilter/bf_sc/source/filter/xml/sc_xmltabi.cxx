@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmltabi.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,8 +103,9 @@
 #include <com/sun/star/sheet/XSpreadsheet.hpp>
 #include <com/sun/star/sheet/XPrintAreas.hpp>
 #include <com/sun/star/table/CellAddress.hpp>
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -122,18 +123,18 @@ ScXMLTableContext::ScXMLTableContext( ScXMLImport& rImport,
     if (!bTempIsSubTable)
     {
         sal_Bool bProtection(sal_False);
-        rtl::OUString sName;
-        rtl::OUString sStyleName;
-        rtl::OUString sPassword;
+        ::rtl::OUString sName;
+        ::rtl::OUString sStyleName;
+        ::rtl::OUString sPassword;
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetTableAttrTokenMap();
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            rtl::OUString aLocalName;
+            ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+            ::rtl::OUString aLocalName;
             USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                                 sAttrName, &aLocalName );
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
             switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
             {
@@ -316,3 +317,4 @@ void ScXMLTableContext::EndElement()
     GetScImport().UnlockSolarMutex();
 }
 
+}

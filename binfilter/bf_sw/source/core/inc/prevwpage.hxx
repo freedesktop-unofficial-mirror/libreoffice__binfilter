@@ -5,7 +5,7 @@
 #ifndef _GEN_HXX
 #include <tools/gen.hxx>
 #endif
-
+namespace binfilter {
 class SwPageFrm;
 
 /** data structure for a preview page in the current preview layout
@@ -35,4 +35,6 @@ inline PrevwPage::PrevwPage()
       aMapOffset( Point(0,0) )
 {};
 
+
+} //namespace binfilter
 #endif

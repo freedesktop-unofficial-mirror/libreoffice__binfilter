@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmstatic.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif
+namespace binfilter {
 
 struct ConstAsciiString
 {
@@ -110,5 +111,6 @@ inline ConstAsciiString::operator const ::rtl::OUString () const
     ConstAsciiString name(asciivalue, sizeof(asciivalue) - 1)
 
 
+}//end of namespace binfilter
 #endif _FM_STATIC_HXX_
 

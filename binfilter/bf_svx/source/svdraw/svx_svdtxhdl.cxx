@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtxhdl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,6 +122,7 @@
 #ifndef _UNO_LINGU_HXX
 #include "unolingu.hxx"
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -326,8 +327,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 /*N*/ // #101498# List classes for recording portions
-/*N*/ DECLARE_LIST(ImpRecordPortionList, ImpRecordPortion*);
-/*N*/ DECLARE_LIST(ImpRecordPortionListList, ImpRecordPortionList*);
+/*N*/ DECLARE_LIST(ImpRecordPortionList, ImpRecordPortion*)//STRIP008 ;
+/*N*/ DECLARE_LIST(ImpRecordPortionListList, ImpRecordPortionList*)//STRIP008 ;
 
 /*N*/ // #101498# Draw recorded formtext along Poly
 /*N*/ void ImpTextPortionHandler::DrawFormTextRecordPortions(Polygon aPoly)
@@ -710,3 +711,4 @@ using namespace ::com::sun::star::i18n;
 //
 //  return 0;
 //}
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -134,6 +134,7 @@
 #endif
 
 #pragma hdrstop
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -328,7 +329,7 @@ using namespace ::com::sun::star;
 //STRIP001  if (!xControl.is())
 //STRIP001      return;
 //STRIP001
-//STRIP001  if (evt.PropertyName == rtl::OUString::createFromAscii("DefaultControl"))
+//STRIP001  if (evt.PropertyName == ::rtl::OUString::createFromAscii("DefaultControl"))
 //STRIP001  {
 //STRIP001      // anlegen eines neuen Controls
 //STRIP001      uno::Reference< lang::XMultiServiceFactory > xFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
@@ -656,8 +657,8 @@ using namespace ::com::sun::star;
 /*?*/           uno::Reference< lang::XMultiServiceFactory > xFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*?*/           if( xFactory.is() )
 /*?*/           {
-/*?*/               xControlContainer = uno::Reference< awt::XControlContainer >(xFactory->createInstance(rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainer")), uno::UNO_QUERY);
-/*?*/               uno::Reference< awt::XControlModel > xModel(xFactory->createInstance(rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainerModel")), uno::UNO_QUERY);
+/*?*/               xControlContainer = uno::Reference< awt::XControlContainer >(xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainer")), uno::UNO_QUERY);
+/*?*/               uno::Reference< awt::XControlModel > xModel(xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainerModel")), uno::UNO_QUERY);
 /*?*/               uno::Reference< awt::XControl > xControl(xControlContainer, uno::UNO_QUERY);
 /*?*/               if (xControl.is())
 /*?*/                   xControl->setModel(xModel);
@@ -2448,3 +2449,4 @@ using namespace ::com::sun::star;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+}

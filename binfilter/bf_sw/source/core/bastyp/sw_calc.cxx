@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:06:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,6 +147,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 // tippt sich schneller
 #define RESOURCE ViewShell::GetShellRes()
 
@@ -656,7 +657,7 @@ static int
 /*N*/   // DBSETNUMBERFLD = DatenSATZ-nummernfeld (NICHT "setze Datensatznummer!!!")
 /*N*/     // #101436#: At this point the "real" case variable has to be used
 /*N*/     String sTmpName( rStr );
-/*N*/   ::ReplacePoint( sTmpName );
+/*N*/   ::binfilter::ReplacePoint( sTmpName );
 /*N*/
 /*N*/   if( !ins )
 /*N*/   {
@@ -855,7 +856,7 @@ static int
 /*M*/           }
 /*M*/
 /*M*/           // Operations abfangen
-/*M*/             _CalcOp* pFnd = ::FindOperator( sLowerCaseName );
+/*M*/             _CalcOp* pFnd = ::binfilter::FindOperator( sLowerCaseName );
 /*M*/           if( pFnd )
 /*M*/           {
 /*M*/               switch( ( eCurrOper = ((_CalcOp*)pFnd)->eOp ) )
@@ -1164,7 +1165,7 @@ static int
 /*M*/                           return GetToken();  // also nochmal aufrufen
 /*M*/
 /*M*/                       // Operations abfangen
-/*M*/                       _CalcOp* pFnd = ::FindOperator( aStr );
+/*M*/                       _CalcOp* pFnd = ::binfilter::FindOperator( aStr );
 /*M*/                       if( pFnd )
 /*M*/                       {
 /*M*/                           switch( ( eCurrOper = ((_CalcOp*)pFnd)->eOp ) )
@@ -1837,3 +1838,4 @@ static const sal_Char* sNTypeTab[ 27 ] =
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swgids.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:32:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+namespace binfilter {
 
 struct FileHeader {
     long   nSignature;              // Signatur: "SWG1"
@@ -283,4 +284,5 @@ enum AttrIdx {                      // Indexe von cAttrTab[]
 
 #endif
 
+} //namespace binfilter
 #endif

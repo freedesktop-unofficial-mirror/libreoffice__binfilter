@@ -2,9 +2,9 @@
  *
  *  $RCSfile: formsmodule.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,7 @@
 #ifndef _RTL_STRING_HXX_
 #include <rtl/string.hxx>
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -271,5 +272,6 @@ typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XSingleService
 }   // namespace frm
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // FORMS_MODULE_HXX
 

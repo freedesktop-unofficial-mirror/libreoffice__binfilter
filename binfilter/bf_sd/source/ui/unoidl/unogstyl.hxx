@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unogstyl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,10 +60,11 @@
  ************************************************************************/
 
 #include <unopstyl.hxx>
+class SfxStyleSheetBase;
+namespace binfilter {
 
 extern ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SdUnoGraphicStyle_CreateInstance_Impl();
 
-class SfxStyleSheetBase;
 
 class SdUnoGraphicStyle : public SdUnoPseudoStyle
 {
@@ -100,3 +101,4 @@ public:
     virtual ::rtl::OUString SAL_CALL getImplementationName() throw(::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter

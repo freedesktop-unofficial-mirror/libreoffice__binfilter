@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tblrwcl.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,8 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
+class SfxPoolItem;
+namespace binfilter {
 
 class SvxBorderLine;
 class SwDoc;
@@ -87,7 +89,7 @@ class SwTableBoxFmt;
 class SwTableLineFmt;
 class SwHistory;
 class SwCntntNode;
-class SfxPoolItem;
+
 class SwShareBoxFmts;
 class SwFmtFrmSize;
 
@@ -260,4 +262,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_rulritem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:42:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 
 #include "dialogs.hrc"
 #include "rulritem.hxx"
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -537,7 +538,7 @@
 //STRIP001  return (*this)[nIdx].nEnd;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxColumnItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxColumnItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -559,7 +560,7 @@
 //STRIP001     return sal_True;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxColumnItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+//STRIP001 sal_Bool SvxColumnItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -652,7 +653,7 @@
 //STRIP001 {
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxObjectItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxObjectItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -672,7 +673,7 @@
 //STRIP001     return TRUE;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxObjectItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+//STRIP001 sal_Bool SvxObjectItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 //STRIP001 {
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
@@ -690,3 +691,4 @@
 //STRIP001     return bRet;
 //STRIP001 }
 
+}

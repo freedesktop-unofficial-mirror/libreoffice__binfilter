@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw6par.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,13 +79,15 @@
 #ifndef _SW6FILE_HXX
 #include <sw6file.hxx>
 #endif
+class SfxPoolItem;
+namespace binfilter {
 
 
 class SwDoc;
 class SwPaM;
 class SwNodeIndex;
 class SvxTabStopItem;
-class SfxPoolItem;
+
 class SwFmt;
 
 // Enthaelt die Dokument-Info. Groesse des Structs muss genau
@@ -252,4 +254,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif _SW6PAR_HXX

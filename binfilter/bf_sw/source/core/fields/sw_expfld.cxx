@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -163,7 +163,9 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
-
+namespace binfilter {
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern void InsertSort( SvUShorts& rArr, USHORT nIdx, USHORT* pInsPos = 0 ); //STRIP008
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::rtl;
@@ -532,7 +534,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR4:
-/*?*/       rAny <<= rtl::OUString(GetExpStr());
+/*?*/       rAny <<= ::rtl::OUString(GetExpStr());
 /*?*/       break;
 /*?*/   default:
 /*?*/         return SwField::QueryValue(rAny, nMId);
@@ -655,7 +657,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*N*/       if( pF->GetFld() != &rFld && pF->GetTxtFld() &&
 /*N*/           0 != ( pNd = pF->GetTxtFld()->GetpTxtNode() ) &&
 /*N*/           pNd->GetNodes().IsDocNodes() )
-/*N*/           InsertSort( aArr, ((SwSetExpField*)pF->GetFld())->GetSeqNumber() );
+/*N*/           ::binfilter::InsertSort( aArr, ((SwSetExpField*)pF->GetFld())->GetSeqNumber() );
 /*N*/
 /*N*/
 /*N*/   // teste erstmal ob die Nummer schon vorhanden ist:
@@ -768,7 +770,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   return new SwGetExpF
 /*N*/   case FIELD_PROP_PAR2:
 /*N*/       {
 /*?*/           String sTmp;
-/*?*/           if( ::GetString( rAny, sTmp ).Len() )
+/*?*/           if( ::binfilter::GetString( rAny, sTmp ).Len() )
 /*?*/               SetDelimiter( sTmp.GetChar( 0 ));
 /*?*/           else
 /*?*/               SetDelimiter(' ');
@@ -1271,7 +1273,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR4:
-/*?*/       rAny <<= rtl::OUString(GetExpStr());
+/*?*/       rAny <<= ::rtl::OUString(GetExpStr());
 /*?*/       break;
 /*?*/   default:
 /*?*/         return SwField::QueryValue(rAny, nMId);
@@ -1315,7 +1317,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*?*/       break;
 /*?*/   case FIELD_PROP_PAR1:
 /*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SetPar1( SwStyleNameMapper::GetUIName(
-//STRIP001 /*?*/                            ::GetString( rAny, sTmp ), GET_POOLID_TXTCOLL ) );
+//STRIP001 /*?*/                            ::binfilter::GetString( rAny, sTmp ), GET_POOLID_TXTCOLL ) );
 /*?*/       break;
 /*N*/   case FIELD_PROP_PAR2:
 /*N*/       {
@@ -1341,7 +1343,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*N*/           SetSubType((GetSubType() & 0xff00) | nTmp32);
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR3:
-/*?*/       ::GetString( rAny, aPText );
+/*?*/       ::binfilter::GetString( rAny, aPText );
 /*?*/       break;
 /*N*/   case FIELD_PROP_BOOL3:
 /*N*/       if(*(sal_Bool*) rAny.getValue())
@@ -1353,7 +1355,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 /*?*/       SetInputFlag(*(sal_Bool*) rAny.getValue());
 /*?*/       break;
 /*N*/   case FIELD_PROP_PAR4:
-/*N*/       ChgExpStr( ::GetString( rAny, sTmp ));
+/*N*/       ChgExpStr( ::binfilter::GetString( rAny, sTmp ));
 /*N*/       break;
 /*N*/   default:
 /*?*/         return SwField::PutValue(rAny, nMId);
@@ -1363,3 +1365,4 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwInputFieldType* pT
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlsubti.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,10 +120,11 @@
 #ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
 #include <com/sun/star/util/XProtectable.hpp>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 ScMyTableData::ScMyTableData(sal_Int16 nSheet, sal_Int32 nCol, sal_Int32 nRow)
     :   nColsPerCol(nDefaultColCount, 1),
@@ -237,8 +238,8 @@ ScMyTables::~ScMyTables()
     }
 }
 
-void ScMyTables::NewSheet(const rtl::OUString& sTableName, const rtl::OUString& sStyleName,
-                        const sal_Bool bTempProtection, const rtl::OUString& sTempPassword)
+void ScMyTables::NewSheet(const ::rtl::OUString& sTableName, const ::rtl::OUString& sStyleName,
+                        const sal_Bool bTempProtection, const ::rtl::OUString& sTempPassword)
 {
     if (rImport.GetModel().is())
     {
@@ -276,7 +277,7 @@ void ScMyTables::NewSheet(const rtl::OUString& sTableName, const rtl::OUString& 
                             rImport.LockSolarMutex();
                             String sTabName = String::CreateFromAscii("Table");
                             pDoc->CreateValidTabName(sTabName);
-                            rtl::OUString sOUTabName(sTabName);
+                            ::rtl::OUString sOUTabName(sTabName);
                             xSheets->insertNewByName(sOUTabName, nCurrentSheet);
                             rImport.UnlockSolarMutex();
                         }
@@ -305,7 +306,7 @@ void ScMyTables::NewSheet(const rtl::OUString& sTableName, const rtl::OUString& 
                                         rImport.LockSolarMutex();
                                         String sTabName = String::CreateFromAscii("Table");
                                         pDoc->CreateValidTabName(sTabName);
-                                        rtl::OUString sOUTabName(sTabName);
+                                        ::rtl::OUString sOUTabName(sTabName);
                                         xNamed->setName(sOUTabName);
                                         rImport.UnlockSolarMutex();
                                     }
@@ -482,7 +483,7 @@ void ScMyTables::AddRow()
         + aTableVec[nTableCount - 1]->GetRowsPerRow(nRow));
 }
 
-void ScMyTables::SetRowStyle(const rtl::OUString& rCellStyleName)
+void ScMyTables::SetRowStyle(const ::rtl::OUString& rCellStyleName)
 {
     rImport.GetStylesImportHelper()->SetRowStyle(rCellStyleName);
 }
@@ -698,7 +699,7 @@ void ScMyTables::DeleteTable()
         /*uno::Reference <util::XProtectable> xProtectable(xCurrentSheet, uno::UNO_QUERY);
         if (xProtectable.is())
         {
-            rtl::OUString sKey;
+            ::rtl::OUString sKey;
             xProtectable->protect(sKey);
         }*/
     }
@@ -711,17 +712,17 @@ void ScMyTables::DeleteTable()
     uno::Reference < container::XNamed > xNamed(xCurrentSheet, uno::UNO_QUERY );
     if ( xNamed.is() )
     {
-        rtl::OUString sCurrentName = xNamed->getName();
+        ::rtl::OUString sCurrentName = xNamed->getName();
         if (sCurrentName != sCurrentSheetName)
         {
-            rtl::OUString sErrorMessage(RTL_CONSTASCII_USTRINGPARAM("Could not create a table with the name "));
+            ::rtl::OUString sErrorMessage(RTL_CONSTASCII_USTRINGPARAM("Could not create a table with the name "));
             sErrorMessage += sCurrentSheetName;
-            sErrorMessage += rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(". The new name is "));
+            sErrorMessage += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(". The new name is "));
             sErrorMessage += sCurrentName;
             uno::Sequence<rtl::OUString> aSeq(1);
             aSeq[0] = sErrorMessage;
             uno::Reference<xml::sax::XLocator> xLocator;
-            rImport.SetError(XMLERROR_API | XMLERROR_FLAG_ERROR, aSeq, rtl::OUString(), xLocator);
+            rImport.SetError(XMLERROR_API | XMLERROR_FLAG_ERROR, aSeq, ::rtl::OUString(), xLocator);
         }
     }
 }
@@ -747,7 +748,7 @@ void ScMyTables::AddColCount(sal_Int32 nTempColCount)
     aTableVec[nTableCount - 1]->SetColCount(aTableVec[nTableCount - 1]->GetColCount() + nTempColCount);
 }
 
-void ScMyTables::AddColStyle(const sal_Int32 nRepeat, const rtl::OUString& rCellStyleName)
+void ScMyTables::AddColStyle(const sal_Int32 nRepeat, const ::rtl::OUString& rCellStyleName)
 {
     DBG_ASSERT(nTableCount == 1, "not possible to use default styles on columns in subtables");
     rImport.GetStylesImportHelper()->AddColumnStyle(rCellStyleName, nCurrentColStylePos, nRepeat);
@@ -792,7 +793,7 @@ sal_Bool ScMyTables::HasXShapes()
 }
 
 void ScMyTables::AddShape(uno::Reference <drawing::XShape>& rShape,
-    rtl::OUString* pRangeList,
+    ::rtl::OUString* pRangeList,
     table::CellAddress& rStartAddress, table::CellAddress& rEndAddress,
     sal_Int32 nEndX, sal_Int32 nEndY)
 {
@@ -838,4 +839,5 @@ sal_Bool ScMyTables::IsPartOfMatrix(sal_uInt32 nColumn, sal_uInt32 nRow)
         }
     }
     return bResult;
+}
 }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnum.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,6 +142,7 @@
 #ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ inline BYTE GetUpperLvlChg( BYTE nCurLvl, BYTE nLevel, USHORT nMask )
 /*N*/ {
@@ -1084,7 +1085,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 //STRIP001 /*?*/            pHistory = pUndo->GetHistory();
 /*?*/           AppendUndo( pUndo );
 /*N*/       }
-/*N*/       ::lcl_ChgNumRule( *this, rRule, pHistory );
+/*N*/       ::binfilter::lcl_ChgNumRule( *this, rRule, pHistory );
 /*N*/
 /*N*/       if( pUndo )
 /*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 pUndo->SetLRSpaceEndPos();
@@ -2360,3 +2361,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 
 
 
+}

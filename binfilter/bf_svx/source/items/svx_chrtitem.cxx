@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_chrtitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:02 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,6 +98,7 @@
 #include "chrtitem.hxx"
 
 #pragma hdrstop
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -309,7 +310,7 @@ using namespace ::com::sun::star;
 
 //STRIP001 XubString SvxDoubleItem::GetValueText() const
 //STRIP001 {
-//STRIP001  rtl::OString aOStr( rtl::math::doubleToString( fVal, rtl_math_StringFormat_E, 4, '.', false ) );
+//STRIP001  ::rtl::OString aOStr( ::rtl::math::doubleToString( fVal, rtl_math_StringFormat_E, 4, '.', false ) );
 //STRIP001  return String( aOStr.getStr(), (sal_uInt16)aOStr.getLength() );
 //STRIP001 }
 
@@ -528,3 +529,4 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fefly1.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:19:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -195,6 +195,7 @@
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -254,7 +255,7 @@ using namespace ::com::sun::star;
 /*N*/           //dichtesten CntntFrm suchen.
 /*N*/           const SwFrm* pFrm = rFrm.IsFlyFrm() ? ((SwFlyFrm&)rFrm).GetAnchor()
 /*N*/                                               : &rFrm;
-/*N*/           pNewAnch = ::FindAnchor( pFrm, aTmpPnt );
+/*N*/           pNewAnch = ::binfilter::FindAnchor( pFrm, aTmpPnt );
 /*N*/           if( pNewAnch->IsProtected() )
 /*N*/           {
 /*N*/               bRet = FALSE;
@@ -289,7 +290,7 @@ using namespace ::com::sun::star;
 /*N*/           SwPosition aPos( rDoc.GetNodes() );
 /*N*/           aTmpPnt.X() -= 1;                   //nicht im Fly landen!!
 /*N*/           rDoc.GetRootFrm()->GetCrsrOfst( &aPos, aTmpPnt, &aState );
-/*N*/           pNewAnch = ::FindAnchor(
+/*N*/           pNewAnch = ::binfilter::FindAnchor(
 /*N*/               aPos.nNode.GetNode().GetCntntNode()->GetFrm( 0, 0, sal_False ),
 /*N*/               aTmpPnt )->FindFlyFrm();
 /*N*/
@@ -341,7 +342,7 @@ using namespace ::com::sun::star;
 /*N*/           "Unerlaubter Ankerwechsel in Head/Foot." );
 /*N*/ #endif
 /*N*/
-/*N*/   return ::lcl_FindAnchorPos( *pDoc, rFly.Frm().Pos(), rFly, rSet );
+/*N*/   return ::binfilter::lcl_FindAnchorPos( *pDoc, rFly.Frm().Pos(), rFly, rSet );
 /*N*/ }
 
 //STRIP001 void SwFEShell::SelectFlyFrm( SwFlyFrm& rFrm, sal_Bool bNew )
@@ -1983,7 +1984,7 @@ using namespace ::com::sun::star;
 //STRIP001 /*?*/
 //STRIP001 /*?*/     return aResult;
 /*M*/ }
-
+} //namespace binfilter
 #include <fmtcnct.hxx>
 #if 0
 #include <algorithm>
@@ -2060,6 +2061,7 @@ using namespace ::com::sun::star;
 /*M*/ }
 #endif
 
+namespace binfilter {//STRIP009
 /*M*/ void SwFEShell::GetConnectableFrmFmts(SwFrmFmt & rFmt,
 /*M*/                                       const String & rReference,
 /*M*/                                       BOOL bSuccessors,
@@ -2192,3 +2194,4 @@ using namespace ::com::sun::star;
 /*M*/     ::std::clog << "-------------------------" << ::std::endl;
 /*M*/ #endif
 /*M*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,7 @@
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
+namespace binfilter {
 
 // ftnfrm.cxx:
 /*N*/ void lcl_RemoveFtns( SwFtnBossFrm* pBoss, BOOL bPageOnly, BOOL bEndNotes );
@@ -414,12 +415,12 @@
 /*N*/                         if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);
-/*N*/                             pDrawVirtObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::HasWrap( pObj ) ) );
+/*N*/                             pDrawVirtObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) ) );
 /*N*/                             pDrawVirtObj->AdjustRelativePosToReference();
 /*N*/                         }
 /*N*/                         else
 /*N*/                         {
-/*N*/                             pObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::HasWrap( pObj ) ) );
+/*N*/                             pObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) ) );
 /*N*/                             ((SwDrawContact*)GetUserCall(pObj))->ChkPage();
 /*N*/                             // OD 30.06.2003 #108784# - correct relative position
 /*N*/                             // of 'virtual' drawing objects.
@@ -539,7 +540,7 @@
 /*N*/                                   SwPageFrm *pNewPage )
 /*N*/ {
 /*N*/   if( pLay->IsFlyFrm() )
-/*N*/       ::lcl_MoveDrawObjs( pLay, rDiff, pNewPage );
+/*N*/       ::binfilter::lcl_MoveDrawObjs( pLay, rDiff, pNewPage );
 /*N*/
 /*N*/   SwFrm *pLow = pLay->Lower();
 /*N*/   if( !pLow )
@@ -547,7 +548,7 @@
 /*N*/
 /*N*/   do
 /*N*/   {   if ( pLow->GetDrawObjs() )
-/*N*/           ::lcl_MoveDrawObjs( pLow, rDiff, pNewPage );
+/*N*/           ::binfilter::lcl_MoveDrawObjs( pLow, rDiff, pNewPage );
 /*N*/       pLow->Frm().Pos() += rDiff;
 /*N*/       pLow->InvalidatePos();
 /*N*/       if ( pLow->IsTxtFrm() )
@@ -555,7 +556,7 @@
 /*N*/       else if ( pLow->IsTabFrm() )
 /*N*/           pLow->InvalidatePrt();
 /*N*/       if ( pLow->IsLayoutFrm() )
-/*N*/           ::lcl_MoveLowerFlys( (SwLayoutFrm*)pLow, rDiff, pNewPage );
+/*N*/           ::binfilter::lcl_MoveLowerFlys( (SwLayoutFrm*)pLow, rDiff, pNewPage );
 /*N*/
 /*N*/       pLow = pLow->GetNext();
 /*N*/   } while ( pLow );
@@ -746,7 +747,7 @@
 /*N*/       {
 /*N*/           //Wenn in der LayAction das IsAgain gesetzt ist kann es sein,
 /*N*/           //dass die alte Seite inzwischen vernichtet wurde!
-/*N*/           ::Notify( pFly, pOldPage, aFrmAndSpace );
+/*N*/           ::binfilter::Notify( pFly, pOldPage, aFrmAndSpace );
 /*N*/       }
 /*N*/       pFly->ResetNotifyBack();
 /*N*/   }
@@ -1108,7 +1109,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
                     pFrm->AppendFly( pFly );
                     pFly->Unlock();
                     if ( pPage )
-                        ::RegistFlys( pPage, pFly );
+                        ::binfilter::RegistFlys( pPage, pFly );
                 }
             }
         }
@@ -1178,8 +1179,8 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/               //Seitengebunde sind bereits verankert, zeichengebundene
 /*N*/               //will ich hier nicht.
 /*N*/               bRemove = TRUE;
-/*N*/             else if ( FALSE == (bRemove = ::lcl_ObjConnected( pFmt )) ||
-/*N*/                       ::lcl_InHeaderOrFooter( *pFmt ) )
+/*N*/             else if ( FALSE == (bRemove = ::binfilter::lcl_ObjConnected( pFmt )) ||
+/*N*/                       ::binfilter::lcl_InHeaderOrFooter( *pFmt ) )
 /*N*/           {
 /*N*/             // OD 23.06.2003 #108784# - correction: for objects in header
 /*N*/             // or footer create frames, in spite of the fact that an connected
@@ -1188,7 +1189,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/               //keine abhaengigen Existieren, andernfalls, oder wenn das
 /*N*/               //MakeFrms keine abhaengigen erzeugt, entfernen.
 /*N*/               pFmt->MakeFrms();
-/*N*/               bRemove = ::lcl_ObjConnected( pFmt );
+/*N*/               bRemove = ::binfilter::lcl_ObjConnected( pFmt );
 /*N*/           }
 /*N*/           if ( bRemove )
 /*N*/           {
@@ -1249,7 +1250,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/             ULONG nPageCount = pPageMaker->CalcPageCount();
 /*M*/             if( nPageCount )
 /*M*/             {
-/*M*/                 ::StartProgress( STR_STATSTR_LAYOUTINIT, 1, nPageCount,
+/*M*/                 ::binfilter::StartProgress( STR_STATSTR_LAYOUTINIT, 1, nPageCount,
 /*M*/                                  pDoc->GetDocShell());
 /*M*/                 bObjsDirect = FALSE;
 /*M*/             }
@@ -1298,7 +1299,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/                                       pNode->MakeFrm();
 /*M*/             if( pPageMaker && pPageMaker->CheckInsert( nIndex )
 /*M*/                 && bStartPercent )
-/*M*/                 ::SetProgressState( pPage->GetPhyPageNum(),pDoc->GetDocShell());
+/*M*/                 ::binfilter::SetProgressState( pPage->GetPhyPageNum(),pDoc->GetDocShell());
 /*M*/
 /*M*/             pFrm->InsertBehind( pLay, pPrv );
 /*M*/           pFrm->Frm().Pos() = pLay->Frm().Pos();
@@ -1324,7 +1325,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/
 /*M*/             if( pPageMaker && pPageMaker->CheckInsert( nIndex )
 /*M*/                 && bStartPercent )
-/*M*/                 ::SetProgressState( pPage->GetPhyPageNum(),pDoc->GetDocShell());
+/*M*/                 ::binfilter::SetProgressState( pPage->GetPhyPageNum(),pDoc->GetDocShell());
 /*M*/
 /*M*/           pFrm->InsertBehind( pLay, pPrv );
 /*M*/           if ( bObjsDirect && pTbl->Count() )
@@ -1510,7 +1511,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/           AppendAllObjs( pTbl );
 /*N*/       bObjsDirect = TRUE;
 /*N*/       if ( bStartPercent )
-/*N*/           ::EndProgress( pDoc->GetDocShell() );
+/*N*/           ::binfilter::EndProgress( pDoc->GetDocShell() );
 /*N*/   }
 /*N*/
 /*N*/     if( pPageMaker )
@@ -1683,7 +1684,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                     if( !bOldLock )
                         pTmp->UnlockJoin();
                 }
-                ::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(),
+                ::binfilter::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(),
                               pFrm->IsInDocBody(), nEndIdx, pPrev );
             }
             else
@@ -1704,7 +1705,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 }
                 else
                     bSplit = FALSE;
-                ::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(), FALSE,
+                ::binfilter::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(), FALSE,
                               nEndIdx, pPrv );
                 // OD 23.06.2003 #108784# - correction: append objects doesn't
                 // depend on value of <bAllowMove>
@@ -2352,7 +2353,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/           while ( pCnt )
 /*N*/           {
 /*N*/               if ( pCnt->GetDrawObjs() )
-/*?*/                   ::lcl_RemoveFlysFromPage( pCnt );
+/*?*/                   ::binfilter::lcl_RemoveFlysFromPage( pCnt );
 /*N*/               pCnt = pCnt->GetNextCntntFrm();
 /*N*/           }
 /*N*/           ((SwFlyFreeFrm*)pObj->GetFlyFrm())->GetPage()->
@@ -2412,7 +2413,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/               if ( pFloat->IsCntntFrm() )
 /*N*/               {
 /*N*/                   if ( pFloat->GetDrawObjs() )
-/*N*/                       ::lcl_RemoveFlysFromPage( (SwCntntFrm*)pFloat );
+/*N*/                       ::binfilter::lcl_RemoveFlysFromPage( (SwCntntFrm*)pFloat );
 /*N*/               }
 /*N*/               else if ( pFloat->IsTabFrm() || pFloat->IsSctFrm() )
 /*N*/               {
@@ -2421,7 +2422,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                   {
 /*N*/                       do
 /*N*/                       {   if ( pCnt->GetDrawObjs() )
-/*?*/                               ::lcl_RemoveFlysFromPage( pCnt );
+/*?*/                               ::binfilter::lcl_RemoveFlysFromPage( pCnt );
 /*N*/                           pCnt = pCnt->GetNextCntntFrm();
 /*N*/                       } while ( pCnt && ((SwLayoutFrm*)pFloat)->IsAnLower( pCnt ) );
 /*N*/                   }
@@ -2490,7 +2491,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/           while ( pCnt )
 /*N*/           {
 /*N*/               if ( pCnt->GetDrawObjs() )
-/*?*/                   ::lcl_AddFlysToPage( pCnt, pPage );
+/*?*/                   ::binfilter::lcl_AddFlysToPage( pCnt, pPage );
 /*N*/               pCnt = pCnt->GetNextCntntFrm();
 /*N*/           }
 /*N*/       }
@@ -2555,7 +2556,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/               ((SwTxtFrm*)pSav)->Init();  //Ich bin sein Freund.
 /*N*/
 /*N*/           if ( pPage && pSav->GetDrawObjs() )
-/*N*/               ::lcl_AddFlysToPage( (SwCntntFrm*)pSav, pPage );
+/*N*/               ::binfilter::lcl_AddFlysToPage( (SwCntntFrm*)pSav, pPage );
 /*N*/       }
 /*N*/       else
 /*N*/       {   SwCntntFrm *pBlub = ((SwLayoutFrm*)pSav)->ContainsCntnt();
@@ -2563,7 +2564,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/           {
 /*N*/               do
 /*N*/               {   if ( pPage && pBlub->GetDrawObjs() )
-/*?*/                       ::lcl_AddFlysToPage( pBlub, pPage );
+/*?*/                       ::binfilter::lcl_AddFlysToPage( pBlub, pPage );
 /*N*/                   if( pBlub->IsTxtFrm() && ((SwTxtFrm*)pBlub)->HasFtn() &&
 /*N*/                       ((SwTxtFrm*)pBlub)->GetCacheIdx() != USHRT_MAX )
 /*?*/                       ((SwTxtFrm*)pBlub)->Init(); //Ich bin sein Freund.
@@ -2682,7 +2683,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                   pPg->SwPageFrm::RemoveFly( pFly );
 /*N*/               pPage->AppendFly( pFly );
 /*N*/           }
-/*N*/           ::RegistFlys( pPage, pFly );
+/*N*/           ::binfilter::RegistFlys( pPage, pFly );
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -2722,14 +2723,14 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/ void RegistFlys( SwPageFrm *pPage, const SwLayoutFrm *pLay )
 /*N*/ {
 /*N*/   if ( pLay->GetDrawObjs() )
-/*?*/       ::lcl_Regist( pPage, pLay );
+/*?*/       ::binfilter::lcl_Regist( pPage, pLay );
 /*N*/   const SwFrm *pFrm = pLay->Lower();
 /*N*/   while ( pFrm )
 /*N*/   {
 /*N*/       if ( pFrm->IsLayoutFrm() )
-/*N*/           ::RegistFlys( pPage, (const SwLayoutFrm*)pFrm );
+/*N*/           ::binfilter::RegistFlys( pPage, (const SwLayoutFrm*)pFrm );
 /*N*/       else if ( pFrm->GetDrawObjs() )
-/*N*/           ::lcl_Regist( pPage, pFrm );
+/*N*/           ::binfilter::lcl_Regist( pPage, pFrm );
 /*N*/       pFrm = pFrm->GetNext();
 /*N*/   }
 /*N*/ }
@@ -2860,7 +2861,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                       SwCntntFrm *pCntnt = pFly->ContainsCntnt();
 /*N*/                       while ( pCntnt )
 /*N*/                       {
-/*N*/                           ::lcl_NotifyCntnt( pThis, pCntnt, rRect, eHint );
+/*N*/                           ::binfilter::lcl_NotifyCntnt( pThis, pCntnt, rRect, eHint );
 /*N*/                           pCntnt = pCntnt->GetNextCntntFrm();
 /*N*/                       }
 /*N*/                   }
@@ -2922,7 +2923,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/
 /*N*/   while ( pCnt && pArea->IsAnLower( pCnt ) )
 /*N*/   {
-/*N*/       ::lcl_NotifyCntnt( pObj, pCnt, rRect, eHint );
+/*N*/       ::binfilter::lcl_NotifyCntnt( pObj, pCnt, rRect, eHint );
 /*N*/       if ( pCnt->IsInTab() )
 /*N*/       {
 /*N*/           SwLayoutFrm* pCell = pCnt->GetUpper();
@@ -2983,7 +2984,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                   pCnt = pFly->ContainsCntnt();
 /*N*/                   while ( pCnt )
 /*N*/                   {
-/*N*/                       ::lcl_NotifyCntnt( pObj, pCnt, rRect, eHint );
+/*N*/                       ::binfilter::lcl_NotifyCntnt( pObj, pCnt, rRect, eHint );
 /*N*/                       pCnt = pCnt->GetNextCntntFrm();
 /*N*/                   }
 /*N*/               }
@@ -3385,3 +3386,4 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/           pDoc->GetRedlineTbl().Count());
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_unodoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,17 +76,18 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
 ::rtl::OUString SAL_CALL SchDocument_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Chart.ChartDocument" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Chart.ChartDocument" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL SchDocument_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL SchDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< rtl::OUString > aSeq( 3 );
+    uno::Sequence< ::rtl::OUString > aSeq( 3 );
     aSeq[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ) );
     aSeq[1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTableAddressSupplier" ) );
     aSeq[2] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ) );
@@ -118,3 +119,4 @@ uno::Reference< uno::XInterface > SAL_CALL SchDocument_createInstance(
 }
 
 
+}

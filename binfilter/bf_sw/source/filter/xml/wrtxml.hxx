@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrtxml.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,10 +65,6 @@
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
-
-class SwDoc;
-class SwPaM;
-class SfxMedium;
 namespace com { namespace sun { namespace start {
     namespace uno { template<class A> class Reference; }
     namespace uno { template<class A> class Sequence; }
@@ -77,6 +73,19 @@ namespace com { namespace sun { namespace start {
     namespace lang { class XMultiServiceFactory; }
     namespace beans { struct PropertyValue; }
 } } };
+namespace binfilter {
+
+class SwDoc;
+class SwPaM;
+class SfxMedium;
+//STRIP008 namespace com { namespace sun { namespace start {
+//STRIP008  namespace uno { template<class A> class Reference; }
+//STRIP008  namespace uno { template<class A> class Sequence; }
+//STRIP008  namespace uno { class Any; }
+//STRIP008  namespace lang { class XComponent; }
+//STRIP008  namespace lang { class XMultiServiceFactory; }
+//STRIP008  namespace beans { struct PropertyValue; }
+//STRIP008 } } };
 
 
 class SwXMLWriter : public StgWriter
@@ -132,5 +141,6 @@ private:
 };
 
 
+} //namespace binfilter
 #endif  //  _WRTXML_HXX
 

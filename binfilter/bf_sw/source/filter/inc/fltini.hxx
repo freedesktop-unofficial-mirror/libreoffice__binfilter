@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fltini.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
 #endif
+namespace binfilter {
 
 class SwNumRuleTbl;
 class SwDoc;
@@ -222,4 +223,5 @@ Color   ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
 void    CalculateFlySize( SfxItemSet& rFlySet, SwNodeIndex& rAnchor,
                           SwTwips nPageWidth );
 
+} //namespace binfilter
 #endif

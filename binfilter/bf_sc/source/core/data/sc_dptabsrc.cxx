@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dptabsrc.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,8 +90,9 @@
 #ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYINDEX_HPP_
 #include <com/sun/star/i18n/CalendarDisplayIndex.hpp>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
@@ -876,7 +877,7 @@ using namespace com::sun::star;
 //STRIP001  static SfxItemPropertyMap aDPSourceMap_Impl[] =
 //STRIP001  {
 //STRIP001      {MAP_CHAR_LEN(SC_UNO_COLGRAND), 0,  &getBooleanCppuType(),              0, 0 },
-//STRIP001      {MAP_CHAR_LEN(SC_UNO_DATADESC), 0,  &getCppuType((rtl::OUString*)0),    beans::PropertyAttribute::READONLY, 0 },
+//STRIP001      {MAP_CHAR_LEN(SC_UNO_DATADESC), 0,  &getCppuType((::rtl::OUString*)0),  beans::PropertyAttribute::READONLY, 0 },
 //STRIP001      {MAP_CHAR_LEN(SC_UNO_IGNOREEM), 0,  &getBooleanCppuType(),              0, 0 },     // for sheet data only
 //STRIP001      {MAP_CHAR_LEN(SC_UNO_REPEATIF), 0,  &getBooleanCppuType(),              0, 0 },     // for sheet data only
 //STRIP001      {MAP_CHAR_LEN(SC_UNO_ROWGRAND), 0,  &getBooleanCppuType(),              0, 0 },
@@ -887,7 +888,7 @@ using namespace com::sun::star;
 //STRIP001  return aRef;
 /*?*/ }
 
-/*N*/ void SAL_CALL ScDPSource::setPropertyValue( const rtl::OUString& aPropertyName, const uno::Any& aValue )
+/*N*/ void SAL_CALL ScDPSource::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 /*N*/               throw(beans::UnknownPropertyException, beans::PropertyVetoException,
 /*N*/                       lang::IllegalArgumentException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
@@ -908,7 +909,7 @@ using namespace com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ uno::Any SAL_CALL ScDPSource::getPropertyValue( const rtl::OUString& aPropertyName )
+/*N*/ uno::Any SAL_CALL ScDPSource::getPropertyValue( const ::rtl::OUString& aPropertyName )
 /*N*/               throw(beans::UnknownPropertyException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
 /*N*/ {
@@ -923,7 +924,7 @@ using namespace com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_REPEATIF ) )
 /*N*/       lcl_SetBoolInAny( aRet, getRepeatIfEmpty() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_DATADESC ) )             // read-only
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    aRet <<= rtl::OUString( getDataDescription() );
+/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    aRet <<= ::rtl::OUString( getDataDescription() );
 /*N*/   else
 /*N*/   {
 /*N*/       DBG_ERROR("unknown property");
@@ -985,7 +986,7 @@ using namespace com::sun::star;
 
 // very simple XNameAccess implementation using getCount/getByIndex
 
-/*N*/ uno::Any SAL_CALL ScDPDimensions::getByName( const rtl::OUString& aName )
+/*N*/ uno::Any SAL_CALL ScDPDimensions::getByName( const ::rtl::OUString& aName )
 /*N*/           throw(container::NoSuchElementException,
 /*N*/                   lang::WrappedTargetException, uno::RuntimeException)
 /*N*/ {
@@ -1007,13 +1008,13 @@ using namespace com::sun::star;
 /*N*/ {
 /*N*/   long nCount = getCount();
 /*N*/   uno::Sequence<rtl::OUString> aSeq(nCount);
-/*N*/   rtl::OUString* pArr = aSeq.getArray();
+/*N*/   ::rtl::OUString* pArr = aSeq.getArray();
 /*N*/   for (long i=0; i<nCount; i++)
 /*N*/       pArr[i] = getByIndex(i)->getName();
 /*N*/   return aSeq;
 /*N*/ }
 
-/*?*/ sal_Bool SAL_CALL ScDPDimensions::hasByName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+/*?*/ sal_Bool SAL_CALL ScDPDimensions::hasByName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   long nCount = getCount();
 /*?*/   for (long i=0; i<nCount; i++)
@@ -1207,7 +1208,7 @@ using namespace com::sun::star;
 //STRIP001  return aRef;
 /*?*/ }
 
-/*N*/ void SAL_CALL ScDPDimension::setPropertyValue( const rtl::OUString& aPropertyName, const uno::Any& aValue )
+/*N*/ void SAL_CALL ScDPDimension::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 /*N*/               throw(beans::UnknownPropertyException, beans::PropertyVetoException,
 /*N*/                       lang::IllegalArgumentException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
@@ -1244,7 +1245,7 @@ using namespace com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ uno::Any SAL_CALL ScDPDimension::getPropertyValue( const rtl::OUString& aPropertyName )
+/*N*/ uno::Any SAL_CALL ScDPDimension::getPropertyValue( const ::rtl::OUString& aPropertyName )
 /*N*/               throw(beans::UnknownPropertyException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
 /*N*/ {
@@ -1318,7 +1319,7 @@ using namespace com::sun::star;
 
 // very simple XNameAccess implementation using getCount/getByIndex
 
-/*N*/ uno::Any SAL_CALL ScDPHierarchies::getByName( const rtl::OUString& aName )
+/*N*/ uno::Any SAL_CALL ScDPHierarchies::getByName( const ::rtl::OUString& aName )
 /*N*/           throw(container::NoSuchElementException,
 /*N*/                   lang::WrappedTargetException, uno::RuntimeException)
 /*N*/ {
@@ -1340,13 +1341,13 @@ using namespace com::sun::star;
 /*N*/ {
 /*N*/   long nCount = getCount();
 /*N*/   uno::Sequence<rtl::OUString> aSeq(nCount);
-/*N*/   rtl::OUString* pArr = aSeq.getArray();
+/*N*/   ::rtl::OUString* pArr = aSeq.getArray();
 /*N*/   for (long i=0; i<nCount; i++)
 /*N*/       pArr[i] = getByIndex(i)->getName();
 /*N*/   return aSeq;
 /*N*/ }
 
-/*?*/ sal_Bool SAL_CALL ScDPHierarchies::hasByName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+/*?*/ sal_Bool SAL_CALL ScDPHierarchies::hasByName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   long nCount = getCount();
 /*?*/   for (long i=0; i<nCount; i++)
@@ -1499,7 +1500,7 @@ using namespace com::sun::star;
 
 // very simple XNameAccess implementation using getCount/getByIndex
 
-/*N*/ uno::Any SAL_CALL ScDPLevels::getByName( const rtl::OUString& aName )
+/*N*/ uno::Any SAL_CALL ScDPLevels::getByName( const ::rtl::OUString& aName )
 /*N*/           throw(container::NoSuchElementException,
 /*N*/                   lang::WrappedTargetException, uno::RuntimeException)
 /*N*/ {
@@ -1521,13 +1522,13 @@ using namespace com::sun::star;
 /*N*/ {
 /*N*/   long nCount = getCount();
 /*N*/   uno::Sequence<rtl::OUString> aSeq(nCount);
-/*N*/   rtl::OUString* pArr = aSeq.getArray();
+/*N*/   ::rtl::OUString* pArr = aSeq.getArray();
 /*N*/   for (long i=0; i<nCount; i++)
 /*N*/       pArr[i] = getByIndex(i)->getName();
 /*N*/   return aSeq;
 /*N*/ }
 
-/*N*/ sal_Bool SAL_CALL ScDPLevels::hasByName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+/*N*/ sal_Bool SAL_CALL ScDPLevels::hasByName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 /*N*/ {
 /*N*/   long nCount = getCount();
 /*N*/   for (long i=0; i<nCount; i++)
@@ -1718,7 +1719,7 @@ using namespace com::sun::star;
 /*N*/   return aRef;
 /*N*/ }
 
-/*N*/ void SAL_CALL ScDPLevel::setPropertyValue( const rtl::OUString& aPropertyName, const uno::Any& aValue )
+/*N*/ void SAL_CALL ScDPLevel::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 /*N*/               throw(beans::UnknownPropertyException, beans::PropertyVetoException,
 /*N*/                       lang::IllegalArgumentException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
@@ -1739,7 +1740,7 @@ using namespace com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ uno::Any SAL_CALL ScDPLevel::getPropertyValue( const rtl::OUString& aPropertyName )
+/*N*/ uno::Any SAL_CALL ScDPLevel::getPropertyValue( const ::rtl::OUString& aPropertyName )
 /*N*/               throw(beans::UnknownPropertyException, lang::WrappedTargetException,
 /*N*/                       uno::RuntimeException)
 /*N*/ {
@@ -1852,7 +1853,7 @@ using namespace com::sun::star;
 //STRIP001
 //STRIP001 // very simple XNameAccess implementation using getCount/getByIndex
 //STRIP001
-//STRIP001 uno::Any SAL_CALL ScDPMembers::getByName( const rtl::OUString& aName )
+//STRIP001 uno::Any SAL_CALL ScDPMembers::getByName( const ::rtl::OUString& aName )
 //STRIP001          throw(container::NoSuchElementException,
 //STRIP001                  lang::WrappedTargetException, uno::RuntimeException)
 //STRIP001 {
@@ -1874,13 +1875,13 @@ using namespace com::sun::star;
 //STRIP001 {
 //STRIP001  long nCount = getCount();
 //STRIP001  uno::Sequence<rtl::OUString> aSeq(nCount);
-//STRIP001  rtl::OUString* pArr = aSeq.getArray();
+//STRIP001  ::rtl::OUString* pArr = aSeq.getArray();
 //STRIP001  for (long i=0; i<nCount; i++)
 //STRIP001      pArr[i] = getByIndex(i)->getName();
 //STRIP001  return aSeq;
 //STRIP001 }
 //STRIP001
-//STRIP001 sal_Bool SAL_CALL ScDPMembers::hasByName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+//STRIP001 sal_Bool SAL_CALL ScDPMembers::hasByName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 //STRIP001 {
 //STRIP001  long nCount = getCount();
 //STRIP001  for (long i=0; i<nCount; i++)
@@ -2099,7 +2100,7 @@ using namespace com::sun::star;
 //STRIP001  return aRef;
 //STRIP001 }
 //STRIP001
-//STRIP001 void SAL_CALL ScDPMember::setPropertyValue( const rtl::OUString& aPropertyName, const uno::Any& aValue )
+//STRIP001 void SAL_CALL ScDPMember::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
 //STRIP001              throw(beans::UnknownPropertyException, beans::PropertyVetoException,
 //STRIP001                      lang::IllegalArgumentException, lang::WrappedTargetException,
 //STRIP001                      uno::RuntimeException)
@@ -2116,7 +2117,7 @@ using namespace com::sun::star;
 //STRIP001  }
 //STRIP001 }
 //STRIP001
-//STRIP001 uno::Any SAL_CALL ScDPMember::getPropertyValue( const rtl::OUString& aPropertyName )
+//STRIP001 uno::Any SAL_CALL ScDPMember::getPropertyValue( const ::rtl::OUString& aPropertyName )
 //STRIP001              throw(beans::UnknownPropertyException, lang::WrappedTargetException,
 //STRIP001                      uno::RuntimeException)
 //STRIP001 {
@@ -2138,3 +2139,4 @@ using namespace com::sun::star;
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_confuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,8 +92,9 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #define SCCOMPSCPREADSHEETSETTINGS_SERVICE      "com.sun.star.comp.SpreadsheetSettings"
 #define SCDOCUMENTSETTINGS_SERVICE              "com.sun.star.document.Settings"
@@ -121,7 +122,7 @@ const SfxItemPropertyMap* lcl_GetConfigPropertyMap()
         {MAP_CHAR_LEN(SC_UNO_RASTERSUBY),   0,  &getCppuType((sal_Int32*)0),        0},
         {MAP_CHAR_LEN(SC_UNO_RASTERSYNC),   0,  &getBooleanCppuType(),              0},
         {MAP_CHAR_LEN(SC_UNO_AUTOCALC),     0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_PRINTERNAME),  0,  &getCppuType((rtl::OUString*)0),    0},
+        {MAP_CHAR_LEN(SC_UNO_PRINTERNAME),  0,  &getCppuType((::rtl::OUString*)0),  0},
         {MAP_CHAR_LEN(SC_UNO_PRINTERSETUP), 0,  &getCppuType((uno::Sequence<sal_Int8>*)0),  0},
         {MAP_CHAR_LEN(SC_UNO_APPLYDOCINF),  0,  &getBooleanCppuType(),              0},
         {MAP_CHAR_LEN(SC_UNO_FORBIDDEN),    0,  &getCppuType((uno::Reference<i18n::XForbiddenCharacters>*)0), beans::PropertyAttribute::READONLY},
@@ -172,7 +173,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDocumentConfiguration::getPro
 }
 
 void SAL_CALL ScDocumentConfiguration::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -220,7 +221,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                 SfxPrinter* pPrinter = pDocShell->GetPrinter();
                 if (pPrinter)
                 {
-                    rtl::OUString sPrinterName;
+                    ::rtl::OUString sPrinterName;
                     if (aValue >>= sPrinterName)
                     {
                         String aString(sPrinterName);
@@ -314,7 +315,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
         throw uno::RuntimeException();
 }
 
-uno::Any SAL_CALL ScDocumentConfiguration::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScDocumentConfiguration::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -355,7 +356,7 @@ uno::Any SAL_CALL ScDocumentConfiguration::getPropertyValue( const rtl::OUString
             {
                 SfxPrinter *pPrinter = pDoc->GetPrinter ();
                 if (pPrinter)
-                    aRet <<= rtl::OUString ( pPrinter->GetName());
+                    aRet <<= ::rtl::OUString ( pPrinter->GetName());
                 else
                     throw uno::RuntimeException();
             }
@@ -423,12 +424,12 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDocumentConfiguration )
 
 // XServiceInfo
 
-rtl::OUString SAL_CALL ScDocumentConfiguration::getImplementationName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScDocumentConfiguration::getImplementationName() throw(uno::RuntimeException)
 {
-    return rtl::OUString::createFromAscii( "ScDocumentConfiguration" );
+    return ::rtl::OUString::createFromAscii( "ScDocumentConfiguration" );
 }
 
-sal_Bool SAL_CALL ScDocumentConfiguration::supportsService( const rtl::OUString& rServiceName )
+sal_Bool SAL_CALL ScDocumentConfiguration::supportsService( const ::rtl::OUString& rServiceName )
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
@@ -436,15 +437,16 @@ sal_Bool SAL_CALL ScDocumentConfiguration::supportsService( const rtl::OUString&
            aServiceStr.EqualsAscii( SCDOCUMENTSETTINGS_SERVICE );
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScDocumentConfiguration::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScDocumentConfiguration::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
-    uno::Sequence<rtl::OUString> aRet(2);
-    rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = rtl::OUString::createFromAscii( SCCOMPSCPREADSHEETSETTINGS_SERVICE );
-    pArray[1] = rtl::OUString::createFromAscii( SCDOCUMENTSETTINGS_SERVICE );
+    uno::Sequence< ::rtl::OUString> aRet(2);
+    ::rtl::OUString* pArray = aRet.getArray();
+    pArray[0] = ::rtl::OUString::createFromAscii( SCCOMPSCPREADSHEETSETTINGS_SERVICE );
+    pArray[1] = ::rtl::OUString::createFromAscii( SCDOCUMENTSETTINGS_SERVICE );
     return aRet;
 }
 
 //-------------------------------------------------------------------------
 
+}

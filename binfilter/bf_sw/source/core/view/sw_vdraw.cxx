@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vdraw.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:44:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,7 @@
 #include "dcontact.hxx"
 #include "dview.hxx"
 #include "flyfrm.hxx"
+namespace binfilter {
 
 
 /*************************************************************************
@@ -549,3 +550,4 @@
 
 
 
+}

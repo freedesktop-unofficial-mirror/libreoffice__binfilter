@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editdoc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,11 +81,12 @@
 #ifndef _TOOLS_TABLE_HXX //autogen
 #include <tools/table.hxx>
 #endif
+namespace binfilter {
 
 class ImpEditEngine;
 class SvxTabStop;
 
-DBG_NAMEEX( EE_TextPortion );
+DBG_NAMEEX( EE_TextPortion )//STRIP008 ;
 
 #define CHARPOSGROW     16
 #define DEFTAB          720
@@ -137,7 +138,7 @@ struct ScriptTypePosInfo
     }
 };
 
-SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 );
+SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 )//STRIP008 ;
 
 struct WritingDirectionInfo
 {
@@ -153,10 +154,10 @@ struct WritingDirectionInfo
     }
 };
 
-SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 );
+SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )//STRIP008 ;
 
 typedef EditCharAttrib* EditCharAttribPtr;
-SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 );
+SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )//STRIP008 ;
 
 //STRIP001 class ContentAttribsInfo
 //STRIP001 {
@@ -174,12 +175,12 @@ SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 );
 //STRIP001 };
 
 //STRIP001 typedef ContentAttribsInfo* ContentAttribsInfoPtr;
-//STRIP001 SV_DECL_PTRARR( ContentInfoArray, ContentAttribsInfoPtr, 1, 1 );
+//STRIP001 SV_DECL_PTRARR( ContentInfoArray, ContentAttribsInfoPtr, 1, 1 )//STRIP008 ;
 
 //  ----------------------------------------------------------------------
 //  class SvxFontTable
 //  ----------------------------------------------------------------------
-//STRIP001 DECLARE_TABLE( DummyFontTable, SvxFontItem* );
+//STRIP001 DECLARE_TABLE( DummyFontTable, SvxFontItem* )//STRIP008 ;
 //STRIP001 class SvxFontTable : public DummyFontTable
 //STRIP001 {
 //STRIP001 public:
@@ -193,7 +194,7 @@ SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 );
 //  class SvxColorList
 //  ----------------------------------------------------------------------
 //STRIP001 typedef ContentNode* ContentNodePtr;
-//STRIP001 DECLARE_LIST( DummyColorList, SvxColorItem* );
+//STRIP001 DECLARE_LIST( DummyColorList, SvxColorItem* )//STRIP008 DECLARE_LIST( DummyColorList, SvxColorItem* );
 //STRIP001 class SvxColorList : public DummyColorList
 //STRIP001 {
 //STRIP001 public:
@@ -207,7 +208,7 @@ SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 );
 //  class ItemList
 //  ----------------------------------------------------------------------
 //STRIP001 typedef const SfxPoolItem* ConstPoolItemPtr;
-//STRIP001 DECLARE_LIST( DummyItemList, ConstPoolItemPtr );
+//STRIP001 DECLARE_LIST( DummyItemList, ConstPoolItemPtr ) //STRIP008 DECLARE_LIST( DummyItemList, ConstPoolItemPtr );
 //STRIP001 class ItemList : public DummyItemList
 //STRIP001 {
 //STRIP001 public:
@@ -339,7 +340,7 @@ inline void ContentNode::CreateWrongList()
 }
 
 typedef ContentNode* ContentNodePtr;
-SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 );
+SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )//STRIP008 ;
 
 // -------------------------------------------------------------------------
 // class EditPaM
@@ -468,7 +469,7 @@ public:
 // class TextPortionList
 // -------------------------------------------------------------------------
 typedef TextPortion* TextPortionPtr;
-SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 );
+SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )//STRIP008 ;
 
 class TextPortionList : public TextPortionArray
 {
@@ -484,7 +485,7 @@ public:
 
 class ParaPortion;
 
-SV_DECL_VARARR( CharPosArray, long, 0, CHARPOSGROW );
+SV_DECL_VARARR( CharPosArray, long, 0, CHARPOSGROW )//STRIP008 ;
 
 // ------------------------------------------------------------------------
 // class EditLine
@@ -501,7 +502,7 @@ private:
     USHORT          nEndPortion;
     USHORT          nHeight;    // Gesamthoehe der Zeile
     USHORT          nTxtHeight; // Reine Texthoehe
-    USHORT          nCrsrHeight;    // Bei Konturfluss hohe Zeilen => Cursor zu groá.
+    USHORT          nCrsrHeight;    // Bei Konturfluss hohe Zeilen => Cursor zu gro?
     USHORT          nMaxAscent;
     BOOL            bHangingPunctuation;
     BOOL            bInvalid;   // fuer geschickte Formatierung
@@ -579,7 +580,7 @@ public:
 // class LineList
 // -------------------------------------------------------------------------
 typedef EditLine* EditLinePtr;
-SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 );
+SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 )//STRIP008 ;
 
 class EditLineList : public LineArray
 {
@@ -659,7 +660,7 @@ public:
 };
 
 typedef ParaPortion* ParaPortionPtr;
-SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 );
+SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 )//STRIP008 ;
 
 // -------------------------------------------------------------------------
 // class ParaPortionList
@@ -733,7 +734,7 @@ public:
 };
 
 typedef DeletedNodeInfo* DeletedNodeInfoPtr;
-SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 );
+SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 )//STRIP008 ;
 
 // -------------------------------------------------------------------------
 // class EditDoc
@@ -839,4 +840,5 @@ public:
     virtual SvStream&   Store( SvStream& rStream ) const;
 };
 
+}//end of namespace binfilter
 #endif // _EDITDOC_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlimp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -180,6 +180,7 @@
 #ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
 #endif
+namespace binfilter {
 
 
 using namespace ::rtl;
@@ -195,8 +196,8 @@ using namespace ::xmloff::token;
 
 struct OUStringEquals
 {
-    sal_Bool operator()( const rtl::OUString &r1,
-                         const rtl::OUString &r2) const
+    sal_Bool operator()( const ::rtl::OUString &r1,
+                         const ::rtl::OUString &r2) const
     {
         return r1 == r2;
     }
@@ -480,7 +481,7 @@ void SwXMLImport::setOrganizerMode( )
 
 const Sequence< sal_Int8 > & SwXMLImport::getUnoTunnelId() throw()
 {
-    static uno::Sequence< sal_Int8 > aSeq = ::CreateUnoTunnelId();
+    static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
 
@@ -1419,4 +1420,5 @@ OUString SAL_CALL SwXMLImport::getImplementationName()
                 "com.sun.star.comp.Writer.SwXMLImport" ) );
             break;
     }
+}
 }

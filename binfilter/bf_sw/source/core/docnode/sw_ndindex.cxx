@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndindex.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #include "errhdl.hxx"           // fuers ASSERT
 #include "error.h"              // fuers ASSERT
 #include "ndindex.hxx"
+namespace binfilter {
 
 #ifndef PRODUCT
 int SwNodeIndex::nSerial = 0;
@@ -198,3 +199,4 @@ int SwNodeIndex::nSerial = 0;
 /*N*/ }
 
 
+}

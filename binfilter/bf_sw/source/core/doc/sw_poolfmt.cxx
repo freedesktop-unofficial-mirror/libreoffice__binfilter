@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -197,6 +197,7 @@
 #ifndef _GETMETRICVAL_HXX
 #include <GetMetricVal.hxx>
 #endif
+namespace binfilter {
 const USHORT PT_3   =  3 * 20;      //  3 pt
 const USHORT PT_6   =  6 * 20;      //  6 pt
 const USHORT PT_7   =  7 * 20;      //  6 pt
@@ -537,7 +538,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   {
 /*N*/
 /*N*/ //FEATURE::CONDCOLL
-/*N*/       if(::IsConditionalByPoolId( nId ))
+/*N*/       if(::binfilter::IsConditionalByPoolId( nId ))
 /*N*/           pNewColl = new SwConditionTxtFmtColl( GetAttrPool(), aNm, !nParent
 /*N*/                                               ? pDfltTxtFmtColl
 /*N*/                                               : GetTxtCollFromPool( nParent ));
@@ -1143,7 +1144,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/   case RES_POOLCOLL_HTML_PRE:
 /*N*/       {
-/*N*/           ::lcl_SetDfltFont( DEFAULTFONT_FIXED, aSet );
+/*N*/           ::binfilter::lcl_SetDfltFont( DEFAULTFONT_FIXED, aSet );
 /*N*/
 /*N*/ // WORKAROUND: PRE auf 10pt setzten
 /*N*/           SetAllScriptItem( aSet, SvxFontHeightItem(PT_10) );
@@ -1459,7 +1460,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/   case RES_POOLCHR_HTML_KEYBOARD:
 /*M*/   case RES_POOLCHR_HTML_TELETYPE:
 /*M*/       {
-/*M*/           ::lcl_SetDfltFont( DEFAULTFONT_FIXED, aSet );
+/*M*/           ::binfilter::lcl_SetDfltFont( DEFAULTFONT_FIXED, aSet );
 /*M*/       }
 /*M*/       break;
 /*M*/    case RES_POOLCHR_VERT_NUM:
@@ -2543,3 +2544,4 @@ void SwDoc::RemoveAllFmtLanguageDependencies()
     }
 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,6 +93,7 @@
 #include "pres.hxx"
 #include "glob.hrc"
 #include "sdiocmpt.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -727,37 +728,37 @@ using namespace ::std;
 /*N*/   aUserData.addValue( sUNO_View_IsSnapToObjectFrame, makeAny( (sal_Bool)IsOFrmSnap() ) );
 /*N*/   aUserData.addValue( sUNO_View_IsSnapToObjectPoints, makeAny( (sal_Bool)IsOPntSnap() ) );
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsSnapLinesVisible ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsSnapLinesVisible ) );
 //  pValue->Value <<= (sal_Bool)IsHlplVisible();
 //  pValue++;nIndex++;
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsDragStripes ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsDragStripes ) );
 //  pValue->Value <<= (sal_Bool)IsDragStripes();
 //  pValue++;nIndex++;
 
 /*N*/   aUserData.addValue( sUNO_View_IsPlusHandlesAlwaysVisible, makeAny( (sal_Bool)IsPlusHandlesAlwaysVisible() ) );
 /*N*/   aUserData.addValue( sUNO_View_IsFrameDragSingles, makeAny( (sal_Bool)IsFrameDragSingles() ) );
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsMarkedHitMovesAlways ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsMarkedHitMovesAlways ) );
 //  pValue->Value <<= (sal_Bool)IsMarkedHitMovesAlways();
 //  pValue++;nIndex++;
 
 /*N*/   aUserData.addValue( sUNO_View_EliminatePolyPointLimitAngle, makeAny( (sal_Int32)GetEliminatePolyPointLimitAngle() ) );
 /*N*/   aUserData.addValue( sUNO_View_IsEliminatePolyPoints, makeAny( (sal_Bool)IsEliminatePolyPoints() ) );
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsLineDraft ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsLineDraft ) );
 //  pValue->Value <<= (sal_Bool)IsLineDraft();
 //  pValue++;nIndex++;
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsFillDraft ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsFillDraft ) );
 //  pValue->Value <<= (sal_Bool)IsFillDraft();
 //  pValue++;nIndex++;
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsTextDraft ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsTextDraft ) );
 //  pValue->Value <<= (sal_Bool)IsTextDraft();
 //  pValue++;nIndex++;
 
-//  pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsGrafDraft ) );
+//  pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsGrafDraft ) );
 //  pValue->Value <<= (sal_Bool)IsGrafDraft();
 //  pValue++;nIndex++;
 
@@ -788,7 +789,7 @@ using namespace ::std;
 /*N*/   aUserData.addValue( sUNO_View_SelectedPage, makeAny( (sal_Int16)GetSelectedPage() ) );
 /*N*/   aUserData.addValue( sUNO_View_IsLayerMode, makeAny( (sal_Bool)IsLayerMode() ) );
 /*N*/
-/*N*/ //    pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsQuickEdit ) );
+/*N*/ //    pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsQuickEdit ) );
 /*N*/ //    pValue->Value <<= (sal_Bool)IsQuickEdit();
 /*N*/ //  pValue++;nIndex++;
 /*N*/
@@ -796,7 +797,7 @@ using namespace ::std;
 /*N*/   aUserData.addValue( sUNO_View_IsDoubleClickTextEdit,  makeAny( (sal_Bool)IsDoubleClickTextEdit() ) );
 /*N*/   aUserData.addValue( sUNO_View_IsClickChangeRotation, makeAny( (sal_Bool)IsClickChangeRotation() ) );
 /*N*/
-/*N*/ //    pValue->Name = rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsDragWithCopy ) );
+/*N*/ //    pValue->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( sUNO_View_IsDragWithCopy ) );
 /*N*/ //    pValue->Value <<= (sal_Bool)IsDragWithCopy();
 /*N*/ //  pValue++;nIndex++;
 /*N*/
@@ -848,11 +849,11 @@ using namespace ::std;
 /*N*/ }
 /*N*/ #undef addValue
 
-//STRIP001 static void createHelpLinesFromString( const rtl::OUString& rLines, SdrHelpLineList& rHelpLines )
+//STRIP001 static void createHelpLinesFromString( const ::rtl::OUString& rLines, SdrHelpLineList& rHelpLines )
 //STRIP001 {
 //STRIP001  const sal_Unicode * pStr = rLines.getStr();
 //STRIP001  SdrHelpLine aNewHelpLine;
-//STRIP001  rtl::OUStringBuffer sBuffer;
+//STRIP001  ::rtl::OUStringBuffer sBuffer;
 //STRIP001
 //STRIP001  while( *pStr )
 //STRIP001  {
@@ -919,7 +920,7 @@ using namespace ::std;
 //STRIP001      sal_Bool bBool;
 //STRIP001      sal_Int32 nInt32;
 //STRIP001      sal_Int16 nInt16;
-//STRIP001      rtl::OUString aString;
+//STRIP001      ::rtl::OUString aString;
 //STRIP001
 //STRIP001      sal_Int32 aSnapGridWidthXNum = GetSnapGridWidthX().GetNumerator();
 //STRIP001      sal_Int32 aSnapGridWidthXDom = GetSnapGridWidthX().GetDenominator();
@@ -927,7 +928,7 @@ using namespace ::std;
 //STRIP001      sal_Int32 aSnapGridWidthYNum = GetSnapGridWidthY().GetNumerator();
 //STRIP001      sal_Int32 aSnapGridWidthYDom = GetSnapGridWidthY().GetDenominator();
 //STRIP001
-//STRIP001         const com::sun::star::beans::PropertyValue *pValue = rSequence.getConstArray();
+//STRIP001         const ::com::sun::star::beans::PropertyValue *pValue = rSequence.getConstArray();
 //STRIP001         for (sal_Int16 i = 0 ; i < nLength; i++, pValue++ )
 //STRIP001         {
 //STRIP001             if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_ViewId ) ) )
@@ -1392,3 +1393,4 @@ using namespace ::std;
 //STRIP001      SetSnapGridWidth( aSnapGridWidthX, aSnapGridWidthY );
 //STRIP001  }
 /*?*/ }
+}

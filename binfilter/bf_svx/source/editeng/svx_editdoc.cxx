@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #endif
 
 #include <stdlib.h> // qsort
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -2259,3 +2260,4 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return SfxItemPool::Store( rStream );
 /*N*/ }
+}

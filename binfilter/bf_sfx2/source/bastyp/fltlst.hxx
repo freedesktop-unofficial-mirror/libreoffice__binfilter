@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fltlst.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,6 +104,7 @@
 #ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
 #include <com/sun/star/uno/RuntimeException.hpp>
 #endif
+namespace binfilter {
 
 //*****************************************************************************************************************
 //  declarations
@@ -133,4 +134,5 @@ class SfxFilterListener : public ::cppu::WeakImplHelper1< ::com::sun::star::util
 
 };  // SfxFilterListener
 
+}//end of namespace binfilter
 #endif // _SFX_FLTLST_HXX

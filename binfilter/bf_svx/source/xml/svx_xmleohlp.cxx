@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $
+ *  last change: $Author: mwu $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,6 +89,7 @@
 #ifndef _XMLEOHLP_HXX
 #include "xmleohlp.hxx"
 #endif
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -811,3 +812,4 @@ struct OUStringLess
 //STRIP001             mpDocPersist->GetObjectList()->Count() > 0;
 //STRIP001  }
 /*?*/ }
+}

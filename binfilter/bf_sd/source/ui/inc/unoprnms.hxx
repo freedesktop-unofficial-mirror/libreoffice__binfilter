@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoprnms.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _SD_UNOPRNMS_HXX
 #define _SD_UNOPRNMS_HXX
+namespace binfilter {
 
 #define UNO_NAME_MODEL_LANGUAGE         "CharLocale"
 #define UNO_NAME_MODEL_TABSTOP          "TabStop"
@@ -129,6 +130,7 @@
 #define UNO_NAME_LINKDISPLAYBITMAP              "LinkDisplayBitmap"
 
 #define UNO_NAME_STYLE_FAMILY   "Family"
+}
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svditext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _EDITDATA_HXX
 #include <editdata.hxx>
 #endif
+namespace binfilter {
 
 //      textitem.hxx        editdata.hxx
 #define ITEMID_COLOR        EE_CHAR_COLOR
@@ -87,5 +88,6 @@
 #define ITEMID_ADJUST      EE_PARA_JUST
 #define ITEMID_FIELD       EE_FEATURE_FIELD
 
+}//end of namespace binfilter
 #endif  // _SVDITEXT_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_modcfg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,10 +109,11 @@
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
+namespace binfilter {
 
 using namespace utl;
 using namespace rtl;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 #define GLOB_NAME_CALC      0
@@ -1120,3 +1121,4 @@ using namespace com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
+}

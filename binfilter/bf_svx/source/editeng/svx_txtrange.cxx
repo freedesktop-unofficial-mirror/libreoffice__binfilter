@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_txtrange.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -765,3 +766,4 @@
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_UnoNamespaceMap.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _SVX_XMLCNITM_HXX
 #include "xmlcnitm.hxx"
 #endif
+namespace binfilter {
 
 using namespace ::comphelper;
 using namespace ::osl;
@@ -187,7 +188,7 @@ namespace svx
     };
 }
 
-using namespace ::svx;
+using namespace ::binfilter ::svx;
 
 // -------------
 
@@ -368,3 +369,4 @@ Sequence< OUString > SAL_CALL NamespaceMap::getSupportedServiceNames(  )
     return NamespaceMap_getSupportedServiceNames();
 }
 
+}

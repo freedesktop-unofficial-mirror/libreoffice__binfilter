@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdattr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,6 +147,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -3011,3 +3012,4 @@ using namespace ::com::sun::star;
 /*N*/   // GRFCROP_VERSION_MOVETOSVX is 1
 /*N*/   return GRFCROP_VERSION_MOVETOSVX;
 /*N*/ }
+}

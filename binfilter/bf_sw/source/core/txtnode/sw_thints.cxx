@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:39:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -205,6 +205,7 @@
 #endif
 
 #include <algorithm>
+namespace binfilter {
 
 #ifndef PRODUCT
 #define CHECK    Check();
@@ -473,7 +474,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                         static_cast<SwDrawContact*>(pFmt->FindContactObj());
 /*N*/                     if ( pDrawContact &&
 /*N*/                          pDrawContact->GetMaster() &&
-/*N*/                          ::CheckControlLayer( pDrawContact->GetMaster() ) )
+/*N*/                          ::binfilter::CheckControlLayer( pDrawContact->GetMaster() ) )
 /*N*/                   {
 /*N*/                   // das soll nicht meoglich sein; hier verhindern
 /*N*/                   // Der Dtor des TxtHints loescht nicht das Zeichen.
@@ -2379,3 +2380,4 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableMasterPageExport.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@
 
 #include "unonames.hxx"
 #include "xmlexprt.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -117,7 +118,7 @@ void XMLTableMasterPageExport::exportHeaderFooterContent(
     }
 }
 
-void XMLTableMasterPageExport::exportHeaderFooter(const com::sun::star::uno::Reference < com::sun::star::sheet::XHeaderFooterContent >& xHeaderFooter,
+void XMLTableMasterPageExport::exportHeaderFooter(const ::com::sun::star::uno::Reference < ::com::sun::star::sheet::XHeaderFooterContent >& xHeaderFooter,
                                                     const XMLTokenEnum aName,
                                                     const sal_Bool bDisplay)
 {
@@ -128,9 +129,9 @@ void XMLTableMasterPageExport::exportHeaderFooter(const com::sun::star::uno::Ref
         Reference < XText > xRight = xHeaderFooter->getRightText();
         if (xCenter.is() && xLeft.is() && xRight.is())
         {
-            rtl::OUString sCenter (xCenter->getString());
-            rtl::OUString sLeft (xLeft->getString());
-            rtl::OUString sRight (xRight->getString());
+            ::rtl::OUString sCenter (xCenter->getString());
+            ::rtl::OUString sLeft (xLeft->getString());
+            ::rtl::OUString sRight (xRight->getString());
 
             if( !bDisplay )
                 GetExport().AddAttribute( XML_NAMESPACE_STYLE,
@@ -171,19 +172,19 @@ void XMLTableMasterPageExport::exportMasterPageContent(
     Any aAny;
 
     Reference < sheet::XHeaderFooterContent > xHeader;
-    aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_RIGHTHDRCON ) ) );
+    aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_RIGHTHDRCON ) ) );
     aAny >>= xHeader;
 
     Reference < sheet::XHeaderFooterContent > xHeaderLeft;
-    aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_LEFTHDRCONT ) ) );
+    aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_LEFTHDRCONT ) ) );
     aAny >>= xHeaderLeft;
 
     Reference < sheet::XHeaderFooterContent > xFooter;
-    aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_RIGHTFTRCON ) ) );
+    aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_RIGHTFTRCON ) ) );
     aAny >>= xFooter;
 
     Reference < sheet::XHeaderFooterContent > xFooterLeft;
-    aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_LEFTFTRCONT ) ) );
+    aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_LEFTFTRCONT ) ) );
     aAny >>= xFooterLeft;
 
     if( bAutoStyles )
@@ -215,25 +216,26 @@ void XMLTableMasterPageExport::exportMasterPageContent(
     }
     else
     {
-        aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_HDRON ) ) );
+        aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_HDRON ) ) );
         sal_Bool bHeader = *(sal_Bool *)aAny.getValue();
 
         exportHeaderFooter(xHeader, XML_HEADER, bHeader );
 
-        aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_HDRSHARED ) ) );
+        aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_HDRSHARED ) ) );
         sal_Bool bLeftHeader = !(*(sal_Bool *)aAny.getValue()) && bHeader;
 
         exportHeaderFooter( xHeaderLeft, XML_HEADER_LEFT, bLeftHeader );
 
-        aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRON ) ) );
+        aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRON ) ) );
         sal_Bool bFooter = *(sal_Bool *)aAny.getValue();
 
         exportHeaderFooter( xFooter, XML_FOOTER, bFooter );
 
-        aAny = rPropSet->getPropertyValue( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRSHARED ) ) );
+        aAny = rPropSet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRSHARED ) ) );
         sal_Bool bLeftFooter = !(*(sal_Bool *)aAny.getValue()) && bFooter;
 
         exportHeaderFooter( xFooterLeft, XML_FOOTER_LEFT, bLeftFooter );
     }
 }
 
+}

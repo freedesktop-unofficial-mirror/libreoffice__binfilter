@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rdswg.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:32:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,11 @@
 #ifndef _SWGIDS_HXX
 #include <swgids.hxx>
 #endif
+class Brush;
+class Color;
+class SfxItemSet;
+class Pen;
+namespace binfilter {
 
 class SwRect;
 class SwPaM;
@@ -98,10 +103,8 @@ class SwTableLines;
 class SwField;
 class SwFieldType;
 class SwpHints;
-class Pen;
-class Brush;
-class Color;
-class SfxItemSet;
+
+
 class SwBlockNames;
 class SwStartNode;
 
@@ -364,4 +367,5 @@ SV_DECL_PTRARR(SwgTables,SwgSwTablePtr,4,4)
 //STRIP001 };
 
 
+} //namespace binfilter
 #endif // _RDSWG_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@
 
 #include "sw3marks.hxx"
 #include "sw3imp.hxx"
+namespace binfilter {
 
 
 // lokaler Record in SWG_REDLINES
@@ -735,7 +736,7 @@
 /*N*/                               rNewPos.nContent.GetIndex() + nOffset );
 /*N*/       }
 /*N*/   }
-/*N*/ };
+/*N*/ }//STRIP008 ;
 /*N*/
 /*N*/ void Sw3IoImp::CleanupRedlines()
 /*N*/ {
@@ -818,3 +819,4 @@
 /*N*/ }
 
 
+}

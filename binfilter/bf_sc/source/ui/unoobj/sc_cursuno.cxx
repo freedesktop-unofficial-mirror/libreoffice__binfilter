@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cursuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,8 +78,9 @@
 #include "dociter.hxx"
 #include "unoguard.hxx"
 #include "miscuno.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -491,7 +492,7 @@ uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByPositi
 }
 
 uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByName(
-                        const rtl::OUString& aRange ) throw(uno::RuntimeException)
+                        const ::rtl::OUString& aRange ) throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     return ScCellRangeObj::getCellRangeByName(aRange);
@@ -499,12 +500,12 @@ uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByName(
 
 // XServiceInfo
 
-rtl::OUString SAL_CALL ScCellCursorObj::getImplementationName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScCellCursorObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return rtl::OUString::createFromAscii( "ScCellCursorObj" );
+    return ::rtl::OUString::createFromAscii( "ScCellCursorObj" );
 }
 
-sal_Bool SAL_CALL ScCellCursorObj::supportsService( const rtl::OUString& rServiceName )
+sal_Bool SAL_CALL ScCellCursorObj::supportsService( const ::rtl::OUString& rServiceName )
                                                     throw(uno::RuntimeException)
 {
     String aServiceStr( rServiceName );
@@ -513,19 +514,19 @@ sal_Bool SAL_CALL ScCellCursorObj::supportsService( const rtl::OUString& rServic
            ScCellRangeObj::supportsService(rServiceName);
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScCellCursorObj::getSupportedServiceNames()
+uno::Sequence< ::rtl::OUString> SAL_CALL ScCellCursorObj::getSupportedServiceNames()
                                                     throw(uno::RuntimeException)
 {
     //  get all service names from cell range
-    uno::Sequence<rtl::OUString> aParentSeq = ScCellRangeObj::getSupportedServiceNames();
+    uno::Sequence< ::rtl::OUString> aParentSeq = ScCellRangeObj::getSupportedServiceNames();
     sal_Int32 nParentLen = aParentSeq.getLength();
-    const rtl::OUString* pParentArr = aParentSeq.getConstArray();
+    const ::rtl::OUString* pParentArr = aParentSeq.getConstArray();
 
     //  SheetCellCursor should be first (?)
-    uno::Sequence<rtl::OUString> aTotalSeq( nParentLen + 2 );
-    rtl::OUString* pTotalArr = aTotalSeq.getArray();
-    pTotalArr[0] = rtl::OUString::createFromAscii( SCSHEETCELLCURSOR_SERVICE );
-    pTotalArr[1] = rtl::OUString::createFromAscii( SCCELLCURSOR_SERVICE );
+    uno::Sequence< ::rtl::OUString> aTotalSeq( nParentLen + 2 );
+    ::rtl::OUString* pTotalArr = aTotalSeq.getArray();
+    pTotalArr[0] = ::rtl::OUString::createFromAscii( SCSHEETCELLCURSOR_SERVICE );
+    pTotalArr[1] = ::rtl::OUString::createFromAscii( SCCELLCURSOR_SERVICE );
 
     //  append cell range services
     for (long i=0; i<nParentLen; i++)
@@ -537,3 +538,4 @@ uno::Sequence<rtl::OUString> SAL_CALL ScCellCursorObj::getSupportedServiceNames(
 
 
 
+}

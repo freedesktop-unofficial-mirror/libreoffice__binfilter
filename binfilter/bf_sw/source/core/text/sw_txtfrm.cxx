@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:36:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -204,9 +204,11 @@
 #ifndef _TXTPAINT_HXX
 #include <txtpaint.hxx>     // DbgRect
 #endif
+namespace binfilter {
 extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
+} //STRIP008
 #endif
-
+namespace binfilter {
 /*N*/ TYPEINIT1( SwTxtFrm, SwCntntFrm );
 
 // Switches width and height of the text frame
@@ -2375,3 +2377,4 @@ void SwTxtFrm::CalcBaseOfstForFly()
     mnFlyAnchorOfstNoWrap = nRet2 - nLeft;
 }
 
+}

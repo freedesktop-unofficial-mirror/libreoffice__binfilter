@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtable.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -171,6 +171,7 @@
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ TYPEINIT1( SwTable, SwClient );
 /*N*/ TYPEINIT1( SwTableBox, SwClient );
@@ -382,7 +383,7 @@
 /*N*/                        const long nNew, SvPtrarr& rFmtArr )
 /*N*/ {
 /*N*/   for ( USHORT i = 0; i < rLines.Count(); ++i )
-/*N*/       ::lcl_ModifyBoxes( rLines[i]->GetTabBoxes(), nOld, nNew, rFmtArr );
+/*N*/       ::binfilter::lcl_ModifyBoxes( rLines[i]->GetTabBoxes(), nOld, nNew, rFmtArr );
 /*N*/ }
 
 /*N*/ void lcl_ModifyBoxes( SwTableBoxes &rBoxes, const long nOld,
@@ -392,7 +393,7 @@
 /*N*/   {
 /*N*/       SwTableBox &rBox = *rBoxes[i];
 /*N*/       if ( rBox.GetTabLines().Count() )
-/*?*/           ::lcl_ModifyLines( rBox.GetTabLines(), nOld, nNew, rFmtArr );
+/*?*/           ::binfilter::lcl_ModifyLines( rBox.GetTabLines(), nOld, nNew, rFmtArr );
 /*N*/       //Die Box anpassen
 /*N*/       SwFrmFmt *pFmt = rBox.GetFrmFmt();
 /*N*/       if ( !FmtInArr( rFmtArr, pFmt ) )
@@ -439,7 +440,7 @@
 /*N*/           // gesetzt wird. (+1 fuer das Ende-Kennzeichen)
 /*N*/           SvPtrarr aFmtArr( (BYTE)aLines[0]->GetTabBoxes().Count(), 1 );
 /*N*/
-/*N*/           ::lcl_ModifyLines( aLines, pOldSize->GetWidth(), pNewSize->GetWidth(),
+/*N*/           ::binfilter::lcl_ModifyLines( aLines, pOldSize->GetWidth(), pNewSize->GetWidth(),
 /*N*/                          aFmtArr );
 /*N*/       }
 /*N*/   }
@@ -1502,7 +1503,7 @@
 /*N*/       if( 0 != ( pBox = pLine->GetUpper()) )
 /*N*/           sNm.Insert( aDotStr, 0 ).Insert( sTmp, 0 );
 /*N*/       else
-/*N*/           ::lcl_GetTblBoxColStr( nPos, sNm );
+/*N*/           ::binfilter::lcl_GetTblBoxColStr( nPos, sNm );
 /*N*/
 /*N*/   } while( pBox );
 /*N*/   return sNm;
@@ -2212,3 +2213,4 @@
 //STRIP001 }
 
 
+}

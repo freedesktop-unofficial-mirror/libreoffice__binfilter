@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Columns.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,8 +97,9 @@
 #ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #include "cloneable.hxx"
 #endif
+namespace binfilter {
 
-using namespace comphelper;
+    using namespace ::comphelper;
 
 //.........................................................................
 namespace frm
@@ -269,9 +270,12 @@ DECL_COLUMN(ComboBoxColumn)
 DECL_COLUMN(ListBoxColumn)
 DECL_COLUMN(FormattedFieldColumn)
 
+
+}   // namespace frm
+}//end of namespace binfilter
 #endif // _FRM_COLUMNS_HXX
 
 //.........................................................................
-}   // namespace frm
+
 //.........................................................................
 

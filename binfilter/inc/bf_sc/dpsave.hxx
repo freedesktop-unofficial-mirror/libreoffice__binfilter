@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dpsave.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@ class SvStream;
 //  classes to save Data Pilot settings
 //
 
+namespace binfilter {
 
 class ScDPSaveMember
 {
@@ -103,8 +104,8 @@ public:
     void                    SetShowDetails(BOOL bSet);
     BOOL                    GetShowDetails() { return BOOL(nShowDetailsMode); }
 
-    void                    WriteToSource( const com::sun::star::uno::Reference<
-                                            com::sun::star::uno::XInterface>& xMember );
+    void                    WriteToSource( const ::com::sun::star::uno::Reference<
+                                            ::com::sun::star::uno::XInterface>& xMember );
 
     void                    Store( SvStream& rStream ) const;
 };
@@ -163,8 +164,8 @@ public:
 
     ScDPSaveMember*         GetMemberByName(const String& rName);
 
-    void                    WriteToSource( const com::sun::star::uno::Reference<
-                                            com::sun::star::uno::XInterface>& xDim );
+    void                    WriteToSource( const ::com::sun::star::uno::Reference<
+                                            ::com::sun::star::uno::XInterface>& xDim );
 
     void                    Store( SvStream& rStream ) const;
 };
@@ -209,8 +210,8 @@ public:
     void                    SetRepeatIfEmpty( BOOL bSet );
     BOOL                    GetRepeatIfEmpty() const { return BOOL(nRepeatEmptyMode); }
 
-    void                    WriteToSource( const com::sun::star::uno::Reference<
-                                            com::sun::star::sheet::XDimensionsSupplier>& xSource );
+    void                    WriteToSource( const ::com::sun::star::uno::Reference<
+                                            ::com::sun::star::sheet::XDimensionsSupplier>& xSource );
 
     void                    Store( SvStream& rStream ) const;
     void                    Load( SvStream& rStream );
@@ -219,5 +220,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

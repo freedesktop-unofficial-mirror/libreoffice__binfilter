@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #include "ftnfrm.hxx"
 #include "txtftn.hxx"
 #include "fmtftn.hxx"
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -385,7 +386,7 @@
 /*N*/   FASTBOOL bGoingUp = TRUE;
 /*N*/   do {
 /*N*/       FASTBOOL bGoingBwd = FALSE, bGoingDown = FALSE;
-/*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 != (p = ::lcl_LastLower( pFrm ))))) &&
+/*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 != (p = ::binfilter::lcl_LastLower( pFrm ))))) &&
 /*N*/           !(bGoingBwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetPrevLink()
 /*N*/                                                     : pFrm->GetPrev()))) &&
 /*N*/           !(bGoingUp = (0 != (p = pFrm->GetUpper()))))
@@ -1238,3 +1239,4 @@
 /*N*/ }
 
 
+}

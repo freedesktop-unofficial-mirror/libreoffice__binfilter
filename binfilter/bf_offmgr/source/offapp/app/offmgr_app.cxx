@@ -2,9 +2,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -302,6 +302,7 @@
 #include <bf_svx/unoshcol.hxx>
 #endif
 #endif
+
 #ifndef _SVX_TAB_HYPERLINK_HXX
 #include <bf_svx/hyperdlg.hxx>
 #endif
@@ -346,8 +347,9 @@ using namespace ::com::sun::star::uno;
 #define _ExecAddress  ExecuteApp_Impl
 #define _StateAddress GetStateApp_Impl
 #define OfficeApplication
+//STRIP008 #include "ofaslots.hxx"
+namespace binfilter {
 #include "ofaslots.hxx"
-
 /*N*/ TYPEINIT1(OfficeApplication,SfxApplication);
 
 #define IS_AVAILABLE(WhichId,ppItem) \
@@ -718,3 +720,4 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/ }
 
 // ------------------------------------------------------------------------
+} //namespace binfilter

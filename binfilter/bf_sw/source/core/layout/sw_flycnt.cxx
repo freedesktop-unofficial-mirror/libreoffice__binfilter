@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #include "flyfrms.hxx"
 #include "crstate.hxx"
 #include "sectfrm.hxx"
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -800,7 +801,7 @@
 /*N*/                      Min( pCnt->Frm().Top(), rPt.Y() );
 /*N*/           BigInt dX1( dX ), dY1( dY );
 /*N*/           dX1 *= dX1; dY1 *= dY1;
-/*N*/           const ULONG nDiff = ::SqRt( dX1 + dY1 );
+/*N*/           const ULONG nDiff = ::binfilter::SqRt( dX1 + dY1 );
 /*N*/           if ( pCnt->Frm().Top() <= rPt.Y() )
 /*N*/           {
 /*N*/               if ( nDiff < nDistance )
@@ -847,7 +848,7 @@
 /*N*/   const SwLayoutFrm *pLay = pCnt->FindPageFrm();
 /*N*/   ULONG nDist;
 /*N*/
-/*N*/   nDist = ::lcl_FindCntDiff( rPt, pLay, pNew, bBody, bFtn );
+/*N*/   nDist = ::binfilter::lcl_FindCntDiff( rPt, pLay, pNew, bBody, bFtn );
 /*N*/   if ( pNew )
 /*N*/       pRet = pNew;
 /*N*/   else
@@ -864,7 +865,7 @@
 /*N*/       for ( USHORT i = 0; pPge->GetPrev() && (i < 3); ++i )
 /*N*/       {
 /*N*/           pPge = (SwLayoutFrm*)pPge->GetPrev();
-/*N*/           const ULONG nNew = ::lcl_FindCntDiff( rPt, pPge, pNew, bBody, bFtn );
+/*N*/           const ULONG nNew = ::binfilter::lcl_FindCntDiff( rPt, pPge, pNew, bBody, bFtn );
 /*N*/           if ( nNew < nDist )
 /*N*/           {
 /*N*/               if ( pNew->Frm().Top() <= rPt.Y() )
@@ -889,7 +890,7 @@
 /*N*/       for ( USHORT j = 0; pPge->GetNext() && (j < 3); ++j )
 /*N*/       {
 /*N*/           pPge = (SwLayoutFrm*)pPge->GetNext();
-/*N*/           const ULONG nNew = ::lcl_FindCntDiff( rPt, pPge, pNew, bBody, bFtn );
+/*N*/           const ULONG nNew = ::binfilter::lcl_FindCntDiff( rPt, pPge, pNew, bBody, bFtn );
 /*N*/           if ( nNew < nDist )
 /*N*/           {
 /*N*/               if ( pNew->Frm().Top() <= rPt.Y() )
@@ -944,7 +945,7 @@
 /*N*/       if( pTmpLay->IsRootFrm() )
 /*N*/       {
 /*N*/           SwRect aTmpRect( aTmp, Size(0,0) );
-/*N*/           pTmpLay = (SwLayoutFrm*)::FindPage( aTmpRect, pTmpLay->Lower() );
+/*N*/           pTmpLay = (SwLayoutFrm*)::binfilter::FindPage( aTmpRect, pTmpLay->Lower() );
 /*N*/       }
 /*N*/       pCnt = pTmpLay->GetCntntPos( aTmp, FALSE, bBodyOnly );
 /*N*/   }
@@ -960,10 +961,10 @@
 /*N*/   {
 /*N*/       //#38848 Vom Seitenrand in den Body ziehen.
 /*N*/       const SwFrm *pPage = pCnt->FindPageFrm();
-/*N*/       ::lcl_PointToPrt( aNew, pPage->GetUpper() );
+/*N*/       ::binfilter::lcl_PointToPrt( aNew, pPage->GetUpper() );
 /*N*/       SwRect aTmp( aNew, Size( 0, 0 ) );
-/*N*/       pPage = ::FindPage( aTmp, pPage );
-/*N*/       ::lcl_PointToPrt( aNew, pPage );
+/*N*/       pPage = ::binfilter::FindPage( aTmp, pPage );
+/*N*/       ::binfilter::lcl_PointToPrt( aNew, pPage );
 /*N*/   }
 /*N*/
 /*N*/   if ( pCnt->IsInDocBody() == bBody && pCnt->Frm().IsInside( aNew ) )
@@ -987,7 +988,7 @@
 /*N*/   const SwCntntFrm *pUpLst;
 /*N*/   const SwCntntFrm *pUpFrm = pCnt;
 /*N*/   SwDistance nUp, nUpLst;
-/*N*/   ::lcl_CalcDownDist( nUp, aNew, pUpFrm );
+/*N*/   ::binfilter::lcl_CalcDownDist( nUp, aNew, pUpFrm );
 /*N*/   SwDistance nDown = nUp;
 /*N*/   BOOL bNegAllowed = TRUE;//Einmal aus dem negativen Bereich heraus lassen.
 /*N*/   do
@@ -999,7 +1000,7 @@
 /*N*/           pUpFrm = pUpFrm->GetPrevCntntFrm();
 /*N*/       if ( pUpFrm )
 /*N*/       {
-/*N*/           ::lcl_CalcDownDist( nUp, aNew, pUpFrm );
+/*N*/           ::binfilter::lcl_CalcDownDist( nUp, aNew, pUpFrm );
 /*N*/           //Wenn die Distanz innnerhalb einer Tabelle waechst, so lohnt es
 /*N*/           //sich weiter zu suchen.
 /*N*/           if ( pUpLst->IsInTab() && pUpFrm->IsInTab() )
@@ -1009,7 +1010,7 @@
 /*N*/               {
 /*N*/                   pUpFrm = pUpFrm->GetPrevCntntFrm();
 /*N*/                   if ( pUpFrm )
-/*N*/                       ::lcl_CalcDownDist( nUp, aNew, pUpFrm );
+/*N*/                       ::binfilter::lcl_CalcDownDist( nUp, aNew, pUpFrm );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1040,7 +1041,7 @@
 /*N*/           pDownFrm = pDownFrm->GetNextCntntFrm();
 /*N*/       if ( pDownFrm )
 /*N*/       {
-/*N*/           ::lcl_CalcDownDist( nDown, aNew, pDownFrm );
+/*N*/           ::binfilter::lcl_CalcDownDist( nDown, aNew, pDownFrm );
 /*N*/           if ( nDown.nMain < 0 )
 /*N*/               nDown.nMain = LONG_MAX;
 /*N*/           //Wenn die Distanz innnerhalb einer Tabelle waechst, so lohnt es
@@ -1052,7 +1053,7 @@
 /*N*/               {
 /*N*/                   pDownFrm = pDownFrm->GetNextCntntFrm();
 /*N*/                   if ( pDownFrm )
-/*N*/                       ::lcl_CalcDownDist( nDown, aNew, pDownFrm );
+/*N*/                       ::binfilter::lcl_CalcDownDist( nDown, aNew, pDownFrm );
 /*N*/                   if ( nDown.nMain < 0 )
 /*N*/                       nDown.nMain = LONG_MAX;
 /*N*/               }
@@ -1076,7 +1077,7 @@
 /*N*/         if ( pCnt->IsInFly() )
 /*N*/             return pCnt;
 /*N*/
-/*N*/       return ::lcl_FindCnt( aNew, pCnt, bBody, bFtn );
+/*N*/       return ::binfilter::lcl_FindCnt( aNew, pCnt, bBody, bFtn );
 /*N*/     }
 /*N*/   else
 /*N*/       return nDownLst < nUpLst ? pDownLst : pUpLst;
@@ -1359,7 +1360,7 @@
 /*M*/           {
 /*M*/                 SWRECTFN( pUp )
 /*M*/                 const Point aPt( (pUp->Frm().*fnRect->fnGetPos)() );
-/*M*/               ::DeepCalc( pUp );
+/*M*/               ::binfilter::DeepCalc( pUp );
 /*M*/                 bContinue = aPt != (pUp->Frm().*fnRect->fnGetPos)();
 /*M*/           }
 /*M*/       }
@@ -1624,7 +1625,7 @@
 /*N*/     {
 /*N*/       bValidPos = TRUE;
 /*N*/       if( !pFooter )
-/*N*/           ::DeepCalc( GetAnchor() );
+/*N*/           ::binfilter::DeepCalc( GetAnchor() );
 /*N*/       bValidPos = TRUE;
 /*N*/
 /*N*/       //Die Werte in den Attributen muessen ggf. upgedated werden,
@@ -1653,7 +1654,7 @@
 /*N*/                                                   *rAnch.GetCntntAnchor() ) )
 /*N*/               return;
 /*N*/           pAutoPos = &aLastCharRect;
-/*N*/           pAutoOrient = ::GetVirtualAnchor( this, rAnch.GetCntntAnchor()->
+/*N*/           pAutoOrient = ::binfilter::GetVirtualAnchor( this, rAnch.GetCntntAnchor()->
 /*N*/                                             nContent.GetIndex() );
 /*N*/       }
 /*N*/       else
@@ -1669,7 +1670,7 @@
 /*N*/       {
 /*N*/           pOrient = pAutoOrient;
 /*N*/           if( !pFooter )
-/*N*/               ::DeepCalc( pOrient );
+/*N*/               ::binfilter::DeepCalc( pOrient );
 /*N*/           SwTwips nHeight, nAdd;
 /*N*/           if ( aVert.GetRelationOrient() == PRTAREA )
 /*N*/           {
@@ -1736,7 +1737,7 @@
 /*N*/       pOrient = aVert.GetVertOrient() == VERT_NONE ?
 /*N*/                 GetAnchor()->GetUpper() : pAutoOrient->GetUpper();
 /*N*/       if( !pFooter )
-/*N*/           ::DeepCalc( pOrient );
+/*N*/           ::binfilter::DeepCalc( pOrient );
 /*N*/
 /*N*/       SwTwips nRelDiff = 0;
 /*N*/       if ( aVert.GetVertOrient() == VERT_NONE )
@@ -1823,7 +1824,7 @@
 /*N*/                       {
 /*N*/                             nRel = ((SwFrm*)pOrient)->Grow( nRel-nAvail );
 /*N*/                           SwFrm *pTmp = (SwFrm*) pOrient->FindPageFrm();
-/*N*/                           ::ValidateSz( pTmp );
+/*N*/                           ::binfilter::ValidateSz( pTmp );
 /*N*/                           bInvalidatePage = TRUE;
 /*N*/                           //Schon mal einstellen, weil wir wahrscheinlich
 /*N*/                           //wegen Invalidierung eine Ehrenrunde drehen.
@@ -1849,9 +1850,9 @@
 /*N*/                       {
 /*N*/                           pOrient = pTmp;
 /*N*/                           bMoveable =
-/*N*/                                   ::lcl_IsMoveable( this, (SwLayoutFrm*)pOrient);
+/*N*/                                   ::binfilter::lcl_IsMoveable( this, (SwLayoutFrm*)pOrient);
 /*N*/                           if( !pFooter )
-/*N*/                               ::DeepCalc( pOrient );
+/*N*/                               ::binfilter::DeepCalc( pOrient );
 /*N*/                             SWREFRESHFN( pOrient )
 /*N*/                             nAvail = (pOrient->Prt().*fnRect->fnGetHeight)();
 /*N*/                       }
@@ -1935,7 +1936,7 @@
 /*N*/           {
 /*N*/                 ((SwFrm*)pOrient)->Grow( -nDist );
 /*N*/               SwFrm *pTmp = (SwFrm*) pOrient->FindPageFrm();
-/*N*/               ::ValidateSz( pTmp );
+/*N*/               ::binfilter::ValidateSz( pTmp );
 /*N*/               bInvalidatePage = TRUE;
 /*N*/           }
 /*N*/
@@ -1972,7 +1973,7 @@
 /*N*/                         (pNextLay->Prt().*fnRectX->fnGetHeight)() ) )
 /*N*/                     {
 /*N*/                         if( !pFooter )
-/*N*/                             ::DeepCalc( pNextLay );
+/*N*/                             ::binfilter::DeepCalc( pNextLay );
 /*N*/                         if( bVertX )
 /*N*/                             aRelPos.X() = GetAnchor()->Frm().Left() +
 /*N*/                                           GetAnchor()->Frm().Width() -
@@ -1984,10 +1985,10 @@
 /*N*/                                 pNextLay->Prt().Top() -GetAnchor()->Frm().Top();
 /*N*/                         pOrient = pNextLay;
 /*N*/                         SWREFRESHFN( pOrient )
-/*N*/                         bMoveable = ::lcl_IsMoveable( this,
+/*N*/                         bMoveable = ::binfilter::lcl_IsMoveable( this,
 /*N*/                                                         (SwLayoutFrm*)pOrient );
 /*N*/                         if ( bMoveable && !pFooter )
-/*N*/                             ::DeepCalc( pOrient );
+/*N*/                             ::binfilter::DeepCalc( pOrient );
 /*N*/                         if( bVertX )
 /*N*/                             aFrm.Pos().X() = GetAnchor()->Frm().Left()
 /*N*/                                              + GetAnchor()->Frm().Width()
@@ -2027,10 +2028,10 @@
 /*N*/         else
 /*N*/             aFrm.Pos().Y() = aRelPos.Y() + GetAnchor()->Frm().Top();
 /*N*/         //Den Frm besorgen, an dem sich die horizontale Ausrichtung orientiert.
-/*N*/       pOrient = ::GetVirtualHoriAnchor( pOrient, this );
+/*N*/       pOrient = ::binfilter::GetVirtualHoriAnchor( pOrient, this );
 /*N*/
 /*N*/       if( !pFooter )
-/*N*/           ::DeepCalc( pOrient );
+/*N*/           ::binfilter::DeepCalc( pOrient );
 /*N*/
 /*N*/       // Achtung: pPage ist nicht unbedingt ein PageFrm, es kann auch ein
 /*N*/       // SwFlyFrm oder SwCellFrm dahinterstecken
@@ -2280,7 +2281,7 @@
 /*N*/                 const SwPageFrm *pPage = FindPageFrm();
 /*N*/                 SwOrderIter aIter( pPage, TRUE );
 /*N*/               const SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)aIter.Bottom())->GetFlyFrm();
-/*N*/               const SwFrm *pKontext = ::FindKontext( GetAnchor(), FRM_COLUMN );
+/*N*/               const SwFrm *pKontext = ::binfilter::FindKontext( GetAnchor(), FRM_COLUMN );
 /*N*/                 ULONG nMyIndex = ((SwTxtFrm*)GetAnchor())->GetTxtNode()->GetIndex();
 /*N*/               while ( pFly && nMyOrd > pFly->GetVirtDrawObj()->GetOrdNumDirect() )
 /*N*/               {
@@ -2289,7 +2290,7 @@
 /*N*/                             (aTmpFrm.*fnRect->fnGetTop)() ) < 0 &&
 /*N*/                          (aTmpFrm.*fnRect->fnBottomDist)(
 /*N*/                             (pFly->Frm().*fnRect->fnGetTop)() ) < 0 &&
-/*N*/                        ::FindKontext( pFly->GetAnchor(), FRM_COLUMN ) == pKontext )
+/*N*/                        ::binfilter::FindKontext( pFly->GetAnchor(), FRM_COLUMN ) == pKontext )
 /*N*/                   {
 /*N*/                         ULONG nOtherIndex = ((SwTxtFrm*)pFly->GetAnchor())
 /*N*/                                             ->GetTxtNode()->GetIndex();
@@ -2452,3 +2453,4 @@
 /*N*/         bValidPos = TRUE;
 /*N*/     }
 /*N*/ }
+}

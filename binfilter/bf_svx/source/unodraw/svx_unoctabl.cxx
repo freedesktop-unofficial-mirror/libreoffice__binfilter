@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #include <cppuhelper/implbase2.hxx>
 
 #include "xtable.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -264,7 +265,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 //
 // export this service
 //
-
+}
 #ifndef SVX_LIGHT
 #include "UnoGraphicExporter.hxx"
 #endif
@@ -279,6 +280,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
+namespace binfilter {//STRIP009
 //STRIP002 added begin
 //------the following is added for sfx2 integrate with svx
 extern "C" {
@@ -375,3 +377,4 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_servuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,6 +93,7 @@
 #ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -329,15 +330,16 @@ uno::Reference<uno::XInterface> ScServiceProvider::MakeInstance(
     return xRet;
 }
 
-uno::Sequence<rtl::OUString> ScServiceProvider::GetAllServiceNames()
+uno::Sequence< ::rtl::OUString> ScServiceProvider::GetAllServiceNames()
 {
-    uno::Sequence<rtl::OUString> aRet(SC_SERVICE_COUNT);
-    rtl::OUString* pArray = aRet.getArray();
+    uno::Sequence< ::rtl::OUString> aRet(SC_SERVICE_COUNT);
+    ::rtl::OUString* pArray = aRet.getArray();
     for (sal_uInt16 i = 0; i < SC_SERVICE_COUNT; i++)
-        pArray[i] = rtl::OUString::createFromAscii( aProvNames[i] );
+        pArray[i] = ::rtl::OUString::createFromAscii( aProvNames[i] );
     return aRet;
 }
 
 
 
 
+}

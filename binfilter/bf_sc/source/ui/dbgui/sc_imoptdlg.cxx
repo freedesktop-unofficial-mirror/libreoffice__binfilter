@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_imoptdlg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@ static const sal_Char pStrFix[] = "FIX";
 #ifndef _TOOLS_DEBUG_HXX //STRIP001 added by binary filter//========================================================================
 #include <tools/debug.hxx> //STRIP001 added by binary filter // ScDelimiterTable
 #endif //STRIP001 added by binary filter//========================================================================
+namespace binfilter {
 
 class ScDelimiterTable
 {
@@ -388,3 +389,4 @@ private:
 /*N*/       gsl_getSystemTextEncoding() : nEnc);
 /*N*/   aStrFont = ScGlobal::GetCharsetString( nEnc );
 /*N*/ }
+}

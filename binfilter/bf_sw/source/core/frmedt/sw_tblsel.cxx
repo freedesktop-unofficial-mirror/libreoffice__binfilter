@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:19:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,6 +152,7 @@
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
+namespace binfilter {
 
 //siehe auch swtable.cxx
 #define COLFUZZY 20L
@@ -390,7 +391,7 @@
 /*N*/
 /*N*/       //Zuerst lassen wir uns die Tabellen und die Rechtecke heraussuchen.
 /*N*/       SwSelUnions aUnions;
-/*N*/       ::MakeSelUnions( aUnions, pStart, pEnd, eSearchType );
+/*N*/       ::binfilter::MakeSelUnions( aUnions, pStart, pEnd, eSearchType );
 /*N*/
 /*N*/       //Jetzt zu jedem Eintrag die Boxen herausfischen und uebertragen.
 /*N*/       for( USHORT i = 0; i < aUnions.Count() && bTblIsValid; ++i )
@@ -430,7 +431,7 @@
 /*N*/                       }
 /*N*/
 /*N*/                       ASSERT( pCell->IsCellFrm(), "Frame ohne Celle" );
-/*N*/                       if( ::IsFrmInTblSel( pUnion->GetUnion(), pCell ) )
+/*N*/                       if( ::binfilter::IsFrmInTblSel( pUnion->GetUnion(), pCell ) )
 /*N*/                       {
 /*N*/                           SwTableBox* pBox = (SwTableBox*)
 /*N*/                               ((SwCellFrm*)pCell)->GetTabBox();
@@ -446,7 +447,7 @@
 /*?*/                               pCell = pCell->FirstCell();
 /*N*/                       }
 /*N*/                       else
-/*N*/                           pCell = ::lcl_FindNextCellFrm( pCell );
+/*N*/                           pCell = ::binfilter::lcl_FindNextCellFrm( pCell );
 /*N*/                   }
 /*N*/               }
 /*N*/               pRow = (const SwLayoutFrm*)pRow->GetNext();
@@ -523,7 +524,7 @@
 /*N*/
 /*N*/       //Zuerst lassen wir uns die Tabellen und die Rechtecke heraussuchen.
 /*N*/       SwSelUnions aUnions;
-/*N*/       ::MakeSelUnions( aUnions, pStart, pEnd, TBLSEARCH_NO_UNION_CORRECT );
+/*N*/       ::binfilter::MakeSelUnions( aUnions, pStart, pEnd, TBLSEARCH_NO_UNION_CORRECT );
 /*N*/
 /*N*/       //Jetzt zu jedem Eintrag die Boxen herausfischen und uebertragen.
 /*N*/       for( USHORT i = 0; i < aUnions.Count() && bTblIsValid &&
@@ -622,7 +623,7 @@
 /*N*/                               pCell = pCell->FirstCell();
 /*N*/                       }
 /*N*/                       else
-/*N*/                           pCell = ::lcl_FindNextCellFrm( pCell );
+/*N*/                           pCell = ::binfilter::lcl_FindNextCellFrm( pCell );
 /*N*/                   }
 /*N*/               }
 /*N*/               pRow = (const SwLayoutFrm*)pRow->GetNext();
@@ -1774,7 +1775,7 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/   }
 /*M*/
 /*M*/     SwTwips nPrtWidth = (pTab->Prt().*fnRect->fnGetWidth)();
-/*M*/     const SwTwips nSX = ::lcl_CalcWish( rpStart, nWish, nPrtWidth ) +
+/*M*/     const SwTwips nSX = ::binfilter::lcl_CalcWish( rpStart, nWish, nPrtWidth ) +
 /*M*/                       (pTab->*fnRect->fnGetPrtLeft)();
 /*M*/
 /*M*/   const SwTwips nSX2= nSX + (rpStart->GetFmt()->GetFrmSize().GetWidth() *
@@ -1805,7 +1806,7 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/       pTab = pTab->GetFollow();
 /*M*/
 /*M*/   nPrtWidth = (pTab->Prt().*fnRect->fnGetWidth)();
-/*M*/   const SwTwips nEX = ::lcl_CalcWish( rpEnd, nWish, nPrtWidth ) +
+/*M*/   const SwTwips nEX = ::binfilter::lcl_CalcWish( rpEnd, nWish, nPrtWidth ) +
 /*M*/                         (pTab->*fnRect->fnGetPrtLeft)();
 /*M*/   rpEnd = pTab->FindLastCntnt()->GetUpper();
 /*M*/   while( !rpEnd->IsCellFrm() )
@@ -1930,9 +1931,9 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/   //Start und End sind jetzt huebsch sortiert, jetzt muessen sie falls
 /*M*/   //erwuenscht noch versetzt werden.
 /*M*/   if( TBLSEARCH_ROW == ((~TBLSEARCH_PROTECT ) & eSearchType ) )
-/*M*/       ::lcl_FindStartEndRow( pStart, pEnd, TBLSEARCH_PROTECT & eSearchType );
+/*M*/       ::binfilter::lcl_FindStartEndRow( pStart, pEnd, TBLSEARCH_PROTECT & eSearchType );
 /*M*/   else if( TBLSEARCH_COL == ((~TBLSEARCH_PROTECT ) & eSearchType ) )
-/*M*/       ::lcl_FindStartEndCol( pStart, pEnd, TBLSEARCH_PROTECT & eSearchType );
+/*M*/       ::binfilter::lcl_FindStartEndCol( pStart, pEnd, TBLSEARCH_PROTECT & eSearchType );
 /*M*/
 /*M*/   //neu besorgen, da sie jetzt verschoben sind. MA: 28. Dec. 93 Bug 5190
 /*M*/   pTable = pStart->FindTabFrm();
@@ -1949,8 +1950,8 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/         SWRECTFN( pTable )
 /*M*/         const long nOfst = (pTable->*fnRect->fnGetPrtLeft)();
 /*M*/         const long nPrtWidth = (pTable->Prt().*fnRect->fnGetWidth)();
-/*M*/         long nSt1 = ::lcl_CalcWish( pStart, nWish, nPrtWidth ) + nOfst;
-/*M*/         long nEd1 = ::lcl_CalcWish( pEnd,   nWish, nPrtWidth ) + nOfst;
+/*M*/         long nSt1 = ::binfilter::lcl_CalcWish( pStart, nWish, nPrtWidth ) + nOfst;
+/*M*/         long nEd1 = ::binfilter::lcl_CalcWish( pEnd,   nWish, nPrtWidth ) + nOfst;
 /*M*/
 /*M*/         if ( nSt1 <= nEd1 )
 /*M*/             nEd1 += (long)((nEdSz * nPrtWidth) / nWish) - 1;
@@ -1992,8 +1993,8 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/         }
 /*M*/ #else
 /*M*/       const long nOfst = pTable->Frm().Left() + pTable->Prt().Left();
-/*M*/       long nSt = ::lcl_CalcWish( pStart, nWish, pTable->Prt().Width() ) + nOfst;
-/*M*/       long nEd = ::lcl_CalcWish( pEnd,   nWish, pTable->Prt().Width() ) + nOfst;
+/*M*/       long nSt = ::binfilter::lcl_CalcWish( pStart, nWish, pTable->Prt().Width() ) + nOfst;
+/*M*/       long nEd = ::binfilter::lcl_CalcWish( pEnd,   nWish, pTable->Prt().Width() ) + nOfst;
 /*M*/
 /*M*/       if ( nSt <= nEd )
 /*M*/           nEd += (long)((nEdSz * pTable->Prt().Width()) / nWish) - 1;
@@ -2026,7 +2027,7 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/           while ( pRow && !pRow->Frm().IsOver( aUnion ) )
 /*M*/               pRow = (SwLayoutFrm*)pRow->GetNext();
 /*M*/           const SwLayoutFrm *pFirst = pRow ? pRow->FirstCell() : 0;
-/*M*/           while ( pFirst && !::IsFrmInTblSel( aUnion, pFirst ) )
+/*M*/           while ( pFirst && !::binfilter::IsFrmInTblSel( aUnion, pFirst ) )
 /*M*/           {
 /*M*/               if ( pFirst->GetNext() )
 /*M*/               {
@@ -2035,11 +2036,11 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/                       pFirst = pFirst->FirstCell();
 /*M*/               }
 /*M*/               else
-/*M*/                   pFirst = ::lcl_FindNextCellFrm( pFirst );
+/*M*/                   pFirst = ::binfilter::lcl_FindNextCellFrm( pFirst );
 /*M*/           }
-/*M*/           const SwLayoutFrm *pLast = ::lcl_FindCellFrm( pTable->FindLastCntnt()->GetUpper());
-/*M*/           while ( pLast && !::IsFrmInTblSel( aUnion, pLast ) )
-/*M*/               pLast = ::lcl_FindCellFrm( pLast->GetPrevLayoutLeaf() );
+/*M*/           const SwLayoutFrm *pLast = ::binfilter::lcl_FindCellFrm( pTable->FindLastCntnt()->GetUpper());
+/*M*/           while ( pLast && !::binfilter::IsFrmInTblSel( aUnion, pLast ) )
+/*M*/               pLast = ::binfilter::lcl_FindCellFrm( pLast->GetPrevLayoutLeaf() );
 /*M*/
 /*M*/           if ( pFirst && pLast ) //Robust
 /*M*/ #ifdef VERTICAL_LAYOUT
@@ -2784,3 +2785,4 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 
 //STRIP001 #pragma optimize("",on)
 
+}

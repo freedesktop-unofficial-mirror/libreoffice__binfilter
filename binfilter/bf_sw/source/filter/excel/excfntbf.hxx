@@ -2,9 +2,9 @@
  *
  *  $RCSfile: excfntbf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,11 +64,13 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+class String;
+namespace binfilter {
 
 class SvxColorItem;
 class SvxFontItem;
 class SvxFontHeightItem;
-class String;
+
 
 //------------------------------------------------------------------------
 
@@ -152,5 +154,6 @@ class FontBuffer
 
 
 
+} //namespace binfilter
 #endif
 

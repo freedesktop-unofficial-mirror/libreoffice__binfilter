@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLCalculationSettingsContext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,12 +69,13 @@
 #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
 #endif
+namespace binfilter {
 
 class ScXMLImport;
 
 class ScXMLCalculationSettingsContext : public SvXMLImportContext
 {
-    com::sun::star::util::Date aNullDate;
+    ::com::sun::star::util::Date aNullDate;
     double fIterationEpsilon;
     sal_Int32 nIterationCount;
     sal_uInt16 nYear2000;
@@ -100,7 +101,7 @@ public:
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
-    void SetNullDate(const com::sun::star::util::Date& aDate) { aNullDate = aDate; }
+    void SetNullDate(const ::com::sun::star::util::Date& aDate) { aNullDate = aDate; }
     void SetIterationStatus(const sal_Bool bValue) { bIsIterationEnabled = bValue; }
     void SetIterationCount(const sal_Int32 nValue) { nIterationCount = nValue; }
     void SetIterationEpsilon(const double fValue) { fIterationEpsilon = fValue; }
@@ -147,4 +148,5 @@ public:
     virtual void EndElement();
 };
 
+} //namespace binfilter
 #endif

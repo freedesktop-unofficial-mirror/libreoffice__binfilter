@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_xmlversion.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::uno;
@@ -330,7 +331,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 // ------------------------------------------------------------------------
 // static
 /*?*/ sal_Bool SfxXMLVersionContext_Impl::ParseISODateTimeString(
-/*?*/                                 const rtl::OUString& rString,
+/*?*/                                 const ::rtl::OUString& rString,
 /*?*/                                 DateTime& rDateTime )
 /*?*/ {
 /*?*/     sal_Bool bSuccess = sal_True;
@@ -459,7 +460,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/ //      xVerStream->SetSize ( 0L );
 /*?*/         xVerStream->SetBufferSize( 16*1024 );
 /*?*/
-/*?*/         Reference< io::XOutputStream > xOut = new utl::OOutputStreamWrapper( *xVerStream );
+/*?*/         Reference< io::XOutputStream > xOut = new ::utl::OOutputStreamWrapper( *xVerStream );
 /*?*/         Reference< io::XActiveDataSource > xSrc( xWriter, uno::UNO_QUERY );
 /*?*/         xSrc->setOutputStream(xOut);
 /*?*/
@@ -496,7 +497,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/         SvStorageStreamRef xDocStream = xRoot->OpenStream( sDocName, STREAM_READ | STREAM_SHARE_DENYWRITE | STREAM_NOCREATE );
 /*?*/         xDocStream->Seek( 0L );
 /*?*/         xDocStream->SetBufferSize( 16*1024 );
-/*?*/         aParserInput.aInputStream = new utl::OInputStreamWrapper( *xDocStream );
+/*?*/         aParserInput.aInputStream = new ::utl::OInputStreamWrapper( *xDocStream );
 /*?*/
 /*?*/         // get parser
 /*?*/         Reference< XInterface > xXMLParser = xServiceFactory->createInstance(
@@ -527,3 +528,4 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*N*/     return bRet;
 /*N*/ }
 
+}

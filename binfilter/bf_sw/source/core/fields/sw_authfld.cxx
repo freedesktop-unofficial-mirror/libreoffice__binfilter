@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_authfld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,80 +60,81 @@
  ************************************************************************/
 
 
-#pragma hdrstop
+//STRIP001 #pragma hdrstop
+//STRIP001
+//STRIP001 #define _SVSTDARR_STRINGSDTOR
+//STRIP001 #define _SVSTDARR_USHORTS
+//STRIP001 #define _SVSTDARR_LONGS
+//STRIP001 #define _SVSTDARR_ULONGS
+//STRIP001
+//STRIP001 #ifndef _HINTIDS_HXX
+//STRIP001 #include <hintids.hxx>
+//STRIP001 #endif
+//STRIP001
+//STRIP001 #include <svtools/svstdarr.hxx>
+//STRIP001 #ifndef _UNO_LINGU_HXX
+//STRIP001 #include <bf_svx/unolingu.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _SVX_LANGITEM_HXX
+//STRIP001 #include <bf_svx/langitem.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
+//STRIP001 #include <com/sun/star/beans/PropertyValues.hpp>
+//STRIP001 #endif
+//STRIP001 #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+//STRIP001 #include <com/sun/star/lang/Locale.hpp>
+//STRIP001 #endif
+//STRIP001
+//STRIP001 #ifndef _SWTYPES_HXX
+//STRIP001 #include <swtypes.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _AUTHFLD_HXX
+//STRIP001 #include <authfld.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _EXPFLD_HXX
+//STRIP001 #include <expfld.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _PAM_HXX
+//STRIP001 #include <pam.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _CNTFRM_HXX
+//STRIP001 #include <cntfrm.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _TOX_HXX
+//STRIP001 #include <tox.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _TXMSRT_HXX
+//STRIP001 #include <txmsrt.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _DOCTXM_HXX
+//STRIP001 #include <doctxm.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _FMTFLD_HXX
+//STRIP001 #include <fmtfld.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _TXTFLD_HXX
+//STRIP001 #include <txtfld.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _NDTXT_HXX
+//STRIP001 #include <ndtxt.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _DOC_HXX
+//STRIP001 #include <doc.hxx>
+//STRIP001 #endif
+//STRIP001 #ifndef _UNOFLDMID_H
+//STRIP001 #include <unofldmid.h>
+//STRIP001 #endif
+//STRIP001 #ifndef _UNOPRNMS_HXX
+//STRIP001 #include <unoprnms.hxx>
+//STRIP001 #endif
+//STRIP001 namespace binfilter {
+//STRIP001
+//STRIP001 using namespace ::com::sun::star::uno;
+//STRIP001 using namespace ::com::sun::star::beans;
+//STRIP001 using namespace ::com::sun::star::lang;
+//STRIP001 using namespace ::rtl;
 
-#define _SVSTDARR_STRINGSDTOR
-#define _SVSTDARR_USHORTS
-#define _SVSTDARR_LONGS
-#define _SVSTDARR_ULONGS
-
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
-
-#include <svtools/svstdarr.hxx>
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
-#include <bf_svx/langitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-#include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _AUTHFLD_HXX
-#include <authfld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
-#ifndef _TXMSRT_HXX
-#include <txmsrt.hxx>
-#endif
-#ifndef _DOCTXM_HXX
-#include <doctxm.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX
-#include <txtfld.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _UNOFLDMID_H
-#include <unofldmid.h>
-#endif
-#ifndef _UNOPRNMS_HXX
-#include <unoprnms.hxx>
-#endif
-
-using namespace ::com::sun::star::uno;
-using namespace ::com::sun::star::beans;
-using namespace ::com::sun::star::lang;
-using namespace rtl;
-
-//STRIP001 #define C2U(cChar) rtl::OUString::createFromAscii(cChar)
+//STRIP001 #define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
 
 //STRIP001 typedef SwAuthEntry* SwAuthEntryPtr;
 //STRIP001 SV_DECL_PTRARR_DEL( SwAuthDataArr, SwAuthEntryPtr, 5, 5 )
@@ -994,3 +995,4 @@ using namespace rtl;
 //STRIP001 }
 
 
+//STRIP001 }

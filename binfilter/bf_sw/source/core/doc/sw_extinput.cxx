@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_extinput.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,6 +93,7 @@
 #ifndef _SWUNDO_HXX
 #include <swundo.hxx>
 #endif
+namespace binfilter {
 
 
 //STRIP001 SwExtTextInput::SwExtTextInput( const SwPaM& rPam, Ring* pRing )
@@ -343,3 +344,4 @@
 //STRIP001 }
 
 
+}

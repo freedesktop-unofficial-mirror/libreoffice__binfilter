@@ -2,9 +2,9 @@
  *
  *  $RCSfile: detdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 
 //------------------------------------------------------------------------
@@ -117,7 +118,7 @@ public:
 
 typedef ScDetOpData* ScDetOpDataPtr;
 
-SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW);
+SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW)//STRIP008 ;
 
 class ScDetOpList : public ScDetOpArr_Impl
 {
@@ -143,4 +144,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

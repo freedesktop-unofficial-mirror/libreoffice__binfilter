@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_miscuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:06 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,9 @@
 
 #include "miscuno.hxx"
 #include "unoguard.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -97,7 +98,7 @@ uno::Reference<uno::XInterface> ScUnoHelpFunctions::AnyToInterface( const uno::A
 
 //  static
 sal_Bool ScUnoHelpFunctions::GetBoolProperty( const uno::Reference<beans::XPropertySet>& xProp,
-                                            const rtl::OUString& rName, sal_Bool bDefault )
+                                            const ::rtl::OUString& rName, sal_Bool bDefault )
 {
     sal_Bool bRet = bDefault;
     if ( xProp.is() )
@@ -123,7 +124,7 @@ sal_Bool ScUnoHelpFunctions::GetBoolProperty( const uno::Reference<beans::XPrope
 
 //  static
 sal_Int32 ScUnoHelpFunctions::GetLongProperty( const uno::Reference<beans::XPropertySet>& xProp,
-                                            const rtl::OUString& rName, long nDefault )
+                                            const ::rtl::OUString& rName, long nDefault )
 {
     sal_Int32 nRet = nDefault;
     if ( xProp.is() )
@@ -144,7 +145,7 @@ sal_Int32 ScUnoHelpFunctions::GetLongProperty( const uno::Reference<beans::XProp
 
 //  static
 sal_Int32 ScUnoHelpFunctions::GetEnumProperty( const uno::Reference<beans::XPropertySet>& xProp,
-                                            const rtl::OUString& rName, long nDefault )
+                                            const ::rtl::OUString& rName, long nDefault )
 {
     sal_Int32 nRet = nDefault;
     if ( xProp.is() )
@@ -218,7 +219,7 @@ void ScUnoHelpFunctions::SetBoolInAny( uno::Any& rAny, sal_Bool bValue )
 //------------------------------------------------------------------------
 
 ScIndexEnumeration::ScIndexEnumeration(const uno::Reference<container::XIndexAccess>& rInd,
-                                       const rtl::OUString& rServiceName) :
+                                       const ::rtl::OUString& rServiceName) :
     xIndex( rInd ),
     sServiceName(rServiceName),
     nPos( 0 )
@@ -332,8 +333,8 @@ uno::Any SAL_CALL ScEmptyEnumeration::nextElement() throw(container::NoSuchEleme
 
 //------------------------------------------------------------------------
 
-ScNameToIndexAccess::ScNameToIndexAccess( const com::sun::star::uno::Reference<
-                                            com::sun::star::container::XNameAccess>& rNameObj ) :
+ScNameToIndexAccess::ScNameToIndexAccess( const ::com::sun::star::uno::Reference<
+                                            ::com::sun::star::container::XNameAccess>& rNameObj ) :
     xNameAccess( rNameObj )
 {
     //! test for XIndexAccess interface at rNameObj, use that instead!
@@ -400,7 +401,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScPrintSettingsObj::getProperty
 }
 
 void SAL_CALL ScPrintSettingsObj::setPropertyValue(
-                        const rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -408,7 +409,7 @@ void SAL_CALL ScPrintSettingsObj::setPropertyValue(
     //! later...
 }
 
-uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -423,3 +424,4 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScPrintSettingsObj )
 
 
 
+}

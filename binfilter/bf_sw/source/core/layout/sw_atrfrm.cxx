@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -302,6 +302,7 @@
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
@@ -2407,7 +2408,7 @@ using namespace ::rtl;
 //STRIP001  return *this;
 //STRIP001 }
 
-//STRIP001 BOOL SwTextGridItem::QueryValue( com::sun::star::uno::Any& rVal,
+//STRIP001 BOOL SwTextGridItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 //STRIP001                                  BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001     BOOL bRet = TRUE;
@@ -2466,7 +2467,7 @@ using namespace ::rtl;
 //STRIP001  return bRet;
 //STRIP001 }
 
-//STRIP001 BOOL SwTextGridItem::PutValue( const com::sun::star::uno::Any& rVal,
+//STRIP001 BOOL SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 //STRIP001                                BYTE nMemberId )
 //STRIP001 {
 //STRIP001  BOOL bRet = TRUE;
@@ -2653,7 +2654,7 @@ using namespace ::rtl;
 /*N*/   else
 /*N*/   {
 /*N*/       sal_uInt16 nFrmType = RES_FLYFRMFMT == Which() ? FRM_FLY : USHRT_MAX;
-/*N*/       pFrm = ::GetFrmOfModify( *(SwModify*)this, nFrmType, pPoint,
+/*N*/       pFrm = ::binfilter::GetFrmOfModify( *(SwModify*)this, nFrmType, pPoint,
 /*N*/                                   0, bCalcFrm );
 /*N*/   }
 /*N*/
@@ -2685,7 +2686,7 @@ using namespace ::rtl;
 /*N*/   if( RES_FLYFRMFMT == Which() )
 /*N*/   {
 /*N*/       Point aNullPt;
-/*N*/       SwFlyFrm* pFly = (SwFlyFrm*)::GetFrmOfModify( *this, FRM_FLY,
+/*N*/       SwFlyFrm* pFly = (SwFlyFrm*)::binfilter::GetFrmOfModify( *this, FRM_FLY,
 /*N*/                                                   &aNullPt, 0, sal_False );
 /*N*/       return pFly ? pFly->GetVirtDrawObj() : 0;
 /*N*/   }
@@ -2912,7 +2913,7 @@ void SwFlyFrmFmt::MakeFrms()
                 pFrm->AppendFly( pFly );
                 SwPageFrm *pPage = pFly->FindPageFrm();
                 if( pPage )
-                    ::RegistFlys( pPage, pFly );
+                    ::binfilter::RegistFlys( pPage, pFly );
             }
         }
     }
@@ -2920,7 +2921,7 @@ void SwFlyFrmFmt::MakeFrms()
 
 /*N*/ SwFlyFrm* SwFlyFrmFmt::GetFrm( const Point* pPoint, const sal_Bool bCalcFrm ) const
 /*N*/ {
-/*N*/   return (SwFlyFrm*)::GetFrmOfModify( *(SwModify*)this, FRM_FLY,
+/*N*/   return (SwFlyFrm*)::binfilter::GetFrmOfModify( *(SwModify*)this, FRM_FLY,
 /*N*/                                           pPoint, 0, bCalcFrm );
 /*N*/ }
 
@@ -3096,3 +3097,4 @@ void SwFlyFrmFmt::MakeFrms()
 //STRIP001  return 0;
 //STRIP001 }
 
+}

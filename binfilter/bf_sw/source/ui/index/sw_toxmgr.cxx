@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_toxmgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:56:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,7 @@
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
+namespace binfilter {
 
 /*-----------------23.01.98 07:41-------------------
     Standard - Verzeichnisnamen herausreichen
@@ -562,3 +563,4 @@
 
 
 
+}

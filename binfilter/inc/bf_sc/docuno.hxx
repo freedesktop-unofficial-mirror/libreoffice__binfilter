@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,6 +155,8 @@
 #ifndef _SFX_ITEMPROP_HXX
 #include <svtools/itemprop.hxx>
 #endif
+class SvEmbeddedObject;
+namespace binfilter {
 
 class ScDocShell;
 class ScAnnotationObj;
@@ -166,38 +168,37 @@ class ScTableRowObj;
 class ScTableSheetObj;
 class SvxFmDrawPage;
 class SvxDrawPage;
-class SvEmbeddedObject;
 
 class ScModelObj : public SfxBaseModel,
-                    public com::sun::star::sheet::XSpreadsheetDocument,
-                    public com::sun::star::document::XActionLockable,
-                    public com::sun::star::sheet::XCalculatable,
-                    public com::sun::star::util::XProtectable,
-                    public com::sun::star::drawing::XDrawPagesSupplier,
-                    public com::sun::star::sheet::XGoalSeek,
-                    public com::sun::star::sheet::XConsolidatable,
-                    public com::sun::star::sheet::XDocumentAuditing,
-                    public com::sun::star::style::XStyleFamiliesSupplier,
-                    public com::sun::star::view::XRenderable,
-                    public com::sun::star::document::XLinkTargetSupplier,
-                    public com::sun::star::beans::XPropertySet,
+                    public ::com::sun::star::sheet::XSpreadsheetDocument,
+                    public ::com::sun::star::document::XActionLockable,
+                    public ::com::sun::star::sheet::XCalculatable,
+                    public ::com::sun::star::util::XProtectable,
+                    public ::com::sun::star::drawing::XDrawPagesSupplier,
+                    public ::com::sun::star::sheet::XGoalSeek,
+                    public ::com::sun::star::sheet::XConsolidatable,
+                    public ::com::sun::star::sheet::XDocumentAuditing,
+                    public ::com::sun::star::style::XStyleFamiliesSupplier,
+                    public ::com::sun::star::view::XRenderable,
+                    public ::com::sun::star::document::XLinkTargetSupplier,
+                    public ::com::sun::star::beans::XPropertySet,
                     public SvxFmMSFactory,  // derived from XMultiServiceFactory
-                    public com::sun::star::lang::XUnoTunnel,
-                    public com::sun::star::lang::XServiceInfo
+                    public ::com::sun::star::lang::XUnoTunnel,
+                    public ::com::sun::star::lang::XServiceInfo
 {
 private:
     SfxItemPropertySet      aPropSet;
     ScDocShell*             pDocShell;
     ScPrintFuncCache*       pPrintFuncCache;
-    com::sun::star::uno::Reference<com::sun::star::uno::XAggregation> xNumberAgg;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawGradTab;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawHatchTab;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawBitmapTab;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawTrGradTab;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawMarkerTab;
-    com::sun::star::uno::Reference<com::sun::star::uno::XInterface> xDrawDashTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XAggregation> xNumberAgg;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawGradTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawHatchTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawBitmapTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawTrGradTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawMarkerTab;
+    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawDashTab;
 
-    BOOL                    FillRenderMarkData( const com::sun::star::uno::Any& aSelection,
+    BOOL                    FillRenderMarkData( const ::com::sun::star::uno::Any& aSelection,
                                                 ScMarkData& rMark, ScPrintSelectionStatus& rStatus ) const;
 
 public:
@@ -380,9 +381,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScModelObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScModelObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 
                             // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes()
@@ -393,8 +394,8 @@ public:
 
 
 class ScDrawPagesObj : public cppu::WeakImplHelper2<
-                                com::sun::star::drawing::XDrawPages,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::drawing::XDrawPages,
+                                ::com::sun::star::lang::XServiceInfo>,
                         public SfxListener
 {
 private:
@@ -440,10 +441,10 @@ public:
 
 
 class ScTableSheetsObj : public cppu::WeakImplHelper4<
-                                com::sun::star::sheet::XSpreadsheets,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::container::XIndexAccess,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::sheet::XSpreadsheets,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::container::XIndexAccess,
+                                ::com::sun::star::lang::XServiceInfo>,
                          public SfxListener
 {
 private:
@@ -524,11 +525,11 @@ public:
 
 
 class ScTableColumnsObj : public cppu::WeakImplHelper5<
-                                com::sun::star::table::XTableColumns,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::container::XNameAccess,
-                                com::sun::star::beans::XPropertySet,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::table::XTableColumns,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::container::XNameAccess,
+                                ::com::sun::star::beans::XPropertySet,
+                                ::com::sun::star::lang::XServiceInfo>,
                           public SfxListener
 {
 private:
@@ -631,10 +632,10 @@ public:
 
 
 class ScTableRowsObj : public cppu::WeakImplHelper4<
-                                com::sun::star::table::XTableRows,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::beans::XPropertySet,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::table::XTableRows,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::beans::XPropertySet,
+                                ::com::sun::star::lang::XServiceInfo>,
                           public SfxListener
 {
 private:
@@ -726,8 +727,8 @@ public:
 
 
 class ScSpreadsheetSettingsObj : public cppu::WeakImplHelper2<
-                                    com::sun::star::beans::XPropertySet,
-                                    com::sun::star::lang::XServiceInfo>,
+                                    ::com::sun::star::beans::XPropertySet,
+                                    ::com::sun::star::lang::XServiceInfo>,
                                  public SfxListener
 {
 private:
@@ -791,9 +792,9 @@ public:
 
 
 class ScAnnotationsObj : public cppu::WeakImplHelper3<
-                                com::sun::star::sheet::XSheetAnnotations,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::sheet::XSheetAnnotations,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::lang::XServiceInfo>,
                           public SfxListener
 {
 private:
@@ -843,10 +844,10 @@ public:
 
 
 class ScScenariosObj : public cppu::WeakImplHelper4<
-                                com::sun::star::sheet::XScenarios,
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::container::XIndexAccess,
-                                com::sun::star::lang::XServiceInfo>,
+                                ::com::sun::star::sheet::XScenarios,
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::container::XIndexAccess,
+                                ::com::sun::star::lang::XServiceInfo>,
                           public SfxListener
 {
 private:
@@ -910,5 +911,6 @@ public:
 
 
 
+} //namespace binfilter
 #endif
 

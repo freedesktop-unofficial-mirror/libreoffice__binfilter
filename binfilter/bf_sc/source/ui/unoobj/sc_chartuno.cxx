@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chartuno.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,8 +84,9 @@
 #include "chartarr.hxx"
 #include "chartlis.hxx"
 #include "unoguard.hxx"
+namespace binfilter {
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -201,7 +202,7 @@ ScChartObj* ScChartsObj::GetObjectByIndex_Impl(long nIndex) const
     return NULL;
 }
 
-ScChartObj* ScChartsObj::GetObjectByName_Impl(const rtl::OUString& aName) const
+ScChartObj* ScChartsObj::GetObjectByName_Impl(const ::rtl::OUString& aName) const
 {
     String aNameString = aName;
     if ( lcl_FindChartObj( pDocShell, nTab, aNameString ) )
@@ -211,7 +212,7 @@ ScChartObj* ScChartsObj::GetObjectByName_Impl(const rtl::OUString& aName) const
 
 // XTableCharts
 
-void SAL_CALL ScChartsObj::addNewByName( const rtl::OUString& aName,
+void SAL_CALL ScChartsObj::addNewByName( const ::rtl::OUString& aName,
                                         const awt::Rectangle& aRect,
                                         const uno::Sequence<table::CellRangeAddress>& aRanges,
                                         sal_Bool bColumnHeaders, sal_Bool bRowHeaders )
@@ -306,7 +307,7 @@ void SAL_CALL ScChartsObj::addNewByName( const rtl::OUString& aName,
     }
 }
 
-void SAL_CALL ScChartsObj::removeByName( const rtl::OUString& aName )
+void SAL_CALL ScChartsObj::removeByName( const ::rtl::OUString& aName )
                                             throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -331,7 +332,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScChartsObj::createEnumeration(
                                                     throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
-    return new ScIndexEnumeration(this, rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.table.TableChartsEnumeration")));
+    return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.table.TableChartsEnumeration")));
 }
 
 // XIndexAccess
@@ -390,7 +391,7 @@ sal_Bool SAL_CALL ScChartsObj::hasElements() throw(uno::RuntimeException)
     return getCount() != 0;
 }
 
-uno::Any SAL_CALL ScChartsObj::getByName( const rtl::OUString& aName )
+uno::Any SAL_CALL ScChartsObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -404,7 +405,7 @@ uno::Any SAL_CALL ScChartsObj::getByName( const rtl::OUString& aName )
     return aAny;
 }
 
-uno::Sequence<rtl::OUString> SAL_CALL ScChartsObj::getElementNames() throw(uno::RuntimeException)
+uno::Sequence< ::rtl::OUString> SAL_CALL ScChartsObj::getElementNames() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     if (pDocShell)
@@ -412,8 +413,8 @@ uno::Sequence<rtl::OUString> SAL_CALL ScChartsObj::getElementNames() throw(uno::
         ScDocument* pDoc = pDocShell->GetDocument();
 
         long nCount = getCount();
-        uno::Sequence<rtl::OUString> aSeq(nCount);
-        rtl::OUString* pAry = aSeq.getArray();
+        uno::Sequence< ::rtl::OUString> aSeq(nCount);
+        ::rtl::OUString* pAry = aSeq.getArray();
 
         long nPos = 0;
         ScDrawLayer* pDrawLayer = pDoc->GetDrawLayer();
@@ -448,10 +449,10 @@ uno::Sequence<rtl::OUString> SAL_CALL ScChartsObj::getElementNames() throw(uno::
 
         return aSeq;
     }
-    return uno::Sequence<rtl::OUString>(0);
+    return uno::Sequence< ::rtl::OUString>(0);
 }
 
-sal_Bool SAL_CALL ScChartsObj::hasByName( const rtl::OUString& aName )
+sal_Bool SAL_CALL ScChartsObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
@@ -652,13 +653,13 @@ uno::Reference<lang::XComponent> SAL_CALL ScChartObj::getEmbeddedObject() throw(
 
 // XNamed
 
-rtl::OUString SAL_CALL ScChartObj::getName() throw(uno::RuntimeException)
+::rtl::OUString SAL_CALL ScChartObj::getName() throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     return aChartName;
 }
 
-void SAL_CALL ScChartObj::setName( const rtl::OUString& aName ) throw(uno::RuntimeException)
+void SAL_CALL ScChartObj::setName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
 {
     ScUnoGuard aGuard;
     throw uno::RuntimeException();      // name cannot be changed
@@ -668,3 +669,4 @@ void SAL_CALL ScChartObj::setName( const rtl::OUString& aName ) throw(uno::Runti
 
 
 
+}

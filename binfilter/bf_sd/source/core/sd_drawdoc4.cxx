@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc4.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:58:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -252,6 +252,7 @@
 #include "stlpool.hxx"
 #include "helpids.h"
 #include "sdiocmpt.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -1526,3 +1527,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   rCJKFont = OutputDevice::GetDefaultFont( DEFAULTFONT_CJK_PRESENTATION, GetLanguage( EE_CHAR_LANGUAGE_CJK ), DEFAULTFONT_FLAGS_ONLYONE );
 /*N*/   rCTLFont = OutputDevice::GetDefaultFont( DEFAULTFONT_CTL_PRESENTATION, GetLanguage( EE_CHAR_LANGUAGE_CTL ), DEFAULTFONT_FLAGS_ONLYONE ) ;
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pntlock.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
 #endif
+namespace binfilter {
 
 class ScPaintLockData
 {
@@ -99,5 +100,6 @@ public:
                         { if (bDoc) nDocLevel = nNew; else nLevel = nNew; }
 };
 
+} //namespace binfilter
 #endif
 

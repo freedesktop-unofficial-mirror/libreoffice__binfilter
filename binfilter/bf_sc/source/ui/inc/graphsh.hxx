@@ -2,9 +2,9 @@
  *
  *  $RCSfile: graphsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,6 +77,7 @@
 class ScViewData;
 
 #include "drawsh.hxx"
+namespace binfilter {
 
 class ScGraphicShell: public ScDrawShell
 {
@@ -95,4 +96,5 @@ public:
     void    GetFilterState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    GetFilterState(SfxItemSet &rSet);
 };
 
+} //namespace binfilter
 #endif

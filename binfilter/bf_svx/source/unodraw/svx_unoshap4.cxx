@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-16 17:12:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,7 @@
 #include "svdglob.hxx"
 #endif
 #include "svdstr.hrc"
+namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -424,7 +425,7 @@ static void SvxImplFillCommandSequence( const SvCommandList& aCommands, Sequence
 SvxAppletShape::SvxAppletShape( SdrObject* pObject ) throw()
 : SvxOle2Shape( pObject, aSvxMapProvider.GetMap(SVXMAP_APPLET)  )
 {
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
 }
 
 SvxAppletShape::~SvxAppletShape() throw()
@@ -436,7 +437,7 @@ void SvxAppletShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw (
     SvxShape::Create( pNewObj, pNewPage );
     const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID ); //STRIP003
     createObject(aAppletClassId);
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
 }
 
 //XPropertySet
@@ -590,7 +591,7 @@ Any SAL_CALL SvxAppletShape::getPropertyValue( const OUString& PropertyName ) th
 SvxPluginShape::SvxPluginShape( SdrObject* pObject ) throw()
 : SvxOle2Shape( pObject, aSvxMapProvider.GetMap(SVXMAP_PLUGIN)  )
 {
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
 }
 
 SvxPluginShape::~SvxPluginShape() throw()
@@ -602,7 +603,7 @@ void SvxPluginShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw (
     SvxShape::Create( pNewObj, pNewPage );
     const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID ); //STRIP003
     createObject(aPluginClassId);
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
 }
 
 //XPropertySet
@@ -738,7 +739,7 @@ Any SAL_CALL SvxPluginShape::getPropertyValue( const OUString& PropertyName ) th
 SvxFrameShape::SvxFrameShape( SdrObject* pObject ) throw()
 : SvxOle2Shape( pObject, aSvxMapProvider.GetMap(SVXMAP_FRAME)  )
 {
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FrameShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FrameShape" ) ) );
 }
 
 SvxFrameShape::~SvxFrameShape() throw()
@@ -750,7 +751,7 @@ void SvxFrameShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
     SvxShape::Create( pNewObj, pNewPage );
     const SvGlobalName aIFrameClassId( BF_SO3_IFRAME_CLASSID );
     createObject(aIFrameClassId);
-    SetShapeType( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FrameShape" ) ) );
+    SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FrameShape" ) ) );
 }
 
 //XPropertySet
@@ -937,3 +938,4 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
 }
 
 #endif
+}

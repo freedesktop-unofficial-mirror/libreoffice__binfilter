@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_float3d.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -148,6 +148,7 @@
 
 #include "float3d.hxx"
 #include "float3d.hrc"
+namespace binfilter {
 
 /*N*/ SFX_IMPL_DOCKINGWINDOW( Svx3DChildWindow, SID_3D_WIN )
 
@@ -3701,3 +3702,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  Svx3DWin* pWin = new Svx3DWin( pBindings, th
 //STRIP001 }
 
 
+}

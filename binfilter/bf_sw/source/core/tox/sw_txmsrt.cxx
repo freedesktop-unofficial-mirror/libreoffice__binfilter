@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txmsrt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:37:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -136,6 +136,7 @@
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>
 #endif
+namespace binfilter {
 
 //STRIP001 extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, xub_StrLen nMySttPos,
 //STRIP001                         const SwTxtNode& rBehindNd, xub_StrLen nSttPos );
@@ -997,3 +998,4 @@
 //STRIP001  return bRet;
 //STRIP001 }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: miscuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,7 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
+namespace binfilter {
 
 
 #define SC_SIMPLE_SERVICE_INFO( ClassName, ClassNameAscii, ServiceAscii )            \
@@ -108,22 +109,22 @@ sal_Bool SAL_CALL ClassName::supportsService( const ::rtl::OUString& ServiceName
 }
 
 #define SC_IMPL_DUMMY_PROPERTY_LISTENER( ClassName )                                \
-    void SAL_CALL ClassName::addPropertyChangeListener( const rtl::OUString&,       \
+    void SAL_CALL ClassName::addPropertyChangeListener( const ::rtl::OUString&,     \
                             const uno::Reference<beans::XPropertyChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
     { DBG_ERROR("not implemented"); }                                               \
-    void SAL_CALL ClassName::removePropertyChangeListener( const rtl::OUString&,    \
+    void SAL_CALL ClassName::removePropertyChangeListener( const ::rtl::OUString&,  \
                             const uno::Reference<beans::XPropertyChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
     { DBG_ERROR("not implemented"); }                                               \
-    void SAL_CALL ClassName::addVetoableChangeListener( const rtl::OUString&,       \
+    void SAL_CALL ClassName::addVetoableChangeListener( const ::rtl::OUString&,     \
                             const uno::Reference<beans::XVetoableChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
     { DBG_ERROR("not implemented"); }                                               \
-    void SAL_CALL ClassName::removeVetoableChangeListener( const rtl::OUString&,    \
+    void SAL_CALL ClassName::removeVetoableChangeListener( const ::rtl::OUString&,  \
                             const uno::Reference<beans::XVetoableChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
@@ -143,17 +144,17 @@ sal_Bool SAL_CALL ClassName::supportsService( const ::rtl::OUString& ServiceName
 
 
 class ScIndexEnumeration : public cppu::WeakImplHelper2<
-                                com::sun::star::container::XEnumeration,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::container::XEnumeration,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 private:
-    com::sun::star::uno::Reference<com::sun::star::container::XIndexAccess> xIndex;
-    rtl::OUString           sServiceName;
+    ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess> xIndex;
+    ::rtl::OUString           sServiceName;
     sal_Int32               nPos;
 
 public:
-                            ScIndexEnumeration(const com::sun::star::uno::Reference<
-                                com::sun::star::container::XIndexAccess>& rInd, const rtl::OUString& rServiceName);
+                            ScIndexEnumeration(const ::com::sun::star::uno::Reference<
+                                ::com::sun::star::container::XIndexAccess>& rInd, const ::rtl::OUString& rServiceName);
     virtual                 ~ScIndexEnumeration();
 
                             // XEnumeration
@@ -174,8 +175,8 @@ public:
 
 
 class ScEmptyEnumerationAccess : public cppu::WeakImplHelper2<
-                                com::sun::star::container::XEnumerationAccess,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::container::XEnumerationAccess,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 public:
                             ScEmptyEnumerationAccess();
@@ -201,8 +202,8 @@ public:
 
 
 class ScEmptyEnumeration : public cppu::WeakImplHelper2<
-                                com::sun::star::container::XEnumeration,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::container::XEnumeration,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 public:
                             ScEmptyEnumeration();
@@ -226,17 +227,17 @@ public:
 
 //  new (uno 3) variant
 class ScNameToIndexAccess : public cppu::WeakImplHelper2<
-                                com::sun::star::container::XIndexAccess,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::container::XIndexAccess,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 private:
-    com::sun::star::uno::Reference<com::sun::star::container::XNameAccess> xNameAccess;
-    com::sun::star::uno::Sequence<rtl::OUString> aNames;
+    ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess> xNameAccess;
+    ::com::sun::star::uno::Sequence<rtl::OUString> aNames;
 
 public:
                             ScNameToIndexAccess(
-                                const com::sun::star::uno::Reference<
-                                    com::sun::star::container::XNameAccess>& rNameObj );
+                                const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::container::XNameAccess>& rNameObj );
     virtual                 ~ScNameToIndexAccess();
 
                             // XIndexAccess
@@ -261,8 +262,8 @@ public:
 };
 
 class ScPrintSettingsObj : public cppu::WeakImplHelper2<
-                                com::sun::star::beans::XPropertySet,
-                                com::sun::star::lang::XServiceInfo >
+                                ::com::sun::star::beans::XPropertySet,
+                                ::com::sun::star::lang::XServiceInfo >
 {
 public:
                             ScPrintSettingsObj();
@@ -322,26 +323,27 @@ public:
 class ScUnoHelpFunctions
 {
 public:
-    static com::sun::star::uno::Reference<com::sun::star::uno::XInterface>
-                            AnyToInterface( const com::sun::star::uno::Any& rAny );
-    static sal_Bool         GetBoolProperty( const com::sun::star::uno::Reference<
-                                                com::sun::star::beans::XPropertySet>& xProp,
+    static ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface>
+                            AnyToInterface( const ::com::sun::star::uno::Any& rAny );
+    static sal_Bool         GetBoolProperty( const ::com::sun::star::uno::Reference<
+                                                ::com::sun::star::beans::XPropertySet>& xProp,
                                             const ::rtl::OUString& rName, sal_Bool bDefault = sal_False );
-    static sal_Int32        GetLongProperty( const com::sun::star::uno::Reference<
-                                                com::sun::star::beans::XPropertySet>& xProp,
+    static sal_Int32        GetLongProperty( const ::com::sun::star::uno::Reference<
+                                                ::com::sun::star::beans::XPropertySet>& xProp,
                                             const ::rtl::OUString& rName, long nDefault = 0 );
-    static sal_Int32        GetEnumProperty( const com::sun::star::uno::Reference<
-                                                com::sun::star::beans::XPropertySet>& xProp,
+    static sal_Int32        GetEnumProperty( const ::com::sun::star::uno::Reference<
+                                                ::com::sun::star::beans::XPropertySet>& xProp,
                                             const ::rtl::OUString& rName, long nDefault );
 
-    static sal_Bool         GetBoolFromAny( const com::sun::star::uno::Any& aAny );
-    static sal_Int16        GetInt16FromAny( const com::sun::star::uno::Any& aAny );
-    static sal_Int32        GetInt32FromAny( const com::sun::star::uno::Any& aAny );
-    static sal_Int32        GetEnumFromAny( const com::sun::star::uno::Any& aAny );
-    static void             SetBoolInAny( com::sun::star::uno::Any& rAny, sal_Bool bValue );
+    static sal_Bool         GetBoolFromAny( const ::com::sun::star::uno::Any& aAny );
+    static sal_Int16        GetInt16FromAny( const ::com::sun::star::uno::Any& aAny );
+    static sal_Int32        GetInt32FromAny( const ::com::sun::star::uno::Any& aAny );
+    static sal_Int32        GetEnumFromAny( const ::com::sun::star::uno::Any& aAny );
+    static void             SetBoolInAny( ::com::sun::star::uno::Any& rAny, sal_Bool bValue );
 };
 
 
 
+} //namespace binfilter
 #endif
 

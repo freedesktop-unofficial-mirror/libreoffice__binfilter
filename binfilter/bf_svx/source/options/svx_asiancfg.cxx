@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_asiancfg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,14 +82,15 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
+namespace binfilter {
 
 //-----------------------------------------------------------------------------
 using namespace utl;
 using namespace rtl;
-using namespace com::sun::star;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::beans;
-using namespace com::sun::star::lang;
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::beans;
+using namespace ::com::sun::star::lang;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ const sal_Char sStartEndCharacters[] = "StartEndCharacters";
@@ -105,7 +106,7 @@ using namespace com::sun::star::lang;
 /*N*/ };
 //-----------------------------------------------------------------------------
 /*N*/ typedef SvxForbiddenStruct_Impl* SvxForbiddenStruct_ImplPtr;
-/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2);
+/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2)//STRIP008 ;
 /*N*/ SV_IMPL_PTRARR(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr);
 //-----------------------------------------------------------------------------
 /*N*/ struct SvxAsianConfig_Impl
@@ -132,7 +133,7 @@ using namespace com::sun::star::lang;
 /*N*/ }
 // ---------------------------------------------------------------------------
 /*N*/ SvxAsianConfig::SvxAsianConfig(sal_Bool bEnableNotify) :
-/*N*/   utl::ConfigItem(C2U("Office.Common/AsianLayout")),
+/*N*/   ::utl::ConfigItem(C2U("Office.Common/AsianLayout")),
 /*N*/   pImpl(new SvxAsianConfig_Impl)
 /*N*/ {
 /*N*/   if(bEnableNotify)
@@ -336,3 +337,4 @@ using namespace com::sun::star::lang;
 //STRIP001 #endif
 //STRIP001  SetModified();
 //STRIP001 }
+}

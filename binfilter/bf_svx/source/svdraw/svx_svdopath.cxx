@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdopath.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,6 +100,7 @@
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
+namespace binfilter {
 
 // #104018# replace macros above with type-safe methods
 inline sal_Int32 ImplTwipsToMM(sal_Int32 nVal) { return ((nVal * 127 + 36) / 72); }
@@ -3479,3 +3480,4 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ }
 
 // EOF
+}

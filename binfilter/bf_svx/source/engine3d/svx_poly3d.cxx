@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 #ifndef _B3D_BASE3D_HXX
 #include <goodies/base3d.hxx>
 #endif
+namespace binfilter {
 
 /*N*/ DBG_NAME(Polygon3D);
 /*N*/ DBG_NAME(PolyPolygon3D);
@@ -101,7 +102,7 @@
 |*
 \************************************************************************/
 
-/*N*/ DECLARE_LIST(Polygon3DList, Polygon3D*);
+/*N*/ DECLARE_LIST(Polygon3DList, Polygon3D*)//STRIP008 ;
 
 /*N*/ class ImpPolyPolygon3D
 /*N*/ {
@@ -2904,7 +2905,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 DECLARE_LIST(ImpPolyNodeList, ImpPolyNode*);
+//STRIP001 DECLARE_LIST(ImpPolyNodeList, ImpPolyNode*)//STRIP008 ;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -2949,7 +2950,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 DECLARE_LIST(ImpSimpleCutList, ImpSimpleCut*);
+//STRIP001 DECLARE_LIST(ImpSimpleCutList, ImpSimpleCut*)//STRIP008 ;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -3692,3 +3693,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-09 14:37:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,6 +208,7 @@
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::osl;
 using namespace ::vos;
@@ -258,15 +259,16 @@ const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap()
     return aSvxTextPortionPropertyMap;
 }
 
-class GDIMetaFile;
-class SvStream;
+} class GDIMetaFile; namespace binfilter {//STRIP009
+} class SvStream; namespace binfilter {//STRIP009
+} //namespace binfilter
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream,
                               PFilterCallback pCallback=NULL, void * pCallerData=NULL,
                               sal_Bool bPlaceable=sal_True);
-
+namespace binfilter {//STRIP009
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject );
 
-DECLARE_LIST( SvxShapeList, SvxShape * );
+DECLARE_LIST( SvxShapeList, SvxShape * )//STRIP008 ;
 
 #define GET_TEXT_INTERFACE( xint, xval ) \
     Reference< xint > xval; \
@@ -389,7 +391,7 @@ const SvxShapeMaster* SvxShape::getMaster() const
 }
 
 //----------------------------------------------------------------------
-sal_Bool SvxShape::queryAggregation( const com::sun::star::uno::Type & rType, com::sun::star::uno::Any& aAny )
+sal_Bool SvxShape::queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny )
 {
     if( mpImpl->mpMaster )
     {
@@ -2040,9 +2042,9 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
             if( pMap->nWID == SDRATTR_TEXTDIRECTION && pObj->ISA(SdrTextObj))
             {
-                com::sun::star::text::WritingMode eMode;
+                ::com::sun::star::text::WritingMode eMode;
                 rVal >>= eMode;
-                bool bVertical = eMode == com::sun::star::text::WritingMode_TB_RL;
+                bool bVertical = eMode == ::com::sun::star::text::WritingMode_TB_RL;
                 OutlinerParaObject* pOPO = pObj->GetOutlinerParaObject();
                 if( bVertical || pOPO )
                 {
@@ -2142,12 +2144,12 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
 //----------------------------------------------------------------------
 
-const SvGlobalName SvxShape::GetClassName_Impl(rtl::OUString& rHexCLSID)
+const SvGlobalName SvxShape::GetClassName_Impl(::rtl::OUString& rHexCLSID)
 {
     SvGlobalName aClassName;
     if( pObj && pObj->ISA(SdrOle2Obj))
     {
-        rHexCLSID = rtl::OUString();
+        rHexCLSID = ::rtl::OUString();
 
         if( static_cast< SdrOle2Obj* >( pObj )->IsEmpty() )
         {
@@ -2239,7 +2241,7 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
             }
             case OWN_ATTR_INTERNAL_OLE:
             {
-                rtl::OUString sCLSID;
+                ::rtl::OUString sCLSID;
                 sal_Bool bInternal = SvFactory::IsIntern( GetClassName_Impl(sCLSID), 0 );
                 aAny <<= bInternal;
                 break;
@@ -4018,4 +4020,5 @@ SdrObject* GetSdrObjectFromXShape( uno::Reference< drawing::XShape > xShape ) th
 {
     SvxShape* pShape = SvxShape::getImplementation( xShape );
     return pShape ? pShape->GetSdrObject() : NULL;
+}
 }

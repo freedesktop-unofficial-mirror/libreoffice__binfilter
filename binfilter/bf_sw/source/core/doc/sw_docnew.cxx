@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -239,6 +239,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 const sal_Char __FAR_DATA sFrmFmtStr[] = "Frameformat";
 const sal_Char __FAR_DATA sEmptyPageStr[] = "Empty Page";
 const sal_Char __FAR_DATA sColumnCntStr[] = "Columncontainer";
@@ -991,11 +992,11 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ }
 /* ------------------------------------------------------------------------*/
 
-/*N*/ const com::sun::star::i18n::
+/*N*/ const ::com::sun::star::i18n::
 /*N*/   ForbiddenCharacters* SwDoc::GetForbiddenCharacters( USHORT nLang,
 /*N*/                           BOOL bLocaleData ) const
 /*N*/ {
-/*N*/   const com::sun::star::i18n::ForbiddenCharacters* pRet = 0;
+/*N*/   const ::com::sun::star::i18n::ForbiddenCharacters* pRet = 0;
 /*N*/   if( xForbiddenCharsTable.isValid() )
 /*N*/       pRet = xForbiddenCharsTable->GetForbiddenCharacters( nLang, FALSE );
 /*N*/   if( bLocaleData && !pRet && pBreakIt )
@@ -1004,7 +1005,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ }
 
 //STRIP001 void SwDoc::SetForbiddenCharacters( USHORT nLang,
-//STRIP001              const com::sun::star::i18n::ForbiddenCharacters& rFChars )
+//STRIP001              const ::com::sun::star::i18n::ForbiddenCharacters& rFChars )
 //STRIP001 {
 //STRIP001  if( !xForbiddenCharsTable.isValid() )
 //STRIP001  {
@@ -1098,3 +1099,4 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 
 
 
+}

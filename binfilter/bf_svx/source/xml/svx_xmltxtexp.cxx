@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmltxtexp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -162,13 +162,14 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
-using namespace com::sun::star::container;
-using namespace com::sun::star::document;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::awt;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::xml::sax;
+namespace binfilter {
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::container;
+using namespace ::com::sun::star::document;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::awt;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::xml::sax;
 using namespace ::rtl;
 using namespace cppu;
 
@@ -365,7 +366,7 @@ class SvxEditEngineSourceImpl;
 /*N*/ }
 /*N*/
 /*N*/ // XAnyCompareFactory
-/*N*/ uno::Reference< com::sun::star::ucb::XAnyCompare > SAL_CALL SvxSimpleUnoModel::createAnyCompareByName( const OUString& PropertyName )
+/*N*/ uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxSimpleUnoModel::createAnyCompareByName( const OUString& PropertyName )
 /*N*/   throw(uno::RuntimeException)
 /*N*/ {
 /*N*/   return SvxCreateNumRuleCompare();
@@ -459,7 +460,7 @@ class SvxEditEngineSourceImpl;
 /*N*/       EditEngine* pEditEngine,
 /*N*/       const ESelection& rSel,
 /*N*/       const ::rtl::OUString& rFileName,
-/*N*/       const com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler > & xHandler );
+/*N*/       const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & xHandler );
 /*N*/
 /*N*/   ~SvxXMLTextExportComponent();
 /*N*/
@@ -469,7 +470,7 @@ class SvxEditEngineSourceImpl;
 /*N*/   virtual void _ExportContent();
 /*N*/
 /*N*/ private:
-/*N*/   com::sun::star::uno::Reference< com::sun::star::text::XText > mxText;
+/*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::text::XText > mxText;
 /*N*/   EditEngine* mpEditEngine;
 /*N*/   ESelection maSelection;
 /*N*/ };
@@ -482,7 +483,7 @@ class SvxEditEngineSourceImpl;
 /*N*/   EditEngine* pEditEngine,
 /*N*/   const ESelection& rSel,
 /*N*/   const ::rtl::OUString& rFileName,
-/*N*/   const com::sun::star::uno::Reference< com::sun::star::xml::sax::XDocumentHandler > & xHandler)
+/*N*/   const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & xHandler)
 /*N*/ : SvXMLExport( xServiceFactory, rFileName, xHandler, ((frame::XModel*)new SvxSimpleUnoModel()), MAP_CM ),
 /*N*/   mpEditEngine( pEditEngine ),
 /*N*/   maSelection( rSel )
@@ -541,13 +542,13 @@ class SvxEditEngineSourceImpl;
 /*N*/           uno::Reference<xml::sax::XDocumentHandler>  xHandler( xWriter, uno::UNO_QUERY );
 /*N*/
 /*N*/           // create output stream and active data source
-/*N*/           uno::Reference<io::XOutputStream> xOut( new utl::OOutputStreamWrapper( rStream ) );
+/*N*/           uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( rStream ) );
 /*N*/
 /* testcode
             const OUString aURL( RTL_CONSTASCII_USTRINGPARAM( "file:///e:/test.xml" ) );
             SfxMedium aMedium( aURL, STREAM_WRITE | STREAM_TRUNC, TRUE );
             aMedium.IsRemote();
-            uno::Reference<io::XOutputStream> xOut( new utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
+            uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
 */
 /*N*/
 /*N*/
@@ -592,3 +593,4 @@ class SvxEditEngineSourceImpl;
 /*N*/ }
 /*N*/
 /*N*/ void SvxXMLTextExportComponent::_ExportMasterStyles() {}
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wpar2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -212,6 +212,7 @@
 #ifndef _SHELLRES_HXX   // for the pagedescname from the ShellRes
 #include <shellres.hxx>
 #endif
+namespace binfilter {
 
 
 // Aktivierung der LR-Rand-Einstellungen fuer Kopf-/Fusszeilen
@@ -228,12 +229,12 @@
 #define DEFAULT_TAB_CELL_DISTANCE 42    // Default: 0.7 mm Abstand
 
 
-SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64);
+SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64)//STRIP008 ;
 SV_IMPL_PTRARR(    W4WTabBorders, UShortPtr        );
 
 typedef SwSelBoxes_SAR* SwSelBoxes_SARPtr;
 
-SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16);
+SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16)//STRIP008 ;
 SV_IMPL_PTRARR(    W4WMergeGroups, SwSelBoxes_SARPtr       );
 
 inline const SwNodeIndex & PtNd( const SwPaM * pPam )
@@ -4169,3 +4170,4 @@ BOOL SwW4WParser::GetULSpace( SvxULSpaceItem*& rpUL )
 
 
 
+}

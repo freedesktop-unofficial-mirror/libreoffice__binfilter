@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_gluepts.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #include "svdobj.hxx"
 #include "svdglue.hxx"
 #include "svdpage.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -587,4 +588,5 @@ sal_Bool SAL_CALL SvxUnoGluePointAccess::hasElements()
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject )
 {
     return *new SvxUnoGluePointAccess(pObject);
+}
 }

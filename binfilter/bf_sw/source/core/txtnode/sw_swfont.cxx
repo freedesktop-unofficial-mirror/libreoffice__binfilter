@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,6 +178,7 @@
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
 #endif
+namespace binfilter {
 
 #if defined(WIN) || defined(WNT) || defined(PM2)
 #define FNT_LEADING_HACK
@@ -1356,13 +1357,13 @@ using namespace ::com::sun::star::i18n::ScriptType;
 //STRIP001     switch (nScript)
 //STRIP001     {
 //STRIP001         default:
-//STRIP001         case com::sun::star::i18n::ScriptType::LATIN:
+//STRIP001         case ::com::sun::star::i18n::ScriptType::LATIN:
 //STRIP001             nActual = SW_LATIN;
 //STRIP001             break;
-//STRIP001         case com::sun::star::i18n::ScriptType::ASIAN:
+//STRIP001         case ::com::sun::star::i18n::ScriptType::ASIAN:
 //STRIP001             nActual = SW_CJK;
 //STRIP001             break;
-//STRIP001         case com::sun::star::i18n::ScriptType::COMPLEX:
+//STRIP001         case ::com::sun::star::i18n::ScriptType::COMPLEX:
 //STRIP001             nActual = SW_CTL;
 //STRIP001             break;
 //STRIP001     }
@@ -1378,3 +1379,4 @@ using namespace ::com::sun::star::i18n::ScriptType;
 //STRIP001     return nHeight;
 //STRIP001 }
 
+}

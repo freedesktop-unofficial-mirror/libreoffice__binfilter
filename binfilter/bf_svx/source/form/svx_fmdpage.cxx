@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmdpage.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,13 +86,14 @@
 #ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
 #endif
+namespace binfilter {
 
 /*N*/ DBG_NAME(SvxFmDrawPage);
 /*N*/ SvxFmDrawPage::SvxFmDrawPage( SdrPage* pInPage ) :
 /*N*/   SvxDrawPage( pInPage )
 /*N*/ {
 /*N*/   DBG_CTOR(SvxFmDrawPage,NULL);
-/*N*/   m_pHoldImplIdHelper = new ::form::OImplementationIdsRef();
+    /*N*/   m_pHoldImplIdHelper = new ::binfilter::form::OImplementationIdsRef(); //STRIP008 m_pHoldImplIdHelper = new ::form::OImplementationIdsRef();
 /*N*/ }
 
 /*N*/ SvxFmDrawPage::~SvxFmDrawPage() throw ()
@@ -103,7 +104,7 @@
 
 /*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {DBG_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
-//STRIP001  return ::form::OImplementationIds::getImplementationId(getTypes());
+//STRIP001  return ::binfilter::form::OImplementationIds::getImplementationId(getTypes()); //STRIP008 return ::form::OImplementationIds::getImplementationId(getTypes());
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL SvxFmDrawPage::queryAggregation( const ::com::sun::star::uno::Type& aType ) throw(::com::sun::star::uno::RuntimeException)
@@ -176,3 +177,4 @@
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: outleeng.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,9 +68,10 @@
 #ifndef _EDITENG_HXX
 #include <editeng.hxx>
 #endif
+namespace binfilter {
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 );
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;
 
 class OutlinerEditEng : public EditEngine
 {
@@ -105,5 +106,6 @@ public:
     NotifyList          aNotifyCache;
 };
 
+}//end of namespace binfilter
 #endif
 

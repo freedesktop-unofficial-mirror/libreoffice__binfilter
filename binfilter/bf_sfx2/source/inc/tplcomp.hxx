@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tplcomp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -150,6 +150,7 @@
 #ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
 #endif
+namespace binfilter {
 
 class CntAnchor;
 
@@ -306,5 +307,6 @@ public:
 };
 
 
+}//end of namespace binfilter
 #endif
 

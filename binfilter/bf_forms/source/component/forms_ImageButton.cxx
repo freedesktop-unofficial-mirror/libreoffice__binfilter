@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ImageButton.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _COM_SUN_STAR_AWT_MOUSEBUTTON_HPP_
 #include <com/sun/star/awt/MouseButton.hpp>
 #endif
+namespace binfilter {
 
 //.........................................................................
 namespace frm
@@ -323,3 +324,4 @@ void OImageButtonControl::mousePressed(const MouseEvent& e) throw ( ::com::sun::
 }   // namespace frm
 //.........................................................................
 
+}

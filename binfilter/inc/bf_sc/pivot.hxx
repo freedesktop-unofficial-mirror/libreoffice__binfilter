@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pivot.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+
 /*
     WICHTIG:
     Folgende Reihenfolge beim Aufbau der Pivot-Tabelle unbedingt einzuhalten:
@@ -82,7 +83,7 @@
 
 #include <global.hxx>
 
-class SubTotal;
+//STRIP008 class SubTotal;
 
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"
@@ -97,8 +98,9 @@ class SubTotal;
 #define PIVOT_STYLE_TITLE       3
 #define PIVOT_STYLE_FIELDNAME   4
 #define PIVOT_STYLE_TOP         5
-
 class SvStream;
+namespace binfilter {
+class SubTotal;
 class ScDocument;
 class ScUserListData;
 class ScMultipleReadHeader;
@@ -361,4 +363,5 @@ struct LabelData
 };
 
 
+} //namespace binfilter
 #endif

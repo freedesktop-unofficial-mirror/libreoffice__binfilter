@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fontcfg.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,10 +90,11 @@
 #ifndef _SWLINGUCONFIG_HXX
 #include <swlinguconfig.hxx>
 #endif
+namespace binfilter {
 
 using namespace utl;
 using namespace rtl;
-using namespace com::sun::star::uno;
+using namespace ::com::sun::star::uno;
 
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
@@ -143,7 +144,7 @@ using namespace com::sun::star::uno;
 --------------------------------------------------*/
 
 /*N*/ SwStdFontConfig::SwStdFontConfig() :
-/*N*/     utl::ConfigItem(C2U("Office.Writer"))
+/*N*/     ::utl::ConfigItem(C2U("Office.Writer"))
 /*N*/ {
 /*N*/     SvtLinguOptions aLinguOpt;
 /*N*/
@@ -304,3 +305,4 @@ using namespace com::sun::star::uno;
 /*M*/     Font aFont = OutputDevice::GetDefaultFont(nFontId, eLang, DEFAULTFONT_FLAGS_ONLYONE);
 /*M*/     return  aFont.GetName();
 /*N*/ }
+}

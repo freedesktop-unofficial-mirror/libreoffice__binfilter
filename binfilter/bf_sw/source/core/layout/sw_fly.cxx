@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,6 +155,7 @@
 #include "flyfrms.hxx"
 #include "ndindex.hxx"   // GetGrfArea
 #include "sectfrm.hxx"
+namespace binfilter {
 
 //Aus dem PageFrm:
 
@@ -279,7 +280,7 @@
 /*N*/       ASSERT( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
 /*N*/       ULONG nIndex = rCntnt.GetCntntIdx()->GetIndex();
 /*N*/       // Lower() bedeutet SwColumnFrm, eingefuegt werden muss der Inhalt dann in den (Column)BodyFrm
-/*N*/       ::_InsertCnt( Lower() ? (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower() : (SwLayoutFrm*)this,
+/*N*/       ::binfilter::_InsertCnt( Lower() ? (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower() : (SwLayoutFrm*)this,
 /*N*/                     pFmt->GetDoc(), nIndex );
 /*N*/
 /*N*/       //NoTxt haben immer eine FixHeight.
@@ -699,7 +700,7 @@
 /*?*/           aPrt.Height( aPrt.Height() - nDiffHeight );
 /*?*/           aPrt.Width ( aPrt.Width()  - nDiffWidth  );
 /*?*/           ChgLowersProp( aOldSz );
-/*?*/           ::Notify( this, FindPageFrm(), aOld );
+/*?*/           ::binfilter::Notify( this, FindPageFrm(), aOld );
 /*?*/           bValidPos = FALSE;
 /*?*/           bRet = TRUE;
 /*N*/       }
@@ -1863,7 +1864,7 @@
 /*?*/               Lock();
 /*N*/           const SwRect aNew( AddSpacesToFrm() );
 /*N*/           if ( aOld != aNew )
-/*N*/               ::Notify( this, FindPageFrm(), aOld );
+/*N*/               ::binfilter::Notify( this, FindPageFrm(), aOld );
 /*N*/             return (aNew.*fnRect->fnGetHeight)()-(aOld.*fnRect->fnGetHeight)();
 /*N*/       }
 /*N*/       return nDist;
@@ -1903,7 +1904,7 @@
 /*M*/                 (Prt().*fnRect->fnSetHeight)( nHeight - nVal );
 /*M*/               _InvalidatePos();
 /*M*/               InvalidateSize();
-/*M*/               ::Notify( this, FindPageFrm(), aOld );
+/*M*/               ::binfilter::Notify( this, FindPageFrm(), aOld );
 /*M*/               NotifyDrawObj();
 /*M*/               if ( GetAnchor()->IsInFly() )
 /*M*/                     GetAnchor()->FindFlyFrm()->Shrink( nDist, bTst );
@@ -1928,7 +1929,7 @@
 /*M*/           const SwRect aNew( AddSpacesToFrm() );
 /*M*/           if ( aOld != aNew )
 /*M*/           {
-/*M*/               ::Notify( this, FindPageFrm(), aOld );
+/*M*/               ::binfilter::Notify( this, FindPageFrm(), aOld );
 /*M*/               if ( GetAnchor()->IsInFly() )
 /*M*/                     GetAnchor()->FindFlyFrm()->Shrink( nDist, bTst );
 /*M*/           }
@@ -2107,7 +2108,7 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
     }
     else if( FLY_IN_CNTNT != rAnch.GetAnchorId() )
     {
-        pNew->GetMaster()->SetAnchorPos( GetFrmAnchorPos( ::HasWrap( pNew->GetMaster() ) ) );
+        pNew->GetMaster()->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pNew->GetMaster() ) ) );
     }
 
     // OD 27.06.2003 #108784# - move 'master' drawing object to visible layer
@@ -2163,10 +2164,10 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
         case FLY_AT_FLY:
             {
                 // set anchor position
-                _pDrawVirtObj->NbcSetAnchorPos( GetFrmAnchorPos( ::HasWrap( _pDrawVirtObj ) ) );
+                _pDrawVirtObj->NbcSetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( _pDrawVirtObj ) ) );
                 // set offset in relation to reference object
-                Point aOffset = GetFrmAnchorPos( ::HasWrap( _pDrawVirtObj ) ) -
-                                _pDrawContact->GetAnchor()->GetFrmAnchorPos( ::HasWrap( _pDrawVirtObj ) );
+                Point aOffset = GetFrmAnchorPos( ::binfilter::HasWrap( _pDrawVirtObj ) ) -
+                                _pDrawContact->GetAnchor()->GetFrmAnchorPos( ::binfilter::HasWrap( _pDrawVirtObj ) );
                 _pDrawVirtObj->SetOffset( aOffset );
                 // correct relative position at 'virtual' drawing object
                 _pDrawVirtObj->AdjustRelativePosToReference();
@@ -2297,7 +2298,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
                 pFly->_InvalidatePos();
 
                 if ( bPosOnly && pFly->GetValidSizeFlag() && pFly->GetValidPrtAreaFlag() )
-                    ::lcl_MakeFlyPosition( pFly );
+                    ::binfilter::lcl_MakeFlyPosition( pFly );
                 else
                 {
                     if ( !bPosOnly )
@@ -2315,12 +2316,12 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
             else
             {
                 // assumption: <pO> is a drawing object.
-                SwFrmFmt *pFrmFmt = ::FindFrmFmt( pO );
+                SwFrmFmt *pFrmFmt = ::binfilter::FindFrmFmt( pO );
                 if( !pFrmFmt ||
                     FLY_IN_CNTNT != pFrmFmt->GetAnchor().GetAnchorId() )
                 {
                     // change anchor position
-                    pO->SetAnchorPos( GetFrmAnchorPos( ::HasWrap( pO ) ) );
+                    pO->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
                     // OD 19.06.2003 #108784# - correct relative position of
                     // <SwDrawVirtObj>-objects to reference object.
                     if ( pO->ISA(SwDrawVirtObj) )
@@ -2650,3 +2651,4 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 //STRIP001 }
 
 
+}

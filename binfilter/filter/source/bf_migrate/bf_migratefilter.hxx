@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migratefilter.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
+namespace binfilter {
 
 enum FilterType
 {
@@ -174,5 +175,6 @@ sal_Bool SAL_CALL bf_MigrateFilter_supportsService(const ::rtl::OUString& Servic
     SAL_CALL bf_MigrateFilter_createInstance(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > & rSMgr)
     throw ( ::com::sun::star::uno::Exception );
 
+}//end of namespace binfilter
 #endif // _BF_MIGRATEFILTER_HXX
 // eof

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmltxtimp.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -136,12 +136,13 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
-using namespace com::sun::star::document;
-using namespace com::sun::star::uno;
-using namespace com::sun::star::lang;
-using namespace com::sun::star::xml::sax;
-using namespace com::sun::star::text;
+namespace binfilter {
+using namespace ::com::sun::star;
+using namespace ::com::sun::star::document;
+using namespace ::com::sun::star::uno;
+using namespace ::com::sun::star::lang;
+using namespace ::com::sun::star::xml::sax;
+using namespace ::com::sun::star::text;
 using namespace ::rtl;
 using namespace cppu;
 using namespace xmloff::token;
@@ -209,7 +210,7 @@ using namespace xmloff::token;
 /*N*/       const Reference< XText > & xText );
 /*N*/   virtual ~SvxXMLXTextImportComponent() throw ();
 /*N*/
-/*N*/   static sal_Bool load( const rtl::OUString& rUrl, const com::sun::star::uno::Reference< com::sun::star::container::XNameContainer >& xTable ) throw();
+/*N*/   static sal_Bool load( const ::rtl::OUString& rUrl, const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer >& xTable ) throw();
 /*N*/ protected:
 /*N*/   virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList );
 /*N*/
@@ -269,13 +270,13 @@ using namespace xmloff::token;
 /*N*/               break;
 /*N*/           }
 /*N*/
-/*N*/           Reference<io::XInputStream> xInputStream = new utl::OInputStreamWrapper( rStream );
+/*N*/           Reference<io::XInputStream> xInputStream = new ::utl::OInputStreamWrapper( rStream );
 /*N*/
  /* testcode
              const OUString aURL( RTL_CONSTASCII_USTRINGPARAM( "file:///e:/test.xml" ) );
              SfxMedium aMedium( aURL, STREAM_READ | STREAM_NOCREATE, TRUE );
              aMedium.IsRemote();
-             uno::Reference<io::XOutputStream> xOut( new utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
+             uno::Reference<io::XOutputStream> xOut( new ::utl::OOutputStreamWrapper( *aMedium.GetOutStream() ) );
 
              aMedium.GetInStream()->Seek( 0 );
              uno::Reference< io::XActiveDataSource > xSource( aMedium.GetDataSource() );
@@ -341,3 +342,4 @@ using namespace xmloff::token;
 /*N*/   return pContext;
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,6 +128,7 @@
 #ifndef _SWFNTCCH_HXX
 #include <swfntcch.hxx> // SwFontAccess
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -432,7 +433,7 @@
 /*N*/   while ( pTmp )
 /*N*/   {
 /*N*/       if ( pTmp->GetType() & 0x00FF )
-/*N*/           ::lcl_FormatLay( (SwLayoutFrm*)pTmp );
+/*N*/           ::binfilter::lcl_FormatLay( (SwLayoutFrm*)pTmp );
 /*N*/       pTmp = pTmp->GetNext();
 /*N*/   }
 /*N*/   pLay->Calc();
@@ -518,7 +519,7 @@
 /*N*/               else
 /*N*/                   pFly = new SwFlyLayFrm( (SwFlyFrmFmt*)pFmt, pPg );
 /*N*/               pPg->SwFrm::AppendFly( pFly );
-/*N*/               ::RegistFlys( pPg, pFly );
+/*N*/               ::binfilter::RegistFlys( pPg, pFly );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -530,10 +531,10 @@
 /*N*/
 /*N*/   //Klare Verhaeltnisse schaffen, sprich LayoutFrms der Seite formatieren.
 /*N*/   if ( Lower() )
-/*N*/       ::lcl_FormatLay( this );
+/*N*/       ::binfilter::lcl_FormatLay( this );
 /*N*/
 /*N*/   //Vorhandene Flys bei der Seite anmelden.
-/*N*/   ::RegistFlys( this, this );
+/*N*/   ::binfilter::RegistFlys( this, this );
 /*N*/
 /*N*/   //Flys und DrawObjekte die noch am Dokument bereitstehen.
 /*N*/   //Fussnotenseiten tragen keine Seitengebundenen Flys!
@@ -957,7 +958,7 @@
 /*N*/       case CHG_CUTPAGE:
 /*N*/           {
 /*N*/                 if ( nFix == GetUpper()->Prt().Width() )
-/*N*/                     ::lcl_AdjustRoot( this, nFix );
+/*N*/                     ::binfilter::lcl_AdjustRoot( this, nFix );
 /*N*/               nDiff = -nVar;
 /*N*/               if ( GetPrev() && !((SwPageFrm*)GetPrev())->IsEmptyPage() )
 /*N*/                   nDiff -= DOCUMENTBORDER/2;
@@ -977,7 +978,7 @@
 /*N*/                                                 GetUpper()->Frm().Height() ) );
 /*N*/               }
 /*N*/                 else if ( pOld->Width() > nFix )
-/*N*/                     ::lcl_AdjustRoot( this, pOld->Width() );
+/*N*/                     ::binfilter::lcl_AdjustRoot( this, pOld->Width() );
 /*N*/                 nDiff = nVar - pOld->Height();
 /*N*/           }
 /*N*/           break;
@@ -1004,13 +1005,13 @@
 /*N*/           //Seiten vorher kurz aushaengen, weil sonst falsch formatiert wuerde.
 /*N*/           SwFrm *pSibling = GetNext();
 /*N*/           if ( ((SwRootFrm*)pUp)->GetLastPage() == this )
-/*N*/               ::SetLastPage( (SwPageFrm*)GetPrev() );
+/*N*/               ::binfilter::SetLastPage( (SwPageFrm*)GetPrev() );
 /*N*/           Remove();
-/*N*/           ::AdjustSizeChgNotify( (SwRootFrm*)pUp );
+/*N*/           ::binfilter::AdjustSizeChgNotify( (SwRootFrm*)pUp );
 /*N*/           InsertBefore( pUp, pSibling );
 /*N*/       }
 /*N*/       else
-/*N*/           ::AdjustSizeChgNotify( (SwRootFrm*)pUp );
+/*N*/           ::binfilter::AdjustSizeChgNotify( (SwRootFrm*)pUp );
 /*N*/   }
 /*N*/ }
 
@@ -1078,7 +1079,7 @@
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       ::SetLastPage( (SwPageFrm*)GetPrev() );
+/*N*/       ::binfilter::SetLastPage( (SwPageFrm*)GetPrev() );
 /*N*/
 /*N*/   // Alle Verbindungen kappen.
 /*N*/   Remove();
@@ -1124,7 +1125,7 @@
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       ::SetLastPage( this );
+/*N*/       ::binfilter::SetLastPage( this );
 /*N*/
 /*N*/     if( Frm().Width() != pParent->Prt().Width() )
 /*N*/       _InvalidateSize();
@@ -1190,7 +1191,7 @@
 /*N*/               pFrm = pFly->ContainsCntnt();
 /*N*/               while ( pFrm )
 /*N*/               {
-/*N*/                   ::lcl_PrepFlyInCntRegister( pFrm );
+/*N*/                   ::binfilter::lcl_PrepFlyInCntRegister( pFrm );
 /*N*/                   pFrm = pFrm->GetNextCntntFrm();
 /*N*/               }
 /*N*/           }
@@ -1794,7 +1795,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                 pPage->GetSortedObjs() && USHORT(i) < pPage->GetSortedObjs()->Count();
 /*N*/                 ++i)
 /*N*/           {
-/*N*/               SwFrmFmt *pFmt = ::FindFrmFmt( (*pPage->GetSortedObjs())[i] );
+/*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( (*pPage->GetSortedObjs())[i] );
 /*N*/               const SwFmtAnchor &rAnch = pFmt->GetAnchor();
 /*N*/               const USHORT nPg = rAnch.GetPageNum();
 /*N*/               if ( rAnch.GetAnchorId() == FLY_PAGE &&
@@ -1956,7 +1957,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/           for ( USHORT i = 0; i < pFrm->GetDrawObjs()->Count(); ++i )
 /*N*/           {
 /*N*/               SdrObject *pObj = (*pFrm->GetDrawObjs())[i];
-/*N*/               SwFrmFmt *pFmt = ::FindFrmFmt( pObj );
+/*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
 /*N*/               const FASTBOOL bFly = pObj->IsWriterFlyFrame();
 /*N*/               if ( bFly &&
 /*N*/                    WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
@@ -2107,3 +2108,4 @@ void SwRootFrm::RemoveSuperfluous()
 //STRIP001      } while ( pSh != GetCurrShell() );
 //STRIP001 }
 
+}

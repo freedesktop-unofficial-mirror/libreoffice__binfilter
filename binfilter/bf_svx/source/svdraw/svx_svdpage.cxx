@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,6 +117,7 @@
 #ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -2155,3 +2156,4 @@ using namespace ::com::sun::star;
 /*N*/ Bitmap      SdrPage::GetBitmap(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE) const {}
 /*N*/ GDIMetaFile SdrPage::GetMetaFile(const SetOfByte& rVisibleLayers, FASTBOOL bTrimBorders=TRUE) {}
 #endif
+}

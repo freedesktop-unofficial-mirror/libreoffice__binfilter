@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:40 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -157,6 +157,7 @@
 #include "unopstyl.hxx"
 #include "unopage.hxx"
 #include "viewshel.hxx"
+
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
 #endif
@@ -165,6 +166,7 @@
 #include "glob.hrc"
 #include "unolayer.hxx"
 #include "imapinfo.hxx"
+namespace binfilter {
 
 #ifndef SEQTYPE
  #if defined(__SUNPRO_CC) && (__SUNPRO_CC == 0x500)
@@ -349,7 +351,7 @@ void SAL_CALL SdXShape::release() throw()
     mpShape->release();
 }
 
-sal_Bool SdXShape::queryAggregation( const com::sun::star::uno::Type & rType, com::sun::star::uno::Any& aAny )
+sal_Bool SdXShape::queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny )
 {
     if( mpModel && mpModel ->IsImpressDocument() )
     {
@@ -1249,7 +1251,7 @@ uno::Any SdXShape::GetStyleSheet() const throw( beans::UnknownPropertyException 
     return aAny;
 }
 
-class SdUnoEventsAccess : public cppu::WeakImplHelper2< com::sun::star::container::XNameReplace, com::sun::star::lang::XServiceInfo >
+class SdUnoEventsAccess : public cppu::WeakImplHelper2< ::com::sun::star::container::XNameReplace, ::com::sun::star::lang::XServiceInfo >
 {
 private:
     const OUString      maStrOnClick;
@@ -1844,4 +1846,5 @@ uno::Sequence< OUString > SAL_CALL SdUnoEventsAccess::getSupportedServiceNames( 
 {
     uno::Sequence< OUString > aStr( &maStrServiceName, 1 );
     return aStr;
+}
 }

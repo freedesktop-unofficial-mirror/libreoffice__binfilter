@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dpoutput.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,10 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
-
 class Rectangle;
 class SvStream;
+namespace binfilter {
+
 class ScDocument;
 
 struct ScDPOutLevelData;
@@ -105,8 +106,8 @@ class ScDPOutput            //! name???
 private:
     //! use impl-object?
     ScDocument*             pDoc;
-    com::sun::star::uno::Reference<
-        com::sun::star::sheet::XDimensionsSupplier> xSource;
+    ::com::sun::star::uno::Reference<
+        ::com::sun::star::sheet::XDimensionsSupplier> xSource;
     ScAddress               aStartPos;
     BOOL                    bDoFilter;
     ScDPOutLevelData*       pColFields;
@@ -115,9 +116,9 @@ private:
     long                    nColFieldCount;
     long                    nRowFieldCount;
     long                    nPageFieldCount;
-    com::sun::star::uno::Sequence<
-        com::sun::star::uno::Sequence<
-            com::sun::star::sheet::DataResult> > aData;
+    ::com::sun::star::uno::Sequence<
+        ::com::sun::star::uno::Sequence<
+            ::com::sun::star::sheet::DataResult> > aData;
     BOOL                    bResultsError;
     String                  aDataDescription;
     UINT32*                 pColNumFmt;
@@ -140,17 +141,17 @@ private:
     USHORT                  nTabEndRow;
 
 //STRIP001  void            DataCell( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              const com::sun::star::sheet::DataResult& rData );
+//STRIP001                              const ::com::sun::star::sheet::DataResult& rData );
 //STRIP001  void            HeaderCell( USHORT nCol, USHORT nRow, USHORT nTab,
-//STRIP001                              const com::sun::star::sheet::MemberResult& rData,
+//STRIP001                              const ::com::sun::star::sheet::MemberResult& rData,
 //STRIP001                              BOOL bColHeader, long nLevel );
 //STRIP001  void            FieldCell( USHORT nCol, USHORT nRow, USHORT nTab, const String& rCaption );
 //STRIP001  void            CalcSizes();
 
 public:
                      ScDPOutput( ScDocument* pD,
-                                const com::sun::star::uno::Reference<
-                                     com::sun::star::sheet::XDimensionsSupplier>& xSrc,
+                                const ::com::sun::star::uno::Reference<
+                                     ::com::sun::star::sheet::XDimensionsSupplier>& xSrc,
                                  const ScAddress& rPos, BOOL bFilter );
                      ~ScDPOutput();
 
@@ -169,5 +170,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

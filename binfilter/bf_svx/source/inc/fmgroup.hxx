@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmgroup.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,8 +68,9 @@
 #ifndef __DBFORM_HXX
 #include <dbform.hxx>
 #endif
+namespace binfilter {
 
-DECLARE_LIST( FmCtrlModelList, XInterface* );
+DECLARE_LIST( FmCtrlModelList, XInterface* )//STRIP008 DECLARE_LIST( FmCtrlModelList, XInterface* );
 
 struct FmXGroupModel_Impl;
 
@@ -150,5 +151,6 @@ protected:
 };
 
 
+}//end of namespace binfilter
 #endif // _SVX_FMGROUP_HXX
 

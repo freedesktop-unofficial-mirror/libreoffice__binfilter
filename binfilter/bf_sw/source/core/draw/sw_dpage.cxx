@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dpage.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:15:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -146,6 +146,7 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::drawing;
@@ -391,3 +392,4 @@ Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
 
 
 
+}

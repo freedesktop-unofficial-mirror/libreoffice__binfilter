@@ -2,9 +2,9 @@
  *
  *  $RCSfile: paralist.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 #ifndef _PARALIST_HXX
 #define _PARALIST_HXX
 
-class Paragraph;
+//STRIP008 class Paragraph;
 
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
@@ -71,6 +71,8 @@ class Paragraph;
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif
+namespace binfilter {
+class Paragraph;
 
 class ParagraphList : private List
 {
@@ -107,4 +109,5 @@ public:
     Link            GetVisibleStateChangedHdl() const { return aVisibleStateChangedHdl; }
 };
 
+}//end of namespace binfilter
 #endif

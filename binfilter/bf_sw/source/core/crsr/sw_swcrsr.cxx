@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swcrsr.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:08:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -153,6 +153,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
 
@@ -172,7 +173,7 @@ struct _PercentHdl
         {
             ULONG n = nStt; nStt = nEnd; nEnd = n;
         }
-        ::StartProgress( STR_STATSTR_SEARCH, nStt, nEnd, 0 );
+        ::binfilter::StartProgress( STR_STATSTR_SEARCH, nStt, nEnd, 0 );
     }
 
     _PercentHdl( const SwPaM& rPam )
@@ -195,13 +196,13 @@ struct _PercentHdl
         {
             ULONG n = nStt; nStt = nEnd; nEnd = n;
         }
-        ::StartProgress( STR_STATSTR_SEARCH, nStt, nEnd, pDSh );
+        ::binfilter::StartProgress( STR_STATSTR_SEARCH, nStt, nEnd, pDSh );
     }
 
-    ~_PercentHdl()                      { ::EndProgress( pDSh ); }
+    ~_PercentHdl()                      { ::binfilter::EndProgress( pDSh ); }
 
     void NextPos( ULONG nPos ) const
-        { ::SetProgressState( bBack ? nActPos - nPos : nPos, pDSh ); }
+    { ::binfilter::SetProgressState( bBack ? nActPos - nPos : nPos, pDSh ); }
 
     void NextPos( SwPosition& rPos ) const
         {
@@ -210,7 +211,7 @@ struct _PercentHdl
                 nPos = rPos.nNode.GetIndex();
             else
                 nPos = rPos.nContent.GetIndex();
-            ::SetProgressState( bBack ? nActPos - nPos : nPos, pDSh );
+            ::binfilter::SetProgressState( bBack ? nActPos - nPos : nPos, pDSh );
         }
 };
 
@@ -469,7 +470,7 @@ struct _PercentHdl
 /*N*/
 /*N*/   //JP 19.08.98: teste mal auf ungueltige Selektion - sprich ueber
 /*N*/   //              GrundSections:
-/*N*/   if( !::CheckNodesRange( GetMark()->nNode, GetPoint()->nNode, TRUE ))
+/*N*/   if( !::binfilter::CheckNodesRange( GetMark()->nNode, GetPoint()->nNode, TRUE ))
 /*N*/   {
 /*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 DeleteMark();
 //STRIP001 /*?*/        RestoreSavePos();
@@ -2012,3 +2013,4 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  if( bChg )      // ???
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: navsett.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #endif
 
 #include <vector>
+namespace binfilter {
 
 /** Contains settings of the navigator listbox. This includes the expand state
     of each listbox entry and the index of the selected entry and sub entry. */
@@ -91,5 +92,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif // SC_NAVSETT_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-16 17:12:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -238,6 +238,7 @@
 #ifndef MATHML_HXX
 #include <mathml.hxx>
 #endif
+namespace binfilter {
 
 
 
@@ -247,7 +248,7 @@ using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::accessibility;
 
-#define A2OU(x)        rtl::OUString::createFromAscii( x )
+#define A2OU(x)        ::rtl::OUString::createFromAscii( x )
 
 #ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
 #define SO2_DECL_SVSTORAGESTREAM_DEFINED
@@ -876,7 +877,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001          delete pTree;
 //STRIP001          pTree = 0;
 //STRIP001      }
-//STRIP001         Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001         Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001      SmXMLWrapper aEquation(xModel);
 //STRIP001         bSuccess = 0 == aEquation.Import(rMedium);
 //STRIP001  }
@@ -914,7 +915,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001         const String& rFltName = rMedium.GetFilter()->GetFilterName();
 //STRIP001         if ( rFltName.EqualsAscii(MATHML_XML) )
 //STRIP001         {
-//STRIP001             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001             SmXMLWrapper aEquation(xModel);
 //STRIP001             bSuccess = 0 == aEquation.Import(rMedium);
 //STRIP001         }
@@ -994,7 +995,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/                pStor->IsStream(C2S("Content.xml")) )
 /*N*/       {
 /*?*/           // is this a fabulous math package ?
-/*?*/              Reference<com::sun::star::frame::XModel> xModel(GetModel());
+/*?*/              Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*?*/           SmXMLWrapper aEquation(xModel);
 /*?*/           SfxMedium aMedium(pStor);
 /*?*/              ULONG nError = aEquation.Import(aMedium);
@@ -1050,7 +1051,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001  {
 //STRIP001      bChkOldVersion = FALSE;
 //STRIP001      // is this a fabulous math package ?
-//STRIP001         Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001         Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001      SmXMLWrapper aEquation(xModel);
 //STRIP001      SfxMedium aMedium(pStor);
 //STRIP001         bRet = 0 == aEquation.Import(aMedium);
@@ -1131,7 +1132,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       if(pStor->GetVersion() >= SOFFICE_FILEFORMAT_60)
 /*N*/       {
 /*N*/           // a math package as a storage
-/*N*/             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*N*/           SmXMLWrapper aEquation(xModel);
 /*N*/           SfxMedium aMedium(pStor);
 /*N*/           aEquation.SetFlat(sal_False);
@@ -1182,7 +1183,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       if (pNewStor->GetVersion() >= SOFFICE_FILEFORMAT_60)
 /*N*/       {
 /*N*/           // a math package as a storage
-/*?*/              Reference<com::sun::star::frame::XModel> xModel(GetModel());
+/*?*/              Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*?*/           SmXMLWrapper aEquation(xModel);
 /*?*/           SfxMedium aMedium(pNewStor);
 /*?*/           aEquation.SetFlat(sal_False);
@@ -1221,14 +1222,14 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001      const String& rFltName = pFlt->GetFilterName();
 //STRIP001      if(rFltName.EqualsAscii( STAROFFICE_XML ))
 //STRIP001      {
-//STRIP001             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001          SmXMLWrapper aEquation(xModel);
 //STRIP001          aEquation.SetFlat(sal_False);
 //STRIP001          bRet = aEquation.Export(rMedium);
 //STRIP001      }
 //STRIP001      else if(rFltName.EqualsAscii( MATHML_XML ))
 //STRIP001      {
-//STRIP001             Reference<com::sun::star::frame::XModel> xModel(GetModel());
+//STRIP001             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 //STRIP001          SmXMLWrapper aEquation(xModel);
 //STRIP001          aEquation.SetFlat(sal_True);
 //STRIP001          bRet = aEquation.Export(rMedium);
@@ -2081,6 +2082,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   }
 /*N*/ }
 
+
 /*N*/ ULONG SmDocShell::GetMiscStatus() const
 /*N*/ {
 /*N*/   return SfxInPlaceObject::GetMiscStatus() | SVOBJ_MISCSTATUS_NOTRESIZEABLE
@@ -2103,3 +2105,4 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 
+}

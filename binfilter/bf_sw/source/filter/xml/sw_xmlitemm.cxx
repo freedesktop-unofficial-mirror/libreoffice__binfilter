@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitemm.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@
 #ifndef _UNOMID_H
 #include <unomid.h>
 #endif
+namespace binfilter {
 
 using namespace ::xmloff::token;
 
@@ -327,3 +328,4 @@ SvXMLItemMapEntry aXMLTableCellItemMap[] =
     M_E_SE( TEXT, XMLNS, RES_UNKNOWNATR_CONTAINER, 0 ),
     M_END
 };
+}

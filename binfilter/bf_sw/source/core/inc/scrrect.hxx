@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scrrect.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
 #endif
+namespace binfilter {
 
 class SwStripe
 {
@@ -88,7 +89,7 @@ public:
         { return nY == rTst.nY && nHeight == rTst.nHeight; }
 };
 
-SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 );
+SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 )//STRIP008 ;
 
 class SwStripes : public SwStripeArr, public SwStripe
 {
@@ -171,7 +172,7 @@ public:
 };
 
 typedef SwScrollArea* SwScrollAreaPtr;
-SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2);
+SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)//STRIP008 ;
 
 class SwScrollAreas : public SScrAreas
 {
@@ -180,4 +181,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif //_SCRRECT_HXX

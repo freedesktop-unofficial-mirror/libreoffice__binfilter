@@ -2,9 +2,9 @@
  *
  *  $RCSfile: virtoutp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 
 #include "swtypes.hxx"      // UCHAR
 #include "swrect.hxx"       // SwRect
+namespace binfilter {
 
 class ViewShell;
 #define VIRTUALHEIGHT 64
@@ -107,4 +108,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

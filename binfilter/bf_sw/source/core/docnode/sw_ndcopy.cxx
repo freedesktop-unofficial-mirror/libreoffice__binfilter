@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndcopy.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:14:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,7 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
+namespace binfilter {
 
 // Struktur fuer das Mappen von alten und neuen Frame-Formaten an den
 // Boxen und Lines einer Tabelle
@@ -156,7 +157,7 @@
 /*N*/   {}
 /*N*/ };
 
-/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 );
+/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 )//STRIP008 ;
 /*N*/ SV_IMPL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt );
 
 /*N*/ SwCntntNode* SwTxtNode::MakeCopy( SwDoc* pDoc, const SwNodeIndex& rIdx ) const
@@ -1310,3 +1311,4 @@
 
 
 
+}

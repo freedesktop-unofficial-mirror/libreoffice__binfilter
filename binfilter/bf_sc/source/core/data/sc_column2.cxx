@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,6 +101,7 @@
 #include "compiler.hxx"         // ScTokenArray GetCodeLen
 #include "dbcolect.hxx"
 #include "bclist.hxx"
+namespace binfilter {
 
 // -----------------------------------------------------------------------
 
@@ -920,7 +921,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        if ( pPattern->G
 /*N*/
 /*N*/           if ( ((const SfxBoolItem&)pSet->Get(EE_PARA_HYPHENATE)).GetValue() ) {
 /*?*/
-/*?*/               com::sun::star::uno::Reference<com::sun::star::linguistic2::XHyphenator> xXHyphenator( LinguMgr::GetHyphenator() );
+/*?*/               ::com::sun::star::uno::Reference< ::com::sun::star::linguistic2::XHyphenator> xXHyphenator( LinguMgr::GetHyphenator() );
 /*?*/                 pEngine->SetHyphenator( xXHyphenator );
 /*N*/             }
 /*N*/
@@ -2349,3 +2350,4 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 
 
 
+}

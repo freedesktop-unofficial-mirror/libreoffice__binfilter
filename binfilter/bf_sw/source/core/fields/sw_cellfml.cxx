@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,6 +124,7 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
+namespace binfilter {
 
 const sal_Unicode cRelTrenner = ',';
 const sal_Unicode cRelKennung = '';        // CTRL-R
@@ -1300,3 +1301,4 @@ const USHORT cMAXSTACKSIZE = 50;
 //STRIP001 }
 
 
+}

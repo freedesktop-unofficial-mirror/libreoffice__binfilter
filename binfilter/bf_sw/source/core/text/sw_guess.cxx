@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_guess.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:18 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _PORFLD_HXX
 #include <porfld.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -382,7 +383,7 @@ using namespace ::com::sun::star::linguistic2;
 /*M*/       Reference< XHyphenator >  xHyph;
 /*M*/       if( bHyph )
 /*M*/       {
-/*M*/           xHyph = ::GetHyphenator();
+/*M*/           xHyph = ::binfilter::GetHyphenator();
 /*M*/           aHyphOpt = LineBreakHyphenationOptions( xHyph,
 /*M*/                               rInf.GetHyphValues(), nHyphPos );
 /*M*/       }
@@ -453,7 +454,7 @@ using namespace ::com::sun::star::linguistic2;
 /*M*/         // !!! We must have a local copy of the locale, because inside
 /*M*/         // getLineBreak the LinguEventListener can trigger a new formatting,
 /*M*/         // which can corrupt the locale pointer inside pBreakIt.
-/*M*/         const com::sun::star::lang::Locale aLocale = pBreakIt->GetLocale( aLang );
+/*M*/         const ::com::sun::star::lang::Locale aLocale = pBreakIt->GetLocale( aLang );
 /*M*/
 /*M*/         // determines first possible line break from nRightPos to
 /*M*/         // start index of current line
@@ -642,7 +643,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   XubString aTxt( rInf.GetTxt().Copy( nBreakStart, nWordLen ) );
 /*N*/
 /*N*/   // check, if word has alternative spelling
-/*N*/   Reference< XHyphenator >  xHyph( ::GetHyphenator() );
+/*N*/   Reference< XHyphenator >  xHyph( ::binfilter::GetHyphenator() );
 /*N*/   ASSERT( xHyph.is(), "Hyphenator is missing");
 /*N*/   //! subtract 1 since the UNO-interface is 0 based
 /*N*/   xHyphWord = xHyph->queryAlternativeSpelling( OUString(aTxt),
@@ -651,3 +652,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return xHyphWord.is() && xHyphWord->isAlternativeSpelling();
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwXPrintPreviewSettings.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
+namespace binfilter {
 
 class SwXTextDocument;
 class SwDocShell;
@@ -87,7 +88,7 @@ class SwPagePreViewPrtData;
 
 class SwXPrintPreviewSettings :public comphelper::ChainablePropertySet,
                         public cppu::OWeakObject,
-                        public com::sun::star::lang::XServiceInfo
+                        public ::com::sun::star::lang::XServiceInfo
 {
     friend class SwXDocumentSettings;
 protected:
@@ -124,11 +125,12 @@ public:
         throw ();
 
     //XServiceInfo
-    virtual rtl::OUString SAL_CALL getImplementationName(void)
+    virtual ::rtl::OUString SAL_CALL getImplementationName(void)
         throw( ::com::sun::star::uno::RuntimeException );
-    virtual sal_Bool SAL_CALL supportsService(const rtl::OUString& ServiceName)
+    virtual sal_Bool SAL_CALL supportsService(const ::rtl::OUString& ServiceName)
         throw( ::com::sun::star::uno::RuntimeException );
-    virtual ::com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL getSupportedServiceNames(void)
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void)
         throw( ::com::sun::star::uno::RuntimeException );
 };
+} //namespace binfilter
 #endif

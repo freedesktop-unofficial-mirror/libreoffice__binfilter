@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unokywds.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+namespace binfilter {
 
 #ifndef SD_DEFINE_KEYWORDS
 #define SD_CONSTASCII_ACTION( n, s ) extern sal_Char __FAR_DATA n[sizeof(s)]
@@ -249,5 +250,6 @@ SD_CONSTASCII_ACTION( sUNO_View_VisibleAreaWidth,               "VisibleAreaWidt
 SD_CONSTASCII_ACTION( sUNO_View_VisibleAreaHeight,              "VisibleAreaHeight" );
 
 SD_CONSTASCII_ACTION( sUNO_View_ZoomOnPage,                     "ZoomOnPage" );
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_SchAddInCollection.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:55:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,7 +83,8 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
+namespace binfilter {
+using namespace ::com::sun::star;
 
 /*N*/ SchAddInCollection::SchAddInCollection() :
 /*N*/         mbInitialized( sal_False )
@@ -104,7 +105,7 @@ using namespace com::sun::star;
 /*N*/         if( xEnumAcc.is())
 /*N*/         {
 /*N*/             uno::Reference< container::XEnumeration > xEnum =
-/*N*/                 xEnumAcc->createContentEnumeration( rtl::OUString::createFromAscii( "com.sun.star.chart.Diagram" ));
+/*N*/                 xEnumAcc->createContentEnumeration( ::rtl::OUString::createFromAscii( "com.sun.star.chart.Diagram" ));
 /*N*/             if( xEnum.is())
 /*N*/             {
 /*N*/                 // clear possibly existing list
@@ -149,7 +150,7 @@ using namespace com::sun::star;
 /*N*/     }
 /*N*/ }
 
-/*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const rtl::OUString& rName )
+/*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const ::rtl::OUString& rName )
 /*N*/ {
 /*N*/     if( ! mbInitialized )
 /*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 Initialize();
@@ -167,10 +168,11 @@ using namespace com::sun::star;
 /*N*/     return uno::Reference< util::XRefreshable >();
 /*N*/ }
 
-/*N*/ uno::Sequence< rtl::OUString > SchAddInCollection::GetAddInNames()
+/*N*/ uno::Sequence< ::rtl::OUString > SchAddInCollection::GetAddInNames()
 /*N*/ {
 /*N*/     if( ! mbInitialized )
 /*N*/         Initialize();
 /*N*/
 /*N*/     return maServiceNames;
 /*N*/ }
+}

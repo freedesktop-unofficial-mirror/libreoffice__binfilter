@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swlinguconfig.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,10 +68,12 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
-
-// predeclarations
 class SvtLinguConfig;
 struct SvtLinguOptions;
+namespace binfilter {
+
+// predeclarations
+
 
 // #107253#
 class SwLinguConfig
@@ -80,9 +82,10 @@ public:
     SwLinguConfig();
     ~SwLinguConfig();
 
-    sal_Bool SetProperty(const rtl::OUString &rPropertyName, const com::sun::star::uno::Any &rValue);
+    sal_Bool SetProperty(const ::rtl::OUString &rPropertyName, const ::com::sun::star::uno::Any &rValue);
     sal_Bool GetOptions(SvtLinguOptions &rOptions) const;
-    com::sun::star::uno::Any GetProperty(const rtl::OUString &rPropertyName) const;
+    ::com::sun::star::uno::Any GetProperty(const ::rtl::OUString &rPropertyName) const;
 };
 
+} //namespace binfilter
 #endif // _SWLINGUCONFIG_HXX

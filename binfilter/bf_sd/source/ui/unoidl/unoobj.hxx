@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoobj.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:39 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,8 @@
 #include <bf_svx/unoipset.hxx>
 
 #include <cppuhelper/implbase2.hxx>
+struct SvEventDescription;
+namespace binfilter {
 
 class SdrObject;
 class SdXImpressDocument;
@@ -128,14 +130,14 @@ private:
     sal_Int32 GetPresentationOrderPos() const throw();
     void SetPresentationOrderPos( sal_Int32 nPos ) throw();
 
-    com::sun::star::uno::Sequence< sal_Int8 >* mpImplementationId;
+    ::com::sun::star::uno::Sequence< sal_Int8 >* mpImplementationId;
 
 public:
     SdXShape() throw();
     SdXShape(SvxShape* pShape, SdXImpressDocument* pModel) throw();
     virtual ~SdXShape() throw();
 
-    virtual sal_Bool queryAggregation( const com::sun::star::uno::Type & rType, com::sun::star::uno::Any& aAny );
+    virtual sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny );
     virtual void dispose();
 
     // XInterface
@@ -164,9 +166,9 @@ public:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameReplace > SAL_CALL getEvents(  ) throw(::com::sun::star::uno::RuntimeException);
 };
 
-struct SvEventDescription;
 const SvEventDescription* ImplGetSupportedMacroItems();
 
+} //namespace binfilter
 #endif
 
 

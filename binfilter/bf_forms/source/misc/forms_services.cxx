@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_services.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
 #endif
+namespace binfilter {
 
 //... namespace frm .......................................................
 namespace frm
@@ -234,7 +235,7 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 //.........................................................................
 }
 //... namespace frm .......................................................
-
+}//namespace bifilter
 #ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
 #endif
@@ -247,6 +248,8 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 #ifndef _UNO_MAPPING_HXX_
 #include <uno/mapping.hxx>
 #endif
+
+namespace binfilter {//STRIP009
 
 namespace starregistry  = ::com::sun::star::registry;
 namespace staruno       = ::com::sun::star::uno;
@@ -297,7 +300,7 @@ DECLARE_SERVICE_INFO(OImageControlModel)
 DECLARE_SERVICE_INFO(OGridControlModel)
 
 // some special handling for the FormattedFieldWrapper which can act as FormattedModel or as EditModel
-DECLARE_SERVICE_INFO(OFormattedFieldWrapper);
+DECLARE_SERVICE_INFO(OFormattedFieldWrapper)//STRIP008 ;
     // this is for a service, which is instantiated through the EditModel service name
     // and which acts mostly as Edit (mostly means : if somebody uses XPersistObject::read immediately after
     // the object was instantiated and the stream contains a FormattedModel, it switches permanently to
@@ -533,7 +536,7 @@ sal_Bool SAL_CALL component_writeInfo(void* _pServiceManager, starregistry::XReg
             // 같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
             // the real way - use the OModule
             createRegistryInfo_FORMS();
-            if ( !::frm::OFormsModule::writeComponentInfos(
+            if ( !::binfilter::frm::OFormsModule::writeComponentInfos(//STRIP008            if ( !::frm::OFormsModule::writeComponentInfos(
                     static_cast<XMultiServiceFactory*>( _pServiceManager ),
                     static_cast<XRegistryKey*>( _pRegistryKey ) )
                 )
@@ -630,7 +633,7 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
         {
             // let the module look for the component
             Reference< XInterface > xRet;
-            xRet = ::frm::OFormsModule::getComponentFactory(
+            xRet = ::binfilter::frm::OFormsModule::getComponentFactory(//STRIP008           xRet = ::frm::OFormsModule::getComponentFactory(
                 ::rtl::OUString::createFromAscii( _pImplName ),
                 static_cast< XMultiServiceFactory* >( _pServiceManager ) );
 
@@ -643,4 +646,5 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
     return pRet;
 }
 
+}
 }

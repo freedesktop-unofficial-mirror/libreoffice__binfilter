@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,7 @@
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
+namespace binfilter {
 
 
 class ScDocument;
@@ -119,11 +120,11 @@ class ScValidationData;
 //  "erstmal" nur dummer Container
 
 class ScTableConditionalFormat : public cppu::WeakImplHelper5<
-                            com::sun::star::sheet::XSheetConditionalEntries,
-                            com::sun::star::container::XNameAccess,
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::lang::XUnoTunnel,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XSheetConditionalEntries,
+                            ::com::sun::star::container::XNameAccess,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::lang::XUnoTunnel,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     List    aEntries;
@@ -182,9 +183,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScTableConditionalFormat* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XSheetConditionalEntries> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScTableConditionalFormat* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XSheetConditionalEntries> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -198,9 +199,9 @@ public:
 
 
 class ScTableConditionalEntry : public cppu::WeakImplHelper3<
-                            com::sun::star::sheet::XSheetCondition,
-                            com::sun::star::sheet::XSheetConditionalEntry,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XSheetCondition,
+                            ::com::sun::star::sheet::XSheetConditionalEntry,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScTableConditionalFormat*   pParent;
@@ -254,10 +255,10 @@ public:
 
 
 class ScTableValidationObj : public cppu::WeakImplHelper4<
-                            com::sun::star::sheet::XSheetCondition,
-                            com::sun::star::beans::XPropertySet,
-                            com::sun::star::lang::XUnoTunnel,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XSheetCondition,
+                            ::com::sun::star::beans::XPropertySet,
+                            ::com::sun::star::lang::XUnoTunnel,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     SfxItemPropertySet  aPropSet;
@@ -349,9 +350,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScTableValidationObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::beans::XPropertySet> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScTableValidationObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::beans::XPropertySet> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -363,5 +364,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

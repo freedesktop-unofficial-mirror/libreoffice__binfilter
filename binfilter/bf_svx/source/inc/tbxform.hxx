@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tbxform.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,6 +80,8 @@
 #ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
 #endif
+class FixedText;
+namespace binfilter {
 
 //========================================================================
 
@@ -155,7 +157,6 @@ public:
 };
 
 //========================================================================
-class FixedText;
 class SvxFmTbxCtlAbsRec : public SfxToolBoxControl
 {
 public:
@@ -245,5 +246,6 @@ public:
 };
 
 
+}//end of namespace binfilter
 #endif
 

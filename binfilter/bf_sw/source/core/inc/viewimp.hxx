@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewimp.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,10 @@
 #include "swtypes.hxx"
 #include "swrect.hxx"
 #include <tools/debug.hxx> //for strip
+#ifdef ACCESSIBLE_LAYOUT
+class Fraction;
+#endif
+namespace binfilter {
 class ViewShell;
 class SwFlyFrm;
 class SwViewOption;
@@ -95,17 +99,19 @@ struct SdrPaintProcRec;
 #ifdef ACCESSIBLE_LAYOUT
 class SwAccessibleMap;
 class SdrObject;
-class Fraction;
+//STRIP008 class Fraction;
 #endif
 // OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
 // OD 15.01.2003 #103492#
+} //namespace binfilter
+
 #ifndef _PREVWPAGE_HXX
 #include <prevwpage.hxx>
 #endif
 // OD 15.01.2003 #103492#
 #include <vector>
-
+namespace binfilter {//STRIP009
 class SwViewImp
 {
     friend class ViewShell;
@@ -435,5 +441,6 @@ inline void SwViewImp::AddAccessibleObj( const SdrObject *pObj )
 
 #endif
 
+} //namespace binfilter
 #endif //_VIEWIMP_HXX
 

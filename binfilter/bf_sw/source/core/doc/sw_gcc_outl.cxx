@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_gcc_outl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 
 #include <format.hxx>
+namespace binfilter {
 
 #if ( defined GCC && defined C272 )
 
@@ -374,3 +375,4 @@ const SwFmtChain &SwFmt::GetChain(BOOL bInP) const
 
 // defined MACOSX
 #endif
+}

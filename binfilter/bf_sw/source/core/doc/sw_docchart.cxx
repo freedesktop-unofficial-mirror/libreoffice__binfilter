@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docchart.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:04 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,7 @@
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ SchMemChart *SwTable::UpdateData( SchMemChart* pData,
@@ -342,7 +343,7 @@
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   return !pSttBox || !pEndBox || !::ChkChartSel( *pSttBox->GetSttNd(),
+/*N*/   return !pSttBox || !pEndBox || !::binfilter::ChkChartSel( *pSttBox->GetSttNd(),
 /*N*/                                       *pEndBox->GetSttNd(), pGetCLines );
 /*N*/ }
 
@@ -493,3 +494,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  const String aOldName( rTblFmt.GetName() );
 /*N*/ }
 
 
+}

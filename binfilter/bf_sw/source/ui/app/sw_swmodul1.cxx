@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -193,16 +193,17 @@
 #include <app.hrc>
 #endif
 #include "helpid.h"
+namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::svx;
+using namespace ::binfilter ::svx;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::view;
 using namespace ::com::sun::star::lang;
-#define C2U(char) rtl::OUString::createFromAscii(char)
+#define C2U(char) ::rtl::OUString::createFromAscii(char)
 
 /* -----------------------------05.01.00 15:14--------------------------------
 
@@ -575,7 +576,7 @@ using namespace ::com::sun::star::lang;
 //STRIP001     Reference<XDispatchProvider> xDP(xFrame, uno::UNO_QUERY);
 //STRIP001
 //STRIP001     uno::Reference<frame::XFrame> xBeamerFrame = xFrame->findFrame(
-//STRIP001                                         rtl::OUString::createFromAscii("_beamer"),
+//STRIP001                                         ::rtl::OUString::createFromAscii("_beamer"),
 //STRIP001                                         FrameSearchFlag::CHILDREN);
 //STRIP001     if (xBeamerFrame.is())
 //STRIP001     {   // the beamer has been opened by the SfxViewFrame
@@ -903,3 +904,4 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     if (!bAuthorInitialised)
 /*N*/   }
 /*N*/ }
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmpage.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -148,12 +148,13 @@
 #ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
 #endif
-using namespace ::svxform;
+using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 #endif
 
 #ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ TYPEINIT1(FmFormPage, SdrPage);
@@ -448,3 +449,4 @@ using namespace ::svxform;
 
 
 
+}

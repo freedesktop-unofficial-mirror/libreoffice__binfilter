@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pageuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SVX_FMDPAGE_HXX
 #include <bf_svx/fmdpage.hxx>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -82,11 +83,12 @@ public:
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
                                 throw(::com::sun::star::uno::RuntimeException);
-    virtual sal_Bool SAL_CALL supportsService( const rtl::OUString& rServiceName )
-        throw(com::sun::star::uno::RuntimeException);
-    virtual com::sun::star::uno::Sequence<rtl::OUString> SAL_CALL getSupportedServiceNames()
-        throw(com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& rServiceName )
+        throw(::com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::uno::Sequence<rtl::OUString> SAL_CALL getSupportedServiceNames()
+        throw(::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

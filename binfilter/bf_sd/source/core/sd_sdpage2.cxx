@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:58:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,6 +124,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -835,7 +836,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 
-/*N*/ sal_Bool SdPage::setAlienAttributes( const com::sun::star::uno::Any& rAttributes )
+/*N*/ sal_Bool SdPage::setAlienAttributes( const ::com::sun::star::uno::Any& rAttributes )
 /*N*/ {
 /*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet* pSet = getOrCreateItems();
 //STRIP001 /*N*/
@@ -849,7 +850,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_False;
 /*N*/ }
 
-/*N*/ void SdPage::getAlienAttributes( com::sun::star::uno::Any& rAttributes )
+/*N*/ void SdPage::getAlienAttributes( ::com::sun::star::uno::Any& rAttributes )
 /*N*/ {
 /*N*/   const SfxPoolItem* pItem;
 /*N*/
@@ -865,3 +866,4 @@ using namespace ::com::sun::star;
 /*N*/ }
 /*N*/
 
+}

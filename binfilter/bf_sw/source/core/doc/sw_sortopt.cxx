@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sortopt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:11:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
 #endif
+namespace binfilter {
 
 
 /*N*/ SV_IMPL_PTRARR(SwSortKeys, SwSortKey*)
@@ -141,3 +142,4 @@
 
 
 
+}

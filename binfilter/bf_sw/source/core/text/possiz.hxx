@@ -2,9 +2,9 @@
  *
  *  $RCSfile: possiz.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #include <tools/gen.hxx>
 #endif
 #include "txttypes.hxx"
+namespace binfilter {
 
 // Im Gegensazt zu den SV-Sizes ist die SwPosSize immer positiv
 class SwPosSize
@@ -123,5 +124,6 @@ inline SwPosSize &SwPosSize::operator=( const Size &rSize )
 }
 
 
+} //namespace binfilter
 #endif
 

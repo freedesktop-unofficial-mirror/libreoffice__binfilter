@@ -2,9 +2,9 @@
  *
  *  $RCSfile: FormComponent.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,8 +178,9 @@
 #ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #include "cloneable.hxx"
 #endif
+namespace binfilter {
 
-using namespace comphelper;
+    using namespace ::comphelper;
 
 
 //.........................................................................
@@ -614,5 +615,6 @@ private:
 }
 //.........................................................................
 
+}//end of namespace binfilter
 #endif // _FORMS_FORMCOMPONENT_HXX_
 

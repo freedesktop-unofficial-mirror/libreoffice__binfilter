@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:11 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@
 #include "swddetbl.hxx"
 #include "swtblfmt.hxx"
 #include "ndindex.hxx"
+namespace binfilter {
 
 
 #ifndef PRODUCT
@@ -727,3 +728,4 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   return nTotalBoxes;
 /*N*/ }
 
+}

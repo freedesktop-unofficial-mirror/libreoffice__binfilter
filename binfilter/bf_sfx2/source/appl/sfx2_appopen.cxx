@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -201,6 +201,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::frame;
@@ -210,7 +211,7 @@ using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::system;
 using namespace ::com::sun::star::task;
 using namespace ::cppu;
-using namespace ::sfx2;
+using namespace sfx2;
 
 //=========================================================================
 
@@ -1469,7 +1470,7 @@ using namespace ::sfx2;
 //STRIP001 /*?*/         }
 //STRIP001 /*?*/
 //STRIP001 /*?*/         aURL.Complete = aFileName;
-//STRIP001 /*?*/         Reference < XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
+//STRIP001 /*?*/         Reference < XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
 //STRIP001 /*?*/         xTrans->parseStrict( aURL );
 //STRIP001 /*?*/
 //STRIP001 /*?*/         // load document using dispatch framework
@@ -1596,7 +1597,7 @@ using namespace ::sfx2;
 //STRIP001 /*?*/    }
 //STRIP001 /*?*/ /*
 //STRIP001 /*?*/        }
-//STRIP001 /*?*/        catch (com::sun::star::uno::Exception&)
+//STRIP001 /*?*/        catch (::com::sun::star::uno::Exception&)
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/        }
 //STRIP001 /*?*/    }
@@ -1637,3 +1638,4 @@ using namespace ::sfx2;
 //STRIP001     SfxFrame* pFrame = SfxTopFrame::Create( pDoc, 0, bHidden, pSet );
 //STRIP001     return pFrame->GetCurrentViewFrame();
 //STRIP001 }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wsfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:05 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -202,6 +202,7 @@
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
+namespace binfilter {
 
 //STRIP001 #if OSL_DEBUG_LEVEL > 1
 
@@ -3107,7 +3108,7 @@
 /*N*/ void SwLayoutFrm::InvaPercentLowers( SwTwips nDiff )
 /*N*/ {
 /*N*/   if ( GetDrawObjs() )
-/*N*/         ::InvaPercentFlys( this, nDiff );
+/*N*/         ::binfilter::InvaPercentFlys( this, nDiff );
 /*N*/
 /*N*/   SwFrm *pFrm = ContainsCntnt();
 /*N*/   if ( pFrm )
@@ -3128,7 +3129,7 @@
 /*?*/                   pFrm->InvalidatePrt();
 /*N*/           }
 /*N*/           else if ( pFrm->GetDrawObjs() )
-/*N*/                 ::InvaPercentFlys( pFrm, nDiff );
+/*N*/                 ::binfilter::InvaPercentFlys( pFrm, nDiff );
 /*N*/           pFrm = pFrm->FindNextCnt();
 /*N*/       } while ( pFrm && IsAnLower( pFrm ) ) ;
 /*N*/ }
@@ -3379,7 +3380,7 @@
 /*N*/             // during format of text frames. (2nd parameter = default value.)
 /*N*/             // OD 11.04.2003 #108824# - undo change of fix for #i11760# - allow
 /*N*/             // follow formatting for text frames.
-/*N*/             ::CalcCntnt( this );
+/*N*/             ::binfilter::CalcCntnt( this );
 /*N*/
 /*N*/           pCol = (SwLayoutFrm*)Lower();
 /*N*/           ASSERT( pCol && pCol->GetNext(), ":-( Spalten auf Urlaub?");
@@ -3439,12 +3440,12 @@
 /*N*/
 /*N*/           if ( bFoundLower || ( IsSctFrm() && ((SwSectionFrm*)this)->HasFollow() ) )
 /*N*/           {
-/*N*/               SwTwips nMinDiff = ::lcl_CalcMinColDiff( this );
+/*N*/               SwTwips nMinDiff = ::binfilter::lcl_CalcMinColDiff( this );
 /*N*/               // Hier wird entschieden, ob wir wachsen muessen, naemlich wenn
 /*N*/               // ein Spalteninhalt (nDiff) oder ein Fly herausragt.
 /*N*/               // Bei spaltigen Bereichen wird beruecksichtigt, dass mit dem
 /*N*/               // Besitz eines nichtleeren Follows die Groesse festgelegt ist.
-/*N*/               if ( nDiff || ::lcl_IsFlyHeightClipped( this ) ||
+/*N*/               if ( nDiff || ::binfilter::lcl_IsFlyHeightClipped( this ) ||
 /*N*/                    ( IsSctFrm() && ((SwSectionFrm*)this)->CalcMinDiff( nMinDiff ) ) )
 /*N*/               {
 /*N*/                     long nPrtHeight = (Prt().*fnRect->fnGetHeight)();
@@ -3553,11 +3554,11 @@
 /*N*/   }
 /*N*/     // OD 01.04.2003 #108446# - Don't collect endnotes for sections. Thus, set
 /*N*/     // 2nd parameter to <true>.
-/*N*/     ::CalcCntnt( this, true );
+/*N*/     ::binfilter::CalcCntnt( this, true );
 /*N*/   if( IsSctFrm() )
 /*N*/   {
 /*N*/         // OD 14.03.2003 #i11760# - adjust 2nd parameter - TRUE --> true
-/*N*/         ::CalcCntnt( this, true );
+/*N*/         ::binfilter::CalcCntnt( this, true );
 /*N*/       if( bBackLock )
 /*N*/           ((SwSectionFrm*)this)->SetFtnLock( FALSE );
 /*N*/   }
@@ -3686,7 +3687,7 @@
 /*N*/           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
 /*N*/           if ( pFly->IsFlyInCntFrm() )
 /*N*/             {
-/*?*/               ::lcl_InvalidateCntnt( pFly->ContainsCntnt(), nInv );
+/*?*/               ::binfilter::lcl_InvalidateCntnt( pFly->ContainsCntnt(), nInv );
 /*?*/                 if( nInv & INV_DIRECTION )
 /*?*/                     pFly->CheckDirChange();
 /*N*/             }
@@ -3715,7 +3716,7 @@
 /*N*/               SdrObject *pO = rObjs[i];
 /*N*/               if ( pO->IsWriterFlyFrame() )
 /*N*/                 {
-/*N*/                   ::lcl_InvalidateCntnt( ((SwVirtFlyDrawObj*)pO)->GetFlyFrm()->ContainsCntnt(),
+/*N*/                   ::binfilter::lcl_InvalidateCntnt( ((SwVirtFlyDrawObj*)pO)->GetFlyFrm()->ContainsCntnt(),
 /*N*/                                        nInv );
 /*N*/                     if( nInv & INV_DIRECTION )
 /*?*/                         ((SwVirtFlyDrawObj*)pO)->GetFlyFrm()->CheckDirChange();
@@ -3728,7 +3729,7 @@
 /*N*/   }
 /*N*/
 /*N*/   //Hier den gesamten Dokumentinhalt und die zeichengebundenen Flys.
-/*N*/   ::lcl_InvalidateCntnt( ContainsCntnt(), nInv );
+/*N*/   ::binfilter::lcl_InvalidateCntnt( ContainsCntnt(), nInv );
 /*N*/
 /*N*/   if( nInv & INV_PRTAREA )
 /*N*/   {
@@ -3738,3 +3739,4 @@
 /*N*/   }
 /*N*/ }
 
+}

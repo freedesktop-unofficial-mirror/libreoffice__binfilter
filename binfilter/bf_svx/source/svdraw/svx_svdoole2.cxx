@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-10-13 06:53:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,6 +121,7 @@
 #include "svdetc.hxx"
 #include "svdview.hxx"
 #include "unomlstr.hxx"
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -1348,3 +1349,4 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ }
 
 // -----------------------------------------------------------------------------
+}

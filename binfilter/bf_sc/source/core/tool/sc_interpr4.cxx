@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,7 +110,7 @@
 
 #include <com/sun/star/table/XCellRange.hpp>
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 
 #include "interpre.hxx"
 #include "global.hxx"
@@ -128,6 +128,7 @@ using namespace com::sun::star;
 #include "optuno.hxx"
 #include "rangeseq.hxx"
 #include "addinlis.hxx"
+namespace binfilter {
 
 // Implementiert in ui\miscdlgs\teamdlg.cxx
 
@@ -1728,7 +1729,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                   break;
 /*?*/
 /*?*/               case SC_ADDINARG_STRING:
-/*?*/                   aParam <<= rtl::OUString( GetString() );
+/*?*/                   aParam <<= ::rtl::OUString( GetString() );
 /*?*/                   break;
 /*?*/
 /*?*/               case SC_ADDINARG_INTEGER_ARRAY:
@@ -1808,7 +1809,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                       case svString:
 /*?*/                       case svSingleRef:
 /*?*/                           {
-/*?*/                               rtl::OUString aString = rtl::OUString( GetString() );
+/*?*/                               ::rtl::OUString aString = ::rtl::OUString( GetString() );
 /*?*/                               uno::Sequence<rtl::OUString> aInner( &aString, 1 );
 /*?*/                               uno::Sequence< uno::Sequence<rtl::OUString> > aOuter( &aInner, 1 );
 /*?*/                               aParam <<= aOuter;
@@ -1843,7 +1844,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                               if ( nStackType == svDouble )
 /*?*/                                   aElem <<= (double) GetDouble();
 /*?*/                               else if ( nStackType == svString )
-/*?*/                                   aElem <<= rtl::OUString( GetString() );
+/*?*/                                   aElem <<= ::rtl::OUString( GetString() );
 /*?*/                               else
 /*?*/                               {
 /*?*/                                   ScAddress aAdr;
@@ -1854,7 +1855,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                                       {
 /*?*/                                           String aStr;
 /*?*/                                           GetCellString( aStr, pCell );
-/*?*/                                           aElem <<= rtl::OUString( aStr );
+/*?*/                                           aElem <<= ::rtl::OUString( aStr );
 /*?*/                                       }
 /*?*/                                       else
 /*?*/                                           aElem <<= (double) GetCellValue( aAdr, pCell );
@@ -1890,7 +1891,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                           aParam <<= (double) GetDouble();
 /*?*/                           break;
 /*?*/                       case svString:
-/*?*/                           aParam <<= rtl::OUString( GetString() );
+/*?*/                           aParam <<= ::rtl::OUString( GetString() );
 /*?*/                           break;
 /*?*/                       case svSingleRef:
 /*?*/                           {
@@ -1902,7 +1903,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/                                   {
 /*?*/                                       String aStr;
 /*?*/                                       GetCellString( aStr, pCell );
-/*?*/                                       aParam <<= rtl::OUString( aStr );
+/*?*/                                       aParam <<= ::rtl::OUString( aStr );
 /*?*/                                   }
 /*?*/                                   else
 /*?*/                                       aParam <<= (double) GetCellValue( aAdr, pCell );
@@ -3482,3 +3483,4 @@ void ScInterpreter::ScTTT()
 /*N*/   return eResult;
 /*N*/ }
 
+}

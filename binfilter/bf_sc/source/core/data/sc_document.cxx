@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:36:15 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,6 +129,7 @@
 #ifndef __SGI_STL_SET
 #include <set>
 #endif
+namespace binfilter {
 
 /*N*/ struct ScDefaultAttr
 /*N*/ {
@@ -4085,7 +4086,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            RefreshAutoFilter( nStartCol
 /*N*/         gsl_getSystemTextEncoding(), (USHORT)rStream.GetVersion() );
 /*N*/     rStream.SetStreamCharSet( eStoreCharSet );
 /*N*/
-/*N*/   //  Compress-Mode fuer Grafiken in Brush-Items (Hintergrund im Seitenformat)
+/*N*/   //  ::com::press-Mode fuer Grafiken in Brush-Items (Hintergrund im Seitenformat)
 /*N*/
 /*N*/   USHORT nComprMode = rStream.GetCompressMode() & ~(COMPRESSMODE_ZBITMAP | COMPRESSMODE_NATIVE);
 /*N*/   SvtSaveOptions aSaveOpt;
@@ -4402,3 +4403,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            RefreshAutoFilter( nStartCol
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doctxm.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:22:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,11 +75,13 @@
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-
-class  SwTOXInternational;
 class  SvUShorts;
 class  SvStringsDtor;
 class  SvPtrarr;
+namespace binfilter {
+
+class  SwTOXInternational;
+
 class  SwTxtNode;
 class  SwTxtFmtColl;
 struct SwPosition;
@@ -87,7 +89,7 @@ struct SwTOXSortTabBase;
 
 typedef SwTOXSortTabBase* SwTOXSortTabBasePtr;
 
-SV_DECL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr, 0, 5 );
+SV_DECL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr, 0, 5 )//STRIP008 ;
 
 /*--------------------------------------------------------------------
      Beschreibung: Ring der speziellen Verzeichnisse
@@ -187,4 +189,5 @@ struct SwDefTOXBase_Impl
 
 };
 
+} //namespace binfilter
 #endif  // _DOCTXM_HXX

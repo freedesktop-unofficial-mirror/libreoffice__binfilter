@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXChartDataChangeEventListener.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,11 +73,12 @@
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
+namespace binfilter {
 
 class ChXChartDocument;
 
 class ChXChartDataChangeEventListener :
-    public cppu::WeakImplHelper1< com::sun::star::chart::XChartDataChangeEventListener >
+    public cppu::WeakImplHelper1< ::com::sun::star::chart::XChartDataChangeEventListener >
 {
 private:
     ChXChartDocument *mpXDoc;
@@ -90,21 +91,22 @@ public:
     void SetOwner( ChXChartDocument* pXDoc ) throw();
 
     // XChartDataChangeEventListener
-    virtual void SAL_CALL chartDataChanged( const com::sun::star::chart::ChartDataChangeEvent& aEvent )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL chartDataChanged( const ::com::sun::star::chart::ChartDataChangeEvent& aEvent )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XEventListener
-    virtual void SAL_CALL disposing( const com::sun::star::lang::EventObject& Source )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL disposing( const ::com::sun::star::lang::EventObject& Source )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XServiceInfo
-    virtual rtl::OUString SAL_CALL getImplementationName()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::rtl::OUString SAL_CALL getImplementationName()
+        throw( ::com::sun::star::uno::RuntimeException );
     virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName )
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames()
-        throw( com::sun::star::uno::RuntimeException );
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames()
+        throw( ::com::sun::star::uno::RuntimeException );
 };
 
+} //namespace binfilter
 #endif  // _CHXCHARTDATACHANGEEVENTLISTENER_HXX
 

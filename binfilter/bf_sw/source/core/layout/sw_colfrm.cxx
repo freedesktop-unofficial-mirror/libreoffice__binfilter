@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_colfrm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:27:12 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,6 +93,7 @@
 #include "bodyfrm.hxx"   // ColumnFrms jetzt mit BodyFrm
 #include "rootfrm.hxx"   // wg. RemoveFtns
 #include "sectfrm.hxx"   // wg. FtnAtEnd-Flag
+namespace binfilter {
 
 // ftnfrm.cxx:
 /*N*/ void lcl_RemoveFtns( SwFtnBossFrm* pBoss, BOOL bPageOnly, BOOL bEndNotes );
@@ -143,7 +144,7 @@
 /*N*/           "Keine Spalten zu entfernen." );
 /*N*/
 /*N*/   SwColumnFrm *pColumn = (SwColumnFrm*)pCont->Lower();
-/*N*/   ::lcl_RemoveFtns( pColumn, TRUE, TRUE );
+/*N*/   ::binfilter::lcl_RemoveFtns( pColumn, TRUE, TRUE );
 /*N*/   while ( pColumn->GetNext() )
 /*N*/   {
 /*N*/       ASSERT( pColumn->GetNext()->IsColumnFrm(),
@@ -288,19 +289,19 @@
 /*N*/       // und im normalen Textfluss unterbringen.
 /*N*/       if( IsPageBodyFrm() )
 /*N*/           pDoc->GetRootFrm()->RemoveFtns( (SwPageFrm*)GetUpper(), TRUE, FALSE );
-/*N*/       pSave = ::SaveCntnt( this );
+/*N*/       pSave = ::binfilter::SaveCntnt( this );
 /*N*/
 /*N*/       //Wenn Spalten existieren, jetzt aber eine Spaltenanzahl von
 /*N*/       //0 oder eins gewuenscht ist, so werden die Spalten einfach vernichtet.
 /*N*/       if ( nNewNum == 1 && !bAtEnd )
 /*N*/       {
-/*N*/           ::lcl_RemoveColumns( this, nOldNum );
+/*N*/           ::binfilter::lcl_RemoveColumns( this, nOldNum );
 /*N*/           if ( IsBodyFrm() )
 /*N*/               SetFrmFmt( pDoc->GetDfltFrmFmt() );
 /*N*/           else
 /*?*/               GetFmt()->SetAttr( SwFmtFillOrder() );
 /*N*/           if ( pSave )
-/*N*/               ::RestoreCntnt( pSave, this, 0 );
+/*N*/               ::binfilter::RestoreCntnt( pSave, this, 0 );
 /*N*/           return;
 /*N*/       }
 /*N*/       if ( nOldNum == 1 )
@@ -314,13 +315,13 @@
 /*N*/       }
 /*N*/       if ( nOldNum > nNewNum )
 /*N*/       {
-/*?*/           ::lcl_RemoveColumns( this, nOldNum - nNewNum );
+/*?*/           ::binfilter::lcl_RemoveColumns( this, nOldNum - nNewNum );
 /*?*/           bAdjustAttributes = TRUE;
 /*N*/       }
 /*N*/       else if( nOldNum < nNewNum )
 /*N*/       {
 /*N*/           USHORT nAdd = nNewNum - nOldNum;
-/*N*/           bAdjustAttributes = ::lcl_AddColumns( this, nAdd );
+/*N*/           bAdjustAttributes = ::binfilter::lcl_AddColumns( this, nAdd );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -353,7 +354,7 @@
 /*N*/               ((SwLayoutFrm*)Lower())->Lower() &&
 /*N*/               ((SwLayoutFrm*)Lower())->Lower()->IsLayoutFrm(),
 /*N*/               "Gesucht: Spaltenbody (Tod oder Lebend)." );   // ColumnFrms jetzt mit BodyFrm
-/*N*/       ::RestoreCntnt( pSave, (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower(), 0 );
+/*N*/       ::binfilter::RestoreCntnt( pSave, (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower(), 0 );
 /*N*/   }
 /*N*/ }
 
@@ -520,3 +521,4 @@
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtfly.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:34:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,9 +67,13 @@
 
 #include "swtypes.hxx"
 #include "swrect.hxx"
-
 class OutputDevice;
 class VirtualDevice;
+class PolyPolygon;
+class Color;
+namespace binfilter {
+
+
 class SwFont;
 class SwCntntFrm;
 class SwFlyFrm;
@@ -79,9 +83,9 @@ class SdrObject;
 class SwWrongList;
 class SwTxtPaintInfo;
 class SwFmt;
-class PolyPolygon;
+
 class TextRanger;
-class Color;
+
 
 // eine kleine Schweinerei, weil enums nicht forward-deklariert werden koennen.
 typedef MSHORT _FlyCntnt;
@@ -262,4 +266,5 @@ inline SwRect SwTxtFly::GetFrm( const SwRect &rRect, sal_Bool bTop ) const
     return bOn ? _GetFrm( rRect, bTop ) : SwRect();
 }
 
+} //namespace binfilter
 #endif

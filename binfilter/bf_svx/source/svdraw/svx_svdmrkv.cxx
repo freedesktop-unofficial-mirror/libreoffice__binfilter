@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmrkv.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #ifndef _SVDOVIRT_HXX
 #include <svdovirt.hxx>
 #endif
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2270,3 +2271,4 @@
 // In diesem Fall bekomme ich kein Notify und beim Aufruf des
 // PaintHandlers->InitRedraw() sind auch die SolidHandles sichtbar.
 
+}

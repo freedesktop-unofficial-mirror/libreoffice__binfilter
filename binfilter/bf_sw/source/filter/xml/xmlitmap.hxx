@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlitmap.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #endif
 
 namespace rtl { class OUString; }
+namespace binfilter {
 
 #define MID_FLAG_MASK                   0x0000ffff
 
@@ -135,4 +136,5 @@ SV_DECL_REF( SvXMLItemMapEntries )
 SV_IMPL_REF( SvXMLItemMapEntries )
 
 
+} //namespace binfilter
 #endif  //  _XMLITMAP_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtatr1.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:38:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
 #endif
+namespace binfilter {
 
 
 /*************************************************************************
@@ -128,3 +129,4 @@
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: w4wpar.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,12 @@
 #include <numrule.hxx>          // numerierte Listen
 #endif
 
+class SfxPoolItem;
+class SfxItemSet;
+class String;
+class Graphic;
+namespace binfilter {
+
 // Konstanten fuer die internen Fehler-Codes beim Einlesen
 #define ERR_NOERROR 0
 #define ERR_CHAR    1
@@ -134,11 +140,11 @@ typedef USHORT* UShortPtr;
 
 class SwDoc;
 class SwPaM;
-class SfxPoolItem;
+
 class SwTxtFmtColl;
 class SwPageDesc;
 class SvxBoxItem;
-class SfxItemSet;
+
 class W4WTabBorders;
 
 class W4WMergeGroups;   // enthaelt Sw_SelBoxes_SAR
@@ -151,8 +157,7 @@ class SwTableLines;
 class SwTableLine;
 class SwTableBoxes;
 class SwTableBox;
-class String;
-class Graphic;
+
 class SwW4WGraf;
 class SvxLRSpaceItem;
 class SvxULSpaceItem;
@@ -899,4 +904,5 @@ typedef W4WStyleIdTabEntry* W4WStyleIdTabEntryPtr;
 
 
 
+} //namespace binfilter
 #endif

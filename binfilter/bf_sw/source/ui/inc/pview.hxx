@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pview.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,18 +80,20 @@
 #ifndef _SVX_ZOOMITEM_HXX
 #include <bf_svx/zoomitem.hxx>
 #endif
+class ImageButton;
+class Button;
+class SvtAccessibilityOptions;
+namespace binfilter {
 
 class SwViewOption;
 class SwDocShell;
 class SwScrollbar;
 class ViewShell;
 class SwPagePreView;
-class ImageButton;
-class Button;
 class SwRect;
 class DataChangedEvent;
 class CommandEvent;
-class SvtAccessibilityOptions;
+
 // OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
 
@@ -363,4 +365,5 @@ public:
 //STRIP001  OuterResizePixel( Point(), GetFrameWindow()->GetOutputSizePixel() );
 //STRIP001 }
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmpaint.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:35:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -154,6 +154,7 @@
 #include <tabfrm.hxx>   // SwTabFrm (Redlining)
 #endif
 #include "scrrect.hxx"
+namespace binfilter {
 
 
 // steht im number.cxx
@@ -884,3 +885,4 @@ sal_Bool bInitFont = sal_True;
 //STRIP001         rStripes.Insert( SwStripe( (Frm().*fnRect->fnGetTop)(), nFrmHeight ),
 //STRIP001                          rStripes.Count() );
 //STRIP001 }
+}

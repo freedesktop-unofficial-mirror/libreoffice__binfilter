@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bindetect.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,7 +128,7 @@ namespace com
 #define REFERENCE ::com::sun::star::uno::Reference
 #define SEQUENCE ::com::sun::star::uno::Sequence
 #define RUNTIME_EXCEPTION ::com::sun::star::uno::RuntimeException
-
+namespace binfilter {
 class BinFilterDetect : public ::cppu::WeakImplHelper2< ::com::sun::star::document::XExtendedFilterDetection, ::com::sun::star::lang::XServiceInfo >
 {
 public:
@@ -142,5 +142,6 @@ public:
     //----------------------------------------------------------------------------------
     virtual ::rtl::OUString SAL_CALL detect( SEQUENCE< ::com::sun::star::beans::PropertyValue >& lDescriptor ) throw( RUNTIME_EXCEPTION );
 };
+}//end of namespace binfilter
 
 #endif

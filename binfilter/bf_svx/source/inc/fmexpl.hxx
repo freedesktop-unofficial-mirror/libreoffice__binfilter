@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmexpl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -154,8 +154,9 @@
 #ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
 #endif
-
 class SdrObjListIter;
+namespace binfilter {
+
 class FmFormShell;
 class SdrObject;
 class FmFormModel;
@@ -298,7 +299,7 @@ public:
 //STRIP001 };
 
 //========================================================================
-//STRIP001 DECLARE_LIST( FmEntryDataBaseList, FmEntryData* );
+//STRIP001 DECLARE_LIST( FmEntryDataBaseList, FmEntryData* ) //STRIP008 DECLARE_LIST( FmEntryDataBaseList, FmEntryData* );
 
 //STRIP001 class FmEntryDataList : public FmEntryDataBaseList
 //STRIP001 {
@@ -692,5 +693,6 @@ namespace svxform
 }   // namespace svxform
 //............................................................................
 
+}//end of namespace binfilter
 #endif // _SVX_FMEXPL_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_paraitem.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:03 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,6 +143,7 @@ using namespace ::com::sun::star;
 #endif
 
 #include <algorithm>
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -1121,7 +1122,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*?*/                         {
 /*?*/                             sal_Int32 nVal;
 /*?*/                             if (rAnySeq[1] >>= nVal)
-/*?*/                                 aSeq[n].Alignment = (com::sun::star::style::TabAlign) nVal;
+/*?*/                                 aSeq[n].Alignment = (::com::sun::star::style::TabAlign) nVal;
 /*?*/                             else
 /*?*/                                 return sal_False;
 /*?*/                         }
@@ -1413,7 +1414,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool SvxPageModelItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+//STRIP001 sal_Bool SvxPageModelItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -1428,7 +1429,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 //STRIP001     return sal_True;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxPageModelItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId )
+//STRIP001 sal_Bool SvxPageModelItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 //STRIP001 {
 //STRIP001  sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001  nMemberId &= ~CONVERT_TWIPS;
@@ -1704,14 +1705,14 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 //STRIP001  return SFX_ITEM_PRESENTATION_NONE;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxParaVertAlignItem::QueryValue( com::sun::star::uno::Any& rVal,
+//STRIP001 sal_Bool SvxParaVertAlignItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 //STRIP001                                         BYTE nMemberId ) const
 //STRIP001 {
 //STRIP001  rVal <<= (sal_Int16)GetValue();
 //STRIP001  return sal_True;
 //STRIP001 }
 
-//STRIP001 sal_Bool SvxParaVertAlignItem::PutValue( const com::sun::star::uno::Any& rVal,
+//STRIP001 sal_Bool SvxParaVertAlignItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 //STRIP001                                       BYTE nMemberId )
 //STRIP001 {
 //STRIP001  sal_Int16 nVal;
@@ -1783,3 +1784,4 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ }
 
 
+}

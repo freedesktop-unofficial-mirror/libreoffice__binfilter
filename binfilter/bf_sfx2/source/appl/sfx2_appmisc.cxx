@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmisc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -181,6 +181,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 
 //===================================================================
+namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SfxTbxCtrlFactArr_Impl, SfxTbxCtrlFactory* );
 /*N*/ SV_IMPL_PTRARR( SfxStbCtrlFactArr_Impl, SfxStbCtrlFactory* );
@@ -743,7 +744,7 @@ extern String GetUserID();
 //STRIP001     SfxDispatcher* pDispatcher = ((SfxBindings*)pHdl)->GetDispatcher_Impl();
 //STRIP001     if ( ! pDispatcher )
 //STRIP001         return 0;
-//STRIP001     Reference<com::sun::star::frame::XFrame> xFrame( pDispatcher->GetFrame()->GetFrame()->GetFrameInterface() );
+//STRIP001     Reference< ::com::sun::star::frame::XFrame> xFrame( pDispatcher->GetFrame()->GetFrame()->GetFrameInterface() );
 //STRIP001     if (! xFrame.is())
 //STRIP001     {
 //STRIP001         Reference < ::com::sun::star::frame::XFramesSupplier > xDesktop =
@@ -755,7 +756,7 @@ extern String GetUserID();
 //STRIP001
 //STRIP001     URL aTargetURL;
 //STRIP001     aTargetURL.Complete = aURL;
-//STRIP001     Reference < XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
+//STRIP001     Reference < XURLTransformer > xTrans( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance( ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer" )), UNO_QUERY );
 //STRIP001     xTrans->parseStrict( aTargetURL );
 //STRIP001
 //STRIP001     Reference < ::com::sun::star::frame::XDispatchProvider > xProv( xFrame, UNO_QUERY );
@@ -781,7 +782,7 @@ extern String GetUserID();
 //STRIP001 /*
 //STRIP001      Sequence<PropertyValue> aArgs(1);
 //STRIP001      PropertyValue* pArg = aArgs.getArray();
-//STRIP001      pArg[0].Name = rtl::OUString::createFromAscii("Referer");
+//STRIP001      pArg[0].Name = ::rtl::OUString::createFromAscii("Referer");
 //STRIP001         pArg[0].Value <<= ::rtl::OUString::createFromAscii("private:user");
 //STRIP001      xDisp->dispatch( aTargetURL, aArgs );
 //STRIP001  */
@@ -811,3 +812,4 @@ extern String GetUserID();
 /*N*/ }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlrowi.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:09 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,12 +100,13 @@
 #endif
 
 #include <com/sun/star/table/CellAddress.hpp>
+namespace binfilter {
 
 #define SC_ISVISIBLE "IsVisible"
 #define SC_OPTIMALHEIGHT "OptimalHeight"
 #define SC_ISFILTERED "IsFiltered"
 
-using namespace com::sun::star;
+using namespace ::com::sun::star;
 using namespace xmloff::token;
 
 //------------------------------------------------------------------
@@ -120,16 +121,16 @@ ScXMLTableRowContext::ScXMLTableRowContext( ScXMLImport& rImport,
     nRepeatedRows(1),
     bHasCell(sal_False)
 {
-    rtl::OUString sCellStyleName;
+    ::rtl::OUString sCellStyleName;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetTableRowAttrTokenMap();
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        rtl::OUString aLocalName;
+        ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+        ::rtl::OUString aLocalName;
         sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                             sAttrName, &aLocalName );
-        rtl::OUString sValue = xAttrList->getValueByIndex( i );
+        ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
         switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
         {
@@ -263,9 +264,9 @@ void ScXMLTableRowContext::EndElement()
                             aFilteredAny <<= bFiltered;
                         }
                         if (!bVisible)
-                            xRowProperties->setPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ISVISIBLE)), aVisibleAny);
+                            xRowProperties->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ISVISIBLE)), aVisibleAny);
                         if (bFiltered)
-                            xRowProperties->setPropertyValue(rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ISFILTERED)), aFilteredAny);
+                            xRowProperties->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ISFILTERED)), aFilteredAny);
                     }
                 }
             }
@@ -301,11 +302,11 @@ ScXMLTableRowsContext::ScXMLTableRowsContext( ScXMLImport& rImport,
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            rtl::OUString aLocalName;
+            ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
+            ::rtl::OUString aLocalName;
             sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
                                                 sAttrName, &aLocalName );
-            rtl::OUString sValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
             if ((nPrfx == XML_NAMESPACE_TABLE) && IsXMLToken(aLocalName, XML_DISPLAY))
                 bGroupDisplay = IsXMLToken(sValue, XML_TRUE);
@@ -407,4 +408,5 @@ void ScXMLTableRowsContext::EndElement()
             }
         }
     }
+}
 }

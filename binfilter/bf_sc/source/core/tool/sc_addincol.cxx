@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_addincol.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:43:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,7 +95,8 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
+namespace binfilter {
+using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
@@ -233,7 +234,7 @@ public:
 //STRIP001             uno::Reference<sheet::XCompatibilityNames> xComp( xAddIn, uno::UNO_QUERY );
 //STRIP001             if ( xComp.is() && xFunction.is() )
 //STRIP001             {
-//STRIP001                 rtl::OUString aMethodName = xFunction->getName();
+//STRIP001                 ::rtl::OUString aMethodName = xFunction->getName();
 //STRIP001                 aCompNames = xComp->getCompatibilityNames( aMethodName );
 //STRIP001
 //STRIP001                 //  change all locale entries to default case
@@ -322,7 +323,7 @@ public:
 /*N*/     {
 /*N*/         uno::Reference<container::XEnumeration> xEnum =
 /*N*/                         xEnAc->createContentEnumeration(
-/*N*/                             rtl::OUString::createFromAscii(SCADDINSUPPLIER_SERVICE) );
+/*N*/                             ::rtl::OUString::createFromAscii(SCADDINSUPPLIER_SERVICE) );
 /*N*/         if ( xEnum.is() )
 /*N*/         {
 /*N*/             //  loop through all AddIns
@@ -365,8 +366,8 @@ public:
 //STRIP001
 //STRIP001             String aLangStr, aCountryStr;
 //STRIP001             ConvertLanguageToIsoNames( eDestLang, aLangStr, aCountryStr );
-//STRIP001             rtl::OUString aUserLang = aLangStr.ToLowerAscii();
-//STRIP001             rtl::OUString aUserCountry = aCountryStr.ToUpperAscii();
+//STRIP001             ::rtl::OUString aUserLang = aLangStr.ToLowerAscii();
+//STRIP001             ::rtl::OUString aUserCountry = aCountryStr.ToUpperAscii();
 //STRIP001
 //STRIP001             //  first check for match of both language and country
 //STRIP001
@@ -438,7 +439,7 @@ public:
 /*N*/     return ID_FUNCTION_GRP_ADDINS;  // if not found, use Add-In group
 /*N*/ }
 
-/*N*/ inline BOOL IsTypeName( const rtl::OUString& rName, const uno::Type& rType )
+/*N*/ inline BOOL IsTypeName( const ::rtl::OUString& rName, const uno::Type& rType )
 /*N*/ {
 /*N*/     return rName == rType.getTypeName();
 /*N*/ }
@@ -473,7 +474,7 @@ public:
 /*N*/                 //  return type XInterface may contain a XVolatileResult
 /*N*/                 //! XIdlClass needs getType() method!
 /*N*/
-/*N*/                 rtl::OUString sName = xClass->getName();
+/*N*/                 ::rtl::OUString sName = xClass->getName();
 /*N*/                 return (
 /*N*/                     IsTypeName( sName, getCppuType((uno::Reference<sheet::XVolatileResult>*)0) ) ||
 /*N*/                     IsTypeName( sName, getCppuType((uno::Reference<uno::XInterface>*)0) ) );
@@ -484,7 +485,7 @@ public:
 /*N*/                 //  nested sequences for arrays
 /*N*/                 //! XIdlClass needs getType() method!
 /*N*/
-/*N*/                 rtl::OUString sName = xClass->getName();
+/*N*/                 ::rtl::OUString sName = xClass->getName();
 /*N*/                 return (
 /*N*/                     IsTypeName( sName, getCppuType((uno::Sequence< uno::Sequence<INT32> >*)0) ) ||
 /*N*/                     IsTypeName( sName, getCppuType((uno::Sequence< uno::Sequence<double> >*)0) ) ||
@@ -512,7 +513,7 @@ public:
 /*N*/         return SC_ADDINARG_STRING;
 /*N*/
 /*N*/     //! XIdlClass needs getType() method!
-/*N*/     rtl::OUString sName = xClass->getName();
+/*N*/     ::rtl::OUString sName = xClass->getName();
 /*N*/
 /*N*/     if (IsTypeName( sName, getCppuType((uno::Sequence< uno::Sequence<INT32> >*)0) ))
 /*N*/         return SC_ADDINARG_INTEGER_ARRAY;
@@ -553,7 +554,7 @@ public:
 /*N*/         String aLanguage, aCountry;
 /*N*/         ConvertLanguageToIsoNames( eOfficeLang, aLanguage, aCountry );
 /*N*/
-/*N*/         rtl::OUString aEmpty;
+/*N*/         ::rtl::OUString aEmpty;
 /*N*/         lang::Locale aLocale(  aLanguage, aCountry, aEmpty );
 /*N*/         xAddIn->setLocale( aLocale );
 /*N*/
@@ -566,7 +567,7 @@ public:
 /*N*/         if ( xManager.is() )
 /*N*/         {
 /*N*/             uno::Reference<beans::XIntrospection> xIntro(
-/*N*/                                     xManager->createInstance(rtl::OUString::createFromAscii(
+/*N*/                                     xManager->createInstance(::rtl::OUString::createFromAscii(
 /*N*/                                         "com.sun.star.beans.Introspection" )),
 /*N*/                                     uno::UNO_QUERY );
 /*N*/             if ( xIntro.is() )
@@ -617,7 +618,7 @@ public:
 /*N*/                                 if ( xClass.is() )
 /*N*/                                 {
 /*N*/                                     //! XIdlClass needs getType() method!
-/*N*/                                     rtl::OUString sName = xClass->getName();
+/*N*/                                     ::rtl::OUString sName = xClass->getName();
 /*N*/                                     bSkip = (
 /*N*/                                         IsTypeName( sName,
 /*N*/                                             getCppuType((uno::Reference<uno::XInterface>*)0) ) ||
@@ -639,7 +640,7 @@ public:
 /*N*/                                 }
 /*N*/                                 if (!bSkip)
 /*N*/                                 {
-/*N*/                                     rtl::OUString aFuncU = xFunc->getName();
+/*N*/                                     ::rtl::OUString aFuncU = xFunc->getName();
 /*N*/
 /*N*/                                     // stored function name: (service name).(function)
 /*N*/                                     String aFuncName = aServiceName;
@@ -678,7 +679,7 @@ public:
 /*N*/
 /*N*/                                         USHORT nHelpId = aHelpIdGenerator.GetHelpId( aFuncU );
 /*N*/
-/*N*/                                         rtl::OUString aLocalU;
+/*N*/                                         ::rtl::OUString aLocalU;
 /*N*/                                         try
 /*N*/                                         {
 /*N*/                                             aLocalU = xAddIn->
@@ -686,11 +687,11 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aLocalU = rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aLocalU = ::rtl::OUString::createFromAscii( "###" );
 /*N*/                                         }
 /*N*/                                         String aLocalName = String( aLocalU );
 /*N*/
-/*N*/                                         rtl::OUString aDescU;
+/*N*/                                         ::rtl::OUString aDescU;
 /*N*/                                         try
 /*N*/                                         {
 /*N*/                                             aDescU = xAddIn->
@@ -698,7 +699,7 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aDescU = rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aDescU = ::rtl::OUString::createFromAscii( "###" );
 /*N*/                                         }
 /*N*/                                         String aDescription = String( aDescU );
 /*N*/
@@ -715,7 +716,7 @@ public:
 /*N*/                                                 ScAddInArgumentType eArgType = lcl_GetArgType( xParClass );
 /*N*/                                                 if ( eArgType != SC_ADDINARG_CALLER )
 /*N*/                                                 {
-/*N*/                                                     rtl::OUString aArgName;
+/*N*/                                                     ::rtl::OUString aArgName;
 /*N*/                                                     try
 /*N*/                                                     {
 /*N*/                                                         aArgName = xAddIn->
@@ -723,9 +724,9 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
 /*N*/                                                     }
-/*N*/                                                     rtl::OUString aArgDesc;
+/*N*/                                                     ::rtl::OUString aArgDesc;
 /*N*/                                                     try
 /*N*/                                                     {
 /*N*/                                                         aArgDesc = xAddIn->
@@ -733,7 +734,7 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
 /*N*/                                                     }
 /*N*/
 /*N*/                                                     BOOL bOptional =
@@ -1168,7 +1169,7 @@ public:
 /*N*/
 /*N*/         case uno::TypeClass_STRING:
 /*N*/             {
-/*N*/                 rtl::OUString aUStr;
+/*N*/                 ::rtl::OUString aUStr;
 /*N*/                 rNewRes >>= aUStr;
 /*N*/                 aString = String( aUStr );
 /*N*/                 bHasString = TRUE;
@@ -1288,7 +1289,7 @@ public:
 /*N*/                         for (nRow=0; nRow<nRowCount; nRow++)
 /*N*/                         {
 /*N*/                             long nColCount = pRowArr[nRow].getLength();
-/*N*/                             const rtl::OUString* pColArr = pRowArr[nRow].getConstArray();
+/*N*/                             const ::rtl::OUString* pColArr = pRowArr[nRow].getConstArray();
 /*N*/                             for (nCol=0; nCol<nColCount; nCol++)
 /*N*/                                 pMatrix->PutString( String( pColArr[nCol] ),
 /*N*/                                     (USHORT)nCol, (USHORT)nRow );
@@ -1321,7 +1322,7 @@ public:
 /*N*/                     }
 /*N*/                     if ( nMaxColCount && nRowCount )
 /*N*/                     {
-/*N*/                         rtl::OUString aUStr;
+/*N*/                         ::rtl::OUString aUStr;
 /*N*/                         pMatrix = new ScMatrix( (USHORT)nMaxColCount, (USHORT)nRowCount );
 /*N*/                         for (nRow=0; nRow<nRowCount; nRow++)
 /*N*/                         {
@@ -1363,3 +1364,4 @@ public:
 
 
 
+}

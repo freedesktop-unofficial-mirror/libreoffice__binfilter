@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:31:10 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,6 +110,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -818,12 +819,12 @@
 /*N*/       ByteString s8;
 /*N*/
 /*N*/       pStrm->ReadByteString( s8 );
-/*N*/         aLinkFileName = ConvertStringNoDelim( s8, '\xff', so3::cTokenSeperator,
+/*N*/         aLinkFileName = ConvertStringNoDelim( s8, '\xff', ::so3::cTokenSeperator,
 /*N*/                                             eSrcSet );
 /*N*/
 /*N*/       if( aLinkFileName.Len() && FILE_LINK_SECTION == nType )
 /*N*/       {
-/*N*/             xub_StrLen nTokenPos = aLinkFileName.Search( so3::cTokenSeperator );
+/*N*/             xub_StrLen nTokenPos = aLinkFileName.Search( ::so3::cTokenSeperator );
 /*N*/           if( STRING_NOTFOUND != nTokenPos && nTokenPos )
 /*N*/           {
 /*N*/               String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
@@ -1015,7 +1016,7 @@
 /*N*/   String aLinkFileName( rSect.GetLinkFileName() );
 /*N*/   if( aLinkFileName.Len() && FILE_LINK_SECTION == rSect.GetType() )
 /*N*/   {
-/*N*/         xub_StrLen nTokenPos = aLinkFileName.Search( so3::cTokenSeperator );
+/*N*/         xub_StrLen nTokenPos = aLinkFileName.Search( ::so3::cTokenSeperator );
 /*N*/       if( STRING_NOTFOUND != nTokenPos && nTokenPos )
 /*N*/       {
 /*N*/           String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
@@ -1024,7 +1025,7 @@
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/     ByteString s8 = ConvertStringNoDelim( aLinkFileName, so3::cTokenSeperator,
+/*N*/     ByteString s8 = ConvertStringNoDelim( aLinkFileName, ::so3::cTokenSeperator,
 /*N*/                                         '\xff', eSrcSet );
 /*N*/   pStrm->WriteByteString( s8 );
 /*N*/
@@ -1036,3 +1037,4 @@
 // NEXT: sw3sectn_0a
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtw4w.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -174,6 +174,7 @@
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
 #endif
+namespace binfilter {
 
 const sal_Char __FAR_DATA sW4W_RECBEGIN[3] = { cW4W_BEGICF, cW4W_LED, 0 };
 const sal_Char __FAR_DATA sW4W_TERMEND[3] = { cW4W_TXTERM, cW4W_RED, 0 };
@@ -637,7 +638,7 @@ ULONG SwW4WWriter::Write( SwPaM& rPaM, SfxMedium& rMedium, const String* pNm )
         nRet = ERR_W4W_DLL_ERROR | ERROR_SW_WRITE_BASE;
     else
     {
-        utl::TempFile aTempFile;
+        ::utl::TempFile aTempFile;
         aTempFile.EnableKillingFile();
         ::StartProgress( STR_STATSTR_W4WWRITE, 0, 100,
                         rPaM.GetDoc()->GetDocShell() );
@@ -839,7 +840,7 @@ void SwW4WWriter::Out_SwDoc( SwPaM* pPam, BOOL bAttrOn )
 
             ULONG nPos = pCurPam->GetPoint()->nNode++;  // Bewegen
 
-            ::SetProgressState( nPos * 67L / nMaxNode, pDoc->GetDocShell() );   // Wie weit ?
+            ::binfilter::SetProgressState( nPos * 67L / nMaxNode, pDoc->GetDocShell() );   // Wie weit ?
 
             /* sollen nur die Selektierten Bereiche gesichert werden, so
              * duerfen nur die vollstaendigen Nodes gespeichert werde,
@@ -1404,3 +1405,4 @@ W4WSaveData::~W4WSaveData()
 }
 
 
+}

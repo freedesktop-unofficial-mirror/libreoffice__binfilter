@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ftnidx.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:10:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
+namespace binfilter {
 
 
 /*?*/ _SV_IMPL_SORTAR_ALG( _SwFtnIdxs, SwTxtFtnPtr )
@@ -475,3 +476,4 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     USHORT nRet = 0, nWh;
 
 
 
+}

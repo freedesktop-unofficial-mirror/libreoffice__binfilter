@@ -2,9 +2,9 @@
  *
  *  $RCSfile: olesh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _SWOLESH_HXX
 
 #include "frmsh.hxx"
+namespace binfilter {
 
 class SwOleShell: public SwFrameShell
 {
@@ -72,6 +73,7 @@ public:
 
 };
 
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bcaslot.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:39:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 
 #include "global.hxx"
 #include "brdcst.hxx"
+namespace binfilter {
 
 class ScBroadcastArea;
 class ScBroadcastAreaList;
@@ -78,7 +79,7 @@ class ScBroadcastAreaList;
 #define BCA_INITGROWSIZE 16
 typedef ScBroadcastArea* ScBroadcastAreaPtr;
 SV_DECL_PTRARR_SORT( ScBroadcastAreas, ScBroadcastAreaPtr,
-    BCA_INITGROWSIZE, BCA_INITGROWSIZE );
+    BCA_INITGROWSIZE, BCA_INITGROWSIZE )//STRIP008 ;
 
 // wird in einem nach Objekten sortierten SV_PTRARR_SORT benutzt
 class ScBroadcastArea : public ScRange, public SfxBroadcaster
@@ -195,4 +196,5 @@ public:
 
 
 
+} //namespace binfilter
 #endif

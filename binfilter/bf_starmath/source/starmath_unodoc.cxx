@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_unodoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:17 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,17 +76,18 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
 ::rtl::OUString SAL_CALL SmDocument_getImplementationName() throw()
 {
-    return rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Math.FormulaDocument" ) );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Math.FormulaDocument" ) );
 }
 
-uno::Sequence< rtl::OUString > SAL_CALL SmDocument_getSupportedServiceNames() throw()
+uno::Sequence< ::rtl::OUString > SAL_CALL SmDocument_getSupportedServiceNames() throw()
 {
-    uno::Sequence< rtl::OUString > aSeq( 1 );
+    uno::Sequence< ::rtl::OUString > aSeq( 1 );
     aSeq[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.formula.FormulaProperties" ));
     return aSeq;
 }
@@ -115,3 +116,4 @@ uno::Reference< uno::XInterface > SAL_CALL SmDocument_createInstance(
 }
 
 
+}

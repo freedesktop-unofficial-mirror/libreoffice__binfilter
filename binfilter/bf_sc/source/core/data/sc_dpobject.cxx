@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dpobject.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,7 +94,8 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
-using namespace com::sun::star;
+namespace binfilter {
+using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
@@ -151,11 +152,11 @@ using namespace com::sun::star;
 /*N*/           if ( xDimProp.is() )
 /*N*/           {
 /*N*/               bFound = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                   rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 /*N*/               //! error checking -- is "IsDataLayoutDimension" property required??
 /*N*/               if (bFound)
 /*N*/                   nRet = ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                           xDimProp, rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+/*N*/                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
 /*N*/                           sheet::DataPilotFieldOrientation_HIDDEN );
 /*N*/           }
 /*N*/       }
@@ -530,10 +531,10 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001          if ( xDimName.is() && xDimProp.is() )
 //STRIP001          {
 //STRIP001              BOOL bData = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                              rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+//STRIP001                              ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 //STRIP001              //! error checking -- is "IsDataLayoutDimension" property required??
 //STRIP001
-//STRIP001              rtl::OUString aName;
+//STRIP001              ::rtl::OUString aName;
 //STRIP001              try
 //STRIP001              {
 //STRIP001                  aName = xDimName->getName();
@@ -603,7 +604,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001
 //STRIP001  uno::Reference<beans::XPropertySet> xDimProp( xDim, uno::UNO_QUERY );
 //STRIP001  BOOL bDataLayout = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                      rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+//STRIP001                      ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 //STRIP001  if (bDataLayout)
 //STRIP001  {
 //STRIP001      //  the elements of the data layout dimension can't be found by their names
@@ -653,7 +654,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001
 //STRIP001  if ( xMembers.is() )
 //STRIP001  {
-//STRIP001      rtl::OUString aName = rElemDesc.aMemberName;
+//STRIP001      ::rtl::OUString aName = rElemDesc.aMemberName;
 //STRIP001      if ( xMembers->hasByName( aName ) )
 //STRIP001      {
 //STRIP001          uno::Reference<uno::XInterface> xMemberInt = ScUnoHelpFunctions::AnyToInterface(
@@ -662,7 +663,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001          if ( xMbrProp.is() )
 //STRIP001          {
 //STRIP001              bShowDetails = ScUnoHelpFunctions::GetBoolProperty( xMbrProp,
-//STRIP001                                  rtl::OUString::createFromAscii(DP_PROP_SHOWDETAILS) );
+//STRIP001                                  ::rtl::OUString::createFromAscii(DP_PROP_SHOWDETAILS) );
 //STRIP001              //! don't set bFound if property is unknown?
 //STRIP001              bFound = TRUE;
 //STRIP001          }
@@ -688,13 +689,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001  }
 //STRIP001 }
 
-//STRIP001 long lcl_FindName( const rtl::OUString& rString, const uno::Reference<container::XNameAccess>& xCollection )
+//STRIP001 long lcl_FindName( const ::rtl::OUString& rString, const uno::Reference<container::XNameAccess>& xCollection )
 //STRIP001 {
 //STRIP001  if ( xCollection.is() )
 //STRIP001  {
 //STRIP001      uno::Sequence<rtl::OUString> aSeq = xCollection->getElementNames();
 //STRIP001      long nCount = aSeq.getLength();
-//STRIP001      const rtl::OUString* pArr = aSeq.getConstArray();
+//STRIP001      const ::rtl::OUString* pArr = aSeq.getConstArray();
 //STRIP001      for (long nPos=0; nPos<nCount; nPos++)
 //STRIP001          if ( pArr[nPos] == rString )
 //STRIP001              return nPos;
@@ -709,7 +710,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/   {
 /*N*/       uno::Reference<container::XIndexAccess> xHiers = new ScNameToIndexAccess( xDimSupp->getHierarchies() );
 /*N*/       long nHierarchy = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-/*N*/                               rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
+/*N*/                               ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
 /*N*/       if ( nHierarchy >= xHiers->getCount() )
 /*N*/           nHierarchy = 0;
 /*N*/
@@ -728,7 +729,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/               try
 /*N*/               {
 /*N*/                   aSubAny = xLevProp->getPropertyValue(
-/*N*/                           rtl::OUString::createFromAscii(DP_PROP_SUBTOTALS) );
+/*N*/                           ::rtl::OUString::createFromAscii(DP_PROP_SUBTOTALS) );
 /*N*/               }
 /*N*/               catch(uno::Exception&)
 /*N*/               {
@@ -787,7 +788,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/           ScUnoHelpFunctions::AnyToInterface( xDims->getByIndex(nDim) );
 /*N*/       uno::Reference<beans::XPropertySet> xDimProp( xIntDim, uno::UNO_QUERY );
 /*N*/       long nDimOrient = ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                           xDimProp, rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+/*N*/                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
 /*N*/                           sheet::DataPilotFieldOrientation_HIDDEN );
 /*N*/       if ( xDimProp.is() && nDimOrient == nOrient )
 /*N*/       {
@@ -795,7 +796,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/           if ( nOrient == sheet::DataPilotFieldOrientation_DATA )
 /*N*/           {
 /*N*/               sheet::GeneralFunction eFunc = (sheet::GeneralFunction)ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                                           xDimProp, rtl::OUString::createFromAscii(DP_PROP_FUNCTION),
+/*N*/                                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_FUNCTION),
 /*N*/                                           sheet::GeneralFunction_NONE );
 /*N*/               if ( eFunc == sheet::GeneralFunction_AUTO )
 /*N*/               {
@@ -808,12 +809,12 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/               nMask = lcl_FirstSubTotal( xDimProp );      // from first hierarchy
 /*N*/
 /*N*/           BOOL bDataLayout = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                                   rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 /*N*/           uno::Any aOrigAny;
 /*N*/           try
 /*N*/           {
 /*N*/               aOrigAny = xDimProp->getPropertyValue(
-/*N*/                               rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
+/*N*/                               ::rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
 /*N*/           }
 /*N*/           catch(uno::Exception&)
 /*N*/           {
@@ -867,7 +868,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/               pFields[nOutCount].nFuncMask = nMask;
 /*N*/               pFields[nOutCount].nFuncCount = lcl_CountBits( nMask );
 /*N*/               nPos[nOutCount] = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-/*N*/                                   rtl::OUString::createFromAscii(DP_PROP_POSITION) );
+/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_POSITION) );
 /*N*/               ++nOutCount;
 /*N*/           }
 /*N*/       }
@@ -1077,15 +1078,15 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/   if (xProp.is())
 /*N*/   {
 /*N*/       bColumnGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
 /*N*/       bRowGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
 /*N*/
 /*N*/       // following properties may be missing for external sources
 /*N*/       bIgnoreEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
 /*N*/       bRepeatIfEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
 /*N*/   }
 /*N*/
 /*N*/   rStream << bIgnoreEmpty;        // bIgnoreEmpty
@@ -1137,15 +1138,15 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/       try
 /*N*/       {
 /*N*/           rParam.bMakeTotalCol = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
 /*N*/           rParam.bMakeTotalRow = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
 /*N*/
 /*N*/           // following properties may be missing for external sources
 /*N*/           rParam.bIgnoreEmptyRows = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
 /*N*/           rParam.bDetectCategories = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
+/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
 /*N*/       }
 /*N*/       catch(uno::Exception&)
 /*N*/       {
@@ -1164,7 +1165,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001  {
 //STRIP001      uno::Reference<container::XIndexAccess> xHiers = new ScNameToIndexAccess( xDimSupp->getHierarchies() );
 //STRIP001      long nHierarchy = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-//STRIP001                              rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
+//STRIP001                              ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
 //STRIP001      if ( nHierarchy >= xHiers->getCount() )
 //STRIP001          nHierarchy = 0;
 //STRIP001
@@ -1179,7 +1180,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001          uno::Reference<beans::XPropertySet> xLevProp( xLevel, uno::UNO_QUERY );
 //STRIP001          if ( xLevProp.is() )
 //STRIP001              bRet = ScUnoHelpFunctions::GetBoolProperty( xLevProp,
-//STRIP001                                  rtl::OUString::createFromAscii(DP_PROP_SHOWEMPTY) );
+//STRIP001                                  ::rtl::OUString::createFromAscii(DP_PROP_SHOWEMPTY) );
 //STRIP001      }
 //STRIP001  }
 //STRIP001
@@ -1212,7 +1213,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001      {
 //STRIP001          BOOL bDuplicated = FALSE;
 //STRIP001          BOOL bData = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-//STRIP001                          rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+//STRIP001                          ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
 //STRIP001          //! error checking -- is "IsDataLayoutDimension" property required??
 //STRIP001
 //STRIP001          try
@@ -1220,7 +1221,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001              aFieldName = String( xDimName->getName() );
 //STRIP001
 //STRIP001              uno::Any aOrigAny = xDimProp->getPropertyValue(
-//STRIP001                          rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
+//STRIP001                          ::rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
 //STRIP001              uno::Reference<uno::XInterface> xIntOrig;
 //STRIP001              if ( (aOrigAny >>= xIntOrig) && xIntOrig.is() )
 //STRIP001                  bDuplicated = TRUE;
@@ -1258,7 +1259,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 
 //STRIP001 String lcl_GetDimName( const uno::Reference<sheet::XDimensionsSupplier>& xSource, long nDim )
 //STRIP001 {
-//STRIP001  rtl::OUString aName;
+//STRIP001  ::rtl::OUString aName;
 //STRIP001  if ( xSource.is() )
 //STRIP001  {
 //STRIP001      uno::Reference<container::XNameAccess> xDimsName = xSource->getDimensions();
@@ -1439,7 +1440,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001  if ( xEnAc.is() )
 //STRIP001  {
 //STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
+//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
 //STRIP001      if ( xEnum.is() && xEnum->hasMoreElements() )
 //STRIP001          bFound = TRUE;
 //STRIP001  }
@@ -1460,7 +1461,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001  if ( xEnAc.is() )
 //STRIP001  {
 //STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
+//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
 //STRIP001      if ( xEnum.is() )
 //STRIP001      {
 //STRIP001          while ( xEnum->hasMoreElements() )
@@ -1475,7 +1476,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001                      uno::Reference<lang::XServiceInfo> xInfo( xIntFac, uno::UNO_QUERY );
 //STRIP001                      if ( xInfo.is() )
 //STRIP001                      {
-//STRIP001                          rtl::OUString sName = xInfo->getImplementationName();
+//STRIP001                          ::rtl::OUString sName = xInfo->getImplementationName();
 //STRIP001
 //STRIP001                          aSeq.realloc( nCount+1 );
 //STRIP001                          aSeq.getArray()[nCount] = sName;
@@ -1493,7 +1494,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //  static
 //STRIP001 uno::Reference<sheet::XDimensionsSupplier> ScDPObject::CreateSource( const ScDPServiceDesc& rDesc )
 //STRIP001 {
-//STRIP001  rtl::OUString aImplName = rDesc.aServiceName;
+//STRIP001  ::rtl::OUString aImplName = rDesc.aServiceName;
 //STRIP001  uno::Reference<sheet::XDimensionsSupplier> xRet = NULL;
 //STRIP001
 //STRIP001  uno::Reference<lang::XMultiServiceFactory> xManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
@@ -1501,7 +1502,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001  if ( xEnAc.is() )
 //STRIP001  {
 //STRIP001      uno::Reference<container::XEnumeration> xEnum = xEnAc->createContentEnumeration(
-//STRIP001                                      rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
+//STRIP001                                      ::rtl::OUString::createFromAscii( SCDPSOURCE_SERVICE ) );
 //STRIP001      if ( xEnum.is() )
 //STRIP001      {
 //STRIP001          while ( xEnum->hasMoreElements() && !xRet.is() )
@@ -1526,10 +1527,10 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 //STRIP001                                  //  initialize
 //STRIP001                                  uno::Sequence<uno::Any> aSeq(4);
 //STRIP001                                  uno::Any* pArray = aSeq.getArray();
-//STRIP001                                  pArray[0] <<= rtl::OUString( rDesc.aParSource );
-//STRIP001                                  pArray[1] <<= rtl::OUString( rDesc.aParName );
-//STRIP001                                  pArray[2] <<= rtl::OUString( rDesc.aParUser );
-//STRIP001                                  pArray[3] <<= rtl::OUString( rDesc.aParPass );
+//STRIP001                                  pArray[0] <<= ::rtl::OUString( rDesc.aParSource );
+//STRIP001                                  pArray[1] <<= ::rtl::OUString( rDesc.aParName );
+//STRIP001                                  pArray[2] <<= ::rtl::OUString( rDesc.aParUser );
+//STRIP001                                  pArray[3] <<= ::rtl::OUString( rDesc.aParPass );
 //STRIP001                                  xInit->initialize( aSeq );
 //STRIP001                              }
 //STRIP001                              xRet = uno::Reference<sheet::XDimensionsSupplier>( xInterface, uno::UNO_QUERY );
@@ -1723,3 +1724,4 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLTableHeaderFooterContext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:07 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #ifndef _COM_SUN_STAR_SHEET_XHEADERFOOTERCONTENT_HPP_
 #include <com/sun/star/sheet/XHeaderFooterContent.hpp>
 #endif
+namespace binfilter {
 
 namespace com { namespace sun { namespace star {
     namespace text { class XTextCursor; }
@@ -94,7 +95,7 @@ class XMLTableHeaderFooterContext: public SvXMLImportContext
     const ::rtl::OUString   sContent;
     const ::rtl::OUString   sContentLeft;
     const ::rtl::OUString   sEmpty;
-    rtl::OUString           sCont;
+    ::rtl::OUString         sCont;
 
     sal_Bool    bDisplay : 1;
     sal_Bool    bInsertContent : 1;
@@ -139,7 +140,7 @@ public:
             const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                     ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
-            com::sun::star::uno::Reference< com::sun::star::text::XTextCursor >& xCursor );
+            ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextCursor >& xCursor );
 
     virtual ~XMLHeaderFooterRegionContext();
 
@@ -152,4 +153,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chartuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,7 @@
 #ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
 #endif
+namespace binfilter {
 
 
 class ScDocShell;
@@ -102,10 +103,10 @@ class ScChartObj;
 
 
 class ScChartsObj : public cppu::WeakImplHelper4<
-                            com::sun::star::table::XTableCharts,
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::container::XIndexAccess,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::table::XTableCharts,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::container::XIndexAccess,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -168,10 +169,10 @@ public:
 
 
 class ScChartObj : public cppu::WeakImplHelper4<
-                            com::sun::star::table::XTableChart,
-                            com::sun::star::document::XEmbeddedObjectSupplier,
-                            com::sun::star::container::XNamed,
-                            com::sun::star::lang::XServiceInfo >,
+                            ::com::sun::star::table::XTableChart,
+                            ::com::sun::star::document::XEmbeddedObjectSupplier,
+                            ::com::sun::star::container::XNamed,
+                            ::com::sun::star::lang::XServiceInfo >,
                         public SfxListener
 {
 private:
@@ -219,5 +220,6 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

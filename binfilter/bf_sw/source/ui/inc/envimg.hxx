@@ -2,9 +2,9 @@
  *
  *  $RCSfile: envimg.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 
 // enum -----------------------------------------------------------------------
 
@@ -86,9 +87,9 @@ class SwEnvItem : public SfxPoolItem
 {
 public:
 
-    rtl::OUString   aAddrText;       // Text fuer Empfaenger
+    ::rtl::OUString   aAddrText;       // Text fuer Empfaenger
     sal_Bool        bSend;           // Absender?
-    rtl::OUString   aSendText;       // Text fuer Absender
+    ::rtl::OUString     aSendText;       // Text fuer Absender
     sal_Int32       lAddrFromLeft;   // Linker Abstand fuer Empfaenger (twips)
     sal_Int32       lAddrFromTop;    // Oberer Abstand fuer Empfaenger (twips)
     sal_Int32       lSendFromLeft;   // Linker Abstand fuer Absender   (twips)
@@ -110,16 +111,16 @@ public:
     virtual int operator ==(const SfxPoolItem& rItem) const;
 
     virtual SfxPoolItem*     Clone(SfxItemPool* = 0) const;
-//STRIP001     virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001     virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 
 // class SwEnvCfgItem -------------------------------------------------------
-//STRIP001 class SwEnvCfgItem : public utl::ConfigItem
+//STRIP001 class SwEnvCfgItem : public ::utl::ConfigItem
 //STRIP001 {
 //STRIP001  SwEnvItem aEnvItem;
 
-//STRIP001  com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
+//STRIP001  ::com::sun::star::uno::Sequence<rtl::OUString> GetPropertyNames();
 //STRIP001 public:
 //STRIP001  SwEnvCfgItem();
 //STRIP001  ~SwEnvCfgItem();
@@ -128,5 +129,6 @@ public:
 
 //STRIP001  virtual void            Commit();
 //STRIP001 };
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,8 +84,9 @@
 #include <outlundo.hxx>
 #include <eeitem.hxx>
 #include <editstat.hxx>
+namespace binfilter {
 
-DBG_NAMEEX(Outliner);
+DBG_NAMEEX(Outliner)//STRIP008 ;
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;
@@ -780,3 +781,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   return pEditEngine->IsForceAutoColor();
 /*N*/ }
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bclist.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,12 +72,13 @@
 #include <tools/list.hxx>
 
 #include "bclist.hxx"
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
 #define SC_LISTENERS_MAX 1024
 
-/*N*/ DECLARE_LIST(ScBroadcasters, SfxBroadcaster*);
+/*N*/ DECLARE_LIST(ScBroadcasters, SfxBroadcaster*)//STRIP008 ;
 
 //------------------------------------------------------------------------
 
@@ -222,3 +223,4 @@
 
 
 
+}

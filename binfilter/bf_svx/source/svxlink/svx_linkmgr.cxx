@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,13 +126,14 @@
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
 #include "unolingu.hxx"
+namespace binfilter {
 
-//STRIP001 class SvxInternalLink : public so3::SvLinkSource
+//STRIP001 class SvxInternalLink : public ::so3::SvLinkSource
 //STRIP001 {
 //STRIP001 public:
 //STRIP001  SvxInternalLink() {}
 //STRIP001
-//STRIP001  virtual BOOL Connect( so3::SvBaseLink* );
+//STRIP001  virtual BOOL Connect( ::so3::SvBaseLink* );
 //STRIP001 };
 
 
@@ -141,7 +142,7 @@
 /*N*/   SvLinkManager::SetPersist( pPersist );
 /*N*/ }
 
-/*N*/ so3::SvLinkSourceRef SvxLinkManager::CreateObj( so3::SvBaseLink * pLink )
+/*N*/ ::so3::SvLinkSourceRef SvxLinkManager::CreateObj( ::so3::SvBaseLink * pLink )
 /*N*/ {
 /*N*/   switch( pLink->GetObjType() )
 /*N*/   {
@@ -156,7 +157,7 @@
 /*N*/ }
 
 
-/*N*/ BOOL SvxLinkManager::InsertFileLink( so3::SvBaseLink& rLink,
+/*N*/ BOOL SvxLinkManager::InsertFileLink( ::so3::SvBaseLink& rLink,
 /*N*/                                   USHORT nFileType,
 /*N*/                                   const String& rFileNm,
 /*N*/                                   const String* pFilterNm,
@@ -173,19 +174,19 @@
 /*N*/       ( sCmd += ::so3::cTokenSeperator ) += *pFilterNm;
 /*N*/
 /*N*/   return SvLinkManager::InsertLink( &rLink, nFileType,
-/*N*/                                   so3::LINKUPDATE_ONCALL, &sCmd );
+/*N*/                                   ::so3::LINKUPDATE_ONCALL, &sCmd );
 /*N*/ }
 
-//STRIP001 BOOL SvxLinkManager::InsertFileLink( so3::SvBaseLink& rLink )
+//STRIP001 BOOL SvxLinkManager::InsertFileLink( ::so3::SvBaseLink& rLink )
 //STRIP001 {
 //STRIP001  if( OBJECT_CLIENT_FILE == ( OBJECT_CLIENT_FILE & rLink.GetObjType() ))
 //STRIP001      return SvLinkManager::InsertLink( &rLink, rLink.GetObjType(),
-//STRIP001                                          so3::LINKUPDATE_ONCALL );
+//STRIP001                                          ::so3::LINKUPDATE_ONCALL );
 //STRIP001  return FALSE;
 //STRIP001 }
 
         // erfrage die Strings fuer den Dialog
-/*N*/ BOOL SvxLinkManager::GetDisplayNames( const so3::SvBaseLink* pBaseLink,
+/*N*/ BOOL SvxLinkManager::GetDisplayNames( const ::so3::SvBaseLink* pBaseLink,
 /*N*/                                       String* pType,
 /*N*/                                       String* pFile,
 /*N*/                                       String* pLink,
@@ -233,9 +234,9 @@
 /*N*/ void SvxLinkManager::CancelTransfers()
 /*N*/ {
 /*N*/   SvFileObject* pFileObj;
-/*N*/   so3::SvBaseLink* pLnk;
+/*N*/   ::so3::SvBaseLink* pLnk;
 /*N*/
-/*N*/   const so3::SvBaseLinks& rLnks = GetLinks();
+/*N*/   const ::so3::SvBaseLinks& rLnks = GetLinks();
 /*N*/   for( USHORT n = rLnks.Count(); n; )
 /*N*/       if( 0 != ( pLnk = &(*rLnks[ --n ])) &&
 /*N*/           OBJECT_CLIENT_FILE == (OBJECT_CLIENT_FILE & pLnk->GetObjType()) &&
@@ -245,7 +246,7 @@
 /*N*/           pFileObj->CancelTransfers();
 /*N*/ }
 
-//STRIP001 void SvxLinkManager::SetTransferPriority( so3::SvBaseLink& rLink, USHORT nPrio )
+//STRIP001 void SvxLinkManager::SetTransferPriority( ::so3::SvBaseLink& rLink, USHORT nPrio )
 //STRIP001 {
 //STRIP001  SvFileObject* pFileObj =
 //STRIP001 //       (SvFileObject*)SvFileObject::ClassFactory()->
@@ -335,7 +336,7 @@
 //STRIP001  return sRet;
 //STRIP001 }
 
-//STRIP001 BOOL SvxInternalLink::Connect( so3::SvBaseLink* pLink )
+//STRIP001 BOOL SvxInternalLink::Connect( ::so3::SvBaseLink* pLink )
 //STRIP001 {
 //STRIP001  SfxObjectShell* pFndShell = 0;
 //STRIP001  String sTopic, sItem, sReferer;
@@ -438,7 +439,7 @@
 //STRIP001  BOOL bRet = FALSE;
 //STRIP001  if( pFndShell )
 //STRIP001  {
-//STRIP001      so3::SvLinkSource* pNewSrc = pFndShell->DdeCreateLinkSource( sItem );
+//STRIP001      ::so3::SvLinkSource* pNewSrc = pFndShell->DdeCreateLinkSource( sItem );
 //STRIP001      if( pNewSrc )
 //STRIP001      {
 //STRIP001          bRet = TRUE;
@@ -448,7 +449,7 @@
 //STRIP001
 //STRIP001          pLink->SetObj( pNewSrc );
 //STRIP001          pNewSrc->AddDataAdvise( pLink, aFl.MimeType,
-//STRIP001                              so3::LINKUPDATE_ONCALL == pLink->GetUpdateMode()
+//STRIP001                              ::so3::LINKUPDATE_ONCALL == pLink->GetUpdateMode()
 //STRIP001                                  ? ADVISEMODE_ONLYONCE
 //STRIP001                                  : 0 );
 //STRIP001      }
@@ -457,3 +458,4 @@
 //STRIP001 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartAxis.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,7 @@
 #include "chaxis.hxx"
 #include "mapprov.hxx"
 #include "pairs.hxx"
+namespace binfilter {
 
 using namespace vos;
 using namespace ::rtl;
@@ -132,7 +133,7 @@ ChXChartAxis::~ChXChartAxis()
 
 
 ::rtl::OUString SAL_CALL ChXChartAxis::getImplementationName()
-    throw( uno::RuntimeException )
+throw( uno::RuntimeException )
 {
     return SCH_ASCII_TO_OU( "ChXChartAxis" );
 }
@@ -845,7 +846,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case XATTR_LINEDASH:
                 if (pProperty->nMemberId == MID_NAME )
                 {
-                    rtl::OUString aString;
+                    ::rtl::OUString aString;
                     if (*pValue >>= aString)
                         SvxShape::SetFillAttribute (nWID, aString, aAttributes, mpModel);
                     break;
@@ -881,7 +882,7 @@ Sequence<PropertyState > SAL_CALL ChXChartAxis::getPropertyStates(
     OGuard aGuard( Application::GetSolarMutex() );
 
     const sal_Int32 nCount = aPropertyNames.getLength();
-    const rtl::OUString * pName = aPropertyNames.getConstArray();
+    const ::rtl::OUString * pName = aPropertyNames.getConstArray();
     Sequence<PropertyState > aStates (nCount);
     PropertyState * pState = aStates.getArray();
 
@@ -958,3 +959,4 @@ void    ChXChartAxis::GetPropertyValue  (const SfxItemPropertyMap & rProperty,
 }
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dbdocutl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:34:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #include "dbdocutl.hxx"
 #include "document.hxx"
 #include "cell.hxx"
+namespace binfilter {
 
 using namespace ::com::sun::star;
 
@@ -228,3 +229,4 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
+}

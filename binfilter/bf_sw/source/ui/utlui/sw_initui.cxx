@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:48 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
+namespace binfilter {
 
 #define C2S(cChar) UniString::CreateFromAscii(cChar)
 /*--------------------------------------------------------------------
@@ -313,3 +314,4 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 
 
 
+}

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_paralist.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #include <paralist.hxx>
 #include <outliner.hxx>     // nur wegen Paragraph, muss geaendert werden!
 #include <numdef.hxx>
+namespace binfilter {
 
 /*N*/ DBG_NAME(Paragraph);
 
@@ -259,3 +260,4 @@
 //STRIP001  }
 //STRIP001  return nVisPos;
 //STRIP001 }
+}

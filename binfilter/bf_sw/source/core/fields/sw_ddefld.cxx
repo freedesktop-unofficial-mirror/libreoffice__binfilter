@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ddefld.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 15:18:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,6 +102,7 @@
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
+namespace binfilter {
 
 using namespace rtl;
 
@@ -393,7 +394,7 @@ using namespace rtl;
 /* -----------------------------28.08.00 16:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwDDEFieldType::QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const
+//STRIP001 BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const
 //STRIP001 {
 //STRIP001  BYTE nPart = 0;
 //STRIP001     nMId &= ~CONVERT_TWIPS;
@@ -404,7 +405,7 @@ using namespace rtl;
 //STRIP001  case FIELD_PROP_SUBTYPE:   nPart = 1; break;
 //STRIP001  case FIELD_PROP_BOOL1:
 //STRIP001      {
-//STRIP001          sal_Bool bSet = GetType() == so3::LINKUPDATE_ALWAYS ? TRUE : FALSE;
+//STRIP001          sal_Bool bSet = GetType() == ::so3::LINKUPDATE_ALWAYS ? TRUE : FALSE;
 //STRIP001          rVal.setValue(&bSet, ::getBooleanCppuType());
 //STRIP001      }
 //STRIP001      break;
@@ -412,13 +413,13 @@ using namespace rtl;
 //STRIP001      DBG_ERROR("illegal property");
 //STRIP001  }
 //STRIP001  if( nPart )
-//STRIP001         rVal <<= OUString(GetCmd().GetToken(nPart-1, so3::cTokenSeperator));
+//STRIP001         rVal <<= OUString(GetCmd().GetToken(nPart-1, ::so3::cTokenSeperator));
 //STRIP001  return TRUE;
 //STRIP001 }
 /* -----------------------------28.08.00 16:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 BOOL SwDDEFieldType::PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId )
+//STRIP001 BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId )
 //STRIP001 {
 //STRIP001  BYTE nPart = 0;
 //STRIP001     nMId &= ~CONVERT_TWIPS;
@@ -428,8 +429,8 @@ using namespace rtl;
 //STRIP001  case FIELD_PROP_PAR4:      nPart = 2; break;
 //STRIP001  case FIELD_PROP_SUBTYPE:   nPart = 1; break;
 //STRIP001  case FIELD_PROP_BOOL1:
-//STRIP001         SetType( *(sal_Bool*)rVal.getValue() ? so3::LINKUPDATE_ALWAYS
-//STRIP001                                           : so3::LINKUPDATE_ONCALL );
+//STRIP001         SetType( *(sal_Bool*)rVal.getValue() ? ::so3::LINKUPDATE_ALWAYS
+//STRIP001                                           : ::so3::LINKUPDATE_ONCALL );
 //STRIP001      break;
 //STRIP001  default:
 //STRIP001      DBG_ERROR("illegal property");
@@ -438,8 +439,8 @@ using namespace rtl;
 //STRIP001  {
 //STRIP001      String sTmp, sCmd( GetCmd() );
 //STRIP001         while(3 > sCmd.GetTokenCount(so3::cTokenSeperator))
-//STRIP001             sCmd += so3::cTokenSeperator;
-//STRIP001         sCmd.SetToken( nPart-1, so3::cTokenSeperator, ::GetString( rVal, sTmp ) );
+//STRIP001             sCmd += ::so3::cTokenSeperator;
+//STRIP001         sCmd.SetToken( nPart-1, ::so3::cTokenSeperator, ::GetString( rVal, sTmp ) );
 //STRIP001      SetCmd( sCmd );
 //STRIP001  }
 //STRIP001  return TRUE;
@@ -501,3 +502,4 @@ using namespace rtl;
 //STRIP001  ((SwDDEFieldType*)GetTyp())->SetCmd(rStr);
 //STRIP001 }
 
+}
