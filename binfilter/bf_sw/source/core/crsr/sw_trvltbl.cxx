@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvltbl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:02:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,16 +66,20 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _CRSRSH_HXX
-#include <crsrsh.hxx>
-#endif
+// auto strip #ifndef _CRSRSH_HXX
+// auto strip #include <crsrsh.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -85,42 +89,42 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>       //EndAllAction gibts nur an der EditShell
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _CALLNK_HXX
-#include <callnk.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _CALLNK_HXX
+// auto strip #include <callnk.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
 #ifndef _CELLFRM_HXX //autogen
 #include <cellfrm.hxx>
 #endif

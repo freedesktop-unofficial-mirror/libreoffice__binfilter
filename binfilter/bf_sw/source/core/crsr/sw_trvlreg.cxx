@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvlreg.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:02:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,33 +62,37 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _SWCRSR_HXX
-#include <swcrsr.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWCRSR_HXX
+// auto strip #include <swcrsr.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _CALLNK_HXX
-#include <callnk.hxx>
-#endif
-#ifndef _PAMTYP_HXX
-#include <pamtyp.hxx>
-#endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
+// auto strip #ifndef _CALLNK_HXX
+// auto strip #include <callnk.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAMTYP_HXX
+// auto strip #include <pamtyp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
