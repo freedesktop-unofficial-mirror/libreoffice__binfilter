@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2004-07-13 16:26:25 $
+#   last change: $Author: rt $ $Date: 2004-10-11 07:57:19 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -154,7 +154,7 @@ SHL1STDLIBS+=       \
 
 
 .IF "$(OS)" == "MACOSX"
-# static libraries muyst come at end of list on MacOSX
+# static libraries must come at the end of list on MacOSX
 SHL1STDLIBS+= $(BFSCHLIB)
 .ENDIF
 
