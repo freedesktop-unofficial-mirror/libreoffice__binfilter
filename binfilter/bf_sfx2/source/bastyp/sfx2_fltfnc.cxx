@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 13:42:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -229,10 +229,6 @@
 #include <rtl/ustring.hxx>
 #include <vos/process.hxx>
 #include <svtools/pathoptions.hxx>
-
-#ifndef _L2TXTENC_HXX
-#include <tools/l2txtenc.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 
