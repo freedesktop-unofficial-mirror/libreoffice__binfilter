@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdata.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,59 +58,59 @@
  *
  *
  ************************************************************************/
-#ifndef _CACHESTR_HXX //autogen
-#include <tools/cachestr.hxx>
-#endif
+// auto strip #ifndef _CACHESTR_HXX //autogen
+// auto strip #include <tools/cachestr.hxx>
+// auto strip #endif
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
 #endif
-#ifndef _INETSTRM_HXX //autogen
-#include <svtools/inetstrm.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _INETSTRM_HXX //autogen
+// auto strip #include <svtools/inetstrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 
 #define _SVSTDARR_STRINGS
-#include <svtools/svstdarr.hxx>
-#include <vos/mutex.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #include <vos/mutex.hxx>
 
-#include <vcl/menu.hxx>
+// auto strip #include <vcl/menu.hxx>
 
-#ifndef _LOGINERR_HXX
-#include <svtools/loginerr.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _DATETIMEITEM_HXX //autogen
-#include <svtools/dateitem.hxx>
-#endif
-#ifndef _SV_MENU_HXX
-#include <vcl/menu.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
-#include "comphelper/processfactory.hxx"
+// auto strip #ifndef _LOGINERR_HXX
+// auto strip #include <svtools/loginerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATETIMEITEM_HXX //autogen
+// auto strip #include <svtools/dateitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MENU_HXX
+// auto strip #include <vcl/menu.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #include "comphelper/processfactory.hxx"
 
-#include "viewfrm.hxx"
+// auto strip #include "viewfrm.hxx"
 #include "appdata.hxx"
 #include "dispatch.hxx"
-#include "event.hxx"
-#include "sfxtypes.hxx"
-#include "sfxdir.hxx"
+// auto strip #include "event.hxx"
+// auto strip #include "sfxtypes.hxx"
+// auto strip #include "sfxdir.hxx"
 #include "doctempl.hxx"
-#include "dataurl.hxx"
+// auto strip #include "dataurl.hxx"
 #include "arrdecl.hxx"
-#include "docfac.hxx"
+// auto strip #include "docfac.hxx"
 #include "docfile.hxx"
-#include "request.hxx"
-#include "referers.hxx"
+// auto strip #include "request.hxx"
+// auto strip #include "referers.hxx"
 #include "app.hrc"
-#include "sfxresid.hxx"
-#include "objshimp.hxx"
-#include "appuno.hxx"
+// auto strip #include "sfxresid.hxx"
+// auto strip #include "objshimp.hxx"
+// auto strip #include "appuno.hxx"
 #include "imestatuswindow.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
