@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wsfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:40:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _PSTM_HXX
-#include <tools/pstm.hxx>
-#endif
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
 #ifndef _OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
@@ -78,11 +78,15 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
 #endif
-#ifndef _SVX_KEEPITEM_HXX
-#include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX
-#include <bf_svx/brkitem.hxx>
+// auto strip #ifndef _SVX_KEEPITEM_HXX
+// auto strip #include <bf_svx/keepitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _FMTORNT_HXX
@@ -94,18 +98,18 @@
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
@@ -118,15 +122,15 @@
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
 #endif
@@ -136,24 +140,24 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
 #endif
-#ifndef _FMTFORDR_HXX
-#include <fmtfordr.hxx>
-#endif
+// auto strip #ifndef _FMTFORDR_HXX
+// auto strip #include <fmtfordr.hxx>
+// auto strip #endif
 #ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
 #endif
 #ifndef _FMTPDSC_HXX
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
-#include <bf_svx/keepitem.hxx>
-#endif
+// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
+// auto strip #include <bf_svx/keepitem.hxx>
+// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -169,12 +173,12 @@
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _HTMLTBL_HXX
-#include <htmltbl.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _HTMLTBL_HXX
+// auto strip #include <htmltbl.hxx>
+// auto strip #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
