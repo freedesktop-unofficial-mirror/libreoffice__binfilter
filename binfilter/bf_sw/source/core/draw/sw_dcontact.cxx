@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dcontact.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:17:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,12 +63,12 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
 #endif
@@ -84,15 +84,15 @@
 #ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
 #endif
-#ifndef _SVDOTEXT_HXX //autogen
-#include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDPAGV_HXX //autogen
-#include <bf_svx/svdpagv.hxx>
-#endif
+// auto strip #ifndef _SVDOTEXT_HXX //autogen
+// auto strip #include <bf_svx/svdotext.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGV_HXX //autogen
+// auto strip #include <bf_svx/svdpagv.hxx>
+// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
 #endif
@@ -100,6 +100,10 @@
 #include <bf_svx/svdview.hxx>
 #endif
 
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
 
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
@@ -113,9 +117,9 @@
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
@@ -134,9 +138,9 @@
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
@@ -152,9 +156,9 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
