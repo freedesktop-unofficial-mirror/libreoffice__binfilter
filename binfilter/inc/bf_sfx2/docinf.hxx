@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:56:26 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 13:58:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -289,7 +289,7 @@ public:
     void Clear();
 };
 
-DECL_PTRHINT(SfxDocumentInfoHint, SfxDocumentInfo);
+DECL_PTRHINT(/*empty*/, SfxDocumentInfoHint, SfxDocumentInfo);
 
 }//end of namespace binfilter
 #endif
