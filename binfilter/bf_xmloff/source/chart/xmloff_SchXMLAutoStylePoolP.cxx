@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_SchXMLAutoStylePoolP.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:42:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,24 +58,24 @@
  *
  *
  ************************************************************************/
-#include "SchXMLAutoStylePoolP.hxx"
+// auto strip #include "SchXMLAutoStylePoolP.hxx"
 #include "PropertyMap.hxx"
 
 #ifndef SCH_XMLEXPORT_HXX_
 #include "SchXMLExport.hxx"
 #endif
-#ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
-#include "XMLChartPropertySetMapper.hxx"
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
+// auto strip #include "XMLChartPropertySetMapper.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using ::binfilter::xmloff::token::GetXMLToken;

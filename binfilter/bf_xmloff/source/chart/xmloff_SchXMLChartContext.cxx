@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_SchXMLChartContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:42:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #include "SchXMLChartContext.hxx"
-#include "SchXMLImport.hxx"
+// auto strip #include "SchXMLImport.hxx"
 #include "SchXMLPlotAreaContext.hxx"
 #include "SchXMLParagraphContext.hxx"
 #include "SchXMLTableContext.hxx"
@@ -72,48 +72,48 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlement.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlement.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
-#include "xmlstyle.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLSTYLE_HXX
+// auto strip #include "xmlstyle.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
 #endif
 
 #include "vector"
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XDIAGRAM_HPP_
-#include <com/sun/star/chart/XDiagram.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XDIAGRAM_HPP_
+// auto strip #include <com/sun/star/chart/XDiagram.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
-#include <com/sun/star/util/XStringMapping.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
+// auto strip #include <com/sun/star/util/XStringMapping.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
-#include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
+// auto strip #include <com/sun/star/drawing/XDrawPage.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
 #endif
