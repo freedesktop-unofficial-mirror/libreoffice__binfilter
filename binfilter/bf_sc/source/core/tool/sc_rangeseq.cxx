@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangeseq.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:20:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,8 +69,8 @@
 #include <rtl/math.hxx>
 #include <tools/debug.hxx>
 
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/uno/Sequence.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
 #include "rangeseq.hxx"
 #include "document.hxx"
