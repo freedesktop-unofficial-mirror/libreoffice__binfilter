@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:12:01 $
+ *  last change: $Author: rt $ $Date: 2005-01-07 09:41:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2426,8 +2426,8 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/           if( bLink )
 /*N*/           {
 /*N*/               pGrf = 0;
-/*N*/               if( aGrfName.Len() )
-/*N*/                   aGrfName = URIHelper::SmartRelToAbs( aGrfName );
+                    if( aGrfName.Len() )
+/*N*/                   aGrfName = INetURLObject::RelToAbs(aGrfName );
 /*N*/           }
 /*N*/           else
 /*N*/           {
