@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 14:32:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1406,7 +1406,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/
 /*N*/   }
-/*N*/   __DELETE( nFlagSize ) pSetFlags;
+/*N*/   delete [] pSetFlags;
 /*N*/   if( pChkStr )
 /*N*/       return *pChkStr;
 /*?*/   return aName += String::CreateFromInt32( ++nNum );

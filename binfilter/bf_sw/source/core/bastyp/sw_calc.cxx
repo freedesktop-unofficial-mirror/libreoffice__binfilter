@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 14:32:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1738,7 +1738,7 @@ static int
 /*N*/ {
 /*N*/   for ( USHORT i = 0; i < nCount; ++i )
 /*N*/       delete *(ppHashTable+i);
-/*N*/   __DELETE(nCount) ppHashTable;
+/*N*/   delete [] ppHashTable;
 /*N*/ }
 
 /*N*/ SwCalcExp::SwCalcExp( const String& rStr, const SwSbxValue& rVal,

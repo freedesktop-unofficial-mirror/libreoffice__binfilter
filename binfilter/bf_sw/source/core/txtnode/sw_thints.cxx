@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 14:34:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1076,7 +1076,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           // uneindeutig
 /*?*/                           rSet.InvalidateItem( nWh );
 /*?*/                   }
-/*?*/               __DELETE( coArrSz ) aAttrArr;
+/*?*/               delete [] aAttrArr;
 /*N*/           }
 /*N*/       }
 /*N*/       if( aFmtSet.Count() )

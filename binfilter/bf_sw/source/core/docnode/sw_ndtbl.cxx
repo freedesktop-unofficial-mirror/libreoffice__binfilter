@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 14:34:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3307,7 +3307,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   DelFrms();
 /*N*/           break;
 /*N*/       }
 /*N*/
-/*N*/   __DELETE( nFlagSize ) pSetFlags;
+/*N*/   delete [] pSetFlags;
 /*N*/   return aName += String::CreateFromInt32( ++nNum );
 /*N*/ }
 
