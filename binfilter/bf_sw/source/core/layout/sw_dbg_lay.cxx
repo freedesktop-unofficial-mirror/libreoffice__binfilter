@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbg_lay.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:33:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,24 +143,29 @@
 
 #include "dbg_lay.hxx"
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_LONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #include <stdio.h>
 
-#include "frame.hxx"
-#include "layfrm.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "frame.hxx"
+// auto strip #include "layfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrm.hxx"
 #include "txtfrm.hxx"
-#include "ndtxt.hxx"
+// auto strip #include "ndtxt.hxx"
 #include "dflyobj.hxx"
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
