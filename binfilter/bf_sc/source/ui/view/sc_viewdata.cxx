@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:19 $
+ *  last change: $Author: hjs $ $Date: 2004-04-15 10:58:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -343,7 +343,8 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   aScrSize = Size( (long) ( STD_COL_WIDTH           * PIXEL_PER_TWIPS * OLE_STD_CELLS_X ),
 /*N*/                    (long) ( ScGlobal::nStdRowHeight * PIXEL_PER_TWIPS * OLE_STD_CELLS_Y ) );
 /*N*/   pTabData[0] = new ScViewDataTable;
-/*N*/   for (USHORT i=1; i<=MAXTAB; i++) pTabData[i] = NULL;
+/*N*/   USHORT i;
+/*N*/   for (i=1; i<=MAXTAB; i++) pTabData[i] = NULL;
 /*N*/   pThisTab = pTabData[nTabNo];
 /*N*/   for (i=0; i<4; i++)
 /*N*/   {
