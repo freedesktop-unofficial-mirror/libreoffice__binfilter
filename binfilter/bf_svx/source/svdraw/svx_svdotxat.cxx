@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:28:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,39 +59,48 @@
  *
  ************************************************************************/
 
-#include <svtools/style.hxx>
-#include "svdotext.hxx"
+// auto strip #include <svtools/style.hxx>
+// auto strip #include "svdotext.hxx"
 #include "svditext.hxx"
 #include "svdmodel.hxx" // fuer GetMaxObjSize und GetStyleSheetPool
 #include "svdoutl.hxx"
-#include "svdorect.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
+// auto strip #include "svdorect.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
 #include "svdocapt.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
-#include <svdetc.hxx>
+// auto strip #include <svdetc.hxx>
 #include "writingmodeitem.hxx"
-#include "editeng.hxx"
+// auto strip #include "editeng.hxx"
 #include "eeitem.hxx"
-#include "flditem.hxx"
 
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
 
-#ifndef _MyEDITVIEW_HXX
-#include "editview.hxx"
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
 #endif
+
+// auto strip #include "flditem.hxx"
+
+
+// auto strip #ifndef _MyEDITVIEW_HXX
+// auto strip #include "editview.hxx"
+// auto strip #endif
 
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
 #ifndef _EEITEM_HXX //autogen
 #include "eeitem.hxx"
@@ -116,25 +125,25 @@
 #endif
 
 #define ITEMID_LRSPACE          EE_PARA_LRSPACE
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <lrspitem.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
-#ifndef _SVX_NUMITEM_HXX //autogen
-#include <numitem.hxx>
-#endif
+// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
+// auto strip #include <numitem.hxx>
+// auto strip #endif
 
-#ifndef _MyEDITENG_HXX //autogen
-#include <editeng.hxx>
-#endif
+// auto strip #ifndef _MyEDITENG_HXX //autogen
+// auto strip #include <editeng.hxx>
+// auto strip #endif
 
-#ifndef _SVX_POSTITEM_HXX //autogen
-#include <postitem.hxx>
-#endif
+// auto strip #ifndef _SVX_POSTITEM_HXX //autogen
+// auto strip #include <postitem.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
