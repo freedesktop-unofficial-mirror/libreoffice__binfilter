@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_guess.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:50:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,40 +64,45 @@
 
 #include <ctype.h>
 
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>    // needed for SW_MOD() macro
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>   // ASSERTs
-#endif
-#ifndef _DLELSTNR_HXX_
-#include <dlelstnr.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>   // ASSERTs
+// auto strip #endif
+// auto strip #ifndef _DLELSTNR_HXX_
+// auto strip #include <dlelstnr.hxx>
+// auto strip #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>
 #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtSizeInfo, SwTxtFormatInfo
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
