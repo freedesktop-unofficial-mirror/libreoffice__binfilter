@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlnumfi.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:18:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,29 +61,29 @@
 
 #define _ZFORLIST_DECLARE_TABLE
 
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <svtools/numuno.hxx>
 #include <rtl/math.hxx>
 #include <tools/isolang.hxx>
 #include <tools/debug.hxx>
-#include <rtl/ustrbuf.hxx>
+// auto strip #include <rtl/ustrbuf.hxx>
 
 // #110680#
 //#include <comphelper/processfactory.hxx>
 
 #include "xmlnumfi.hxx"
-#include "xmltkmap.hxx"
+// auto strip #include "xmltkmap.hxx"
 #include "xmlnmspe.hxx"
-#include "xmlictxt.hxx"
+// auto strip #include "xmlictxt.hxx"
 #include "xmlimp.hxx"
 #include "xmluconv.hxx"
 #include "nmspmap.hxx"
-#include "families.hxx"
+// auto strip #include "families.hxx"
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;

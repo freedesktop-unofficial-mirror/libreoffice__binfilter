@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlnumfe.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:18:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,37 +62,37 @@
 #define _SVSTDARR_ULONGS
 #define _ZFORLIST_DECLARE_TABLE
 
-#include <svtools/svstdarr.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <svtools/numuno.hxx>
 #include <tools/isolang.hxx>
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
-#include <unotools/calendarwrapper.hxx>
-#include <unotools/charclass.hxx>
-#include <com/sun/star/lang/Locale.hpp>
-#include <rtl/ustrbuf.hxx>
+// auto strip #include <unotools/calendarwrapper.hxx>
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #include <rtl/ustrbuf.hxx>
 
 // #110680#
 //#include <comphelper/processfactory.hxx>
 
-#include <com/sun/star/i18n/NativeNumberXmlAttributes.hpp>
+// auto strip #include <com/sun/star/i18n/NativeNumberXmlAttributes.hpp>
 
-#include "xmlnumfe.hxx"
+// auto strip #include "xmlnumfe.hxx"
 #include "xmlnmspe.hxx"
 #include "xmluconv.hxx"
-#include "attrlist.hxx"
-#include "nmspmap.hxx"
-#include "families.hxx"
+// auto strip #include "attrlist.hxx"
+// auto strip #include "nmspmap.hxx"
+// auto strip #include "families.hxx"
 #include "xmlnumfi.hxx"     // SvXMLNumFmtDefaults
 
 #define _SVSTDARR_USHORTS
 #include <svtools/svstdarr.hxx>
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
