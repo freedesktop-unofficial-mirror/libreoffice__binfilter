@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlkywd.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:06 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2017,5 +2017,8 @@ XML_CONSTASCII_ACTION( sXML_text_style_name, "text-style-name" );
 
 XML_CONSTASCII_ACTION( sXML_sort_algorithm, "sort-algorithm" );
 XML_CONSTASCII_ACTION( sXML_roll_from_top, "roll-from-top" );
+
+XML_CONSTASCII_ACTION( sXML_script_data, "script-data" );
+XML_CONSTASCII_ACTION( sXML_libraries, "libraries" );
 }//end of namespace binfilter
 #endif
