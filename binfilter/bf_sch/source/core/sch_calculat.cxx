@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_calculat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:42:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,17 +60,17 @@
  ************************************************************************/
 
 // header for Point, Rectangle
-#ifndef _SV_GEN_HXX
-#include <tools/gen.hxx>
-#endif
+// auto strip #ifndef _SV_GEN_HXX
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
 // header for Polygon
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 // header for DBG_ASSERT
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 // header for XPolygon, XPolyPolygon
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
@@ -79,9 +79,9 @@
 #ifndef _SV_LINE_HXX
 #include <tools/line.hxx>
 #endif
-#ifndef INCLUDED_RTL_MATH_HXX
-#include <rtl/math.hxx>
-#endif
+// auto strip #ifndef INCLUDED_RTL_MATH_HXX
+// auto strip #include <rtl/math.hxx>
+// auto strip #endif
 // for performance measurement
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
