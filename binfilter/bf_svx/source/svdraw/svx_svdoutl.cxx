@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoutl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:29:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,24 +62,24 @@
 #ifndef _SVDOUTL_HXX //autogen
 #include "svdoutl.hxx"
 #endif
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include "svdotext.hxx"
 #endif
 #ifndef _EDITSTAT_HXX //autogen wg. EE_CNTRL_STRETCHING
 #include <editstat.hxx>
 #endif
-#ifndef _SVDMODEL_HXX //autogen wg. SdrModel
-#include <svdmodel.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen wg. EE_ITEMS_START
-#include <eeitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen wg. SfxItemPool
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen wg. SdrModel
+// auto strip #include <svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _EEITEM_HXX //autogen wg. EE_ITEMS_START
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen wg. SfxItemPool
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
