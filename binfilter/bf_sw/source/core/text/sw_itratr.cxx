@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itratr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:51:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,108 +65,113 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
-#ifndef _SVX_CHARSCALEITEM_HXX
-#include <bf_svx/charscaleitem.hxx>
+// auto strip #ifndef _SVX_CHARSCALEITEM_HXX
+// auto strip #include <bf_svx/charscaleitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
-#include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
-#include <fmtftn.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>   // ViewShell
-#endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLCNT_HXX //autogen
+// auto strip #include <fmtflcnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFTN_HXX //autogen
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx> // ViewShell
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>      // SwField
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>         // SwPosition        (lcl_MinMaxNode)
-#endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>
-#endif
-#ifndef _ITRATR_HXX
-#include <itratr.hxx>
-#endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
-#ifndef _HTMLTBL_HXX
-#include <htmltbl.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>      // SwField
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>         // SwPosition      (lcl_MinMaxNode)
+// auto strip #endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _ITRATR_HXX
+// auto strip #include <itratr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
+// auto strip #ifndef _HTMLTBL_HXX
+// auto strip #include <htmltbl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _REDLNITR_HXX
 #include <redlnitr.hxx>
 #endif
-#ifndef _FMTSRND_HXX
-#include <fmtsrnd.hxx>
-#endif
+// auto strip #ifndef _FMTSRND_HXX
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
 #ifndef _ITRTXT_HXX
 #include <itrtxt.hxx>
 #endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
-#include <com/sun/star/i18n/WordType.hpp>
-#endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
+// auto strip #include <com/sun/star/i18n/WordType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
