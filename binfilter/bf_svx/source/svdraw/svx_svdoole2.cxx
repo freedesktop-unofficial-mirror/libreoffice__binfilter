@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:29 $
+ *  last change: $Author: mwu $ $Date: 2003-10-13 06:53:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -511,29 +511,29 @@ SO2_DECL_REF(SvInPlaceObject)
 // -----------------------------------------------------------------------------
 
 /*N*/ void SdrOle2Obj::SetObjRef(const SvInPlaceObjectRef& rNewObjRef)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if( rNewObjRef == *ppObjRef )
-//STRIP001      return;
-//STRIP001
-//STRIP001  Disconnect();
-//STRIP001
-//STRIP001  *ppObjRef=rNewObjRef;
-//STRIP001
-//STRIP001  SvInPlaceObjectRef& rIPRef = *ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is() &&
-//STRIP001      (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE) )
-//STRIP001  {
-//STRIP001      SetResizeProtect(TRUE);
-//STRIP001  }
-//STRIP001
-//STRIP001     // #108759# For math objects, set closed state to transparent
-//STRIP001     if( ImplIsMathObj( *ppObjRef ) )
-//STRIP001         SetClosedObj( false );
-//STRIP001
-//STRIP001  Connect();
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
+/*N*/ {
+/*N*/   if( rNewObjRef == *ppObjRef )
+/*N*/       return;
+/*N*/
+/*N*/   Disconnect();
+/*N*/
+/*N*/   *ppObjRef=rNewObjRef;
+/*N*/
+/*N*/   SvInPlaceObjectRef& rIPRef = *ppObjRef;
+/*N*/
+/*N*/   if (rIPRef.Is() &&
+/*N*/       (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_NOTRESIZEABLE) )
+/*N*/   {
+/*N*/       SetResizeProtect(TRUE);
+/*N*/   }
+/*N*/
+/*N*/     // #108759# For math objects, set closed state to transparent
+/*N*/     if( ImplIsMathObj( *ppObjRef ) )
+/*N*/         SetClosedObj( false );
+/*N*/
+/*N*/   Connect();
+/*N*/   SetChanged();
+/*N*/   SendRepaintBroadcast();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -569,9 +569,9 @@ SO2_DECL_REF(SvInPlaceObject)
 // -----------------------------------------------------------------------------
 
 /*N*/ void SdrOle2Obj::SetPersistName( const String& rPersistName )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001     mpImpl->aPersistName = rPersistName;
-//STRIP001  SetChanged();
+/*N*/ {
+/*N*/   mpImpl->aPersistName = rPersistName;
+/*N*/   SetChanged();
 /*N*/ }
 
 // -----------------------------------------------------------------------------

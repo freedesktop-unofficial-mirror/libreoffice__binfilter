@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-10-02 14:35:53 $
+ *  last change: $Author: mwu $ $Date: 2003-10-13 06:53:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -655,9 +655,9 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ void ScDocument::AddOLEObjectToCollection(const String& rName)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if (!pOtherObjects)
-//STRIP001      pOtherObjects = new StrCollection;
-//STRIP001  pOtherObjects->Insert( new StrData( rName ) );
+/*N*/   if (!pOtherObjects)
+/*N*/       pOtherObjects = new StrCollection;
+/*N*/   pOtherObjects->Insert( new StrData( rName ) );
 /*N*/ }
 
 
