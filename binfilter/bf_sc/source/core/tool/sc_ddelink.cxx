@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_ddelink.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:15:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,27 +60,27 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#include <bf_svx/linkmgr.hxx>
-#include <bf_sfx2/bindings.hxx>
+// auto strip #ifndef _LIST_HXX //autogen
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #include <bf_sfx2/bindings.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "ddelink.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "document.hxx"
 #include "scmatrix.hxx"
-#include "patattr.hxx"
+// auto strip #include "patattr.hxx"
 #include "rechead.hxx"
-#include "rangeseq.hxx"
+// auto strip #include "rangeseq.hxx"
 #include "bf_sc.hrc"
 #include "hints.hxx"
 namespace binfilter {

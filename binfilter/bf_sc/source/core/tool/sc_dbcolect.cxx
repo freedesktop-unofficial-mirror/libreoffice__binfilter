@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dbcolect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:15:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,7 +59,7 @@
  *
  ************************************************************************/
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -70,8 +70,8 @@
 #endif
 
 #include "dbcolect.hxx"
-#include "global.hxx"
-#include "refupdat.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "refupdat.hxx"
 #include "rechead.hxx"
 #include "document.hxx"
 #include "globstr.hrc"
