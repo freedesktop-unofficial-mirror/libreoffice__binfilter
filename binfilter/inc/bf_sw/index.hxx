@@ -2,9 +2,9 @@
  *
  *  $RCSfile: index.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:44:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,9 @@
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>               // for RTTI of SwIndexReg
 #endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>             // for xub_StrLen
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>               // for xub_StrLen
+// auto strip #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 namespace binfilter {
 #define INVALID_INDEX STRING_NOTFOUND
