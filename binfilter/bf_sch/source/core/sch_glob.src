@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_glob.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:19:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -508,34 +508,38 @@ String STR_ONLY_ABS_VALUES
     Text[ ar ] = "لا يمكن لنمط الرسم البياني هذا إظهار نطاق قيم بعلامات مختلفة.\nسوف يتم قبول القيم المطلقة.";
     Text[ he ] = "‮סוג התרשים הזה אינו מסוגל להציג ערכים בעלי סימנים הפוכים.\nולכן הערכים יוצגו כערכים מוחלטים ללא סימנים.‬";
 };
-String STR_TRANSLATED
-{
-    Text [ de ] = "Die Datenreihen wurden neu angeordnet, ein Umschalten zwischen Daten in Reihen und Daten in Zeilen ist daher nicht m�glich" ;
-    Text [ en-US ] = "You have changed the order of the data series, thus you cannot switch between data in columns and data in rows";
-    Text [ x-comment ] = "NL: Im deutschen Text steht schierer Bl�dsinn: ein Umschalten zwischen Daten in Zeilen Spalten wird wohl gemeint sein!!!-";
-    Text[ pt ] = "As séries de dados foram ordenadas de novo; é impossível comutar entre os dados em colunas e os dados em linhas.";
-    Text[ ru ] = "Изменен порядок рядов данных. Поэтому невозможно переключение между данными в столбцах и данными в строках.";
-    Text[ el ] = "Η διάταξη των εγγραφών άλλαξε και για αυτό το λόγο δεν είναι δυνατόν να γίνει εναλλαγή μεταξύ δεδομένων γραμμών και δεδομένων στηλών.";
-    Text[ nl ] = "U heeft de volgorde van de records gewijzigd. Daarom kunt u niet omschakelen tussen gegevens in rijen en gegevens in kolommen.";
-    Text[ fr ] = "Vous avez modifié l'ordre des rangées de données, si bien qu'il n'est plus possible de basculer entre données en séries et données par lignes.";
-    Text[ es ] = "El orden de los datos ha sido modificado, por lo que no será posible pasar de los datos de columnas a los de filas.";
-    Text[ fi ] = "Olet muuttanut tietosarjojen järjestystä, joten et voi vaihtaa sarakkeiden ja rivien tietoja keskenään";
-    Text[ ca ] = "L'ordre de les dades ha estat modificada, per la qual cosa no serà possible passar de les dades de columna a les dades de fila.";
-    Text[ it ] = "Impossibile passare dai dati in fila ai dati nelle colonne. La disposizione delle file dei dati è stata cambiata.";
-    Text[ da ] = "Dataserierne er blevet genarrangeret, det er derfor ikke muligt at skifte mellem data i kolonner og data i rækker.";
-    Text[ sv ] = "Dataserierna har omordnats och det är därför ej längre möjligt att växla mellan data i kolumner och data i rader";
-    Text[ pl ] = "Serie danych zostały na nowo ustawione, przełączanie pomiędzy danymi w wierszach i danymi w kolumnach jest zatem niemożliwe.";
-    Text[ pt-BR ] = "Foi alterada a ordem da série de dados, portanto não é possível trocar os dados nas colunas com os dados nas linhas.";
-    Text[ th ] = "คุณได้เปลี่ยนลำดับอนุกรมข้อมูลแล้ว, ดังนั้น คุณไม่สามารถสลับระหว่างข้อมูลในคอลัมน์กับข้อมูลในแถวได้";
-    Text[ ja ] = "データ系列が並び替えられため､列の系列と行の系列の入れ替えはできません。";
-    Text[ ko ] = "연속 데이터 순서가 변경되었습니다. 따라서 연속 데이터와 행 계열을 전환할 수 없습니다.";
-    Text[ zh-CN ] = "已经重新编排了数据的排列顺序，因此无法切换数据的行和列。";
-    Text[ zh-TW ] = "已經重新編排了資料排列順序，因此無法交換資料的欄和列。";
-    Text[ tr ] = "Veri dizilerinin sırası değiştirildi. Bu nedenle, dizilerdeki veriler ile satırlardaki veriler arasında geçiş yapılması olanaklı değil";
-    Text[ hi-IN ] = "आपने ड़ॉटा श्रृंखला का क्रम में परिवर्तन किया है, इसलिए आप स्तंभ और पंक्तियों के ड़ॉटा के बीच में स्विच् नहीं कर सकते है ।";
-    Text[ ar ] = "لقد قمت بتغيير ترتيب سلاسل البيانات، لهذا لا يمكنك التحويل بين البيانات في السلاسل والبيانات في الصفوف.";
-    Text[ he ] = "‮לא ניתן להחליף בין נתונים בעמודות ונתונים בשורות כי הסדר של סדרת הנתונים שונה.‬";
-};
+//STRIP001 String STR_TRANSLATED
+//STRIP001 {
+//STRIP001      Text = "Die Datenreihen wurden neu angeordnet, ein Umschalten zwischen Daten in Reihen und Daten in Zeilen ist daher nicht m�glich" ;
+//STRIP001      Text [ ENGLISH ] = "You have changed the order of the data rows,hence you cannot switch between data in columns and data in rows" ;
+//STRIP001      Text[ italian ] = "Impossibile passare dai dati in fila ai dati nelle colonne. La disposizione delle file dei dati ?stata cambiata.";
+//STRIP001      Text[ portuguese_brazilian ] = "Foi alterada a ordem da s�rie de dados, portanto n�o ?poss�vel trocar os dados nas colunas com os dados nas linhas.";
+//STRIP001      Text[ portuguese ] = "As s�ries de dados foram ordenadas de novo; ?imposs�vel comutar entre os dados em colunas e os dados em linhas.";
+//STRIP001      Text[ danish ] = "Dataserierne er blevet genarrangeret, det er derfor ikke muligt at skifte mellem data i kolonner og data i r�kker.";
+//STRIP001      Text[ french ] = "Vous avez modifi?l'ordre des rang�es de donn�es, si bien qu'il n'est plus possible de basculer entre donn�es en s�ries et donn�es par lignes.";
+//STRIP001      Text[ swedish ] = "Dataserierna har omordnats och det �r d�rf�r ej l�ngre m�jligt att v�xla mellan data i kolumner och data i rader";
+//STRIP001      Text[ dutch ] = "U heeft de volgorde van de records gewijzigd. Daarom kunt u niet omschakelen tussen gegevens in rijen en gegevens in kolommen.";
+//STRIP001      Text[ spanish ] = "El orden de los datos ha sido modificado, por lo que no ser?posible pasar de los datos de columnas a los de filas.";
+//STRIP001      Text[ english_us ] = "You have changed the order of the data series, thus you cannot switch between data in columns and data in rows";
+//STRIP001      Text[ chinese_simplified ] = "已经重新编排了数据的排列顺序，因此无法切换数据的行和列�?";
+//STRIP001      Text[ language_user1 ] = "NL: Im deutschen Text steht schierer Bl�dsinn: ein Umschalten zwischen Daten in Zeilen Spalten wird wohl gemeint sein!!!-";
+//STRIP001      Text[ russian ] = "������?��?��??��?������. ������?���������� ������������ ����?������??�������� ?������??������?";
+//STRIP001      Text[ polish ] = "Serie danych zosta�y na nowo ustawione, prze��czanie pomi�dzy danymi w wierszach i danymi w kolumnach jest zatem niemo�liwe.";
+//STRIP001      Text[ japanese ] = "データ系列が並び替えられため､列の系列と行の系列の入れ替えはできません�?";
+//STRIP001      Text[ chinese_traditional ] = "已經重新編排了資料排列順序，因此無法交換資料的欄和列�?";
+//STRIP001      Text[ arabic ] = "��?��?������ ����?����?��������?���� �� ����?������?��?�������� �� ������?��������?�� ������.";
+//STRIP001      Text[ dutch ] = "U heeft de volgorde van de records gewijzigd. Daarom kunt u niet omschakelen tussen gegevens in rijen en gegevens in kolommen.";
+//STRIP001      Text[ chinese_simplified ] = "已经重新编排了数据的排列顺序，因此无法切换数据的行和列�?";
+//STRIP001      Text[ greek ] = "?������?��?�������� ������ ��?��?���� �� ���� ��?����?������?�� ����?�������� ������ ��������?������?��?��������?������.";
+//STRIP001      Text[ korean ] = "연속 데이�?순서가 변경되었습니다. 따라�?연속 데이터와 �?계열�?전환�?�?없습니다.";
+//STRIP001      Text[ turkish ] = "Veri dizilerinin s�ras?de�i�tirildi. Bu nedenle, dizilerdeki veriler ile sat�rlardaki veriler aras�nda ge�i?yap�lmas?olanakl?de�il";
+//STRIP001      Text[ catalan ] = "L'ordre de les dades ha estat modificada, per la qual cosa no ser?possible passar de les dades de columna a les dades de fila.";
+//STRIP001      Text[ finnish ] = "Olet muuttanut tietosarjojen j�rjestyst? joten et voi vaihtaa sarakkeiden ja rivien tietoja kesken��n";
+//STRIP001      Text[ thai ] = "คุณได้เปลี่ยนลำดับอนุกรมข้อมูลแล้�? ดังนั้�?คุณไม่สามารถสลับระหว่างข้อมูลในคอลัมน์กับข้อมูลในแถวได�?";
+//STRIP001      Text[ czech ] = "Změnili jste pořadí datových řad, takže nemůžete přepínat mezi daty ve sloupcích a daty v řádcích";
+//STRIP001      Text[ hebrew ] = "‮ל�?ניתן להחליף בין נתונים בעמודות ונתונים בשורות כי הסדר של סדרת הנתונים שונה.�?";
+//STRIP001      Text[ hindi ] = "आपने ड़ॉट�?श्रृंखला का क्रम मे�?परिवर्तन किया है, इसलि�?आप स्तं�?और पंक्तियो�?के ड़ॉट�?के बी�?मे�?स्विच् नही�?कर सकते है �?";
+//STRIP001 };
 
 
 
