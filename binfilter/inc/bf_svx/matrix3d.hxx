@@ -2,9 +2,9 @@
  *
  *  $RCSfile: matrix3d.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:18:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <goodies/hmatrix.hxx>
 #endif
 
-#ifndef _SVX_VECTOR3D_HXX
-#include <goodies/vector3d.hxx>
-#endif
+// auto strip #ifndef _SVX_VECTOR3D_HXX
+// auto strip #include <goodies/vector3d.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
