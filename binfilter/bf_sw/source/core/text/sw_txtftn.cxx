@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtftn.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:56:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,14 +63,19 @@
 #pragma hdrstop
 
 #include "viewsh.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "pagefrm.hxx"
-#include "ndtxt.hxx"
-#include "txtatr.hxx"
+// auto strip #include "ndtxt.hxx"
+// auto strip #include "txtatr.hxx"
 
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -95,31 +100,31 @@
 #ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
 #endif
-#ifndef _SVDOBJ_HXX //autogen
-#include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
+// auto strip #ifndef _SVDOBJ_HXX //autogen
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
 #include "txtcfg.hxx"
-#include "swfont.hxx"   // new SwFont
+// auto strip #include "swfont.hxx" // new SwFont
 #include "porftn.hxx"
 #include "porfly.hxx"
-#include "porlay.hxx"
-#include "txtfrm.hxx"
+// auto strip #include "porlay.hxx"
+// auto strip #include "txtfrm.hxx"
 #include "itrform2.hxx"
 #include "frmsh.hxx"
 #include "ftnfrm.hxx"   // FindErgoSumFrm(), FindQuoVadisFrm(),
 #include "pagedesc.hxx"
-#include "redlnitr.hxx" // SwRedlnItr
+// auto strip #include "redlnitr.hxx" // SwRedlnItr
 #include "sectfrm.hxx"  // SwSectionFrm
-#include "layouter.hxx" // Endnote-Collection
-#include "frmtool.hxx"
-#include "ndindex.hxx"
+// auto strip #include "layouter.hxx" // Endnote-Collection
+// auto strip #include "frmtool.hxx"
+// auto strip #include "ndindex.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
