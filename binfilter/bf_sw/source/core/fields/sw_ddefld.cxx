@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ddefld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:25:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,39 +66,43 @@
 #include <bf_svx/linkmgr.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
+// auto strip #ifndef _EDITSH_HXX
+// auto strip #include <editsh.hxx>
+// auto strip #endif
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
-#include <txtfld.hxx>
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFLD_HXX //autogen
+// auto strip #include <txtfld.hxx>
+// auto strip #endif
 #ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
-#ifndef _SWDDETBL_HXX
-#include <swddetbl.hxx>
-#endif
+// auto strip #ifndef _SWDDETBL_HXX
+// auto strip #include <swddetbl.hxx>
+// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
