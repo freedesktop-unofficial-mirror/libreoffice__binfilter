@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtm3d2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:43:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,43 +59,43 @@
  *
  ************************************************************************/
 
-#ifndef _E3D_LIGHT3D_HXX //autogen
-#include <bf_svx/light3d.hxx>
-#endif
-#ifndef _E3D_DLIGHT3D_HXX //autogen
-#include <bf_svx/dlight3d.hxx>
-#endif
-#include "chtmodel.hxx"
-#include <bf_svx/obj3d.hxx>
+// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
+// auto strip #include <bf_svx/light3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_DLIGHT3D_HXX //autogen
+// auto strip #include <bf_svx/dlight3d.hxx>
+// auto strip #endif
+// auto strip #include "chtmodel.hxx"
+// auto strip #include <bf_svx/obj3d.hxx>
 #ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
 #endif
 #ifndef _SCH_DATAPOIN_HXX
 #include "datapoin.hxx"
 #endif
-#ifndef _CAMERA3D_HXX //autogen
-#include <bf_svx/camera3d.hxx>
-#endif
-#ifndef _E3D_EXTRUD3D_HXX //autogen
-#include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_POLYGON3D_HXX //autogen
-#include <bf_svx/polygn3d.hxx>
-#endif
+// auto strip #ifndef _CAMERA3D_HXX //autogen
+// auto strip #include <bf_svx/camera3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_EXTRUD3D_HXX //autogen
+// auto strip #include <bf_svx/extrud3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_POLYGON3D_HXX //autogen
+// auto strip #include <bf_svx/polygn3d.hxx>
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
 
-#include "chmod3d.hxx"
+// auto strip #include "chmod3d.hxx"
 #include "schattr.hxx"
 #include "objid.hxx"
 
 #include "axisobj.hxx"
 
-#ifndef _SVX3DITEMS_HXX
-#include <bf_svx/svx3ditems.hxx>
-#endif
+// auto strip #ifndef _SVX3DITEMS_HXX
+// auto strip #include <bf_svx/svx3ditems.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #define SCH_MIN(a, b) (((a) < (b))? (a): (b))
