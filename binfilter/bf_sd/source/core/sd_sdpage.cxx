@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:31:35 $
+ *  last change: $Author: hjs $ $Date: 2004-07-07 14:16:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -333,7 +333,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else if (eObjKind == PRESOBJ_GRAPHIC)
 /*N*/   {
-/*NBFF*/        Graphic aGraphic ( SdResId(BMP_PRESOBJ_GRAPHIC) );
+/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_GRAPHIC ) );
+/*NBFF*/        Graphic  aGraphic( aBmpEx );
 /*NBFF*/        OutputDevice &aOutDev = *Application::GetDefaultDevice();
 /*NBFF*/        aOutDev.Push();
 /*NBFF*/
@@ -350,28 +351,32 @@ using namespace ::com::sun::star;
 /*N*/   else if (eObjKind == PRESOBJ_OBJECT)
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
-/*NBFF*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_OBJECT) );
+/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_OBJECT ) );
+/*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_CHART)
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarChart" )));
-/*NBFF*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_CHART) );
+/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_CHART ) );
+/*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_ORGCHART)
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarOrg" )));
-/*NBFF*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_ORGCHART) );
+/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_ORGCHART ) );
+/*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_TABLE)
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarCalc" )));
-/*NBFF*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_TABLE) );
+/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_TABLE ) );
+/*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*?*/ #ifdef STARIMAGE_AVAILABLE
