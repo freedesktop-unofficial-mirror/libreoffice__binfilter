@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swblocks.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:32:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,15 +61,15 @@
 #ifndef _SWBLOCKS_HXX
 #define _SWBLOCKS_HXX
 
-#ifndef _DATE_HXX //autogen
-#include <tools/date.hxx>
-#endif
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
 #ifndef _PERSIST_HXX //autogen
 #include <so3/persist.hxx>
 #endif
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 /*N*/#include <tools/debug.hxx> //addded for stripping
 class SvxMacroTableDtor;
 namespace binfilter {
