@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_SchXMLPlotAreaContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:43:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,15 +70,15 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlement.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlement.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
 #endif
@@ -88,19 +88,19 @@
 #ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
 #endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
-#include "xmlstyle.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLSTYLE_HXX
+// auto strip #include "xmlstyle.hxx"
+// auto strip #endif
 #ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_XTWOAXISXSUPPLIER_HPP_
 #include <com/sun/star/chart/XTwoAxisXSupplier.hpp>
 #endif
@@ -110,9 +110,9 @@
 #ifndef _COM_SUN_STAR_CHART_XAXISZSUPPLIER_HPP_
 #include <com/sun/star/chart/XAxisZSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
-#include <com/sun/star/util/XStringMapping.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
+// auto strip #include <com/sun/star/util/XStringMapping.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
 #endif
@@ -126,12 +126,12 @@
 #include <com/sun/star/chart/XStatisticDisplay.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
-#include <com/sun/star/awt/Point.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
-#include <com/sun/star/awt/Size.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_POINT_HPP_
+// auto strip #include <com/sun/star/awt/Point.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
+// auto strip #include <com/sun/star/awt/Size.hpp>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_SchXMLImport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:43:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,10 +59,10 @@
  *
  ************************************************************************/
 
-#include "SchXMLImport.hxx"
+// auto strip #include "SchXMLImport.hxx"
 #include "SchXMLChartContext.hxx"
 #include "contexts.hxx"
-#include "XMLChartPropertySetMapper.hxx"
+// auto strip #include "XMLChartPropertySetMapper.hxx"
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -71,18 +71,18 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include "xmluconv.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
 #endif
@@ -90,12 +90,12 @@
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
-#include <com/sun/star/util/XStringMapping.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
+// auto strip #include <com/sun/star/util/XStringMapping.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
 #endif
