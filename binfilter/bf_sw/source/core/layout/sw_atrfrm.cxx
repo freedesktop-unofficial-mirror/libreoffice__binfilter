@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:33:20 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:36:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2616,10 +2616,10 @@ BOOL SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/       } while( 0 != ( pLast = aIter++ ));
 /*N*/ }
 
-//STRIP001 void SwFrmFmt::MakeFrms()
-//STRIP001 {
-//STRIP001  ASSERT( !this, "Sorry not implemented." );
-//STRIP001 }
+void SwFrmFmt::MakeFrms()
+{
+    ASSERT( !this, "Sorry not implemented." );
+}
 
 
 
