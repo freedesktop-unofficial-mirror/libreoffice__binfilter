@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svx3ditems.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:42:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,11 @@
 #ifndef _COM_SUN_STAR_DRAWING_SHADEMODE_HPP_
 #include <com/sun/star/drawing/ShadeMode.hpp>
 #endif
+
+#ifndef _XDEF_HXX //autogen
+#include "xdef.hxx"
+#endif
+
 namespace binfilter {
 
 
