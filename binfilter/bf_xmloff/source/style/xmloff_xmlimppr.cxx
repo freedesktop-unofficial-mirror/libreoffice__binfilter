@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlimppr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:18:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,25 +63,25 @@
 #include <com/sun/star/xml/AttributeData.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-#include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_ILLEGALARGUMENTEXCEPTION_HPP_
-#include <com/sun/star/lang/IllegalArgumentException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_ILLEGALARGUMENTEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/IllegalArgumentException.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETEXCEPTION_HPP_
-#include <com/sun/star/lang/WrappedTargetException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/WrappedTargetException.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_UNKNOWNPROPERTYEXCEPTION_HPP_
-#include <com/sun/star/beans/UnknownPropertyException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_UNKNOWNPROPERTYEXCEPTION_HPP_
+// auto strip #include <com/sun/star/beans/UnknownPropertyException.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVETOEXCEPTION_HPP_
-#include <com/sun/star/beans/PropertyVetoException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVETOEXCEPTION_HPP_
+// auto strip #include <com/sun/star/beans/PropertyVetoException.hpp>
+// auto strip #endif
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
@@ -94,28 +94,28 @@
 #include "nmspmap.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
-#include "xmlimppr.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLIMPPR_HXX
+// auto strip #include "xmlimppr.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#include "xmlkywd.hxx"
+// auto strip #include "xmlkywd.hxx"
 #include "unoatrcn.hxx"
 #include "xmlnmspe.hxx"
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 // STL includes
 #include <algorithm>

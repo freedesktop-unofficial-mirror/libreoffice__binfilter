@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlexppr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:18:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,35 +67,35 @@
 #include <com/sun/star/xml/AttributeData.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
-#include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+// auto strip #include <com/sun/star/lang/XTypeProvider.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 #include <list>
 #include <hash_map>
 
-#include "xmlexppr.hxx"
+// auto strip #include "xmlexppr.hxx"
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include "attrlist.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include "attrlist.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -109,16 +109,16 @@
 #include "xmlexp.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYSETINFOHASH_HXX
-#include "PropertySetInfoHash.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETINFOHASH_HXX
+// auto strip #include "PropertySetInfoHash.hxx"
+// auto strip #endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
 
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
