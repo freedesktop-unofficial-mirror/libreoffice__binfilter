@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dialogs.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: aw $ $Date: 2003-10-09 14:37:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -373,9 +373,9 @@
 //STRIP001 #define RID_SVXFLOAT_HYPERLINK_MARKWND       (RID_SVX_START + 232)
 
 // ResId's for Starone impl. bitmaps
-#define RID_UNODRAW_OBJECTS                 (RID_SVX_START + 233)
-#define RID_UNODRAW_OLE2                    (RID_SVX_START + 234)
-#define RID_UNODRAW_GRAPHICS                (RID_SVX_START + 235)
+//STRIP003 #define RID_UNODRAW_OBJECTS                  (RID_SVX_START + 233)
+//STRIP003 #define RID_UNODRAW_OLE2                 (RID_SVX_START + 234)
+//STRIP003 #define RID_UNODRAW_GRAPHICS             (RID_SVX_START + 235)
 
 // ResId fuer Distribute-Dialog
 //STRIP001 #define RID_SVXPAGE_DISTRIBUTE              (RID_SVX_START + 236)
