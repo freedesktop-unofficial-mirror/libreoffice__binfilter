@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 13:29:16 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:32:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,6 +124,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -450,10 +451,10 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   rOut << nI16Temp;
 /*N*/
-/*N*/   rOut.WriteByteString( INetURLObject::AbsToRel(aSoundFile,
+/*N*/   rOut.WriteByteString( so3::StaticBaseUrl::AbsToRel(aSoundFile,
 /*N*/                                                 INetURLObject::WAS_ENCODED,
 /*N*/                                                 INetURLObject::DECODE_UNAMBIGUOUS));
-/*N*/   rOut.WriteByteString( INetURLObject::AbsToRel(aFileName,
+/*N*/   rOut.WriteByteString( so3::StaticBaseUrl::AbsToRel(aFileName,
 /*N*/                                                 INetURLObject::WAS_ENCODED,
 /*N*/                                                 INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/   rOut.WriteByteString( aBookmarkName );
@@ -561,7 +562,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       String aSoundFileRel;
 /*N*/       rIn.ReadByteString( aSoundFileRel );
-/*N*/       INetURLObject aURLObj(::URIHelper::SmartRelToAbs(aSoundFileRel, FALSE,
+/*N*/       INetURLObject aURLObj(so3::StaticBaseUrl::SmartRelToAbs(aSoundFileRel, FALSE,
 /*N*/                                                        INetURLObject::WAS_ENCODED,
 /*N*/                                                        INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/       aSoundFile = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
@@ -572,7 +573,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       String aFileNameRel;
 /*N*/       rIn.ReadByteString( aFileNameRel );
-/*N*/       INetURLObject aURLObj(::URIHelper::SmartRelToAbs(aFileNameRel, FALSE,
+/*N*/       INetURLObject aURLObj(so3::StaticBaseUrl::SmartRelToAbs(aFileNameRel, FALSE,
 /*N*/                                                        INetURLObject::WAS_ENCODED,
 /*N*/                                                        INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/       aFileName = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
