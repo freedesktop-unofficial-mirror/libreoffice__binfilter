@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:44:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #ifndef _SVX_XLNTRIT_HXX //autogen
 #include <bf_svx/xlntrit.hxx>
 #endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
 #endif
@@ -81,16 +81,16 @@
 #endif
 #include <svtools/zforlist.hxx>
 #endif
-#ifndef _SVDORECT_HXX //autogen
-#include <bf_svx/svdorect.hxx>
-#endif
+// auto strip #ifndef _SVDORECT_HXX //autogen
+// auto strip #include <bf_svx/svdorect.hxx>
+// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-#ifndef _SCH_MEMCHRT_HXX
-#include "memchrt.hxx"
-#endif
+// auto strip #ifndef _SCH_MEMCHRT_HXX
+// auto strip #include "memchrt.hxx"
+// auto strip #endif
 #define ITEMID_ADJUST EE_PARA_JUST
 #include <bf_svx/adjitem.hxx>
 
@@ -98,26 +98,31 @@
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-#include <bf_svx/chrtitem.hxx>
+
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#include <bf_svx/fontitem.hxx>
-#include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/colritem.hxx>
-#ifndef _XTABLE_HXX
-#include <bf_svx/xtable.hxx> //STRIP002
-#endif
-#ifndef _SCH_OBJADJ_HXX
-#include  "objadj.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
-#include "objid.hxx"
-#endif
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include <bf_svx/xtable.hxx> //STRIP002
+// auto strip #endif
+// auto strip #ifndef _SCH_OBJADJ_HXX
+// auto strip #include  "objadj.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_OBJID_HXX
+// auto strip #include "objid.hxx"
+// auto strip #endif
 #ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"
 #endif
 #ifndef _SVX_SVXIDS_HRC
@@ -126,17 +131,17 @@
 #ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
 #endif
-#ifndef _DEFINES_HXX
-#include "defines.hxx"
-#endif
+// auto strip #ifndef _DEFINES_HXX
+// auto strip #include "defines.hxx"
+// auto strip #endif
 
 #include "glob.hrc"
 #include <bf_svx/dialogs.hrc>
 #include "math.h"
 
-#ifndef _SVX_ITEMTYPE_HXX //autogen
-#include <bf_svx/itemtype.hxx>
-#endif
+// auto strip #ifndef _SVX_ITEMTYPE_HXX //autogen
+// auto strip #include <bf_svx/itemtype.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <bf_svx/xlnedcit.hxx>
@@ -166,9 +171,9 @@
 #include <bf_svx/xlndsit.hxx>
 #endif
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
-#include <bf_svx/xflclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
@@ -185,7 +190,7 @@
 
 #include "chmod3d.hxx"
 #include "schmod.hxx"
-#include "schopt.hxx"
+// auto strip #include "schopt.hxx"
 namespace binfilter {
 
 /************************************************************************/

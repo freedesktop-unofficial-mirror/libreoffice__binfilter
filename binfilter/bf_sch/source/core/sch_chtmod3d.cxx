@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmod3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:44:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,68 +61,73 @@
 
 #define RAD2CDEG(fAngle) ( (long)(((fAngle)*18000.0/F_PI)+36000.0)%36000 )
 
-#ifndef _E3D_LIGHT3D_HXX //autogen
-#include <bf_svx/light3d.hxx>
-#endif
-#ifndef _SVDVIEW_HXX //autogen
-#include <bf_svx/svdview.hxx>
-#endif
-#ifndef _SVDPAGV_HXX //autogen
-#include <bf_svx/svdpagv.hxx>
-#endif
+// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
+// auto strip #include <bf_svx/light3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDVIEW_HXX //autogen
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGV_HXX //autogen
+// auto strip #include <bf_svx/svdpagv.hxx>
+// auto strip #endif
 
-#include <bf_svx/obj3d.hxx>
+// auto strip #include <bf_svx/obj3d.hxx>
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
 #define ITEMID_ADJUST EE_PARA_JUST
-#include <bf_svx/adjitem.hxx>
+// auto strip #include <bf_svx/adjitem.hxx>
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
 #endif
 
-#ifndef _SCH_OBJADJ_HXX
-#include  "objadj.hxx"
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
+
+// auto strip #ifndef _SCH_OBJADJ_HXX
+// auto strip #include  "objadj.hxx"
+// auto strip #endif
 #ifndef _CHTMODEL_HXX
-#include <chtmodel.hxx>
+// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
-#ifndef _SCH_SCHRESID_HXX
-#include "schresid.hxx"
-#endif
-#ifndef _SCH_DATAROW_HXX
-#include "datarow.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
-#include "datapoin.hxx"
-#endif
-#ifndef _SCH_SCHGROUP_HXX
-#include "schgroup.hxx"
-#endif
+// auto strip #ifndef _SCH_SCHRESID_HXX
+// auto strip #include "schresid.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAROW_HXX
+// auto strip #include "datarow.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAPOIN_HXX
+// auto strip #include "datapoin.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_SCHGROUP_HXX
+// auto strip #include "schgroup.hxx"
+// auto strip #endif
 #ifndef _SCH_AXISID_HXX
 #include "axisid.hxx"
 #endif
 #ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
 #endif
-#ifndef _E3D_LIGHT3D_HXX //autogen
-#include <bf_svx/light3d.hxx>
-#endif
+// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
+// auto strip #include <bf_svx/light3d.hxx>
+// auto strip #endif
 
 #undef  ITEMID_COLOR        //  Defined in svx3ditems.hxx
 #define ITEMID_COLOR       EE_CHAR_COLOR
-#ifndef _SVX_COLRITEM_HXX //autogen wg. SvxColorItem    // #60999#
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen wg. SvxColorItem  // #60999#
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 
-#ifndef _E3D_POLYGON3D_HXX
-#include <bf_svx/polygn3d.hxx>
-#endif
+// auto strip #ifndef _E3D_POLYGON3D_HXX
+// auto strip #include <bf_svx/polygn3d.hxx>
+// auto strip #endif
 #ifndef _SVDOCIRC_HXX //autogen
 #include <bf_svx/svdocirc.hxx>
 #endif
@@ -149,9 +154,9 @@
 #include "chdescr.hxx"
 #define FIXED_SIZE_FOR_3D_CHART_VOLUME          (10000)
 
-#ifndef _SVX3DITEMS_HXX
-#include <bf_svx/svx3ditems.hxx>
-#endif
+// auto strip #ifndef _SVX3DITEMS_HXX
+// auto strip #include <bf_svx/svx3ditems.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
