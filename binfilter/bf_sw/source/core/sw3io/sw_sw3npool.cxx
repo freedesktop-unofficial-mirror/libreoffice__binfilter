@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:44:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-09 17:18:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,9 @@
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
