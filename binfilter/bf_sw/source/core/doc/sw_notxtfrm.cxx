@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:12:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,71 +66,79 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SV_PRINT_HXX
-#include <vcl/print.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_PRINT_HXX
+// auto strip #include <vcl/print.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 
-#ifndef _GOODIES_IMAPOBJ_HXX
-#include <svtools/imapobj.hxx>
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _IMAP_HXX //autogen
+// auto strip #include <svtools/imap.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _IPENV_HXX //autogen
+// auto strip #include <so3/ipenv.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOERR_HXX //autogen
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PROGRESS_HXX //autogen
+// auto strip #include <bf_sfx2/progress.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _IMAP_HXX //autogen
-#include <svtools/imap.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _IPENV_HXX //autogen
-#include <so3/ipenv.hxx>
-#endif
-#ifndef _SOERR_HXX //autogen
-#include <so3/soerr.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX //autogen
-#include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
-#include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
-#ifndef _XOUTBMP_HXX //autogen
-#include <bf_svx/xoutbmp.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXDOCFILE_HXX //autogen
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_UDLNITEM_HXX //autogen
+// auto strip #include <bf_svx/udlnitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _XOUTBMP_HXX //autogen
+// auto strip #include <bf_svx/xoutbmp.hxx>
+// auto strip #endif
 #ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
 #endif
 
-#ifndef _FMTURL_HXX
-#include <fmturl.hxx>
-#endif
+// auto strip #ifndef _FMTURL_HXX
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
 #ifndef _FMTSRND_HXX
 #include <fmtsrnd.hxx>
 #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
-#ifndef _SWRECT_HXX
-#include <swrect.hxx>
-#endif
+// auto strip #ifndef _SWRECT_HXX
+// auto strip #include <swrect.hxx>
+// auto strip #endif
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
@@ -146,51 +154,51 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _NOTXTFRM_HXX
 #include <notxtfrm.hxx>
 #endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
-#ifndef _FMTORNT_HXX
-#include <fmtornt.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTORNT_HXX
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
-#ifndef _SWREGION_HXX
-#include <swregion.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWREGION_HXX
+// auto strip #include <swregion.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
@@ -198,15 +206,15 @@
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>
 #endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
-#include <accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <accessibilityoptions.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #define DEFTEXTSIZE  12
