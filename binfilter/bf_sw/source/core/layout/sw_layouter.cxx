@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layouter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:37:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,12 +63,17 @@
 #pragma hdrstop
 
 #include "layouter.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "sectfrm.hxx"
-#include "ftnboss.hxx"
-#include "cntfrm.hxx"
+// auto strip #include "sectfrm.hxx"
+// auto strip #include "ftnboss.hxx"
+// auto strip #include "cntfrm.hxx"
 #include "pagefrm.hxx"
-#include "ftnfrm.hxx"
+// auto strip #include "ftnfrm.hxx"
 namespace binfilter {
 
 /*N*/ #define LOOP_DETECT 250
