@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_lingu.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:05:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:16:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -263,360 +263,392 @@ QueryBox RID_SVXQB_SPECIAL_FORCED
     Message[ he ] = "Sonderbereichprüfung ist ausgeschaltet, Trotzdem prüfen?";
 };
  // Strings ---------------------------------------------------------------
-String RID_SVXSTR_HMSTATUS_OK
-{
-    Text [ de ] = "Das Wort ist korrekt geschrieben" ;
-    Text [ en-US ] = "The word is spelled correctly" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "A palavra está correcta.";
-    Text[ ru ] = "Слово написано правильно";
-    Text[ el ] = "Η ορθογραφία είναι σωστή";
-    Text[ nl ] = "Dit woord is correct geschreven";
-    Text[ fr ] = "Mot correctement orthographié";
-    Text[ es ] = "La palabra está escrita correctamente";
-    Text[ fi ] = "Sana on kirjoitettu oikein";
-    Text[ ca ] = "La paraula està escrita correctament";
-    Text[ it ] = "La parola sottoposta a controllo ortografico è corretta";
-    Text[ sk ] = "Slovo je napísané správne";
-    Text[ da ] = "Ordet er stavet rigtigt";
-    Text[ sv ] = "Ordet är riktigt stavat";
-    Text[ pl ] = "Wyraz jest napisany poprawnie";
-    Text[ pt-BR ] = "A palavra está escrita corretamente.";
-    Text[ th ] = "สะกดคำถูกต้อง";
-    Text[ ja ] = "この単語のスペルは正確です。";
-    Text[ ko ] = "단어의 맞춤법이 정확합니다";
-    Text[ zh-CN ] = "这个字的写法正确";
-    Text[ zh-TW ] = "這個字的寫法正確";
-    Text[ tr ] = "Sözcüğün imlası doğru";
-    Text[ hi-IN ] = "शब्द को ठीक तरह से लिखा है";
-    Text[ ar ] = "الكلمة مكتوبة بشكل صحيح";
-    Text[ he ] = "Das Wort ist korrekt geschrieben";
-};
-String RID_SVXSTR_HMSTATUS_DONTUSE
-{
-    Text [ de ] = "Dieses Wort sollten Sie vermeiden" ;
-    Text [ en-US ] = "Avoid using this word" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Tente evitar esta palavra.";
-    Text[ ru ] = "Избегать использования этого слова";
-    Text[ el ] = "Είναι προτιμότερο να αποφευχθεί η χρήση αυτής της λέξης";
-    Text[ nl ] = "Vermijd het gebruik van dit woord";
-    Text[ fr ] = "N'utilisez pas ce mot";
-    Text[ es ] = "Debería evitar esta palabra";
-    Text[ fi ] = "Vältä tämän sanan käyttämistä";
-    Text[ ca ] = "Hauríeu d'evitar aquesta paraula";
-    Text[ it ] = "Questa parola andrebbe evitata";
-    Text[ sk ] = "Vyhnúť sa používaniu tohoto slova";
-    Text[ da ] = "Undgå venligst dette ord";
-    Text[ sv ] = "Undvik det här ordet";
-    Text[ pl ] = "Unikaj tego wyrazu";
-    Text[ pt-BR ] = "Evite usar esta palavra";
-    Text[ th ] = "หลีกเลี่ยงการใช้คำนี้";
-    Text[ ja ] = "この単語の使用は避けてください。";
-    Text[ ko ] = "이 단어는 가급적 사용하지 마십시오";
-    Text[ zh-CN ] = "建议您不要使用这个字";
-    Text[ zh-TW ] = "建議您不要使用這個字";
-    Text[ tr ] = "Bu sözcüğü kullanmaktan kaçınmalısınız";
-    Text[ hi-IN ] = "इस शब्द को त्यागना";
-    Text[ ar ] = "يجب عليك تجنب استخدام هذه الكلمة";
-    Text[ he ] = "Dieses Wort sollten Sie vermeiden";
-};
-String RID_SVXSTR_HMSTATUS_WRONG
-{
-    Text [ de ] = "Das Wort ist unbekannt." ;
-    Text [ en-US ] = "Unknown word." ;
-    Text [ x-comment ] = "; Der Punkt am Ende des Satzes sieht im Dialog nicht sehr sch�n aus (jcm)";
-    Text[ pt ] = "Palavra desconhecida.";
-    Text[ ru ] = "Неизвестное слово.";
-    Text[ el ] = "Η λέξη είναι άγνωστη.";
-    Text[ nl ] = "Onbekend woord.";
-    Text[ fr ] = "Mot inconnu";
-    Text[ es ] = "Palabra desconocida";
-    Text[ fi ] = "Tuntematon sana.";
-    Text[ ca ] = "Paraula desconeguda.";
-    Text[ it ] = "Parola sconosciuta.";
-    Text[ sk ] = "Neznáme slovo.";
-    Text[ da ] = "Ukendt ord.";
-    Text[ sv ] = "Okänt ord.";
-    Text[ pl ] = "Nieznany wyraz.";
-    Text[ pt-BR ] = "Palavra desconhecida.";
-    Text[ th ] = "คำที่ไม่รู้จัก";
-    Text[ ja ] = "この単語は不明です。";
-    Text[ ko ] = "알 수 없는 단어입니다.";
-    Text[ zh-CN ] = "这个字不明。";
-    Text[ zh-TW ] = "這個字不明。";
-    Text[ tr ] = "Sözcük bilinmiyor.";
-    Text[ hi-IN ] = "अज्ञात शब्द ।";
-    Text[ ar ] = "الكلمة غير معروفة.";
-    Text[ he ] = "Das Wort ist unbekannt.";
-};
-String RID_SVXSTR_HMSTATUS_CAPERROR
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Gro�- / Kleinschreibungs - Fehler : Gro�- / Kleinschreibungs - Fehler */
-    /* ### ACHTUNG: Neuer Text in Resource? Gro�- / Kleinschreibungs - Fehler : Gro�- / Kleinschreibungs - Fehler */
-    Text [ de ] = "Gro�- / Kleinschreibungs - Fehler" ;
-    Text [ en-US ] = "Capitalization error" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Erro de maiúsculas/minúsculas";
-    Text[ ru ] = "Ошибка написания прописных и строчных букв";
-    Text[ el ] = "Σφάλμα γραφής (Πεζά-Κεφαλαία)";
-    Text[ nl ] = "Fout bij gebruik hoofdletters/kleine letters";
-    Text[ fr ] = "Erreur majuscule/minuscule";
-    Text[ es ] = "Error de mayúsculas/minúsculas";
-    Text[ fi ] = "Kirjainkokovirhe";
-    Text[ ca ] = "Error de majúscules/minúscules";
-    Text[ it ] = "Errore relativo alle lettere maiuscole";
-    Text[ sk ] = "Chyba pri rozlišovaní malých/veľkých písmen";
-    Text[ da ] = "Retskrivningsfejl store/små bogstaver";
-    Text[ sv ] = "Fel användning av versaler";
-    Text[ pl ] = "Błąd użycia wielkich liter";
-    Text[ pt-BR ] = "Erro de conversão para maiúsculas";
-    Text[ th ] = "ทำให้เป็นตัวพิมพ์ใหญ่ผิดพลาด";
-    Text[ ja ] = "大文字と小文字のエラー";
-    Text[ ko ] = "대/소문자 오류";
-    Text[ zh-CN ] = "字母大小写 - 错误";
-    Text[ zh-TW ] = "字母大小寫錯誤";
-    Text[ tr ] = "Büyük/küçük harf hatası";
-    Text[ hi-IN ] = "केपिटलइसेशन् गलती";
-    Text[ ar ] = "خطأ في الكتابة بأحرف كبيرة/صغيرة";
-    Text[ he ] = "Groß- / Kleinschreibungs - Fehler";
-};
-String RID_SVXSTR_HMSTATUS_INVALID_LANG
-{
-    Text [ de ] = "Sprache wird nicht unterst�tzt" ;
-    Text [ en-US ] = "Language not supported";
-    Text[ pt ] = "Língua sem suporte";
-    Text[ ru ] = "Язык не поддерживается";
-    Text[ el ] = "Η γλώσσα δεν υποστηρίζεται";
-    Text[ nl ] = "Taal wordt niet ondersteund";
-    Text[ fr ] = "Cette langue n'est pas supportée";
-    Text[ es ] = "No se admite este idioma";
-    Text[ fi ] = "Kieltä ei tueta";
-    Text[ ca ] = "Aquest idioma no se suporta";
-    Text[ it ] = "La lingua non viene supportata";
-    Text[ sk ] = "Jazyk nie je podporovaný";
-    Text[ da ] = "Sproget understøttes ikke";
-    Text[ sv ] = "Språket går inte att använda";
-    Text[ pl ] = "Język nie jest obsługiwany";
-    Text[ pt-BR ] = "Idioma não suportado";
-    Text[ th ] = "ไม่สนับสนุนภาษา";
-    Text[ ja ] = "言語は支援されません";
-    Text[ ko ] = "언어가 지원되지 않음";
-    Text[ zh-CN ] = "不支持语言功能";
-    Text[ zh-TW ] = "語言不受支援";
-    Text[ tr ] = "Dil desteklenmiyor.";
-    Text[ hi-IN ] = "भाषा समर्थित नहीं है";
-    Text[ ar ] = "لا يتم دعم هذه اللغة";
-    Text[ he ] = "Sprache wird nicht unterstützt";
-};
-String RID_SVXSTR_HMERR_CHECKINSTALL
-{
-    /* ### ACHTUNG: Neuer Text in Resource?  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache :  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
-    /* ### ACHTUNG: Neuer Text in Resource?  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache :  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
-    Text [ de ] = " ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache" ;
-    Text [ en-US ] = "is not available for spellchecking\nPlease check your installation and install the desired language\n" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "não está disponível para a verificação ortográfica.\nConfira a sua instalação e, se necessário, instale a língua desejada\n";
-    Text[ ru ] = "недоступно для проверки орфографии\nПроверьте установку и, в случае необходимости,\nустановите требуемый язык";
-    Text[ el ] = "δεν είναι διαθέσιμο για ορθογραφικό έλεγχο\nΕλέγξτε την εγκατάσταση και εγκαταστήστε τη γλώσσα που θέλετε\n";
-    Text[ nl ] = "is niet beschikbaar voor spellingcontrole\nControleer uw installatie en installeer\neventueel de gewenste taal.";
-    Text[ fr ] = "n'est pas disponible pour la vérification. Veuillez vérifier l'installation et installer, le cas échéant, la langue souhaitée";
-    Text[ es ] = "no está disponible para la revisión ortográfica.\nRevise su instalación e instale,\nsi es necesario, el idioma deseado";
-    Text[ fi ] = "ei ole käytettävissä oikeinkirjoituksen tarkistusta varten\nTarkista asennetut osat ja asenna haluttu kieli\n";
-    Text[ ca ] = "no està disponible per fer la revisió ortogràfica.\nReviseu la instal.lació i instal.leu,\nsi és necessari, l'idioma desitjat.";
-    Text[ it ] = "non è disponibile per il controllo ortografico\nVerificare l'installazione ed installare la lingua desiderata";
-    Text[ sk ] = "nieje dostupná pre kontrolu pravopisu\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk\n";
-    Text[ da ] = "står ikke til rådighed for stavekontrollen.\nKontroller venligst din installation og installer i\ngivet fald det ønskede sprog";
-    Text[ sv ] = " är inte tillgänglig för stavningskontroll\nKontrollera din installation och installera\neventuellt önskat språk";
-    Text[ pl ] = "jest niedostępny do sprawdzania pisowni. \nNależy sprawdzić instalację i, jeśli trzeba, \nzainstalować potrzebny język.";
-    Text[ pt-BR ] = "não está disponível para a verificação ortográfica.\nConfira a sua instalação e instale o idioma desejado\n";
-    Text[ th ] = "ใช้ไม่ได้สำหรับการตรวจสอบการสะกด\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษา\nที่ต้องการ";
-    Text[ ja ] = "はスペルチェックに使用できません。\nプログラムのインストールをチェックして\n必要ならばその言語をインストールしてください。";
-    Text[ ko ] = " 맞춤법 검사를 사용할 수 없습니다. \n 사용자의 설치 상태를 점검한 다음\n필요할 경우 사용할 언어를 설치하십시오.";
-    Text[ zh-CN ] = " 无法提供拼写检查功能。请检查安装的程序，如有必要，请您安装要使用的语言版本。";
-    Text[ zh-TW ] = " 無法提供拼寫檢查功能。\n請檢查安裝的程式﹐若有必要﹐\n請您安裝要使用的語言版本。";
-    Text[ tr ] = "denetlenemiyor. \nKurulumunuzu kontrol edip gerekirse\nistenen dili yükleyin.";
-    Text[ hi-IN ] = "अक्षर जाँच कलिए उपलब्ध नहीं है\nकृपया प्रतिष्ठापन का जाँच कीजिए और आवश्यक भाषा की प्रतिष्ठापन कीजिए\n";
-    Text[ ar ] = "غير متوفرة للتدقيق الإملائي. \nالرجاء فحص التثبيت الخاص بك، وتثبيت اللغة المطلوبة، إذا لزم الأمر";
-    Text[ he ] = " ist für die Prüfung nicht verfügbar. \nÜberprüfen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gewünschte Sprache";
-};
-String RID_SVXSTR_HMERR_ADDWORD
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Das Wort konnte nicht ins W�rterbuch aufgenommen werden. : Das Wort konnte nicht ins W�rterbuch aufgenommen werden. */
-    /* ### ACHTUNG: Neuer Text in Resource? Das Wort konnte nicht ins W�rterbuch aufgenommen werden. : Das Wort konnte nicht ins W�rterbuch aufgenommen werden. */
-    Text [ de ] = "Das Wort konnte nicht ins W�rterbuch aufgenommen werden." ;
-    Text [ en-US ] = "The word could not be added to dictionary" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Foi impossível acrescentar a palavra no dicionário.";
-    Text[ ru ] = "Невозможно добавить слово в словарь";
-    Text[ el ] = "Δεν ήταν δυνατόν να καταχωρηθεί η λέξη στο λεξικό";
-    Text[ nl ] = "Woord kan niet in woordenboek worden opgenomen";
-    Text[ fr ] = "Impossible d'ajouter ce mot au dictionnaire";
-    Text[ es ] = "No se pudo añadir la palabra al diccionario.";
-    Text[ fi ] = "Sanaa ei voitu lisätä sanastoon";
-    Text[ ca ] = "La paraula no s'ha pogut afegir al diccionari";
-    Text[ it ] = "Impossibile aggiungere parola al dizionario.";
-    Text[ sk ] = "Nie je možné pridať slovo do slovníka";
-    Text[ da ] = "Det var ikke muligt at tilføje dette ord til ordbogen.";
-    Text[ sv ] = "Det gick inte att lägga in ordet i ordlistan.";
-    Text[ pl ] = "Tego wyrazu nie można dodać do słownika.";
-    Text[ pt-BR ] = "Não foi possível acrescentar a palavra ao dicionário.";
-    Text[ th ] = "ไม่สามารถเพิ่มคำในพจนานุกรมได้";
-    Text[ ja ] = "この単語は辞書に加えられません。";
-    Text[ ko ] = "단어를 사전에 추가하지 못했습니다.";
-    Text[ zh-CN ] = "无法收录这个字。";
-    Text[ zh-TW ] = "無法收錄這個字。";
-    Text[ tr ] = "Sözcük, sözlüğe eklenemedi.";
-    Text[ hi-IN ] = "शब्द को शब्दकोश में नहीं जोड़ सकते है";
-    Text[ ar ] = "تعذر إضافة الكلمة إلى القاموس.";
-    Text[ he ] = "Das Wort konnte nicht ins Wörterbuch aufgenommen werden.";
-};
-String RID_SVXSTR_HMERR_HYPH
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar : Die Trennhilfe ist nicht verf�gbar */
-    /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar : Die Trennhilfe ist nicht verf�gbar */
-    Text [ de ] = "Die Trennhilfe ist nicht verf�gbar" ;
-    Text [ en-US ] = "Hyphenation not available" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Divisão silábica não se encontra disponível";
-    Text[ ru ] = "Недоступна расстановка переносов";
-    Text[ el ] = "Η βοήθεια συλλαβισμού δεν είναι διαθέσιμη";
-    Text[ nl ] = "Afbrekingshulp is niet beschikbaar";
-    Text[ fr ] = "Coupure des mots non disponible";
-    Text[ es ] = "No está disponible la separación silábica";
-    Text[ fi ] = "Tavutusta ei ole käytettävissä";
-    Text[ ca ] = "No està disponible la separació per síl.labes";
-    Text[ it ] = "La sillabazione non è disponibile";
-    Text[ sk ] = "Delenie slov nie je k dispozícii";
-    Text[ da ] = "Orddelingen står ikke til rådighed";
-    Text[ sv ] = "Avstavningshjälpen är inte tillgänglig";
-    Text[ pl ] = "Dzielenie wyrazów jest niedostępne";
-    Text[ pt-BR ] = "A divisão silábica não está disponível";
-    Text[ th ] = "ใช้ยัติภังค์ไม่ได้";
-    Text[ ja ] = "ハイフネーションが使用できません。";
-    Text[ ko ] = "하이픈 넣기를 사용할 수 없습니다.";
-    Text[ zh-CN ] = "连字符不存在";
-    Text[ zh-TW ] = "連字符不存在";
-    Text[ tr ] = "Heceleme kullanılamıyor";
-    Text[ hi-IN ] = "हाइफनेशन् उपलब्ध नहीं है";
-    Text[ ar ] = "مساعدة فصل المقاطع غير متوفرة";
-    Text[ he ] = "Die Trennhilfe ist nicht verfügbar";
-};
-String RID_SVXSTR_HMERR_THESAURUS
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
-    /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
-    Text [ de ] = "Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache" ;
-    Text [ en-US ] = "No thesaurus is available for the selected language. \nPlease check your installation and install the desired language\n" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "O dicionário de sinónimos não está disponível para a língua seleccionada. \nConfira a sua instalação e, se necessário, instale a língua desejada.\n";
-    Text[ ru ] = "Не доступен тезаурус для выбранного языка. \nПроверьте установку и, в случае необходимости,\nустановите требуемый язык";
-    Text[ el ] = "Δεν υπάρχει διαθέσιμος θησαυρός για την επιλεγμένη γλώσσα. \nΕλέγξτε την εγκατάσταση και εγκαταστήστε τη γλώσσα που θέλετε\n";
-    Text[ nl ] = "Voor de ingestelde taal is geen Thesaurus beschikbaar. \nControleer uw installatie en\ninstalleer eventueel de gewenste taal.";
-    Text[ fr ] = "Aucun dictionnaire des synonymes n'est disponible pour la langue sélectionnée.\nVeuillez vérifiez l'installation et installer\nle cas échéant la langue concernée.";
-    Text[ es ] = "No existe un diccionario de sinónimos para el idioma seleccionado. \nCompruebe por favor su instalación\n e instale, si es necesario, el idioma deseado";
-    Text[ fi ] = "Valitulle kielelle ei ole käytettävissä synonyymisanastoa. \nTarkista asennetut osat ja asenna haluttu kieli\n";
-    Text[ ca ] = "No hi ha cap diccionari de sinònims per aquest idioma.\nComproveu la instal.lació\ni instal.leu, si és necessari, l'idioma desitjat.";
-    Text[ it ] = "Non è disponibile il dizionario dei sinonimi per la lingua selezionata.\nVerificate l'installazione ed installate la lingua desiderata\n";
-    Text[ sk ] = "Slovník synoným nieje pre daný jazyk dostupný. \nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk\n";
-    Text[ da ] = "Synonymordbogen står ikke til rådighed for det angivne sprog.\nKontroller venligst din installation og installer i\ngivet fald det ønskede sprog";
-    Text[ sv ] = "Ingen synonymordlista är tillgänglig för det inställda språket. \nKontrollera din installation och installera\neventuellt önskat språk.";
-    Text[ pl ] = "Dla wybranego języka nie jest dostępny żaden Tezaurus.\nSprawdź instalację i zainstaluj potrzebny język";
-    Text[ pt-BR ] = "O dicionário de sinônimos não está disponível para o idioma selecionado. \nConfira a sua instalação e instale o idioma desejado.\n";
-    Text[ th ] = "ไม่มีอรรถาภิธานที่ใช้ได้สำหรับภาษาที่เลือก \nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษา\nที่ต้องการ";
-    Text[ ja ] = "選択した言語で類語辞典は使用できません。\nプログラムのインストールをチェックして、\n必要ならば、希望の言語をインストールしてください。";
-    Text[ ko ] = "설정된 언어에 대한 동의어 사전을 사용할 수 없습니다. \n설치 상태를 점검한 다음 \n필요할 경우 사용할 언어를 설치하십시오.";
-    Text[ zh-CN ] = "您设定的语言没有附加同义词词典功能。\n请您检查的安装程序。\n如有必要，请您安装要使用的语言版本。";
-    Text[ zh-TW ] = "您設定的語言版本沒有附加同義詞詞典功能。\n請您檢查安裝的程式。\n若有必要﹐請您安裝要使用的語言版本。";
-    Text[ tr ] = "Ayarlanan dil için eş anlamlılar sözlüğü mevcut değil. \nKurulumunuzu kontrol edip gerekirse\nistenen dili yükleyin.";
-    Text[ hi-IN ] = "चुने हुए भाषा केलिए विश्वकोश उपलब्ध नहीं है ।\nकृपया आपका प्रतिष्ठापन का जाँच कीजिए और आवश्यक भाषा की प्रतिष्ठापन कीजिए\n";
-    Text[ ar ] = "لا يوجد قاموس مرادفات للغة التي تم تحديدها. \nالرجاء فحص التثبيت الخاص بك،\nثم القيام تثبيت اللغة المطلوبة، إذا لزم الأمر";
-    Text[ he ] = "Ein Thesaurus für die eingestellte Sprache ist nicht verfügbar. \nÜberprüfen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gewünschte Sprache";
-};
-String RID_SVXSTR_DIC_ERR_UNKNOWN
-{
-    Text [ de ] = "Das Wort konnte aus einem unbekanntem Grund\nnicht ins W�rterbuch aufgenommen werden." ;
-    Text [ en-US ] = "Word cannot be added to dictionary\ndue to unknown reason.";
-    Text[ pt ] = "Foi impossível adicionar a palavra ao\ndicionário por razões desconhecidas.";
-    Text[ ru ] = "Невозможно добавить в словарь \nпо неизвестным причинам.";
-    Text[ el ] = "Δεν είναι δυνατή η προσθήκη της λέξης\nστο λεξικό για άγνωστη αιτία.";
-    Text[ nl ] = "Om onbekende redenen kan het woord\nniet worden opgenomen in het woordenboek.";
-    Text[ fr ] = "Pour une raison inconnue,\n il a été impossible d'insérer le mot dans le dictionnaire.";
-    Text[ es ] = "No se puede recoger en el diccionario la\npalabra debido a una razón desconocida.";
-    Text[ fi ] = "Sanan lisääminen sanastoon ei onnistu\ntuntemattoman virheen vuoksi.";
-    Text[ ca ] = "No es pot recollir en el diccionari la\nparaula degut a un error desconegut.";
-    Text[ it ] = "Non è stato possibile inserire la parola nel dizionario.\nErrore sconosciuto.";
-    Text[ sk ] = "Nie je možné pridať slovo do slovníka\nz neznámeho dôvodu.";
-    Text[ da ] = "Det var af en ukendt grund ikke muligt\nat tilføje ordet til ordbogen.";
-    Text[ sv ] = "Ordet kunde av okänd anledning\ninte tas upp i ordlistan.";
-    Text[ pl ] = "Z nieznanej przyczyny\nwyrazu nie można dodać do słownika.";
-    Text[ pt-BR ] = "Não foi possível adicionar a palavra ao\ndicionário por razões desconhecidas.";
-    Text[ th ] = "ไม่สามารถเพิ่มคำในพจนานุกรมได้\nเนื่องจากเหตุผลที่ไม่รู้จัก";
-    Text[ ja ] = "単語は原因が不明なまま\n辞書に追加できませんでした。";
-    Text[ ko ] = "알 수 없는 단어이므로\n사전에 추가하지 못했습니다.";
-    Text[ zh-CN ] = "这个字无法添加到词典中去,原因不明。";
-    Text[ zh-TW ] = "字典無法收錄這個字，原因不明。";
-    Text[ tr ] = "Sözcük bilinmeyen bir nedenden dolayı\nsözlüğe eklenemedi.";
-    Text[ hi-IN ] = "अज्ञात कारण केलिए\nशब्द को शब्दकोश में नहीं जोड़ सकते है ।";
-    Text[ ar ] = "تعذر إضافة الكلمة إلى القاموس\nلسبب غير معروف.";
-    Text[ he ] = "Das Wort konnte aus einem unbekanntem Grund\nnicht ins Wörterbuch aufgenommen werden.";
-};
-String RID_SVXSTR_DIC_ERR_FULL
-{
-    Text [ de ] = "Das W�rterbuch ist bereits voll." ;
-    Text [ en-US ] = "The dictionary is already full.";
-    Text[ pt ] = "O dicionário já está cheio!";
-    Text[ ru ] = "Словарь уже заполнен.";
-    Text[ el ] = "Δεν υπάρχει χώρος για εγγραφή στο λεξικό.";
-    Text[ nl ] = "Woordenboek is vol";
-    Text[ fr ] = "Le dictionnaire est plein !";
-    Text[ es ] = "El diccionario está lleno.";
-    Text[ fi ] = "Sanasto on jo täynnä.";
-    Text[ ca ] = "El diccionari està ple.";
-    Text[ it ] = "Il dizionario è pino.";
-    Text[ sk ] = "Slovník je už plný.";
-    Text[ da ] = "Ordbogen er allerede fuld.";
-    Text[ sv ] = "Ordlistan är redan full.";
-    Text[ pl ] = "Słownik jest zapełniony.";
-    Text[ pt-BR ] = "O dicionário já está cheio.";
-    Text[ th ] = "พจนานุกรมเต็มแล้ว";
-    Text[ ja ] = "辞書はすでにいっぱいです。";
-    Text[ ko ] = "사전이 이미 다 찼습니다.";
-    Text[ zh-CN ] = "词典已满。";
-    Text[ zh-TW ] = "字典已滿。";
-    Text[ tr ] = "Sözlük doldu.";
-    Text[ hi-IN ] = "शब्दकोश पहिले से ही भरा हुआ है ।";
-    Text[ ar ] = "القاموس ممتلئ بالفعل.";
-    Text[ he ] = "Das Wörterbuch ist bereits voll.";
-};
-String RID_SVXSTR_DIC_ERR_READONLY
-{
-    Text [ de ] = "Das W�rterbuch ist schreibgesch�tzt." ;
-    Text [ en-US ] = "The dictionary is read-only.";
-    Text[ pt ] = "O dicionário é só de leitura.";
-    Text[ ru ] = "Словарь только для чтения.";
-    Text[ el ] = "Το λεξικό είναι μόνο για ανάγνωση.";
-    Text[ nl ] = "Woordenboek is alleen-lezen.";
-    Text[ fr ] = "Le dictionnaire est en lecture seule !";
-    Text[ es ] = "El diccionario es solo de lectura.";
-    Text[ fi ] = "Sanasto on vain luku -muotoa.";
-    Text[ ca ] = "El diccionari és de només lectura.";
-    Text[ it ] = "Il dizionario è a sola lettura.";
-    Text[ sk ] = "Slovník je iba na čítanie.";
-    Text[ da ] = "Ordbogen er skrivebeskyttet.";
-    Text[ sv ] = "Ordlistan är skrivskyddad.";
-    Text[ pl ] = "Słownik jest tylko do odczytu.";
-    Text[ pt-BR ] = "O dicionário é de somente leitura.";
-    Text[ th ] = "พจนานุกรมเป็นแบบอ่านได้อย่างเดียว";
-    Text[ ja ] = "辞書は読み取り専用です。";
-    Text[ ko ] = "사전이 읽기 전용입니다.";
-    Text[ zh-CN ] = "这个词典是防改写的。";
-    Text[ zh-TW ] = "字典是唯讀的。";
-    Text[ tr ] = "Sözlük yazmaya karşı korumalıdır.";
-    Text[ hi-IN ] = "शब्दकोश केवल पढ़ने केलिए ।";
-    Text[ ar ] = "القاموس محمي ضد الكتابة.";
-    Text[ he ] = "Das Wörterbuch ist schreibgeschützt.";
-};
+//STRIP001 String RID_SVXSTR_HMSTATUS_OK
+//STRIP001 {
+//STRIP001      Text = "Das Wort ist korrekt geschrieben" ;
+//STRIP001      Text [ ENGLISH ] = "The spelled word is correct" ;
+//STRIP001      Text [ norwegian ] = "The spelled word is correct" ;
+//STRIP001      Text [ italian ] = "La parola sottoposta a controllo ortografico ?corretta" ;
+//STRIP001      Text [ portuguese_brazilian ] = "A palavra est?escrita corretamente." ;
+//STRIP001      Text [ portuguese ] = "A palavra est?correcta." ;
+//STRIP001      Text [ finnish ] = "Sana on kirjoitettu oikein" ;
+//STRIP001      Text [ danish ] = "Ordet er stavet rigtigt" ;
+//STRIP001      Text [ french ] = "Mot correctement orthographi?" ;
+//STRIP001      Text [ swedish ] = "Ordet �r riktigt stavat" ;
+//STRIP001      Text [ dutch ] = "Dit woord is correct geschreven" ;
+//STRIP001      Text [ spanish ] = "La palabra est?escrita correctamente" ;
+//STRIP001      Text [ english_us ] = "The word is spelled correctly" ;
+//STRIP001      Text[ chinese_simplified ] = "这个字的写法正确";
+//STRIP001      Text[ russian ] = "����?�������� ��������?";
+//STRIP001      Text[ polish ] = "Wyraz jest napisany poprawnie";
+//STRIP001      Text[ japanese ] = "この単語のスペルは正確です�?";
+//STRIP001      Text[ chinese_traditional ] = "這個字的寫法正�?";
+//STRIP001      Text[ arabic ] = "������ ������ ���� ����";
+//STRIP001      Text[ greek ] = "?���������� ����?����?";
+//STRIP001      Text[ korean ] = "단어�?맞춤법이 정확합니�?";
+//STRIP001      Text[ turkish ] = "S�zc���n imlas?do�ru";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "La paraula est?escrita correctament";
+//STRIP001      Text[ thai ] = "สะกดคำถูกต้อ�?";
+//STRIP001      Text[ czech ] = "Slovo je napsáno správně";
+//STRIP001      Text[ hebrew ] = "Das Wort ist korrekt geschrieben";
+//STRIP001      Text[ hindi ] = "शब्द को ठी�?तर�?से लिखा है";
+//STRIP001      Text[ slovak ] = "Slovo je napísané správne";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMSTATUS_DONTUSE
+//STRIP001 {
+//STRIP001      Text = "Dieses Wort sollten Sie vermeiden" ;
+//STRIP001      Text [ ENGLISH ] = "Don't use this word" ;
+//STRIP001      Text [ norwegian ] = "Don't use this word" ;
+//STRIP001      Text [ italian ] = "Questa parola andrebbe evitata" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Evite usar esta palavra" ;
+//STRIP001      Text [ portuguese ] = "Tente evitar esta palavra." ;
+//STRIP001      Text [ finnish ] = "V�lt?t�m�n sanan k�ytt�mist?" ;
+//STRIP001      Text [ danish ] = "Undg?venligst dette ord" ;
+//STRIP001      Text [ french ] = "N'utilisez pas ce mot" ;
+//STRIP001      Text [ swedish ] = "Undvik det h�r ordet" ;
+//STRIP001      Text [ dutch ] = "Vermijd het gebruik van dit woord" ;
+//STRIP001      Text [ spanish ] = "Deber�a evitar esta palabra" ;
+//STRIP001      Text [ english_us ] = "Avoid using this word" ;
+//STRIP001      Text[ chinese_simplified ] = "建议您不要使用这个字";
+//STRIP001      Text[ russian ] = "�������� ������������� ����?����?";
+//STRIP001      Text[ polish ] = "Unikaj tego wyrazu";
+//STRIP001      Text[ japanese ] = "この単語の使用は避けてください�?";
+//STRIP001      Text[ chinese_traditional ] = "建議您不要使用這個字";
+//STRIP001      Text[ arabic ] = "��?���� ���� ������?��?������";
+//STRIP001      Text[ greek ] = "����?����������?�� ���������� ?����?����?��?����?";
+//STRIP001      Text[ korean ] = "�?단어�?가급적 사용하지 마십시오";
+//STRIP001      Text[ turkish ] = "Bu s�zc��?kullanmaktan ka��nmal�s�n�z";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Haur�eu d'evitar aquesta paraula";
+//STRIP001      Text[ thai ] = "หลีกเลี่ยงการใช้คำนี้";
+//STRIP001      Text[ czech ] = "Vyhnout se používání tohoto slova";
+//STRIP001      Text[ hebrew ] = "Dieses Wort sollten Sie vermeiden";
+//STRIP001      Text[ hindi ] = "इस शब्द को त्यागन�?";
+//STRIP001      Text[ slovak ] = "Vyhnúť sa používaniu tohoto slova";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMSTATUS_WRONG
+//STRIP001 {
+//STRIP001      Text = "Das Wort ist unbekannt." ;
+//STRIP001      Text [ ENGLISH ] = "Unknown word." ;
+//STRIP001      Text [ norwegian ] = "Unknown word." ;
+//STRIP001      Text [ italian ] = "Parola sconosciuta." ;
+//STRIP001      Text [ portuguese_brazilian ] = "Palavra desconhecida." ;
+//STRIP001      Text [ portuguese ] = "Palavra desconhecida." ;
+//STRIP001      Text [ finnish ] = "Tuntematon sana." ;
+//STRIP001      Text [ danish ] = "Ukendt ord." ;
+//STRIP001      Text [ french ] = "Mot inconnu" ;
+//STRIP001      Text [ swedish ] = "Ok�nt ord." ;
+//STRIP001      Text [ dutch ] = "Onbekend woord." ;
+//STRIP001      Text [ spanish ] = "Palabra desconocida" ;
+//STRIP001      Text [ english_us ] = "Unknown word." ;
+//STRIP001      Text[ chinese_simplified ] = "这个字不明�?";
+//STRIP001      Text[ russian ] = "����������?����?";
+//STRIP001      Text[ polish ] = "Nieznany wyraz.";
+//STRIP001      Text[ japanese ] = "この単語は不明です�?";
+//STRIP001      Text[ chinese_traditional ] = "這個字不明�?";
+//STRIP001      Text[ arabic ] = "������ ��?������.";
+//STRIP001      Text[ greek ] = "?���� ����?������?";
+//STRIP001      Text[ korean ] = "�?�?없는 단어입니�?";
+//STRIP001      Text[ turkish ] = "S�zc�k bilinmiyor.";
+//STRIP001      Text[ language_user1 ] = "; Der Punkt am Ende des Satzes sieht im Dialog nicht sehr sch�n aus (jcm)";
+//STRIP001      Text[ catalan ] = "Paraula desconeguda.";
+//STRIP001      Text[ thai ] = "คำที่ไม่รู้จัก";
+//STRIP001      Text[ czech ] = "Neznámé slovo.";
+//STRIP001      Text[ hebrew ] = "Das Wort ist unbekannt.";
+//STRIP001      Text[ hindi ] = "अज्ञात शब्द �?";
+//STRIP001      Text[ slovak ] = "Neznáme slovo.";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMSTATUS_CAPERROR
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Gro? / Kleinschreibungs - Fehler : Gro? / Kleinschreibungs - Fehler */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Gro? / Kleinschreibungs - Fehler : Gro? / Kleinschreibungs - Fehler */
+//STRIP001      Text = "Gro? / Kleinschreibungs - Fehler" ;
+//STRIP001      Text [ ENGLISH ] = "Capitalization Error" ;
+//STRIP001      Text [ norwegian ] = "Capitalization Error" ;
+//STRIP001      Text [ italian ] = "Errore relativo alle lettere maiuscole" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Erro de convers�o para mai�sculas" ;
+//STRIP001      Text [ portuguese ] = "Erro de mai�sculas/min�sculas" ;
+//STRIP001      Text [ finnish ] = "Kirjainkokovirhe" ;
+//STRIP001      Text [ danish ] = "Retskrivningsfejl store/sm?bogstaver" ;
+//STRIP001      Text [ french ] = "Erreur majuscule/minuscule" ;
+//STRIP001      Text [ swedish ] = "Fel anv�ndning av versaler" ;
+//STRIP001      Text [ dutch ] = "Fout bij gebruik hoofdletters/kleine letters" ;
+//STRIP001      Text [ spanish ] = "Error de may�sculas/min�sculas" ;
+//STRIP001      Text [ english_us ] = "Capitalization error" ;
+//STRIP001      Text[ chinese_simplified ] = "字母大小�?- 错误";
+//STRIP001      Text[ russian ] = "������ ��������� ��������??�������� ����";
+//STRIP001      Text[ polish ] = "B��d u�ycia wielkich liter";
+//STRIP001      Text[ japanese ] = "大文字と小文字のエラ�?";
+//STRIP001      Text[ chinese_traditional ] = "字母大小寫錯�?";
+//STRIP001      Text[ arabic ] = "��?�� ������?����?����?����?";
+//STRIP001      Text[ greek ] = "������ ������ (����-��������)";
+//STRIP001      Text[ korean ] = "대/소문�?오류";
+//STRIP001      Text[ turkish ] = "B�y�k/k���k harf hatas?";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Error de maj�scules/min�scules";
+//STRIP001      Text[ thai ] = "ทำให้เป็นตัวพิมพ์ใหญ่ผิดพลาด";
+//STRIP001      Text[ czech ] = "Chyba při rozlišování malých/velkých písmen";
+//STRIP001      Text[ hebrew ] = "Groß- / Kleinschreibungs - Fehler";
+//STRIP001      Text[ hindi ] = "केपिटलइसेशन् गलती";
+//STRIP001      Text[ slovak ] = "Chyba pri rozlišovaní malých/veľkých písmen";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMSTATUS_INVALID_LANG
+//STRIP001 {
+//STRIP001      Text = "Sprache wird nicht unterst�tzt" ;
+//STRIP001      Text [ ENGLISH ] = "Language is not supported" ;
+//STRIP001      Text[ english_us ] = "Language not supported";
+//STRIP001      Text[ portuguese ] = "L�ngua sem suporte";
+//STRIP001      Text[ russian ] = "���� �� ������������?";
+//STRIP001      Text[ greek ] = "?������ ��?������������?";
+//STRIP001      Text[ dutch ] = "Taal wordt niet ondersteund";
+//STRIP001      Text[ french ] = "Cette langue n'est pas support�e";
+//STRIP001      Text[ spanish ] = "No se admite este idioma";
+//STRIP001      Text[ italian ] = "La lingua non viene supportata";
+//STRIP001      Text[ danish ] = "Sproget underst�ttes ikke";
+//STRIP001      Text[ swedish ] = "Spr�ket g�r inte att anv�nda";
+//STRIP001      Text[ polish ] = "J�zyk nie jest obs�ugiwany";
+//STRIP001      Text[ portuguese_brazilian ] = "Idioma n�o suportado";
+//STRIP001      Text[ japanese ] = "言語は支援されませ�?";
+//STRIP001      Text[ korean ] = "언어가 지원되지 않음";
+//STRIP001      Text[ chinese_simplified ] = "不支持语言功能";
+//STRIP001      Text[ chinese_traditional ] = "語言不受支援";
+//STRIP001      Text[ arabic ] = "�� ��?��?��?����?";
+//STRIP001      Text[ turkish ] = "Dil desteklenmiyor.";
+//STRIP001      Text[ catalan ] = "Aquest idioma no se suporta";
+//STRIP001      Text[ finnish ] = "Kielt?ei tueta";
+//STRIP001      Text[ thai ] = "ไม่สนับสนุนภาษ�?";
+//STRIP001      Text[ czech ] = "Jazyk není podporován";
+//STRIP001      Text[ hebrew ] = "Sprache wird nicht unterstützt";
+//STRIP001      Text[ hindi ] = "भाषा समर्थि�?नही�?है";
+//STRIP001      Text[ slovak ] = "Jazyk nie je podporovaný";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMERR_CHECKINSTALL
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource?  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache :  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource?  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache :  ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
+//STRIP001      TEXT = " ist f�r die Pr�fung nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache" ;
+//STRIP001      TEXT [ English ] = " is not available for spellchecking\nPlease check your installation and install the desired language\n" ;
+//STRIP001      TEXT [ norwegian ] = " is not available for spellchecking\nKontroller innstalleringen og installer det spr�ket du �nsker\n" ;
+//STRIP001      TEXT [ italian ] = "non ?disponibile per il controllo ortografico\nVerificare l'installazione ed installare la lingua desiderata" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "n�o est?dispon�vel para a verifica��o ortogr�fica.\nConfira a sua instala��o e instale o idioma desejado\n" ;
+//STRIP001      TEXT [ portuguese ] = "n�o est?dispon�vel para a verifica��o ortogr�fica.\nConfira a sua instala��o e, se necess�rio, instale a l�ngua desejada\n" ;
+//STRIP001      TEXT [ finnish ] = "ei ole k�ytett�viss?oikeinkirjoituksen tarkistusta varten\nTarkista asennetut osat ja asenna haluttu kieli\n" ;
+//STRIP001      TEXT [ danish ] = "st�r ikke til r�dighed for stavekontrollen.\nKontroller venligst din installation og installer i\ngivet fald det �nskede sprog" ;
+//STRIP001      TEXT [ french ] = "n'est pas disponible pour la v�rification. Veuillez v�rifier l'installation et installer, le cas �ch�ant, la langue souhait�e" ;
+//STRIP001      TEXT [ swedish ] = " �r inte tillg�nglig f�r stavningskontroll\nKontrollera din installation och installera\neventuellt �nskat spr�k" ;
+//STRIP001      TEXT [ dutch ] = "is niet beschikbaar voor spellingcontrole\nControleer uw installatie en installeer\neventueel de gewenste taal." ;
+//STRIP001      TEXT [ spanish ] = "no est?disponible para la revisi�n ortogr�fica.\nRevise su instalaci�n e instale,\nsi es necesario, el idioma deseado" ;
+//STRIP001      TEXT [ english_us ] = "is not available for spellchecking\nPlease check your installation and install the desired language\n" ;
+//STRIP001      TEXT[ chinese_simplified ] = " 无法提供拼写检查功能。请检查安装的程序，如有必要，请您安装要使用的语言版本�?";
+//STRIP001      TEXT[ russian ] = "���������� ��� �������� ����������\n��������?��������?? ?������ ������������?\n���������� ��������?���?";
+//STRIP001      TEXT[ polish ] = "jest niedost�pny do sprawdzania pisowni. \nNale�y sprawdzi?instalacj?i, je�li trzeba, \nzainstalowa?potrzebny j�zyk.";
+//STRIP001      TEXT[ japanese ] = "はスペルチェックに使用できません。\nプログラムのインストールをチェックして\n必要ならばその言語をインストールしてください�?";
+//STRIP001      TEXT[ chinese_traditional ] = " 無法提供拼寫檢查功能。\n請檢查安裝的程式﹐若有必要﹐\n請您安裝要使用的語言版本�?";
+//STRIP001      TEXT[ arabic ] = "��?������ ������?��������. \n������ ��?������?����?��?������ ����?��������?��?��?����?";
+//STRIP001      TEXT[ greek ] = "��?����?��������?��?����������?������\n������?��?����������?��?������������ �� ������ ��?������\n";
+//STRIP001      TEXT[ korean ] = " 맞춤�?검사를 사용�?�?없습니다. \n 사용자의 설치 상태�?점검�?다음\n필요�?경우 사용�?언어�?설치하십시오.";
+//STRIP001      TEXT[ turkish ] = "denetlenemiyor. \nKurulumunuzu kontrol edip gerekirse\nistenen dili y�kleyin.";
+//STRIP001      TEXT[ language_user1 ] = " ";
+//STRIP001      TEXT[ catalan ] = "no est?disponible per fer la revisi?ortogr�fica.\nReviseu la instal.laci?i instal.leu,\nsi �s necessari, l'idioma desitjat.";
+//STRIP001      TEXT[ thai ] = "ใช้ไม่ได้สำหรับการตรวจสอบการสะกด\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษา\nที่ต้องการ";
+//STRIP001      TEXT[ czech ] = "není dostupný pro kontrolu pravopisu\nProsím zkontrolujte svou instalaci a doplňte požadovaný jazyk\n";
+//STRIP001      TEXT[ hebrew ] = " ist für die Prüfung nicht verfügbar. \nÜberprüfen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gewünschte Sprache";
+//STRIP001      TEXT[ hindi ] = "अक्ष�?जाँच कलिए उपलब्ध नही�?है\nकृपय�?प्रतिष्ठाप�?का जाँच कीजि�?और आवश्यक भाषा की प्रतिष्ठाप�?कीजिए\n";
+//STRIP001      TEXT[ slovak ] = "nieje dostupná pre kontrolu pravopisu\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk\n";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMERR_ADDWORD
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Das Wort konnte nicht ins W�rterbuch aufgenommen werden. : Das Wort konnte nicht ins W�rterbuch aufgenommen werden. */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Das Wort konnte nicht ins W�rterbuch aufgenommen werden. : Das Wort konnte nicht ins W�rterbuch aufgenommen werden. */
+//STRIP001      Text = "Das Wort konnte nicht ins W�rterbuch aufgenommen werden." ;
+//STRIP001      Text [ ENGLISH ] = "Can't add word to dictionary" ;
+//STRIP001      Text [ norwegian ] = "Kan ikke legge til ord I ordliste" ;
+//STRIP001      Text [ italian ] = "Impossibile aggiungere parola al dizionario." ;
+//STRIP001      Text [ portuguese_brazilian ] = "N�o foi poss�vel acrescentar a palavra ao dicion�rio." ;
+//STRIP001      Text [ portuguese ] = "Foi imposs�vel acrescentar a palavra no dicion�rio." ;
+//STRIP001      Text [ finnish ] = "Sanaa ei voitu lis�t?sanastoon" ;
+//STRIP001      Text [ danish ] = "Det var ikke muligt at tilf�je dette ord til ordbogen." ;
+//STRIP001      Text [ french ] = "Impossible d'ajouter ce mot au dictionnaire" ;
+//STRIP001      Text [ swedish ] = "Det gick inte att l�gga in ordet i ordlistan." ;
+//STRIP001      Text [ dutch ] = "Woord kan niet in woordenboek worden opgenomen" ;
+//STRIP001      Text [ spanish ] = "No se pudo a�adir la palabra al diccionario." ;
+//STRIP001      Text [ english_us ] = "The word could not be added to dictionary" ;
+//STRIP001      Text[ chinese_simplified ] = "无法收录这个字�?";
+//STRIP001      Text[ russian ] = "���������� �������� ����??������?";
+//STRIP001      Text[ polish ] = "Tego wyrazu nie mo�na doda?do s�ownika.";
+//STRIP001      Text[ japanese ] = "この単語は辞書に加えられません�?";
+//STRIP001      Text[ chinese_traditional ] = "無法收錄這個字�?";
+//STRIP001      Text[ arabic ] = "���� ����?������ ��?������?";
+//STRIP001      Text[ greek ] = "��?���� ������?�� ����������??���� ��?������";
+//STRIP001      Text[ korean ] = "단어�?사전�?추가하지 못했습니�?";
+//STRIP001      Text[ turkish ] = "S�zc�k, s�zl��e eklenemedi.";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "La paraula no s'ha pogut afegir al diccionari";
+//STRIP001      Text[ thai ] = "ไม่สามารถเพิ่มคำในพจนานุกรมได้";
+//STRIP001      Text[ czech ] = "Nelze přidat slovo do slovníku";
+//STRIP001      Text[ hebrew ] = "Das Wort konnte nicht ins Wörterbuch aufgenommen werden.";
+//STRIP001      Text[ hindi ] = "शब्द को शब्दको�?मे�?नही�?जोड़ सकते है";
+//STRIP001      Text[ slovak ] = "Nie je možné pridať slovo do slovníka";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMERR_HYPH
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar : Die Trennhilfe ist nicht verf�gbar */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar : Die Trennhilfe ist nicht verf�gbar */
+//STRIP001      TEXT = "Die Trennhilfe ist nicht verf�gbar" ;
+//STRIP001      TEXT [ English ] = "Hyphenation is not available" ;
+//STRIP001      TEXT [ norwegian ] = "Orddeling er ikke tilgjengelig" ;
+//STRIP001      TEXT [ italian ] = "La sillabazione non ?disponibile" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "A divis�o sil�bica n�o est?dispon�vel" ;
+//STRIP001      TEXT [ portuguese ] = "Divis�o sil�bica n�o se encontra dispon�vel" ;
+//STRIP001      TEXT [ finnish ] = "Tavutusta ei ole k�ytett�viss?" ;
+//STRIP001      TEXT [ danish ] = "Orddelingen st�r ikke til r�dighed" ;
+//STRIP001      TEXT [ french ] = "Coupure des mots non disponible" ;
+//STRIP001      TEXT [ swedish ] = "Avstavningshj�lpen �r inte tillg�nglig" ;
+//STRIP001      TEXT [ dutch ] = "Afbrekingshulp is niet beschikbaar" ;
+//STRIP001      TEXT [ spanish ] = "No est?disponible la separaci�n sil�bica" ;
+//STRIP001      TEXT [ english_us ] = "Hyphenation not available" ;
+//STRIP001      TEXT[ chinese_simplified ] = "连字符不存在";
+//STRIP001      TEXT[ russian ] = "���������� ����������?��������?";
+//STRIP001      TEXT[ polish ] = "Dzielenie wyraz�w jest niedost�pne";
+//STRIP001      TEXT[ japanese ] = "ハイフネーションが使用できません�?";
+//STRIP001      TEXT[ chinese_traditional ] = "連字符不存在";
+//STRIP001      TEXT[ arabic ] = "������ ��?������?��?������";
+//STRIP001      TEXT[ greek ] = "?������?����������?��?����?��������?";
+//STRIP001      TEXT[ korean ] = "하이�?넣기�?사용�?�?없습니다.";
+//STRIP001      TEXT[ turkish ] = "Heceleme kullan�lam�yor";
+//STRIP001      TEXT[ language_user1 ] = " ";
+//STRIP001      TEXT[ catalan ] = "No est?disponible la separaci?per s�l.labes";
+//STRIP001      TEXT[ thai ] = "ใช้ยัติภังค์ไม่ได้";
+//STRIP001      TEXT[ czech ] = "Dělení slov není k dispozici";
+//STRIP001      TEXT[ hebrew ] = "Die Trennhilfe ist nicht verfügbar";
+//STRIP001      TEXT[ hindi ] = "हाइफनेशन�?उपलब्ध नही�?है";
+//STRIP001      TEXT[ slovak ] = "Delenie slov nie je k dispozícii";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_HMERR_THESAURUS
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache */
+//STRIP001      TEXT = "Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar. \n�berpr�fen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gew�nschte Sprache" ;
+//STRIP001      TEXT [ English ] = "For the current Language no Thesaurus is available. \nPlease check your installation and install the desired language\n" ;
+//STRIP001      TEXT [ norwegian ] = "Synonymordliste er ikke tilgjengelig for det gjeldende programmet. \nKontroller innstalleringen og installer det spr�ket du �nsker\n" ;
+//STRIP001      TEXT [ italian ] = "Non ?disponibile il dizionario dei sinonimi per la lingua selezionata.\nVerificate l'installazione ed installate la lingua desiderata\n" ;
+//STRIP001      TEXT [ portuguese_brazilian ] = "O dicion�rio de sin�nimos n�o est?dispon�vel para o idioma selecionado. \nConfira a sua instala��o e instale o idioma desejado.\n" ;
+//STRIP001      TEXT [ portuguese ] = "O dicion�rio de sin�nimos n�o est?dispon�vel para a l�ngua seleccionada. \nConfira a sua instala��o e, se necess�rio, instale a l�ngua desejada.\n" ;
+//STRIP001      TEXT [ finnish ] = "Valitulle kielelle ei ole k�ytett�viss?synonyymisanastoa. \nTarkista asennetut osat ja asenna haluttu kieli\n" ;
+//STRIP001      TEXT [ danish ] = "Synonymordbogen st�r ikke til r�dighed for det angivne sprog.\nKontroller venligst din installation og installer i\ngivet fald det �nskede sprog" ;
+//STRIP001      TEXT [ french ] = "Aucun dictionnaire des synonymes n'est disponible pour la langue s�lectionn�e.\nVeuillez v�rifiez l'installation et installer\nle cas �ch�ant la langue concern�e." ;
+//STRIP001      TEXT [ swedish ] = "Ingen synonymordlista �r tillg�nglig f�r det inst�llda spr�ket. \nKontrollera din installation och installera\neventuellt �nskat spr�k." ;
+//STRIP001      TEXT [ dutch ] = "Voor de ingestelde taal is geen Thesaurus beschikbaar. \nControleer uw installatie en\ninstalleer eventueel de gewenste taal." ;
+//STRIP001      TEXT [ spanish ] = "No existe un diccionario de sin�nimos para el idioma seleccionado. \nCompruebe por favor su instalaci�n\n e instale, si es necesario, el idioma deseado" ;
+//STRIP001      TEXT [ english_us ] = "No thesaurus is available for the selected language. \nPlease check your installation and install the desired language\n" ;
+//STRIP001      TEXT[ chinese_simplified ] = "您设定的语言没有附加同义词词典功能。\n请您检查的安装程序。\n如有必要，请您安装要使用的语言版本�?";
+//STRIP001      TEXT[ russian ] = "�� �������� �������� ��� ���������� �����. \n��������?��������?? ?������ ������������?\n���������� ��������?���?";
+//STRIP001      TEXT[ polish ] = "Dla wybranego j�zyka nie jest dost�pny �aden Tezaurus.\nSprawd?instalacj?i zainstaluj potrzebny j�zyk";
+//STRIP001      TEXT[ japanese ] = "選択した言語で類語辞典は使用できません。\nプログラムのインストールをチェックして、\n必要ならば、希望の言語をインストールしてください�?";
+//STRIP001      TEXT[ chinese_traditional ] = "您設定的語言版本沒有附加同義詞詞典功能。\n請您檢查安裝的程式。\n若有必要﹐請您安裝要使用的語言版本�?";
+//STRIP001      TEXT[ arabic ] = "�� ���� ����?������?���� ���� �� ������? \n������ ��?������?����?�ߡ\n�� ������ ����?����?��������?��?��?����?";
+//STRIP001      TEXT[ greek ] = "��?������?���������� �������� ��?��?���������� ������. \n������?��?����������?��?������������ �� ������ ��?������\n";
+//STRIP001      TEXT[ korean ] = "설정�?언어�?대�?동의�?사전�?사용�?�?없습니다. \n설치 상태�?점검�?다음 \n필요�?경우 사용�?언어�?설치하십시오.";
+//STRIP001      TEXT[ turkish ] = "Ayarlanan dil i�in e?anlaml�lar s�zl��?mevcut de�il. \nKurulumunuzu kontrol edip gerekirse\nistenen dili y�kleyin.";
+//STRIP001      TEXT[ language_user1 ] = " ";
+//STRIP001      TEXT[ catalan ] = "No hi ha cap diccionari de sin�nims per aquest idioma.\nComproveu la instal.laci�\ni instal.leu, si �s necessari, l'idioma desitjat.";
+//STRIP001      TEXT[ thai ] = "ไม่มีอรรถาภิธานที่ใช้ได้สำหรับภาษาที่เลือก \nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษา\nที่ต้องการ";
+//STRIP001      TEXT[ czech ] = "Slovník synonym není pro daný jazyk dostupný.\nProsím zkontrolujte svou instalaci a doplňte požadovaný jazyk.\n";
+//STRIP001      TEXT[ hebrew ] = "Ein Thesaurus für die eingestellte Sprache ist nicht verfügbar. \nÜberprüfen Sie bitte Ihre Installation und installieren Sie \ngegebenenfalls die gewünschte Sprache";
+//STRIP001      TEXT[ hindi ] = "चुने हु�?भाषा केलि�?विश्वकोश उपलब्ध नही�?है ।\nकृपय�?आपका प्रतिष्ठाप�?का जाँच कीजि�?और आवश्यक भाषा की प्रतिष्ठाप�?कीजिए\n";
+//STRIP001      TEXT[ slovak ] = "Slovník synoným nieje pre daný jazyk dostupný. \nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk\n";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_DIC_ERR_UNKNOWN
+//STRIP001 {
+//STRIP001      Text = "Das Wort konnte aus einem unbekanntem Grund\nnicht ins W�rterbuch aufgenommen werden." ;
+//STRIP001      Text [ ENGLISH ] = "Failed to add word to dictionary\n for an unknown reason." ;
+//STRIP001      Text[ english_us ] = "Word cannot be added to dictionary\ndue to unknown reason.";
+//STRIP001      Text[ portuguese ] = "Foi imposs�vel adicionar a palavra ao\ndicion�rio por raz�es desconhecidas.";
+//STRIP001      Text[ russian ] = "���������� �������� ?������?\n�� ����������?��������.";
+//STRIP001      Text[ greek ] = "��?����?������ ?�������� ��?�����\n��?������ ��?������?����?";
+//STRIP001      Text[ dutch ] = "Om onbekende redenen kan het woord\nniet worden opgenomen in het woordenboek.";
+//STRIP001      Text[ french ] = "Pour une raison inconnue,\n il a �t?impossible d'ins�rer le mot dans le dictionnaire.";
+//STRIP001      Text[ spanish ] = "No se puede recoger en el diccionario la\npalabra debido a una raz�n desconocida.";
+//STRIP001      Text[ italian ] = "Non ?stato possibile inserire la parola nel dizionario.\nErrore sconosciuto.";
+//STRIP001      Text[ danish ] = "Det var af en ukendt grund ikke muligt\nat tilf�je ordet til ordbogen.";
+//STRIP001      Text[ swedish ] = "Ordet kunde av ok�nd anledning\ninte tas upp i ordlistan.";
+//STRIP001      Text[ polish ] = "Z nieznanej przyczyny\nwyrazu nie mo�na doda?do s�ownika.";
+//STRIP001      Text[ portuguese_brazilian ] = "N�o foi poss�vel adicionar a palavra ao\ndicion�rio por raz�es desconhecidas.";
+//STRIP001      Text[ japanese ] = "単語は原因が不明なまま\n辞書に追加できませんでした�?";
+//STRIP001      Text[ korean ] = "�?�?없는 단어이므로\n사전�?추가하지 못했습니�?";
+//STRIP001      Text[ chinese_simplified ] = "这个字无法添加到词典中去,原因不明�?";
+//STRIP001      Text[ chinese_traditional ] = "字典無法收錄這個字，原因不明�?";
+//STRIP001      Text[ arabic ] = "���� ����?������ ��?�������\n���� ��?����?";
+//STRIP001      Text[ turkish ] = "S�zc�k bilinmeyen bir nedenden dolay�\ns�zl��e eklenemedi.";
+//STRIP001      Text[ catalan ] = "No es pot recollir en el diccionari la\nparaula degut a un error desconegut.";
+//STRIP001      Text[ finnish ] = "Sanan lis��minen sanastoon ei onnistu\ntuntemattoman virheen vuoksi.";
+//STRIP001      Text[ thai ] = "ไม่สามารถเพิ่มคำในพจนานุกรมได้\nเนื่องจากเหตุผลที่ไม่รู้จั�?";
+//STRIP001      Text[ czech ] = "Slovo nelze do slovníku přidat\nz neznámého důvodu.";
+//STRIP001      Text[ hebrew ] = "Das Wort konnte aus einem unbekanntem Grund\nnicht ins Wörterbuch aufgenommen werden.";
+//STRIP001      Text[ hindi ] = "अज्ञात कारण केलिए\nशब्द को शब्दको�?मे�?नही�?जोड़ सकते है �?";
+//STRIP001      Text[ slovak ] = "Nie je možné pridať slovo do slovníka\nz neznámeho dôvodu.";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_DIC_ERR_FULL
+//STRIP001 {
+//STRIP001      Text = "Das W�rterbuch ist bereits voll." ;
+//STRIP001      Text [ ENGLISH ] = "The dictionary is already full." ;
+//STRIP001      Text[ english_us ] = "The dictionary is already full.";
+//STRIP001      Text[ portuguese ] = "O dicion�rio j?est?cheio!";
+//STRIP001      Text[ russian ] = "������?��?��������.";
+//STRIP001      Text[ greek ] = "��?������?����?��?������?��?������.";
+//STRIP001      Text[ dutch ] = "Woordenboek is vol";
+//STRIP001      Text[ french ] = "Le dictionnaire est plein !";
+//STRIP001      Text[ spanish ] = "El diccionario est?lleno.";
+//STRIP001      Text[ italian ] = "Il dizionario ?pino.";
+//STRIP001      Text[ danish ] = "Ordbogen er allerede fuld.";
+//STRIP001      Text[ swedish ] = "Ordlistan �r redan full.";
+//STRIP001      Text[ polish ] = "S�ownik jest zape�niony.";
+//STRIP001      Text[ portuguese_brazilian ] = "O dicion�rio j?est?cheio.";
+//STRIP001      Text[ japanese ] = "辞書はすでにいっぱいです�?";
+//STRIP001      Text[ korean ] = "사전�?이미 �?찼습니다.";
+//STRIP001      Text[ chinese_simplified ] = "词典已满�?";
+//STRIP001      Text[ chinese_traditional ] = "字典已滿�?";
+//STRIP001      Text[ arabic ] = "������?����?������.";
+//STRIP001      Text[ turkish ] = "S�zl�k doldu.";
+//STRIP001      Text[ catalan ] = "El diccionari est?ple.";
+//STRIP001      Text[ finnish ] = "Sanasto on jo t�ynn?";
+//STRIP001      Text[ thai ] = "พจนานุกรมเต็มแล้�?";
+//STRIP001      Text[ czech ] = "Slovník je již plný.";
+//STRIP001      Text[ hebrew ] = "Das Wörterbuch ist bereits voll.";
+//STRIP001      Text[ hindi ] = "शब्दको�?पहिल�?से ही भर�?हु�?है �?";
+//STRIP001      Text[ slovak ] = "Slovník je už plný.";
+//STRIP001 };
+//STRIP001 String RID_SVXSTR_DIC_ERR_READONLY
+//STRIP001 {
+//STRIP001      Text = "Das W�rterbuch ist schreibgesch�tzt." ;
+//STRIP001      Text [ ENGLISH ] = "The dictionary is readonly." ;
+//STRIP001      Text[ english_us ] = "The dictionary is read-only.";
+//STRIP001      Text[ portuguese ] = "O dicion�rio ?s?de leitura.";
+//STRIP001      Text[ russian ] = "������?������ ��� ����?.";
+//STRIP001      Text[ greek ] = "�� ������ ����?���� ��?��������.";
+//STRIP001      Text[ dutch ] = "Woordenboek is alleen-lezen.";
+//STRIP001      Text[ french ] = "Le dictionnaire est en lecture seule !";
+//STRIP001      Text[ spanish ] = "El diccionario es solo de lectura.";
+//STRIP001      Text[ italian ] = "Il dizionario ?a sola lettura.";
+//STRIP001      Text[ danish ] = "Ordbogen er skrivebeskyttet.";
+//STRIP001      Text[ swedish ] = "Ordlistan �r skrivskyddad.";
+//STRIP001      Text[ polish ] = "S�ownik jest tylko do odczytu.";
+//STRIP001      Text[ portuguese_brazilian ] = "O dicion�rio ?de somente leitura.";
+//STRIP001      Text[ japanese ] = "辞書は読み取り専用です�?";
+//STRIP001      Text[ korean ] = "사전�?읽기 전용입니�?";
+//STRIP001      Text[ chinese_simplified ] = "这个词典是防改写的�?";
+//STRIP001      Text[ chinese_traditional ] = "字典是唯讀的�?";
+//STRIP001      Text[ arabic ] = "������?���� �� ������?";
+//STRIP001      Text[ turkish ] = "S�zl�k yazmaya kar�� korumal�d�r.";
+//STRIP001      Text[ catalan ] = "El diccionari �s de nom�s lectura.";
+//STRIP001      Text[ finnish ] = "Sanasto on vain luku -muotoa.";
+//STRIP001      Text[ thai ] = "พจนานุกรมเป็นแบบอ่านได้อย่างเดียว";
+//STRIP001      Text[ czech ] = "Slovník je pouze pro čtení.";
+//STRIP001      Text[ hebrew ] = "Das Wörterbuch ist schreibgeschützt.";
+//STRIP001      Text[ hindi ] = "शब्दको�?केवल पढ़न�?केलि�?�?";
+//STRIP001      Text[ slovak ] = "Slovník je iba na čítanie.";
+//STRIP001 };
 
  // ********************************************************************** EOF
 
