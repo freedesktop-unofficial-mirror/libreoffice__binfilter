@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tblsel.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:48:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 #ifndef _TBLSEL_HXX
 #define _TBLSEL_HXX
 
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swtypes.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:47:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,9 +67,9 @@
 #ifndef _LANG_HXX
 #include <tools/lang.hxx>
 #endif
-#ifndef _GETPOOLIDFROMNAMEENUM_HXX
-#include <SwGetPoolIdFromName.hxx>
-#endif
+// auto strip #ifndef _GETPOOLIDFROMNAMEENUM_HXX
+// auto strip #include <SwGetPoolIdFromName.hxx>
+// auto strip #endif
 #include <limits.h>     //fuer LONG_MAX
 
 #ifdef PM20
@@ -81,9 +81,9 @@
 #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
 #endif
-#ifndef _HORIORNT_HXX
-#include <horiornt.hxx>
-#endif
+// auto strip #ifndef _HORIORNT_HXX
+// auto strip #include <horiornt.hxx>
+// auto strip #endif
 
 // wenn das hier geaendert wird, dann auch im globals.hrc aendern!!!
 //#define SW_FILEFORMAT_40 SOFFICE_FILEFORMAT_40
