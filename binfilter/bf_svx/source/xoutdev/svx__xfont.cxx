@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:50:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,12 +59,17 @@
  *
  ************************************************************************/
 
-#include <tools/poly.hxx>
+// auto strip #include <tools/poly.hxx>
 #include <vcl/metric.hxx>
 #include <vcl/virdev.hxx>
 #include <math.h>
-#include "xpoly.hxx"
-#include "xattr.hxx"
+// auto strip #include "xpoly.hxx"
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
+// auto strip #include "xattr.hxx"
 #include "xoutx.hxx"
 
 // #101498#
@@ -72,9 +77,9 @@
 #include "outliner.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
@@ -84,9 +89,9 @@
 #include <com/sun/star/i18n/XBreakIterator.hpp>
 #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
