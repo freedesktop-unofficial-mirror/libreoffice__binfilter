@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_module.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:29:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,7 +65,7 @@
 #include <tools/rcid.h>
 
 #include <cstdarg>
-#include "module.hxx"
+// auto strip #include "module.hxx"
 #include "app.hxx"
 #include "arrdecl.hxx"
 #include "sfxresid.hxx"
@@ -76,7 +76,7 @@
 #include "childwin.hxx"
 #include "mnumgr.hxx"
 #include "docfac.hxx"
-#include "accmgr.hxx"
+// auto strip #include "accmgr.hxx"
 #include "objface.hxx"
 #include "viewfrm.hxx"
 
