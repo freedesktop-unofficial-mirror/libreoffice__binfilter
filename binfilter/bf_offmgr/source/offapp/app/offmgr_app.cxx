@@ -2,9 +2,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:55:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -279,6 +279,15 @@
 #ifndef _SFXOBJFACE_HXX
 #include <bf_sfx2/objface.hxx>
 #endif
+
+#ifndef _PSTM_HXX
+#include <tools/pstm.hxx>
+#endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
 #define ITEMID_FIELD 0
 #ifndef _SVX_FLDITEM_HXX
 #include <bf_svx/flditem.hxx>
