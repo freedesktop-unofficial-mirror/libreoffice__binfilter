@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:40:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,195 +62,195 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
 
-#ifndef _SVDATTR_HXX
-#include "svdattr.hxx"
-#endif
+// auto strip #ifndef _SVDATTR_HXX
+// auto strip #include "svdattr.hxx"
+// auto strip #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
-#ifndef _SVDIO_HXX
-#include "svdio.hxx"
-#endif
+// auto strip #ifndef _SVDIO_HXX
+// auto strip #include "svdio.hxx"
+// auto strip #endif
 
-#ifndef _SVDMODEL_HXX
-#include "svdmodel.hxx"
-#endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include "svdmodel.hxx"
+// auto strip #endif
 
-#ifndef _SVDITER_HXX
-#include "svditer.hxx"
-#endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include "svditer.hxx"
+// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
 #endif
 
-#ifndef _CAMERA3D_HXX
-#include "camera3d.hxx"
-#endif
+// auto strip #ifndef _CAMERA3D_HXX
+// auto strip #include "camera3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_VOLMRK3D_HXX
-#include "volmrk3d.hxx"
-#endif
+// auto strip #ifndef _E3D_VOLMRK3D_HXX
+// auto strip #include "volmrk3d.hxx"
+// auto strip #endif
 
 #ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
 #endif
 
-#ifndef _E3D_SCENE3D_HXX
-#include "scene3d.hxx"
-#endif
+// auto strip #ifndef _E3D_SCENE3D_HXX
+// auto strip #include "scene3d.hxx"
+// auto strip #endif
 
 #ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
 #endif
 
-#ifndef _E3D_CUBE3D_HXX
-#include "cube3d.hxx"
-#endif
+// auto strip #ifndef _E3D_CUBE3D_HXX
+// auto strip #include "cube3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_LATHE3D_HXX
-#include "lathe3d.hxx"
-#endif
+// auto strip #ifndef _E3D_LATHE3D_HXX
+// auto strip #include "lathe3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_SPHERE3D_HXX
-#include "sphere3d.hxx"
-#endif
+// auto strip #ifndef _E3D_SPHERE3D_HXX
+// auto strip #include "sphere3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_EXTRUD3D_HXX
-#include "extrud3d.hxx"
-#endif
+// auto strip #ifndef _E3D_EXTRUD3D_HXX
+// auto strip #include "extrud3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_OBJ3D_HXX
-#include "obj3d.hxx"
-#endif
+// auto strip #ifndef _E3D_OBJ3D_HXX
+// auto strip #include "obj3d.hxx"
+// auto strip #endif
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
 #endif
 
-#ifndef _XTABLE_HXX
-#include "xtable.hxx"
-#endif
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include "xtable.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX
-#include "xflclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX
+// auto strip #include "xflclit.hxx"
+// auto strip #endif
 
-#ifndef _SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _SETTINGS_HXX
-#include <vcl/settings.hxx>
-#endif
+// auto strip #ifndef _SETTINGS_HXX
+// auto strip #include <vcl/settings.hxx>
+// auto strip #endif
 
-#ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
-#endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include <goodies/base3d.hxx>
+// auto strip #endif
 
-#ifndef _B3D_B3DTEX_HXX
-#include <goodies/b3dtex.hxx>
-#endif
+// auto strip #ifndef _B3D_B3DTEX_HXX
+// auto strip #include <goodies/b3dtex.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XLNCLIT_HXX
-#include "xlnclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX
+// auto strip #include "xlnclit.hxx"
+// auto strip #endif
 
-#ifndef _SFXMETRICITEM_HXX
-#include <svtools/metitem.hxx>
-#endif
+// auto strip #ifndef _SFXMETRICITEM_HXX
+// auto strip #include <svtools/metitem.hxx>
+// auto strip #endif
 
-#ifndef _XTABLE_HXX
-#include "xtable.hxx"
-#endif
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include "xtable.hxx"
+// auto strip #endif
 
-#ifndef _SVX_FILLITEM_HXX
-#include "xfillit.hxx"
-#endif
+// auto strip #ifndef _SVX_FILLITEM_HXX
+// auto strip #include "xfillit.hxx"
+// auto strip #endif
 
 #ifndef _SVX_XLNWTIT_HXX
 #include "xlnwtit.hxx"
 #endif
 
-#ifndef _SV_VIRDEV_HXX
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _SV_VIRDEV_HXX
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 
-#ifndef _B3D_B3DTRANS_HXX
-#include "b3dtrans.hxx"
-#endif
+// auto strip #ifndef _B3D_B3DTRANS_HXX
+// auto strip #include "b3dtrans.hxx"
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-#ifndef _SVX_COLRITEM_HXX
-#include "colritem.hxx"
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX
+// auto strip #include "colritem.hxx"
+// auto strip #endif
 
-#ifndef _SVXE3DITEM_HXX
-#include "e3ditem.hxx"
-#endif
+// auto strip #ifndef _SVXE3DITEM_HXX
+// auto strip #include "e3ditem.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLNTRIT_HXX
-#include "xlntrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNTRIT_HXX
+// auto strip #include "xlntrit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLTRIT_HXX
-#include "xfltrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLTRIT_HXX
+// auto strip #include "xfltrit.hxx"
+// auto strip #endif
 
-#ifndef _SVDPAGV_HXX
-#include "svdpagv.hxx"
-#endif
+// auto strip #ifndef _SVDPAGV_HXX
+// auto strip #include "svdpagv.hxx"
+// auto strip #endif
 
-#ifndef _SV_GRADIENT_HXX
-#include <vcl/gradient.hxx>
-#endif
+// auto strip #ifndef _SV_GRADIENT_HXX
+// auto strip #include <vcl/gradient.hxx>
+// auto strip #endif
 
-#ifndef _SV_METAACT_HXX
-#include <vcl/metaact.hxx>
-#endif
+// auto strip #ifndef _SV_METAACT_HXX
+// auto strip #include <vcl/metaact.hxx>
+// auto strip #endif
 
-#ifndef _SVX3DITEMS_HXX
-#include "svx3ditems.hxx"
-#endif
+// auto strip #ifndef _SVX3DITEMS_HXX
+// auto strip #include "svx3ditems.hxx"
+// auto strip #endif
 
-#ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
 
-#ifndef _SVX_XGRSCIT_HXX
-#include "xgrscit.hxx"
-#endif
+// auto strip #ifndef _SVX_XGRSCIT_HXX
+// auto strip #include "xgrscit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_SVDOIMP_HXX
-#include "svdoimp.hxx"
-#endif
+// auto strip #ifndef _SVX_SVDOIMP_HXX
+// auto strip #include "svdoimp.hxx"
+// auto strip #endif
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
