@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swgpar.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:48:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,10 +62,10 @@
 
 #pragma hdrstop
 
-#include "swtypes.hxx"
+// auto strip #include "swtypes.hxx"
 
-#include "rdswg.hxx"
-#include "swgpar.hxx"
+// auto strip #include "rdswg.hxx"
+// auto strip #include "swgpar.hxx"
 namespace binfilter {
 
 /////////////////////////////////////////////////////////////////////////
