@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pageiter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:38:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,20 @@
 
 #pragma hdrstop
 
-#include "doc.hxx"
-#include "pagefrm.hxx"
-#include "cntfrm.hxx"
-#include "pam.hxx"
-
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#include "pageiter.hxx"
-#include "txtfrm.hxx"
+
+// auto strip #include "doc.hxx"
+// auto strip #include "pagefrm.hxx"
+#include "cntfrm.hxx"
+// auto strip #include "pam.hxx"
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #include "pageiter.hxx"
+// auto strip #include "txtfrm.hxx"
 namespace binfilter {
 
 
