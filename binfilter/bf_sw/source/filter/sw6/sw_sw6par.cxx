@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:04 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:50:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -241,6 +241,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #ifdef __BORLANDC__
@@ -5056,7 +5057,7 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                             }
 
                             // search the correct path of the graphic
-                            aNam = URIHelper::SmartRelToAbs( aNam );
+                            aNam = so3::StaticBaseUrl::SmartRelToAbs( aNam );
                             if( !FStatHelper::IsDocument( aNam ) )
                             {
                                 String sFNm( INetURLObject( aNam ).getName() );
