@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlscripti.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:08 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:23:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,13 +76,11 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
+
 namespace com { namespace sun { namespace star { namespace frame {
     class XModel;
 }}}}
 
-namespace com { namespace sun { namespace star { namespace script {
-    class XStarBasicAccess;
-}}}}
 namespace binfilter {
 
 class SvXMLTokenMap;
@@ -90,8 +88,7 @@ class SvXMLTokenMap;
 class XMLScriptContext : public SvXMLImportContext
 {
 private:
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::script::XStarBasicAccess>     mxBasicAccess;
+    ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > m_xModel;
 
 public:
     XMLScriptContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
@@ -107,10 +104,6 @@ public:
                     ::com::sun::star::xml::sax::XAttributeList>& xAttrList );
 
     virtual void EndElement();
-
-    ::com::sun::star::uno::Reference<
-        ::com::sun::star::script::XStarBasicAccess> getBasicAccess()
-            { return mxBasicAccess; }
 };
 
 }//end of namespace binfilter
