@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:05 $
+ *  last change: $Author: kz $ $Date: 2004-05-06 16:17:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -636,6 +636,13 @@ SbxVariable* SfxConstants_Impl::Find
 
 /*N*/ BasicManager* SfxApplication::GetBasicManager()
 /*N*/ {
+        // #116665#
+        // Temorarily just give back a empty BasicMagare, since binfilter
+        // ATM doess not support basic anyways.
+        if(pImp->pBasicMgr)
+            return pImp->pBasicMgr;
+        pImp->pBasicMgr = new BasicManager( new StarBASIC );
+        return pImp->pBasicMgr;
 /*N*/ //    DBG_ASSERT( pAppData_Impl->nBasicCallLevel != 0,
 /*N*/ //                "unnecessary call to GetBasicManager() - inefficient!" );
 /*N*/   if ( pAppData_Impl->nBasicCallLevel == 0 )
