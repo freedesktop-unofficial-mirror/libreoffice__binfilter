@@ -18686,3 +18686,7 @@ _TI3?AVNotConnectedException@io@star@sun@com@@
 ?the_type@?1??getCppuType@@YAABVType@uno@star@sun@com@@PBV?$Reference@VXStyleFamiliesSupplier@style@star@sun@com@@@3456@@Z@4PAU_typelib_TypeDescriptionReference@@A
 ?the_type@?1??getCppuType@@YAABVType@uno@star@sun@com@@PBV?$Reference@VXActiveDataControl@io@star@sun@com@@@3456@@Z@4PAU_typelib_TypeDescriptionReference@@A
 ?the_type@?1??getCppuType@@YAABVType@uno@star@sun@com@@PBV?$Reference@VXSeekable@io@star@sun@com@@@3456@@Z@4PAU_typelib_TypeDescriptionReference@@A
+?lcl_ensureControlVisibility@?A0x837a1020@binfilter@@YAXPAVSdrView@2@PBVSdrUnoObj@2@_N@Z
+?getCounter@?A0x370408c2@binfilter@@YAAAJXZ
+?getSafteyMutex@?A0x370408c2@binfilter@@YAAAVMutex@osl@@XZ
+?getSharedContext@?A0x370408c2@binfilter@@YAPAVOSystemParseContext@svxform@2@PAV342@E@Z
