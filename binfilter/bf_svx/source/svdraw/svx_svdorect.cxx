@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdorect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,27 +59,27 @@
  *
  ************************************************************************/
 
-#include "svdorect.hxx"
+// auto strip #include "svdorect.hxx"
 #include <math.h>
 #include <stdlib.h>
 #include "xpool.hxx"
-#include "xpoly.hxx"
-#include "svdxout.hxx"
-#include "svdattr.hxx"
+// auto strip #include "xpoly.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdattr.hxx"
 #include "svdpool.hxx"
 #include "svdtouch.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
-#include "svddrag.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdpage.hxx"
 #include "svdocapt.hxx" // fuer Import von SdrFileVersion 2
-#include "svdpagv.hxx" // fuer
+// auto strip #include "svdpagv.hxx" // fuer
 #include "svdview.hxx" // das
-#include "svdundo.hxx" // Macro-Beispiel
-#include "svdopath.hxx"
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdundo.hxx" // Macro-Beispiel
+// auto strip #include "svdopath.hxx"
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 
 #ifndef _SVX_XFLCLIT_HXX //autogen
@@ -94,9 +94,18 @@
 #include <xlnwtit.hxx>
 #endif
 
+#ifndef _SVX_RECTENUM_HXX
+#include "rectenum.hxx"
+#endif
+
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
+#endif
+
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
