@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_editutil.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:16:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,32 +73,53 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
 #include <svtools/colorcfg.hxx>
-#include <bf_svx/editview.hxx>
+// auto strip #include <bf_svx/editview.hxx>
 #include <bf_svx/editstat.hxx>
-#include <bf_svx/escpitem.hxx>
+// auto strip #include <bf_svx/escpitem.hxx>
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
 //#include <vcl/system.hxx>
-#include <vcl/svapp.hxx>
-#include <vcl/outdev.hxx>
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #include <vcl/outdev.hxx>
 #include <svtools/inethist.hxx>
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #include "editutil.hxx"
-#include "global.hxx"
-#include "attrib.hxx"
-#include "document.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "document.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
 #include "scmod.hxx"
-#include "inputopt.hxx"
+// auto strip #include "inputopt.hxx"
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
