@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pivot2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:09:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,26 +71,26 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/boxitem.hxx>
-#include <bf_svx/wghtitem.hxx>
-#include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #include <bf_svx/wghtitem.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
 #endif
 
 #include "globstr.hrc"
-#include "subtotal.hxx"
+// auto strip #include "subtotal.hxx"
 #include "rangeutl.hxx"
-#include "attrib.hxx"
-#include "patattr.hxx"
-#include "docpool.hxx"
-#include "document.hxx"
-#include "userlist.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "patattr.hxx"
+// auto strip #include "docpool.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "userlist.hxx"
 #include "pivot.hxx"
 #include "rechead.hxx"
-#include "compiler.hxx"                         // fuer errNoValue
+// auto strip #include "compiler.hxx"                           // fuer errNoValue
 #include "refupdat.hxx"
-#include "stlpool.hxx"
+// auto strip #include "stlpool.hxx"
 #include "stlsheet.hxx"
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pivot.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:08:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,26 +73,26 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <tools/solar.h>
 #include <string.h>
 #include <math.h>
 
 
 #include "globstr.hrc"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "subtotal.hxx"
-#include "scitems.hxx"
-#include "attrib.hxx"
-#include "patattr.hxx"
+// auto strip #include "scitems.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "patattr.hxx"
 #include "docpool.hxx"
 #include "document.hxx"
 #include "userlist.hxx"
 #include "pivot.hxx"
 #include "cell.hxx"
 #include "rechead.hxx"
-#include "compiler.hxx"                         // fuer errNoValue
-#include "progress.hxx"
+// auto strip #include "compiler.hxx"                           // fuer errNoValue
+// auto strip #include "progress.hxx"
 namespace binfilter {
 
 
