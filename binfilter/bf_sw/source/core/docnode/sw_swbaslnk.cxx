@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:17:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,15 +73,15 @@
 #include <vcl/outdev.hxx>
 #endif
 
-#ifndef _LNKBASE_HXX //autogen
-#include <so3/lnkbase.hxx>
-#endif
-#ifndef _LINKMGR_HXX
-#include <so3/linkmgr.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
+// auto strip #ifndef _LNKBASE_HXX //autogen
+// auto strip #include <so3/lnkbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINKMGR_HXX
+// auto strip #include <so3/linkmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
 #ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
 #endif
@@ -91,9 +91,9 @@
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
-#ifndef _SOERR_HXX
-#include <so3/soerr.hxx>
-#endif
+// auto strip #ifndef _SOERR_HXX
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -107,24 +107,34 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _SWEVENT_HXX
-#include <swevent.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWEVENT_HXX
+// auto strip #include <swevent.hxx>
+// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
@@ -134,21 +144,21 @@
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _HTMLTBL_HXX
-#include <htmltbl.hxx>
-#endif
+// auto strip #ifndef _HTMLTBL_HXX
+// auto strip #include <htmltbl.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd );

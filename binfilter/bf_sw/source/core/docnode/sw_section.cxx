@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:17:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,24 +96,29 @@
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>
-#endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>
+// auto strip #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
@@ -126,9 +131,9 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
 #ifndef _SWSERV_HXX
 #include <swserv.hxx>
 #endif
@@ -138,12 +143,12 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>
-#endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
@@ -153,9 +158,9 @@
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-#ifndef _FMTFTNTX_HXX
-#include <fmtftntx.hxx>
-#endif
+// auto strip #ifndef _FMTFTNTX_HXX
+// auto strip #include <fmtftntx.hxx>
+// auto strip #endif
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
@@ -166,6 +171,11 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+
+#ifndef _FRMATR_HXX
+#include <frmatr.hxx>
+#endif
+
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
