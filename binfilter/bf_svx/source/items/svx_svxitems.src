@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxitems.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:24:43 $
+ *  last change: $Author: hr $ $Date: 2004-08-05 16:24:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -9580,67 +9580,62 @@ String RID_SVXITEMS_PAGE_USAGE_MIRROR
 //STRIP001      Text[ slovak ] = "Pod";
 //STRIP001 };
 
-//STRIP001 String RID_SVXITEMS_TWOLINES_OFF
-//STRIP001 {
-//STRIP001      Text = "Doppelzeilig aus";
-//STRIP001      Text [ English ] = "Double lined off" ;
-//STRIP001      Text[ english_us ] = "Double-lined off";
-//STRIP001      Text[ portuguese ] = "Desactivar linhas duplas";
-//STRIP001      Text[ russian ] = "����. ������������";
-//STRIP001      Text[ greek ] = "�������� ����?����������������";
-//STRIP001      Text[ dutch ] = "Tweeregelig uit";
-//STRIP001      Text[ french ] = "'Deux lignes en une' d�sactiv?";
-//STRIP001      Text[ spanish ] = "Desactivar l�neas dobles";
-//STRIP001      Text[ italian ] = "Disattiva 'A due righe'";
-//STRIP001      Text[ danish ] = "Dobbelt fra";
-//STRIP001      Text[ swedish ] = "Dubbla rader av";
-//STRIP001      Text[ polish ] = "Podw�jne wiersze wy��czone";
-//STRIP001      Text[ portuguese_brazilian ] = "Linhas duplas desativadas";
-//STRIP001      Text[ japanese ] = "2行使�?オフ";
-//STRIP001      Text[ korean ] = "두줄 해제";
-//STRIP001      Text[ chinese_simplified ] = "不使用双�?";
-//STRIP001      Text[ chinese_traditional ] = "不使用雙�?";
-//STRIP001      Text[ turkish ] = "�ift �izgili Kapal?";
-//STRIP001      Text[ arabic ] = "Two lines off";
-//STRIP001      Text[ catalan ] = "Desactiva l�nies dobles";
-//STRIP001      Text[ finnish ] = "Kaksoisviiva poissa k�yt�st?";
-//STRIP001      Text[ thai ] = "ขีดเส้นปิดคู�?";
-//STRIP001      Text[ czech ] = "Dvojité řádky vypnuto";
-//STRIP001      Text[ hebrew ] = "‮ריוו�?כפול בין שורות מכובה�?";
-//STRIP001      Text[ hindi ] = "द्विगुणि�?रेखा बं�?";
-//STRIP001      Text[ slovak ] = "Dvojité riadky vypnuté";
-//STRIP001 };
-//STRIP001 String RID_SVXITEMS_TWOLINES
-//STRIP001 {
-//STRIP001      Text = "Doppelzeilig";
-//STRIP001      Text [ English ] = "Double lined" ;
-//STRIP001      Text[ english_us ] = "Double-lined";
-//STRIP001      Text[ portuguese ] = "Linhas duplas";
-//STRIP001      Text[ russian ] = "������������";
-//STRIP001      Text[ greek ] = "�������� ����?";
-//STRIP001      Text[ dutch ] = "Tweeregelig";
-//STRIP001      Text[ french ] = "Deux lignes en une";
-//STRIP001      Text[ spanish ] = "L�neas dobles";
-//STRIP001      Text[ italian ] = "A due righe";
-//STRIP001      Text[ danish ] = "Dobbelt";
-//STRIP001      Text[ swedish ] = "Dubbla rader";
-//STRIP001      Text[ polish ] = "Podw�jne wiersze";
-//STRIP001      Text[ portuguese_brazilian ] = "Linhas duplas";
-//STRIP001      Text[ japanese ] = "2行使�?";
-//STRIP001      Text[ korean ] = "두줄";
-//STRIP001      Text[ chinese_simplified ] = "双行";
-//STRIP001      Text[ chinese_traditional ] = "雙行";
-//STRIP001      Text[ turkish ] = "�ift �izgili";
-//STRIP001      Text[ arabic ] = "����?";
-//STRIP001      Text[ catalan ] = "Dues l�nies";
-//STRIP001      Text[ finnish ] = "Kaksoisviiva";
-//STRIP001      Text[ thai ] = "ขีดเส้นคู่";
-//STRIP001      Text[ czech ] = "Dvojité řádky";
-//STRIP001      Text[ hebrew ] = "‮ריוו�?כפול בין שורות מופעל�?";
-//STRIP001      Text[ hindi ] = "द्विगुणि�?रेखा";
-//STRIP001      Text[ slovak ] = "Dvojité riadky";
-//STRIP001 };
-
+String RID_SVXITEMS_TWOLINES_OFF
+{
+    Text [ de ] = "Doppelzeilig aus";
+    Text [ en-US ] = "Double-lined off";
+    Text[ pt ] = "Desactivar linhas duplas";
+    Text[ ru ] = "Выкл. двухстрочный";
+    Text[ el ] = "Δίγραμμη γραφή απενεργοποιημένη";
+    Text[ nl ] = "Tweeregelig uit";
+    Text[ fr ] = "'Deux lignes en une' désactivé";
+    Text[ es ] = "Desactivar líneas dobles";
+    Text[ fi ] = "Kaksoisviiva poissa käytöstä";
+    Text[ ca ] = "Desactiva línies dobles";
+    Text[ it ] = "Disattiva 'A due righe'";
+    Text[ sk ] = "Dvojité riadky vypnuté";
+    Text[ da ] = "Dobbelt fra";
+    Text[ sv ] = "Dubbla rader av";
+    Text[ pl ] = "Podwójne wiersze wyłączone";
+    Text[ pt-BR ] = "Linhas duplas desativadas";
+    Text[ th ] = "ขีดเส้นปิดคู่";
+    Text[ ja ] = "2行使い オフ";
+    Text[ ko ] = "두줄 해제";
+    Text[ zh-CN ] = "不使用双行";
+    Text[ zh-TW ] = "不使用雙行";
+    Text[ tr ] = "Çift Çizgili Kapalı";
+    Text[ hi-IN ] = "द्विगुणित रेखा बंद";
+    Text[ ar ] = "Two lines off";
+    Text[ he ] = "‮ריווח כפול בין שורות מכובה‬";
+};
+String RID_SVXITEMS_TWOLINES
+{
+    Text [ de ] = "Doppelzeilig";
+    Text [ en-US ] = "Double-lined";
+    Text[ pt ] = "Linhas duplas";
+    Text[ ru ] = "Двухстрочный";
+    Text[ el ] = "Δίγραμμη γραφή";
+    Text[ nl ] = "Tweeregelig";
+    Text[ fr ] = "Deux lignes en une";
+    Text[ es ] = "Líneas dobles";
+    Text[ fi ] = "Kaksoisviiva";
+    Text[ ca ] = "Dues línies";
+    Text[ it ] = "A due righe";
+    Text[ sk ] = "Dvojité riadky";
+    Text[ da ] = "Dobbelt";
+    Text[ sv ] = "Dubbla rader";
+    Text[ pl ] = "Podwójne wiersze";
+    Text[ pt-BR ] = "Linhas duplas";
+    Text[ th ] = "ขีดเส้นคู่";
+    Text[ ja ] = "2行使い";
+    Text[ ko ] = "두줄";
+    Text[ zh-CN ] = "双行";
+    Text[ zh-TW ] = "雙行";
+    Text[ tr ] = "Çift Çizgili";
+    Text[ hi-IN ] = "द्विगुणित रेखा";
+    Text[ ar ] = "سطرين";
+    Text[ he ] = "‮ריווח כפול בין שורות מופעל‬";
+};
 //STRIP001 String RID_SVXITEMS_SCRPTSPC_OFF
 //STRIP001 {
 //STRIP001      Text = "Kein automatischer Zeichenabstand";
@@ -9824,96 +9819,90 @@ String RID_SVXITEMS_PAGE_USAGE_MIRROR
 //STRIP001      Text[ slovak ] = "Neaplikovať zoznam zakázaných znakov na začiatok a koniec riadkov";
 //STRIP001 };
 
-//STRIP001 String RID_SVXITEMS_CHARROTATE_OFF
-//STRIP001 {
-//STRIP001      Text = "keine gedrehten Zeichen";
-//STRIP001      Text [ English ] = "no rotated character";
-//STRIP001      Text[ english_us ] = "No rotated characters";
-//STRIP001      Text[ portuguese ] = "Sem rota��o de caracteres";
-//STRIP001      Text[ russian ] = "��?������������ ��������";
-//STRIP001      Text[ greek ] = "����?���������� ����������";
-//STRIP001      Text[ dutch ] = "geen gedraaide tekens";
-//STRIP001      Text[ french ] = "Sans rotation des caract�res";
-//STRIP001      Text[ spanish ] = "Sin rotaci�n de caracteres";
-//STRIP001      Text[ italian ] = "Senza rotazione carattere";
-//STRIP001      Text[ danish ] = "ingen roterede tegn";
-//STRIP001      Text[ swedish ] = "Inga roterade tecken";
-//STRIP001      Text[ polish ] = "bez obr�conych znak�w";
-//STRIP001      Text[ portuguese_brazilian ] = "Caracteres sem rota��o";
-//STRIP001      Text[ japanese ] = "文字を回転しない";
-//STRIP001      Text[ korean ] = "회전�?문자 아님";
-//STRIP001      Text[ chinese_simplified ] = "字符不旋�?";
-//STRIP001      Text[ chinese_traditional ] = "字元不旋�?";
-//STRIP001      Text[ turkish ] = "D�nd�r�lm�� karakterler yok";
-//STRIP001      Text[ arabic ] = "���� ������?����";
-//STRIP001      Text[ catalan ] = "Sense car�cters canviats";
-//STRIP001      Text[ finnish ] = "Ei kierrettyj?merkkej?";
-//STRIP001      Text[ thai ] = "ตัวอักขระที่ไม่หมุ�?";
-//STRIP001      Text[ czech ] = "Bez rotovaných znaků";
-//STRIP001      Text[ hebrew ] = "‮לל�?תוים מסובבים�?";
-//STRIP001      Text[ hindi ] = "घुमाया हु�?अक्षरे�?नही�?";
-//STRIP001      Text[ slovak ] = "Bez otočených znakov";
-//STRIP001 };
-//STRIP001 String RID_SVXITEMS_CHARROTATE
-//STRIP001 {
-//STRIP001      Text = "Zeichen um $(ARG1)?gedreht";
-//STRIP001      Text [ English ] = "character rotated by $(ARG1)?";
-//STRIP001      Text[ english_us ] = "Character rotated by $(ARG1)?";
-//STRIP001      Text[ portuguese ] = "Rota��o de caracteres: $(ARG1)?";
-//STRIP001      Text[ russian ] = "��������?������?�� $(ARG1)?";
-//STRIP001      Text[ greek ] = "���������� ���������� ��?$(ARG1)?";
-//STRIP001      Text[ dutch ] = "teken $(ARG1)?gedraaid";
-//STRIP001      Text[ french ] = "Rotation des caract�res : $(ARG1)?";
-//STRIP001      Text[ spanish ] = "Car�cter rodado en $(ARG1)?";
-//STRIP001      Text[ italian ] = "Carattere rotato di $(ARG1)?";
-//STRIP001      Text[ danish ] = "Tegn roteret med $(ARG1)?";
-//STRIP001      Text[ swedish ] = "Tecken roterat med $(ARG1)?";
-//STRIP001      Text[ polish ] = "Znaki obr�cone o $(ARG1)?";
-//STRIP001      Text[ portuguese_brazilian ] = "Caracter girado em $(ARG1)?";
-//STRIP001      Text[ japanese ] = "文字�?$(ARG1)�?回転";
-//STRIP001      Text[ korean ] = "$(ARG1)?회전�?문자";
-//STRIP001      Text[ chinese_simplified ] = "字符旋转 $(ARG1)";
-//STRIP001      Text[ chinese_traditional ] = "字元旋轉 $(ARG1)°";
-//STRIP001      Text[ turkish ] = "Karakter $(ARG1)° �evrildi";
-//STRIP001      Text[ arabic ] = "������?������ ������ $(ARG1)?";
-//STRIP001      Text[ catalan ] = "Car�cter rodat en $(ARG1)?";
-//STRIP001      Text[ finnish ] = "Merkki?kierretty $(ARG1)°";
-//STRIP001      Text[ thai ] = "ตัวอักขระหมุนโดย $(ARG1)�?";
-//STRIP001      Text[ czech ] = "Znak rotovaný o $(ARG1)°";
-//STRIP001      Text[ hebrew ] = "‮ת�?מסובב ב $(ARG1)°�?";
-//STRIP001      Text[ hindi ] = "अक्ष�?को $(ARG1)Â° से घुमाया";
-//STRIP001      Text[ slovak ] = "Znak otočený o $(ARG1)°";
-//STRIP001 };
-//STRIP001 String RID_SVXITEMS_CHARROTATE_FITLINE
-//STRIP001 {
-//STRIP001      Text = " an Zeile anpassen";
-//STRIP001      Text [ English ] = " fit to line";
-//STRIP001      Text[ english_us ] = "Fit to line";
-//STRIP001      Text[ portuguese ] = "Ajustar ?linha";
-//STRIP001      Text[ russian ] = "����������?�� ������?";
-//STRIP001      Text[ greek ] = "���������� ��?������";
-//STRIP001      Text[ dutch ] = "aanpassen aan regel";
-//STRIP001      Text[ french ] = " Adapter ?la ligne";
-//STRIP001      Text[ spanish ] = "Ajustar a la l�nea";
-//STRIP001      Text[ italian ] = "Adatta alla riga";
-//STRIP001      Text[ danish ] = " tilpas til linje";
-//STRIP001      Text[ swedish ] = " Anpassa till rad";
-//STRIP001      Text[ polish ] = "Dopasuj do wiersza";
-//STRIP001      Text[ portuguese_brazilian ] = " Ajustar ?linha";
-//STRIP001      Text[ japanese ] = "行に合わせる";
-//STRIP001      Text[ korean ] = "줄에 맞춤";
-//STRIP001      Text[ chinese_simplified ] = "和行对齐";
-//STRIP001      Text[ chinese_traditional ] = "和行對齊";
-//STRIP001      Text[ turkish ] = "Sat�ra uydur";
-//STRIP001      Text[ arabic ] = "������ ����?";
-//STRIP001      Text[ catalan ] = "ajustar a fila";
-//STRIP001      Text[ finnish ] = "Sovita riville";
-//STRIP001      Text[ thai ] = "จัดพอดีบรรทั�?";
-//STRIP001      Text[ czech ] = "Přizpůsobit řádce";
-//STRIP001      Text[ hebrew ] = "‮התאמ�?לשורה�?";
-//STRIP001      Text[ hindi ] = "रेखा केलि�?योग्�?";
-//STRIP001      Text[ slovak ] = "Prispôsobiť riadku";
-//STRIP001 };
+String RID_SVXITEMS_CHARROTATE_OFF
+{
+    Text [ de ] = "keine gedrehten Zeichen";
+    Text [ en-US ] = "No rotated characters";
+    Text[ pt ] = "Sem rotação de caracteres";
+    Text[ ru ] = "Без перевернутых символов";
+    Text[ el ] = "Χωρίς περιστροφή χαρακτήρων";
+    Text[ nl ] = "geen gedraaide tekens";
+    Text[ fr ] = "Sans rotation des caractères";
+    Text[ es ] = "Sin rotación de caracteres";
+    Text[ fi ] = "Ei kierrettyjä merkkejä";
+    Text[ ca ] = "Sense caràcters canviats";
+    Text[ it ] = "Senza rotazione carattere";
+    Text[ sk ] = "Bez otočených znakov";
+    Text[ da ] = "ingen roterede tegn";
+    Text[ sv ] = "Inga roterade tecken";
+    Text[ pl ] = "bez obróconych znaków";
+    Text[ pt-BR ] = "Caracteres sem rotação";
+    Text[ th ] = "ตัวอักขระที่ไม่หมุน";
+    Text[ ja ] = "文字を回転しない";
+    Text[ ko ] = "회전된 문자 아님";
+    Text[ zh-CN ] = "字符不旋转";
+    Text[ zh-TW ] = "字元不旋轉";
+    Text[ tr ] = "Döndürülmüş karakterler yok";
+    Text[ hi-IN ] = "घुमाया हुआ अक्षरें नहीं";
+    Text[ ar ] = "بدون استدارة أحرف";
+    Text[ he ] = "‮ללא תוים מסובבים‬";
+};
+String RID_SVXITEMS_CHARROTATE
+{
+    Text [ de ] = "Zeichen um $(ARG1)� gedreht";
+    Text [ en-US ] = "Character rotated by $(ARG1)�";
+    Text[ pt ] = "Rotação de caracteres: $(ARG1)°";
+    Text[ ru ] = "Повернуть символы на $(ARG1)°";
+    Text[ el ] = "Περιστροφή χαρακτήρων από $(ARG1)°";
+    Text[ nl ] = "teken $(ARG1)° gedraaid";
+    Text[ fr ] = "Rotation des caractères : $(ARG1)°";
+    Text[ es ] = "Carácter rodado en $(ARG1)°";
+    Text[ fi ] = "Merkkiä kierretty $(ARG1)Â°";
+    Text[ ca ] = "Caràcter rodat en $(ARG1)°";
+    Text[ it ] = "Carattere rotato di $(ARG1)°";
+    Text[ sk ] = "Znak otočený o $(ARG1)°";
+    Text[ da ] = "Tegn roteret med $(ARG1)°";
+    Text[ sv ] = "Tecken roterat med $(ARG1)°";
+    Text[ pl ] = "Znaki obrócone o $(ARG1)°";
+    Text[ pt-BR ] = "Caracter girado em $(ARG1)?";
+    Text[ th ] = "ตัวอักขระหมุนโดย $(ARG1)ฐ";
+    Text[ ja ] = "文字を $(ARG1)ー 回転";
+    Text[ ko ] = "$(ARG1)?회전된 문자";
+    Text[ zh-CN ] = "字符旋转 $(ARG1)";
+    Text[ zh-TW ] = "字元旋轉 $(ARG1)°";
+    Text[ tr ] = "Karakter $(ARG1)Â° çevrildi";
+    Text[ hi-IN ] = "अक्षर को $(ARG1)Â° से घुमाया";
+    Text[ ar ] = "استدارة الأحرف بمقدار $(ARG1)°";
+    Text[ he ] = "‮תו מסובב ב $(ARG1)°‬";
+};
+String RID_SVXITEMS_CHARROTATE_FITLINE
+{
+    Text [ de ] = " an Zeile anpassen";
+    Text [ en-US ] = "Fit to line";
+    Text[ pt ] = "Ajustar à linha";
+    Text[ ru ] = "Согласовать со строкой";
+    Text[ el ] = "Προσαρμογή στη γραμμή";
+    Text[ nl ] = "aanpassen aan regel";
+    Text[ fr ] = " Adapter à la ligne";
+    Text[ es ] = "Ajustar a la línea";
+    Text[ fi ] = "Sovita riville";
+    Text[ ca ] = "ajustar a fila";
+    Text[ it ] = "Adatta alla riga";
+    Text[ sk ] = "Prispôsobiť riadku";
+    Text[ da ] = " tilpas til linje";
+    Text[ sv ] = " Anpassa till rad";
+    Text[ pl ] = "Dopasuj do wiersza";
+    Text[ pt-BR ] = " Ajustar à linha";
+    Text[ th ] = "จัดพอดีบรรทัด";
+    Text[ ja ] = "行に合わせる";
+    Text[ ko ] = "줄에 맞춤";
+    Text[ zh-CN ] = "和行对齐";
+    Text[ zh-TW ] = "和行對齊";
+    Text[ tr ] = "Satıra uydur";
+    Text[ hi-IN ] = "रेखा केलिए योग्य";
+    Text[ ar ] = "ملاءمة للسطر";
+    Text[ he ] = "‮התאמה לשורה‬";
+};
 //STRIP001 String RID_SVXITEMS_CHARSCALE
 //STRIP001 {
 //STRIP001      Text = "Zeichenskalierung $(ARG1)%";
