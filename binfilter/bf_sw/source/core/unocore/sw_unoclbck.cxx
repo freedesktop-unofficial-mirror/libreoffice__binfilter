@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoclbck.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:08:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,44 +61,54 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
-#include <unoobj.hxx>
-#endif
+// auto strip #ifndef _UNOOBJ_HXX
+// auto strip #include <unoobj.hxx>
+// auto strip #endif
 #ifndef _UNOIDX_HXX
 #include <unoidx.hxx>
 #endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 #ifndef _UNOCLBCK_HXX
 #include <unoclbck.hxx>
 #endif
-#ifndef _TXTFTN_HXX
-#include <txtftn.hxx>
+// auto strip #ifndef _TXTFTN_HXX
+// auto strip #include <txtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFTN_HXX
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTFTN_HXX
-#include <fmtftn.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _FMTRFMRK_HXX
-#include <fmtrfmrk.hxx>
-#endif
-#ifndef _TXTRFMRK_HXX
-#include <txtrfmrk.hxx>
-#endif
+// auto strip #ifndef _FMTRFMRK_HXX
+// auto strip #include <fmtrfmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTRFMRK_HXX
+// auto strip #include <txtrfmrk.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /* -----------------------------06.01.00 13:51--------------------------------
