@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docary.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:38:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 #ifndef _DOCARY_HXX
 #define _DOCARY_HXX
 
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
-#include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
+// auto strip #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
+// auto strip #endif
 namespace binfilter {//STRIP009
 class SwFieldType;
 class SwFrmFmt;
@@ -77,13 +77,18 @@ class SwRedline;
 class SwUnoCrsr;
 class SwOLENode;
 } //namespace binfilter
+
+#ifdef sun
+#undef sun
+#endif
+
 namespace com { namespace sun { namespace star { namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface
 }}}};
 
-#ifndef _TABLE_HXX //autogen
-#include <tools/table.hxx>
-#endif
+// auto strip #ifndef _TABLE_HXX //autogen
+// auto strip #include <tools/table.hxx>
+// auto strip #endif
 
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
