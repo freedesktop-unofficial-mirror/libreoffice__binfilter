@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:49:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,47 +68,47 @@
 
 #include <string> // HACK: prevent conflict between STLPORT and Workshop headers
 
-#ifndef _SOT_EXCHANGE_HXX
-#include <sot/exchange.hxx>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINMODE_HPP_
-#include <com/sun/star/plugin/PluginMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
-#include <com/sun/star/plugin/PluginDescription.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINEXCEPTION_HPP_
-#include <com/sun/star/plugin/PluginException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINVARIABLE_HPP_
-#include <com/sun/star/plugin/PluginVariable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_XPLUGIN_HPP_
-#include <com/sun/star/plugin/XPlugin.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_XPLUGINMANAGER_HPP_
-#include <com/sun/star/plugin/XPluginManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PLUGIN_XPLUGINCONTEXT_HPP_
-#include <com/sun/star/plugin/XPluginContext.hpp>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _SOT_EXCHANGE_HXX
+// auto strip #include <sot/exchange.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINMODE_HPP_
+// auto strip #include <com/sun/star/plugin/PluginMode.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
+// auto strip #include <com/sun/star/plugin/PluginDescription.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINEXCEPTION_HPP_
+// auto strip #include <com/sun/star/plugin/PluginException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINVARIABLE_HPP_
+// auto strip #include <com/sun/star/plugin/PluginVariable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGIN_HPP_
+// auto strip #include <com/sun/star/plugin/XPlugin.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINMANAGER_HPP_
+// auto strip #include <com/sun/star/plugin/XPluginManager.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINCONTEXT_HPP_
+// auto strip #include <com/sun/star/plugin/XPluginContext.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #pragma hdrstop
 
-#include "docfac.hxx"
-#include "docfilt.hxx"
+// auto strip #include "docfac.hxx"
+// auto strip #include "docfilt.hxx"
 #include "fltfnc.hxx"
-#include "app.hxx"
-#include "sfxresid.hxx"
+// auto strip #include "app.hxx"
+// auto strip #include "sfxresid.hxx"
 #include "doc.hrc"
 #include "sfxuno.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
