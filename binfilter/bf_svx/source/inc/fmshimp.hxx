@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmshimp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:57:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,31 +61,31 @@
 #ifndef _SVX_FMSHIMP_HXX
 #define _SVX_FMSHIMP_HXX
 
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
-#include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XRESULTSET_HPP_
-#include <com/sun/star/sdbc/XResultSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSER_HPP_
-#include <com/sun/star/sdb/XSQLQueryComposer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
+// auto strip #include <com/sun/star/sdbc/XRowSetListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XRESULTSET_HPP_
+// auto strip #include <com/sun/star/sdbc/XResultSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSER_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLQueryComposer.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_FRAME_XSTATUSLISTENER_HPP_
-#include <com/sun/star/frame/XStatusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XSTATUSLISTENER_HPP_
+// auto strip #include <com/sun/star/frame/XStatusListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
-#include <com/sun/star/awt/XControl.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
+// auto strip #include <com/sun/star/awt/XControl.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
 #include <com/sun/star/util/XModifyListener.hpp>
 #endif
@@ -95,38 +95,38 @@
 #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-#include <com/sun/star/form/XFormComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
+// auto strip #include <com/sun/star/form/XFormComponent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_NAVIGATIONBARMODE_HPP_
 #include <com/sun/star/form/NavigationBarMode.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-#include <com/sun/star/frame/XFrame.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+// auto strip #include <com/sun/star/frame/XFrame.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-#include <com/sun/star/beans/XFastPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-#include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
 
-#ifndef _SV_TIMER_HXX //autogen
-#include <vcl/timer.hxx>
-#endif
+// auto strip #ifndef _SV_TIMER_HXX //autogen
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
 
-#ifndef _SFXAPP_HXX //autogen wg. SFX_APP
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen wg. SFX_APP
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 
 #ifndef _SVDMARK_HXX
 #include "svdmark.hxx"
@@ -136,22 +136,22 @@
 #include "svxids.hrc"
 #endif
 
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
-#ifndef SVX_DBTOOLSCLIENT_HXX
-#include "dbtoolsclient.hxx"
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
+// auto strip #ifndef SVX_DBTOOLSCLIENT_HXX
+// auto strip #include "dbtoolsclient.hxx"
+// auto strip #endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
 
 #define _SVSTDARR_BOOLS
 #define _SVSTDARR_BYTES
 #define _SVSTDARR_LONGS
 #define _SVSTDARR_ULONGS
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
 #ifndef _SFXMNUITEM_HXX //autogen
 #include <bf_sfx2/mnuitem.hxx>
@@ -162,33 +162,33 @@
 #ifndef _FMSEARCH_HXX
 #include "fmsearch.hxx"
 #endif
-#ifndef _FMSRCCF_HXX_
-#include "fmsrccfg.hxx"
-#endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
-#ifndef _VOS_THREAD_HXX_ //autogen
-#include <vos/thread.hxx>
-#endif
-#ifndef _SFXCANCEL_HXX //autogen
-#include <svtools/cancel.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_WARNING
-#include <tools/debug.hxx>
-#endif
-#ifndef _CPPUHELPER_COMPONENT_HXX_
-#include <cppuhelper/component.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
-#include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_CONTAINER_HXX_
-#include <comphelper/container.hxx>
-#endif
-#ifndef _FM_IMPLEMENTATION_IDS_HXX_
-#include "fmimplids.hxx"
-#endif
+// auto strip #ifndef _FMSRCCF_HXX_
+// auto strip #include "fmsrccfg.hxx"
+// auto strip #endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_THREAD_HXX_ //autogen
+// auto strip #include <vos/thread.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXCANCEL_HXX //autogen
+// auto strip #include <svtools/cancel.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_WARNING
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
+// auto strip #include <cppuhelper/component.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
+// auto strip #include <comphelper/stl_types.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_CONTAINER_HXX_
+// auto strip #include <comphelper/container.hxx>
+// auto strip #endif
+// auto strip #ifndef _FM_IMPLEMENTATION_IDS_HXX_
+// auto strip #include "fmimplids.hxx"
+// auto strip #endif
 #ifndef _CPPUHELPER_COMPBASE6_HXX_
 #include <cppuhelper/compbase6.hxx>
 #endif
