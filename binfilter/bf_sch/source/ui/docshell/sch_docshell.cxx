@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:55:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,37 +68,37 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #include <bf_svx/svxids.hrc>
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX //autogen
 #include <so3/clsids.hxx>
 #endif
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
 #endif
-#ifndef _UNDO_HXX
-#include <svtools/undo.hxx>
-#endif
+// auto strip #ifndef _UNDO_HXX
+// auto strip #include <svtools/undo.hxx>
+// auto strip #endif
 #ifndef _CTRLTOOL_HXX
 #include <svtools/ctrltool.hxx>
 #endif
-#ifndef _IPMENU_HXX
-#include <so3/ipmenu.hxx>
-#endif
-#ifndef _SFXMNUMGR_HXX
-#include <bf_sfx2/mnumgr.hxx>
-#endif
+// auto strip #ifndef _IPMENU_HXX
+// auto strip #include <so3/ipmenu.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMNUMGR_HXX
+// auto strip #include <bf_sfx2/mnumgr.hxx>
+// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX
 #include <bf_sfx2/progress.hxx>
 #endif
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 #ifndef _SFXSTBMGR_HXX //autogen
 #include <bf_sfx2/stbmgr.hxx>
 #endif
@@ -111,24 +111,24 @@
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
-#ifndef _SCH_DLL_HXX //autogen
-#include <schdll.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX //autogen
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SCH_DLL_HXX //autogen
+// auto strip #include <schdll.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWFRM_HXX //autogen
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
 #endif
 #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <svtools/pathoptions.hxx>
 #endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
-#include <sot/formats.hxx>
-#include <bf_svx/flstitem.hxx>
+// auto strip #include <sot/formats.hxx>
+// auto strip #include <bf_svx/flstitem.hxx>
 #include <bf_svx/svxids.hrc>
 
 #include "app.hrc"
@@ -136,17 +136,17 @@
 #include "res_bmp.hrc"
 #include "schresid.hxx"
 #include "schview.hxx"
-#include "docshell.hxx"
+// auto strip #include "docshell.hxx"
 #include "schmod.hxx"
 
 #include "ChXChartDocument.hxx"
 #include "ChXChartData.hxx"
-#include "SchTransferable.hxx"
+// auto strip #include "SchTransferable.hxx"
 
 // header for class SfxFilter
-#ifndef _SFX_DOCFILT_HACK_HXX
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
