@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:26:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-05 15:10:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,6 +121,10 @@
 #include "svdetc.hxx"
 #include "svdview.hxx"
 #include "unomlstr.hxx"
+#ifndef _CLIENT_HXX
+#include <so3/client.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
