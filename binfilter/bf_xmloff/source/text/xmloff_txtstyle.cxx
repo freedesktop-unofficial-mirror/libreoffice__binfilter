@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtstyle.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:36:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,20 +66,20 @@
 #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
 
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 //#include "xmlprmap.hxx"
@@ -87,15 +87,15 @@
 #ifndef _XMLOFF_XMLSMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_FAMILIES_HXX
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX
+// auto strip #include "families.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 //#include "txtprmap.hxx"
 #endif
-#ifndef _XMLOFF_TXTPARAE_HXX
-#include "txtparae.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TXTPARAE_HXX
+// auto strip #include "txtparae.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
 #endif
