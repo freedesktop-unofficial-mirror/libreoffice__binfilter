@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndole.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:40:44 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:43:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,6 +123,7 @@
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::utl;
@@ -499,18 +500,18 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/       // MIB 18.5.97: DIe Base-URL wird jetzt gesetzt, damit Plugins
 /*N*/       // nach dem Laden und vor dem Aktivieren des Frames korrekt
 /*N*/       // geladen werden koennen
-/*N*/       String sBaseURL( INetURLObject::GetBaseURL() );
+/*N*/       String sBaseURL( so3::StaticBaseUrl::GetBaseURL() );
 /*N*/       const SwDocShell *pDocSh = pOLENd->GetDoc()->GetDocShell();
 /*N*/       const SfxMedium *pMedium;
 /*N*/       if( pDocSh && 0 != (pMedium = pDocSh->GetMedium()) &&
 /*N*/           pMedium->GetName() != sBaseURL )
-/*N*/               INetURLObject::SetBaseURL( pMedium->GetName() );
+/*N*/               so3::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/
 /*N*/       SvPersistRef xObj = p->GetObject( aName );
 /*N*/       ASSERT( !pOLERef || !pOLERef->Is(),
 /*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" )
 /*N*/
-/*N*/       INetURLObject::SetBaseURL( sBaseURL );
+/*N*/       so3::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/
 /*N*/       if ( !xObj.Is() )
 /*N*/       {
