@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_addinlis.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:12:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,19 +60,19 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 #include <bf_sfx2/objsh.hxx>
 
 
 #include "addinlis.hxx"
 #include "miscuno.hxx"      // SC_IMPL_SERVICE_INFO
 #include "document.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "unoguard.hxx"
 #include "bf_sc.hrc"
 namespace binfilter {
