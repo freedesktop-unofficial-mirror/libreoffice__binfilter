@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_autofmt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:19:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,120 +71,125 @@
 #include <hintids.hxx>
 #endif
 
-#include <svtools/svstdarr.hxx>
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
-#include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
-#include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
-#include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX
-#include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ADJITEM_HXX //autogen
+// auto strip #include <bf_svx/adjitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_TSTPITEM_HXX //autogen
+// auto strip #include <bf_svx/tstpitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX //autogen
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-#ifndef _INDEX_HXX
-#include <index.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
-#ifndef _FESH_HXX
-#include <fesh.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>       // fuer die UndoIds
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
-#ifndef _FRMINF_HXX
-#include <frminf.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _PARATR_HXX
-#include <paratr.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _ACORRECT_HXX
-#include <acorrect.hxx>
-#endif
-#ifndef _SHELLRES_HXX
-#include <shellres.hxx>
-#endif
-#ifndef _ITABENUM_HXX
-#include <itabenum.hxx>
-#endif
-#ifndef _SECTION_HXX //autogen
-#include <section.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
+// auto strip #ifndef _INDEX_HXX
+// auto strip #include <index.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _FESH_HXX
+// auto strip #include <fesh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>     // fuer die UndoIds
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMINF_HXX
+// auto strip #include <frminf.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PARATR_HXX
+// auto strip #include <paratr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _ACORRECT_HXX
+// auto strip #include <acorrect.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHELLRES_HXX
+// auto strip #include <shellres.hxx>
+// auto strip #endif
+// auto strip #ifndef _ITABENUM_HXX
+// auto strip #include <itabenum.hxx>
+// auto strip #endif
+// auto strip #ifndef _SECTION_HXX //autogen
+// auto strip #include <section.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
 
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>
 #endif
@@ -192,9 +197,9 @@
 #include <comcore.hrc>
 #endif
 
-#ifndef _SV_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //-------------------------------------------------------------------
