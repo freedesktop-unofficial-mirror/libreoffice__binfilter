@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-07-07 14:16:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:29:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,27 +59,27 @@
  *
  ************************************************************************/
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
 #include "eetext.hxx"       // definiert ITEMID_... fuer frmitems und textitem
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
-#ifndef _SVDSURO_HXX //autogen
-#include <bf_svx/svdsuro.hxx>
-#endif
-#ifndef _SVDOUTL_HXX //autogen
-#include <bf_svx/svdoutl.hxx>
-#endif
-#include <bf_svx/editdata.hxx>
-#include <bf_svx/pageitem.hxx>
+// auto strip #ifndef _SVDSURO_HXX //autogen
+// auto strip #include <bf_svx/svdsuro.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOUTL_HXX //autogen
+// auto strip #include <bf_svx/svdoutl.hxx>
+// auto strip #endif
+// auto strip #include <bf_svx/editdata.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/lrspitem.hxx>
-#include <bf_svx/bulitem.hxx>
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include <bf_svx/fhgtitem.hxx>
-#endif
+// auto strip #include <bf_svx/bulitem.hxx>
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #endif
 #ifndef _OUTLOBJ_HXX //autogen
 #include <bf_svx/outlobj.hxx>
 #endif
@@ -89,57 +89,66 @@
 #ifndef _SVDOGRAF_HXX //autogen
 #include <bf_svx/svdograf.hxx>
 #endif
+// auto strip #ifndef _SVDOPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdopage.hxx>
+// auto strip #endif
 #ifndef _SVDOPAGE_HXX //autogen
 #include <bf_svx/svdopage.hxx>
 #endif
-#ifndef _SVDOPAGE_HXX //autogen
-#include <bf_svx/svdopage.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
 #ifndef _SVX_PBINITEM_HXX //autogen
 #include <bf_svx/pbinitem.hxx>
 #endif
-#ifndef _SVDUNDO_HXX //autogen
-#include <bf_svx/svdundo.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _SVDUNDO_HXX //autogen
+// auto strip #include <bf_svx/svdundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 #ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
 #endif
-#ifndef _EDITOBJ_HXX
-#include <bf_svx/editobj.hxx>
-#endif
-#ifndef _SVX_SRIPTTYPEITEM_HXX
-#include <bf_svx/scripttypeitem.hxx>
-#endif
+// auto strip #ifndef _EDITOBJ_HXX
+// auto strip #include <bf_svx/editobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SRIPTTYPEITEM_HXX
+// auto strip #include <bf_svx/scripttypeitem.hxx>
+// auto strip #endif
 
 #ifdef MAC
-#include "::ui:inc:docshell.hxx"
+// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/docshell.hxx"
 #else
-#include "..\ui\inc\docshell.hxx"
+// auto strip #include "..\ui\inc\docshell.hxx"
 #endif
 #endif
 #include "sdoutl.hxx"
 
-#include "misc.hxx"
+// auto strip #include "misc.hxx"
 #include "eetext.hxx"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-#include "pglink.hxx"
+// auto strip #include "pglink.hxx"
 #include "sdresid.hxx"
 #include "stlsheet.hxx"
 #include "glob.hrc"
 #include "glob.hxx"
+
+#ifndef _SHL_HXX
+#include <tools/shl.hxx>
+#endif
+
+#ifndef _SDMOD_HXX
+#include "sdmod.hxx"
+#endif
+
 namespace binfilter {
 
 #define MAX_PRESOBJ     5              // Max. Anzahl Praesentationsobjekte
