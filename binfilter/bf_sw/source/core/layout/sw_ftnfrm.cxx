@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ftnfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:36:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,9 +80,14 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -92,9 +97,9 @@
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
@@ -113,9 +118,9 @@
 #ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
 #endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
