@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unomod.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:42:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,38 +64,38 @@
 #ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_NOSUPPORTEXCEPTION_HPP_
-#include <com/sun/star/lang/NoSupportException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
-#include <com/sun/star/drawing/XShape.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_NOSUPPORTEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/NoSupportException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
+// auto strip #include <com/sun/star/drawing/XShape.hpp>
+// auto strip #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 
 #ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <svtools/unoevent.hxx>
 #endif
 
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
 
-#include <cppuhelper/implbase2.hxx>
+// auto strip #include <cppuhelper/implbase2.hxx>
 
 #ifndef _SVX_UNOFILL_HXX_
 #include <unofill.hxx>
@@ -128,16 +128,16 @@
 #include <unoapi.hxx>
 #endif
 
-#include "svdmodel.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "globl3d.hxx"
-#include "svdtypes.hxx"
-#include "unoprov.hxx"
-#include "unopage.hxx"
+// auto strip #include "svdtypes.hxx"
+// auto strip #include "unoprov.hxx"
+// auto strip #include "unopage.hxx"
 #include "unofield.hxx"
-#include "unomod.hxx"
+// auto strip #include "unomod.hxx"
 #include "unomodel.hxx"
 #include "svdobj.hxx"
-#include "svdpage.hxx"
+// auto strip #include "svdpage.hxx"
 #include "unoshape.hxx"
 namespace binfilter {
 

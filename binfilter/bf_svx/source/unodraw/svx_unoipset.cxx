@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoipset.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:42:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,31 +59,31 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _SFXENUMITEM_HXX
-#include <svtools/eitem.hxx>
-#endif
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 
 #include <hash_map>
 #include <vector>
 
-#ifndef _SFX_ITEMPROP_HXX
-#include <svtools/itemprop.hxx>
-#endif
+// auto strip #ifndef _SFX_ITEMPROP_HXX
+// auto strip #include <svtools/itemprop.hxx>
+// auto strip #endif
 
-#include "unoipset.hxx"
-#include "svdpool.hxx"
+// auto strip #include "unoipset.hxx"
+// auto strip #include "svdpool.hxx"
 #include "svxids.hrc"
-#include "deflt3d.hxx"
+// auto strip #include "deflt3d.hxx"
 #include "unoshprp.hxx"
-#include "editeng.hxx"
+// auto strip #include "editeng.hxx"
 #include "unoapi.hxx"
 #include "svdobj.hxx"
 
