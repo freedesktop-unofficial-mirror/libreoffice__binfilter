@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unomod.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:50:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,27 +64,27 @@
 #ifndef _COM_SUN_STAR_TEXT_XMODULE_HPP_
 #include <com/sun/star/text/XModule.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_VIEW_XPRINTSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/view/XPrintSettingsSupplier.hpp>
 #endif
 #ifndef _COM_SUN_STAR_VIEW_XVIEWSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/view/XViewSettingsSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
-#include <cppuhelper/implbase2.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
-#include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE2_HXX_
+// auto strip #include <cppuhelper/implbase2.hxx>   // helper for implementations
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE3_HXX_
+// auto strip #include <cppuhelper/implbase3.hxx>   // helper for implementations
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx> // helper for implementations
 #endif

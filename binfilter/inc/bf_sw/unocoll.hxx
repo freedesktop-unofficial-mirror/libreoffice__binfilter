@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unocoll.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:50:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,9 +67,9 @@
 #ifndef _FLYENUM_HXX //autogen
 #include <flyenum.hxx>
 #endif
-#ifndef _SV_TIMER_HXX
-#include <vcl/timer.hxx>
-#endif
+// auto strip #ifndef _SV_TIMER_HXX
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
@@ -79,9 +79,9 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx> // helper for implementations
@@ -89,9 +89,9 @@
 #ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
 #endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
-#include <cppuhelper/implbase4.hxx> // helper for implementations
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE4_HXX_
+// auto strip #include <cppuhelper/implbase4.hxx>   // helper for implementations
+// auto strip #endif
 namespace com{namespace sun {namespace star {namespace text
 {
     class XTextTable;
