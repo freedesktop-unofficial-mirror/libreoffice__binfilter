@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:29 $
+#   last change: $Author: hr $ $Date: 2004-08-03 17:41:23 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -105,7 +105,6 @@ CXXFILES = \
     sw_sw3sectn.cxx	\
     sw_sw3style.cxx	\
     sw_sw3table.cxx	\
-    sw_sw3gsect.cxx	\
     sw_swacorr.cxx 	\
     sw_crypter.cxx
 
@@ -126,7 +125,6 @@ SLOFILES = \
     $(SLO)$/sw_sw3sectn.obj \
     $(SLO)$/sw_sw3style.obj \
     $(SLO)$/sw_sw3table.obj \
-    $(SLO)$/sw_sw3gsect.obj \
     $(SLO)$/sw_swacorr.obj	\
     $(SLO)$/sw_crypter.obj
 
