@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:41:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 
 #pragma hdrstop
 
-#include <so3/outplace.hxx>
+// auto strip #include <so3/outplace.hxx>
 
 #if STLPORT_VERSION>=321
 #include <math.h>   // prevent conflict between exception and std::exception
@@ -75,166 +75,171 @@
 #ifndef _SVDVIEW_HXX //autogen
 #include <bf_svx/svdview.hxx>
 #endif
-#ifndef _SOT_FACTORY_HXX
-#include <sot/factory.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
-#ifndef _SOUND_HXX //autogen
-#include <vcl/sound.hxx>
-#endif
-#ifndef _BIGINT_HXX //autogen
-#include <tools/bigint.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _INSDLG_HXX //autogen
-#include <so3/insdlg.hxx>
-#endif
-#ifndef _FRAMEOBJ_HXX //autogen
-#include <bf_sfx2/frameobj.hxx>
-#endif
-#ifndef _EHDL_HXX //autogen
-#include <svtools/ehdl.hxx>
-#endif
+// auto strip #ifndef _SOT_FACTORY_HXX
+// auto strip #include <sot/factory.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
+// auto strip #ifndef _BIGINT_HXX //autogen
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _INSDLG_HXX //autogen
+// auto strip #include <so3/insdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRAMEOBJ_HXX //autogen
+// auto strip #include <bf_sfx2/frameobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _EHDL_HXX //autogen
+// auto strip #include <svtools/ehdl.hxx>
+// auto strip #endif
 #ifndef _IPENV_HXX //autogen
 #include <so3/ipenv.hxx>
 #endif
-#ifndef _SOERR_HXX //autogen
-#include <so3/soerr.hxx>
-#endif
-#ifndef _CACHESTR_HXX //autogen
-#include <tools/cachestr.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
-#ifndef SMDLL0_HXX //autogen
-#include <bf_starmath/smdll0.hxx>
-#endif
-#ifndef _SCHDLL0_HXX
-#include <bf_sch/schdll0.hxx>
-#endif
-#ifndef _SCH_DLL_HXX
-#include <bf_sch/schdll.hxx>
-#endif
-#ifndef _SCH_MEMCHRT_HXX
-#include <bf_sch/memchrt.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
-#ifndef _OFAACCFG_HXX //autogen
-#include <bf_offmgr/ofaaccfg.hxx>
-#endif
-#ifndef _MySVXACORR_HXX
-#include <bf_svx/svxacorr.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX //autogen
-#include <vcl/graph.hxx>
-#endif
-#ifndef _SVX_IMPGRF_HXX
-#include <bf_svx/impgrf.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
+// auto strip #ifndef _SOERR_HXX //autogen
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _CACHESTR_HXX //autogen
+// auto strip #include <tools/cachestr.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
+// auto strip #include <svtools/moduleoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef SMDLL0_HXX //autogen
+// auto strip #include <bf_starmath/smdll0.hxx>
+// auto strip #endif
+// auto strip #ifndef _SCHDLL0_HXX
+// auto strip #include <bf_sch/schdll0.hxx>
+// auto strip #endif
+// auto strip #ifndef _SCH_DLL_HXX
+// auto strip #include <bf_sch/schdll.hxx>
+// auto strip #endif
+// auto strip #ifndef _SCH_MEMCHRT_HXX
+// auto strip #include <bf_sch/memchrt.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFAACCFG_HXX //autogen
+// auto strip #include <bf_offmgr/ofaaccfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _MySVXACORR_HXX
+// auto strip #include <bf_svx/svxacorr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_GRAPH_HXX //autogen
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_IMPGRF_HXX
+// auto strip #include <bf_svx/impgrf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
 
-#ifndef _FMTFTN_HXX //autogen
-#include <fmtftn.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
-#include <fmthbsh.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTFTN_HXX //autogen
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHBSH_HXX //autogen
+// auto strip #include <fmthbsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
-#ifndef _BASESH_HXX
-#include <basesh.hxx>
+// auto strip #ifndef _BASESH_HXX
+// auto strip #include <basesh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _UITOOL_HXX
-#include <uitool.hxx>
-#endif
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+// auto strip #ifndef _UITOOL_HXX
+// auto strip #include <uitool.hxx>
+// auto strip #endif
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _FRMMGR_HXX
-#include <frmmgr.hxx>
-#endif
-#ifndef _SHELLIO_HXX
-#include <shellio.hxx>
-#endif
-#ifndef _UINUMS_HXX
-#include <uinums.hxx>  // fuer Anwenden einer
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>  // fuer Undo-Ids
-#endif
+// auto strip #ifndef _FRMMGR_HXX
+// auto strip #include <frmmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHELLIO_HXX
+// auto strip #include <shellio.hxx>
+// auto strip #endif
+// auto strip #ifndef _UINUMS_HXX
+// auto strip #include <uinums.hxx>  // fuer Anwenden einer
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>  // fuer Undo-Ids
+// auto strip #endif
 #ifndef _SWCLI_HXX
 #include <swcli.hxx>
 #endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 #ifndef _WVIEW_HXX
 #include <wview.hxx>
 #endif
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _CAPTION_HXX
-#include <caption.hxx>
-#endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _CAPTION_HXX
+// auto strip #include <caption.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX //autogen wg. SwSelPaintRects
 #include <viscrs.hxx>
 #endif
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _SWERROR_H
 #include <swerror.h>
 #endif
 #ifndef _WRTSH_HRC
 #include <wrtsh.hrc>
 #endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
-#endif
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #define COMMON_INI_LIST \
