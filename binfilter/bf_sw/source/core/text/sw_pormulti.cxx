@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pormulti.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:54:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,26 +77,26 @@
 #endif
 
 #ifdef BIDI
-#ifndef _SV_OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>      // SwField
-#endif
+// auto strip #ifndef _SV_OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>      // SwField
+// auto strip #endif
 #endif
 
-#ifndef _TXATBASE_HXX //autogen
-#include <txatbase.hxx>
-#endif
-#ifndef _FMTRUBY_HXX
-#include <fmtruby.hxx>  // SwFmtRuby
-#endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>   // SwTxtRuby
-#endif
+// auto strip #ifndef _TXATBASE_HXX //autogen
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTRUBY_HXX
+// auto strip #include <fmtruby.hxx>    // SwFmtRuby
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>   // SwTxtRuby
+// auto strip #endif
 #ifndef _CHARFMT_HXX    // SwCharFmt
 #include <charfmt.hxx>
 #endif
@@ -106,45 +106,50 @@
 #ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
 #endif
-#ifndef _LAYFRM_HXX
-#include <layfrm.hxx>       // GetUpper()
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _LAYFRM_HXX
+// auto strip #include <layfrm.hxx>     // GetUpper()
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 #ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
 #endif
-#ifndef _INFTXT_HXX
-#include <inftxt.hxx>       // SwTxtSizeInfo
-#endif
-#ifndef _ITRPAINT_HXX
-#include <itrpaint.hxx>     // SwTxtPainter
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>      // SwViewOptions
-#endif
+// auto strip #ifndef _INFTXT_HXX
+// auto strip #include <inftxt.hxx>     // SwTxtSizeInfo
+// auto strip #endif
+// auto strip #ifndef _ITRPAINT_HXX
+// auto strip #include <itrpaint.hxx>     // SwTxtPainter
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>        // SwViewOptions
+// auto strip #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
 #endif
-#ifndef _PORGLUE_HXX
-#include <porglue.hxx>
-#endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
+// auto strip #ifndef _PORGLUE_HXX
+// auto strip #include <porglue.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx> // SwPageDesc
+// auto strip #endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
