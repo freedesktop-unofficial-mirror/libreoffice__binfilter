@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-06-24 11:19:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:23:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,14 +64,14 @@
 #endif
 
 #include "svdmodel.hxx"
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#include <unotools/ucbstreamhelper.hxx>
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #include <unotools/ucbstreamhelper.hxx>
 
-#ifndef _STRING_H
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_H
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _SFX_WHITER_HXX
 #include <svtools/whiter.hxx>
@@ -80,6 +80,11 @@
 #ifndef _SVX_XIT_HXX
 #include "xit.hxx"
 #endif
+
+#ifndef _XDEF_HXX
+#include <xdef.hxx>
+#endif
+
 #ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
 #endif
@@ -89,9 +94,9 @@
 #ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
 #endif
-#ifndef _SVX_XFLGRIT_HXX
-#include "xflgrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLGRIT_HXX
+// auto strip #include "xflgrit.hxx"
+// auto strip #endif
 #ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
 #endif
@@ -103,25 +108,25 @@
 #endif
 
 
-#include "svditext.hxx"
+// auto strip #include "svditext.hxx"
 #include "editeng.hxx"   // Fuer EditEngine::CreatePool()
 
 #include "xtable.hxx"
-#include "xoutx.hxx"
+// auto strip #include "xoutx.hxx"
 
 #include "svditer.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
 #include "svdpage.hxx"
-#include "svdlayer.hxx"
+// auto strip #include "svdlayer.hxx"
 #include "svdundo.hxx"
 #include "svdpool.hxx"
-#include "svdobj.hxx"
-#include "svdotext.hxx"  // fuer ReformatAllTextObjects und CalcFieldValue
+// auto strip #include "svdobj.hxx"
+// auto strip #include "svdotext.hxx"  // fuer ReformatAllTextObjects und CalcFieldValue
 #include "svdetc.hxx"
 #include "svdoutl.hxx"
 #include "svdoole2.hxx"
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdoutlinercache.hxx"
 
@@ -131,6 +136,10 @@
 #ifndef _SVX_ASIANCFG_HXX
 #include "asiancfg.hxx"
 #endif
+#endif
+
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
 #endif
 
 #ifndef _SVX_FONTITEM_HXX //autogen
@@ -153,17 +162,17 @@
 #include <tools/bigint.hxx>
 #endif
 
-#ifndef _SVX_NUMITEM_HXX //autogen
-#include <numitem.hxx>
-#endif
+// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
+// auto strip #include <numitem.hxx>
+// auto strip #endif
 
-#ifndef _SVX_BULITEM_HXX //autogen
-#include <bulitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BULITEM_HXX //autogen
+// auto strip #include <bulitem.hxx>
+// auto strip #endif
 
-#ifndef _OUTLOBJ_HXX
-#include <outlobj.hxx>
-#endif
+// auto strip #ifndef _OUTLOBJ_HXX
+// auto strip #include <outlobj.hxx>
+// auto strip #endif
 
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
@@ -177,26 +186,26 @@
 #include <svtools/zforlist.hxx>
 #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 // #90477#
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
+// auto strip #include <svtools/syslocale.hxx>
+// auto strip #endif
 
 // #95114#
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
