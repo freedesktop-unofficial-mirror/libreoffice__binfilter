@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__ximp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:50:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,20 +63,25 @@
 
 #include <stdlib.h>
 #include <math.h>
-#include <vcl/svapp.hxx>
-#include <tools/poly.hxx>
-#include <vcl/gradient.hxx>
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #include <tools/poly.hxx>
+// auto strip #include <vcl/gradient.hxx>
 #include <vcl/virdev.hxx>
-#include <vcl/gdimtf.hxx>
+// auto strip #include <vcl/gdimtf.hxx>
 #include <vcl/metaact.hxx>
-#include <vcl/salbtype.hxx>
-#include <vcl/wrkwin.hxx>
-#include <goodies/grfmgr.hxx>
-#include "xpoly.hxx"
-#include "xattr.hxx"
-#include "xoutbmp.hxx"
+// auto strip #include <vcl/salbtype.hxx>
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #include <goodies/grfmgr.hxx>
+// auto strip #include "xpoly.hxx"
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
+// auto strip #include "xattr.hxx"
+// auto strip #include "xoutbmp.hxx"
 #include "xoutx.hxx"
-#include "svdoimp.hxx"
+// auto strip #include "svdoimp.hxx"
 namespace binfilter {
 
 // -----------
