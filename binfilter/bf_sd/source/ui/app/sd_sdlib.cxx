@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdlib.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 13:33:00 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:08:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -450,7 +450,7 @@ namespace binfilter {
 /*N*/                       *pFilter = NULL;
 /*N*/                       nReturn = ERRCODE_ABORT;
 /*N*/                       INetURLObject aURL( aFileName );
-/*N*/                       if( aURL.getExtension().EqualsIgnoreCaseAscii( "cgm" ) )
+/*N*/                       if( aURL.getExtension().equalsIgnoreAsciiCaseAscii( "cgm" ) )
 /*N*/                       {
 /*N*/                           sal_uInt8 n8;
 /*N*/                           pStm->Seek( STREAM_SEEK_TO_BEGIN );
