@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:51:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,11 +59,11 @@
  *
  ************************************************************************/
 
-#include <sot/object.hxx>
+// auto strip #include <sot/object.hxx>
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 #ifndef _SV_SPLITWIN_HXX //autogen
 #include <vcl/splitwin.hxx>
 #endif
