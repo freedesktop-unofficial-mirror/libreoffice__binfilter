@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:05:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,66 +60,66 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <tools/string.hxx>
-#include <bf_svx/editobj.hxx>
-#include <bf_svx/editstat.hxx>
+// auto strip #include <tools/string.hxx>
+// auto strip #include <bf_svx/editobj.hxx>
+// auto strip #include <bf_svx/editstat.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-#include <bf_svx/scripttypeitem.hxx>
-#include <bf_svx/unolingu.hxx>
-#include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_svx/scripttypeitem.hxx>
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/viewfrm.hxx>
 #include <bf_sfx2/viewsh.hxx>
 #include <svtools/flagitem.hxx>
-#include <svtools/intitem.hxx>
+// auto strip #include <svtools/intitem.hxx>
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <bf_sfx2/misccfg.hxx>
 #include <bf_sfx2/app.hxx>
-#include <unotools/transliterationwrapper.hxx>
-#include <svtools/securityoptions.hxx>
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #include <svtools/securityoptions.hxx>
 
-#include <vcl/msgbox.hxx>
+// auto strip #include <vcl/msgbox.hxx>
 
-#include "global.hxx"
-#include "table.hxx"
-#include "column.hxx"
-#include "cell.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "table.hxx"
+// auto strip #include "column.hxx"
+// auto strip #include "cell.hxx"
 #include "poolhelp.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
-#include "stlsheet.hxx"
+// auto strip #include "stlsheet.hxx"
 #include "docoptio.hxx"
 #include "viewopti.hxx"
-#include "scextopt.hxx"
-#include "scdebug.hxx"
+// auto strip #include "scextopt.hxx"
+// auto strip #include "scdebug.hxx"
 #include "rechead.hxx"
 #include "ddelink.hxx"
 #include "scmatrix.hxx"
 #include "arealink.hxx"
-#include "dociter.hxx"
+// auto strip #include "dociter.hxx"
 #include "patattr.hxx"
-#include "hints.hxx"
+// auto strip #include "hints.hxx"
 #include "editutil.hxx"
-#include "progress.hxx"
+// auto strip #include "progress.hxx"
 #include "document.hxx"
-#include "chartlis.hxx"
+// auto strip #include "chartlis.hxx"
 #include "refupdat.hxx"
-#include "validat.hxx"      // fuer HasMacroCalls
-#include "markdata.hxx"
+// auto strip #include "validat.hxx"        // fuer HasMacroCalls
+// auto strip #include "markdata.hxx"
 #include "scmod.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:05:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -74,35 +74,35 @@
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
 #include <bf_svx/langitem.hxx>
-#include <bf_svx/svdetc.hxx>
+// auto strip #include <bf_svx/svdetc.hxx>
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdocapt.hxx>
-#include <bf_svx/svdograf.hxx>
+// auto strip #include <bf_svx/svdograf.hxx>
 #include <bf_svx/svdoole2.hxx>
 #include <bf_svx/svdouno.hxx>
 #include <bf_svx/svdpage.hxx>
-#include <bf_svx/svdundo.hxx>
+// auto strip #include <bf_svx/svdundo.hxx>
 #include <bf_svx/xtable.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <svtools/saveopt.hxx>
 #include <svtools/pathoptions.hxx>
-#include <so3/ipobj.hxx>
+// auto strip #include <so3/ipobj.hxx>
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/schdll0.hxx>
-#include <bf_sch/memchrt.hxx>
+// auto strip #include <bf_sch/memchrt.hxx>
 
 #include "document.hxx"
 #include "docoptio.hxx"
-#include "table.hxx"
+// auto strip #include "table.hxx"
 #include "drwlayer.hxx"
-#include "markdata.hxx"
+// auto strip #include "markdata.hxx"
 #include "userdat.hxx"
 #include "patattr.hxx"
 #include "rechead.hxx"
 #include "poolhelp.hxx"
 #include "docpool.hxx"
-#include "chartarr.hxx"
+// auto strip #include "chartarr.hxx"
 #include "detfunc.hxx"      // for UpdateAllComments
 #include "editutil.hxx"
 namespace binfilter {
