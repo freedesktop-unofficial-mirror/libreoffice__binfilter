@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:11:44 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1009,7 +1009,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/           if( !bRet )
 /*N*/           {
 /*?*/               pStor->Remove(String::CreateFromAscii(pStarMathDoc));
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  bRet = Try2x(pStor, STREAM_READWRITE);
+/*?*/                   bRet = Try2x(pStor, STREAM_READWRITE);
 /*?*/               pStor->Remove(C2S("\1Ole10Native"));
 /*N*/           }
 /*N*/           else
@@ -1927,84 +1927,89 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 
-//STRIP001 BOOL SmDocShell::Try2x (SvStorage *pStor,
-//STRIP001                      StreamMode eMode)
-//STRIP001 {
-//STRIP001  SvStorageStreamRef aTempStream = pStor->OpenStream(C2S("\1Ole10Native"), eMode);
-//STRIP001  aTempStream->SetVersion (pStor->GetVersion ());
-//STRIP001  GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion ()));
-//STRIP001
-//STRIP001     if (aTempStream->GetError() == SVSTREAM_OK)
-//STRIP001  {
-//STRIP001      void ReadSM20SymSet(SvStream*, SmSymSet*);
-//STRIP001
-//STRIP001      SvStream*    pSvStream = aTempStream;
-//STRIP001      char         cTag;
-//STRIP001      ULONG        lIdent, lVersion;
-//STRIP001      long         lTime;
-//STRIP001      ULONG        lDate;
-//STRIP001      UINT32       lDataSize;
-//STRIP001      String       aBuffer;
-//STRIP001         ByteString   aByteStr;
-//STRIP001      SmSymSet    *pSymbolSet;
-//STRIP001
-//STRIP001      *pSvStream >> lDataSize >> lIdent >> lVersion;
-//STRIP001
-//STRIP001      if (lIdent == FRMIDENT)
-//STRIP001      {
-//STRIP001          DBG_ASSERT((lVersion == FRMVERSION), "Illegal file version");
-//STRIP001
-//STRIP001          *pSvStream >> cTag;
-//STRIP001             rtl_TextEncoding eEnc = RTL_TEXTENCODING_MS_1252;
-//STRIP001          while (cTag && !pSvStream->IsEof())
-//STRIP001          {
-//STRIP001              switch (cTag)
-//STRIP001              {
-//STRIP001                  case 'T':
-//STRIP001                         pSvStream->ReadByteString( aByteStr );
-//STRIP001                         aText = ImportString( aByteStr );
-//STRIP001                      Parse();
-//STRIP001                      break;
-//STRIP001
-//STRIP001                  case 'D':
-//STRIP001                      {
-//STRIP001                          pSvStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                          pSvStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                          *pSvStream >> lDate >> lTime;
-//STRIP001                          pSvStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                          *pSvStream >> lDate >> lTime;
-//STRIP001                          pSvStream->ReadByteString(aBuffer, eEnc);
-//STRIP001                      }
-//STRIP001                      break;
-//STRIP001
-//STRIP001                  case 'F':
-//STRIP001                      {
-//STRIP001                          //SmFormat aFormat;
-//STRIP001                          aFormat.ReadSM20Format(*pSvStream);
-//STRIP001                          aFormat.From300To304a ();
-//STRIP001                      }
-//STRIP001                      break;
-//STRIP001
-//STRIP001                  case 'S':
-//STRIP001                  {
-//STRIP001                      pSymbolSet = new SmSymSet();
-//STRIP001                      ReadSM20SymSet(pSvStream, pSymbolSet);
-//STRIP001                         delete pSymbolSet;
-//STRIP001                      break;
-//STRIP001                  }
-//STRIP001
-//STRIP001                  default:
-//STRIP001                      DBG_ASSERT((cTag != 0), "Illegal data tag");
-//STRIP001              }
-//STRIP001              *pSvStream >> cTag;
-//STRIP001          }
-//STRIP001
-//STRIP001          return TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
+BOOL SmDocShell::Try2x (SvStorage *pStor,
+                        StreamMode eMode)
+{
+    SvStorageStreamRef aTempStream = pStor->OpenStream(C2S("\1Ole10Native"), eMode);
+    aTempStream->SetVersion (pStor->GetVersion ());
+    GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion ()));
+
+    if (aTempStream->GetError() == SVSTREAM_OK)
+    {
+        void ReadSM20SymSet(SvStream*, SmSymSet*);
+
+        SvStream*    pSvStream = aTempStream;
+        char         cTag;
+        ULONG        lIdent, lVersion;
+        long         lTime;
+        ULONG        lDate;
+        UINT32       lDataSize;
+        String       aBuffer;
+        ByteString   aByteStr;
+        SmSymSet    *pSymbolSet;
+
+        *pSvStream >> lDataSize >> lIdent >> lVersion;
+
+        if (lIdent == FRMIDENT)
+        {
+            DBG_ASSERT((lVersion == FRMVERSION), "Illegal file version");
+
+            *pSvStream >> cTag;
+            rtl_TextEncoding eEnc = RTL_TEXTENCODING_MS_1252;
+            while (cTag && !pSvStream->IsEof())
+            {
+                switch (cTag)
+                {
+                    case 'T':
+                        pSvStream->ReadByteString( aByteStr );
+                        aText = ImportString( aByteStr );
+                        Parse();
+                        break;
+
+                    case 'D':
+                        {
+                            pSvStream->ReadByteString(aBuffer, eEnc);
+                            pSvStream->ReadByteString(aBuffer, eEnc);
+                            *pSvStream >> lDate >> lTime;
+                            pSvStream->ReadByteString(aBuffer, eEnc);
+                            *pSvStream >> lDate >> lTime;
+                            pSvStream->ReadByteString(aBuffer, eEnc);
+                        }
+                        break;
+
+                    case 'F':
+                        {
+                            //SmFormat aFormat;
+                            aFormat.ReadSM20Format(*pSvStream);
+                            aFormat.From300To304a ();
+                        }
+                        break;
+
+                    case 'S':
+                    {
+                        // not sure about this...
+                        /* ??? pSymbolSet = new SmSymSet();
+                        ReadSM20SymSet(pSvStream, pSymbolSet);
+                        delete pSymbolSet; */
+                        String      aTmp;
+                        USHORT      n;
+                        pSvStream->ReadByteString(aTmp, eEnc);
+                        *pSvStream >> n;
+                        break;
+                    }
+
+                    default:
+                        DBG_ASSERT((cTag != 0), "Illegal data tag");
+                }
+                *pSvStream >> cTag;
+            }
+
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 
 //STRIP001 void SmDocShell::UIActivate (BOOL bActivate)
