@@ -2,9 +2,9 @@
  *
  *  $RCSfile: web.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:08:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,15 +67,15 @@
 #define RC_WEB_ICON                             (RC_WEB_BEGIN + 1)
 #define RID_WEBTOOLS_TOOLBOX                    (RC_WEB_BEGIN + 2)
 #define RID_WEBTEXT_TOOLBOX                     (RC_WEB_BEGIN + 3)
-#define STR_HUMAN_SWWEBDOC_NAME                 (RC_WEB_BEGIN + 4)
-#define STR_WRITER_WEBDOC_FULLTYPE_40           (RC_WEB_BEGIN + 5)
+//STRIP001 #define STR_HUMAN_SWWEBDOC_NAME                  (RC_WEB_BEGIN + 4)
+//STRIP001 #define STR_WRITER_WEBDOC_FULLTYPE_40            (RC_WEB_BEGIN + 5)
 #define STR_SHELLNAME_WEBTEXT                   (RC_WEB_BEGIN + 6)
 #define STR_SHELLNAME_WEBFRAME                  (RC_WEB_BEGIN + 7)
 #define RID_WEBFRAME_TOOLBOX                    (RC_WEB_BEGIN + 8)
-#define STR_WRITER_WEBDOC_FULLTYPE_50           (RC_WEB_BEGIN + 9)
+//STRIP001 #define STR_WRITER_WEBDOC_FULLTYPE_50            (RC_WEB_BEGIN + 9)
 #define RID_WEBGRAPHIC_TOOLBOX                  (RC_WEB_BEGIN + 10)
 #define RID_WEBOLE_TOOLBOX                      (RC_WEB_BEGIN + 11)
-#define STR_WRITER_WEBDOC_FULLTYPE              (RC_WEB_BEGIN + 12)
+//STRIP001 #define STR_WRITER_WEBDOC_FULLTYPE               (RC_WEB_BEGIN + 12)
 
 
 #define MN_WEBFILE                              (RC_WEB_BEGIN + 30)

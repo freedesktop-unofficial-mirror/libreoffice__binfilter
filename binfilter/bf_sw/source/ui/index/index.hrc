@@ -2,9 +2,9 @@
  *
  *  $RCSfile: index.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:09:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,8 @@
 //STRIP001 #define  DLG_MULTMRK            (RC_INDEX_BEGIN + 5)
 
 #define  STR_TITLE              (RC_INDEX_BEGIN + 6)
-#define  STR_ALPHA              (RC_INDEX_BEGIN + 7)
-#define  STR_LEVEL              (RC_INDEX_BEGIN + 8)
+//STRIP001 #define  STR_ALPHA               (RC_INDEX_BEGIN + 7)
+//STRIP001 #define  STR_LEVEL               (RC_INDEX_BEGIN + 8)
 
 //STRIP001 #define  DLG_INSAUTHMARK        (RC_INDEX_BEGIN + 9)
 //STRIP001 #define  DLG_CREATE_AUTH_ENTRY  (RC_INDEX_BEGIN + 10)
@@ -91,7 +91,7 @@
 
 //STRIP001 #define  DLG_NEW_USER_IDX       (RC_INDEX_BEGIN + 17)
 
-#define  STR_FILE_NOT_FOUND     (RC_INDEX_BEGIN + 18)
+//STRIP001 #define  STR_FILE_NOT_FOUND     (RC_INDEX_BEGIN + 18)
 //STRIP001 #define  DLG_CHANGE_AUTH_ENTRY  (RC_INDEX_BEGIN + 19)
 //STRIP001 #define  DLG_CREATE_AUTOMARK    (RC_INDEX_BEGIN + 20)
 
