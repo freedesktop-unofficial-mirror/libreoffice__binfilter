@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:30:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,6 +178,11 @@
 #ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
 #endif
@@ -190,6 +195,11 @@
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>        // Dokumenterzeugung
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
