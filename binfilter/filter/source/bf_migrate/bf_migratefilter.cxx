@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:00 $
+ *  last change: $Author: mba $ $Date: 2004-04-02 14:14:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,10 @@
 
 #ifndef _BF_MIGRATEFILTER_HXX
 #include <bf_migratefilter.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
+#include <com/sun/star/util/XCloseable.hpp>
 #endif
 
 #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
@@ -122,6 +126,7 @@ using namespace com::sun::star::xml;
 using namespace com::sun::star::xml::sax;
 using namespace com::sun::star::frame;
 using namespace com::sun::star::task;
+using namespace com::sun::star::util;
 
 const OUString sServiceNameTextDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextDocument"));
 const OUString sServiceNameGlobalDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.GlobalDocument"));
@@ -158,7 +163,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
     const PropertyValue* pValue = aDescriptor.getConstArray();
 
     Reference < XInputStream > xInputStream;
-    Reference< XComponent > rStrippedDocument;
+    Reference< XCloseable > rStrippedDocument;
     Reference< XMultiServiceFactory > rStrippedMSF;
     Reference < XDocumentHandler > xLocalDocumentHandler;
     Reference < XExporter > xStrippedExporter;
@@ -264,7 +269,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             // sStrippedDocumentType = pFilter->GetServiceName();
 
             // ...fill rStrippedDocument somehow
-            rStrippedDocument = Reference< XComponent >::query(rStrippedMSF->createInstance(sStrippedDocumentType));
+            rStrippedDocument = Reference< XCloseable >::query(rStrippedMSF->createInstance(sStrippedDocumentType));
 
             if(rStrippedDocument.is())
             {
@@ -418,7 +423,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         else
         {
             // set source document to Strippedly loaded read-only document
-            xStrippedExporter->setSourceDocument(rStrippedDocument);
+            xStrippedExporter->setSourceDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
         }
     }
 
@@ -455,7 +460,13 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
     if(bStrippedDocumentCreated)
     {
         // close Stripped document again
-        rStrippedDocument->dispose();
+        try
+        {
+            rStrippedDocument->close(sal_True);
+        }
+        catch(Exception& /*e*/)
+        {
+        }
     }
 
     return bRetval;
@@ -469,7 +480,7 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
 
     Reference < XOutputStream > xOutputStream;
     Reference< XMultiServiceFactory > rStrippedMSF;
-    Reference< XComponent > rStrippedDocument;
+    Reference< XCloseable > rStrippedDocument;
     Reference < XDocumentHandler > xStrippedDocumentHandler;
     Reference < XExporter > xLocalExporter;
     Reference< XInteractionHandler > xInteractionHandler;
@@ -614,7 +625,7 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
     if(bRetval)
     {
         // open an empty Stripped document
-        rStrippedDocument = Reference< XComponent >::query(rStrippedMSF->createInstance(sStrippedDocumentType));
+        rStrippedDocument = Reference< XCloseable >::query(rStrippedMSF->createInstance(sStrippedDocumentType));
 
         if(!rStrippedDocument.is())
         {
@@ -650,7 +661,7 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
         {
             // set target document at Stripped document handler
             Reference < XImporter > xStrippedImporter(xStrippedDocumentHandler, UNO_QUERY);
-            xStrippedImporter->setTargetDocument(rStrippedDocument);
+            xStrippedImporter->setTargetDocument( Reference < XComponent >( rStrippedDocument, UNO_QUERY ) );
         }
     }
 
@@ -765,7 +776,13 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
     if(bStrippedDocumentCreated)
     {
         // close Stripped document again
-        rStrippedDocument->dispose();
+        try
+        {
+            rStrippedDocument->close(sal_True);
+        }
+        catch(Exception& /*e*/)
+        {
+        }
     }
 
     return bRetval;
