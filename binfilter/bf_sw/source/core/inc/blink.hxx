@@ -2,9 +2,9 @@
  *
  *  $RCSfile: blink.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:31:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@ class SwTxtFrm;
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
-#ifndef _TIMER_HXX //autogen
-#include <vcl/timer.hxx>
-#endif
+// auto strip #ifndef _TIMER_HXX //autogen
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif
