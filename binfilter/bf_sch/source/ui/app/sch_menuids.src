@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_menuids.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:20:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:49:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -215,7 +215,7 @@
 //STRIP001                  Text[ polish ] = "Tytu?osi ~X...";\
 //STRIP001                  Text[ japanese ] = "~X è»¸ã‚¿ã‚¤ãƒˆãƒ?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~X è»¸æ¨™é¡?..";\
-//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Ôßôëïò Üîïí?~?..";\
 //STRIP001                  Text[ korean ] = "~X ì¶?ì œëª©...";\
 //STRIP001                  Text[ turkish ] = "Başlık (X ekseni)...";\
@@ -248,7 +248,7 @@
 //STRIP001                  Text[ polish ] = "Tytu?osi ~Y...";\
 //STRIP001                  Text[ japanese ] = "~Y è»¸ã‚¿ã‚¤ãƒˆãƒ?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~Y è»¸æ¨™é¡?..";\
-//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Ôßôëïò Üîïí?~Y...";\
 //STRIP001                  Text[ korean ] = "~Y ì¶?ì œëª©...";\
 //STRIP001                  Text[ turkish ] = "Başlık (Y ekseni)...";\
@@ -281,7 +281,7 @@
 //STRIP001                  Text[ polish ] = "Tytu?osi ~Z...";\
 //STRIP001                  Text[ japanese ] = "~Z è»¸ã‚¿ã‚¤ãƒˆãƒ?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~Z è»¸æ¨™é¡?..";\
-//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÚäæÇ?ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Ôßôëïò Üîïí?~Z...";\
 //STRIP001                  Text[ korean ] = "Zì¶?ì œëª©(~Z)...";\
 //STRIP001                  Text[ turkish ] = "Başlık (Z ekseni)...";\
@@ -330,11 +330,11 @@
 //STRIP001             };\
 //STRIP001         };\
 //STRIP001      Text[ chinese_simplified ] = "æ ‡é¢˜(~T)";\
-//STRIP001      Text[ russian ] = "Çàãîëîâî?;\
-//STRIP001      Text[ polish ] = "~Tytu?;\
+//STRIP001      Text[ russian ] = "Çàãîëîâî?";\
+//STRIP001      Text[ polish ] = "~Tytu?";\
 //STRIP001      Text[ japanese ] = "ã‚¿ã‚¤ãƒˆãƒ«(~T)";\
 //STRIP001      Text[ chinese_traditional ] = "æ¨™é¡Œ(~T)";\
-//STRIP001      Text[ arabic ] = "ÚäæÇ?;\
+//STRIP001      Text[ arabic ] = "ÚäæÇ?";\
 //STRIP001      Text[ greek ] = "~Ôßôëïò";\
 //STRIP001      Text[ korean ] = "ì œëª©(~T)";\
 //STRIP001      Text[ turkish ] = "Başlık";\
@@ -343,7 +343,7 @@
 //STRIP001      Text[ extern ] = "~Title";\
 //STRIP001      Text[ thai ] = "~à¸Šà¸·à¹ˆà¸­";\
 //STRIP001      Text[ czech ] = "Titulek";\
-//STRIP001      Text[ hebrew ] = "â€®×›×•×ª×¨×ªâ€?;\
+//STRIP001      Text[ hebrew ] = "â€®×›×•×ª×¨×ªâ€?";\
 //STRIP001      Text[ hindi ] = "~à¤¶à¥€à¤°à¥à¤·à¤•";\
 //STRIP001  };
 
@@ -425,7 +425,7 @@
 //STRIP001                  Text[ polish ] = "O?~X...";\
 //STRIP001                  Text[ japanese ] = "~X è»?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~X-è»?..";\
-//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "¢îïíáò ~X...";\
 //STRIP001                  Text[ korean ] = "Xì¶?~X)...";\
 //STRIP001                  Text[ turkish ] = "X ekseni...";\
@@ -458,7 +458,7 @@
 //STRIP001                  Text[ polish ] = "O?~Y...";\
 //STRIP001                  Text[ japanese ] = "~Y è»?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~Y è»?..";\
-//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "¢îïíáò ~Y...";\
 //STRIP001                  Text[ korean ] = "Yì¶?~Y)...";\
 //STRIP001                  Text[ turkish ] = "Y ekseni...";\
@@ -491,7 +491,7 @@
 //STRIP001                  Text[ polish ] = "O?~Z...";\
 //STRIP001                  Text[ japanese ] = "~Z è»?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~Z è»?..";\
-//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÇáãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "¢îïíáò ~Z...";\
 //STRIP001                  Text[ korean ] = "Zì¶?~Z)...";\
 //STRIP001                  Text[ turkish ] = "Z ekseni...";\
@@ -590,7 +590,7 @@
 //STRIP001                  Text[ polish ] = "Wszystkie osie...";\
 //STRIP001                  Text[ japanese ] = "ã™ã¹ã¦ã®è»?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~å…¨éƒ¨çš„è»¸...";\
-//STRIP001                  Text[ arabic ] = "...ßá ÇáãÍÇæ?;\
+//STRIP001                  Text[ arabic ] = "...ßá ÇáãÍÇæ?";\
 //STRIP001                  Text[ greek ] = "¼~ëï?ïé Üîïíåò...";\
 //STRIP001                  Text[ korean ] = "ëª¨ë“  ì¶?..";\
 //STRIP001                  Text[ turkish ] = "Tüm eksenler...";\
@@ -606,8 +606,8 @@
 //STRIP001             };\
 //STRIP001         };\
 //STRIP001      Text[ chinese_simplified ] = "è½?~X)";\
-//STRIP001      Text[ russian ] = "Îñ?;\
-//STRIP001      Text[ polish ] = "~O?;\
+//STRIP001      Text[ russian ] = "Îñ?";\
+//STRIP001      Text[ polish ] = "~O?";\
 //STRIP001      Text[ japanese ] = "è»?~X)";\
 //STRIP001      Text[ chinese_traditional ] = "è»?~X)";\
 //STRIP001      Text[ arabic ] = "ãÍæÑ";\
@@ -617,7 +617,7 @@
 //STRIP001      Text[ language_user1 ] = " ";\
 //STRIP001      Text[ catalan ] = "Ei~x";\
 //STRIP001      Text[ extern ] = "A~xis";\
-//STRIP001      Text[ thai ] = "à¹à¸~à¸?;\
+//STRIP001      Text[ thai ] = "à¹à¸~à¸?";\
 //STRIP001      Text[ czech ] = "Osa";\
 //STRIP001      Text[ hebrew ] = "~Achse";\
 //STRIP001      Text[ hindi ] = "à¤…à¤•à¥à¤·";\
@@ -665,7 +665,7 @@
 //STRIP001                  Text[ polish ] = "G³ówna siatka osi ~X...";\
 //STRIP001                  Text[ japanese ] = "~X è»¸ä¸»ç›®ç››ç·?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~X-è»¸ä¸»ç¶²æ ¼...";\
-//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ÑÆíÓíÉ ááãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ÑÆíÓíÉ ááãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Êıñé?ğëİãìá Üîïí?~?..";\
 //STRIP001                  Text[ korean ] = "Xì¶?ì£?ëˆˆê¸ˆì„?~X)...";\
 //STRIP001                  Text[ turkish ] = "Birincil kılavuz çizgileri (X ekseni)...";\
@@ -698,7 +698,7 @@
 //STRIP001                  Text[ polish ] = "G³ówna siatka osi ~Y...";\
 //STRIP001                  Text[ japanese ] = "~Y è»¸ä¸»ç›®ç››ç·?..";\
 //STRIP001                  Text[ chinese_traditional ] = "~Y è»¸ä¸»è¦ç¶²æ ¼ç·š...";\
-//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ÑÆíÓíÉ ááãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ÑÆíÓíÉ ááãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Êıñé?ğëİãìá Üîïí?~Y...";\
 //STRIP001                  Text[ korean ] = "Yì¶?ì£?ëˆˆê¸ˆì„?~Y)...";\
 //STRIP001                  Text[ turkish ] = "Birincil kılavuz çizgileri (Y ekseni)...";\
@@ -764,7 +764,7 @@
 //STRIP001                  Text[ polish ] = "Pomocnicza siatka osi ~X...";\
 //STRIP001                  Text[ japanese ] = "~X è»¸è£œåŠ©ç›®ç››ç·š...";\
 //STRIP001                  Text[ chinese_traditional ] = "~X è»¸æ¬¡è¦ç¶²æ ¼ç·š...";\
-//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Âïçèçôéê?ğëİãìá Üîïí?~?..";\
 //STRIP001                  Text[ korean ] = "Xì¶?ë³´ì¡° ëˆˆê¸ˆì„?~X)...";\
 //STRIP001                  Text[ turkish ] = "İkincil kılavuz çizgileri (X ekseni)...";\
@@ -797,7 +797,7 @@
 //STRIP001                  Text[ polish ] = "Pomocnicza siatka osi Y...";\
 //STRIP001                  Text[ japanese ] = "Yè»¸è£œåŠ©ç›®ç››ç·š(~G)...";\
 //STRIP001                  Text[ chinese_traditional ] = "Y è»¸æ¬¡è¦ç¶²æ ¼ç·š(~G)...";\
-//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Âïçèçôéê?ğëİãìá Üîïí?~Y...";\
 //STRIP001                  Text[ korean ] = "Yì¶?ë³´ì¡° ëˆˆê¸ˆì„?~G)...";\
 //STRIP001                  Text[ turkish ] = "İkincil kılavuz çizgileri (Y ekseni)...";\
@@ -830,7 +830,7 @@
 //STRIP001                  Text[ polish ] = "Pomocnicza siatka osi Z...";\
 //STRIP001                  Text[ japanese ] = "Zè»¸è£œåŠ©ç›®ç››ç·š(~I)...";\
 //STRIP001                  Text[ chinese_traditional ] = "Z è»¸æ¬¡è¦ç¶²æ ¼ç·š(~I)...";\
-//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?;\
+//STRIP001                  Text[ arabic ] = "...ÔÈßÉ ãÓÇÚÏÉ ááãÍæÑ ?";\
 //STRIP001                  Text[ greek ] = "Âïçèçôéê?ğëİãìá Üîïí?~Z...";\
 //STRIP001                  Text[ korean ] = "Zì¶?ë³´ì¡° ëˆˆê¸ˆì„?~I)...";\
 //STRIP001                  Text[ turkish ] = "İkincil kılavuz çizgileri (Z ekseni)...";\
@@ -879,12 +879,12 @@
 //STRIP001             };\
 //STRIP001         };\
 //STRIP001      Text[ chinese_simplified ] = "ç½‘æ ¼çº?~G)";\
-//STRIP001      Text[ russian ] = "Ñåòê?;\
+//STRIP001      Text[ russian ] = "Ñåòê?";\
 //STRIP001      Text[ polish ] = "~Siatka";\
 //STRIP001      Text[ japanese ] = "ç›®ç››ç·?~G)";\
 //STRIP001      Text[ chinese_traditional ] = "ç¶²æ ¼(~G)";\
 //STRIP001      Text[ arabic ] = "ÔÈßÉ";\
-//STRIP001      Text[ greek ] = "Ğëİ~ãì?;\
+//STRIP001      Text[ greek ] = "Ğëİ~ãì?";\
 //STRIP001      Text[ korean ] = "ëˆˆê¸ˆì„?~G)";\
 //STRIP001      Text[ turkish ] = "Kılavuz çizgileri";\
 //STRIP001      Text[ language_user1 ] = " ";\
@@ -893,7 +893,7 @@
 //STRIP001      Text[ thai ] = "à¹€~à¸ªà¹‰à¸™à¸•à¸²à¸£à¸²à¸‡";\
 //STRIP001      Text[ czech ] = "MÅ™Ã­Å¾ka";\
 //STRIP001      Text[ hebrew ] = "~Gitter";\
-//STRIP001      Text[ hindi ] = "~à¤œà¤¾à¤?;\
+//STRIP001      Text[ hindi ] = "~à¤œà¤¾à¤?";\
 //STRIP001  };
 
 //STRIP001 #define MN_DIAGRAM_WALL \
@@ -919,7 +919,7 @@
 //STRIP001      Text[ polish ] = "Œciana ~wykresu...";\
 //STRIP001      Text[ japanese ] = "ã‚°ãƒ©ãƒ•ã®å£é¢(~W)...";\
 //STRIP001      Text[ chinese_traditional ] = "åœ–è¡¨èƒŒæ™¯ç‰?~W)...";\
-//STRIP001      Text[ arabic ] = "...ÌÏÇÑ ÇáÑÓ?ÇáÈíÇä?;\
+//STRIP001      Text[ arabic ] = "...ÌÏÇÑ ÇáÑÓ?ÇáÈíÇä?";\
 //STRIP001      Text[ greek ] = "Ôïß÷ï~?äéáãñÜììáôïò...";\
 //STRIP001      Text[ korean ] = "ì°¨íŠ¸ ì˜†ë©´(~W)...";\
 //STRIP001      Text[ turkish ] = "Şema ~duvar?..";\
@@ -955,7 +955,7 @@
 //STRIP001      Text[ polish ] = "~Podstawa wykresu...";\
 //STRIP001      Text[ japanese ] = "ã‚°ãƒ©ãƒ•ã®åºŠé¢(~C)...";\
 //STRIP001      Text[ chinese_traditional ] = "åº§æ¨™è»?~C)...";\
-//STRIP001      Text[ arabic ] = "...ÃÑÖí?ÇáÑÓ?ÇáÈíÇä?;\
+//STRIP001      Text[ arabic ] = "...ÃÑÖí?ÇáÑÓ?ÇáÈíÇä?";\
 //STRIP001      Text[ greek ] = "ÄÜ~ğåäï äéáãñÜììáôïò...";\
 //STRIP001      Text[ korean ] = "ì°¨íŠ¸ ë°‘ë©´(~C)...";\
 //STRIP001      Text[ turkish ] = "Şema ~taban?..";\
@@ -1027,7 +1027,7 @@
 //STRIP001      Text[ polish ] = "~Typ wykresu...";\
 //STRIP001      Text[ japanese ] = "ã‚°ãƒ©ãƒ•ã®ç¨®é¡(~R)...";\
 //STRIP001      Text[ chinese_traditional ] = "åœ–è¡¨é¡å‹(~R)...";\
-//STRIP001      Text[ arabic ] = "äæ?ÇáÑÓ?ÇáÈíÇä?;\
+//STRIP001      Text[ arabic ] = "äæ?ÇáÑÓ?ÇáÈíÇä?";\
 //STRIP001      Text[ greek ] = "Ôığï?~äéáãñÜììáôïò...";\
 //STRIP001      Text[ korean ] = "ì°¨íŠ¸ ìœ í˜•(~R)...";\
 //STRIP001      Text[ turkish ] = "Şema tipi...";\
@@ -1072,7 +1072,7 @@
 //STRIP001      Text[ extern ] = "Auto~Format...";\
 //STRIP001      Text[ thai ] = "~à¸£à¸¹à¸›à¹à¸šà¸šà¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸?..";\
 //STRIP001      Text[ czech ] = "Auto~Format...";\
-//STRIP001      Text[ hebrew ] = "â€®×¢×™×¦×•×?××•×˜×•××˜×™...â€?;\
+//STRIP001      Text[ hebrew ] = "â€®×¢×™×¦×•×?××•×˜×•××˜×™...â€?";\
 //STRIP001      Text[ hindi ] = "Auto~Format...";\
 //STRIP001  };
 
@@ -1092,13 +1092,13 @@
 //STRIP001         Text [ french ] = "~Effets 3D" ; \
 //STRIP001         Text [ dutch ] = "3D-~effecten" ; \
 //STRIP001         Text [ portuguese ] = "Efeit~os 3D" ; \
-//STRIP001      Text[ chinese_simplified ] = "~3 ç»´æ•ˆæ?;\
-//STRIP001      Text[ russian ] = "Òğåõìåğíûå ıôôåêò?;\
+//STRIP001      Text[ chinese_simplified ] = "~3 ç»´æ•ˆæ?";\
+//STRIP001      Text[ russian ] = "Òğåõìåğíûå ıôôåêò?";\
 //STRIP001      Text[ polish ] = "Efekty ~3D";\
 //STRIP001      Text[ japanese ] = "~3D åŠ¹æœ";\
 //STRIP001      Text[ chinese_traditional ] = "~3D æ•ˆæœ";\
-//STRIP001      Text[ arabic ] = "ÊÃËíÑÇ?ËáÇËíÉ ÇáÃÈÚÇ?;\
-//STRIP001      Text[ greek ] = "~Åö?3?;\
+//STRIP001      Text[ arabic ] = "ÊÃËíÑÇ?ËáÇËíÉ ÇáÃÈÚÇ?";\
+//STRIP001      Text[ greek ] = "~Åö?3?";\
 //STRIP001      Text[ korean ] = "3ï¼?íš¨ê³¼";\
 //STRIP001      Text[ turkish ] = "3-B efektleri";\
 //STRIP001      Text[ language_user1 ] = " ";\
@@ -1134,7 +1134,7 @@
 //STRIP001      Text[ polish ] = "Widok 3~D...";\
 //STRIP001      Text[ japanese ] = "3~D è¡¨ç¤º...";\
 //STRIP001      Text[ chinese_traditional ] = "3~D æª¢è¦–...";\
-//STRIP001      Text[ arabic ] = "...ÚÑ?ËáÇË?ÇáÃÈÚÇ?;\
+//STRIP001      Text[ arabic ] = "...ÚÑ?ËáÇË?ÇáÃÈÚÇ?";\
 //STRIP001      Text[ greek ] = "Ğñï~âïëŞ 3?..";\
 //STRIP001      Text[ korean ] = "3ï¼?ë³´ê¸°(~D)...";\
 //STRIP001      Text[ turkish ] = "3-B görünüm...";\
@@ -1261,11 +1261,11 @@ MenuItem\
 //STRIP001      Text [ portuguese_brazilian ] = "Diagrammdaten"; \
 //STRIP001      Text [ portuguese ] = "~Dados do gráfico"; \
 //STRIP001      Text[ chinese_simplified ] = "å›¾è¡¨æ•°æ®(~C)"; \
-//STRIP001      Text[ russian ] = "~Äàííûå äèàãğàìì?; \
+//STRIP001      Text[ russian ] = "~Äàííûå äèàãğàìì?"; \
 //STRIP001      Text[ polish ] = "Dane wykresu"; \
 //STRIP001      Text[ japanese ] = "ã‚°ãƒ©ãƒ•ã®ãƒ‡ãƒ¼ã‚?~C)"; \
 //STRIP001      Text[ chinese_traditional ] = "åœ–è¡¨è³‡æ–™(~C)"; \
-//STRIP001      Text[ arabic ] = "ÈíÇäÇÊ ÇáÑÓ?ÇáÈíÇä?; \
+//STRIP001      Text[ arabic ] = "ÈíÇäÇÊ ÇáÑÓ?ÇáÈíÇä?"; \
 //STRIP001      Text[ greek ] = "~Äåäïìİíá äéáãñÜììáôïò"; \
 //STRIP001      Text[ korean ] = "ì°¨íŠ¸ ë°ì´í„?~C)"; \
 //STRIP001      Text[ turkish ] = "~Çizelge Verisi"; \
