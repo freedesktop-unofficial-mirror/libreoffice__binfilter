@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormComponent.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:22:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:49:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,13 +63,13 @@
 #include "FormComponent.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
@@ -86,19 +86,19 @@
 #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_COLUMNVALUE_HPP_
 #include <com/sun/star/sdbc/ColumnValue.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-#include <com/sun/star/util/XCloneable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
+// auto strip #include <com/sun/star/util/XCloneable.hpp>
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
-#include <comphelper/property.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
+// auto strip #include <comphelper/property.hxx>
+// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
@@ -112,9 +112,9 @@
 #include <rtl/logfile.hxx>
 #endif
 
-#ifndef _COMPHELPER_BASIC_IO_HXX_
-#include <comphelper/basicio.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_BASIC_IO_HXX_
+// auto strip #include <comphelper/basicio.hxx>
+// auto strip #endif
 
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
@@ -122,6 +122,23 @@
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
+
+#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
+#include <com/sun/star/form/FormComponentType.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
+#include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
+#endif
+
 namespace binfilter {
 
 
