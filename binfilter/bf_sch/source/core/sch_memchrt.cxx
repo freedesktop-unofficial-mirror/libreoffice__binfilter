@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 12:47:22 $
+ *  last change: $Author: kz $ $Date: 2005-01-21 13:16:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1549,7 +1549,7 @@ using namespace ::com::sun::star;
 
 
 /// convert SomeData string(s) to SchChartRange and vice versa for Writer
-/*N*/ void SchMemChart::ConvertChartRangeForWriter( BOOL bOldToNew )
+/*N*/ bool SchMemChart::ConvertChartRangeForWriter( BOOL bOldToNew )
 /*N*/ {
 /*N*/     if( bOldToNew )     // convert SomeData1 to SchChartRange
 /*N*/     {
@@ -1562,7 +1562,10 @@ using namespace ::com::sun::star;
 /*N*/           if( '>' == sBox.GetChar( sBox.Len()-1  ) ) sBox.Erase( sBox.Len()-1 );
 /*N*/
 /*N*/           xub_StrLen nTrenner = sBox.Search( ':' );
-/*N*/           DBG_ASSERT( STRING_NOTFOUND != nTrenner, "no valid selection" );
+                if( STRING_NOTFOUND == nTrenner )
+                    return false;
+
+/*N*/ //            DBG_ASSERT( STRING_NOTFOUND != nTrenner, "no valid selection" );
 /*N*/
 /*N*/           SchCellRangeAddress aCRA;
 /*N*/           ::binfilter::lcl_GetWriterTblBox( sBox.Copy( 0, nTrenner ), aCRA.maUpperLeft );
@@ -1596,15 +1599,18 @@ using namespace ::com::sun::star;
 /*N*/       aSomeData1 = sData1;
 /*N*/       aSomeData2 = sData2;
 /*N*/     }
+          return true;
 /*N*/ }
 
 /// convert SomeData string(s) to SchChartRange and vice versa for Calc
-/*N*/  void SchMemChart::ConvertChartRangeForCalc( BOOL bOldToNew )
+/*N*/  bool SchMemChart::ConvertChartRangeForCalc( BOOL bOldToNew )
 /*N*/  {
 /*N*/      if( bOldToNew )
 /*N*/      {   // convert SomeData1/2/3 to SchChartRange
-/*N*/          DBG_ASSERT( SomeData1().Len() && SomeData2().Len() && SomeData3().Len(),
-/*N*/              "ConvertChartRangeForCalc: can't convert old to new" );
+               if( ! SomeData1().Len() || ! SomeData2().Len() || ! SomeData3().Len())
+                   return false;
+/*N*/ //         DBG_ASSERT( SomeData1().Len() && SomeData2().Len() && SomeData3().Len(),
+/*N*/ //            "ConvertChartRangeForCalc: can't convert old to new" );
 /*N*/          SchChartRange aChartRange;
 /*N*/       const sal_Unicode cTok = ';';
 /*N*/       xub_StrLen nToken;
@@ -1653,7 +1659,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/              if ( aOpt.Len() >= 2 )
 /*N*/           {
-/*N*/                  aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(0) != '0' );
+/*N*/                  aChartRange.mbFirstRowContainsLabels    = ( aOpt.GetChar(0) != '0' );
 /*N*/                  aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(1) != '0' );
   #if 0
   /*  Calc internal data
@@ -1732,5 +1738,6 @@ using namespace ::com::sun::star;
 /*N*/          SomeData2() = aFlags;
 /*N*/          SomeData3() = aSheetNames;
 /*N*/      }
+           return true;
 /*N*/  }
 }
