@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_shapeimport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:53:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,43 +63,43 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
 
 #include <list>
 
-#ifndef _XMLOFF_SHAPEIMPORT_HXX
-#include "shapeimport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_SHAPEIMPORT_HXX
+// auto strip #include "shapeimport.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
-#include "xmltkmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
+// auto strip #include "xmltkmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
 #endif
 
-#ifndef _XIMPSHAPE_HXX
-#include "ximpshap.hxx"
-#endif
+// auto strip #ifndef _XIMPSHAPE_HXX
+// auto strip #include "ximpshap.hxx"
+// auto strip #endif
 
 #ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
 
 #ifndef _XIMP3DSCENE_HXX
 #include "ximp3dscene.hxx"
