@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxed.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:28:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,17 +60,17 @@
  ************************************************************************/
 
 #include "svdotext.hxx"
-#include "svditext.hxx"
-#include "svdmodel.hxx" // fuer GetMaxObjSize
-#include "svdoutl.hxx"
+// auto strip #include "svditext.hxx"
+// auto strip #include "svdmodel.hxx" // fuer GetMaxObjSize
+// auto strip #include "svdoutl.hxx"
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
-#ifndef _EDITSTAT_HXX //autogen
-#include <editstat.hxx>
-#endif
+// auto strip #ifndef _EDITSTAT_HXX //autogen
+// auto strip #include <editstat.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
