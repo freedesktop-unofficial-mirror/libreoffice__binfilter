@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmfmt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:40:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -106,7 +106,7 @@ public:
     virtual void DelFrms();
 
     //Erzeugt die Ansichten
-    virtual void MakeFrms(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001  virtual void MakeFrms();
+    virtual void MakeFrms();
 
 //STRIP001  virtual Graphic MakeGraphic( ImageMap* pMap = NULL );
 
