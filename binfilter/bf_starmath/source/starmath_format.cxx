@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_format.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:28 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -277,7 +277,7 @@ namespace binfilter {
 
 /*N*/ SvStream & operator << (SvStream &rStream, const SmFormat &rFormat)
 /*N*/ {
-/*N*/   //Da hier keinerlei Kompatibilit„t vorgesehen ist muessen wir leider
+/*N*/   //Da hier keinerlei Kompatibilitaet vorgesehen ist muessen wir leider
 /*N*/   //heftig tricksen. Gluecklicherweise sind offenbar einige Informationen
 /*N*/   //ueberfluessig geworden. In diese quetschen wir jetzt vier neue
 /*N*/   //Einstellungen fuer die Rander.
@@ -371,9 +371,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/   rFormat.vFont[FNT_MATH].SetSize(aTmp);
 /*N*/
-/*N*/   // Für Version 4.0 (und älter) sollen auch die normalen Klammern skalierbar
+/*N*/   // Fuer Version 4.0 (und aelter) sollen auch die normalen Klammern skalierbar
 /*N*/   // sein und wachsen (so wie es der Fall war), in der 5.0 Version jedoch nicht.
-/*N*/   // In späteren Versionen (>= 5.1) ist das Verhalten nun durch den Anwender
+/*N*/   // In spaeteren Versionen (>= 5.1) ist das Verhalten nun durch den Anwender
 /*N*/   // festzulegen (bleibt also wie aus dem Stream gelesen).
 /*N*/   if (rFormat.nVersion < SM_FMT_VERSION_51)
 /*N*/   {
