@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migrateexports.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:00 $
+ *  last change: $Author: aw $ $Date: 2003-11-24 11:44:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,9 +99,9 @@ sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
     {
         try
         {
-            OSL_ENSURE(legacysmgr_component_writeInfo
-                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) ),
-                "### LegacyServiceManager writeInfo failed!" );
+            sal_Bool bLegacySmgrWriteInfoDidWork(legacysmgr_component_writeInfo
+                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) ));
+            OSL_ENSURE(bLegacySmgrWriteInfoDidWork, "### LegacyServiceManager writeInfo failed!" );
 
             Reference< XRegistryKey > xNewKey;
             xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(bf_MigrateFilter_getImplementationName());
