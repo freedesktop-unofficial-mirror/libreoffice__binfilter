@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:36:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,75 +59,107 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
 
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
 #include <editeng.hxx>
-#include <editview.hxx>
+// auto strip #include <editview.hxx>
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYENTRY_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionaryEntry.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYTYPE_HPP_
+// auto strip #include <com/sun/star/linguistic2/DictionaryType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENT_HPP_
+// auto strip #include <com/sun/star/linguistic2/DictionaryEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionaryEventListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENTFLAGS_HPP_
+// auto strip #include <com/sun/star/linguistic2/DictionaryEventFlags.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionary.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
+// auto strip #include <com/sun/star/linguistic2/XDictionary1.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_DND_DNDCONSTANS_HPP_
+// auto strip #include <com/sun/star/datatransfer/dnd/DNDConstants.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_DND_XDRAGGESTURERECOGNIZER_HPP_
+// auto strip #include <com/sun/star/datatransfer/dnd/XDragGestureRecognizer.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGET_HPP_
+// auto strip #include <com/sun/star/datatransfer/dnd/XDropTarget.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XCLIPBOARD_HPP_
+// auto strip #include <com/sun/star/datatransfer/clipboard/XClipboard.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XFLUSHABLECLIPBOARD_HPP_
+// auto strip #include <com/sun/star/datatransfer/clipboard/XFlushableClipboard.hpp>
+// auto strip #endif
+
+// auto strip #include <vos/mutex.hxx>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
 #endif
 
-#ifndef _UNO_LINGU_HXX
-#include <unolingu.hxx>
-#endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYENTRY_HPP_
-#include <com/sun/star/linguistic2/XDictionaryEntry.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYTYPE_HPP_
-#include <com/sun/star/linguistic2/DictionaryType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENT_HPP_
-#include <com/sun/star/linguistic2/DictionaryEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYEVENTLISTENER_HPP_
-#include <com/sun/star/linguistic2/XDictionaryEventListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENTFLAGS_HPP_
-#include <com/sun/star/linguistic2/DictionaryEventFlags.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HPP_
-#include <com/sun/star/linguistic2/XDictionary.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
-#include <com/sun/star/linguistic2/XDictionary1.hpp>
-#endif
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DATATRANSFER_DND_DNDCONSTANS_HPP_
-#include <com/sun/star/datatransfer/dnd/DNDConstants.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DATATRANSFER_DND_XDRAGGESTURERECOGNIZER_HPP_
-#include <com/sun/star/datatransfer/dnd/XDragGestureRecognizer.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGET_HPP_
-#include <com/sun/star/datatransfer/dnd/XDropTarget.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XCLIPBOARD_HPP_
-#include <com/sun/star/datatransfer/clipboard/XClipboard.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XFLUSHABLECLIPBOARD_HPP_
-#include <com/sun/star/datatransfer/clipboard/XFlushableClipboard.hpp>
-#endif
-
-#include <vos/mutex.hxx>
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
 
 #include <flditem.hxx>
-#include <svtools/intitem.hxx>
+// auto strip #include <svtools/intitem.hxx>
 #include <svtools/transfer.hxx>
 
-#include <sot/exchange.hxx>
-#include <sot/formats.hxx>
+// auto strip #include <sot/exchange.hxx>
+// auto strip #include <sot/formats.hxx>
 namespace binfilter {
 
 
