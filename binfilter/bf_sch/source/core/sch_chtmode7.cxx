@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode7.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:45:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,7 +74,12 @@
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 
@@ -85,30 +90,30 @@
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#include <bf_svx/fontitem.hxx>
-#include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/colritem.hxx>
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #include <bf_svx/colritem.hxx>
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _CHTMODEL_HXX
-#include <chtmodel.hxx>
+// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
-#include <bf_svx/xlnwtit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
+// auto strip #include <bf_svx/xlnwtit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
-#include <bf_svx/xflclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
-#include <bf_svx/xlnclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
+// auto strip #include <bf_svx/xlnclit.hxx>
+// auto strip #endif
 
-#include "pairs.hxx"
+// auto strip #include "pairs.hxx"
 
 #include "chaxis.hxx"
 namespace binfilter {
