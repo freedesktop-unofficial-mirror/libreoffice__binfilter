@@ -2,9 +2,9 @@
  *
  *  $RCSfile: imapinfo.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:51 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:02:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
@@ -124,7 +125,8 @@ inline void SdIMapInfo::WriteData( SvStream& rOStm )
 
     SdIOCompat aIO( rOStm, STREAM_WRITE, 1 );
 
-    rOStm << aImageMap;
+    aImageMap.Write(
+        rOStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 }
 
 
@@ -140,7 +142,8 @@ inline void SdIMapInfo::ReadData( SvStream& rIStm )
 
     SdIOCompat aIO( rIStm, STREAM_READ );
 
-    rIStm >> aImageMap;
+    aImageMap.Read(
+        rIStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 }
 
 
