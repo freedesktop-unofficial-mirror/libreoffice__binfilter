@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_detfunc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:16:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,19 +69,24 @@
 
 #include "scitems.hxx"
 #include <svtools/colorcfg.hxx>
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #include <bf_svx/outlobj.hxx>
-#include <bf_svx/sdshitm.hxx>
-#include <bf_svx/sdsxyitm.hxx>
-#include <bf_svx/sdtditm.hxx>
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
+// auto strip #include <bf_svx/sdshitm.hxx>
+// auto strip #include <bf_svx/sdsxyitm.hxx>
+// auto strip #include <bf_svx/sdtditm.hxx>
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdocapt.hxx>
 #include <bf_svx/svdocirc.hxx>
 #include <bf_svx/svdopath.hxx>
-#include <bf_svx/svdorect.hxx>
+// auto strip #include <bf_svx/svdorect.hxx>
 #include <bf_svx/svdpage.hxx>
 #include <bf_svx/svdundo.hxx>
-#include <bf_svx/xfillit0.hxx>
+// auto strip #include <bf_svx/xfillit0.hxx>
 #include <bf_svx/xflclit.hxx>
 #include <bf_svx/xlnclit.hxx>
 #include <bf_svx/xlnedcit.hxx>
@@ -91,7 +96,7 @@
 #include <bf_svx/xlnstit.hxx>
 #include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlnwtit.hxx>
-#include <bf_svx/xtable.hxx>
+// auto strip #include <bf_svx/xtable.hxx>
 
 #include "detfunc.hxx"
 #include "document.hxx"
@@ -102,7 +107,7 @@
 #include "cell.hxx"
 #include "docpool.hxx"
 #include "patattr.hxx"
-#include "attrib.hxx"
+// auto strip #include "attrib.hxx"
 #include "scmod.hxx"
 namespace binfilter {
 
