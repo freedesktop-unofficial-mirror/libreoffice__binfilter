@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_styleexp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:17:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,53 +67,53 @@
 #include <svtools/svstdarr.hxx>
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLITMAP_HXX
 //#include "xmlitmap.hxx"
 #endif
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLKYWD_HXX
-#include "xmlkywd.hxx"
-#endif
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include "attrlist.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include "xmluconv.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLKYWD_HXX
+// auto strip #include "xmlkywd.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include "attrlist.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
-#include "xmlexppr.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
+// auto strip #include "xmlexppr.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #endif
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
@@ -124,9 +124,9 @@
 #ifndef _XMLOFF_XMLASTPLP_HXX
 #include "xmlaustp.hxx"
 #endif
-#ifndef _XMLOFF_STYLEEXP_HXX
-#include "styleexp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_STYLEEXP_HXX
+// auto strip #include "styleexp.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
