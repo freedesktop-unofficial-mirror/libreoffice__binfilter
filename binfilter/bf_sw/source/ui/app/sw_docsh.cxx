@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:30:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,30 +69,30 @@
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
-#ifndef _MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SV_JOBSET_HXX //autogen
-#include <vcl/jobset.hxx>
-#endif
+// auto strip #ifndef _MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_JOBSET_HXX //autogen
+// auto strip #include <vcl/jobset.hxx>
+// auto strip #endif
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
 #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
-#ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
+// auto strip #ifndef _ZFORLIST_HXX //autogen
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
 #ifndef _SFXSTRITEM_HXX
 #include <svtools/stritem.hxx>
 #endif
@@ -100,33 +100,33 @@
 #include <bf_svx/adjitem.hxx>
 #endif
 
-#ifndef _SBXCLASS_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
-#include <svtools/moduleoptions.hxx>
-#endif
-#ifndef _SFXAPP_HXX
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_MISCCFG_HXX
-#include <bf_sfx2/misccfg.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _PASSWD_HXX
-#include <bf_sfx2/passwd.hxx>
-#endif
+// auto strip #ifndef _SBXCLASS_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
+// auto strip #include <svtools/moduleoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_MISCCFG_HXX
+// auto strip #include <bf_sfx2/misccfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _PASSWD_HXX
+// auto strip #include <bf_sfx2/passwd.hxx>
+// auto strip #endif
 #ifndef _SFX_BINDINGS_HXX //autogen
 #include <bf_sfx2/bindings.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFX_EVENTCONF_HXX //autogen
-#include <bf_sfx2/evntconf.hxx>
-#endif
+// auto strip #ifndef _SFX_EVENTCONF_HXX //autogen
+// auto strip #include <bf_sfx2/evntconf.hxx>
+// auto strip #endif
 #ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
 #endif
@@ -136,79 +136,89 @@
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
-#ifndef _SVX_SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
-#ifndef _SVX_HTMLMODE_HXX
-#include <bf_svx/htmlmode.hxx>
-#endif
-#ifndef _SVXMSBAS_HXX
-#include <bf_svx/svxmsbas.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
-#ifndef _OFA_HTMLCFG_HXX //autogen
-#include <bf_offmgr/htmlcfg.hxx>
-#endif
-#ifndef _OFA_FLTRCFG_HXX
-#include <bf_offmgr/fltrcfg.hxx>
-#endif
-#ifndef _SOERR_HXX
-#include <so3/soerr.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHITEM_HXX
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_HTMLMODE_HXX
+// auto strip #include <bf_svx/htmlmode.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVXMSBAS_HXX
+// auto strip #include <bf_svx/svxmsbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFA_HTMLCFG_HXX //autogen
+// auto strip #include <bf_offmgr/htmlcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFA_FLTRCFG_HXX
+// auto strip #include <bf_offmgr/fltrcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOERR_HXX
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
 //#ifndef _SB_SBJSMOD_HXX //autogen
 //#include <basic/sbjsmod.hxx>
 //#endif
 
-#ifndef _SWEVENT_HXX //autogen
-#include <swevent.hxx>
-#endif
+// auto strip #ifndef _SWEVENT_HXX //autogen
+// auto strip #include <swevent.hxx>
+// auto strip #endif
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
 #endif
-#ifndef _SWPRTOPT_HXX
-#include <swprtopt.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _SWPRTOPT_HXX
+// auto strip #include <swprtopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _VIEW_HXX
 #include <view.hxx>         // fuer die aktuelle Sicht
 #endif
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>        // Verbindung zur Core
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>        // Dokumenterzeugung
-#endif
-#ifndef _BASESH_HXX
-#include <basesh.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>      // Dokumenterzeugung
+// auto strip #endif
+// auto strip #ifndef _BASESH_HXX
+// auto strip #include <basesh.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
@@ -227,9 +237,9 @@
 #ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
 #endif
-#ifndef _DOCSTYLE_HXX
-#include <docstyle.hxx>
-#endif
+// auto strip #ifndef _DOCSTYLE_HXX
+// auto strip #include <docstyle.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -239,9 +249,9 @@
 #ifndef _PVIEW_HXX
 #include <pview.hxx>
 #endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
 #ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
 #endif
@@ -281,9 +291,9 @@ using namespace ::com::sun::star::uno;
 #include <itemdef.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
-#include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
+// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
+// auto strip #endif
 namespace binfilter {
 #ifndef _SWSLOTS_HXX
 #include <swslots.hxx>
