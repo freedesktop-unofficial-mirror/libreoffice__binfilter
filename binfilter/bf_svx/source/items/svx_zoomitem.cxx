@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_zoomitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:06:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,15 +59,15 @@
  *
  ************************************************************************/
 
-#ifndef _ARGS_HXX //autogen
-#include <svtools/args.hxx>
-#endif
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
-#ifndef __SBX_SBXVARIABLE_HXX
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef _ARGS_HXX //autogen
+// auto strip #include <svtools/args.hxx>
+// auto strip #endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef __SBX_SBXVARIABLE_HXX
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 #pragma hdrstop
 
 #include "zoomitem.hxx"
