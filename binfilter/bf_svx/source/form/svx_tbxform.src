@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_tbxform.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:57 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:14:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 #include "svxids.hrc"
 #include "fmresids.hrc"
 #include "helpid.hrc"
@@ -66,34 +67,32 @@
 
 String RID_SVXTBX_FORM_FILTER
 {
-    Text = "Filterleiste" ;
-    Text [ English ] = "Filter toolbox" ;
-    Text [ english_us ] = "Filter bar" ;
-    Text[ portuguese ] = "Barra de filtros";
-    Text[ russian ] = "������ ��������";
-    Text[ greek ] = "������ �������";
-    Text[ dutch ] = "Filterbalk";
-    Text[ french ] = "Barre de filtres";
-    Text[ spanish ] = "Barra de filtros";
-    Text[ italian ] = "Barra dei filtri";
-    Text[ danish ] = "Filterlinje";
-    Text[ swedish ] = "Filterlist";
-    Text[ polish ] = "Pasek filtru";
-    Text[ portuguese_brazilian ] = "Barra de filtros";
-    Text[ japanese ] = "フィルタバー";
-    Text[ korean ] = "필터 도구모음";
-    Text[ chinese_simplified ] = "筛选栏";
-    Text[ chinese_traditional ] = "篩選欄";
-    Text[ arabic ] = "���� ������";
-    Text[ turkish ] = "Filtre �ubu�u";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Barra de filtre";
-    Text[ finnish ] = "Suodatusrivi";
-    Text[ thai ] = "แถบตัวกรอง";
-    Text[ czech ] = "Panel filtru";
-    Text[ hebrew ] = "‮סרגל מסננים‬";
-    Text[ hindi ] = "फिल्टर पट्टी";
-    Text[ slovak ] = "Panel filtra";
+    Text [ de ] = "Filterleiste" ;
+    Text [ en-US ] = "Filter bar" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Barra de filtros";
+    Text[ ru ] = "Панель фильтров";
+    Text[ el ] = "Γραμμή φίλτρου";
+    Text[ nl ] = "Filterbalk";
+    Text[ fr ] = "Barre de filtres";
+    Text[ es ] = "Barra de filtros";
+    Text[ fi ] = "Suodatusrivi";
+    Text[ ca ] = "Barra de filtre";
+    Text[ it ] = "Barra dei filtri";
+    Text[ sk ] = "Panel filtra";
+    Text[ da ] = "Filterlinje";
+    Text[ sv ] = "Filterlist";
+    Text[ pl ] = "Pasek filtru";
+    Text[ pt-BR ] = "Barra de filtros";
+    Text[ th ] = "แถบตัวกรอง";
+    Text[ ja ] = "フィルタバー";
+    Text[ ko ] = "필터 도구모음";
+    Text[ zh-CN ] = "筛选栏";
+    Text[ zh-TW ] = "篩選欄";
+    Text[ tr ] = "Filtre çubuğu";
+    Text[ hi-IN ] = "फिल्टर पट्टी";
+    Text[ ar ] = "شريط الفلتر";
+    Text[ he ] = "‮סרגל מסננים‬";
 };
 
  //------------------------------------------------------------------------
@@ -107,16 +106,15 @@ ToolBox RID_SVXTBX_FORM_FILTER
     Zoomable = TRUE ;
     HideWhenDeactivate = TRUE ;
     LineSpacing = TRUE ;
-    Text = "Filterleiste" ;
-    Text [ English ] = "Filter toolbox" ;
-    Text [ english_us ] = "Filter bar" ;
+    Text [ de ] = "Filterleiste" ;
+    Text [ en-US ] = "Filter bar" ;
     Border = TRUE ;
     SVLook = TRUE ;
     Pos = MAP_APPFONT ( 0 , 0 ) ;
     Size = MAP_APPFONT ( 200 , 16 ) ;
     ButtonType = BUTTON_SYMBOL ;
      // die Images stehen in der Ofa-DLL
-    ItemList =
+    ItemList  =
     {
         ToolboxItem
         {
@@ -136,63 +134,60 @@ ToolBox RID_SVXTBX_FORM_FILTER
         };*/
     };
     Scroll = TRUE ;
-    Text[ portuguese ] = "Barra de filtros";
-    Text[ russian ] = "������ ��������";
-    Text[ greek ] = "������ �������";
-    Text[ dutch ] = "Filterbalk";
-    Text[ french ] = "Barre de filtres";
-    Text[ spanish ] = "Barra de filtros";
-    Text[ italian ] = "Barra dei filtri";
-    Text[ danish ] = "Filterlinje";
-    Text[ swedish ] = "Filterlist";
-    Text[ polish ] = "Pasek filtru";
-    Text[ portuguese_brazilian ] = "Barra de filtros";
-    Text[ japanese ] = "フィルタバー";
-    Text[ korean ] = "필터 도구모음";
-    Text[ chinese_simplified ] = "筛选栏";
-    Text[ chinese_traditional ] = "篩選欄";
-    Text[ arabic ] = "���� ������";
-    Text[ turkish ] = "Filtre �ubu�u";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Barra de filtre";
-    Text[ finnish ] = "Suodatusrivi";
-    Text[ thai ] = "แถบตัวกรอง";
-    Text[ czech ] = "Panel filtru";
-    Text[ hebrew ] = "‮סרגל מסננים‬";
-    Text[ hindi ] = "फिल्टर पट्टी";
-    Text[ slovak ] = "Panel filtra";
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Barra de filtros";
+    Text[ ru ] = "Панель фильтров";
+    Text[ el ] = "Γραμμή φίλτρου";
+    Text[ nl ] = "Filterbalk";
+    Text[ fr ] = "Barre de filtres";
+    Text[ es ] = "Barra de filtros";
+    Text[ fi ] = "Suodatusrivi";
+    Text[ ca ] = "Barra de filtre";
+    Text[ it ] = "Barra dei filtri";
+    Text[ sk ] = "Panel filtra";
+    Text[ da ] = "Filterlinje";
+    Text[ sv ] = "Filterlist";
+    Text[ pl ] = "Pasek filtru";
+    Text[ pt-BR ] = "Barra de filtros";
+    Text[ th ] = "แถบตัวกรอง";
+    Text[ ja ] = "フィルタバー";
+    Text[ ko ] = "필터 도구모음";
+    Text[ zh-CN ] = "筛选栏";
+    Text[ zh-TW ] = "篩選欄";
+    Text[ tr ] = "Filtre çubuğu";
+    Text[ hi-IN ] = "फिल्टर पट्टी";
+    Text[ ar ] = "شريط الفلتر";
+    Text[ he ] = "‮סרגל מסננים‬";
 };
 
 String RID_SVXTBX_FORM_NAVIGATION
 {
-    Text = "Datenbankleiste" ;
-    Text [ English ] = "Database toolbox" ;
-    Text [ english_us ] = "Database bar" ;
-    Text[ italian ] = "Barra degli strumenti per database";
-    Text[ portuguese_brazilian ] = "Barra do banco de dados";
-    Text[ portuguese ] = "Barra de ferramentas da base de dados";
-    Text[ danish ] = "Databaselinje";
-    Text[ french ] = "Barre de base de donn�es";
-    Text[ swedish ] = "Databaslist";
-    Text[ dutch ] = "Databasebalk";
-    Text[ spanish ] = "Barra de base de datos";
-    Text[ chinese_simplified ] = "数据库工具栏";
-    Text[ russian ] = "������ ���� ������";
-    Text[ polish ] = "Pasek bazy danych";
-    Text[ japanese ] = "データベースバー";
-    Text[ chinese_traditional ] = "資料庫工具列";
-    Text[ greek ] = "������ ����� ���������";
-    Text[ korean ] = "데이터베이스 도구모음";
-    Text[ arabic ] = "���� ����� ��������";
-    Text[ turkish ] = "Veritaban� �ubu�u";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Barra de la base de dades";
-    Text[ finnish ] = "Tietol�hdety�kalurivi";
-    Text[ thai ] = "แถบฐานข้อมูล";
-    Text[ czech ] = "Panel databáze";
-    Text[ hebrew ] = "‮סרגל מסד נתונים‬";
-    Text[ hindi ] = "लेखासंचय पट्टी";
-    Text[ slovak ] = "Panel databázy";
+    Text [ de ] = "Datenbankleiste" ;
+    Text [ en-US ] = "Database bar" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Barra de ferramentas da base de dados";
+    Text[ ru ] = "Панель базы данных";
+    Text[ el ] = "Γραμμή βάσης δεδομένων";
+    Text[ nl ] = "Databasebalk";
+    Text[ fr ] = "Barre de base de données";
+    Text[ es ] = "Barra de base de datos";
+    Text[ fi ] = "Tietolähdetyökalurivi";
+    Text[ ca ] = "Barra de la base de dades";
+    Text[ it ] = "Barra degli strumenti per database";
+    Text[ sk ] = "Panel databázy";
+    Text[ da ] = "Databaselinje";
+    Text[ sv ] = "Databaslist";
+    Text[ pl ] = "Pasek bazy danych";
+    Text[ pt-BR ] = "Barra do banco de dados";
+    Text[ th ] = "แถบฐานข้อมูล";
+    Text[ ja ] = "データベースバー";
+    Text[ ko ] = "데이터베이스 도구모음";
+    Text[ zh-CN ] = "数据库工具栏";
+    Text[ zh-TW ] = "資料庫工具列";
+    Text[ tr ] = "Veritabanı çubuğu";
+    Text[ hi-IN ] = "लेखासंचय पट्टी";
+    Text[ ar ] = "شريط قاعدة البيانات";
+    Text[ he ] = "‮סרגל מסד נתונים‬";
 };
 
  //------------------------------------------------------------------------
@@ -206,16 +201,14 @@ ToolBox RID_SVXTBX_FORM_NAVIGATION
     Zoomable = TRUE ;
     HideWhenDeactivate = TRUE ;
     LineSpacing = TRUE ;
-    Text = "Datenbankleiste" ;
-    Text [ English ] = "Database toolbox" ;
-    Text [ english_us ] = "Database Bar" ;
+    Text [ de ] = "Datenbankleiste" ;
     Border = TRUE ;
     SVLook = TRUE ;
     Pos = MAP_APPFONT ( 0 , 0 ) ;
     Size = MAP_APPFONT ( 200 , 16 ) ;
     ButtonType = BUTTON_SYMBOL ;
      // die Images stehen in der Ofa-DLL
-    ItemList =
+    ItemList  =
     {
         ToolboxItem
         {
@@ -327,32 +320,31 @@ ToolBox RID_SVXTBX_FORM_NAVIGATION
         };
     };
     Scroll = TRUE ;
-    Text [ portuguese ] = "Barra de base de dados" ;
-    Text [ english_us ] = "Database Bar" ;
-    Text [ portuguese_brazilian ] = "Barra do Banco de Dados" ;
-    Text [ swedish ] = "Databaslist" ;
-    Text [ danish ] = "Databaselinje" ;
-    Text [ italian ] = "Barra database" ;
-    Text [ spanish ] = "Barra de base de datos" ;
-    Text [ french ] = "Barre de base de donn�es" ;
-    Text [ dutch ] = "Databasebalk" ;
-    Text[ chinese_simplified ] = "数据库工具栏";
-    Text[ russian ] = "������ ���� ������";
-    Text[ polish ] = "Pasek bazy danych";
-    Text[ japanese ] = "データベースバー";
-    Text[ chinese_traditional ] = "資料庫工具列";
-    Text[ greek ] = "������ ����� ���������";
-    Text[ korean ] = "데이터베이스 도구모음";
-    Text[ arabic ] = "���� ����� ��������";
-    Text[ turkish ] = "Veritaban� �ubu�u";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Barra de la base de dades";
-    Text[ finnish ] = "Tietol�hdety�kalurivi";
-    Text[ thai ] = "แถบฐานข้อมูล";
-    Text[ czech ] = "Panel databáze";
-    Text[ hebrew ] = "‮סרגל מסד נתונים‬";
-    Text[ hindi ] = "लेखासंचय पट्टी";
-    Text[ slovak ] = "Panel databázy";
+    Text [ en-US ] = "Database Bar" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Barra de base de dados";
+    Text[ ru ] = "Панель базы данных";
+    Text[ el ] = "Γραμμή βάσης δεδομένων";
+    Text[ nl ] = "Databasebalk";
+    Text[ fr ] = "Barre de base de données";
+    Text[ es ] = "Barra de base de datos";
+    Text[ fi ] = "Tietolähdetyökalurivi";
+    Text[ ca ] = "Barra de la base de dades";
+    Text[ it ] = "Barra database";
+    Text[ sk ] = "Panel databázy";
+    Text[ da ] = "Databaselinje";
+    Text[ sv ] = "Databaslist";
+    Text[ pl ] = "Pasek bazy danych";
+    Text[ pt-BR ] = "Barra do Banco de Dados";
+    Text[ th ] = "แถบฐานข้อมูล";
+    Text[ ja ] = "データベースバー";
+    Text[ ko ] = "데이터베이스 도구모음";
+    Text[ zh-CN ] = "数据库工具栏";
+    Text[ zh-TW ] = "資料庫工具列";
+    Text[ tr ] = "Veritabanı çubuğu";
+    Text[ hi-IN ] = "लेखासंचय पट्टी";
+    Text[ ar ] = "شريط قاعدة البيانات";
+    Text[ he ] = "‮סרגל מסד נתונים‬";
 };
 
  //------------------------------------------------------------------------
@@ -364,13 +356,12 @@ FloatingWindow RID_SVXTBX_FORM
     Hide = TRUE ;
     SVLook = TRUE ;
     HelpId = HID_SVXTBX_FORM;
-    Text = "Formularfunktionen" ;
-    Text [ English ] = "Form functions" ;
+    Text [ de ] = "Formularfunktionen" ;
     ToolBox TBX_FORM
     {
         SVLook = TRUE ;
         LineCount = 2 ;
-        ItemList =
+        ItemList  =
         {
             ToolBoxItem
             {
@@ -553,32 +544,31 @@ FloatingWindow RID_SVXTBX_FORM
             };
         };
     };
-    Text [ english_us ] = "Form Functions" ;
-    Text [ portuguese_brazilian ] = "Fun��es de Formul�rio" ;
-    Text [ swedish ] = "Formul�rfunktioner" ;
-    Text [ danish ] = "Formularfunktioner" ;
-    Text [ italian ] = "Funzioni formulario" ;
-    Text [ spanish ] = "Funciones del formulario" ;
-    Text [ french ] = "Fonctions de formulaire" ;
-    Text [ dutch ] = "Formulierfuncties" ;
-    Text [ portuguese ] = "Fun��es de formul�rio" ;
-    Text[ chinese_simplified ] = "表单功能";
-    Text[ russian ] = "�������� ���������� �������";
-    Text[ polish ] = "Funkcje formularza";
-    Text[ japanese ] = "フォームの機能";
-    Text[ chinese_traditional ] = "表單功能";
-    Text[ greek ] = "����������� ������";
-    Text[ korean ] = "양식 기능";
-    Text[ arabic ] = "���� ���������";
-    Text[ turkish ] = "Form i�levleri";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Funcions del formulari";
-    Text[ finnish ] = "Lomaketoiminnot";
-    Text[ thai ] = "ฟังก์ชั่นแบบฟอร์ม";
-    Text[ czech ] = "Funkce formuláře";
-    Text[ hebrew ] = "‮פונקציות טופס‬";
-    Text[ hindi ] = "फॉर्म् फंक्शन्स";
-    Text[ slovak ] = "Funkcie formulára";
+    Text [ en-US ] = "Form Functions" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Funções de formulário";
+    Text[ ru ] = "Элементы управления формами";
+    Text[ el ] = "Λειτουργίες φόρμας";
+    Text[ nl ] = "Formulierfuncties";
+    Text[ fr ] = "Fonctions de formulaire";
+    Text[ es ] = "Funciones del formulario";
+    Text[ fi ] = "Lomaketoiminnot";
+    Text[ ca ] = "Funcions del formulari";
+    Text[ it ] = "Funzioni formulario";
+    Text[ sk ] = "Funkcie formulára";
+    Text[ da ] = "Formularfunktioner";
+    Text[ sv ] = "Formulärfunktioner";
+    Text[ pl ] = "Funkcje formularza";
+    Text[ pt-BR ] = "Funções de Formulário";
+    Text[ th ] = "ฟังก์ชั่นแบบฟอร์ม";
+    Text[ ja ] = "フォームの機能";
+    Text[ ko ] = "양식 기능";
+    Text[ zh-CN ] = "表单功能";
+    Text[ zh-TW ] = "表單功能";
+    Text[ tr ] = "Form işlevleri";
+    Text[ hi-IN ] = "फॉर्म् फंक्शन्स";
+    Text[ ar ] = "مهام الاستمارة";
+    Text[ he ] = "‮פונקציות טופס‬";
 };
 
 //STRIP001 ModalDialog RID_SVX_DLG_INPUTRECORDNO
