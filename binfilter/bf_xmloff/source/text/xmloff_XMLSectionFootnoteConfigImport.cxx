@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionFootnoteConfigImport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:29:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,28 +71,28 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
-#include <com/sun/star/style/NumberingType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
+// auto strip #include <com/sun/star/style/NumberingType.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -102,9 +102,9 @@
 #include "nmspmap.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include "maptype.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
+// auto strip #include "maptype.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"

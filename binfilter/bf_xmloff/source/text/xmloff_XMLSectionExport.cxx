@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionExport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:29:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,48 +67,48 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #include <vector>
 
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-#include <com/sun/star/container/XIndexReplace.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
-#include <com/sun/star/beans/PropertyState.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyState.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
@@ -118,21 +118,21 @@
 #include <com/sun/star/text/SectionFileLink.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEX_HPP_
 #include <com/sun/star/text/XDocumentIndex.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
-#include <com/sun/star/uno/XInterface.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
+// auto strip #include <com/sun/star/uno/XInterface.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
 #include <com/sun/star/text/BibliographyDataField.hpp>
@@ -149,41 +149,41 @@
 #include "xmlkywd.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "xmlnmspe.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
-#include "xmltkmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTKMAP_HXX
+// auto strip #include "xmltkmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_TXTFLDE_HXX
 #include "txtflde.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
-#include "XMLTextNumRuleInfo.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
+// auto strip #include "XMLTextNumRuleInfo.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

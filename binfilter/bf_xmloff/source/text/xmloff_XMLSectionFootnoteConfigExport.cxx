@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionFootnoteConfigExport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:29:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,25 +67,25 @@
 #include "xmlexp.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-#include "xmlprmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
+// auto strip #include "xmlprmap.hxx"
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
 #endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include "maptype.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
+// auto strip #include "maptype.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -95,13 +95,13 @@
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNUME_HXX
-#include "xmlnume.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUME_HXX
+// auto strip #include "xmlnume.hxx"
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
@@ -111,9 +111,9 @@
 #include <rtl/ustring>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #include <vector>
 namespace binfilter {
