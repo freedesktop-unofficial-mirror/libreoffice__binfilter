@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_anminfo.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 13:27:07 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:32:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -238,7 +239,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   rOut << (INT16) eSysEnc;
 /*N*/
-/*N*/   rOut.WriteByteString( INetURLObject::AbsToRel( aSoundFile,
+/*N*/   rOut.WriteByteString( so3::StaticBaseUrl::AbsToRel( aSoundFile,
 /*N*/                                                  INetURLObject::WAS_ENCODED,
 /*N*/                                                  INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
 /*N*/
@@ -262,14 +263,14 @@ using namespace ::com::sun::star;
 /*N*/   if (eClickAction == presentation::ClickAction_DOCUMENT || eClickAction == presentation::ClickAction_PROGRAM  ||
 /*N*/       eClickAction == presentation::ClickAction_VANISH   || eClickAction == presentation::ClickAction_SOUND)
 /*N*/   {
-/*N*/       rOut.WriteByteString( INetURLObject::AbsToRel( aBookmark,
+/*N*/       rOut.WriteByteString( so3::StaticBaseUrl::AbsToRel( aBookmark,
 /*N*/                                                      INetURLObject::WAS_ENCODED,
 /*N*/                                                      INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
 /*N*/   }
 /*N*/   else
 /*N*/       rOut.WriteByteString( aBookmark, eSysEnc );
 /*N*/
-/*N*/   rOut.WriteByteString( INetURLObject::AbsToRel(aSecondSoundFile,
+/*N*/   rOut.WriteByteString( so3::StaticBaseUrl::AbsToRel(aSecondSoundFile,
 /*N*/                                                 INetURLObject::WAS_ENCODED,
 /*N*/                                                 INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
 /*N*/   rOut << (UINT16)bInvisibleInPresentation;
@@ -333,7 +334,7 @@ using namespace ::com::sun::star;
 /*N*/       rIn.ReadByteString( aSoundFileRel, eTextEnc );
 /*N*/       if( aSoundFileRel.Len() )
 /*N*/       {
-/*N*/           INetURLObject aURLObj(::URIHelper::SmartRel2Abs( INetURLObject(INetURLObject::GetBaseURL()), aSoundFileRel, ::URIHelper::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
+/*N*/           INetURLObject aURLObj(::URIHelper::SmartRel2Abs( INetURLObject(so3::StaticBaseUrl::GetBaseURL()), aSoundFileRel, ::URIHelper::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
 /*N*/           aSoundFile = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/   }
@@ -372,7 +373,7 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           String aBookmarkRel;
 /*N*/           rIn.ReadByteString( aBookmarkRel, eTextEnc );
-/*N*/           INetURLObject aURLObj(::URIHelper::SmartRelToAbs(aBookmarkRel, FALSE,
+/*N*/           INetURLObject aURLObj(so3::StaticBaseUrl::SmartRelToAbs(aBookmarkRel, FALSE,
 /*N*/                                                            INetURLObject::WAS_ENCODED,
 /*N*/                                                            INetURLObject::DECODE_UNAMBIGUOUS));
 /*N*/           aBookmark = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
@@ -384,7 +385,7 @@ using namespace ::com::sun::star;
 /*N*/       rIn.ReadByteString( aSecondSoundFileRel, eTextEnc );
 /*N*/       if( aSecondSoundFileRel.Len() )
 /*N*/       {
-/*N*/           INetURLObject aURLObj(::URIHelper::SmartRel2Abs( INetURLObject(INetURLObject::GetBaseURL()), aSecondSoundFileRel, ::URIHelper::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
+/*N*/           INetURLObject aURLObj(::URIHelper::SmartRel2Abs( INetURLObject(so3::StaticBaseUrl::GetBaseURL()), aSecondSoundFileRel, ::URIHelper::GetMaybeFileHdl(), false, false, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8, false, INetURLObject::FSYS_DETECT ));
 /*N*/           aSecondSoundFile = aURLObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/
