@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode5.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:45:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
@@ -81,38 +81,43 @@
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-#include <bf_svx/chrtitem.hxx>
+
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #ifndef _CHTMODEL_HXX
-#include <chtmodel.hxx>
-#include <globfunc.hxx>
+// auto strip #include <chtmodel.hxx>
+// auto strip #include <globfunc.hxx>
 #endif
-#ifndef _SCH_OBJID_HXX
-#include "objid.hxx"
-#endif
+// auto strip #ifndef _SCH_OBJID_HXX
+// auto strip #include "objid.hxx"
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SCH_DATAROW_HXX
-#include "datarow.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
-#include "datapoin.hxx"
-#endif
-#ifndef _SCH_SCHIOCMP_HXX
-#include "schiocmp.hxx"
-#endif
-#ifndef _SCH_SCHRESID_HXX
-#include "schresid.hxx"
-#endif
+// auto strip #ifndef _SCH_DATAROW_HXX
+// auto strip #include "datarow.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAPOIN_HXX
+// auto strip #include "datapoin.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_SCHIOCMP_HXX
+// auto strip #include "schiocmp.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_SCHRESID_HXX
+// auto strip #include "schresid.hxx"
+// auto strip #endif
 #include <math.h>
 #include <float.h>
 #include "glob.hrc"
 
 #include "globfunc.hxx"
 #include "pairs.hxx"
-#include "chaxis.hxx"
+// auto strip #include "chaxis.hxx"
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
