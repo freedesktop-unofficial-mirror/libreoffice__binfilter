@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_paralist.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:09 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:33:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -201,20 +201,20 @@ namespace binfilter {
 //STRIP001  return nChildCount;
 //STRIP001 }
 
-//STRIP001 Paragraph* ParagraphList::GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const
-//STRIP001 {
-//STRIP001  rRelPos = 0;
-//STRIP001  ULONG n = GetAbsPos( pParagraph );
-//STRIP001  Paragraph* pPrev = GetParagraph( --n );
-//STRIP001  while ( pPrev && ( pPrev->GetDepth() >= pParagraph->GetDepth() ) )
-//STRIP001  {
-//STRIP001      if ( pPrev->GetDepth() == pParagraph->GetDepth() )
-//STRIP001          rRelPos++;
-//STRIP001      pPrev = GetParagraph( --n );
-//STRIP001  }
-//STRIP001
-//STRIP001  return pPrev;
-//STRIP001 }
+/*NBFF*/ Paragraph* ParagraphList::GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const
+/*NBFF*/ {
+/*NBFF*/    rRelPos = 0;
+/*NBFF*/    ULONG n = GetAbsPos( pParagraph );
+/*NBFF*/    Paragraph* pPrev = GetParagraph( --n );
+/*NBFF*/    while ( pPrev && ( pPrev->GetDepth() >= pParagraph->GetDepth() ) )
+/*NBFF*/    {
+/*NBFF*/        if ( pPrev->GetDepth() == pParagraph->GetDepth() )
+/*NBFF*/            rRelPos++;
+/*NBFF*/        pPrev = GetParagraph( --n );
+/*NBFF*/    }
+/*NBFF*/
+/*NBFF*/    return pPrev;
+/*NBFF*/ }
 
 //STRIP001 void ParagraphList::Expand( Paragraph* pParent )
 //STRIP001 {
