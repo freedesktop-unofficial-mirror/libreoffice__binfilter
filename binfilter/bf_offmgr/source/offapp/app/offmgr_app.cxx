@@ -2,9 +2,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:55:45 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 09:55:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -462,9 +462,13 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "} register services: com.sun.star.drawing.ShapeCollection/com.sun.star.util.NumberFormatter" );
 /*N*/
 /*N*/   // options - general - appearance
-/*N*/     OfaTabAppearanceCfg* pAppearanceCfg = GetTabAppearanceConfig();
+//delete by jmeng  in Unix for i31251 begin
+#ifdef WNT
+/*N*/   OfaTabAppearanceCfg* pAppearanceCfg = GetTabAppearanceConfig();
 /*N*/   pAppearanceCfg->SetInitialized();
 /*N*/   pAppearanceCfg->SetApplicationDefaults( GetpApp() );
+#endif
+//delete by jmeng  in Unix for i31251 end
 /*N*/
 /*N*/     pDataImpl->SetVCLSettings();
 /*N*/ }
