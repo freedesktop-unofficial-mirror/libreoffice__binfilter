@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlin.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,22 +63,22 @@
 #pragma hdrstop
 
 #ifdef BIDI
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #endif
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 
-#include "errhdl.hxx"   // ASSERT
+// auto strip #include "errhdl.hxx"   // ASSERT
 
 #include "txtcfg.hxx"
-#include "porlin.hxx"
-#include "inftxt.hxx"
-#include "portxt.hxx"
+// auto strip #include "porlin.hxx"
+// auto strip #include "inftxt.hxx"
+// auto strip #include "portxt.hxx"
 #include "pormulti.hxx"
-#include "porglue.hxx"
+// auto strip #include "porglue.hxx"
 #include "inftxt.hxx"
 #include "blink.hxx"
 namespace binfilter {
