@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:03 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:35:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -903,8 +903,8 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/                   }
 /*N*/                   else if( p->pCondColls )
 /*N*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTxtFmtColl* pDer = (*rDoc.GetTxtFmtColls())[ 0 ];
-//STRIP001 /*?*/                        pFmt = rDoc.MakeCondTxtFmtColl( p->GetName(), pDer );
+/*NBFF*/                        SwTxtFmtColl* pDer = (*rDoc.GetTxtFmtColls())[ 0 ];
+/*NBFF*/                        pFmt = rDoc.MakeCondTxtFmtColl( p->GetName(), pDer );
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
