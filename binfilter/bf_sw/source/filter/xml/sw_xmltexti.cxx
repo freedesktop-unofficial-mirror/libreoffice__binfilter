@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexti.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:28:16 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:53:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -160,6 +160,7 @@
 #ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
@@ -603,7 +604,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertPlugin(
     // on the way.
        INetURLObject aURLObj;
     bool bValidURL = rHRef.getLength() != 0 &&
-                     aURLObj.SetURL( INetURLObject::RelToAbs(rHRef) );
+                     aURLObj.SetURL( so3::StaticBaseUrl::RelToAbs(rHRef) );
     bool bValidMimeType = rMimeType.getLength() != 0;
     if( !bValidURL && !bValidMimeType )
         return xPropSet;
@@ -654,7 +655,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
 
     SfxFrameDescriptor *pFrameDesc = new SfxFrameDescriptor( 0 );
 
-    pFrameDesc->SetURL( INetURLObject::RelToAbs( rHRef ) );
+    pFrameDesc->SetURL( so3::StaticBaseUrl::RelToAbs( rHRef ) );
     pFrameDesc->SetName( rName );
 
     ScrollingMode eScrollMode = ScrollingAuto;
