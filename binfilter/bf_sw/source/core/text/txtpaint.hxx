@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtpaint.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:58:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 #ifndef _TXTPAINT_HXX
 #define _TXTPAINT_HXX
 
-#ifndef _SV_REGION_HXX //autogen
-#include <vcl/region.hxx>
-#endif
+// auto strip #ifndef _SV_REGION_HXX //autogen
+// auto strip #include <vcl/region.hxx>
+// auto strip #endif
 #ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
 #endif
@@ -72,9 +72,9 @@
 class SwRect;               // SwSaveClip
 
 #ifdef VERTICAL_LAYOUT
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
 #endif
 namespace binfilter {
 
