@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_inftxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:51:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,42 +81,42 @@
 #ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
 #endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
-#include <bf_svx/escpitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
+// auto strip #include <bf_svx/escpitem.hxx>
+// auto strip #endif
 #ifndef _SVX_HNGPNCTITEM_HXX
 #include <bf_svx/hngpnctitem.hxx>
 #endif
 #ifndef _SVX_SRIPTSPACEITEM_HXX
 #include <bf_svx/scriptspaceitem.hxx>
 #endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_SPLWRAP_HXX
-#include <bf_svx/splwrap.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SPLWRAP_HXX
+// auto strip #include <bf_svx/splwrap.hxx>
+// auto strip #endif
 #ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
 #endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
 #ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
 #endif
-#ifndef _TXATBASE_HXX //autogen
-#include <txatbase.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
-#include <fmtinfmt.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX //autogen
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTINFMT_HXX //autogen
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
 #endif
@@ -132,54 +132,59 @@
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
 #endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>  // SwViewOptions
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>    // SwViewOptions
+// auto strip #endif
+// auto strip #ifndef _FRMTOOL_HXX
+// auto strip #include <frmtool.hxx>    // DrawGraphic
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FRMTOOL_HXX
-#include <frmtool.hxx>  // DrawGraphic
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>      // SwDoc
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>   // SwFmtDrop
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>  // SwRootFrm
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>  // SwRootFrm
+// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtInfo
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>   // SwFont
-#endif
-#ifndef _TXTFLY_HXX
-#include <txtfly.hxx>   // SwTxtPaintInfo
-#endif
-#ifndef _BLINK_HXX
-#include <blink.hxx>    // SwBlink
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx> // SwFont
+// auto strip #endif
+// auto strip #ifndef _TXTFLY_HXX
+// auto strip #include <txtfly.hxx> // SwTxtPaintInfo
+// auto strip #endif
+// auto strip #ifndef _BLINK_HXX
+// auto strip #include <blink.hxx>  // SwBlink
+// auto strip #endif
 #ifndef _NOTEURL_HXX
 #include <noteurl.hxx>  // SwNoteURL
 #endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx> // SwDrawTextInfo
-#endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx> // SwDrawTextInfo
+// auto strip #endif
 #ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
 #endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>       // SwHangingPortion
-#endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx>     // SwHangingPortion
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
 #ifndef _ITRATR_HXX
 #include <itratr.hxx>
 #endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
-#include <accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <accessibilityoptions.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
