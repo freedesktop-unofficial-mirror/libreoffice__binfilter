@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:07:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,24 +68,24 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/algitem.hxx>
-#include <bf_svx/brshitem.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/brshitem.hxx>
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/scripttypeitem.hxx>
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/langitem.hxx>
-#include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/dispatch.hxx>
-#include <bf_sfx2/objsh.hxx>
-#include <bf_sfx2/viewfrm.hxx>
-#include <bf_sfx2/viewsh.hxx>
-#include <svtools/stritem.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #include <bf_sfx2/viewsh.hxx>
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <vcl/image.hxx>
 #include <tools/rcid.h>
 #include <vcl/virdev.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <stdlib.h>
 #include <time.h>
 #include <ctype.h>
@@ -94,35 +94,35 @@
 #ifndef _ISOLANG_HXX
 #include <tools/isolang.hxx>
 #endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
-#include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-#include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
+// auto strip #include <unotools/calendarwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #endif
 #ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
 #endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
+// auto strip #include <svtools/syslocale.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#include "global.hxx"
-#include "scresid.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "scresid.hxx"
 #include "autoform.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "patattr.hxx"
 #include "addincol.hxx"
 #include "adiasync.hxx"
@@ -137,6 +137,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 namespace binfilter {
 // -----------------------------------------------------------------------
 
