@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:13 $
+ *  last change: $Author: aw $ $Date: 2003-12-03 10:42:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -301,118 +301,118 @@ using namespace ::com::sun::star;
 /*N*/ SdrViewWinRec::SdrViewWinRec(OutputDevice* pW)
 /*N*/ : pWin(pW),
 /*N*/ //    pVDev(NULL),
-/*N*/   pIAOManager(NULL),
+//STRIP012/*N*/     pIAOManager(NULL),
 /*N*/   bXorVisible(FALSE)
 /*N*/ {
 /*N*/   // is it a window?
 /*N*/   if(pW && pW->GetOutDevType() == OUTDEV_WINDOW)
 /*N*/   {
 /*N*/       // create B2dIAOManager for this window
-/*N*/       pIAOManager = new B2dIAOManager((Window*)pW);
-#ifdef TEST_IAO
-/*?*/       if(pIAOManager)
-/*?*/       {
-/*?*/           // create some demo shapes
-/*?*/           B2dIAOLine* pLine;
-/*?*/           B2dIAOMarker* pMarker;
-/*?*/           B2dIAOBitmapObj* pBitmap;
-/*?*/           B2dIAOTriangle* pTriangle;
-/*?*/
-/*?*/           static BOOL bCreateLines = FALSE;
-/*?*/           static BOOL bCreateMarkers = FALSE;
-/*?*/           static BOOL bCreateField = FALSE;
-/*?*/           static BOOL bCreateSingleMarker = FALSE;
-/*?*/           static BOOL bCreateBitmap = FALSE;
-/*?*/           static BOOL bCreateBitmapField = FALSE;
-/*?*/           static BOOL bCreateTriangle = FALSE;
-/*?*/
-/*?*/           if(bCreateLines)
-/*?*/           {
-/*?*/               pLine = new B2dIAOLine(pIAOManager, Point(5000, 5200), Point(5000, 7000));
-/*?*/               pLine->SetBaseColor(Color(COL_CYAN));
-/*?*/               pLine = new B2dIAOLineStriped(pIAOManager, Point(5100, 5200), Point(5100, 7000));
-/*?*/               pLine->SetBaseColor(Color(COL_BLUE));
-/*?*/               B2dIAOLineTwoColor* p2Line = new B2dIAOLineTwoColor(pIAOManager, Point(5200, 5200), Point(5200, 7000));
-/*?*/               p2Line->SetBaseColor(Color(COL_YELLOW));
-/*?*/               p2Line->Set2ndColor(Color(COL_BLACK));
-/*?*/               B2dIAOLineTwoColorAnim* p3Line = new B2dIAOLineTwoColorAnim(pIAOManager, Point(5300, 5200), Point(5300, 7000));
-/*?*/               p3Line->SetBaseColor(Color(COL_YELLOW));
-/*?*/               p3Line->Set2ndColor(Color(COL_BLACK));
-/*?*/           }
-/*?*/
-/*?*/           if(bCreateMarkers)
-/*?*/           {
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_POINT);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTRED));
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5000), B2D_IAO_MARKER_PLUS);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5000), B2D_IAO_MARKER_CROSS);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTBLUE));
-/*?*/
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5100), B2D_IAO_MARKER_RECT_5X5);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-/*?*/               pMarker->Set2ndColor(Color(COL_BLACK));
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5100), B2D_IAO_MARKER_RECT_7X7);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-/*?*/               pMarker->Set2ndColor(Color(COL_BLACK));
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5100), B2D_IAO_MARKER_RECT_9X9);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-/*?*/               pMarker->Set2ndColor(Color(COL_BLACK));
-/*?*/           }
-/*?*/
-/*?*/           if(bCreateField || bCreateBitmapField)
-/*?*/           {
-/*?*/               static UINT16 nNumX = 10;
-/*?*/               static UINT16 nNumY = 10;
-/*?*/               static UINT16 nStart = 2000;
-/*?*/               static UINT16 nEnd = 16000;
-/*?*/
-/*?*/               for(UINT16 a=nStart;a<nEnd;a+=(nEnd-nStart)/nNumX)
-/*?*/               {
-/*?*/                   for(UINT16 b=nStart;b<nEnd;b+=(nEnd-nStart)/nNumY)
-/*?*/                   {
-/*?*/                       if(bCreateField)
-/*?*/                       {
-/*?*/                           pMarker = new B2dIAOMarker(pIAOManager, Point(a, b), B2D_IAO_MARKER_RECT_7X7);
-/*?*/                           pMarker->SetBaseColor(Color(
-/*?*/                               (((a-nStart)*256L)/(nEnd-nStart)),
-/*?*/                               (((b-nStart)*256L)/(nEnd-nStart)),
-/*?*/                               0x80));
-/*?*/                           pMarker->Set2ndColor(Color(COL_BLACK));
-/*?*/                       }
-/*?*/                       if(bCreateBitmapField)
-/*?*/                       {
-/*?*/                           Bitmap aBitmap(Size(10, 10), 8);
-/*?*/                           pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(a, b), aBitmap);
-/*?*/                       }
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*?*/           if(bCreateSingleMarker)
-/*?*/           {
-/*?*/               pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_RECT_7X7);
-/*?*/               pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-/*?*/               pMarker->Set2ndColor(Color(COL_BLACK));
-/*?*/           }
-/*?*/           if(bCreateBitmap)
-/*?*/           {
-/*?*/               Bitmap aBitmap(Size(10, 10), 8);
-/*?*/               pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(6000, 6000), aBitmap);
-/*?*/           }
-/*?*/           if(bCreateTriangle)
-/*?*/           {
-/*?*/               pTriangle = new B2dIAOTriangle(pIAOManager, Point(5000, 5000), Point(7000, 5000), Point(6000, 7000), Color(COL_YELLOW));
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
-/*?*/
-/*?*/               pTriangle = new B2dIAOBitmapTriangle(pIAOManager, Point(8000, 5000), Point(10000, 5000), Point(9000, 7000), Color(COL_RED));
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
-/*?*/               pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
-/*?*/           }
-/*?*/       }
-#endif
+//STRIP012/*N*/         pIAOManager = new B2dIAOManager((Window*)pW);
+//STRIP012#ifdef TEST_IAO
+//STRIP012/*?*/         if(pIAOManager)
+//STRIP012/*?*/         {
+//STRIP012/*?*/             // create some demo shapes
+//STRIP012/*?*/             B2dIAOLine* pLine;
+//STRIP012/*?*/             B2dIAOMarker* pMarker;
+//STRIP012/*?*/             B2dIAOBitmapObj* pBitmap;
+//STRIP012/*?*/             B2dIAOTriangle* pTriangle;
+//STRIP012/*?*/
+//STRIP012/*?*/             static BOOL bCreateLines = FALSE;
+//STRIP012/*?*/             static BOOL bCreateMarkers = FALSE;
+//STRIP012/*?*/             static BOOL bCreateField = FALSE;
+//STRIP012/*?*/             static BOOL bCreateSingleMarker = FALSE;
+//STRIP012/*?*/             static BOOL bCreateBitmap = FALSE;
+//STRIP012/*?*/             static BOOL bCreateBitmapField = FALSE;
+//STRIP012/*?*/             static BOOL bCreateTriangle = FALSE;
+//STRIP012/*?*/
+//STRIP012/*?*/             if(bCreateLines)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, Point(5000, 5200), Point(5000, 7000));
+//STRIP012/*?*/                 pLine->SetBaseColor(Color(COL_CYAN));
+//STRIP012/*?*/                 pLine = new B2dIAOLineStriped(pIAOManager, Point(5100, 5200), Point(5100, 7000));
+//STRIP012/*?*/                 pLine->SetBaseColor(Color(COL_BLUE));
+//STRIP012/*?*/                 B2dIAOLineTwoColor* p2Line = new B2dIAOLineTwoColor(pIAOManager, Point(5200, 5200), Point(5200, 7000));
+//STRIP012/*?*/                 p2Line->SetBaseColor(Color(COL_YELLOW));
+//STRIP012/*?*/                 p2Line->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/                 B2dIAOLineTwoColorAnim* p3Line = new B2dIAOLineTwoColorAnim(pIAOManager, Point(5300, 5200), Point(5300, 7000));
+//STRIP012/*?*/                 p3Line->SetBaseColor(Color(COL_YELLOW));
+//STRIP012/*?*/                 p3Line->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/             }
+//STRIP012/*?*/
+//STRIP012/*?*/             if(bCreateMarkers)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_POINT);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTRED));
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5000), B2D_IAO_MARKER_PLUS);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5000), B2D_IAO_MARKER_CROSS);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTBLUE));
+//STRIP012/*?*/
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5100), B2D_IAO_MARKER_RECT_5X5);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
+//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5100), B2D_IAO_MARKER_RECT_7X7);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
+//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5100), B2D_IAO_MARKER_RECT_9X9);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
+//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/             }
+//STRIP012/*?*/
+//STRIP012/*?*/             if(bCreateField || bCreateBitmapField)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 static UINT16 nNumX = 10;
+//STRIP012/*?*/                 static UINT16 nNumY = 10;
+//STRIP012/*?*/                 static UINT16 nStart = 2000;
+//STRIP012/*?*/                 static UINT16 nEnd = 16000;
+//STRIP012/*?*/
+//STRIP012/*?*/                 for(UINT16 a=nStart;a<nEnd;a+=(nEnd-nStart)/nNumX)
+//STRIP012/*?*/                 {
+//STRIP012/*?*/                     for(UINT16 b=nStart;b<nEnd;b+=(nEnd-nStart)/nNumY)
+//STRIP012/*?*/                     {
+//STRIP012/*?*/                         if(bCreateField)
+//STRIP012/*?*/                         {
+//STRIP012/*?*/                             pMarker = new B2dIAOMarker(pIAOManager, Point(a, b), B2D_IAO_MARKER_RECT_7X7);
+//STRIP012/*?*/                             pMarker->SetBaseColor(Color(
+//STRIP012/*?*/                                 (((a-nStart)*256L)/(nEnd-nStart)),
+//STRIP012/*?*/                                 (((b-nStart)*256L)/(nEnd-nStart)),
+//STRIP012/*?*/                                 0x80));
+//STRIP012/*?*/                             pMarker->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/                         }
+//STRIP012/*?*/                         if(bCreateBitmapField)
+//STRIP012/*?*/                         {
+//STRIP012/*?*/                             Bitmap aBitmap(Size(10, 10), 8);
+//STRIP012/*?*/                             pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(a, b), aBitmap);
+//STRIP012/*?*/                         }
+//STRIP012/*?*/                     }
+//STRIP012/*?*/                 }
+//STRIP012/*?*/             }
+//STRIP012/*?*/             if(bCreateSingleMarker)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_RECT_7X7);
+//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
+//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
+//STRIP012/*?*/             }
+//STRIP012/*?*/             if(bCreateBitmap)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 Bitmap aBitmap(Size(10, 10), 8);
+//STRIP012/*?*/                 pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(6000, 6000), aBitmap);
+//STRIP012/*?*/             }
+//STRIP012/*?*/             if(bCreateTriangle)
+//STRIP012/*?*/             {
+//STRIP012/*?*/                 pTriangle = new B2dIAOTriangle(pIAOManager, Point(5000, 5000), Point(7000, 5000), Point(6000, 7000), Color(COL_YELLOW));
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
+//STRIP012/*?*/
+//STRIP012/*?*/                 pTriangle = new B2dIAOBitmapTriangle(pIAOManager, Point(8000, 5000), Point(10000, 5000), Point(9000, 7000), Color(COL_RED));
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
+//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
+//STRIP012/*?*/             }
+//STRIP012/*?*/         }
+//STRIP012#endif
 /*N*/   }
 /*N*/ }
 
@@ -422,9 +422,9 @@ using namespace ::com::sun::star;
 /*N*/ //        delete pVDev;
 /*N*/
 /*N*/   // cleanup IAOManager for this window
-/*N*/   if(pIAOManager)
-/*N*/       delete pIAOManager;
-/*N*/   pIAOManager = NULL;
+//STRIP012/*N*/     if(pIAOManager)
+//STRIP012/*N*/         delete pIAOManager;
+//STRIP012/*N*/     pIAOManager = NULL;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1455,24 +1455,24 @@ using namespace ::com::sun::star;
 //STRIP001  return NULL;
 //STRIP001 }
 
-/*N*/ void SdrPaintView::RefreshAllIAOManagers()
-/*N*/ {
-/*N*/   for(UINT16 a=0;a<aWinList.GetCount();a++)
-/*N*/   {
-/*N*/       if(aWinList[a].pIAOManager)
-/*N*/       {
-/*N*/           aWinList[a].pIAOManager->UpdateDisplay();
-/*N*/       }
-/*N*/   }
-/*N*/ }
+//STRIP012/*N*/ void SdrPaintView::RefreshAllIAOManagers()
+//STRIP012/*N*/ {
+//STRIP012/*N*/     for(UINT16 a=0;a<aWinList.GetCount();a++)
+//STRIP012/*N*/     {
+//STRIP012/*N*/         if(aWinList[a].pIAOManager)
+//STRIP012/*N*/         {
+//STRIP012/*N*/             aWinList[a].pIAOManager->UpdateDisplay();
+//STRIP012/*N*/         }
+//STRIP012/*N*/     }
+//STRIP012/*N*/ }
 
-#ifdef TEST_IAO
-static UINT16 nStepWidthForMove = 100;
-static UINT32 nDirectObjectNum = 0L;
-static UINT32 nInsertXPos = 4000;
-static UINT32 nInsertYPos = 4000;
-static UINT32 nInsertIncrement = 100;
-#endif
+//STRIP012#ifdef TEST_IAO
+//STRIP012static UINT16 nStepWidthForMove = 100;
+//STRIP012static UINT32 nDirectObjectNum = 0L;
+//STRIP012static UINT32 nInsertXPos = 4000;
+//STRIP012static UINT32 nInsertYPos = 4000;
+//STRIP012static UINT32 nInsertIncrement = 100;
+//STRIP012#endif
 
 //STRIP001 BOOL SdrPaintView::KeyInput(const KeyEvent& rKEvt, Window* pWin)
 //STRIP001 {
@@ -1611,7 +1611,7 @@ static UINT32 nInsertIncrement = 100;
 /*N*/ void SdrPaintView::PostPaint()
 /*N*/ {
 /*N*/   // refresh with Paint-functionality
-/*N*/   RefreshAllIAOManagers();
+//STRIP012/*N*/     RefreshAllIAOManagers();
 /*N*/ }
 
 /*N*/ void SdrPaintView::RestartAfterPaintTimer()

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmrkv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:15 $
+ *  last change: $Author: aw $ $Date: 2003-12-03 10:42:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -703,7 +703,7 @@ namespace binfilter {
 /*N*/   ImpShowMarkHdl(pOut,NULL,bNoRefHdl);
 
     // refresh IAOs
-/*N*/   RefreshAllIAOManagers();
+//STRIP012/*N*/     RefreshAllIAOManagers();
 /*N*/ }
 
 
@@ -1936,7 +1936,7 @@ namespace binfilter {
 /*?*/       ShowMarkHdl(NULL);
 /*N*/
 /*N*/       // refresh IAOs
-/*N*/ //--/     RefreshAllIAOManagers();
+//STRIP012/*N*/ //--/       RefreshAllIAOManagers();
 /*N*/   }
 /*N*/ }
 

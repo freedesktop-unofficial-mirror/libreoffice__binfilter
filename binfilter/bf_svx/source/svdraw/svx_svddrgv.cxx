@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svddrgv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:09 $
+ *  last change: $Author: aw $ $Date: 2003-12-03 10:42:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -193,7 +193,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrExchangeView::BrkAction();
 /*N*/   BrkDragObj();
-/*N*/   RefreshAllIAOManagers();
+//STRIP012/*N*/     RefreshAllIAOManagers();
 /*N*/ }
 
 //STRIP001 void SdrDragView::TakeActionRect(Rectangle& rRect) const

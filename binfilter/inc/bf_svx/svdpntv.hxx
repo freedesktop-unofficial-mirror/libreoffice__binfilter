@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:58 $
+ *  last change: $Author: aw $ $Date: 2003-12-03 10:43:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -128,7 +128,7 @@ class OutputDevice;
 class VirtualDevice;
 class SfxItemSet;
 class SfxStyleSheet;
-class B2dIAOManager;
+//STRIP012class B2dIAOManager;
 namespace binfilter {
 class SdrPageViewWinRec;
 class SdrView;
@@ -258,7 +258,7 @@ class SdrViewWinRec
 public:
     OutputDevice*               pWin;
 //    VirtualDevice*                pVDev;        // fuer SolidHandles
-    B2dIAOManager*              pIAOManager;
+//STRIP012  B2dIAOManager*              pIAOManager;
     unsigned                    bXorVisible : 1;
 
     SdrViewWinRec(OutputDevice* pW);
@@ -748,7 +748,7 @@ public:
     // get the InteractionObjectManager for a specified window
 //STRIP001  B2dIAOManager* GetIAOManager(OutputDevice* pOut);
 //STRIP001  B2dIAOManager* GetFirstIAOManager();
-    void RefreshAllIAOManagers();
+//STRIP012  void RefreshAllIAOManagers();
 //STRIP001  virtual BOOL KeyInput(const KeyEvent& rKEvt, Window* pWin);
 
     BOOL MouseButtonDown(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }

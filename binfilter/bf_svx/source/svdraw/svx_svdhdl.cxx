@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdhdl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:13 $
+ *  last change: $Author: aw $ $Date: 2003-12-03 10:42:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1910,8 +1910,8 @@ struct ImplHdlAndIndex
 /*N*/   aList.Clear();
 /*N*/
 /*N*/   // immediately remove from display
-/*N*/   if(pImpl->pView)
-/*N*/       pImpl->pView->RefreshAllIAOManagers();
+//STRIP012/*N*/     if(pImpl->pView)
+//STRIP012/*N*/         pImpl->pView->RefreshAllIAOManagers();
 /*N*/
 /*N*/   bRotateShear=FALSE;
 /*N*/   bDistortShear=FALSE;
