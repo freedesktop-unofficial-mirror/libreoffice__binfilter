@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:08:26 $
+ *  last change: $Author: hr $ $Date: 2004-11-26 22:59:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -394,7 +394,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
      * Builds and sets the virtual device
      */
 /*N*/     pVirDev = new VirtualDevice( 1 );
-/*N*/     pVirDev->SetReferenceDevice(VirtualDevice::REFDEV_MODE96);
+/*N*/     pVirDev->SetReferenceDevice(VirtualDevice::REFDEV_MODE_MSO1);
 /*N*/     MapMode aMapMode( pVirDev->GetMapMode() );
 /*N*/     aMapMode.SetMapUnit( MAP_TWIP );
 /*N*/     pVirDev->SetMapMode( aMapMode );
@@ -755,7 +755,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ VirtualDevice& SwDoc::_GetVirDev() const
 /*N*/ {
 /*?*/     VirtualDevice* pNewVir = new VirtualDevice( 1 );
-/*?*/     pNewVir->SetReferenceDevice(VirtualDevice::REFDEV_MODE96);
+/*?*/     pNewVir->SetReferenceDevice(VirtualDevice::REFDEV_MODE_MSO1);
 /*?*/     MapMode aMapMode( pNewVir->GetMapMode() );
 /*?*/     aMapMode.SetMapUnit( MAP_TWIP );
 /*?*/     pNewVir->SetMapMode( aMapMode );
