@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexti.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:28:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,10 @@
 #include <bf_xmloff/i18nmap.hxx>
 #endif
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
 #endif
@@ -100,6 +104,11 @@
 #ifndef _UNOFRAME_HXX
 #include "unoframe.hxx"
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include "doc.hxx"
 #endif
