@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_userlist.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:23:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -76,12 +76,12 @@
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
-#include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
+// auto strip #include <unotools/calendarwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
