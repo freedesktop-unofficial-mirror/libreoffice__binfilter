@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-06-24 11:55:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:11:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,9 +78,19 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDTXT_HXX //autogen
 #include <ndtxt.hxx>
 #endif
