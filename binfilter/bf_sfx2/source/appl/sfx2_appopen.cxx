@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:45 $
+ *  last change: $Author: mba $ $Date: 2004-04-02 14:16:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -397,38 +397,33 @@ using namespace sfx2;
 /*N*/             }
 /*N*/
 /*N*/             if ( bIsEncrypted )
-/*N*/             {DBG_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                 Window* pWin = pDoc ? pDoc->GetDialogParent( pFile ) : NULL;
-//STRIP001 /*?*/                 if ( pWin )
-//STRIP001 /*?*/                     pWin->Show();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                nRet = ERRCODE_SFX_CANTGETPASSWD;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 SfxItemSet *pSet = pFile->GetItemSet();
-//STRIP001 /*?*/                if( pSet )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    Reference< ::com::sun::star::task::XInteractionHandler > xInteractionHandler;
-//STRIP001 /*?*/
-//STRIP001 /*?*/                    SFX_ITEMSET_ARG( pSet, pxInteractionItem, SfxUnoAnyItem, SID_INTERACTIONHANDLER, sal_False );
-//STRIP001 /*?*/                    if( pxInteractionItem && ( pxInteractionItem->GetValue() >>= xInteractionHandler )
-//STRIP001 /*?*/                    && xInteractionHandler.is() )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        RequestDocumentPassword* pPasswordRequest = new RequestDocumentPassword(
-//STRIP001 /*?*/                            ::com::sun::star::task::PasswordRequestMode_PASSWORD_ENTER,
-//STRIP001 /*?*/                            INetURLObject( pFile->GetOrigURL() ).GetName( INetURLObject::DECODE_WITH_CHARSET ) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        Reference< XInteractionRequest > rRequest( pPasswordRequest );
-//STRIP001 /*?*/                        xInteractionHandler->handle( rRequest );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        if ( pPasswordRequest->isPassword() )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            pSet->Put( SfxStringItem( SID_PASSWORD, pPasswordRequest->getPassword() ) );
-//STRIP001 /*?*/                            nRet = ERRCODE_NONE;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                            nRet = ERRCODE_IO_ABORT;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
+/*N*/             {
+                nRet = ERRCODE_SFX_CANTGETPASSWD;
+                SfxItemSet *pSet = pFile->GetItemSet();
+                if( pSet )
+                {
+                    Reference< ::com::sun::star::task::XInteractionHandler > xInteractionHandler;
+
+                    SFX_ITEMSET_ARG( pSet, pxInteractionItem, SfxUnoAnyItem, SID_INTERACTIONHANDLER, sal_False );
+                    if( pxInteractionItem && ( pxInteractionItem->GetValue() >>= xInteractionHandler )
+                     && xInteractionHandler.is() )
+                    {
+                        RequestDocumentPassword* pPasswordRequest = new RequestDocumentPassword(
+                            ::com::sun::star::task::PasswordRequestMode_PASSWORD_ENTER,
+                            INetURLObject( pFile->GetOrigURL() ).GetName( INetURLObject::DECODE_WITH_CHARSET ) );
+
+                        Reference< XInteractionRequest > rRequest( pPasswordRequest );
+                        xInteractionHandler->handle( rRequest );
+
+                        if ( pPasswordRequest->isPassword() )
+                        {
+                            pSet->Put( SfxStringItem( SID_PASSWORD, pPasswordRequest->getPassword() ) );
+                            nRet = ERRCODE_NONE;
+                        }
+                        else
+                            nRet = ERRCODE_IO_ABORT;
+                    }
+                }
 /*?*/             }
 /*N*/         }
 /*N*/     }
