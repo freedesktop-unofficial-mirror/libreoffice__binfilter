@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_imestatuswindow.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:28:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,28 +64,28 @@
 #include "app.hxx"
 #include "sfxsids.hrc"
 
-#include "com/sun/star/beans/PropertyState.hpp"
+// auto strip #include "com/sun/star/beans/PropertyState.hpp"
 #include "com/sun/star/beans/PropertyValue.hpp"
 #include "com/sun/star/beans/XPropertySet.hpp"
 #include "com/sun/star/lang/DisposedException.hpp"
-#include "com/sun/star/lang/XMultiServiceFactory.hpp"
-#include "com/sun/star/uno/Any.hxx"
-#include "com/sun/star/uno/Exception.hpp"
-#include "com/sun/star/uno/Reference.hxx"
-#include "com/sun/star/uno/RuntimeException.hpp"
-#include "com/sun/star/uno/Sequence.hxx"
+// auto strip #include "com/sun/star/lang/XMultiServiceFactory.hpp"
+// auto strip #include "com/sun/star/uno/Any.hxx"
+// auto strip #include "com/sun/star/uno/Exception.hpp"
+// auto strip #include "com/sun/star/uno/Reference.hxx"
+// auto strip #include "com/sun/star/uno/RuntimeException.hpp"
+// auto strip #include "com/sun/star/uno/Sequence.hxx"
 #include "com/sun/star/util/XChangesBatch.hpp"
 #include "osl/diagnose.h"
-#include "osl/mutex.hxx"
+// auto strip #include "osl/mutex.hxx"
 #include "rtl/ustring.h"
-#include "rtl/ustring.hxx"
+// auto strip #include "rtl/ustring.hxx"
 #include "sal/types.h"
-#include "vcl/svapp.hxx"
+// auto strip #include "vcl/svapp.hxx"
 #include "vos/mutex.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 namespace css = ::com::sun::star;
