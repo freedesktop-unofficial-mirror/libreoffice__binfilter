@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLTextHeaderFooterContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:31:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,24 +59,24 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HPP_
 #include <com/sun/star/text/XRelativeTextContentRemove.hpp>
 #endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "xmlnmspe.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_TEXTHEADERFOOTERCONTEXT_HXX_
 #include "XMLTextHeaderFooterContext.hxx"
 #endif
-#ifndef _XMLOFF_TEXTTABLECONTEXT_HXX_
-#include "XMLTextTableContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTTABLECONTEXT_HXX_
+// auto strip #include "XMLTextTableContext.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLTextFrameContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:31:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,27 +63,27 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
-#include <com/sun/star/text/TextContentAnchorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
+// auto strip #include <com/sun/star/text/TextContentAnchorType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
 #include <com/sun/star/text/XTextFrame.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
-#include <com/sun/star/drawing/XShape.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
+// auto strip #include <com/sun/star/drawing/XShape.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif
@@ -102,9 +102,9 @@
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
@@ -135,9 +135,9 @@
 #ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
 #endif
-#ifndef _XMLOFF_SHAPEIMPORT_HXX_
-#include "shapeimport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_SHAPEIMPORT_HXX_
+// auto strip #include "shapeimport.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
 #endif
