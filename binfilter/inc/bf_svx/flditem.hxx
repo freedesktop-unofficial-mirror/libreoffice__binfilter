@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flditem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: cl $ $Date: 2004-04-02 14:43:44 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:13:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,23 +64,24 @@
 #ifndef _LANG_HXX //autogen
 #include <tools/lang.hxx>
 #endif
-#ifndef _SVX_ITEMDATA_HXX
-#include <bf_svx/itemdata.hxx>
-#endif
-#ifndef _TIME_HXX //autogen
-#include <tools/time.hxx>
-#endif
-#ifndef _DATE_HXX //autogen
-#include <tools/date.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
-#ifndef _PSTM_HXX //autogen
-#include <tools/pstm.hxx>
-#endif
+// auto strip #ifndef _SVX_ITEMDATA_HXX
+// auto strip #include <bf_svx/itemdata.hxx>
+// auto strip #endif
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
 class SvNumberFormatter;
 class MetaAction;
+class SfxItemPool;
 namespace binfilter {
 
 class SvxAddressItem;
