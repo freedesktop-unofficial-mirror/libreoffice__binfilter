@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Columns.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:46:59 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:37:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -299,7 +299,7 @@ OGridColumn::OGridColumn(const Reference<XMultiServiceFactory>& _rxFactory, cons
         increment( m_refCount );
 
         // Muss im eigenen Block,
-        // da xAgg vor dem delegator setzen wieder freigesetzt sein muﬂ !
+        // da xAgg vor dem delegator setzen wieder freigesetzt sein mus !
         {
             m_xAggregate = Reference< XAggregation >( _rxFactory->createInstance( m_aModelName ), UNO_QUERY );
             setAggregation( m_xAggregate );
