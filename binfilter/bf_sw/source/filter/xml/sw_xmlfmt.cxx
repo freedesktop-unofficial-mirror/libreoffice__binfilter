@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlfmt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:23:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,11 @@
 #ifndef _FORMAT_HXX //autogen wg. SwFmt
 #include <format.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _FMTCOL_HXX //autogen wg. SwTxtFmtColl
 #include <fmtcol.hxx>
 #endif
@@ -103,6 +108,10 @@
 #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX //autogen wg. SwDoc

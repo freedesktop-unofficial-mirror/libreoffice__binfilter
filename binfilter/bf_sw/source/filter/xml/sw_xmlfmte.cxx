@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlfmte.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:23:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,6 +107,11 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
+#endif
+
 #ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
 #endif

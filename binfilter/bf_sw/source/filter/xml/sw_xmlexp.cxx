@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:22:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -131,9 +131,18 @@
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX //autogen wg. SwPaM
 #include <pam.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
@@ -193,6 +202,11 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
