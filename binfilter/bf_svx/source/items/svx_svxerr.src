@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxerr.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:15:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:24:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,11 @@
 #define NO_LOCALIZE_EXPORT
  // include ---------------------------------------------------------------
 #define __RSC
+
+#ifndef _ERRCODE_HXX
+#include <tools/errcode.hxx>
+#endif
+
 #include "svxerr.hxx"
 #include "dialogs.hrc"
  // pragma ----------------------------------------------------------------
@@ -68,404 +73,216 @@
  // Error-Context ---------------------------------------------------------
 Resource RID_SVXERRCTX
 {
-    String ERRCTX_SVX_LINGU_THESAURUS&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Ausf�hren des Thesaurus. : $(ERR) beim Ausf�hren des Thesaurus. */
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Ausf�hren des Thesaurus. : $(ERR) beim Ausf�hren des Thesaurus. */
-        Text [ de ] = "$(ERR) beim Ausf�hren des Thesaurus." ;
-        Text [ en-US ] = "$(ERR) executing the thesaurus." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao executar o dicionário de sinónimos.";
-        Text[ ru ] = "$(ERR) при выполнении тезауруса.";
-        Text[ el ] = "$(ERR) κατά την εκτέλεση του θησαυρού λέξεων.";
-        Text[ nl ] = "$(ERR) bij het uitvoeren van de thesaurus.";
-        Text[ fr ] = "$(ERR) lors de l'exécution du dictionnaire des synonymes";
-        Text[ es ] = "$(ERR) al ejecutar el diccionario de sinónimos.";
-        Text[ fi ] = "$(ERR) suoritettaessa synonyymisanastohakua.";
-        Text[ ca ] = "$(ERR) en executar el diccionari de sinònims.";
-        Text[ it ] = "$(ERR) nell'uso del dizionario dei sinonimi.";
-        Text[ sk ] = "Chyba pri spustení slovníka synoným ($(ERR)).";
-        Text[ da ] = "$(ERR) ved brug af synonymordbogen.";
-        Text[ sv ] = "$(ERR) vid användning av synonymordboken.";
-        Text[ pl ] = "$(ERR) przy przeszukiwaniu tezaurusa.";
-        Text[ pt-BR ] = "$(ERR) ao executar o dicionário de sinônimos.";
-        Text[ th ] = "$(ERR) กำลังปฏิบัติการอรรถาภิธาน";
-        Text[ ja ] = "$(ERR) 類語辞典使用の際に発生。";
-        Text[ ko ] = "동의어 사전 실행시 $(ERR)";
-        Text[ zh-CN ] = "$(ERR)发生在使用同义词词典时。";
-        Text[ zh-TW ] = "$(ERR)發生在使用同義詞詞典時。";
-        Text[ tr ] = "Eşanlamlılar kullanımı sırasında $(ERR).";
-        Text[ hi-IN ] = "$(ERR) विश्वकोश को चला रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء تنفيذ قاموس المرادفات.";
-        Text[ he ] = "$(ERR)‮ הפעלת התסאורוס מתבצעת.‬";
-    };
-    String ERRCTX_SVX_LINGU_SPELLING&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. : $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. */
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. : $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. */
-        Text [ de ] = "$(ERR) bei der Ausf�hrung der Rechtschreibpr�fung." ;
-        Text [ en-US ] = "$(ERR) executing the spellcheck." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao executar a verificação ortográfica.";
-        Text[ ru ] = "$(ERR) при проверке орфографии.";
-        Text[ el ] = "$(ERR) κατά την εκτέλεση του ορθογραφικού ελέγχου.";
-        Text[ nl ] = "$(ERR) bij het uitvoeren van de spellingcontrole";
-        Text[ fr ] = "$(ERR) lors de l'exécution de la vérification de l'orthographe.";
-        Text[ es ] = "$(ERR) al ejecutar la revisión ortográfica.";
-        Text[ fi ] = "$(ERR) suoritettaessa oikeinkirjoituksen tarkistusta.";
-        Text[ ca ] = "$(ERR) en executar la revisió ortogràfica";
-        Text[ it ] = "$(ERR) nell'eseguire il controllo ortografico.";
-        Text[ sk ] = "Chyba pri spustení kontroly pravopisu ($(ERR)).";
-        Text[ da ] = "$(ERR) under køring af stavekontrollen.";
-        Text[ sv ] = "$(ERR) vid utförandet av rättstavningskontrollen.";
-        Text[ pl ] = "$(ERR) przy sprawdzaniu pisowni.";
-        Text[ pt-BR ] = "$(ERR) ao executar a verificação ortográfica.";
-        Text[ th ] = "$(ERR) กำลังปฏิบัติการตรวจสอบการสะกด";
-        Text[ ja ] = "スペルチェック実行中に $(ERR) が発生。";
-        Text[ ko ] = "맞춤법 검사 실행시 $(ERR)";
-        Text[ zh-CN ] = "拼写检查时发生 $(ERR) 。";
-        Text[ zh-TW ] = "拼寫檢查時發生 $(ERR)。";
-        Text[ tr ] = "Yazım denetimi sırasında $(ERR).";
-        Text[ hi-IN ] = "$(ERR) अक्षर की जाँच चला रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء تنفيذ عملية التدقيق الإملائي.";
-        Text[ he ] = "$(ERR)‮ בדיקת איות מתבצעת.‬";
-    };
-    String ERRCTX_SVX_LINGU_HYPHENATION&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Trennhilfe. : $(ERR) bei der Ausf�hrung der Trennhilfe. */
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Trennhilfe. : $(ERR) bei der Ausf�hrung der Trennhilfe. */
-        Text [ de ] = "$(ERR) bei der Ausf�hrung der Trennhilfe." ;
-        Text [ en-US ] = "$(ERR) executing the hyphenation." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao executar a divisão silábica.";
-        Text[ ru ] = "$(ERR) при расстановке переносов.";
-        Text[ el ] = "$(ERR) κατά την εκτέλεση της βοήθειας συλλαβισμού.";
-        Text[ nl ] = "$(ERR) bij het uitvoeren van de woordafbreking";
-        Text[ fr ] = "$(ERR) lors de l'exécution de la coupure des mots.";
-        Text[ es ] = "$(ERR) al ejecutar la separación silábica.";
-        Text[ fi ] = "$(ERR) suoritettaessa tavutusta.";
-        Text[ ca ] = "$(ERR) en executar la separació en síl.labes.";
-        Text[ it ] = "$(ERR) nell'eseguire la sillabazione.";
-        Text[ sk ] = "Chyba pri spustení delenia slov ($(ERR)).";
-        Text[ da ] = "$(ERR) under køring af orddelingen.";
-        Text[ sv ] = "$(ERR) när avstavningen utfördes.";
-        Text[ pl ] = "$(ERR) przy dzieleniu wyrazów.";
-        Text[ pt-BR ] = "$(ERR) ao executar a divisão silábica.";
-        Text[ th ] = "$(ERR) กำลังปฏิบัติการใส่ยัติภังค์";
-        Text[ ja ] = "$(ERR) ハイフネーション実行中に発生。";
-        Text[ ko ] = "하이픈 넣기 실행 중 $(ERR)";
-        Text[ zh-CN ] = "$(ERR) 发生在使用连字符时。";
-        Text[ zh-TW ] = "$(ERR)發生在使用連字符時。";
-        Text[ tr ] = "Heceleme yardımını yürütme sırasında $(ERR).";
-        Text[ hi-IN ] = "$(ERR) हाइफ़नेशन् चला रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء تنفيذ عملية فصل المقاطع.";
-        Text[ he ] = "$(ERR)‮ מיקוף מתבצע.‬";
-    };
-    String ERRCTX_SVX_LINGU_DICTIONARY&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Anlegen eines W�rterbuches. : $(ERR) beim Anlegen eines W�rterbuches. */
-        /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Anlegen eines W�rterbuches. : $(ERR) beim Anlegen eines W�rterbuches. */
-        Text [ de ] = "$(ERR) beim Anlegen eines W�rterbuches." ;
-        Text [ en-US ] = "$(ERR) creating a dictionary." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao criar dicionário.";
-        Text[ ru ] = "$(ERR) при создании словаря.";
-        Text[ el ] = "$(ERR) κατά τη δημιουργία ενός λεξικού.";
-        Text[ nl ] = "$(ERR) bij het maken van een woordenboek";
-        Text[ fr ] = "$(ERR) lors de la création d'un dictionnaire";
-        Text[ es ] = "$(ERR) al crear un diccionario.";
-        Text[ fi ] = "$(ERR) luotaessa sanastoa.";
-        Text[ ca ] = "$(ERR) en crear un diccionari.";
-        Text[ it ] = "$(ERR) nel creare un dizionario.";
-        Text[ sk ] = "Chyba pri vytváraní slovníka ($(ERR)).";
-        Text[ da ] = "$(ERR) under oprettelse af en ordbog.";
-        Text[ sv ] = "$(ERR) när en ordbok skapades.";
-        Text[ pl ] = "$(ERR) przy tworzeniu słownika.";
-        Text[ pt-BR ] = "$(ERR) ao criar um dicionário.";
-        Text[ th ] = "$(ERR) กำลังสร้างพจนานุกรม";
-        Text[ ja ] = "$(ERR)辞書作成の際に発生。";
-        Text[ ko ] = "사전 만드는 중 $(ERR)";
-        Text[ zh-CN ] = "$(ERR) 发生在建立一个词典时。";
-        Text[ zh-TW ] = "$(ERR)發生在產生一個詞典時。";
-        Text[ tr ] = "Sözlük oluşturma sırasında $(ERR).";
-        Text[ hi-IN ] = "$(ERR) शब्दकोश को उत्पन्न कर रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء إنشاء قاموس.";
-        Text[ he ] = "$(ERR)‮ יצירת מילון מתבצעת.‬";
-    };
-    String ERRCTX_SVX_BACKGROUND&ERRCODE_RES_MASK
-    {
-        Text [ de ] = "$(ERR) beim Festlegen eines Hintergrundattributes." ;
-        Text [ en-US ] = "$(ERR) setting background attribute." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao definir atributo do plano de fundo.";
-        Text[ ru ] = "$(ERR) при установке атрибута фона.";
-        Text[ el ] = "$(ERR) κατά τον ορισμό μιας ιδιότητας φόντου.";
-        Text[ nl ] = "$(ERR) bij het maken van een achtergrondattribuut";
-        Text[ fr ] = "$(ERR) lors du paramétrage de l'attribut d'arrière-plan";
-        Text[ es ] = "$(ERR) al definir un atributo de fondo.";
-        Text[ fi ] = "$(ERR) määritettäessä taustamääritettä.";
-        Text[ ca ] = "$(ERR) en definir l'atribut de fons.";
-        Text[ it ] = "$(ERR) nel definire un attributo dello sfondo.";
-        Text[ sk ] = "Chyba pri nastavovaní pozadia ($(ERR)).";
-        Text[ da ] = "$(ERR) under indstilling af et baggrundsattribut.";
-        Text[ sv ] = "$(ERR) när ett bakgrundsattribut definierades.";
-        Text[ pl ] = "$(ERR) przy ustawianiu atrybutu tła.";
-        Text[ pt-BR ] = "$(ERR) ao definir um atributo do plano de fundo.";
-        Text[ th ] = "$(ERR) กำลังกำหนดคุณลักษณะพื้นหลัง";
-        Text[ ja ] = "$(ERR) 背景属性を設定する際に発生。";
-        Text[ ko ] = "배경 속성 설정시 $(ERR)";
-        Text[ zh-CN ] = "$(ERR) 发生在确定一个背景属性时。";
-        Text[ zh-TW ] = "$(ERR)發生在確定一個背景屬性時。";
-        Text[ tr ] = "Artalan özniteliklerinin tanımlanması sırasında $(ERR) .";
-        Text[ hi-IN ] = "$(ERR) पृष्ठभाग ऐट्रिब्यूट् सेट्ट कर रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء تعيين إحدى سمات الخلفية.";
-        Text[ he ] = "$(ERR)‮ קביעת תכונת הרקע.‬";
-    };
-    String ERRCTX_SVX_IMPORT_GRAPHIC&ERRCODE_RES_MASK
-    {
-        Text [ de ] = "$(ERR) beim Laden einer Grafik." ;
-        Text [ en-US ] = "$(ERR) loading the graphics." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "$(ERR) ao carregar imagem.";
-        Text[ ru ] = "$(ERR) при загрузке графики.";
-        Text[ el ] = "$(ERR) κατά τη φόρτωση ενός γραφικού.";
-        Text[ nl ] = "$(ERR) bij het laden van een afbeelding";
-        Text[ fr ] = "$(ERR) lors du chargement d'un graphique";
-        Text[ es ] = "$(ERR) al cargar una imagen.";
-        Text[ fi ] = "$(ERR) ladattaessa kuvia.";
-        Text[ ca ] = "$(ERR) en carregar una imatge.";
-        Text[ it ] = "$(ERR) nel caricare un'immagine.";
-        Text[ sk ] = "Chyba pri načítaní obrázku ($(ERR)).";
-        Text[ da ] = "$(ERR) under indlæsning af en grafik.";
-        Text[ sv ] = "$(ERR) vid laddning av ett grafikobjekt.";
-        Text[ pl ] = "$(ERR) przy ładowaniu grafiki.";
-        Text[ pt-BR ] = "$(ERR) ao carregar a figura.";
-        Text[ th ] = "$(ERR) กำลังโหลดกราฟิค";
-        Text[ ja ] = "図の読み込み中に $(ERR) 発生。";
-        Text[ ko ] = "그림 로드 중 $(ERR)";
-        Text[ zh-CN ] = "$(ERR) 发生在装入一个图形时。";
-        Text[ zh-TW ] = "$(ERR)發生在載入一個圖形時。";
-        Text[ tr ] = "Grafik yükleme sırasında $(ERR).";
-        Text[ hi-IN ] = "$(ERR) सुचित्र को लोड़ कर रहा है ।";
-        Text[ ar ] = "$(ERR) أثناء تحميل الرسم.";
-        Text[ he ] = "$(ERR)‮טעינת גרפיקה מתבצעת.‬";
-    };
+//STRIP001  String ERRCTX_SVX_LINGU_THESAURUS&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Ausf�hren des Thesaurus. : $(ERR) beim Ausf�hren des Thesaurus. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Ausf�hren des Thesaurus. : $(ERR) beim Ausf�hren des Thesaurus. */
+//STRIP001          TEXT = "$(ERR) beim Ausf�hren des Thesaurus." ;
+//STRIP001          Text [ English ] = "$(ERR) executing the thesaurus." ;
+//STRIP001          Text [ english_us ] = "$(ERR) executing the thesaurus." ;
+//STRIP001          Text [ italian ] = "$(ERR) nell'uso del dizionario dei sinonimi." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al ejecutar el diccionario de sin�nimos." ;
+//STRIP001          Text [ french ] = "$(ERR) lors de l'ex�cution du dictionnaire des synonymes" ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het uitvoeren van de thesaurus." ;
+//STRIP001          Text [ swedish ] = "$(ERR) vid anv�ndning av synonymordboken." ;
+//STRIP001          Text [ danish ] = "$(ERR) ved brug af synonymordbogen." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao executar o dicion�rio de sin�nimos." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao executar o dicion�rio de sin�nimos." ;
+//STRIP001          Text[ chinese_simplified ] = "$(ERR)发生在使用同义词词典时�?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?���������� ��������?";
+//STRIP001          Text[ polish ] = "$(ERR) przy przeszukiwaniu tezaurusa.";
+//STRIP001          Text[ japanese ] = "$(ERR) 類語辞典使用の際に発生�?";
+//STRIP001          Text[ chinese_traditional ] = "$(ERR)發生在使用同義詞詞典時�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?����?��������?";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het uitvoeren van de thesaurus.";
+//STRIP001          Text[ chinese_simplified ] = "$(ERR)发生在使用同义词词典时�?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� ��?�������� ��?�������� ������.";
+//STRIP001          Text[ korean ] = "동의�?사전 실행�?$(ERR)";
+//STRIP001          Text[ turkish ] = "E�anlaml�lar kullan�m?s�ras�nda $(ERR).";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en executar el diccionari de sin�nims.";
+//STRIP001          Text[ finnish ] = "$(ERR) suoritettaessa synonyymisanastohakua.";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังปฏิบัติการอรรถาภิธา�?";
+//STRIP001          Text[ czech ] = "Chyba při spuštění slovníku synonym ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)�?הפעלת התסאורוס מתבצעת.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) विश्वकोश को चल�?रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri spustení slovníka synoným ($(ERR)).";
+//STRIP001      };
+//STRIP001  String ERRCTX_SVX_LINGU_SPELLING&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. : $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. : $(ERR) bei der Ausf�hrung der Rechtschreibpr�fung. */
+//STRIP001          TEXT = "$(ERR) bei der Ausf�hrung der Rechtschreibpr�fung." ;
+//STRIP001          Text [ English ] = "$(ERR) executing the spellchecker." ;
+//STRIP001          Text [ english_us ] = "$(ERR) executing the spellcheck." ;
+//STRIP001          Text [ italian ] = "$(ERR) nell'eseguire il controllo ortografico." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al ejecutar la revisi�n ortogr�fica." ;
+//STRIP001          Text [ french ] = "$(ERR) lors de l'ex�cution de la v�rification de l'orthographe." ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het uitvoeren van de spellingcontrole" ;
+//STRIP001          Text [ swedish ] = "$(ERR) vid utf�randet av r�ttstavningskontrollen." ;
+//STRIP001          Text [ danish ] = "$(ERR) under k�ring af stavekontrollen." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao executar a verifica��o ortogr�fica." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao executar a verifica��o ortogr�fica." ;
+//STRIP001          Text[ chinese_simplified ] = "拼写检查时发生 $(ERR) �?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?�������� ����������.";
+//STRIP001          Text[ polish ] = "$(ERR) przy sprawdzaniu pisowni.";
+//STRIP001          Text[ japanese ] = "スペルチェック実行中�?$(ERR) が発生�?";
+//STRIP001          Text[ chinese_traditional ] = "拼寫檢查時發�?$(ERR)�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?����?������?��������.";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het uitvoeren van de spellingcontrole";
+//STRIP001          Text[ chinese_simplified ] = "拼写检查时发生 $(ERR) �?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� ��?�������� ��?������������ ������?";
+//STRIP001          Text[ korean ] = "맞춤�?검�?실행�?$(ERR)";
+//STRIP001          Text[ turkish ] = "Yaz�m denetimi s�ras�nda $(ERR).";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en executar la revisi?ortogr�fica";
+//STRIP001          Text[ finnish ] = "$(ERR) suoritettaessa oikeinkirjoituksen tarkistusta.";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังปฏิบัติการตรวจสอบการสะก�?";
+//STRIP001          Text[ czech ] = "Chyba při spuštění kontroly pravopisu ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)�?בדיקת איות מתבצעת.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) अक्ष�?की जाँच चल�?रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri spustení kontroly pravopisu ($(ERR)).";
+//STRIP001      };
+//STRIP001  String ERRCTX_SVX_LINGU_HYPHENATION&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Trennhilfe. : $(ERR) bei der Ausf�hrung der Trennhilfe. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) bei der Ausf�hrung der Trennhilfe. : $(ERR) bei der Ausf�hrung der Trennhilfe. */
+//STRIP001          TEXT = "$(ERR) bei der Ausf�hrung der Trennhilfe." ;
+//STRIP001          Text [ English ] = "$(ERR) executing the hyphenation." ;
+//STRIP001          Text [ english_us ] = "$(ERR) executing the hyphenation." ;
+//STRIP001          Text [ italian ] = "$(ERR) nell'eseguire la sillabazione." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al ejecutar la separaci�n sil�bica." ;
+//STRIP001          Text [ french ] = "$(ERR) lors de l'ex�cution de la coupure des mots." ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het uitvoeren van de woordafbreking" ;
+//STRIP001          Text [ swedish ] = "$(ERR) n�r avstavningen utf�rdes." ;
+//STRIP001          Text [ danish ] = "$(ERR) under k�ring af orddelingen." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao executar a divis�o sil�bica." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao executar a divis�o sil�bica." ;
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在使用连字符时�?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?����������?��������?";
+//STRIP001          Text[ polish ] = "$(ERR) przy dzieleniu wyraz�w.";
+//STRIP001          Text[ japanese ] = "$(ERR) ハイフネーション実行中に発生�?";
+//STRIP001          Text[ chinese_traditional ] = "$(ERR)發生在使用連字符時�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?����?��?������?";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het uitvoeren van de woordafbreking";
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在使用连字符时�?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� ��?�������� ��?�������� ����������?";
+//STRIP001          Text[ korean ] = "하이�?넣기 실행 �?$(ERR)";
+//STRIP001          Text[ turkish ] = "Heceleme yard�m�n?y�r�tme s�ras�nda $(ERR).";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en executar la separaci?en s�l.labes.";
+//STRIP001          Text[ finnish ] = "$(ERR) suoritettaessa tavutusta.";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังปฏิบัติการใส่ยัติภังค�?";
+//STRIP001          Text[ czech ] = "Chyba při spuštění dělení slov ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)�?מיקוף מתבצע.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) हाइफ़नेशन् चल�?रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri spustení delenia slov ($(ERR)).";
+//STRIP001      };
+//STRIP001  String ERRCTX_SVX_LINGU_DICTIONARY&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Anlegen eines W�rterbuches. : $(ERR) beim Anlegen eines W�rterbuches. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? $(ERR) beim Anlegen eines W�rterbuches. : $(ERR) beim Anlegen eines W�rterbuches. */
+//STRIP001          TEXT = "$(ERR) beim Anlegen eines W�rterbuches." ;
+//STRIP001          Text [ English ] = "$(ERR) creating a dictionary." ;
+//STRIP001          Text [ english_us ] = "$(ERR) creating a dictionary." ;
+//STRIP001          Text [ italian ] = "$(ERR) nel creare un dizionario." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al crear un diccionario." ;
+//STRIP001          Text [ french ] = "$(ERR) lors de la cr�ation d'un dictionnaire" ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het maken van een woordenboek" ;
+//STRIP001          Text [ swedish ] = "$(ERR) n�r en ordbok skapades." ;
+//STRIP001          Text [ danish ] = "$(ERR) under oprettelse af en ordbog." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao criar dicion�rio." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao criar um dicion�rio." ;
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在建立一个词典时�?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?�������� �������.";
+//STRIP001          Text[ polish ] = "$(ERR) przy tworzeniu s�ownika.";
+//STRIP001          Text[ japanese ] = "$(ERR)辞書作成の際に発生�?";
+//STRIP001          Text[ chinese_traditional ] = "$(ERR)發生在產生一個詞典時�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?����?";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het maken van een woordenboek";
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在建立一个词典时�?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� �� ���������� ���� ������?";
+//STRIP001          Text[ korean ] = "사전 만드�?�?$(ERR)";
+//STRIP001          Text[ turkish ] = "S�zl�k olu�turma s�ras�nda $(ERR).";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en crear un diccionari.";
+//STRIP001          Text[ finnish ] = "$(ERR) luotaessa sanastoa.";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังสร้างพจนานุกร�?";
+//STRIP001          Text[ czech ] = "Chyba při vytváření slovníku ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)�?יצירת מילון מתבצעת.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) शब्दको�?को उत्पन्�?कर रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri vytváraní slovníka ($(ERR)).";
+//STRIP001      };
+//STRIP001  String ERRCTX_SVX_BACKGROUND&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          TEXT = "$(ERR) beim Festlegen eines Hintergrundattributes." ;
+//STRIP001          Text [ English ] = "$(ERR) setting background attribute." ;
+//STRIP001          Text [ english_us ] = "$(ERR) setting background attribute." ;
+//STRIP001          Text [ italian ] = "$(ERR) nel definire un attributo dello sfondo." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al definir un atributo de fondo." ;
+//STRIP001          Text [ french ] = "$(ERR) lors du param�trage de l'attribut d'arri�re-plan" ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het maken van een achtergrondattribuut" ;
+//STRIP001          Text [ swedish ] = "$(ERR) n�r ett bakgrundsattribut definierades." ;
+//STRIP001          Text [ danish ] = "$(ERR) under indstilling af et baggrundsattribut." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao definir atributo do plano de fundo." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao definir um atributo do plano de fundo." ;
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在确定一个背景属性时�?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?��������?�������� ����.";
+//STRIP001          Text[ polish ] = "$(ERR) przy ustawianiu atrybutu t�a.";
+//STRIP001          Text[ japanese ] = "$(ERR) 背景属性を設定する際に発生�?";
+//STRIP001          Text[ chinese_traditional ] = "$(ERR)發生在確定一個背景屬性時�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?���� ���� ������?";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het maken van een achtergrondattribuut";
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在确定一个背景属性时�?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� ��?������ ���� ��������?������.";
+//STRIP001          Text[ korean ] = "배경 속성 설정�?$(ERR)";
+//STRIP001          Text[ turkish ] = "Artalan �zniteliklerinin tan�mlanmas?s�ras�nda $(ERR) .";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en definir l'atribut de fons.";
+//STRIP001          Text[ finnish ] = "$(ERR) m��ritett�ess?taustam��ritett?";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังกำหนดคุณลักษณะพื้นหลั�?";
+//STRIP001          Text[ czech ] = "Chyba při nastavování pozadí ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)�?קביעת תכונת הרקע.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) पृष्ठभाग ऐट्रिब्यूट�?सेट्�?कर रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri nastavovaní pozadia ($(ERR)).";
+//STRIP001      };
+//STRIP001  String ERRCTX_SVX_IMPORT_GRAPHIC&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          TEXT = "$(ERR) beim Laden einer Grafik." ;
+//STRIP001          Text [ English ] = "$(ERR) loading graphic." ;
+//STRIP001          Text [ english_us ] = "$(ERR) loading the graphics." ;
+//STRIP001          Text [ italian ] = "$(ERR) nel caricare un'immagine." ;
+//STRIP001          Text [ spanish ] = "$(ERR) al cargar una imagen." ;
+//STRIP001          Text [ french ] = "$(ERR) lors du chargement d'un graphique" ;
+//STRIP001          Text [ dutch ] = "$(ERR) bij het laden van een afbeelding" ;
+//STRIP001          Text [ swedish ] = "$(ERR) vid laddning av ett grafikobjekt." ;
+//STRIP001          Text [ danish ] = "$(ERR) under indl�sning af en grafik." ;
+//STRIP001          Text [ portuguese ] = "$(ERR) ao carregar imagem." ;
+//STRIP001          Text [ portuguese_brazilian ] = "$(ERR) ao carregar a figura." ;
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在装入一个图形时�?";
+//STRIP001          Text[ russian ] = "$(ERR) ��?�������� ������?";
+//STRIP001          Text[ polish ] = "$(ERR) przy �adowaniu grafiki.";
+//STRIP001          Text[ japanese ] = "図の読み込み中に $(ERR) 発生�?";
+//STRIP001          Text[ chinese_traditional ] = "$(ERR)發生在載入一個圖形時�?";
+//STRIP001          Text[ arabic ] = "$(ERR) ����?����?����?";
+//STRIP001          Text[ dutch ] = "$(ERR) bij het laden van een afbeelding";
+//STRIP001          Text[ chinese_simplified ] = "$(ERR) 发生在装入一个图形时�?";
+//STRIP001          Text[ greek ] = "$(ERR) ���� �� ������?���� ��������.";
+//STRIP001          Text[ korean ] = "그림 로드 �?$(ERR)";
+//STRIP001          Text[ turkish ] = "Grafik y�kleme s�ras�nda $(ERR).";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "$(ERR) en carregar una imatge.";
+//STRIP001          Text[ finnish ] = "$(ERR) ladattaessa kuvia.";
+//STRIP001          Text[ thai ] = "$(ERR) กำลังโหลดกราฟิ�?";
+//STRIP001          Text[ czech ] = "Chyba při načítání obrázku ($(ERR)).";
+//STRIP001          Text[ hebrew ] = "$(ERR)‮טעינ�?גרפיקה מתבצעת.�?";
+//STRIP001          Text[ hindi ] = "$(ERR) सुचित्�?को लोड़ कर रह�?है �?";
+//STRIP001          Text[ slovak ] = "Chyba pri načítaní obrázku ($(ERR)).";
+//STRIP001      };
 };
  // Error-Code ------------------------------------------------------------
 Resource RID_SVXERRCODE
 {
-    String ERRCODE_SVX_LINGU_THESAURUSNOTEXISTS&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache */
-        /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache */
-        Text [ de ] = "Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache" ;
-        Text [ en-US ] = "No thesaurus available for the current language.\nPlease check your installation and install the desired language" ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "O dicionário de sinónimos não se encontra disponível para a língua especificada.\nConfira a sua instalação e, se necessário, instale a língua desejada.";
-        Text[ ru ] = "Недоступен тезаурус для текущего языка.\nПроверьте установку и, в случае необходимости, установите требуемый язык.";
-        Text[ el ] = "Δεν υπάρχει θησαυρός διαθέσιμος για την τρέχουσα γλώσσα.\nΕλέγξτε την εγκατάσταση και εγκαταστήστε τη γλώσσα που θέλετε";
-        Text[ nl ] = "Een thesaurus voor de ingestelde taal is niet beschikbaar.\nControleer uw installatie en installeer de gewenste taal";
-        Text[ fr ] = "Aucun dictionnaire des synonymes n'est disponible pour la langue sélectionnée.\nVeuillez vérifiez l'installation et installer\nle cas échéant la langue concernée.";
-        Text[ es ] = "No hay ningún diccionario de sinónimos disponible para el idioma seleccionado.\nExamine por favor su instalación e instale en caso dado el idioma deseado.";
-        Text[ fi ] = "Nykyiselle kielelle ei ole käytettävissä oikeinkirjoituksen tarkistusohjelmaa.\nTarkista asennetut osat ja asenna haluttu kieli";
-        Text[ ca ] = "No hi ha cap diccionari de sinònims disponible per a l'idioma seleccionat.\nExamineu la vostra instal.lació i instal.leu l'idioma desitjat.";
-        Text[ it ] = "Per la lingua scelta non esiste un dizionario dei sinonimi..\nControllare l'installazione ed installare se necessario il linguaggio desiderato";
-        Text[ sk ] = "Pre súčasný jazyk nie je dostupný slovník synoným.\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk.";
-        Text[ da ] = "Synonymordbogen står ikke til rådighed for det indstillede sprog.\nKontroller venligst din installation og installer i givet fald det ønskede sprog.";
-        Text[ sv ] = "Ingen synonymordbok är tillgänglig för det inställda språket.\nKontrollera din installation och installera eventuellt det önskade språket.";
-        Text[ pl ] = "Dla bieżącego języka nie jest dostępny żaden Tezaurus.\nSprawdź instalację i zainstaluj potrzebny język.";
-        Text[ pt-BR ] = "O dicionário de sinônimos não se encontra disponível para o idioma atual.\nConfira a sua instalação e, se necessário, instale o idioma desejado.";
-        Text[ th ] = "ไม่มีอรรถาภิธานที่ใช้ได้สำหรับภาษาปัจจุบัน\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษาที่ต้องการ";
-        Text[ ja ] = "設定した言語で類語辞典は使用できません。\nプログラムのインストールをチェックして、必要ならば希望の言語をインストールしてください。";
-        Text[ ko ] = "설정된 언어에 대한 동의어 사전을 사용할 수 없습니다.\n설치 상태를 검사한 다음 필요하면 원하는 언어를 설치하십시오";
-        Text[ zh-CN ] = "您所设定的语言没有相应的同义词词典。\n请您检查安装，如有必要，请您安装所要使用的语言版本。";
-        Text[ zh-TW ] = "您所設定的語言沒有相應的同義詞詞典。\n請您檢查安裝﹐若有必要﹐請安裝所要使用的語言版本。";
-        Text[ tr ] = "Ayarlanan dile ilişkin eşanlamlılar mevcut değil.\nLütfen kurulumu kontrol edin ve gerekirse istenilen dili kurun.";
-        Text[ hi-IN ] = "प्रचलित भाषा केलिए विश्वकोश उपलब्ध नहीं है ।\nकृपया आपका प्रतिष्ठापन की जाँच कीजिए और आवश्यक भाषा को प्रतिष्ठापित कीजिए";
-        Text[ ar ] = "لا يوجد قاموس مرادفات للغة التي تم تحديدها.\nالرجاء فحص التثبيت الخاص بك، ثم القيام بتثبيت اللغة المطلوبة، إذا لزم الأمر";
-        Text[ he ] = "‮אין תסאורוס זמין עבור השפה הנוכחית.\nנא לבדוק את ההתקנה ולהתקין את השפה הנדרשת.‬";
-    };
-    String ERRCODE_SVX_LINGU_LANGUAGENOTEXISTS&ERRCODE_RES_MASK
-    {
-        Text [ de ] = "$(ARG1) wird von der Pr�fung nicht unterst�tzt bzw. ist gegenw�rtig nicht aktiviert.\n�berpr�fen Sie Ihre Installation und installieren Sie gegebenenfalls das ben�tigte Sprachmodul\nbzw. aktivieren sie in 'Extras - Optionen -  Spracheinstellungen - Linguistik' das entsprechende Spachmodul." ;
-        Text [ en-US ] = "$(ARG1) is not supported by the spellcheck function or is not presently active.\nPlease check your installation and, if necessary, install the required language module\n or activate it under 'Tools - Options -  Language Settings - Writing Aids'.";
-        Text[ pt ] = "$(ARG1) não tem suporte para verificação ortográfica ou encontra-se desactivado. \nConfira a sua instalação e, se necessário, instale o módulo linguístico desejado\nou então active-o em 'Ferramentas - Opções - Configuração da língua - Linguística'.";
-        Text[ ru ] = "$(ARG1) языковой модуль не поддерживается проверкой орфографии или в настоящий момент неактивен. Проверьте установку и, в случае необходимости, установите требуемые языковые модули или включите данный языковой модуль в 'Сервис - Параметры - Настройки языка - Лингвистика'.";
-        Text[ el ] = "Το $(ARG1) δεν υποστηρίζεται από τη λειτουργία ορθογραφικού ελέγχου ή δεν είναι ενεργό αυτήν τη στιγμή.\nΕλέγξτε την εγκατάσταση και, αν είναι απαραίτητο,\nεγκαταστήστε τη λειτουργική μονάδα της γλώσσας που θέλετε ή ενεργοποιήστε την\nαπό την επιλογή \"Εργαλεία - Επιλογές -  Ρυθμίσεις γλώσσας - Βοηθήματα γραφής\".";
-        Text[ nl ] = "$(ARG1) wordt niet ondersteund door de controle, of is momenteel niet geactiveerd. \nControleer uw installatie en installeer eventueel de gewenste taalmodule\nof activeer de betreffende taalmodule onder 'Extra - Opties - Taalinstellingen - Linguïstiek' ";
-        Text[ fr ] = "$(ARG1) n'est pas supporté par la vérification ou n'est actuellement pas actif.\nVérifiez l'installation et installez le cas échéant le module de langue requis, ou activez-le sous 'Outils - Options - Paramètres linguistiques - Linguistique'.";
-        Text[ es ] = "$(ARG1) no está disponible para la revisión ortográfica o no está activo en este momento.\n Examine la instalación e instale en caso dado el idioma deseado\no active el módulo correspondiente en 'Herramientas - Opciones - Configuración de idiomas - Lingüística'.";
-        Text[ fi ] = "$(ARG1) ei ole käytettävissä oikeinkirjoituksen tarkistusta varten.\nTarkista asennetut osat ja asenna haluttu kieli.\n";
-        Text[ ca ] = "$(ARG1) no disponible per a la revisió ortogràfica.\n Examineu la vostra instal.lació i instal.leu l'idioma desitjat.";
-        Text[ it ] = "$(ARG1) non è supportato per il controllo oppure non è attivato al momento.\nControllate l'installazione ed installate, se necessario, la lingua desiderata\noppure impostate il modulo linquistico corrispondente in 'Strumenti - Opzioni - Impostazioni lingua - Linguistica'.";
-        Text[ sk ] = "$(ARG1) nieje podporované kontrolou pravopisu alebo nie je práve aktívne.\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazykový modul \nalebo aktivujte túto funkciu v menu 'Nástroje - Voľby - Jazykové nastavenia - Pomôcky pri písaní'.";
-        Text[ da ] = "$(ARG1) understøttes ikke af kontrollen eller er ikke aktiveret i øjeblikket.\nKontroller installationen, og installer eventuelt det nødvendige sprogmodul,\neller aktiver det pågældende sprogmodul under 'Supplerende - Indstillinger -  Sprogindstillinger - Lingvistik'.";
-        Text[ sv ] = "$(ARG1) stöds inte av kontrollen resp., är inte aktiverat för närvarande.\nKontrollera installationen och installera eventuellt den nödvändiga språkmodulen\nresp. aktivera motsvarande språkmodul under \"Verktyg - Alternativ - Språkinställningar - Lingvistik\".";
-        Text[ pl ] = "$(ARG1) nie jest obsługiwany przez funkcję sprawdzania pisowni albo nie jest teraz aktywny.\nSprawdź instalację i ewentualnie zainstaluj wymagany moduł języka\nlub uaktywnij go, wydając sekwencję poleceń 'Narzędzia - Opcje - Konfiguracja języków - Pisownia'.";
-        Text[ pt-BR ] = "$(ARG1) não possui suporte para verificação ortográfica ou encontra-se desativado. \nConfira a sua instalação e, se necessário, instale o módulo lingüístico desejado\nou então ative-o em 'Ferramentas - Opções - Configuração do Idioma - Lingüística'.";
-        Text[ th ] = "$(ARG1) ใช้ไม่ได้กับการตรวจสอบการสะกด\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษาที่ต้องการ";
-        Text[ ja ] = "$(ARG1)のスペルチェックは支援されていません。あるいは現在アクティブではありません。\nインストールされているプログラムをチェックして、必要に応じてスペルチェックに必要な言語をインスト-ルするか、\nメニュー ツール → オプション → 言語設定 → 文章校正で必要な言語モジュールをオンにします。";
-        Text[ ko ] = "$(ARG1)은(는) 맞춤법 검사에서 지원하지 않거나 활성화되지 않았습니다.\n 설치를 점검해보십시오. 필요한 언어 모듈을 설치하거나 [도구] - [옵션] - [언어 설정] - [맞춤법 교정] 메뉴에서 해당하는 언어 모듈을 활성화해야 할 수도 있습니다.";
-        Text[ zh-CN ] = "$(ARG1)不支持拼写检查功能或者目前未启用该功能。\n请您检查安装，如有必要请安装所需的语言模块\n或者借助菜单命令“工具 - 选项... - 语言设定 - 语言规则”启用相应的语言模块。";
-        Text[ zh-TW ] = "$(ARG1) 不受支援或沒有被啓動。\n請檢查程式的安裝。若有必要請安裝所需的語言模組或按功能表 [工具] - [選項] ，在 [語言規則] 處設定要用的語言模組。";
-        Text[ tr ] = "$(ARG1) heceleme fonksiyonu tarafından desteklenmiyor veya henüz aktif değil. \nLütfen kurulumunuzu kontrol edin ve eğer gerekirse gereken dil modüllerini kurun veya 'Araçlar-Seçenekler-Dil Ayarları-Yazma Yardımı altından aktif hale getirin. ";
-        Text[ hi-IN ] = "$(ARG1) अक्षर की जाँच करने केलिए असमर्थित है अथवा अभी क्रियाशील नहीं है ।\nकृपया आपका प्रतिष्ठापन की जाँच कीजिए और अगर ज़रूरत पड़ा तो आवश्यक भाषा मोड्यूल को प्रतिष्ठापित कीजिए\nअथवा 'औज़ार - ऑप्शन्स - भाषा निर्धारण - लेखन सहाय' के नीचे संचालित कीजिए ।";
-        Text[ ar ] = "$(ARG1) غير متوفرة للتدقيق الإملائي.\nالرجاء فحص التثبيت الخاص بك، وقم بتثبيت اللغة المطلوبة، إذا لزم الأمر.";
-        Text[ he ] = "‮$(ARG1) אינה נתמכת על ידי בודק האיות או אינה פעילה כעת.\nנא לבדוק את ההתקנה ואם נדרש, יש להתקין את המודול של השפה הרצויה\nאו להפעיל אותו ב \"כלים\" > \"אפשרויות\" > \"קביעות שפה\" > \"עזרי כתיבה\".‬";
-    };
-    String ERRCODE_SVX_LINGU_LINGUNOTEXISTS&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Die Rechtschreibpr�fung ist nicht verf�gbar. : Die Rechtschreibpr�fung ist nicht verf�gbar. */
-        /* ### ACHTUNG: Neuer Text in Resource? Die Rechtschreibpr�fung ist nicht verf�gbar. : Die Rechtschreibpr�fung ist nicht verf�gbar. */
-        Text [ de ] = "Die Rechtschreibpr�fung ist nicht verf�gbar." ;
-        Text [ en-US ] = "Spellcheck is not available." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "A verificação ortográfica não está disponível.";
-        Text[ ru ] = "Недоступна проверка орфографии.";
-        Text[ el ] = "Ο ορθογραφικός έλεγχος δεν είναι διαθέσιμος.";
-        Text[ nl ] = "De spellingcontrole is niet beschikbaar.";
-        Text[ fr ] = "La vérification de l'orthographe n'est pas disponible.";
-        Text[ es ] = "La revisión ortográfica no está disponible.";
-        Text[ fi ] = "Oikeinkirjoituksen tarkistus ei ole käytettävissä.";
-        Text[ ca ] = "La revisió ortogràfica no està disponible.";
-        Text[ it ] = "Il controllo ortografico non è disponibile.";
-        Text[ sk ] = "Kontrola pravopisu nie je dostupná.";
-        Text[ da ] = "Stavekontrollen står ikke til rådighed.";
-        Text[ sv ] = "Rättstavningskontrollen är inte tillgänglig.";
-        Text[ pl ] = "Sprawdzanie pisowni jest niedostępne.";
-        Text[ pt-BR ] = "A verificação ortográfica não está disponível";
-        Text[ th ] = "ใช้การตรวจสอบการสะกดไม่ได้";
-        Text[ ja ] = "この文章校正は使用できません。";
-        Text[ ko ] = "맞춤법 검사를 할 수 없습니다.";
-        Text[ zh-CN ] = "不提供这个拼写检查功能。";
-        Text[ zh-TW ] = "這個拼寫檢查功能不存在。";
-        Text[ tr ] = "Yazım denetimi işlevi kullanılamıyor.";
-        Text[ hi-IN ] = "अक्षर की जाँच उपलब्ध नहीं है ।";
-        Text[ ar ] = "التدقيق الإملائي غير متوفر.";
-        Text[ he ] = "‮בודק האיות אינו זמין.‬";
-    };
-    String ERRCODE_SVX_LINGU_HYPHENNOTEXISTS&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar. : Die Trennhilfe ist nicht verf�gbar. */
-        /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar. : Die Trennhilfe ist nicht verf�gbar. */
-        Text [ de ] = "Die Trennhilfe ist nicht verf�gbar." ;
-        Text [ en-US ] = "Hyphenation not available." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "A separação silábica não está disponível.";
-        Text[ ru ] = "Недоступна расстановка переносов.";
-        Text[ el ] = "Η βοήθεια συλλαβισμού δεν είναι διαθέσιμη.";
-        Text[ nl ] = "De modus Woordafbreken is niet beschikbaar.";
-        Text[ fr ] = "Coupure des mots non disponible";
-        Text[ es ] = "La ayuda para la separación silábica no está disponible.";
-        Text[ fi ] = "Tavutusta ei ole käytettävissä.";
-        Text[ ca ] = "L'ajuda per a la separació ortogràfica no està disponible.";
-        Text[ it ] = "La sillabazione non è disponibile.";
-        Text[ sk ] = "Delenie slov nie je k dispozícii.";
-        Text[ da ] = "Orddelingen står ikke til rådighed.";
-        Text[ sv ] = "Avstavningshjälpen är inte tillgänglig.";
-        Text[ pl ] = "Dzielenie wyrazów jest niedostępne.";
-        Text[ pt-BR ] = "A divisão silábica não está disponível.";
-        Text[ th ] = "ใช้ยัติภังค์ไม่ได้";
-        Text[ ja ] = "ハイフネーションが使用できません。";
-        Text[ ko ] = "하이픈 넣기를 사용할 수 없습니다.";
-        Text[ zh-CN ] = "连字符不存在。";
-        Text[ zh-TW ] = "連字符不存在。";
-        Text[ tr ] = "Heceleme yardımı mevcut değil.";
-        Text[ hi-IN ] = "हाइफ़नशन् उपलब्ध नहीं है ।";
-        Text[ ar ] = "مساعدة فصل المقاطع غير متوفرة.";
-        Text[ he ] = "‮מיקוף אינו זמין.‬";
-    };
-    String ERRCODE_SVX_LINGU_DICT_NOTREADABLE&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. */
-        /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. */
-        Text [ de ] = "Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden." ;
-        Text [ en-US ] = "The custom dictionary $(ARG1) cannot be read." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Impossível ler o dicionário pessoal $(ARG1).";
-        Text[ ru ] = "Невозможно считать словарь пользователя $(ARG1).";
-        Text[ el ] = "Δεν είναι δυνατόν να γίνει ανάγνωση του προσωπικού λεξικού $(ARG1).";
-        Text[ nl ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden gelezen.";
-        Text[ fr ] = "Impossible de lire le dictionnaire personnalisé $(ARG1).";
-        Text[ es ] = "No es posible leer el diccionario personal $(ARG1).";
-        Text[ fi ] = "Mukautettua sanastoa $(ARG1) ei voida lukea.";
-        Text[ ca ] = "No es pot llegir el diccionari personalitzat $(ARG1).";
-        Text[ it ] = "Il dizionario personalizzato $(ARG1) non può essere letto";
-        Text[ sk ] = "Nie je možné načítať vlastný slovník $(ARG1).";
-        Text[ da ] = "Det er ikke muligt at læse den personlige ordbog $(ARG1).";
-        Text[ sv ] = "Den personliga ordboken $(ARG1) kan inte läsas.";
-        Text[ pl ] = "Nie można odczytać niestandardowego słownika $(ARG1).";
-        Text[ pt-BR ] = "Não é possível ler o dicionário personalizado $(ARG1).";
-        Text[ th ] = "ไม่สามารถอ่านพจนานุกรมแบบกำหนดเอง $(ARG1) ";
-        Text[ ja ] = "ユーザー辞書$(ARG1)が読み取れません。";
-        Text[ ko ] = "사용자 정의 사전$(ARG1)을(를) 읽을 수 없습니다.";
-        Text[ zh-CN ] = "无法读出私人词典 $(ARG1)。";
-        Text[ zh-TW ] = "無法讀出個人詞典 $(ARG1)。";
-        Text[ tr ] = "Özel sözlük $(ARG1) okunamıyor.";
-        Text[ hi-IN ] = "कस्टम् शब्दकोश $(ARG1) को नहीं पढ़ सकते है ।";
-        Text[ ar ] = "لا يمكن قراءة القاموس الشخصي $(ARG1).";
-        Text[ he ] = "‮לא ניתן לקרוא את המילון המיוחד $(ARG1).‬";
-    };
-    String ERRCODE_SVX_LINGU_DICT_NOTWRITEABLE&ERRCODE_RES_MASK
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. */
-        /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. */
-        Text [ de ] = "Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden." ;
-        Text [ en-US ] = "The custom dictionary $(ARG1) cannot be created." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Impossível criar o dicionário pessoal $(ARG1).";
-        Text[ ru ] = "Невозможно создать словарь пользователя $(ARG1).";
-        Text[ el ] = "Δεν είναι δυνατόν να δημιουργηθεί το προσωπικό λεξικό $(ARG1).";
-        Text[ nl ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden aangelegd.";
-        Text[ fr ] = "Impossible d'installer le dictionnaire $(ARG1).";
-        Text[ es ] = "No se puede crear el diccionario personal $(ARG1).";
-        Text[ fi ] = "Mukautettua sanastoa $(ARG1) ei voida luoda.";
-        Text[ ca ] = "No es pot crear el diccionari personalitzat $(ARG1).";
-        Text[ it ] = "Il dizionario personalizzato $(ARG1) non può essere letto";
-        Text[ sk ] = "Nie je možné vytvoriť vlastný slovník $(ARG1).";
-        Text[ da ] = "Det er ikke muligt at oprette den personlige ordbog $(ARG1).";
-        Text[ sv ] = "Den personliga ordlistan $(ARG1) kan inte skapas.";
-        Text[ pl ] = "Nie można utworzyć niestandardowego słownika $(ARG1).";
-        Text[ pt-BR ] = "Não é possível criar o dicionário personalizado $(ARG1).";
-        Text[ th ] = "ไม่สามารถสร้างพจนานุกรมแบบกำหนดเอง $(ARG1) ";
-        Text[ ja ] = "ユーザー辞書$(ARG1)が作成できません。";
-        Text[ ko ] = "사용자 정의 사전$(ARG1)을(를) 만들 수 없습니다.";
-        Text[ zh-CN ] = "无法建立私人词典 $(ARG1)。";
-        Text[ zh-TW ] = "無法建立個人詞典 $(ARG1)。";
-        Text[ tr ] = "Özel sözlük $(ARG1) oluşturulamıyor.";
-        Text[ hi-IN ] = "कस्टम् शब्दकोश $(ARG1) को उत्पन्न नहीं कर सकते है ।";
-        Text[ ar ] = "لا يمكن إنشاء القاموس الشخصي $(ARG1).";
-        Text[ he ] = "‮לא ניתן ליצור את המילון המיוחד $(ARG1).‬";
-    };
-    String ERRCODE_SVX_GRAPHIC_NOTREADABLE&ERRCODE_RES_MASK
-    {
-        Text [ de ] = "Die Grafik $(ARG1) konnte nicht gefunden werden." ;
-        Text [ en-US ] = "The graphic $(ARG1) could not be found." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Foi impossível encontrar a imagem $(ARG1).";
-        Text[ ru ] = "Невозможно найти графические объекты $(ARG1).";
-        Text[ el ] = "Δεν βρέθηκε το γραφικό $(ARG1).";
-        Text[ nl ] = "Afbeelding $(ARG1) niet gevonden.";
-        Text[ fr ] = "Impossible de trouver le fichier §(ARG1).";
-        Text[ es ] = "No se pudo encontrar la imagen $(ARG1).";
-        Text[ fi ] = "Kuvaa $(ARG1) ei löytynyt.";
-        Text[ ca ] = "No es pot trobar la imatge $(ARG1).";
-        Text[ it ] = "L'immagine $(ARG1) non è stata trovata";
-        Text[ sk ] = "Obrázok $(ARG1). nebol nájdený.";
-        Text[ da ] = "Det var ikke muligt at finde grafiken $(ARG1).";
-        Text[ sv ] = "Grafiken $(ARG1) kunde inte hittas.";
-        Text[ pl ] = "Grafiki $(ARG1) nie znaleziono.";
-        Text[ pt-BR ] = "Não foi possível encontrar a figura $(ARG1).";
-        Text[ th ] = "ไม่สามารถพบกราฟิค $(ARG1) ";
-        Text[ ja ] = "図 $(ARG1) は見つかりませんでした。";
-        Text[ ko ] = "그래픽$(ARG1)을(를) 찾지 못했습니다.";
-        Text[ zh-CN ] = "无法找到图形 $(ARG1)。";
-        Text[ zh-TW ] = "無法找到圖形 $(ARG1)。";
-        Text[ tr ] = "Grafik $(ARG1) bulunamadı.";
-        Text[ hi-IN ] = "सुचित्र $(ARG1) नहीं मिला ।";
-        Text[ ar ] = "تعذر العثور على الرسم $(ARG1).";
-        Text[ he ] = "‮לא ניתן לאתר את המילון המיוחד $(ARG1).‬";
-    };
     String ERRCODE_SVX_GRAPHIC_WRONG_FILEFORMAT&ERRCODE_RES_MASK
     {
         Text [ de ] = "Eine unverkn�pfte Grafik konnte nicht geladen werden" ;
@@ -494,34 +311,304 @@ Resource RID_SVXERRCODE
         Text[ ar ] = "تعذر تحميل إحدى الصور الغير مرتبطة";
         Text[ he ] = "‮לא ניתן לטעון עצם גרפי שקישורו נותק‬";
     };
-    String ERRCODE_SVX_LINGU_NOLANGUAGE&ERRCODE_RES_MASK
-    {
-        Text [ de ] = "Am ausgew�hlten Begriff ist keine Sprache eingestellt." ;
-        Text [ en-US ] = "A language has not been fixed for the selected term.";
-        Text[ pt ] = "Não foi especificada a língua para o termo seleccionado.";
-        Text[ ru ] = "Не установлен язык для выделенного понятия.";
-        Text[ el ] = "Δεν έχει επιλεχθεί γλώσσα για τον συγκεκριμένο όρο.";
-        Text[ nl ] = "Voor het geselecteerde item is geen taal vastgelegd.";
-        Text[ fr ] = "Aucune langue n'a été spécifiée pour le terme sélectionné.";
-        Text[ es ] = "No hay idioma determinado para la entrada seleccionada";
-        Text[ fi ] = "Valitulle termille ei ole määritetty kieltä.";
-        Text[ ca ] = "No hi ha cap idioma determinat per a l'entrada seleccionada";
-        Text[ it ] = "Non è stata impostata la lingua per il termine selezionato.";
-        Text[ sk ] = "Jazyk nebol upravený pre zvolený termín.";
-        Text[ da ] = "Der er ikke indstillet et sprog ved det valgte udtryk.";
-        Text[ sv ] = "Inget språk har ställts in för det utvalda begreppet.";
-        Text[ pl ] = "Nie ustalono języka wybranego hasła.";
-        Text[ pt-BR ] = "Não foi especificado o idioma para o termo selecionado.";
-        Text[ th ] = "ภาษาไม่ได้ถูกกำหนดตายตัวสำหรับเงื่อนไขที่เลือก";
-        Text[ ja ] = "選択したものに該当する言語がありません。";
-        Text[ ko ] = "선택된 용어에는 어떤 언어도 설정되어 있지 않습니다.";
-        Text[ zh-CN ] = "没有设定语言。";
-        Text[ zh-TW ] = "沒有選擇一個語言。";
-        Text[ tr ] = "Seçilen sözcük için dil belirlenmedi.";
-        Text[ hi-IN ] = "चुने हुए विषय केलिए भाषा को निश्चय नहीं किया है ।";
-        Text[ ar ] = "لا توجد لغة على الكائن المُحدد.";
-        Text[ he ] = "‮לא נקבעה שפה עבור המונח שנבחר‬";
-    };
+//STRIP001  String ERRCODE_SVX_LINGU_THESAURUSNOTEXISTS&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache : Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache */
+//STRIP001          TEXT = "Ein Thesaurus f�r die eingestellte Sprache ist nicht verf�gbar.\n�berpr�fen Sie bitte Ihre Installation und installieren Sie gegebenenfalls die gew�nschte Sprache" ;
+//STRIP001          TEXT [ English ] = "For the current Language no Thesaurus is available.\nPlease check your installation and install the desired language." ;
+//STRIP001          Text [ english_us ] = "No thesaurus available for the current language.\nPlease check your installation and install the desired language" ;
+//STRIP001          Text [ italian ] = "Per la lingua scelta non esiste un dizionario dei sinonimi..\nControllare l'installazione ed installare se necessario il linguaggio desiderato" ;
+//STRIP001          Text [ spanish ] = "No hay ning�n diccionario de sin�nimos disponible para el idioma seleccionado.\nExamine por favor su instalaci�n e instale en caso dado el idioma deseado." ;
+//STRIP001          Text [ french ] = "Aucun dictionnaire des synonymes n'est disponible pour la langue s�lectionn�e.\nVeuillez v�rifiez l'installation et installer\nle cas �ch�ant la langue concern�e." ;
+//STRIP001          Text [ dutch ] = "Een thesaurus voor de ingestelde taal is niet beschikbaar.\nControleer uw installatie en installeer de gewenste taal" ;
+//STRIP001          Text [ swedish ] = "Ingen synonymordbok �r tillg�nglig f�r det inst�llda spr�ket.\nKontrollera din installation och installera eventuellt det �nskade spr�ket." ;
+//STRIP001          Text [ danish ] = "Synonymordbogen st�r ikke til r�dighed for det indstillede sprog.\nKontroller venligst din installation og installer i givet fald det �nskede sprog." ;
+//STRIP001          Text [ portuguese ] = "O dicion�rio de sin�nimos n�o se encontra dispon�vel para a l�ngua especificada.\nConfira a sua instala��o e, se necess�rio, instale a l�ngua desejada." ;
+//STRIP001          Text [ portuguese_brazilian ] = "O dicion�rio de sin�nimos n�o se encontra dispon�vel para o idioma atual.\nConfira a sua instala��o e, se necess�rio, instale o idioma desejado." ;
+//STRIP001          Text[ chinese_simplified ] = "您所设定的语言没有相应的同义词词典。\n请您检查安装，如有必要，请您安装所要使用的语言版本�?";
+//STRIP001          Text[ russian ] = "���������� �������� ��� �������� �����.\n��������?��������?? ?������ ������������? ���������� ��������?���?";
+//STRIP001          Text[ polish ] = "Dla bie��cego j�zyka nie jest dost�pny �aden Tezaurus.\nSprawd?instalacj?i zainstaluj potrzebny j�zyk.";
+//STRIP001          Text[ japanese ] = "設定した言語で類語辞典は使用できません。\nプログラムのインストールをチェックして、必要ならば希望の言語をインストールしてください�?";
+//STRIP001          Text[ chinese_traditional ] = "您所設定的語言沒有相應的同義詞詞典。\n請您檢查安裝﹐若有必要﹐請安裝所要使用的語言版本�?";
+//STRIP001          Text[ arabic ] = "�� ���� ����?������?���� ���� �� ������?\n������ ��?������?����?��?�� ������ ������ ����?��������?��?��?����?";
+//STRIP001          Text[ dutch ] = "Een thesaurus voor de ingestelde taal is niet beschikbaar.\nControleer uw installatie en installeer de gewenste taal";
+//STRIP001          Text[ chinese_simplified ] = "您所设定的语言没有相应的同义词词典。\n请您检查安装，如有必要，请您安装所要使用的语言版本�?";
+//STRIP001          Text[ greek ] = "��?������?�������� ���������� ��?��?�������� ������.\n������?��?����������?��?������������ �� ������ ��?������";
+//STRIP001          Text[ korean ] = "설정�?언어�?대�?동의�?사전�?사용�?�?없습니다.\n설치 상태�?검사한 다음 필요하면 원하�?언어�?설치하십시오";
+//STRIP001          Text[ turkish ] = "Ayarlanan dile ili�kin e�anlaml�lar mevcut de�il.\nL�tfen kurulumu kontrol edin ve gerekirse istenilen dili kurun.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No hi ha cap diccionari de sin�nims disponible per a l'idioma seleccionat.\nExamineu la vostra instal.laci?i instal.leu l'idioma desitjat.";
+//STRIP001          Text[ finnish ] = "Nykyiselle kielelle ei ole k�ytett�viss?oikeinkirjoituksen tarkistusohjelmaa.\nTarkista asennetut osat ja asenna haluttu kieli";
+//STRIP001          Text[ thai ] = "ไม่มีอรรถาภิธานที่ใช้ได้สำหรับภาษาปัจจุบัน\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษาที่ต้องการ";
+//STRIP001          Text[ czech ] = "Pro současný jazyk není dostupný slovník synonym.\nProsím zkontrolujte svou instalaci a doplňte požadovaný jazyk.";
+//STRIP001          Text[ hebrew ] = "‮אי�?תסאורוס זמין עבור השפה הנוכחית.\nנא לבדוק את ההתקנה ולהתקין את השפה הנדרשת.�?";
+//STRIP001          Text[ hindi ] = "प्रचलि�?भाषा केलि�?विश्वकोश उपलब्ध नही�?है ।\nकृपय�?आपका प्रतिष्ठाप�?की जाँच कीजि�?और आवश्यक भाषा को प्रतिष्ठापित कीजि�?";
+//STRIP001          Text[ slovak ] = "Pre súčasný jazyk nie je dostupný slovník synoným.\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazyk.";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_LINGU_LANGUAGENOTEXISTS&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001         TEXT = "$(ARG1) wird von der Pr�fung nicht unterst�tzt bzw. ist gegenw�rtig nicht aktiviert.\n�berpr�fen Sie Ihre Installation und installieren Sie gegebenenfalls das ben�tigte Sprachmodul\nbzw. aktivieren sie in 'Extras - Optionen -  Spracheinstellungen - Linguistik' das entsprechende Spachmodul." ;
+//STRIP001         TEXT [ English ] = "$(ARG1) is not available or is currently not active.\nPlease check your installation and install the desired language\nor activate in 'Tools - Options - Language Settings - Writing Aids' the desired module." ;
+//STRIP001          TEXT[ english_us ] = "$(ARG1) is not supported by the spellcheck function or is not presently active.\nPlease check your installation and, if necessary, install the required language module\n or activate it under 'Tools - Options -  Language Settings - Writing Aids'.";
+//STRIP001          TEXT[ portuguese ] = "$(ARG1) n�o tem suporte para verifica��o ortogr�fica ou encontra-se desactivado. \nConfira a sua instala��o e, se necess�rio, instale o m�dulo lingu�stico desejado\nou ent�o active-o em 'Ferramentas - Op��es - Configura��o da l�ngua - Lingu�stica'.";
+//STRIP001          TEXT[ russian ] = "$(ARG1) �������?������ �� ������������? ��������?���������� ��??����?��?������ ��������? ��������?��������?? ?������ ������������? ���������� ��������?�������?������ ��?�������� ������ �������?������ ?'������ - ��������?- ��������?����� - ����������?.";
+//STRIP001          TEXT[ greek ] = "�� $(ARG1) ��?������������?��?�� ���������� ������������ ������??��?����?������ ����?�� ������.\n������?��?����������?��? �� ����?����������,\n������������ �� ����������?������ ��?������?��?������ ?������������?���\n��?��?������?\"�������� - �������� -  ��������?������?- ��������?������\".";
+//STRIP001          TEXT[ dutch ] = "$(ARG1) wordt niet ondersteund door de controle, of is momenteel niet geactiveerd. \nControleer uw installatie en installeer eventueel de gewenste taalmodule\nof activeer de betreffende taalmodule onder 'Extra - Opties - Taalinstellingen - Lingu�stiek' ";
+//STRIP001          TEXT[ french ] = "$(ARG1) n'est pas support?par la v�rification ou n'est actuellement pas actif.\nV�rifiez l'installation et installez le cas �ch�ant le module de langue requis, ou activez-le sous 'Outils - Options - Param�tres linguistiques - Linguistique'.";
+//STRIP001          TEXT[ spanish ] = "$(ARG1) no est?disponible para la revisi�n ortogr�fica o no est?activo en este momento.\n Examine la instalaci�n e instale en caso dado el idioma deseado\no active el m�dulo correspondiente en 'Herramientas - Opciones - Configuraci�n de idiomas - Ling��stica'.";
+//STRIP001          TEXT[ finnish ] = "$(ARG1) ei ole k�ytett�viss?oikeinkirjoituksen tarkistusta varten.\nTarkista asennetut osat ja asenna haluttu kieli.\n";
+//STRIP001          TEXT[ italian ] = "$(ARG1) non ?supportato per il controllo oppure non ?attivato al momento.\nControllate l'installazione ed installate, se necessario, la lingua desiderata\noppure impostate il modulo linquistico corrispondente in 'Strumenti - Opzioni - Impostazioni lingua - Linguistica'.";
+//STRIP001          TEXT[ danish ] = "$(ARG1) underst�ttes ikke af kontrollen eller er ikke aktiveret i �jeblikket.\nKontroller installationen, og installer eventuelt det n�dvendige sprogmodul,\neller aktiver det p�g�ldende sprogmodul under 'Supplerende - Indstillinger -  Sprogindstillinger - Lingvistik'.";
+//STRIP001          TEXT[ swedish ] = "$(ARG1) st�ds inte av kontrollen resp., �r inte aktiverat f�r n�rvarande.\nKontrollera installationen och installera eventuellt den n�dv�ndiga spr�kmodulen\nresp. aktivera motsvarande spr�kmodul under \"Verktyg - Alternativ - Spr�kinst�llningar - Lingvistik\".";
+//STRIP001          TEXT[ polish ] = "$(ARG1) nie jest obs�ugiwany przez funkcj?sprawdzania pisowni albo nie jest teraz aktywny.\nSprawd?instalacj?i ewentualnie zainstaluj wymagany modu?j�zyka\nlub uaktywnij go, wydaj�c sekwencj?polece?'Narz�dzia - Opcje - Konfiguracja j�zyk�w - Pisownia'.";
+//STRIP001          TEXT[ portuguese_brazilian ] = "$(ARG1) n�o possui suporte para verifica��o ortogr�fica ou encontra-se desativado. \nConfira a sua instala��o e, se necess�rio, instale o m�dulo ling��stico desejado\nou ent�o ative-o em 'Ferramentas - Op��es - Configura��o do Idioma - Ling��stica'.";
+//STRIP001          TEXT[ japanese ] = "$(ARG1)のスペルチェックは支援されていません。あるいは現在アクティブではありません。\nインストールされているプログラムをチェックして、必要に応じてスペルチェックに必要な言語をインスト-ルするか、\nメニュー ツー�?�?オプショ�?�?言語設�?�?文章校正で必要な言語モジュールをオンにします�?";
+//STRIP001          TEXT[ korean ] = "$(ARG1)은(�? 맞춤�?검사에�?지원하지 않거�?활성화되지 않았습니�?\n 설치�?점검해보십시�? 필요�?언어 모듈�?설치하거�?[도구] - [옵션] - [언어 설정] - [맞춤�?교정] 메뉴에서 해당하는 언어 모듈�?활성화해�?�?수도 있습니다.";
+//STRIP001          TEXT[ chinese_simplified ] = "$(ARG1)不支持拼写检查功能或者目前未启用该功能。\n请您检查安装，如有必要请安装所需的语言模块\n或者借助菜单命令“工�?- 选项... - 语言设定 - 语言规则”启用相应的语言模块�?";
+//STRIP001          TEXT[ chinese_traditional ] = "$(ARG1) 不受支援或沒有被啓動。\n請檢查程式的安裝。若有必要請安裝所需的語言模組或按功能�?[工具] - [選項] ，在 [語言規則] 處設定要用的語言模組�?";
+//STRIP001          TEXT[ turkish ] = "$(ARG1) heceleme fonksiyonu taraf�ndan desteklenmiyor veya hen�z aktif de�il. \nL�tfen kurulumunuzu kontrol edin ve e�er gerekirse gereken dil mod�llerini kurun veya 'Ara�lar-Se�enekler-Dil Ayarlar?Yazma Yard�m?alt�ndan aktif hale getirin. ";
+//STRIP001          TEXT[ arabic ] = "$(ARG1) ��?������ ������?��������.\n������ ��?������?����?��?��?������ ����?��������?��?��?����?";
+//STRIP001          TEXT[ catalan ] = "$(ARG1) no disponible per a la revisi?ortogr�fica.\n Examineu la vostra instal.laci?i instal.leu l'idioma desitjat.";
+//STRIP001          TEXT[ thai ] = "$(ARG1) ใช้ไม่ได้กับการตรวจสอบการสะกด\nกรุณาตรวจสอบการติดตั้งของคุณและติดตั้งภาษาที่ต้องการ";
+//STRIP001          TEXT[ czech ] = "$(ARG1) není podporováno kontrolou pravopisu nebo není právě aktivní.\nProsím zkontrolujte svou instalaci a doplňte požadovaný jazyk nebo aktivujte tuto funkci v menu 'Nástroje - Volby - Jazyková nastavení - Pomůcky pro psaní'.";
+//STRIP001          TEXT[ hebrew ] = "�?(ARG1) אינה נתמכת על ידי בודק האיות או אינה פעילה כעת.\nנא לבדוק את ההתקנה ואם נדרש, יש להתקין את המודול של השפה הרצויה\nאו להפעיל אותו ב \"כלים\" > \"אפשרויות\" > \"קביעות שפה\" > \"עזרי כתיבה\".�?";
+//STRIP001          TEXT[ hindi ] = "$(ARG1) अक्ष�?की जाँच करने केलि�?असमर्थित है अथवा अभी क्रियाशी�?नही�?है ।\nकृपय�?आपका प्रतिष्ठाप�?की जाँच कीजि�?और अग�?ज़रूरत पड़ा तो आवश्यक भाषा मोड्यू�?को प्रतिष्ठापित कीजिए\nअथवा 'औज़ा�?- ऑप्शन्�?- भाषा निर्धारण - लेखन सहाय' के नीचे संचालि�?कीजि�?�?";
+//STRIP001          TEXT[ slovak ] = "$(ARG1) nieje podporované kontrolou pravopisu alebo nie je práve aktívne.\nProsím skontrolujte svoju inštaláciu a doplňte požadovaný jazykový modul \nalebo aktivujte túto funkciu v menu 'Nástroje - Voľby - Jazykové nastavenia - Pomôcky pri písaní'.";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_LINGU_LINGUNOTEXISTS&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Die Rechtschreibpr�fung ist nicht verf�gbar. : Die Rechtschreibpr�fung ist nicht verf�gbar. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Die Rechtschreibpr�fung ist nicht verf�gbar. : Die Rechtschreibpr�fung ist nicht verf�gbar. */
+//STRIP001          TEXT = "Die Rechtschreibpr�fung ist nicht verf�gbar." ;
+//STRIP001          TEXT [ English ] = "Spellchecking is not available." ;
+//STRIP001          Text [ english_us ] = "Spellcheck is not available." ;
+//STRIP001          Text [ italian ] = "Il controllo ortografico non ?disponibile." ;
+//STRIP001          Text [ spanish ] = "La revisi�n ortogr�fica no est?disponible." ;
+//STRIP001          Text [ french ] = "La v�rification de l'orthographe n'est pas disponible." ;
+//STRIP001          Text [ dutch ] = "De spellingcontrole is niet beschikbaar." ;
+//STRIP001          Text [ swedish ] = "R�ttstavningskontrollen �r inte tillg�nglig." ;
+//STRIP001          Text [ danish ] = "Stavekontrollen st�r ikke til r�dighed." ;
+//STRIP001          Text [ portuguese ] = "A verifica��o ortogr�fica n�o est?dispon�vel." ;
+//STRIP001          Text [ portuguese_brazilian ] = "A verifica��o ortogr�fica n�o est?dispon�vel" ;
+//STRIP001          Text[ chinese_simplified ] = "不提供这个拼写检查功能�?";
+//STRIP001          Text[ russian ] = "���������� �������� ����������.";
+//STRIP001          Text[ polish ] = "Sprawdzanie pisowni jest niedost�pne.";
+//STRIP001          Text[ japanese ] = "この文章校正は使用できません�?";
+//STRIP001          Text[ chinese_traditional ] = "這個拼寫檢查功能不存在�?";
+//STRIP001          Text[ arabic ] = "������?�������� ��?����?";
+//STRIP001          Text[ dutch ] = "De spellingcontrole is niet beschikbaar.";
+//STRIP001          Text[ chinese_simplified ] = "不提供这个拼写检查功能�?";
+//STRIP001          Text[ greek ] = "?������������ ������?��?����?����������.";
+//STRIP001          Text[ korean ] = "맞춤�?검사를 �?�?없습니다.";
+//STRIP001          Text[ turkish ] = "Yaz�m denetimi i�levi kullan�lam�yor.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "La revisi?ortogr�fica no est?disponible.";
+//STRIP001          Text[ finnish ] = "Oikeinkirjoituksen tarkistus ei ole k�ytett�viss?";
+//STRIP001          Text[ thai ] = "ใช้การตรวจสอบการสะกดไม่ได้";
+//STRIP001          Text[ czech ] = "Kontrola pravopisu není dostupná.";
+//STRIP001          Text[ hebrew ] = "‮בוד�?האיות אינו זמין.�?";
+//STRIP001          Text[ hindi ] = "अक्ष�?की जाँच उपलब्ध नही�?है �?";
+//STRIP001          Text[ slovak ] = "Kontrola pravopisu nie je dostupná.";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_LINGU_HYPHENNOTEXISTS&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar. : Die Trennhilfe ist nicht verf�gbar. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Die Trennhilfe ist nicht verf�gbar. : Die Trennhilfe ist nicht verf�gbar. */
+//STRIP001          TEXT = "Die Trennhilfe ist nicht verf�gbar." ;
+//STRIP001          TEXT [ English ] = "Hyphenation is not available." ;
+//STRIP001          Text [ english_us ] = "Hyphenation not available." ;
+//STRIP001          Text [ italian ] = "La sillabazione non ?disponibile." ;
+//STRIP001          Text [ spanish ] = "La ayuda para la separaci�n sil�bica no est?disponible." ;
+//STRIP001          Text [ french ] = "Coupure des mots non disponible" ;
+//STRIP001          Text [ dutch ] = "De modus Woordafbreken is niet beschikbaar." ;
+//STRIP001          Text [ swedish ] = "Avstavningshj�lpen �r inte tillg�nglig." ;
+//STRIP001          Text [ danish ] = "Orddelingen st�r ikke til r�dighed." ;
+//STRIP001          Text [ portuguese ] = "A separa��o sil�bica n�o est?dispon�vel." ;
+//STRIP001          Text [ portuguese_brazilian ] = "A divis�o sil�bica n�o est?dispon�vel." ;
+//STRIP001          Text[ chinese_simplified ] = "连字符不存在�?";
+//STRIP001          Text[ russian ] = "���������� ����������?��������?";
+//STRIP001          Text[ polish ] = "Dzielenie wyraz�w jest niedost�pne.";
+//STRIP001          Text[ japanese ] = "ハイフネーションが使用できません�?";
+//STRIP001          Text[ chinese_traditional ] = "連字符不存在�?";
+//STRIP001          Text[ arabic ] = "������ ��?������?��?������.";
+//STRIP001          Text[ dutch ] = "De modus Woordafbreken is niet beschikbaar.";
+//STRIP001          Text[ chinese_simplified ] = "连字符不存在�?";
+//STRIP001          Text[ greek ] = "?������?����������?��?����?��������?";
+//STRIP001          Text[ korean ] = "하이�?넣기�?사용�?�?없습니다.";
+//STRIP001          Text[ turkish ] = "Heceleme yard�m?mevcut de�il.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "L'ajuda per a la separaci?ortogr�fica no est?disponible.";
+//STRIP001          Text[ finnish ] = "Tavutusta ei ole k�ytett�viss?";
+//STRIP001          Text[ thai ] = "ใช้ยัติภังค์ไม่ได้";
+//STRIP001          Text[ czech ] = "Dělení slov není dostupné.";
+//STRIP001          Text[ hebrew ] = "‮מיקו�?אינו זמין.�?";
+//STRIP001          Text[ hindi ] = "हाइफ़नशन�?उपलब्ध नही�?है �?";
+//STRIP001          Text[ slovak ] = "Delenie slov nie je k dispozícii.";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_LINGU_DICT_NOTREADABLE&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden. */
+//STRIP001          TEXT = "Das pers�nliche W�rterbuch $(ARG1) kann nicht gelesen werden." ;
+//STRIP001          TEXT [ English ] = "The personal dictionary $(ARG1) cannot be read." ;
+//STRIP001          Text [ english_us ] = "The custom dictionary $(ARG1) cannot be read." ;
+//STRIP001          Text [ italian ] = "Il dizionario personalizzato $(ARG1) non pu?essere letto" ;
+//STRIP001          Text [ spanish ] = "No es posible leer el diccionario personal $(ARG1)." ;
+//STRIP001          Text [ french ] = "Impossible de lire le dictionnaire personnalis?$(ARG1)." ;
+//STRIP001          Text [ dutch ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden gelezen." ;
+//STRIP001          Text [ swedish ] = "Den personliga ordboken $(ARG1) kan inte l�sas." ;
+//STRIP001          Text [ danish ] = "Det er ikke muligt at l�se den personlige ordbog $(ARG1)." ;
+//STRIP001          Text [ portuguese ] = "Imposs�vel ler o dicion�rio pessoal $(ARG1)." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o ?poss�vel ler o dicion�rio personalizado $(ARG1)." ;
+//STRIP001          Text[ chinese_simplified ] = "无法读出私人词典 $(ARG1)�?";
+//STRIP001          Text[ russian ] = "���������� ������?������?����������? $(ARG1).";
+//STRIP001          Text[ polish ] = "Nie mo�na odczyta?niestandardowego s�ownika $(ARG1).";
+//STRIP001          Text[ japanese ] = "ユーザー辞書$(ARG1)が読み取れません�?";
+//STRIP001          Text[ chinese_traditional ] = "無法讀出個人詞典 $(ARG1)�?";
+//STRIP001          Text[ arabic ] = "�� ���� ����?������?������ $(ARG1).";
+//STRIP001          Text[ dutch ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden gelezen.";
+//STRIP001          Text[ chinese_simplified ] = "无法读出私人词典 $(ARG1)�?";
+//STRIP001          Text[ greek ] = "��?����?������?�� ����?�������� ��?���������� ������?$(ARG1).";
+//STRIP001          Text[ korean ] = "사용�?정의 사전$(ARG1)�?�? 읽을 �?없습니다.";
+//STRIP001          Text[ turkish ] = "�zel s�zl�k $(ARG1) okunam�yor.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No es pot llegir el diccionari personalitzat $(ARG1).";
+//STRIP001          Text[ finnish ] = "Mukautettua sanastoa $(ARG1) ei voida lukea.";
+//STRIP001          Text[ thai ] = "ไม่สามารถอ่านพจนานุกรมแบบกำหนดเอง $(ARG1) ";
+//STRIP001          Text[ czech ] = "Nelze přečíst vlastní slovník $(ARG1).";
+//STRIP001          Text[ hebrew ] = "‮ל�?ניתן לקרוא את המילון המיוחד $(ARG1).�?";
+//STRIP001          Text[ hindi ] = "कस्टम् शब्दको�?$(ARG1) को नही�?पढ�?सकते है �?";
+//STRIP001          Text[ slovak ] = "Nie je možné načítať vlastný slovník $(ARG1).";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_LINGU_DICT_NOTWRITEABLE&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. */
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. : Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden. */
+//STRIP001          TEXT = "Das pers�nliche W�rterbuch $(ARG1) kann nicht angelegt werden." ;
+//STRIP001          TEXT [ English ] = "The personal dictionary $(ARG1) cannot be created." ;
+//STRIP001          Text [ english_us ] = "The custom dictionary $(ARG1) cannot be created." ;
+//STRIP001          Text [ italian ] = "Il dizionario personalizzato $(ARG1) non pu?essere letto" ;
+//STRIP001          Text [ spanish ] = "No se puede crear el diccionario personal $(ARG1)." ;
+//STRIP001          Text [ french ] = "Impossible d'installer le dictionnaire $(ARG1)." ;
+//STRIP001          Text [ dutch ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden aangelegd." ;
+//STRIP001          Text [ swedish ] = "Den personliga ordlistan $(ARG1) kan inte skapas." ;
+//STRIP001          Text [ danish ] = "Det er ikke muligt at oprette den personlige ordbog $(ARG1)." ;
+//STRIP001          Text [ portuguese ] = "Imposs�vel criar o dicion�rio pessoal $(ARG1)." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o ?poss�vel criar o dicion�rio personalizado $(ARG1)." ;
+//STRIP001          Text[ chinese_simplified ] = "无法建立私人词典 $(ARG1)�?";
+//STRIP001          Text[ russian ] = "���������� ������?������?����������? $(ARG1).";
+//STRIP001          Text[ polish ] = "Nie mo�na utworzy?niestandardowego s�ownika $(ARG1).";
+//STRIP001          Text[ japanese ] = "ユーザー辞書$(ARG1)が作成できません�?";
+//STRIP001          Text[ chinese_traditional ] = "無法建立個人詞典 $(ARG1)�?";
+//STRIP001          Text[ arabic ] = "�� ���� ����?������?������ $(ARG1).";
+//STRIP001          Text[ dutch ] = "Het persoonlijke woordenboek $(ARG1) kan niet worden aangelegd.";
+//STRIP001          Text[ chinese_simplified ] = "无法建立私人词典 $(ARG1)�?";
+//STRIP001          Text[ greek ] = "��?����?������?�� ������������ �� ��������?������ $(ARG1).";
+//STRIP001          Text[ korean ] = "사용�?정의 사전$(ARG1)�?�? 만들 �?없습니다.";
+//STRIP001          Text[ turkish ] = "�zel s�zl�k $(ARG1) olu�turulam�yor.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No es pot crear el diccionari personalitzat $(ARG1).";
+//STRIP001          Text[ finnish ] = "Mukautettua sanastoa $(ARG1) ei voida luoda.";
+//STRIP001          Text[ thai ] = "ไม่สามารถสร้างพจนานุกรมแบบกำหนดเอง $(ARG1) ";
+//STRIP001          Text[ czech ] = "Nelze vytvořit vlastní slovník $(ARG1).";
+//STRIP001          Text[ hebrew ] = "‮ל�?ניתן ליצור את המילון המיוחד $(ARG1).�?";
+//STRIP001          Text[ hindi ] = "कस्टम् शब्दको�?$(ARG1) को उत्पन्�?नही�?कर सकते है �?";
+//STRIP001          Text[ slovak ] = "Nie je možné vytvoriť vlastný slovník $(ARG1).";
+//STRIP001      };
+//STRIP001  String ERRCODE_SVX_GRAPHIC_NOTREADABLE&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          TEXT = "Die Grafik $(ARG1) konnte nicht gefunden werden." ;
+//STRIP001          TEXT [ English ] = "$(ARG1) could not be found." ;
+//STRIP001          Text [ english_us ] = "The graphic $(ARG1) could not be found." ;
+//STRIP001          Text [ italian ] = "L'immagine $(ARG1) non ?stata trovata" ;
+//STRIP001          Text [ spanish ] = "No se pudo encontrar la imagen $(ARG1)." ;
+//STRIP001          Text [ french ] = "Impossible de trouver le fichier ?ARG1)." ;
+//STRIP001          Text [ dutch ] = "Afbeelding $(ARG1) niet gevonden." ;
+//STRIP001          Text [ swedish ] = "Grafiken $(ARG1) kunde inte hittas." ;
+//STRIP001          Text [ danish ] = "Det var ikke muligt at finde grafiken $(ARG1)." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o foi poss�vel encontrar a figura $(ARG1)." ;
+//STRIP001          Text [ portuguese ] = "Foi imposs�vel encontrar a imagem $(ARG1)." ;
+//STRIP001          Text[ chinese_simplified ] = "无法找到图形 $(ARG1)�?";
+//STRIP001          Text[ russian ] = "���������� ����?����������?������?$(ARG1).";
+//STRIP001          Text[ polish ] = "Grafiki $(ARG1) nie znaleziono.";
+//STRIP001          Text[ japanese ] = "�?$(ARG1) は見つかりませんでした�?";
+//STRIP001          Text[ chinese_traditional ] = "無法找到圖形 $(ARG1)�?";
+//STRIP001          Text[ arabic ] = "���� ������ ��?����?$(ARG1).";
+//STRIP001          Text[ dutch ] = "Afbeelding $(ARG1) niet gevonden.";
+//STRIP001          Text[ chinese_simplified ] = "无法找到图形 $(ARG1)�?";
+//STRIP001          Text[ greek ] = "��?������?�� ������?$(ARG1).";
+//STRIP001          Text[ korean ] = "그래�?(ARG1)�?�? 찾지 못했습니�?";
+//STRIP001          Text[ turkish ] = "Grafik $(ARG1) bulunamad?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No es pot trobar la imatge $(ARG1).";
+//STRIP001          Text[ finnish ] = "Kuvaa $(ARG1) ei l�ytynyt.";
+//STRIP001          Text[ thai ] = "ไม่สามารถพบกราฟิ�?$(ARG1) ";
+//STRIP001          Text[ czech ] = "Nelze najít obrázek $(ARG1).";
+//STRIP001          Text[ hebrew ] = "‮ל�?ניתן לאתר את המילון המיוחד $(ARG1).�?";
+//STRIP001          Text[ hindi ] = "सुचित्�?$(ARG1) नही�?मिला �?";
+//STRIP001          Text[ slovak ] = "Obrázok $(ARG1). nebol nájdený.";
+//STRIP001      };
+String ERRCODE_SVX_GRAPHIC_WRONG_FILEFORMAT&ERRCODE_RES_MASK
+{
+    TEXT = "Eine unverkn�pfte Grafik konnte nicht geladen werden" ;
+    TEXT [ English ] = "An embedded graphic could not be read" ;
+    TEXT[ english_us ] = "An unlinked graphic could not be loaded";
+    TEXT[ portuguese ] = "Foi imposs�vel carregar uma imagem n�o ligada.";
+    TEXT[ greek ] = "��?���� ������?�� �������� ������ ������?����?������?";
+    TEXT[ dutch ] = "Niet-gekoppelde afbeelding kan niet worden geladen";
+    TEXT[ french ] = "Une image (non li�e) n'a pas pu �tre charg�e.";
+    TEXT[ spanish ] = "No se pudo cargar una imagen no vinculada";
+    TEXT[ swedish ] = "Ett grafikobjekt utan l�nk kunde inte laddas";
+    TEXT[ russian ] = "���������� ��������?����������� ����������?������?";
+    TEXT[ italian ] = "Non ?stato possibile caricare un'immagine non collegata";
+    TEXT[ danish ] = "Det var ikke muligt at indl�se en ikke-k�det grafik";
+    TEXT[ polish ] = "Nie mo�na za�adowa?niepo��czonej grafiki";
+    TEXT[ portuguese_brazilian ] = "N�o foi poss�vel carregar uma figura n�o vinculada.";
+    TEXT[ japanese ] = "リンクされていない図は読み込みできません";
+    TEXT[ korean ] = "연결되지 않은 그래픽은 로드하지 못했습니�?";
+    TEXT[ chinese_simplified ] = "无法装入一个尚未链接的图形";
+    TEXT[ chinese_traditional ] = "無法載入一個尚未連結的圖�?";
+    TEXT[ arabic ] = "���� ����?���� ����?����?������";
+    TEXT[ turkish ] = "Ba�lant?olu�turulmam�� bir grafik y�klenemedi";
+    TEXT[ catalan ] = "No s'ha pogut carregar la imatge no enlla�ada";
+    TEXT[ finnish ] = "Linkitt�m�t�nt?kuvaa ei voitu ladata";
+    TEXT[ thai ] = "ไม่สามารถโหลดกราฟิคที่ไม่เชื่อมโยงได�?";
+    TEXT[ czech ] = "Nelze načíst nepřipojený obrázek";
+    TEXT[ hebrew ] = "‮ל�?ניתן לטעון עצם גרפי שקישורו נותק�?";
+    TEXT[ hindi ] = "लिंक हटाय�?हु�?सुचित्�?को लो�?नही�?कर सकते है";
+    TEXT[ slovak ] = "Nie je možné načítať nepripojený obrázok";
+};
+//STRIP001  String ERRCODE_SVX_LINGU_NOLANGUAGE&ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001          TEXT = "Am ausgew�hlten Begriff ist keine Sprache eingestellt." ;
+//STRIP001          TEXT [ English ] = "There's no language at the selected object." ;
+//STRIP001          TEXT[ english_us ] = "A language has not been fixed for the selected term.";
+//STRIP001          TEXT[ portuguese ] = "N�o foi especificada a l�ngua para o termo seleccionado.";
+//STRIP001          TEXT[ greek ] = "��?���� ��������?������ ��?��?������������ ��?";
+//STRIP001          TEXT[ dutch ] = "Voor het geselecteerde item is geen taal vastgelegd.";
+//STRIP001          TEXT[ french ] = "Aucune langue n'a �t?sp�cifi�e pour le terme s�lectionn?";
+//STRIP001          TEXT[ spanish ] = "No hay idioma determinado para la entrada seleccionada";
+//STRIP001          TEXT[ swedish ] = "Inget spr�k har st�llts in f�r det utvalda begreppet.";
+//STRIP001          TEXT[ russian ] = "�� ���������� ���?��� ����������?��?���.";
+//STRIP001          TEXT[ italian ] = "Non ?stata impostata la lingua per il termine selezionato.";
+//STRIP001          TEXT[ danish ] = "Der er ikke indstillet et sprog ved det valgte udtryk.";
+//STRIP001          TEXT[ polish ] = "Nie ustalono j�zyka wybranego has�a.";
+//STRIP001          TEXT[ portuguese_brazilian ] = "N�o foi especificado o idioma para o termo selecionado.";
+//STRIP001          TEXT[ japanese ] = "選択したものに該当する言語がありません�?";
+//STRIP001          TEXT[ korean ] = "선택�?용어에는 어떤 언어�?설정되어 있지 않습니다.";
+//STRIP001          TEXT[ chinese_simplified ] = "没有设定语言�?";
+//STRIP001          TEXT[ chinese_traditional ] = "沒有選擇一個語言�?";
+//STRIP001          TEXT[ arabic ] = "�� ���� ��?��?������ ������?";
+//STRIP001          TEXT[ turkish ] = "Se�ilen s�zc�k i�in dil belirlenmedi.";
+//STRIP001          TEXT[ catalan ] = "No hi ha cap idioma determinat per a l'entrada seleccionada";
+//STRIP001          TEXT[ finnish ] = "Valitulle termille ei ole m��ritetty kielt?";
+//STRIP001          TEXT[ thai ] = "ภาษาไม่ได้ถูกกำหนดตายตัวสำหรับเงื่อนไขที่เลือก";
+//STRIP001          TEXT[ czech ] = "Pro daný výraz nebyl určen jazyk.";
+//STRIP001          TEXT[ hebrew ] = "‮ל�?נקבעה שפה עבור המונח שנבחר�?";
+//STRIP001          TEXT[ hindi ] = "चुने हु�?विषय केलि�?भाषा को निश्चय नही�?किया है �?";
+//STRIP001          TEXT[ slovak ] = "Jazyk nebol upravený pre zvolený termín.";
+//STRIP001      };
     String (ERRCODE_SVX_FORMS_NOIOSERVICES | ERRCODE_CLASS_READ) & ERRCODE_RES_MASK
     {
         Text [ de ] = "Die Formular-Schicht wurden nicht geladen, da notwendige IO-Services (stardiv.uno.io.*) nicht instantiiert werden konnten";
@@ -664,36 +751,38 @@ Resource RID_SVXERRCODE
         Text[ he ] = "‮ארעה שגיאה בעת קריאת אחד מנקודות הכותרה (bullets). לא כל הנקודות נטענו.‬";
     };
 
-    String ERRCODE_SVX_MODIFIED_VBASIC_STORAGE & ERRCODE_RES_MASK
-    {
-//      TEXT = "Der Basic-Code wurde ver�ndert und kann somit nicht mehr als Original gespeichert werden." ;
-//      TEXT [ English ] = "The Basic-Code is modified and so it can not be saved as original." ;
-        Text [ de ] = "Alle Ver�nderungen am Dokument Basic Code gehen verloren. Stattdessen wird der originale VBA Makrocode gespeichert." ;
-        Text [ en-US ] = "All changes to the Basic Code are lost.The original VBA Macro Code is saved instead.";
-        Text[ pt ] = "As modificações efectuadas no documento Basic Code perder-se-ão. No seu lugar será guardado o código macro VBA.";
-        Text[ ru ] = "Все изменения кода Basic утеряны. Вместо этого будет сохранен макрокод VBA.";
-        Text[ el ] = "Όλες οι αλλαγές του εγγράφου Basic Code θα χαθούν. Αντί αυτού θα αποθηκευτεί το αυθεντικό VBA Makrocode.";
-        Text[ nl ] = "De Basic-code is gewijzigd en kan daardoor niet meer als origineel worden opgeslagen.";
-        Text[ fr ] = "Comme les modifications apportées au code Basic du document vont être perdues, c'est le code de macro VBA d'origine qui va être enregistré à la place.";
-        Text[ es ] = "Se perderán todas las modificaciones del Basic Code del documento. En su lugar se guardará el código macro VBA original.";
-        Text[ fi ] = "Kaikki Basic-koodin muutokset on menetetty. Alkuperäinen VBA-makrokoodi tallennetaan.";
-        Text[ ca ] = "Es perdran totes les modificacions del Basic Code del document. En el seu lloc es desarà el codi macro VBA original.";
-        Text[ it ] = "Tutte le modifiche apportate al documento Basic Code andranno perdute. Pertanto verrà salvato l'originale VBA.";
-        Text[ sk ] = "Všetky zmeny prevedené do kódu BASIC sú stratené. Namiesto toho je uložený kód makra VBA.";
-        Text[ da ] = "Alle ændringer i dokumentet Basic Code går tabt. I stedet gemmes gemmes den originale VBA Macro Code.";
-        Text[ sv ] = "Alla ändringar av dokument-Basic-koden går förlorade. I stället sparas original-VBA-makrokoden.";
-        Text[ pl ] = "Wszystkie zmiany w kodzie Basic są tracone. Zapisany zostanie za to oryginalny kod makra VBA.";
-        Text[ pt-BR ] = "As modificações efetuadas no código BASIC estão perdidas. No seu lugar será salvo o código macro VBA original.";
-        Text[ th ] = "การเปลี่ยนแปลงที่ Basic Code สูญหาย ต้นฉบับ VBA Macro Code ถูกบันทึกแทน";
-        Text[ ja ] = "Basic Code ドキュメントのすべての変更は失われました。オリジナルの VBA Makrocodeがその代りに保存されます。";
-        Text[ ko ] = "Basic code에 대한 모든 변경 사항은 손실됩니다.  대신 VBA Macro Code가 저장됩니다.";
-        Text[ zh-CN ] = "丢失了对Basic Code文档进行的更改。存盘的只是源VBA宏码。";
-        Text[ zh-TW ] = "文件的 Basic 碼所有變更已經流失。已經儲存源 VBA 巨集。";
-        Text[ tr ] = "Basic Code belgesindeki tüm değişiklikler kaybolacak. Bunun yerine orjinal VBA Macrocode kaydedilecek.";
-        Text[ hi-IN ] = "Basic Code में किया हुआ सब परिवर्तन नष्ट हुआ । इसके बदले यथार्थ VBA Macro Code को संचित किया है ।";
-        Text[ ar ] = "سوف تضيع كافة التعديلات التي تم إدخالها على  Basic Code المستند، وسوف يتم حفظ VBA Macro Code بدلاً منها.";
-        Text[ he ] = "‮כל השינוים לקוד הבייסיק אבדו. המקרו ה VBA המקורי נשמר במקומו.‬";
-    };
+//STRIP001  String ERRCODE_SVX_MODIFIED_VBASIC_STORAGE & ERRCODE_RES_MASK
+//STRIP001      {
+//STRIP001 //       TEXT = "Der Basic-Code wurde ver�ndert und kann somit nicht mehr als Original gespeichert werden." ;
+//STRIP001 //       TEXT [ English ] = "The Basic-Code is modified and so it can not be saved as original." ;
+//STRIP001          TEXT = "Alle Ver�nderungen am Dokument Basic Code gehen verloren. Stattdessen wird der originale VBA Makrocode gespeichert." ;
+//STRIP001          TEXT [ English ] = "All changes made on the document Basic code will be lost. The original VBA macro code will be saved instead." ;
+//STRIP001          TEXT[ english_us ] = "All changes to the Basic Code are lost.The original VBA Macro Code is saved instead.";
+//STRIP001          TEXT[ portuguese ] = "As modifica��es efectuadas no documento Basic Code perder-se-�o. No seu lugar ser?guardado o c�digo macro VBA.";
+//STRIP001          TEXT[ russian ] = "��?��������� ���� Basic �������. ������ ����?����?�������� �������� VBA.";
+//STRIP001          TEXT[ greek ] = "���� �� ������?��?�������� Basic Code �� ������. ���� ����?�� ����������?�� ��������?VBA Makrocode.";
+//STRIP001          TEXT[ dutch ] = "De Basic-code is gewijzigd en kan daardoor niet meer als origineel worden opgeslagen.";
+//STRIP001          TEXT[ french ] = "Comme les modifications apport�es au code Basic du document vont �tre perdues, c'est le code de macro VBA d'origine qui va �tre enregistr??la place.";
+//STRIP001          TEXT[ spanish ] = "Se perder�n todas las modificaciones del Basic Code del documento. En su lugar se guardar?el c�digo macro VBA original.";
+//STRIP001          TEXT[ italian ] = "Tutte le modifiche apportate al documento Basic Code andranno perdute. Pertanto verr?salvato l'originale VBA.";
+//STRIP001          TEXT[ danish ] = "Alle �ndringer i dokumentet Basic Code g�r tabt. I stedet gemmes gemmes den originale VBA Macro Code.";
+//STRIP001          TEXT[ swedish ] = "Alla �ndringar av dokument-Basic-koden g�r f�rlorade. I st�llet sparas original-VBA-makrokoden.";
+//STRIP001          TEXT[ polish ] = "Wszystkie zmiany w kodzie Basic s?tracone. Zapisany zostanie za to oryginalny kod makra VBA.";
+//STRIP001          TEXT[ portuguese_brazilian ] = "As modifica��es efetuadas no c�digo BASIC est�o perdidas. No seu lugar ser?salvo o c�digo macro VBA original.";
+//STRIP001          TEXT[ japanese ] = "Basic Code ドキュメントのすべての変更は失われました。オリジナル�?VBA Makrocodeがその代りに保存されます�?";
+//STRIP001          TEXT[ korean ] = "Basic code�?대�?모든 변�?사항은 손실됩니�?  대�?VBA Macro Code가 저장됩니다.";
+//STRIP001          TEXT[ chinese_simplified ] = "丢失了对Basic Code文档进行的更改。存盘的只是源VBA宏码�?";
+//STRIP001          TEXT[ chinese_traditional ] = "文件�?Basic 碼所有變更已經流失。已經儲存源 VBA 巨集�?";
+//STRIP001          TEXT[ turkish ] = "Basic Code belgesindeki t�m de�i�iklikler kaybolacak. Bunun yerine orjinal VBA Macrocode kaydedilecek.";
+//STRIP001          TEXT[ arabic ] = "��?���� ���� ��������?���� �� ������?��? Basic Code ������ϡ ���� ��?��?VBA Macro Code ����?����.";
+//STRIP001          TEXT[ catalan ] = "Es perdran totes les modificacions del Basic Code del document. En el seu lloc es desar?el codi macro VBA original.";
+//STRIP001          TEXT[ finnish ] = "Kaikki Basic-koodin muutokset on menetetty. Alkuper�inen VBA-makrokoodi tallennetaan.";
+//STRIP001          TEXT[ thai ] = "การเปลี่ยนแปลงที�?Basic Code สูญหาย ต้นฉบั�?VBA Macro Code ถูกบันทึกแทน";
+//STRIP001          TEXT[ czech ] = "Všechny změny provedené do kódu BASIC jsou ztraceny. Namísto toho je uložen kód makra VBA.";
+//STRIP001          TEXT[ hebrew ] = "‮כ�?השינוים לקוד הבייסיק אבדו. המקרו ה VBA המקורי נשמר במקומו.�?";
+//STRIP001          TEXT[ hindi ] = "Basic Code मे�?किया हु�?सब परिवर्तन नष्ट हु�?�?इसके बदले यथार्थ VBA Macro Code को संचि�?किया है �?";
+//STRIP001          TEXT[ slovak ] = "Všetky zmeny prevedené do kódu BASIC sú stratené. Namiesto toho je uložený kód makra VBA.";
+//STRIP001      };
 
     String ERRCODE_SVX_VBASIC_STORAGE_EXIST & ERRCODE_RES_MASK
     {
@@ -725,42 +814,3 @@ Resource RID_SVXERRCODE
     };
 };
  // ********************************************************************** EOF
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
