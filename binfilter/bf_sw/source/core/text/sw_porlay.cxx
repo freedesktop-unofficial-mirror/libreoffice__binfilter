@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:53:46 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:10:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -281,7 +281,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   SwLinePortion *pPos = pLeft->GetPortion();
 /*N*/   while( pPos )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       if( pPos->IsFlyPortion() )
 /*N*/       {
 /*N*/           // Die FlyPortion wird ausgesogen ...
@@ -352,7 +352,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/           //  Fix-Portion.
 /*N*/           while( pPos )
 /*N*/           {
-/*N*/               DBG_LOOP;
+///*N*/                 DBG_LOOP;
 /*N*/               ASSERT( POR_LIN != pPos->GetWhichPor(),
 /*N*/                       "SwLineLayout::CalcLine: don't use SwLinePortions !" );
 /*N*/               // Null-Portions werden eliminiert. Sie koennen entstehen,
@@ -1546,7 +1546,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   const SwLineLayout *pLay = this;
 /*N*/   while( pLay )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       nLen += pLay->GetLen();
 /*N*/       pLay = pLay->GetNext();
 /*N*/   }
