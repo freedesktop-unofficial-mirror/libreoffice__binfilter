@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:04:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,14 +68,14 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <svtools/intitem.hxx>
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #include <vcl/sound.hxx>
 
-#include "document.hxx"
-#include "table.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "table.hxx"
 #include "globstr.hrc"
 #include "subtotal.hxx"
-#include "docoptio.hxx"
+// auto strip #include "docoptio.hxx"
 #include "interpre.hxx"
 #include "markdata.hxx"
 #include "validat.hxx"
@@ -83,9 +83,9 @@
 #include "stlpool.hxx"
 #include "poolhelp.hxx"
 #include "detdata.hxx"
-#include "patattr.hxx"
-#include "chgtrack.hxx"
-#include "progress.hxx"
+// auto strip #include "patattr.hxx"
+// auto strip #include "chgtrack.hxx"
+// auto strip #include "progress.hxx"
 namespace binfilter {
 
 // -----------------------------------------------------------------------
