@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:58 $
+#   last change: $Author: hjs $ $Date: 2004-06-28 12:35:48 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -79,26 +79,6 @@ USE_DEFFILE=TRUE
 .INCLUDE :  	svpre.mk
 .INCLUDE :  	settings.mk
 .INCLUDE :  	sv.mk
-
-# --- Types -------------------------------------
-
-UNOTYPES=	com.sun.star.uno.XWeak						\
-            com.sun.star.uno.XNamingService				\
-            com.sun.star.uno.XComponentContext			\
-            com.sun.star.uno.XAggregation				\
-            com.sun.star.lang.XServiceInfo				\
-            com.sun.star.lang.XSingleServiceFactory		\
-            com.sun.star.lang.XMultiServiceFactory		\
-            com.sun.star.lang.XSingleComponentFactory	\
-            com.sun.star.lang.XTypeProvider				\
-            com.sun.star.registry.XSimpleRegistry		\
-            com.sun.star.document.XFilter				\
-            com.sun.star.document.XImporter				\
-            com.sun.star.lang.XInitialization			\
-            com.sun.star.io.XInputStream				\
-            com.sun.star.xml.sax.XDocumentHandler		\
-            com.sun.star.xml.sax.InputSource			\
-            com.sun.star.xml.sax.XParser
 
 # --- Files -------------------------------------
 
