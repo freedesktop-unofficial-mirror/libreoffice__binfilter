@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:36 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:14:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,31 +59,31 @@
  *
  ************************************************************************/
 
-#include <outl_pch.hxx>
+// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
-#include <tools/list.hxx>
+// auto strip #include <tools/list.hxx>
 
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
-#ifndef _SV_MAPMOD_HXX
-#include <vcl/mapmod.hxx>
-#endif
+// auto strip #ifndef _SV_MAPMOD_HXX
+// auto strip #include <vcl/mapmod.hxx>
+// auto strip #endif
 
 #include <forbiddencharacterstable.hxx>
 
 #define _OUTLINER_CXX
 
-#include <outliner.hxx>
-#include <paralist.hxx>
-#include <outlobj.hxx>
+// auto strip #include <outliner.hxx>
+// auto strip #include <paralist.hxx>
+// auto strip #include <outlobj.hxx>
 #include <outleeng.hxx>
-#include <outlundo.hxx>
-#include <eeitem.hxx>
-#include <editstat.hxx>
+// auto strip #include <outlundo.hxx>
+// auto strip #include <eeitem.hxx>
+// auto strip #include <editstat.hxx>
 namespace binfilter {
 
 DBG_NAMEEX(Outliner)//STRIP008
