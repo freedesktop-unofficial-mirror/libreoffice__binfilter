@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdvmark.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:33:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,15 +60,15 @@
  ************************************************************************/
 
 #include "svdvmark.hxx"
-#include "xpoly.hxx"
-#include "svdxout.hxx"
+// auto strip #include "xpoly.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdobj.hxx"
-#include "svdpagv.hxx"
+// auto strip #include "svdpagv.hxx"
 #include "svdpntv.hxx"
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 //#ifndef NOOLDSV //autogen
 //#include <vcl/system.hxx>
 //#endif
