@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3num.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:44:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,12 +63,22 @@
 #pragma hdrstop
 
 #include "swerror.h"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #include "pam.hxx"
 #include "ndtxt.hxx"
-#ifndef _DOCARY_HXX
-#include "docary.hxx"
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include "docary.hxx"
+// auto strip #endif
 
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
@@ -80,9 +90,9 @@
 #include <bf_svx/tstpitem.hxx>
 #endif
 
-#ifndef _VCL_VCLENUM_HXX
-#include <vcl/vclenum.hxx>
-#endif
+// auto strip #ifndef _VCL_VCLENUM_HXX
+// auto strip #include <vcl/vclenum.hxx>
+// auto strip #endif
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
@@ -104,7 +114,7 @@
 #endif
 
 #include "sw3imp.hxx"
-#include "numrule.hxx"
+// auto strip #include "numrule.hxx"
 #include "ftninfo.hxx"
 #include "pagedesc.hxx"
 #ifndef _SWSTYLENAMEMAPPER_HXX
