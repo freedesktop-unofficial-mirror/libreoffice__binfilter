@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-09 16:54:36 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 10:58:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,7 +155,11 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
     return (XComponent*)0;
 }
 
-
+//added by jmeng for i31251 begin
+extern "C"{
+    void legcy_setBinfilterInitState(void);
+}
+//added by jmeng for i31251 end
 bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xFactory )
 :   aListeners( aMutex ),
     pApp( new OfficeApplication ),
@@ -192,6 +196,9 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xF
         pSmDLL = new SmDLL;
         SmDLL::LibInit();
     }
+    //added by jmeng for i31251 begin
+    legcy_setBinfilterInitState();
+    //added by jmeng for i31251 end
 }
 
 void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& aArguments ) throw( Exception )
