@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_frm_resource.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 12:53:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:54:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _TOOLS_INTN_HXX
-#include <tools/intn.hxx>
-#endif
+// auto strip #ifndef _TOOLS_INTN_HXX
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
 //---------------------------------------------------
 
 #ifndef _SOLAR_HRC
