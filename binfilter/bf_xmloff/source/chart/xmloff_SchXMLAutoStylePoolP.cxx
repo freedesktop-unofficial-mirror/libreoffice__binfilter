@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_SchXMLAutoStylePoolP.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-09-08 12:25:50 $
+ *  last change: $Author: hr $ $Date: 2004-09-09 11:04:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 
 #include <xmlprmap.hxx>
 
-// auto strip #include "SchXMLAutoStylePoolP.hxx"
+#include "SchXMLAutoStylePoolP.hxx"
 #include "PropertyMap.hxx"
 
 #ifndef SCH_XMLEXPORT_HXX_
