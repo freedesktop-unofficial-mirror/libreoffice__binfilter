@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:33:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,42 +59,63 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
+// auto strip #include <tools/rtti.hxx>
+
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
 #endif
-#include <tools/rtti.hxx>
-#include <lspcitem.hxx>
-#include <adjitem.hxx>
-#include <tstpitem.hxx>
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
 
-#include <editdoc.hxx>
+// auto strip #include <lspcitem.hxx>
+// auto strip #include <adjitem.hxx>
+// auto strip #include <tstpitem.hxx>
+
+#ifndef _SV_OUTDEV_HXX
+#include <vcl/outdev.hxx>
+#endif
+
+// auto strip #include <editdoc.hxx>
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editdbg.hxx>
 
-#include <numitem.hxx>
+// auto strip #include <numitem.hxx>
 
-#include "akrnitem.hxx"
-#include "cntritem.hxx"
-#include "colritem.hxx"
-#include "crsditem.hxx"
-#include "escpitem.hxx"
-#include "fhgtitem.hxx"
-#include "fontitem.hxx"
+// auto strip #include "akrnitem.hxx"
+// auto strip #include "cntritem.hxx"
+// auto strip #include "colritem.hxx"
+// auto strip #include "crsditem.hxx"
+// auto strip #include "escpitem.hxx"
+// auto strip #include "fhgtitem.hxx"
+// auto strip #include "fontitem.hxx"
 #include "kernitem.hxx"
-#include "lrspitem.hxx"
-#include "postitem.hxx"
-#include "shdditem.hxx"
-#include "udlnitem.hxx"
-#include "ulspitem.hxx"
-#include "wghtitem.hxx"
-#include "wrlmitem.hxx"
-#include <charscaleitem.hxx>
+// auto strip #include "lrspitem.hxx"
+// auto strip #include "postitem.hxx"
+// auto strip #include "shdditem.hxx"
+// auto strip #include "udlnitem.hxx"
+// auto strip #include "ulspitem.hxx"
+// auto strip #include "wghtitem.hxx"
+// auto strip #include "wrlmitem.hxx"
+// auto strip #include <charscaleitem.hxx>
 
-#include <vcl/svapp.hxx>    // Fuer AppWindow...
+// auto strip #include <vcl/svapp.hxx>  // Fuer AppWindow...
 namespace binfilter {
 
 /*N*/ DBG_NAME( EE_ParaPortion )
