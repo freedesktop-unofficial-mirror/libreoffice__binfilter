@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtxml.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:22:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,9 +96,19 @@
 #ifndef _SFXDOCFILE_HXX //autogen wg. SfxMedium
 #include <bf_sfx2/docfile.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX //autogen wg. SwPaM
 #include <pam.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
