@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_EnumPropertyHdl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:05:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,9 +84,9 @@
 #endif
 
 /*
-#ifndef _VCL_VCLENUM_HXX
-#include <vcl/vclenum.hxx>
-#endif
+// auto strip #ifndef _VCL_VCLENUM_HXX
+// auto strip #include <vcl/vclenum.hxx>
+// auto strip #endif
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -97,14 +97,14 @@
 #endif
 
 
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
-#include <toolkit/unohlp.hxx>
-#endif
+// auto strip #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
+// auto strip #include <toolkit/unohlp.hxx>
+// auto strip #endif
 */
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
