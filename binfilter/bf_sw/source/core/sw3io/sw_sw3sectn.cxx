@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:12:13 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:44:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,6 +120,7 @@
 #ifndef _SWSWERROR_H
 #include <swerror.h>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -839,7 +840,7 @@ String Sw3IoImp::InContentsText()
 /*N*/           {
 /*N*/               String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
 /*N*/               aLinkFileName.Erase( 0, nTokenPos );
-/*N*/               aLinkFileName.Insert( URIHelper::SmartRelToAbs( sURL ), 0 );
+/*N*/               aLinkFileName.Insert( so3::StaticBaseUrl::SmartRelToAbs( sURL ), 0 );
 /*N*/           }
 /*N*/       }
 /*N*/       rNdSection.SetLinkFileName( aLinkFileName );
@@ -1031,7 +1032,7 @@ String Sw3IoImp::InContentsText()
 /*N*/       {
 /*N*/           String sURL( aLinkFileName.Copy( 0, nTokenPos ) );
 /*N*/           aLinkFileName.Erase( 0, nTokenPos );
-/*N*/           aLinkFileName.Insert( String(INetURLObject::AbsToRel( sURL )), 0 );
+/*N*/           aLinkFileName.Insert( so3::StaticBaseUrl::AbsToRel( sURL ), 0 );
 /*N*/       }
 /*N*/   }
 /*N*/
