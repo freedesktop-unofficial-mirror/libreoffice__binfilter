@@ -2,9 +2,9 @@
  *
  *  $RCSfile: imapdlg.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:17:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,8 +152,8 @@
 /******************************************************************************/
 
 
-#define STR_IMAPDLG_SAVE        (RID_SVX_IMAPDLG_START + 5)
-#define STR_IMAPDLG_MODIFY      (RID_SVX_IMAPDLG_START + 6)
+//STRIP001 #define STR_IMAPDLG_SAVE     (RID_SVX_IMAPDLG_START + 5)
+//STRIP001 #define STR_IMAPDLG_MODIFY       (RID_SVX_IMAPDLG_START + 6)
 
 
 /******************************************************************************/

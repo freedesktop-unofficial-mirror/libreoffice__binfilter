@@ -2,9 +2,9 @@
  *
  *  $RCSfile: impgrf.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:18:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,25 +63,25 @@
 
 // define -------------------------------------------------------------------
 
-#define STR_IMPORT_ALL              1
+//STRIP001 #define STR_IMPORT_ALL               1
 #define STR_UNKNOWN_FORMAT          2
-#define STR_FLT_BMP                 3
-#define STR_FLT_SGF                 4
-#define STR_FLT_SGV                 5
-#define STR_FLT_SVM                 6
+//STRIP001 #define STR_FLT_BMP                  3
+//STRIP001 #define  STR_FLT_SGF                 4
+//STRIP001 #define  STR_FLT_SGV                 5
+//STRIP001 #define  STR_FLT_SVM                 6
 #define STR_PATH_NOT_FOUND1         7
-#define STR_PATH_NOT_FOUND2         8
-#define STR_GRFILTER_OPENERROR      9
-#define STR_GRFILTER_IOERROR        10
-#define STR_GRFILTER_FORMATERROR    11
-#define STR_GRFILTER_VERSIONERROR   12
-#define STR_GRFILTER_FILTERERROR    13
-#define STR_GRFILTER_TOOBIG         14
-#define STR_PROPERTIES              15
-#define STR_HOME                    16
+//STRIP001 #define STR_PATH_NOT_FOUND2          8
+//STRIP001 #define STR_GRFILTER_OPENERROR       9
+//STRIP001 #define STR_GRFILTER_IOERROR     10
+//STRIP001 #define STR_GRFILTER_FORMATERROR 11
+//STRIP001 #define STR_GRFILTER_VERSIONERROR    12
+//STRIP001 #define STR_GRFILTER_FILTERERROR 13
+//STRIP001 #define STR_GRFILTER_TOOBIG          14
+//STRIP001 #define STR_PROPERTIES               15
+//STRIP001 #define STR_HOME                 16
 #define STR_LINK                    17
 #define STR_PREVIEW                 18
-#define STR_FILTER                  19
+//STRIP001 #define STR_FILTER                   19
 #define STR_IMPORTGRAPHIC_COUNT     19
 
 
