@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findtxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:01:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,56 +59,61 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
-#include <com/sun/star/util/SearchOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
-#include <com/sun/star/util/SearchFlags.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
+// auto strip #include <com/sun/star/util/SearchOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
+// auto strip #include <com/sun/star/util/SearchFlags.hpp>
+// auto strip #endif
 
 
 #pragma hdrstop
 
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen wg. Application
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _TXATRITR_HXX
-#include <txatritr.hxx>
-#endif
-#ifndef _FLDBAS_HXX //autogen
-#include <fldbas.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXTATR_HXX //autogen
-#include <txtatr.hxx>
-#endif
+// auto strip #ifndef _TXATRITR_HXX
+// auto strip #include <txatritr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX //autogen
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX //autogen
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
 #ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
 #endif
 #ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _PAMTYP_HXX
-#include <pamtyp.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _BREAKIT_HXX
-#include <breakit.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAMTYP_HXX
+// auto strip #include <pamtyp.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _BREAKIT_HXX
+// auto strip #include <breakit.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
