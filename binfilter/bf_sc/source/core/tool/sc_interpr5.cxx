@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr5.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:18:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -75,10 +75,10 @@
 #endif
 
 #include "interpre.hxx"
-#include "global.hxx"
-#include "compiler.hxx"
-#include "cell.hxx"
-#include "document.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "compiler.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "document.hxx"
 #include "dociter.hxx"
 #include "scmatrix.hxx"
 #include "globstr.hrc"
