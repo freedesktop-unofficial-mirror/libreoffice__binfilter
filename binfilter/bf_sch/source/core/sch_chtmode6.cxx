@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode6.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:45:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,15 +76,19 @@
 #define _SI_NOCONTROL
 #define _SI_NOSBXCONTROLS
 
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 #ifndef _SV_MENU_HXX //autogen
-#include <vcl/menu.hxx>
+// auto strip #include <vcl/menu.hxx>
+// auto strip #include <bf_svx/svdattr.hxx>
 #endif
 
-
-#include <bf_svx/svdattr.hxx>
-#ifndef _XTABLE_HXX
-#include <bf_svx/xtable.hxx>
-#endif
+// auto strip #include <bf_svx/svdattr.hxx>
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include <bf_svx/xtable.hxx>
+// auto strip #endif
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
@@ -95,15 +99,20 @@
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#include <bf_svx/fontitem.hxx>
-#include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/colritem.hxx>
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #include <bf_svx/colritem.hxx>
 
 #include <string.h>             // memset
 
@@ -112,20 +121,20 @@
 #endif
 
 #ifndef _CHTMODEL_HXX
-#include <chtmodel.hxx>
-#include <globfunc.hxx>
+// auto strip #include <chtmodel.hxx>
+// auto strip #include <globfunc.hxx>
 #endif
 
 #include "docshell.hxx"
 
-#include <bf_svx/svdpage.hxx>
+// auto strip #include <bf_svx/svdpage.hxx>
 
 
 
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
 #ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
