@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: waratah $ $Date: 2004-06-24 12:43:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:02:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,15 +69,15 @@
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
 #endif
@@ -114,9 +114,9 @@
 #ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
 #endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 #ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
 #endif
@@ -150,6 +150,11 @@
 #ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -160,9 +165,9 @@
 #ifndef _CHARATR_HXX
 #include <charatr.hxx>
 #endif
-#ifndef _SWATRSET_HXX //autogen
-#include <swatrset.hxx>
-#endif
+// auto strip #ifndef _SWATRSET_HXX //autogen
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // Bildschirmabgleich
 #endif
@@ -172,12 +177,12 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // FontCache
 #endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>     // SwDrawTextInfo
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // SwTxtFrm
-#endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>       // SwDrawTextInfo
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>       // SwTxtFrm
+// auto strip #endif
 namespace binfilter {
 
 #if defined(WIN) || defined(WNT) || defined(PM2)
