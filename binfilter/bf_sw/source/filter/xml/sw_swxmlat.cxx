@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swxmlat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:22:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,10 @@
 #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX //autogen wg. SwDoc
