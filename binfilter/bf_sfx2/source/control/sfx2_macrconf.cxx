@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_macrconf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:37:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,65 +59,65 @@
  *
  ************************************************************************/
 
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _SBX_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SB_SBMETH_HXX //autogen
-#include <basic/sbmeth.hxx>
-#endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
-#ifndef _BASIC_SBUNO_HXX
-#include <basic/sbuno.hxx>
-#endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SBX_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMETH_HXX //autogen
+// auto strip #include <basic/sbmeth.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASIC_SBUNO_HXX
+// auto strip #include <basic/sbuno.hxx>
+// auto strip #endif
 
-#include <osl/mutex.hxx>
+// auto strip #include <osl/mutex.hxx>
 
-#include <com/sun/star/script/XEngine.hpp>
+// auto strip #include <com/sun/star/script/XEngine.hpp>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
-#include <com/sun/star/document/MacroExecMode.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
+// auto strip #include <com/sun/star/document/MacroExecMode.hpp>
+// auto strip #endif
 
 #pragma hdrstop
 
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
-#include <unotools/intlwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_INTLWRAPPER_HXX
+// auto strip #include <unotools/intlwrapper.hxx>
+// auto strip #endif
 
 #include "msgpool.hxx"
 #include "macrconf.hxx"
-#include "sfxbasic.hxx"
+// auto strip #include "sfxbasic.hxx"
 #include "sfx.hrc"
-#include "app.hxx"
-#include "objsh.hxx"
+// auto strip #include "app.hxx"
+// auto strip #include "objsh.hxx"
 #include "dispatch.hxx"
-#include "minfitem.hxx"
-#include "imgmgr.hxx"
-#include "evntconf.hxx"
-#include "docfile.hxx"
-#include "genlink.hxx"
-#include <viewfrm.hxx>
-#include <appdata.hxx>
+// auto strip #include "minfitem.hxx"
+// auto strip #include "imgmgr.hxx"
+// auto strip #include "evntconf.hxx"
+// auto strip #include "docfile.hxx"
+// auto strip #include "genlink.hxx"
+// auto strip #include <viewfrm.hxx>
+// auto strip #include <appdata.hxx>
 #include "objshimp.hxx"
-#include "request.hxx"
+// auto strip #include "request.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 static const sal_uInt16 nCompatVersion = 2;
