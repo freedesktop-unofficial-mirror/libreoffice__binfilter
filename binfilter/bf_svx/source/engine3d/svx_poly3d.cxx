@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,21 +76,21 @@
 #include "poly3d.hxx"
 #endif
 
-#ifndef _SVX_MATRIX3D_HXX
-#include "matrix3d.hxx"
-#endif
+// auto strip #ifndef _SVX_MATRIX3D_HXX
+// auto strip #include "matrix3d.hxx"
+// auto strip #endif
 
 #ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _B3D_BASE3D_HXX
-#include <goodies/base3d.hxx>
-#endif
+// auto strip #ifndef _B3D_BASE3D_HXX
+// auto strip #include <goodies/base3d.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ DBG_NAME(Polygon3D)
