@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fews.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:29:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,14 +62,18 @@
 
 #pragma hdrstop
 
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
+// auto strip #ifndef _LIST_HXX //autogen
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
 #ifndef _SVDVMARK_HXX //autogen
 #include <bf_svx/svdvmark.hxx>
 #endif
-#ifndef _SVDOBJ_HXX //autogen
-#include <bf_svx/svdobj.hxx>
+// auto strip #ifndef _SVDOBJ_HXX //autogen
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _FESH_HXX
@@ -81,51 +85,51 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
 #ifndef _DVIEW_HXX
 #include <dview.hxx>
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
-#ifndef _CELLFRM_HXX
-#include <cellfrm.hxx>
-#endif
+// auto strip #ifndef _CELLFRM_HXX
+// auto strip #include <cellfrm.hxx>
+// auto strip #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
@@ -135,18 +139,18 @@
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _FMTANCHR_HXX
-#include <fmtanchr.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(SwFEShell,SwEditShell)
