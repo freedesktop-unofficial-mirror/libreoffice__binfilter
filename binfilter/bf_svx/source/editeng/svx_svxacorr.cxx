@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxacorr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:37:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,128 +67,128 @@
 #define ITEMID_CHARSETCOLOR 0
 #define ITEMID_COLOR        0
 
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX
-#include <tools/table.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _LANG_HXX //autogen
+// auto strip #include <tools/lang.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_TABLE_HXX
+// auto strip #include <tools/table.hxx>
+// auto strip #endif
 //#ifndef _SYSTEM_HXX //autogen
 //#include <vcl/system.hxx>
 //#endif
 #ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _STORINFO_HXX //autogen
-#include <sot/storinfo.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _STORINFO_HXX //autogen
+// auto strip #include <sot/storinfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _SFX_DOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFX_HELP_HXX
-#include <bf_sfx2/sfxhelp.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SFX_HELP_HXX
+// auto strip #include <bf_sfx2/sfxhelp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 // fuer die Sort-String-Arrays aus dem SVMEM.HXX
 #define _SVSTDARR_STRINGSISORTDTOR
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef SVTOOLS_FSTATHELPER_HXX
-#include <svtools/fstathelper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
-#include <svtools/helpopt.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
+// auto strip #ifndef SVTOOLS_FSTATHELPER_HXX
+// auto strip #include <svtools/fstathelper.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
+// auto strip #include <svtools/helpopt.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
 #ifndef _COM_SUN_STAR_I18N_UNICODETYPE_HDL_
 #include <com/sun/star/i18n/UnicodeType.hdl>
 #endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-#include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
-#include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSource.hpp>
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
 #endif
 
-#include "udlnitem.hxx"
-#include "wghtitem.hxx"
+// auto strip #include "udlnitem.hxx"
+// auto strip #include "wghtitem.hxx"
 #include "escpitem.hxx"
 #include "svxacorr.hxx"
-#include "unolingu.hxx"
+// auto strip #include "unolingu.hxx"
 
 #ifndef _SVX_HELPID_HRC
 #include <helpid.hrc>
 #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-#include <com/sun/star/xml/sax/InputSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
-#include <com/sun/star/xml/sax/XParser.hpp>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
+// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XParser.hpp>
+// auto strip #endif
 #ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
 #endif
-#ifndef _SV_XMLAUTOCORRECTIMPORT_HXX
-#include <SvXMLAutoCorrectImport.hxx>
-#endif
-#ifndef _SV_XMLAUTOCORRECTEXPORT_HXX
-#include <SvXMLAutoCorrectExport.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENT_HXX
-#include <ucbhelper/content.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
-#include <com/sun/star/ucb/XCommandEnvironment.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_TRANSFERINFO_HPP_
-#include <com/sun/star/ucb/TransferInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_NAMECLASH_HPP_
-#include <com/sun/star/ucb/NameClash.hpp>
-#endif
+// auto strip #ifndef _SV_XMLAUTOCORRECTIMPORT_HXX
+// auto strip #include <SvXMLAutoCorrectImport.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_XMLAUTOCORRECTEXPORT_HXX
+// auto strip #include <SvXMLAutoCorrectExport.hxx>
+// auto strip #endif
+// auto strip #ifndef _UCBHELPER_CONTENT_HXX
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
+// auto strip #include <com/sun/star/ucb/XCommandEnvironment.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_TRANSFERINFO_HPP_
+// auto strip #include <com/sun/star/ucb/TransferInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_NAMECLASH_HPP_
+// auto strip #include <com/sun/star/ucb/NameClash.hpp>
+// auto strip #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
 #endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star::ucb;
