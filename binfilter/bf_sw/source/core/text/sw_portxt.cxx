@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_portxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:54:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,42 +67,47 @@
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>     // CH_TXTATR
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>   // ASSERT
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
-#ifndef _PORLAY_HXX
-#include <porlay.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>       // CH_TXTATR
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx> // ASSERT
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _PORLAY_HXX
+// auto strip #include <porlay.hxx>
+// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>    // SwTxtGuess, Zeilenumbruch
 #endif
-#ifndef _PORGLUE_HXX
-#include <porglue.hxx>
+// auto strip #ifndef _PORGLUE_HXX
+// auto strip #include <porglue.hxx>
+// auto strip #endif
+// auto strip #ifndef _POREXP_HXX
+// auto strip #include <porexp.hxx> // HyphPortion
+// auto strip #endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx> // SwKernPortion
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _POREXP_HXX
-#include <porexp.hxx>   // HyphPortion
-#endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>   // SwKernPortion
-#endif
+
 #ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
 #endif
-#ifndef _WRONG_HXX
-#include <wrong.hxx>
-#endif
+// auto strip #ifndef _WRONG_HXX
+// auto strip #include <wrong.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1
