@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:29:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,28 +60,28 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
 
-#ifndef __RSC //autogen
-#include <tools/errinf.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef __RSC //autogen
+// auto strip #include <tools/errinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef _RTL_URI_HXX_
 #include <rtl/uri.hxx>
 #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
-#include <cppuhelper/typeprovider.hxx>
+// auto strip #include <cppuhelper/typeprovider.hxx>
 #include "namecont.hxx"
 
 #ifndef _URLOBJ_HXX
@@ -96,21 +96,21 @@
 #include <basic/basmgr.hxx>
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
 #endif
-#ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-#include <com/sun/star/xml/sax/InputSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
+// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #endif
