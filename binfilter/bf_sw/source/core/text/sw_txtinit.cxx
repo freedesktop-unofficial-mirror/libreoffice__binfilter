@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtinit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:57:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,27 +62,32 @@
 
 #pragma hdrstop
 
-#include "errhdl.hxx"
-#include "txtcfg.hxx"
-#include "swcache.hxx"
+// auto strip #include "errhdl.hxx"
+// auto strip #include "txtcfg.hxx"
+// auto strip #include "swcache.hxx"
 #include "fntcache.hxx"     // pFntCache  ( SwFont/ScrFont-PrtFont Cache )
 #include "swfntcch.hxx"     // pSwFontCache  ( SwAttrSet/SwFont Cache )
 #include "txtfrm.hxx"
 #include "txtcache.hxx"
-#include "porlay.hxx"
-#include "porglue.hxx"
-#include "porexp.hxx"
+// auto strip #include "porlay.hxx"
+// auto strip #include "porglue.hxx"
+// auto strip #include "porexp.hxx"
 #include "porrst.hxx"
-#include "portab.hxx"
-#include "porfly.hxx"
-#include "portox.hxx"
-#include "porref.hxx"
-#include "porftn.hxx"
-#include "porhyph.hxx"
+// auto strip #include "portab.hxx"
+// auto strip #include "porfly.hxx"
+// auto strip #include "portox.hxx"
+// auto strip #include "porref.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "porftn.hxx"
+// auto strip #include "porhyph.hxx"
 #include "pordrop.hxx"
-#include "tempauto.hxx" // Temporaere Autokorrekturliste
+// auto strip #include "tempauto.hxx" // Temporaere Autokorrekturliste
 #include "blink.hxx"    // Blink-Manager
-#include "init.hxx"   // Deklarationen fuer _TextInit() und _TextFinit()
+// auto strip #include "init.hxx"   // Deklarationen fuer _TextInit() und _TextFinit()
 #include "txtfly.hxx"   // SwContourCache
 #include "dbg_lay.hxx"  // Layout Debug Fileausgabe
 namespace binfilter {
