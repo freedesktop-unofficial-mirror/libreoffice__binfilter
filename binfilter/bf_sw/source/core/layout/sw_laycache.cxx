@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_laycache.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:36:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,14 @@
 #ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
 #endif
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -108,24 +113,24 @@
 #ifndef _ROWFRM_HXX
 #include <rowfrm.hxx>
 #endif
-#ifndef _COLFRM_HXX
-#include <colfrm.hxx>
-#endif
-#ifndef _BODYFRM_HXX
-#include <bodyfrm.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _COLFRM_HXX
+// auto strip #include <colfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _BODYFRM_HXX
+// auto strip #include <bodyfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
