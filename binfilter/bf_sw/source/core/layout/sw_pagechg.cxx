@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:37:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,9 +84,14 @@
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _FMTFORDR_HXX //autogen
-#include <fmtfordr.hxx>
+// auto strip #ifndef _FMTFORDR_HXX //autogen
+// auto strip #include <fmtfordr.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
@@ -97,19 +102,19 @@
 
 #include "viewimp.hxx"
 #include "pagefrm.hxx"
-#include "rootfrm.hxx"
-#include "cntfrm.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "cntfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "doc.hxx"
 #include "fesh.hxx"
 #include "dview.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
 #include "frmtool.hxx"
-#include "fldbas.hxx"
+// auto strip #include "fldbas.hxx"
 #include "hints.hxx"
-#include "errhdl.hxx"
-#include "swtable.hxx"
+// auto strip #include "errhdl.hxx"
+// auto strip #include "swtable.hxx"
 
 #include "ftnidx.hxx"
 #include "bodyfrm.hxx"
@@ -119,15 +124,15 @@
 #include "layact.hxx"
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
-#include "htmltbl.hxx"
+// auto strip #include "htmltbl.hxx"
 #include "pagedesc.hxx"
-#include "poolfmt.hxx"
+// auto strip #include "poolfmt.hxx"
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
-#ifndef _SWFNTCCH_HXX
-#include <swfntcch.hxx> // SwFontAccess
-#endif
+// auto strip #ifndef _SWFNTCCH_HXX
+// auto strip #include <swfntcch.hxx>   // SwFontAccess
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
