@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unomtabl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:42:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,9 +75,9 @@
 #include <com/sun/star/drawing/PointSequence.hpp>
 #endif
 
-#ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #include <cppuhelper/implbase2.hxx>
 
@@ -101,7 +101,7 @@
 #endif
 #include "svdmodel.hxx"
 #include "xdef.hxx"
-#include "xflhtit.hxx"
+// auto strip #include "xflhtit.hxx"
 
 #include <vector>
 
