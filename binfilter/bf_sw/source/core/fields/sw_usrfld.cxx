@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:27:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,35 +62,40 @@
 
 #pragma hdrstop
 
-#ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
-#endif
+// auto strip #ifndef _ZFORLIST_HXX
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
 #ifndef _ZFORMAT_HXX //autogen
 #include <svtools/zformat.hxx>
 #endif
-#ifndef _SVDMODEL_HXX
-#include <bf_svx/svdmodel.hxx>
-#endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
 
 
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
 #ifndef _CALC_HXX
 #include <calc.hxx>
 #endif
 #ifndef _USRFLD_HXX
 #include <usrfld.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
-#ifndef _DPAGE_HXX
-#include <dpage.hxx>
-#endif
+// auto strip #ifndef _EDITSH_HXX
+// auto strip #include <editsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _DPAGE_HXX
+// auto strip #include <dpage.hxx>
+// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
