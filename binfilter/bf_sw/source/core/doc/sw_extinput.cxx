@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_extinput.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:10:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,37 +62,45 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SV_KEYCODES_HXX
+// auto strip #include <vcl/keycodes.hxx>
+// auto strip #endif
+// auto strip #ifndef _VCL_CMDEVT_HXX
+// auto strip #include <vcl/cmdevt.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _SV_KEYCODES_HXX
-#include <vcl/keycodes.hxx>
-#endif
-#ifndef _VCL_CMDEVT_HXX
-#include <vcl/cmdevt.hxx>
-#endif
 #ifndef _EXTINPUT_HXX
 #include <extinput.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _INDEX_HXX
-#include <index.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
+// auto strip #ifndef _INDEX_HXX
+// auto strip #include <index.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
