@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ComboBox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:47:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,24 +59,28 @@
  *
  ************************************************************************/
 
+#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+#include <comphelper/proparrhlp.hxx>
+#endif
+
 #ifndef _FORMS_COMBOBOX_HXX_
 #include "ComboBox.hxx"
 #endif
-#ifndef _FRM_PROPERTY_HXX_
-#include "property.hxx"
-#endif
+// auto strip #ifndef _FRM_PROPERTY_HXX_
+// auto strip #include "property.hxx"
+// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
 #ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
 #endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 #ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
 #endif
@@ -89,9 +93,9 @@
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-#ifndef _COMPHELPER_DATETIME_HXX_
-#include <comphelper/datetime.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
+// auto strip #include <comphelper/datetime.hxx>
+// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
@@ -99,15 +103,15 @@
 #include <connectivity/dbconversion.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
-#include <com/sun/star/sdb/SQLErrorEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
-#include <com/sun/star/sdbc/XRowSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
+// auto strip #include <com/sun/star/sdb/SQLErrorEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
+// auto strip #include <com/sun/star/sdbc/XRowSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
@@ -120,15 +124,32 @@
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
-#include <com/sun/star/awt/XListBox.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
+// auto strip #include <com/sun/star/awt/XListBox.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
-#include <com/sun/star/sdb/SQLContext.hpp>
+// auto strip #ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
+// auto strip #include <com/sun/star/sdb/SQLContext.hpp>
+// auto strip #endif
+
+#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
+#include <com/sun/star/form/FormComponentType.hpp>
 #endif
+
+#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
+#include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
+#endif
+
 namespace binfilter {
 
     using namespace ::dbtools;
