@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdopath.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:27:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,39 +59,39 @@
  *
  ************************************************************************/
 
-#include <tools/bigint.hxx>
+// auto strip #include <tools/bigint.hxx>
 #include "svdopath.hxx"
 #include <math.h>
 #include "xpool.hxx"
-#include "xpoly.hxx"
+// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
-#include "svdxout.hxx"
-#include "svdattr.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdattr.hxx"
 #include "svdtouch.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
-#include "svddrag.hxx"
-#include "svdmodel.hxx"
-#include "svdpage.hxx"
-#include "svdhdl.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdhdl.hxx"
 //#include "svdosmrt.hxx"
 #include "svdview.hxx"  // fuer MovCreate bei Freihandlinien
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 
 #ifdef _MSC_VER
 #pragma optimize ("",off)
 #endif
 
-#include "xlnwtit.hxx"
-#include "xlnclit.hxx"
-#include "xflclit.hxx"
-#include "svdogrp.hxx"
+// auto strip #include "xlnwtit.hxx"
+// auto strip #include "xlnclit.hxx"
+// auto strip #include "xflclit.hxx"
+// auto strip #include "svdogrp.hxx"
 
-#ifndef _SVX_XLNTRIT_HXX
-#include "xlntrit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNTRIT_HXX
+// auto strip #include "xlntrit.hxx"
+// auto strip #endif
 
 #ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
