@@ -2,9 +2,9 @@
  *
  *  $RCSfile: expfld.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:05 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -393,7 +393,7 @@ public:
 //STRIP001 class SwInputFieldList
 //STRIP001 {
 //STRIP001 public:
-//STRIP001  SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE );
+//STRIP001  SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwInputFieldList( SwEditShell* pShell, FASTBOOL bBuildTmpLst = FALSE );
 //STRIP001  ~SwInputFieldList();
 
 //STRIP001  USHORT      Count() const;

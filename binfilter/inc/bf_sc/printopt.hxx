@@ -2,9 +2,9 @@
  *
  *  $RCSfile: printopt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -130,7 +130,7 @@ class ScPrintCfg : public ScPrintOptions, public ::utl::ConfigItem
 public:
     ScPrintCfg();
 
-    void            SetOptions( const ScPrintOptions& rNew ){DBG_ASSERT(0, "STRIP");} //STRIP001    void            SetOptions( const ScPrintOptions& rNew );
+    void            SetOptions( const ScPrintOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void            SetOptions( const ScPrintOptions& rNew );
 //STRIP001  void            OptionsChanged();   // after direct access to ScPrintOptions base class
 //STRIP001
 //STRIP001  virtual void    Commit();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdhdl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -239,7 +239,7 @@ public:
 //STRIP001  const B2dIAOGroup& GetIAOGroup() const { return aIAOGroup; }
 //STRIP001
 //STRIP001  void SetHdlList(SdrHdlList* pList);
-    SdrHdlKind GetKind() const { DBG_ASSERT(0, "STRIP"); return HDL_MOVE; }//STRIP001   SdrHdlKind GetKind() const { return eKind; }
+    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }//STRIP001    SdrHdlKind GetKind() const { return eKind; }
 //STRIP001  void Touch();
 //STRIP001
 //STRIP001  const Point& GetPos() const { return aPos; }
@@ -248,7 +248,7 @@ public:
 //STRIP001  SdrPageView* GetPageView() const { return pPV; }
 //STRIP001  void SetPageView(SdrPageView* pNewPV) { pPV=pNewPV; }
 //STRIP001
-    SdrObject* GetObj() const {DBG_ASSERT(0, "STRIP"); return NULL;  }//STRIP001    SdrObject* GetObj() const { return pObj;  }
+    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }//STRIP001     SdrObject* GetObj() const { return pObj;  }
 //STRIP001  void SetObj(SdrObject* pNewObj);
 //STRIP001
 //STRIP001  BOOL IsSelected() const { return bSelect; }

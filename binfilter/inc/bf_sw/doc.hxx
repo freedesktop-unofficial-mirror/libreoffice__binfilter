@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:04 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1384,11 +1384,11 @@ public:
         // kopiere die Kopzeile (mit dem Inhalt!) aus dem SrcFmt
         // ins DestFmt ( auch ueber Doc grenzen hinaus!)
     void CopyHeader( const SwFrmFmt& rSrcFmt, SwFrmFmt& rDestFmt )
-    { DBG_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_True, rSrcFmt, rDestFmt ); }
+    { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_True, rSrcFmt, rDestFmt ); }
         // kopiere die Fusszeile (mit dem Inhalt!) aus dem SrcFmt
         // ins DestFmt ( auch ueber Doc grenzen hinaus!)
     void CopyFooter( const SwFrmFmt& rSrcFmt, SwFrmFmt& rDestFmt )
-    { DBG_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_False, rSrcFmt, rDestFmt ); }
+    { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_False, rSrcFmt, rDestFmt ); }
 
         //fuer Reader
     SwPageDesc& _GetPageDesc( sal_uInt16 i ) const { return *aPageDescs[i]; }
@@ -1563,22 +1563,22 @@ public:
 //STRIP001  sal_Bool TableToText( const SwTableNode* pTblNd, sal_Unicode cCh );
         // einfuegen von Spalten/Zeilen in der Tabelle
     sal_Bool InsertCol( const SwCursor& rCursor,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
+                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
 //STRIP001  sal_Bool InsertCol( const SwSelBoxes& rBoxes,
 //STRIP001                  sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
     sal_Bool InsertRow( const SwCursor& rCursor,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
+                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
 //STRIP001  sal_Bool InsertRow( const SwSelBoxes& rBoxes,
 //STRIP001                  sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
         // loeschen von Spalten/Zeilen in der Tabelle
-    sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes ){DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes );
-    sal_Bool DeleteRow( const SwCursor& rCursor ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteRow( const SwCursor& rCursor );
-    sal_Bool DeleteCol( const SwCursor& rCursor ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteCol( const SwCursor& rCursor );
+    sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes );
+    sal_Bool DeleteRow( const SwCursor& rCursor ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteRow( const SwCursor& rCursor );
+    sal_Bool DeleteCol( const SwCursor& rCursor ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteCol( const SwCursor& rCursor );
         // teilen / zusammenfassen von Boxen in der Tabelle
     sal_Bool SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert = sal_True,
                        sal_uInt16 nCnt = 1, sal_Bool bSameHeight = sal_False );
         // returnt den enum TableMergeErr
-    sal_uInt16 MergeTbl( SwPaM& rPam ){DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 sal_uInt16 MergeTbl( SwPaM& rPam );
+    sal_uInt16 MergeTbl( SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 sal_uInt16 MergeTbl( SwPaM& rPam );
     String GetUniqueTblName() const;
 //STRIP001  sal_Bool IsInsTblFormatNum() const;
 //STRIP001  sal_Bool IsInsTblChangeNumFormat() const;
@@ -1592,11 +1592,11 @@ public:
 
     // Direktzugriff fuer Uno
     void SetTabCols(SwTable& rTab, const SwTabCols &rNew, SwTabCols &rOld,
-                                    const SwTableBox *pStart, sal_Bool bCurRowOnly){DBG_ASSERT(0, "STRIP");} //STRIP001 const SwTableBox *pStart, sal_Bool bCurRowOnly);
+                                    const SwTableBox *pStart, sal_Bool bCurRowOnly){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const SwTableBox *pStart, sal_Bool bCurRowOnly);
 
-    void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet );
+    void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet );
         // AutoFormat fuer die Tabelle/TabellenSelection
-    sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew );
+    sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew );
         // Erfrage wie attributiert ist
 //STRIP001  sal_Bool GetTableAutoFmt( const SwSelBoxes& rBoxes, SwTableAutoFmt& rGet );
         // setze das TabelleAttribut Undo auf:
@@ -1611,7 +1611,7 @@ public:
     // teste ob die Box ein numerischen Wert darstellt und aender dann ggfs.
     // das Format der Box
 //STRIP001  void ChkBoxNumFmt( SwTableBox& rAktBox, sal_Bool bCallUpdate );
-    void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet );
+    void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet );
     void ClearBoxNumAttrs( const SwNodeIndex& rNode );
 
 //STRIP001  sal_Bool CopyTblInTbl( const SwTable& rSrcTable, SwTable& rDestTbl,
@@ -1880,13 +1880,13 @@ public:
     sal_Bool BalanceRowHeight( const SwCursor& rCursor, sal_Bool bTstOnly = sal_True );
 //STRIP001  void SetRowBackground( const SwCursor& rCursor, const SvxBrushItem &rNew );
 //STRIP001  sal_Bool GetRowBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const;
-    void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet );
+    void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet );
 //STRIP001  void SetTabLineStyle( const SwCursor& rCursor,
 //STRIP001                        const Color* pColor, sal_Bool bSetLine,
 //STRIP001                        const SvxBorderLine* pBorderLine );
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
-    void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew ){DBG_ASSERT(0, "STRIP");} //STRIP001 void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew );
-    sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const;
+    void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew );
+    sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const;
 //STRIP001  void SetBoxAlign( const SwCursor& rCursor, sal_uInt16 nAlign );
     sal_uInt16 GetBoxAlign( const SwCursor& rCursor ) const;
 //STRIP001  void AdjustCellWidth( const SwCursor& rCursor, sal_Bool bBalance = sal_False );

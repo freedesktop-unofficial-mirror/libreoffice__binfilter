@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txatritr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,7 +89,7 @@ class SwScriptIterator
 
 public:
     SwScriptIterator( const String& rStr, xub_StrLen nStart = 0,
-                      sal_Bool bFrwrd = sal_True ){DBG_ASSERT(0, "STRIP");};
+                      sal_Bool bFrwrd = sal_True ){DBG_BF_ASSERT(0, "STRIP");};
 
 //STRIP001  sal_Bool Next();
 
@@ -113,7 +113,7 @@ class SwTxtAttrIterator
 
 public:
 SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,//STRIP001  SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,
-xub_StrLen nStart = 0 ){DBG_ASSERT(0, "STRIP");} ;//STRIP001                        xub_StrLen nStart = 0 );
+xub_StrLen nStart = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001                         xub_StrLen nStart = 0 );
 //STRIP001
 //STRIP001  sal_Bool Next();
 //STRIP001

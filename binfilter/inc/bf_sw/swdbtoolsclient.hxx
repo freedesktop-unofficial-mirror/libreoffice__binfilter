@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swdbtoolsclient.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,13 +90,13 @@ private:
 //STRIP001     ::rtl::Reference< ::connectivity::simple::IDataAccessTypeConversion > getAccessTypeConversion();
 
 public:
-    SwDbtoolsClient(){DBG_ASSERT(0, "STRIP");} //STRIP001 SwDbtoolsClient();
-    ~SwDbtoolsClient(){DBG_ASSERT(0, "STRIP");} //STRIP001 ~SwDbtoolsClient();
+    SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDbtoolsClient();
+    ~SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~SwDbtoolsClient();
 
     ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource > getDataSource(
         const ::rtl::OUString& _rsRegisteredName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory
-            ){DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 );
+            ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 );
 
 //STRIP001     sal_Int32 getDefaultNumberFormat(
 //STRIP001         const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxColumn,

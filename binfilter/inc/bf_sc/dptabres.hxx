@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dptabres.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:46 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,8 +152,8 @@ class ScDPResultData
 //STRIP001  BOOL                    bDataAtRow;
 //STRIP001
 public:
-    ScDPResultData( ScDPSource* pSrc ) {DBG_ASSERT(0, "STRIP");} //STRIP001 ScDPResultData( ScDPSource* pSrc );     //! Ref
-                        ~ScDPResultData(){DBG_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultData();
+    ScDPResultData( ScDPSource* pSrc ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDPResultData( ScDPSource* pSrc );      //! Ref
+                        ~ScDPResultData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultData();
 
 //STRIP001  void                SetMeasureData( long nCount, const ScSubTotalFunc* pFunctions,
 //STRIP001                                      const String* pNames );
@@ -191,8 +191,8 @@ class ScDPResultMember
 public:
                         ScDPResultMember( ScDPResultData* pData, ScDPDimension* pDim,
                                             ScDPLevel* pLev, ScDPMember* pDesc,
-                                            BOOL bForceSub ) {DBG_ASSERT(0, "STRIP");} //STRIP001 BOOL bForceSub ); //! Ref
-                        ~ScDPResultMember(){DBG_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultMember();
+                                            BOOL bForceSub ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 BOOL bForceSub );  //! Ref
+                        ~ScDPResultMember(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultMember();
 
 //STRIP001  void                InitFrom( ScDPDimension** ppDim, ScDPLevel** ppLev );
 //STRIP001  void                LateInitFrom( ScDPDimension** ppDim, ScDPLevel** ppLev, ScDPItemData* pItemData );

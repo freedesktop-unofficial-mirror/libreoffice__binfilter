@@ -2,9 +2,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -633,8 +633,8 @@ public:
 //STRIP001     void                        PlayMacro_Impl( SfxRequest &rReq,
 //STRIP001                                                 StarBASIC *pBas );
     StarBASIC*                  GetBasic_Impl() const;
-    void                        MiscExec_Impl(SfxRequest &){DBG_ASSERT(0, "STRIP");}//STRIP001 void                        MiscExec_Impl(SfxRequest &);
-    void                        MiscState_Impl(SfxItemSet &){DBG_ASSERT(0, "STRIP");}//STRIP001 void                        MiscState_Impl(SfxItemSet &);
+    void                        MiscExec_Impl(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 void                        MiscExec_Impl(SfxRequest &);
+    void                        MiscState_Impl(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 void                        MiscState_Impl(SfxItemSet &);
 //STRIP001     void                        MailExec_Impl(SfxRequest &);
 //STRIP001     void                        MailState_Impl(SfxItemSet &);
     void                        PropExec_Impl(SfxRequest &);

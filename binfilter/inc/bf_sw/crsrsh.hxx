@@ -2,9 +2,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -890,7 +890,7 @@ public:
 inline SwMoveFnCollection* SwCrsrShell::MakeFindRange(
             USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
 {
-    DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 return pCurCrsr->MakeFindRange( (SwDocPositions)nStt, (SwDocPositions)nEnd, pPam );
+    DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return pCurCrsr->MakeFindRange( (SwDocPositions)nStt, (SwDocPositions)nEnd, pPam );
 }
 
 inline SwCursor* SwCrsrShell::GetSwCrsr( FASTBOOL bMakeTblCrsr ) const

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpagv.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -434,7 +434,7 @@ public:
     // rRect bezieht sich auf die Page
     void InvalidateAllWin(const Rectangle& rRect, FASTBOOL bPlus1Pix=FALSE);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
-    void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_ASSERT(0, "STRIP");}//STRIP001    void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
+    void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_BF_ASSERT(0, "STRIP");}//STRIP001     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
 //STRIP001  void InitRedraw(USHORT nWinNum, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
 //STRIP001  FASTBOOL IsReady() const;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swddetbl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,7 +74,7 @@ public:
     // Constructor movet alle Lines/Boxen aus der SwTable zu sich.
     // Die SwTable ist danach Leer und muss geloescht werden.
     SwDDETable( SwTable& rTable, SwDDEFieldType* pDDEType,
-        BOOL bUpdate = TRUE ):SwTable( rTable ){DBG_ASSERT(0, "STRIP");} //STRIP001 BOOL bUpdate = TRUE );
+        BOOL bUpdate = TRUE ):SwTable( rTable ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 BOOL bUpdate = TRUE );
 //STRIP001  ~SwDDETable();
 //STRIP001
 //STRIP001  void Modify( SfxPoolItem*, SfxPoolItem* );

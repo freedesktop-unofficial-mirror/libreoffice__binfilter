@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dataaccessdescriptor.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,17 +109,17 @@ namespace svx
 //STRIP001      ODADescriptorImpl*      m_pImpl;
 //STRIP001
     public:
-        ODataAccessDescriptor(){DBG_ASSERT(0, "STRIP"); }//STRIP001 ;
-        ODataAccessDescriptor( const ODataAccessDescriptor& _rSource ){DBG_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rValues ){DBG_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& _rValues ){DBG_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor( const ODataAccessDescriptor& _rSource ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
+        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rValues ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
+        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
 
         // allows to construct a descriptor from an Any containing either an XPropertySet or a property value sequence
-        ODataAccessDescriptor( const ::com::sun::star::uno::Any& _rValues ){DBG_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor( const ::com::sun::star::uno::Any& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
 
 //STRIP001      const ODataAccessDescriptor& operator=(const ODataAccessDescriptor& _rSource);
 
-        ~ODataAccessDescriptor(){DBG_ASSERT(0, "STRIP");} //STRIP001
+        ~ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001
 //STRIP001
 //STRIP001      /** returns the descriptor as property set
 //STRIP001          <p>If you call this method more than once, without writing any values between both calls, the same object
@@ -132,7 +132,7 @@ namespace svx
 //STRIP001          is returned. If you wrote values, a new object is returned.</p>
 //STRIP001      */
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >
-            createPropertyValueSequence(){DBG_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();} //STRIP001 ;
+            createPropertyValueSequence(){DBG_BF_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();} //STRIP001 ;
 //STRIP001
 //STRIP001      /** returns the descriptor as Any sequence
 //STRIP001          <p>If you call this method more than once, without writing any values between both calls, the same object
@@ -174,7 +174,7 @@ namespace svx
 //STRIP001      /** return the (modifiable) value of a given property
 //STRIP001          <p>This operator is not allowed to be called if the descriptor is readonly.</p>
 //STRIP001      */
-        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ){DBG_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}//STRIP001 ;
+        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}//STRIP001 ;
     };
 
 //........................................................................

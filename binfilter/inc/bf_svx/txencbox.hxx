@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txencbox.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:19 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,7 +82,7 @@ class SvxTextEncodingBox : public ListBox
 //STRIP001
 public:
      SvxTextEncodingBox( Window* pParent, const ResId& rResId );
-    ~SvxTextEncodingBox(){DBG_ASSERT(0, "STRIP");} //STRIP001 ;
+    ~SvxTextEncodingBox(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
 //STRIP001
 //STRIP001  /** Fill with all known encodings but exclude those matching one or more
 //STRIP001      given flags as defined in rtl/tencinfo.h

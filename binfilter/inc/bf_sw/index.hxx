@@ -2,9 +2,9 @@
  *
  *  $RCSfile: index.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:25:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -195,7 +195,7 @@ public:
 
 #ifdef PRODUCT
 
-inline xub_StrLen SwIndex::operator++() {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
 //STRIP001{
 //STRIP001  return ChgValue( *this, nIndex+1 ).nIndex;
 //STRIP001}
@@ -204,7 +204,7 @@ inline xub_StrLen SwIndex::operator++() {DBG_ASSERT(0, "STRIP"); return 0;} //ST
 //STRIP001  return ChgValue( *this, nIndex-1 ).nIndex;
 //STRIP001}
 #ifndef CFRONT
-inline xub_StrLen SwIndex::operator++(int) {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
 //STRIP001{
 //STRIP001  xub_StrLen nOldIndex = nIndex;
 //STRIP001  ChgValue( *this, nIndex+1 );

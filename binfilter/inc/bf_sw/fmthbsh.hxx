@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmthbsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,8 @@ public:
     SwFmtSoftHyph();
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;}; //STRIP001   virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_ASSERT(0, "STRIP");return NULL; }; //STRIP001     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual int operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; }; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
 
@@ -96,8 +96,8 @@ public:
     SwFmtHardBlank( sal_Unicode cCh, BOOL bCheck = TRUE );
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;}; //STRIP001   virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
 

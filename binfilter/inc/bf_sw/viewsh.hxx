@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -358,7 +358,7 @@ public:
     void LayoutIdle();
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
-    void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_ASSERT(0, "STRIP");} ;//STRIP001            void  ApplyViewOptions( const SwViewOption &rOpt );
+    void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
            void  SetUIOptions( const SwViewOption &rOpt );
 //STRIP001         void  SetReadonlyOption(sal_Bool bSet);   // Readonly-Bit d. ViewOptions setzen
 //STRIP001         void  SetPrtFormatOption(sal_Bool bSet);  // PrtFormat-Bit d. ViewOptions setzen
@@ -372,7 +372,7 @@ public:
     static void           SetCareWin( Window* pNew ) { pCareWindow = pNew; }
     static Window*        GetCareWin(ViewShell& rVSh)
                         { return pCareWindow ? pCareWindow : CareChildWin(rVSh); }
-    static Window*        CareChildWin(ViewShell& rVSh){DBG_ASSERT(0, "STRIP"); return NULL;} ;//STRIP001   static Window*        CareChildWin(ViewShell& rVSh);
+    static Window*        CareChildWin(ViewShell& rVSh){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;//STRIP001    static Window*        CareChildWin(ViewShell& rVSh);
 
     inline SfxViewShell   *GetSfxViewShell() { return pSfxViewShell; }
     inline void           SetSfxViewShell(SfxViewShell *pNew) { pSfxViewShell = pNew; }

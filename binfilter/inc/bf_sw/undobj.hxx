@@ -2,9 +2,9 @@
  *
  *  $RCSfile: undobj.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -625,7 +625,7 @@ public:
 class SwUndoInsDoc //STRIP001 : public SwUndoInserts
 {
 public:
-    SwUndoInsDoc( const SwPaM& ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwUndoInsDoc( const SwPaM& );
+    SwUndoInsDoc( const SwPaM& ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwUndoInsDoc( const SwPaM& );
 //STRIP001  OUT_UNDOBJ( InsDoc )
 };
 

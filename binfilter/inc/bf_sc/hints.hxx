@@ -2,9 +2,9 @@
  *
  *  $RCSfile: hints.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,7 +188,7 @@ class ScAutoStyleHint : public SfxHint
 public:
                     TYPEINFO();
                     ScAutoStyleHint( const ScRange& rR, const String& rSt1,
-                                        ULONG nT, const String& rSt2 ){DBG_ASSERT(0, "STRIP");} //STRIP001 ULONG nT, const String& rSt2 );
+                                        ULONG nT, const String& rSt2 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ULONG nT, const String& rSt2 );
 //STRIP001                  ~ScAutoStyleHint();
 
 //STRIP001  const ScRange&  GetRange() const    { return aRange; }

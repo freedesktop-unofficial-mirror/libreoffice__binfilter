@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -330,8 +330,8 @@ public:
     // nur in abgeleiteten Klassen
     virtual const String&   GetName() const;
     virtual SwFieldType*    Copy()    const = 0;
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual    BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual  BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
             USHORT          Which() const { return nWhich; }
 

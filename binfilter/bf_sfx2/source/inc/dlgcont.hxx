@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dlgcont.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:47 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:33:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,7 +88,7 @@ class SfxDialogLibraryContainer : public SfxLibraryContainer_Impl
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream );
     virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile );
 
-    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_ASSERT(0, "STRIP");return NULL;}//STRIP001 virtual SfxLibraryContainer_Impl* createInstanceImpl( void );
+    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}//STRIP001 virtual SfxLibraryContainer_Impl* createInstanceImpl( void );
 
     sal_Bool init( const ::rtl::OUString& aInitialisationParam,
                    SotStorage* pStor=NULL );

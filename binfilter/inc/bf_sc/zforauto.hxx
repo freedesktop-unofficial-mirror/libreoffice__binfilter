@@ -2,9 +2,9 @@
  *
  *  $RCSfile: zforauto.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,7 +85,7 @@ public:
     ScNumFormatAbbrev();
     ScNumFormatAbbrev(const ScNumFormatAbbrev& aFormat);
     ScNumFormatAbbrev(SvStream& rStream);
-    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_ASSERT(0, "STRIP"); } //STRIP001   ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
+    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_BF_ASSERT(0, "STRIP"); } //STRIP001    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
     void Load( SvStream& rStream );         // Laden der Zahlenformate
     void Save( SvStream& rStream ) const;   // Speichern der Zahlenformate
 //STRIP001  void PutFormatIndex(ULONG nFormat, SvNumberFormatter& rFormatter);

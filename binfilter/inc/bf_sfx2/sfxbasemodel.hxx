@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxbasemodel.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -864,8 +864,8 @@ public:
     //  XPrintJobBroadcaster
     //____________________________________________________________________________________________________
 
-    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener )throw (::com::sun::star::uno::RuntimeException) {DBG_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException) {DBG_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener )throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
 
     //____________________________________________________________________________________________________
     //  XPrintable
@@ -884,7 +884,7 @@ public:
         @onerror    -
     */
 
-    virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException) {DBG_ASSERT(0, "STRIP");SEQUENCE< PROPERTYVALUE > aFlavorSeq( 0 );return aFlavorSeq;}//STRIP001 virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException);
+    virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");SEQUENCE< PROPERTYVALUE > aFlavorSeq( 0 );return aFlavorSeq;}//STRIP001 virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException);
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -900,7 +900,7 @@ public:
     */
 
     virtual void SAL_CALL setPrinter( const SEQUENCE< PROPERTYVALUE >& seqPrinter )
-    throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException) {DBG_ASSERT(0, "STRIP");}//STRIP001 throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
+    throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
     /**___________________________________________________________________________________________________
         @short      -
         @descr      -
@@ -1036,7 +1036,7 @@ public:
         throw (::com::sun::star::frame::DoubleInitializationException,
                ::com::sun::star::io::IOException,
                ::com::sun::star::uno::RuntimeException,
-               ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
+               ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -1055,7 +1055,7 @@ public:
         throw (::com::sun::star::frame::DoubleInitializationException,
                ::com::sun::star::io::IOException,
                ::com::sun::star::uno::RuntimeException,
-                ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
+                ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
 
     //____________________________________________________________________________________________________
     //  XTransferable
@@ -1109,7 +1109,7 @@ public:
     */
 
     virtual sal_Bool SAL_CALL isDataFlavorSupported( const DATAFLAVOR& aFlavor )
-        throw (::com::sun::star::uno::RuntimeException) {DBG_ASSERT(0, "STRIP");return false;}//STRIP001 throw (::com::sun::star::uno::RuntimeException);
+        throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");return false;}//STRIP001 throw (::com::sun::star::uno::RuntimeException);
 
     //____________________________________________________________________________________________________
     //  XEventsSupplier
@@ -1246,7 +1246,7 @@ public:
     sal_Bool hasEventListeners() const;
 
 protected:
-    virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh){DBG_ASSERT(0, "STRIP");}//STRIP001 virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh);
+    virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh);
 //________________________________________________________________________________________________________
 //  private methods
 //________________________________________________________________________________________________________

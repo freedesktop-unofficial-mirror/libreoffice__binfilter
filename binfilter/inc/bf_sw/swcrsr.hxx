@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swcrsr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,8 +188,8 @@ public:
         END_SENT
     };
      FASTBOOL GoSentence(SentenceMoveType eMoveType);
-    FASTBOOL GoNextSentence(){DBG_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(NEXT_SENT);}
-    FASTBOOL GoPrevSentence(){DBG_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(PREV_SENT);}
+    FASTBOOL GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(NEXT_SENT);}
+    FASTBOOL GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(PREV_SENT);}
 
     FASTBOOL LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
                         BOOL bInsertCrsr );
@@ -206,12 +206,12 @@ public:
                                     { return LeftRight( FALSE, nCnt, nMode, bAllowVisual, FALSE ); }
     FASTBOOL Up( USHORT nCnt = 1 )      { return UpDown( TRUE, nCnt ); }
     FASTBOOL Down( USHORT nCnt = 1 )    { return UpDown( FALSE, nCnt ); }
-    FASTBOOL LeftMargin()               { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( TRUE ); }
-    FASTBOOL RightMargin()              { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( FALSE ); }
-    FASTBOOL SttDoc()                   { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( TRUE ); }
-    FASTBOOL EndDoc()                   { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
-    FASTBOOL GoNextCell( USHORT nCnt = 1 )  { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( TRUE, nCnt ); }
-    FASTBOOL GoPrevCell( USHORT nCnt = 1 )  { DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( FALSE, nCnt ); }
+    FASTBOOL LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( TRUE ); }
+    FASTBOOL RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( FALSE ); }
+    FASTBOOL SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( TRUE ); }
+    FASTBOOL EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
+    FASTBOOL GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( TRUE, nCnt ); }
+    FASTBOOL GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( FALSE, nCnt ); }
 //STRIP001  FASTBOOL GotoTable( const String& rName );
     FASTBOOL GotoTblBox( const String& rName );
 //STRIP001  FASTBOOL GotoRegion( const String& rName );

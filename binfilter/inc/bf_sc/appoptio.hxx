@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appoptio.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:21:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ class ScAppCfg : public ScAppOptions
 public:
             ScAppCfg();
 
-    void    SetOptions( const ScAppOptions& rNew ){DBG_ASSERT(0, "STRIP");} //STRIP001  void    SetOptions( const ScAppOptions& rNew );
+    void    SetOptions( const ScAppOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001   void    SetOptions( const ScAppOptions& rNew );
 //STRIP001  void    OptionsChanged();   // after direct access to ScAppOptions base class
 };
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cellfml.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:32 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -119,7 +119,7 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
 //STRIP001  void _HasValidBoxes( const SwTable&, String&, String&, String* = 0,
 //STRIP001                      void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
-                        void* pPara = 0 ) const{DBG_ASSERT(0, "STRIP");} //STRIP001 void* pPara = 0 ) const;
+                        void* pPara = 0 ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void* pPara = 0 ) const;
 
     void GetBoxes( const SwTableBox& rStt, const SwTableBox& rEnd,
                     SwSelBoxes& rBoxes ) const;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inputopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:21:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -135,7 +135,7 @@ class ScInputCfg : public ScInputOptions,
 public:
             ScInputCfg();
 
-    void            SetOptions( const ScInputOptions& rNew ){DBG_ASSERT(0, "STRIP");} //STRIP001    void            SetOptions( const ScInputOptions& rNew );
+    void            SetOptions( const ScInputOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void            SetOptions( const ScInputOptions& rNew );
 //STRIP001  void            OptionsChanged();   // after direct access to SetOptions base class
 //STRIP001
 //STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames );

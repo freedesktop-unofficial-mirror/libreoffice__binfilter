@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtfordr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,7 +94,7 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-    virtual USHORT          GetValueCount() const{DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
 
     const SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
     void  SetFillOrder( const SwFillOrder eNew ) { SetValue( USHORT(eNew) ); }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chartarr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,7 +187,7 @@ public:
     ScChartArray( ScDocument* pDoc, const SchMemChart& rData );
 
     virtual ~ScChartArray();
-    virtual DataObject* Clone() const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual  DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
 
     const ScRangeListRef&   GetRangeList() const { return aRangeListRef; }
     void    SetRangeList( const ScRangeListRef& rNew ) { aRangeListRef = rNew; }
@@ -230,7 +230,7 @@ public:
     ScChartCollection( const ScChartCollection& rColl ):
             Collection( rColl ) {}
 
-    virtual DataObject* Clone() const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual  DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
     ScChartArray*       operator[](USHORT nIndex) const
                         { return (ScChartArray*)At(nIndex); }
 

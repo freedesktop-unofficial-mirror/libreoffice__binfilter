@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,7 +122,7 @@ class SwGrfNode: public SwNoTxtNode
                SwAttrSet* pAutoAttr = 0 );
 
     void InsertLink( const String& rGrfName, const String& rFltName );
-    BOOL ImportGraphic( SvStream& rStrm ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001     BOOL ImportGraphic( SvStream& rStrm );
+    BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  BOOL ImportGraphic( SvStream& rStrm );
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
 //STRIP001  void DelStreamName();
@@ -186,7 +186,7 @@ public:
     void SetNewStreamName( const String& r ) { aNewStrmName = r; }
     void SaveCompleted( BOOL bClear );
     // is this node selected by any shell?
-    BOOL IsSelected() const{DBG_ASSERT(0, "STRIP");return FALSE;} ;//STRIP001   BOOL IsSelected() const;
+    BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;//STRIP001    BOOL IsSelected() const;
 #endif
 
         // Der Grafik sagen, dass sich der Node im Undobereich befindet

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndnotxt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,13 +123,13 @@ public:
     const BOOL         HasAutomaticContour() const { return bAutomaticContour; }
 
     // set either a MM100 or pixel contour
-    void               SetContourAPI( const PolyPolygon *pPoly ){DBG_ASSERT(0, "STRIP");} //STRIP001 void               SetContourAPI( const PolyPolygon *pPoly );
+    void               SetContourAPI( const PolyPolygon *pPoly ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void               SetContourAPI( const PolyPolygon *pPoly );
 
     // get either a MM100 or pixel contour, return FALSE if no contour is set.
     BOOL               GetContourAPI( PolyPolygon &rPoly ) const;
 
     void               SetPixelContour( BOOL bSet ) { bPixelContour = bSet; }
-    const BOOL         IsPixelContour() const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const BOOL         IsPixelContour() const;
+    const BOOL         IsPixelContour() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const BOOL         IsPixelContour() const;
 
     const BOOL         IsContourMapModeValid() const { return bContourMapModeValid; }
 

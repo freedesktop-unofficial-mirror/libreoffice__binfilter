@@ -2,9 +2,9 @@
  *
  *  $RCSfile: anminfo.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -138,7 +138,7 @@ public:
                             SdAnimationInfo(const SdAnimationInfo& rAnmInfo);
     virtual                 ~SdAnimationInfo();
 
-    virtual SdrObjUserData* Clone(SdrObject* pObj) const {DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001  virtual SdrObjUserData* Clone(SdrObject* pObj) const;
+    virtual SdrObjUserData* Clone(SdrObject* pObj) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001   virtual SdrObjUserData* Clone(SdrObject* pObj) const;
 
     virtual void            WriteData(SvStream& rOut);
     virtual void            ReadData(SvStream& rIn);

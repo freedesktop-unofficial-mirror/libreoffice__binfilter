@@ -2,9 +2,9 @@
  *
  *  $RCSfile: edimp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,10 +110,10 @@ SV_DECL_VARARR_SORT( _SwPamRanges, SwPamRange, 0, 1 )
 class SwPamRanges : private _SwPamRanges
 {
 public:
-    SwPamRanges( const SwPaM& rRing ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwPamRanges( const SwPaM& rRing );
+    SwPamRanges( const SwPaM& rRing ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwPamRanges( const SwPaM& rRing );
 
 //STRIP001  void Insert( const SwNodeIndex& rIdx1, const SwNodeIndex& rIdx2 );
-    SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam ){DBG_ASSERT(0, "STRIP"); return rPam;} //STRIP001 SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam );
+    SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;} //STRIP001 SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam );
 
     USHORT Count() const
                 {   return _SwPamRanges::Count(); }

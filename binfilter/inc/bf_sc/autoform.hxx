@@ -2,9 +2,9 @@
  *
  *  $RCSfile: autoform.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:29:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -334,7 +334,7 @@ public:
     virtual                     ~ScAutoFormat();
     virtual                     DataObject*         Clone() const { return new ScAutoFormat( *this ); }
                                 ScAutoFormatData*   operator[]( const USHORT nIndex ) const {return (ScAutoFormatData*)At( nIndex );}
-    virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const{DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const;
+    virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const;
     BOOL                        Load();
     BOOL                        Save();
 //STRIP001     USHORT                      FindIndexPerName( const String& rName ) const;
