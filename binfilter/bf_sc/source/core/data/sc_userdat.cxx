@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_userdat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:11:49 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:30:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -624,6 +624,7 @@
 #include "drwlayer.hxx"
 #include "rechead.hxx"
 #include "userdat.hxx"
+#include "so3/staticbaseurl.hxx"
 
 namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
@@ -735,7 +736,8 @@ namespace binfilter {
 /*N*/
 /*N*/   ScWriteHeader aHdr( rOStm );
 /*N*/
-/*N*/   rOStm << aImageMap;
+/*N*/   aImageMap.Write(
+            rOStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 /*N*/
 /*N*/ void __EXPORT ScIMapInfo::ReadData( SvStream& rIStm )
@@ -744,7 +746,8 @@ namespace binfilter {
 /*N*/
 /*N*/   ScReadHeader aHdr( rIStm );
 /*N*/
-/*N*/   rIStm >> aImageMap;
+/*N*/   aImageMap.Read(
+            rIStm, so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 
 
