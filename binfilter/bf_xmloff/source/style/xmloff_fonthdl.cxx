@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_fonthdl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:14:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include <fonthdl.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -75,17 +75,17 @@
 #include <rtl/ustrbuf.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
 #ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlelement.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlelement.hxx"
+// auto strip #endif
 
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
