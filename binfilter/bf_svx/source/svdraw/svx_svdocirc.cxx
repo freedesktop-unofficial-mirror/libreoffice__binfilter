@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdocirc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include <svtools/style.hxx>
 #endif
 
-#ifndef _BIGINT_HXX //autogen
-#include <tools/bigint.hxx>
-#endif
+// auto strip #ifndef _BIGINT_HXX //autogen
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
@@ -89,30 +89,39 @@
 
 #include "svdocirc.hxx"
 #include <math.h>
-#include "xpool.hxx"
-#include "svdtouch.hxx"
-#include "svdxout.hxx"
-#include "svdattr.hxx"
+// auto strip #include "xpool.hxx"
+// auto strip #include "svdtouch.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdattr.hxx"
 #include "svdpool.hxx"
 #include "svdattrx.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
-#include "svddrag.hxx"
-#include "svdmodel.hxx"
-#include "svdpage.hxx"
-#include "svdopath.hxx" // fuer die Objektkonvertierung
-#include "svdview.hxx"  // Zum Draggen (Ortho)
-#include "svdglob.hxx"   // StringCache
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svddrag.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdopath.hxx" // fuer die Objektkonvertierung
+// auto strip #include "svdview.hxx"  // Zum Draggen (Ortho)
+// auto strip #include "svdglob.hxx"   // StringCache
 #include "svdstr.hrc"    // Objektname
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
 
+#ifndef _SVX_RECTENUM_HXX
+#include "rectenum.hxx"
+#endif
+
 #ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
 #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
+#endif
+
 namespace binfilter {
 
 /*N*/ void SetWinkPnt(const Rectangle& rR, long nWink, Point& rPnt)
