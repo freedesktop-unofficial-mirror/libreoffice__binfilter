@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:37:44 $
+ *  last change: $Author: rt $ $Date: 2005-01-31 08:28:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -885,6 +885,14 @@ Sequence< OUString > SAL_CALL bf_MigrateFilter_getSupportedServiceNames()
 Reference< XInterface > SAL_CALL bf_MigrateFilter_createInstance(const Reference< XMultiServiceFactory > & rSMgr)
     throw( Exception )
 {
+    static ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxLegServFact;
+    if ( !mxLegServFact.is() )
+    {
+        mxLegServFact = ::legacy_binfilters::getLegacyProcessServiceFactory();
+        ::com::sun::star::uno::Reference < XComponent > xWrapper( mxLegServFact->createInstance(
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" ))), UNO_QUERY );
+    }
+
     return (cppu::OWeakObject*)new bf_MigrateFilter(rSMgr);
 }
 
