@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_format.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:25 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -246,33 +246,33 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL SmFormat::operator == (const SmFormat &rFormat) const
-//STRIP001 {
-//STRIP001     BOOL bRes = aBaseSize == rFormat.aBaseSize  &&
-//STRIP001                 eHorAlign == rFormat.eHorAlign  &&
-//STRIP001                 bIsTextmode == rFormat.bIsTextmode  &&
-//STRIP001                 bScaleNormalBrackets  == rFormat.bScaleNormalBrackets;
-//STRIP001
-//STRIP001     USHORT i;
-//STRIP001     for (i = 0;  i <= SIZ_END && bRes;  ++i)
-//STRIP001     {
-//STRIP001         if (vSize[i] != rFormat.vSize[i])
-//STRIP001             bRes = FALSE;
-//STRIP001     }
-//STRIP001     for (i = 0;  i <= DIS_END && bRes;  ++i)
-//STRIP001     {
-//STRIP001         if (vDist[i] != rFormat.vDist[i])
-//STRIP001             bRes = FALSE;
-//STRIP001     }
-//STRIP001     for (i = 0;  i <= FNT_END && bRes;  ++i)
-//STRIP001     {
-//STRIP001         if (vFont[i] != rFormat.vFont[i]  ||
-//STRIP001             bDefaultFont[i] != rFormat.bDefaultFont[i])
-//STRIP001             bRes = FALSE;
-//STRIP001     }
-//STRIP001
-//STRIP001     return bRes;
-//STRIP001 }
+/*N*/ BOOL SmFormat::operator == (const SmFormat &rFormat) const
+/*N*/ {
+/*N*/     BOOL bRes = aBaseSize == rFormat.aBaseSize  &&
+/*N*/                 eHorAlign == rFormat.eHorAlign  &&
+/*N*/                 bIsTextmode == rFormat.bIsTextmode  &&
+/*N*/                 bScaleNormalBrackets  == rFormat.bScaleNormalBrackets;
+/*N*/
+/*N*/     USHORT i;
+/*N*/     for (i = 0;  i <= SIZ_END && bRes;  ++i)
+/*N*/     {
+/*N*/         if (vSize[i] != rFormat.vSize[i])
+/*N*/             bRes = FALSE;
+/*N*/     }
+/*N*/     for (i = 0;  i <= DIS_END && bRes;  ++i)
+/*N*/     {
+/*N*/         if (vDist[i] != rFormat.vDist[i])
+/*N*/             bRes = FALSE;
+/*N*/     }
+/*N*/     for (i = 0;  i <= FNT_END && bRes;  ++i)
+/*N*/     {
+/*N*/         if (vFont[i] != rFormat.vFont[i]  ||
+/*N*/             bDefaultFont[i] != rFormat.bDefaultFont[i])
+/*N*/             bRes = FALSE;
+/*N*/     }
+/*N*/
+/*N*/     return bRes;
+/*N*/ }
 
 
 /*N*/ SvStream & operator << (SvStream &rStream, const SmFormat &rFormat)
