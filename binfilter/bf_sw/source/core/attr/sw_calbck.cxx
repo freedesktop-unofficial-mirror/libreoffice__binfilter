@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calbck.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:55:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,18 +68,18 @@
 #ifndef _FRAME_HXX
 #include <frame.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
-#ifndef _SWCACHE_HXX
-#include <swcache.hxx>
-#endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWCACHE_HXX
+// auto strip #include <swcache.hxx>
+// auto strip #endif
 #ifndef _SWFNTCCH_HXX
 #include <swfntcch.hxx>
 #endif
