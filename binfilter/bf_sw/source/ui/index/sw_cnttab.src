@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cnttab.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:59 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:42:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 #include "index.hrc"
 #include "globals.hrc"
@@ -67,129 +68,118 @@
 
 String STR_TITLE
 {
-    Text = "Titel" ;
-    Text [ ENGLISH ] = "Titel" ;
-    Text [ norwegian ] = "Tittel" ;
-    Text [ italian ] = "Titolo" ;
-    Text [ portuguese_brazilian ] = "T�tulo" ;
-    Text [ portuguese ] = "T�tulo" ;
-    Text [ finnish ] = "Otsikko" ;
-    Text [ danish ] = "Titel" ;
-    Text [ french ] = "Titre" ;
-    Text [ swedish ] = "Titel" ;
-    Text [ dutch ] = "Titel" ;
-    Text [ spanish ] = "T�tulo" ;
-    Text [ english_us ] = "Title" ;
-    Text[ chinese_simplified ] = "标题";
-    Text[ russian ] = "��������";
-    Text[ polish ] = "Tytu�";
-    Text[ japanese ] = "タイトル";
-    Text[ greek ] = "������";
-    Text[ korean ] = "제목";
-    Text[ chinese_traditional ] = "標題";
-    Text[ arabic ] = "�������";
-    Text[ turkish ] = "Ba�l�k";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "T�tol";
-    Text[ thai ] = "ชื่อ";
-    Text[ czech ] = "Titulek";
-    Text[ hebrew ] = "‮כותרת‬";
-    Text[ hindi ] = "शीर्षक";
-    Text[ slovak ] = "Titul";
+    Text [ de ] = "Titel" ;
+    Text [ en-US ] = "Title" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Título";
+    Text[ ru ] = "Заглавие";
+    Text[ el ] = "Τίτλος";
+    Text[ nl ] = "Titel";
+    Text[ fr ] = "Titre";
+    Text[ es ] = "Título";
+    Text[ fi ] = "Otsikko";
+    Text[ ca ] = "Títol";
+    Text[ it ] = "Titolo";
+    Text[ sk ] = "Titul";
+    Text[ da ] = "Titel";
+    Text[ sv ] = "Titel";
+    Text[ pl ] = "Tytuł";
+    Text[ pt-BR ] = "Título";
+    Text[ th ] = "ชื่อ";
+    Text[ ja ] = "タイトル";
+    Text[ ko ] = "제목";
+    Text[ zh-CN ] = "标题";
+    Text[ zh-TW ] = "標題";
+    Text[ tr ] = "Başlık";
+    Text[ hi-IN ] = "शीर्षक";
+    Text[ ar ] = "العنوان";
+    Text[ he ] = "‮כותרת‬";
 };
 String STR_ALPHA
 {
-    Text = "Trennzeichen" ;
-    Text [ ENGLISH ] = "Delimiter" ;
-    Text [ norwegian ] = "Skilletegn" ;
-    Text [ italian ] = "Separatore" ;
-    Text [ portuguese_brazilian ] = "Separador" ;
-    Text [ portuguese ] = "Separador" ;
-    Text [ finnish ] = "Erotin" ;
-    Text [ danish ] = "Skilletegn" ;
-    Text [ french ] = "S�parateur" ;
-    Text [ swedish ] = "Skiljetecken" ;
-    Text [ dutch ] = "Scheidingsteken" ;
-    Text [ spanish ] = "Separador" ;
-    Text [ english_us ] = "Separator" ;
-    Text[ chinese_simplified ] = "分隔符";
-    Text[ russian ] = "�����������";
-    Text[ polish ] = "Separator";
-    Text[ japanese ] = "区切り記号";
-    Text[ greek ] = "������������";
-    Text[ korean ] = "구분기호";
-    Text[ chinese_traditional ] = "分隔符";
-    Text[ arabic ] = "������";
-    Text[ turkish ] = "Ayra�";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Separador";
-    Text[ thai ] = "ตัวแยก";
-    Text[ czech ] = "Oddělovač";
-    Text[ hebrew ] = "Trennzeichen";
-    Text[ hindi ] = "अलगानेवाला";
-    Text[ slovak ] = "Oddeľovač";
+    Text [ de ] = "Trennzeichen" ;
+    Text [ en-US ] = "Separator" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Separador";
+    Text[ ru ] = "Разделитель";
+    Text[ el ] = "Διαχωριστικό";
+    Text[ nl ] = "Scheidingsteken";
+    Text[ fr ] = "Séparateur";
+    Text[ es ] = "Separador";
+    Text[ fi ] = "Erotin";
+    Text[ ca ] = "Separador";
+    Text[ it ] = "Separatore";
+    Text[ sk ] = "Oddeľovač";
+    Text[ da ] = "Skilletegn";
+    Text[ sv ] = "Skiljetecken";
+    Text[ pl ] = "Separator";
+    Text[ pt-BR ] = "Separador";
+    Text[ th ] = "ตัวแยก";
+    Text[ ja ] = "区切り記号";
+    Text[ ko ] = "구분기호";
+    Text[ zh-CN ] = "分隔符";
+    Text[ zh-TW ] = "分隔符";
+    Text[ tr ] = "Ayraç";
+    Text[ hi-IN ] = "अलगानेवाला";
+    Text[ ar ] = "الفاصل";
+    Text[ he ] = "Trennzeichen";
 };
 String STR_LEVEL
 {
-    Text = "Ebene " ;
-    Text [ ENGLISH ] = "Level " ;
-    Text [ norwegian ] = "Niv� " ;
-    Text [ italian ] = "Livello  " ;
-    Text [ portuguese_brazilian ] = "N�vel" ;
-    Text [ portuguese ] = "N�vel " ;
-    Text [ finnish ] = "Taso " ;
-    Text [ danish ] = "Niveau " ;
-    Text [ french ] = "Niveau " ;
-    Text [ swedish ] = "Niv�  " ;
-    Text [ dutch ] = "Niveau" ;
-    Text [ spanish ] = "Nivel " ;
-    Text [ english_us ] = "Level " ;
-    Text[ chinese_simplified ] = "级 ";
-    Text[ russian ] = "������� ";
-    Text[ polish ] = "Poziom ";
-    Text[ japanese ] = "レベル ";
-    Text[ greek ] = "������� ";
-    Text[ korean ] = "수준";
-    Text[ chinese_traditional ] = "級 ";
-    Text[ arabic ] = "������� ";
-    Text[ turkish ] = "D�zey ";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Nivell";
-    Text[ thai ] = "ระดับ ";
-    Text[ czech ] = "Úroveň ";
-    Text[ hebrew ] = "Ebene";
-    Text[ hindi ] = "स्तर ";
-    Text[ slovak ] = "Úroveň ";
+    Text [ de ] = "Ebene " ;
+    Text [ en-US ] = "Level " ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Nível ";
+    Text[ ru ] = "Уровень ";
+    Text[ el ] = "Επίπεδο ";
+    Text[ nl ] = "Niveau";
+    Text[ fr ] = "Niveau ";
+    Text[ es ] = "Nivel ";
+    Text[ fi ] = "Taso ";
+    Text[ ca ] = "Nivell";
+    Text[ it ] = "Livello  ";
+    Text[ sk ] = "Úroveň ";
+    Text[ da ] = "Niveau ";
+    Text[ sv ] = "Nivå  ";
+    Text[ pl ] = "Poziom ";
+    Text[ pt-BR ] = "Nível";
+    Text[ th ] = "ระดับ ";
+    Text[ ja ] = "レベル ";
+    Text[ ko ] = "수준";
+    Text[ zh-CN ] = "级 ";
+    Text[ zh-TW ] = "級 ";
+    Text[ tr ] = "Düzey ";
+    Text[ hi-IN ] = "स्तर ";
+    Text[ ar ] = "المستوى ";
+    Text[ he ] = "Ebene";
 };
 String STR_FILE_NOT_FOUND
 {
-    Text = "Die Datei \"%1\" konnte im Pfad \"%2\" nicht gefunden werden." ;
-    Text [ ENGLISH ] = "The file \"%1\" could not be found in path \"%2\"." ;
-    Text[ english_us ] = "The file, \"%1\" in the \"%2\" path could not be found.";
-    Text[ portuguese ] = "Foi imposs�vel encontrar o ficheiro \"%1\" no atalho \"%2\".";
-    Text[ russian ] = "���������� ����� ���� \"%1\" �� ���� \"%2\".";
-    Text[ greek ] = "�� ������ \"%1\" ��� ���� ������� �� ������ ��� �������� \"%2\".";
-    Text[ dutch ] = "Bestand \"%1\" niet gevonden in pad \"%2\".";
-    Text[ french ] = "Impossible de trouver le fichier \"%1\" sur le chemin \"%2\" !";
-    Text[ spanish ] = "No se pudo encontrar el archivo \"%1\" en la ruta \"%2\".";
-    Text[ italian ] = "Non � stato possibile trovare il file \"%1\" nel percorso \"%2\".";
-    Text[ danish ] = "Det var ikke muligt at finde filen \"%1\" p� sti \"%2\".";
-    Text[ swedish ] = "Filen \"%1\" kunde inte hittas i s�kv�g \"%2\".";
-    Text[ polish ] = "Nie znaleziono pliku \"%1\" w �cie�ce \"%2\".";
-    Text[ portuguese_brazilian ] = "O arquivo, '%1' no caminho '%2' n�o foi encontrado.";
-    Text[ japanese ] = "ファイル「%1」はパス「%2」に見つかりませんでした。";
-    Text[ korean ] = "\"%1\" 파일을\"%2\" 경로에서 찾지　못했습니다.";
-    Text[ chinese_simplified ] = "在路径\"%2\"中无法找到文件\"%1\"。";
-    Text[ chinese_traditional ] = "無法在路徑<%2>內找到檔案<%1>。";
-    Text[ arabic ] = "���� ������ ��� ����� \"%1\" �� ������ \"%2\".";
-    Text[ turkish ] = "\"%2\"da olan \"%1% dosya veri yolu bulunamad�.";
-    Text[ catalan ] = "No s'ha pogut trobar el fitxer \"%1\" en el cam� \"%2\".";
-    Text[ finnish ] = "Tiedostoa %1 hakemistopolusta %2 ei l�ytynyt.";
-    Text[ thai ] = "ไม่สามารถพบแฟ้ม, \"%1\" ในเส้นทาง \"%2\" ";
-    Text[ czech ] = "Nelze najít soubor \"%1\" v cestě \"%2\".";
-    Text[ hebrew ] = "Die Datei \"%1\" konnte im Pfad \"%2\" nicht gefunden werden.";
-    Text[ hindi ] = "फाइल, \"%1\" \"%2\" मार्ग में नहीं मिला ।";
-    Text[ slovak ] = "Nedá sa nájsť súbor \"%1\" v ceste \"%2\".";
+    Text [ de ] = "Die Datei \"%1\" konnte im Pfad \"%2\" nicht gefunden werden." ;
+    Text [ en-US ] = "The file, \"%1\" in the \"%2\" path could not be found.";
+    Text[ pt ] = "Foi impossível encontrar o ficheiro \"%1\" no atalho \"%2\".";
+    Text[ ru ] = "Невозможно найти файл \"%1\" по пути \"%2\".";
+    Text[ el ] = "Το αρχείο \"%1\" δεν ήταν δυνατόν να βρεθεί στη διαδρομή \"%2\".";
+    Text[ nl ] = "Bestand \"%1\" niet gevonden in pad \"%2\".";
+    Text[ fr ] = "Impossible de trouver le fichier \"%1\" sur le chemin \"%2\" !";
+    Text[ es ] = "No se pudo encontrar el archivo \"%1\" en la ruta \"%2\".";
+    Text[ fi ] = "Tiedostoa %1 hakemistopolusta %2 ei löytynyt.";
+    Text[ ca ] = "No s'ha pogut trobar el fitxer \"%1\" en el camí \"%2\".";
+    Text[ it ] = "Non è stato possibile trovare il file \"%1\" nel percorso \"%2\".";
+    Text[ sk ] = "Nedá sa nájsť súbor \"%1\" v ceste \"%2\".";
+    Text[ da ] = "Det var ikke muligt at finde filen \"%1\" på sti \"%2\".";
+    Text[ sv ] = "Filen \"%1\" kunde inte hittas i sökväg \"%2\".";
+    Text[ pl ] = "Nie znaleziono pliku \"%1\" w ścieżce \"%2\".";
+    Text[ pt-BR ] = "O arquivo, '%1' no caminho '%2' não foi encontrado.";
+    Text[ th ] = "ไม่สามารถพบแฟ้ม, \"%1\" ในเส้นทาง \"%2\" ";
+    Text[ ja ] = "ファイル「%1」はパス「%2」に見つかりませんでした。";
+    Text[ ko ] = "\"%1\" 파일을\"%2\" 경로에서 찾지　못했습니다.";
+    Text[ zh-CN ] = "在路径\"%2\"中无法找到文件\"%1\"。";
+    Text[ zh-TW ] = "無法在路徑<%2>內找到檔案<%1>。";
+    Text[ tr ] = "\"%2\"da olan \"%1% dosya veri yolu bulunamadı.";
+    Text[ hi-IN ] = "फाइल, \"%1\" \"%2\" मार्ग में नहीं मिला ।";
+    Text[ ar ] = "تعذر العثور على الملف \"%1\" في المسار \"%2\".";
+    Text[ he ] = "Die Datei \"%1\" konnte im Pfad \"%2\" nicht gefunden werden.";
 };
 /*************************************************************************
 
