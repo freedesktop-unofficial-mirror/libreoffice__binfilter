@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:52:12 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:36:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -144,6 +144,7 @@
 #include <basic/basmgr.hxx>
 #endif
 
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -620,7 +621,10 @@ using namespace ::com::sun::star::uno;
 /*N*/           // wenn es sich um ein Dokument lokales Basic handelt, dieses
 /*N*/           // schreiben
 /*N*/           if ( pImp->pBasicMgr )
-/*?*/                 pImp->pBasicMgr->Store( *pNewStg );
+/*?*/                 pImp->pBasicMgr->Store(
+                        *pNewStg,
+                        so3::StaticBaseUrl::GetBaseURL(
+                            INetURLObject::NO_DECODE) );
 /*N*/           else
 /*N*/           {
 /*N*/               String aURL;
@@ -630,10 +634,14 @@ using namespace ::com::sun::star::uno;
 /*?*/               {
 /*?*/                   aURL = GetDocInfo().GetTemplateFileName();
 /*?*/                   // Bei Templates keine URL...
-/*?*/                   aURL = URIHelper::SmartRelToAbs( aURL );
+/*?*/                   aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
 /*N*/               }
 /*N*/ #ifndef TFPLUGCOMM
-/*N*/                 BasicManager::CopyBasicData( GetStorage(), aURL, pNewStg );
+/*N*/                 BasicManager::CopyBasicData(
+                        GetStorage(), aURL,
+                        so3::StaticBaseUrl::GetBaseURL(
+                            INetURLObject::NO_DECODE),
+                        pNewStg );
 /*N*/ #endif
 /*N*/           }
 /*N*/
@@ -688,7 +696,9 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/       // wenn es sich um ein Dokument lokales Basic handelt, dieses schreiben
 /*N*/       if ( pImp->pBasicMgr )
-/*N*/             pImp->pBasicMgr->Store( *pNewStg );
+/*N*/             pImp->pBasicMgr->Store(
+                    *pNewStg,
+                    so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE) );
 /*N*/ #ifndef MI_NONOS
 /*N*/       else
 /*N*/       {
@@ -699,10 +709,13 @@ using namespace ::com::sun::star::uno;
 /*?*/           {
 /*?*/               aURL = GetDocInfo().GetTemplateFileName();
 /*?*/               // Bei Templates keine URL...
-/*?*/               aURL = URIHelper::SmartRelToAbs( aURL );
+/*?*/               aURL = so3::StaticBaseUrl::SmartRelToAbs( aURL );
 /*?*/           }
 /*?*/ #ifndef TFPLUGCOMM
-/*?*/             BasicManager::CopyBasicData( GetStorage(), aURL, pNewStg );
+/*?*/             BasicManager::CopyBasicData(
+                    GetStorage(), aURL,
+                    so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
+                    pNewStg );
 /*?*/ #endif
 /*N*/       }
 /*N*/ #endif
@@ -1783,8 +1796,8 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 //STRIP001                 // styles should be updated, create document in organizer mode to read in the styles
 //STRIP001                 SfxObjectShellLock xTemplDoc = GetFactory().CreateObject( SFX_CREATE_MODE_ORGANIZER );
 //STRIP001              xTemplDoc->DoInitNew(0);
-//STRIP001              String aOldBaseURL = INetURLObject::GetBaseURL();
-//STRIP001                 INetURLObject::SetBaseURL( INetURLObject( aTemplFileName ).GetMainURL( INetURLObject::NO_DECODE ) );
+//STRIP001              String aOldBaseURL = so3::StaticBaseUrl::GetBaseURL();
+//STRIP001                 so3::StaticBaseUrl::SetBaseURL( INetURLObject( aTemplFileName ).GetMainURL( INetURLObject::NO_DECODE ) );
 //STRIP001              if ( xTemplDoc->LoadFrom(aTemplStor) )
 //STRIP001              {
 //STRIP001                     // transfer styles from xTemplDoc to this document
@@ -1795,7 +1808,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 //STRIP001                  pInfo->Save(xDocStor);
 //STRIP001              }
 //STRIP001
-//STRIP001              INetURLObject::SetBaseURL( aOldBaseURL );
+//STRIP001              so3::StaticBaseUrl::SetBaseURL( aOldBaseURL );
 //STRIP001          }
 //STRIP001 /*
 //STRIP001          SfxConfigManager *pCfgMgr = SFX_CFGMANAGER();
