@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $
+ *  last change: $Author: hr $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,12 +74,12 @@
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-#ifndef _PERSIST_HXX
-#include <so3/persist.hxx>
-#endif
-#ifndef _FACTORY_HXX
-#include <so3/factory.hxx>
-#endif
+// auto strip #ifndef _PERSIST_HXX
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
+// auto strip #ifndef _FACTORY_HXX
+// auto strip #include <so3/factory.hxx>
+// auto strip #endif
 #ifndef _EMBOBJ_HXX
 #include <so3/embobj.hxx>
 #endif
