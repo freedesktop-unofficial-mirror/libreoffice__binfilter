@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdundo.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:33:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,35 +60,35 @@
  ************************************************************************/
 
 #include "svdundo.hxx"
-#include "svditext.hxx"
-#include "svdotext.hxx"
-#include "svdobj.hxx"
-#include "svdpage.hxx"
-#include "svdlayer.hxx"
-#include "svdmodel.hxx"
-#include "svdview.hxx"
+// auto strip #include "svditext.hxx"
+// auto strip #include "svdotext.hxx"
+// auto strip #include "svdobj.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdlayer.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdview.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
+// auto strip #include "svdglob.hxx"  // StringCache
 #include "scene3d.hxx"
 
-#ifndef _OUTLOBJ_HXX //autogen
-#include <outlobj.hxx>
-#endif
+// auto strip #ifndef _OUTLOBJ_HXX //autogen
+// auto strip #include <outlobj.hxx>
+// auto strip #endif
 
 // #i11426#
-#ifndef _SVDOGRP_HXX
-#include <svdogrp.hxx>
-#endif
+// auto strip #ifndef _SVDOGRP_HXX
+// auto strip #include <svdogrp.hxx>
+// auto strip #endif
 
 // #109587#
-#ifndef _SVDCAPT_HXX
-#include <svdocapt.hxx>
-#endif
+// auto strip #ifndef _SVDCAPT_HXX
+// auto strip #include <svdocapt.hxx>
+// auto strip #endif
 
 // #109587#
-#ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

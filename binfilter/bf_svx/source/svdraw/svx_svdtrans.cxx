@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtrans.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:32:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,21 +63,21 @@
 #include <math.h>
 #include "xpoly.hxx"
 
-#ifndef _VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
 #ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
+// auto strip #include <svtools/syslocale.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
