@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_colfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:33:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,8 +62,13 @@
 
 #pragma hdrstop
 
-#include <hintids.hxx>
+// auto strip #include <hintids.hxx>
 #include "cntfrm.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 
 #include "hintids.hxx"
@@ -84,9 +89,9 @@
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
 #endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
 #include "frmtool.hxx"
 #include "colfrm.hxx"
 #include "pagefrm.hxx"
