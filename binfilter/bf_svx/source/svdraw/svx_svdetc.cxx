@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdetc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:22:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:21:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 
 #include "svdetc.hxx"
 #include "svditext.hxx"
-#include "svdmodel.hxx"
-#include "svdtrans.hxx"
-#include "svdglob.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdglob.hxx"
 #include "svdstr.hrc"
 #include "svdviter.hxx"
 #include "svdview.hxx"
@@ -81,45 +81,45 @@
 #include <eeitem.hxx>
 #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _CONFIG_HXX
-#include <tools/config.hxx>
-#endif
+// auto strip #ifndef _CONFIG_HXX
+// auto strip #include <tools/config.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 #include <svtools/cacheoptions.hxx>
 #endif
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
-#ifndef _BIGINT_HXX //autogen
-#include <tools/bigint.hxx>
-#endif
+// auto strip #ifndef _BIGINT_HXX //autogen
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
 
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include "fontitem.hxx"
-#endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include "fontitem.hxx"
+// auto strip #endif
 
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include "colritem.hxx"
-#endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include "colritem.hxx"
+// auto strip #endif
 
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include "fhgtitem.hxx"
-#endif
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include "fhgtitem.hxx"
+// auto strip #endif
 
-#ifndef _SVX__XGRADIENT_HXX //autogen
-#include "xgrad.hxx"
-#endif
+// auto strip #ifndef _SVX__XGRADIENT_HXX //autogen
+// auto strip #include "xgrad.hxx"
+// auto strip #endif
 
-#ifndef SVX_XFILLIT0_HXX //autogen
-#include "xfillit0.hxx"
-#endif
+// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
+// auto strip #include "xfillit0.hxx"
+// auto strip #endif
 
 #ifndef _SVX_XFLCLIT_HXX //autogen
 #include "xflclit.hxx"
@@ -141,25 +141,25 @@
 #include "svdoole2.hxx"
 #endif
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
