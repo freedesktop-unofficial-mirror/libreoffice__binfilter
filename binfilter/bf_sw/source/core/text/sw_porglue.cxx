@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porglue.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:53:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,18 @@
 
 #pragma hdrstop
 
-#include "swrect.hxx"
+// auto strip #include "swrect.hxx"
 #include "paratr.hxx"   // pTabStop, ADJ*
-#include "viewopt.hxx"  // SwViewOptions
-#include "errhdl.hxx"   // ASSERT
+// auto strip #include "viewopt.hxx"    // SwViewOptions
+// auto strip #include "errhdl.hxx"     // ASSERT
 
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 
 #include "txtcfg.hxx"
-#include "porglue.hxx"
-#include "inftxt.hxx"
+// auto strip #include "porglue.hxx"
+// auto strip #include "inftxt.hxx"
 #include "porlay.hxx"   // SwParaPortion, SetFull
 #include "porfly.hxx"   // SwParaPortion, SetFull
 namespace binfilter {
