@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtio.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:57:28 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:11:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,7 +71,8 @@
 #error Wer fummelt denn an den makefiles?
 #endif
 
-// auto strip #include "txtcfg.hxx"
+#define CONSTCHAR( name, string ) static const sal_Char __FAR_DATA name[] = string
+//#include "txtcfg.hxx"
 
 // auto strip #include "txtfrm.hxx"       // IsDbg()
 
@@ -79,7 +80,7 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #include "flyfrms.hxx"
+#include "flyfrms.hxx"
 #include "inftxt.hxx"
 // auto strip #include "porexp.hxx"
 // auto strip #include "porfld.hxx"
@@ -592,7 +593,7 @@ namespace binfilter {//STRIP009
 /*N*/
 /*N*/   while( pPortion )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       SwTxtPortion *pTxtPor = pPortion->InTxtGrp() ?
 /*N*/                               (SwTxtPortion *)pPortion : NULL ;
 /*N*/       ++nNr;
@@ -805,7 +806,7 @@ namespace binfilter {//STRIP009
 /*N*/   SwLinePortion *pPos = GetPortion();
 /*N*/   while( pPos )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       rOs << "\t";
 /*N*/       pPos->operator<<( rOs );
 /*N*/       pPos = pPos->GetPortion();
