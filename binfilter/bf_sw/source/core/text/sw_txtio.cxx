@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtio.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:57:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,34 +64,39 @@
 
 #include "viewsh.hxx"       // IsDbg()
 #include "viewopt.hxx"      // IsDbg()
-#include "txtatr.hxx"
-#include "errhdl.hxx"
+// auto strip #include "txtatr.hxx"
+// auto strip #include "errhdl.hxx"
 
 #ifdef PRODUCT
 #error Wer fummelt denn an den makefiles?
 #endif
 
-#include "txtcfg.hxx"
+// auto strip #include "txtcfg.hxx"
 
-#include "txtfrm.hxx"       // IsDbg()
-#include "flyfrms.hxx"
+// auto strip #include "txtfrm.hxx"       // IsDbg()
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "flyfrms.hxx"
 #include "inftxt.hxx"
-#include "porexp.hxx"
-#include "porfld.hxx"
+// auto strip #include "porexp.hxx"
+// auto strip #include "porfld.hxx"
 #include "porfly.hxx"
 #include "porftn.hxx"
-#include "porglue.hxx"
+// auto strip #include "porglue.hxx"
 #include "porhyph.hxx"
-#include "porlay.hxx"
-#include "porlin.hxx"
+// auto strip #include "porlay.hxx"
+// auto strip #include "porlin.hxx"
 #include "porref.hxx"
 #include "porrst.hxx"
 #include "portab.hxx"
 #include "portox.hxx"
-#include "portxt.hxx"
+// auto strip #include "portxt.hxx"
 #include "pordrop.hxx"
 #include "pormulti.hxx"
-#include "ndhints.hxx"
+// auto strip #include "ndhints.hxx"
 #include "frmsh.hxx"
 
 // So kann man die Layoutstruktur ausgeben lassen
@@ -99,14 +104,14 @@
 #ifdef AMA_LAYOUT
 #include <stdio.h>
 #include <stdlib.h>         // getenv()
-#include <flowfrm.hxx>
-#include <pagefrm.hxx>
-#ifndef _SVDOBJ_HXX //autogen
-#include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX //autogen
-#include <dflyobj.hxx>
-#endif
+// auto strip #include <flowfrm.hxx>
+// auto strip #include <pagefrm.hxx>
+// auto strip #ifndef _SVDOBJ_HXX //autogen
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _DFLYOBJ_HXX //autogen
+// auto strip #include <dflyobj.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
