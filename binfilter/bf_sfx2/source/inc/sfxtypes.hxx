@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxtypes.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:59:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,31 +61,31 @@
 #ifndef _SFX_SFXTYPES_HXX
 #define _SFX_SFXTYPES_HXX
 
-#ifndef _DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
-#ifndef _RC_HXX //autogen
-#include <tools/rc.hxx>
-#endif
+// auto strip #ifndef _DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _RC_HXX //autogen
+// auto strip #include <tools/rc.hxx>
+// auto strip #endif
 #ifndef _RCID_H //autogen
 #include <tools/rcid.h>
 #endif
-#ifndef _RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
-#include <tools/link.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINK_HXX //autogen
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _SV_WRKWIN_HXX
 #include <vcl/wrkwin.hxx>
 #endif
 
-#ifndef _VOS_MUTEX_HXX //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 class Timer;
 namespace binfilter {
 
