@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unostyle.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:14:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,6 +120,11 @@
 #ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
@@ -130,6 +135,11 @@
 #include <charfmt.hxx>
 #endif
 #include <cmdid.h>
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
+#endif
+
 #ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
 #endif
@@ -160,6 +170,11 @@
 #ifndef _DOCSTYLE_HXX //autogen
 #include <docstyle.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
