@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmltoken.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:09 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:23:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2147,6 +2147,8 @@ namespace xmloff { namespace token {
     XML_FONT_INDEPENDENT_LINE_SPACING,
         XML_SELECTION,
         XML_SELECTION_INDEXES,
+        XML_SCRIPT_DATA,
+        XML_LIBRARIES,
         XML_TOKEN_END
     };
 
