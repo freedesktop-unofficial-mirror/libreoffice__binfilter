@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,8 +100,12 @@
 #ifndef _SVDUNDO_HXX
 #include <bf_svx/svdundo.hxx>
 #endif
-
 class Timer;
+class Graphic;
+class Point;
+class Window;
+namespace binfilter {
+
 class SfxObjectShell;
 class SdPage;
 class FrameView;
@@ -115,9 +119,6 @@ class SfxMedium;
 class SvxSearchItem;
 class SdrOle2Obj;
 class EditStatus;
-class Graphic;
-class Point;
-class Window;
 class SdTransferable;
 struct SpellCallbackInfo;
 struct StyleRequestData;
@@ -697,4 +698,5 @@ private:
         BOOL bIsPageObj);
 };
 
+} //namespace binfilter
 #endif // _DRAWDOC_HXX

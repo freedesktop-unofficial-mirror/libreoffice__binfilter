@@ -2,9 +2,9 @@
  *
  *  $RCSfile: UnoForbiddenCharsTable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,12 +74,13 @@
 #endif
 
 #include <cppuhelper/implbase2.hxx>
+namespace binfilter {
 
 class SvxForbiddenCharactersTable;
 
 class SvxUnoForbiddenCharsTable : public cppu::WeakImplHelper2<
-                                        com::sun::star::i18n::XForbiddenCharacters,
-                                        com::sun::star::linguistic2::XSupportedLocales>
+                                        ::com::sun::star::i18n::XForbiddenCharacters,
+                                        ::com::sun::star::linguistic2::XSupportedLocales>
 {
 protected:
     /** this virtual function is called if the forbidden characters are changed */
@@ -92,14 +93,15 @@ public:
     ~SvxUnoForbiddenCharsTable();
 
     // XForbiddenCharacters
-    virtual com::sun::star::i18n::ForbiddenCharacters SAL_CALL getForbiddenCharacters( const com::sun::star::lang::Locale& rLocale ) throw(com::sun::star::container::NoSuchElementException, com::sun::star::uno::RuntimeException);
-    virtual sal_Bool SAL_CALL hasForbiddenCharacters( const com::sun::star::lang::Locale& rLocale ) throw(com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setForbiddenCharacters( const com::sun::star::lang::Locale& rLocale, const com::sun::star::i18n::ForbiddenCharacters& rForbiddenCharacters ) throw(com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removeForbiddenCharacters( const com::sun::star::lang::Locale& rLocale ) throw(com::sun::star::uno::RuntimeException);
+    virtual ::com::sun::star::i18n::ForbiddenCharacters SAL_CALL getForbiddenCharacters( const ::com::sun::star::lang::Locale& rLocale ) throw(::com::sun::star::container::NoSuchElementException, ::com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL hasForbiddenCharacters( const ::com::sun::star::lang::Locale& rLocale ) throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL setForbiddenCharacters( const ::com::sun::star::lang::Locale& rLocale, const ::com::sun::star::i18n::ForbiddenCharacters& rForbiddenCharacters ) throw(::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL removeForbiddenCharacters( const ::com::sun::star::lang::Locale& rLocale ) throw(::com::sun::star::uno::RuntimeException);
 
     // XSupportedLocales
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::lang::Locale > SAL_CALL getLocales(  ) throw (::com::sun::star::uno::RuntimeException);
     virtual sal_Bool SAL_CALL hasLocale( const ::com::sun::star::lang::Locale& aLocale ) throw (::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif // _SVX_UNOFORBIDDENCHARSTABLE_HXX_

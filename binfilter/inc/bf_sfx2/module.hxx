@@ -2,9 +2,9 @@
  *
  *  $RCSfile: module.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,12 +73,14 @@
 #include <sal/types.h>
 #endif
 class ImageList;
+class ModalDialog;
+class Window;
+namespace binfilter {
 
 class SfxAcceleratorManager;
 class SfxMenuBarManager;
 class SfxBindings;
 class SfxObjectFactory;
-class ModalDialog;
 class SfxObjectFactory;
 class SfxModuleArr_Impl;
 class SfxModule_Impl;
@@ -93,7 +95,6 @@ class SfxChildWinFactArr_Impl;
 class SfxMenuCtrlFactArr_Impl;
 class SfxStbCtrlFactArr_Impl;
 class SfxTabPage;
-class Window;
 
 class ISfxModule
 {
@@ -168,5 +169,6 @@ public:
             LibName##DLL::Exit();                                           \
         }
 
+}//end of namespace binfilter
 #endif
 

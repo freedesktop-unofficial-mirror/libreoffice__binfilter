@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swunohelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,20 +65,22 @@
 #include <sal/types.h>
 #endif
 
+
 namespace com { namespace sun { namespace star {
     namespace uno {
         class Any;
     }
 }}};
-
 class String;
 class SvStrings;
+
+namespace binfilter {
 
 namespace SWUnoHelper {
 
 // calls over the compherl the getEnumAsInt32 function and handle the
 // exceptions.
-sal_Int32 GetEnumAsInt32( const com::sun::star::uno::Any& rVal );
+sal_Int32 GetEnumAsInt32( const ::com::sun::star::uno::Any& rVal );
 
 
 // methods for UCB actions:
@@ -111,4 +113,5 @@ BOOL UCB_IsFile( const String& rURL );
 BOOL UCB_IsDirectory( const String& rURL );
 }
 
+} //namespace binfilter
 #endif

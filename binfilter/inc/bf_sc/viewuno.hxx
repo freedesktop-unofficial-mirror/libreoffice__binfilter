@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,6 +113,7 @@
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
+namespace binfilter {
 
 class ScTabViewShell;
 
@@ -121,29 +122,29 @@ class ScTabViewShell;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionListener >* XRangeSelectionListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 )//STRIP008 ;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionChangeListener >* XRangeSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::view::XSelectionChangeListener >* XSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertyChangeListener >* XViewPropertyChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 )//STRIP008 ;
 
 
 //  ScViewPaneBase not derived from OWeakObject
 //  to avoid duplicate OWeakObject in ScTabViewObj
 
-class ScViewPaneBase : public com::sun::star::sheet::XViewPane,
-                       public com::sun::star::sheet::XCellRangeReferrer,
-                       public com::sun::star::view::XControlAccess,
-                       public com::sun::star::lang::XServiceInfo,
-                       public com::sun::star::lang::XTypeProvider,
+class ScViewPaneBase : public ::com::sun::star::sheet::XViewPane,
+                       public ::com::sun::star::sheet::XCellRangeReferrer,
+                       public ::com::sun::star::view::XControlAccess,
+                       public ::com::sun::star::lang::XServiceInfo,
+                       public ::com::sun::star::lang::XTypeProvider,
                        public SfxListener
 {
 private:
@@ -221,15 +222,15 @@ public:
 
 class ScTabViewObj : public ScViewPaneBase,
                      public SfxBaseController,
-                     public com::sun::star::sheet::XSpreadsheetView,
-                     public com::sun::star::container::XEnumerationAccess,
-                     public com::sun::star::container::XIndexAccess,
-                     public com::sun::star::view::XSelectionSupplier,
-                     public com::sun::star::beans::XPropertySet,
-                     public com::sun::star::sheet::XViewSplitable,
-                     public com::sun::star::sheet::XViewFreezable,
-                     public com::sun::star::sheet::XRangeSelection,
-                     public com::sun::star::lang::XUnoTunnel
+                     public ::com::sun::star::sheet::XSpreadsheetView,
+                     public ::com::sun::star::container::XEnumerationAccess,
+                     public ::com::sun::star::container::XIndexAccess,
+                     public ::com::sun::star::view::XSelectionSupplier,
+                     public ::com::sun::star::beans::XPropertySet,
+                     public ::com::sun::star::sheet::XViewSplitable,
+                     public ::com::sun::star::sheet::XViewFreezable,
+                     public ::com::sun::star::sheet::XRangeSelection,
+                     public ::com::sun::star::lang::XUnoTunnel
 {
 private:
     SfxItemPropertySet                      aPropSet;
@@ -387,9 +388,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScTabViewObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScTabViewObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 
                             // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes()
@@ -399,5 +400,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

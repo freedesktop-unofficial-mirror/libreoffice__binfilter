@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unonames.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef SC_UNONAMES_HXX
 #define SC_UNONAMES_HXX
+namespace binfilter {
 
 //  document
 #define SC_UNO_AREALINKS            "AreaLinks"
@@ -521,5 +522,6 @@
 #define SC_UNONAME_RENDERDEV        "RenderDevice"
 #define SC_UNONAME_SOURCERANGE      "SourceRange"
 
+} //namespace binfilter
 #endif
 

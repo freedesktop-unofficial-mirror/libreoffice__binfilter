@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdopath.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
 #endif
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
@@ -278,5 +279,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDOPATH_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdoutl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,9 @@
 #ifndef _SD_OUTLINER_ITERATOR_HXX
 #include "SdOutlinerIterator.hxx"
 #endif
+class SfxStyleSheetPool;
+class SdrObjListIter;
+namespace binfilter {
 
 class SdViewShell;
 class SdDrawViewShell;
@@ -80,8 +83,6 @@ class SdPage;
 class SdrObject;
 class SdrTextObj;
 class SdDrawDocument;
-class SfxStyleSheetPool;
-class SdrObjListIter;
 
 
 
@@ -140,7 +141,7 @@ class SdrObjListIter;
 class SdOutliner : public SdrOutliner
 {
 public:
-//STRIP001     friend class ::sd::outliner::OutlinerContainer;
+//STRIP001     friend class ::binfilter::sd::outliner::OutlinerContainer;
 
     /** Create a new sd outliner object.
         @param pDoc
@@ -316,12 +317,12 @@ private:
     const SvxSearchItem* mpSearchItem;
 
     /// The actual object iterator.
-    ::sd::outliner::Iterator maObjectIterator;
+    ::binfilter::sd::outliner::Iterator maObjectIterator;
     /// The current position of the object iterator.
-    ::sd::outliner::IteratorPosition maCurrentPosition;
+    ::binfilter::sd::outliner::IteratorPosition maCurrentPosition;
     /// The position when the search started.  Corresponds largely to the
     /// m?Start* members.
-    ::sd::outliner::Iterator maSearchStartPosition;
+    ::binfilter::sd::outliner::Iterator maSearchStartPosition;
 
     /** This flag remebers a selection change between a call to the
         selection change listener callback and the next
@@ -423,7 +424,7 @@ private:
         @param aPosition
             The object for which to test whether it is a valid text object.
     */
-    bool IsValidTextObject (const ::sd::outliner::IteratorPosition& rPosition);
+    bool IsValidTextObject (const ::binfilter::sd::outliner::IteratorPosition& rPosition);
 
     /** Put text of current text object into outliner so that the text can
         be searched/spell checked.
@@ -506,7 +507,7 @@ private:
         @return
             Return a pointer to the <type>SdrObject</type>.
     */
-    SdrObject* SetObject (const ::sd::outliner::IteratorPosition& rPosition);
+    SdrObject* SetObject (const ::binfilter::sd::outliner::IteratorPosition& rPosition);
 
     /** Use this method when the view shell in which to search has changed.
         It handles i.e. registering at the associated view as selection
@@ -524,5 +525,6 @@ private:
 
 
 
+} //namespace binfilter
 #endif      // _SD_OUTLINER_HXX
 

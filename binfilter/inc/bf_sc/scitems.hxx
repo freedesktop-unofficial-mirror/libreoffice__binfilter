@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scitems.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
+namespace binfilter {
 
 //  EditEngine darf nicht ihre eigenen ITEMID's definieren
 #define _EEITEMID_HXX
@@ -270,6 +271,7 @@
 #define ITEMID_DATE             0
 #define ITEMID_TEXT             0
 
+} //namespace binfilter
 #endif
 
 

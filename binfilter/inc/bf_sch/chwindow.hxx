@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chwindow.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,15 +78,21 @@
 #ifndef _TRANSFER_HXX //autogen
 #include <svtools/transfer.hxx>
 #endif
-
-class SchViewShell;
-class ChartModel;
-
 namespace com { namespace sun { namespace star {
     namespace accessibility {
         class XAccessible;
     }
 }}}
+namespace binfilter {
+
+class SchViewShell;
+class ChartModel;
+
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008  namespace accessibility {
+//STRIP008      class XAccessible;
+//STRIP008  }
+//STRIP008 }}}
 
 namespace accessibility
 {
@@ -134,7 +140,7 @@ private:
 //STRIP001  String GetQuickHelpText( SdrObject*, ChartModel*, BOOL bVerbose=FALSE );
 
     /// attention: this pointer is only valid, if the weak reference below is valid
-    ::accessibility::AccessibleDocumentView * m_pAccDocumentView;
+    ::binfilter::accessibility::AccessibleDocumentView * m_pAccDocumentView;
     ::com::sun::star::uno::WeakReference< ::com::sun::star::accessibility::XAccessible >
         m_xAccDocumentView;
 
@@ -176,4 +182,5 @@ public:
 //STRIP001     ::accessibility::AccessibleDocumentView * GetAccessibleDocumentView() const;
 };
 
+} //namespace binfilter
 #endif      // _SCH_SDWINDOW_HXX

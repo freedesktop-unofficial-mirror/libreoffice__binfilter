@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoshcol.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@
 #endif
 
 #include <cppuhelper/implbase3.hxx>
+namespace binfilter {
 
 class XShapeList;
 
@@ -87,7 +88,7 @@ public:
     ::osl::Mutex maMutex;
 };
 
-com::sun::star::uno::Reference< com::sun::star::uno::XInterface > SvxShapeCollection_NewInstance() throw();
+::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxShapeCollection_NewInstance() throw();
 
 /***********************************************************************
 *                                                                      *
@@ -136,5 +137,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif
 

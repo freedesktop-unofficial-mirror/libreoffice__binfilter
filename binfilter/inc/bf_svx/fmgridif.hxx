@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmgridif.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -141,6 +141,7 @@
 #ifndef _CPPUHELPER_IMPLBASE8_HXX_
 #include <cppuhelper/implbase8.hxx>
 #endif
+namespace binfilter {
 
 class DbGridColumn;
 
@@ -595,5 +596,6 @@ protected:
     DECL_LINK(OnExecuteGridSlot, void*);
 };
 
+}//end of namespace binfilter
 #endif // _SVX_FMGRID_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtornt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,10 @@
 #ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
 #endif
-
 class IntlWrapper;
+namespace binfilter {
+
+
 
 #define IVER_VERTORIENT_REL ((USHORT)0x0001)
 
@@ -103,8 +105,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwVertOrient GetVertOrient() const { return eOrient; }
     SwRelationOrient GetRelationOrient() const { return eRelation; }
@@ -147,8 +149,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwHoriOrient GetHoriOrient() const { return eOrient; }
     SwRelationOrient GetRelationOrient() const { return eRelation; }
@@ -194,5 +196,6 @@ inline const SwFmtHoriOrient &SwFmt::GetHoriOrient(BOOL bInP) const
     { return aSet.GetHoriOrient(bInP); }
 #endif
 
+} //namespace binfilter
 #endif
 

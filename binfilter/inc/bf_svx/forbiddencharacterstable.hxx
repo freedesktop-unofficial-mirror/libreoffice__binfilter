@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forbiddencharacterstable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,17 +75,24 @@
 #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
 #endif
-
 namespace com {
 namespace sun {
 namespace star {
 namespace lang {
     class XMultiServiceFactory;
 }}}}
+namespace binfilter {
+
+//STRIP008 namespace com {
+//STRIP008 namespace sun {
+//STRIP008 namespace star {
+//STRIP008 namespace lang {
+//STRIP008  class XMultiServiceFactory;
+//STRIP008 }}}}
 
 struct ForbiddenCharactersInfo
 {
-    com::sun::star::i18n::ForbiddenCharacters aForbiddenChars;
+    ::com::sun::star::i18n::ForbiddenCharacters aForbiddenChars;
     BOOL bTemporary;
 };
 
@@ -100,10 +107,11 @@ public:
             SvxForbiddenCharactersTable( ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF, USHORT nISize = 4, USHORT nGrow = 4 );
             ~SvxForbiddenCharactersTable();
 
-    const com::sun::star::i18n::ForbiddenCharacters* GetForbiddenCharacters( USHORT nLanuage, BOOL bGetDefault ) const;
-    void    SetForbiddenCharacters(  USHORT nLanuage , const com::sun::star::i18n::ForbiddenCharacters& );
+    const ::com::sun::star::i18n::ForbiddenCharacters* GetForbiddenCharacters( USHORT nLanuage, BOOL bGetDefault ) const;
+    void    SetForbiddenCharacters(  USHORT nLanuage , const ::com::sun::star::i18n::ForbiddenCharacters& );
     void    ClearForbiddenCharacters( USHORT nLanuage );
 };
 
+}//end of namespace binfilter
 #endif // _FORBIDDENCHARACTERSTABLE_HXX
 

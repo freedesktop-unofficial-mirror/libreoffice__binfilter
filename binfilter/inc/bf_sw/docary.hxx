@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docary.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
 #endif
-
+namespace binfilter {//STRIP009
 class SwFieldType;
 class SwFrmFmt;
 class SwCharFmt;
@@ -76,7 +76,7 @@ class SwNumRule;
 class SwRedline;
 class SwUnoCrsr;
 class SwOLENode;
-
+} //namespace binfilter
 namespace com { namespace sun { namespace star { namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface
 }}}};
@@ -92,13 +92,14 @@ namespace com { namespace sun { namespace star { namespace i18n {
 #ifndef _SVARRAY_HXX //autogen
 #include <svtools/svarray.hxx>
 #endif
+namespace binfilter {
 
 typedef SwFieldType* SwFldTypePtr;
 #define GROW_FLDTYPES   16
 
 //PageDescriptor-Schnittstelle
 //typedef SwPageDesc * SwPageDescPtr;
-//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1);
+//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1)//STRIP008 ;
 
 typedef SwFrmFmt* SwFrmFmtPtr;
 SV_DECL_PTRARR_DEL(SwFrmFmts,SwFrmFmtPtr,4,4)
@@ -175,5 +176,6 @@ typedef SwOLENode* SwOLENodePtr;
 SV_DECL_PTRARR(SwOLENodes,SwOLENodePtr,16,16)
 
 
+} //namespace binfilter
 #endif  //_DOCARY_HXX
 

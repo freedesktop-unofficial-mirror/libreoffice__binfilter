@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sxlayitm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:44 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #ifndef _SVDTYPES_HXX //autogen
 #include <bf_svx/svdtypes.hxx>
 #endif
+namespace binfilter {
 
 //------------------------------
 // class SdrLayerIdItem
@@ -98,4 +99,5 @@ public:
     SdrLayerNameItem(SvStream& rIn)      : SfxStringItem(SDRATTR_LAYERNAME,rIn)  {}
 };
 
+}//end of namespace binfilter
 #endif

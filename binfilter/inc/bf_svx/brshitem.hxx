@@ -2,9 +2,9 @@
  *
  *  $RCSfile: brshitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,13 +75,6 @@
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif
-
-// class SvxBrushItem ----------------------------------------------------
-
-class Graphic;
-class GraphicObject;
-class SfxObjectShell;
-class CntWallpaperItem;
 #ifdef _USE_NAMESPACE
 namespace rtl
 {
@@ -90,6 +83,22 @@ namespace rtl
 #ifdef _USE_NAMESPACE
 }
 #endif
+class Graphic;
+class GraphicObject;
+namespace binfilter {
+
+// class SvxBrushItem ----------------------------------------------------
+
+class SfxObjectShell;
+class CntWallpaperItem;
+//STRIP008 #ifdef _USE_NAMESPACE
+//STRIP008 namespace rtl
+//STRIP008 {
+//STRIP008 #endif
+//STRIP008  class OUString;
+//STRIP008 #ifdef _USE_NAMESPACE
+//STRIP008 }
+//STRIP008 #endif
 
 #define BRUSH_GRAPHIC_VERSION   ((USHORT)0x0001)
 
@@ -143,8 +152,8 @@ public:
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create( SvStream&, USHORT nVersion ) const;
@@ -181,5 +190,6 @@ public:
 //STRIP001  CntWallpaperItem*           CreateCntWallpaperItem() const;
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SVX_BRSHITEM_HXX
 

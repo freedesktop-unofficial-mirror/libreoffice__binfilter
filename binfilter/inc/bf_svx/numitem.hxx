@@ -2,9 +2,9 @@
  *
  *  $RCSfile: numitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,17 +99,19 @@
 #ifndef _SV_FONTCVT_HXX
 #include <vcl/fontcvt.hxx>
 #endif
-
-class SvxBrushItem;
-class Font;
-class Graphic;
-class SvxNodeNum;
-class BitmapEx;
 namespace com{namespace sun{ namespace star{
     namespace text{
         class XNumberingFormatter;
     }
 }}}
+class Font;
+class Graphic;
+class BitmapEx;
+namespace binfilter {
+
+class SvxBrushItem;
+class SvxNodeNum;
+
 
 // -----------------------------------------------------------------------
 //Feature-Flags (only USHORT!)
@@ -135,18 +137,18 @@ namespace com{namespace sun{ namespace star{
 class SvxNumberType
 {
     static sal_Int32 nRefCount;
-    static com::sun::star::uno::Reference<com::sun::star::text::XNumberingFormatter> xFormatter;
+    static ::com::sun::star::uno::Reference< ::com::sun::star::text::XNumberingFormatter> xFormatter;
 
     sal_Int16       nNumType;
     sal_Bool        bShowSymbol;        // Symbol auch anzeigen?
 
 public:
-    SvxNumberType(sal_Int16 nType = com::sun::star::style::NumberingType::ARABIC);
+    SvxNumberType(sal_Int16 nType = ::com::sun::star::style::NumberingType::ARABIC);
     SvxNumberType(const SvxNumberType& rType);
     ~SvxNumberType();
 
     String          GetNumStr( ULONG nNo ) const;
-    String          GetNumStr( ULONG nNo, const com::sun::star::lang::Locale& rLocale ) const;
+    String          GetNumStr( ULONG nNo, const ::com::sun::star::lang::Locale& rLocale ) const;
 
     void            SetNumberingType(sal_Int16 nSet) {nNumType = nSet;}
     sal_Int16       GetNumberingType() const {return nNumType;}
@@ -156,9 +158,9 @@ public:
 
     sal_Bool        IsTxtFmt() const
                     {
-                        return com::sun::star::style::NumberingType::NUMBER_NONE != nNumType &&
-                               com::sun::star::style::NumberingType::CHAR_SPECIAL != nNumType &&
-                               com::sun::star::style::NumberingType::BITMAP != nNumType;
+                        return ::com::sun::star::style::NumberingType::NUMBER_NONE != nNumType &&
+                               ::com::sun::star::style::NumberingType::CHAR_SPECIAL != nNumType &&
+                               ::com::sun::star::style::NumberingType::BITMAP != nNumType;
                     }
 };
 
@@ -271,7 +273,7 @@ class SvxNumRule
     BOOL                aFmtsSet[SVX_MAX_NUM]; //Flags ueber Gueltigkeit der Ebenen
 
     static sal_Int32    nRefCount;
-    com::sun::star::lang::Locale aLocale;
+    ::com::sun::star::lang::Locale aLocale;
 public:
     SvxNumRule(ULONG nFeatures, USHORT nLevels, BOOL bCont, SvxNumRuleType eType = SVX_RULETYPE_NUMBERING);
     SvxNumRule(const SvxNumRule& rCopy);
@@ -328,8 +330,8 @@ public:
 
     SvxNumRule*             GetNumRule() const {return pNumRule;}
 
-//STRIP001  virtual sal_Bool        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 /* -----------------28.10.98 15:21-------------------
  *
@@ -381,5 +383,6 @@ inline SvxNodeNum& SvxNodeNum::operator=( const SvxNodeNum& rCpy )
  * --------------------------------------------------*/
 SvxNumRule* SvxConvertNumRule( const SvxNumRule* pRule, USHORT nLevel, SvxNumRuleType eType );
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txencbox.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:48 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
 #endif
+namespace binfilter {
 
 //STRIP001 class SvxTextEncodingTable;
 
@@ -158,5 +159,6 @@ public:
 //STRIP001  BOOL                IsTextEncodingSelected( const rtl_TextEncoding nEnc ) const;
 };
 
+}//end of namespace binfilter
 #endif
 

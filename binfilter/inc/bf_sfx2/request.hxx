@@ -2,9 +2,9 @@
  *
  *  $RCSfile: request.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,17 +71,19 @@
 #ifndef _COM_SUN_STAR_FRAME_XDISPATCHRECORDER_HPP_
 #include <com/sun/star/frame/XDispatchRecorder.hpp>
 #endif
-
-class SfxMacro;
 class SfxPoolItem;
 class SfxAllItemSet;
 class SfxItemSet;
 class SfxItemPool;
+class String;
+namespace binfilter {
+
+class SfxMacro;
+
 class SfxShell;
 class SfxSlot;
 class SfxMacroStatement;
 class SfxArguments;
-class String;
 class SfxViewFrame;
 struct SfxRequest_Impl;
 
@@ -99,7 +101,7 @@ friend struct SfxRequest_Impl;
 #if _SOLAR__PRIVATE
 public:
     void                Record_Impl( SfxShell &rSh, const SfxSlot &rSlot,
-                                     com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > xRecorder,
+                                     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > xRecorder,
                                      SfxViewFrame* );
 private:
     void                Done_Impl( const SfxItemSet *pSet );
@@ -137,7 +139,7 @@ public:
     const SfxPoolItem*  GetReturnValue() const;
 
     static SfxMacro*    GetRecordingMacro();
-//STRIP001     static com::sun::star::uno::Reference< com::sun::star::frame::XDispatchRecorder > GetMacroRecorder( SfxViewFrame* pFrame=NULL );
+//STRIP001     static ::com::sun::star::uno::Reference< ::com::sun::star::frame::XDispatchRecorder > GetMacroRecorder( SfxViewFrame* pFrame=NULL );
     static BOOL         HasMacroRecorder( SfxViewFrame* pFrame=NULL );
     USHORT              GetCallMode() const;
 //STRIP001  FASTBOOL            IsRecording() const;
@@ -169,4 +171,5 @@ private:
     const ItemType *pItem = (const ItemType*) \
         SfxRequest::GetItem( pArgs, nSlotId, bDeep, TYPE(ItemType) )
 
+}//end of namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,8 @@
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
+class SfxItemPool;
+namespace binfilter {
 
 /************************************************************************/
 
@@ -81,7 +83,6 @@ class XLineEndTable;
 class XHatchTable;
 class XBitmapTable;
 class XGradientTable;
-class SfxItemPool;
 class NameOrIndex;
 class XPropertyList;
 
@@ -126,4 +127,5 @@ public:
     static String CheckNamedItem( const NameOrIndex* pCheckItem, const sal_uInt16 nWhich, const SfxItemPool* pPool1, const SfxItemPool* pPool2, SvxCompareValueFunc pCompareValueFunc, USHORT nPrefixResId, XPropertyList* pDefaults = NULL );
 };
 
+}//end of namespace binfilter
 #endif

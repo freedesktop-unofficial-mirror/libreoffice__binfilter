@@ -2,9 +2,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,12 +82,14 @@
 #ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
 #endif
+class SvUShorts;
+namespace binfilter {
 
 // ---------------------
 // forward Deklarationen
 // ---------------------
 
-class SvUShorts;
+
 class SwCntntFrm;
 class SwCntntNode;
 class SwDoc;
@@ -734,4 +736,5 @@ inline const SfxPoolItem& SwCntntNode::GetAttr( USHORT nWhich,
 
 #undef INLINE
 
+} //namespace binfilter
 #endif

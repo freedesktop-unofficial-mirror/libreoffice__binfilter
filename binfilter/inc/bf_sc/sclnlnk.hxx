@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sclnlnk.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef SC_LINECON_HXX
 #define SC_LINECON_HXX
+namespace binfilter {
 
 struct ScLineStruct
 {
@@ -78,5 +79,6 @@ struct ScLineStruct
 //STRIP001              const ScLineStruct& rbLine,
 //STRIP001              short* dxArr);
 
+} //namespace binfilter
 #endif
 

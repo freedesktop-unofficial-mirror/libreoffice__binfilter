@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndtyp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+namespace binfilter {
 
 // Ids fuer die verschiedenden Nodes; in der Basisklasse steht der Member,
 // der angibt, um was fuer einen es sich handelt
@@ -102,4 +103,5 @@ const BYTE ND_HAS_NEXT_LAYNODE = 0x02;
 
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ddefld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #include <so3/lnkbase.hxx>
 #endif
 #include "fldbas.hxx"
+namespace binfilter {
 
 class SwDoc;
 
@@ -87,7 +88,7 @@ class SwDDEFieldType : public SwFieldType
     void _RefCntChgd();
 public:
     SwDDEFieldType( const String& rName, const String& rCmd,
-                    USHORT = so3::LINKUPDATE_ONCALL );
+                    USHORT = ::so3::LINKUPDATE_ONCALL );
     ~SwDDEFieldType();
 
     const String& GetExpansion() const          { return aExpansion; }
@@ -97,8 +98,8 @@ public:
     virtual SwFieldType* Copy() const;
     virtual const String& GetName() const;
 
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     String GetCmd() const;
     void SetCmd( const String& rStr );
@@ -150,4 +151,5 @@ public:
 };
 
 
+} //namespace binfilter
 #endif // _DDEFLD_HXX

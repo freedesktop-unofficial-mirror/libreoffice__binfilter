@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xlnstwit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SFXMETRICITEM_HXX //autogen
 #include <svtools/metitem.hxx>
 #endif
+namespace binfilter {
 
 #define LINE_START_WIDTH_DEFAULT        (200)
 
@@ -80,8 +81,8 @@ public:
     virtual SfxPoolItem*    Clone(SfxItemPool* pPool = 0) const;
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -90,4 +91,5 @@ public:
 
 };
 
+}//end of namespace binfilter
 #endif

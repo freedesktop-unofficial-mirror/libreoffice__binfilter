@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unotext.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,6 +189,7 @@
 
 #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unomid.hxx>
+namespace binfilter {
 
 #define WID_FONTDESC        3900
 #define WID_NUMLEVEL        3901
@@ -366,8 +367,8 @@ protected:
 
     void SetEditSource( SvxEditSource* _pEditSource ) throw();
 
-    virtual void getPropertyValue( const SfxItemPropertyMap* pMap, com::sun::star::uno::Any& rAny, const SfxItemSet& rSet ) throw(::com::sun::star::beans::UnknownPropertyException );
-    virtual void setPropertyValue( const SfxItemPropertyMap* pMap, const com::sun::star::uno::Any& rValue, const ESelection& rSelection, const SfxItemSet& rOldSet, SfxItemSet& rNewSet ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException );
+    virtual void getPropertyValue( const SfxItemPropertyMap* pMap, ::com::sun::star::uno::Any& rAny, const SfxItemSet& rSet ) throw(::com::sun::star::beans::UnknownPropertyException );
+    virtual void setPropertyValue( const SfxItemPropertyMap* pMap, const ::com::sun::star::uno::Any& rValue, const ESelection& rSelection, const SfxItemSet& rOldSet, SfxItemSet& rNewSet ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException );
 
 public:
     SvxUnoTextRangeBase( const SfxItemPropertyMap* _pMap ) throw();
@@ -488,7 +489,7 @@ public:
     ESelection InsertField( const SvxFieldItem& rField ) throw();
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getStaticTypes() throw();
 
-    sal_Bool queryAggregation( const com::sun::star::uno::Type & rType, com::sun::star::uno::Any& rAny );
+    sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
 
     // ::com::sun::star::uno::XInterface
     virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
@@ -575,12 +576,12 @@ public:
 };
 
 // ====================================================================
-
+}//end of namespace binfilter
 #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
 #endif
-
 class SvUShorts;
+namespace binfilter {
 class SvxUnoTextContent : public SvxUnoTextRangeBase,
                           public ::com::sun::star::text::XTextContent,
                           public ::com::sun::star::container::XEnumerationAccess,
@@ -730,4 +731,5 @@ public:
 const SfxItemPropertyMap* ImplGetSvxUnoOutlinerTextCursorPropertyMap();
 const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap();
 
+}//end of namespace binfilter
 #endif

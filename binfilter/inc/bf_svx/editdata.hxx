@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,9 +68,11 @@
 #endif
 
 #include <svtools/svarray.hxx>
-
 class SfxItemSet;
 class SfxPoolItem;
+class SfxStyleSheet;
+namespace binfilter {
+
 class SvParser;
 class SvxFieldItem;
 
@@ -133,7 +135,6 @@ class EditEngine;
 class ImpEditView;
 class ImpEditEngine;
 class EditTextObject;
-class SfxStyleSheet;
 
 #define RGCHK_NONE          0   // Keine Korrektur der ViusArea beim Scrollen
 #define RGCHK_NEG           1   // Keine neg. ViusArea beim Scrollen
@@ -349,7 +350,7 @@ struct EECharAttrib
     xub_StrLen          nEnd;
 };
 
-SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 );
+SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )//STRIP008 ;
 
 struct MoveParagraphsInfo
 {
@@ -434,4 +435,5 @@ struct EENotify
         { eNotificationType = eType; pEditEngine = NULL; pEditView = NULL; nParagraph = EE_PARA_NOT_FOUND; nParam1 = 0; nParam2 = 0; }
 };
 
+}//end of namespace binfilter
 #endif // _MyEDITDATA_HXX

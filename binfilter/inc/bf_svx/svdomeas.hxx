@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdomeas.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
 #endif
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
@@ -224,15 +225,15 @@ public:
 // Pfeile:     2mm x 4mm
 // Textgroesse
 //                              ___
-//     ณ        Masszahl       ณ 2mm
-//     ร<--------------------->ด---
-//     ณ                       ณ 8mm
-//     ณ                       ณ
-//    Pt1ออออออออออออป        Pt2-- <----Bezugskante (von Pt1 nach Pt2)
-//     บ             บ         ณ___ <- Ueberstand der Masshilfslinie(n)
-//     บ             ศอออออออออป
-//     บ Zu bemassendes Objekt บ
-//     ศอออออออออออออออออออออออผ
+//     ?       Masszahl       ?2mm
+//     ?--------------------->?--
+//     ?                      ?8mm
+//     ?                      ?
+//    Pt1ออออออออออออ?       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
+//     ?            ?        ณ___ <- Ueberstand der Masshilfslinie(n)
+//     ?            ศอออออออออ?
+//     ?Zu bemassendes Objekt ?
+//     ศอออออออออออออออออออออออ?
 //
 // Attribute:
 // ~~~~~~~~~~
@@ -265,5 +266,6 @@ public:
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDOMEAS_HXX
 

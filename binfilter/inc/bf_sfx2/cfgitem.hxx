@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cfgitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,11 +60,12 @@
  ************************************************************************/
 #ifndef _SFXCFGITEM_HXX
 #define _SFXCFGITEM_HXX
+class SotStorage;
+class String;
+namespace binfilter {
 
 class SfxConfigManager;
 class SfxShell;
-class SotStorage;
-class String;
 
 #define SFX_ITEMTYPE_ACCEL               1
 #define SFX_ITEMTYPE_MENU                2
@@ -88,9 +89,9 @@ class String;
 
 #define SFX_ITEMTYPE_INTERFACE_START    20
 #define SFX_ITEMTYPE_INTERFACE_END     300
-
+}//end of namespace binfilter
 #include <tools/solar.h>
-
+namespace binfilter {
 class SfxConfigItem
 {
     SfxConfigManager*   m_pCfgMgr;
@@ -137,5 +138,6 @@ public:
                         { return m_pCfgMgr; }
 };
 
+}//end of namespace binfilter
 #endif
 

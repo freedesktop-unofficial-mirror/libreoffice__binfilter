@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fhgtitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@ namespace rtl
 #ifdef _USE_NAMESPACE
 }
 #endif
+namespace binfilter {
 
 // class SvxFontHeightItem -----------------------------------------------
 
@@ -105,8 +106,8 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -154,5 +155,6 @@ public:
     SfxMapUnit GetPropUnit() const { return ePropUnit;  }   // Percent, Twip, ...
 };
 
+}//end of namespace binfilter
 #endif
 

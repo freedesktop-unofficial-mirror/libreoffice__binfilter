@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dialmgr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,14 +69,15 @@
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>
 #endif
+class ResMgr;
+class GraphicFilter;
+class GraphicFilter;
+namespace binfilter {
 
 // forward ---------------------------------------------------------------
 
-class ResMgr;
-class GraphicFilter;
 
 // struct DialogsResMgr --------------------------------------------------
-class GraphicFilter;
 
 struct DialogsResMgr
 {
@@ -98,5 +99,6 @@ private:
 #define SVX_RESSTR(i)   UniString(ResId(i,DIALOG_MGR()))
 #define SVX_RESSSTR(i)  String(ResId(i,DIALOG_MGR()))
 
+}//end of namespace binfilter
 #endif
 

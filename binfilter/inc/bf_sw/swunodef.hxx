@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swunodef.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _SWUNODEF_HXX
 #define _SWUNODEF_HXX
+namespace binfilter {
 
 #define STAR_NMSPC              ::com::sun::star
 #define UNO_NMSPC               STAR_NMSPC::uno
@@ -67,4 +68,5 @@
 
 #define STAR_REFERENCE(aType)   UNO_NMSPC::Reference< STAR_NMSPC::aType >
 
+} //namespace binfilter
 #endif

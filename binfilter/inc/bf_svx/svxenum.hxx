@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svxenum.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _SVX_SVXENUM_HXX
 #define _SVX_SVXENUM_HXX
+namespace binfilter {
 
 // -----------------------------------------------------------------------
 
@@ -306,4 +307,5 @@ enum SvxExtNumType
     SVX_NUM_CHARS_LOWER_LETTER_N
 };
 
+}//end of namespace binfilter
 #endif

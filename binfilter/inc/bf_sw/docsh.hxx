@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,12 +79,16 @@
 #ifndef _SHELLID_HXX
 #include <shellid.hxx>
 #endif
+class   SfxStyleSheetBasePool;
+class   FontList;
+class   PushButton;
+class   FixedText;
+
+namespace binfilter {
 
 class   SwDoc;
 class   Sw3Io;
 class   SfxDocumentInfoDialog;
-class   SfxStyleSheetBasePool;
-class   FontList;
 class   SwView;
 class   SwWrtShell;
 class   SwFEShell;
@@ -92,8 +96,6 @@ class   Reader;
 class   SwReader;
 class   SwCrsrShell;
 class   SwSrcView;
-class   PushButton;
-class   FixedText;
 class   SwPaM;
 class   SwgReaderOption;
 
@@ -118,7 +120,7 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
                                             // dann ist Doc voll. geladen
 
     SvPersistRef            xOLEChildList;  // fuers RemoveOLEObjects
-    sal_Int16               nUpdateDocMode; // contains the com::sun::star::document::UpdateDocMode
+    sal_Int16               nUpdateDocMode; // contains the ::com::sun::star::document::UpdateDocMode
 
     // Methoden fuer den Zugriff aufs Doc
     void                    AddLink();
@@ -323,4 +325,5 @@ inline BOOL SwDocShell::SaveCompletedChilds( SvStorage *pStor )
 {
     return SfxInPlaceObject::SaveCompletedChilds( pStor );
 }
+} //namespace binfilter
 #endif

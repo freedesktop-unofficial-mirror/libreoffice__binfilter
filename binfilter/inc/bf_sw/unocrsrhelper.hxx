@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unocrsrhelper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,11 +68,13 @@
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
 #endif
-
-
-struct SfxItemPropertyMap;
-class SwPaM;
 class SfxItemSet;
+struct SfxItemPropertyMap;
+namespace binfilter {
+
+
+class SwPaM;
+
 
 namespace com{ namespace sun{ namespace star{
     namespace uno{
@@ -86,8 +88,8 @@ namespace SwUnoCursorHelper
 {
     sal_Bool                    getCrsrPropertyValue(const SfxItemPropertyMap* pMap
                                         , SwPaM& rPam
-                                        , com::sun::star::uno::Any *pAny
-                                        , com::sun::star::beans::PropertyState& eState
+                                        , ::com::sun::star::uno::Any *pAny
+                                        , ::com::sun::star::beans::PropertyState& eState
                                         , const SwTxtNode* pNode = 0 );
 
     void                        GetCurPageStyle(SwPaM& rPaM, String &rString);
@@ -107,17 +109,18 @@ namespace SwUnoCursorHelper
 
     void                        getNumberingProperty(
                                     SwPaM& rPam,
-                                    com::sun::star::beans::PropertyState& eState,
-                                    com::sun::star::uno::Any *pAny );
+                                    ::com::sun::star::beans::PropertyState& eState,
+                                    ::com::sun::star::uno::Any *pAny );
 
     void                        setNumberingProperty(
-                                    const com::sun::star::uno::Any& rValue,
+                                    const ::com::sun::star::uno::Any& rValue,
                                     SwPaM& rPam);
 
     sal_Int16                   IsNodeNumStart(
                                     SwPaM& rPam,
-                                    com::sun::star::beans::PropertyState& eState);
+                                    ::com::sun::star::beans::PropertyState& eState);
 
-};
+} //STRIP008 ;
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmgridcl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@
 #ifndef _TRANSFER_HXX
 #include <svtools/transfer.hxx>
 #endif
+namespace binfilter {
 
 //==================================================================
 // FmGridHeader
@@ -255,5 +256,6 @@ protected:
     sal_Bool isColumnSelected(sal_uInt16 nColumnId,DbGridColumn* _pColumn);
 };
 
+}//end of namespace binfilter
 #endif // _SVX_FMGRIDCL_HXX
 

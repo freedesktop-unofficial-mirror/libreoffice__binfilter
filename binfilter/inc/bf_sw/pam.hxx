@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pam.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,24 +81,29 @@
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>      // fuer SwNodeIndex
 #endif
+namespace com { namespace sun { namespace star { namespace util {
+    struct SearchOptions;
+} } } }
+class SfxPoolItem;
+class SfxItemSet;
+namespace binfilter {
 
 
 class SwFmt;
-class SfxPoolItem;
-class SfxItemSet;
+
 class SwDoc;
 class SwNode;
 class SwCntntNode;
 class SwNodes;
 class SwPaM;
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
+//STRIP008 namespace com { namespace sun { namespace star { namespace util {
+//STRIP008  struct SearchOptions;
+//STRIP008 } } } }
 
 namespace utl {
     class TextSearch;
-};
+}//STRIP008 ;
 
 struct SwPosition
 {
@@ -182,7 +187,7 @@ public:
                     SwGoInDoc fnGo = fnGoCntnt );
 
     // Suchen
-//STRIP001  BYTE Find(  const com::sun::star::util::SearchOptions& rSearchOpt,
+//STRIP001  BYTE Find(  const ::com::sun::star::util::SearchOptions& rSearchOpt,
 //STRIP001              utl::TextSearch& rSTxt,
 //STRIP001              SwMoveFn fnMove = fnMoveForward,
 //STRIP001              const SwPaM *pPam =0, FASTBOOL bInReadOnly = FALSE);
@@ -275,4 +280,5 @@ FASTBOOL CheckNodesRange( const SwNodeIndex&, const SwNodeIndex&, FASTBOOL );
 FASTBOOL GoInCntnt( SwPaM & rPam, SwMoveFn fnMove );
 
 
+} //namespace binfilter
 #endif  // _PAM_HXX

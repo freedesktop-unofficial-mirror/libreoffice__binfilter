@@ -2,9 +2,9 @@
  *
  *  $RCSfile: paperinf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,12 +72,14 @@
 #ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
 #endif
-
-// forward ---------------------------------------------------------------
-
 class Printer;
 class Size;
 class String;
+namespace binfilter {
+
+// forward ---------------------------------------------------------------
+
+
 
 // class SvxPaperInfo -----------------------------------------------------
 
@@ -207,5 +209,6 @@ const long lKai32Height     = lKai16Width;      // 32 kai 18,4 cm
 const long lKai32BigWidth   = 7938;             // 32 kai gross 14 cm
 const long lKai32BigHeight  = 11510;            // 32 kai gross 20,3 cm
 
+}//end of namespace binfilter
 #endif
 

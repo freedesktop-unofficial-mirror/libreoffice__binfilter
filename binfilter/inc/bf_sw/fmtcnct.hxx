@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtcnct.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,10 +74,12 @@
 #ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
 #endif
+class IntlWrapper;
+namespace binfilter {
 
 
 class SwFlyFrmFmt;
-class IntlWrapper;
+
 
 //Verbindung (Textfluss) zwischen zwei FlyFrms
 
@@ -105,7 +107,7 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
 
     SwFlyFrmFmt* GetPrev() const { return (SwFlyFrmFmt*)aPrev.GetRegisteredIn(); }
     SwFlyFrmFmt* GetNext() const { return (SwFlyFrmFmt*)aNext.GetRegisteredIn(); }
@@ -132,5 +134,6 @@ inline const SwFmtChain &SwFmt::GetChain(BOOL bInP) const
     { return aSet.GetChain(bInP); }
 #endif
 
+} //namespace binfilter
 #endif
 

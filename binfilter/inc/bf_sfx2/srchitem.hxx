@@ -2,9 +2,9 @@
  *
  *  $RCSfile: srchitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,7 @@
 #ifndef _SFX_SRCHDEFS_HXX_
 #include <bf_sfx2/srchdefs.hxx>
 #endif
+namespace binfilter {
 
 // defines ---------------------------------------------------------------
 
@@ -124,9 +125,9 @@
 */
 class SvxSearchItem :
         public SfxPoolItem,
-        public utl::ConfigItem
+        public ::utl::ConfigItem
 {
-    com::sun::star::util::SearchOptions aSearchOpt;
+    ::com::sun::star::util::SearchOptions   aSearchOpt;
 
     SfxStyleFamily  eFamily;            // Vorlagen-Familie
 
@@ -150,8 +151,8 @@ public:
     SvxSearchItem( const SvxSearchItem& rItem );
     virtual ~SvxSearchItem();
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual int              operator == ( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -160,7 +161,7 @@ public:
                                     String &rText, const IntlWrapper * = 0 ) const;
 
     // ConfigItem
-    virtual void            Notify( const com::sun::star::uno::Sequence< rtl::OUString > &rPropertyNames );
+    virtual void            Notify( const ::com::sun::star::uno::Sequence< ::rtl::OUString > &rPropertyNames );
 
             sal_uInt16      GetCommand() const { return nCommand; }
             void            SetCommand(sal_uInt16 nNewCommand) { nCommand = nNewCommand; }
@@ -226,9 +227,9 @@ public:
             void            GetFromDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr );
             void            SetToDescriptor( ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr );
 
-    inline const com::sun::star::util::SearchOptions &
+    inline const ::com::sun::star::util::SearchOptions &
                 GetSearchOptions() const;
-    inline void SetSearchOptions( const com::sun::star::util::SearchOptions &rOpt );
+    inline void SetSearchOptions( const ::com::sun::star::util::SearchOptions &rOpt );
 
     inline  sal_Int32       GetTransliterationFlags() const;
             void            SetTransliterationFlags( sal_Int32 nFlags );
@@ -263,30 +264,30 @@ void SvxSearchItem::SetReplaceString(const String& rNewString)
 sal_Bool SvxSearchItem::GetWordOnly() const
 {
     return 0 != (aSearchOpt.searchFlag &
-                        com::sun::star::util::SearchFlags::NORM_WORD_ONLY);
+                        ::com::sun::star::util::SearchFlags::NORM_WORD_ONLY);
 }
 
 sal_Bool SvxSearchItem::GetExact() const
 {
     return 0 == (aSearchOpt.transliterateFlags &
-                        com::sun::star::i18n::TransliterationModules_IGNORE_CASE);
+                        ::com::sun::star::i18n::TransliterationModules_IGNORE_CASE);
 }
 
 sal_Bool SvxSearchItem::GetSelection() const
 {
     return 0 != (aSearchOpt.searchFlag &
-                        com::sun::star::util::SearchFlags::REG_NOT_BEGINOFLINE);
+                        ::com::sun::star::util::SearchFlags::REG_NOT_BEGINOFLINE);
 }
 
 sal_Bool SvxSearchItem::GetRegExp() const
 {
-    return aSearchOpt.algorithmType == com::sun::star::util::SearchAlgorithms_REGEXP ;
+    return aSearchOpt.algorithmType == ::com::sun::star::util::SearchAlgorithms_REGEXP ;
 }
 
 sal_Bool SvxSearchItem::IsLEVRelaxed() const
 {
     return 0 != (aSearchOpt.searchFlag &
-                        com::sun::star::util::SearchFlags::LEV_RELAXED);
+                        ::com::sun::star::util::SearchFlags::LEV_RELAXED);
 }
 
 sal_uInt16 SvxSearchItem::GetLEVOther() const
@@ -321,15 +322,15 @@ void SvxSearchItem::SetLEVLonger( sal_uInt16 nVal )
 
 sal_Bool SvxSearchItem::IsLevenshtein() const
 {
-    return aSearchOpt.algorithmType == com::sun::star::util::SearchAlgorithms_APPROXIMATE;
+    return aSearchOpt.algorithmType == ::com::sun::star::util::SearchAlgorithms_APPROXIMATE;
 }
 
-const com::sun::star::util::SearchOptions & SvxSearchItem::GetSearchOptions() const
+const ::com::sun::star::util::SearchOptions & SvxSearchItem::GetSearchOptions() const
 {
     return aSearchOpt;
 }
 
-void SvxSearchItem::SetSearchOptions( const com::sun::star::util::SearchOptions &rOpt )
+void SvxSearchItem::SetSearchOptions( const ::com::sun::star::util::SearchOptions &rOpt )
 {
     aSearchOpt = rOpt;
 }
@@ -342,10 +343,11 @@ sal_Int32 SvxSearchItem::GetTransliterationFlags() const
 sal_Bool SvxSearchItem::IsMatchFullHalfWidthForms() const
 {
     return 0 != (aSearchOpt.transliterateFlags &
-                        com::sun::star::i18n::TransliterationModules_IGNORE_WIDTH);
+                        ::com::sun::star::i18n::TransliterationModules_IGNORE_WIDTH);
 }
 
 #endif
 
+}//end of namespace binfilter
 #endif
 

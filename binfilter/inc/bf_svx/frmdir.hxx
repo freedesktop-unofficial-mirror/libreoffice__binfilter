@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmdir.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _SVX_FRMDIR_HXX
 
 // ----------------------------------------------------------------------------
+namespace binfilter {
 
 /** Defines possible text directions in frames. */
 enum SvxFrameDirection
@@ -89,5 +90,6 @@ enum SvxFrameDirection
 
 // ----------------------------------------------------------------------------
 
+}//end of namespace binfilter
 #endif // #ifndef _SVX_FRMDIR_HXX
 

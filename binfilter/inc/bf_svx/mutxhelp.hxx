@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mutxhelp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
 #endif
+namespace binfilter {
 
 class SvxMutexHelper
 {
@@ -75,5 +76,6 @@ public:
     ::osl::Mutex& getMutex() { return maMutex; }
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: objfac3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@ class SdrObjFactory;
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif
+namespace binfilter {
 
 class E3dObjFactory
 {
@@ -83,4 +84,5 @@ public:
     DECL_LINK(MakeObject, SdrObjFactory*);
 };
 
+}//end of namespace binfilter
 #endif // _OBJFAC3D_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swregion.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,9 @@
 #endif
 
 #include "swrect.hxx"
+namespace binfilter {
 
-SV_DECL_VARARR( SwRects, SwRect, 20, 8 );
+SV_DECL_VARARR( SwRects, SwRect, 20, 8 )//STRIP008 ;
 
 class SwRegionRects : public SwRects
 {
@@ -90,4 +91,5 @@ public:
     inline void ChangeOrigin( const SwRect &rRect ) { aOrigin = rRect; }
 };
 
+} //namespace binfilter
 #endif  //_SWREGION_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdglue.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,18 +61,19 @@
 
 #ifndef _SVDGLUE_HXX
 #define _SVDGLUE_HXX
-
 class Window;
 class OutputDevice;
 class SvStream;
+namespace binfilter {
 class SdrObject;
-
+}//end of namespace binfilter
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
 #endif
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif
+namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #define SDRESC_SMART  0x0000
@@ -196,5 +197,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDGLUE_HXX
 

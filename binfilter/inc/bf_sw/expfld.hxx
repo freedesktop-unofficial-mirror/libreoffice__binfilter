@@ -2,9 +2,9 @@
  *
  *  $RCSfile: expfld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,8 +71,10 @@
 #ifndef _CELLFML_HXX
 #include <cellfml.hxx>
 #endif
-
 class SfxPoolItem;
+namespace binfilter {
+
+
 class SwTxtNode;
 class SwCalc;
 class SwFrm;
@@ -166,8 +168,8 @@ public:
 
     virtual USHORT              GetSubType() const;
     virtual void                SetSubType(USHORT nType);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     static USHORT       GetReferenceTextPos( const SwFmtFld& rFmt, SwDoc& rDoc);
 };
@@ -238,8 +240,8 @@ public:
     const SwNode* GetOutlineChgNd() const   { return pOutlChgNd; }
     void SetOutlineChgNd( const SwNode* p ) { pOutlChgNd = p; }
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 inline void SwSetExpFieldType::SetType( USHORT nTyp )
@@ -305,8 +307,8 @@ public:
     // Die Formel
 //STRIP001  virtual String              GetPar2()   const;
 //STRIP001  virtual void                SetPar2(const String& rStr);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 inline const String& SwSetExpField::GetExpStr() const
@@ -380,8 +382,8 @@ public:
 
     virtual USHORT          GetSubType() const;
 //STRIP001  virtual void            SetSubType(USHORT nSub);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -461,9 +463,10 @@ public:
     // Die Formel
     virtual String      GetPar2()   const;
 //STRIP001  virtual void        SetPar2(const String& rStr);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 
+} //namespace binfilter
 #endif // _EXPFLD_HXX

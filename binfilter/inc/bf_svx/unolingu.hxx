@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unolingu.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,10 +99,11 @@
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
 #include <com/sun/star/linguistic2/XDictionary1.hpp>
 #endif
+class Window;
+namespace binfilter {
 
 class LinguMgrExitLstnr;
 
-class Window;
 
 // SvxAddEntryToDic return values
 #define DIC_ERR_NONE        0
@@ -209,11 +210,11 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////
-
+}//end of namespace binfilter
 namespace com { namespace sun { namespace star { namespace linguistic2 {
     class XHyphenatedWord;
 }}}};
-
+namespace binfilter {
 struct SvxAlternativeSpelling
 {
     String      aReplacement;
@@ -302,5 +303,6 @@ LanguageType                        SvxLocaleToLanguage(
 //STRIP001  const ::com::sun::star::uno::Reference<
 //STRIP001      ::com::sun::star::linguistic2::XDictionaryList >  &xDicList );
 
+}//end of namespace binfilter
 #endif
 

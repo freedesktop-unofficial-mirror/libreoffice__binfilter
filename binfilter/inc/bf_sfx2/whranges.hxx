@@ -2,9 +2,9 @@
  *
  *  $RCSfile: whranges.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,9 @@
 #ifndef _SVARRAY_HXX
 #include <svtools/svarray.hxx>
 #endif
+namespace binfilter {
 
-DBG_NAMEEX(SfxWhichRanges);
+DBG_NAMEEX(SfxWhichRanges)//STRIP008 ;
 
 // -----------------------------------------------------------------------
 
@@ -95,5 +96,6 @@ public:
     const USHORT*   GetRanges() const { return aUShorts.GetStart(); }
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swdll.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@ class SfxFilter;
 #ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
 #endif
+namespace binfilter {
 
 //#include <sal/types.h>
 
@@ -167,5 +168,6 @@ public:
 
 #define SW_DLL() ( *(SwModuleDummy**) GetAppData(BF_SHL_WRITER) )
 
+} //namespace binfilter
 #endif
 

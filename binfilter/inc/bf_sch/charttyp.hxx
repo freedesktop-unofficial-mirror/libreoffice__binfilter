@@ -2,9 +2,9 @@
  *
  *  $RCSfile: charttyp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #include <bf_svx/tabline.hxx>
 #endif
 #include "chtmodel.hxx"
+namespace binfilter {
 
 #define SPLINE_NONE  0
 #define SPLINE_CUBIC 1
@@ -156,3 +157,4 @@ public:
     BOOL IsDeep3D()     const {return bIsDeep3D;};
 };
 
+} //namespace binfilter

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SchAddInCollection.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,10 +64,15 @@
 #include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/uno/Reference.hxx>
 #include <com/sun/star/util/XRefreshable.hpp>
-
 namespace rtl {
     class OUString;
 }
+
+namespace binfilter {
+
+//STRIP008 namespace rtl {
+//STRIP008  class OUString;
+//STRIP008 }
 
 class SchAddInCollection // : public
 {
@@ -82,8 +87,9 @@ public:
     SchAddInCollection();
     virtual ~SchAddInCollection();
 
-    ::com::sun::star::uno::Reference< ::com::sun::star::util::XRefreshable > GetAddInByName( const rtl::OUString& rName );
-    ::com::sun::star::uno::Sequence< rtl::OUString > GetAddInNames();
+    ::com::sun::star::uno::Reference< ::com::sun::star::util::XRefreshable > GetAddInByName( const ::rtl::OUString& rName );
+    ::com::sun::star::uno::Sequence< ::rtl::OUString > GetAddInNames();
 };
 
+} //namespace binfilter
 #endif  // _SCH_ADDINCOLLECTION_HXX_

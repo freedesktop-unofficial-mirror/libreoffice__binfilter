@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdoattr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,16 +85,18 @@
 #ifndef _SVDATTR_HXX
 #include <bf_svx/svdattr.hxx>
 #endif
+class SfxPoolItem;
+class SfxSetItem;
+class SfxItemSet;
+class SfxItemPool;
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
 
-class SfxPoolItem;
-class SfxSetItem;
+
 class SdrOutliner;
-class SfxItemSet;
-class SfxItemPool;
 
 //************************************************************
 //   SdrAttrObj
@@ -185,5 +187,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDOATTR_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: schdll.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,12 @@
 #endif
 
 #include <bf_sch/chattr.hxx>    // to do: remove this line and replace most of the schdll.hxx includes to chattr.hxx
+class SvFactory;
+class SvInPlaceObjectRef;
+class OutputDevice;
+class Window;
+class SvStream;
+namespace binfilter {
 
 #define extern_c extern "C"
 
@@ -88,16 +94,11 @@
 
 -------------------------------------------------------------------------*/
 
-class SvFactory;
 class SchDragServer;
 class SchMemChart;
 class SfxMedium;
 class SfxFilter;
-class SvInPlaceObjectRef;
-class OutputDevice;
-class Window;
 class XOutdevItemPool;
-class SvStream;
 class SfxTabDialog;
 class ChartModel;
 
@@ -192,5 +193,6 @@ extern_c void __LOADONCALLAPI SetTransparentBackground( SvInPlaceObjectRef aIPOb
 extern_c void __LOADONCALLAPI SchGetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult );
 extern_c void __LOADONCALLAPI SchGetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult );
 
+} //namespace binfilter
 #endif          // _SCH_DLL_HXX
 

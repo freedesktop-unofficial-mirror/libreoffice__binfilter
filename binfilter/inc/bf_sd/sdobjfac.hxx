@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdobjfac.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif
+namespace binfilter {
 
 //-----------------------
 // class SdObjectFactory
@@ -89,5 +90,6 @@ public:
 
 extern SdObjectFactory aSdObjectFactory;
 
+} //namespace binfilter
 #endif // _SDOBJFAC_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,37 +112,56 @@
 #ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
 #endif
+namespace com { namespace sun { namespace star {
+namespace i18n {
+    struct ForbiddenCharacters;    // comes from the I18N UNO interface
+}
+namespace uno {
+    template < class > class Sequence;
+}
+}}};
 
-class SvxForbiddenCharactersTable;
-class SwExtTextInput;
+namespace utl {
+    class TransliterationWrapper;
+};
+namespace so3 {
+    class SvLinkSource;
+};
 class DateTime;
-class EditFieldInfo;
 class JobSetup;
 class Color;
 class KeyCode;
-class Outliner;
 class OutputDevice;
 class Point;
 class SbxArray;
-class SdrModel;
-class SdrObject;
-class SdrUndoAction;
-class SfxDocumentInfo;
 class VirtualDevice;
-class SfxPrinter;
-class SvData;
 class SvEmbeddedObjectRef;
 class SvNumberFormatter;
 class SvPersist;
 class SvStorage;
 class SvStrings;
-class SvStringsSort;
 class SvUShorts;
 class SvUShortsSort;
-class SvxAutoCorrDoc;
-class SvxLinkManager;
 class SvxMacro;
 class SvxMacroTableDtor;
+class GraphicObject;
+namespace binfilter {
+
+class SvxForbiddenCharactersTable;
+class SwExtTextInput;
+
+class EditFieldInfo;
+class Outliner;
+class SdrModel;
+class SdrObject;
+class SdrUndoAction;
+class SfxDocumentInfo;
+
+class SfxPrinter;
+class SvData;
+class SvStringsSort;
+class SvxAutoCorrDoc;
+class SvxLinkManager;
 class SvxBorderLine;
 class SwAutoCompleteWord;
 class SwAutoCorrExceptWord;
@@ -175,7 +194,7 @@ class SwFrmFmts;
 class SwFtnIdxs;
 class SwFtnInfo;
 class SwEndNoteInfo;
-class GraphicObject;
+
 class SwGrfFmtColl;
 class SwGrfFmtColls;
 class SwLineNumberInfo;
@@ -241,25 +260,25 @@ struct SwTableEntry;
 // OD 26.06.2003 #108784#
 class SdrPageView;
 
-namespace com { namespace sun { namespace star {
-namespace i18n {
-    struct ForbiddenCharacters;    // comes from the I18N UNO interface
-}
-namespace uno {
-    template < class > class Sequence;
-}
-}}};
-
-namespace utl {
-    class TransliterationWrapper;
-};
-namespace so3 {
-    class SvLinkSource;
-};
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008 namespace i18n {
+//STRIP008  struct ForbiddenCharacters;    // comes from the I18N UNO interface
+//STRIP008 }
+//STRIP008 namespace uno {
+//STRIP008  template < class > class Sequence;
+//STRIP008 }
+//STRIP008 }}};
+//STRIP008
+//STRIP008 namespace utl {
+//STRIP008  class TransliterationWrapper;
+//STRIP008 };
+//STRIP008 namespace so3 {
+//STRIP008  class SvLinkSource;
+//STRIP008 };
 
 //PageDescriptor-Schnittstelle, Array hier wegen inlines.
 typedef SwPageDesc* SwPageDescPtr;
-SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 );
+SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 )//STRIP008 ;
 
 enum SwMoveFlags
 {
@@ -399,7 +418,7 @@ class SwDoc
     SwUnoCallBack   *pUnoCallBack;
 
     // table of forbidden characters of this document
-    vos::ORef<SvxForbiddenCharactersTable>  xForbiddenCharsTable;
+    ::vos::ORef<SvxForbiddenCharactersTable>    xForbiddenCharsTable; //STRIP008 vos::ORef<SvxForbiddenCharactersTable> xForbiddenCharsTable;
 
     // -------------------------------------------------------------------
     // sonstige
@@ -1770,7 +1789,7 @@ public:
 
     // alles fuers Redlining
     SwRedlineMode GetRedlineMode() const { return eRedlineMode; }
-    sal_Bool IsRedlineOn() const { return ::IsRedlineOn( eRedlineMode ); }
+    sal_Bool IsRedlineOn() const { return ::binfilter::IsRedlineOn( eRedlineMode ); }
     sal_Bool IsIgnoreRedline() const { return REDLINE_IGNORE & eRedlineMode; }
     void SetRedlineMode_intern( sal_uInt16 eMode ) { eRedlineMode = (SwRedlineMode)eMode; }
     void SetRedlineMode( sal_uInt16 eMode );
@@ -1899,11 +1918,11 @@ public:
     void SetContainsMSVBasic( sal_Bool bFlag )  { bContains_MSVBasic = bFlag; }
 
     // Interface for the forbidden characters of any asian/.. languages
-    const com::sun::star::i18n::
+    const ::com::sun::star::i18n::
         ForbiddenCharacters* GetForbiddenCharacters( USHORT nLang,
                                                     BOOL bLocaleData ) const;
 //STRIP001  void SetForbiddenCharacters( USHORT nLang,
-//STRIP001          const com::sun::star::i18n::ForbiddenCharacters& );
+//STRIP001          const ::com::sun::star::i18n::ForbiddenCharacters& );
 //STRIP001  void ClearForbiddenCharacters( USHORT nLang );
     const vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
             { return xForbiddenCharsTable; }
@@ -2023,4 +2042,5 @@ inline void SwDoc::SetOLEPrtNotifyPending( sal_Bool bSet )
 }
 
 
+} //namespace binfilter
 #endif  //_DOC_HXX

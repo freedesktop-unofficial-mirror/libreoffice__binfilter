@@ -2,9 +2,9 @@
  *
  *  $RCSfile: macrconf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,23 +67,24 @@
 #define _SVSTDARR_USHORTS
 #include <svtools/svstdarr.hxx>     // SvUShorts
 #include <bf_sfx2/evntconf.hxx>
-
-class SfxMacroInfo;
-class SfxSlot;
-class SfxMacroInfoItem;
-class SfxObjectShell;
 class BasicManager;
-struct SfxMacroConfig_Impl;
 class SbMethod;
 class SbxValue;
 class SbxObject;
 class SbxArray;
 class SvStream;
 class SvxMacro;
+namespace binfilter {
+
+class SfxMacroInfo;
+class SfxSlot;
+class SfxMacroInfoItem;
+class SfxObjectShell;
+struct SfxMacroConfig_Impl;
 
 typedef SfxMacroInfo* SfxMacroInfoPtr;
 #if _SOLAR__PRIVATE
-SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5);
+SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5)//STRIP008 ;
 #else
 class SfxMacroInfoArr_Impl;
 #endif
@@ -186,4 +187,5 @@ public:
 #endif
 };
 
+}//end of namespace binfilter
 #endif

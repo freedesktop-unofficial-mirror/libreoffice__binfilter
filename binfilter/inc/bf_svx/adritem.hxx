@@ -2,9 +2,9 @@
  *
  *  $RCSfile: adritem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
+namespace binfilter {
 
 // define ----------------------------------------------------------------
 
@@ -120,8 +121,8 @@ public:
 //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 //STRIP001  virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
 //STRIP001  virtual int             operator==( const SfxPoolItem& rAttr ) const;
-//STRIP001  virtual sal_Bool        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     BOOL                    SetToken( USHORT nPos, const String &rVal );
     String                  GetToken( USHORT nPos ) const;
@@ -149,5 +150,6 @@ public:
 #endif
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SVX_ADRITEM_HXX
 

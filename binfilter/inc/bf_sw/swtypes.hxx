@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swtypes.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,18 +102,21 @@ namespace com{namespace sun{namespace star{
 namespace utl{
     class TransliterationWrapper;
 }
-
 class Size;
 class MapMode;
 class ResMgr;
 class UniString;
 class ByteString;
-class SwPathFinder;
 class Graphic;
 class OutputDevice;
 class CharClass;
 class LocaleDataWrapper;
 class CollatorWrapper;
+namespace binfilter {
+
+
+class SwPathFinder;
+
 
 typedef long SwTwips;
 #define INVALID_TWIPS   LONG_MAX
@@ -317,4 +320,5 @@ CollatorWrapper& GetAppCaseCollator();
 const ::utl::TransliterationWrapper& GetAppCmpStrIgnore();
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlgrhlp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $
+ *  last change: $Author: mwu $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,6 +87,8 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
 #endif
+class SotStorage;
+namespace binfilter {
 
 // ----------------------
 // - SvXMLGraphicHelper -
@@ -102,7 +104,6 @@ enum SvXMLGraphicHelperMode
 // - SvXMLGraphicHelper -
 // ----------------------
 
-class SotStorage;
 
 class SvXMLGraphicHelper : public ::cppu::WeakComponentImplHelper2< ::com::sun::star::document::XGraphicObjectResolver,
                                                                     ::com::sun::star::document::XBinaryStreamResolver >
@@ -173,4 +174,5 @@ public:
     virtual ::rtl::OUString SAL_CALL resolveOutputStream( const ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream >& rxBinaryStream ) throw (::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif

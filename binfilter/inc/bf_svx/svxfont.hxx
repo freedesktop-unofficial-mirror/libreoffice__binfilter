@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svxfont.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,10 +72,11 @@
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
-
-class SvxDoCapitals;
 class OutputDevice;
 class Printer;
+namespace binfilter {
+
+class SvxDoCapitals;
 
 class SvxFont : public Font
 {
@@ -161,5 +162,6 @@ public:
     SvxFont&    operator=( const Font& rFont );
 };
 
+}//end of namespace binfilter
 #endif // #ifndef   _SVX_SVXFONT_HXX
 

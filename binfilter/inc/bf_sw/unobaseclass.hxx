@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unobaseclass.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
+namespace binfilter {
 
 typedef
 cppu::WeakImplHelper2
@@ -82,5 +83,6 @@ cppu::WeakImplHelper2
 >
 SwSimpleEnumerationBaseClass;
 
+} //namespace binfilter
 #endif
 

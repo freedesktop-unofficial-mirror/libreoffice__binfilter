@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chtmodel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,10 +69,10 @@
 // Bei Umstellungen alle Files nach SIG_CHARTMODELDEFSCHDOC durchsuchen
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
-class SdrObjGroup;
-class SdrRectObj;
-
-class SchModelData;
+//STRIP008 class SdrObjGroup;
+//STRIP008 class SdrRectObj;
+//STRIP008
+//STRIP008 class SchModelData;
 
 #ifndef _E3D_POLYGON3D_HXX //autogen
 #include <bf_svx/polygn3d.hxx>
@@ -148,14 +148,18 @@ class SchModelData;
 #ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
 #endif
-
-class SchObjectId;
-class ChartAxis;
 class SvNumberFormatter;
 class SvULONGTable;
+class Vector3D;
+namespace binfilter {
+class SdrObjGroup;
+class SdrRectObj;
+
+class SchModelData;
+class SchObjectId;
+class ChartAxis;
 class SchItemPool;
 class SchMemChart;
-class Vector3D;
 class ChartScene;
 class E3dPolyObj;
 class Polygon3D;
@@ -168,8 +172,8 @@ class E3dLabelObj;
 struct DataDescription;
 class SchRectObj;
 
-DECLARE_LIST(ItemSetList, SfxItemSet*);
-DECLARE_LIST(DescrList, E3dLabelObj*);
+DECLARE_LIST(ItemSetList, SfxItemSet*)//STRIP008 DECLARE_LIST(ItemSetList, SfxItemSet*);
+DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 DECLARE_LIST(DescrList, E3dLabelObj*);
 
 #define VERTICAL_LINE aLine[0].Y() = rRect.Bottom(); aLine[1].Y() = rRect.Top();
 #define HORIZONTAL_LINE aLine[0].X() = rRect.Left(); aLine[1].X() = rRect.Right();
@@ -1676,5 +1680,6 @@ inline void ChartModel::SetDiagramRectangle( const Rectangle &rNewRect, bool bSt
     aDiagramRectangle = rNewRect;
 }
 
+} //namespace binfilter
 #endif // _CHTMODEL_HXX
 

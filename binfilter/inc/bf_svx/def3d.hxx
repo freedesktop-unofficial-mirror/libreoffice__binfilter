@@ -2,9 +2,9 @@
  *
  *  $RCSfile: def3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@ class Vector3D;
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+namespace binfilter {
 
 const double fPiDiv180 = 0.01745329251994;
 const double EPSILON = 1e-06;
@@ -99,4 +100,5 @@ enum E3dDragConstraint { E3DDRAG_CONSTR_X   = 0x0001,
                          E3DDRAG_CONSTR_XYZ = 0x0007
 };
 
+}//end of namespace binfilter
 #endif

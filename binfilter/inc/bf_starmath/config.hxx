@@ -2,9 +2,9 @@
  *
  *  $RCSfile: config.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,12 +76,14 @@
 #endif
 
 #include "cfgitem.hxx"
+class SfxItemSet;
+namespace binfilter {
 
 
 class SmPreferenceDialog;
 class SmPrintDialog;
 class SmPrintOptionDialog;
-class SfxItemSet;
+
 
 class SmConfig : public SmMathConfig, public SfxBroadcaster
 {
@@ -97,6 +99,7 @@ public:
     void ConfigToItemSet(SfxItemSet &rSet) const;
 };
 
+} //namespace binfilter
 #endif
 
 

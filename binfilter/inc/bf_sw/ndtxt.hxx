@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndtxt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,10 +73,16 @@
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-
+namespace com { namespace sun { namespace star { namespace uno {
+    template < class > class Sequence;
+}}}}
+class OutputDevice;
 namespace utl {
     class TransliterationWrapper;
-};
+}//STRIP008 ;
+namespace binfilter {
+
+
 
 class SwNumRules;
 class SwTxtFmtColl;
@@ -91,16 +97,16 @@ struct SwConversionArgs;        // for Convert(), splargs.hxx
 class SwInterHyphInfo;          // for Hyphenate(), splargs.hxx
 class SwWrongList;      // fuer OnlineSpelling
 class SwNodeNum;
-class OutputDevice;
+
 
 // Konstanten fuer das Text-Insert:
 #define INS_DEFAULT         0x0000 // keine Extras
 #define INS_EMPTYEXPAND     0x0001 // leere Hints beim Einfuegen aufspannen
 #define INS_NOHINTEXPAND    0x0002 // Hints an der InsPos nicht aufspannen
 
-namespace com { namespace sun { namespace star { namespace uno {
-    template < class > class Sequence;
-}}}}
+//STRIP008 namespace com { namespace sun { namespace star { namespace uno {
+//STRIP008     template < class > class Sequence;
+//STRIP008 }}}}
 
 // --------------------
 // SwTxtNode
@@ -403,4 +409,5 @@ inline void SwTxtNode::Cut(SwTxtNode *pDest, const SwIndex &rDestStart,
 }
 
 
+} //namespace binfilter
 #endif

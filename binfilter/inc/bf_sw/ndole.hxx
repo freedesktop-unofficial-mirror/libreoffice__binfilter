@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndole.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,11 +64,13 @@
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
 #endif
+class SvInPlaceObjectRef;
+class SvInPlaceObject;
+
+namespace binfilter {
 
 class SwGrfFmtColl;
 class SwDoc;
-class SvInPlaceObjectRef;
-class SvInPlaceObject;
 class SwOLENode;
 class SwOLELink;
 class SwOLELRUCache;
@@ -181,5 +183,6 @@ inline const SwOLENode *SwNode::GetOLENode() const
 }
 #endif
 
+} //namespace binfilter
 #endif  // _NDOLE_HXX
 

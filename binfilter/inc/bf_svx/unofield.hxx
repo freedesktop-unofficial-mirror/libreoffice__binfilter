@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unofield.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,8 @@
 #include <unotools/servicehelper.hxx>
 
 #include <bf_svx/mutxhelp.hxx>
+class SfxItemPropertySet;
+namespace binfilter {
 
 // ids usable for the constructor
 #define ID_DATEFIELD        0
@@ -101,7 +103,6 @@
 #define ID_UNKNOWN          12      // this must be the last entry
 
 class SvxUnoFieldData_Impl;
-class SfxItemPropertySet;
 class SvxFieldData;
 
 class SvxUnoTextField : public SvxMutexHelper,
@@ -172,5 +173,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: emphitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,7 @@ namespace rtl
 #ifdef _USE_NAMESPACE
 }
 #endif
+namespace binfilter {
 
 // class SvxEmphasisMarkItem ----------------------------------------------
 
@@ -110,9 +111,9 @@ public:
     virtual SvStream&       Store(SvStream &, USHORT nItemVersion) const;
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-    virtual sal_Bool        QueryValue( com::sun::star::uno::Any& rVal,
+    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 ) const;
-    virtual sal_Bool        PutValue( const com::sun::star::uno::Any& rVal,
+    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 );
 
     inline SvxEmphasisMarkItem& operator=(const SvxEmphasisMarkItem& rItem )
@@ -128,5 +129,6 @@ public:
                                 { SetValue( (USHORT)eNew ); }
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SVX_EMPHITEM_HXX
 

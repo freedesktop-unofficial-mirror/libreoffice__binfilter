@@ -2,9 +2,9 @@
  *
  *  $RCSfile: gridctrl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -115,6 +115,7 @@
 #ifndef _TRANSFER_HXX
 #include <svtools/transfer.hxx>
 #endif
+namespace binfilter {
 
 extern XubString INVALIDTEXT;
 extern XubString OBJECTTEXT;
@@ -128,7 +129,7 @@ namespace svxform
 {
     class DataColumn;
 }
-DECLARE_LIST(DbDataColumns, ::svxform::DataColumn*);
+DECLARE_LIST(DbDataColumns, ::binfilter::svxform::DataColumn*)//STRIP008 DECLARE_LIST(DbDataColumns, ::svxform::DataColumn*);
 
 enum GridRowStatus
 {
@@ -159,7 +160,7 @@ public:
 
     // da GetField auf Geschwindigkeit getuned ist vorher immer noch hasField verwenden
     sal_Bool HasField(sal_uInt32 nPos) const {return nPos < m_aVariants.Count();}
-    const ::svxform::DataColumn& GetField(sal_uInt32 nPos) const { return *m_aVariants.GetObject(nPos); }
+    const ::binfilter::svxform::DataColumn& GetField(sal_uInt32 nPos) const { return *m_aVariants.GetObject(nPos); }//STRIP008  const ::svxform::DataColumn& GetField(sal_uInt32 nPos) const { return *m_aVariants.GetObject(nPos); }
 
     void            SetStatus(GridRowStatus _eStat) { m_eStatus = _eStat; }
     GridRowStatus   GetStatus() const               { return m_eStatus; }
@@ -172,13 +173,13 @@ public:
     sal_Bool    IsModified() const { return m_eStatus == GRS_MODIFIED; }
 };
 
-SV_DECL_REF(DbGridRow);
+SV_DECL_REF(DbGridRow)//STRIP008 ;
 
 //==================================================================
 // DbGridControl
 //==================================================================
 class DbGridColumn;
-DECLARE_LIST(DbGridColumns, DbGridColumn*);
+DECLARE_LIST(DbGridColumns, DbGridColumn*)//STRIP008 DECLARE_LIST(DbGridColumns, DbGridColumn*);
 
 //==================================================================
 class FmGridSelectionListener
@@ -330,7 +331,7 @@ private:
     osl::Mutex          m_aDestructionSafety;
     osl::Mutex          m_aAdjustSafety;
 
-    com::sun::star::util::Date
+    ::com::sun::star::util::Date
                         m_aNullDate;        // NullDate of the Numberformatter;
 
     BrowserMode         m_nMode;
@@ -498,7 +499,7 @@ public:
     void SetMultiSelection(sal_Bool bMulti);
     sal_Bool GetMultiSelection() const {return m_bMultiSelection;}
 
-    const com::sun::star::util::Date&   getNullDate() const {return m_aNullDate;}
+    const ::com::sun::star::util::Date& getNullDate() const {return m_aNullDate;}
 
     // Positionierung
     void MoveToPosition(sal_uInt32 nPos);
@@ -646,5 +647,6 @@ protected:
 
 SV_IMPL_REF(DbGridRow);
 
+}//end of namespace binfilter
 #endif // _SVX_GRIDCTRL_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,11 +71,13 @@
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
 #endif
+class SvStorage;
+namespace binfilter {
 
 class SwGrfFmtColl;
 class SwDoc;
 class GraphicAttr;
-class SvStorage;
+
 
 // --------------------
 // SwGrfNode
@@ -241,4 +243,5 @@ inline BOOL SwGrfNode::IsLinkedDDE() const
 #endif
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docshell.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,15 +113,16 @@ SO2_DECL_REF(SvStorageStream)
 #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
 #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
 #endif
-
 class SfxStyleSheetBasePool;
+class FontList;
+class SfxUndoManager;
+namespace binfilter {
+
 class SdStyleSheetPool;
 class SfxProgress;
 class SfxPrinter;
 class SfxMenuBarManager;
 class SvInPlaceMenuBar;
-class FontList;
-class SfxUndoManager;
 
 /*************************************************************************
 |*
@@ -220,7 +221,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
     virtual void    SetModified( BOOL = TRUE ) throw();
 
-    void DataModified( com::sun::star::chart::ChartDataChangeEvent& ) throw();
+    void DataModified( ::com::sun::star::chart::ChartDataChangeEvent& ) throw();
 
     /// if this flag is set the XML export always exports the table
     void SetClipboardExport( BOOL bSet = sal_False )
@@ -232,4 +233,5 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
 SO2_DECL_IMPL_REF(SchChartDocShell)
 
+} //namespace binfilter
 #endif      // _SCH_DOCSHELL_HXX

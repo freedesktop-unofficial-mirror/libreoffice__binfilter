@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndindex.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 
 #include "node.hxx"
 #include "ndarr.hxx"
+namespace binfilter {
 
 class SwNode;
 class SwNodes;
@@ -285,4 +286,5 @@ inline SwNode* SwNodes::operator[]( const SwNodeIndex& rIdx ) const
 }
 
 
+} //namespace binfilter
 #endif

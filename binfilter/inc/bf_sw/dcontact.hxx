@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dcontact.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,8 +73,10 @@
 #include <list>
 
 #include "calbck.hxx"
-
 class SfxPoolItem;
+namespace binfilter {
+
+
 class SwFrmFmt;
 class SwFlyFrmFmt;
 class SwDrawFrmFmt;
@@ -96,7 +98,7 @@ class SwDrawContact;
 //Implementierung in dcontact.cxx
 SwFrmFmt *FindFrmFmt( SdrObject *pObj );
 inline const SwFrmFmt *FindFrmFmt( const SdrObject *pObj )
-{   return ::FindFrmFmt( (SdrObject*)pObj ); }
+{   return ::binfilter::FindFrmFmt( (SdrObject*)pObj ); }
 sal_Bool HasWrap( const SdrObject* pObj );
 
 //Bei Aenderungen das Objekt aus dem ContourCache entfernen.
@@ -383,5 +385,6 @@ class SwDrawContact : public SwContact
 };
 
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmturl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,11 @@
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
-
 class ImageMap;
 class IntlWrapper;
+
+namespace binfilter {
+
 
 // URL, ServerMap und ClientMap
 
@@ -104,8 +106,8 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     void SetTargetFrameName( const String& rStr ) { sTargetFrameName = rStr; }
     void SetURL( const String &rURL, BOOL bServerMap );
@@ -131,5 +133,6 @@ inline const SwFmtURL &SwFmt::GetURL(BOOL bInP) const
     { return aSet.GetURL(bInP); }
 #endif
 
+} //namespace binfilter
 #endif
 

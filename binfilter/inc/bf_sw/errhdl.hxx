@@ -2,9 +2,9 @@
  *
  *  $RCSfile: errhdl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,9 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
 
+
+namespace binfilter {
 // -----------------------------------------------------------------------
 // Ausgabe einer Fehlermeldung inkl. Dateiname und Zeilennummer
 // wo der Fehler auftrat.
@@ -79,20 +80,21 @@ extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
 extern void AssertFail( const sal_Char*, const sal_Char*, USHORT );
 extern void AssertFail( USHORT, const sal_Char*, USHORT );
 
+extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
 #ifdef WIN
 //MSC (7.0) machts nur mit static, ZTC in inlines nur ohne...
 #define ASSERT( cond, message ) \
     if( !(cond) ) { \
         static const char __FAR_DATA _pErrorText[] = #message; \
         static const char __FAR_DATA _pFileName[]  = __FILE__; \
-       ::AssertFail( _pErrorText, _pFileName, __LINE__ ); \
+        ::binfilter::AssertFail( _pErrorText, _pFileName, __LINE__ ); \
     }
 #else
 #define ASSERT( cond, message ) \
     if( !(cond) ) { \
         const char   *_pErrorText = #message; \
         const char   *_pFileName  = __FILE__; \
-       ::AssertFail( _pErrorText, _pFileName, __LINE__ ); \
+       ::binfilter::AssertFail( _pErrorText, _pFileName, __LINE__ ); \
     }
 #endif
 
@@ -105,13 +107,13 @@ extern void AssertFail( USHORT, const sal_Char*, USHORT );
 #define ASSERT_ID( cond, id )   \
     if( !(cond) ) { \
         static const char __FAR_DATA _pFileName[]  = __FILE__;  \
-       ::AssertFail( (USHORT)id, _pFileName, __LINE__ );    \
+        ::binfilter::AssertFail( (USHORT)id, _pFileName, __LINE__ );    \
     }
 #else
 #define ASSERT_ID( cond, id ) \
     if( !(cond) ) { \
         const char   *_pFileName  = __FILE__; \
-       ::AssertFail( (USHORT)id, _pFileName, __LINE__ ); \
+       ::binfilter::AssertFail( (USHORT)id, _pFileName, __LINE__ ); \
     }
 #endif
 
@@ -126,4 +128,5 @@ extern void AssertFail( USHORT, const sal_Char*, USHORT );
 
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: writingmodeitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
 #endif
+namespace binfilter {
 
 // class SvxWritingModeItem ----------------------------------------------
 
@@ -82,7 +83,7 @@ class SvxWritingModeItem : public SfxUInt16Item
 public:
     TYPEINFO();
 
-    SvxWritingModeItem( ::com::sun::star::text::WritingMode eValue = com::sun::star::text::WritingMode_LR_TB, USHORT nWhich = SDRATTR_TEXTDIRECTION );
+    SvxWritingModeItem( ::com::sun::star::text::WritingMode eValue = ::com::sun::star::text::WritingMode_LR_TB, USHORT nWhich = SDRATTR_TEXTDIRECTION );
     virtual ~SvxWritingModeItem();
 
     SvxWritingModeItem& operator=( const SvxWritingModeItem& rItem );
@@ -99,11 +100,12 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper * = 0 ) const;
 
-//STRIP001  virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal,
+//STRIP001  virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
 //STRIP001                                  BYTE nMemberId );
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal,
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
                                 BYTE nMemberId ) const;
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SVX_WRITINGMODEITEM_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: globl3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _E3D_GLOBL3D_HXX
 
 #include <tools/solar.h>
+namespace binfilter {
 
 //#define ESODEBUG
 #define E3D_STREAMING
@@ -92,4 +93,5 @@ const UINT16 E3D_LABELOBJ_ID    = 20;
 const UINT16 E3D_COMPOUNDOBJ_ID = 21;
 const UINT16 E3D_POLYGONOBJ_ID  = 22;
 
+}//end of namespace binfilter
 #endif      // _E3D_GLOBL3D_HXX

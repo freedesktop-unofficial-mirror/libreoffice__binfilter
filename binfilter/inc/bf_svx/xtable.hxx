@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xtable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:48 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,10 +96,11 @@
 #ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
 #endif
-
 class Color;
 class Bitmap;
 class VirtualDevice;
+namespace binfilter {
+
 class XOutdevItemPool;
 class XOutputDevice;
 
@@ -712,4 +713,5 @@ public:
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
 };
 
+}//end of namespace binfilter
 #endif // _XTABLE_HXX

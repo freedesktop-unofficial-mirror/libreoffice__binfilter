@@ -2,9 +2,9 @@
  *
  *  $RCSfile: undobj.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,8 @@
 #ifndef _REDLENUM_HXX
 #include <redlenum.hxx>
 #endif
+class Graphic;
+namespace binfilter {
 
 class SwUndoIter;
 class SwHistory;
@@ -109,7 +111,7 @@ class SwSectionFmt;
 class SvxTabStopItem;
 class SwNumSection;
 class SwDDEFieldType;
-class Graphic;
+
 class SwGrfNode;
 class SwUndos;
 class SwUndoRange;
@@ -141,7 +143,7 @@ class SwSectionNode;
 
 namespace utl {
     class TransliterationWrapper;
-};
+}//STRIP008 ;
 
 #ifndef PRODUCT
 class Writer;
@@ -1086,7 +1088,7 @@ public:
 //--------------------------------------------------------------------
 
 class _UnReplaceData;
-SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 );
+SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )//STRIP008 ;
 
 //STRIP001 class SwUndoReplace : public SwUndo
 //STRIP001 {
@@ -1656,4 +1658,5 @@ public:
 
 
 
+}
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: textuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,6 +96,7 @@
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
+namespace binfilter {
 
 
 class EditEngine;
@@ -121,9 +122,9 @@ struct ScHeaderFieldData;
 //  wieder in die Seitenvorlage geschrieben werden muss
 
 class ScHeaderFooterContentObj : public cppu::WeakImplHelper3<
-                            com::sun::star::sheet::XHeaderFooterContent,
-                            com::sun::star::lang::XUnoTunnel,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::sheet::XHeaderFooterContent,
+                            ::com::sun::star::lang::XUnoTunnel,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     EditTextObject* pLeftText;
@@ -161,9 +162,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScHeaderFooterContentObj* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::sheet::XHeaderFooterContent> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScHeaderFooterContentObj* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::sheet::XHeaderFooterContent> xObj );
 
                             // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName()
@@ -206,11 +207,11 @@ public:
 //  ScHeaderFooterTextObj veraendert den Text in einem ScHeaderFooterContentObj
 
 class ScHeaderFooterTextObj : public cppu::WeakImplHelper5<
-                            com::sun::star::text::XText,
-                            com::sun::star::text::XTextRangeMover,
-                            com::sun::star::container::XEnumerationAccess,
-                            com::sun::star::text::XTextFieldsSupplier,
-                            com::sun::star::lang::XServiceInfo >
+                            ::com::sun::star::text::XText,
+                            ::com::sun::star::text::XTextRangeMover,
+                            ::com::sun::star::container::XEnumerationAccess,
+                            ::com::sun::star::text::XTextFieldsSupplier,
+                            ::com::sun::star::lang::XServiceInfo >
 {
 private:
     ScHeaderFooterTextData      aTextData;
@@ -325,9 +326,9 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScCellTextCursor* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScCellTextCursor* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 };
 
 class ScHeaderFooterTextCursor : public SvxUnoTextCursor
@@ -353,20 +354,20 @@ public:
                                     sal_Int8 >& aIdentifier )
                                 throw(::com::sun::star::uno::RuntimeException);
 
-    static const com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
-    static ScHeaderFooterTextCursor* getImplementation( const com::sun::star::uno::Reference<
-                                    com::sun::star::uno::XInterface> xObj );
+    static const ::com::sun::star::uno::Sequence<sal_Int8>& getUnoTunnelId();
+    static ScHeaderFooterTextCursor* getImplementation( const ::com::sun::star::uno::Reference<
+                                    ::com::sun::star::uno::XInterface> xObj );
 };
 
 class ScDrawTextCursor : public SvxUnoTextCursor
 {
 private:
-    com::sun::star::uno::Reference< com::sun::star::text::XText > xParentText;
+    ::com::sun::star::uno::Reference< ::com::sun::star::text::XText > xParentText;
 
 public:
                             ScDrawTextCursor(const ScDrawTextCursor& rOther);
-                            ScDrawTextCursor( const com::sun::star::uno::Reference<
-                                                com::sun::star::text::XText >& xParent,
+                            ScDrawTextCursor( const ::com::sun::star::uno::Reference<
+                                                ::com::sun::star::text::XText >& xParent,
                                             const SvxUnoTextBase& rText );
     virtual                  ~ScDrawTextCursor() throw();
 
@@ -460,5 +461,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

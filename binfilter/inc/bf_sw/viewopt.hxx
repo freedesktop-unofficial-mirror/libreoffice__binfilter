@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewopt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,13 +71,16 @@
 #include <vcl/color.hxx>
 #endif
 #include "authratr.hxx"
-
-class SwRect;
+namespace svtools{ class ColorConfig;}
 class Window;
 class OutputDevice;
+
+namespace binfilter {
+
+class SwRect;
 class ViewShell;
 class SwDocShell;
-namespace svtools{ class ColorConfig;}
+//STRIP008 namespace svtools{ class ColorConfig;}
 
 #define VIEWOPT_1_IDLE          0x00000001L
 #define VIEWOPT_1_TAB           0x00000002L
@@ -629,4 +632,5 @@ inline void SwViewOption::SetUIOptions( const SwViewOption& rVOpt )
 USHORT      GetHtmlMode(const SwDocShell*);
 
 
+} //namespace binfilter
 #endif

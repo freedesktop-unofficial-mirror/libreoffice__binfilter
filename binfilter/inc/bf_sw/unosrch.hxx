@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unosrch.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,18 +76,24 @@
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif
+namespace com{namespace sun{namespace star{namespace util{
+    struct SearchOptions;
+}}}}
+struct SfxItemPropertyMap;
+class SfxItemSet;
+namespace binfilter {
 
 /******************************************************************************
  *
  ******************************************************************************/
-struct SfxItemPropertyMap;
+
 class SwXTextDocument;
 class SwSearchProperties_Impl;
-class SfxItemSet;
 
-namespace com{namespace sun{namespace star{namespace util{
-    struct SearchOptions;
-}}}}
+
+//STRIP008 namespace com{namespace sun{namespace star{namespace util{
+//STRIP008  struct SearchOptions;
+//STRIP008 }}}}
 
 
 /*-----------------19.12.97 12:58-------------------
@@ -156,10 +162,10 @@ public:
     //XPropertyReplace
     virtual sal_Bool SAL_CALL getValueSearch(void) throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL setValueSearch(sal_Bool ValueSearch_) throw( ::com::sun::star::uno::RuntimeException );
-    virtual ::com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue > SAL_CALL getSearchAttributes(void) throw( ::com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL setSearchAttributes(const ::com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >& aSearchAttribs) throw( ::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
-    virtual ::com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue > SAL_CALL getReplaceAttributes(void) throw( ::com::sun::star::uno::RuntimeException );
-    virtual void SAL_CALL setReplaceAttributes(const ::com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >& aSearchAttribs) throw( ::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL getSearchAttributes(void) throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL setSearchAttributes(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& aSearchAttribs) throw( ::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL getReplaceAttributes(void) throw( ::com::sun::star::uno::RuntimeException );
+    virtual void SAL_CALL setReplaceAttributes(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& aSearchAttribs) throw( ::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
 
     //XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName(void) throw( ::com::sun::star::uno::RuntimeException );
@@ -176,5 +182,6 @@ public:
                                         rSearchOpt ) const;
 };
 
+} //namespace binfilter
 #endif
 

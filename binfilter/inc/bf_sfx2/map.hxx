@@ -2,9 +2,9 @@
  *
  *  $RCSfile: map.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 
 #include <tools.hxx>
 #include <sfxitems.hxx>
+namespace binfilter {
 
 class SfxInterface;
 class SfxDispatcher;
@@ -110,5 +111,6 @@ inline SfxMap::SfxMap(const SfxDispatcher &rDispatcher ):
 {
 }
 
+}//end of namespace binfilter
 #endif
 

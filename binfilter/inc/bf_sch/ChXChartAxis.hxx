@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXChartAxis.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,52 +72,53 @@
 #endif
 
 #include "ChXChartObject.hxx"
+namespace binfilter {
 
 class ChXChartAxis :
-    public com::sun::star::util::XNumberFormatsSupplier,
+    public ::com::sun::star::util::XNumberFormatsSupplier,
     public ChXChartObject
 {
 private:
-    com::sun::star::uno::Reference<
-        com::sun::star::util::XNumberFormatsSupplier >  rNumberFormatter;
+    ::com::sun::star::uno::Reference<
+        ::com::sun::star::util::XNumberFormatsSupplier >    rNumberFormatter;
 
-    com::sun::star::uno::Sequence< com::sun::star::uno::Type > maTypeSequence;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
     ChXChartAxis( ChartModel* _Model, long _WhichId );
     virtual ~ChXChartAxis();
 
-    virtual void InitNumberFormatter() throw( com::sun::star::uno::RuntimeException );
+    virtual void InitNumberFormatter() throw( ::com::sun::star::uno::RuntimeException );
 
-    static const com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static ChXChartAxis* getImplementation( com::sun::star::uno::Reference< com::sun::star::uno::XInterface > ) throw();
+    static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+    static ChXChartAxis* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // XServiceInfo
-    virtual ::rtl::OUString SAL_CALL getImplementationName() throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL getSupportedServiceNames() throw( com::sun::star::uno::RuntimeException );
+    virtual ::rtl::OUString SAL_CALL getImplementationName() throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw( ::com::sun::star::uno::RuntimeException );
 
     // XNumberFormatsSupplier
-    virtual com::sun::star::uno::Reference< com::sun::star::beans::XPropertySet > SAL_CALL getNumberFormatSettings()
-        throw( com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Reference< com::sun::star::util::XNumberFormats > SAL_CALL getNumberFormats()
-        throw( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet > SAL_CALL getNumberFormatSettings()
+        throw( ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > SAL_CALL getNumberFormats()
+        throw( ::com::sun::star::uno::RuntimeException );
 
     // XPropertySet
     virtual void SAL_CALL setPropertyValue( const ::rtl::OUString& aPropertyName,
-                                            const com::sun::star::uno::Any& aValue )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::beans::PropertyVetoException,
-               com::sun::star::lang::IllegalArgumentException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
-    virtual com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
-        throw( com::sun::star::beans::UnknownPropertyException,
-               com::sun::star::lang::WrappedTargetException,
-               com::sun::star::uno::RuntimeException );
+                                            const ::com::sun::star::uno::Any& aValue )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::beans::PropertyVetoException,
+               ::com::sun::star::lang::IllegalArgumentException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName )
+        throw( ::com::sun::star::beans::UnknownPropertyException,
+               ::com::sun::star::lang::WrappedTargetException,
+               ::com::sun::star::uno::RuntimeException );
 
     // XInterface
-    virtual com::sun::star::uno::Any SAL_CALL queryInterface( const com::sun::star::uno::Type & rType )
-        throw ( com::sun::star::uno::RuntimeException );
+    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType )
+        throw ( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL acquire() throw();
     virtual void SAL_CALL release() throw();
 
@@ -131,8 +132,8 @@ public:
     virtual ::rtl::OUString SAL_CALL getShapeType() throw( ::com::sun::star::uno::RuntimeException );
 
     // XUnoTunnel
-    virtual sal_Int64 SAL_CALL getSomething( const com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
-        throw( com::sun::star::uno::RuntimeException );
+    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier )
+        throw( ::com::sun::star::uno::RuntimeException );
 
     //  ChXChartObject::XMultiPropertySet
     virtual void SAL_CALL setPropertyValues (
@@ -158,5 +159,6 @@ protected:
                                         SfxItemSet & rAttributes);
 };
 
+} //namespace binfilter
 #endif  // _CHXCHART_AXIS_HXX
 

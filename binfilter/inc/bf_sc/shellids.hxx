@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shellids.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef SC_SHELLIDS_HXX
 #define SC_SHELLIDS_HXX
+namespace binfilter {
 
 // Sfx Interface-IDs
 #define SCID_APP                (SFX_INTERFACE_SC_START+0)
@@ -83,6 +84,7 @@
 #define SCID_PAGEBREAK_SHELL    (SFX_INTERFACE_SC_START+16)
 
 
+} //namespace binfilter
 #endif
 
 

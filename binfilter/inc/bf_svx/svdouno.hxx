@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdouno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
 #endif
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
@@ -99,12 +100,12 @@ class SdrUnoObj : public SdrRectObj
     BOOL                        bOwnUnoControlModel;
 
 protected:
-    ::com::sun::star::uno::Reference< com::sun::star::awt::XControlModel > xUnoControlModel; // kann auch von aussen gesetzt werden
+    ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > xUnoControlModel; // kann auch von aussen gesetzt werden
 
 private:
 //STRIP001  void CreateUnoControlModel(const String& rModelName);
 //STRIP001  void CreateUnoControlModel(const String& rModelName,
-//STRIP001      const ::com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory >& rxSFac );
+//STRIP001      const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& rxSFac );
 
 public:
     TYPEINFO();
@@ -112,7 +113,7 @@ public:
 //  UNICODE: SdrUnoObj(BOOL bOwnsModel = TRUE, const String& rModelName = "");
     SdrUnoObj(const String& rModelName, BOOL bOwnsModel = TRUE);
     SdrUnoObj(const String& rModelName,
-        const ::com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory >& rxSFac,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& rxSFac,
         BOOL bOwnsModel = TRUE);
     virtual ~SdrUnoObj();
 
@@ -139,16 +140,17 @@ public:
 //STRIP001  virtual void TakeObjNameSingul(XubString& rName) const;
 //STRIP001  virtual void TakeObjNamePlural(XubString& rName) const;
 
-    ::com::sun::star::uno::Reference< com::sun::star::awt::XControlModel > GetUnoControlModel() const {return xUnoControlModel;}
-    ::com::sun::star::uno::Reference< com::sun::star::awt::XControl > GetUnoControl(const OutputDevice* pOut) const;
-//STRIP001  OutputDevice* GetOutputDevice(::com::sun::star::uno::Reference< com::sun::star::awt::XControl > _xControl) const;
+    ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > GetUnoControlModel() const {return xUnoControlModel;}
+    ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > GetUnoControl(const OutputDevice* pOut) const;
+//STRIP001  OutputDevice* GetOutputDevice(::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > _xControl) const;
 
     const String& GetUnoControlModelTypeName() const { return aUnoControlTypeName; }
     const String& GetUnoControlTypeName() const { return aUnoControlTypeName; }
 
-    void SetUnoControlModel(::com::sun::star::uno::Reference< com::sun::star::awt::XControlModel > xModel);
+    void SetUnoControlModel(::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > xModel);
     void VisAreaChanged(const OutputDevice* pOut=NULL);
 };
 
+}//end of namespace binfilter
 #endif          // _SVDOUNO_HXX
 

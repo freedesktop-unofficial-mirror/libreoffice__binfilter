@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdasaitm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif
+namespace binfilter {
 
 class SdrAutoShapeAdjustmentValue
 {
@@ -102,8 +103,8 @@ class SdrAutoShapeAdjustmentItem : public SfxPoolItem
             virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
             virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
-//STRIP001          virtual sal_Bool            QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001          virtual sal_Bool            PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001          virtual sal_Bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001          virtual sal_Bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 #ifdef SDR_ISPOOLABLE
             virtual int IsPoolable() const;
@@ -115,5 +116,6 @@ class SdrAutoShapeAdjustmentItem : public SfxPoolItem
 //STRIP001                                                      const SdrAutoShapeAdjustmentValue& rVal );
 };
 
+}//end of namespace binfilter
 #endif
 

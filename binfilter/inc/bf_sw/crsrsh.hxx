@@ -2,9 +2,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,13 +105,18 @@
 #else
 #define CRSR_INLINE
 #endif
-
-// einige Forward Deklarationen
-
+namespace com { namespace sun { namespace star { namespace util {
+    struct SearchOptions;
+} } } }
 class KeyCode;
 class Region;
 class SfxItemSet;
 class SfxPoolItem;
+namespace binfilter {
+
+// einige Forward Deklarationen
+
+
 class SpellCheck;
 class SwBookmark;
 class SwCntntFrm;
@@ -141,9 +146,9 @@ class SwTOXMark;
 class SwRedline;
 struct SwPosition;
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
+//STRIP008 namespace com { namespace sun { namespace star { namespace util {
+//STRIP008  struct SearchOptions;
+//STRIP008 } } } }
 
 
 // enum und struktur, um ueber die Doc-Position Informationen zu erfragen
@@ -409,7 +414,7 @@ public:
 //STRIP001  FASTBOOL MoveRegion( SwWhichRegion, SwPosRegion );
 
     // die Suchfunktionen
-//STRIP001  ULONG Find( const com::sun::star::util::SearchOptions& rSearchOpt,
+//STRIP001  ULONG Find( const ::com::sun::star::util::SearchOptions& rSearchOpt,
 //STRIP001              SwDocPositions eStart, SwDocPositions eEnde,
 //STRIP001                  BOOL& bCancel,
 //STRIP001              FindRanges eRng, int bReplace = FALSE );
@@ -423,7 +428,7 @@ public:
 //STRIP001              SwDocPositions eStart, SwDocPositions eEnde,
 //STRIP001                  BOOL& bCancel,
 //STRIP001              FindRanges eRng,
-//STRIP001              const com::sun::star::util::SearchOptions* pSearchOpt = 0,
+//STRIP001              const ::com::sun::star::util::SearchOptions* pSearchOpt = 0,
 //STRIP001              const SfxItemSet* rReplSet = 0 );
 
     // Positionieren des Cursors
@@ -946,4 +951,5 @@ inline void SwCrsrShell::UnSetVisCrsr()
 #endif
 
 
+} //namespace binfilter
 #endif  // _CRSRSH_HXX

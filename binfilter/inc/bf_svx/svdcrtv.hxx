@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdcrtv.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #endif
 
 #include <bf_svx/svddrgv.hxx>
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
@@ -268,5 +269,6 @@ public:
     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
 };
 
+}//end of namespace binfilter
 #endif //_SVDCRTV_HXX
 

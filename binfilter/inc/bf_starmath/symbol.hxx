@@ -2,9 +2,9 @@
  *
  *  $RCSfile: symbol.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,6 +89,7 @@
 #ifndef _SMMOD_HXX
 #include <smmod.hxx>
 #endif
+namespace binfilter {
 
 #define SS_ATTR_ACCESS      0x80
 
@@ -167,8 +168,8 @@ public:
     void            SetDocSymbol( BOOL bVal )   { bDocSymbol = bVal; }
 };
 
-DECLARE_LIST(SmListSym, SmSym *);
-SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 );
+DECLARE_LIST(SmListSym, SmSym *)//STRIP008 DECLARE_LIST(SmListSym, SmSym *);
+SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )//STRIP008 ;
 
 /**************************************************************************/
 
@@ -281,5 +282,6 @@ public:
 //STRIP001  void            Save();
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bulitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _SVX_BULITEM_HXX
 #define _SVX_BULITEM_HXX
+namespace binfilter {
 
 // include ---------------------------------------------------------------
 
@@ -94,7 +95,7 @@
 #define VALID_STYLE         0x0040
 #define VALID_PREVTEXT      0x0080
 #define VALID_FOLLOWTEXT    0x0100
-
+}//end of namespace binfilter
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
 #endif
@@ -106,7 +107,7 @@
 #endif
 
 // class SvxBulletItem ---------------------------------------------------
-
+namespace binfilter {
 class SvxBulletItem : public SfxPoolItem
 {
     Font            aFont;
@@ -194,5 +195,6 @@ public:
 //STRIP001  void                CopyValidProperties( const SvxBulletItem& rCopyFrom );
 };
 
+}//end of namespace binfilter
 #endif
 

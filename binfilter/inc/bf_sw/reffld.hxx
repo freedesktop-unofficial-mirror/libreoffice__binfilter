@@ -2,9 +2,9 @@
  *
  *  $RCSfile: reffld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,8 +64,10 @@
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
 #endif
-
 class SfxPoolItem;
+namespace binfilter {
+
+
 class SwDoc;
 class SwTxtAttr;
 class SwTxtNode;
@@ -153,12 +155,13 @@ public:
 //STRIP001  virtual void        SetPar1(const String& rStr);
 
 //STRIP001  virtual String      GetPar2() const;
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     void                ConvertProgrammaticToUIName();
 };
 
 
+} //namespace binfilter
 #endif // _REFFLD_HXX
 

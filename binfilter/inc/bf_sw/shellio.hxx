@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shellio.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,21 +86,24 @@
 #ifndef _DOCFAC_HXX
 #include <docfac.hxx>   // SwDocFac
 #endif
-/*STRIP001*/ #include <tools/debug.hxx>
-// einige Forward - Deklarationen
-class SfxFactoryFilterContainer;
-class SfxFilter;
+#include <tools/debug.hxx>
 class SfxItemPool;
 class SfxItemSet;
-class SfxMedium;
 class SvPtrarr;
 class SvStorage;
 class SvStorageStreamRef;
 class SvStream;
 class SvStrings;
 class SvStringsSortDtor;
-class SvxFontItem;
 class SvxMacroTableDtor;
+namespace binfilter {
+
+// einige Forward - Deklarationen
+class SfxFactoryFilterContainer;
+class SfxFilter;
+class SfxMedium;
+class SvxFontItem;
+
 class Sw3Io;
 class SwCntntNode;
 class SwCrsrShell;
@@ -728,4 +731,5 @@ extern sal_Char __FAR_DATA FILTER_XMLV[];   // XML filter
 extern sal_Char __FAR_DATA FILTER_XMLVW[];  // XML filter
 
 
+} //namespace binfilter
 #endif

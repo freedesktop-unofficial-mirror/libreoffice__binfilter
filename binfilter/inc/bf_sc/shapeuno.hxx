@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shapeuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:21 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,9 +90,10 @@ namespace com { namespace sun { namespace star {
         class XShape;
     }
 }}}
+struct SvEventDescription;
+namespace binfilter {
 
 class SdrObject;
-struct SvEventDescription;
 
 //------------------------------------------------------------------------
 
@@ -108,7 +109,7 @@ class ScShapeObj : public ::cppu::OWeakObject,
 {
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XAggregation > mxShapeAgg;
-    com::sun::star::uno::Sequence< sal_Int8 >*                              pImplementationId;
+    ::com::sun::star::uno::Sequence< sal_Int8 >*                              pImplementationId;
     BOOL                                                                    bIsTextShape;
 
     SdrObject* GetSdrObject() const throw();
@@ -253,5 +254,6 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 };
 
+} //namespace binfilter
 #endif
 

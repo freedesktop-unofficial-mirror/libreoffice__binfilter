@@ -2,9 +2,9 @@
  *
  *  $RCSfile: objid.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #ifndef _SVDITER_HXX //autogen
 #include <bf_svx/svditer.hxx>
 #endif
+namespace binfilter {
 
 
 /*************************************************************************
@@ -117,6 +118,7 @@ extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
 extern char *GetCHOBJIDName(const long id);
 #endif
 
+} //namespace binfilter
 #endif  // _SCH_OBJID_HXX
 
 

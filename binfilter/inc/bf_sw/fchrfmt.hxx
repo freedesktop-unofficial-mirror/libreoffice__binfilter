@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fchrfmt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,11 @@
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
+class IntlWrapper;
+namespace binfilter {
 
 class SwCharFmt;
-class IntlWrapper;
+
 
 // ATT_CHARFMT *********************************************
 
@@ -99,8 +101,8 @@ public:
                                     String &rText,
                                     const IntlWrapper*    pIntl = 0 ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     // an das SwTxtCharFmt weiterleiten (vom SwClient)
 //STRIP001  virtual void    Modify( SfxPoolItem*, SfxPoolItem* );
@@ -109,5 +111,6 @@ public:
     void SetCharFmt( SwFmt* pFmt ) { pFmt->Add(this); }
     SwCharFmt* GetCharFmt() const { return (SwCharFmt*)GetRegisteredIn(); }
 };
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: itempool.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
+namespace binfilter {
 
 
 /*************************************************************************
@@ -91,6 +92,7 @@ public:
 //STRIP001  SfxMapUnit GetMetric(USHORT nWhich) const;
 };
 
+} //namespace binfilter
 #endif // _SCH_ITEMPOOL_HXX
 
 

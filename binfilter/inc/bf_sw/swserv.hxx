@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swserv.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _LINKSRC_HXX
 #include <so3/linksrc.hxx>
 #endif
+namespace binfilter {
 
 class SwBookmark;
 class SwSectionNode;
@@ -124,5 +125,6 @@ public:
 SV_DECL_REF( SwServerObject )
 #endif
 
+} //namespace binfilter
 #endif  // _SWSERV_HXX
 

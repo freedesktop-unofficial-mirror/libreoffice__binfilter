@@ -2,9 +2,9 @@
  *
  *  $RCSfile: authfld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,8 @@
 
 #define _SVSTDARR_LONGS
 #include <svtools/svstdarr.hxx>
+class SvUShorts;
+namespace binfilter {
 
 class SwAuthDataArr;
 /* -----------------21.09.99 13:32-------------------
@@ -109,7 +111,7 @@ struct SwTOXSortKey
 /* -----------------14.09.99 16:15-------------------
 
  --------------------------------------------------*/
-class SvUShorts;
+
 class SwAuthorityField;
 class SortKeyArr;
 class SwAuthorityFieldType : public SwFieldType
@@ -135,8 +137,8 @@ public:
     virtual SwFieldType* Copy()    const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual SwFieldType* Copy()    const;
 //STRIP001  virtual void        Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
 //STRIP001
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 //STRIP001
 //STRIP001  inline SwDoc*   GetDoc() const                      { return m_pDoc; }
 //STRIP001  inline void     SetDoc(SwDoc* pNewDoc)              { m_pDoc = pNewDoc; }
@@ -223,8 +225,8 @@ public:
 //STRIP001  virtual void        SetPar1(const String& rStr);
 //STRIP001  virtual SwFieldType* ChgTyp( SwFieldType* );
 
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
 //STRIP001  long                GetHandle() const       { return nHandle; }
 
@@ -245,5 +247,6 @@ public:
 //STRIP001      aAuthFields[ePos] = rField;
 //STRIP001 }
 
+} //namespace binfilter
 #endif
 

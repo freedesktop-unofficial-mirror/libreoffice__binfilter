@@ -2,9 +2,9 @@
  *
  *  $RCSfile: label3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _E3D_PNTOBJ3D_HXX
 #include <bf_svx/pntobj3d.hxx>
 #endif
+namespace binfilter {
 
 class Viewport3D;
 class E3dScene;
@@ -73,7 +74,7 @@ class E3dLabelObj;
 /************************************************************************/
 
 class E3dLabelObj;
-DECLARE_LIST(E3dLabelList, E3dLabelObj*);
+DECLARE_LIST(E3dLabelList, E3dLabelObj*)//STRIP008 DECLARE_LIST(E3dLabelList, E3dLabelObj*);
 
 /*************************************************************************
 |*
@@ -132,4 +133,5 @@ class E3dLabelObj : public E3dPointObj
 //STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 };
 
+}//end of namespace binfilter
 #endif          // _E3D_LABEL3D_HXX

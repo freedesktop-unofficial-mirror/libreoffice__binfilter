@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmleohlp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $
+ *  last change: $Author: mwu $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,9 @@
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
 #endif
+class SvPersist;
+class SvGlobalName;
+namespace binfilter {
 
 // -----------------------------
 // - SvXMLEmbeddedObjectHelper -
@@ -94,8 +97,6 @@ enum SvXMLEmbeddedObjectHelperMode
 // - SvXMLEmbeddedObjectHelper -
 // -----------------------------
 
-class SvPersist;
-class SvGlobalName;
 struct OUStringLess;
 class OutputStorageWrapper_Impl;
 
@@ -184,4 +185,5 @@ public:
     virtual sal_Bool SAL_CALL hasElements(  ) throw (::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif

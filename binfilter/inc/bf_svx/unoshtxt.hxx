@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoshtxt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,11 +67,12 @@
 #ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
 #endif
+class Window;
+namespace binfilter {
 
 class SvxTextForwarder;
 class SdrObject;
 class SdrView;
-class Window;
 class SvxTextEditSourceImpl;
 
 class SvxTextEditSource : public SvxEditSource, public SvxViewForwarder
@@ -115,4 +116,5 @@ private:
     SvxTextEditSourceImpl*  mpImpl;
 };
 
+}//end of namespace binfilter
 #endif

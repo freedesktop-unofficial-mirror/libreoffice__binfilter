@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,16 @@
 #ifndef _OUTLINER_HXX //autogen
 #include <bf_svx/outliner.hxx>
 #endif
+namespace com { namespace sun { namespace star { namespace lang {
+    struct Locale;
+}}}}
+class SvtSysLocale;
+class CharClass;
+class LocaleDataWrapper;
+class SfxItemSet;
+class Link;
+class AutoTimer;
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -97,13 +107,10 @@
 
 class SdrOutliner;
 class SdrModel;
-class SvtSysLocale;
-class CharClass;
-class LocaleDataWrapper;
 
-namespace com { namespace sun { namespace star { namespace lang {
-    struct Locale;
-}}}}
+//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
+//STRIP008  struct Locale;
+//STRIP008 }}}}
 
 // Globale Defaulteinstellungen fuer die DrawingEngine.
 // Diese Einstellungen sollte man direkt beim Applikationsstart
@@ -162,7 +169,6 @@ public:
     friend SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pMod );
 };
 
-class SfxItemSet;
 // Liefert eine Ersatzdarstellung fuer einen XFillStyle
 // Bei XFILL_NONE gibt's FALSE und rCol bleibt unveraendert.
 FASTBOOL GetDraftFillColor(const SfxItemSet& rSet, Color& rCol);
@@ -257,7 +263,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Link;
 
 // Hilfsklasse zur kommunikation zwischen dem Dialog
 // zum aufbrechen von Metafiles (sd/source/ui/dlg/brkdlg.cxx),
@@ -330,7 +335,6 @@ SdrLinkList& ImpGetUserMakeObjHdl();
 SdrLinkList& ImpGetUserMakeObjUserDataHdl();
 
 class SdrOle2Obj;
-class AutoTimer;
 
 class OLEObjCache : public Container
 {
@@ -382,5 +386,6 @@ inline SdrGlobalData& GetSdrGlobalData()
 
 /////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDETC_HXX
 

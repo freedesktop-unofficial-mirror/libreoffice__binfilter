@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoshprp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,6 +208,7 @@
 #endif
 
 #include <bf_svx/svxids.hrc>
+namespace binfilter {
 
 #ifndef SEQTYPE
  #if defined(__SUNPRO_CC) && (__SUNPRO_CC == 0x500)
@@ -394,7 +395,7 @@
     TEXT_PROPERTIES_DEFAULTS
 
 #define MISC_OBJ_PROPERTIES_NO_SHEAR \
-    { MAP_CHAR_LEN("Transformation"),                   OWN_ATTR_TRANSFORMATION,    &::getCppuType((const struct com::sun::star::drawing::HomogenMatrix3*)0), 0, 0 }, \
+    { MAP_CHAR_LEN("Transformation"),                   OWN_ATTR_TRANSFORMATION,    &::getCppuType((const struct ::com::sun::star::drawing::HomogenMatrix3*)0), 0, 0 }, \
     { MAP_CHAR_LEN(UNO_NAME_MISC_OBJ_ZORDER),           OWN_ATTR_ZORDER,            &::getCppuType((const sal_Int32*)0),        0,      0}, \
     { MAP_CHAR_LEN(UNO_NAME_MISC_OBJ_FRAMERECT),        OWN_ATTR_FRAMERECT,         &::getCppuType((const ::com::sun::star::awt::Rectangle*)0), 0,  0 }, \
     { MAP_CHAR_LEN(UNO_NAME_MISC_OBJ_ROTATEANGLE),      SDRATTR_ROTATEANGLE,        &::getCppuType((const sal_Int32*)0),        0,  0}, \
@@ -603,5 +604,6 @@
 #define AUTOSHAPE_PROPERTIES \
     { MAP_CHAR_LEN(UNO_NAME_AUTOSHAPE_ADJUSTMENT),SDRATTR_AUTOSHAPE_ADJUSTMENT,         SEQTYPE(::getCppuType((::com::sun::star::uno::Sequence<sal_Int32>*)0)), 0, 0}, \
 
+}//end of namespace binfilter
 #endif
 

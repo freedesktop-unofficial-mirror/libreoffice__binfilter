@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,6 +116,7 @@
 #include <svtools/colorcfg.hxx>
 #endif
 
+
 //************************************************************
 //   Pre-Defines
 //************************************************************
@@ -123,13 +124,14 @@
 namespace com { namespace sun { namespace star { namespace awt {
 class XControlContainer;
 }}}}
-
-class SdrPageViewWinRec;
 class OutputDevice;
 class VirtualDevice;
-class SdrView;
 class SfxItemSet;
 class SfxStyleSheet;
+class B2dIAOManager;
+namespace binfilter {
+class SdrPageViewWinRec;
+class SdrView;
 class ExtOutputDevice;
 class SdrNamedSubRecord;
 class SdrIOHeader;
@@ -137,7 +139,6 @@ class SdrOle2Obj;
 class ImpMasterBmp;
 class SdrItemBrowser;
 class SdrObject;
-class B2dIAOManager;
 
 //************************************************************
 //   Defines for cache modes
@@ -400,7 +401,7 @@ protected:
     unsigned                    bHideGrafDraft : 1;
     unsigned                    bAnimationPause : 1;
 
-    svtools::ColorConfig            maColorConfig;
+    ::svtools::ColorConfig            maColorConfig;
     Color                       maGridColor;
 
 private:
@@ -843,5 +844,6 @@ public:
                                const SdrPage&   rCurrPage ) const;
 };
 
+}//end of namespace binfilter
 #endif //_SVDPNTV_HXX
 

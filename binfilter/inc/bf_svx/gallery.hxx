@@ -2,9 +2,9 @@
  *
  *  $RCSfile: gallery.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,10 @@
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
+class List;
+class Graphic;
+class Bitmap;
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -129,13 +133,10 @@
 // - GalleryExplorer -
 // -------------------
 
-class List;
 class Gallery;
 class VCDrawModel;
 class FmFormModel;
-class Graphic;
 class FmFormModel;
-class Bitmap;
 
 //STRIP001 class GalleryExplorer
 //STRIP001 {
@@ -199,4 +200,5 @@ class Bitmap;
 //STRIP001  static BOOL                 EndLocking( ULONG nThemeId );
 //STRIP001 };
 
+}//end of namespace binfilter
 #endif // _GALLERY_HXX_

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: calc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,11 @@
 #ifndef __SBX_SBXVALUE //autogen
 #include <svtools/sbxvar.hxx>
 #endif
-
 class CharClass;
 class LocaleDataWrapper;
+
+namespace binfilter {
+
 class SwFieldType;
 class SwDoc;
 
@@ -264,4 +266,5 @@ public:
 //STRIP001                                  String* pValidName = 0 );
 };
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swdbdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #ifndef _RTL_USTRING_
 #include <rtl/ustring>
 #endif
+namespace binfilter {
 
 // contains the description of a data source
 struct SwDBData
@@ -80,5 +81,6 @@ struct SwDBData
         {return rCmp.sDataSource == sDataSource && rCmp.sCommand == sCommand && rCmp.nCommandType == nCommandType;}
 };
 
+} //namespace binfilter
 #endif
 

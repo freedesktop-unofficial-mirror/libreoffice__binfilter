@@ -2,9 +2,9 @@
  *
  *  $RCSfile: modeldata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _SCH_MODELDATA_HXX
 
 #include "chtmodel.hxx"
+namespace binfilter {
 
 /** This class contains all members of the ChartModel, that can be stored for
     later for a complete undo.  Some members were omitted, that cannot be copied
@@ -329,4 +330,5 @@ private:
 };
 
 // _SCH_MODELDATA_HXX
+} //namespace binfilter
 #endif

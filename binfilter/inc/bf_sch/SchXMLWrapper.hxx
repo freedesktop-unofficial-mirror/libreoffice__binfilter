@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SchXMLWrapper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,6 @@
 #ifndef _SVSTOR_HXX
 #include <so3/svstor.hxx>
 #endif
-
 namespace com { namespace sun { namespace star {
     namespace xml {
         namespace sax {
@@ -87,6 +86,30 @@ namespace com { namespace sun { namespace star {
         class XActiveDataSource;
     }
 }}}
+namespace binfilter {
+
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008  namespace xml {
+//STRIP008      namespace sax {
+//STRIP008          class XParser;
+//STRIP008      }
+//STRIP008  }
+//STRIP008  namespace document {
+//STRIP008      class XGraphicObjectResolver;
+//STRIP008  }
+//STRIP008  namespace frame {
+//STRIP008      class XModel;
+//STRIP008  }
+//STRIP008  namespace task {
+//STRIP008      class XStatusIndicator;
+//STRIP008  }
+//STRIP008  namespace lang {
+//STRIP008      class XMultiServiceFactory;
+//STRIP008  }
+//STRIP008     namespace io {
+//STRIP008         class XActiveDataSource;
+//STRIP008     }
+//STRIP008 }}}
 
 class SchXMLWrapper
 {
@@ -112,7 +135,7 @@ class SchXMLWrapper
         ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArgs );
 
 public:
-    SchXMLWrapper( ::com::sun::star::uno::Reference< com::sun::star::frame::XModel >& xModel,
+    SchXMLWrapper( ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >& xModel,
                    SvStorage& rStorage,
                    sal_Bool bShowProgress = TRUE );
 
@@ -120,4 +143,5 @@ public:
     sal_Bool Export();
 };
 
+} //namespace binfilter
 #endif  // _SCH_XMLWRP_HXX_

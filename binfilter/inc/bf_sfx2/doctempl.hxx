@@ -2,9 +2,9 @@
  *
  *  $RCSfile: doctempl.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif
+namespace binfilter {
 
 // CLASS -----------------------------------------------------------------
 
@@ -171,5 +172,6 @@ public:
 //STRIP001  void            Update( sal_Bool _bSmart = sal_True );
 };
 
+}//end of namespace binfilter
 #endif // #ifndef _SFXDOCTEMPL_HXX
 

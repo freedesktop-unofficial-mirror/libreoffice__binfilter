@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -133,6 +133,9 @@
 #ifndef _RTL_USTRING_HXX
 #include <rtl/ustring.hxx>
 #endif
+class SfxAllItemSet;
+class SfxItemSet;
+namespace binfilter {
 
 //________________________________________________________________________________________________________________________
 //  defines for namespaces !
@@ -166,8 +169,6 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
     return aURL1.Complete == aURL2.Complete;
 }
 
-class SfxAllItemSet ;
-class SfxItemSet    ;
 class SfxSlot       ;
 
 void TransformParameters(           sal_uInt16                          nSlotId     ,
@@ -727,4 +728,5 @@ void TransformItems     (           sal_uInt16                          nSlotId 
         CREATEFACTORY ( CLASS )                                                                                     \
     }
 
+}//end of namespace binfilter
 #endif // _SFX_SFXUNO_HXX

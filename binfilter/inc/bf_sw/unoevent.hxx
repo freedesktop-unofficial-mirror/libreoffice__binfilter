@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoevent.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,10 +68,12 @@
 #ifndef _SFXMACITEM_HXX
 #include <svtools/macitem.hxx>
 #endif
-
-
 class SvxMacroItem;
 class SvxMacro;
+
+namespace binfilter {
+
+
 class SwXFrame;
 class SwXTextFrame;
 class SwXTextGraphicObject;
@@ -86,7 +88,7 @@ class SwHyperlinkEventDescriptor : public SvDetachedEventDescriptor
     const ::rtl::OUString sImplName;
 
     //XServiceInfo
-    virtual rtl::OUString SAL_CALL getImplementationName(void)
+    virtual ::rtl::OUString SAL_CALL getImplementationName(void)
         throw( ::com::sun::star::uno::RuntimeException );
 protected:
     virtual ~SwHyperlinkEventDescriptor();
@@ -124,7 +126,7 @@ public:
 
     ~SwFrameEventDescriptor();
 
-    virtual rtl::OUString SAL_CALL getImplementationName(void)
+    virtual ::rtl::OUString SAL_CALL getImplementationName(void)
         throw( ::com::sun::star::uno::RuntimeException );
 
 protected:
@@ -144,7 +146,7 @@ public:
 
     ~SwFrameStyleEventDescriptor();
 
-    virtual rtl::OUString SAL_CALL getImplementationName(void)
+    virtual ::rtl::OUString SAL_CALL getImplementationName(void)
         throw( ::com::sun::star::uno::RuntimeException );
 
 protected:
@@ -154,4 +156,5 @@ protected:
 };
 
 
+} //namespace binfilter
 #endif

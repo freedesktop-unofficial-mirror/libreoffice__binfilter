@@ -2,9 +2,9 @@
  *
  *  $RCSfile: stlsheet.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:23 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SFXSTYLE_HXX //autogen
 #include <svtools/style.hxx>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -123,5 +124,6 @@ protected:
                          const SfxHint& rHint, const TypeId& rHintType );
 };
 
+} //namespace binfilter
 #endif     // SC_STLSHEET_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: app.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:31 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,29 @@
 #define SFX_DESKTOP_HELPFILE_NAME "desktop"
 
 #include <bf_sfx2/shell.hxx>
+class BasicManager;
+class DdeService;
+class ModalDialog;
+class OutputDevice;
+class KeyEvent;
+class Point;
+class Rectangle;
+class SfxCancelManager;
+class SfxHint;
+class SfxItemSet;
+class StarBASIC;
+class SvPseudoObject;
+class Menu;
+class SvUShorts;
+class Window;
+class Config;
+class INetURLObject;
+class SvStringsDtor;
+class SimpleResMgr;
+namespace so3 {
+class SvLinkSource;
+};
+namespace binfilter {
 
 #define PLUG_BROWSEHACK     42
 
@@ -128,18 +151,11 @@ enum SfxDBNameConvert {INI2NATIONAL, NATIONAL2INI };
 
 class ISfxTemplateCommon;
 class TaskBar;
-class BasicManager;
-class DdeService;
 class GenLink;
 class IntroWindow_Impl;
-class ModalDialog;
 class PrinterDialog;
 class SfxHelpPI;
 class DropEvent;
-class OutputDevice;
-class KeyEvent;
-class Point;
-class Rectangle;
 class AppSettings;
 
 struct SfxChildWinContextFactory;
@@ -148,7 +164,6 @@ class SfxAppData_Impl;
 class SfxApplication;
 class SfxBasicTestWin;
 class SfxBindings;
-class SfxCancelManager;
 class SfxChildWinFactArr_Impl;
 class SfxChildWindow;
 class SfxConfigManager;
@@ -156,11 +171,9 @@ class SfxDispatcher;
 class SfxEventConfiguration;
 class SfxEventHint;
 class SfxFilter;
-class SfxHint;
 class SfxImageManager;
 class SfxInterface;
 class SfxItemHandle;
-class SfxItemSet;
 class SfxMacroConfig;
 class SfxMedium;
 class SfxMediumList;
@@ -187,24 +200,16 @@ class SfxViewFrame;
 class SfxViewFrameArr_Impl;
 class SfxViewShell;
 class SfxViewShellArr_Impl;
-class StarBASIC;
 class SvData;
-class SvPseudoObject;
 class HelpPI;
 class SfxWorkWindow;
 class SfxFilterMatcher;
 class SfxFrame;
-class Menu;
-class SvUShorts;
 class SfxModule;
 class SfxModuleArr_Impl;
 class ISfxModule;
 class SfxObjectShellLock;
-class Window;
-class Config;
 class TaskStatusBar;
-class INetURLObject;
-class SvStringsDtor;
 class SfxMiscCfg;
 struct SfxConstant;
 struct SfxChildWinFactory;
@@ -212,12 +217,9 @@ struct SfxMenuCtrlFactory;
 struct SfxStbCtrlFactory;
 struct SfxTbxCtrlFactory;
 class SfxApplicationWindow;
-class SimpleResMgr;
-
-namespace so3 {
-class SvLinkSource;
-};
-
+//STRIP008 namespace so3 {
+//STRIP008 class SvLinkSource;
+//STRIP008 };
 #define STARAPP_VERB "STARAPP"
 #define PRESENTATION_LIVEMODE       ((USHORT)0x1000)
 #define DYNAMIC_USERID_OFFSET   1000
@@ -342,7 +344,7 @@ class SfxApplication: public SfxShell
 /*  [Beschreibung]
 
     Die Klasse SfxApplication bietet eine erweiterte Funktionalit"at
-    der StarView-Klasse MDIApplication und mu· als Basisklasse fÅr
+    der StarView-Klasse MDIApplication und mu?als Basisklasse fÅr
     Applikationen, die das StarFramework verwenden wollen,
     eingesetzt werden.
 
@@ -350,7 +352,7 @@ class SfxApplication: public SfxShell
     virtuellen Methoden, um das default-Verhalten zu modifizieren.
 
     [Anmerkung]
-    Von dieser Klasse mu· jede StarFramework-Applikation genau
+    Von dieser Klasse mu?jede StarFramework-Applikation genau
     eine Instanz anlegen.
 */
 
@@ -485,9 +487,9 @@ public:
 //STRIP001     BOOL                        IsInException() const;
 
     BasicManager*               GetBasicManager();
-//STRIP001  com::sun::star::uno::Reference< com::sun::star::script::XLibraryContainer >
+//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
 //STRIP001                              GetDialogContainer();
-    com::sun::star::uno::Reference< com::sun::star::script::XLibraryContainer >
+    ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
                                 GetBasicContainer();
     StarBASIC*                  GetBasic();
     USHORT                      SaveBasicManager() const;
@@ -705,5 +707,6 @@ inline SfxApplication* SfxGetpApp()
 #define SfxApplicationItem SfxVoidItem
 #define SfxDocumentListItem SfxVoidItem
 
+}//end of namespace binfilter
 #endif
 

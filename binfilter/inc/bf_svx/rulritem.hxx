@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rulritem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
 #endif
+namespace binfilter {
 
 // class SvxLongLRSpaceItem ----------------------------------------------
 
@@ -80,8 +81,8 @@ class SvxLongLRSpaceItem : public SfxPoolItem
   protected:
 
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual String           GetValueText() const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -115,8 +116,8 @@ class SvxLongULSpaceItem : public SfxPoolItem
   protected:
 
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual String           GetValueText() const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -149,8 +150,8 @@ class SvxPagePosSizeItem : public SfxPoolItem
     long lHeight;
 protected:
     virtual int              operator==( const SfxPoolItem& ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual String           GetValueText() const;
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -222,8 +223,8 @@ protected:
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 public:
     TYPEINFO();
     // rechter Rand des umgebenden Rahmens
@@ -286,8 +287,8 @@ protected:
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
 //STRIP001  virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 private:
 //STRIP001  const SvxObjectItem &operator=(const SvxObjectItem &); // n.i.
 public:
@@ -310,5 +311,6 @@ public:
 //STRIP001  void   SetEndY(long l) { nEndY = l; }
 };
 
+}//end of namespace binfilter
 #endif
 

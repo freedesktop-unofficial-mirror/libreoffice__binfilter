@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xoutx.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,9 @@
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
 #endif
+class SfxItemSet;
+class GraphicObject;
+namespace binfilter {
 
 class FormattedText;
 class XPolygon;
@@ -95,8 +98,6 @@ class XFillAttrSetItem;
 class XOutdevItemPool;
 class XLineParam;
 struct ImpData;
-class SfxItemSet;
-class GraphicObject;
 
 // #101498# predeclaration for DrawPortionInfo
 class DrawPortionInfo;
@@ -386,5 +387,6 @@ Polygon         XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* p
 // #102382# Remove XOutGetCharOutline
 //XPolyPolygon  XOutGetCharOutline( USHORT nChar, OutputDevice& rOut, BOOL bOptimizeSize = TRUE );
 
+}//end of namespace binfilter
 #endif      // _XOUTX_HXX
 

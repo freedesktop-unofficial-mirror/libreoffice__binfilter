@@ -2,9 +2,9 @@
  *
  *  $RCSfile: e3ditem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,13 +68,14 @@
 #ifndef _VECTOR3D_HXX
 #include <goodies/vector3d.hxx>
 #endif
+class SvStream;
+namespace binfilter {
 
 #ifndef _SVXVECT3DITEM_HXX
 #define _SVXVECT3DITEM_HXX
 
-class SvStream;
 
-DBG_NAMEEX(SvxVector3DItem);
+DBG_NAMEEX(SvxVector3DItem)//STRIP008 ;
 
 class SvxVector3DItem: public SfxPoolItem
 {
@@ -94,8 +95,8 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVersion) const;
     virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     const Vector3D&         GetValue() const { return aVal; }
             void            SetValue( const Vector3D& rNewVal ) {
@@ -108,5 +109,6 @@ public:
 
 #endif
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: strload.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
 #endif
+namespace binfilter {
 
 class ScRscStrLoader : public Resource
 {
@@ -86,5 +87,6 @@ private:
 };
 
 
+} //namespace binfilter
 #endif // SC_STRLOAD_HXX
 

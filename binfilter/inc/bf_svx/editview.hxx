@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editview.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,19 +73,11 @@
 #ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
 #endif
-
-class EditEngine;
-class ImpEditEngine;
-class ImpEditView;
-class SvxSearchItem;
-class SvxFieldItem;
 class Window;
 class Pointer;
 class Cursor;
 class KeyEvent;
 class MouseEvent;
-class DropEvent;
-class CommandEvent;
 class Rectangle;
 class Link;
 class Pair;
@@ -94,7 +86,16 @@ class Range;
 class SvStream;
 class SvKeyValueIterator;
 class SfxStyleSheet;
+namespace binfilter {
 
+class EditEngine;
+class ImpEditEngine;
+class ImpEditView;
+class SvxSearchItem;
+class SvxFieldItem;
+class DropEvent;
+class CommandEvent;
+}//end of namespace binfilter //namespace binfilter
 #ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>
 #endif
@@ -110,6 +111,7 @@ namespace datatransfer {
     class XTransferable;
 }}}}
 
+namespace binfilter {
 class EditView
 {
     friend class EditEngine;
@@ -273,4 +275,5 @@ public:
 //STRIP001  USHORT          GetInvalidateMore() const;
 };
 
+}//end of namespace binfilter
 #endif // _MyEDITVIEW_HXX

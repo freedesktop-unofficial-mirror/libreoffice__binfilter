@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ifaceids.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 // -----------------------------------------------------------------------
 
 #include <bf_sfx2/shell.hxx>
+namespace binfilter {
 
 #if SUPD<=342
 
@@ -93,5 +94,6 @@
 
 #endif
 
+}//end of namespace binfilter
 #endif
 

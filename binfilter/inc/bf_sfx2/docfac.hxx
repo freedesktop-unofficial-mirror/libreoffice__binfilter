@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docfac.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,9 +82,10 @@
 
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
+class SvFactory;
+namespace binfilter {
 
 class SfxObjectFactoryArr_Impl;
-class SvFactory;
 class SfxMedium;
 class SfxFilter;
 class SfxViewFactory;
@@ -183,8 +184,8 @@ public:
     const String&               GetStandardTemplate() const;
     static void                 SetStandardTemplate( const String& rFactoryURL, const String& rTemplateName );
 
-    void                    SetDocumentServiceName( const rtl::OUString& rServiceName );
-    const rtl::OUString&    GetDocumentServiceName() const;
+    void                    SetDocumentServiceName( const ::rtl::OUString& rServiceName );
+    const ::rtl::OUString&  GetDocumentServiceName() const;
 
     DECL_LINK( InitFactoryHdl, void* );
 
@@ -774,5 +775,6 @@ extern "C"
         SFX_DECL_SIMPLE_OBJECTFACTORY_DLL(Class)
 #endif
 
+}//end of namespace binfilter
 #endif // #ifndef _SFX_OBJFAC_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svddef.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************/
 // SdrItemPool V2, 09-11-1995:
@@ -415,5 +416,6 @@
 
 #define SDRATTR_END                             SDRATTR_3D_LAST     /* 1333 V4+++*/ /* 1243 V4+++*/ /*1213*/ /*1085*/ /*1040*/ /*Pool V2: 1123,V1: 1065 */
 
+}//end of namespace binfilter
 #endif // _SVDDEF_HXX
 

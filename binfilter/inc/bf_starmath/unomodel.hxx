@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unomodel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,15 +85,16 @@
 #ifndef _COMPHELPER_PROPERTYSETHELPER_HXX_
 #include <comphelper/propertysethelper.hxx>
 #endif
+namespace binfilter {
 
 class SmFormat;
 
 //-----------------------------------------------------------------------------
 class SmModel : public SfxBaseModel,
                 public comphelper::PropertySetHelper,
-                public com::sun::star::lang::XServiceInfo,
-                public com::sun::star::lang::XUnoTunnel,
-                public com::sun::star::view::XRenderable
+                public ::com::sun::star::lang::XServiceInfo,
+                public ::com::sun::star::lang::XUnoTunnel,
+                public ::com::sun::star::view::XRenderable
 {
 protected:
     virtual void _setPropertyValues( const comphelper::PropertyMapEntry** ppEntries, const ::com::sun::star::uno::Any* pValues )
@@ -123,11 +124,11 @@ public:
     virtual void SAL_CALL render( sal_Int32 nRenderer, const ::com::sun::star::uno::Any& rSelection, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& rxOptions ) throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
 
     //XServiceInfo
-    virtual rtl::OUString SAL_CALL getImplementationName(void)
+    virtual ::rtl::OUString SAL_CALL getImplementationName(void)
         throw( ::com::sun::star::uno::RuntimeException );
-    virtual BOOL SAL_CALL supportsService(const rtl::OUString& ServiceName)
+    virtual BOOL SAL_CALL supportsService(const ::rtl::OUString& ServiceName)
             throw( ::com::sun::star::uno::RuntimeException );
-    virtual ::com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL getSupportedServiceNames(void)
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void)
             throw( ::com::sun::star::uno::RuntimeException );
 
     inline ::rtl::OUString SmModel::getImplementationName_Static() throw(  );
@@ -135,7 +136,8 @@ public:
 
 inline ::rtl::OUString SmModel::getImplementationName_Static() throw(  )
 {
-    return rtl::OUString::createFromAscii("math.SmModel");
+    return ::rtl::OUString::createFromAscii("math.SmModel");
 }
 
+} //namespace binfilter
 #endif

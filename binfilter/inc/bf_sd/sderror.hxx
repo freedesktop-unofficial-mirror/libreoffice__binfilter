@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sderror.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@
 
 #ifndef __RSC
 
+namespace binfilter {
 inline FASTBOOL IsWarning( ULONG nErr )
 {
     return 0 != ( nErr & ERRCODE_WARNING_MASK & nErr );
@@ -94,7 +95,7 @@ inline FASTBOOL IsError( ULONG nErr )
 {
     return nErr && 0 == ( ERRCODE_WARNING_MASK & nErr );
 }
-
+} //namespace binfilter
 #endif
 
 

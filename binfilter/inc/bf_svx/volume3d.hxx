@@ -2,9 +2,9 @@
  *
  *  $RCSfile: volume3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,8 @@
 #ifndef _B3D_VOLUM_HXX
 #include <goodies/b3dvolum.hxx>
 #endif
+class Matrix4D;
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
@@ -73,7 +75,6 @@
 class Polygon3D;
 class XPolygon;
 class XPolyPolygon;
-class Matrix4D;
 class Vol3DPointIterator;
 
 /*************************************************************************
@@ -120,4 +121,5 @@ public:
     void Reset() { nIndex = 0; }
 };
 
+}//end of namespace binfilter
 #endif          // _VOLUME3D_HXX

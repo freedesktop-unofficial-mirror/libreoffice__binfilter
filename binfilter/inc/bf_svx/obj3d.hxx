@@ -2,9 +2,9 @@
  *
  *  $RCSfile: obj3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,17 +121,18 @@
 #ifndef _SVX_XFLCLIT_HXX
 #include <bf_svx/xflclit.hxx>
 #endif
+class SfxPoolItem;
+class Base3D;
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
 
-class SfxPoolItem;
 class Viewport3D;
 class E3dLightList;
 class E3dScene;
 class E3dPolyScene;
-class Base3D;
 class PolyPolygon3D;
 
 /*************************************************************************
@@ -699,4 +700,5 @@ public:
 //STRIP001  void SetUseDifferentBackMaterial(BOOL bNew);
 };
 
+}//end of namespace binfilter
 #endif          // _E3D_OBJ3D_HXX

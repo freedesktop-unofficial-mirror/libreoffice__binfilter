@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdoole2.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,14 +78,15 @@
 #ifndef _SOT_STORAGE_HXX
 #include <sot/storage.hxx>
 #endif
+class SvPersist;
+class SvInPlaceObjectRef;
+class SvEmbeddedInfoObject;
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
 
-class SvPersist;
-class SvInPlaceObjectRef;
-class SvEmbeddedInfoObject;
 
 // ***********************************************************
 //  SvInPlaceObject dummy implementation for displaying
@@ -206,5 +207,6 @@ public:
     void SetVisibleArea( const Rectangle& rArea );
 };
 
+}//end of namespace binfilter
 #endif //_SVDOOLE2_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: algitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,8 +74,9 @@
 #ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
 #endif
-
 class SvStream;
+namespace binfilter {
+
 
 //------------------------------------------------------------------------
 
@@ -95,8 +96,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
 //STRIP001  virtual String          GetValueText( USHORT nVal ) const;
@@ -130,8 +131,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
 //STRIP001  virtual String          GetValueText( USHORT nVal ) const;
@@ -165,8 +166,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
 //STRIP001  virtual String          GetValueText( USHORT nVal ) const;
@@ -210,8 +211,8 @@ public:
     virtual SfxPoolItem*     Create( SvStream& rStream, USHORT nVer ) const;
     virtual SvStream&        Store( SvStream&, USHORT nItemVersion ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             INT16           GetLeftMargin() const {return nLeftMargin; }
 //STRIP001          BOOL            SetLeftMargin(INT16 nLeft);
@@ -234,5 +235,6 @@ public:
 
 #endif
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: charrotateitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
+namespace binfilter {
 
 // class SvxCharRotateItem ----------------------------------------------
 
@@ -102,9 +103,9 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper * = 0 ) const;
 
-//STRIP001  virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal,
+//STRIP001  virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
 //STRIP001                                  BYTE nMemberId );
-//STRIP001  virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal,
+//STRIP001  virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
 //STRIP001                              BYTE nMemberId ) const;
 
 //STRIP001  inline SvxCharRotateItem& operator=( const SvxCharRotateItem& rItem )
@@ -126,5 +127,6 @@ public:
 //STRIP001  void SetFitToLine( sal_Bool b )         { bFitToLine = b; }
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: shell.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,21 +72,26 @@
 #endif
 
 #include <bf_sfx2/sfxuno.hxx>
-
 class ResMgr;
 class Window;
 class ToolBox;
 class SfxItemPool;
 class SfxPoolItem;
-class SfxRequest;
 class SfxItemSet;
-struct SfxFormalArgument;
 class StatusBar;
+class SvGlobalName;
+class SvVerbList;
+class SfxUndoManager;
+class SfxRepeatTarget;
+class SbxVariable;
+class SbxBase;
+namespace binfilter {
+class SfxRequest;
+struct SfxFormalArgument;
 class SfxInterface;
 class SfxViewShell;
 class SfxObjectShell;
 class SfxSlotPool;
-class SvGlobalName;
 
 class SfxShellObject;
 class SfxShell;
@@ -96,12 +101,7 @@ class SfxShellObject;
 class SfxShellSubObject;
 class SfxDispatcher;
 class SfxViewFrame;
-class SvVerbList;
 class SfxSlot;
-class SfxUndoManager;
-class SfxRepeatTarget;
-class SbxVariable;
-class SbxBase;
 class SfxBindings;
 
 //====================================================================
@@ -417,5 +417,6 @@ inline void SfxShell::SetPool
 #define SFX_STATUSBAR_REGISTRATION(rResId) \
         _GetInterfaceImpl()->RegisterStatusBar( rResId )
 
+}//end of namespace binfilter
 #endif
 

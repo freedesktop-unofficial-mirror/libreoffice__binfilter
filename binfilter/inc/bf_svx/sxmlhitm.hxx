@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sxmlhitm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,20 +68,21 @@
 #ifndef _SDMETITM_HXX
 #include <bf_svx/sdmetitm.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************/
 /* Measure                                                               */
 /*************************************************************************/
 //                             ___
-//    ณ        100,00km       ณ 2mm = SdrMeasureHelplineOverhangItem
-//    ร<--------------------->ด---
-//    ณ                       ณ 8mm = SdrMeasureLineDistItem
-//    ณ                       ณ
-//    ษอออออออออออออป         ณ---
-//    บ             บ         ณ SdrMeasureHelpline1/2LenItem
-//    บ             ศอออออออออป---
-//    บ Zu bemassendes Objekt บ
-//    ศอออออออออออออออออออออออผ
+//    ?       100,00km       ?2mm = SdrMeasureHelplineOverhangItem
+//    ?--------------------->?--
+//    ?                      ?8mm = SdrMeasureLineDistItem
+//    ?                      ?
+//    ษอออออออออออออ?        ?--
+//    ?            ?        ?SdrMeasureHelpline1/2LenItem
+//    ?            ศอออออออออ?--
+//    ?Zu bemassendes Objekt ?
+//    ศอออออออออออออออออออออออ?
 
 // Abstand der Masslinie zur Bezugskante (Norm=8mm)
 // laesst sich auch draggen an den beiden Handles
@@ -121,4 +122,5 @@ public:
     SdrMeasureHelpline2LenItem(SvStream& rIn): SdrMetricItem(SDRATTR_MEASUREHELPLINE2LEN,rIn) {}
 };
 
+}//end of namespace binfilter
 #endif

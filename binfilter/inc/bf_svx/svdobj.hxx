@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdobj.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:48 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,14 +107,22 @@
 #ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
 #endif
+class SfxBroadcaster;
+class Pointer;
+class AutoTimer;
+class SfxItemSet;
+class SfxSetItem;
+class SfxStyleSheet;
+class SfxUndoAction;
+class SfxItemPool;
+class PolyPolygon;
+class SfxPoolItem;
+namespace binfilter {
 
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
 
-class SfxBroadcaster;
-class Pointer;
-class AutoTimer;
 class ExtOutputDevice;
 class ImpSdrMtfAnimator;
 class OutlinerParaObject;
@@ -133,18 +141,11 @@ class SdrPage;
 class SdrPageView;
 class SdrShadowSetItem;
 class SdrView;
-class SfxItemSet;
-class SfxSetItem;
-class SfxStyleSheet;
-class SfxUndoAction;
 class XFillAttrSetItem;
 class XLineAttrSetItem;
 class XPolyPolygon;
 class XPolygon;
 class XTextAttrSetItem;
-class SfxItemPool;
-class PolyPolygon;
-class SfxPoolItem;
 class SdrLineGeometry;
 
 //************************************************************
@@ -1266,5 +1267,6 @@ public:
     static void RemoveMakeUserDataHdl(const Link& rLink);
 };
 
+}//end of namespace binfilter
 #endif //_SVDOBJ_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoprov.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif
+namespace binfilter {
 
 /***********************************************************************
 * class UHashMap                                                       *
@@ -88,7 +89,7 @@ struct UHashMapEntry
     UHashMapEntry(const sal_Char * value, sal_Int32 length, UINT32 _nId) : aIdentifier(value,length,RTL_TEXTENCODING_ASCII_US), nId(_nId) { }
 };
 
-DECLARE_LIST( UHashMapEntryList, UHashMapEntry* );
+DECLARE_LIST( UHashMapEntryList, UHashMapEntry* )//STRIP008 DECLARE_LIST( UHashMapEntryList, UHashMapEntry* );
 
 #define HASHARRAYSIZE   0x10
 #define UHASHMAP_NOTFOUND (~0)
@@ -158,8 +159,9 @@ extern UHashMap aSdrShapeIdentifierMap;
 
 #define SFX_METRIC_ITEM             (0x40)
 #define E3D_INVENTOR_FLAG           (0x80000000)
-
+}//end of namespace binfilter
 #include <bf_svx/unoipset.hxx>
+namespace binfilter {
 
 /***********************************************************************
 * class SvxServiceInfoHelper                                           *
@@ -192,9 +194,9 @@ public:
 const sal_Int32 SVXUNO_SERVICEID_COM_SUN_STAR_DRAWING_DEFAULTS = 0;
 const sal_Int32 SVXUNO_SERVICEID_COM_SUN_STAR_DRAWING_DEFAULTS_WRITER = 1;
 const sal_Int32 SVXUNO_SERVICEID_LASTID = 1;
-
+}//end of namespace binfilter
 namespace comphelper { class PropertySetInfo; }
-
+namespace binfilter {
 class SvxPropertySetInfoPool
 {
 public:
@@ -204,5 +206,6 @@ private:
     static comphelper::PropertySetInfo* mpInfos[SVXUNO_SERVICEID_LASTID+1];
 };
 
+}//end of namespace binfilter
 #endif
 

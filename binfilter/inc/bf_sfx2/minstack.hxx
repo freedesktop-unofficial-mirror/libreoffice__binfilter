@@ -2,9 +2,9 @@
  *
  *  $RCSfile: minstack.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SFXVARARR_HXX
 #include <bf_sfx2/minarray.hxx>
 #endif
+namespace binfilter {
 
 #define DECL_OBJSTACK( ARR, T, nI, nG ) \
 DECL_OBJARRAY( ARR##arr_, T, nI, nG ); \
@@ -98,9 +99,9 @@ T ARR::Pop() \
     Remove( Count()-1, 1 ); \
     return aRet; \
 }
-
+//STRIP008 the following "DECL_PTRARRAY( ARR##arr_, T, nI, nG );\" should be "DECL_PTRARRAY( ARR##arr_, T, nI, nG )\"
 #define DECL_PTRSTACK( ARR, T, nI, nG ) \
-DECL_PTRARRAY( ARR##arr_, T, nI, nG ); \
+DECL_PTRARRAY( ARR##arr_, T, nI, nG ) \
 class ARR: private ARR##arr_ \
 { \
 public: \
@@ -131,5 +132,6 @@ public: \
                 { return ARR##arr_::Contains( pItem ); } \
 }
 
+}//end of namespace binfilter
 #endif
 

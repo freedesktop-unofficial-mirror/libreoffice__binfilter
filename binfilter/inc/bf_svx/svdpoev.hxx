@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpoev.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #endif
 
 #include <bf_svx/svdedtv.hxx>
+namespace binfilter {
 
 //************************************************************
 //   Defines
@@ -160,5 +161,6 @@ public:
 //STRIP001  SdrObjClosedKind GetMarkedObjectsClosedState() const;
 };
 
+}//end of namespace binfilter
 #endif //_SVDPOEV_HXX
 

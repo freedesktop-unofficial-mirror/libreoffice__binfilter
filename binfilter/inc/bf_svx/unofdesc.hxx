@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unofdesc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif
+namespace binfilter {
 
 class SvxUnoFontDescriptor
 {
@@ -86,11 +87,12 @@ public:
     static void FillItemSet( const ::com::sun::star::awt::FontDescriptor& rDesc, SfxItemSet& rSet );
     static void FillFromItemSet( const SfxItemSet& rSet, ::com::sun::star::awt::FontDescriptor& rDesc );
 
-    static com::sun::star::beans::PropertyState getPropertyState( const SfxItemSet& rSet );
+    static ::com::sun::star::beans::PropertyState getPropertyState( const SfxItemSet& rSet );
     static void setPropertyToDefault( SfxItemSet& rSet );
     static ::com::sun::star::uno::Any getPropertyDefault( SfxItemPool* pPool );
 
 };
 
+}//end of namespace binfilter
 #endif
 

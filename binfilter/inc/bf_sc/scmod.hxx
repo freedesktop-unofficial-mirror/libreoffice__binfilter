@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scmod.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,17 +85,19 @@
 #ifndef SC_SHELLIDS_HXX
 #include "shellids.hxx"
 #endif
-
+namespace svtools { class ColorConfig; }
 class KeyEvent;
+class SfxErrorHandler;
+class SvtAccessibilityOptions;
+class SvtCTLOptions;
+namespace binfilter {
+
 class SdrModel;
 class SdrView;
 class EditView;
-class SfxErrorHandler;
 class SvxErrorHandler;
-class SvtAccessibilityOptions;
-class SvtCTLOptions;
 
-namespace svtools { class ColorConfig; }
+//STRIP008 namespace svtools { class ColorConfig; }
 
 class ScRange;
 class ScDocument;
@@ -170,7 +172,7 @@ class ScModule: public ScModuleDummy, public SfxListener
     ScInputCfg*         pInputCfg;
     ScPrintCfg*         pPrintCfg;
     ScNavipiCfg*        pNavipiCfg;
-    svtools::ColorConfig*   pColorConfig;
+    ::svtools::ColorConfig*   pColorConfig;
     SvtAccessibilityOptions* pAccessOptions;
     SvtCTLOptions*      pCTLOptions;
     SfxErrorHandler*    pErrorHdl;
@@ -252,7 +254,7 @@ public:
     USHORT              GetOptDigitLanguage();      // from CTL options
 
     ScNavipiCfg&        GetNavipiCfg();
-    svtools::ColorConfig&   GetColorConfig();
+    ::svtools::ColorConfig&   GetColorConfig();
     SvtAccessibilityOptions& GetAccessOptions();
     SvtCTLOptions&      GetCTLOptions();
 
@@ -310,6 +312,7 @@ public:
 
 #define SC_MOD() ( *(ScModule**) GetAppData(BF_SHL_CALC) )
 
+} //namespace binfilter
 #endif
 
 

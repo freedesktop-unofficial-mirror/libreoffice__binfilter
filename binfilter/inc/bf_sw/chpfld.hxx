@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chpfld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@ class SwTxtNode;
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
+namespace binfilter {
 
 enum SwChapterFormat
 {
@@ -117,8 +118,8 @@ public:
 
     inline const String& GetNumber() const;
     inline const String& GetTitle() const;
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 inline BYTE SwChapterField::GetLevel() const    { return nLevel; }
@@ -126,4 +127,5 @@ inline void SwChapterField::SetLevel(BYTE nLev) { nLevel = nLev; }
 inline const String& SwChapterField::GetNumber() const { return sNumber; }
 inline const String& SwChapterField::GetTitle() const { return sTitle; }
 
+} //namespace binfilter
 #endif // _CHPFLD_HXX

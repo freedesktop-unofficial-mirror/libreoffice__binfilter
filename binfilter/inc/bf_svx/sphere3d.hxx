@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sphere3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -135,4 +136,5 @@ public:
 //STRIP001  virtual void TakeObjNamePlural(String& rName) const;
 };
 
+}//end of namespace binfilter
 #endif          // _E3D_SPHERE3D_HXX

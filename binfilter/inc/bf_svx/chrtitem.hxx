@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chrtitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------------
 
@@ -419,8 +420,8 @@ public:
 //STRIP001  SvxDoubleItem(SvStream& rIn, USHORT nId = ITEMID_DOUBLE);
     SvxDoubleItem(const SvxDoubleItem& rItem);
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual String GetValueText() const;
 //STRIP001  virtual SfxItemPresentation GetPresentation(SfxItemPresentation ePres,
@@ -444,5 +445,6 @@ public:
 
 #endif
 
+}//end of namespace binfilter
 #endif   // _SVX_CHRTITEM_HXX
 

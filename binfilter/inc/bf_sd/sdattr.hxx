@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdattr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,7 @@
 #ifndef _SD_DIADEF_H
 #include <bf_sd/diadef.h>
 #endif
+namespace binfilter {
 
 //------------------------------------------------------------------
 
@@ -347,7 +348,7 @@ class DiaEffectItem : public SfxEnumItem
 {
 public:
             TYPEINFO();
-//STRIP001          DiaEffectItem( ::com::sun::star::presentation::FadeEffect eFade = com::sun::star::presentation::FadeEffect_NONE );
+//STRIP001          DiaEffectItem( ::com::sun::star::presentation::FadeEffect eFade = ::com::sun::star::presentation::FadeEffect_NONE );
 //STRIP001          DiaEffectItem( SvStream& rIn );
 //STRIP001
 //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
@@ -400,5 +401,6 @@ public:
 //STRIP001  virtual int          operator==( const SfxPoolItem& ) const;
 };
 
+} //namespace binfilter
 #endif // _SDATTR_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: boxitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:36 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,6 +81,7 @@ namespace rtl
 #ifdef _USE_NAMESPACE
 }
 #endif
+namespace binfilter {
 
 // class SvxBoxItem ------------------------------------------------------
 
@@ -205,8 +206,8 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -294,10 +295,10 @@ class SvxBoxInfoItem : public SfxPoolItem
     BOOL    bMinDist   :1;  // TRUE, Abstand darf nicht unterschritten werden.
 
     BYTE    nValidFlags;    // 0000 0000
-                            // ³³³³ ³³³ÀÄ VALID_TOP
-                            // ³³³³ ³³ÀÄÄ VALID_BOTTOM
-                            // ³³³³ ³ÀÄÄÄ VALID_LEFT
-                            // ³³³³ ÀÄÄÄÄ VALID_RIGHT
+                            // ³³³³ ³³³À?VALID_TOP
+                            // ³³³³ ³³ÀÄ?VALID_BOTTOM
+                            // ³³³³ ³ÀÄÄ?VALID_LEFT
+                            // ³³³³ ÀÄÄÄ?VALID_RIGHT
                             // ³³³ÀÄÄÄÄÄÄ VALID_HORI
                             // ³³ÀÄÄÄÄÄÄÄ VALID_VERT
                             // ³ÀÄÄÄÄÄÄÄÄ VALID_DIST
@@ -319,8 +320,8 @@ public:
 //STRIP001                                  SfxMapUnit eCoreMetric,
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
@@ -352,5 +353,6 @@ public:
 };
 #endif
 
+}//end of namespace binfilter
 #endif
 

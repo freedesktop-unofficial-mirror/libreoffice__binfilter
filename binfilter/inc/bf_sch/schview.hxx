@@ -2,9 +2,9 @@
  *
  *  $RCSfile: schview.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,8 @@
 #endif
 
 #include "docshell.hxx"
+class Graphic;
+namespace binfilter {
 
 class SchViewShell;
 class SchPage;
@@ -89,13 +91,12 @@ class SchWindow;
 class ChartModel;
 class SchDragServerRef;
 class E3dScene;
-class Graphic;
-
+} //namespace binfilter
 namespace com { namespace sun { namespace star { namespace datatransfer {
     class XTransferable;
 }}}}
-
-DECLARE_LIST(E3dLogicalObjList, E3dObject*);
+namespace binfilter {//STRIP009
+DECLARE_LIST(E3dLogicalObjList, E3dObject*)//STRIP008 DECLARE_LIST(E3dLogicalObjList, E3dObject*);
 
 /*************************************************************************
 |*
@@ -200,4 +201,5 @@ class SchView : public E3dView
     virtual void Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 };
 
+} //namespace binfilter
 #endif      // _SCH_SCHVIEW_HXX

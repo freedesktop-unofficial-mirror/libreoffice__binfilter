@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chartbar.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:25 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,9 +60,10 @@
  ************************************************************************/
 #ifndef SCH_CHARTBAR_HXX
 #define SCH_CHARTBAR_HXX
+class Rectangle;
+namespace binfilter {
 
 class ChartModel;
-class Rectangle;
 class ChartAxis;
 //Achtung! evtl. wird der default-Zuweisungsoperator benutzt!
 //bei Erweiterungen bedenken! ganz wichtig!
@@ -156,6 +157,7 @@ public:
 
     void Create(const Rectangle& aRect,long nColCnt,long nRowCnt);
 };
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pagedesc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,8 +80,10 @@
 #ifndef _NUMRULE_HXX
 #include <numrule.hxx>
 #endif
-
 class SfxPoolItem;
+namespace binfilter {
+
+
 class SwTxtFmtColl;
 class SwNode;
 
@@ -362,4 +364,5 @@ inline const SwFrmFmt *SwPageDesc::GetLeftFmt() const
     return PD_LEFT & eUse ? &aLeft : 0;
 }
 
+} //namespace binfilter
 #endif  //_PAGEDESC_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unomailmerge.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:54 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,7 +98,6 @@
 #ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>   // SfxObjectShellRef
 #endif
-
 namespace com { namespace sun { namespace star { namespace sdbc {
     class XResultSet;
     class XConnection;
@@ -120,6 +119,29 @@ namespace com { namespace sun { namespace star { namespace text {
 namespace rtl {
     class OUString;
 }
+namespace binfilter {
+
+//STRIP008 namespace com { namespace sun { namespace star { namespace sdbc {
+//STRIP008     class XResultSet;
+//STRIP008     class XConnection;
+//STRIP008 }}}}
+//STRIP008
+//STRIP008 namespace com { namespace sun { namespace star { namespace frame {
+//STRIP008     class XModel;
+//STRIP008 }}}}
+//STRIP008
+//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
+//STRIP008     class XMultiServiceFactory;
+//STRIP008 }}}}
+//STRIP008
+//STRIP008 namespace com { namespace sun { namespace star { namespace text {
+//STRIP008     class XMailMergeListener;
+//STRIP008     struct MailMergeEvent;
+//STRIP008 }}}}
+//STRIP008
+//STRIP008 namespace rtl {
+//STRIP008     class OUString;
+//STRIP008 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -144,11 +166,11 @@ typedef cppu::OMultiTypeInterfaceContainerHelperVar
 class SwXMailMerge :
     public cppu::WeakImplHelper5
     <
-        com::sun::star::task::XJob,
-        com::sun::star::beans::XPropertySet,
-        com::sun::star::text::XMailMergeBroadcaster,
-        com::sun::star::lang::XComponent,
-        com::sun::star::lang::XServiceInfo
+        ::com::sun::star::task::XJob,
+        ::com::sun::star::beans::XPropertySet,
+        ::com::sun::star::text::XMailMergeBroadcaster,
+        ::com::sun::star::lang::XComponent,
+        ::com::sun::star::lang::XServiceInfo
     >
 {
     cppu::OInterfaceContainerHelper     aEvtListeners;
@@ -163,16 +185,16 @@ class SwXMailMerge :
     String          aTmpFileName;
 
     // properties of mail merge service
-    com::sun::star::uno::Sequence< com::sun::star::uno::Any >           aSelection;
-    com::sun::star::uno::Reference< com::sun::star::sdbc::XResultSet >  xResultSet;
-    com::sun::star::uno::Reference< com::sun::star::sdbc::XConnection > xConnection;
-    com::sun::star::uno::Reference< com::sun::star::frame::XModel >     xModel;
-    rtl::OUString   aDataSourceName;
-    rtl::OUString   aDataCommand;
-    rtl::OUString   aFilter;
-    rtl::OUString   aDocumentURL;
-    rtl::OUString   aOutputURL;
-    rtl::OUString   aFileNamePrefix;
+    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >           aSelection;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet >  xResultSet;
+    ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection > xConnection;
+    ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >     xModel;
+    ::rtl::OUString   aDataSourceName;
+    ::rtl::OUString   aDataCommand;
+    ::rtl::OUString   aFilter;
+    ::rtl::OUString   aDocumentURL;
+    ::rtl::OUString   aOutputURL;
+    ::rtl::OUString   aFileNamePrefix;
     sal_Int32       nDataCommandType;
     sal_Int16       nOutputType;
     sal_Bool        bEscapeProcessing;
@@ -182,7 +204,7 @@ class SwXMailMerge :
     sal_Bool        bDisposing;
 
 
-    void    launchEvent( const com::sun::star::beans::PropertyChangeEvent &rEvt ) const;
+    void    launchEvent( const ::com::sun::star::beans::PropertyChangeEvent &rEvt ) const;
 
     // disallow use of copy-constructor and assignment-operator for now
     SwXMailMerge( const SwXMailMerge & );
@@ -193,7 +215,7 @@ public:
     SwXMailMerge();
 
 
-    void LaunchMailMergeEvent( const com::sun::star::text::MailMergeEvent &rData ) const;
+    void LaunchMailMergeEvent( const ::com::sun::star::text::MailMergeEvent &rData ) const;
 
     // XJob
     virtual ::com::sun::star::uno::Any SAL_CALL execute( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::NamedValue >& Arguments ) throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
@@ -223,12 +245,13 @@ public:
 };
 
 
-extern com::sun::star::uno::Sequence< rtl::OUString > SAL_CALL SwXMailMerge_getSupportedServiceNames() throw();
-extern rtl::OUString SAL_CALL SwXMailMerge_getImplementationName() throw();
-extern com::sun::star::uno::Reference< com::sun::star::uno::XInterface > SAL_CALL SwXMailMerge_createInstance(const com::sun::star::uno::Reference< com::sun::star::lang::XMultiServiceFactory > & rSMgr) throw( com::sun::star::uno::Exception );
+extern ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL SwXMailMerge_getSupportedServiceNames() throw();
+extern ::rtl::OUString SAL_CALL SwXMailMerge_getImplementationName() throw();
+extern ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL SwXMailMerge_createInstance(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > & rSMgr) throw( ::com::sun::star::uno::Exception );
 
 ////////////////////////////////////////////////////////////
 
+} //namespace binfilter
 #endif
 
 

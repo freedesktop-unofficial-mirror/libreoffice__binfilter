@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmatr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _FORMAT_HXX
 #include <format.hxx>       //fuer Implementierung der inlines
 #endif
+namespace binfilter {
 
 //------------------------ Inlines ---------------------------------
 
@@ -138,4 +139,5 @@ inline const SvxFrameDirectionItem  &SwFmt::GetFrmDir(BOOL bInP) const
 
 #endif
 
+} //namespace binfilter
 #endif //_FRMATR_HXX

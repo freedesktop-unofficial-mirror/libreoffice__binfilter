@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdhlpln.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,8 +73,9 @@
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
 #endif
-
 class OutputDevice;
+namespace binfilter {
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 enum SdrHelpLineKind {SDRHELPLINE_POINT,SDRHELPLINE_VERTICAL,SDRHELPLINE_HORIZONTAL};
@@ -140,5 +141,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDHLPLN_HXX
 

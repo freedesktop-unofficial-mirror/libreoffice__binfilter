@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmsearch.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,9 +110,11 @@
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif
+FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
+namespace binfilter {
 
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
-FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
+//STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
 
 // ===================================================================================================
 // moegliche Rueckgabewerte fuer den Found-Handler
@@ -344,4 +346,5 @@ struct FmSearchProgress;
 //STRIP001  LINK(this, FmSearchDialog, OnFieldSelected).Call(&m_lbField);
 //STRIP001 }
 
+}//end of namespace binfilter
 #endif // _FMSEARCH_HXX

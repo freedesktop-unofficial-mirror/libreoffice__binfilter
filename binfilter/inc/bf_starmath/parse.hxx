@@ -2,9 +2,9 @@
  *
  *  $RCSfile: parse.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,6 +76,7 @@
 #endif
 
 #include "types.hxx"
+namespace binfilter {
 
 class SmNode;
 class SmDocShell;
@@ -194,8 +195,8 @@ struct SmErrorDesc
     String        Text;
 };
 
-DECLARE_STACK(SmNodeStack,  SmNode *);
-DECLARE_LIST(SmErrDescList, SmErrorDesc *);
+DECLARE_STACK(SmNodeStack,  SmNode *)//STRIP008 DECLARE_STACK(SmNodeStack,  SmNode *);
+DECLARE_LIST(SmErrDescList, SmErrorDesc *)//STRIP008 DECLARE_LIST(SmErrDescList, SmErrorDesc *);
 
 /**************************************************************************/
 
@@ -306,5 +307,6 @@ inline BOOL SmParser::TokenInGroup(ULONG nGroup)
 }
 
 
+} //namespace binfilter
 #endif
 

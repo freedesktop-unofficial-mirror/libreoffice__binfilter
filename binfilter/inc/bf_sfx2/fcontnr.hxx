@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fcontnr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,8 +70,9 @@
 
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
-
 class Window;
+namespace binfilter {
+
 class SfxFilter;
 class SfxFilterArr_Impl;
 class SfxObjectFacArr_Impl;
@@ -381,4 +382,5 @@ public:
     const SfxFilter* Next();
 };
 
+}//end of namespace binfilter
 #endif

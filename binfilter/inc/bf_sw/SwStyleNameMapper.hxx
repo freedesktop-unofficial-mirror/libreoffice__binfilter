@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwStyleNameMapper.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,10 @@
 #include <tools/string.hxx>
 #endif
 #include <hash_map>
+class SvStringsDtor;
+class String;
+
+namespace binfilter {
 
 
 /* This class holds all data about the names of styles used in the user
@@ -117,8 +121,6 @@
  * " (user)", we simply remove it.
  */
 
-class SvStringsDtor;
-class String;
 struct SwTableEntry;
 struct StringEq
 {
@@ -283,4 +285,5 @@ public:
     static const SvStringsDtor& GetPageDescProgNameArray();
     static const SvStringsDtor& GetNumRuleProgNameArray();
 };
+} //namespace binfilter
 #endif // _NAME_MAPPER_HXX

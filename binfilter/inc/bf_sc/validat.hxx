@@ -2,9 +2,9 @@
  *
  *  $RCSfile: validat.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
 #endif
+namespace binfilter {
 
 class ScPatternAttr;
 class ScTokenArray;
@@ -178,7 +179,7 @@ public:
 typedef ScValidationData* ScValidationDataPtr;
 
 SV_DECL_PTRARR_SORT(ScValidationEntries_Impl, ScValidationDataPtr,
-                        SC_COND_GROW, SC_COND_GROW);
+                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
 
 class ScValidationDataList : public ScValidationEntries_Impl
 {
@@ -204,6 +205,7 @@ public:
 //STRIP001  BOOL    operator==( const ScValidationDataList& r ) const;      // fuer Ref-Undo
 };
 
+} //namespace binfilter
 #endif
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sizeitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:41 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
+namespace binfilter {
 
 // class SvxSizeItem -----------------------------------------------------
 
@@ -95,8 +96,8 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -119,5 +120,6 @@ inline SvxSizeItem& SvxSizeItem::operator=( const SvxSizeItem &rCpy )
     return *this;
 }
 
+}//end of namespace binfilter
 #endif
 

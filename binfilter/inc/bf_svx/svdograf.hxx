@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdograf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:42 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,8 @@
 #ifndef _GRFMGR_HXX
 #include <goodies/grfmgr.hxx>
 #endif
+class GraphicObject;
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -102,7 +104,6 @@ public:
 // - SdrGrafObj -
 // --------------
 
-class GraphicObject;
 class SdrGrafSetItem;
 
 class SdrGrafObj: public SdrRectObj
@@ -257,5 +258,6 @@ public:
     void                    SetMirrored( sal_Bool _bMirrored ) { bMirrored = _bMirrored; }
 };
 
+}//end of namespace binfilter
 #endif //_SVDOGRAF_HXX
 

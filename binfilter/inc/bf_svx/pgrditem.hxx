@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pgrditem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,6 +66,7 @@
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
+namespace binfilter {
 
 // class SvxParaGridItem -------------------------------------------------
 
@@ -93,5 +94,6 @@ public:
                                     String &rText, const IntlWrapper * = 0 ) const;
 };
 
+}//end of namespace binfilter
 #endif
 

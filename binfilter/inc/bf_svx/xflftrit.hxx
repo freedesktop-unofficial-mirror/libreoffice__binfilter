@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xflftrit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SVX_XFLGRIT_HXX //autogen
 #include <bf_svx/xflgrit.hxx>
 #endif
+namespace binfilter {
 
 //-----------------------------------
 // class XFillFloatTransparenceItem -
@@ -94,8 +95,8 @@ public:
     virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
     virtual SvStream&       Store( SvStream& rOut, USHORT nItemVersion ) const;
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres, SfxMapUnit eCoreMetric,
 //STRIP001                                     SfxMapUnit ePresMetric, String &rText, const IntlWrapper * pIntlWrapper = 0 ) const;
@@ -107,4 +108,5 @@ public:
     XFillFloatTransparenceItem* checkForUniqueItem( SdrModel* pModel ) const;
 };
 
+}//end of namespace binfilter
 #endif

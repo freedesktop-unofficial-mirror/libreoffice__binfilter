@@ -2,9 +2,9 @@
  *
  *  $RCSfile: schiocmp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #endif
 
 class SvStream;
+namespace binfilter {
 
 #define SCHIOCOMPAT_VERSIONDONTKNOW (UINT16)0xffff
 
@@ -85,6 +86,7 @@ public:
     UINT16 GetVersion() const { return nVersion; }
 };
 
+} //namespace binfilter
 #endif  // _SCH_SCHIOCMP_HXX
 
 

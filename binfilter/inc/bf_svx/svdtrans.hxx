@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 #endif
 
 #include <vcl/field.hxx>
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -217,7 +218,7 @@ inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad
 /**************************************************************************************************/
 
 // Y-Achse zeigt nach unten! Die Funktion negiert bei der
-// Winkelberechnung die Y-Achse, sodass GetAngle(Point(0,-1))=90.00ø.
+// Winkelberechnung die Y-Achse, sodass GetAngle(Point(0,-1))=90.00?
 // GetAngle(Point(0,0)) liefert 0.
 // Der Rueckgabewert liegt im Bereich -180.00..179.99 Degree und
 // ist in 1/100 Degree angegeben.
@@ -230,7 +231,7 @@ USHORT GetAngleSector(long nWink); // Sektor im kartesischen Koordinatensystem b
 long GetLen(const Point& rPnt);
 
 /*
-  Transformation eines Rechtecks in ein Polygon unter            Ú----------¿
+  Transformation eines Rechtecks in ein Polygon unter            ?---------?
   Anwendung der Winkelparameter aus GeoStat.                    /1        2/
   Referenzpunkt ist stets der Punkt 0, also die linke          /          /
   obere Ecke des Ausgangsrects.                               /          /
@@ -238,12 +239,12 @@ long GetLen(const Point& rPnt);
   (erst Shear, dann Rotation vorgegeben).                   /          / \
                                                            /          /   |
   A) Ausgangsrechteck aRect  B) Nach Anwendung von Shear  /0        3/  Rot|
-  Ú------------------¿       Ú------------------¿        À----------Ù  ------
+  ?-----------------?      ?-----------------?       ?---------? ------
   |0                1|        \0                1\       C) Nach Anwendung
   |                  |         \                  \      von Rotate
   |                  |       |  \                  \
   |3                2|       |   \3                2\
-  À------------------Ù       |    À------------------Ù
+  ?-----------------?      |    ?-----------------?
                              |Shr |
   Bei Rueckkonvertierung des        Polygons in ein Rect ist die Reihenfolge
   zwangslaeufig umgekehrt:
@@ -365,5 +366,6 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDTRANS_HXX
 

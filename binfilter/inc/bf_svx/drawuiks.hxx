@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawuiks.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,7 @@
 #define _SDUIKS_HXX
 
 #include <usr/uiks.hxx>
+namespace binfilter {
 
 #define UIK_SHAPEFACTORY                    UIK_DRAWING(00)
 #define UIK_POLYGONFACTORY                  UIK_DRAWING(01)
@@ -104,4 +105,5 @@
 
 #define SD_UIK_PRESENTATION_STYLES          UIK_DRAWING(60)
 
+}//end of namespace binfilter
 #endif

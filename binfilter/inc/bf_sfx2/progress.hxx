@@ -2,9 +2,9 @@
  *
  *  $RCSfile: progress.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,8 +66,9 @@
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif
-
 class String;
+namespace binfilter {
+
 class SfxObjectShell;
 class SfxStatusBarManager;
 class INetHint;
@@ -127,5 +128,6 @@ public:
 #endif
 };
 
+}//end of namespace binfilter
 #endif
 

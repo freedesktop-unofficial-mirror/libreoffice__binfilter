@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xoutbmp.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,11 @@
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
 #endif
+class GraphicFilter;
+class VirtualDevice;
+class INetURLObject;
+class Polygon;
+namespace binfilter {
 
 // -----------
 // - Defines -
@@ -92,10 +97,6 @@
 // - XOutBitmap -
 // --------------
 
-class GraphicFilter;
-class VirtualDevice;
-class INetURLObject;
-class Polygon;
 
 class XOutBitmap
 {
@@ -119,7 +120,7 @@ public:
     static USHORT       ExportGraphic( const Graphic& rGraphic, const INetURLObject& rURL,
                                        GraphicFilter& rFilter, const USHORT nFormat,
                                        BOOL bIgnoreOptions,
-                                       const com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue >* pFilterData = NULL );
+                                       const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData = NULL );
 
 //STRIP001  static Bitmap       DetectEdges( const Bitmap& rBmp, const BYTE cThreshold );
 
@@ -134,4 +135,5 @@ public:
 
 BOOL DitherBitmap( Bitmap& rBitmap );
 
+}//end of namespace binfilter
 #endif // _XOUTBMP_HXX

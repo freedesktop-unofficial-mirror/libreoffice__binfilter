@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdpage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,13 +82,14 @@
 #ifndef _PRESENTATION
 #include <bf_sd/pres.hxx>
 #endif
-
 class SfxStyleSheet;
+class StarBASIC;
+class SfxItemSet;
+namespace binfilter {
+
 class SdDrawDocument;
 class SdrTextObj;
 class SdPageLink;
-class StarBASIC;
-class SfxItemSet;
 struct StyleRequestData;
 
 enum PresObjKind
@@ -273,10 +274,11 @@ public:
     virtual SfxStyleSheet* GetTextStyleSheetForObject( SdrObject* pObj ) const;
 
 #ifndef SVX_LIGHT
-    sal_Bool setAlienAttributes( const com::sun::star::uno::Any& rAttributes );
-    void getAlienAttributes( com::sun::star::uno::Any& rAttributes );
+    sal_Bool setAlienAttributes( const ::com::sun::star::uno::Any& rAttributes );
+    void getAlienAttributes( ::com::sun::star::uno::Any& rAttributes );
 #endif
 };
 
+} //namespace binfilter
 #endif     // _SDPAGE_HXX
 

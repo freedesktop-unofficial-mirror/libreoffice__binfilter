@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tablink.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _LNKBASE_HXX //autogen
 #include <so3/lnkbase.hxx>
 #endif
+namespace binfilter {
 
 #ifndef SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
 #define SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
@@ -153,5 +154,6 @@ public:
     static void         RemoveAppPrefix( String& rFilterName );
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: objsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,44 +117,49 @@
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
 #endif
-
+namespace so3 {
+ class SvLinkSource;
+};
 class SbxValue;
 class SvxMacro;
 class SbxArray;
 class BasicManager;
+class SfxStyleSheetBasePool;
+class SfxStyleSheetPool;
+class SbMethod;
+class StarBASIC;
+class Printer;
+class SvKeyValueIterator;
+class SvPseudoObject;
+class SvEmbeddedInfoObject;
+class SvEmbeddedObject;
+class GDIMetaFile;
+class Bitmap;
+class INetURLObject;
+namespace binfilter {
+
+
 class SfxMedium;
 class SfxInPlaceObject;
 class SfxObjectFactory;
 class SfxDocumentInfo;
 class SfxDocumentInfoDialog;
 class SfxEventConfigItem_Impl;
-class SfxStyleSheetBasePool;
 class INote;
-class SfxStyleSheetPool;
 class SfxFrame;
-class SbMethod;
 class SfxConfigManager;
-class StarBASIC;
-class Printer;
-class SvKeyValueIterator;
 class SfxBaseModel;
 class SfxModule;
-class SvPseudoObject;
 class SvData;
 class SfxProgress;
-class SvEmbeddedInfoObject;
-class SvEmbeddedObject;
-class GDIMetaFile;
-class Bitmap;
-class INetURLObject;
 class IndexBitSet;
 class SfxTopFrame;
 class SfxAcceleratorManager;
 class SfxMenuBarManager;
 
-namespace so3 {
-class SvLinkSource;
-};
+//STRIP008 namespace so3 {
+//STRIP008 class SvLinkSource;
+//STRIP008 };
 
 typedef sal_uInt32 SfxObjectShellFlags;
 #define SFXOBJECTSHELL_HASOPENDOC      0x01L
@@ -461,9 +466,9 @@ public:
     void                        SetAutoStyleFilterIndex(sal_uInt16 nSet);
     virtual sal_Bool            HasBasic() const;
     BasicManager*               GetBasicManager() const;
-    com::sun::star::uno::Reference< com::sun::star::script::XLibraryContainer >
+    ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
                                 GetBasicContainer();
-//STRIP001  com::sun::star::uno::Reference< com::sun::star::script::XLibraryContainer >
+//STRIP001  ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
 //STRIP001                              GetDialogContainer();
     StarBASIC*                  GetBasic() const;
 
@@ -678,5 +683,6 @@ public:
                             { return pObjSh; }
 };
 
+}//end of namespace binfilter
 #endif
 

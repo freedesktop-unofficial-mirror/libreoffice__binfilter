@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unopage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,13 +101,14 @@
 #include <unotools/servicehelper.hxx>
 
 #include <bf_svx/unoprov.hxx>
+class List;
+namespace binfilter {
 
 class SdrPage;
 class SdrModel;
 class SdrView;
 class SdrPageView;
 class SdrObject;
-class List;
 class SvxShapeDescriptor;
 class SvxShape;
 class SvxShapeGroup;
@@ -194,5 +195,6 @@ class SvxDrawPage : public ::cppu::WeakAggImplHelper4< ::com::sun::star::drawing
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif
 

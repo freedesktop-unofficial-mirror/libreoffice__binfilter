@@ -2,9 +2,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:24 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,9 +83,11 @@ namespace utl {
     class SearchParam;
     class TextSearch;
 }
-
 class SfxItemSet;
 class SfxStyleSheetBase;
+class CollatorWrapper;
+namespace binfilter {
+
 class SvxBoxInfoItem;
 class SvxBoxItem;
 class SvxSearchItem;
@@ -110,7 +112,6 @@ class ScIndexMap;
 struct RowInfo;
 struct ScFunctionData;
 struct ScLineFlags;
-class CollatorWrapper;
 
 
 class ScTable
@@ -140,7 +141,7 @@ private:
     USHORT          nRepeatEndY;
 
     BOOL            bProtected;
-    com::sun::star::uno::Sequence<sal_Int8> aProtectPass;
+    ::com::sun::star::uno::Sequence<sal_Int8>   aProtectPass;
 
     USHORT*         pColWidth;
     USHORT*         pRowHeight;
@@ -160,8 +161,8 @@ private:
     USHORT          nTab;
     USHORT          nRecalcLvl;             // Rekursionslevel Size-Recalc
     ScDocument*     pDocument;
-    utl::SearchParam*   pSearchParam;
-    utl::TextSearch*    pSearchText;
+    ::utl::SearchParam* pSearchParam;
+    ::utl::TextSearch*  pSearchText;
 
     // SortierParameter um den Stackbedarf von Quicksort zu Minimieren
     ScSortParam     aSortParam;
@@ -246,8 +247,8 @@ public:
 //STRIP001  void            PageStyleModified( const String& rNewName );
 
     BOOL            IsProtected() const                     { return bProtected; }
-    const com::sun::star::uno::Sequence<sal_Int8>&  GetPassword() const                     { return aProtectPass; }
-    void            SetProtection( BOOL bProtect, const com::sun::star::uno::Sequence<sal_Int8>& rPasswd )
+    const ::com::sun::star::uno::Sequence<sal_Int8>&    GetPassword() const                     { return aProtectPass; }
+    void            SetProtection( BOOL bProtect, const ::com::sun::star::uno::Sequence<sal_Int8>& rPasswd )
                                         { bProtected = bProtect; aProtectPass = rPasswd; }
 
     Size            GetPageSize() const;
@@ -713,6 +714,7 @@ private:
 };
 
 
+} //namespace binfilter
 #endif
 
 

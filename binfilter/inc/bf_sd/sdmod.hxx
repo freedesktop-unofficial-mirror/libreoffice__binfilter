@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdmod.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,20 +82,21 @@
 #ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
 #endif
+class SvFactory;
+class SvNumberFormatter;
+class SfxErrorHandler;
+class OutputDevice;
+namespace binfilter {
 
 class SdOptions;
 class BasicIDE;
 class SvxSearchItem;
-class SdAppLinkHdl; ;
+class SdAppLinkHdl; //STRIP008 ;
 class SvxErrorHandler;
 class EditFieldInfo;
-class SvFactory;
 class SdTransferable;
 class SdDrawDocShell;
-class SvNumberFormatter;
-class SfxErrorHandler;
 class SdView;
-class OutputDevice;
 class SdPage;
 class SdDrawDocument;
 // ----------------------
@@ -215,5 +216,6 @@ private:
 #define SD_MOD() ( *(SdModule**) GetAppData(BF_SHL_DRAW) )
 #endif
 
+} //namespace binfilter
 #endif                                 // _SDMOD_HXX
 

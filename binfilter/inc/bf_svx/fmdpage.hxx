@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmdpage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,8 @@
 #include <comphelper/uno3.hxx>
 #endif
 
+
+namespace binfilter {
 namespace form
 {
     class OImplementationIdsRef;
@@ -98,7 +100,7 @@ namespace form
 class SvxFmDrawPage: public SvxDrawPage,
                      public ::com::sun::star::form::XFormsSupplier
 {
-    ::form::OImplementationIdsRef*  m_pHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef*   m_pHoldImplIdHelper;//STRIP008  ::form::OImplementationIdsRef*  m_pHoldImplIdHelper;
 protected:
 
     // Erzeugen eines SdrObjects anhand einer Description. Kann von
@@ -130,5 +132,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 };
 
+}//end of namespace binfilter
 #endif // _SVX_FMDPAGE_HXX
 

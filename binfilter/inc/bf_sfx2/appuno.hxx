@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -164,6 +164,7 @@
 #define _SVSTDARR_STRINGSDTOR
 #include <svtools/svstdarr.hxx>
 #include <bf_sfx2/sfxuno.hxx>
+namespace binfilter {
 
 //____________________________________________________________________________________________________________________________________
 //  forwards
@@ -212,7 +213,7 @@ class SfxAppDispatchProvider : public ::cppu::WeakImplHelper3< ::com::sun::star:
 {
     ::com::sun::star::uno::WeakReference < ::com::sun::star::frame::XFrame > m_xFrame;
 public:
-                    SfxAppDispatchProvider( const com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& )
+                    SfxAppDispatchProvider( const ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory >& )
                     {}
 
     SFX_DECL_XSERVICEINFO
@@ -225,4 +226,5 @@ public:
     virtual void SAL_CALL initialize( const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aArguments ) throw (::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif

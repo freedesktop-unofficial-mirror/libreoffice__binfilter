@@ -2,9 +2,9 @@
  *
  *  $RCSfile: srchdefs.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef _SFX_SRCHDEFS_HXX_
 #define _SFX_SRCHDEFS_HXX_
+namespace binfilter {
 
 #define SEARCH_OPTIONS_SEARCH       ((sal_uInt16)0x0001)
 #define SEARCH_OPTIONS_SEARCH_ALL   ((sal_uInt16)0x0002)
@@ -77,5 +78,6 @@
 #define SEARCH_OPTIONS_SIMILARITY   ((sal_uInt16)0x1000)
 #define SEARCH_OPTIONS_CONTENT      ((sal_uInt16)0x2000)
 
+}//end of namespace binfilter
 #endif
 

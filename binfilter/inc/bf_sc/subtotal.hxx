@@ -2,9 +2,9 @@
  *
  *  $RCSfile: subtotal.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
+namespace binfilter {
 
 #ifndef MSC
     #include <setjmp.h>
@@ -130,6 +131,7 @@ struct ScFunctionData                   // zum Berechnen von einzelnen Funktione
 };
 
 
+} //namespace binfilter
 #endif
 
 

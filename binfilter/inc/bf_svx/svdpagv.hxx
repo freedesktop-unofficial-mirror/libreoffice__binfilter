@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpagv.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,16 +101,17 @@
 #ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
 #endif
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class Region;
 class Link;
 class OutputDevice;
+class SdrObjListIter;
+namespace binfilter {
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class ExtOutputDevice;
 class SdrPaintInfoRec;
 class XPolyPolygon;
-class SdrObjListIter;
 class SdrObjList;
 class SdrObject;
 class SdrModel;
@@ -121,10 +122,11 @@ class SdrPageObj;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class SdrPageViewWinList;
+}//end of namespace binfilter
 #if _SOLAR__PRIVATE
 
 #include <cppuhelper/implbase4.hxx>
-
+namespace binfilter {
 #define SDRUNOCONTROL_NOTFOUND USHRT_MAX
 
 class SdrUnoControlList;
@@ -322,10 +324,11 @@ public:
     const SdrPageViewWinRec& operator[](USHORT nPos) const                   { return *GetObject(nPos); }
     USHORT                   Find(OutputDevice* pW) const;
 };
+}//end of namespace binfilter
 #endif // __PRIVATE
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+namespace binfilter {
 class SdrPageView: public SfxListener {
 friend class SdrPaintView;
 //friend class SdrSnapView;
@@ -560,5 +563,6 @@ public:
     Color GetApplicationDocumentColor() const;
 };
 
+}//end of namespace binfilter
 #endif //_SVDPAGV_HXX
 

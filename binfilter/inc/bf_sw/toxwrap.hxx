@@ -2,9 +2,9 @@
  *
  *  $RCSfile: toxwrap.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,7 +75,6 @@
 #ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
 #endif
-
 namespace com { namespace sun { namespace star {
 namespace i18n {
     class XExtendedIndexEntrySupplier;
@@ -84,14 +83,25 @@ namespace lang {
     class XMultiServiceFactory;
 }
 }}};
-
-
 class String;
+namespace binfilter {
+
+//STRIP008 namespace com { namespace sun { namespace star {
+//STRIP008 namespace i18n {
+//STRIP008     class XExtendedIndexEntrySupplier;
+//STRIP008 }
+//STRIP008 namespace lang {
+//STRIP008  class XMultiServiceFactory;
+//STRIP008 }
+//STRIP008 }}};
+
+
+
 
 class IndexEntrySupplierWrapper
 {
     STAR_NMSPC::lang::Locale aLcl;
-    STAR_NMSPC::uno::Reference < com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
+    STAR_NMSPC::uno::Reference < ::com::sun::star::i18n::XExtendedIndexEntrySupplier > xIES;
 
 public:
     IndexEntrySupplierWrapper();
@@ -107,7 +117,7 @@ public:
     STAR_NMSPC::uno::Sequence< ::rtl::OUString >
     GetAlgorithmList( const STAR_NMSPC::lang::Locale& rLcl ) const;
 
-    STAR_NMSPC::uno::Sequence < com::sun::star::lang::Locale >
+    STAR_NMSPC::uno::Sequence < ::com::sun::star::lang::Locale >
     GetLocaleList() const;
 
     sal_Bool LoadAlgorithm( const STAR_NMSPC::lang::Locale& rLcl,
@@ -119,4 +129,5 @@ public:
                                  const STAR_NMSPC::lang::Locale& rLcl2 ) const;
 };
 
+} //namespace binfilter
 #endif

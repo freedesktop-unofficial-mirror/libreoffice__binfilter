@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fesh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,12 +77,15 @@
 #endif
 
 #include <vector>
-
-class SwFlyFrm;
 class SvEmbeddedObject;
-class SwTabCols;
 class SvEmbeddedObjectRef;
 class SvInPlaceObject;
+class Color;
+namespace binfilter {
+
+class SwFlyFrm;
+
+class SwTabCols;
 class SvxBrushItem;
 class SwTableAutoFmt;
 class SwFrm;
@@ -91,7 +94,7 @@ class SwFmtFrmSize;
 class SvxBorderLine;
 class SvStorageStream;
 class SdrObject;
-class Color;
+
 class Outliner;
 class SotDataObject;
 class SdrViewUserMarker;
@@ -747,4 +750,5 @@ public:
     void ParkCursorInTab();
 };
 
+} //namespace binfilter
 #endif

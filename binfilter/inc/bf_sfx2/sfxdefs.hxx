@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxdefs.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,9 +58,10 @@
  *
  *
  ************************************************************************/
-
 #ifndef _SFXDEFS_HXX
 #define _SFXDEFS_HXX
+namespace binfilter {
+
 
 #define MESSAGEFILE_SDM_EXT "sdm"   // Extension des neuen Formats
 #define MESSAGEFILE_EXT     "smd"   // Extension der Single-Mail/News-Files
@@ -78,5 +79,6 @@
 #define PRODUCT_VERSION     "4.0"
 #endif
 
+}//end of namespace binfilter
 #endif
 

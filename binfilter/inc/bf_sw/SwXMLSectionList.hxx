@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwXMLSectionList.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,8 +67,10 @@
 #ifndef _XMLOFF_XMLIMP_HXX
 #include <xmloff/xmlimp.hxx>
 #endif
-
 class SvStrings;
+namespace binfilter {
+
+
 
 class SwXMLSectionList : public SvXMLImport
 {
@@ -98,11 +100,11 @@ public:
 //STRIP001 public:
 //STRIP001  SvXMLSectionListContext ( SwXMLSectionList& rImport,
 //STRIP001                         sal_uInt16 nPrefix,
-//STRIP001                         const rtl::OUString& rLocalName,
+//STRIP001                         const ::rtl::OUString& rLocalName,
 //STRIP001                         const ::com::sun::star::uno::Reference<
 //STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 //STRIP001  virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
-//STRIP001                         const rtl::OUString& rLocalName,
+//STRIP001                         const ::rtl::OUString& rLocalName,
 //STRIP001                         const ::com::sun::star::uno::Reference<
 //STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 //STRIP001  ~SvXMLSectionListContext ( void );
@@ -115,13 +117,14 @@ public:
 //STRIP001 public:
 //STRIP001  SvXMLIgnoreSectionListContext ( SwXMLSectionList& rImport,
 //STRIP001                         sal_uInt16 nPrefix,
-//STRIP001                         const rtl::OUString& rLocalName,
+//STRIP001                         const ::rtl::OUString& rLocalName,
 //STRIP001                         const ::com::sun::star::uno::Reference<
 //STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 //STRIP001  virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
-//STRIP001                         const rtl::OUString& rLocalName,
+//STRIP001                         const ::rtl::OUString& rLocalName,
 //STRIP001                         const ::com::sun::star::uno::Reference<
 //STRIP001                         ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
 //STRIP001  ~SvXMLIgnoreSectionListContext ( void );
 //STRIP001 };
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: cellatr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 
 #include "format.hxx"
 #include "cellfml.hxx"
+namespace binfilter {
 
 
 class SwTblBoxNumFormat : public SfxUInt32Item
@@ -181,4 +182,5 @@ inline const SwTblBoxValue          &SwFmt::GetTblBoxValue(BOOL bInP) const
     {   return aSet.GetTblBoxValue(bInP); }
 #endif
 
+} //namespace binfilter
 #endif

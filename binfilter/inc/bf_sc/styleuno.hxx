@@ -2,9 +2,9 @@
  *
  *  $RCSfile: styleuno.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,8 +117,9 @@
 #ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx>
 #endif
-
 class SfxStyleSheetBase;
+namespace binfilter {
+
 class ScDocShell;
 
 class ScStyleFamilyObj;
@@ -145,7 +146,7 @@ private:
 
     ScStyleFamilyObj*       GetObjectByType_Impl(UINT16 Type) const;
     ScStyleFamilyObj*       GetObjectByIndex_Impl(UINT32 nIndex) const;
-    ScStyleFamilyObj*       GetObjectByName_Impl(const rtl::OUString& aName) const;
+    ScStyleFamilyObj*       GetObjectByName_Impl(const ::rtl::OUString& aName) const;
 
 public:
                             ScStyleFamiliesObj(ScDocShell* pDocSh);
@@ -205,7 +206,7 @@ private:
     SfxStyleFamily          eFamily;        // Familie
 
     ScStyleObj*             GetObjectByIndex_Impl(UINT32 nIndex);
-    ScStyleObj*             GetObjectByName_Impl(const rtl::OUString& Name);
+    ScStyleObj*             GetObjectByName_Impl(const ::rtl::OUString& Name);
 
 public:
                             ScStyleFamilyObj(ScDocShell* pDocSh, SfxStyleFamily eFam);
@@ -428,5 +429,6 @@ public:
 
 };
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swfltopt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,8 +64,9 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 
-class SwFilterOptions : public utl::ConfigItem
+class SwFilterOptions : public ::utl::ConfigItem
 {
 public:
 //STRIP001  SwFilterOptions();
@@ -79,4 +80,5 @@ public:
                      sal_uInt32* pValues );
 };
 
+} //namespace binfilter
 #endif

@@ -2,7 +2,7 @@
  *
  *  $RCSfile: tabopparams.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
  *  last change: $ $
  *
@@ -66,6 +66,7 @@
 #include "global.hxx"
 #endif
 #include <vector>
+namespace binfilter {
 
 class ScFormulaCell;
 
@@ -132,7 +133,8 @@ struct ScInterpreterTableOpParams
     }
 };
 
-DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* );
+DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* )//STRIP008 DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* );
 
+} //namespace binfilter
 #endif // SC_TABOPPARAMS_HXX
 

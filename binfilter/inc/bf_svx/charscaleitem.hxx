@@ -2,9 +2,9 @@
  *
  *  $RCSfile: charscaleitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
+namespace binfilter {
 
 // class SvxCharScaleItem ----------------------------------------------
 
@@ -99,9 +100,9 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper * = 0 ) const;
 
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal,
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
                                     BYTE nMemberId );
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal,
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
                                 BYTE nMemberId ) const;
 
     inline SvxCharScaleWidthItem& operator=(const SvxCharScaleWidthItem& rItem )
@@ -112,5 +113,6 @@ public:
 
 };
 
+}//end of namespace binfilter
 #endif
 

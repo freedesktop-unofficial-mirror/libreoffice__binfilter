@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tblsel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #ifndef _SWRECT_HXX
 #include <swrect.hxx>
 #endif
+namespace binfilter {
 
 class SwCrsrShell;
 class SwCursor;
@@ -128,8 +129,8 @@ BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
 BOOL HasProtectedCells( const SwSelBoxes& rBoxes );
 
 // teste, ob die Selektion ausgeglichen ist
-SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16);
-SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50);
+SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)//STRIP008 ;
 
 BOOL ChkChartSel( const SwNode& rSttNd, const SwNode& rEndNd,
                     SwChartLines* pGetCLines = 0 );
@@ -268,4 +269,5 @@ BOOL _FndBoxCopyCol( const SwTableBox*& rpBox, void* pPara );
 BOOL _FndLineCopyCol( const SwTableLine*& rpLine, void* pPara );
 
 
+} //namespace binfilter
 #endif  //  _TBLSEL_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: paratr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,9 +82,11 @@
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
 #endif
+class IntlWrapper;
+namespace binfilter {
 
 class SwCharFmt;
-class IntlWrapper;
+
 
 /*************************************************************************
 |*    class     SwFmtDrop
@@ -123,8 +125,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 
     inline BYTE GetLines() const { return nLines; }
@@ -219,8 +221,8 @@ public:
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId );
 
     // erfrage und setze den Modify-Pointer
     inline const SwModify* GetDefinedIn() const { return pDefinedIn; }
@@ -331,4 +333,5 @@ inline const SvxParaGridItem &SwFmt::GetParaGrid(BOOL bInP) const
 inline const SwParaConnectBorderItem &SwFmt::GetParaConnectBorder(BOOL bInP) const
     {   return (const SwParaConnectBorderItem&)aSet.Get( RES_PARATR_CONNECT_BORDER, bInP ); }
 
+} //namespace binfilter
 #endif

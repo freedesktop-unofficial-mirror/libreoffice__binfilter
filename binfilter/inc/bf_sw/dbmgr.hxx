@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbmgr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,24 +109,26 @@ namespace com{namespace sun{namespace star{
         class XNumberFormatter;
     }
 }}}
+class ListBox;
+class Button;
+class SvNumberFormatter;
+namespace binfilter {
 namespace svx {
     class ODataAccessDescriptor;
 }
 
 struct SwDBFormatData
 {
-    com::sun::star::util::Date aNullDate;
-    com::sun::star::uno::Reference< com::sun::star::util::XNumberFormatter> xFormatter;
-    com::sun::star::lang::Locale aLocale;
+    ::com::sun::star::util::Date aNullDate;
+    ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatter> xFormatter;
+    ::com::sun::star::lang::Locale aLocale;
 };
 
 class SwView;
 class SwWrtShell;
 class SwPrtOptions;
 class SfxProgress;
-class ListBox;
-class Button;
-class SvNumberFormatter;
+
 class SwMailMergeDlg;
 class SwDbtoolsClient;
 class SwXMailMerge;
@@ -153,9 +155,9 @@ enum DBMgrOptions
 
 struct SwDSParam : public SwDBData
 {
-    com::sun::star::util::Date  aNullDate;
+    ::com::sun::star::util::Date    aNullDate;
 
-    ::com::sun::star::uno::Reference<com::sun::star::util::XNumberFormatter>    xFormatter;
+    ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatter>     xFormatter;
     ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XConnection>      xConnection;
     ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XStatement>       xStatement;
     ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>       xResultSet;
@@ -256,7 +258,7 @@ public:
 
     // Mischen von Datensaetzen in Felder
     BOOL            MergeNew(USHORT nOpt, SwWrtShell& rSh,
-                             const ::svx::ODataAccessDescriptor& _rDescriptor);
+           const ::binfilter::svx::ODataAccessDescriptor& _rDescriptor);
 //STRIP001     BOOL            Merge(SwWrtShell* pSh);
     // Mischen von Datensaetzen in Felder, dann drucken
 //STRIP001  BOOL            MergePrint( SwView& rView,
@@ -403,5 +405,6 @@ public:
                             );
 };
 
+} //namespace binfilter
 #endif
 

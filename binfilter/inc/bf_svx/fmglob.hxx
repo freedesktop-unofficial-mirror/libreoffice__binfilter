@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmglob.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
 #endif
+namespace binfilter {
 
 const sal_uInt32 FmFormInventor = sal_uInt32('F')*0x00000001+
                               sal_uInt32('M')*0x00000100+
@@ -102,5 +103,6 @@ const sal_uInt16 OBJ_FM_IMAGECONTROL    =   ::com::sun::star::form::FormComponen
 const sal_uInt16 OBJ_FM_FORMATTEDFIELD  =   ::com::sun::star::form::FormComponentType::PATTERNFIELD+nOffset+1;
     // keine eigene ID fuer formatted field, sondern groesste bekannte + 1
 
+}//end of namespace binfilter
 #endif      // _FM_FMGLOB_HXX
 

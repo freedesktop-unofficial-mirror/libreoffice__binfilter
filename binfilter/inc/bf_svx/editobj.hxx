@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editobj.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:34 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,11 +77,12 @@
 #ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
 #endif
-
-DBG_NAMEEX( EE_EditTextObject );
-
 class SfxItemPool;
 class SfxStyleSheetPool;
+namespace binfilter {
+
+DBG_NAMEEX( EE_EditTextObject )//STRIP008 ;
+
 class SvxFieldItem;
 class EECharAttribArray;
 
@@ -174,4 +175,5 @@ public:
     virtual void        ChangeStyleSheetName( SfxStyleFamily eFamily, const XubString& rOldName, const XubString& rNewName );
 };
 
+}//end of namespace binfilter
 #endif  // _EDITOBJ_HXX

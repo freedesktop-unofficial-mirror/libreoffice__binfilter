@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unowids.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:22 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
 #endif
+namespace binfilter {
 
 
 //  WIDs for uno property maps,
@@ -119,5 +120,6 @@ inline BOOL IsScItemWid( USHORT nWid )
     return nWid >= ATTR_STARTINDEX && nWid <= ATTR_ENDINDEX;    // incl. page
 }
 
+} //namespace binfilter
 #endif
 

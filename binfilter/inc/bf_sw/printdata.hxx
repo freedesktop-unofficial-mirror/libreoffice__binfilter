@@ -2,9 +2,9 @@
  *
  *  $RCSfile: printdata.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _RTL_USTRING_
 #include <rtl/ustring>
 #endif
+namespace binfilter {
 
 struct SwPrintData
 {
@@ -76,7 +77,7 @@ struct SwPrintData
              bPrintSingleJobs, bPaperFromSetup, bModified;
 
     sal_Int16           nPrintPostIts;
-    rtl::OUString       sFaxName;
+    ::rtl::OUString       sFaxName;
 
     SwPrintData()
     {
@@ -129,7 +130,7 @@ struct SwPrintData
     sal_Bool IsPrintBlackFont() const { return bPrintBlackFont;}
     sal_Bool IsPrintSingleJobs() const { return bPrintSingleJobs;}
     sal_Int16 GetPrintPostIts() const { return nPrintPostIts; }
-    const rtl::OUString     GetFaxName() const{return sFaxName;}
+    const ::rtl::OUString       GetFaxName() const{return sFaxName;}
 
     void SetPrintGraphic  ( sal_Bool b ) { doSetModified(); bPrintGraphic = b;}
     void SetPrintTable    ( sal_Bool b ) { doSetModified(); bPrintTable = b;}
@@ -144,10 +145,11 @@ struct SwPrintData
     void SetPrintPageBackground(sal_Bool b){ doSetModified(); bPrintPageBackground = b;}
     void SetPrintBlackFont(sal_Bool b){ doSetModified(); bPrintBlackFont = b;}
     void SetPrintSingleJobs(sal_Bool b){ doSetModified(); bPrintSingleJobs = b;}
-    void SetFaxName(const rtl::OUString& rSet){sFaxName = rSet;}
+    void SetFaxName(const ::rtl::OUString& rSet){sFaxName = rSet;}
     virtual void doSetModified () { bModified = sal_True;}
     sal_Bool WasModified () { return bModified; }
 };
 
+} //namespace binfilter
 #endif  //_SW_PRINTDATA_HXX
 

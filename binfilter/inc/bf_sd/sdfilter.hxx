@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdfilter.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,8 @@
 #ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
 #endif
+namespace vos { class OModule; }
+namespace binfilter {
 
 // ------------
 // - SdFilter -
@@ -83,7 +85,6 @@ class SfxMedium;
 class SdDrawDocShell;
 class SdDrawDocument;
 class SfxProgress;
-namespace vos { class OModule; }
 
 class SdFilter
 {
@@ -122,4 +123,5 @@ public:
     sal_Bool                    IsImpress() const { return !mbIsDraw; }
 };
 
+} //namespace binfilter
 #endif // _SD_SDFILTER_HXX

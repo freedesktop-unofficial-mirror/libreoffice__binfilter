@@ -2,9 +2,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:33 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,7 @@
 #include "types.hxx"
 #include "rect.hxx"
 #include "format.hxx"
+namespace binfilter {
 
 
 #define ATTR_BOLD       0x0001
@@ -98,7 +99,7 @@ extern SmFormat *pActiveFormat;
 class SmDocShell;
 
 class SmNode;
-DECLARE_DYNARRAY(SmNodeArray, SmNode *);
+DECLARE_DYNARRAY(SmNodeArray, SmNode *)//STRIP008 ;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -215,7 +216,7 @@ public:
 
 class SmStructureNode;
 
-DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *);
+DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *)//STRIP008 ;
 
 class SmStructureNode : public SmNode
 {
@@ -860,6 +861,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 
+} //namespace binfilter
 #endif
 
 

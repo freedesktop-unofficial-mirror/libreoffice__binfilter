@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txatritr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,9 +72,12 @@
 #endif
 #include <tools/debug.hxx>
 class String;
+class SfxPoolItem;
+namespace binfilter {
+
 class SwTxtNode;
 class SwTxtAttr;
-class SfxPoolItem;
+
 
 
 class SwScriptIterator
@@ -135,4 +138,5 @@ public:
 #endif
 
 
+} //namespace binfilter
 #endif

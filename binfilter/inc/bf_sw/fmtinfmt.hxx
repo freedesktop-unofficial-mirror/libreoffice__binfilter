@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtinfmt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,10 +68,12 @@
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
 #endif
-
 class SvxMacro;
 class SvxMacroTableDtor;
 class IntlWrapper;
+namespace binfilter {
+
+
 // ATT_INETFMT *********************************************
 
 class SwFmtINetFmt: public SfxPoolItem
@@ -106,9 +108,9 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
-    virtual BOOL            QueryValue( com::sun::star::uno::Any& rVal,
+    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const com::sun::star::uno::Any& rVal,
+    virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 );
 
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
@@ -147,5 +149,6 @@ public:
 };
 
 
+} //namespace binfilter
 #endif
 

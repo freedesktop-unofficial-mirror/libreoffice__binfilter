@@ -2,9 +2,9 @@
  *
  *  $RCSfile: hintids.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>          // for sal_Unicode
 #endif
+
 
 // fuer SwTxtHints ohne Endindex wird folgendes Zeichen eingefuegt:
 //JP 24.05.00: for the new UniCode Version:
@@ -383,6 +384,8 @@ RES_FLTRATTR_END
  */
 class SfxPoolItem;
 struct SfxItemInfo;
+
+namespace binfilter {
 typedef SfxPoolItem* SwDfltAttrTab[ POOLATTR_END - POOLATTR_BEGIN  ];
 
 extern SwDfltAttrTab __FAR_DATA aAttrTab;
@@ -435,7 +438,7 @@ extern USHORT __FAR_DATA aPgFrmFmtSetRange[];
 // check if ID is InRange of AttrSet-Ids
 BOOL IsInRange( const USHORT* pRange, const USHORT nId );
 
-
+} //namespace binfilter
 
 #define ITEMID_FONT         RES_CHRATR_FONT
 #define ITEMID_POSTURE      RES_CHRATR_POSTURE

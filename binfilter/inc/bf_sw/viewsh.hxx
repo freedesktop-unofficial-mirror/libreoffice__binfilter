@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:58 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,30 +85,34 @@
 namespace com { namespace sun { namespace star { namespace accessibility {
            class XAccessible; } } } }
 #endif
+class VirtualDevice;
+class SfxItemPool;
+class Window;
+class OutputDevice;
+class SvtAccessibilityOptions;
+class Fraction;
+class SvEmbeddedObjectRef;
+
+namespace binfilter {
 
 class SwDoc;
 class SfxPrinter;
-class VirtualDevice;
+
 class SfxProgress;
 class SwRootFrm;
 class SwNodes;
 class SdrView;
-class SfxItemPool;
+
 class SfxViewShell;
 class SwViewOption;
 class SwViewImp;
 class SwPrtOptions;
 class SwPagePreViewPrtData;
-class Window;
-class OutputDevice;
 class SwLayIdle;
 struct ShellResource;
 class SwRegionRects;
 class SwFrm;
 struct SwPrintData;
-class SvtAccessibilityOptions;
-class Fraction;
-class SvEmbeddedObjectRef;
 // OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
 
@@ -515,4 +519,5 @@ inline const SfxItemPool& ViewShell::GetAttrPool() const
 
 
 
+} //namespace binfilter
 #endif //_VIEWSH_HXX

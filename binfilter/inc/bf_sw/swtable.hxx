@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swtable.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,10 +88,15 @@
 #include <node.hxx>         // fuer StartNode->GetMyIndex
 #endif
 #else
+namespace binfilter {
 class SwStartNode;
+} //namespace binfilter
 #endif
-
 class Color;
+class SfxPoolItem;
+namespace binfilter {
+
+
 class SwFrmFmt;
 class SwTableFmt;
 class SwTableLineFmt;
@@ -107,7 +112,7 @@ class SwTblCalcPara;
 class SwChartLines;
 struct SwPosition;
 class SwNodeIndex;
-class SfxPoolItem;
+
 class SchMemChart;
 class SwUndoTblMerge;
 class SwUndo;
@@ -119,13 +124,13 @@ class SwUndoTblCpyTbl;
 SV_DECL_REF( SwServerObject )
 #endif
 
-SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20);
-SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50);
+SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20)//STRIP008 ;
+SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50)//STRIP008 ;
 
 // speicher die Inhaltstragenden Box-Pointer zusaetzlich in einem
 // sortierten Array (fuers rechnen in der Tabelle)
 typedef SwTableBox* SwTableBoxPtr;
-SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 );
+SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 )//STRIP008 ;
 
 class SwTable: public SwClient           //Client vom FrmFmt
 {
@@ -390,4 +395,5 @@ public:
 //STRIP001  inline void SetSaveNumFmtColor( const Color* p );
 };
 
+} //namespace binfilter
 #endif  //_SWTABLE_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: misccfg.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:28 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,26 +64,27 @@
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif
+namespace binfilter {
 
 /*--------------------------------------------------------------------
      Beschreibung:
  --------------------------------------------------------------------*/
 
-class SfxMiscCfg : public utl::ConfigItem
+class SfxMiscCfg : public ::utl::ConfigItem
 {
     BOOL            bPaperSize;     // printer warnings
     BOOL            bPaperOrientation;
     BOOL            bNotFound;
     sal_Int32       nYear2000;      // two digit year representation
 
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
+    const ::com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
     void                    Load();
 
 public:
     SfxMiscCfg( );
     ~SfxMiscCfg( );
 
-    virtual void            Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
+    virtual void            Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
     virtual void            Commit();
 
     BOOL        IsNotFoundWarning()     const {return bNotFound;}
@@ -101,5 +102,6 @@ public:
 
 };
 
+}//end of namespace binfilter
 #endif // _MISCCFG_HXX
 

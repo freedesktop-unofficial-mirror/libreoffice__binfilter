@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:51 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,29 +59,21 @@
  *
  ************************************************************************/
 
+
 // MyEDITENG, wegen exportiertem EditEng
 #ifndef _MyEDITENG_HXX
 #define _MyEDITENG_HXX
-
-class ImpEditEngine;
-class EditView;
 class OutputDevice;
-class EditUndo;
-class SvxFont;
 class SfxUndoManager;
 class SfxItemPool;
 class SfxStyleSheet;
 class String;
 class SfxStyleSheetPool;
-class SvxSearchItem;
-class SvxFieldItem;
-class SvxCharSetColorItem;
 class SfxUndoAction;
 class MapMode;
 class Color;
 class Font;
 class KeyEvent;
-class XPolyPolygon;
 class PolyPolygon;
 class Size;
 class Point;
@@ -91,12 +83,21 @@ class Link;
 class OutputDevice;
 class SvUShorts;
 class SfxPoolItem;
+class SvKeyValueIterator;
+namespace binfilter {
+class ImpEditEngine;
+class EditView;
+class EditUndo;
+class SvxFont;
+class SvxSearchItem;
+class SvxFieldItem;
+class SvxCharSetColorItem;
+class XPolyPolygon;
 class SvxNumBulletItem;
 class SvxBulletItem;
 class SvxLRSpaceItem;
-class SvKeyValueIterator;
 class SvxForbiddenCharactersTable;
-
+}//end of namespace binfilter
 #include <vos/ref.hxx>
 
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
@@ -124,7 +125,7 @@ namespace com { namespace sun { namespace star {
 #endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
-
+namespace binfilter {
 /** values for GetAttribs
 */
 const sal_uInt8 EditEngineAttribs_All   = 0;        /// returns all attributes even when theire not set
@@ -452,4 +453,5 @@ public:
 //STRIP001     static BOOL     HasValidData( ::com::sun::star::uno::Reference< ::com::sun::star::datatransfer::XTransferable >& rTransferable );
 };
 
+}//end of namespace binfilter
 #endif // _MyEDITENG_HXX

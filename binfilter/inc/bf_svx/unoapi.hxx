@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoapi.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,12 +81,13 @@
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
 #endif
+class SfxItemPool;
+class String;
+namespace binfilter {
 
 class SvxShape;
 class SdrObject;
 class SvxNumBulletItem;
-class SfxItemPool;
-class String;
 
 /** creates a StarOffice API wrapper with the given type and inventor
     Deprecated: This will be replaced with a function returning XShape.
@@ -130,18 +131,19 @@ sal_Bool SvxFieldUnitToMeasureUnit( const short nVcl, short& eApi ) throw();
 /** if the given name is a predefined name for the current language it is replaced by
     the corresponding api name.
 */
-void SvxUnogetApiNameForItem( const sal_Int16 nWhich, const String& rInternalName, rtl::OUString& rApiName ) throw();
+void SvxUnogetApiNameForItem( const sal_Int16 nWhich, const String& rInternalName, ::rtl::OUString& rApiName ) throw();
 
 /** if the given name is a predefined api name it is replaced by the predefined name
     for the current language.
 */
-void SvxUnogetInternalNameForItem( const sal_Int16 nWhich, const rtl::OUString& rApiName, String& rInternalName ) throw();
+void SvxUnogetInternalNameForItem( const sal_Int16 nWhich, const ::rtl::OUString& rApiName, String& rInternalName ) throw();
 
 /** converts the given any with a metric to 100th/mm if needed */
-void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, com::sun::star::uno::Any & rMetric ) throw();
+void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, ::com::sun::star::uno::Any & rMetric ) throw();
 
 /** converts the given any with a metric from 100th/mm to the given metric if needed */
-void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, com::sun::star::uno::Any & rMetric ) throw();
+void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, ::com::sun::star::uno::Any & rMetric ) throw();
 
+}//end of namespace binfilter
 #endif _SVX_UNOAPI_HXX_
 

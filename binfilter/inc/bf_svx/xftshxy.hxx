@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xftshxy.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,7 @@
 #ifndef _SFXMETRICITEM_HXX //autogen
 #include <svtools/metitem.hxx>
 #endif
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -98,5 +99,6 @@ public:
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoipset.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,11 +68,12 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-
-class SvxIDPropertyCombineList;
-class SdrItemPool;
 struct SfxItemPropertyMap;
 class SfxItemSet;
+namespace binfilter {
+class SvxIDPropertyCombineList;
+class SdrItemPool;
+
 class SvxShape;
 
 class SvxItemPropertySet
@@ -101,13 +102,14 @@ public:
     ::com::sun::star::uno::Any* GetUsrAnyForID(sal_uInt16 nWID) const;
     void AddUsrAnyForID(const ::com::sun::star::uno::Any& rAny, sal_uInt16 nWID);
 
-    com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > getPropertySetInfo() const;
+    ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > getPropertySetInfo() const;
     const SfxItemPropertyMap* getPropertyMap() const {return _pMap;}
     void setPropertyMap( const SfxItemPropertyMap *pMap ) { _pMap = pMap; }
     const SfxItemPropertyMap* getPropertyMapEntry(const ::rtl::OUString &rName) const;
 
-    static com::sun::star::uno::Reference< com::sun::star::beans::XPropertySetInfo > getPropertySetInfo( const SfxItemPropertyMap* pMap );
+    static ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > getPropertySetInfo( const SfxItemPropertyMap* pMap );
 };
 
+}//end of namespace binfilter
 #endif // _SVX_UNOIPSET_HXX_
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: schattr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 #endif
 
 #include "chattr.hxx"
+namespace binfilter {
 
 #define SCHATTR_START                       1
 
@@ -225,6 +226,7 @@
 
 #define SCHATTR_END                      SCHATTR_NONPERSISTENT_END
 
+} //namespace binfilter
 #endif // _SCHATTR_HXX
 
 

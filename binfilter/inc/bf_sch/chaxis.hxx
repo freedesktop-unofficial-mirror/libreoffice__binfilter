@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chaxis.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,14 +61,14 @@
 #ifndef SCH_CHART_AXIS_HXX
 #define SCH_CHART_AXIS_HXX
 
-class ChartModel;
+//STRIP008 class ChartModel;
 class SvNumberFormatter;
 class SvULONGTable;
-class SdrObject;
-class SdrObjList;
-class XPolygon;
-class SdrRectObj;
-class SchAxisObj;
+//STRIP008 class SdrObject;
+//STRIP008 class SdrObjList;
+//STRIP008 class XPolygon;
+//STRIP008 class SdrRectObj;
+//STRIP008 class SchAxisObj;
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
@@ -94,6 +94,13 @@ class SchAxisObj;
 #include "schattr.hxx"
 #include "float.h"
 #include <math.h>
+namespace binfilter {
+class ChartModel;
+class SdrObject;
+class SdrObjList;
+class XPolygon;
+class SdrRectObj;
+class SchAxisObj;
 
 #define CHAXIS_POS_A -1   //Top or Right    (normale Position)
 #define CHAXIS_POS_B -2   //Bottom or Left  (Position der 2.Achse)
@@ -102,7 +109,7 @@ class SchAxisObj;
 #define CHAXIS_MARK_OUTER  2
 #define CHAXIS_MARK_INNER  1
 #define CHAXIS_MARK_NONE   0
-#define CHAXIS_MARK_ASMAIN 4  //Flag indiziert, daﬂ Helpticks wie mainticks ausgerichtete werden sollen
+#define CHAXIS_MARK_ASMAIN 4  //Flag indiziert, da?Helpticks wie mainticks ausgerichtete werden sollen
 
 #define CHAXIS_AXIS_UNKNOWN 0
 #define CHAXIS_AXIS_X   1
@@ -445,4 +452,5 @@ private:
     long int    CalcTypicalDescriptionSize  (const SfxItemSet * rAttr);
 };
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3io.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,15 +64,18 @@
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
+class SvStorage;
+class SvStrings;
+class UniString;
+class SvxMacroTableDtor;
+
+namespace binfilter {
 
 class Sw3IoImp;
 class SwPaM;
 class SwDoc;
-class SvStorage;
+
 class SwgReaderOption;
-class SvStrings;
-class UniString;
-class SvxMacroTableDtor;
 
 #define DRAWING_STREAM_NAME     "DrawingLayer"
 
@@ -111,4 +114,5 @@ public:
 //STRIP001  ULONG GetMacroTable( SvStorage*, SvxMacroTableDtor& rMacroTbl );
 };
 
+} //namespace binfilter
 #endif

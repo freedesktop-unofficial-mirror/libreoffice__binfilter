@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xbtmpit.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:45 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,7 @@
 #define _SVX_XBTMPIT_HXX
 
 #include <bf_svx/xbitmap.hxx>
+namespace binfilter {
 
 class SdrModel;
 
@@ -89,8 +90,8 @@ public:
     virtual SvStream&       Store( SvStream& rOut, USHORT nItemVersion  ) const;
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
 
-    virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 //STRIP001  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 //STRIP001                                  SfxMapUnit eCoreMetric,
@@ -104,4 +105,5 @@ public:
     XFillBitmapItem* checkForUniqueItem( SdrModel* pModel ) const;
 };
 
+}//end of namespace binfilter
 #endif

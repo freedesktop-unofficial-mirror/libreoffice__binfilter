@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pmdlitem.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,6 +69,7 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
+namespace binfilter {
 
 // class SvxPageModelItem ------------------------------------------------
 
@@ -97,8 +98,8 @@ public:
 //STRIP001                                  SfxMapUnit ePresMetric,
 //STRIP001                                     String &rText, const IntlWrapper * = 0 ) const;
 //STRIP001
-//STRIP001  virtual sal_Bool             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-//STRIP001  virtual sal_Bool             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+//STRIP001  virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+//STRIP001  virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 //STRIP001  BOOL IsAuto() const { return bAuto; }
 };
 
@@ -120,5 +121,6 @@ inline SvxPageModelItem& SvxPageModelItem::operator=( const SvxPageModelItem& rM
     return *this;
 }
 
+}//end of namespace binfilter
 #endif
 

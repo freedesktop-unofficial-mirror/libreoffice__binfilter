@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdmodel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,18 @@ class OutputDevice;
 #endif
 
 #include <vos/ref.hxx>
+class AutoTimer;
+class SfxItemPool;
+class SfxItemSet;
+class SfxRepeatTarget;
+class SfxStyleSheet;
+class SfxStyleSheetBasePool;
+class SfxUndoAction;
+class SvPersist;
+class SvNumberFormatter;
+class SotStorage;
+class SvStorageRef;
+namespace binfilter {
 
 #if defined(UNX) || defined(WIN) || defined(WNT)
 #define DEGREE_CHAR ((sal_Unicode)176)   /* 0xB0 = Ansi */
@@ -139,14 +151,6 @@ class SdrPageView;
 class SdrTextObj;
 class SdrUndoAction;
 class SdrUndoGroup;
-class AutoTimer;
-class SfxItemPool;
-class SfxItemSet;
-class SfxRepeatTarget;
-class SfxStyleSheet;
-class SfxStyleSheetBasePool;
-class SfxUndoAction;
-class SvPersist;
 class SvxLinkManager;
 class XBitmapList;
 class XBitmapTable;
@@ -160,10 +164,7 @@ class XHatchTable;
 class XLineEndList;
 class XLineEndTable;
 class SvxForbiddenCharactersTable;
-class SvNumberFormatter;
-class SotStorage;
 class SdrOutlinerCache;
-class SvStorageRef;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -291,14 +292,14 @@ protected:
     String         aTablePath;
     String         aLoadedModelFN; // fuer Referenzen auf ein anderes Dok
     Size           aMaxObjSize; // z.B. fuer Autogrowing Text
-    Fraction       aObjUnit;   // © Beschreibung der Koordinateneinheiten
-    MapUnit        eObjUnit;   // ы fuer ClipBoard, Drag&Drop, ...
-    FieldUnit      eUIUnit;      // © Masseinheit
-    Fraction       aUIScale;     // Ё Masstab (z.B. 1/1000)
-    String         aUIUnitStr;   // Ё fuer die UI        wird von ImpSetUIUnit() gesetzt
-    Fraction       aUIUnitFact;  // Ё (Statuszeile)      wird von ImpSetUIUnit() gesetzt
-    int            nUIUnitKomma; // Ё                    wird von ImpSetUIUnit() gesetzt
-    FASTBOOL       bUIOnlyKomma; // ы                    wird von ImpSetUIUnit() gesetzt
+    Fraction       aObjUnit;   // ?Beschreibung der Koordinateneinheiten
+    MapUnit        eObjUnit;   // ?fuer ClipBoard, Drag&Drop, ...
+    FieldUnit      eUIUnit;      // ?Masseinheit
+    Fraction       aUIScale;     // ?Masstab (z.B. 1/1000)
+    String         aUIUnitStr;   // ?fuer die UI        wird von ImpSetUIUnit() gesetzt
+    Fraction       aUIUnitFact;  // ?(Statuszeile)      wird von ImpSetUIUnit() gesetzt
+    int            nUIUnitKomma; // ?                   wird von ImpSetUIUnit() gesetzt
+    FASTBOOL       bUIOnlyKomma; // ?                   wird von ImpSetUIUnit() gesetzt
 
     SdrLayerAdmin*  pLayerAdmin;
     SfxItemPool*    pItemPool;
@@ -854,24 +855,25 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+}//end of namespace binfilter
 #endif //_SVDMODEL_HXX
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
-            з-----------©
+            ?----------?
             | SdrModel  |
-            ю--б------б-ы
-               |      ю-----------©
-          з----а-----©            |
+            ?-?-----??
+               |      ?----------?
+          ?---?----?           |
           |   ...    |            |
-     з----а---© з----а---©  з-----а--------©
+     ?---?--??---?--? ?----?-------?
      |SdrPage | |SdrPage |  |SdrLayerAdmin |
-     ю---б----ы ю-б--б--бы  ю---б-------б--ы
-         |        |  |  |       |       ю-------------------©
-    з----а----©           з-----а-----©             з-------а-------©
+     ?--?---???-?-бы  ?--?------?-?
+         |        |  |  |       |       ?------------------?
+    ?---?---?          ?----?----?            ?------?------?
     |   ...   |           |    ...    |             |      ...      |
-з---а---© з---а---©  з----а----© з----а----©  з-----а------© з------а-----©
+?--?--??--?--? ?---?---??---?---? ?----?-----??-----?----?
 |SdrObj | |SdrObj |  |SdrLayer | |SdrLayer |  |SdrLayerSet | |SdrLayerSet |
-ю-------ы ю-------ы  ю---------ы ю---------ы  ю------------ы ю------------ы
+?------??------? ?--------??--------? ?-----------??-----------?
 Die Klasse SdrModel ist der Kopf des Datenmodells der StarView Drawing-Engine.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////// */

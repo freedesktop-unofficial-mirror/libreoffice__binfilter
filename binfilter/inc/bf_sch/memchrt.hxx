@@ -2,9 +2,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,11 +85,12 @@
 #ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
 #endif
-
 class SvStream;
 class SfxItemSet;
-class ChartModel;
 class SvNumberFormatter;
+namespace binfilter {
+
+class ChartModel;
 
 #define SCH_COPY_HACK
 
@@ -231,9 +232,9 @@ protected :
     Link aAppLink;
     BOOL bReadOnly;
 
-    rtl::OUString maCategoriesRangeAddress;
-    com::sun::star::uno::Sequence<
-        com::sun::star::chart::ChartSeriesAddress > maSeriesAddresses;
+    ::rtl::OUString maCategoriesRangeAddress;
+    ::com::sun::star::uno::Sequence<
+        ::com::sun::star::chart::ChartSeriesAddress > maSeriesAddresses;
 
     /// contains all information necessary to write the source data ranges
     SchChartRange maChartRange;
@@ -455,7 +456,7 @@ public:
     // ====================
 
     /// @deprecated
-    void SetCategoriesRangeAddress( const rtl::OUString& rCellRangeAddress )
+    void SetCategoriesRangeAddress( const ::rtl::OUString& rCellRangeAddress )
         { maCategoriesRangeAddress = rCellRangeAddress; }
 
     /// @deprecated
@@ -824,7 +825,7 @@ inline void SchMemChart::RemoveRows(short nAtRow, short nCount)
 
 inline void SchMemChart::SwapCols(int nAtCol1, int nAtCol2)
 {
-    // Wenn hier Aenderungen Stattfinden, muß auch im Logbuch
+    // Wenn hier Aenderungen Stattfinden, mu?auch im Logbuch
     // angepasst werden
     if (nAtCol1 > nAtCol2)
     {
@@ -875,7 +876,7 @@ inline void SchMemChart::SwapCols(int nAtCol1, int nAtCol2)
 inline void SchMemChart::SwapRows(int nAtRow1,int nAtRow2)
 {
 
-    // Wenn hier Aenderungen Stattfinden, muß auch im Logbuch
+    // Wenn hier Aenderungen Stattfinden, mu?auch im Logbuch
     // angepasst werden
     if (nAtRow1 > nAtRow2)
     {
@@ -932,5 +933,6 @@ inline void SchMemChart::SetReadOnly( BOOL bNewValue )
         bReadOnly = bNewValue;
 }
 
+} //namespace binfilter
 #endif  // _SCH_MEMCHRT_HXX
 

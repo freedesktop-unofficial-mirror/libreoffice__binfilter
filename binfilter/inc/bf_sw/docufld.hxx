@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docufld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,6 +67,7 @@
 
 #include "fldbas.hxx"
 #include "numrule.hxx"
+namespace binfilter {
 
 class _SetGetExpFlds;
 class SwTxtFld;
@@ -212,8 +213,8 @@ public:
 
     virtual USHORT      GetSubType() const;
     // virtual void        SetSubType(USHORT nSub); // OM: entfernt, da unbenoetigt und gefaehrlich
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     const String& GetUserString() const         { return sUserStr; }
     void SetUserString( const String& rS )      { sUserStr = rS; }
@@ -249,8 +250,8 @@ public:
     inline void         SetExpansion(const String& rStr) { aContent = rStr; }
     inline const String& GetContent() const { return aContent; }
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -284,8 +285,8 @@ public:
     inline void         SetExpansion(const String& rStr) { aContent = rStr; }
     inline const String& GetContent() const { return aContent; }
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -313,8 +314,8 @@ public:
 
     virtual String      Expand() const;
     virtual SwField*    Copy() const;
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 
@@ -355,8 +356,8 @@ public:
 
     virtual USHORT      GetSubType() const;
 //STRIP001  virtual void        SetSubType(USHORT nSub);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -430,8 +431,8 @@ public:
 
     virtual USHORT      GetSubType() const;
     // virtual void        SetSubType(USHORT nSub); // OM: entfernt, da unbenoetigt und gefaehrlich
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -467,8 +468,8 @@ public:
     // Bedingung erfragen/setzen
     virtual const String& GetPar1() const;
 //STRIP001  virtual void        SetPar1(const String& rStr);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -514,8 +515,8 @@ public:
     // Macrotext
     virtual String  GetPar2() const;
 //STRIP001  virtual void    SetPar2(const String& rStr);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
     static void CreateMacroString( String& rMacro,
                                    const String& rMacroName,
@@ -564,8 +565,8 @@ public:
 //STRIP001  virtual void            SetPar2(const String& rStr);
 //STRIP001  const String&           GetTxt() const { return sTxt; }
 //STRIP001
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -597,8 +598,8 @@ public:
     virtual SwField*        Copy() const;
 
     inline void             SetExpansion(const String& rStr) { aContent = rStr; }
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -636,8 +637,8 @@ public:
     inline void         SetExpansion(const String& rStr) { aContent = rStr; }
     inline const String& GetContent() const { return aContent; }
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 
@@ -679,8 +680,8 @@ public:
 //STRIP001
 //STRIP001  short GetOffset() const         { return nOffset; }
 //STRIP001  void SetOffset( short nOff )    { nOffset = nOff; }
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -724,8 +725,8 @@ public:
 //STRIP001  const String& GetText() const           { return sTxt; }
 
 //STRIP001  void ChangeExpansion( const SwFrm* pFrm, const SwTxtFld* pFld );
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -767,8 +768,8 @@ public:
 
     SwCharFmt* GetCharFmt() const
         { return ((SwJumpEditFieldType*)GetTyp())->GetCharFmt(); }
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -813,8 +814,8 @@ public:
 
 //STRIP001  BOOL                    IsCodeURL() const { return bCodeURL; }
 //STRIP001  void                    SetCodeURL( BOOL bURL ) { bCodeURL = bURL; }
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 /*--------------------------------------------------------------------
@@ -849,9 +850,10 @@ public:
 //STRIP001  virtual const String&   GetPar1() const;
 //STRIP001  virtual void            SetPar1(const String& rStr);
 //STRIP001
-//STRIP001  virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-//STRIP001  virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+//STRIP001  virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+//STRIP001  virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 
+} //namespace binfilter
 #endif // _DOCUFLD_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtpdsc.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,11 +74,13 @@
 #ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
 #endif
+class IntlWrapper;
+namespace binfilter {
 
 class SwPageDesc;
 class SwHistory;
 class SwPaM;
-class IntlWrapper;
+
 
 //Pagedescriptor
 //Client vom SwPageDesc der durch das Attribut "beschrieben" wird.
@@ -116,8 +118,8 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper*    pIntl = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
 
@@ -146,5 +148,6 @@ inline const SwFmtPageDesc &SwFmt::GetPageDesc(BOOL bInP) const
     { return aSet.GetPageDesc(bInP); }
 #endif
 
+} //namespace binfilter
 #endif
 

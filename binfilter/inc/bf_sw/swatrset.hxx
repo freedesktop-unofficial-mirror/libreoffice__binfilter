@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swatrset.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,11 +74,15 @@
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
+class OutputDevice;
+class SfxBoolItem;
+class SvxMacroItem;
+namespace binfilter {
 class SwModify;
 class SwDoc;
-class OutputDevice;
 
-class SfxBoolItem;
+
+
 class SvxPostureItem;
 class SvxWeightItem;
 class SvxShadowedItem;
@@ -126,7 +130,7 @@ class SvxShadowItem;
 class SwFmtPageDesc;
 class SvxFmtBreakItem;
 class SwFmtCol;
-class SvxMacroItem;
+
 class SvxFmtKeepItem;
 class SwFmtURL;
 class SwFmtLineNumber;
@@ -375,4 +379,5 @@ public:
 //Helper for filters to find true lineheight of a font
 long AttrSetToLineHeight(const SwDoc &rDoc, const SwAttrSet &rSet,
     const OutputDevice &rOut, sal_Int16 nScript);
+} //namespace binfilter
 #endif

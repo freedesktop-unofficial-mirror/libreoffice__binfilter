@@ -2,9 +2,9 @@
  *
  *  $RCSfile: index.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,6 +74,7 @@
 #include <tools/string.hxx>             // for xub_StrLen
 #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
+namespace binfilter {
 #define INVALID_INDEX STRING_NOTFOUND
 
 // Maximale Anzahl von Indizies im IndexArray (zum Abtesten auf Ueberlaeufe)
@@ -261,4 +262,5 @@ inline xub_StrLen SwIndex::operator-=( const SwIndex& rIndex )
 #endif
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,21 +79,23 @@
 #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
 #endif
-
-class SwDoc;
 class Date;
 class Time;
-class _SetGetExpFlds;
-class SwEditShell;
 class SvStringsDtor;
 class SvNumberFormatter;
 
+namespace binfilter {
+
+class SwDoc;
+class _SetGetExpFlds;
+class SwEditShell;
+} //namespace binfilter
 #endif      // FIELDIDS_ONLY
 
 /*--------------------------------------------------------------------
     Beschreibung:   die ID's fuer die Feldtypen
  --------------------------------------------------------------------*/
-
+namespace binfilter {//STRIP009
 enum RES_FIELDS
 {
 // Fuer die alten Dokumente muessen die Field-Which IDS erhalten bleiben !!!!
@@ -305,7 +307,7 @@ String  FormatNumber(USHORT nNum, ULONG nFormat);
  --------------------------------------------------------------------*/
 class SwFldNames;
 
-DBG_NAMEEX(SwFieldType);
+DBG_NAMEEX(SwFieldType)//STRIP008 ;
 
 class SwFieldType : public SwModify
 {
@@ -328,8 +330,8 @@ public:
     // nur in abgeleiteten Klassen
     virtual const String&   GetName() const;
     virtual SwFieldType*    Copy()    const = 0;
-    virtual BOOL QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual BOOL QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   BOOL PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 
             USHORT          Which() const { return nWhich; }
 
@@ -406,8 +408,8 @@ public:
 //STRIP001  virtual void        SetPar1(const String& rStr);
 //STRIP001  virtual void        SetPar2(const String& rStr);
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
     // hat das Feld eine Action auf dem ClickHandler ? (z.B. INetFelder,..)
 //STRIP001  FASTBOOL            HasClickHdl() const;
     // ist es ein Fix-Feld?
@@ -530,4 +532,5 @@ inline SvStringsDtor* SwFieldType::GetFldNames()
 #endif  // FIELDIDS_ONLY
 
 
+} //namespace binfilter
 #endif // _FLDBAS_HXX

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtclds.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
 #endif
+namespace binfilter {
 
 //Der ColumnDescriptor --------------------------
 
@@ -106,7 +107,7 @@ public:
 };
 
 typedef SwColumn* SwColumnPtr;
-SV_DECL_PTRARR_DEL( SwColumns, SwColumnPtr, 0, 2 );
+SV_DECL_PTRARR_DEL( SwColumns, SwColumnPtr, 0, 2 )//STRIP008 ;
 
 enum SwColLineAdj
 {
@@ -158,8 +159,8 @@ public:
 //STRIP001                                  String &rText,
 //STRIP001                                     const IntlWrapper* pIntl = 0 ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     const SwColumns &GetColumns() const { return aColumns; }
           SwColumns &GetColumns()       { return aColumns; }
@@ -221,5 +222,6 @@ inline const SwFmtCol &SwFmt::GetCol(BOOL bInP) const
     { return aSet.GetCol(bInP); }
 #endif
 
+} //namespace binfilter
 #endif
 

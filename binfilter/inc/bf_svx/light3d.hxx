@@ -2,9 +2,9 @@
  *
  *  $RCSfile: light3d.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,13 +65,14 @@
 #ifndef _E3D_PNTOBJ3D_HXX
 #include <bf_svx/pntobj3d.hxx>
 #endif
+namespace binfilter {
 
 /************************************************************************/
 
 class E3dLight;
 
 #ifndef _E3D_LIGHT3D_LIST
-DECLARE_LIST(E3dLightList, E3dLight*);
+DECLARE_LIST(E3dLightList, E3dLight*)//STRIP008 DECLARE_LIST(E3dLightList, E3dLight*);
 #endif
 
 /*************************************************************************
@@ -147,4 +148,5 @@ class E3dLight : public E3dPointObj
     virtual SfxStyleSheet* GetStyleSheet() const;
 };
 
+}//end of namespace binfilter
 #endif          // _E3D_LIGHT3D_HXX

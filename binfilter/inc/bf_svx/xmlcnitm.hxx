@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlcnitm.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:46 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,13 +65,15 @@
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
 #endif
-
-class SvXMLNamespaceMap;
 namespace rtl { class OUString; }
+class SvXMLNamespaceMap;
+class SvXMLAttrContainerData;
+namespace binfilter {
+
+//STRIP008 namespace rtl { class OUString; }
 
 //============================================================================
 
-class SvXMLAttrContainerData;
 
 class SvXMLAttrContainerItem: public SfxPoolItem
 {
@@ -96,8 +98,8 @@ public:
 
     virtual sal_uInt16 GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual SfxPoolItem *Clone( SfxItemPool * = 0) const
     { return new SvXMLAttrContainerItem( *this ); }
@@ -121,5 +123,6 @@ public:
     const ::rtl::OUString& GetPrefix( sal_uInt16 i ) const;
 };
 
+}//end of namespace binfilter
 #endif //  _SVX_XMLCNITM_HXX
 

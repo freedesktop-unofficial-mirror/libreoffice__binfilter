@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docfile.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,20 +103,22 @@
 
 #include <bf_sfx2/sfxuno.hxx>
 #include <bf_sfx2/docinf.hxx>
-
 class SvKeyValueIterator;
-class SfxObjectFactory;
-class SfxFilter;
-class SfxMedium_Impl;
 class INetURLObject;
-class SfxObjectShell;
-class SfxFrame;
-class LoadEnvironment_Impl;
 class Timer;
 class SfxItemSet;
 class DateTime;
 class SvStringsDtor;
 class SvEaMgr;
+namespace binfilter {
+
+class SfxObjectFactory;
+class SfxFilter;
+class SfxMedium_Impl;
+class SfxObjectShell;
+class SfxFrame;
+class LoadEnvironment_Impl;
+
 class SfxLoadEnvironment;
 
 #define SFX_TFPRIO_SYNCHRON                        0
@@ -131,7 +133,7 @@ class SfxLoadEnvironment;
 #if _SOLAR__PRIVATE
 #ifndef STRING_LIST
 #define STRING_LIST
-DECLARE_LIST( StringList, String* );
+DECLARE_LIST( StringList, String* )//STRIP008 DECLARE_LIST( StringList, String* );
 #endif
 #endif
 
@@ -410,8 +412,9 @@ SV_DECL_COMPAT_WEAK( SfxMedium )
 
 #ifndef SFXMEDIUM_LIST
 #define SFXMEDIUM_LIST
-DECLARE_LIST( SfxMediumList, SfxMedium* );
+DECLARE_LIST( SfxMediumList, SfxMedium* )//STRIP008 DECLARE_LIST( SfxMediumList, SfxMedium* );
 #endif
 
+}//end of namespace binfilter
 #endif
 

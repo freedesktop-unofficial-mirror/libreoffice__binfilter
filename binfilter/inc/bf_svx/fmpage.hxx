@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmpage.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,13 +69,15 @@
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
-
+FORWARD_DECLARE_INTERFACE(container,XNameContainer)
 class StarBASIC;
+namespace binfilter {
+
 class FmFormModel;
 class FmFormPageImpl;   // haelt die Liste aller Forms
 
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
-FORWARD_DECLARE_INTERFACE(container,XNameContainer)
+//STRIP008 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
 
 class SfxJSArray;
 class HelpEvent;
@@ -159,5 +161,6 @@ public:
 //STRIP001  SfxJSArray*         GetFormsArray() const;
 };
 
+}//end of namespace binfilter
 #endif          // _SVX_FMPAGE_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: outliner.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:50 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,40 +94,6 @@
 #endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
-
-class OutlinerEditEng;
-class Outliner;
-class EditView;
-class EditUndo;
-class ParagraphList;
-class OutlinerParaObject;
-class SvStream;
-class SvxBulletItem;
-class SvxFont;
-class SvxSearchItem;
-class SvxFieldItem;
-class OLUndoRemove;
-class XPolyPolygon;
-class Window;
-class KeyEvent;
-class MouseEvent;
-class Pointer;
-class CommandEvent;
-class MapMode;
-class OutputDevice;
-class PolyPolygon;
-class SfxStyleSheetPool;
-class SfxStyleSheet;
-class SfxItemPool;
-class SfxItemSet;
-class SvxNumBulletItem;
-class SvxNumberFormat;
-class SvxLRSpaceItem;
-class SfxUndoManager;
-class EditEngine;
-class SvKeyValueIterator;
-class SvxForbiddenCharactersTable;
-
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
@@ -139,6 +105,52 @@ namespace com { namespace sun { namespace star { namespace linguistic2 {
     class XSpellChecker1;
     class XHyphenator;
 }}}}
+class SvStream;
+class Window;
+class KeyEvent;
+class MouseEvent;
+class Pointer;
+class MapMode;
+class OutputDevice;
+class PolyPolygon;
+class SfxStyleSheetPool;
+class SfxStyleSheet;
+class SfxItemPool;
+class SfxItemSet;
+class SfxUndoManager;
+class SvKeyValueIterator;
+namespace binfilter {
+
+class OutlinerEditEng;
+class Outliner;
+class EditView;
+class EditUndo;
+class ParagraphList;
+class OutlinerParaObject;
+class SvxBulletItem;
+class SvxFont;
+class SvxSearchItem;
+class SvxFieldItem;
+class OLUndoRemove;
+class XPolyPolygon;
+class CommandEvent;
+class SvxNumBulletItem;
+class SvxNumberFormat;
+class SvxLRSpaceItem;
+class EditEngine;
+class SvxForbiddenCharactersTable;
+
+//STRIP008 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
+//STRIP008 #include <com/sun/star/uno/Reference.h>
+//STRIP008 #endif
+//STRIP008
+//STRIP008 #include <vos/ref.hxx>
+//STRIP008 #include <bf_svx/svxfont.hxx>
+//STRIP008
+//STRIP008 namespace com { namespace sun { namespace star { namespace linguistic2 {
+//STRIP008  class XSpellChecker1;
+//STRIP008  class XHyphenator;
+//STRIP008 }}}}
 
 // nur interner Gebrauch!
 #define PARAFLAG_DROPTARGET         0x1000
@@ -930,5 +942,6 @@ public:
     USHORT  GetOutlinerMode() const { return nOutlinerMode & OUTLINERMODE_USERMASK; }
 };
 
+}//end of namespace binfilter
 #endif
 

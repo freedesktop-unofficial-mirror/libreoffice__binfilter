@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmview.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,10 +74,11 @@
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
+
 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
-
 class OutputDevice;
+namespace binfilter {
 class ExtOutputDevice;
 class FmFormModel;
 class FmPageViewWinRec;
@@ -147,7 +148,7 @@ protected:
     void ActivateControls(SdrPageView*);
     void DeactivateControls(SdrPageView*);
 
-    // Hinweis an die UI, daﬂ ein Control erzeugt worden ist
+    // Hinweis an die UI, da?ein Control erzeugt worden ist
 //STRIP001  void ObjectCreated(FmFormObj* pObj);
     void ChangeDesignMode(sal_Bool bDesign);
 
@@ -163,5 +164,6 @@ private:
     FmFormObj* getMarkedGrid() const;
 };
 
+}//end of namespace binfilter
 #endif          // _FML_FMVIEW_HXX
 

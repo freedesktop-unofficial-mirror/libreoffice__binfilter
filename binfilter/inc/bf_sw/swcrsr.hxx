@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swcrsr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,11 @@
 #ifndef _CSHTYP_HXX //autogen
 #include <cshtyp.hxx>
 #endif
+namespace com { namespace sun { namespace star { namespace util {
+    struct SearchOptions;
+} } } }
+
+namespace binfilter {
 
 
 class SwShellCrsr;
@@ -79,9 +84,9 @@ class SwUnoCrsr;
 class SwUnoTableCrsr;
 struct _SwCursor_SavePos;
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
+//STRIP008 namespace com { namespace sun { namespace star { namespace util {
+//STRIP008  struct SearchOptions;
+//STRIP008 } } } }
 
 
 // ein Basis-Struktur fuer die Parameter der Find-Methoden
@@ -147,7 +152,7 @@ public:
 //STRIP001  SwMoveFnCollection* MakeFindRange( SwDocPositions, SwDocPositions,
 //STRIP001                                      SwPaM* ) const;
 
-    ULONG Find( const com::sun::star::util::SearchOptions& rSearchOpt,
+    ULONG Find( const ::com::sun::star::util::SearchOptions& rSearchOpt,
                 SwDocPositions nStart, SwDocPositions nEnde,
                 BOOL& bCancel,
                 FindRanges = FND_IN_BODY,
@@ -163,7 +168,7 @@ public:
                 SwDocPositions nStart, SwDocPositions nEnde,
                 BOOL& bCancel,
                 FindRanges = FND_IN_BODY,
-                const com::sun::star::util::SearchOptions* pSearchOpt = 0,
+                const ::com::sun::star::util::SearchOptions* pSearchOpt = 0,
                 const SfxItemSet* rReplSet = 0 );
 
     FASTBOOL IsStartWord()const;
@@ -348,5 +353,6 @@ inline SwCursor::operator const SwUnoTableCrsr* () const
 }
 
 
+} //namespace binfilter
 #endif
 

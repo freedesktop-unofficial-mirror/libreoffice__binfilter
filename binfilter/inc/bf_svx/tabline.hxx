@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tabline.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:49 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@
 #ifndef _SV_MENUBTN_HXX
 #include <vcl/menubtn.hxx>
 #endif
+namespace binfilter {
 //STRIP001 class SvxBrushItem;
 // define ----------------------------------------------------------------
 
@@ -519,5 +520,6 @@
 //STRIP001     virtual void    DataChanged( const DataChangedEvent& rDCEvt );
 //STRIP001 };
 
+}//end of namespace binfilter
 #endif // _SVX_TAB_LINE_HXX
 

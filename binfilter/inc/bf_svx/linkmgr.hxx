@@ -2,9 +2,9 @@
  *
  *  $RCSfile: linkmgr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:43 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,10 @@
 #ifndef _LINKMGR_HXX
 #include <so3/linkmgr.hxx>
 #endif
-
 class Graphic;
 class Size;
+namespace binfilter {
+
 
 // Damit der Link ueber den Status der zu ladenen Grafik informierten werden
 // verschickt das FileObject ein SvData, mit der FormatId
@@ -79,7 +80,7 @@ enum LinkState
     STATE_LOAD_ABORT
 };
 
-class SvxLinkManager : public so3::SvLinkManager
+class SvxLinkManager : public ::so3::SvLinkManager
 {
     SvxLinkManager( const SvxLinkManager& );
     SvxLinkManager& operator=( const SvxLinkManager& );
@@ -88,29 +89,29 @@ public:
     SvxLinkManager( SvPersist * pCacheCont );
 
     // den Link mit einem PseudoObject verbinden und in die Liste eintragen
-    BOOL InsertFileLink( so3::SvBaseLink&,
+    BOOL InsertFileLink( ::so3::SvBaseLink&,
                         USHORT nFileType,
                         const String& rTxt,
                         const String* pFilterNm = 0,
                         const String* pRange = 0 );
 
             // falls am Link schon alles eingestellt ist !
-//STRIP001  BOOL InsertFileLink( so3::SvBaseLink& );
+//STRIP001  BOOL InsertFileLink( ::so3::SvBaseLink& );
 
         // erfrage die Strings fuer den Dialog
-    virtual BOOL GetDisplayNames( const so3::SvBaseLink*,
+    virtual BOOL GetDisplayNames( const ::so3::SvBaseLink*,
                                     String* pType,
                                     String* pFile = 0,
                                     String* pLink = 0,
                                     String* pFilter = 0 ) const;
 
-    virtual so3::SvLinkSourceRef CreateObj( so3::SvBaseLink * );
+    virtual ::so3::SvLinkSourceRef CreateObj( ::so3::SvBaseLink * );
 
     // eine Uebertragung wird abgebrochen, also alle DownloadMedien canceln
     // (ist zur Zeit nur fuer die FileLinks interressant!)
     void CancelTransfers();
 
-//STRIP001  static void SetTransferPriority( so3::SvBaseLink& rLink, USHORT nPrio );
+//STRIP001  static void SetTransferPriority( ::so3::SvBaseLink& rLink, USHORT nPrio );
 
     // um Status Informationen aus dem FileObject an den BaseLink zu
     // senden, gibt es eine eigene ClipBoardId. Das SvData-Object hat
@@ -127,5 +128,6 @@ public:
 
 };
 
+}//end of namespace binfilter
 #endif
 

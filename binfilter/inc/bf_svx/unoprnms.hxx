@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoprnms.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _SVX_UNOPRNMS_HXX
 #define _SVX_UNOPRNMS_HXX
+namespace binfilter {
 
 #define UNO_NAME_SHAPE_SIZE                     "Size"
 #define UNO_NAME_SHAPE_POSITION                 "Position"
@@ -392,5 +393,6 @@
 #define UNO_NAME_EDIT_FONT_CHARSET              "FontCharset"
 // Ende der veralteten Properties
 
+}//end of namespace binfilter
 #endif
 

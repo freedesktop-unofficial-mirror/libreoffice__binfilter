@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -137,12 +137,13 @@
 #include <cppuhelper/implbase11.hxx>
 
 #include <bf_svx/unoprov.hxx>
-
 class SfxItemSet;
+class SvGlobalName;
+namespace binfilter {
+
 class SdrObject;
 class SdrModel;
 class SvxShapeList;
-class SvGlobalName;
 
 class SvxShapeMutex
 {
@@ -167,7 +168,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
                             ::com::sun::star::container::XChild,
                             ::com::sun::star::lang::XServiceInfo,
                             ::com::sun::star::document::XActionLockable>,
-                public SfxListener,
+                            public SfxListener,
                 public SvxShapeMutex
 {
  private:
@@ -184,7 +185,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     ::com::sun::star::uno::WeakReference< ::com::sun::star::container::XIndexContainer > mxGluePoints;
 
 #ifndef SVX_LIGHT
-    const SvGlobalName GetClassName_Impl(rtl::OUString& rHexCLSID);
+    const SvGlobalName GetClassName_Impl(::rtl::OUString& rHexCLSID);
 #endif
  protected:
     friend class SvxDrawPage;
@@ -206,7 +207,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
 
     ::com::sun::star::uno::Any GetAnyForItem( SfxItemSet& aSet, const SfxItemPropertyMap* pMap ) const;
 
-    sal_Bool queryAggregation( const com::sun::star::uno::Type & rType, com::sun::star::uno::Any& rAny );
+    sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
 
     // call this in your derivated getTypes() after you call SvxShape::getTypes() but
     // only if maTypeSequence.getLength() is equal 0. See implementation of
@@ -337,63 +338,63 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     virtual void SAL_CALL setActionLocks( sal_Int16 nLock ) throw (::com::sun::star::uno::RuntimeException);
     virtual sal_Int16 SAL_CALL resetActionLocks(  ) throw (::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #include <bf_svx/unotext.hxx>
-
+namespace binfilter {
 class SvxShapeText : public SvxShape, public SvxUnoTextBase
 {
 protected:
-    /** called from the XActionLockable interface methods on initial locking */
-    virtual void lock();
+/** called from the XActionLockable interface methods on initial locking */
+virtual void lock();
 
-    /** called from the XActionLockable interface methods on final unlock */
-    virtual void unlock();
+/** called from the XActionLockable interface methods on final unlock */
+virtual void unlock();
 
 public:
-    SvxShapeText() throw ();
-    SvxShapeText( SdrObject* pObj ) throw ();
-    SvxShapeText( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ();
-    virtual ~SvxShapeText() throw ();
+SvxShapeText() throw ();
+SvxShapeText( SdrObject* pObj ) throw ();
+SvxShapeText( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ();
+virtual ~SvxShapeText() throw ();
 
-    virtual void Create( SdrObject* pNewOpj, SvxDrawPage* pNewPage = NULL ) throw ();
+virtual void Create( SdrObject* pNewOpj, SvxDrawPage* pNewPage = NULL ) throw ();
 
-    // XInterface
-    virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL acquire() throw();
-    virtual void SAL_CALL release() throw();
+// XInterface
+virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL acquire() throw();
+virtual void SAL_CALL release() throw();
 
-    // XServiceInfo
-    virtual ::rtl::OUString SAL_CALL getImplementationName() throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
-    virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName ) throw (::com::sun::star::uno::RuntimeException);
+// XServiceInfo
+virtual ::rtl::OUString SAL_CALL getImplementationName() throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
+virtual sal_Bool SAL_CALL supportsService( const ::rtl::OUString& ServiceName ) throw (::com::sun::star::uno::RuntimeException);
 
-    // XUnoTunnel
-    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw (::com::sun::star::uno::RuntimeException);
+// XUnoTunnel
+virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw (::com::sun::star::uno::RuntimeException);
 
-    // XTypeProvider
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
+// XTypeProvider
+virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
 };
 
 class SvxShapeRect : public SvxShapeText
 {
 public:
-    SvxShapeRect( SdrObject* pObj ) throw ();
-    virtual ~SvxShapeRect() throw ();
+SvxShapeRect( SdrObject* pObj ) throw ();
+virtual ~SvxShapeRect() throw ();
 
-    // XInterface
-    virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL acquire() throw();
-    virtual void SAL_CALL release() throw();
+// XInterface
+virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL acquire() throw();
+virtual void SAL_CALL release() throw();
 
-    // XServiceInfo
-    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
+// XServiceInfo
+virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 
 class SvxDrawPage;
-
+}//end of namespace binfilter
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
 #endif
@@ -403,95 +404,96 @@ class SvxDrawPage;
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
 #endif
-
+namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 class SvxShapeGroup : public SvxShape,
-                      public ::com::sun::star::drawing::XShapeGroup,
-                      public ::com::sun::star::drawing::XShapes
+public ::com::sun::star::drawing::XShapeGroup,
+public ::com::sun::star::drawing::XShapes
 {
 private:
-    SvxDrawPage*    pPage;
+SvxDrawPage*    pPage;
 
 public:
-    SvxShapeGroup( SdrObject* pObj,SvxDrawPage* pDrawPage ) throw ();
-    virtual ~SvxShapeGroup() throw ();
+SvxShapeGroup( SdrObject* pObj,SvxDrawPage* pDrawPage ) throw ();
+virtual ~SvxShapeGroup() throw ();
 
-    virtual void Create( SdrObject* pNewOpj, SvxDrawPage* pNewPage = NULL ) throw ();
+virtual void Create( SdrObject* pNewOpj, SvxDrawPage* pNewPage = NULL ) throw ();
 
-    // XInterface
-    virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL acquire() throw();
-    virtual void SAL_CALL release() throw();
+// XInterface
+virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL acquire() throw();
+virtual void SAL_CALL release() throw();
 
-    // XShapes
-    virtual void SAL_CALL add( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL remove( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
+// XShapes
+virtual void SAL_CALL add( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL remove( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
 
-    // XElementAccess
-    virtual ::com::sun::star::uno::Type SAL_CALL getElementType() throw(::com::sun::star::uno::RuntimeException);
-    virtual sal_Bool SAL_CALL hasElements() throw(::com::sun::star::uno::RuntimeException);
+// XElementAccess
+virtual ::com::sun::star::uno::Type SAL_CALL getElementType() throw(::com::sun::star::uno::RuntimeException);
+virtual sal_Bool SAL_CALL hasElements() throw(::com::sun::star::uno::RuntimeException);
 
-    // XIndexAccess
-    virtual sal_Int32 SAL_CALL getCount() throw(::com::sun::star::uno::RuntimeException) ;
-    virtual ::com::sun::star::uno::Any SAL_CALL getByIndex( sal_Int32 Index ) throw(::com::sun::star::lang::IndexOutOfBoundsException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
+// XIndexAccess
+virtual sal_Int32 SAL_CALL getCount() throw(::com::sun::star::uno::RuntimeException) ;
+virtual ::com::sun::star::uno::Any SAL_CALL getByIndex( sal_Int32 Index ) throw(::com::sun::star::lang::IndexOutOfBoundsException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
 
-    // XShapeDescriptor
-    virtual ::rtl::OUString SAL_CALL getShapeType() throw(::com::sun::star::uno::RuntimeException);
+// XShapeDescriptor
+virtual ::rtl::OUString SAL_CALL getShapeType() throw(::com::sun::star::uno::RuntimeException);
 
-    // XShape
-    virtual ::com::sun::star::awt::Point SAL_CALL getPosition() throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPosition( const ::com::sun::star::awt::Point& aPosition ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::awt::Size SAL_CALL getSize() throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setSize( const ::com::sun::star::awt::Size& aSize ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::uno::RuntimeException);
+// XShape
+virtual ::com::sun::star::awt::Point SAL_CALL getPosition() throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL setPosition( const ::com::sun::star::awt::Point& aPosition ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::awt::Size SAL_CALL getSize() throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL setSize( const ::com::sun::star::awt::Size& aSize ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::uno::RuntimeException);
 
-    // XShapeGroup
-    virtual void SAL_CALL enterGroup(  ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL leaveGroup(  ) throw(::com::sun::star::uno::RuntimeException);
+// XShapeGroup
+virtual void SAL_CALL enterGroup(  ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL leaveGroup(  ) throw(::com::sun::star::uno::RuntimeException);
 
-    // XServiceInfo
-    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
+// XServiceInfo
+virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 
-    // XTypeProvider
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
+// XTypeProvider
+virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
 };
+}//end of namespace binfilter
 
 #ifndef _COM_SUN_STAR_DRAWING_XCONNECTORSHAPE_HPP_
 #include <com/sun/star/drawing/XConnectorShape.hpp>
 #endif
-
+namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 class SvxShapeConnector : public ::com::sun::star::drawing::XConnectorShape,
-                          public SvxShapeText
+public SvxShapeText
 {
 public:
-    SvxShapeConnector( SdrObject* pObj ) throw();
-    virtual ~SvxShapeConnector() throw();
+SvxShapeConnector( SdrObject* pObj ) throw();
+virtual ~SvxShapeConnector() throw();
 
-    // XInterface
-    virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL acquire() throw();
-    virtual void SAL_CALL release() throw();
+// XInterface
+virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::uno::Any SAL_CALL queryInterface( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL acquire() throw();
+virtual void SAL_CALL release() throw();
 
-    // XShapeDescriptor
-    virtual ::rtl::OUString SAL_CALL getShapeType() throw(::com::sun::star::uno::RuntimeException);
+// XShapeDescriptor
+virtual ::rtl::OUString SAL_CALL getShapeType() throw(::com::sun::star::uno::RuntimeException);
 
-    // XShape
-    virtual ::com::sun::star::awt::Point SAL_CALL getPosition() throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPosition( const ::com::sun::star::awt::Point& aPosition ) throw(::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::awt::Size SAL_CALL getSize() throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setSize( const ::com::sun::star::awt::Size& aSize ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::uno::RuntimeException);
+// XShape
+virtual ::com::sun::star::awt::Point SAL_CALL getPosition() throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL setPosition( const ::com::sun::star::awt::Point& aPosition ) throw(::com::sun::star::uno::RuntimeException);
+virtual ::com::sun::star::awt::Size SAL_CALL getSize() throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL setSize( const ::com::sun::star::awt::Size& aSize ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::uno::RuntimeException);
 
-    // XConnectorShape
-    virtual void SAL_CALL connectStart( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape, ::com::sun::star::drawing::ConnectionType nPos ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL connectEnd( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape, ::com::sun::star::drawing::ConnectionType nPos ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL disconnectBegin( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
+// XConnectorShape
+virtual void SAL_CALL connectStart( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape, ::com::sun::star::drawing::ConnectionType nPos ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL connectEnd( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape, ::com::sun::star::drawing::ConnectionType nPos ) throw(::com::sun::star::uno::RuntimeException);
+virtual void SAL_CALL disconnectBegin( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL disconnectEnd( const ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XConnectableShape >& xShape ) throw(::com::sun::star::uno::RuntimeException);
 
     // XServiceInfo
@@ -501,11 +503,11 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
 #endif
-
+namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
@@ -513,7 +515,7 @@ class SvxShapeControl : public ::com::sun::star::drawing::XControlShape, public 
 {
 private:
 
-    void convertPropertyName( const rtl::OUString& rApiName, rtl::OUString& rInternalName, sal_Bool& rNeedsConversion );
+    void convertPropertyName( const ::rtl::OUString& rApiName, ::rtl::OUString& rInternalName, sal_Bool& rNeedsConversion );
     void valueAlignToParaAdjust(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
     void valueParaAdjustToAlign(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
 
@@ -582,11 +584,11 @@ public:
     // XServiceInfo
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
-
+}//end of namespace binfilter
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
 #endif
-
+namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
@@ -597,7 +599,7 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-    SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = com::sun::star::drawing::PolygonKind_LINE ) throw(com::sun::star::lang::IllegalArgumentException, com::sun::star::beans::PropertyVetoException);
+    SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_LINE ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
     virtual ~SvxShapePolyPolygon() throw();
 
     // Local support functions
@@ -624,7 +626,7 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-    SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = com::sun::star::drawing::PolygonKind_PATHLINE) throw();
+    SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_PATHLINE) throw();
     virtual ~SvxShapePolyPolygonBezier() throw();
 
     // Local support functions
@@ -786,5 +788,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(  ) throw(::com::sun::star::uno::RuntimeException);
 };
 
+}//end of namespace binfilter
 #endif
 

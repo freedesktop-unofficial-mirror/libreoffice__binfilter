@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mapprov.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
 #endif
+namespace binfilter {
 
 // ----------------------------------------------
 //                   Map-Id's
@@ -107,5 +108,6 @@ public:
     SfxItemPropertyMap* CopyMap( const SfxItemPropertyMap* pMap1 );
 };
 
+} //namespace binfilter
 #endif  // SCH_MAPPROV_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,13 +85,23 @@
 #ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
 #endif
-
+namespace com{ namespace sun{ namespace star{ namespace scanner{
+    class XScannerManager;
+}}}}
+namespace svtools{ class ColorConfig;}
 class SvStringsDtor;
 class Color;
-class AuthorCharAttr;
 class SfxItemSet;
-class SfxRequest;
 class SfxErrorHandler;
+class SvtAccessibilityOptions;
+class SvtCTLOptions;
+
+namespace binfilter {
+
+class AuthorCharAttr;
+
+class SfxRequest;
+
 class SwDBConfig;
 class SwModuleOptions;
 class SwMasterUsrPref;
@@ -106,9 +116,7 @@ class SwStdFontConfig;
 class SwTransferable;
 class SwToolbarConfigItem;
 class SwAttrPool;
-namespace svtools{ class ColorConfig;}
-class SvtAccessibilityOptions;
-class SvtCTLOptions;
+//STRIP008 namespace svtools{ class ColorConfig;}
 
 struct SwDBData;
 #define VIEWOPT_DEST_VIEW       0
@@ -116,9 +124,9 @@ struct SwDBData;
 #define VIEWOPT_DEST_WEB        2
 #define VIEWOPT_DEST_VIEW_ONLY  3 //ViewOptions werden nur an der ::com::sun::star::sdbcx::View, nicht an der Appl. gesetzt
 
-namespace com{ namespace sun{ namespace star{ namespace scanner{
-    class XScannerManager;
-}}}}
+//STRIP008 namespace com{ namespace sun{ namespace star{ namespace scanner{
+//STRIP008  class XScannerManager;
+//STRIP008 }}}}
 
 class SwModule: public SwModuleDummy , public SfxListener
 {
@@ -136,7 +144,7 @@ class SwModule: public SwModuleDummy , public SfxListener
     SwToolbarConfigItem*pToolbarConfig;     //fuer gestackte Toolbars, welche
     SwToolbarConfigItem*pWebToolbarConfig;  //war sichtbar?
     SwDBConfig*         pDBConfig;
-    svtools::ColorConfig*   pColorConfig;
+    ::svtools::ColorConfig*   pColorConfig;
     SvtAccessibilityOptions* pAccessibilityOptions;
     SvtCTLOptions*      pCTLOptions;
 
@@ -225,7 +233,7 @@ public:
     SwToolbarConfigItem*GetToolbarConfig()      { return pToolbarConfig;    }
     SwToolbarConfigItem*GetWebToolbarConfig()   { return pWebToolbarConfig; }
     SwDBConfig*         GetDBConfig();
-    svtools::ColorConfig&   GetColorConfig();
+    ::svtools::ColorConfig&   GetColorConfig();
     SvtAccessibilityOptions&    GetAccessibilityOptions();
     SvtCTLOptions&      GetCTLOptions();
 
@@ -322,4 +330,5 @@ SwView*     GetActiveView();
 
 
 
+} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: event.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:30 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,9 @@
 
 #include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/beans/PropertyValue.hpp>
+class PrintDialog;
+class Printer;
+namespace binfilter {
 
 class SfxObjectShell;
 
@@ -142,17 +145,15 @@ public:
     SfxObjectShell*     GetObjShell() const { return _pObjShell; }
 };
 
-class PrintDialog;
-class Printer;
 class SfxPrintingHint : public SfxHint
 {
     PrintDialog*        pDialog;
     Printer*            pPrinter;
     sal_Int32           nWhich;
-    com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue > aOpts;
+    ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aOpts;
 public:
                         TYPEINFO();
-                        SfxPrintingHint( sal_Int32 nEvent, PrintDialog* pDlg, Printer* pPrt, const com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue >& rOpts )
+                        SfxPrintingHint( sal_Int32 nEvent, PrintDialog* pDlg, Printer* pPrt, const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rOpts )
                             : pDialog( pDlg )
                             , pPrinter( pPrt )
                             , nWhich( nEvent )
@@ -168,7 +169,8 @@ public:
     Printer*            GetPrinter() const { return pPrinter; }
     PrintDialog*        GetPrintDialog() const { return pDialog; }
     sal_Int32           GetWhich() const { return nWhich; }
-    const com::sun::star::uno::Sequence < com::sun::star::beans::PropertyValue >& GetAdditionalOptions() { return aOpts; }
+    const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& GetAdditionalOptions() { return aOpts; }
 };
 
+}//end of namespace binfilter
 #endif

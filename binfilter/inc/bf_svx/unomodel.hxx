@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unomodel.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,6 +91,7 @@
 #ifndef _SVX_FMDMOD_HXX
 #include <bf_svx/fmdmod.hxx>
 #endif
+namespace binfilter {
 
 class SdrModel;
 
@@ -152,13 +153,13 @@ public:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL createAnyCompareByName( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::uno::RuntimeException);
 };
 
-extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XOutputStream> xOut );
-extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XOutputStream> xOut, com::sun::star::uno::Reference< com::sun::star::lang::XComponent > xComponent );
-extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XOutputStream> xOut, com::sun::star::uno::Reference< com::sun::star::lang::XComponent > xComponent, const char* pExportService  );
-extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XInputStream> xInputStream );
-extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XInputStream> xInputStream, com::sun::star::uno::Reference< com::sun::star::lang::XComponent > xComponent  );
-extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, com::sun::star::uno::Reference<com::sun::star::io::XInputStream> xInputStream, com::sun::star::uno::Reference< com::sun::star::lang::XComponent > xComponent, const char* pImportService );
-
+extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xOut );
+extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xOut, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent );
+extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xOut, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent, const char* pExportService  );
+extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream> xInputStream );
+extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream> xInputStream, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent  );
+extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream> xInputStream, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent, const char* pImportService );
+}//end of namespace binfilter
 #endif
 
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unonrule.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:47 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _COM_SUN_STAR_UCB_XANYCOMPARE_HPP_
 #include <com/sun/star/ucb/XAnyCompare.hpp>
 #endif
+namespace binfilter {
 
 class SdrModel;
 class SvxNumRule;
@@ -78,5 +79,6 @@ const SvxNumRule& SvxGetNumRule( ::com::sun::star::uno::Reference< ::com::sun::s
 bool SvxGetNumRule( ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexReplace > xRule, SvxNumRule& rNumRule );
 ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XAnyCompare > SvxCreateNumRuleCompare() throw();
 
+}//end of namespace binfilter
 #endif
 

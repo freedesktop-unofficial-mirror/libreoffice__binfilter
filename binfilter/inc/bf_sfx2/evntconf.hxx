@@ -2,9 +2,9 @@
  *
  *  $RCSfile: evntconf.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -83,6 +83,7 @@
 #endif
 #define ITEMID_MACRO SID_ATTR_MACROITEM
 #include <svtools/macitem.hxx>
+namespace binfilter {
 
 class SfxMacroInfo;
 class SfxMacroTabPage;
@@ -105,7 +106,7 @@ struct SfxEvent_Impl
     {}
 };
 
-SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5);
+SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5)//STRIP008 ;
 
 // -----------------------------------------------------------------------
 
@@ -171,8 +172,8 @@ public:
     void                        PropagateEvent_Impl( SfxObjectShell *pDoc,
                                                      USHORT nId,
                                                      const SvxMacro* pMacro );
-    static rtl::OUString        GetEventName_Impl( ULONG nID );
-    static ULONG                GetEventId_Impl( const rtl::OUString& rEventName );
+    static ::rtl::OUString      GetEventName_Impl( ULONG nID );
+    static ULONG                GetEventId_Impl( const ::rtl::OUString& rEventName );
     ::com::sun::star::uno::Any  CreateEventData_Impl( const SvxMacro *pMacro );
 
     static ULONG                GetPos_Impl( USHORT nID, sal_Bool &rFound );
@@ -214,4 +215,5 @@ public:
 
 #endif
 
+}//end of namespace binfilter
 #endif

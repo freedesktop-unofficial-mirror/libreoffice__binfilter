@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docfilt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:32 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 #ifndef _WLDCRD_HXX //autogen
 #include <tools/wldcrd.hxx>
 #endif
+namespace binfilter {
 
 #define SFX_FILTER_IMPORT            0x00000001L
 #define SFX_FILTER_EXPORT            0x00000002L
@@ -202,5 +203,6 @@ public:
 #endif
 };
 
+}//end of namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chdescr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _SCH_CHTDESCR_HXX_
 #define _SCH_CHTDESCR_HXX_
 
-class SdrObjList;
-class SchObjGroup;
-class ChartAxis;
+//STRIP008 class SdrObjList;
+//STRIP008 class SchObjGroup;
+//STRIP008 class ChartAxis;
 class SfxItemSet;
 
 #ifndef _SVDOBJ_HXX //autogen wg. SdrObject
@@ -90,8 +90,11 @@ class SfxItemSet;
 #endif
 
 #include <float.h>      // for DBL_MIN
-
 class Matrix4D;
+namespace binfilter {
+class SdrObjList;
+class SchObjGroup;
+class ChartAxis;
 class ChartModel;
 class ChartScene;
 
@@ -146,6 +149,7 @@ public:
     ~ChartDataDescription();
 };
 
+} //namespace binfilter
 #endif
 
 

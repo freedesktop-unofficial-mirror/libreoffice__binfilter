@@ -2,9 +2,9 @@
  *
  *  $RCSfile: defines.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:26 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,7 @@
 
 #ifndef _DEFINES_HXX
 #define _DEFINES_HXX
+namespace binfilter {
 
 #define SYMBOLSIZE 250
 
@@ -155,5 +156,6 @@
 
 #define CHSPECIAL_TRACELINES 8    //#50149#
 
+} //namespace binfilter
 #endif
 

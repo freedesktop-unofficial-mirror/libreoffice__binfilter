@@ -2,9 +2,9 @@
  *
  *  $RCSfile: editdll.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:37 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #ifndef _EERDLL_HXX
 #define _EERDLL_HXX
-
+namespace binfilter {
 class GlobalEditData;
-
+}//end of namespace binfilter
 #ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
 #endif
@@ -71,6 +71,7 @@ class GlobalEditData;
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>
 #endif
+namespace binfilter {
 
 class EditResId: public ResId
 {
@@ -93,4 +94,5 @@ public:
 
 #define EE_DLL() (*(EditDLL**)GetAppData( BF_SHL_EDIT ) )
 
+}//end of namespace binfilter
 #endif //_EERDLL_HXX

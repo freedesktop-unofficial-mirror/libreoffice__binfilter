@@ -2,9 +2,9 @@
  *
  *  $RCSfile: iodetect.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,6 +73,7 @@
 #include <shellio.hxx>
 #endif
 #endif
+namespace binfilter {
 
 class Reader;
 
@@ -198,14 +199,14 @@ sal_Char __FAR_DATA sSwDos[]        = "SW6";                                \
                                                                             \
                                                                             \
 SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
-/*  0*/ SwIoEntry(FILTER_SW5,       4,          &::GetSw3Writer,    TRUE),  \
-/*  1*/ SwIoEntry(FILTER_SW4,       4,          &::GetSw3Writer,    FALSE), \
-/*  2*/ SwIoEntry(FILTER_SW3,       4,          &::GetSw3Writer,    FALSE), \
+/*  0*/ SwIoEntry(FILTER_SW5,       4,          &::binfilter::GetSw3Writer,     TRUE),  \
+/*  1*/ SwIoEntry(FILTER_SW4,       4,          &::binfilter::GetSw3Writer,     FALSE), \
+/*  2*/ SwIoEntry(FILTER_SW3,       4,          &::binfilter::GetSw3Writer,     FALSE), \
 /*  3*/ SwIoEntry(FILTER_SWG,       STRING_LEN, 0,                  TRUE),  \
 /*  4*/ SwIoEntry(FILTER_SWGV,      4,          0,                  FALSE), \
 /*  5 SwIoEntry(FILTER_RTF,         STRING_LEN, &::GetRTFWriter,    TRUE),  */\
 /*  6 SwIoEntry(sSwDos,           STRING_LEN,   0,                  TRUE),  */\
-/*  7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::GetASCWriter,    FALSE), \
+/*  7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::binfilter::GetASCWriter,     FALSE), \
 /*  8 SwIoEntry(sWW6,               STRING_LEN, &::GetWW8Writer,    TRUE),  */\
 /*  9 SwIoEntry(FILTER_WW8,     STRING_LEN, &::GetWW8Writer,    FALSE), */\
 /* 10 SwIoEntry(FILTER_W4W,         3,          &::GetW4WWriter,    TRUE),  */\
@@ -217,13 +218,13 @@ SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
 /* 16 SwIoEntry(sWW1,           STRING_LEN, 0,                  TRUE),  */\
 /* 17 SwIoEntry(sWW5,               STRING_LEN, 0,                  FALSE), */\
 /* 18*/ SwIoEntry(sSwg1,            4,          0,                  FALSE), \
-/* 19*/ SwIoEntry(FILTER_XML,       4,          &::GetXMLWriter,    TRUE)   \
+/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)   \
                                                                             \
 /* opt DEB_SH_SwIoEntry(sW4W_Int, STRING_LEN, 0,                    TRUE)   */\
 /* opt DEB_DBWRT_SwIoEntry(sDebug,STRING_LEN, &::GetDebugWriter,    FALSE)  */\
 /* opt DEB_DBWRT_SwIoEntry(sUndo,   STRING_LEN, &::GetUndoWriter,   FALSE)  */\
                                                                           , \
-/*last*/ SwIoEntry(FILTER_TEXT,     4,          &::GetASCWriter,    TRUE)   \
+/*last*/ SwIoEntry(FILTER_TEXT,     4,          &::binfilter::GetASCWriter,     TRUE)   \
 };                                                                          \
 
 
@@ -762,4 +763,5 @@ bool SwIoSystem::IsDetectableW4W(const String& rFileName) \
     return bRet;\
 } \
 
+} //namespace binfilter
 #endif

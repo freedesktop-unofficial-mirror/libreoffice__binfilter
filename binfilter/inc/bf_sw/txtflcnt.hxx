@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtflcnt.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,6 +64,7 @@
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
+namespace binfilter {
 
 class SwFlyInCntFrm;
 class SwFrm;
@@ -100,5 +101,6 @@ inline const SwFlyInCntFrm *SwTxtFlyCnt::GetFlyFrm( const SwFrm *pCurrFrm ) cons
     return ((SwTxtFlyCnt*)this)->_GetFlyFrm( pCurrFrm );
 }
 
+} //namespace binfilter
 #endif
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: asiancfg.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:35 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,14 +67,19 @@
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
 #endif
-
 namespace com{namespace sun{namespace star{
 namespace lang{
     struct Locale;
 }}}}
+namespace binfilter {
+
+//STRIP008 namespace com{namespace sun{namespace star{
+//STRIP008 namespace lang{
+//STRIP008  struct Locale;
+//STRIP008 }}}}
 //-----------------------------------------------------------------------------
 struct SvxAsianConfig_Impl;
-class SvxAsianConfig : public utl::ConfigItem
+class SvxAsianConfig : public ::utl::ConfigItem
 {
     SvxAsianConfig_Impl* pImpl;
 
@@ -84,7 +89,7 @@ public:
 
     void            Load();
 //STRIP001  virtual void    Commit();
-//STRIP001  virtual void    Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
+//STRIP001  virtual void    Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
 
     sal_Bool    IsKerningWesternTextOnly() const;
 //STRIP001  void        SetKerningWesternTextOnly(sal_Bool bSet);
@@ -92,16 +97,17 @@ public:
     sal_Int16   GetCharDistanceCompression() const;
     void        SetCharDistanceCompression(sal_Int16 nSet);
 
-    com::sun::star::uno::Sequence<com::sun::star::lang::Locale>
+    ::com::sun::star::uno::Sequence< ::com::sun::star::lang::Locale>
                 GetStartEndCharLocales();
 
-//STRIP001  sal_Bool    GetStartEndChars( const com::sun::star::lang::Locale& rLocale,
-//STRIP001                                  rtl::OUString& rStartChars,
-//STRIP001                                  rtl::OUString& rEndChars );
-//STRIP001  void        SetStartEndChars( const com::sun::star::lang::Locale& rLocale,
-//STRIP001                                  const rtl::OUString* pStartChars,
-//STRIP001                                  const rtl::OUString* pEndChars );
+//STRIP001  sal_Bool    GetStartEndChars( const ::com::sun::star::lang::Locale& rLocale,
+//STRIP001                                  ::rtl::OUString& rStartChars,
+//STRIP001                                  ::rtl::OUString& rEndChars );
+//STRIP001  void        SetStartEndChars( const ::com::sun::star::lang::Locale& rLocale,
+//STRIP001                                  const ::rtl::OUString* pStartChars,
+//STRIP001                                  const ::rtl::OUString* pEndChars );
 };
 
+}//end of namespace binfilter
 #endif
 

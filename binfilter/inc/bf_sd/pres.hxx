@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pres.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,6 +60,7 @@
  ************************************************************************/
 #ifndef _PRESENTATION_HXX
 #define _PRESENTATION_HXX
+namespace binfilter {
 
 enum AutoLayout
 {
@@ -124,5 +125,6 @@ enum NavigatorDragType
 };
 #define NAVIGATOR_DRAGTYPE_COUNT 4
 
+} //namespace binfilter
 #endif  // _PRESENTATION_HXX
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx3ditems.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:38 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,6 +88,7 @@
 #ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
 #endif
+namespace binfilter {
 
 // Svx3D _3DOBJ_ Items
 class Svx3DPercentDiagonalItem : public SfxUInt16Item {
@@ -130,8 +131,8 @@ public:
     Svx3DNormalsKindItem(sal_uInt16 nVal = 0);
 
     // use drawing::NormalsKind
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -145,8 +146,8 @@ public:
     Svx3DTextureProjectionXItem(sal_uInt16 nVal = 0);
 
     // use drawing::TextureProjectionMode
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -155,8 +156,8 @@ public:
     Svx3DTextureProjectionYItem(sal_uInt16 nVal = 0);
 
     // use drawing::TextureProjectionMode
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -190,8 +191,8 @@ public:
     Svx3DTextureKindItem(sal_uInt16 nVal = 3);
 
     // use drawing::TextureKind
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -200,8 +201,8 @@ public:
     Svx3DTextureModeItem(sal_uInt16 nVal = 2);
 
     // use drawing:TextureMode
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -216,8 +217,8 @@ public:
     Svx3DPerspectiveItem(sal_uInt16 nVal = (sal_uInt16)PR_PERSPECTIVE);
 
     // use drawing::ProjectionMode
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -371,8 +372,8 @@ public:
     Svx3DShadeModeItem(sal_uInt16 nVal = 2);
 
     // use drawing::ShadeMode
-    virtual sal_Bool QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem* Clone(SfxItemPool* pPool = NULL) const;
 };
 
@@ -417,4 +418,5 @@ public:
     virtual sal_uInt16 GetVersion(sal_uInt16 nFileFormatVersion) const;
 };
 
+}//end of namespace binfilter
 #endif // _SVX3DITEMS_HXX

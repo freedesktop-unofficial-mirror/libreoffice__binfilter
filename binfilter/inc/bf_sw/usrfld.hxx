@@ -2,9 +2,9 @@
  *
  *  $RCSfile: usrfld.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:55 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,8 +62,10 @@
 #define _USRFLD_HXX
 
 #include "fldbas.hxx"
-
 class SfxPoolItem;
+namespace binfilter {
+
+
 class SwCalc;
 class SwDoc;
 
@@ -107,8 +109,8 @@ public:
     BOOL                    IsDeleted() const       { return bDeleted; }
     void                    SetDeleted( BOOL b )    { bDeleted = b; }
 
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
 inline BOOL SwUserFieldType::IsValid() const
@@ -159,8 +161,9 @@ public:
     // Inhalt
 //STRIP001  virtual String          GetPar2() const;
 //STRIP001  virtual void            SetPar2(const String& rStr);
-    virtual BOOL        QueryValue( com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL        PutValue( const com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL        QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
+    virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
 };
 
+} //namespace binfilter
 #endif // _USRFLD_HXX

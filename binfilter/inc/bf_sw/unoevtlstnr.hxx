@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoevtlstnr.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,18 +68,25 @@
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
-
 namespace com{namespace sun{namespace star{
     namespace lang
         {
             class XEventListener;
         }
 }}}
+namespace binfilter {
+
+//STRIP008 namespace com{namespace sun{namespace star{
+//STRIP008  namespace lang
+//STRIP008      {
+//STRIP008          class XEventListener;
+//STRIP008      }
+//STRIP008 }}}
 /* -----------------22.04.99 11:18-------------------
  *  Verwaltung der EventListener
  * --------------------------------------------------*/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *  XEventListenerPtr;
-SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4);
+SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4)//STRIP008 ;
 class SwEventListenerContainer
 {
     protected:
@@ -93,4 +100,5 @@ class SwEventListenerContainer
         BOOL    RemoveListener(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > & rxListener);
         void    Disposing();
 };
+} //namespace binfilter
 #endif

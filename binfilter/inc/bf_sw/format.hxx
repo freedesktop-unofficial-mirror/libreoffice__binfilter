@@ -2,9 +2,9 @@
  *
  *  $RCSfile: format.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:57 $
+ *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
 #endif
+namespace binfilter {
 
 class SwDoc;
 
@@ -377,4 +378,5 @@ inline SfxItemState SwFmt::GetItemState( USHORT nWhich, BOOL bSrchInParent,
 
 #undef INLINE
 
+} //namespace binfilter
 #endif // _FORMAT_HXX
