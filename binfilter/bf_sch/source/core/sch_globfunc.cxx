@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_globfunc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:46:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,76 +93,81 @@
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 
 
 #include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/fwdtitem.hxx>
+// auto strip #include <bf_svx/fwdtitem.hxx>
 
-#ifndef _SVDOPATH_HXX //autogen
-#include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVDOCIRC_HXX //autogen
-#include <bf_svx/svdocirc.hxx>
-#endif
-#ifndef _SVDORECT_HXX //autogen
-#include <bf_svx/svdorect.hxx>
-#endif
+// auto strip #ifndef _SVDOPATH_HXX //autogen
+// auto strip #include <bf_svx/svdopath.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOCIRC_HXX //autogen
+// auto strip #include <bf_svx/svdocirc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDORECT_HXX //autogen
+// auto strip #include <bf_svx/svdorect.hxx>
+// auto strip #endif
 
 
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
 
-#ifndef _XLNCLIT_HXX
-#include <bf_svx/xlnclit.hxx>
-#endif
-#ifndef _XFLCLIT_HXX
-#include <bf_svx/xflclit.hxx>
-#endif
-#ifndef _SVX_DLGUTIL_HXX
-#include <bf_svx/dlgutil.hxx>
-#endif
+// auto strip #ifndef _XLNCLIT_HXX
+// auto strip #include <bf_svx/xlnclit.hxx>
+// auto strip #endif
+// auto strip #ifndef _XFLCLIT_HXX
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_DLGUTIL_HXX
+// auto strip #include <bf_svx/dlgutil.hxx>
+// auto strip #endif
 
 #ifndef _CHTMODEL_HXX
-#include <chtmodel.hxx>
+// auto strip #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
 
-#ifndef _E3D_POLYGON3D_HXX
-#include <bf_svx/polygn3d.hxx>
-#endif
+// auto strip #ifndef _E3D_POLYGON3D_HXX
+// auto strip #include <bf_svx/polygn3d.hxx>
+// auto strip #endif
 
-#ifndef _E3D_CUBE3D_HXX
-#include <bf_svx/cube3d.hxx>
-#endif
+// auto strip #ifndef _E3D_CUBE3D_HXX
+// auto strip #include <bf_svx/cube3d.hxx>
+// auto strip #endif
 
-#ifndef _E3D_DLIGHT3D_HXX
-#include <bf_svx/dlight3d.hxx>
-#endif
+// auto strip #ifndef _E3D_DLIGHT3D_HXX
+// auto strip #include <bf_svx/dlight3d.hxx>
+// auto strip #endif
 
 #include "math.h"
 #include "float.h"
-#include <axisid.hxx>
+// auto strip #include <axisid.hxx>
 
-#include "pairs.hxx"
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #include "pairs.hxx"
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 
-#include "chdescr.hxx"
-#ifndef _SVX_FWDTITEM_HXX //autogen
-#include <bf_svx/fwdtitem.hxx>
-#endif
+// auto strip #include "chdescr.hxx"
+// auto strip #ifndef _SVX_FWDTITEM_HXX //autogen
+// auto strip #include <bf_svx/fwdtitem.hxx>
+// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -184,15 +189,15 @@
 #ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
 #endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
-#include <bf_svx/escpitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
+// auto strip #include <bf_svx/escpitem.hxx>
+// auto strip #endif
 #ifndef _SVX_AKRNITEM_HXX //autogen
 #include <bf_svx/akrnitem.hxx>
 #endif
-#ifndef _SVX_KERNITEM_HXX //autogen
-#include <bf_svx/kernitem.hxx>
-#endif
+// auto strip #ifndef _SVX_KERNITEM_HXX //autogen
+// auto strip #include <bf_svx/kernitem.hxx>
+// auto strip #endif
 #ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
 #endif
