@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_PageMasterImportPropMapper.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:07:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,15 +71,15 @@
 #include "PageMasterStyleMap.hxx"
 #endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
-#include "maptype.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
+// auto strip #include "maptype.hxx"
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
