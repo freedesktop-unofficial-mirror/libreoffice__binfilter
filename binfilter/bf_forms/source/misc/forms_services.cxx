@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_services.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:53:50 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:39:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -533,7 +533,6 @@ sal_Bool SAL_CALL component_writeInfo(void* _pServiceManager, starregistry::XReg
     {
         try
         {
-            // 같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
             // the real way - use the OModule
             createRegistryInfo_FORMS();
             if ( !::binfilter::frm::OFormsModule::writeComponentInfos(//STRIP008            if ( !::frm::OFormsModule::writeComponentInfos(
@@ -542,7 +541,6 @@ sal_Bool SAL_CALL component_writeInfo(void* _pServiceManager, starregistry::XReg
                 )
                 return sal_False;
 
-            // 같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
             // a lot of stuff which is implemented "manually" here in this file
 
             // collect the class infos
@@ -583,7 +581,6 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
     if (!_pServiceManager || !_pImplName)
         return NULL;
 
-    // 같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
     // a lot of stuff which is implemented "manually" here in this file
     void* pRet = NULL;
 
@@ -625,7 +622,6 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
         }
     }
 
-    // 같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
     // the real way - use the OModule
     if ( !pRet )
     {
