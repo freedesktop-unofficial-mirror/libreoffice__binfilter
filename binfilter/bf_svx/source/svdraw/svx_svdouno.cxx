@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdouno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:29:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,61 +71,61 @@
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
-#include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
-#include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
-#include <com/sun/star/io/XObjectInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
-#include <com/sun/star/util/XCloneable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSink.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
+// auto strip #include <com/sun/star/io/XActiveDataSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectOutputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XObjectInputStream.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
+// auto strip #include <com/sun/star/util/XCloneable.hpp>
+// auto strip #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
 #ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
 #endif
-#ifndef _SVDXOUT_HXX
-#include "svdxout.hxx"
-#endif
+// auto strip #ifndef _SVDXOUT_HXX
+// auto strip #include "svdxout.hxx"
+// auto strip #endif
 #ifndef _SVDPAGV_HXX
 #include "svdpagv.hxx"
 #endif
-#ifndef _SVDMODEL_HXX
-#include "svdmodel.hxx"
-#endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include "svdmodel.hxx"
+// auto strip #endif
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
-#ifndef _SVDGLOB_HXX
-#include "svdglob.hxx"  // Stringcache
-#endif
+// auto strip #ifndef _SVDGLOB_HXX
+// auto strip #include "svdglob.hxx"  // Stringcache
+// auto strip #endif
 #include "svdstr.hrc"   // Objektname
-#ifndef _SVDETC_HXX
-#include "svdetc.hxx"
-#endif
+// auto strip #ifndef _SVDETC_HXX
+// auto strip #include "svdetc.hxx"
+// auto strip #endif
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
-#ifndef _SVDORECT_HXX
-#include "svdorect.hxx"
-#endif
+// auto strip #ifndef _SVDORECT_HXX
+// auto strip #include "svdorect.hxx"
+// auto strip #endif
 #ifndef _SVDVITER_HXX
 #include "svdviter.hxx"
 #endif
@@ -143,9 +143,9 @@ using namespace ::com::sun::star;
 //   Hilfsklasse SdrControlEventListenerImpl
 //************************************************************
 
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
 
 #include <cppuhelper/implbase1.hxx>
 namespace binfilter {
