@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table5.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:11:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,23 +68,23 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include "collect.hxx"
+// auto strip #include "collect.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
-#include "docpool.hxx"
+// auto strip #include "docpool.hxx"
 #include "cell.hxx"
-#include "table.hxx"
-#include "column.hxx"
+// auto strip #include "table.hxx"
+// auto strip #include "column.hxx"
 #include "document.hxx"
-#include "drwlayer.hxx"
-#include "olinetab.hxx"
-#include "userlist.hxx"
-#include "stlsheet.hxx"
-#include "global.hxx"
-#include "rechead.hxx"
+// auto strip #include "drwlayer.hxx"
+// auto strip #include "olinetab.hxx"
+// auto strip #include "userlist.hxx"
+// auto strip #include "stlsheet.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "rechead.hxx"
 #include "stlpool.hxx"
-#include "stlsheet.hxx"
-#include "brdcst.hxx"
+// auto strip #include "stlsheet.hxx"
+// auto strip #include "brdcst.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 

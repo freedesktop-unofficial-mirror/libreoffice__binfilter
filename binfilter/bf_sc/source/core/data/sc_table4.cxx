@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:11:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,43 +73,43 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/algitem.hxx>
-#include <bf_svx/boxitem.hxx>
-#include <bf_svx/brshitem.hxx>
-#include <bf_svx/cntritem.hxx>
-#include <bf_svx/colritem.hxx>
-#include <bf_svx/crsditem.hxx>
-#include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/fontitem.hxx>
-#include <bf_svx/langitem.hxx>
-#include <bf_svx/postitem.hxx>
-#include <bf_svx/shdditem.hxx>
-#include <bf_svx/udlnitem.hxx>
-#include <bf_svx/wghtitem.hxx>
-#ifndef _SVX_ROTMODIT_HXX //autogen
-#include <bf_svx/rotmodit.hxx>
-#endif
-#include <svtools/zforlist.hxx>
-#include <vcl/keycodes.hxx>
-#include <rtl/math.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #include <bf_svx/cntritem.hxx>
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #include <bf_svx/crsditem.hxx>
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #include <bf_svx/postitem.hxx>
+// auto strip #include <bf_svx/shdditem.hxx>
+// auto strip #include <bf_svx/udlnitem.hxx>
+// auto strip #include <bf_svx/wghtitem.hxx>
+// auto strip #ifndef _SVX_ROTMODIT_HXX //autogen
+// auto strip #include <bf_svx/rotmodit.hxx>
+// auto strip #endif
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #include <vcl/keycodes.hxx>
+// auto strip #include <rtl/math.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <math.h>
 
-#include "attrib.hxx"
-#include "patattr.hxx"
-#include "cell.hxx"
-#include "table.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "patattr.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "table.hxx"
 #include "globstr.hrc"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "autoform.hxx"
-#include "userlist.hxx"
-#include "zforauto.hxx"
-#include "subtotal.hxx"
-#include "compiler.hxx"
-#include "rangenam.hxx"
-#include "docpool.hxx"
-#include "progress.hxx"
+// auto strip #include "userlist.hxx"
+// auto strip #include "zforauto.hxx"
+// auto strip #include "subtotal.hxx"
+// auto strip #include "compiler.hxx"
+// auto strip #include "rangenam.hxx"
+// auto strip #include "docpool.hxx"
+// auto strip #include "progress.hxx"
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
