@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_printfun.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:34:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,27 +68,27 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/svxids.hrc>
 #include <bf_svx/adjitem.hxx>
 #include <bf_svx/boxitem.hxx>
-#include <bf_svx/brshitem.hxx>
-#include <svtools/colorcfg.hxx>
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #include <svtools/colorcfg.hxx>
 #include <bf_svx/editstat.hxx>      // EE_CNTRL_RTFSTYLESHEETS
-#include <bf_svx/fmview.hxx>
+// auto strip #include <bf_svx/fmview.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/paperinf.hxx>
-#include <bf_svx/pbinitem.hxx>
+// auto strip #include <bf_svx/pbinitem.hxx>
 #include <bf_svx/shaditem.hxx>
 #include <bf_svx/sizeitem.hxx>
-#include <bf_svx/svdpagv.hxx>
+// auto strip #include <bf_svx/svdpagv.hxx>
 #include <bf_svx/ulspitem.hxx>
-#include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <bf_sfx2/progress.hxx>
-#include <tools/multisel.hxx>
+// auto strip #include <bf_sfx2/progress.hxx>
+// auto strip #include <tools/multisel.hxx>
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
@@ -98,10 +98,10 @@
 
 #ifdef MAC
 #define RGBColor MAC_RGBColor
-#include <bf_svx/xoutbmp.hxx>
+// auto strip #include <bf_svx/xoutbmp.hxx>
 #undef RGBColor
 #else
-#include <bf_svx/xoutbmp.hxx>
+// auto strip #include <bf_svx/xoutbmp.hxx>
 #endif
 
 
@@ -110,26 +110,26 @@
 //#endif
 
 
-#include "editutil.hxx"
+// auto strip #include "editutil.hxx"
 #include "docsh.hxx"
-#include "output.hxx"
-#include "viewdata.hxx"
-#include "viewopti.hxx"
+// auto strip #include "output.hxx"
+// auto strip #include "viewdata.hxx"
+// auto strip #include "viewopti.hxx"
 #include "stlpool.hxx"
-#include "pagepar.hxx"
+// auto strip #include "pagepar.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
 #include "docpool.hxx"
 #include "dociter.hxx"
 #include "cell.hxx"
-#include "drawutil.hxx"
+// auto strip #include "drawutil.hxx"
 #include "globstr.hrc"
-#include "scresid.hxx"
+// auto strip #include "scresid.hxx"
 #include "bf_sc.hrc"
-#include "pagedata.hxx"
+// auto strip #include "pagedata.hxx"
 #include "printopt.hxx"
-#include "prevloc.hxx"
-#include "scmod.hxx"
+// auto strip #include "prevloc.hxx"
+// auto strip #include "scmod.hxx"
 
 #define _PRINTFUN_CXX
 #include "printfun.hxx"
