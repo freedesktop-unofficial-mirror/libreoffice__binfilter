@@ -1,4 +1,4 @@
-bf	binfilter :	idl basic goodies xmlscript connectivity framework stoc uui offuh shell NULL
+bf	binfilter :	idl basic goodies xmlscript connectivity framework stoc uui offuh shell so3 NULL
 bf	binfilter											usr1	-	all	bf_mkout NULL
 bf	binfilter\bf_xmloff\source\core						nmake	-	all	bf_xo_core NULL
 bf	binfilter\bf_xmloff\source\meta						nmake	-	all	bf_xo_meta NULL
