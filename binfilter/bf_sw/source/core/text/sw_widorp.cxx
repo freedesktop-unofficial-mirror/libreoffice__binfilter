@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_widorp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:57:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,16 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
+// auto strip #include "hintids.hxx"
 
-#include "frmsh.hxx"
-#include "layfrm.hxx"
+// auto strip #include "frmsh.hxx"
+// auto strip #include "layfrm.hxx"
 #include "ftnboss.hxx"
-#include "ndtxt.hxx"
+// auto strip #include "ndtxt.hxx"
 #include "paratr.hxx"
 #ifndef PRODUCT
-#include "viewsh.hxx"   // ViewShell
-#include "viewopt.hxx"  // SwViewOption
+// auto strip #include "viewsh.hxx" // ViewShell
+// auto strip #include "viewopt.hxx"    // SwViewOption
 #endif
 
 #ifndef _SVX_ORPHITEM_HXX //autogen
@@ -98,8 +98,8 @@
 
 #include "txtcfg.hxx"
 #include "widorp.hxx"
-#include "txtfrm.hxx"
-#include "itrtxt.hxx"
+// auto strip #include "txtfrm.hxx"
+// auto strip #include "itrtxt.hxx"
 #include "sectfrm.hxx"  //SwSectionFrm
 #include "ftnfrm.hxx"
 namespace binfilter {
