@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outleeng.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:14:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,23 +59,28 @@
  *
  ************************************************************************/
 
-#include <outl_pch.hxx>
+// auto strip #include <outl_pch.hxx>
 
 #pragma hdrstop
 
 #define _OUTLINER_CXX
-#include <outliner.hxx>
+// auto strip #include <outliner.hxx>
 #include <outleeng.hxx>
 #include <paralist.hxx>
 #include <outliner.hrc>
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
+
+#ifndef _EERDLL_HXX
+#include "eerdll.hxx"
 #endif
 
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ OutlinerEditEng::OutlinerEditEng( Outliner* pEngOwner, SfxItemPool* pPool )
