@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:25:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,74 +62,74 @@
 
 #pragma hdrstop
 
-#include <tools/pstm.hxx>
+// auto strip #include <tools/pstm.hxx>
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
-#include <com/sun/star/text/SetVariableType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
-#include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
-#include <com/sun/star/text/UserDataPart.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_CHAPTERFORMAT_HPP_
-#include <com/sun/star/text/ChapterFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
-#include <com/sun/star/text/XTextField.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
+// auto strip #include <com/sun/star/text/SetVariableType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
+// auto strip #include <com/sun/star/text/XTextFieldsSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
+// auto strip #include <com/sun/star/text/UserDataPart.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_CHAPTERFORMAT_HPP_
+// auto strip #include <com/sun/star/text/ChapterFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
+// auto strip #include <com/sun/star/text/XTextField.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HPP_
 #include <com/sun/star/text/PlaceholderType.hpp>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_TEMPLATEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_USERFIELDFORMAT_HPP_
-#include <com/sun/star/text/UserFieldFormat.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_USERFIELDFORMAT_HPP_
+// auto strip #include <com/sun/star/text/UserFieldFormat.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
 #include <com/sun/star/text/PageNumberType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
-#include <com/sun/star/text/ReferenceFieldPart.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
+// auto strip #include <com/sun/star/text/ReferenceFieldPart.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_FilenameDisplayFormat_HPP_
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
-#include <com/sun/star/text/XDependentTextField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-#include <com/sun/star/text/DocumentStatistic.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
-#include <com/sun/star/util/Date.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
+// auto strip #include <com/sun/star/text/XDependentTextField.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
+// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
+// auto strip #include <com/sun/star/util/Date.hpp>
+// auto strip #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#include <comphelper/types.hxx>
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #include <comphelper/types.hxx>
 
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _INTN_HXX //autogen
-#include <tools/intn.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _INTN_HXX //autogen
+// auto strip #include <tools/intn.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
@@ -137,15 +137,15 @@
 #include <svtools/useroptions.hxx>
 #endif
 
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
 #ifndef _SFXDOCTEMPL_HXX //autogen
 #include <bf_sfx2/doctempl.hxx>
 #endif
@@ -154,12 +154,12 @@
 #endif
 
 
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
-#include <txtfld.hxx>
-#endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFLD_HXX //autogen
+// auto strip #include <txtfld.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
 #endif
@@ -172,30 +172,35 @@
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>      // AuthorField
 #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      //
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>       //
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>     //
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
-#ifndef _SHELLRES_HXX
-#include <shellres.hxx>
-#endif
+// auto strip #ifndef _SHELLRES_HXX
+// auto strip #include <shellres.hxx>
+// auto strip #endif
 #ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
 #endif
@@ -205,15 +210,15 @@
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
