@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:37:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -166,6 +166,11 @@
 #ifndef _DBINSDLG_HXX
 #include <dbinsdlg.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
