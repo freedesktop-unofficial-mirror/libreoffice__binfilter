@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_controlpropertyhdl.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:57:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,36 +62,36 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
 #endif
-#ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
-#include <com/sun/star/awt/TextAlign.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-#include <com/sun/star/awt/FontWidth.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
+// auto strip #include <com/sun/star/awt/TextAlign.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
+// auto strip #include <com/sun/star/awt/FontWidth.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
 #endif
-#ifndef _XMLOFF_XMLTYPES_HXX
-#include "xmltypes.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
+// auto strip #include "xmltypes.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
 #endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
-#include "callbacks.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
+// auto strip #include "callbacks.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
 #endif
@@ -389,6 +389,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/13 08:48:46  aw
+ *  #117295# minimize_includes step2
+ *
+ *  Revision 1.1  2003/12/05 09:34:10  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.10  2001/07/16 07:34:21  fs
  *  had uninitialized pointers
  *
