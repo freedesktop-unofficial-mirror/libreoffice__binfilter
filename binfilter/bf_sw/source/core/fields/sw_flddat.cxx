@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flddat.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -183,10 +183,10 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDateTimeFieldType 
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwDateTimeField::SetSubType(USHORT nType)
-//STRIP001 {
-//STRIP001  nSubType = nType;
-//STRIP001 }
+/*N*/ void SwDateTimeField::SetSubType(USHORT nType) //SW40.SDW
+/*N*/ {
+/*N*/   nSubType = nType;
+/*N*/ }
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/

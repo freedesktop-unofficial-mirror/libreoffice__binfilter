@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -804,12 +804,12 @@ public:
     USHORT OutTableBox( const SwTableBox& rBox );
 
                                             // SW3REDLIN.CXX
-//STRIP001  void InRedline();                       // I: Redline
+/*N*/   void InRedline(); //SW50.SDW                        // I: Redline
 //STRIP001  void OutRedline( const SwRedline& rRedline );
-//STRIP001  void InRedlines();
+/*N*/   void InRedlines(); //SW50.SDW
     void OutRedlines( BOOL bPageStyles );
     void CollectRedlines( SwPaM* pPaM, BOOL bPageOnly );
-//STRIP001  void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 );
+/*N*/   void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 ); //SW50.SDW
     void OutNodeRedlines( ULONG );
     void CleanupRedlines();
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flddat.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:43 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -156,7 +156,7 @@ public:
                     ULONG nFmt = 0, USHORT nLng = 0);
 
         virtual USHORT          GetSubType() const;
-//STRIP001      virtual void            SetSubType(USHORT nSub);
+/*N*/       virtual void            SetSubType(USHORT nSub); //SW40.SDW
 
         virtual double          GetValue() const;
 

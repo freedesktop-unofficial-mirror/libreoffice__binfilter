@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docary.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:39 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -145,11 +145,11 @@ public:
 
     BOOL SavePtrInArr( SwRedlinePtr p ) { return _SwRedlineTbl::Insert( p ); }
 
-//STRIP001  BOOL Insert( SwRedlinePtr& p, BOOL bIns = TRUE );
+/*N*/   BOOL Insert( SwRedlinePtr& p, BOOL bIns = TRUE ); //SW50.SDW
 //STRIP001  BOOL Insert( SwRedlinePtr& p, USHORT& rInsPos, BOOL bIns = TRUE );
-//STRIP001  BOOL InsertWithValidRanges( SwRedlinePtr& p, USHORT* pInsPos = 0 );
+/*N*/   BOOL InsertWithValidRanges( SwRedlinePtr& p, USHORT* pInsPos = 0 ); //SW50.SDW
 
-//STRIP001  void Remove( USHORT nP, USHORT nL = 1 );
+/*N*/   void Remove( USHORT nP, USHORT nL = 1 ); //SW50.SDW
 //STRIP001  void DeleteAndDestroy( USHORT nP, USHORT nL=1 );
 
     // suche den naechsten oder vorherigen Redline mit dergleichen Seq.No

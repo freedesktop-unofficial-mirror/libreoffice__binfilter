@@ -2,9 +2,9 @@
  *
  *  $RCSfile: redline.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:05 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -254,7 +254,7 @@ public:
         *pEndPtr = rPos;
     }
     // liegt eine gueltige Selektion vor?
-//STRIP001  BOOL HasValidRange() const;
+/*N*/   BOOL HasValidRange() const; //SW50.SDW
 
     USHORT GetAuthor() const { return pRedlineData->GetAuthor(); }
     const DateTime& GetTimeStamp() const { return pRedlineData->GetTimeStamp(); }

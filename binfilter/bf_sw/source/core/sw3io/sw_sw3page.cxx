@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3page.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:54 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -164,7 +164,7 @@ namespace binfilter {
 /*N*/           InBookmarks();
 /*N*/
 /*N*/       if( SWG_REDLINES == Peek() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/          InRedlines();
+                /*N {DBG_ASSERT(0, "STRIP");} N*/           InRedlines(); //SW50.SDW
 /*N*/
 /*N*/       // ggfs. dem Numberformatter lesen
 /*N*/       if( SWG_NUMBERFORMATTER == Peek() )

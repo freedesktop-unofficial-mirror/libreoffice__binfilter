@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3table.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:55 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -309,8 +309,8 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           // Redlines am Start- oder End-Node einlesen
 /*N*/           while( Peek() == SWG_NODEREDLINE )
 /*N*/           {
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              INT32 nDummy=0;
-//STRIP001 /*?*/                InNodeRedline( rPos, nDummy );
+/*N*/ /*?*/                 INT32 nDummy=0; //SW50.SDW
+/*N*/                       InNodeRedline( rPos, nDummy );
 /*N*/           }
 /*N*/
 /*N*/           // Die einzelnen Zeilen einlesen

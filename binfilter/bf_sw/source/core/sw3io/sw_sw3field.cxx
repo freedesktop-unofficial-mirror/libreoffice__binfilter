@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3field.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:50 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1123,12 +1123,12 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  SwDateTimeField* pFld =
-//STRIP001      new SwDateTimeField( (SwDateTimeFieldType *)pType, DATEFLD );
-//STRIP001  pFld->SetSubType(nSubType);
-//STRIP001
-//STRIP001  return pFld;
+/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/   SwDateTimeField* pFld =
+/*N*/       new SwDateTimeField( (SwDateTimeFieldType *)pType, DATEFLD );
+/*N*/   pFld->SetSubType(nSubType);
+/*N*/
+/*N*/   return pFld;
 /*N*/ }
 
 /*  */
@@ -1348,57 +1348,57 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*  */
 
-//STRIP001 void lcl_sw3io_ChkHiddenExp( String& rCond )
-//STRIP001 {
-//STRIP001  // die Expression wurde bei 4.0 Export einmal gedreht, beim erneuten
-//STRIP001  // Einlesen sollte diese nicht noch mal gedreht werden.
-//STRIP001  xub_StrLen nLen = rCond.Len(), nPos = nLen, nCnt = 1;
-//STRIP001  if( 3 < nPos-- && ')' == rCond.GetChar( nPos ) &&
-//STRIP001      '!' == rCond.GetChar( nPos = 0 ) && '(' == rCond.GetChar( ++nPos ))
-//STRIP001  {
-//STRIP001      // dann teste mal ob es dann eine komplette Klammerung ist
-//STRIP001      --nLen; ++nPos;
-//STRIP001      nCnt = 0;
-//STRIP001      while( nPos < nLen )
-//STRIP001          switch( rCond.GetChar( nPos++ ) )
-//STRIP001          {
-//STRIP001          case '(':       ++nCnt;     break;
-//STRIP001          case ')':       if( !nCnt-- )
-//STRIP001                              nPos = nLen;
-//STRIP001                          break;
-//STRIP001          }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !nCnt )
-//STRIP001      rCond = rCond.Copy( 2, rCond.Len() - 3);
-//STRIP001  else
-//STRIP001      rCond.InsertAscii( "!(", 0 ) += ')';
-//STRIP001 }
+/*N*/ void lcl_sw3io_ChkHiddenExp( String& rCond ) //SW40.SDW
+/*N*/ {
+/*N*/   // die Expression wurde bei 4.0 Export einmal gedreht, beim erneuten
+/*N*/   // Einlesen sollte diese nicht noch mal gedreht werden.
+/*N*/   xub_StrLen nLen = rCond.Len(), nPos = nLen, nCnt = 1;
+/*N*/   if( 3 < nPos-- && ')' == rCond.GetChar( nPos ) &&
+/*N*/       '!' == rCond.GetChar( nPos = 0 ) && '(' == rCond.GetChar( ++nPos ))
+/*N*/   {
+/*N*/       // dann teste mal ob es dann eine komplette Klammerung ist
+/*N*/       --nLen; ++nPos;
+/*N*/       nCnt = 0;
+/*N*/       while( nPos < nLen )
+/*N*/           switch( rCond.GetChar( nPos++ ) )
+/*N*/           {
+/*N*/           case '(':       ++nCnt;     break;
+/*N*/           case ')':       if( !nCnt-- )
+/*N*/                               nPos = nLen;
+/*N*/                           break;
+/*N*/           }
+/*N*/   }
+/*N*/
+/*N*/   if( !nCnt )
+/*N*/       rCond = rCond.Copy( 2, rCond.Len() - 3);
+/*N*/   else
+/*N*/       rCond.InsertAscii( "!(", 0 ) += ')';
+/*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InHiddenTxtField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                      USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  BYTE cFlags;
-//STRIP001  USHORT nSubType;
-//STRIP001  String aText, aCond;
-//STRIP001  *rIo.pStrm >> cFlags;
-//STRIP001  rIo.InString( *rIo.pStrm, aText );
-//STRIP001  rIo.InString( *rIo.pStrm, aCond );
-//STRIP001  *rIo.pStrm >> nSubType;
-//STRIP001  BOOL bCond = BOOL( ( cFlags & 0x20 ) != 0 );
-//STRIP001  BOOL bIsHidden = BOOL( ( cFlags & 0x10 ) != 0 );
-//STRIP001
-//STRIP001  if( bCond && TYP_CONDTXTFLD != nSubType )
-//STRIP001  {
-//STRIP001      lcl_sw3io_ChkHiddenExp( aCond );
-//STRIP001      bIsHidden = !bIsHidden;
-//STRIP001  }
-//STRIP001  SwHiddenTxtField* pFld = new SwHiddenTxtField( (SwHiddenTxtFieldType*)pType,
-//STRIP001              bCond,
-//STRIP001              aEmptyStr, aText,
-//STRIP001              bIsHidden, nSubType );
-//STRIP001  pFld->SetPar1( aCond );
-//STRIP001  return pFld;
+/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/   BYTE cFlags;
+/*N*/   USHORT nSubType;
+/*N*/   String aText, aCond;
+/*N*/   *rIo.pStrm >> cFlags;
+/*N*/   rIo.InString( *rIo.pStrm, aText );
+/*N*/   rIo.InString( *rIo.pStrm, aCond );
+/*N*/   *rIo.pStrm >> nSubType;
+/*N*/   BOOL bCond = BOOL( ( cFlags & 0x20 ) != 0 );
+/*N*/   BOOL bIsHidden = BOOL( ( cFlags & 0x10 ) != 0 );
+/*N*/
+/*N*/   if( bCond && TYP_CONDTXTFLD != nSubType )
+/*N*/   {
+/*N*/       lcl_sw3io_ChkHiddenExp( aCond );
+/*N*/       bIsHidden = !bIsHidden;
+/*N*/   }
+/*N*/   SwHiddenTxtField* pFld = new SwHiddenTxtField( (SwHiddenTxtFieldType*)pType,
+/*N*/               bCond,
+/*N*/               aEmptyStr, aText,
+/*N*/               bIsHidden, nSubType );
+/*N*/   pFld->SetPar1( aCond );
+/*N*/   return pFld;
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InHiddenTxtField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -1687,13 +1687,13 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InInputField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                USHORT, ULONG& )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  String aContent, aPrompt;
-//STRIP001  UINT16 nSubType;
-//STRIP001  rIo.InString( *rIo.pStrm, aContent );
-//STRIP001  rIo.InString( *rIo.pStrm, aPrompt );
-//STRIP001  *rIo.pStrm >> nSubType;
-//STRIP001  return new SwInputField( (SwInputFieldType*)pType, aContent, aPrompt, nSubType );
+/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/   String aContent, aPrompt;
+/*N*/   UINT16 nSubType;
+/*N*/   rIo.InString( *rIo.pStrm, aContent );
+/*N*/   rIo.InString( *rIo.pStrm, aPrompt );
+/*N*/   *rIo.pStrm >> nSubType;
+/*N*/   return new SwInputField( (SwInputFieldType*)pType, aContent, aPrompt, nSubType );
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InInputField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -1776,22 +1776,22 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField *lcl_sw3io_InGetExpField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                   USHORT nSubType, ULONG& rFmt )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  String aText, aExpand;
-//STRIP001  UINT16 nSub;
-//STRIP001  rIo.InString( *rIo.pStrm, aText );
-//STRIP001  rIo.InString( *rIo.pStrm, aExpand );
-//STRIP001  *rIo.pStrm >> nSub;
-//STRIP001
-//STRIP001  SwGetExpField* pFld =
-//STRIP001      new SwGetExpField( (SwGetExpFieldType *)pType, aText );
-//STRIP001  pFld->ChgExpStr( aExpand );
-//STRIP001  pFld->SetSubType( nSub | nSubType );
-//STRIP001
-//STRIP001  if( GSE_STRING & nSub )
-//STRIP001      rFmt = 0;   // Warum auch immer!
-//STRIP001
-//STRIP001  return pFld;
+/*N*/ { //SW40.SDW  DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/   String aText, aExpand;
+/*N*/   UINT16 nSub;
+/*N*/   rIo.InString( *rIo.pStrm, aText );
+/*N*/   rIo.InString( *rIo.pStrm, aExpand );
+/*N*/   *rIo.pStrm >> nSub;
+/*N*/
+/*N*/   SwGetExpField* pFld =
+/*N*/       new SwGetExpField( (SwGetExpFieldType *)pType, aText );
+/*N*/   pFld->ChgExpStr( aExpand );
+/*N*/   pFld->SetSubType( nSub | nSubType );
+/*N*/
+/*N*/   if( GSE_STRING & nSub )
+/*N*/       rFmt = 0;   // Warum auch immer!
+/*N*/
+/*N*/   return pFld;
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InGetExpField( Sw3IoImp& rIo, SwFieldType *pType,
@@ -2047,14 +2047,14 @@ static OldFormats aOldGetSetExpFmt30[] =
 
 /*N*/ SwField* lcl_sw3io_InDocInfoField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT nSubType, ULONG& rFmt )
-/*N*/ { DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
-//STRIP001  UINT16 nSub;
-//STRIP001  *rIo.pStrm >> nSub;
-//STRIP001  nSubType |= nSub;
-//STRIP001
-//STRIP001  SwDocInfoField *pFld = new SwDocInfoField( (SwDocInfoFieldType*)pType,
-//STRIP001                                             nSubType, rFmt );
-//STRIP001  return pFld;
+/*N*/ { //SW40.SDW DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/   UINT16 nSub;
+/*N*/   *rIo.pStrm >> nSub;
+/*N*/   nSubType |= nSub;
+/*N*/
+/*N*/   SwDocInfoField *pFld = new SwDocInfoField( (SwDocInfoFieldType*)pType,
+/*N*/                                              nSubType, rFmt );
+/*N*/   return pFld;
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InDocInfoField( Sw3IoImp& rIo, SwFieldType* pType,

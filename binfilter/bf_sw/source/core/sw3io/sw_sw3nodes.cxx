@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:53 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1027,13 +1027,13 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               // The text has to be converted before any redlines are
 /*N*/               // inserted. Otherwise, the content positions will not match
 /*N*/               // the indices within the 8-Bit-Text.
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              if( !bConverted )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ConvertText( *pNd, aText8, (xub_StrLen)nOffsetL,
-//STRIP001 /*?*/                                 pCharSetColorEncs, pCharSetColorPoss );
-//STRIP001 /*?*/                    bConverted = TRUE;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                InNodeRedline( rPos, nOffsetL );
+/*N*/ /*?*/                 if( !bConverted )   // SW50.SDW
+/*N*/ /*?*/                 {
+/*N*/ /*?*/                     ConvertText( *pNd, aText8, (xub_StrLen)nOffsetL,
+/*N*/ /*?*/                                  pCharSetColorEncs, pCharSetColorPoss );
+/*N*/ /*?*/                     bConverted = TRUE;
+/*N*/ /*?*/                 }
+/*N*/ /*?*/                 InNodeRedline( rPos, nOffsetL );
 /*?*/               break;
 /*N*/
 /*N*/           case SWG_WRONGLIST:

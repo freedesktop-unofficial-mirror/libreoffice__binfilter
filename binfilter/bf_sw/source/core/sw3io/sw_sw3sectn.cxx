@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3sectn.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:54 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -326,20 +326,20 @@ namespace binfilter {
 /*?*/
 /*?*/           case SWG_NODEREDLINE:
 /*?*/               {
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  i--;
-//STRIP001 /*?*/                    if( nSaveInsFirstPara )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        // Hier kann es nur einen End-Index geben. Der
-//STRIP001 /*?*/                        // entspricht dann der Einfuege-Position.
-//STRIP001 /*?*/                        INT32 nOffs = pEndPos->nContent.GetIndex();
-//STRIP001 /*?*/                        InNodeRedline( pEndPos->nNode, nOffs, nSaveInsFirstPara );
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        SwNodeIndex aIdx( *pSttNd );
-//STRIP001 /*?*/                        INT32 nDummy = 0;
-//STRIP001 /*?*/                        InNodeRedline( aIdx, nDummy );
-//STRIP001 /*?*/                    }
+/*N*/ /*?*/                     i--;    //SW50.SDW
+/*N*/ /*?*/                     if( nSaveInsFirstPara )
+/*N*/ /*?*/                     {
+/*N*/ /*?*/                         // Hier kann es nur einen End-Index geben. Der
+/*N*/ /*?*/                         // entspricht dann der Einfuege-Position.
+/*N*/ /*?*/                         INT32 nOffs = pEndPos->nContent.GetIndex();
+/*N*/ /*?*/                         InNodeRedline( pEndPos->nNode, nOffs, nSaveInsFirstPara );
+/*N*/ /*?*/                     }
+/*N*/ /*?*/                     else
+/*N*/ /*?*/                     {
+/*N*/ /*?*/                         SwNodeIndex aIdx( *pSttNd );
+/*N*/ /*?*/                         INT32 nDummy = 0;
+/*N*/ /*?*/                         InNodeRedline( aIdx, nDummy );
+/*N*/ /*?*/                     }
 /*?*/               }
 /*?*/               break;
 /*?*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3redln.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:54 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,66 +120,66 @@ namespace binfilter {
 // UINT32   Uhrzeit
 // String   Kommentar
 
-//STRIP001 void Sw3IoImp::InRedline()
-//STRIP001 {
-//STRIP001  OpenRec( SWG_REDLINE_LCL );
-//STRIP001
-//STRIP001  BYTE cFlags = OpenFlagRec();
-//STRIP001
-//STRIP001  UINT16 nCount;
-//STRIP001  *pStrm >> nCount;
-//STRIP001
-//STRIP001  CloseFlagRec();
-//STRIP001
-//STRIP001  SwRedlineData *pData = 0;
-//STRIP001  for( USHORT i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      OpenRec( SWG_REDLINEDATA_LCL );
-//STRIP001
-//STRIP001      BYTE cDFlags = OpenFlagRec();
-//STRIP001
-//STRIP001      BYTE cType;
-//STRIP001      UINT16 nStrIdx;
-//STRIP001
-//STRIP001      *pStrm  >> cType
-//STRIP001              >> nStrIdx;
-//STRIP001      CloseFlagRec();
-//STRIP001
-//STRIP001      UINT32 nDate, nTime;
-//STRIP001      String aComment;
-//STRIP001      *pStrm  >> nDate
-//STRIP001              >> nTime;
-//STRIP001      InString( *pStrm, aComment );
-//STRIP001
-//STRIP001      // Das oberste Element des Stack wurde als letztes geschrieben.
-//STRIP001      USHORT nAuthorIdx;
-//STRIP001      if( bNormal && !bInsert )
-//STRIP001          nAuthorIdx = pDoc->InsertRedlineAuthor(aStringPool.Find(nStrIdx));
-//STRIP001      else
-//STRIP001          nAuthorIdx = pDoc->GetRedlineAuthor();
-//STRIP001
-//STRIP001      pData = new SwRedlineData( (SwRedlineType)cType, nAuthorIdx,
-//STRIP001                                 DateTime( nDate, nTime ), aComment,
-//STRIP001                                 pData );
-//STRIP001
-//STRIP001      CloseRec( SWG_REDLINEDATA_LCL );
-//STRIP001  }
-//STRIP001
-//STRIP001  // Der PaM ist erstmal egal und wird erst spaeter gesetzt
-//STRIP001  SwPosition aDummyPos( pDoc->GetNodes().GetEndOfExtras() );
-//STRIP001  BOOL bVisible = (cFlags & 0x10) != 0;
-//STRIP001  SwRedline *pRedline =
-//STRIP001      new SwRedline( pData, aDummyPos, (cFlags & 0x10) != 0,
-//STRIP001                     (cFlags & 0x20) != 0, (cFlags & 0x40) != 0 );
-//STRIP001
-//STRIP001  // Weil der PaM noch nicht gueltig ist, merken wir uns die Redline
-//STRIP001  // erstmal so und fuegen sie erst spaeter in das Dokument ein.
-//STRIP001  if( !pRedlines )
-//STRIP001      pRedlines = new Sw3Redlines;
-//STRIP001  pRedlines->Insert( pRedline, pRedlines->Count() );
-//STRIP001
-//STRIP001  CloseRec( SWG_REDLINE_LCL );
-//STRIP001 }
+/*N*/ void Sw3IoImp::InRedline() //SW50.SDW
+/*N*/ {
+/*N*/   OpenRec( SWG_REDLINE_LCL );
+/*N*/
+/*N*/   BYTE cFlags = OpenFlagRec();
+/*N*/
+/*N*/   UINT16 nCount;
+/*N*/   *pStrm >> nCount;
+/*N*/
+/*N*/   CloseFlagRec();
+/*N*/
+/*N*/   SwRedlineData *pData = 0;
+/*N*/   for( USHORT i=0; i<nCount; i++ )
+/*N*/   {
+/*N*/       OpenRec( SWG_REDLINEDATA_LCL );
+/*N*/
+/*N*/       BYTE cDFlags = OpenFlagRec();
+/*N*/
+/*N*/       BYTE cType;
+/*N*/       UINT16 nStrIdx;
+/*N*/
+/*N*/       *pStrm  >> cType
+/*N*/               >> nStrIdx;
+/*N*/       CloseFlagRec();
+/*N*/
+/*N*/       UINT32 nDate, nTime;
+/*N*/       String aComment;
+/*N*/       *pStrm  >> nDate
+/*N*/               >> nTime;
+/*N*/       InString( *pStrm, aComment );
+/*N*/
+/*N*/       // Das oberste Element des Stack wurde als letztes geschrieben.
+/*N*/       USHORT nAuthorIdx;
+/*N*/       if( bNormal && !bInsert )
+/*N*/           nAuthorIdx = pDoc->InsertRedlineAuthor(aStringPool.Find(nStrIdx));
+/*N*/       else
+/*N*/           nAuthorIdx = pDoc->GetRedlineAuthor();
+/*N*/
+/*N*/       pData = new SwRedlineData( (SwRedlineType)cType, nAuthorIdx,
+/*N*/                                  DateTime( nDate, nTime ), aComment,
+/*N*/                                  pData );
+/*N*/
+/*N*/       CloseRec( SWG_REDLINEDATA_LCL );
+/*N*/   }
+/*N*/
+/*N*/   // Der PaM ist erstmal egal und wird erst spaeter gesetzt
+/*N*/   SwPosition aDummyPos( pDoc->GetNodes().GetEndOfExtras() );
+/*N*/   BOOL bVisible = (cFlags & 0x10) != 0;
+/*N*/   SwRedline *pRedline =
+/*N*/       new SwRedline( pData, aDummyPos, (cFlags & 0x10) != 0,
+/*N*/                      (cFlags & 0x20) != 0, (cFlags & 0x40) != 0 );
+/*N*/
+/*N*/   // Weil der PaM noch nicht gueltig ist, merken wir uns die Redline
+/*N*/   // erstmal so und fuegen sie erst spaeter in das Dokument ein.
+/*N*/   if( !pRedlines )
+/*N*/       pRedlines = new Sw3Redlines;
+/*N*/   pRedlines->Insert( pRedline, pRedlines->Count() );
+/*N*/
+/*N*/   CloseRec( SWG_REDLINE_LCL );
+/*N*/ }
 
 
 //STRIP001 void Sw3IoImp::OutRedline( const SwRedline& rRedline )
@@ -233,21 +233,21 @@ namespace binfilter {
 // REDLINES:
 // REDLINE*
 
-//STRIP001 void Sw3IoImp::InRedlines()
-//STRIP001 {
-//STRIP001  if( pRedlines )
-//STRIP001  {
-//STRIP001      delete pRedlines;
-//STRIP001      pRedlines = 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  OpenRec( SWG_REDLINES );
-//STRIP001
-//STRIP001  while( BytesLeft() )
-//STRIP001      InRedline();
-//STRIP001
-//STRIP001  CloseRec( SWG_REDLINES );
-//STRIP001 }
+/*N*/ void Sw3IoImp::InRedlines() //SW50.SDW
+/*N*/ {
+/*N*/   if( pRedlines )
+/*N*/   {
+/*N*/       delete pRedlines;
+/*N*/       pRedlines = 0;
+/*N*/   }
+/*N*/
+/*N*/   OpenRec( SWG_REDLINES );
+/*N*/
+/*N*/   while( BytesLeft() )
+/*N*/       InRedline();
+/*N*/
+/*N*/   CloseRec( SWG_REDLINES );
+/*N*/ }
 
 /*N*/ void Sw3IoImp::OutRedlines( BOOL bPageStyles )
 /*N*/ {
@@ -433,223 +433,223 @@ namespace binfilter {
 //          einem Start-Node gehoerenden ENd-Node bezeichnet.
 // CONTENT? Section (optional)
 
-//STRIP001 void Sw3IoImp::InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nCntntOff,
-//STRIP001                            BYTE nInsFirstPara )
-//STRIP001 {
-//STRIP001  OpenRec( SWG_NODEREDLINE );
-//STRIP001
-//STRIP001  BYTE cFlags = OpenFlagRec();
-//STRIP001  UINT16 nId, nNodeOff;
-//STRIP001  *pStrm >> nId >> nNodeOff;
-//STRIP001  CloseFlagRec();
-//STRIP001
-//STRIP001  ASSERT( pRedlines && nId < pRedlines->Count(), "Ungueltige Redline-Id" );
-//STRIP001  if( !pRedlines || nId >= pRedlines->Count() )
-//STRIP001  {
-//STRIP001      Error();
-//STRIP001      CloseRec( SWG_NODEREDLINE );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  SwRedline *pRedline = (*pRedlines)[nId];
-//STRIP001  SwRedlineType eType = pRedline ? pRedline->GetType() : REDLINE_FLAG_MASK;
-//STRIP001  if( REDLINE_INSERT != eType && REDLINE_DELETE != eType &&
-//STRIP001      REDLINE_FORMAT != eType )
-//STRIP001  {
-//STRIP001      // Unbekannter oder noch nicht implementierter Redline-Typ:
-//STRIP001      // Da ist es besser, wir ignorieren sie, denn wir koennen ja
-//STRIP001      // sowieso nichts damit anfangen.
-//STRIP001      ASSERT( !pRedline, "nicht implementierter Redline-Typ" );
-//STRIP001      Warning();
-//STRIP001      CloseRec( SWG_NODEREDLINE );
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Position setzen
-//STRIP001  SwPosition *pPos;
-//STRIP001  if( 0x10 & cFlags )
-//STRIP001  {
-//STRIP001      // bei End-Positionen Mark setzen
-//STRIP001      pRedline->SetMark();
-//STRIP001      pPos = pRedline->GetMark();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // sonst Point
-//STRIP001      pPos = pRedline->GetPoint();
-//STRIP001  }
-//STRIP001
-//STRIP001  SwNode& rNode = rNodeIdx.GetNode();
-//STRIP001
-//STRIP001  // Beim Einfuegen in den ersten Absatz sollten wir eine Content-Node
-//STRIP001  // haben, in den wir an der uebergeben Position einfuegen.
-//STRIP001  if( nInsFirstPara )
-//STRIP001  {
-//STRIP001      ASSERT( rNode.IsCntntNode(), "Content-Node beim Einf. erwartet" );
-//STRIP001      ASSERT( USHRT_MAX==nNodeOff, "End-Node-Position beim Einf. erwartet" );
-//STRIP001      nNodeOff = 0;   // Im IsCntntNode-Zweig gibts so die richtige Pos.
-//STRIP001  }
-//STRIP001
-//STRIP001  sal_Bool bInvalid = sal_False;
-//STRIP001  // Positionen koennen auch auf Start- oder End-Nodes fallen.
-//STRIP001  if( rNode.IsCntntNode() )
-//STRIP001  {
-//STRIP001      pPos->nNode = rNodeIdx;
-//STRIP001      xub_StrLen nLen = rNode.GetCntntNode()->Len();
-//STRIP001      xub_StrLen nIdx = static_cast< xub_StrLen >( nNodeOff+nCntntOff );
-//STRIP001      ASSERT( nIdx>=0 && nIdx<=nLen, "ungueltiger Cntnt-Offset" );
-//STRIP001      if( nIdx<0 || nIdx > nLen )
-//STRIP001      {
-//STRIP001          bInvalid = sal_True;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pPos->nContent.Assign( rNode.GetCntntNode(), nIdx );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ASSERT( rNode.IsStartNode(), "Start-Node erwartet" );
-//STRIP001      if( USHRT_MAX==nNodeOff )
-//STRIP001      {
-//STRIP001          pPos->nNode = rNode.EndOfSectionIndex();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pPos->nNode = rNodeIdx;
-//STRIP001
-//STRIP001          ASSERT( 0==nNodeOff,
-//STRIP001                  "ungeueltige Content-Position fuer Start-Node" );
-//STRIP001          if( 0 != nNodeOff )
-//STRIP001              Warning();
-//STRIP001      }
-//STRIP001      pPos->nContent.Assign( 0, 0 );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( cFlags & 0x20 )
-//STRIP001  {
-//STRIP001      if( (bNormal && bInsert) || bPageDescs )
-//STRIP001      {
-//STRIP001          if( REDLINE_INSERT == eType )
-//STRIP001          {
-//STRIP001              // Ein einefuegter Text wird nicht angezeigt. Dann muss der
-//STRIP001              // eingefuegt Text an der entsprechenden Position eingfuegt
-//STRIP001              // werden.
-//STRIP001              if( !nInsFirstPara && !pPos->nNode.GetNode().IsCntntNode() &&
-//STRIP001                  pRedline->IsDelLastPara() )
-//STRIP001              {
-//STRIP001                  // Wenn das DelLastPara-Flag gsetzt ist, wird
-//STRIP001                  // versucht in den Absatz davor einzufuegen, denn
-//STRIP001                  // der soll ja geloescht werden.
-//STRIP001                  pPos->nNode--;
-//STRIP001                  SwCntntNode *pCNd = pPos->nNode.GetNode().GetCntntNode();
-//STRIP001                  ASSERT( pCNd, "Kein Content-Node trotz DelLastPara" );
-//STRIP001                  if( pCNd )
-//STRIP001                      pPos->nContent.Assign( pCNd, pCNd->Len() );
-//STRIP001                  else
-//STRIP001                      pPos->nNode++;
-//STRIP001              }
-//STRIP001              const SwNode& rNewNode = pPos->nNode.GetNode();
-//STRIP001              if( rNewNode.IsCntntNode() )
-//STRIP001              {
-//STRIP001                  xub_StrLen nCntntIdx = pPos->nContent.GetIndex();
-//STRIP001
-//STRIP001                  InContents( pPos->nNode, nCntntIdx );
-//STRIP001
-//STRIP001                  // Den Offset noch an die Verschiebung der
-//STRIP001                  // Content-Position anpassen.
-//STRIP001                  nCntntOff += pPos->nContent.GetIndex();
-//STRIP001                  nCntntOff -= nCntntIdx;
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  InContents( pPos->nNode, 0, FALSE, 0, TRUE );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001              SkipRec();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SwNodeIndex aStart( pDoc->GetNodes().GetEndOfRedlines() );
-//STRIP001          SwStartNode* pSttNd =
-//STRIP001              pDoc->GetNodes().MakeEmptySection( aStart,SwNormalStartNode );
-//STRIP001          aStart = *pSttNd->EndOfSectionNode();
-//STRIP001          InContents( aStart, 0, FALSE );
-//STRIP001          aStart = pSttNd->GetIndex();
-//STRIP001          pRedline->SetContentIdx( &aStart );
-//STRIP001          if( pSttNd->EndOfSectionIndex() - aStart.GetIndex() == 1 )
-//STRIP001              bInvalid = sal_True;
-//STRIP001          ASSERT( !bInvalid, "empty redline section imported" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  const SwRedlineTbl& rRedlineTbl = pDoc->GetRedlineTbl();
-//STRIP001  if( !bInvalid )
-//STRIP001  {
-//STRIP001      // Check for nested redlines.
-//STRIP001      sal_Bool bHasMark = pRedline->HasMark() &&
-//STRIP001                          *pRedline->GetPoint() != *pRedline->GetMark();
-//STRIP001      const SwPosition *pStt = bHasMark ? pRedline->Start() : 0;
-//STRIP001      const SwPosition *pEnd = bHasMark ? pRedline->End() : 0;
-//STRIP001      sal_uInt16 nCount = rRedlineTbl.Count();
-//STRIP001      for( sal_uInt16 i=0; !bInvalid && i<nCount; i++ )
-//STRIP001      {
-//STRIP001          const SwRedline *pTest = rRedlineTbl[i];
-//STRIP001          if( pTest != pRedline )
-//STRIP001          {
-//STRIP001
-//STRIP001              // Is the ineew position is inside an existing
-//STRIP001              // redline then it is invalid.
-//STRIP001              const SwPosition *pTestStt = pTest->Start();
-//STRIP001              const SwPosition *pTestEnd = pTest->HasMark() ? pTest->End() : 0;
-//STRIP001              bInvalid = pTestEnd != 0 && *pPos > *pTestStt && *pPos < *pTestEnd;
-//STRIP001
-//STRIP001              // If the start or end of and existing redline is inside the
-//STRIP001              // redline then the new redline is invalid as well;
-//STRIP001              if( !bInvalid && bHasMark )
-//STRIP001                  bInvalid = *pTestStt > *pStt && *pTestStt < *pEnd;
-//STRIP001              if( !bInvalid && bHasMark && pTestEnd != 0 )
-//STRIP001                  bInvalid = *pTestEnd > *pStt && *pTestEnd < *pEnd;
-//STRIP001
-//STRIP001              ASSERT( !bInvalid, "overlapping redline" );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bNormal && !bInsert )
-//STRIP001  {
-//STRIP001      if( (0x10 & cFlags) == 0 )
-//STRIP001      {
-//STRIP001          // Die Redline darf jetzt eingefuegt werden. Das Redline-Objekt
-//STRIP001          // geht in den Besitz des Dokuments ueber.
-//STRIP001
-//STRIP001          if( !bInvalid )
-//STRIP001              bInvalid = !const_cast< SwRedlineTbl& >(rRedlineTbl).Insert(
-//STRIP001                  pRedline, (BOOL)FALSE );
-//STRIP001      }
-//STRIP001      else if (bInvalid )
-//STRIP001      {
-//STRIP001          // The redline is is inserted already and has to be removed from the
-//STRIP001          // table;
-//STRIP001
-//STRIP001          sal_uInt16 nPos = rRedlineTbl.GetPos( pRedline );
-//STRIP001          ASSERT( USHRT_MAX != nPos, "inserted invalid redline not found" );
-//STRIP001          if( USHRT_MAX != nPos )
-//STRIP001              const_cast< SwRedlineTbl& >(rRedlineTbl).Remove( nPos );
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bInvalid )
-//STRIP001      {
-//STRIP001          // JP 18.5.2001: Bug 87222 - then delete this invalid redline
-//STRIP001          delete pRedline;
-//STRIP001          pRedlines->Replace( 0, nId );
-//STRIP001          Warning();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  CloseRec( SWG_NODEREDLINE );
-//STRIP001 }
+/*N*/ void Sw3IoImp::InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nCntntOff, //SW50.SDW
+/*N*/                             BYTE nInsFirstPara )
+/*N*/ {
+/*N*/   OpenRec( SWG_NODEREDLINE );
+/*N*/
+/*N*/   BYTE cFlags = OpenFlagRec();
+/*N*/   UINT16 nId, nNodeOff;
+/*N*/   *pStrm >> nId >> nNodeOff;
+/*N*/   CloseFlagRec();
+/*N*/
+/*N*/   ASSERT( pRedlines && nId < pRedlines->Count(), "Ungueltige Redline-Id" );
+/*N*/   if( !pRedlines || nId >= pRedlines->Count() )
+/*N*/   {
+/*N*/       Error();
+/*N*/       CloseRec( SWG_NODEREDLINE );
+/*N*/       return;
+/*N*/   }
+/*N*/
+/*N*/   SwRedline *pRedline = (*pRedlines)[nId];
+/*N*/   SwRedlineType eType = pRedline ? pRedline->GetType() : REDLINE_FLAG_MASK;
+/*N*/   if( REDLINE_INSERT != eType && REDLINE_DELETE != eType &&
+/*N*/       REDLINE_FORMAT != eType )
+/*N*/   {
+/*N*/       // Unbekannter oder noch nicht implementierter Redline-Typ:
+/*N*/       // Da ist es besser, wir ignorieren sie, denn wir koennen ja
+/*N*/       // sowieso nichts damit anfangen.
+/*N*/       ASSERT( !pRedline, "nicht implementierter Redline-Typ" );
+/*N*/       Warning();
+/*N*/       CloseRec( SWG_NODEREDLINE );
+/*N*/       return;
+/*N*/   }
+/*N*/
+/*N*/   // Position setzen
+/*N*/   SwPosition *pPos;
+/*N*/   if( 0x10 & cFlags )
+/*N*/   {
+/*N*/       // bei End-Positionen Mark setzen
+/*N*/       pRedline->SetMark();
+/*N*/       pPos = pRedline->GetMark();
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       // sonst Point
+/*N*/       pPos = pRedline->GetPoint();
+/*N*/   }
+/*N*/
+/*N*/   SwNode& rNode = rNodeIdx.GetNode();
+/*N*/
+/*N*/   // Beim Einfuegen in den ersten Absatz sollten wir eine Content-Node
+/*N*/   // haben, in den wir an der uebergeben Position einfuegen.
+/*N*/   if( nInsFirstPara )
+/*N*/   {
+/*N*/       ASSERT( rNode.IsCntntNode(), "Content-Node beim Einf. erwartet" );
+/*N*/       ASSERT( USHRT_MAX==nNodeOff, "End-Node-Position beim Einf. erwartet" );
+/*N*/       nNodeOff = 0;   // Im IsCntntNode-Zweig gibts so die richtige Pos.
+/*N*/   }
+/*N*/
+/*N*/   sal_Bool bInvalid = sal_False;
+/*N*/   // Positionen koennen auch auf Start- oder End-Nodes fallen.
+/*N*/   if( rNode.IsCntntNode() )
+/*N*/   {
+/*N*/       pPos->nNode = rNodeIdx;
+/*N*/       xub_StrLen nLen = rNode.GetCntntNode()->Len();
+/*N*/       xub_StrLen nIdx = static_cast< xub_StrLen >( nNodeOff+nCntntOff );
+/*N*/       ASSERT( nIdx>=0 && nIdx<=nLen, "ungueltiger Cntnt-Offset" );
+/*N*/       if( nIdx<0 || nIdx > nLen )
+/*N*/       {
+/*N*/           bInvalid = sal_True;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           pPos->nContent.Assign( rNode.GetCntntNode(), nIdx );
+/*N*/       }
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       ASSERT( rNode.IsStartNode(), "Start-Node erwartet" );
+/*N*/       if( USHRT_MAX==nNodeOff )
+/*N*/       {
+/*N*/           pPos->nNode = rNode.EndOfSectionIndex();
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           pPos->nNode = rNodeIdx;
+/*N*/
+/*N*/           ASSERT( 0==nNodeOff,
+/*N*/                   "ungeueltige Content-Position fuer Start-Node" );
+/*N*/           if( 0 != nNodeOff )
+/*N*/               Warning();
+/*N*/       }
+/*N*/       pPos->nContent.Assign( 0, 0 );
+/*N*/   }
+/*N*/
+/*N*/   if( cFlags & 0x20 )
+/*N*/   {
+/*N*/       if( (bNormal && bInsert) || bPageDescs )
+/*N*/       {
+/*N*/           if( REDLINE_INSERT == eType )
+/*N*/           {
+/*N*/               // Ein einefuegter Text wird nicht angezeigt. Dann muss der
+/*N*/               // eingefuegt Text an der entsprechenden Position eingfuegt
+/*N*/               // werden.
+/*N*/               if( !nInsFirstPara && !pPos->nNode.GetNode().IsCntntNode() &&
+/*N*/                   pRedline->IsDelLastPara() )
+/*N*/               {
+/*N*/                   // Wenn das DelLastPara-Flag gsetzt ist, wird
+/*N*/                   // versucht in den Absatz davor einzufuegen, denn
+/*N*/                   // der soll ja geloescht werden.
+/*N*/                   pPos->nNode--;
+/*N*/                   SwCntntNode *pCNd = pPos->nNode.GetNode().GetCntntNode();
+/*N*/                   ASSERT( pCNd, "Kein Content-Node trotz DelLastPara" );
+/*N*/                   if( pCNd )
+/*N*/                       pPos->nContent.Assign( pCNd, pCNd->Len() );
+/*N*/                   else
+/*N*/                       pPos->nNode++;
+/*N*/               }
+/*N*/               const SwNode& rNewNode = pPos->nNode.GetNode();
+/*N*/               if( rNewNode.IsCntntNode() )
+/*N*/               {
+/*N*/                   xub_StrLen nCntntIdx = pPos->nContent.GetIndex();
+/*N*/
+/*N*/                   InContents( pPos->nNode, nCntntIdx );
+/*N*/
+/*N*/                   // Den Offset noch an die Verschiebung der
+/*N*/                   // Content-Position anpassen.
+/*N*/                   nCntntOff += pPos->nContent.GetIndex();
+/*N*/                   nCntntOff -= nCntntIdx;
+/*N*/               }
+/*N*/               else
+/*N*/               {
+/*N*/                   InContents( pPos->nNode, 0, FALSE, 0, TRUE );
+/*N*/               }
+/*N*/           }
+/*N*/           else
+/*N*/               SkipRec();
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           SwNodeIndex aStart( pDoc->GetNodes().GetEndOfRedlines() );
+/*N*/           SwStartNode* pSttNd =
+/*N*/               pDoc->GetNodes().MakeEmptySection( aStart,SwNormalStartNode );
+/*N*/           aStart = *pSttNd->EndOfSectionNode();
+/*N*/           InContents( aStart, 0, FALSE );
+/*N*/           aStart = pSttNd->GetIndex();
+/*N*/           pRedline->SetContentIdx( &aStart );
+/*N*/           if( pSttNd->EndOfSectionIndex() - aStart.GetIndex() == 1 )
+/*N*/               bInvalid = sal_True;
+/*N*/           ASSERT( !bInvalid, "empty redline section imported" );
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   const SwRedlineTbl& rRedlineTbl = pDoc->GetRedlineTbl();
+/*N*/   if( !bInvalid )
+/*N*/   {
+/*N*/       // Check for nested redlines.
+/*N*/       sal_Bool bHasMark = pRedline->HasMark() &&
+/*N*/                           *pRedline->GetPoint() != *pRedline->GetMark();
+/*N*/       const SwPosition *pStt = bHasMark ? pRedline->Start() : 0;
+/*N*/       const SwPosition *pEnd = bHasMark ? pRedline->End() : 0;
+/*N*/       sal_uInt16 nCount = rRedlineTbl.Count();
+/*N*/       for( sal_uInt16 i=0; !bInvalid && i<nCount; i++ )
+/*N*/       {
+/*N*/           const SwRedline *pTest = rRedlineTbl[i];
+/*N*/           if( pTest != pRedline )
+/*N*/           {
+/*N*/
+/*N*/               // Is the ineew position is inside an existing
+/*N*/               // redline then it is invalid.
+/*N*/               const SwPosition *pTestStt = pTest->Start();
+/*N*/               const SwPosition *pTestEnd = pTest->HasMark() ? pTest->End() : 0;
+/*N*/               bInvalid = pTestEnd != 0 && *pPos > *pTestStt && *pPos < *pTestEnd;
+/*N*/
+/*N*/               // If the start or end of and existing redline is inside the
+/*N*/               // redline then the new redline is invalid as well;
+/*N*/               if( !bInvalid && bHasMark )
+/*N*/                   bInvalid = *pTestStt > *pStt && *pTestStt < *pEnd;
+/*N*/               if( !bInvalid && bHasMark && pTestEnd != 0 )
+/*N*/                   bInvalid = *pTestEnd > *pStt && *pTestEnd < *pEnd;
+/*N*/
+/*N*/               ASSERT( !bInvalid, "overlapping redline" );
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   if( bNormal && !bInsert )
+/*N*/   {
+/*N*/       if( (0x10 & cFlags) == 0 )
+/*N*/       {
+/*N*/           // Die Redline darf jetzt eingefuegt werden. Das Redline-Objekt
+/*N*/           // geht in den Besitz des Dokuments ueber.
+/*N*/
+/*N*/           if( !bInvalid )
+/*N*/               bInvalid = !const_cast< SwRedlineTbl& >(rRedlineTbl).Insert(
+/*N*/                   pRedline, (BOOL)FALSE );
+/*N*/       }
+/*N*/       else if (bInvalid )
+/*N*/       {
+/*N*/           // The redline is is inserted already and has to be removed from the
+/*N*/           // table;
+/*N*/
+/*N*/           sal_uInt16 nPos = rRedlineTbl.GetPos( pRedline );
+/*N*/           ASSERT( USHRT_MAX != nPos, "inserted invalid redline not found" );
+/*N*/           if( USHRT_MAX != nPos )
+/*N*/               const_cast< SwRedlineTbl& >(rRedlineTbl).Remove( nPos );
+/*N*/       }
+/*N*/
+/*N*/       if( bInvalid )
+/*N*/       {
+/*N*/           // JP 18.5.2001: Bug 87222 - then delete this invalid redline
+/*N*/           delete pRedline;
+/*N*/           pRedlines->Replace( 0, nId );
+/*N*/           Warning();
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   CloseRec( SWG_NODEREDLINE );
+/*N*/ }
 
 /*N*/ void Sw3IoImp::OutNodeRedlines( ULONG nIdx )
 /*N*/ {

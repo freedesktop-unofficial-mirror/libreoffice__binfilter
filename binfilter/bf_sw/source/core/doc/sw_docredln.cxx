@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:01 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2299,13 +2299,13 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // legt gebenenfalls einen neuen Author an
 /*N*/ USHORT SwDoc::GetRedlineAuthor()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 return SW_MOD()->GetRedlineAuthor();
+/*N*/ return SW_MOD()->GetRedlineAuthor(); //SW50.SDW
 /*N*/ }
 
     // fuer die Reader usw. - neuen Author in die Tabelle eintragen
 /*N*/ USHORT SwDoc::InsertRedlineAuthor( const String& rNew )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 return SW_MOD()->InsertRedlineAuthor(rNew);
+/*N*/ return SW_MOD()->InsertRedlineAuthor(rNew); //SW50.SDW
 /*N*/ }
 
 //STRIP001 void SwDoc::UpdateRedlineAttr()
@@ -2347,22 +2347,22 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 
 /*  */
 
-//STRIP001 BOOL SwRedlineTbl::Insert( SwRedlinePtr& p, BOOL bIns )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( p->HasValidRange() )
-//STRIP001  {
-//STRIP001      bRet = _SwRedlineTbl::Insert( p );
+/*N*/ BOOL SwRedlineTbl::Insert( SwRedlinePtr& p, BOOL bIns ) //SW50.SDW
+/*N*/ {
+/*N*/   BOOL bRet = FALSE;
+/*N*/   if( p->HasValidRange() )
+/*N*/   {
+/*N*/       bRet = _SwRedlineTbl::Insert( p );
 //STRIP001      p->CallDisplayFunc();
-//STRIP001  }
-//STRIP001  else if( bIns )
-//STRIP001      bRet = InsertWithValidRanges( p );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ASSERT( !this, "Redline: falscher Bereich" );
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+/*N*/   }
+/*N*/   else if( bIns )
+/*N*/       bRet = InsertWithValidRanges( p );
+/*N*/   else
+/*N*/   {
+/*N*/       ASSERT( !this, "Redline: falscher Bereich" );
+/*N*/   }
+/*N*/   return bRet;
+/*N*/ }
 
 //STRIP001 BOOL SwRedlineTbl::Insert( SwRedlinePtr& p, USHORT& rP, BOOL bIns )
 //STRIP001 {
@@ -2381,109 +2381,109 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001  return bRet;
 //STRIP001 }
 
-//STRIP001 BOOL SwRedlineTbl::InsertWithValidRanges( SwRedlinePtr& p, USHORT* pInsPos )
-//STRIP001 {
-//STRIP001  // erzeuge aus den Selektion gueltige "Teilbereiche".
-//STRIP001  BOOL bAnyIns = FALSE;
-//STRIP001  SwPosition* pStt = p->Start(),
-//STRIP001            * pEnd = pStt == p->GetPoint() ? p->GetMark() : p->GetPoint();
-//STRIP001  SwPosition aNewStt( *pStt );
-//STRIP001  SwNodes& rNds = aNewStt.nNode.GetNodes();
-//STRIP001  SwCntntNode* pC;
-//STRIP001
-//STRIP001  if( !aNewStt.nNode.GetNode().IsCntntNode() )
-//STRIP001  {
-//STRIP001      pC = rNds.GoNext( &aNewStt.nNode );
-//STRIP001      if( pC )
-//STRIP001          aNewStt.nContent.Assign( pC, 0 );
-//STRIP001      else
-//STRIP001          aNewStt.nNode = rNds.GetEndOfContent();
-//STRIP001  }
-//STRIP001
-//STRIP001  SwRedline* pNew = 0;
-//STRIP001  USHORT nInsPos;
-//STRIP001
-//STRIP001  if( aNewStt < *pEnd )
-//STRIP001      do {
-//STRIP001          if( !pNew )
-//STRIP001              pNew = new SwRedline( p->GetRedlineData(), aNewStt );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              pNew->DeleteMark();
-//STRIP001              *pNew->GetPoint() = aNewStt;
-//STRIP001          }
-//STRIP001
-//STRIP001          pNew->SetMark();
-//STRIP001          GoEndSection( pNew->GetPoint() );
-//STRIP001          if( *pNew->GetPoint() > *pEnd )
-//STRIP001          {
-//STRIP001              BOOL bWeiter = TRUE;
-//STRIP001              pC = 0;
-//STRIP001              if( aNewStt.nNode != pEnd->nNode )
-//STRIP001                  do {
-//STRIP001                      SwNode& rCurNd = aNewStt.nNode.GetNode();
-//STRIP001                      if( rCurNd.IsStartNode() )
-//STRIP001                      {
-//STRIP001                          if( rCurNd.EndOfSectionIndex() < pEnd->nNode.GetIndex() )
-//STRIP001                              aNewStt.nNode = *rCurNd.EndOfSectionNode();
-//STRIP001                          else
-//STRIP001                              break;
-//STRIP001                      }
-//STRIP001                      else if( rCurNd.IsCntntNode() )
-//STRIP001                          pC = rCurNd.GetCntntNode();
-//STRIP001                      aNewStt.nNode++;
-//STRIP001                  } while( aNewStt.nNode.GetIndex() < pEnd->nNode.GetIndex() );
-//STRIP001
-//STRIP001              if( aNewStt.nNode == pEnd->nNode )
-//STRIP001                  aNewStt.nContent = pEnd->nContent;
-//STRIP001              else if( pC )
-//STRIP001              {
-//STRIP001                  aNewStt.nNode = *pC;
-//STRIP001                  aNewStt.nContent.Assign( pC, pC->Len() );
-//STRIP001              }
-//STRIP001
-//STRIP001              if( aNewStt <= *pEnd )
-//STRIP001                  *pNew->GetPoint() = aNewStt;
-//STRIP001          }
-//STRIP001          else
-//STRIP001              aNewStt = *pNew->GetPoint();
-//STRIP001
-//STRIP001          if( *pNew->GetPoint() != *pNew->GetMark() &&
-//STRIP001              _SwRedlineTbl::Insert( pNew, nInsPos ) )
-//STRIP001          {
+/*N*/ BOOL SwRedlineTbl::InsertWithValidRanges( SwRedlinePtr& p, USHORT* pInsPos ) //SW50.SDW
+/*N*/ {
+/*N*/   // erzeuge aus den Selektion gueltige "Teilbereiche".
+/*N*/   BOOL bAnyIns = FALSE;
+/*N*/   SwPosition* pStt = p->Start(),
+/*N*/             * pEnd = pStt == p->GetPoint() ? p->GetMark() : p->GetPoint();
+/*N*/   SwPosition aNewStt( *pStt );
+/*N*/   SwNodes& rNds = aNewStt.nNode.GetNodes();
+/*N*/   SwCntntNode* pC;
+/*N*/
+/*N*/   if( !aNewStt.nNode.GetNode().IsCntntNode() )
+/*N*/   {
+/*N*/       pC = rNds.GoNext( &aNewStt.nNode );
+/*N*/       if( pC )
+/*N*/           aNewStt.nContent.Assign( pC, 0 );
+/*N*/       else
+/*N*/           aNewStt.nNode = rNds.GetEndOfContent();
+/*N*/   }
+/*N*/
+/*N*/   SwRedline* pNew = 0;
+/*N*/   USHORT nInsPos;
+/*N*/
+/*N*/   if( aNewStt < *pEnd )
+/*N*/       do {
+/*N*/           if( !pNew )
+/*N*/               pNew = new SwRedline( p->GetRedlineData(), aNewStt );
+/*N*/           else
+/*N*/           {
+/*N*/               pNew->DeleteMark();
+/*N*/               *pNew->GetPoint() = aNewStt;
+/*N*/           }
+/*N*/
+/*N*/           pNew->SetMark();
+/*N*/           GoEndSection( pNew->GetPoint() );
+/*N*/           if( *pNew->GetPoint() > *pEnd )
+/*N*/           {
+/*N*/               BOOL bWeiter = TRUE;
+/*N*/               pC = 0;
+/*N*/               if( aNewStt.nNode != pEnd->nNode )
+/*N*/                   do {
+/*N*/                       SwNode& rCurNd = aNewStt.nNode.GetNode();
+/*N*/                       if( rCurNd.IsStartNode() )
+/*N*/                       {
+/*N*/                           if( rCurNd.EndOfSectionIndex() < pEnd->nNode.GetIndex() )
+/*N*/                               aNewStt.nNode = *rCurNd.EndOfSectionNode();
+/*N*/                           else
+/*N*/                               break;
+/*N*/                       }
+/*N*/                       else if( rCurNd.IsCntntNode() )
+/*N*/                           pC = rCurNd.GetCntntNode();
+/*N*/                       aNewStt.nNode++;
+/*N*/                   } while( aNewStt.nNode.GetIndex() < pEnd->nNode.GetIndex() );
+/*N*/
+/*N*/               if( aNewStt.nNode == pEnd->nNode )
+/*N*/                   aNewStt.nContent = pEnd->nContent;
+/*N*/               else if( pC )
+/*N*/               {
+/*N*/                   aNewStt.nNode = *pC;
+/*N*/                   aNewStt.nContent.Assign( pC, pC->Len() );
+/*N*/               }
+/*N*/
+/*N*/               if( aNewStt <= *pEnd )
+/*N*/                   *pNew->GetPoint() = aNewStt;
+/*N*/           }
+/*N*/           else
+/*N*/               aNewStt = *pNew->GetPoint();
+/*N*/
+/*N*/           if( *pNew->GetPoint() != *pNew->GetMark() &&
+/*N*/               _SwRedlineTbl::Insert( pNew, nInsPos ) )
+/*N*/           {
 //STRIP001              pNew->CallDisplayFunc();
-//STRIP001              bAnyIns = TRUE;
-//STRIP001              pNew = 0;
-//STRIP001              if( pInsPos && *pInsPos < nInsPos )
-//STRIP001                  *pInsPos = nInsPos;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( aNewStt >= *pEnd ||
-//STRIP001              0 == (pC = rNds.GoNext( &aNewStt.nNode )) )
-//STRIP001              break;
-//STRIP001
-//STRIP001          aNewStt.nContent.Assign( pC, 0 );
-//STRIP001
-//STRIP001      } while( aNewStt < *pEnd );
-//STRIP001
-//STRIP001  delete pNew;
-//STRIP001  delete p, p = 0;
-//STRIP001  return bAnyIns;
-//STRIP001 }
+/*N*/               bAnyIns = TRUE;
+/*N*/               pNew = 0;
+/*N*/               if( pInsPos && *pInsPos < nInsPos )
+/*N*/                   *pInsPos = nInsPos;
+/*N*/           }
+/*N*/
+/*N*/           if( aNewStt >= *pEnd ||
+/*N*/               0 == (pC = rNds.GoNext( &aNewStt.nNode )) )
+/*N*/               break;
+/*N*/
+/*N*/           aNewStt.nContent.Assign( pC, 0 );
+/*N*/
+/*N*/       } while( aNewStt < *pEnd );
+/*N*/
+/*N*/   delete pNew;
+/*N*/   delete p, p = 0;
+/*N*/   return bAnyIns;
+/*N*/ }
 
-//STRIP001 void SwRedlineTbl::Remove( USHORT nP, USHORT nL )
-//STRIP001 {
-//STRIP001  SwDoc* pDoc = 0;
-//STRIP001  if( !nP && nL && nL == _SwRedlineTbl::Count() )
-//STRIP001      pDoc = _SwRedlineTbl::GetObject( 0 )->GetDoc();
-//STRIP001
-//STRIP001  _SwRedlineTbl::Remove( nP, nL );
-//STRIP001
-//STRIP001  ViewShell* pSh;
-//STRIP001  if( pDoc && !pDoc->IsInDtor() && pDoc->GetRootFrm() &&
-//STRIP001      0 != ( pSh = pDoc->GetRootFrm()->GetCurrShell()) )
-//STRIP001      pSh->InvalidateWindows( SwRect( 0, 0, LONG_MAX, LONG_MAX ) );
-//STRIP001 }
+/*N*/ void SwRedlineTbl::Remove( USHORT nP, USHORT nL ) //SW50.SDW
+/*N*/ {
+/*N*/   SwDoc* pDoc = 0;
+/*N*/   if( !nP && nL && nL == _SwRedlineTbl::Count() )
+/*N*/       pDoc = _SwRedlineTbl::GetObject( 0 )->GetDoc();
+/*N*/
+/*N*/   _SwRedlineTbl::Remove( nP, nL );
+/*N*/
+/*N*/   ViewShell* pSh;
+/*N*/   if( pDoc && !pDoc->IsInDtor() && pDoc->GetRootFrm() &&
+/*N*/       0 != ( pSh = pDoc->GetRootFrm()->GetCurrShell()) )
+/*N*/       pSh->InvalidateWindows( SwRect( 0, 0, LONG_MAX, LONG_MAX ) );
+/*N*/ }
 
 //STRIP001 void SwRedlineTbl::DeleteAndDestroy( USHORT nP, USHORT nL )
 //STRIP001 {
@@ -2861,21 +2861,21 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/}
 
 // liegt eine gueltige Selektion vor?
-//STRIP001 BOOL SwRedline::HasValidRange() const
-//STRIP001 {
-//STRIP001  const SwNode* pPtNd = &GetPoint()->nNode.GetNode(),
-//STRIP001              * pMkNd = &GetMark()->nNode.GetNode();
-//STRIP001  if( pPtNd->FindStartNode() == pMkNd->FindStartNode() &&
-//STRIP001      !pPtNd->FindStartNode()->IsTableNode() &&
-//STRIP001      // JP 18.5.2001: Bug 87222 - invalid if points on the end of content
-//STRIP001         // DVO 25.03.2002: #96530# end-of-content only invalid if no content
-//STRIP001         //                 index exists
-//STRIP001      ( pPtNd != pMkNd || GetContentIdx() != NULL ||
-//STRIP001           pPtNd != &pPtNd->GetNodes().GetEndOfContent() )
-//STRIP001      )
-//STRIP001      return TRUE;
-//STRIP001  return FALSE;
-//STRIP001 }
+/*N*/ BOOL SwRedline::HasValidRange() const //SW50.SDW
+/*N*/ {
+/*N*/   const SwNode* pPtNd = &GetPoint()->nNode.GetNode(),
+/*N*/               * pMkNd = &GetMark()->nNode.GetNode();
+/*N*/   if( pPtNd->FindStartNode() == pMkNd->FindStartNode() &&
+/*N*/       !pPtNd->FindStartNode()->IsTableNode() &&
+/*N*/       // JP 18.5.2001: Bug 87222 - invalid if points on the end of content
+/*N*/         // DVO 25.03.2002: #96530# end-of-content only invalid if no content
+/*N*/         //                 index exists
+/*N*/       ( pPtNd != pMkNd || GetContentIdx() != NULL ||
+/*N*/           pPtNd != &pPtNd->GetNodes().GetEndOfContent() )
+/*N*/       )
+/*N*/       return TRUE;
+/*N*/   return FALSE;
+/*N*/ }
 
 //STRIP001 void SwRedline::CallDisplayFunc( USHORT nLoop )
 //STRIP001 {

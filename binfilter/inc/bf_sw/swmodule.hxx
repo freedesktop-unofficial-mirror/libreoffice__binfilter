@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swmodule.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:12 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -255,7 +255,7 @@ public:
      sal_uInt16         GetRedlineAuthor();
 //STRIP001  sal_uInt16          GetRedlineAuthorCount();
      const String&      GetRedlineAuthor(sal_uInt16 nPos);
-//STRIP001  sal_uInt16          InsertRedlineAuthor(const String& rAuthor);
+/*N*/   sal_uInt16          InsertRedlineAuthor(const String& rAuthor); //SW50.SDW
 
 //STRIP001  void                GetInsertAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet);
 //STRIP001  void                GetDeletedAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:59 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 09:54:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -633,18 +633,18 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     if (!bAuthorInitialised)
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 sal_uInt16 SwModule::InsertRedlineAuthor(const String& rAuthor)
-//STRIP001 {
-//STRIP001  sal_uInt16 nPos = 0;
-//STRIP001
-//STRIP001  while (nPos < pAuthorNames->Count() && *pAuthorNames->GetObject(nPos) != rAuthor)
-//STRIP001      nPos++;
-//STRIP001
-//STRIP001  if (nPos == pAuthorNames->Count())
-//STRIP001      pAuthorNames->Insert(new String(rAuthor), nPos);
-//STRIP001
-//STRIP001  return nPos;
-//STRIP001 }
+/*N*/ sal_uInt16 SwModule::InsertRedlineAuthor(const String& rAuthor) //SW50.SDW
+/*N*/ {
+/*N*/   sal_uInt16 nPos = 0;
+/*N*/
+/*N*/   while (nPos < pAuthorNames->Count() && *pAuthorNames->GetObject(nPos) != rAuthor)
+/*N*/       nPos++;
+/*N*/
+/*N*/   if (nPos == pAuthorNames->Count())
+/*N*/       pAuthorNames->Insert(new String(rAuthor), nPos);
+/*N*/
+/*N*/   return nPos;
+/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung:
