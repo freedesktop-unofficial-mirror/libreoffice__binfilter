@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_nochaos.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:54:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #include <svtools/itempool.hxx>
-#include <svtools/poolitem.hxx>
+// auto strip #include <svtools/poolitem.hxx>
 #include <svtools/stritem.hxx>
 #include <nochaos.hxx>
 #include "sfxuno.hxx"
