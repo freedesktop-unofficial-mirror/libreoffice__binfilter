@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Image.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:46:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,9 @@
 #include "EventThread.hxx"
 #endif
 
-#ifndef _LINK_HXX
-#include <tools/link.hxx>
-#endif
+// auto strip #ifndef _LINK_HXX
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
 #endif
@@ -86,9 +86,9 @@
 #ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
 #include <com/sun/star/form/FormButtonType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XAPPROVEACTIONLISTENER_HPP_
-#include <com/sun/star/form/XApproveActionListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XAPPROVEACTIONLISTENER_HPP_
+// auto strip #include <com/sun/star/form/XApproveActionListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XAPPROVEACTIONBROADCASTER_HPP_
 #include <com/sun/star/form/XApproveActionBroadcaster.hpp>
 #endif

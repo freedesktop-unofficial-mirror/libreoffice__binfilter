@@ -2,9 +2,9 @@
  *
  *  $RCSfile: errorbroadcaster.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:46:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,9 +74,9 @@
 #ifndef _COM_SUN_STAR_SDBC_SQLEXCEPTION_HPP_
 #include <com/sun/star/sdbc/SQLException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
-#include <com/sun/star/sdb/SQLErrorEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
+// auto strip #include <com/sun/star/sdb/SQLErrorEvent.hpp>
+// auto strip #endif
 namespace binfilter {
 
 //.........................................................................

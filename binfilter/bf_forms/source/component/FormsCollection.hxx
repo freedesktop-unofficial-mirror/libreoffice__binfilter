@@ -2,9 +2,9 @@
  *
  *  $RCSfile: FormsCollection.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:45:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,16 +63,16 @@
 #include "InterfaceContainer.hxx"
 #endif
 
-#ifndef _CPPUHELPER_COMPONENT_HXX_
-#include <cppuhelper/component.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_COMPONENT_HXX_
+// auto strip #include <cppuhelper/component.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
 #endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
 #ifndef _FRM_IDS_HXX_
 #include "ids.hxx"
 #endif
