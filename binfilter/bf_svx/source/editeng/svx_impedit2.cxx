@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:36:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,65 +59,106 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
+#ifndef _EEITEM_HXX
+#include "eeitem.hxx"
+#endif
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
+
 #include <lspcitem.hxx>
-#include <flditem.hxx>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+#ifndef _DATE_HXX //autogen
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TIME_HXX //autogen
+#include <tools/time.hxx>
+#endif
+
+// auto strip #include <flditem.hxx>
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
 #include <editeng.hxx>
 #include <editview.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editdbg.hxx>
 #include <eerdll2.hxx>
 #include <eerdll.hxx>
-#include <edtspell.hxx>
-#include <eeobj.hxx>
+// auto strip #include <edtspell.hxx>
+// auto strip #include <eeobj.hxx>
 #include <txtrange.hxx>
-#include <svtools/urlbmk.hxx>
+// auto strip #include <svtools/urlbmk.hxx>
 #include <svtools/colorcfg.hxx>
 #include <svtools/ctloptions.hxx>
 
-#include <fhgtitem.hxx>
+// auto strip #include <fhgtitem.hxx>
 #include <lrspitem.hxx>
 #include <ulspitem.hxx>
-#include <wghtitem.hxx>
-#include <postitem.hxx>
-#include <udlnitem.hxx>
+// auto strip #include <wghtitem.hxx>
+// auto strip #include <postitem.hxx>
+// auto strip #include <udlnitem.hxx>
 #include <adjitem.hxx>
 #include <scripttypeitem.hxx>
 #include <frmdiritem.hxx>
-#include <fontitem.hxx>
+// auto strip #include <fontitem.hxx>
 
-#ifndef _SFXVIEWFRM_HXX //autogen
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWFRM_HXX //autogen
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 
-#ifndef _SFX_FCONTNR_HXX //autogen
-#include <bf_sfx2/fcontnr.hxx>
-#endif
+// auto strip #ifndef _SFX_FCONTNR_HXX //autogen
+// auto strip #include <bf_sfx2/fcontnr.hxx>
+// auto strip #endif
 
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
 
 #ifndef _VCL_CMDEVT_H
 #include <vcl/cmdevt.h>
 #endif
 
 #ifndef SVX_LIGHT
-#ifndef _SFXFRAME_HXX //autogen
-#include <bf_sfx2/frame.hxx>
-#endif
-#endif
-
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HPP_
-#include <com/sun/star/i18n/CharacterIteratorMode.hpp>
+// auto strip #ifndef _SFXFRAME_HXX //autogen
+// auto strip #include <bf_sfx2/frame.hxx>
+// auto strip #endif
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
-#include <com/sun/star/i18n/WordType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HPP_
+// auto strip #include <com/sun/star/i18n/CharacterIteratorMode.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
+// auto strip #include <com/sun/star/i18n/WordType.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
@@ -127,9 +168,9 @@
 #include <com/sun/star/text/CharacterCompressionType.hpp>
 #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
-#include <sot/formats.hxx>
+// auto strip #include <sot/formats.hxx>
 
 #include <unicode/ubidi.h>
 namespace binfilter {
