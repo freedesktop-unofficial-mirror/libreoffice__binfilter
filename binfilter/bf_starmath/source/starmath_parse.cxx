@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:27 $
+ *  last change: $Author: aw $ $Date: 2004-02-25 13:39:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1481,11 +1481,11 @@ const sal_Int32 coNumContFlags =
 /*N*/           break;
 /*N*/
 /*N*/       case TBINOM:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 Binom();
+/*N*/           Binom(); // matrixfett.smf
 /*N*/           break;
 /*N*/
 /*N*/       case TSTACK:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 Stack();
+/*N*/           Stack(); // matrixfett.smf
 /*?*/           break;
 /*N*/
 /*N*/       case TMATRIX:
@@ -2142,59 +2142,59 @@ const sal_Int32 coNumContFlags =
 /*N*/ }
 
 
-//STRIP001 void SmParser::Binom()
-//STRIP001 {
-//STRIP001  SmNodeArray  ExpressionArray;
-//STRIP001  SmStructureNode *pSNode = new SmTableNode(CurToken);
-//STRIP001
-//STRIP001  NextToken();
-//STRIP001
-//STRIP001  Sum();
-//STRIP001  Sum();
-//STRIP001
-//STRIP001  ExpressionArray.SetSize(2);
-//STRIP001
-//STRIP001  for (int i = 0;  i < 2;  i++)
-//STRIP001      ExpressionArray.Put(2 - (i + 1), NodeStack.Pop());
-//STRIP001
-//STRIP001  pSNode->SetSubNodes(ExpressionArray);
-//STRIP001  NodeStack.Push(pSNode);
-//STRIP001 }
+/*N*/ void SmParser::Binom() // matrixfett.smf
+/*N*/ {
+/*N*/   SmNodeArray  ExpressionArray;
+/*N*/   SmStructureNode *pSNode = new SmTableNode(CurToken);
+/*N*/
+/*N*/   NextToken();
+/*N*/
+/*N*/   Sum();
+/*N*/   Sum();
+/*N*/
+/*N*/   ExpressionArray.SetSize(2);
+/*N*/
+/*N*/   for (int i = 0;  i < 2;  i++)
+/*N*/       ExpressionArray.Put(2 - (i + 1), NodeStack.Pop());
+/*N*/
+/*N*/   pSNode->SetSubNodes(ExpressionArray);
+/*N*/   NodeStack.Push(pSNode);
+/*N*/ }
 
 
-//STRIP001 void SmParser::Stack()
-//STRIP001 {
-//STRIP001  SmNodeArray  ExpressionArray;
-//STRIP001  NextToken();
-//STRIP001  if (CurToken.eType == TLGROUP)
-//STRIP001  {
-//STRIP001      USHORT n = 0;
-//STRIP001
-//STRIP001      do
-//STRIP001      {
-//STRIP001          NextToken();
-//STRIP001          Align();
-//STRIP001          n++;
-//STRIP001      }
-//STRIP001      while (CurToken.eType == TPOUND);
-//STRIP001
-//STRIP001      ExpressionArray.SetSize(n);
-//STRIP001
-//STRIP001      for (USHORT i = 0; i < n; i++)
-//STRIP001          ExpressionArray.Put(n - (i + 1), NodeStack.Pop());
-//STRIP001
-//STRIP001      if (CurToken.eType != TRGROUP)
-//STRIP001          Error(PE_RGROUP_EXPECTED);
-//STRIP001
-//STRIP001      NextToken();
-//STRIP001
-//STRIP001      SmStructureNode *pSNode = new SmTableNode(CurToken);
-//STRIP001      pSNode->SetSubNodes(ExpressionArray);
-//STRIP001      NodeStack.Push(pSNode);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      Error(PE_LGROUP_EXPECTED);
-//STRIP001 }
+/*N*/ void SmParser::Stack() // matrixfett.smf
+/*N*/ {
+/*N*/   SmNodeArray  ExpressionArray;
+/*N*/   NextToken();
+/*N*/   if (CurToken.eType == TLGROUP)
+/*N*/   {
+/*N*/       USHORT n = 0;
+/*N*/
+/*N*/       do
+/*N*/       {
+/*N*/           NextToken();
+/*N*/           Align();
+/*N*/           n++;
+/*N*/       }
+/*N*/       while (CurToken.eType == TPOUND);
+/*N*/
+/*N*/       ExpressionArray.SetSize(n);
+/*N*/
+/*N*/       for (USHORT i = 0; i < n; i++)
+/*N*/           ExpressionArray.Put(n - (i + 1), NodeStack.Pop());
+/*N*/
+/*N*/       if (CurToken.eType != TRGROUP)
+/*N*/           Error(PE_RGROUP_EXPECTED);
+/*N*/
+/*N*/       NextToken();
+/*N*/
+/*N*/       SmStructureNode *pSNode = new SmTableNode(CurToken);
+/*N*/       pSNode->SetSubNodes(ExpressionArray);
+/*N*/       NodeStack.Push(pSNode);
+/*N*/   }
+/*N*/   else
+/*N*/       Error(PE_LGROUP_EXPECTED);
+/*N*/ }
 
 
 /*N*/ void SmParser::Matrix()
