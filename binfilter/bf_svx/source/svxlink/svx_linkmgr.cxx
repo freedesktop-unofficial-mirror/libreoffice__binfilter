@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:43 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:34:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,67 +65,67 @@
 #include <com/sun/star/uno/Sequence.h>
 #endif
 #include <sot/formats.hxx>
-#ifndef _SOT_EXCHANGE_HXX //autogen
-#include <sot/exchange.hxx>
-#endif
+// auto strip #ifndef _SOT_EXCHANGE_HXX //autogen
+// auto strip #include <sot/exchange.hxx>
+// auto strip #endif
 #ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif
 #ifndef _LNKBASE_HXX //autogen
 #include <so3/lnkbase.hxx>
 #endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SFXRECTITEM_HXX //autogen
-#include <svtools/rectitem.hxx>
-#endif
-#ifndef _SFXAPP_HXX
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX
-#include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
-#include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-#include <unotools/localfilehelper.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXRECTITEM_HXX //autogen
+// auto strip #include <svtools/rectitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXREQUEST_HXX
+// auto strip #include <bf_sfx2/request.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_INTERNO_HXX //autogen
+// auto strip #include <bf_sfx2/interno.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
+// auto strip #include <unotools/localfilehelper.hxx>
+// auto strip #endif
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
 #endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#include <com/sun/star/datatransfer/DataFlavor.hpp>
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #include <com/sun/star/datatransfer/DataFlavor.hpp>
 
 #include "linkmgr.hxx"
 #include "fileobj.hxx"
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
-#include "unolingu.hxx"
+// auto strip #include "unolingu.hxx"
 namespace binfilter {
 
 //STRIP001 class SvxInternalLink : public ::so3::SvLinkSource
