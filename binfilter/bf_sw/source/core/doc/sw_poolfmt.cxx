@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:12:43 $
+ *  last change: $Author: obo $ $Date: 2005-01-03 17:00:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1677,7 +1677,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*?*/       nId = RES_POOLPAGE_BEGIN;
 /*N*/   }
 /*N*/
-/*N*/   ResId aResId( RC_POOLPAGEDESC_BEGIN + nId - RES_POOLPAGE_BEGIN, pSwResMgr );
+/*N*/   ResId aResId( sal_uInt32(RC_POOLPAGEDESC_BEGIN + nId - RES_POOLPAGE_BEGIN), pSwResMgr );
 /*N*/   String aNm( aResId );
 /*N*/   if( pDesc )
 /*N*/   {
@@ -1846,7 +1846,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*?*/       nId = RES_POOLNUMRULE_BEGIN;
 /*N*/   }
 
-/*N*/   ResId aResId( RC_POOLNUMRULE_BEGIN + nId - RES_POOLNUMRULE_BEGIN, pSwResMgr );
+/*N*/   ResId aResId( sal_uInt32(RC_POOLNUMRULE_BEGIN + nId - RES_POOLNUMRULE_BEGIN), pSwResMgr );
 /*N*/   String aNm( aResId );
 /*N*/
 /*N*/   SwCharFmt *pNumCFmt = 0, *pBullCFmt = 0;
