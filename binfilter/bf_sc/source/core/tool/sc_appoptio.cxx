@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_appoptio.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:13:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,23 +60,23 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 //------------------------------------------------------------------
 
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/uno/Sequence.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-#include "cfgids.hxx"
+// auto strip #include "cfgids.hxx"
 #include "appoptio.hxx"
 #include "rechead.hxx"
-#include "scresid.hxx"
-#include "global.hxx"
+// auto strip #include "scresid.hxx"
+// auto strip #include "global.hxx"
 #include "userlist.hxx"
 #include "bf_sc.hrc"
 #include "compiler.hrc"
