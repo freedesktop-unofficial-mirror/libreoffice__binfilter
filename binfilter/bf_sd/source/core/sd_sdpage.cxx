@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-05 16:00:52 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:08:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -345,7 +345,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else if (eObjKind == PRESOBJ_GRAPHIC)
 /*N*/   {
-/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_GRAPHIC ) );
+/*NBFF*/        BitmapEx aBmpEx; // #i36618# ( SdResId( BMP_PRESOBJ_GRAPHIC ) );
 /*NBFF*/        Graphic  aGraphic( aBmpEx );
 /*NBFF*/        OutputDevice &aOutDev = *Application::GetDefaultDevice();
 /*NBFF*/        aOutDev.Push();
@@ -363,7 +363,7 @@ using namespace ::com::sun::star;
 /*N*/   else if (eObjKind == PRESOBJ_OBJECT)
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
-/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_OBJECT ) );
+/*NBFF*/        BitmapEx aBmpEx; // #i36618# ( SdResId( BMP_PRESOBJ_OBJECT ) );
 /*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
@@ -371,7 +371,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarChart" )));
-/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_CHART ) );
+/*NBFF*/        BitmapEx aBmpEx; // #i36618# ( SdResId( BMP_PRESOBJ_CHART ) );
 /*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
@@ -379,7 +379,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarOrg" )));
-/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_ORGCHART ) );
+/*NBFF*/        BitmapEx aBmpEx; // #i36618# ( SdResId( BMP_PRESOBJ_ORGCHART ) );
 /*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
@@ -387,7 +387,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*NBFF*/        pSdrObj = new SdrOle2Obj();
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarCalc" )));
-/*NBFF*/        BitmapEx aBmpEx( SdResId( BMP_PRESOBJ_TABLE ) );
+/*NBFF*/        BitmapEx aBmpEx; // #i36618# ( SdResId( BMP_PRESOBJ_TABLE ) );
 /*NBFF*/        Graphic aGraphic( aBmpEx );
 /*NBFF*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
