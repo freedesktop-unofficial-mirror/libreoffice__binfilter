@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:34:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,7 +59,7 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 // #define _SOLAR__PRIVATE 1
 #pragma hdrstop
@@ -67,44 +67,74 @@
 #define USE_SVXFONT
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#include <svxfont.hxx>
+// auto strip #include <svxfont.hxx>
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
 #include <editeng.hxx>
 #include <editview.hxx>
-#include <editstat.hxx>
-#include <editdbg.hxx>
+// auto strip #include <editstat.hxx>
+// auto strip #include <editdbg.hxx>
 #include <eerdll2.hxx>
 #include <eerdll.hxx>
 #include <editeng.hrc>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+
 #include <flditem.hxx>
-#include <txtrange.hxx>
-#include <vcl/graph.hxx>
+// auto strip #include <txtrange.hxx>
+// auto strip #include <vcl/graph.hxx>
 
-#include "akrnitem.hxx"
-#include "cntritem.hxx"
-#include "colritem.hxx"
-#include "crsditem.hxx"
-#include "escpitem.hxx"
-#include "fhgtitem.hxx"
-#include "fontitem.hxx"
-#include "kernitem.hxx"
+// auto strip #include "akrnitem.hxx"
+// auto strip #include "cntritem.hxx"
+// auto strip #include "colritem.hxx"
+// auto strip #include "crsditem.hxx"
+// auto strip #include "escpitem.hxx"
+// auto strip #include "fhgtitem.hxx"
+// auto strip #include "fontitem.hxx"
+// auto strip #include "kernitem.hxx"
 #include "lrspitem.hxx"
-#include "postitem.hxx"
-#include "shdditem.hxx"
-#include "udlnitem.hxx"
-#include "wghtitem.hxx"
-#include "wrlmitem.hxx"
-#include "brshitem.hxx"
-#include "cscoitem.hxx"
-#include "langitem.hxx"
-#include <emphitem.hxx>
-#include <charscaleitem.hxx>
-#include <charreliefitem.hxx>
+// auto strip #include "postitem.hxx"
+// auto strip #include "shdditem.hxx"
+// auto strip #include "udlnitem.hxx"
+// auto strip #include "wghtitem.hxx"
+// auto strip #include "wrlmitem.hxx"
+// auto strip #include "brshitem.hxx"
+// auto strip #include "cscoitem.hxx"
+// auto strip #include "langitem.hxx"
+// auto strip #include <emphitem.hxx>
+// auto strip #include <charscaleitem.hxx>
+// auto strip #include <charreliefitem.hxx>
 
-#include <sot/exchange.hxx>
-#include <sot/formats.hxx>
+// auto strip #include <sot/exchange.hxx>
+// auto strip #include <sot/formats.hxx>
 
 //#ifndef _SV_SYSTEM_HXX
 //#include <vcl/system.hxx>
@@ -113,34 +143,34 @@
 #include <numitem.hxx>
 #include <bulitem.hxx>
 
-#ifndef _UNO_LINGU_HXX
-#include <unolingu.hxx>
-#endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
 
-#ifndef _SV_HELP_HXX //autogen
-#include <vcl/help.hxx>
-#endif
+// auto strip #ifndef _SV_HELP_HXX //autogen
+// auto strip #include <vcl/help.hxx>
+// auto strip #endif
 
-#ifndef _XPOLY_HXX //autogen
-#include <xpoly.hxx>
-#endif
+// auto strip #ifndef _XPOLY_HXX //autogen
+// auto strip #include <xpoly.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XCLIPBOARD_HPP_
-#include <com/sun/star/datatransfer/clipboard/XClipboard.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XCLIPBOARD_HPP_
+// auto strip #include <com/sun/star/datatransfer/clipboard/XClipboard.hpp>
+// auto strip #endif
 
 #ifndef SVX_LIGHT
 #include <srchdlg.hxx>
 #endif
 
 #if OSL_DEBUG_LEVEL > 1
-#include <frmdiritem.hxx>
+// auto strip #include <frmdiritem.hxx>
 #endif
 namespace binfilter {
 

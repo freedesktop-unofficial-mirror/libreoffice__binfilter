@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:34:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,29 +60,54 @@
  ************************************************************************/
 
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
 #define ENABLE_STRING_STREAM_OPERATORS
-#include <tools/stream.hxx>
+// auto strip #include <tools/stream.hxx>
+
+#ifndef _SV_OUTDEV_HXX
+#include <vcl/outdev.hxx>
+#endif
 
 #include <editobj2.hxx>
-#include <editdata.hxx>
-#include <editattr.hxx>
+// auto strip #include <editdata.hxx>
+// auto strip #include <editattr.hxx>
 #include <editeng.hxx>
 #include <fontitem.hxx>
 #include <cscoitem.hxx>
 //#include <vcl/system.hxx>
+
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+// auto strip #ifndef _DATE_HXX //autogen
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _TIME_HXX //autogen
+// auto strip #include <tools/time.hxx>
+// auto strip #endif
+
 #include <flditem.hxx>
 #include <lrspitem.hxx>
 #include <tstpitem.hxx>
 #include <bulitem.hxx>
 #include <numitem.hxx>
 #include <brshitem.hxx>
-#include <vcl/graph.hxx>
+// auto strip #include <vcl/graph.hxx>
 #include <svtools/intitem.hxx>
-#include <vcl/fontcvt.hxx>
+// auto strip #include <vcl/fontcvt.hxx>
 
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
