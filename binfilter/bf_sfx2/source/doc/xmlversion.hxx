@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlversion.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:54:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #include <so3/svstor.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include <bf_xmloff/xmlictxt.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include <bf_xmloff/xmlictxt.hxx>
+// auto strip #endif
 
 //#ifndef _XMLOFF_XMLITMAP_HXX
 //#include <bf_xmloff/xmlitmap.hxx>
@@ -81,17 +81,17 @@
 #include <bf_xmloff/xmlimp.hxx>
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include <bf_xmloff/nmspmap.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include <bf_xmloff/nmspmap.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include <bf_xmloff/xmlnmspe.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include <bf_xmloff/xmlnmspe.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 class DateTime;
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_xmlversion.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:53:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -108,6 +108,15 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _XMLOFF_NMSPMAP_HXX
+#include <bf_xmloff/nmspmap.hxx>
+#endif
+
+#ifndef _XMLOFF_XMLNMSPE_HXX
+#include <bf_xmloff/xmlnmspe.hxx>
+#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star::xml::sax;
