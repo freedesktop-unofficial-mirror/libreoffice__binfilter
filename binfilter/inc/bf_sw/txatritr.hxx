@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txatritr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:49:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,9 +67,9 @@
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-#ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 #include <tools/debug.hxx>
 class String;
 class SfxPoolItem;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtatr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:49:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,12 +61,12 @@
 #ifndef _TXTATR_HXX
 #define _TXTATR_HXX
 
-#ifndef _SV_GEN_HXX
-#include <tools/gen.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
-#include <tools/color.hxx>
-#endif
+// auto strip #ifndef _SV_GEN_HXX
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_COLOR_HXX
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
 #ifndef _TXATBASE_HXX
 #include <txatbase.hxx>     // SwTxtAttr/SwTxtAttrEnd
 #endif

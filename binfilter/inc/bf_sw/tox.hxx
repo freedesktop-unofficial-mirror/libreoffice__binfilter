@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tox.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:48:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,13 +61,13 @@
 #ifndef _TOX_HXX
 #define _TOX_HXX
 
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
