@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docstyle.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:31:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,8 +80,12 @@
 #ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
 #endif
-#ifndef _SVX_NUMITEM_HXX //autogen
-#include <bf_svx/numitem.hxx>
+// auto strip #ifndef _SVX_NUMITEM_HXX //autogen
+// auto strip #include <bf_svx/numitem.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 
 #ifndef _FMTCOL_HXX //autogen
@@ -90,9 +94,14 @@
 #ifndef _UITOOL_HXX
 #include <uitool.hxx>
 #endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
@@ -102,18 +111,18 @@
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
 #ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
 #endif
@@ -126,12 +135,12 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _UIITEMS_HXX
 #include <uiitems.hxx>
 #endif
@@ -148,21 +157,21 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
-#ifndef _SVTOOLS_CJKOPTIONS_HXX
-#include <svtools/cjkoptions.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
-#include <unotools/intlwrapper.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _SVTOOLS_CJKOPTIONS_HXX
+// auto strip #include <svtools/cjkoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_INTLWRAPPER_HXX
+// auto strip #include <unotools/intlwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 // MD 06.02.95: Die Formatnamen in der Liste aller Namen haben als
