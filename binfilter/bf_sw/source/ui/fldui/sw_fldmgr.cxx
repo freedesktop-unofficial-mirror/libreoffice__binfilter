@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldmgr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:49:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,175 +69,180 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
-#include <svtools/languageoptions.hxx>
+// auto strip #ifndef _SFXSTRITEM_HXX
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
+// auto strip #include <svtools/languageoptions.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XDEFAULTNUMBERINGPROVIDER_HPP_
+// auto strip #include <com/sun/star/text/XDefaultNumberingProvider.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XNUMBERINGTYPEINFO_HPP_
+// auto strip #include <com/sun/star/text/XNumberingTypeInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
+// auto strip #include <com/sun/star/style/NumberingType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
+// auto strip #include <com/sun/star/sdbc/XConnection.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
+// auto strip #include <com/sun/star/sdbc/XDataSource.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCINF_HXX //autogen
+// auto strip #include <bf_sfx2/docinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJSH_HXX //autogen
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINKMGR_HXX //autogen
+// auto strip #include <so3/linkmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LANGITEM_HXX //autogen
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMACITEM_HXX //autogen
+// auto strip #include <svtools/macitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTRFMRK_HXX //autogen
+// auto strip #include <fmtrfmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMETH_HXX //autogen
+// auto strip #include <basic/sbmeth.hxx>
+// auto strip #endif
+// auto strip #ifndef _SBXCLASS_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _ZFORLIST_HXX //autogen
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
+// auto strip #ifndef _ZFORMAT_HXX //autogen
+// auto strip #include <svtools/zformat.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XDEFAULTNUMBERINGPROVIDER_HPP_
-#include <com/sun/star/text/XDefaultNumberingProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XNUMBERINGTYPEINFO_HPP_
-#include <com/sun/star/text/XNumberingTypeInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
-#include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
-#include <com/sun/star/sdbc/XConnection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
-#include <com/sun/star/sdbc/XDataSource.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
-
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
-#include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _LINKMGR_HXX //autogen
-#include <so3/linkmgr.hxx>
-#endif
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
-#include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
-#include <svtools/macitem.hxx>
-#endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
-#include <fmtrfmrk.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
-#ifndef _SB_SBMETH_HXX //autogen
-#include <basic/sbmeth.hxx>
-#endif
-#ifndef _SBXCLASS_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
-#include <svtools/zforlist.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
-#include <svtools/zformat.hxx>
-#endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _WRTSH_HXX
-#include <wrtsh.hxx>        // Actives Fenster
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>      // Actives Fenster
-#endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>        // Actives Fenster
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
-#include <fmtinfmt.hxx>
-#endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
+// auto strip #ifndef _WRTSH_HXX
+// auto strip #include <wrtsh.hxx>      // Actives Fenster
+// auto strip #endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>        // Actives Fenster
+// auto strip #endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>      // Actives Fenster
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTINFMT_HXX //autogen
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
 #endif
-#ifndef _CHPFLD_HXX
-#include <chpfld.hxx>
-#endif
-#ifndef _DDEFLD_HXX
-#include <ddefld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
-#ifndef _REFFLD_HXX
-#include <reffld.hxx>
-#endif
-#ifndef _USRFLD_HXX
-#include <usrfld.hxx>
-#endif
-#ifndef _DBFLD_HXX
-#include <dbfld.hxx>
-#endif
-#ifndef _AUTHFLD_HXX
-#include <authfld.hxx>
-#endif
-#ifndef _FLDDAT_HXX
-#include <flddat.hxx>
-#endif
+// auto strip #ifndef _CHPFLD_HXX
+// auto strip #include <chpfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _DDEFLD_HXX
+// auto strip #include <ddefld.hxx>
+// auto strip #endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _REFFLD_HXX
+// auto strip #include <reffld.hxx>
+// auto strip #endif
+// auto strip #ifndef _USRFLD_HXX
+// auto strip #include <usrfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _DBFLD_HXX
+// auto strip #include <dbfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _AUTHFLD_HXX
+// auto strip #include <authfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDDAT_HXX
+// auto strip #include <flddat.hxx>
+// auto strip #endif
 #ifndef _FLDMGR_HXX
 #include <fldmgr.hxx>
 #endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
 
 #ifndef _FLDUI_HRC
 #include <fldui.hrc>
 #endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 using namespace rtl;
 using namespace ::com::sun::star::uno;
