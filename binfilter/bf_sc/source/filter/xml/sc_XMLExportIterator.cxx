@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLExportIterator.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:27:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -71,18 +71,18 @@
 #include "XMLExportIterator.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XSIMPLETEXT_HPP_
-#include <com/sun/star/text/XSimpleText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HPP_
-#include <com/sun/star/sheet/XCellAddressable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XSIMPLETEXT_HPP_
+// auto strip #include <com/sun/star/text/XSimpleText.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HPP_
+// auto strip #include <com/sun/star/sheet/XCellAddressable.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCELLRANGESQUERY_HPP_
 #include <com/sun/star/sheet/XCellRangesQuery.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SHEET_CELLFLAGS_HPP_
-#include <com/sun/star/sheet/CellFlags.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_CELLFLAGS_HPP_
+// auto strip #include <com/sun/star/sheet/CellFlags.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XSheetAnnotationsSupplier.hpp>
 #endif
@@ -91,9 +91,9 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include <bf_xmloff/xmlnmspe.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include <bf_xmloff/xmlnmspe.hxx>
+// auto strip #endif
 
 #ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
