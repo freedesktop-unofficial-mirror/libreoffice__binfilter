@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_ximp3dscene.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:54:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,21 +69,21 @@
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _XEXPTRANSFORM_HXX
-#include "xexptran.hxx"
-#endif
+// auto strip #ifndef _XEXPTRANSFORM_HXX
+// auto strip #include "xexptran.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
-#include <com/sun/star/drawing/Direction3D.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
+// auto strip #include <com/sun/star/drawing/Direction3D.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>

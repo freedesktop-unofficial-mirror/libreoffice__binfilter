@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_ximp3dobject.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:54:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,53 +61,53 @@
 
 #pragma hdrstop
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
-#include <comphelper/extract.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_EXTRACT_HXX_
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #endif
 
 #ifndef _XIMP3DOBJECT_HXX
 #include "ximp3dobject.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
-#include "XMLShapeStyleContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
+// auto strip #include "XMLShapeStyleContext.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
-#include <com/sun/star/drawing/PointSequenceSequence.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
+// auto strip #include <com/sun/star/drawing/PointSequenceSequence.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
-#include <com/sun/star/drawing/PointSequence.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
+// auto strip #include <com/sun/star/drawing/PointSequence.hpp>
+// auto strip #endif
 
-#ifndef _XEXPTRANSFORM_HXX
-#include "xexptran.hxx"
-#endif
+// auto strip #ifndef _XEXPTRANSFORM_HXX
+// auto strip #include "xexptran.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
-#include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
+// auto strip #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
-#ifndef _XIMPSTYLE_HXX
-#include "ximpstyl.hxx"
-#endif
+// auto strip #ifndef _XIMPSTYLE_HXX
+// auto strip #include "ximpstyl.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
