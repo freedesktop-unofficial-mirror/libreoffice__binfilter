@@ -2,9 +2,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:46:12 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:41:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,7 +143,7 @@ class SwSection : public SwClient
     BOOL bConnectFlag : 1;      // Flag: "Verbindung zum Server" vorhanden?
 
 
-//STRIP001  void _SetHiddenFlag( int bHidden, int bCondition );
+    void _SetHiddenFlag( int bHidden, int bCondition );
     void _SetProtectFlag( int bFlag ) { bProtectFlag = bFlag; }
 
     int _IsProtect() const;
@@ -184,7 +184,7 @@ public:
     int IsHiddenFlag() const { return bHiddenFlag; }
     int IsProtectFlag() const { return bProtectFlag; }
 
-    void SetCondHidden( int bFlag = TRUE ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetCondHidden( int bFlag = TRUE );
+    void SetCondHidden( int bFlag = TRUE );
     int IsCondHidden() const { return bCondHiddenFlag; }
     // erfrage (auch ueber die Parents), ob diese Section versteckt sein soll.
     int CalcHiddenFlag() const;
@@ -265,7 +265,7 @@ public:
     virtual void DelFrms();
 
     //Erzeugt die Ansichten
-//STRIP001  virtual void MakeFrms();
+    virtual void MakeFrms();
 
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
         // erfrage vom Format Informationen
