@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 14:14:07 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:35:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -471,86 +471,86 @@ namespace binfilter {
 //  0 : nicht geladen
 //  1 : Einlesen erfolgreich
 
-//STRIP001 short SwGrfNode::SwapIn( BOOL bWaitForData )
-//STRIP001 {
-//STRIP001  if( bInSwapIn )                 // nicht rekuriv!!
-//STRIP001      return !aGrfObj.IsSwappedOut();
-//STRIP001
-//STRIP001  short nRet = 0;
-//STRIP001  bInSwapIn = TRUE;
-//STRIP001  SwBaseLink* pLink = (SwBaseLink*)(::so3::SvBaseLink*) refLink;
-//STRIP001  if( pLink )
-//STRIP001  {
-//STRIP001      if( GRAPHIC_NONE == aGrfObj.GetType() ||
-//STRIP001          GRAPHIC_DEFAULT == aGrfObj.GetType() )
-//STRIP001      {
-//STRIP001          // noch nicht geladener Link
-//STRIP001          if( pLink->SwapIn( bWaitForData ) )
-//STRIP001              nRet = -1;
-//STRIP001          else if( GRAPHIC_DEFAULT == aGrfObj.GetType() )
-//STRIP001          {
-//STRIP001              // keine default Bitmap mehr, also neu Painten!
-//STRIP001              aGrfObj.SetGraphic( Graphic() );
-//STRIP001              SwMsgPoolItem aMsgHint( RES_GRAPHIC_PIECE_ARRIVED );
-//STRIP001              Modify( &aMsgHint, &aMsgHint );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if( aGrfObj.IsSwappedOut() )
-//STRIP001          // nachzuladender Link
-//STRIP001          nRet = pLink->SwapIn( bWaitForData ) ? 1 : 0;
-//STRIP001      else
-//STRIP001          nRet = 1;
-//STRIP001  }
-//STRIP001  else if( aGrfObj.IsSwappedOut() )
-//STRIP001  {
-//STRIP001      // Die Grafik ist im Storage oder im TempFile drin
-//STRIP001      if( !HasStreamName() )
-//STRIP001          nRet = (short)aGrfObj.SwapIn();
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SvStorageRef refRoot = GetDoc()->GetDocStorage();
-//STRIP001          ASSERT( refRoot.Is(), "Kein Storage am Doc" );
-//STRIP001          if( refRoot.Is() )
-//STRIP001          {
-//STRIP001              String aStrmName, aPicStgName;
-//STRIP001              BOOL bGraphic = GetStreamStorageNames( aStrmName, aPicStgName );
-//STRIP001              SvStorageRef refPics = aPicStgName.Len()
-//STRIP001                  ? refRoot->OpenStorage( aPicStgName,
-//STRIP001                      STREAM_READ | STREAM_SHARE_DENYWRITE )
-//STRIP001                  : &refRoot;
-//STRIP001              if( refPics->GetError() == SVSTREAM_OK )
-//STRIP001              {
-//STRIP001                  SvStorageStreamRef refStrm =
-//STRIP001                      refPics->OpenStream( aStrmName,
-//STRIP001                      STREAM_READ | STREAM_SHARE_DENYWRITE );
-//STRIP001                  if( refStrm->GetError() == SVSTREAM_OK )
-//STRIP001                  {
-//STRIP001                      refStrm->SetVersion( refRoot->GetVersion() );
-//STRIP001                      if( bGraphic ? aGrfObj.SwapIn( refStrm )
-//STRIP001                                   : ImportGraphic( *refStrm ) )
-//STRIP001                          nRet = 1;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if( 1 == nRet )
-//STRIP001      {
-//STRIP001          SwMsgPoolItem aMsg( RES_GRAPHIC_SWAPIN );
-//STRIP001          SwCntntNode::Modify( &aMsg, &aMsg );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      nRet = 1;
-//STRIP001  DBG_ASSERTWARNING( nRet, "Grafik kann nicht eingeswapt werden" );
-//STRIP001
-//STRIP001  if( nRet )
-//STRIP001  {
-//STRIP001      if( !nGrfSize.Width() && !nGrfSize.Height() )
-//STRIP001          SetTwipSize( ::GetGraphicSizeTwip( aGrfObj.GetGraphic(), 0 ) );
-//STRIP001  }
-//STRIP001  bInSwapIn = FALSE;
-//STRIP001  return nRet;
-//STRIP001 }
+short SwGrfNode::SwapIn( BOOL bWaitForData )
+{
+    if( bInSwapIn )                 // nicht rekuriv!!
+        return !aGrfObj.IsSwappedOut();
+
+    short nRet = 0;
+    bInSwapIn = TRUE;
+    SwBaseLink* pLink = (SwBaseLink*)(::so3::SvBaseLink*) refLink;
+    if( pLink )
+    {
+        if( GRAPHIC_NONE == aGrfObj.GetType() ||
+            GRAPHIC_DEFAULT == aGrfObj.GetType() )
+        {
+            // noch nicht geladener Link
+            if( pLink->SwapIn( bWaitForData ) )
+                nRet = -1;
+            else if( GRAPHIC_DEFAULT == aGrfObj.GetType() )
+            {
+                // keine default Bitmap mehr, also neu Painten!
+                aGrfObj.SetGraphic( Graphic() );
+                SwMsgPoolItem aMsgHint( RES_GRAPHIC_PIECE_ARRIVED );
+                Modify( &aMsgHint, &aMsgHint );
+            }
+        }
+        else if( aGrfObj.IsSwappedOut() )
+            // nachzuladender Link
+            nRet = pLink->SwapIn( bWaitForData ) ? 1 : 0;
+        else
+            nRet = 1;
+    }
+    else if( aGrfObj.IsSwappedOut() )
+    {
+        // Die Grafik ist im Storage oder im TempFile drin
+        if( !HasStreamName() )
+            nRet = (short)aGrfObj.SwapIn();
+        else
+        {
+            SvStorageRef refRoot = GetDoc()->GetDocStorage();
+            ASSERT( refRoot.Is(), "Kein Storage am Doc" );
+            if( refRoot.Is() )
+            {
+                String aStrmName, aPicStgName;
+                BOOL bGraphic = GetStreamStorageNames( aStrmName, aPicStgName );
+                SvStorageRef refPics = aPicStgName.Len()
+                    ? refRoot->OpenStorage( aPicStgName,
+                        STREAM_READ | STREAM_SHARE_DENYWRITE )
+                    : &refRoot;
+                if( refPics->GetError() == SVSTREAM_OK )
+                {
+                    SvStorageStreamRef refStrm =
+                        refPics->OpenStream( aStrmName,
+                        STREAM_READ | STREAM_SHARE_DENYWRITE );
+                    if( refStrm->GetError() == SVSTREAM_OK )
+                    {
+                        refStrm->SetVersion( refRoot->GetVersion() );
+                        if( bGraphic ? aGrfObj.SwapIn( refStrm )
+                                     : ImportGraphic( *refStrm ) )
+                            nRet = 1;
+                    }
+                }
+            }
+        }
+        if( 1 == nRet )
+        {
+            SwMsgPoolItem aMsg( RES_GRAPHIC_SWAPIN );
+            SwCntntNode::Modify( &aMsg, &aMsg );
+        }
+    }
+    else
+        nRet = 1;
+    DBG_ASSERTWARNING( nRet, "Grafik kann nicht eingeswapt werden" );
+
+    if( nRet )
+    {
+        if( !nGrfSize.Width() && !nGrfSize.Height() )
+            SetTwipSize( ::binfilter::GetGraphicSizeTwip( aGrfObj.GetGraphic(), 0 ) );
+    }
+    bInSwapIn = FALSE;
+    return nRet;
+}
 
 
 //STRIP001 short SwGrfNode::SwapOut()
