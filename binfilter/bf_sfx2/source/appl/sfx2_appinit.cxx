@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:26:36 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 11:30:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #include "app.hxx"
 
 #ifndef _COM_SUN_STAR_FRAME_XTERMINATELISTENER_HPP_
@@ -103,7 +102,6 @@
 #ifndef _EHDL_HXX
 #include <svtools/ehdl.hxx>
 #endif
-#include <svtools/inethist.hxx>
 #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
 #endif
@@ -282,7 +280,6 @@ public:
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr = new SfxFrameObjectFactoryPtr;
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr->pSfxFrameObjectFactory = SfxFrameObject::ClassFactory();
 /*N*/   SvBindStatusCallback::SetProgressCallback( STATIC_LINK( 0, SfxProgress, DefaultBindingProgress ) );
-/*N*/     INetURLHistory::GetOrCreate()->SetLocation( SvtPathOptions().GetUserConfigPath() );
 /*N*/
 /*N*/   // merken, falls Applikation normal gestartet wurde
 //STRIP007  if ( pAppData_Impl->bDirectAliveCount )
