@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLRedlineExport.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:29:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,41 +67,41 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_UNKNOWNPROPERTYEXCEPTION_HPP_
-#include <com/sun/star/beans/UnknownPropertyException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_UNKNOWNPROPERTYEXCEPTION_HPP_
+// auto strip #include <com/sun/star/beans/UnknownPropertyException.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
-#include <com/sun/star/beans/XEnumeration.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
+// auto strip #include <com/sun/star/beans/XEnumeration.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DOCUMENT_XREDLINESSUPPLIER_HPP_
 #include <com/sun/star/document/XRedlinesSupplier.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-#include <com/sun/star/text/XTextContent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
+// auto strip #include <com/sun/star/text/XTextContent.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
@@ -111,9 +111,9 @@
 #include <com/sun/star/util/DateTime.hpp>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
