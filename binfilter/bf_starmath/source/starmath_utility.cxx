@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:15:03 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:32:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -247,14 +247,14 @@ namespace binfilter {
 #define POST_TE     ")>"
 
 
-//STRIP001 ByteString ConvertUnknownCharacter(sal_Unicode ch)
-//STRIP001 {
-//STRIP001     ByteString aString( RTL_CONSTASCII_STRINGPARAM( PRE_TE TE_UCS2 ) );
-//STRIP001     aString.Append( "(" );
-//STRIP001  aString += ByteString::CreateFromInt32(ch);
-//STRIP001     aString += POST_TE;
-//STRIP001  return aString;
-//STRIP001 }
+ByteString ConvertUnknownCharacter(sal_Unicode ch)
+{
+    ByteString aString( RTL_CONSTASCII_STRINGPARAM( PRE_TE TE_UCS2 ) );
+    aString.Append( "(" );
+    aString += ByteString::CreateFromInt32(ch);
+    aString += POST_TE;
+    return aString;
+}
 
 
 /*N*/ const ByteString ExportString( const String& rString )
@@ -269,7 +269,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/             sal_Char cChar = ByteString::ConvertFromUnicode( ch, nEnc, FALSE );
 /*N*/           if (cChar == 0)
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               aString += ConvertUnknownCharacter(ch);
+/*?*/               aString += ConvertUnknownCharacter(ch);
 /*N*/           else
 /*N*/               aString += cChar;
 /*N*/       }
@@ -303,16 +303,16 @@ static const struct
     { "SYMBOL",       RTL_TEXTENCODING_SYMBOL }
 };
 
-//STRIP001 int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
-//STRIP001 {
-//STRIP001     int nRes = -1;
-//STRIP001     for (int i = 0;  i < TEXTENCODINGTAB_LEN  &&  nRes == -1;  ++i)
-//STRIP001     {
-//STRIP001         if (nPos == rTxt.SearchAscii( aTextEncodingTab[i].pText , nPos ))
-//STRIP001             nRes = i;
-//STRIP001     }
-//STRIP001     return nRes;
-//STRIP001 }
+int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
+{
+    int nRes = -1;
+    for (int i = 0;  i < TEXTENCODINGTAB_LEN  &&  nRes == -1;  ++i)
+    {
+        if (nPos == rTxt.SearchAscii( aTextEncodingTab[i].pText , nPos ))
+            nRes = i;
+    }
+    return nRes;
+}
 
 /*N*/ const String ImportString( const ByteString& rByteString )
 /*N*/ {
@@ -325,53 +325,59 @@ static const struct
 /*N*/     while( STRING_NOTFOUND != ( nPreStart =
 /*N*/                                     aString.SearchAscii( PRE_TE, nPreStart )) )
 /*N*/     {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/         //
-//STRIP001 /*N*/         // convert 'unknown character' to unicode character
-//STRIP001 /*N*/         //
-//STRIP001 /*?*/         xub_StrLen nTeStart = nPreStart + nPreLen;
-//STRIP001 /*?*/         xub_StrLen nTeLen   = 0;
-//STRIP001 /*?*/         int nIdx = GetTextEncodingTabIndex( aString, nTeStart );
-//STRIP001 /*?*/         DBG_ASSERT( nIdx >= 0, "text-encoding is missing" );
-//STRIP001 /*?*/         rtl_TextEncoding nEnc = RTL_TEXTENCODING_DONTKNOW;
-//STRIP001 /*?*/         if (nIdx >= 0)
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             nEnc = aTextEncodingTab[ nIdx ].nEnc;
-//STRIP001 /*?*/             nTeLen = strlen( aTextEncodingTab[ nIdx ].pText );
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/         if (RTL_TEXTENCODING_DONTKNOW == nEnc)
-//STRIP001 /*?*/             nEnc = osl_getThreadTextEncoding();
-//STRIP001 /*?*/         //
-//STRIP001 /*?*/         xub_StrLen nNumStart = nTeStart + nTeLen + 1, // +1 because of "("
-//STRIP001 /*?*/                    nReplLen;
-//STRIP001 /*?*/         xub_StrLen nPostStart = aString.SearchAscii( POST_TE, nNumStart );
-//STRIP001 /*?*/         String sRepl;
-//STRIP001 /*?*/         if( STRING_NOTFOUND != nPostStart )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             INT32 nCharVal = aString.Copy( nNumStart, nPostStart - nNumStart ).ToInt32();
-//STRIP001 /*?*/             DBG_ASSERT( nCharVal != 0, "String -> Int32 failed ?" );
-//STRIP001 /*?*/             if (RTL_TEXTENCODING_UNICODE == nEnc)
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 if (nCharVal)
-//STRIP001 /*?*/                     sRepl = (sal_Unicode) nCharVal;
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/             else
-//STRIP001 /*?*/             {
-//STRIP001 /*?*/                 DBG_ASSERT( 0 <= nCharVal  &&  nCharVal <= 256,
-//STRIP001 /*?*/                         "character value out of range" );
-//STRIP001 /*?*/                 sRepl = ByteString::ConvertToUnicode( nCharVal, nEnc );
-//STRIP001 /*?*/             }
-//STRIP001 /*?*/             DBG_ASSERT( sRepl.Len() || !nCharVal, "conversion failed" );
-//STRIP001 /*?*/             nReplLen = nPostStart + nPostLen - nPreStart;
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/         else
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             DBG_ERROR( "import error: 'unknown character' delimiter missing" );
-//STRIP001 /*?*/             sRepl.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<?>" ) );
-//STRIP001 /*?*/             nReplLen = nPreLen;
-//STRIP001 /*?*/         }
-//STRIP001 /*?*/
-//STRIP001 /*?*/         aString.Replace( nPreStart, nReplLen, sRepl );
-//STRIP001 /*?*/         nPreStart += sRepl.Len();
+              if (aString.EqualsAscii( "<?>", nPreStart, 3 ))
+              {
+                  nPreStart += 3;   // restart look-up after current found position
+                  continue;
+              }
+
+/*?*/         //
+/*N*/         // convert 'unknown character' to unicode character
+/*N*/         //
+/*?*/         xub_StrLen nTeStart = nPreStart + nPreLen;
+/*?*/         xub_StrLen nTeLen   = 0;
+/*?*/         int nIdx = GetTextEncodingTabIndex( aString, nTeStart );
+/*?*/         DBG_ASSERT( nIdx >= 0, "text-encoding is missing" );
+/*?*/         rtl_TextEncoding nEnc = RTL_TEXTENCODING_DONTKNOW;
+/*?*/         if (nIdx >= 0)
+/*?*/         {
+/*?*/             nEnc = aTextEncodingTab[ nIdx ].nEnc;
+/*?*/             nTeLen = strlen( aTextEncodingTab[ nIdx ].pText );
+/*?*/         }
+/*?*/         if (RTL_TEXTENCODING_DONTKNOW == nEnc)
+/*?*/             nEnc = osl_getThreadTextEncoding();
+/*?*/         //
+/*?*/         xub_StrLen nNumStart = nTeStart + nTeLen + 1, // +1 because of "("
+/*?*/                    nReplLen;
+/*?*/         xub_StrLen nPostStart = aString.SearchAscii( POST_TE, nNumStart );
+/*?*/         String sRepl;
+/*?*/         if( STRING_NOTFOUND != nPostStart )
+/*?*/         {
+/*?*/             INT32 nCharVal = aString.Copy( nNumStart, nPostStart - nNumStart ).ToInt32();
+/*?*/             DBG_ASSERT( nCharVal != 0, "String -> Int32 failed ?" );
+/*?*/             if (RTL_TEXTENCODING_UNICODE == nEnc)
+/*?*/             {
+/*?*/                 if (nCharVal)
+/*?*/                     sRepl = (sal_Unicode) nCharVal;
+/*?*/             }
+/*?*/             else
+/*?*/             {
+/*?*/                 DBG_ASSERT( 0 <= nCharVal  &&  nCharVal <= 256,
+/*?*/                         "character value out of range" );
+/*?*/                 sRepl = ByteString::ConvertToUnicode( nCharVal, nEnc );
+/*?*/             }
+/*?*/             DBG_ASSERT( sRepl.Len() || !nCharVal, "conversion failed" );
+/*?*/             nReplLen = nPostStart + nPostLen - nPreStart;
+/*?*/         }
+/*?*/         else
+/*?*/         {
+/*?*/             DBG_ERROR( "import error: 'unknown character' delimiter missing" );
+/*?*/             sRepl.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<?>" ) );
+/*?*/             nReplLen = nPreLen;
+/*?*/         }
+/*?*/
+/*?*/         aString.Replace( nPreStart, nReplLen, sRepl );
+/*?*/         nPreStart += sRepl.Len();
 /*N*/     }
 /*N*/
 /*N*/     // in old 2.0 or 3.0 formulas the strings to be imported do have an
