@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:43:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,24 +74,24 @@
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_XUB_STRLEN
 #define _SVSTDARR_BOOLS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
-#ifndef _IPOBJ_HXX //autogen
-#include <so3/ipobj.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _IPOBJ_HXX //autogen
+// auto strip #include <so3/ipobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
 #ifndef SVTOOLS_URIHELPER_HXX
 #include <svtools/urihelper.hxx>
 #endif
-#ifndef _SVXLINKMGR_HXX
-#include <bf_svx/linkmgr.hxx>
-#endif
+// auto strip #ifndef _SVXLINKMGR_HXX
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -105,12 +105,21 @@
 #include <bf_svx/tstpitem.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
@@ -171,12 +180,12 @@
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>
-#endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>
+// auto strip #endif
 #ifndef _CRYPTER_HXX
 #include <crypter.hxx>
 #endif
@@ -190,9 +199,9 @@
 #include <fmthbsh.hxx>
 #endif
 // OD 27.06.2003 #108784#
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
 
 // Export
 #ifndef _FLDBAS_HXX
