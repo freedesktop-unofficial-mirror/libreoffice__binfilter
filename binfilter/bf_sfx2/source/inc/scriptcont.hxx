@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scriptcont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:58:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 #ifndef _SFX_SCRIPTCONT_HXX
 #define _SFX_SCRIPTCONT_HXX
 
-#include <namecont.hxx>
+//#include <namecont.hxx>
 #ifndef _BASMGR_HXX
 #include <basmgr.hxx>
 #endif
