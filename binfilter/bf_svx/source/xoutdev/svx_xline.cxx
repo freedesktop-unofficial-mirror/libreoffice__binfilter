@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:52:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,13 +64,13 @@
 #include <stdlib.h>
 #include <math.h>
 #include <tools/bigint.hxx>
-#include <tools/poly.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #include <tools/poly.hxx>
+// auto strip #include <vcl/svapp.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
-#include <vcl/gdimtf.hxx>
-#include <vcl/gradient.hxx>
-#include "xpoly.hxx"
+// auto strip #include <vcl/gdimtf.hxx>
+// auto strip #include <vcl/gradient.hxx>
+// auto strip #include "xpoly.hxx"
 #include "xoutx.hxx"
 
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
