@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:30:45 $
+ *  last change: $Author: obo $ $Date: 2005-03-15 12:39:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -377,23 +377,23 @@ using namespace ::rtl;
 /*N*/             USHORT nFontId = aFontIds[i];
 /*N*/             SvxFontItem* pFontItem = 0;
 /*N*/             if(!pStdFont->IsFontDefault(nFontId))
-/*N*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/                 sEntry = pStdFont->GetFontFor(nFontId);
-//STRIP001 /*?*/                 sal_Bool bDelete = sal_False;
-//STRIP001 /*?*/                 const SfxFont* pFnt = pPrt ? pPrt->GetFontByName(sEntry): 0;
-//STRIP001 /*?*/                 if(!pFnt)
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
-//STRIP001 /*?*/                                         ::gsl_getSystemTextEncoding() );
-//STRIP001 /*?*/                     bDelete = sal_True;
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/                 pFontItem = new SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
-//STRIP001 /*?*/                                     aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(), nFontWhich);
-//STRIP001 /*?*/                 if(bDelete)
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     delete (SfxFont*) pFnt;
-//STRIP001 /*?*/                     bDelete = sal_False;
-//STRIP001 /*?*/                 }
+/*N*/             {
+/*?*/                 sEntry = pStdFont->GetFontFor(nFontId);
+/*?*/                 sal_Bool bDelete = sal_False;
+/*?*/                 const SfxFont* pFnt = pPrt ? pPrt->GetFontByName(sEntry): 0;
+/*?*/                 if(!pFnt)
+/*?*/                 {
+/*?*/                     pFnt = new SfxFont( FAMILY_DONTKNOW, sEntry, PITCH_DONTKNOW,
+/*?*/                                         ::gsl_getSystemTextEncoding() );
+/*?*/                     bDelete = sal_True;
+/*?*/                 }
+/*?*/                 pFontItem = new SvxFontItem(pFnt->GetFamily(), pFnt->GetName(),
+/*?*/                                     aEmptyStr, pFnt->GetPitch(), pFnt->GetCharSet(), nFontWhich);
+/*?*/                 if(bDelete)
+/*?*/                 {
+/*?*/                     delete (SfxFont*) pFnt;
+/*?*/                     bDelete = sal_False;
+/*?*/                 }
 /*?*/             }
 /*N*/             else
 /*M*/             {
