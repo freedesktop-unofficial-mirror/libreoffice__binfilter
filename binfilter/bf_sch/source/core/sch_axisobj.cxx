@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_axisobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:42:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,13 +60,13 @@
  ************************************************************************/
 
 // header for SdrObjListIter
-#ifndef _SVDITER_HXX
-#include <bf_svx/svditer.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
 // header for SdrHdlList
-#ifndef _SVDHDL_HXX
-#include <bf_svx/svdhdl.hxx>
-#endif
+// auto strip #ifndef _SVDHDL_HXX
+// auto strip #include <bf_svx/svdhdl.hxx>
+// auto strip #endif
 
 #include "axisobj.hxx"
 namespace binfilter {
