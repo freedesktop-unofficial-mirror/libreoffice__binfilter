@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xpool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:52:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,6 +62,11 @@
 #pragma hdrstop
 
 #include "xtable.hxx"
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 #include "xattr.hxx"
 #include "xpool.hxx"
 #include "svdattr.hxx"
