@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:16 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 05:58:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -326,51 +326,51 @@ namespace binfilter {
 
 /*N*/ ErrCode SfxInPlaceObject::Verb( long nVerb, SvEmbeddedClient *pCaller,
 /*N*/                               Window *pWindow, const Rectangle* pRect)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return ERRCODE_NONE;//STRIP001
-//STRIP001  if ( pCaller && pCaller == GetClient() )
-//STRIP001  {
-//STRIP001      if ( nVerb == 1 )
-//STRIP001          return DoEmbed(TRUE);
-//STRIP001         else if ( nVerb == 3 )
-//STRIP001         {
-//STRIP001             SfxObjectShell* pDoc = GetObjectShell();
-//STRIP001             SfxRequest aReq( SID_SAVEASDOC, SFX_CALLMODE_SYNCHRON, pDoc->GetPool() );
-//STRIP001             aReq.AppendItem( SfxBoolItem( SID_SAVETO, TRUE ) );
-//STRIP001             pDoc->ExecuteSlot( aReq );
-//STRIP001             return ERRCODE_NONE;
-//STRIP001         }
-//STRIP001      return SvInPlaceObject::Verb(nVerb, pCaller, pWindow, pRect);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001         DBG_ERROR("This behaviour is undefined!");
-//STRIP001         return FALSE;
-//STRIP001 /*
-//STRIP001      SfxApplication *pSfxApp = SFX_APP();
-//STRIP001      pFrame = pObjShell->GetFrame();
-//STRIP001      if ( !pFrame )
-//STRIP001      {
-//STRIP001 //(mba)/task: no correct outplace editing
-//STRIP001             pFrame = SfxTopFrame::Create( pObjShell )->GetCurrentViewFrame();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pFrame->GetFrame()->Appear();
-//STRIP001      }
-//STRIP001
-//STRIP001      String aFN = GetFileName();
-//STRIP001      if( aFN.Len() )
-//STRIP001      {
-//STRIP001          // Dokumentnamen setzen
-//STRIP001             INetURLObject aDE( GetFileName(), INET_PROT_FILE );
-//STRIP001          SetDocumentName( aDE.GetName() );
-//STRIP001          pFrame->GetWindow().SetText( aDE.GetName() );
-//STRIP001      }
-//STRIP001
-//STRIP001         pFrame->GetWindow().ToTop();
-//STRIP001      return ERRCODE_NONE;
-//STRIP001  */
-//STRIP001  }
+/*N*/ {
+     if ( pCaller && pCaller == GetClient() )
+     {
+         if ( nVerb == 1 )
+             return DoEmbed(TRUE);
+         else if ( nVerb == 3 )
+         {
+             SfxObjectShell* pDoc = GetObjectShell();
+             SfxRequest aReq( SID_SAVEASDOC, SFX_CALLMODE_SYNCHRON, pDoc->GetPool() );
+             aReq.AppendItem( SfxBoolItem( SID_SAVETO, TRUE ) );
+             pDoc->ExecuteSlot( aReq );
+             return ERRCODE_NONE;
+         }
+         return SvInPlaceObject::Verb(nVerb, pCaller, pWindow, pRect);
+     }
+     else
+     {
+         DBG_ERROR("This behaviour is undefined!");
+         return FALSE;
+ /*
+         SfxApplication *pSfxApp = SFX_APP();
+         pFrame = pObjShell->GetFrame();
+         if ( !pFrame )
+         {
+ //(mba)/task: no correct outplace editing
+             pFrame = SfxTopFrame::Create( pObjShell )->GetCurrentViewFrame();
+         }
+         else
+         {
+             pFrame->GetFrame()->Appear();
+         }
+
+         String aFN = GetFileName();
+         if( aFN.Len() )
+         {
+             // Dokumentnamen setzen
+             INetURLObject aDE( GetFileName(), INET_PROT_FILE );
+             SetDocumentName( aDE.GetName() );
+             pFrame->GetWindow().SetText( aDE.GetName() );
+         }
+
+         pFrame->GetWindow().ToTop();
+         return ERRCODE_NONE;
+  */
+     }
 /*N*/ }
 
 //--------------------------------------------------------------------
