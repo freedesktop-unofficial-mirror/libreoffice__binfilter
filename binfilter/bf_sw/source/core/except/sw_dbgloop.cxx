@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbgloop.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:24:01 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:08:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,78 +59,78 @@
  *
  ************************************************************************/
 
-#ifdef PRODUCT
-#error Wer fummelt denn an den makefiles rum?
-#endif
+//#ifdef PRODUCT
+//#error Wer fummelt denn an den makefiles rum?
+//#endif
 
 // auto strip #ifndef _STREAM_HXX //autogen
 // auto strip #include <tools/stream.hxx>
 // auto strip #endif
-#include "dbgloop.hxx"
-#include "errhdl.hxx"
+//#include "dbgloop.hxx"
+//#include "errhdl.hxx"
 namespace binfilter {
 
-DbgLoopStack DbgLoop::aDbgLoopStack;
+//DbgLoopStack DbgLoop::aDbgLoopStack;
 
 /*************************************************************************
  *                      class DbgLoopStack
  *************************************************************************/
 
-/*N*/ DbgLoopStack::DbgLoopStack()
-/*N*/ {
-/*N*/   Reset();
-/*N*/ }
+///*N*/ DbgLoopStack::DbgLoopStack()
+///*N*/ {
+///*N*/     Reset();
+///*N*/ }
 
-/*N*/ void DbgLoopStack::Reset()
-/*N*/ {
-/*N*/   nPtr = 0;
-/*N*/   pDbg = 0;
-/*N*/   for( USHORT i = 0; i < DBG_MAX_STACK; ++i )
-/*N*/       aCount[i] = 0;
-/*N*/ }
+///*N*/ void DbgLoopStack::Reset()
+///*N*/ {
+///*N*/     nPtr = 0;
+///*N*/     pDbg = 0;
+///*N*/     for( USHORT i = 0; i < DBG_MAX_STACK; ++i )
+///*N*/         aCount[i] = 0;
+///*N*/ }
 
 /*************************************************************************
  *                       DbgLoopStack::Push()
  *************************************************************************/
 
-/*N*/ void DbgLoopStack::Push( const void *pThis )
-/*N*/ {
-/*N*/   // Wir muessen irgendwie mitbekommen, wann die erste Stackposition
-/*N*/   // resettet werden soll, z.B. wenn wir einen Nullpointer uebergeben
-/*N*/   if( !nPtr && ( pDbg != pThis || !pThis ) )
-/*N*/   {
-/*N*/       aCount[1] = 0;
-/*N*/       pDbg = pThis;
-/*N*/   }
-/*N*/
-/*N*/   ++nPtr;
-/*N*/   if( DBG_MAX_STACK > nPtr )
-/*N*/   {
-/*N*/       // Wenn eine loop entdeckt wird, wird der counter wieder zurueckgesetzt.
-/*N*/       ASSERT( DBG_MAX_LOOP > aCount[nPtr], "DbgLoopStack::Push: loop detected" );
-/*N*/       if( DBG_MAX_LOOP > aCount[nPtr] )
-/*N*/           ++(aCount[nPtr]);
-/*N*/       else
-/*N*/           aCount[nPtr] = 0;
-/*N*/   }
-/*N*/ }
+///*N*/ void DbgLoopStack::Push( const void *pThis )
+///*N*/ {
+///*N*/     // Wir muessen irgendwie mitbekommen, wann die erste Stackposition
+///*N*/     // resettet werden soll, z.B. wenn wir einen Nullpointer uebergeben
+///*N*/     if( !nPtr && ( pDbg != pThis || !pThis ) )
+///*N*/     {
+///*N*/         aCount[1] = 0;
+///*N*/         pDbg = pThis;
+///*N*/     }
+///*N*/
+///*N*/     ++nPtr;
+///*N*/     if( DBG_MAX_STACK > nPtr )
+///*N*/     {
+///*N*/         // Wenn eine loop entdeckt wird, wird der counter wieder zurueckgesetzt.
+///*N*/         ASSERT( DBG_MAX_LOOP > aCount[nPtr], "DbgLoopStack::Push: loop detected" );
+///*N*/         if( DBG_MAX_LOOP > aCount[nPtr] )
+///*N*/             ++(aCount[nPtr]);
+///*N*/         else
+///*N*/             aCount[nPtr] = 0;
+///*N*/     }
+///*N*/ }
 
 /*************************************************************************
  *                       DbgLoopStack::Pop()
  *************************************************************************/
 
-/*N*/ void DbgLoopStack::Pop()
-/*N*/ {
-/*N*/   if( DBG_MAX_STACK > nPtr )
-/*N*/   {
-/*N*/       ASSERT( nPtr, "DbgLoopStack::Pop: can't pop the stack" );
-/*N*/
-/*N*/       ASSERT( aCount[nPtr], "DbgLoopStack::Pop: can't dec the count" );
-/*N*/       if( DBG_MAX_STACK > nPtr + 1 )
-/*N*/           aCount[nPtr + 1] = 0;
-/*N*/   }
-/*N*/   --nPtr;
-/*N*/ }
+///*N*/ void DbgLoopStack::Pop()
+///*N*/ {
+///*N*/     if( DBG_MAX_STACK > nPtr )
+///*N*/     {
+///*N*/         ASSERT( nPtr, "DbgLoopStack::Pop: can't pop the stack" );
+///*N*/
+///*N*/         ASSERT( aCount[nPtr], "DbgLoopStack::Pop: can't dec the count" );
+///*N*/         if( DBG_MAX_STACK > nPtr + 1 )
+///*N*/             aCount[nPtr + 1] = 0;
+///*N*/     }
+///*N*/     --nPtr;
+///*N*/ }
 
 /*************************************************************************
  *                       DbgLoopStack::Print()
@@ -147,21 +147,21 @@ DbgLoopStack DbgLoop::aDbgLoopStack;
 //STRIP001  rOS << '\n';
 //STRIP001 }
 
-#ifdef STAND_ALONE
+//#ifdef STAND_ALONE
 // compile with: cl /AL /DSTAND_ALONE dbgloop.cxx
 
 /*************************************************************************
  *                          main()
  *************************************************************************/
 
-#include <stdlib.h>
+//#include <stdlib.h>
 
-/*N*/ void AssertFail( const char *pErr, const char *pFile, USHORT nLine )
-/*N*/ {
-/*N*/   cout << pErr << '\n';
-/*N*/   PrintLoopStack( cout );
-/*N*/   exit(0);
-/*N*/ }
+///*N*/ void AssertFail( const char *pErr, const char *pFile, USHORT nLine )
+///*N*/ {
+///*N*/     cout << pErr << '\n';
+/////*N*/   PrintLoopStack( cout );
+///*N*/     exit(0);
+///*N*/ }
 
 //STRIP001 class Test
 //STRIP001 {
@@ -197,7 +197,7 @@ DbgLoopStack DbgLoop::aDbgLoopStack;
 //STRIP001  aTest2.Run();
 //STRIP001  return 0;
 //STRIP001 }
-#endif
+//#endif
 
 
 }
