@@ -2,9 +2,9 @@
  *
  *  $RCSfile: envimg.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:57:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
 #endif
-#ifndef _UTL_CONFIGITEM_HXX_
-#include <unotools/configitem.hxx>
-#endif
+// auto strip #ifndef _UTL_CONFIGITEM_HXX_
+// auto strip #include <unotools/configitem.hxx>
+// auto strip #endif
 namespace binfilter {
 
 // enum -----------------------------------------------------------------------
