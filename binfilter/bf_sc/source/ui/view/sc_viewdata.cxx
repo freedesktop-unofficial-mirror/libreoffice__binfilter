@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 12:39:43 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 10:42:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #ifdef PCH
 // auto strip #include "ui_pch.hxx"
 #endif
@@ -100,6 +99,7 @@
 #include "miscuno.hxx"
 #include "unonames.hxx"
 // auto strip #include "inputopt.hxx"
+#include "tabcont.hxx"
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
@@ -234,80 +234,81 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>& aSettings)
-//STRIP001 {
-//STRIP001  sal_Int32 nCount(aSettings.getLength());
-//STRIP001  DBG_ASSERT(nCount == SC_TABLE_VIEWSETTINGS_COUNT, " wrong Table View Settings count");
-//STRIP001  sal_Int32 nTemp32(0);
-//STRIP001  sal_Int16 nTemp16(0);
-//STRIP001  sal_Int32 nTempPosV(0);
-//STRIP001  sal_Int32 nTempPosH(0);
-//STRIP001  for (sal_Int32 i = 0; i < nCount; i++)
-//STRIP001  {
-//STRIP001      ::rtl::OUString sName(aSettings[i].Name);
-//STRIP001      if (sName.compareToAscii(SC_CURSORPOSITIONX) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nCurX = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_CURSORPOSITIONY) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nCurY = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_HORIZONTALSPLITMODE) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp16;
-//STRIP001          eHSplitMode = static_cast<ScSplitMode>(nTemp16);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_VERTICALSPLITMODE) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp16;
-//STRIP001          eVSplitMode = static_cast<ScSplitMode>(nTemp16);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_HORIZONTALSPLITPOSITION) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTempPosH;
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_VERTICALSPLITPOSITION) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTempPosV;
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_ACTIVESPLITRANGE) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp16;
-//STRIP001          eWhichActive = static_cast<ScSplitPos>(nTemp16);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_POSITIONLEFT) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nPosX[SC_SPLIT_LEFT] = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_POSITIONRIGHT) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nPosX[SC_SPLIT_RIGHT] = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_POSITIONTOP) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nPosY[SC_SPLIT_TOP] = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_POSITIONBOTTOM) == 0)
-//STRIP001      {
-//STRIP001          aSettings[i].Value >>= nTemp32;
-//STRIP001          nPosY[SC_SPLIT_BOTTOM] = static_cast<sal_uInt16>(nTemp32);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (eHSplitMode == SC_SPLIT_FIX)
-//STRIP001      nFixPosX = static_cast<sal_uInt16>(nTempPosH);
-//STRIP001  else
-//STRIP001      nHSplitPos = nTempPosH;
-//STRIP001  if (eVSplitMode == SC_SPLIT_FIX)
-//STRIP001      nFixPosY = static_cast<sal_uInt16>(nTempPosV);
-//STRIP001  else
-//STRIP001      nVSplitPos = nTempPosV;
-//STRIP001 }
+// #116578#
+void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>& aSettings)
+{
+    sal_Int32 nCount(aSettings.getLength());
+    DBG_ASSERT(nCount == SC_TABLE_VIEWSETTINGS_COUNT, " wrong Table View Settings count");
+    sal_Int32 nTemp32(0);
+    sal_Int16 nTemp16(0);
+    sal_Int32 nTempPosV(0);
+    sal_Int32 nTempPosH(0);
+    for (sal_Int32 i = 0; i < nCount; i++)
+    {
+        ::rtl::OUString sName(aSettings[i].Name);
+        if (sName.compareToAscii(SC_CURSORPOSITIONX) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nCurX = static_cast<sal_uInt16>(nTemp32);
+        }
+        else if (sName.compareToAscii(SC_CURSORPOSITIONY) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nCurY = static_cast<sal_uInt16>(nTemp32);
+        }
+        else if (sName.compareToAscii(SC_HORIZONTALSPLITMODE) == 0)
+        {
+            aSettings[i].Value >>= nTemp16;
+            eHSplitMode = static_cast<ScSplitMode>(nTemp16);
+        }
+        else if (sName.compareToAscii(SC_VERTICALSPLITMODE) == 0)
+        {
+            aSettings[i].Value >>= nTemp16;
+            eVSplitMode = static_cast<ScSplitMode>(nTemp16);
+        }
+        else if (sName.compareToAscii(SC_HORIZONTALSPLITPOSITION) == 0)
+        {
+            aSettings[i].Value >>= nTempPosH;
+        }
+        else if (sName.compareToAscii(SC_VERTICALSPLITPOSITION) == 0)
+        {
+            aSettings[i].Value >>= nTempPosV;
+        }
+        else if (sName.compareToAscii(SC_ACTIVESPLITRANGE) == 0)
+        {
+            aSettings[i].Value >>= nTemp16;
+            eWhichActive = static_cast<ScSplitPos>(nTemp16);
+        }
+        else if (sName.compareToAscii(SC_POSITIONLEFT) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nPosX[SC_SPLIT_LEFT] = static_cast<sal_uInt16>(nTemp32);
+        }
+        else if (sName.compareToAscii(SC_POSITIONRIGHT) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nPosX[SC_SPLIT_RIGHT] = static_cast<sal_uInt16>(nTemp32);
+        }
+        else if (sName.compareToAscii(SC_POSITIONTOP) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nPosY[SC_SPLIT_TOP] = static_cast<sal_uInt16>(nTemp32);
+        }
+        else if (sName.compareToAscii(SC_POSITIONBOTTOM) == 0)
+        {
+            aSettings[i].Value >>= nTemp32;
+            nPosY[SC_SPLIT_BOTTOM] = static_cast<sal_uInt16>(nTemp32);
+        }
+    }
+    if (eHSplitMode == SC_SPLIT_FIX)
+        nFixPosX = static_cast<sal_uInt16>(nTempPosH);
+    else
+        nHSplitPos = nTempPosH;
+    if (eVSplitMode == SC_SPLIT_FIX)
+        nFixPosY = static_cast<sal_uInt16>(nTempPosV);
+    else
+        nVSplitPos = nTempPosV;
+}
 
 //==================================================================
 
@@ -330,6 +331,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/       bDelMarkValid( FALSE ),
 /*N*/       bActive     ( TRUE ),                   //! wie initialisieren?
 /*N*/       bPagebreak  ( FALSE ),
+            nTabBarWidth( SC_TABBAR_DEFWIDTH ),     // #116578#
 /*N*/       pSpellingView ( NULL )
 /*N*/ {
 /*N*/   SetGridMode     ( TRUE );
@@ -638,16 +640,17 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   aLogicMode.SetScaleY( aValidY );
 /*N*/ }
 
-//STRIP001 void ScViewData::SetPagebreakMode( BOOL bSet )
-//STRIP001 {
-//STRIP001  bPagebreak = bSet;
-//STRIP001
-//STRIP001  CalcPPT();
-//STRIP001  RecalcPixPos();
-//STRIP001  aScenButSize = Size(0,0);
-//STRIP001  aLogicMode.SetScaleX( GetZoomX() );
-//STRIP001  aLogicMode.SetScaleY( GetZoomY() );
-//STRIP001 }
+// #116578#
+void ScViewData::SetPagebreakMode( BOOL bSet )
+{
+    bPagebreak = bSet;
+
+    CalcPPT();
+    RecalcPixPos();
+    aScenButSize = Size(0,0);
+    aLogicMode.SetScaleX( GetZoomX() );
+    aLogicMode.SetScaleY( GetZoomY() );
+}
 
 /*M*/ BOOL ScViewData::GetSimpleArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rStartTab,
 /*N*/                               USHORT& rEndCol, USHORT& rEndRow, USHORT& rEndTab )
@@ -1222,22 +1225,23 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 //STRIP001  rRow = nEditRow;
 //STRIP001 }
 
-//STRIP001 void ScViewData::SetTabNo( USHORT nNewTab )
-//STRIP001 {
-//STRIP001  if (nNewTab>MAXTAB)
-//STRIP001  {
-//STRIP001      DBG_ERROR("falsche Tabellennummer");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  nTabNo = nNewTab;
-//STRIP001  if (!pTabData[nTabNo])
-//STRIP001      pTabData[nTabNo] = new ScViewDataTable;
-//STRIP001  pThisTab = pTabData[nTabNo];
-//STRIP001
-//STRIP001  CalcPPT();          //  for common column width correction
-//STRIP001  RecalcPixPos();     //! nicht immer noetig!
-//STRIP001 }
+// #116578#
+void ScViewData::SetTabNo( USHORT nNewTab )
+{
+    if (nNewTab>MAXTAB)
+    {
+        DBG_ERROR("falsche Tabellennummer");
+        return;
+    }
+
+    nTabNo = nNewTab;
+    if (!pTabData[nTabNo])
+        pTabData[nTabNo] = new ScViewDataTable;
+    pThisTab = pTabData[nTabNo];
+
+    CalcPPT();          //  for common column width correction
+    RecalcPixPos();     //! nicht immer noetig!
+}
 
 //STRIP001 void ScViewData::SetActivePart( ScSplitPos eNewActive )
 //STRIP001 {
@@ -1927,6 +1931,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 #define SC_OLD_TABSEP   '/'
 #define SC_NEW_TABSEP   '+'
 
+// #116578# WriteUserData must not access pView
 /*N*/ void ScViewData::WriteUserData(String& rData)
 /*N*/ {
 /*N*/   //  nZoom (bis 364v) oder nZoom/nPageZoom/bPageMode (ab 364w)
@@ -1952,7 +1957,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   rData += String::CreateFromInt32( nTabNo );
 /*N*/   rData += ';';
 /*N*/   rData.AppendAscii(RTL_CONSTASCII_STRINGPARAM( TAG_TABBARWIDTH ));
-/*N*/   rData += String::CreateFromInt32( pView->GetTabBarWidth() );
+/*N*/   rData += String::CreateFromInt32( nTabBarWidth );   // #116578#
 /*N*/
 /*N*/   USHORT nTabCount = pDoc->GetTableCount();
 /*N*/   for (USHORT i=0; i<nTabCount; i++)
@@ -2001,123 +2006,125 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScViewData::ReadUserData(const String& rData)
-//STRIP001 {
-//STRIP001  if (!rData.Len())       // Leerer String kommt bei "neu Laden"
-//STRIP001      return;             // dann auch ohne Assertion beenden
-//STRIP001
-//STRIP001  xub_StrLen nCount = rData.GetTokenCount(';');
-//STRIP001  if ( nCount <= 2 )
-//STRIP001  {
-//STRIP001      //  #45208# beim Reload in der Seitenansicht sind evtl. die Preview-UserData
-//STRIP001      //  stehengelassen worden. Den Zoom von der Preview will man hier nicht...
-//STRIP001      DBG_ERROR("ReadUserData: das sind nicht meine Daten");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  String aTabOpt;
-//STRIP001  xub_StrLen nTagLen = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(TAG_TABBARWIDTH)).Len();
-//STRIP001
-//STRIP001  //-------------------
-//STRIP001  // nicht pro Tabelle:
-//STRIP001  //-------------------
-//STRIP001  USHORT nTabStart = 2;
-//STRIP001
-//STRIP001  String aZoomStr = rData.GetToken(0);                        // Zoom/PageZoom/Modus
-//STRIP001  USHORT nNormZoom = aZoomStr.GetToken(0,'/').ToInt32();
-//STRIP001  if ( nNormZoom >= MINZOOM && nNormZoom <= MAXZOOM )
-//STRIP001      aZoomX = aZoomY = Fraction( nNormZoom, 100 );           //  "normaler" Zoom (immer)
-//STRIP001  USHORT nPageZoom = aZoomStr.GetToken(1,'/').ToInt32();
-//STRIP001  if ( nPageZoom >= MINZOOM && nPageZoom <= MAXZOOM )
-//STRIP001      aPageZoomX = aPageZoomY = Fraction( nPageZoom, 100 );   // Pagebreak-Zoom, wenn gesetzt
-//STRIP001  sal_Unicode cMode = aZoomStr.GetToken(2,'/').GetChar(0);    // 0 oder "0"/"1"
-//STRIP001  SetPagebreakMode( cMode == '1' );
-//STRIP001  // SetPagebreakMode muss immer gerufen werden wegen CalcPPT / RecalcPixPos()
-//STRIP001
-//STRIP001  //
-//STRIP001  //  Tabelle kann ungueltig geworden sein (z.B. letzte Version):
-//STRIP001  //
-//STRIP001  USHORT nNewTab = rData.GetToken(1).ToInt32();
-//STRIP001  if (pDoc->HasTable( nNewTab ))
-//STRIP001      SetTabNo(nNewTab);
-//STRIP001
-//STRIP001  //
-//STRIP001  // wenn vorhanden, TabBar-Breite holen:
-//STRIP001  //
-//STRIP001  aTabOpt = rData.GetToken(2);
-//STRIP001
-//STRIP001  if ( nTagLen && aTabOpt.Copy(0,nTagLen).EqualsAscii(TAG_TABBARWIDTH) )
-//STRIP001  {
-//STRIP001      pView->SetTabBarWidth( aTabOpt.Copy(nTagLen).ToInt32() );
-//STRIP001      nTabStart = 3;
-//STRIP001  }
-//STRIP001
-//STRIP001  //-------------
-//STRIP001  // pro Tabelle:
-//STRIP001  //-------------
-//STRIP001  USHORT nPos = 0;
-//STRIP001  while ( nCount > nPos+nTabStart )
-//STRIP001  {
-//STRIP001      aTabOpt = rData.GetToken(nPos+nTabStart);
-//STRIP001      if (!pTabData[nPos])
-//STRIP001          pTabData[nPos] = new ScViewDataTable;
-//STRIP001
-//STRIP001      sal_Unicode cTabSep = 0;
-//STRIP001      if (aTabOpt.GetTokenCount(SC_OLD_TABSEP) >= 11)
-//STRIP001          cTabSep = SC_OLD_TABSEP;
-//STRIP001 #ifndef SC_LIMIT_ROWS
-//STRIP001      else if (aTabOpt.GetTokenCount(SC_NEW_TABSEP) >= 11)
-//STRIP001          cTabSep = SC_NEW_TABSEP;
-//STRIP001      // '+' ist nur erlaubt, wenn wir mit Zeilen > 8192 umgehen koennen
-//STRIP001 #endif
-//STRIP001
-//STRIP001      if (cTabSep)
-//STRIP001      {
-//STRIP001          pTabData[nPos]->nCurX = aTabOpt.GetToken(0,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->nCurY = aTabOpt.GetToken(1,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->eHSplitMode = (ScSplitMode) aTabOpt.GetToken(2,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->eVSplitMode = (ScSplitMode) aTabOpt.GetToken(3,cTabSep).ToInt32();
-//STRIP001
-//STRIP001          if ( pTabData[nPos]->eHSplitMode == SC_SPLIT_FIX )
-//STRIP001          {
-//STRIP001              pTabData[nPos]->nFixPosX = aTabOpt.GetToken(4,cTabSep).ToInt32();
-//STRIP001              UpdateFixX(nPos);
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pTabData[nPos]->nHSplitPos = aTabOpt.GetToken(4,cTabSep).ToInt32();
-//STRIP001
-//STRIP001          if ( pTabData[nPos]->eVSplitMode == SC_SPLIT_FIX )
-//STRIP001          {
-//STRIP001              pTabData[nPos]->nFixPosY = aTabOpt.GetToken(5,cTabSep).ToInt32();
-//STRIP001              UpdateFixY(nPos);
-//STRIP001          }
-//STRIP001          else
-//STRIP001              pTabData[nPos]->nVSplitPos = aTabOpt.GetToken(5,cTabSep).ToInt32();
-//STRIP001
-//STRIP001          pTabData[nPos]->eWhichActive = (ScSplitPos) aTabOpt.GetToken(6,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->nPosX[0] = aTabOpt.GetToken(7,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->nPosX[1] = aTabOpt.GetToken(8,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->nPosY[0] = aTabOpt.GetToken(9,cTabSep).ToInt32();
-//STRIP001          pTabData[nPos]->nPosY[1] = aTabOpt.GetToken(10,cTabSep).ToInt32();
-//STRIP001
-//STRIP001          //  Test, ob der aktive Teil laut SplitMode ueberhaupt existiert
-//STRIP001          //  (Bug #44516#)
-//STRIP001          ScSplitPos eTest = pTabData[nPos]->eWhichActive;
-//STRIP001          if ( ( WhichH( eTest ) == SC_SPLIT_RIGHT &&
-//STRIP001                  pTabData[nPos]->eHSplitMode == SC_SPLIT_NONE ) ||
-//STRIP001               ( WhichV( eTest ) == SC_SPLIT_TOP &&
-//STRIP001                  pTabData[nPos]->eVSplitMode == SC_SPLIT_NONE ) )
-//STRIP001          {
-//STRIP001              //  dann wieder auf Default (unten links)
-//STRIP001              pTabData[nPos]->eWhichActive = SC_SPLIT_BOTTOMLEFT;
-//STRIP001              DBG_ERROR("SplitPos musste korrigiert werden");
-//STRIP001          }
-//STRIP001      }
-//STRIP001      ++nPos;
-//STRIP001  }
-//STRIP001
-//STRIP001  RecalcPixPos();
-//STRIP001 }
+// #116578# ReadUserData is needed, must not access pView
+void ScViewData::ReadUserData(const String& rData)
+{
+    if (!rData.Len())       // Leerer String kommt bei "neu Laden"
+        return;             // dann auch ohne Assertion beenden
+
+    xub_StrLen nCount = rData.GetTokenCount(';');
+    if ( nCount <= 2 )
+    {
+        //  #45208# beim Reload in der Seitenansicht sind evtl. die Preview-UserData
+        //  stehengelassen worden. Den Zoom von der Preview will man hier nicht...
+        DBG_ERROR("ReadUserData: das sind nicht meine Daten");
+        return;
+    }
+
+    String aTabOpt;
+    xub_StrLen nTagLen = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(TAG_TABBARWIDTH)).Len();
+
+    //-------------------
+    // nicht pro Tabelle:
+    //-------------------
+    USHORT nTabStart = 2;
+
+    String aZoomStr = rData.GetToken(0);                        // Zoom/PageZoom/Modus
+    USHORT nNormZoom = aZoomStr.GetToken(0,'/').ToInt32();
+    if ( nNormZoom >= MINZOOM && nNormZoom <= MAXZOOM )
+        aZoomX = aZoomY = Fraction( nNormZoom, 100 );           //  "normaler" Zoom (immer)
+    USHORT nPageZoom = aZoomStr.GetToken(1,'/').ToInt32();
+    if ( nPageZoom >= MINZOOM && nPageZoom <= MAXZOOM )
+        aPageZoomX = aPageZoomY = Fraction( nPageZoom, 100 );   // Pagebreak-Zoom, wenn gesetzt
+    sal_Unicode cMode = aZoomStr.GetToken(2,'/').GetChar(0);    // 0 oder "0"/"1"
+    SetPagebreakMode( cMode == '1' );
+    // SetPagebreakMode muss immer gerufen werden wegen CalcPPT / RecalcPixPos()
+
+    //
+    //  Tabelle kann ungueltig geworden sein (z.B. letzte Version):
+    //
+    USHORT nNewTab = rData.GetToken(1).ToInt32();
+    if (pDoc->HasTable( nNewTab ))
+        SetTabNo(nNewTab);
+
+    //
+    // wenn vorhanden, TabBar-Breite holen:
+    //
+    aTabOpt = rData.GetToken(2);
+
+    if ( nTagLen && aTabOpt.Copy(0,nTagLen).EqualsAscii(TAG_TABBARWIDTH) )
+    {
+        // #116578# store tab bar width locally
+        nTabBarWidth = aTabOpt.Copy(nTagLen).ToInt32();
+        nTabStart = 3;
+    }
+
+    //-------------
+    // pro Tabelle:
+    //-------------
+    USHORT nPos = 0;
+    while ( nCount > nPos+nTabStart )
+    {
+        aTabOpt = rData.GetToken(nPos+nTabStart);
+        if (!pTabData[nPos])
+            pTabData[nPos] = new ScViewDataTable;
+
+        sal_Unicode cTabSep = 0;
+        if (aTabOpt.GetTokenCount(SC_OLD_TABSEP) >= 11)
+            cTabSep = SC_OLD_TABSEP;
+#ifndef SC_LIMIT_ROWS
+        else if (aTabOpt.GetTokenCount(SC_NEW_TABSEP) >= 11)
+            cTabSep = SC_NEW_TABSEP;
+        // '+' ist nur erlaubt, wenn wir mit Zeilen > 8192 umgehen koennen
+#endif
+
+        if (cTabSep)
+        {
+            pTabData[nPos]->nCurX = aTabOpt.GetToken(0,cTabSep).ToInt32();
+            pTabData[nPos]->nCurY = aTabOpt.GetToken(1,cTabSep).ToInt32();
+            pTabData[nPos]->eHSplitMode = (ScSplitMode) aTabOpt.GetToken(2,cTabSep).ToInt32();
+            pTabData[nPos]->eVSplitMode = (ScSplitMode) aTabOpt.GetToken(3,cTabSep).ToInt32();
+
+            if ( pTabData[nPos]->eHSplitMode == SC_SPLIT_FIX )
+            {
+                pTabData[nPos]->nFixPosX = aTabOpt.GetToken(4,cTabSep).ToInt32();
+//              UpdateFixX(nPos);
+            }
+            else
+                pTabData[nPos]->nHSplitPos = aTabOpt.GetToken(4,cTabSep).ToInt32();
+
+            if ( pTabData[nPos]->eVSplitMode == SC_SPLIT_FIX )
+            {
+                pTabData[nPos]->nFixPosY = aTabOpt.GetToken(5,cTabSep).ToInt32();
+//              UpdateFixY(nPos);
+            }
+            else
+                pTabData[nPos]->nVSplitPos = aTabOpt.GetToken(5,cTabSep).ToInt32();
+
+            pTabData[nPos]->eWhichActive = (ScSplitPos) aTabOpt.GetToken(6,cTabSep).ToInt32();
+            pTabData[nPos]->nPosX[0] = aTabOpt.GetToken(7,cTabSep).ToInt32();
+            pTabData[nPos]->nPosX[1] = aTabOpt.GetToken(8,cTabSep).ToInt32();
+            pTabData[nPos]->nPosY[0] = aTabOpt.GetToken(9,cTabSep).ToInt32();
+            pTabData[nPos]->nPosY[1] = aTabOpt.GetToken(10,cTabSep).ToInt32();
+
+            //  Test, ob der aktive Teil laut SplitMode ueberhaupt existiert
+            //  (Bug #44516#)
+            ScSplitPos eTest = pTabData[nPos]->eWhichActive;
+            if ( ( WhichH( eTest ) == SC_SPLIT_RIGHT &&
+                    pTabData[nPos]->eHSplitMode == SC_SPLIT_NONE ) ||
+                 ( WhichV( eTest ) == SC_SPLIT_TOP &&
+                    pTabData[nPos]->eVSplitMode == SC_SPLIT_NONE ) )
+            {
+                //  dann wieder auf Default (unten links)
+                pTabData[nPos]->eWhichActive = SC_SPLIT_BOTTOMLEFT;
+                DBG_ERROR("SplitPos musste korrigiert werden");
+            }
+        }
+        ++nPos;
+    }
+
+    RecalcPixPos();
+}
 
 //STRIP001 void ScViewData::WriteExtOptions(ScExtDocOptions& rOpt)
 //STRIP001 {
@@ -2294,6 +2301,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 //STRIP001  // RecalcPixPos oder so - auch nMPos - auch bei ReadUserData ??!?!
 //STRIP001 }
 
+// #116578# WriteUserDataSequence must not access pView
 /*N*/ void ScViewData::WriteUserDataSequence(uno::Sequence <beans::PropertyValue>& rSettings)
 /*N*/ {
 /*N*/   rSettings.realloc(SC_VIEWSETTINGS_COUNT);
@@ -2301,7 +2309,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   beans::PropertyValue* pSettings = rSettings.getArray();
 /*N*/   if (pSettings)
 /*N*/   {
-/*N*/       sal_uInt16 nViewID(pViewShell->GetViewFrame()->GetCurViewId());
+            sal_uInt16 nViewID = 1;     // #116578# always ScTabViewShell (ID from ScDLL::Init)
 /*N*/       pSettings[SC_VIEW_ID].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_VIEWID));
 /*N*/       ::rtl::OUStringBuffer sBuffer(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_VIEW)));
 /*N*/       SvXMLUnitConverter::convertNumber(sBuffer, static_cast<sal_Int32>(nViewID));
@@ -2354,11 +2362,11 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/       pSettings[SC_ACTIVE_TABLE].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ACTIVETABLE));
 /*N*/       pSettings[SC_ACTIVE_TABLE].Value <<= sOUName;
 /*N*/       pSettings[SC_HORIZONTAL_SCROLL_BAR_WIDTH].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_HORIZONTALSCROLLBARWIDTH));
-/*N*/       pSettings[SC_HORIZONTAL_SCROLL_BAR_WIDTH].Value <<= sal_Int32(pView->GetTabBarWidth());
+            pSettings[SC_HORIZONTAL_SCROLL_BAR_WIDTH].Value <<= sal_Int32( nTabBarWidth );  // #116578# use stored value
 /*N*/       sal_Int32 nZoomValue ((aZoomY.GetNumerator() * 100) / aZoomY.GetDenominator());
 /*N*/       sal_Int32 nPageZoomValue ((aPageZoomY.GetNumerator() * 100) / aPageZoomY.GetDenominator());
 /*N*/       pSettings[SC_ZOOM_TYPE].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ZOOMTYPE));
-/*N*/       pSettings[SC_ZOOM_TYPE].Value <<= sal_Int16(pView->GetZoomType());
+            pSettings[SC_ZOOM_TYPE].Value <<= sal_Int16( SVX_ZOOM_PERCENT );  // #116578# always direct value for old files
 /*N*/       pSettings[SC_ZOOM_VALUE].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ZOOMVALUE));
 /*N*/       pSettings[SC_ZOOM_VALUE].Value <<= nZoomValue;
 /*N*/       pSettings[SC_PAGE_VIEW_ZOOM_VALUE].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_PAGEVIEWZOOMVALUE));
@@ -2406,125 +2414,125 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>& rSettings)
-//STRIP001 {
-//STRIP001  sal_Int32 nCount(rSettings.getLength());
-//STRIP001  sal_Int32 nTemp32(0);
-//STRIP001  sal_Int16 nTemp16(0);
-//STRIP001  sal_Bool bPageMode(sal_False);
-//STRIP001  for (sal_Int32 i = 0; i < nCount; i++)
-//STRIP001  {
-//STRIP001      // SC_VIEWID has to parse and use by mba
-//STRIP001      ::rtl::OUString sName(rSettings[i].Name);
-//STRIP001      if (sName.compareToAscii(SC_TABLES) == 0)
-//STRIP001      {
-//STRIP001          uno::Reference<container::XNameContainer> xNameContainer;
-//STRIP001          if ((rSettings[i].Value >>= xNameContainer) && xNameContainer->hasElements())
-//STRIP001          {
-//STRIP001              uno::Sequence< ::rtl::OUString > aNames(xNameContainer->getElementNames());
-//STRIP001              for (sal_Int32 i = 0; i < aNames.getLength(); i++)
-//STRIP001              {
-//STRIP001                  String sTabName(aNames[i]);
-//STRIP001                  sal_uInt16 nTab(0);
-//STRIP001                  if (GetDocument()->GetTable(sTabName, nTab))
-//STRIP001                  {
-//STRIP001                      uno::Any aAny = xNameContainer->getByName(aNames[i]);
-//STRIP001                      uno::Sequence<beans::PropertyValue> aTabSettings;
-//STRIP001                      if (aAny >>= aTabSettings)
-//STRIP001                      {
-//STRIP001                          pTabData[nTab] = new ScViewDataTable;
-//STRIP001                          pTabData[nTab]->ReadUserDataSequence(aTabSettings);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
-//STRIP001      {
-//STRIP001          ::rtl::OUString sName;
-//STRIP001          if(rSettings[i].Value >>= sName)
-//STRIP001          {
-//STRIP001              String sTabName(sName);
-//STRIP001              sal_uInt16 nTab(0);
-//STRIP001              if (GetDocument()->GetTable(sTabName, nTab))
-//STRIP001                  nTabNo = nTab;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_HORIZONTALSCROLLBARWIDTH) == 0)
-//STRIP001      {
-//STRIP001          if (rSettings[i].Value >>= nTemp32)
-//STRIP001              pView->SetTabBarWidth(nTemp32);
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_ZOOMTYPE) == 0)
-//STRIP001      {
-//STRIP001          if (rSettings[i].Value >>= nTemp16)
-//STRIP001              pView->SetZoomType(SvxZoomType(nTemp16));
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_ZOOMVALUE) == 0)
-//STRIP001      {
-//STRIP001          if (rSettings[i].Value >>= nTemp32)
-//STRIP001          {
-//STRIP001              Fraction aZoom(nTemp32, 100);
-//STRIP001              aZoomX = aZoomY = aZoom;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_PAGEVIEWZOOMVALUE) == 0)
-//STRIP001      {
-//STRIP001          if (rSettings[i].Value >>= nTemp32)
-//STRIP001          {
-//STRIP001              Fraction aZoom(nTemp32, 100);
-//STRIP001              aPageZoomX = aPageZoomY = aZoom;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (sName.compareToAscii(SC_SHOWPAGEBREAKPREVIEW) == 0)
-//STRIP001          bPageMode = ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_SHOWZERO ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_NULLVALS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_SHOWNOTES ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_NOTES, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_SHOWGRID ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
-//STRIP001      {
-//STRIP001          sal_Int64 nColor;
-//STRIP001          if (rSettings[i].Value >>= nColor)
-//STRIP001          {
-//STRIP001              String aColorName;
-//STRIP001              Color aColor(static_cast<sal_uInt32>(nColor));
-//STRIP001              pOptions->SetGridColor(aColor, aColorName);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_SHOWPAGEBR ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_PAGEBREAKS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_COLROWHDR ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_HEADER, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_SHEETTABS ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_TABCONTROLS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else if ( sName.compareToAscii( SC_UNO_OUTLSYMB ) == 0 )
-//STRIP001          pOptions->SetOption(VOPT_OUTLINER, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001      else
-//STRIP001      {
-//STRIP001          ScGridOptions aGridOpt(pOptions->GetGridOptions());
-//STRIP001          if ( sName.compareToAscii( SC_UNO_SNAPTORASTER ) == 0 )
-//STRIP001              aGridOpt.SetUseGridSnap( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERVIS ) == 0 )
-//STRIP001              aGridOpt.SetGridVisible( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERRESX ) == 0 )
-//STRIP001              aGridOpt.SetFldDrawX( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERRESY ) == 0 )
-//STRIP001              aGridOpt.SetFldDrawY( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERSUBX ) == 0 )
-//STRIP001              aGridOpt.SetFldDivisionX( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERSUBY ) == 0 )
-//STRIP001              aGridOpt.SetFldDivisionY( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
-//STRIP001          else if ( sName.compareToAscii( SC_UNO_RASTERSYNC ) == 0 )
-//STRIP001              aGridOpt.SetSynchronize( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
-//STRIP001          pOptions->SetGridOptions(aGridOpt);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if (nCount)
-//STRIP001      SetPagebreakMode( bPageMode );
-//STRIP001 }
+// #116578# ReadUserDataSequence is needed, must not access pView
+void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>& rSettings)
+{
+    sal_Int32 nCount(rSettings.getLength());
+    sal_Int32 nTemp32(0);
+    sal_Int16 nTemp16(0);
+    sal_Bool bPageMode(sal_False);
+    for (sal_Int32 i = 0; i < nCount; i++)
+    {
+        // SC_VIEWID has to parse and use by mba
+        ::rtl::OUString sName(rSettings[i].Name);
+        if (sName.compareToAscii(SC_TABLES) == 0)
+        {
+            uno::Reference<container::XNameContainer> xNameContainer;
+            if ((rSettings[i].Value >>= xNameContainer) && xNameContainer->hasElements())
+            {
+                uno::Sequence< ::rtl::OUString > aNames(xNameContainer->getElementNames());
+                for (sal_Int32 i = 0; i < aNames.getLength(); i++)
+                {
+                    String sTabName(aNames[i]);
+                    sal_uInt16 nTab(0);
+                    if (GetDocument()->GetTable(sTabName, nTab))
+                    {
+                        uno::Any aAny = xNameContainer->getByName(aNames[i]);
+                        uno::Sequence<beans::PropertyValue> aTabSettings;
+                        if (aAny >>= aTabSettings)
+                        {
+                            pTabData[nTab] = new ScViewDataTable;
+                            pTabData[nTab]->ReadUserDataSequence(aTabSettings);
+                        }
+                    }
+                }
+            }
+        }
+        else if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
+        {
+            ::rtl::OUString sName;
+            if(rSettings[i].Value >>= sName)
+            {
+                String sTabName(sName);
+                sal_uInt16 nTab(0);
+                if (GetDocument()->GetTable(sTabName, nTab))
+                    nTabNo = nTab;
+            }
+        }
+        else if (sName.compareToAscii(SC_HORIZONTALSCROLLBARWIDTH) == 0)
+        {
+            if (rSettings[i].Value >>= nTemp32)
+                nTabBarWidth = nTemp32;             // #116578# store locally
+        }
+        else if (sName.compareToAscii(SC_ZOOMTYPE) == 0)
+        {
+            // #116578# zoom type is ignored for conversion to binary
+        }
+        else if (sName.compareToAscii(SC_ZOOMVALUE) == 0)
+        {
+            if (rSettings[i].Value >>= nTemp32)
+            {
+                Fraction aZoom(nTemp32, 100);
+                aZoomX = aZoomY = aZoom;
+            }
+        }
+        else if (sName.compareToAscii(SC_PAGEVIEWZOOMVALUE) == 0)
+        {
+            if (rSettings[i].Value >>= nTemp32)
+            {
+                Fraction aZoom(nTemp32, 100);
+                aPageZoomX = aPageZoomY = aZoom;
+            }
+        }
+        else if (sName.compareToAscii(SC_SHOWPAGEBREAKPREVIEW) == 0)
+            bPageMode = ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value );
+        else if ( sName.compareToAscii( SC_UNO_SHOWZERO ) == 0 )
+            pOptions->SetOption(VOPT_NULLVALS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_SHOWNOTES ) == 0 )
+            pOptions->SetOption(VOPT_NOTES, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_SHOWGRID ) == 0 )
+            pOptions->SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
+        {
+            sal_Int64 nColor;
+            if (rSettings[i].Value >>= nColor)
+            {
+                String aColorName;
+                Color aColor(static_cast<sal_uInt32>(nColor));
+                pOptions->SetGridColor(aColor, aColorName);
+            }
+        }
+        else if ( sName.compareToAscii( SC_UNO_SHOWPAGEBR ) == 0 )
+            pOptions->SetOption(VOPT_PAGEBREAKS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_COLROWHDR ) == 0 )
+            pOptions->SetOption(VOPT_HEADER, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_SHEETTABS ) == 0 )
+            pOptions->SetOption(VOPT_TABCONTROLS, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else if ( sName.compareToAscii( SC_UNO_OUTLSYMB ) == 0 )
+            pOptions->SetOption(VOPT_OUTLINER, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+        else
+        {
+            ScGridOptions aGridOpt(pOptions->GetGridOptions());
+            if ( sName.compareToAscii( SC_UNO_SNAPTORASTER ) == 0 )
+                aGridOpt.SetUseGridSnap( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERVIS ) == 0 )
+                aGridOpt.SetGridVisible( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERRESX ) == 0 )
+                aGridOpt.SetFldDrawX( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERRESY ) == 0 )
+                aGridOpt.SetFldDrawY( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERSUBX ) == 0 )
+                aGridOpt.SetFldDivisionX( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERSUBY ) == 0 )
+                aGridOpt.SetFldDivisionY( static_cast <sal_uInt32> ( ScUnoHelpFunctions::GetInt32FromAny( rSettings[i].Value ) ) );
+            else if ( sName.compareToAscii( SC_UNO_RASTERSYNC ) == 0 )
+                aGridOpt.SetSynchronize( ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
+            pOptions->SetGridOptions(aGridOpt);
+        }
+    }
+    if (nCount)
+        SetPagebreakMode( bPageMode );
+}
 
 /*N*/ void ScViewData::SetOptions( const ScViewOptions& rOpt )
 /*N*/ {
