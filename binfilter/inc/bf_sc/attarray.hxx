@@ -2,9 +2,9 @@
  *
  *  $RCSfile: attarray.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:40:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef SC_ATRARR_HXX
 #define SC_ATRARR_HXX
 
-#ifndef SC_SCGLOB_HXX
-#include "global.hxx"
-#endif
+// auto strip #ifndef SC_SCGLOB_HXX
+// auto strip #include "global.hxx"
+// auto strip #endif
 
 #ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
