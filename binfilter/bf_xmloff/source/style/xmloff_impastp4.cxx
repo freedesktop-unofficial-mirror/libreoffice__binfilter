@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_impastp4.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:14:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,33 +63,33 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLASTPLP_HXX
-#include "xmlaustp.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
+// auto strip #include "xmlaustp.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include "attrlist.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include "attrlist.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
 #endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
-#include "xmlexppr.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEXPPR_HXX
+// auto strip #include "xmlexppr.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
 #endif
