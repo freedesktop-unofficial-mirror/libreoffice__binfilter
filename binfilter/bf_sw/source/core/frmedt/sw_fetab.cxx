@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fetab.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:29:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,40 +67,45 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef __RSC //autogen
-#include <tools/errinf.hxx>
-#endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef __RSC //autogen
+// auto strip #include <tools/errinf.hxx>
+// auto strip #endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _RULER_HXX
+// auto strip #include <svtools/ruler.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _RULER_HXX
-#include <svtools/ruler.hxx>
-#endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
@@ -110,54 +115,54 @@
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
 #ifndef _CELLFRM_HXX
 #include <cellfrm.hxx>
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
-#include <dflyobj.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
-#include <swddetbl.hxx>
-#endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _DFLYOBJ_HXX
+// auto strip #include <dflyobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWDDETBL_HXX
+// auto strip #include <swddetbl.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _CALC_HXX
-#include <calc.hxx>
-#endif
+// auto strip #ifndef _CALC_HXX
+// auto strip #include <calc.hxx>
+// auto strip #endif
 #ifndef _TABCOL_HXX
 #include <tabcol.hxx>
 #endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
-#include <swtblfmt.hxx>
-#endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTBLFMT_HXX
+// auto strip #include <swtblfmt.hxx>
+// auto strip #endif
 
 #ifndef _SWSWERROR_H
 #include <swerror.h>
