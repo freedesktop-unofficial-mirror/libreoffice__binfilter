@@ -2,9 +2,9 @@
  *
  *  $RCSfile: popmenu.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:02:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef SC_POPMENU_HXX
 #define SC_POPMENU_HXX
 
-#ifndef _MENU_HXX //autogen
-#include <vcl/menu.hxx>
-#endif
+// auto strip #ifndef _MENU_HXX //autogen
+// auto strip #include <vcl/menu.hxx>
+// auto strip #endif
 namespace binfilter {
 
 //STRIP001 class ScPopupMenu : public PopupMenu
