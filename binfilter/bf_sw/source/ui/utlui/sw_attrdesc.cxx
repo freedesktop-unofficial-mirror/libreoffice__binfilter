@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_attrdesc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:32:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,108 +62,113 @@
 
 #pragma hdrstop
 
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_ITEMTYPE_HXX
-#include <bf_svx/itemtype.hxx>
-#endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen wg. Application
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ITEMTYPE_HXX
+// auto strip #include <bf_svx/itemtype.hxx>
+// auto strip #endif
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
-#endif
+// auto strip #ifndef _GRFMGR_HXX
+// auto strip #include <goodies/grfmgr.hxx>
+// auto strip #endif
 
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
-#include <unotools/intlwrapper.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_INTLWRAPPER_HXX
+// auto strip #include <unotools/intlwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
-#include <fmtinfmt.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTINFMT_HXX //autogen
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
 #ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
 #endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTTSPLT_HXX //autogen
-#include <fmtlsplt.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTTSPLT_HXX //autogen
+// auto strip #include <fmtlsplt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
 #endif
-#ifndef _FMTEIRO_HXX //autogen
-#include <fmteiro.hxx>
-#endif
-#ifndef _FMTURL_HXX //autogen
-#include <fmturl.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
-#include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNCT_HXX //autogen
-#include <fmtcnct.hxx>
-#endif
-#ifndef _FMTLINE_HXX
-#include <fmtline.hxx>
-#endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
+// auto strip #ifndef _FMTEIRO_HXX //autogen
+// auto strip #include <fmteiro.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTURL_HXX //autogen
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTHDFT_HXX //autogen
+// auto strip #include <fmthdft.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNCT_HXX //autogen
+// auto strip #include <fmtcnct.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTLINE_HXX
+// auto strip #include <fmtline.hxx>
+// auto strip #endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
 #ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #include <hfspacingitem.hxx>
 #endif
-#ifndef _FMTRUBY_HXX
-#include <fmtruby.hxx>
-#endif
-#ifndef _SWATRSET_HXX
-#include <swatrset.hxx>
-#endif
+// auto strip #ifndef _FMTRUBY_HXX
+// auto strip #include <fmtruby.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWATRSET_HXX
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
-#ifndef _GRFATR_HXX
-#include <grfatr.hxx>
-#endif
+// auto strip #ifndef _GRFATR_HXX
+// auto strip #include <grfatr.hxx>
+// auto strip #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _CHARFMT_HXX
-#include <charfmt.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _TOX_HXX
-#include <tox.hxx>
-#endif
+// auto strip #ifndef _CHARFMT_HXX
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOX_HXX
+// auto strip #include <tox.hxx>
+// auto strip #endif
 #ifndef _ATTRDESC_HRC
 #include <attrdesc.hrc>
 #endif
-#ifndef _FMTFTNTX_HXX //autogen
-#include <fmtftntx.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+// auto strip #ifndef _FMTFTNTX_HXX //autogen
+// auto strip #include <fmtftntx.hxx>
+// auto strip #endif
+// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
+// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT2(SwFmtCharFmt,SfxPoolItem,SwClient);
