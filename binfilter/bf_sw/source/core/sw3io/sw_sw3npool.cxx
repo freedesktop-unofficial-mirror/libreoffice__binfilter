@@ -1,0 +1,1214 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sw_sw3npool.cxx,v $
+ *
+ *  $Revision: 1.1 $
+ *
+ *  last change: $Author: aw $ $Date: 2003-10-02 15:31:20 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+#pragma hdrstop
+
+#define _SVSTDARR_USHORTS
+#include <svtools/svstdarr.hxx>
+#ifndef _SVSTOR_HXX //autogen
+#include <so3/svstor.hxx>
+#endif
+#ifndef _SFXMACITEM_HXX //autogen
+#include <svtools/macitem.hxx>
+#endif
+#ifndef SVTOOLS_URIHELPER_HXX
+#include <svtools/urihelper.hxx>
+#endif
+
+#ifndef _DOC_HXX
+#include <doc.hxx>
+#endif
+#ifndef _SWTABLE_HXX
+#include <swtable.hxx>
+#endif
+#ifndef _PAM_HXX
+#include <pam.hxx>
+#endif
+#ifndef _FLDBAS_HXX
+#include <fldbas.hxx>
+#endif
+#ifndef _PARATR_HXX
+#include <paratr.hxx>
+#endif
+#ifndef _POOLFMT_HXX
+#include <poolfmt.hxx>
+#endif
+#ifndef _NDTXT_HXX
+#include <ndtxt.hxx>
+#endif
+#ifndef _CNTFRM_HXX
+#include <cntfrm.hxx>
+#endif
+#ifndef _PAGEFRM_HXX
+#include <pagefrm.hxx>
+#endif
+#ifndef _TXTFTN_HXX //autogen
+#include <txtftn.hxx>
+#endif
+#ifndef _FMTFTN_HXX //autogen
+#include <fmtftn.hxx>
+#endif
+#ifndef _FMTFLD_HXX //autogen
+#include <fmtfld.hxx>
+#endif
+#ifndef _FMTANCHR_HXX //autogen
+#include <fmtanchr.hxx>
+#endif
+#ifndef _FMTHDFT_HXX //autogen
+#include <fmthdft.hxx>
+#endif
+#ifndef _FMTCNTNT_HXX //autogen
+#include <fmtcntnt.hxx>
+#endif
+#ifndef _FMTPDSC_HXX //autogen
+#include <fmtpdsc.hxx>
+#endif
+#ifndef _FMTFLCNT_HXX //autogen
+#include <fmtflcnt.hxx>
+#endif
+#ifndef _FMTRFMRK_HXX //autogen
+#include <fmtrfmrk.hxx>
+#endif
+#ifndef _FCHRFMT_HXX //autogen
+#include <fchrfmt.hxx>
+#endif
+#ifndef _FMTINFMT_HXX //autogen
+#include <fmtinfmt.hxx>
+#endif
+#ifndef _FMTCNCT_HXX //autogen
+#include <fmtcnct.hxx>
+#endif
+#ifndef _CHARFMT_HXX //autogen
+#include <charfmt.hxx>
+#endif
+#ifndef _FTNINFO_HXX
+#include <ftninfo.hxx>
+#endif
+#ifndef _SW3IMP_HXX
+#include <sw3imp.hxx>
+#endif
+#ifndef _GRFATR_HXX
+#include <grfatr.hxx>
+#endif
+#ifndef _CELLATR_HXX
+#include <cellatr.hxx>
+#endif
+#ifndef _TOX_HXX
+#include <tox.hxx>
+#endif
+#ifndef _PAGEDESC_HXX
+#include <pagedesc.hxx>
+#endif
+#ifndef _NDINDEX_HXX
+#include <ndindex.hxx>
+#endif
+#ifndef _FMTRUBY_HXX
+#include <fmtruby.hxx>
+#endif
+#ifndef SW_TGRDITEM_HXX
+#include <tgrditem.hxx>
+#endif
+
+#ifndef _SWERROR_H
+#include <error.h>
+#endif
+
+
+#define URL_DECODE  \
+    , INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS
+
+
+// Diese Datei hat einige Besonderheiten:
+// Die aktuelle Sw3IoImp-Instanz wird ueber Sw3IoImp::GetCurrentIo()
+// angefordert. Da diese die Variable pStrm mit dem aktuellen I/O-
+// Stream besetzt hat, muss dieser auf den uebergebenen Stream umgesetzt
+// werden. Dabei wird angenommen, dass alle uebergebenen Streams
+// SvStorageStreams sind.
+
+////////////////////////////// Frame-Attribute ////////////////////////////
+
+/*N*/ SfxPoolItem* SwFmtAnchor::Create( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   BYTE cType;
+/*N*/   USHORT nIndex;
+/*N*/   rStrm >> cType;
+/*N*/   if( nIVer < IVER_FMTANCHOR_LONGIDX )
+/*N*/   {
+/*N*/       rStrm >> nIndex;
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       UINT32 nIndex32 = Sw3IoImp::InULong( rStrm );
+/*N*/       ASSERT( nIndex32 <= USHRT_MAX,
+/*N*/               "SwFmtAnchor: Index/Seitenzahl > USHRT_MAX" );
+/*N*/       nIndex = (USHORT)nIndex32;
+/*N*/   }
+/*N*/   // Dieser Anker ist fuer FLY_AT_CNTNT und FLY_IN_CNTNT
+/*N*/   // unvollstaendig und muss noch angepasst werden. Dies
+/*N*/   // geschieht nach dem Einlesen des FrmFmts in InTxtNode().
+/*N*/   return new SwFmtAnchor( (RndStdIds) cType, nIndex );
+/*N*/ }
+
+/*N*/ SvStream& SwFmtAnchor::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   const SwPosition* pPos = GetCntntAnchor();
+/*N*/   // Der Index hat das Offset fuer FLY_AT_CNTNT und FLY_IN_CNTNT,
+/*N*/   // sonst die Seitennummer.
+/*N*/   if( nIVer < IVER_FMTANCHOR_LONGIDX )
+/*N*/   {
+/*N*/       // Nur 3.1/4.0-Export
+/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
+/*N*/               "SwFmtAnchor:: FF-Version und Item-Version passen nicht" );
+/*N*/
+/*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/
+/*N*/       if( pIo->IsSw31Export() && pIo->pExportInfo &&
+/*N*/           pIo->pExportInfo->bDrwFrmFmt31 &&
+/*N*/           FLY_IN_CNTNT==GetAnchorId() )
+/*N*/       {
+/*N*/           // Statt der 0 koennte man auch den Node-Index rausschreiben, aber
+/*N*/           // wozu, wenn der eh gleich neu gesetzt wird?
+/*?*/           rStrm << (BYTE) FLY_AT_CNTNT // Igitt, war mal FLY_IN_CNTNT
+/*?*/                 << (USHORT) 0;
+/*N*/       }
+/*N*/       else if( FLY_AT_FLY == GetAnchorId() ||
+/*N*/                FLY_AUTO_CNTNT == GetAnchorId() )
+/*N*/       {
+/*?*/           BYTE nAnchorId = GetAnchorId();
+/*?*/           USHORT nIndex;
+/*?*/           if( FLY_AT_FLY == nAnchorId )
+/*?*/           {
+/*?*/               nAnchorId = FLY_PAGE;
+/*?*/               SwNodeIndex aIdx( pPos->nNode );
+/*?*/               const SwNodes& rNds = aIdx.GetNodes();
+/*?*/               const SwCntntNode* pCNd = rNds.GoNext( &aIdx );
+/*?*/               const SwCntntFrm* pFrm;
+/*?*/               if( pCNd && 0 != ( pFrm = pCNd->GetFrm() ))
+/*?*/                   nIndex = pFrm->FindPageFrm()->GetPhyPageNum();
+/*?*/               else
+/*?*/                   nIndex = 1;
+/*?*/           }
+/*?*/           else
+/*?*/           {
+/*?*/               nAnchorId = FLY_AT_CNTNT;
+/*?*/               xub_StrLen nCntntIdx = pPos->nContent.GetIndex();
+/*?*/               nIndex = nCntntIdx <= STRING_MAXLEN52 ? nCntntIdx
+/*?*/                                                     : STRING_MAXLEN52;
+/*?*/           }
+/*?*/           rStrm << (BYTE) nAnchorId
+/*?*/                 << (USHORT) nIndex;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           USHORT nIndex;
+/*N*/           if( pPos )
+/*N*/           {
+/*N*/               xub_StrLen nCntntIdx = pPos->nContent.GetIndex();
+/*N*/               nIndex = nCntntIdx <= STRING_MAXLEN52 ? nCntntIdx
+/*N*/                                                     : STRING_MAXLEN52;
+/*N*/           }
+/*N*/           else
+/*N*/               nIndex = GetPageNum();
+/*N*/           rStrm << (BYTE) GetAnchorId()
+/*N*/                 << (USHORT) nIndex;
+/*N*/       }
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
+/*N*/               "SwFmtAnchor:: FF-Version und Item-Version passen nicht" );
+/*N*/       ULONG nIndex = pPos ? pPos->nContent.GetIndex() : GetPageNum();
+/*N*/       if( nIndex > STRING_MAXLEN52 )
+/*N*/           nIndex = STRING_MAXLEN52;
+/*N*/       rStrm << (BYTE) GetAnchorId();
+/*N*/       Sw3IoImp::OutULong( rStrm, nIndex );
+/*N*/   }
+/*N*/
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ USHORT SwFmtAnchor::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtAnchor: Gibt es ein neues Fileformat?" );
+/*N*/   return ( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/            SOFFICE_FILEFORMAT_40==nFFVer ) ? 0 : IVER_FMTANCHOR_LONGIDX;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtHeader::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   BYTE bActive;
+/*N*/   rStrm >> bActive;
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/
+/*N*/   USHORT eSave_StartNodeType = pIo->eStartNodeType;
+/*N*/   pIo->eStartNodeType = SwHeaderStartNode;
+/*N*/
+/*N*/   SwFmtHeader* pAttr;
+/*N*/   if( pIo->Peek() == SWG_FREEFMT )
+/*N*/   {
+/*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
+/*N*/       if( pFmt )
+/*N*/       {
+/*N*/           pAttr = new SwFmtHeader( pFmt );
+/*N*/           pAttr->SetActive( BOOL( bActive ) );
+/*N*/       }
+/*N*/       else
+/*?*/           pIo->Error();
+/*N*/   }
+/*N*/   // Ohne Format ist das Attribut immer inaktiv!
+/*N*/   else pAttr = new SwFmtHeader( BOOL( FALSE ) );
+/*N*/   pIo->pStrm = p;
+/*N*/   pIo->eStartNodeType = eSave_StartNodeType;
+/*N*/
+/*N*/   return pAttr;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtHeader::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   rStrm << (BYTE) IsActive();
+/*N*/   const SwFrmFmt* pFmt = GetHeaderFmt();
+/*N*/   ASSERT( !IsActive() || pFmt, "Aktiver Header ohne Format" );
+/*N*/   if( pFmt )
+/*N*/   {
+/*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/       SvStream* p = pIo->pStrm;
+/*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/       pIo->OutFormat( SWG_FREEFMT, *pFmt );
+/*N*/       pIo->pStrm = p;
+/*N*/   }
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtFooter::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   BYTE bActive;
+/*N*/   rStrm >> bActive;
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/
+/*N*/   USHORT eSave_StartNodeType = pIo->eStartNodeType;
+/*N*/   pIo->eStartNodeType = SwFooterStartNode;
+/*N*/
+/*N*/   SwFmtFooter* pAttr;
+/*N*/   if( pIo->Peek() == SWG_FREEFMT )
+/*N*/   {
+/*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
+/*N*/       if( pFmt )
+/*N*/       {
+/*N*/           pAttr = new SwFmtFooter( pFmt );
+/*N*/           pAttr->SetActive( BOOL( bActive ) );
+/*N*/       }
+/*N*/       else
+/*?*/           pIo->Error();
+/*N*/   }
+/*N*/   // Ohne Format ist das Attribut immer inaktiv!
+/*N*/   else pAttr = new SwFmtFooter( BOOL( FALSE ) );
+/*N*/   pIo->pStrm = p;
+/*N*/   pIo->eStartNodeType = eSave_StartNodeType;
+/*N*/
+/*N*/   return pAttr;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtFooter::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   rStrm << (BYTE) IsActive();
+/*N*/   const SwFrmFmt* pFmt = GetFooterFmt();
+/*N*/   ASSERT( !IsActive() || pFmt, "Aktiver Footer ohne Format" );
+/*N*/   if( pFmt )
+/*N*/   {
+/*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/       SvStream* p = pIo->pStrm;
+/*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/       pIo->OutFormat( SWG_FREEFMT, *pFmt );
+/*N*/       pIo->pStrm = p;
+/*N*/   }
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtCntnt::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/   if( pIo->bInsert )
+/*N*/   {
+/*?*/       if( !pIo->pSectionDepths )
+/*?*/           pIo->pSectionDepths = new SvUShorts;
+/*?*/       pIo->pSectionDepths->Insert( (USHORT)0U, pIo->pSectionDepths->Count() );
+/*N*/   }
+/*N*/   SwStartNode* pSttNd = &pIo->InContents();
+/*N*/   if( pIo->bInsert )
+/*N*/   {
+/*?*/       ASSERT( pIo->pSectionDepths, "There is the section depth stack?" );
+/*?*/       ASSERT( pIo->pSectionDepths->Count() > 0U,
+/*?*/               "section depth stack is empty" );
+/*?*/       pIo->pSectionDepths->Remove( pIo->pSectionDepths->Count() - 1U );
+/*N*/   }
+/*N*/   pIo->pStrm = p;
+/*N*/   return new SwFmtCntnt( pSttNd );
+/*N*/ }
+
+/*N*/ SvStream& SwFmtCntnt::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/   pIo->OutContents( *GetCntntIdx() );
+/*N*/   pIo->pStrm = p;
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtPageDesc::Create( SvStream& rStrm, USHORT nVersion ) const
+/*N*/ {
+/*N*/   // Hier wird nur der Name im Attribut gesetzt. Spaeter wird
+/*N*/   // mit ConnectPageDescAttrs() die eigentliche Verbindung
+/*N*/   // hergestellt.
+/*N*/   BYTE bAuto;
+/*N*/   UINT16 nOff, nIdx;
+/*N*/   if( nVersion < IVER_FMTPAGEDESC_LONGPAGE )
+/*N*/   {
+/*N*/       if( nVersion < IVER_FMTPAGEDESC_NOAUTO )
+/*N*/           rStrm >> bAuto;
+/*N*/       rStrm >> nOff >> nIdx;
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       ULONG nOff32 = Sw3IoImp::InULong( rStrm );
+/*N*/       ASSERT( nOff32 <= USHRT_MAX, "SwFmtPageDesc: Seitenzahl > USHRT_MAX" );
+/*N*/       nOff = (USHORT)nOff32;
+/*N*/       rStrm >> nIdx;
+/*N*/   }
+/*N*/   SwFmtPageDesc* pAttr = new SwFmtPageDesc( 0 );
+/*N*/   pAttr->SetNumOffset( nOff );
+/*N*/   pAttr->SetDescNameIdx( nIdx );
+/*N*/   return pAttr;
+/*N*/ }
+
+/*N*/ USHORT SwFmtPageDesc::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtPageDesc: Gibt es ein neues Fileformat?" );
+/*N*/   return ( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/            SOFFICE_FILEFORMAT_40==nFFVer ) ? 0 : IVER_FMTPAGEDESC_LONGPAGE;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtPageDesc::Store( SvStream& rStrm, USHORT nVersion) const
+/*N*/ {
+/*N*/   ASSERT( IVER_FMTPAGEDESC_NOAUTO != nVersion,
+/*N*/           "SwFmtPageDesc: Export der Item-Version wird nicht unterstuetzt" );
+/*N*/
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   const SwPageDesc* pDesc = GetPageDesc();
+/*N*/   USHORT nIdx = IDX_NO_VALUE;
+/*N*/   if( pDesc )
+/*N*/       nIdx = pIo->aStringPool.Find( pDesc->GetName(), pDesc->GetPoolFmtId() );
+/*N*/   USHORT nOff = GetNumOffset();
+/*N*/   // Eventuell das Header-Bit setzen, dass Seitennummern vorkommen
+/*N*/   if( nOff )
+/*N*/       pIo->nFileFlags |= SWGF_HAS_PGNUMS;
+/*N*/
+/*N*/   if( nVersion < IVER_FMTPAGEDESC_LONGPAGE )
+/*N*/   {
+/*N*/       rStrm << (BYTE) 0x01        // nicht mehr bei IVER_..._NOAUTO
+/*N*/             << (UINT16) nOff
+/*N*/             << (UINT16) nIdx;
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       Sw3IoImp::OutULong( rStrm, nOff );
+/*N*/       rStrm << (UINT16) nIdx;
+/*N*/   }
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtFlyCnt::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/
+/*N*/   USHORT eSave_StartNodeType = pIo->eStartNodeType;
+/*N*/   pIo->eStartNodeType = SwFlyStartNode;
+/*N*/
+/*N*/   SwFrmFmt* pTmpFmt = NULL;
+/*N*/   BYTE cKind = pIo->Peek();
+/*N*/   if( SWG_SDRFMT==cKind )
+/*N*/   {
+/*N*/       if( pIo->bInsIntoHdrFtr )
+/*N*/       {
+/*?*/           pIo->SkipRec();
+/*?*/           pIo->bDrawFmtSkipped = TRUE;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           pTmpFmt = (SwFrmFmt*) pIo->InFormat( SWG_SDRFMT, NULL );
+/*N*/       }
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       pTmpFmt = (SwFrmFmt*) pIo->InFormat( SWG_FLYFMT, NULL );
+/*N*/   }
+/*N*/
+/*N*/   pIo->pStrm = p;
+/*N*/   pIo->eStartNodeType = eSave_StartNodeType;
+/*N*/
+/*N*/   if( pTmpFmt )
+/*N*/       return new SwFmtFlyCnt( pTmpFmt );
+/*N*/
+/*?*/   if( !pIo->bInsIntoHdrFtr || SWG_SDRFMT!=cKind )
+/*?*/       pIo->Error();
+/*?*/   return NULL;
+/*N*/ }
+
+// OD 27.06.2003 #108784# - method to determine, if frame format is allowed
+// to be exported in SW3IO.
+// Drawing frame formats aren't allowed to be exported.
+const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
+{
+    bool bSw3ioExportAllowed = true;
+
+    if ( RES_DRAWFRMFMT == pFmt->Which() )
+    {
+        const SwFmtAnchor& rFmtAnchor = pFmt->GetAnchor();
+        if ( rFmtAnchor.GetAnchorId() != FLY_PAGE &&
+             pFmt->GetDoc()->IsInHeaderFooter( rFmtAnchor.GetCntntAnchor()->nNode ) )
+        {
+            bSw3ioExportAllowed = false;
+        }
+    }
+
+    return bSw3ioExportAllowed;
+}
+
+/*N*/ SvStream& SwFmtFlyCnt::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   SwFrmFmt* pFmt = GetFrmFmt();
+/*N*/   if( pFmt )
+/*N*/   {
+/*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/       SvStream* p = pIo->pStrm;
+/*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/       if( RES_DRAWFRMFMT == pFmt->Which() )
+/*N*/           pIo->OutFormat( SWG_SDRFMT, *pFmt );
+/*N*/       else
+/*N*/           pIo->OutFormat( SWG_FLYFMT, *pFmt );
+/*N*/       pIo->pStrm = p;
+/*N*/   }
+/*N*/   return rStrm;
+/*N*/ }
+
+//////////////////////////////// Text-Attribute ////////////////////////////
+
+/*N*/ SfxPoolItem* SwFmtRefMark::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   String aName;
+/*N*/   rStrm.ReadByteString( aName, rStrm.GetStreamCharSet() );
+/*N*/   return new SwFmtRefMark( aName );
+/*N*/ }
+
+/*N*/ SvStream& SwFmtRefMark::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   return rStrm.WriteByteString( GetRefName(), rStrm.GetStreamCharSet() );
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtCharFmt::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   UINT16 nIdx;
+/*N*/   rStrm >> nIdx;
+/*N*/   if( nIdx == IDX_NO_VALUE )
+/*N*/       return NULL;
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SwCharFmt* pChFmt = (SwCharFmt*) pIo->FindFmt( nIdx, SWG_CHARFMT );
+/*N*/   return new SwFmtCharFmt( pChFmt );
+/*N*/ }
+
+/*N*/ SvStream& SwFmtCharFmt::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SwCharFmt* pFmt = (SwCharFmt*) GetRegisteredIn();
+/*N*/   return rStrm << (UINT16) pIo->aStringPool.Find( pFmt->GetName(),
+/*N*/                                                   pFmt->GetPoolFmtId() );
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwFmtINetFmt::Create( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   UINT16 nId1, nId2;
+/*N*/   String aURL, aTarget;
+/*N*/   rStrm.ReadByteString( aURL, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadByteString( aTarget, rStrm.GetStreamCharSet() );
+/*N*/   rStrm >> nId1 >> nId2;
+/*N*/
+/*N*/   aURL = URIHelper::SmartRelToAbs( aURL );
+/*N*/   SwFmtINetFmt *pNew = new SwFmtINetFmt( aURL, aTarget );
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   if( nId1 != IDX_NO_VALUE )
+/*N*/   {
+/*?*/       SwCharFmt* pChFmt = (SwCharFmt*) pIo->FindFmt( nId1, SWG_CHARFMT );
+/*?*/       if( pChFmt )
+/*?*/       {
+/*?*/           pNew->aINetFmt = pChFmt->GetName();
+/*?*/           pNew->nINetId = pChFmt->GetPoolFmtId();
+/*?*/       }
+/*N*/   }
+/*N*/   if( nId2 != IDX_NO_VALUE )
+/*N*/   {
+/*?*/       SwCharFmt* pChFmt = (SwCharFmt*) pIo->FindFmt( nId2, SWG_CHARFMT );
+/*?*/       if( pChFmt )
+/*?*/       {
+/*?*/           pNew->aVisitedFmt = pChFmt->GetName();
+/*?*/           pNew->nVisitedId = pChFmt->GetPoolFmtId();
+/*?*/       }
+/*N*/   }
+/*N*/   USHORT nCnt;
+/*N*/   rStrm >> nCnt;
+/*N*/   while( nCnt-- )
+/*N*/   {
+            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        USHORT nCurKey;
+//STRIP001 /*?*/        String aLibName, aMacName;
+//STRIP001 /*?*/        rStrm >> nCurKey;
+//STRIP001 /*?*/        rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
+//STRIP001 /*?*/        rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+//STRIP001 /*?*/        pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
+/*N*/   }
+/*N*/   if( nIVer >= 1 )
+/*N*/   {
+/*N*/       String aName;
+/*N*/       rStrm.ReadByteString( aName, rStrm.GetStreamCharSet() );;
+/*N*/       pNew->SetName( aName );
+/*N*/   }
+/*N*/   if( nIVer >= 2 )
+/*N*/   {
+/*N*/       rStrm >> nCnt;
+/*N*/       while( nCnt-- )
+/*N*/       {
+                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nCurKey, nScriptType;
+//STRIP001 /*?*/            String aLibName, aMacName;
+//STRIP001 /*?*/            rStrm >> nCurKey;
+//STRIP001 /*?*/            rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
+//STRIP001 /*?*/            rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+//STRIP001 /*?*/            rStrm >> nScriptType;
+//STRIP001 /*?*/            pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName,
+//STRIP001 /*?*/                                        (ScriptType)nScriptType ) );
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   return pNew;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtINetFmt::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   ASSERT( nIVer != USHRT_MAX,
+/*N*/           "SwFmtINetFmt: Wer faengt da Version USHRT_MAX nicht ab?" );
+/*N*/
+/*N*/   UINT16 nId1 = IDX_NO_VALUE;
+/*N*/   UINT16 nId2 = IDX_NO_VALUE;
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   if( aINetFmt.Len() )
+/*?*/       nId1 = (UINT16) pIo->aStringPool.Find( aINetFmt, nINetId );
+/*N*/   if( aVisitedFmt.Len() )
+/*?*/       nId2 = (UINT16) pIo->aStringPool.Find( aVisitedFmt, nVisitedId );
+/*N*/   String aURL( GetValue() );
+/*N*/   lcl_sw3io__ConvertMarkToOutline( aURL );
+/*N*/   rStrm.WriteByteString( INetURLObject::AbsToRel( aURL URL_DECODE ),
+/*N*/                          rStrm.GetStreamCharSet() );
+/*N*/       rStrm.WriteByteString( aTargetFrame, rStrm.GetStreamCharSet() );
+/*N*/   rStrm << nId1 << nId2;
+/*N*/
+/*N*/   USHORT nCnt = pMacroTbl ? (USHORT)pMacroTbl->Count() : 0, nMax = nCnt;
+/*N*/   if( nCnt )
+/*N*/   {
+/*?*/       for( SvxMacro* pMac = pMacroTbl->First(); pMac; pMac = pMacroTbl->Next() )
+/*?*/           if( STARBASIC != pMac->GetScriptType() )
+/*?*/               --nCnt;
+/*N*/   }
+/*N*/
+/*N*/   rStrm << nCnt;
+/*N*/
+/*N*/   if( nCnt )
+/*N*/   {
+/*N*/       // erstmal nur die BasicMacros schreiben, die konnte der 3. noch
+/*?*/       for( SvxMacro* pMac = pMacroTbl->First(); pMac; pMac = pMacroTbl->Next() )
+/*?*/           if( STARBASIC == pMac->GetScriptType() )
+/*?*/           {
+/*?*/               rStrm << (USHORT)pMacroTbl->GetCurKey();
+/*?*/               rStrm.WriteByteString( pMac->GetLibName(),
+/*?*/                                      rStrm.GetStreamCharSet() );
+/*?*/               rStrm.WriteByteString( pMac->GetMacName(),
+/*?*/                                      rStrm.GetStreamCharSet() );
+/*?*/           }
+/*N*/   }
+/*N*/
+/*N*/   if( nIVer >= 1 )
+/*N*/       rStrm.WriteByteString( GetName(), rStrm.GetStreamCharSet() );
+/*N*/
+/*N*/   if( nIVer >= 2 )
+/*N*/   {
+/*N*/       // ab der 4.0 ( nach Technical Beta ) kennen wir auch JavaScript
+/*N*/       // also noch alle JavaScript-Macros schreiben
+/*N*/       nCnt = nMax - nCnt;
+/*N*/       rStrm << nCnt;
+/*N*/
+/*N*/       if( nCnt )
+/*N*/       {
+/*?*/           for( SvxMacro* pMac = pMacroTbl->First(); pMac; pMac = pMacroTbl->Next() )
+/*?*/               if( STARBASIC != pMac->GetScriptType() )
+/*?*/               {
+/*?*/                   rStrm << (USHORT)pMacroTbl->GetCurKey();
+/*?*/                   rStrm.WriteByteString( pMac->GetLibName(),
+/*?*/                                          rStrm.GetStreamCharSet() );
+/*?*/                   rStrm.WriteByteString( pMac->GetMacName(),
+/*?*/                                          rStrm.GetStreamCharSet() );
+/*?*/                   rStrm << (USHORT)pMac->GetScriptType();
+/*N*/               }
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ USHORT SwFmtINetFmt::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtINetFmr: Gibt es ein neues Fileformat?" );
+/*N*/   return SOFFICE_FILEFORMAT_31==nFFVer ? USHRT_MAX : 2;
+/*N*/ }
+
+
+/*N*/ SfxPoolItem* SwFmtFtn::Create( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   String aNumber;
+/*N*/   UINT16 nNumber;
+/*N*/   rStrm >> nNumber;
+/*N*/   rStrm.ReadByteString( aNumber, rStrm.GetStreamCharSet() );
+/*N*/
+/*N*/   // Die Section fuer den Text erzeugen
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SwNodes& rNodes = pIo->pDoc->GetNodes();
+/*N*/   SwNodeIndex aStart( rNodes.GetEndOfInserts() );
+/*N*/ #if 0
+/*N*/   SwStartNode* pSttNd = rNodes.MakeTextSection( aStart, SwFootnoteStartNode,
+/*N*/                                       pIo->FindTxtColl( IDX_DFLT_VALUE ) );
+/*N*/   aStart = *pSttNd;
+/*N*/ #endif
+/*N*/   SwStartNode* pSttNd = rNodes.MakeEmptySection( aStart,SwFootnoteStartNode );
+/*N*/   aStart = *pSttNd->EndOfSectionNode();
+/*N*/
+/*N*/   if( pIo->bInsert )
+/*N*/   {
+/*?*/       if( !pIo->pSectionDepths )
+/*?*/           pIo->pSectionDepths = new SvUShorts;
+/*?*/       pIo->pSectionDepths->Insert( (USHORT)0U, pIo->pSectionDepths->Count() );
+/*N*/   }
+/*N*/ //    pIo->InContents( aStart );
+/*N*/   pIo->InContents( aStart, 0, FALSE );
+/*N*/   if( pIo->bInsert )
+/*N*/   {
+/*?*/       ASSERT( pIo->pSectionDepths, "There is the section depth stack?" );
+/*?*/       ASSERT( pIo->pSectionDepths->Count() > 0U,
+/*?*/               "section depth stack is empty" );
+/*?*/       pIo->pSectionDepths->Remove( pIo->pSectionDepths->Count() - 1U );
+/*N*/   }
+/*N*/
+/*N*/   // die Seq-Nummer einlesen - fuer die Querverweise auf Fussnoten
+/*N*/   USHORT nSeqNo;
+/*N*/   BOOL bEndNote = FALSE;
+/*N*/   if( 1 <= nIVer )
+/*N*/   {
+/*N*/       rStrm >> nSeqNo;
+/*N*/   }
+/*N*/   if( 2 <= nIVer )
+/*N*/   {
+/*N*/       BYTE nFlags;
+/*N*/       rStrm >> nFlags;
+/*N*/       bEndNote = (nFlags & 0x01) != 0;
+/*N*/   }
+/*N*/
+/*N*/   SwFmtFtn aFtn( bEndNote );
+/*N*/   aFtn.SetNumStr( aNumber );
+/*N*/   aFtn.SetNumber( nNumber );
+/*N*/
+/*N*/   // Das Fussnoten-Attribut liest seine Section "auf der Wiese" ein.
+/*N*/   // Hier muss also der Start errechnet und eingetragen werden.
+/*N*/   SwFmtFtn& rNew = (SwFmtFtn&)pIo->pDoc->GetAttrPool().Put( aFtn );
+/*N*/   SwTxtFtn* pAttr = new SwTxtFtn( rNew, 0 );
+/*N*/   aStart = *pSttNd;
+/*N*/   pAttr->SetStartNode( &aStart );
+/*N*/   if( 1 <= nIVer )
+/*N*/       pAttr->SetSeqNo( nSeqNo );
+/*N*/
+/*N*/   return &rNew;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtFtn::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/
+/*N*/   rStrm << (UINT16) GetNumber();
+/*N*/
+/*N*/   if( nIVer < 2 && IsEndNote() )
+/*N*/   {
+/*N*/       // Im SW 4.0 gab es noch keine End-Noten, also
+/*?*/       String aNumStr( '*' );
+/*?*/       if( GetNumStr().Len() )
+/*?*/           aNumStr += GetNumStr();
+/*?*/       else
+/*?*/       {
+/*?*/           if( pIo )
+/*?*/               aNumStr += pIo->pDoc->GetEndNoteInfo().aFmt.
+/*?*/                               GetNumStr( GetNumber() );
+/*?*/           else
+/*?*/               aNumStr += String::CreateFromInt32( GetNumber() );
+/*?*/       }
+/*?*/       rStrm.WriteByteString( aNumStr, rStrm.GetStreamCharSet() );
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       rStrm.WriteByteString( GetNumStr(), rStrm.GetStreamCharSet() );
+/*N*/   }
+/*N*/
+/*N*/   SwNodeIndex* pStart = GetTxtFtn()->GetStartNode();
+/*N*/   if( pStart )
+/*N*/   {
+/*N*/       ASSERT( pIo, "SwFmtFtn: kein Sw3Io" );
+/*N*/       SvStream* p = pIo->pStrm;
+/*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/       pIo->OutContents( *pStart );
+/*N*/       pIo->pStrm = p;
+/*N*/   }
+/*N*/   if( 1 <= nIVer )
+/*N*/       rStrm << (USHORT)pTxtAttr->GetSeqRefNo();
+/*N*/   if( 2 <= nIVer )
+/*N*/       rStrm << (BYTE)(IsEndNote() ? 0x01 : 0x00);
+/*N*/
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ USHORT SwFmtFtn::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtINetFmr: Gibt es ein neues Fileformat?" );
+/*N*/   return SOFFICE_FILEFORMAT_31 == nFFVer ? 0 :
+/*N*/          (SOFFICE_FILEFORMAT_40 == nFFVer ? 1 : 2);
+/*N*/ }
+
+
+/*N*/ SfxPoolItem* SwFmtFld::Create( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/   SwField* pFld = pIo->InField();
+/*N*/   pIo->pStrm = p;
+/*N*/   if( !pFld )
+/*N*/       return NULL;
+/*N*/
+/*N*/   SwFmtFld* pAttr = new SwFmtFld;
+/*N*/   pAttr->pField = pFld;
+/*N*/   return pAttr;
+/*N*/ }
+
+/*N*/ SvStream& SwFmtFld::Store( SvStream& rStrm, USHORT ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   SvStream* p = pIo->pStrm;
+/*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
+/*N*/   pIo->OutField( *this );
+/*N*/   pIo->pStrm = p;
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ SfxPoolItem* SwTOXMark::Create( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   BYTE cType;
+/*N*/   UINT16 nLevel, nStrIdx = IDX_NO_VALUE;
+/*N*/   String aTypeName, aAltText, aPrimKey, aSecKey;
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/   rStrm >> cType
+/*N*/         >> nLevel;
+/*N*/
+/*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
+/*N*/       rStrm.ReadByteString( aTypeName, rStrm.GetStreamCharSet() );
+/*N*/   else
+/*N*/       rStrm >> nStrIdx;
+/*N*/
+/*N*/   rStrm.ReadByteString( aAltText, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadByteString( aPrimKey, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadByteString( aSecKey, rStrm.GetStreamCharSet() );
+/*N*/
+/*N*/   BYTE cFlags = 0;
+/*N*/   // With the 5.2, there are new tox types.
+/*N*/   if( nIVer >= IVER_TOXMARK_NEWTOX )
+/*N*/   {
+/*N*/       rStrm >> cType >> nStrIdx >> cFlags;
+/*N*/   }
+/*N*/
+/*N*/   TOXTypes eType = (TOXTypes)cType;
+/*N*/   if( nIVer >= IVER_TOXMARK_STRPOOL )
+/*N*/   {
+/*N*/       if( nStrIdx != IDX_NO_VALUE )
+/*?*/           aTypeName = pIo->aStringPool.Find( nStrIdx );
+/*N*/       else
+/*N*/           aTypeName = SwTOXBase::GetTOXName( eType );
+/*N*/   }
+/*N*/
+/*N*/   // Search tox type
+/*N*/   const SwTOXType *pType = NULL;
+/*N*/   USHORT n = pIo->pDoc->GetTOXTypeCount( eType );
+/*N*/   for( USHORT i = 0; i < n; i++ )
+/*N*/   {
+/*N*/       const SwTOXType *pTmp = pIo->pDoc->GetTOXType( eType, i );
+/*N*/       if( pTmp && pTmp->GetTypeName() == aTypeName )
+/*N*/       {
+/*N*/           pType = pTmp;
+/*N*/           break;
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   // If the tox type is unknown, a new one is created.
+/*N*/   if( !pType )
+/*N*/   {
+/*N*/       pIo->pDoc->InsertTOXType( SwTOXType( eType, aTypeName ) );
+/*N*/       pType = pIo->pDoc->GetTOXType( eType, n );
+/*N*/   }
+/*N*/   ASSERT( pType, "unknown tox type" );
+/*N*/   if( !pType )
+/*N*/   {
+/*?*/       pIo->Error();
+/*N*/       return NULL;
+/*N*/   }
+/*N*/
+/*N*/   SwTOXMark* pMark = new SwTOXMark( pType );
+/*N*/   pMark->SetAlternativeText( aAltText );
+/*N*/   switch( eType )
+/*N*/   {
+/*N*/       case TOX_INDEX:
+/*N*/           if( aPrimKey.Len() )
+/*N*/               pMark->SetPrimaryKey( aPrimKey );
+/*N*/           if( aSecKey.Len() )
+/*?*/               pMark->SetSecondaryKey( aSecKey );
+/*N*/           break;
+/*N*/       case TOX_USER:
+/*N*/       case TOX_CONTENT:
+/*N*/       case TOX_ILLUSTRATIONS:
+/*N*/       case TOX_OBJECTS:
+/*N*/       case TOX_TABLES:
+/*N*/       case TOX_AUTHORITIES:
+/*N*/           pMark->SetLevel( nLevel );
+/*N*/           break;
+/*N*/       default:
+/*?*/           pIo->Error();
+/*?*/           delete pMark;
+/*?*/           return 0;
+/*N*/   }
+/*N*/
+/*N*/   pMark->SetAutoGenerated( 0 != (cFlags & 0x01) );
+/*N*/   pMark->SetMainEntry( 0 != (cFlags & 0x02) );
+/*N*/
+/*N*/   return pMark;
+/*N*/ }
+
+/*N*/ SvStream& SwTOXMark::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ {
+/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+/*N*/
+/*N*/   // Types greater or equal than TOX_ILLUSTRATIONS are new with versuion
+/*N*/   // 5.2. That for, they must be mapped to a TOX_USER for the 5.1, but their
+/*N*/   // original type has to be written, too. Some attention must be kept to
+/*N*/   // the name as well, because if it is the tox types default name, it
+/*N*/   // must be written for the 5.1 but it has not to be seen by< the 5.2.
+/*N*/   TOXTypes eType = GetTOXType()->GetType();
+/*N*/   TOXTypes eOldType = eType >= TOX_ILLUSTRATIONS ? TOX_USER : eType;
+/*N*/   rStrm << (BYTE)   eOldType
+/*N*/         << (UINT16) nLevel;
+/*N*/
+/*N*/   const String& rTypeName = GetTOXType()->GetTypeName();
+/*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
+/*N*/   {
+/*N*/       // Nur 3.1/4.0-Export
+/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
+/*N*/               "SwToxMark: FF-Version und Item-Version passen nicht" );
+/*N*/       rStrm.WriteByteString( rTypeName, rStrm.GetStreamCharSet() );
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       // Nur 5.0 und folgende
+/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
+/*N*/               "SwToxMark: FF-Version und Item-Version passen nicht" );
+/*N*/       UINT16 nStrIdx =
+/*N*/           ( eType >= TOX_ILLUSTRATIONS ||
+/*N*/             rTypeName != SwTOXBase::GetTOXName(eType) )
+/*N*/           ? pIo->aStringPool.Find( rTypeName, USHRT_MAX )
+/*N*/           : IDX_NO_VALUE;
+/*N*/       rStrm << nStrIdx;
+/*N*/   }
+/*N*/   rStrm.WriteByteString( GetAlternativeText(), rStrm.GetStreamCharSet() );
+/*N*/   rStrm.WriteByteString( aPrimaryKey, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.WriteByteString( aSecondaryKey, rStrm.GetStreamCharSet() );
+/*N*/   if( nIVer >= IVER_TOXMARK_NEWTOX )
+/*N*/   {
+/*N*/       BYTE cFlags = 0;
+/*N*/       if( IsAutoGenerated() )
+/*N*/           cFlags |= 0x01;
+/*N*/       if( IsMainEntry() )
+/*N*/           cFlags |= 0x02;
+/*N*/       UINT16 nStrIdx = rTypeName != SwTOXBase::GetTOXName(eType)
+/*N*/           ? pIo->aStringPool.Find( rTypeName, USHRT_MAX )
+/*N*/           : IDX_NO_VALUE;
+/*N*/       rStrm << (BYTE)eType << nStrIdx << cFlags;
+/*N*/   }
+/*N*/
+/*N*/   return rStrm;
+/*N*/ }
+
+/*N*/ USHORT SwTOXMark::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwTOXMark: Gibt es ein neues Fileformat?" );
+/*N*/   return ( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/            SOFFICE_FILEFORMAT_40==nFFVer ) ? 0 : IVER_TOXMARK_NEWTOX;
+/*N*/ }
+
+//STRIP001 SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT nVer) const
+//STRIP001 {
+//STRIP001     String sRubyTxt;
+//STRIP001     SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt );
+//STRIP001
+//STRIP001     BOOL bVal;
+//STRIP001     rStrm >> bVal;
+//STRIP001
+//STRIP001  return pRet;
+//STRIP001 }
+
+//STRIP001 SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT nIVer ) const
+//STRIP001 {
+//STRIP001     BOOL bVal = 0;
+//STRIP001     rStrm << bVal;
+//STRIP001
+//STRIP001     ASSERT( FALSE, "Ruby atribute stored in old format" )
+//STRIP001
+//STRIP001     return rStrm;
+//STRIP001 }
+
+/*N*/ USHORT SwFmtRuby::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtRuby: Gibt es ein neues Fileformat?" );
+/*N*/
+/*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
+/*N*/ }
+
+
+//STRIP001 SfxPoolItem* SwTblBoxFormula::Create( SvStream & rStrm, USHORT ) const
+//STRIP001 {
+//STRIP001  String sStr;
+//STRIP001  rStrm.ReadByteString( sStr, rStrm.GetStreamCharSet() );
+//STRIP001  return new SwTblBoxFormula( sStr );
+//STRIP001 }
+
+//STRIP001 SvStream& SwTblBoxFormula::Store( SvStream & rStrm, USHORT ) const
+//STRIP001 {
+//STRIP001  if( EXTRNL_NAME != GetNameType() && pDefinedIn )
+//STRIP001  {
+//STRIP001      const SwTableNode* pTblNd;
+//STRIP001      const SwTableBox* pBox = (SwTableBox*)GetTableBox();
+//STRIP001      if( pBox && pBox->GetSttNd() &&
+//STRIP001          0 != ( pTblNd = pBox->GetSttNd()->FindTableNode() ))
+//STRIP001      {
+//STRIP001          ((SwTblBoxFormula*)this)->PtrToBoxNm( &pTblNd->GetTable() );
+//STRIP001      }
+//STRIP001  }
+//STRIP001  return rStrm.WriteByteString( GetFormula(), rStrm.GetStreamCharSet() );
+//STRIP001 }
+
+/*N*/ USHORT SwTblBoxFormula::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwTblBoxFormula: Gibt es ein neues Fileformat?" );
+/*N*/   return SOFFICE_FILEFORMAT_31==nFFVer ? USHRT_MAX : 0;
+/*N*/ }
+
+//STRIP001 SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
+//STRIP001 {
+//STRIP001  SwFmtChain *pChain = new SwFmtChain;
+//STRIP001
+//STRIP001  UINT16 nPrevIdx, nNextIdx;
+//STRIP001  if( nIVer>0 )
+//STRIP001  {
+//STRIP001      rStrm   >> nPrevIdx
+//STRIP001              >> nNextIdx;
+//STRIP001
+//STRIP001      Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+//STRIP001      ASSERT( pIo || nPrevIdx != IDX_NO_VALUE || nNextIdx != IDX_NO_VALUE,
+//STRIP001              "SwFmtChain: kein sw3io: Verkettung nicht moeglich" );
+//STRIP001      if( pIo )
+//STRIP001      {
+//STRIP001          // Wenn hier ein Format schon gelesen wurde, erfolgt die
+//STRIP001          // Verkettung hier in der einen Richtung und in InFormat
+//STRIP001          // in der anderen Richtung.
+//STRIP001          // Wenn das Format noch nicht gefunden wurde, erfolgt die
+//STRIP001          // Verkettung wenn das Ziel-Format gelesen wird.
+//STRIP001          if( nPrevIdx != IDX_NO_VALUE )
+//STRIP001          {
+//STRIP001              SwFlyFrmFmt *pPrevFlyFmt =
+//STRIP001                  (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nPrevIdx );
+//STRIP001              ASSERT( pIo->bInsert ||
+//STRIP001                      (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
+//STRIP001                      pIo->aStringPool.Find( nPrevIdx ) ) == pPrevFlyFmt,
+//STRIP001                      "falsches Prev-Format gechached?" );
+//STRIP001              pChain->SetPrev( pPrevFlyFmt );
+//STRIP001          }
+//STRIP001          if( nNextIdx != IDX_NO_VALUE )
+//STRIP001          {
+//STRIP001              SwFlyFrmFmt *pNextFlyFmt =
+//STRIP001                  (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nNextIdx );
+//STRIP001              ASSERT( pIo->bInsert ||
+//STRIP001                      (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
+//STRIP001                      pIo->aStringPool.Find( nNextIdx ) ) == pNextFlyFmt,
+//STRIP001                      "falsches Prev-Format gechached?" );
+//STRIP001              pChain->SetNext( pNextFlyFmt );
+//STRIP001          }
+//STRIP001      }
+//STRIP001  }
+//STRIP001
+//STRIP001  return pChain;
+//STRIP001 }
+
+/*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT nIVer) const
+/*N*/ {DBG_ASSERT(0, "STRIP"); return rStrm;//STRIP001
+//STRIP001  ASSERT( nIVer != USHRT_MAX,
+//STRIP001          "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
+//STRIP001
+//STRIP001  Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
+//STRIP001  USHORT nPrevIdx = IDX_NO_VALUE, nNextIdx = IDX_NO_VALUE;
+//STRIP001  if( pIo )
+//STRIP001  {
+//STRIP001      if( GetPrev() )
+//STRIP001      {
+//STRIP001          nPrevIdx = pIo->aStringPool.Find( GetPrev()->GetName(),
+//STRIP001                                            GetPrev()->GetPoolFmtId() );
+//STRIP001      }
+//STRIP001      if( GetNext() )
+//STRIP001      {
+//STRIP001          nNextIdx = pIo->aStringPool.Find( GetNext()->GetName(),
+//STRIP001                                            GetNext()->GetPoolFmtId() );
+//STRIP001      }
+//STRIP001  }
+//STRIP001
+//STRIP001  rStrm   << (UINT16)nPrevIdx
+//STRIP001          << (UINT16)nNextIdx;
+//STRIP001
+//STRIP001  return rStrm;
+/*N*/ }
+
+/*N*/ USHORT SwFmtChain::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/           "SwFmtChain: Gibt es ein neues Fileformat?" );
+/*N*/   return SOFFICE_FILEFORMAT_40 < nFFVer ? 1 : USHRT_MAX;
+/*N*/ }
+
+//STRIP001 SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT nIVer) const
+//STRIP001 {
+//STRIP001     SwTextGridItem* pRet = new SwTextGridItem;
+//STRIP001     BOOL bVal;
+//STRIP001     rStrm >> bVal;
+//STRIP001
+//STRIP001     return pRet;
+//STRIP001 }
+
+//STRIP001 SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT nIVer ) const
+//STRIP001 {
+//STRIP001     BOOL bVal = 0;
+//STRIP001     rStrm << bVal;
+//STRIP001
+//STRIP001     return rStrm;
+//STRIP001 }
+
+/*N*/ USHORT SwTextGridItem::GetVersion( USHORT nFFVer ) const
+/*N*/ {
+/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
+/*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
+/*N*/             "SwTextGridItem: Gibt es ein neues Fileformat?" );
+/*N*/
+/*N*/     return USHRT_MAX;
+/*N*/ }
+
