@@ -2,9 +2,9 @@
  *
  *  $RCSfile: parse.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:05:58 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:39:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -195,8 +195,8 @@ struct SmErrorDesc
     String        Text;
 };
 
-DECLARE_STACK(SmNodeStack,  SmNode *)//STRIP008 DECLARE_STACK(SmNodeStack,  SmNode *);
-DECLARE_LIST(SmErrDescList, SmErrorDesc *)//STRIP008 DECLARE_LIST(SmErrDescList, SmErrorDesc *);
+DECLARE_STACK(SmNodeStack,  SmNode *);
+DECLARE_LIST(SmErrDescList, SmErrorDesc *);
 
 /**************************************************************************/
 
@@ -261,7 +261,7 @@ protected:
     void    Attribut();
     void    Font();
     void    FontSize();
-//STRIP001  void    Color();
+    void    Color();
     void    Brace();
     void    Bracebody(BOOL bIsLeftRight);
     void    Function();
