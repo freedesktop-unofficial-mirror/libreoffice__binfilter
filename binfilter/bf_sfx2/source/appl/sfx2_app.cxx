@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:25:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,151 +66,156 @@
 #define PATH_MAX _MAX_PATH
 #endif // UNX
 
-#include "app.hxx"
-#include "frame.hxx"
+// auto strip #include "app.hxx"
+// auto strip #include "frame.hxx"
 
-#ifndef _VOS_PROCESS_HXX_
-#include <vos/process.hxx>
-#endif
-#ifndef _TOOLS_SIMPLERESMGR_HXX_
-#include <tools/simplerm.hxx>
-#endif
-#ifndef _CONFIG_HXX
-#include <tools/config.hxx>
-#endif
+// auto strip #ifndef _VOS_PROCESS_HXX_
+// auto strip #include <vos/process.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_SIMPLERESMGR_HXX_
+// auto strip #include <tools/simplerm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CONFIG_HXX
+// auto strip #include <tools/config.hxx>
+// auto strip #endif
 
-#ifndef SVTOOLS_ASYNCLINK_HXX
-#include <svtools/asynclink.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SOUND_HXX //autogen
-#include <vcl/sound.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _FILELIST_HXX //autogen
-#include <so3/filelist.hxx>
-#endif
-#ifndef _URLBMK_HXX //autogen
-#include <svtools/urlbmk.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _EXTATTR_HXX //autogen
-#include <svtools/extattr.hxx>
-#endif
-#ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
-#endif
+// auto strip #ifndef SVTOOLS_ASYNCLINK_HXX
+// auto strip #include <svtools/asynclink.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _FILELIST_HXX //autogen
+// auto strip #include <so3/filelist.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLBMK_HXX //autogen
+// auto strip #include <svtools/urlbmk.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _EXTATTR_HXX //autogen
+// auto strip #include <svtools/extattr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXECODE_HXX
+// auto strip #include <svtools/sfxecode.hxx>
+// auto strip #endif
+// auto strip #ifndef _EHDL_HXX
+// auto strip #include <svtools/ehdl.hxx>
+// auto strip #endif
 
 #include <svtools/svdde.hxx>
 #include <tools/urlobj.hxx>
-#include <unotools/tempfile.hxx>
-#include <osl/file.hxx>
+// auto strip #include <unotools/tempfile.hxx>
+// auto strip #include <osl/file.hxx>
 #pragma hdrstop
 
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#include <com/sun/star/uno/Sequence.hxx>
-#include <com/sun/star/uno/Any.hxx>
-#include <com/sun/star/lang/XInitialization.hpp>
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <com/sun/star/lang/XInitialization.hpp>
 
-#ifndef _COM_SUN_STAR_FRAME_XFRAMEACTIONLISTENER_HPP_
-#include <com/sun/star/frame/XFrameActionListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XCOMPONENTLOADER_HPP_
-#include <com/sun/star/frame/XComponentLoader.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-#include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_FRAMEACTIONEVENT_HPP_
-#include <com/sun/star/frame/FrameActionEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_FRAMEACTION_HPP_
-#include <com/sun/star/frame/FrameAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LOADER_XIMPLEMENTATIONLOADER_HPP_
-#include <com/sun/star/loader/XImplementationLoader.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LOADER_CANNOTACTIVATEFACTORYEXCEPTION_HPP_
-#include <com/sun/star/loader/CannotActivateFactoryException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_MOZILLA_XPLUGININSTANCE_HPP_
-#include <com/sun/star/mozilla/XPluginInstance.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAMESSUPPLIER_HPP_
-#include <com/sun/star/frame/XFramesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
-#include <com/sun/star/container/XIndexAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAMEACTIONLISTENER_HPP_
+// auto strip #include <com/sun/star/frame/XFrameActionListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XCOMPONENTLOADER_HPP_
+// auto strip #include <com/sun/star/frame/XComponentLoader.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
+// auto strip #include <com/sun/star/frame/XFrame.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTIONEVENT_HPP_
+// auto strip #include <com/sun/star/frame/FrameActionEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTION_HPP_
+// auto strip #include <com/sun/star/frame/FrameAction.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LOADER_XIMPLEMENTATIONLOADER_HPP_
+// auto strip #include <com/sun/star/loader/XImplementationLoader.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LOADER_CANNOTACTIVATEFACTORYEXCEPTION_HPP_
+// auto strip #include <com/sun/star/loader/CannotActivateFactoryException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_MOZILLA_XPLUGININSTANCE_HPP_
+// auto strip #include <com/sun/star/mozilla/XPluginInstance.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAMESSUPPLIER_HPP_
+// auto strip #include <com/sun/star/frame/XFramesSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
+// auto strip #include <com/sun/star/container/XIndexAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
-#include <basic/basmgr.hxx>
-#include <toolkit/helper/vclunohelper.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #include <toolkit/helper/vclunohelper.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
 #if SUPD>637
 #include <rtl/logfile.hxx>
 #endif
 
 #include <appuno.hxx>
-#include "sfxhelp.hxx"
-#include "request.hxx"
-#include "sfxtypes.hxx"
-#include "sfxresid.hxx"
+// auto strip #include "sfxhelp.hxx"
+// auto strip #include "request.hxx"
+// auto strip #include "sfxtypes.hxx"
+// auto strip #include "sfxresid.hxx"
 #include "arrdecl.hxx"
 #include "progress.hxx"
-#include "objsh.hxx"
+// auto strip #include "objsh.hxx"
 #include "docfac.hxx"
-#include "docfile.hxx"
-#include "docfilt.hxx"
+// auto strip #include "docfile.hxx"
+// auto strip #include "docfilt.hxx"
 #include "cfgmgr.hxx"
 #include "fltfnc.hxx"
-#include "nfltdlg.hxx"
-#include "new.hxx"
-#include "bindings.hxx"
+// auto strip #include "nfltdlg.hxx"
+// auto strip #include "new.hxx"
+// auto strip #include "bindings.hxx"
 #include "dispatch.hxx"
-#include "viewsh.hxx"
-#include "genlink.hxx"
-#include "accmgr.hxx"
-#include "tbxmgr.hxx"
-#include "mnumgr.hxx"
-#include "topfrm.hxx"
-#include "newhdl.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "genlink.hxx"
+// auto strip #include "accmgr.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
+// auto strip #include "tbxmgr.hxx"
+// auto strip #include "mnumgr.hxx"
+// auto strip #include "topfrm.hxx"
+// auto strip #include "newhdl.hxx"
 #include "appdata.hxx"
-#include "openflag.hxx"
+// auto strip #include "openflag.hxx"
 #include "app.hrc"
 #include "interno.hxx"
 #include "ipenv.hxx"
 #include "intfrm.hxx"
-#include "virtmenu.hxx"
-#include "module.hxx"
-#include "sfxdir.hxx"
+// auto strip #include "virtmenu.hxx"
+// auto strip #include "module.hxx"
+// auto strip #include "sfxdir.hxx"
 #include "event.hxx"
 #include "appimp.hxx"
 #include "imestatuswindow.hxx"
 
 #ifdef DBG_UTIL
 #include "tbxctrl.hxx"
-#include "stbitem.hxx"
-#include "mnuitem.hxx"
+// auto strip #include "stbitem.hxx"
+// auto strip #include "mnuitem.hxx"
 #endif
 
 #if defined( WIN ) || defined( WNT ) || defined( OS2 )
@@ -234,13 +239,13 @@
 #include <svtools/inetoptions.hxx>
 #include <svtools/fontoptions.hxx>
 #include <svtools/internaloptions.hxx>
-#include <svtools/workingsetoptions.hxx>
+// auto strip #include <svtools/workingsetoptions.hxx>
 #include <svtools/syslocaleoptions.hxx>
 #include <svtools/syslocale.hxx>
 #include <framework/addonsoptions.hxx>
-#ifndef _SVTOOLS_TTPROPS_HXX // handmade
-#include <svtools/ttprops.hxx>
-#endif
+// auto strip #ifndef _SVTOOLS_TTPROPS_HXX // handmade
+// auto strip #include <svtools/ttprops.hxx>
+// auto strip #endif
 #include <svtools/extendedsecurityoptions.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
