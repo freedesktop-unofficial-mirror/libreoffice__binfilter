@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-16 15:10:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2804,7 +2804,7 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 09. Jun. 94
 |*
 |*************************************************************************/
-/*N*/ void SwLayIdle::ShowIdle( ColorName eName )
+/*N*/ void SwLayIdle::ShowIdle( ColorData eName )
 /*N*/ {
 /*N*/   if ( !bIndicator )
 /*N*/   {
@@ -2821,12 +2821,12 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/*N*/ #define SHOW_IDLE( ColorName ) ShowIdle( ColorName )
+/*N*/ #define SHOW_IDLE( ColorData ) ShowIdle( ColorData )
 /*N*/ #else
-/*N*/ #define SHOW_IDLE( ColorName )
+/*N*/ #define SHOW_IDLE( ColorData )
 /*N*/ #endif
 /*N*/ #else
-/*N*/ #define SHOW_IDLE( ColorName )
+/*N*/ #define SHOW_IDLE( ColorData )
 /*N*/ #endif
 
 /*************************************************************************
