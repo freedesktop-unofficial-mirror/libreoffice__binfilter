@@ -2,9 +2,9 @@
  *
  *  $RCSfile: eetext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:54:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -110,8 +110,8 @@
 #define ITEMID_BOX              0
 #define ITEMID_BOXINFO          0
 
-#ifndef _OUTLINER_HXX
-#include <bf_svx/outliner.hxx>
-#endif
+// auto strip #ifndef _OUTLINER_HXX
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
 #endif  // EETEXT_HXX
 
