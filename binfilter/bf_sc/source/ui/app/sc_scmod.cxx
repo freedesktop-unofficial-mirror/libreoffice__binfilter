@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:37:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,27 @@
 
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
+
+#ifndef _PSTM_HXX
+#include <tools/pstm.hxx>
+#endif
+
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/outliner.hxx>
 #include <basic/sbstar.hxx>
@@ -129,6 +150,11 @@
 #include "cfgids.hxx"
 #include "inputhdl.hxx"
 #include "inputwin.hxx"
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 #include "msgpool.hxx"
 #include "scresid.hxx"
 #include "anyrefdg.hxx"
