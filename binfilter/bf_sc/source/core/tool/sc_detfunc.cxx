@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_detfunc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 14:30:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,12 +178,12 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL lcl_HasThickLine( SdrObject& rObj )
-//STRIP001 {
-//STRIP001  // thin lines get width 0 -> everything greater 0 is a thick line
-//STRIP001
-//STRIP001  return ( ((const XLineWidthItem&)rObj.GetItem(XATTR_LINEWIDTH)).GetValue() > 0 );
-//STRIP001 }
+/*N*/ BOOL lcl_HasThickLine( SdrObject& rObj ) // detective.sdc
+/*N*/ {
+/*N*/   // thin lines get width 0 -> everything greater 0 is a thick line
+/*N*/
+/*N*/   return ( ((const XLineWidthItem&)rObj.GetItem(XATTR_LINEWIDTH)).GetValue() > 0 );
+/*N*/ }
 
 //------------------------------------------------------------------------
 
@@ -1704,170 +1704,170 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScDetectiveFunc::UpdateAllArrowColors()
-//STRIP001 {
-//STRIP001  //  no undo actions necessary
-//STRIP001
-//STRIP001  ScDrawLayer* pModel = pDoc->GetDrawLayer();
-//STRIP001  if (!pModel)
-//STRIP001      return;
-//STRIP001
-//STRIP001  USHORT nTabCount = pDoc->GetTableCount();
-//STRIP001  for (USHORT nObjTab=0; nObjTab<nTabCount; nObjTab++)
-//STRIP001  {
-//STRIP001      SdrPage* pPage = pModel->GetPage(nObjTab);
-//STRIP001      DBG_ASSERT(pPage,"Page ?");
-//STRIP001      if (pPage)
-//STRIP001      {
-//STRIP001          SdrObjListIter aIter( *pPage, IM_FLAT );
-//STRIP001          SdrObject* pObject = aIter.Next();
-//STRIP001          while (pObject)
-//STRIP001          {
-//STRIP001              if ( pObject->GetLayer() == SC_LAYER_INTERN )
-//STRIP001              {
-//STRIP001                  BOOL bArrow = FALSE;
-//STRIP001                  BOOL bError = FALSE;
-//STRIP001
-//STRIP001                  ScAddress aPos;
-//STRIP001                  ScRange aSource;
-//STRIP001                  BOOL bDummy;
-//STRIP001                  ScDetectiveObjType eType = GetDetectiveObjectType( pObject, aPos, aSource, bDummy );
-//STRIP001                  if ( eType == SC_DETOBJ_ARROW || eType == SC_DETOBJ_TOOTHERTAB )
-//STRIP001                  {
-//STRIP001                      //  source is valid, determine error flag from source range
-//STRIP001
-//STRIP001                      ScTripel aStart( aSource.aStart.Col(), aSource.aStart.Row(), aSource.aStart.Tab() );
-//STRIP001                      ScTripel aEnd( aSource.aEnd.Col(), aSource.aEnd.Row(), aSource.aEnd.Tab() );
-//STRIP001                      ScTripel aErrPos;
-//STRIP001                      if ( HasError( aStart, aEnd, aErrPos ) )
-//STRIP001                          bError = TRUE;
-//STRIP001                      else
-//STRIP001                          bArrow = TRUE;
-//STRIP001                  }
-//STRIP001                  else if ( eType == SC_DETOBJ_FROMOTHERTAB )
-//STRIP001                  {
-//STRIP001                      //  source range is no longer known, take error flag from formula itself
-//STRIP001                      //  (this means, if the formula has an error, all references to other tables
-//STRIP001                      //  are marked red)
-//STRIP001
-//STRIP001                      ScTripel aFormulaPos( aPos.Col(), aPos.Row(), aPos.Tab() );
-//STRIP001                      ScTripel aErrPos;
-//STRIP001                      if ( HasError( aFormulaPos, aFormulaPos, aErrPos ) )
-//STRIP001                          bError = TRUE;
-//STRIP001                      else
-//STRIP001                          bArrow = TRUE;
-//STRIP001                  }
-//STRIP001                  else if ( eType == SC_DETOBJ_CIRCLE )
-//STRIP001                  {
-//STRIP001                      //  circles (error marks) are always red
-//STRIP001
-//STRIP001                      bError = TRUE;
-//STRIP001                  }
-//STRIP001                  else if ( eType == SC_DETOBJ_NONE )
-//STRIP001                  {
-//STRIP001                      //  frame for area reference has no ObjType, always gets arrow color
-//STRIP001
-//STRIP001                      if ( pObject->ISA( SdrRectObj ) && !pObject->ISA( SdrCaptionObj ) )
-//STRIP001                      {
-//STRIP001                          bArrow = TRUE;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if ( bArrow || bError )
-//STRIP001                  {
-//STRIP001                      ColorData nColorData = ( bError ? GetErrorColor() : GetArrowColor() );
-//STRIP001                      pObject->SetItemAndBroadcast( XLineColorItem( String(), Color( nColorData ) ) );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              pObject = aIter.Next();
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScDetectiveFunc::UpdateAllArrowColors() // detective.sdc
+/*N*/ {
+/*N*/   //  no undo actions necessary
+/*N*/
+/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
+/*N*/   if (!pModel)
+/*N*/       return;
+/*N*/
+/*N*/   USHORT nTabCount = pDoc->GetTableCount();
+/*N*/   for (USHORT nObjTab=0; nObjTab<nTabCount; nObjTab++)
+/*N*/   {
+/*N*/       SdrPage* pPage = pModel->GetPage(nObjTab);
+/*N*/       DBG_ASSERT(pPage,"Page ?");
+/*N*/       if (pPage)
+/*N*/       {
+/*N*/           SdrObjListIter aIter( *pPage, IM_FLAT );
+/*N*/           SdrObject* pObject = aIter.Next();
+/*N*/           while (pObject)
+/*N*/           {
+/*N*/               if ( pObject->GetLayer() == SC_LAYER_INTERN )
+/*N*/               {
+/*N*/                   BOOL bArrow = FALSE;
+/*N*/                   BOOL bError = FALSE;
+/*N*/
+/*N*/                   ScAddress aPos;
+/*N*/                   ScRange aSource;
+/*N*/                   BOOL bDummy;
+/*N*/                   ScDetectiveObjType eType = GetDetectiveObjectType( pObject, aPos, aSource, bDummy );
+/*N*/                   if ( eType == SC_DETOBJ_ARROW || eType == SC_DETOBJ_TOOTHERTAB )
+/*N*/                   {
+/*N*/                       //  source is valid, determine error flag from source range
+/*N*/
+/*N*/                       ScTripel aStart( aSource.aStart.Col(), aSource.aStart.Row(), aSource.aStart.Tab() );
+/*N*/                       ScTripel aEnd( aSource.aEnd.Col(), aSource.aEnd.Row(), aSource.aEnd.Tab() );
+/*N*/                       ScTripel aErrPos;
+/*N*/                       if ( HasError( aStart, aEnd, aErrPos ) )
+/*N*/                           bError = TRUE;
+/*N*/                       else
+/*N*/                           bArrow = TRUE;
+/*N*/                   }
+/*N*/                   else if ( eType == SC_DETOBJ_FROMOTHERTAB )
+/*N*/                   {
+/*N*/                       //  source range is no longer known, take error flag from formula itself
+/*N*/                       //  (this means, if the formula has an error, all references to other tables
+/*N*/                       //  are marked red)
+/*N*/
+/*N*/                       ScTripel aFormulaPos( aPos.Col(), aPos.Row(), aPos.Tab() );
+/*N*/                       ScTripel aErrPos;
+/*N*/                       if ( HasError( aFormulaPos, aFormulaPos, aErrPos ) )
+/*N*/                           bError = TRUE;
+/*N*/                       else
+/*N*/                           bArrow = TRUE;
+/*N*/                   }
+/*N*/                   else if ( eType == SC_DETOBJ_CIRCLE )
+/*N*/                   {
+/*N*/                       //  circles (error marks) are always red
+/*N*/
+/*N*/                       bError = TRUE;
+/*N*/                   }
+/*N*/                   else if ( eType == SC_DETOBJ_NONE )
+/*N*/                   {
+/*N*/                       //  frame for area reference has no ObjType, always gets arrow color
+/*N*/
+/*N*/                       if ( pObject->ISA( SdrRectObj ) && !pObject->ISA( SdrCaptionObj ) )
+/*N*/                       {
+/*N*/                           bArrow = TRUE;
+/*N*/                       }
+/*N*/                   }
+/*N*/
+/*N*/                   if ( bArrow || bError )
+/*N*/                   {
+/*N*/                       ColorData nColorData = ( bError ? GetErrorColor() : GetArrowColor() );
+/*N*/                       pObject->SetItem( XLineColorItem( String(), Color( nColorData ) ) );
+/*N*/                   }
+/*N*/               }
+/*N*/
+/*N*/               pObject = aIter.Next();
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
-//STRIP001 BOOL ScDetectiveFunc::FindFrameForObject( SdrObject* pObject, ScRange& rRange )
-//STRIP001 {
-//STRIP001  //  find the rectangle for an arrow (always the object directly before the arrow)
-//STRIP001  //  rRange must be initialized to the source cell of the arrow (start of area)
-//STRIP001
-//STRIP001  ScDrawLayer* pModel = pDoc->GetDrawLayer();
-//STRIP001  if (!pModel) return FALSE;
-//STRIP001
-//STRIP001  SdrPage* pPage = pModel->GetPage(nTab);
-//STRIP001  DBG_ASSERT(pPage,"Page ?");
-//STRIP001  if (!pPage) return FALSE;
-//STRIP001
-//STRIP001  ULONG nPos = pPage->GetContainer().GetPos( pObject );
-//STRIP001  if ( nPos != CONTAINER_ENTRY_NOTFOUND && nPos > 0 )
-//STRIP001  {
-//STRIP001      SdrObject* pPrevObj = pPage->GetObj( nPos - 1 );
-//STRIP001      if ( pPrevObj && pPrevObj->GetLayer() == SC_LAYER_INTERN && pPrevObj->ISA(SdrRectObj) )
-//STRIP001      {
-//STRIP001          ScDrawObjData* pPrevData = ScDrawLayer::GetObjData( pPrevObj );
-//STRIP001          if ( pPrevData && pPrevData->bValidStart && pPrevData->bValidEnd )
-//STRIP001          {
-//STRIP001              if ( pPrevData->aStt.nCol == rRange.aStart.Col() &&
-//STRIP001                   pPrevData->aStt.nRow == rRange.aStart.Row() &&
-//STRIP001                   pPrevData->aStt.nTab == rRange.aStart.Tab() )
-//STRIP001              {
-//STRIP001                  rRange.aEnd.Set( pPrevData->aEnd.nCol,
-//STRIP001                                   pPrevData->aEnd.nRow,
-//STRIP001                                   pPrevData->aEnd.nTab );
-//STRIP001                  return TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
+/*N*/ BOOL ScDetectiveFunc::FindFrameForObject( SdrObject* pObject, ScRange& rRange ) // detective.sdc
+/*N*/ {
+/*N*/   //  find the rectangle for an arrow (always the object directly before the arrow)
+/*N*/   //  rRange must be initialized to the source cell of the arrow (start of area)
+/*N*/
+/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
+/*N*/   if (!pModel) return FALSE;
+/*N*/
+/*N*/   SdrPage* pPage = pModel->GetPage(nTab);
+/*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   if (!pPage) return FALSE;
+/*N*/
+/*N*/   ULONG nPos = pPage->GetContainer().GetPos( pObject );
+/*N*/   if ( nPos != CONTAINER_ENTRY_NOTFOUND && nPos > 0 )
+/*N*/   {
+/*N*/       SdrObject* pPrevObj = pPage->GetObj( nPos - 1 );
+/*N*/       if ( pPrevObj && pPrevObj->GetLayer() == SC_LAYER_INTERN && pPrevObj->ISA(SdrRectObj) )
+/*N*/       {
+/*N*/           ScDrawObjData* pPrevData = ScDrawLayer::GetObjData( pPrevObj );
+/*N*/           if ( pPrevData && pPrevData->bValidStart && pPrevData->bValidEnd )
+/*N*/           {
+/*N*/               if ( pPrevData->aStt.nCol == rRange.aStart.Col() &&
+/*N*/                    pPrevData->aStt.nRow == rRange.aStart.Row() &&
+/*N*/                    pPrevData->aStt.nTab == rRange.aStart.Tab() )
+/*N*/               {
+/*N*/                   rRange.aEnd.Set( pPrevData->aEnd.nCol,
+/*N*/                                    pPrevData->aEnd.nRow,
+/*N*/                                    pPrevData->aEnd.nTab );
+/*N*/                   return TRUE;
+/*N*/               }
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/   return FALSE;
+/*N*/ }
 
 /*N*/ ScDetectiveObjType ScDetectiveFunc::GetDetectiveObjectType( SdrObject* pObject,
 /*N*/                               ScAddress& rPosition, ScRange& rSource, BOOL& rRedLine )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  rRedLine = FALSE;
+/*N*/   rRedLine = FALSE; // detective.sdc
 /*N*/   ScDetectiveObjType eType = SC_DETOBJ_NONE;
-//STRIP001
-//STRIP001  if ( pObject && pObject->GetLayer() == SC_LAYER_INTERN )
-//STRIP001  {
-//STRIP001      ScDrawObjData* pData = ScDrawLayer::GetObjData( pObject );
-//STRIP001      if ( pObject->IsPolyObj() && pObject->GetPointCount() == 2 )
-//STRIP001      {
-//STRIP001          // line object -> arrow
-//STRIP001
-//STRIP001          if ( pData->bValidStart )
-//STRIP001              eType = ( pData->bValidEnd ) ? SC_DETOBJ_ARROW : SC_DETOBJ_TOOTHERTAB;
-//STRIP001          else if ( pData->bValidEnd )
-//STRIP001              eType = SC_DETOBJ_FROMOTHERTAB;
-//STRIP001
-//STRIP001          if ( pData->bValidStart )
-//STRIP001              rSource = ScRange( pData->aStt.nCol, pData->aStt.nRow, pData->aStt.nTab );
-//STRIP001          if ( pData->bValidEnd )
-//STRIP001              rPosition = ScAddress( pData->aEnd.nCol, pData->aEnd.nRow, pData->aEnd.nTab );
-//STRIP001
-//STRIP001          if ( pData->bValidStart && lcl_HasThickLine( *pObject ) )
-//STRIP001          {
-//STRIP001              // thick line -> look for frame before this object
-//STRIP001
-//STRIP001              FindFrameForObject( pObject, rSource );     // modifies rSource
-//STRIP001          }
-//STRIP001
-//STRIP001          ColorData nObjColor = ((const XLineColorItem&)pObject->GetItem(XATTR_LINECOLOR)).GetValue().GetColor();
-//STRIP001          if ( nObjColor == GetErrorColor() && nObjColor != GetArrowColor() )
-//STRIP001              rRedLine = TRUE;
-//STRIP001      }
-//STRIP001      else if ( pObject->ISA(SdrCircObj) )
-//STRIP001      {
-//STRIP001          if ( pData->bValidStart )
-//STRIP001          {
-//STRIP001              // cell position is returned in rPosition
-//STRIP001
-//STRIP001              rPosition = ScAddress( pData->aStt.nCol, pData->aStt.nRow, pData->aStt.nTab );
-//STRIP001              eType = SC_DETOBJ_CIRCLE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
+/*N*/
+/*N*/   if ( pObject && pObject->GetLayer() == SC_LAYER_INTERN )
+/*N*/   {
+/*N*/       ScDrawObjData* pData = ScDrawLayer::GetObjData( pObject );
+/*N*/       if ( pObject->IsPolyObj() && pObject->GetPointCount() == 2 )
+/*N*/       {
+/*N*/           // line object -> arrow
+/*N*/
+/*N*/           if ( pData->bValidStart )
+/*N*/               eType = ( pData->bValidEnd ) ? SC_DETOBJ_ARROW : SC_DETOBJ_TOOTHERTAB;
+/*N*/           else if ( pData->bValidEnd )
+/*N*/               eType = SC_DETOBJ_FROMOTHERTAB;
+/*N*/
+/*N*/           if ( pData->bValidStart )
+/*N*/               rSource = ScRange( pData->aStt.nCol, pData->aStt.nRow, pData->aStt.nTab );
+/*N*/           if ( pData->bValidEnd )
+/*N*/               rPosition = ScAddress( pData->aEnd.nCol, pData->aEnd.nRow, pData->aEnd.nTab );
+/*N*/
+/*N*/           if ( pData->bValidStart && lcl_HasThickLine( *pObject ) )
+/*N*/           {
+/*N*/               // thick line -> look for frame before this object
+/*N*/
+/*N*/               FindFrameForObject( pObject, rSource );     // modifies rSource
+/*N*/           }
+/*N*/
+/*N*/           ColorData nObjColor = ((const XLineColorItem&)pObject->GetItem(XATTR_LINECOLOR)).GetValue().GetColor();
+/*N*/           if ( nObjColor == GetErrorColor() && nObjColor != GetArrowColor() )
+/*N*/               rRedLine = TRUE;
+/*N*/       }
+/*N*/       else if ( pObject->ISA(SdrCircObj) )
+/*N*/       {
+/*N*/           if ( pData->bValidStart )
+/*N*/           {
+/*N*/               // cell position is returned in rPosition
+/*N*/
+/*N*/               rPosition = ScAddress( pData->aStt.nCol, pData->aStt.nRow, pData->aStt.nTab );
+/*N*/               eType = SC_DETOBJ_CIRCLE;
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/
 /*N*/   return eType;
 /*N*/ }
 

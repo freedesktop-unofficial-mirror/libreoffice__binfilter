@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:01 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 14:30:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -641,9 +641,9 @@ BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHOR
 /*?*/       //  update attributes for all note objects and the colors of detective objects
 /*?*/       //  (we don't know with which settings the file was created)
 /*?*/
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  ScDetectiveFunc aFunc( this, 0 );
-//STRIP001 /*?*/        aFunc.UpdateAllComments();
-//STRIP001 /*?*/        aFunc.UpdateAllArrowColors();
+/*N*/   ScDetectiveFunc aFunc( this, 0 ); // detective.sdc
+/*N*/ /*?*/         aFunc.UpdateAllComments();
+/*N*/ /*?*/         aFunc.UpdateAllArrowColors();
 /*N*/   }
 /*N*/ }
 
