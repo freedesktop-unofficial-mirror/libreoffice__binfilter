@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:31:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -827,26 +827,26 @@ using namespace ::com::sun::star;
 /*N*/   return FmFormPage::GetTextStyleSheetForObject( pObj );
 /*N*/ }
 
-//STRIP001 SfxItemSet* SdPage::getOrCreateItems()
-//STRIP001 {
-//STRIP001  if( mpItems == NULL )
-//STRIP001      mpItems = new SfxItemSet( pModel->GetItemPool(), SDRATTR_XMLATTRIBUTES, SDRATTR_XMLATTRIBUTES );
-//STRIP001
-//STRIP001  return mpItems;
-//STRIP001 }
+/*NBFF*/ SfxItemSet* SdPage::getOrCreateItems()
+/*NBFF*/ {
+/*NBFF*/    if( mpItems == NULL )
+/*NBFF*/        mpItems = new SfxItemSet( pModel->GetItemPool(), SDRATTR_XMLATTRIBUTES, SDRATTR_XMLATTRIBUTES );
+/*NBFF*/
+/*NBFF*/    return mpItems;
+/*NBFF*/ }
 
 
 /*N*/ sal_Bool SdPage::setAlienAttributes( const ::com::sun::star::uno::Any& rAttributes )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet* pSet = getOrCreateItems();
-//STRIP001 /*N*/
-//STRIP001 /*N*/    SvXMLAttrContainerItem aAlienAttributes( SDRATTR_XMLATTRIBUTES );
-//STRIP001 /*N*/    if( aAlienAttributes.PutValue( rAttributes, 0 ) )
-//STRIP001 /*N*/    {
-//STRIP001 /*N*/        pSet->Put( aAlienAttributes );
-//STRIP001 /*N*/        return sal_True;
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/
+/*NBFF*/    SfxItemSet* pSet = getOrCreateItems();
+/*NBFF*/
+/*NBFF*/    SvXMLAttrContainerItem aAlienAttributes( SDRATTR_XMLATTRIBUTES );
+/*NBFF*/    if( aAlienAttributes.PutValue( rAttributes, 0 ) )
+/*NBFF*/    {
+/*NBFF*/        pSet->Put( aAlienAttributes );
+/*NBFF*/        return sal_True;
+/*NBFF*/    }
+/*NBFF*/
 /*N*/   return sal_False;
 /*N*/ }
 
