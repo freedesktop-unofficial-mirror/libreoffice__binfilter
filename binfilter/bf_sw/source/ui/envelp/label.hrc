@@ -2,9 +2,9 @@
  *
  *  $RCSfile: label.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:43:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,16 +147,16 @@
 #define FT_FAX                  73
 
 // Globale Resourcen ********************************************************
-#define STR_DOC_TITLE           (RC_LABEL_BEGIN)
-#define STR_CUSTOM              (RC_LABEL_BEGIN + 1)
+//STRIP001 #define STR_DOC_TITLE            (RC_LABEL_BEGIN)
+//STRIP001 #define STR_CUSTOM               (RC_LABEL_BEGIN + 1)
 
 // Ueberlaufpruefung ********************************************************
 
-#define LABEL_ACT_END  STR_CUSTOM
-
-#if LABEL_ACT_END > RC_LABEL_END
-#error Resource-Ueberlauf in #file, #line
-#endif
+//STRIP001 #define LABEL_ACT_END  STR_CUSTOM
+//STRIP001
+//STRIP001 #if LABEL_ACT_END > RC_LABEL_END
+//STRIP001 #error Resource-Ueberlauf in #file, #line
+//STRIP001 #endif
 
 #endif
 
