@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_camera3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:37:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include "camera3d.hxx"
 #endif
 
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include <svdio.hxx>
