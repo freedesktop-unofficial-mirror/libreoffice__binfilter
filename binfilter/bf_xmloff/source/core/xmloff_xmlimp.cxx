@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlimp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:48:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -89,16 +89,16 @@
 #ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
 #include "XMLFontStylesContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
@@ -116,36 +116,36 @@
 #include "XMLScriptContextFactory.hxx"
 #endif
 
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
-#include "ProgressBarHelper.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
+// auto strip #include "ProgressBarHelper.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-#include <com/sun/star/xml/sax/XLocator.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
+// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
+// auto strip #endif
 
 #ifndef _COMPHELPER_NAMECONTAINER_HXX_
 #include <comphelper/namecontainer.hxx>
@@ -154,9 +154,9 @@
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx> // used in StartElement for logging
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx> // used in StartElement for logging
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
 #endif

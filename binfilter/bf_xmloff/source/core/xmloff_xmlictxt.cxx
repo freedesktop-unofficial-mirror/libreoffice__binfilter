@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlictxt.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:47:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,36 +59,36 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
-#include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_SAXEXCEPTION_HPP_
-#include <com/sun/star/xml/sax/SAXException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-#include <com/sun/star/xml/sax/XLocator.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/xml/sax/SAXParseException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXEXCEPTION_HPP_
+// auto strip #include <com/sun/star/xml/sax/SAXException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
+// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
+// auto strip #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include <xmlictxt.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include <xmlictxt.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
