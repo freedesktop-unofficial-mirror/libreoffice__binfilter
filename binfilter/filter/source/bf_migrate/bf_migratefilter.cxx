@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-31 08:28:15 $
+ *  last change: $Author: vg $ $Date: 2005-02-21 16:33:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,9 @@
 #ifndef _SFX_OBJFAC_HXX
 #include <bf_sfx2/docfac.hxx>
 #endif
+
+#include <so3/staticbaseurl.hxx>
+
 namespace binfilter {
 
 using namespace rtl;
@@ -333,6 +336,9 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         }
     }
 
+    // only the binary part should touch URLs; make sure that no BaseURL is passed to the importer also
+    so3::StaticBaseUrl::SetBaseURL( String() );
+
     if(bRetval)
     {
         Reference < XServiceInfo > rStrippedServiceInfo(rStrippedDocument, UNO_QUERY);
@@ -506,6 +512,9 @@ sal_Bool bf_MigrateFilter::exportImpl(const Sequence< ::com::sun::star::beans::P
         else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InteractionHandler")))
             pValue[a].Value >>= xInteractionHandler;
     }
+
+    // only the binary part should touch URLs; make sure that no BaseURL is passed to the exporter also
+    so3::StaticBaseUrl::SetBaseURL( String() );
 
     if(bRetval)
     {
