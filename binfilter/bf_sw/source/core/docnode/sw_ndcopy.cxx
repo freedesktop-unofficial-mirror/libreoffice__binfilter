@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndcopy.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:14:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,49 +68,59 @@
 #endif
 
 
-#ifndef _SVX_BRKITEM_HXX //autogen
-#include <bf_svx/brkitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
+// auto strip #include <bf_svx/brkitem.hxx>
+// auto strip #endif
 
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
+
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
 #endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>
-#endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>
+// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
@@ -126,24 +136,24 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifndef _FMTCNCT_HXX
 #include <fmtcnct.hxx>
 #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
-#ifndef _PARATR_HXX
-#include <paratr.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
+// auto strip #ifndef _PARATR_HXX
+// auto strip #include <paratr.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
 namespace binfilter {
 
 // Struktur fuer das Mappen von alten und neuen Frame-Formaten an den
