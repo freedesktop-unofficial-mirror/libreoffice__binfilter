@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:36:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,32 +59,68 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
-#ifndef _SV_GDIMTF_HXX
-#include <vcl/gdimtf.hxx>
-#endif
+// auto strip #ifndef _SV_GDIMTF_HXX
+// auto strip #include <vcl/gdimtf.hxx>
+// auto strip #endif
 
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef _WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #pragma hdrstop
+
+#ifndef _EEITEMID_HXX
+#include "eeitemid.hxx"
+#endif
 
 #include <adjitem.hxx>
 #include <tstpitem.hxx>
 #include <lspcitem.hxx>
 
+// auto strip #ifndef _PSTM_HXX //autogen
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
+#ifndef _DATE_HXX //autogen
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TIME_HXX //autogen
+#include <tools/time.hxx>
+#endif
+
 #include <flditem.hxx>
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
 #include <editview.hxx>
 #include <txtrange.hxx>
-#include <cscoitem.hxx>
-#include <colritem.hxx>
+// auto strip #include <cscoitem.hxx>
+// auto strip #include <colritem.hxx>
 #include <udlnitem.hxx>
 #include <fhgtitem.hxx>
 #include <kernitem.hxx>
@@ -101,7 +137,7 @@
 
 #include <forbiddencharacterstable.hxx>
 
-#include <unotools/localedatawrapper.hxx>
+// auto strip #include <unotools/localedatawrapper.hxx>
 
 #include <unolingu.hxx>
 
@@ -111,9 +147,9 @@
 #include <vcl/svapp.hxx>
 #endif
 
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -123,11 +159,11 @@
 #include <com/sun/star/i18n/ScriptType.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_CHARACTERCOMPRESSIONTYPE_HPP_
-#include <com/sun/star/text/CharacterCompressionType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_CHARACTERCOMPRESSIONTYPE_HPP_
+// auto strip #include <com/sun/star/text/CharacterCompressionType.hpp>
+// auto strip #endif
 
-#include <comphelper/processfactory.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
