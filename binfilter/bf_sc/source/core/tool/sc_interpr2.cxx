@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:31 $
+ *  last change: $Author: rt $ $Date: 2004-05-27 07:45:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -752,7 +752,7 @@ void ScInterpreter::ScMIRR()
             else
             {
                 double fResult = -fNPV_reinvest / fNPV_invest;
-                fResult *= pow( fRate1_reinvest, nCount - 1 );
+                fResult *= pow( fRate1_reinvest, double(nCount - 1) );
                 fResult = pow( fResult, 1.0 / (nCount - 1) );
                 PushDouble( fResult - 1.0 );
             }
