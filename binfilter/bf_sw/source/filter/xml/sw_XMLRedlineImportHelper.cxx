@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_XMLRedlineImportHelper.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:21:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,10 @@
 #pragma hdrstop
 
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _XMLREDLINEIMPORTHELPER_HXX
 #include "XMLRedlineImportHelper.hxx"
 #endif
@@ -73,6 +77,10 @@
 
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
+#endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
 #ifndef _DOC_HXX
