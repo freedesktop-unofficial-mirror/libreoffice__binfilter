@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChXChartObject.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:21:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,22 +60,22 @@
  ************************************************************************/
 
 #include "ChXChartObject.hxx"
-#include "mapprov.hxx"
+// auto strip #include "mapprov.hxx"
 #include "schattr.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 // header for class Application
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
 
 // header for SvxUnoTextRangeBase
-#ifndef _SVX_UNOTEXT_HXX
-#include <bf_svx/unotext.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <bf_svx/unotext.hxx>
+// auto strip #endif
 // for OWN_ATTR_...
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
@@ -101,7 +101,12 @@
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
@@ -115,16 +120,16 @@
 #endif
 
 #include "mapprov.hxx"
-#include "chtmodel.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
-#include "docshell.hxx"
+// auto strip #include "docshell.hxx"
 
 #ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
 
 // header for any2enum
 #ifndef _COMPHELPER_EXTRACT_HXX_
@@ -132,6 +137,9 @@
 #endif
 
 #include <memory>
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
+#endif
 namespace binfilter {
 
 
