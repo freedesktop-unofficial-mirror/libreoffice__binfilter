@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLIndexTemplateContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:27:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #include "XMLIndexTemplateContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLINDEXSIMPLEENTRYCONTEXT_HXX_
-#include "XMLIndexSimpleEntryContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLINDEXSIMPLEENTRYCONTEXT_HXX_
+// auto strip #include "XMLIndexSimpleEntryContext.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #include "XMLIndexSpanEntryContext.hxx"
@@ -84,17 +84,17 @@
 #include "XMLIndexChapterInfoEntryContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -104,9 +104,9 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -116,13 +116,13 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
