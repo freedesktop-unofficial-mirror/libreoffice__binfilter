@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 15:54:58 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:51:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,9 +107,6 @@
 #endif
 #ifndef __SGI_STL_LIST
 #include <list>
-#endif
-#ifndef __SGI_STL_HASH_MAP
-#include <hash_map>
 #endif
 
 #ifndef _ERRHDL_HXX
