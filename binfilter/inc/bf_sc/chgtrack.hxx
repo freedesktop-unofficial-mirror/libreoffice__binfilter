@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:13 $
+ *  last change: $Author: kz $ $Date: 2004-07-30 14:52:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -624,7 +624,7 @@ public:
 class ScChangeActionDel : public ScChangeAction
 {
     friend class ScChangeTrack;
-/*N*/   friend void ScChangeAction::Accept();
+/*N*/   friend class ScChangeAction;
 
             ScChangeTrack*      pTrack;
             ScChangeActionCellListEntry* pFirstCell;
@@ -718,7 +718,7 @@ public:
 class ScChangeActionMove : public ScChangeAction
 {
     friend class ScChangeTrack;
-/*N*/   friend void ScChangeActionDel::UndoCutOffMoves();
+/*N*/   friend class ScChangeActionDel;
 
             ScBigRange          aFromRange;
             ScChangeTrack*      pTrack;
@@ -1009,7 +1009,7 @@ public:
 class ScChangeActionReject : public ScChangeAction
 {
     friend class ScChangeTrack;
-/*N*/   friend BOOL ScChangeActionContent::Select( ScDocument*, ScChangeTrack*, BOOL, Stack* );
+/*N*/   friend class ScChangeActionContent;
 
                                 ScChangeActionReject( ULONG nReject )
                                     : ScChangeAction( SC_CAT_REJECT, ScRange() )
