@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:57:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,21 +187,21 @@
 #ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
 #endif
-#ifndef _SVXSWAFOPT_HXX
-#include <bf_svx/swafopt.hxx>
-#endif
+// auto strip #ifndef _SVXSWAFOPT_HXX
+// auto strip #include <bf_svx/swafopt.hxx>
+// auto strip #endif
 #ifndef _MySVXACORR_HXX
 #include <bf_svx/svxacorr.hxx>
 #endif
 #ifndef _OFF_APP_HXX
 #include <bf_offmgr/app.hxx>
 #endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 #ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
 #endif
@@ -211,27 +211,27 @@
 #ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-#include <svtools/syslocale.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-#include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
+// auto strip #include <svtools/syslocale.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
 
 #ifndef _FMTHBSH_HXX
@@ -240,6 +240,11 @@
 #ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX
 #include <fmtornt.hxx>
 #endif
@@ -312,9 +317,9 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _INIT_HXX
 #include <init.hxx>
 #endif
@@ -342,9 +347,9 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
