@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:45:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,6 +90,11 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTSTYLE       CHATTR_DIAGRAM_STYLE
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
 #include <bf_svx/chrtitem.hxx>
 #endif
 
