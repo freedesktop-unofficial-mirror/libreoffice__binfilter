@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltexte.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:28:03 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:52:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,6 +152,7 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -329,7 +330,7 @@ static void lcl_addURL ( SvXMLExport &rExport, const String &rURL,
     String sRelURL;
 
     if( bToRel && (rURL.Len() > 0) )
-        sRelURL = INetURLObject::AbsToRel(rURL,
+        sRelURL = so3::StaticBaseUrl::AbsToRel(rURL,
                       INetURLObject::WAS_ENCODED,
                       INetURLObject::DECODE_UNAMBIGUOUS);
     else
