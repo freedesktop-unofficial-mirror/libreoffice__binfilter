@@ -2,9 +2,9 @@
  *
  *  $RCSfile: flditem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:43 $
+ *  last change: $Author: cl $ $Date: 2004-04-02 14:43:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -320,22 +320,22 @@ public:
                                 SvxTimeFormat eFormat = SVXTIMEFORMAT_STANDARD );
 
     ULONG                   GetFixTime() const { return nFixTime; }
-//STRIP001  void                    SetFixTime( const Time& rTime ) { nFixTime = rTime.GetTime(); }
-//STRIP001
+    void                    SetFixTime( const Time& rTime ) { nFixTime = rTime.GetTime(); }
+
     SvxTimeType             GetType() const { return eType; }
-//STRIP001  void                    SetType( SvxTimeType eTp ) { eType = eTp; }
-//STRIP001
+    void                    SetType( SvxTimeType eTp ) { eType = eTp; }
+
     SvxTimeFormat           GetFormat() const { return eFormat; }
     void                    SetFormat( SvxTimeFormat eFmt ) { eFormat = eFmt; }
-//STRIP001
-//STRIP001                             // deprecated, to be removed
-//STRIP001  XubString               GetFormatted( LanguageType eLanguage, LanguageType eFormat ) const;
-//STRIP001                             // use this instead
-//STRIP001                             // If eLanguage==LANGUAGE_DONTKNOW the language/country
-//STRIP001                             // used in number formatter initialization is taken.
-//STRIP001     String                  GetFormatted( SvNumberFormatter& rFormatter,
-//STRIP001                                 LanguageType eLanguage ) const;
-//STRIP001
+
+    // deprecated, to be removed
+     XubString              GetFormatted( LanguageType eLanguage, LanguageType eFormat ) const;
+                             // use this instead
+                             // If eLanguage==LANGUAGE_DONTKNOW the language/country
+                             // used in number formatter initialization is taken.
+     String                  GetFormatted( SvNumberFormatter& rFormatter,
+                                 LanguageType eLanguage ) const;
+
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 
@@ -364,16 +364,16 @@ public:
                                 SvxFileFormat eFormat = SVXFILEFORMAT_FULLPATH );
 
     String                  GetFile() const { return aFile; }
-//STRIP001  void                    SetFile( const XubString& rString ) { aFile = rString; }
-//STRIP001
+    void                    SetFile( const XubString& rString ) { aFile = rString; }
+
     SvxFileType             GetType() const { return eType; }
-//STRIP001  void                    SetType( SvxFileType eTp ) { eType = eTp; }
-//STRIP001
+    void                    SetType( SvxFileType eTp ) { eType = eTp; }
+
     SvxFileFormat           GetFormat() const { return eFormat; }
     void                    SetFormat( SvxFileFormat eFmt ) { eFormat = eFmt; }
-//STRIP001
-//STRIP001  XubString               GetFormatted() const;
-//STRIP001
+
+    XubString               GetFormatted() const;
+
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
 };
@@ -401,18 +401,18 @@ public:
                                 SvxAuthorType eType = SVXAUTHORTYPE_VAR,
                                 SvxAuthorFormat eFormat = SVXAUTHORFORMAT_FULLNAME );
 
-//STRIP001  XubString               GetName() const { return aName; }
-//STRIP001  void                    SetName( const XubString& rString ) { aName = rString; }
-//STRIP001
-//STRIP001  XubString               GetFirstName() const { return aFirstName; }
-//STRIP001  void                    SetFirstName( const XubString& rString ) { aFirstName = rString; }
-//STRIP001
-//STRIP001  XubString               GetShortName() const { return aShortName; }
-//STRIP001  void                    SetShortName( const XubString& rString ) { aShortName = rString; }
-//STRIP001
+    XubString               GetName() const { return aName; }
+    void                    SetName( const XubString& rString ) { aName = rString; }
+
+    XubString               GetFirstName() const { return aFirstName; }
+    void                    SetFirstName( const XubString& rString ) { aFirstName = rString; }
+
+    XubString               GetShortName() const { return aShortName; }
+    void                    SetShortName( const XubString& rString ) { aShortName = rString; }
+
     SvxAuthorType           GetType() const { return eType; }
-//STRIP001  void                    SetType( SvxAuthorType eTp ) { eType = eTp; }
-//STRIP001
+    void                    SetType( SvxAuthorType eTp ) { eType = eTp; }
+
     SvxAuthorFormat         GetFormat() const { return eFormat; }
     void                    SetFormat( SvxAuthorFormat eFmt ) { eFormat = eFmt; }
 
