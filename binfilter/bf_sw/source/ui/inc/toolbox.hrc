@@ -2,9 +2,9 @@
  *
  *  $RCSfile: toolbox.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:00 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:41:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 #ifndef _TOOLBOX_HRC
 #define _TOOLBOX_HRC
 #include "shells.hrc"
@@ -319,34 +320,32 @@
     ToolBoxItem\
     {\
         ITEM_TOOLBAR_BACKGROUND_COLOR\
-        Text = "Absatzhintergrund" ; \
-        Text [ english ] = "Paragraph background" ; \
-        Text [ english_us ] = "Paragraph Background" ; \
-        Text [ french ] = "Arri�re-plan de paragraphe" ; \
-        Text [ portuguese ] = "Cor de fundo do par�grafo" ; \
-        Text [ portuguese_brazilian ] = "Plano de Fundo do Par�grafo" ; \
-        Text [ swedish ] = "Styckebakgrund" ; \
-        Text [ danish ] = "Afsnitsbaggrund" ; \
-        Text [ italian ] = "Sfondo paragrafo" ; \
-        Text [ spanish ] = "Fondo del p�rrafo" ; \
-        Text [ dutch ] = "Alinea-achtergrond" ; \
-        Text[ chinese_simplified ] = "段落背景";\
-        Text[ russian ] = "��� ������";\
-        Text[ polish ] = "T�o akapitu";\
-        Text[ japanese ] = "段落の背景";\
-        Text[ chinese_traditional ] = "段落背景";\
-        Text[ arabic ] = "����� ������";\
-        Text[ greek ] = "����� ����������";\
-        Text[ korean ] = "단락 배경";\
-        Text[ turkish ] = "Metin artalan�";\
-        Text[ language_user1 ] = " ";\
-        Text[ catalan ] = "Fons de par�graf";\
-        Text[ finnish ] = "Kappaleen tausta";\
-        Text[ thai ] = "พื้นหลังย่อหน้า";\
-        Text[ czech ] = "Pozadí odstavce";\
-        Text[ hebrew ] = "Absatzhintergrund";\
-        Text[ hindi ] = "परिच्छेद पृष्ठभाग";\
-        Text[ slovak ] = "Pozadie odstavca";\
+        Text [ de ] = "Absatzhintergrund" ; \
+        Text [ en-US ] = "Paragraph Background" ; \
+        Text [ x-comment ] = " ";\
+        Text[ pt ] = "Cor de fundo do parágrafo";\
+        Text[ ru ] = "Фон абзаца";\
+        Text[ el ] = "Φόντο παραγράφου";\
+        Text[ nl ] = "Alinea-achtergrond";\
+        Text[ fr ] = "Arrière-plan de paragraphe";\
+        Text[ es ] = "Fondo del párrafo";\
+        Text[ fi ] = "Kappaleen tausta";\
+        Text[ ca ] = "Fons de paràgraf";\
+        Text[ it ] = "Sfondo paragrafo";\
+        Text[ sk ] = "Pozadie odstavca";\
+        Text[ da ] = "Afsnitsbaggrund";\
+        Text[ sv ] = "Styckebakgrund";\
+        Text[ pl ] = "Tło akapitu";\
+        Text[ pt-BR ] = "Plano de Fundo do Parágrafo";\
+        Text[ th ] = "พื้นหลังย่อหน้า";\
+        Text[ ja ] = "段落の背景";\
+        Text[ ko ] = "단락 배경";\
+        Text[ zh-CN ] = "段落背景";\
+        Text[ zh-TW ] = "段落背景";\
+        Text[ tr ] = "Metin artalanı";\
+        Text[ hi-IN ] = "परिच्छेद पृष्ठभाग";\
+        Text[ ar ] = "خلفية الفقرة";\
+        Text[ he ] = "Absatzhintergrund";\
     };
 
 #define MN_TEXT_DIALOGS(HIDE)\
@@ -569,34 +568,32 @@
     {\
         Identifier = FN_FORMAT_FRAME_DLG;\
         HelpID = FN_FORMAT_GRAFIC_DLG;\
-        Text = "Grafik Eigenschaften";\
-        Text [english] = "Grafik properties";\
-        Text[ english_us ] = "Graphics Properties";\
-        Text[ portuguese ] = "Propriedades da imagem";\
-        Text[ russian ] = "�������� ������������ �������";\
-        Text[ dutch ] = "Eigenschappen van afbeeldingen";\
-        Text[ french ] = "Propri�t�s de l'image";\
-        Text[ spanish ] = "Propiedades de la imagen";\
-        Text[ italian ] = "Propriet� immagine";\
-        Text[ danish ] = "Grafik-egenskaber";\
-        Text[ swedish ] = "Grafikegenskaper";\
-        Text[ polish ] = "W�a�ciwo�ci grafiki";\
-        Text[ portuguese_brazilian ] = "Propriedades da Figura";\
-        Text[ japanese ] = "図の属性";\
-        Text[ chinese_simplified ] = "图形属性";\
-        Text[ chinese_traditional ] = "圖形屬性";\
-        Text[ arabic ] = "����� ������";\
-        Text[ greek ] = "��������� ��������";\
-        Text[ korean ] = "그림 등록 정보";\
-        Text[ turkish ] = "Grafik �zellikleri";\
-        Text[ language_user1 ] = " ";\
-        Text[ catalan ] = "Propietats de la imatge";\
-        Text[ finnish ] = "Grafiikkaominaisuudet";\
-        Text[ thai ] = "คุณสมบัติกราฟิค";\
-        Text[ czech ] = "Vlastnosti obrázku";\
-        Text[ hebrew ] = "Grafik Eigenschaften";\
-        Text[ hindi ] = "सुचित्र विशेषतायें";\
-        Text[ slovak ] = "Vlastnosti obrázkov";\
+        Text [ de ] = "Grafik Eigenschaften";\
+        Text [ en-US ] = "Graphics Properties";\
+        Text [ x-comment ] = " ";\
+        Text[ pt ] = "Propriedades da imagem";\
+        Text[ ru ] = "Свойства графического объекта";\
+        Text[ el ] = "Ιδιότητες γραφικού";\
+        Text[ nl ] = "Eigenschappen van afbeeldingen";\
+        Text[ fr ] = "Propriétés de l'image";\
+        Text[ es ] = "Propiedades de la imagen";\
+        Text[ fi ] = "Grafiikkaominaisuudet";\
+        Text[ ca ] = "Propietats de la imatge";\
+        Text[ it ] = "Proprietà immagine";\
+        Text[ sk ] = "Vlastnosti obrázkov";\
+        Text[ da ] = "Grafik-egenskaber";\
+        Text[ sv ] = "Grafikegenskaper";\
+        Text[ pl ] = "Właściwości grafiki";\
+        Text[ pt-BR ] = "Propriedades da Figura";\
+        Text[ th ] = "คุณสมบัติกราฟิค";\
+        Text[ ja ] = "図の属性";\
+        Text[ ko ] = "그림 등록 정보";\
+        Text[ zh-CN ] = "图形属性";\
+        Text[ zh-TW ] = "圖形屬性";\
+        Text[ tr ] = "Grafik özellikleri";\
+        Text[ hi-IN ] = "सुचित्र विशेषतायें";\
+        Text[ ar ] = "خصائص الصورة";\
+        Text[ he ] = "Grafik Eigenschaften";\
     };
 
 
@@ -605,34 +602,32 @@
     {\
         Identifier = FN_FORMAT_FRAME_DLG;\
         HelpID = FN_FORMAT_FRAME_DLG;\
-        Text = "Objekt Eigenschaften";\
-        Text [english] = "Object properties";\
-        Text[ english_us ] = "Object Properties";\
-        Text[ portuguese ] = "Propriedades do objecto";\
-        Text[ russian ] = "�������� �������";\
-        Text[ dutch ] = "Eigenschappen van objecten";\
-        Text[ french ] = "Propri�t�s de l'objet";\
-        Text[ spanish ] = "Propiedades del objeto";\
-        Text[ italian ] = "Propriet� oggetto";\
-        Text[ danish ] = "Objektegenskaber";\
-        Text[ swedish ] = "Objektegenskaper";\
-        Text[ polish ] = "W�a�ciwo�ci obiektu";\
-        Text[ portuguese_brazilian ] = "Propriedades do Objeto";\
-        Text[ japanese ] = "オブジェクトの属性";\
-        Text[ chinese_simplified ] = "对象属性";\
-        Text[ chinese_traditional ] = "物件屬性";\
-        Text[ arabic ] = "����� ������";\
-        Text[ greek ] = "��������� ������������";\
-        Text[ korean ] = "개체 등록 정보";\
-        Text[ turkish ] = "Nesne �zellikleri";\
-        Text[ language_user1 ] = " ";\
-        Text[ catalan ] = "Propietats del objecte";\
-        Text[ finnish ] = "Objektin ominaisuudet";\
-        Text[ thai ] = "คุณสมบัติวัตถุ";\
-        Text[ czech ] = "Vlastnosti objektu";\
-        Text[ hebrew ] = "Objekt Eigenschaften";\
-        Text[ hindi ] = "वस्तु विशेषतायें";\
-        Text[ slovak ] = "Vlastnosti objektu";\
+        Text [ de ] = "Objekt Eigenschaften";\
+        Text [ en-US ] = "Object Properties";\
+        Text [ x-comment ] = " ";\
+        Text[ pt ] = "Propriedades do objecto";\
+        Text[ ru ] = "Свойства объекта";\
+        Text[ el ] = "Ιδιότητες αντικειμένου";\
+        Text[ nl ] = "Eigenschappen van objecten";\
+        Text[ fr ] = "Propriétés de l'objet";\
+        Text[ es ] = "Propiedades del objeto";\
+        Text[ fi ] = "Objektin ominaisuudet";\
+        Text[ ca ] = "Propietats del objecte";\
+        Text[ it ] = "Proprietà oggetto";\
+        Text[ sk ] = "Vlastnosti objektu";\
+        Text[ da ] = "Objektegenskaber";\
+        Text[ sv ] = "Objektegenskaper";\
+        Text[ pl ] = "Właściwości obiektu";\
+        Text[ pt-BR ] = "Propriedades do Objeto";\
+        Text[ th ] = "คุณสมบัติวัตถุ";\
+        Text[ ja ] = "オブジェクトの属性";\
+        Text[ ko ] = "개체 등록 정보";\
+        Text[ zh-CN ] = "对象属性";\
+        Text[ zh-TW ] = "物件屬性";\
+        Text[ tr ] = "Nesne özellikleri";\
+        Text[ hi-IN ] = "वस्तु विशेषतायें";\
+        Text[ ar ] = "خصائص الكائن";\
+        Text[ he ] = "Objekt Eigenschaften";\
     };
 
 #define MN_GRID(hide)\
