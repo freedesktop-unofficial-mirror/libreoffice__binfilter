@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlbrshe.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:28:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <rtl/ustring.hxx>
 #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include <bf_xmloff/attrlist.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include <bf_xmloff/attrlist.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
