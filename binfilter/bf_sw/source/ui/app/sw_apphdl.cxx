@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:29:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,47 +62,47 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 
 #define _SVSTDARR_STRINGSDTOR
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_UNDOOPT_HXX
-#include <svtools/undoopt.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_UNDOOPT_HXX
+// auto strip #include <svtools/undoopt.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
 #include <svtools/accessibilityoptions.hxx>
 #endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
 #ifndef _SFXEVENT_HXX //autogen
 #include <bf_sfx2/event.hxx>
 #endif
-#ifndef _SVX_SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHITEM_HXX
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <svtools/colorcfg.hxx>
 #endif
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <svtools/eitem.hxx>
 #endif
-#ifndef _OFF_APP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
+// auto strip #ifndef _OFF_APP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
@@ -115,64 +115,69 @@
 #ifndef _SVX_DLG_HYPERLINK_HXX //autogen
 #include <bf_offmgr/hyprlink.hxx>
 #endif
-#ifndef _SFXREQUEST_HXX //autogen
-#include <bf_sfx2/request.hxx>
-#endif
-#ifndef _OFA_OSPLCFG_HXX //autogen
-#include <bf_offmgr/osplcfg.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUCFG_HXX_
-#include <svtools/lingucfg.hxx>
-#endif
+// auto strip #ifndef _SFXREQUEST_HXX //autogen
+// auto strip #include <bf_sfx2/request.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFA_OSPLCFG_HXX //autogen
+// auto strip #include <bf_offmgr/osplcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_LINGUCFG_HXX_
+// auto strip #include <svtools/lingucfg.hxx>
+// auto strip #endif
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <svtools/ctloptions.hxx>
 #endif
-#ifndef _SVX_ADRITEM_HXX //autogen
-#include <bf_svx/adritem.hxx>
-#endif
-#ifndef _VCL_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _VCL_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SVX_ADRITEM_HXX //autogen
+// auto strip #include <bf_svx/adritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _VCL_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _VCL_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #ifndef _SVX_INSCTRL_HXX //autogen
 #include <bf_svx/insctrl.hxx>
 #endif
 #ifndef _SVX_SELCTRL_HXX //autogen
 #include <bf_svx/selctrl.hxx>
 #endif
-#ifndef _NAVICFG_HXX
-#include <navicfg.hxx>
+// auto strip #ifndef _NAVICFG_HXX
+// auto strip #include <navicfg.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWPVIEW_HXX
+// auto strip #include <pview.hxx>
+// auto strip #endif
+// auto strip #ifndef _SRCVIEW_HXX
+// auto strip #include <srcview.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _SWPVIEW_HXX
-#include <pview.hxx>
-#endif
-#ifndef _SRCVIEW_HXX
-#include <srcview.hxx>
-#endif
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
 #ifndef _CMDID_H
 #include <cmdid.h>          // Funktion-Ids
 #endif
-#ifndef _INITUI_HXX
-#include <initui.hxx>
-#endif
-#ifndef _UITOOL_HXX
-#include <uitool.hxx>
-#endif
+// auto strip #ifndef _INITUI_HXX
+// auto strip #include <initui.hxx>
+// auto strip #endif
+// auto strip #ifndef _UITOOL_HXX
+// auto strip #include <uitool.hxx>
+// auto strip #endif
 #ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
 #endif
@@ -182,30 +187,30 @@
 #ifndef _WVIEW_HXX
 #include <wview.hxx>
 #endif
-#ifndef _WIZZARD_HXX
-#include <wizzard.hxx>      // Wizzards
-#endif
-#ifndef _USRPREF_HXX
-#include <usrpref.hxx>
-#endif
-#ifndef _GLOSLST_HXX
-#include <gloslst.hxx>      // SwGlossaryList
-#endif
-#ifndef _GLOSDOC_HXX
-#include <glosdoc.hxx>      // SwGlossaryList
-#endif
+// auto strip #ifndef _WIZZARD_HXX
+// auto strip #include <wizzard.hxx>        // Wizzards
+// auto strip #endif
+// auto strip #ifndef _USRPREF_HXX
+// auto strip #include <usrpref.hxx>
+// auto strip #endif
+// auto strip #ifndef _GLOSLST_HXX
+// auto strip #include <gloslst.hxx>      // SwGlossaryList
+// auto strip #endif
+// auto strip #ifndef _GLOSDOC_HXX
+// auto strip #include <glosdoc.hxx>      // SwGlossaryList
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _CFGITEMS_HXX
-#include <cfgitems.hxx>
-#endif
-#ifndef _PRTOPT_HXX
-#include <prtopt.hxx>
-#endif
-#ifndef _MODCFG_HXX
-#include <modcfg.hxx>
-#endif
+// auto strip #ifndef _CFGITEMS_HXX
+// auto strip #include <cfgitems.hxx>
+// auto strip #endif
+// auto strip #ifndef _PRTOPT_HXX
+// auto strip #include <prtopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _MODCFG_HXX
+// auto strip #include <modcfg.hxx>
+// auto strip #endif
 #ifndef _GLOBALS_H
 #include <globals.h>        // globale Konstanten z.B.
 #endif
@@ -233,71 +238,71 @@
 #ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
 #endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SFX_SFXUNO_HXX
-#include <bf_sfx2/sfxuno.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
-#include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
-#include <com/sun/star/beans/PropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
-#include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-#include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-#include <com/sun/star/beans/XFastPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XVETOABLECHANGELISTENER_HPP_
-#include <com/sun/star/beans/XVetoableChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
-#include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATECHANGELISTENER_HPP_
-#include <com/sun/star/beans/XPropertyStateChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
-#include <com/sun/star/beans/XPropertiesChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
-#include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYACCESS_HPP_
-#include <com/sun/star/beans/XPropertyAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCONTAINER_HPP_
-#include <com/sun/star/beans/XPropertyContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATECHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyStateChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_SFXUNO_HXX
+// auto strip #include <bf_sfx2/sfxuno.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValues.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyState.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySetInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XVETOABLECHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XVetoableChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyState.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATECHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyStateChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyChangeListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYACCESS_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCONTAINER_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATECHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyStateChangeEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
 
 // #107253#
-#ifndef _SWLINGUCONFIG_HXX
-#include <swlinguconfig.hxx>
-#endif
+// auto strip #ifndef _SWLINGUCONFIG_HXX
+// auto strip #include <swlinguconfig.hxx>
+// auto strip #endif
 
 using namespace ::com::sun::star;
 
@@ -324,7 +329,7 @@ using namespace ::com::sun::star;
 
 #include <shells.hrc>
 namespace binfilter {
-#include <bf_svx/svxslots.hxx>
+// auto strip #include <bf_svx/svxslots.hxx>
 #include "swslots.hxx"
 /*N*/ SFX_IMPL_INTERFACE( SwModule, SfxModule, SW_RES(RID_SW_NAME) )
 /*N*/ {
