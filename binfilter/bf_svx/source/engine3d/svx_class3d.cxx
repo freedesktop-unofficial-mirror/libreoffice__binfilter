@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_class3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:38:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,17 +59,17 @@
  *
  ************************************************************************/
 
-#ifndef _E3D_GLOBL3D_HXX
-#include <globl3d.hxx>
-#endif
+// auto strip #ifndef _E3D_GLOBL3D_HXX
+// auto strip #include <globl3d.hxx>
+// auto strip #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 
 #ifndef _SVX_MATRIX3D_HXX
 #include "matrix3d.hxx"
