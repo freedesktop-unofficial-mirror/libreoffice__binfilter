@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:32:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3029,12 +3029,12 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ {
 /*N*/ }
 
-//STRIP001 SvxTwoLinesItem::SvxTwoLinesItem( const SvxTwoLinesItem& rAttr )
-//STRIP001  : SfxPoolItem( rAttr.Which() ),
-//STRIP001  bOn( rAttr.bOn ), cStartBracket( rAttr.cStartBracket ),
-//STRIP001  cEndBracket( rAttr.cEndBracket )
-//STRIP001 {
-//STRIP001 }
+/*NBFF*/ SvxTwoLinesItem::SvxTwoLinesItem( const SvxTwoLinesItem& rAttr )
+/*NBFF*/    : SfxPoolItem( rAttr.Which() ),
+/*NBFF*/    bOn( rAttr.bOn ), cStartBracket( rAttr.cStartBracket ),
+/*NBFF*/    cEndBracket( rAttr.cEndBracket )
+/*NBFF*/ {
+/*NBFF*/ }
 
 /*N*/ SvxTwoLinesItem::~SvxTwoLinesItem()
 /*N*/ {
@@ -3042,125 +3042,125 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ int SvxTwoLinesItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rAttr ), "not equal attribute types" );
-//STRIP001  return bOn == ((SvxTwoLinesItem&)rAttr).bOn &&
-//STRIP001         cStartBracket == ((SvxTwoLinesItem&)rAttr).cStartBracket &&
-//STRIP001         cEndBracket == ((SvxTwoLinesItem&)rAttr).cEndBracket;
+/*NFFF*/    DBG_ASSERT( SfxPoolItem::operator==( rAttr ), "not equal attribute types" );
+/*NBFF*/    return bOn == ((SvxTwoLinesItem&)rAttr).bOn &&
+/*NBFF*/           cStartBracket == ((SvxTwoLinesItem&)rAttr).cStartBracket &&
+/*NBFF*/           cEndBracket == ((SvxTwoLinesItem&)rAttr).cEndBracket;
 /*?*/ }
 
 /*?*/ SfxPoolItem* SvxTwoLinesItem::Clone( SfxItemPool* ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxTwoLinesItem( *this );
+/*NBFF*/    return new SvxTwoLinesItem( *this );
 /*?*/ }
 
-//STRIP001 sal_Bool SvxTwoLinesItem::QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                              BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Bool bRet = sal_True;
-//STRIP001  switch( nMemberId )
-//STRIP001  {
-//STRIP001  case MID_TWOLINES:
-//STRIP001      rVal = Bool2Any( bOn );
-//STRIP001      break;
-//STRIP001  case MID_START_BRACKET:
-//STRIP001      {
-//STRIP001          OUString s;
-//STRIP001          if( cStartBracket )
-//STRIP001              s = OUString( cStartBracket );
-//STRIP001          rVal <<= s;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case MID_END_BRACKET:
-//STRIP001      {
-//STRIP001          OUString s;
-//STRIP001          if( cEndBracket )
-//STRIP001              s = OUString( cEndBracket );
-//STRIP001          rVal <<= s;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = sal_False;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+/*NBFF*/ sal_Bool SvxTwoLinesItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                BYTE nMemberId ) const
+/*NBFF*/ {
+/*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*NBFF*/     nMemberId &= ~CONVERT_TWIPS;
+/*NBFF*/    sal_Bool bRet = sal_True;
+/*NBFF*/    switch( nMemberId )
+/*NBFF*/    {
+/*NBFF*/    case MID_TWOLINES:
+/*NBFF*/        rVal = Bool2Any( bOn );
+/*NBFF*/        break;
+/*NBFF*/    case MID_START_BRACKET:
+/*NBFF*/        {
+/*NBFF*/            OUString s;
+/*NBFF*/            if( cStartBracket )
+/*NBFF*/                s = OUString( cStartBracket );
+/*NBFF*/            rVal <<= s;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    case MID_END_BRACKET:
+/*NBFF*/        {
+/*NBFF*/            OUString s;
+/*NBFF*/            if( cEndBracket )
+/*NBFF*/                s = OUString( cEndBracket );
+/*NBFF*/            rVal <<= s;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    default:
+/*NBFF*/        bRet = sal_False;
+/*NBFF*/        break;
+/*NBFF*/    }
+/*NBFF*/    return bRet;
+/*NBFF*/ }
 
-//STRIP001 sal_Bool SvxTwoLinesItem::PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                  BYTE nMemberId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Bool bRet = sal_False;
-//STRIP001  OUString s;
-//STRIP001  switch( nMemberId )
-//STRIP001  {
-//STRIP001  case MID_TWOLINES:
-//STRIP001      bOn = Any2Bool( rVal );
-//STRIP001      bRet = sal_True;
-//STRIP001      break;
-//STRIP001  case MID_START_BRACKET:
-//STRIP001      if( rVal >>= s )
-//STRIP001      {
-//STRIP001          cStartBracket = s.getLength() ? s[ 0 ] : 0;
-//STRIP001          bRet = sal_True;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  case MID_END_BRACKET:
-//STRIP001      if( rVal >>= s )
-//STRIP001      {
-//STRIP001          cEndBracket = s.getLength() ? s[ 0 ] : 0;
-//STRIP001          bRet = sal_True;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+/*NBFF*/ sal_Bool SvxTwoLinesItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                    BYTE nMemberId )
+/*NBFF*/ {
+/*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*NBFF*/     nMemberId &= ~CONVERT_TWIPS;
+/*NBFF*/    sal_Bool bRet = sal_False;
+/*NBFF*/    OUString s;
+/*NBFF*/    switch( nMemberId )
+/*NBFF*/    {
+/*NBFF*/    case MID_TWOLINES:
+/*NBFF*/        bOn = Any2Bool( rVal );
+/*NBFF*/        bRet = sal_True;
+/*NBFF*/        break;
+/*NBFF*/    case MID_START_BRACKET:
+/*NBFF*/        if( rVal >>= s )
+/*NBFF*/        {
+/*NBFF*/            cStartBracket = s.getLength() ? s[ 0 ] : 0;
+/*NBFF*/            bRet = sal_True;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    case MID_END_BRACKET:
+/*NBFF*/        if( rVal >>= s )
+/*NBFF*/        {
+/*NBFF*/            cEndBracket = s.getLength() ? s[ 0 ] : 0;
+/*NBFF*/            bRet = sal_True;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    }
+/*NBFF*/    return bRet;
+/*NBFF*/ }
 
-//STRIP001 SfxItemPresentation SvxTwoLinesItem::GetPresentation( SfxItemPresentation ePres,
-//STRIP001                          SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001                             String &rText, const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if( !GetValue() )
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_TWOLINES_OFF );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_TWOLINES );
-//STRIP001              if( GetStartBracket() )
-//STRIP001                  rText.Insert( GetStartBracket(), 0 );
-//STRIP001              if( GetEndBracket() )
-//STRIP001                  rText += GetEndBracket();
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
+/*NBFF*/ SfxItemPresentation SvxTwoLinesItem::GetPresentation( SfxItemPresentation ePres,
+/*NBFF*/                            SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
+/*NBFF*/                             String &rText, const IntlWrapper* pIntl ) const
+/*NBFF*/ {
+/*NBFF*/    switch( ePres )
+/*NBFF*/    {
+/*NBFF*/    case SFX_ITEM_PRESENTATION_NONE:
+/*NBFF*/        rText.Erase();
+/*NBFF*/        break;
+/*NBFF*/    case SFX_ITEM_PRESENTATION_NAMELESS:
+/*NBFF*/    case SFX_ITEM_PRESENTATION_COMPLETE:
+/*NBFF*/        {
+/*NBFF*/            if( !GetValue() )
+/*NBFF*/                rText = SVX_RESSTR( RID_SVXITEMS_TWOLINES_OFF );
+/*NBFF*/            else
+/*NBFF*/            {
+/*NBFF*/                rText = SVX_RESSTR( RID_SVXITEMS_TWOLINES );
+/*NBFF*/                if( GetStartBracket() )
+/*NBFF*/                    rText.Insert( GetStartBracket(), 0 );
+/*NBFF*/                if( GetEndBracket() )
+/*NBFF*/                    rText += GetEndBracket();
+/*NBFF*/            }
+/*NBFF*/            return ePres;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    }
+/*NBFF*/    return SFX_ITEM_PRESENTATION_NONE;
+/*NBFF*/ }
 
 
-//STRIP001 SfxPoolItem* SvxTwoLinesItem::Create( SvStream & rStrm, USHORT nVer) const
-//STRIP001 {
-//STRIP001  sal_Bool bOn;
-//STRIP001  sal_Unicode cStart, cEnd;
-//STRIP001  rStrm >> bOn >> cStart >> cEnd;
-//STRIP001  return new SvxTwoLinesItem( bOn, cStart, cEnd, Which() );
-//STRIP001 }
+/*NBFF*/ SfxPoolItem* SvxTwoLinesItem::Create( SvStream & rStrm, USHORT nVer) const
+/*NBFF*/ {
+/*NBFF*/    sal_Bool bOn;
+/*NBFF*/    sal_Unicode cStart, cEnd;
+/*NBFF*/    rStrm >> bOn >> cStart >> cEnd;
+/*NBFF*/    return new SvxTwoLinesItem( bOn, cStart, cEnd, Which() );
+/*NBFF*/ }
 
-//STRIP001 SvStream& SvxTwoLinesItem::Store(SvStream & rStrm, USHORT nIVer) const
-//STRIP001 {
-//STRIP001  rStrm << GetValue() << GetStartBracket() << GetEndBracket();
-//STRIP001  return rStrm;
-//STRIP001 }
+/*NBFF*/ SvStream& SvxTwoLinesItem::Store(SvStream & rStrm, USHORT nIVer) const
+/*NBFF*/ {
+/*NBFF*/    rStrm << GetValue() << GetStartBracket() << GetEndBracket();
+/*NBFF*/    return rStrm;
+/*NBFF*/ }
 
 /*N*/ USHORT SvxTwoLinesItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -3184,114 +3184,114 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ {
 /*N*/ }
 
-//STRIP001 SfxPoolItem* SvxCharRotateItem::Clone( SfxItemPool* ) const
-//STRIP001 {
-//STRIP001  return new SvxCharRotateItem( GetValue(), IsFitToLine(), Which() );
-//STRIP001 }
+/*NBFF*/ SfxPoolItem* SvxCharRotateItem::Clone( SfxItemPool* ) const
+/*NBFF*/ {
+/*NBFF*/    return new SvxCharRotateItem( GetValue(), IsFitToLine(), Which() );
+/*NBFF*/ }
 
-//STRIP001 SfxPoolItem* SvxCharRotateItem::Create( SvStream& rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  sal_uInt16 nVal;
-//STRIP001  sal_Bool b;
-//STRIP001  rStrm >> nVal >> b;
-//STRIP001  return new SvxCharRotateItem( nVal, b, Which() );
-//STRIP001 }
+/*NBFF*/ SfxPoolItem* SvxCharRotateItem::Create( SvStream& rStrm, USHORT ) const
+/*NBFF*/ {
+/*NBFF*/    sal_uInt16 nVal;
+/*NBFF*/    sal_Bool b;
+/*NBFF*/    rStrm >> nVal >> b;
+/*NBFF*/    return new SvxCharRotateItem( nVal, b, Which() );
+/*NBFF*/ }
 
-//STRIP001 SvStream& SvxCharRotateItem::Store( SvStream & rStrm, USHORT ) const
-//STRIP001 {
-//STRIP001  sal_Bool bFlag = IsFitToLine();
-//STRIP001  rStrm << GetValue() << bFlag;
-//STRIP001  return rStrm;
-//STRIP001 }
+/*NBFF*/ SvStream& SvxCharRotateItem::Store( SvStream & rStrm, USHORT ) const
+/*NBFF*/ {
+/*NBFF*/    sal_Bool bFlag = IsFitToLine();
+/*NBFF*/    rStrm << GetValue() << bFlag;
+/*NBFF*/    return rStrm;
+/*NBFF*/ }
 
 /*N*/ USHORT SvxCharRotateItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
 
-//STRIP001 SfxItemPresentation SvxCharRotateItem::GetPresentation(
-//STRIP001      SfxItemPresentation ePres,
-//STRIP001      SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-//STRIP001         String &rText, const IntlWrapper*  ) const
-//STRIP001 {
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001  case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001      rText.Erase();
-//STRIP001      break;
-//STRIP001  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          if( !GetValue() )
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_CHARROTATE_OFF );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rText = SVX_RESSTR( RID_SVXITEMS_CHARROTATE );
-//STRIP001              rText.SearchAndReplaceAscii( "$(ARG1)",
-//STRIP001                          String::CreateFromInt32( GetValue() / 10 ));
-//STRIP001              if( IsFitToLine() )
-//STRIP001                  rText += SVX_RESSTR( RID_SVXITEMS_CHARROTATE_FITLINE );
-//STRIP001          }
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
+/*NBFF*/ SfxItemPresentation SvxCharRotateItem::GetPresentation(
+/*NBFF*/        SfxItemPresentation ePres,
+/*NBFF*/        SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
+/*NBFF*/         String &rText, const IntlWrapper*  ) const
+/*NBFF*/ {
+/*NBFF*/    switch( ePres )
+/*NBFF*/    {
+/*NBFF*/    case SFX_ITEM_PRESENTATION_NONE:
+/*NBFF*/        rText.Erase();
+/*NBFF*/        break;
+/*NBFF*/    case SFX_ITEM_PRESENTATION_NAMELESS:
+/*NBFF*/    case SFX_ITEM_PRESENTATION_COMPLETE:
+/*NBFF*/        {
+/*NBFF*/            if( !GetValue() )
+/*NBFF*/                rText = SVX_RESSTR( RID_SVXITEMS_CHARROTATE_OFF );
+/*NBFF*/            else
+/*NBFF*/            {
+/*NBFF*/                rText = SVX_RESSTR( RID_SVXITEMS_CHARROTATE );
+/*NBFF*/                rText.SearchAndReplaceAscii( "$(ARG1)",
+/*NBFF*/                            String::CreateFromInt32( GetValue() / 10 ));
+/*NBFF*/                if( IsFitToLine() )
+/*NBFF*/                    rText += SVX_RESSTR( RID_SVXITEMS_CHARROTATE_FITLINE );
+/*NBFF*/            }
+/*NBFF*/            return ePres;
+/*NBFF*/        }
+/*NBFF*/        break;
+/*NBFF*/    }
+/*NBFF*/    return SFX_ITEM_PRESENTATION_NONE;
+/*NBFF*/ }
 
-//STRIP001 sal_Bool SvxCharRotateItem::QueryValue( ::com::sun::star::uno::Any& rVal,
-//STRIP001                              BYTE nMemberId ) const
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Bool bRet = sal_True;
-//STRIP001  switch( nMemberId )
-//STRIP001  {
-//STRIP001  case MID_ROTATE:
-//STRIP001      rVal <<= (sal_Int16)GetValue();
-//STRIP001      break;
-//STRIP001  case MID_FITTOLINE:
-//STRIP001      rVal = Bool2Any( IsFitToLine() );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = sal_False;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+/*NBFF*/ sal_Bool SvxCharRotateItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                BYTE nMemberId ) const
+/*NBFF*/ {
+/*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*NBFF*/     nMemberId &= ~CONVERT_TWIPS;
+/*NBFF*/    sal_Bool bRet = sal_True;
+/*NBFF*/    switch( nMemberId )
+/*NBFF*/    {
+/*NBFF*/    case MID_ROTATE:
+/*NBFF*/        rVal <<= (sal_Int16)GetValue();
+/*NBFF*/        break;
+/*NBFF*/    case MID_FITTOLINE:
+/*NBFF*/        rVal = Bool2Any( IsFitToLine() );
+/*NBFF*/        break;
+/*NBFF*/    default:
+/*NBFF*/        bRet = sal_False;
+/*NBFF*/        break;
+/*NBFF*/    }
+/*NBFF*/    return bRet;
+/*NBFF*/ }
 
-//STRIP001 sal_Bool SvxCharRotateItem::PutValue( const ::com::sun::star::uno::Any& rVal,
-//STRIP001                                  BYTE nMemberId )
-//STRIP001 {
-//STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
-//STRIP001     nMemberId &= ~CONVERT_TWIPS;
-//STRIP001  sal_Bool bRet = sal_True;
-//STRIP001  sal_Int16 nVal;
-//STRIP001  switch( nMemberId )
-//STRIP001  {
-//STRIP001  case MID_ROTATE:
-//STRIP001      rVal >>= nVal;
-//STRIP001      if(!nVal || 900 == nVal || 2700 == nVal)
-//STRIP001          SetValue( (USHORT)nVal );
-//STRIP001      else
-//STRIP001          bRet = sal_False;
-//STRIP001      break;
-//STRIP001
-//STRIP001  case MID_FITTOLINE:
-//STRIP001      SetFitToLine( Any2Bool( rVal ) );
-//STRIP001      break;
-//STRIP001  default:
-//STRIP001      bRet = sal_False;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
+/*NBFF*/ sal_Bool SvxCharRotateItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/                                    BYTE nMemberId )
+/*NBFF*/ {
+/*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*NBFF*/     nMemberId &= ~CONVERT_TWIPS;
+/*NBFF*/    sal_Bool bRet = sal_True;
+/*NBFF*/    sal_Int16 nVal;
+/*NBFF*/    switch( nMemberId )
+/*NBFF*/    {
+/*NBFF*/    case MID_ROTATE:
+/*NBFF*/        rVal >>= nVal;
+/*NBFF*/        if(!nVal || 900 == nVal || 2700 == nVal)
+/*NBFF*/            SetValue( (USHORT)nVal );
+/*NBFF*/        else
+/*NBFF*/            bRet = sal_False;
+/*NBFF*/        break;
+/*NBFF*/
+/*NBFF*/    case MID_FITTOLINE:
+/*NBFF*/        SetFitToLine( Any2Bool( rVal ) );
+/*NBFF*/        break;
+/*NBFF*/    default:
+/*NBFF*/        bRet = sal_False;
+/*NBFF*/    }
+/*NBFF*/    return bRet;
+/*NBFF*/ }
 
-//STRIP001 int SvxCharRotateItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return SfxUInt16Item::operator==( rItem ) &&
-//STRIP001         IsFitToLine() == ((const SvxCharRotateItem&)rItem).IsFitToLine();
-//STRIP001 }
+/*NBFF*/ int SvxCharRotateItem::operator==( const SfxPoolItem& rItem ) const
+/*NBFF*/ {
+/*NBFF*/    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*NBFF*/    return SfxUInt16Item::operator==( rItem ) &&
+/*NBFF*/           IsFitToLine() == ((const SvxCharRotateItem&)rItem).IsFitToLine();
+/*NBFF*/ }
 
 
 /*************************************************************************
