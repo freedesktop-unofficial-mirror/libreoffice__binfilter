@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:33:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,54 +59,54 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
-#ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
-#include <svtools/languageoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_UCBSTREAMHELPER_HXX
-#include <unotools/ucbstreamhelper.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX
-#include <vcl/virdev.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
+// auto strip #include <svtools/languageoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_UCBSTREAMHELPER_HXX
+// auto strip #include <unotools/ucbstreamhelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_VIRDEV_HXX
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SFXMSG_HXX //autogen
-#include <bf_sfx2/msg.hxx>
-#endif
-#ifndef _SFXOBJFACE_HXX //autogen
-#include <bf_sfx2/objface.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_PSZCTRL_HXX //autogen
-#include <bf_svx/pszctrl.hxx>
-#endif
-#ifndef _SVX_ZOOMCTRL_HXX //autogen
-#include <bf_svx/zoomctrl.hxx>
-#endif
-#ifndef _SVX_MODCTRL_HXX //autogen
-#include <bf_svx/modctrl.hxx>
-#endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXMSG_HXX //autogen
+// auto strip #include <bf_sfx2/msg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXOBJFACE_HXX //autogen
+// auto strip #include <bf_sfx2/objface.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PSZCTRL_HXX //autogen
+// auto strip #include <bf_svx/pszctrl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ZOOMCTRL_HXX //autogen
+// auto strip #include <bf_svx/zoomctrl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_MODCTRL_HXX //autogen
+// auto strip #include <bf_svx/modctrl.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _EHDL_HXX
 #include <svtools/ehdl.hxx>
@@ -115,14 +115,14 @@
 #define ITEMID_SEARCH           SID_SEARCH_ITEM
 #include <bf_svx/svxids.hrc>
 #include <bf_offmgr/ofaids.hrc>
-#include <bf_svx/srchitem.hxx>
+// auto strip #include <bf_svx/srchitem.hxx>
 
 #pragma hdrstop
 
 #define _SD_DLL                 // fuer SD_MOD()
-#include "sderror.hxx"
-#include "sdmod.hxx"
-#include "sddll.hxx"
+// auto strip #include "sderror.hxx"
+// auto strip #include "sdmod.hxx"
+// auto strip #include "sddll.hxx"
 #include "sdresid.hxx"
 #include "optsitem.hxx"
 #include "docshell.hxx"
@@ -131,11 +131,16 @@
 #include "glob.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
-#include "cfgids.hxx"
+// auto strip #include "cfgids.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+
+#ifndef _SFX_SRCHITEM_HXX
+#include <bf_sfx2/srchitem.hxx>
+#endif
+
 namespace binfilter {
 
 /*N*/ TYPEINIT1( SdModuleDummy, SfxModule );
