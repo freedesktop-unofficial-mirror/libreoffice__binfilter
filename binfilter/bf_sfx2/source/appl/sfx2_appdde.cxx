@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:26:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,49 +59,54 @@
  *
  ************************************************************************/
 
-#ifndef _SV_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SFXRECTITEM_HXX //autogen
-#include <svtools/rectitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
-#include <svtools/intitem.hxx>
-#endif
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXRECTITEM_HXX //autogen
+// auto strip #include <svtools/rectitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXINTITEM_HXX //autogen
+// auto strip #include <svtools/intitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 #ifndef _SVDDE_HXX //autogen
 #include <svtools/svdde.hxx>
 #endif
-#ifndef _LNKBASE_HXX //autogen
-#include <so3/lnkbase.hxx>
-#endif
-#ifndef _LINKMGR_HXX //autogen
-#include <so3/linkmgr.hxx>
-#endif
+// auto strip #ifndef _LNKBASE_HXX //autogen
+// auto strip #include <so3/lnkbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINKMGR_HXX //autogen
+// auto strip #include <so3/linkmgr.hxx>
+// auto strip #endif
 #include <tools/urlobj.hxx>
 #include <svtools/pathoptions.hxx>
 #pragma hdrstop
 
-#include "app.hxx"
+// auto strip #include "app.hxx"
 #include "appdata.hxx"
 #include "objsh.hxx"
-#include "viewfrm.hxx"
+// auto strip #include "viewfrm.hxx"
 #include "topfrm.hxx"
 #include "dispatch.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "sfxtypes.hxx"
 #include "sfxsids.hrc"
 #if SUPD<613//MUSTINI
-#include "inimgr.hxx"
+// auto strip #include "inimgr.hxx"
 #endif
-#include "helper.hxx"
+// auto strip #include "helper.hxx"
+
+#ifndef _SFX_SFXUNO_HXX
+#include <bf_sfx2/sfxuno.hxx>
+#endif
+
 namespace binfilter {
 
 //========================================================================
