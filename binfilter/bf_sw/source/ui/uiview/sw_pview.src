@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pview.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:50 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:52:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,6 +58,7 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 #include <bf_svx/svxids.hrc>
 #include "pview.hrc"
@@ -954,36 +955,32 @@
 //STRIP001 };
 String RID_PVIEW_TOOLBOX
 {
-    Text = "Seitenansicht" ;
-    Text [ English ] = "Page preview" ;
-    Text [ dutch ] = "Afdrukvoorbeeld" ;
-    Text [ english_us ] = "Page Preview" ;
-    Text [ italian ] = "Anteprima stampa" ;
-    Text [ spanish ] = "Vista preliminar" ;
-    Text [ french ] = "Aper�u" ;
-    Text [ swedish ] = "F�rhandsgranskning" ;
-    Text [ danish ] = "Sidevisning" ;
-    Text [ portuguese ] = "Ver p�gina" ;
-    Text [ portuguese_brazilian ] = "Visualizar P�gina" ;
-    Text[ chinese_simplified ] = "页面视图";
-    Text[ russian ] = "��������������� ��������";
-    Text[ polish ] = "Podgl�d wydruku";
-    Text[ japanese ] = "印刷プレビュー";
-    Text[ chinese_traditional ] = "頁面檢視";
-    Text[ arabic ] = "������ ������";
-    Text[ dutch ] = "Afdrukvoorbeeld";
-    Text[ chinese_simplified ] = "页面视图";
-    Text[ greek ] = "������������� ���������";
-    Text[ korean ] = "인쇄 미리 보기";
-    Text[ turkish ] = "Sayfa �nizleme";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "Visualitzaci� pr�via de la p�gina";
-    Text[ finnish ] = "Esikatselu";
-    Text[ thai ] = "แสดงตัวอย่างหน้า";
-    Text[ czech ] = "Náhled stránky";
-    Text[ hebrew ] = "‮מבט כללי‬";
-    Text[ hindi ] = "पृष्ठ का पूर्वदृश्य";
-    Text[ slovak ] = "Náhľad stránky";
+    Text [ de ] = "Seitenansicht" ;
+    Text [ en-US ] = "Page Preview" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "Ver página";
+    Text[ ru ] = "Предварительный просмотр";
+    Text[ el ] = "Προεπισκόπηση εκτύπωσης";
+    Text[ nl ] = "Afdrukvoorbeeld";
+    Text[ fr ] = "Aperçu";
+    Text[ es ] = "Vista preliminar";
+    Text[ fi ] = "Esikatselu";
+    Text[ ca ] = "Visualització prèvia de la pàgina";
+    Text[ it ] = "Anteprima stampa";
+    Text[ sk ] = "Náhľad stránky";
+    Text[ da ] = "Sidevisning";
+    Text[ sv ] = "Förhandsgranskning";
+    Text[ pl ] = "Podgląd wydruku";
+    Text[ pt-BR ] = "Visualizar Página";
+    Text[ th ] = "แสดงตัวอย่างหน้า";
+    Text[ ja ] = "印刷プレビュー";
+    Text[ ko ] = "인쇄 미리 보기";
+    Text[ zh-CN ] = "页面视图";
+    Text[ zh-TW ] = "頁面檢視";
+    Text[ tr ] = "Sayfa önizleme";
+    Text[ hi-IN ] = "पृष्ठ का पूर्वदृश्य";
+    Text[ ar ] = "معاينة الصفحة";
+    Text[ he ] = "‮מבט כללי‬";
 };
 ToolBox RID_PVIEW_TOOLBOX
 {
