@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_txencbox.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:30:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,15 +64,15 @@
 #pragma hdrstop
 
 #include "txencbox.hxx"
-#include "txenctab.hxx"
+// auto strip #include "txenctab.hxx"
 #include "dialogs.hrc"
 
-#ifndef SVX_DBCHARSETHELPER_HXX
-#include "dbcharsethelper.hxx"
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef SVX_DBCHARSETHELPER_HXX
+// auto strip #include "dbcharsethelper.hxx"
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
 #endif
