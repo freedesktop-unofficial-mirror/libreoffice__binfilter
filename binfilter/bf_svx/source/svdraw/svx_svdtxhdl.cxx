@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtxhdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:32:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,67 +61,72 @@
 
 #include "svdtxhdl.hxx"
 #include <limits.h>
-#include "svditext.hxx"
+// auto strip #include "svditext.hxx"
 #include "svdmodel.hxx"
-#include "svdpage.hxx"
-#include "svdogrp.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdogrp.hxx"
 #include "svdotext.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdoutl.hxx"
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
 #ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
 #endif
 
-#ifndef _SVX_SVXFONT_HXX //autogen
-#include "svxfont.hxx"
-#endif
+// auto strip #ifndef _SVX_SVXFONT_HXX //autogen
+// auto strip #include "svxfont.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
-#include "xlnclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNCLIT_HXX //autogen
+// auto strip #include "xlnclit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
-#include "xlnwtit.hxx"
-#endif
+// auto strip #ifndef _SVX_XLNWTIT_HXX //autogen
+// auto strip #include "xlnwtit.hxx"
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
-#include "xflclit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
+// auto strip #include "xflclit.hxx"
+// auto strip #endif
 
-#ifndef _SV_METRIC_HXX //autogen
-#include <vcl/metric.hxx>
-#endif
+// auto strip #ifndef _SV_METRIC_HXX //autogen
+// auto strip #include <vcl/metric.hxx>
+// auto strip #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #101499#
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
-#include <com/sun/star/i18n/XBreakIterator.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
+// auto strip #include <com/sun/star/i18n/XBreakIterator.hpp>
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 #endif
 
-#ifndef _UNO_LINGU_HXX
-#include "unolingu.hxx"
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include "unolingu.hxx"
+// auto strip #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
