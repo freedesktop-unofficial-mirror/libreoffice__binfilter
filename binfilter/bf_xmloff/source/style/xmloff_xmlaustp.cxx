@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlaustp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:17:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,18 +70,18 @@
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
 #endif
-#ifndef _XMLOFF_XMLASTPLP_HXX
-#include "xmlaustp.hxx"
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLASTPLP_HXX
+// auto strip #include "xmlaustp.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
@@ -93,12 +93,12 @@
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
 #endif
-#ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
-#include "PageMasterExportPropMapper.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
-#include "XMLBackgroundImageExport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
+// auto strip #include "PageMasterExportPropMapper.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
+// auto strip #include "XMLBackgroundImageExport.hxx"
+// auto strip #endif
 namespace binfilter {
 
 
