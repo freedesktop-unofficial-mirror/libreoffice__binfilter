@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:44:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,11 +64,11 @@
 #ifndef ENABLE_STRING_STREAM_OPERATORS
 #define ENABLE_STRING_STREAM_OPERATORS
 #endif
-#include <tools/stream.hxx>
+// auto strip #include <tools/stream.hxx>
 #endif
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
@@ -82,58 +82,63 @@
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
-#include <bf_svx/chrtitem.hxx>
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
 #endif
 
-#ifndef _SFX_WHITER_HXX //autogen
-#include <svtools/whiter.hxx>
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
-#ifndef _CHTSCENE_HXX
-#include "chtscene.hxx"
-#endif
+
+// auto strip #ifndef _SFX_WHITER_HXX //autogen
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHTSCENE_HXX
+// auto strip #include "chtscene.hxx"
+// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#include <bf_svx/svdmark.hxx>
+// auto strip #include <bf_svx/svdmark.hxx>
 
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-#ifndef _SVDORECT_HXX //autogen
-#include <bf_svx/svdorect.hxx>
-#endif
+// auto strip #ifndef _SVDORECT_HXX //autogen
+// auto strip #include <bf_svx/svdorect.hxx>
+// auto strip #endif
 
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-#ifndef _SVX_XFLCLIT_HXX //autogen
-#include <bf_svx/xflclit.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX //autogen
+// auto strip #include <bf_svx/xflclit.hxx>
+// auto strip #endif
 #ifndef _SVX_XLNWTIT_HXX //autogen
 #include <bf_svx/xlnwtit.hxx>
 #endif
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
-#include <svtools/zforlist.hxx>
+// auto strip #include <svtools/zforlist.hxx>
 #endif
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
@@ -142,9 +147,9 @@
 #include <svtools/zformat.hxx>
 #endif
 // header for getProcessServiceFactory
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
 #include "chmod3d.hxx" //SchRectObj
 
@@ -152,35 +157,35 @@
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #if SUPD > 364
-#include <bf_svx/fhgtitem.hxx>
-#include <bf_svx/fwdtitem.hxx>
-#include <bf_svx/fontitem.hxx>
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #include <bf_svx/fwdtitem.hxx>
+// auto strip #include <bf_svx/fontitem.hxx>
 #endif
-#ifndef _SCH_OBJADJ_HXX
-#include  "objadj.hxx"
-#endif
-#ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#endif
+// auto strip #ifndef _SCH_OBJADJ_HXX
+// auto strip #include  "objadj.hxx"
+// auto strip #endif
+// auto strip #ifndef _CHTMODEL_HXX
+// auto strip #include "chtmodel.hxx"
+// auto strip #endif
 #include "globfunc.hxx"
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SCH_SCHGROUP_HXX
-#include "schgroup.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
-#include "objid.hxx"
-#endif
+// auto strip #ifndef _SCH_SCHGROUP_HXX
+// auto strip #include "schgroup.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_OBJID_HXX
+// auto strip #include "objid.hxx"
+// auto strip #endif
 #ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
 #endif
-#ifndef _SCH_DATAROW_HXX
-#include "datarow.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
-#include "datapoin.hxx"
-#endif
+// auto strip #ifndef _SCH_DATAROW_HXX
+// auto strip #include "datarow.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAPOIN_HXX
+// auto strip #include "datapoin.hxx"
+// auto strip #endif
 #ifndef _SCH_SCHIOCMP_HXX
 #include "schiocmp.hxx"
 #endif
@@ -194,7 +199,7 @@
 #endif
 #include <bf_svx/fontitem.hxx>
 #else
-#include <textitem.hxx>
+// auto strip #include <textitem.hxx>
 #endif
 
 #ifndef _TOOLS_TENCCVT_HXX
@@ -204,8 +209,8 @@
 #include "pairs.hxx"
 #include "chaxis.hxx"
 
-#include "chdescr.hxx"
-#include "calculat.hxx"
+// auto strip #include "chdescr.hxx"
+// auto strip #include "calculat.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
