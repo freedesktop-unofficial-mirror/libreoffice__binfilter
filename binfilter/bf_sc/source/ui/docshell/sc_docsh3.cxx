@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:46:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,46 +68,51 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include "rangelst.hxx"
+// auto strip #include "rangelst.hxx"
 #include <bf_svx/flstitem.hxx>
-#include <bf_svx/pageitem.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/paperinf.hxx>
-#include <bf_svx/postattr.hxx>
+
+#ifndef _SFXSTRITEM_HXX
+#include <svtools/stritem.hxx>
+#endif
+
+// auto strip #include <bf_svx/postattr.hxx>
 //#include <bf_svx/postdlg.hxx>
 #include <bf_svx/sizeitem.hxx>
 #include <bf_offmgr/app.hxx>
 
-#include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/docinf.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/misccfg.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <svtools/ctrltool.hxx>
 #include <vcl/virdev.hxx>
-#include <vcl/svapp.hxx>
-#include <vcl/msgbox.hxx>
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #include <vcl/msgbox.hxx>
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
 
 #include "docsh.hxx"
 #include "scmod.hxx"
 #include "tabvwsh.hxx"
-#include "viewdata.hxx"
+// auto strip #include "viewdata.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
 #include "patattr.hxx"
-#include "uiitems.hxx"
+// auto strip #include "uiitems.hxx"
 #include "hints.hxx"
 #include "docoptio.hxx"
-#include "viewopti.hxx"
+// auto strip #include "viewopti.hxx"
 #include "pntlock.hxx"
-#include "chgtrack.hxx"
-#include "docfunc.hxx"
-#include "cell.hxx"
-#include "chgviset.hxx"
-#include "progress.hxx"
-#include "redcom.hxx"
+// auto strip #include "chgtrack.hxx"
+// auto strip #include "docfunc.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "chgviset.hxx"
+// auto strip #include "progress.hxx"
+// auto strip #include "redcom.hxx"
 #include "bf_sc.hrc"
 #include "inputopt.hxx"
 #include "drwlayer.hxx"
