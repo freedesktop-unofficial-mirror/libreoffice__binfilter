@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfly.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:56:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,19 +62,24 @@
 
 #pragma hdrstop
 
-#include "frmsh.hxx"
+// auto strip #include "frmsh.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "viewsh.hxx"
-#include "pagefrm.hxx"
+// auto strip #include "pagefrm.hxx"
 #include "rootfrm.hxx"
-#include "viewimp.hxx"      // SwViewImp
+// auto strip #include "viewimp.hxx"        // SwViewImp
 #include "pam.hxx"          // SwPosition
-#include "swregion.hxx"     // SwRegionRects
+// auto strip #include "swregion.hxx"       // SwRegionRects
 #include "dcontact.hxx"     // SwContact
 #include "dflyobj.hxx"      // SdrObject
-#include "flyfrm.hxx"     // SwFlyFrm
+// auto strip #include "flyfrm.hxx"   // SwFlyFrm
 #include "frmtool.hxx"    // ::DrawGraphic
-#include "porfld.hxx"       // SwGrfNumPortion
+// auto strip #include "porfld.hxx"     // SwGrfNumPortion
 #ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
 #endif
@@ -83,9 +88,9 @@
 #include <math.h>
 #endif
 
-#ifndef _XPOLY_HXX //autogen
-#include <bf_svx/xpoly.hxx>
-#endif
+// auto strip #ifndef _XPOLY_HXX //autogen
+// auto strip #include <bf_svx/xpoly.hxx>
+// auto strip #endif
 
 #ifndef _E3D_OBJ3D_HXX //autogen
 #include <bf_svx/obj3d.hxx>
@@ -113,21 +118,21 @@
 #ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
 #endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 
-#ifndef _VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
@@ -144,19 +149,19 @@
 #include <bf_svx/svdoedge.hxx>
 #endif
 
-#include "txtfrm.hxx"     // SwTxtFrm
+// auto strip #include "txtfrm.hxx"     // SwTxtFrm
 #include "itrform2.hxx"   // SwTxtFormatter
 #include "porfly.hxx"     // NewFlyCntPortion
 #include "porfld.hxx"     // SwGrfNumPortion
 
-#include "txtfly.hxx"     // SwTxtFly
-#include "txtpaint.hxx"   // SwSaveClip
+// auto strip #include "txtfly.hxx"   // SwTxtFly
+// auto strip #include "txtpaint.hxx"   // SwSaveClip
 
-#include "txtatr.hxx"     // SwTxtFlyCnt
-#include "txtcfg.hxx"
-#include "notxtfrm.hxx"
+// auto strip #include "txtatr.hxx"   // SwTxtFlyCnt
+// auto strip #include "txtcfg.hxx"
+// auto strip #include "notxtfrm.hxx"
 #include "flyfrms.hxx"
-#include "drawfont.hxx" // SwDrawTextInfo
+// auto strip #include "drawfont.hxx" // SwDrawTextInfo
 #include "fmtcnct.hxx"  // SwFmtChain
 
 #ifndef PRODUCT
