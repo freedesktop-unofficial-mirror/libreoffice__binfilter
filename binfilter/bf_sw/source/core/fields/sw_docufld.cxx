@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:25:37 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:11:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -605,8 +605,8 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*M*/                       aRet = URIHelper::removePassword(
 /*M*/                                   rURLObj.GetMainURL( INetURLObject::NO_DECODE ),
 /*M*/                                   INetURLObject::WAS_ENCODED, URL_DECODE );
-/*M*/                       aRet.Erase( aRet.Search( rURLObj.GetLastName(
-/*M*/                                                   URL_DECODE ) ) );
+/*M*/                       aRet.Erase( aRet.Search( String(rURLObj.GetLastName(
+/*M*/                                                   URL_DECODE )) ) );
 /*M*/                   }
 /*M*/               }
 /*M*/               break;
