@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swlinguconfig.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:06:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,9 +65,9 @@
 #include <com/sun/star/uno/Any.h>
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 class SvtLinguConfig;
 struct SvtLinguOptions;
 namespace binfilter {
