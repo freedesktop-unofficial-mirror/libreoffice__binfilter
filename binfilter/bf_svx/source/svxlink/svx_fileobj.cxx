@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fileobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:34:45 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:09:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -464,7 +464,7 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/
 /*?*/   if( !pStream )
 /*?*/       nRes = xMed.Is() ? GRFILTER_OPENERROR
-/*?*/                        : pGF->ImportGraphic( rGrf, sFileNm, nFilter );
+/*?*/                        : pGF->ImportGraphic( rGrf, INetURLObject(sFileNm), nFilter );
 /*?*/   else if( !pDownLoadData )
 /*?*/   {
 /*?*/       pStream->Seek( STREAM_SEEK_TO_BEGIN );
