@@ -2,9 +2,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:01 $
+ *  last change: $Author: kz $ $Date: 2005-01-21 13:17:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -482,11 +482,15 @@ public:
     void SetChartRange( const SchChartRange& rRange )
         { maChartRange = rRange; }
 
-    /// convert SomeData string(s) to SchChartRange and vice versa for Writer
-    void ConvertChartRangeForWriter( BOOL bOldToNew = TRUE );
+    /** convert SomeData string(s) to SchChartRange and vice versa for Writer
+        @return <TRUE/>, iff the conversion was successfully done.
+    */
+    bool ConvertChartRangeForWriter( BOOL bOldToNew = TRUE );
 
-    /// convert SomeData string(s) to SchChartRange and vice versa for Calc
-    void ConvertChartRangeForCalc( BOOL bOldToNew = FALSE );
+    /** convert SomeData string(s) to SchChartRange and vice versa for Calc
+        @return <TRUE/>, iff the conversion was successfully done.
+     */
+    bool ConvertChartRangeForCalc( BOOL bOldToNew = FALSE );
 
     ::rtl::OUString getXMLStringForChartRange();
     void getChartRangeForXMLString( const ::rtl::OUString& rXMLString );
