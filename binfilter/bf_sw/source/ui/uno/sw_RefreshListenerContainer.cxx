@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_RefreshListenerContainer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:29:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,12 +66,12 @@
 #include <RefreshListenerContainer.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
-#include <com/sun/star/lang/EventObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
+// auto strip #include <com/sun/star/lang/EventObject.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XREFRESHLISTENER_HPP_
 #include <com/sun/star/util/XRefreshListener.hpp>
 #endif
