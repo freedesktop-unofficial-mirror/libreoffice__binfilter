@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unopage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: cl $ $Date: 2004-04-02 07:50:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:43:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,45 +61,45 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef SVX_LIGHT
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _PERSIST_HXX
-#include <so3/persist.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _PERSIST_HXX
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
 #endif
 
 /*
-#ifndef _SFX_BINDINGS_HXX
-#include <bf_sfx2/bindings.hxx>
-#endif
+// auto strip #ifndef _SFX_BINDINGS_HXX
+// auto strip #include <bf_sfx2/bindings.hxx>
+// auto strip #endif
 */
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#include "svdobj.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdoole2.hxx"
-#include "svdpage.hxx"
-#include "svdmodel.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdmodel.hxx"
 #include "svdview.hxx"
-#include "svdpagv.hxx"
+// auto strip #include "svdpagv.hxx"
 #include "unopage.hxx"
 #include "shapeimpl.hxx"
 #include "globl3d.hxx"
 #include "polysc3d.hxx"
-#include "unoprov.hxx"
+// auto strip #include "unoprov.hxx"
 #include "svdopath.hxx"
-#include "unoapi.hxx"
+// auto strip #include "unoapi.hxx"
 #include "svdomeas.hxx"
 
 #ifndef _E3D_EXTRUD3D_HXX
