@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_datauno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:20:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,22 +60,22 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include <tools/debug.hxx>
-#include <svtools/smplhint.hxx>
+// auto strip #include <tools/debug.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 #include <svtools/zforlist.hxx>
 #include <rtl/uuid.h>
 
 #include <com/sun/star/awt/XBitmap.hpp>
 #include <com/sun/star/util/SortField.hpp>
 #include <com/sun/star/table/TableSortField.hpp>
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#include <com/sun/star/table/TableOrientation.hpp>
-#include <com/sun/star/table/CellRangeAddress.hpp>
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #include <com/sun/star/table/TableOrientation.hpp>
+// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
 #include <com/sun/star/sheet/DataImportMode.hpp>
 
 #include "datauno.hxx"
@@ -83,7 +83,7 @@
 #include "cellsuno.hxx"
 #include "miscuno.hxx"
 #include "targuno.hxx"
-#include "rangeutl.hxx"
+// auto strip #include "rangeutl.hxx"
 #include "dbcolect.hxx"
 #include "docsh.hxx"
 #include "dbdocfun.hxx"
