@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viscrs.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:03:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,18 +64,18 @@
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
-#ifndef _DIALOG_HXX //autogen
-#include <vcl/dialog.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _DIALOG_HXX //autogen
+// auto strip #include <vcl/dialog.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 
 #ifndef _VIEWOPT_HXX //autogen
 #include <viewopt.hxx>
@@ -86,42 +86,47 @@
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
 #ifndef _DVIEW_HXX
 #include <dview.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>   // SwTxtFrm
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _EXTINPUT_HXX
-#include <extinput.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _EXTINPUT_HXX
+// auto strip #include <extinput.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -129,9 +134,9 @@
 #include <drawfont.hxx>
 #endif
 
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>           // GetSearchDialog
-#endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>         // GetSearchDialog
+// auto strip #endif
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>          // ResId fuer Abfrage wenn zu Search & Replaces
 #endif
@@ -258,9 +263,9 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 //STRIP001
 #ifdef SHOW_REDLINES
 //STRIP001
-#ifndef _REDLINE_HXX
-#include <redline.hxx>
-#endif
+// auto strip #ifndef _REDLINE_HXX
+// auto strip #include <redline.hxx>
+// auto strip #endif
 
 //STRIP001 class SwRedlineRects : public SwSelPaintRects
 //STRIP001 {
