@@ -2,9 +2,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:46:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,15 +69,15 @@
 #ifndef _LNKBASE_HXX
 #include <so3/lnkbase.hxx>
 #endif
-#ifndef _RTTI_HXX
-#include <tools/rtti.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
-#include <tools/ref.hxx>
-#endif
-#ifndef _SVARRAY_HXX
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _RTTI_HXX
+// auto strip #include <tools/rtti.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_REF_HXX
+// auto strip #include <tools/ref.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVARRAY_HXX
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
