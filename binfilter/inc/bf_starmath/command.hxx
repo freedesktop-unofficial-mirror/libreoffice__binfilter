@@ -2,9 +2,9 @@
  *
  *  $RCSfile: command.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:05:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #define MATH_COMMAND_HXX
 
 
-#ifndef _RC_HXX //autogen
-#include <tools/rc.hxx>
-#endif
+// auto strip #ifndef _RC_HXX //autogen
+// auto strip #include <tools/rc.hxx>
+// auto strip #endif
 
 #ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
