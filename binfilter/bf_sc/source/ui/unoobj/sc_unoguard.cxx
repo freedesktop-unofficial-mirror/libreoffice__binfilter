@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_unoguard.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:25:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,13 +60,13 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include <vcl/svapp.hxx>
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 
 #include "unoguard.hxx"
 namespace binfilter {
