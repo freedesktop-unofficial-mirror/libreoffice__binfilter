@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdfmts.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:46:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,47 +66,57 @@
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
-#include <bf_svx/tstpitem.hxx>
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_TSPTITEM_HXX //autogen
+// auto strip #include <bf_svx/tstpitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
-#include <node.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
-#include <charfmt.hxx>
-#endif
-#ifndef _NUMRULE_HXX //autogen
-#include <numrule.hxx>
-#endif
-#include "doc.hxx"
-#include "docary.hxx"
-#include "rdswg.hxx"
-#include "swgpar.hxx"       // SWGRD_xxx-Flags
-#include "poolfmt.hxx"
-#ifndef _SWSTYLENAMEMAPPER_HXX
-#include <SwStyleNameMapper.hxx>
-#endif
+
+// auto strip #ifndef _NODE_HXX //autogen
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARFMT_HXX //autogen
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX //autogen
+// auto strip #include <numrule.hxx>
+// auto strip #endif
+// auto strip #include "doc.hxx"
+// auto strip #include "docary.hxx"
+// auto strip #include "rdswg.hxx"
+// auto strip #include "swgpar.hxx"     // SWGRD_xxx-Flags
+// auto strip #include "poolfmt.hxx"
+// auto strip #ifndef _SWSTYLENAMEMAPPER_HXX
+// auto strip #include <SwStyleNameMapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 // Maximale Anzahl verarbeitbarer Formate

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_rdcont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:45:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,20 +62,29 @@
 
 #pragma hdrstop
 
-#include "doc.hxx"
-#include "pam.hxx"
-
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#include "rdswg.hxx"
-#include "swgpar.hxx"
-#include "ndtxt.hxx"
+
+// auto strip #include "doc.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
+// auto strip #include "pam.hxx"
+
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #include "rdswg.hxx"
+// auto strip #include "swgpar.hxx"
+// auto strip #include "ndtxt.hxx"
 #include "bookmrk.hxx"
-#include "swtable.hxx"
-#include "mdiexp.hxx"       // Progress
-#include "swddetbl.hxx"
-#include "swtblfmt.hxx"
+// auto strip #include "swtable.hxx"
+// auto strip #include "mdiexp.hxx"     // Progress
+// auto strip #include "swddetbl.hxx"
+// auto strip #include "swtblfmt.hxx"
 namespace binfilter {
 
 
