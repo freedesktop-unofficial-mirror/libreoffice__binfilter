@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlexp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: obo $ $Date: 2004-05-13 10:22:37 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:22:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -280,7 +280,7 @@ protected:
     // There is no default implementation.
     virtual void _ExportConfigurationSettings(const XMLSettingsExportHelper& rSettingsExportHelper);
 
-    // This method can be overloaded to export the content of <office:scripts>.
+    // This method can be overloaded to export the content of <office:script>.
     // There is a default implementation.
     virtual void _ExportScripts();
 
