@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:32:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2254,12 +2254,12 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/     if ( b != bKernAsianPunctuation )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bKernAsianPunctuation = b;
-//STRIP001 /*?*/         if ( ImplHasText() )
-//STRIP001 /*?*/         {
-//STRIP001 /*?*/             FormatFullDoc();
-//STRIP001 /*?*/             UpdateViews();
-//STRIP001 /*?*/         }
+/*NBFF*/        bKernAsianPunctuation = b;
+/*NBFF*/        if ( ImplHasText() )
+/*NBFF*/        {
+/*NBFF*/            FormatFullDoc();
+/*NBFF*/            UpdateViews();
+/*NBFF*/        }
 /*N*/     }
 /*N*/ }
 
