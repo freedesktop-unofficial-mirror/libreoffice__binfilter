@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:45:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,12 +64,12 @@
 #ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_POSITION3D_HPP_
-#include <com/sun/star/drawing/Position3D.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
-#include <com/sun/star/drawing/Direction3D.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_POSITION3D_HPP_
+// auto strip #include <com/sun/star/drawing/Position3D.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
+// auto strip #include <com/sun/star/drawing/Direction3D.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
 #endif
@@ -80,24 +80,24 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
 #include "unoshape.hxx"
 #include "unopage.hxx"
-#include "unoprnms.hxx"
+// auto strip #include "unoprnms.hxx"
 #include "polysc3d.hxx"
-#include "globl3d.hxx"
+// auto strip #include "globl3d.hxx"
 #include "cube3d.hxx"
 #include "sphere3d.hxx"
 #include "lathe3d.hxx"
 #include "extrud3d.hxx"
 #include "polygn3d.hxx"
-#include "poly3d.hxx"
+// auto strip #include "poly3d.hxx"
 #include "svdmodel.hxx"
 namespace binfilter {
 

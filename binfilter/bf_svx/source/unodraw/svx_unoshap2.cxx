@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:44:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-#include <com/sun/star/awt/FontSlant.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
+// auto strip #include <com/sun/star/awt/FontSlant.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>  //added by BerryJia for fixing Bug102407 2002-11-4
 #endif
@@ -79,18 +79,18 @@
 #ifndef _B2D_MATRIX3D_HXX
 #include <goodies/matrix3d.hxx>
 #endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
 #endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _FLTCALL_HXX
 #include <svtools/fltcall.hxx>
 #endif
@@ -100,12 +100,12 @@
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
-#include <tools/urlobj.hxx>
+// auto strip #include <tools/urlobj.hxx>
 
-#include "unoprnms.hxx"
-#include "unoshape.hxx"
+// auto strip #include "unoprnms.hxx"
+// auto strip #include "unoshape.hxx"
 #include "unopage.hxx"
-#include "svdobj.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdpage.hxx"
 #include "svdmodel.hxx"
 #include "svdouno.hxx"
@@ -1582,9 +1582,9 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 * class SvxGraphicObject                                               *
 ***********************************************************************/
 }
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
-#include <com/sun/star/awt/XBitmap.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
+// auto strip #include <com/sun/star/awt/XBitmap.hpp>
+// auto strip #endif
 #ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoprov.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:44:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,9 +77,9 @@
 #include <tools/shl.hxx>
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
@@ -90,7 +90,7 @@
 #include "dialmgr.hxx"
 #endif
 
-#include "unotext.hxx"
+// auto strip #include "unotext.hxx"
 #include "unoshprp.hxx"
 #include "svdobj.hxx"
 #include "globl3d.hxx"
