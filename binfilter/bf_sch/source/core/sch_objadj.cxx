@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_objadj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:47:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,6 +63,11 @@
 
 #include "objadj.hxx"
 #include "glob.hxx"
+
+#ifndef _TOOLS_DEBUG_HXX
+#include <tools/debug.hxx>
+#endif
+
 namespace binfilter {
 
 
