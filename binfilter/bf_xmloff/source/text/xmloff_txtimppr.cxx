@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtimppr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:12 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:55:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -367,43 +367,43 @@ void XMLTextImportPropertyMapper::finished(
     {
         switch( getPropertySetMapper()->GetEntryContextId( property->mnIndex ) )
         {
-        case CTF_FONTFAMILYNAME:    pFontFamilyName = property; break;
-        case CTF_FONTSTYLENAME: pFontStyleName = property;  break;
-        case CTF_FONTFAMILY:    pFontFamily = property; break;
-        case CTF_FONTPITCH: pFontPitch = property;  break;
-        case CTF_FONTCHARSET:   pFontCharSet = property;    break;
+        case CTF_FONTFAMILYNAME:    pFontFamilyName = &(*property); break;
+        case CTF_FONTSTYLENAME: pFontStyleName = &(*property);  break;
+        case CTF_FONTFAMILY:    pFontFamily = &(*property); break;
+        case CTF_FONTPITCH: pFontPitch = &(*property);  break;
+        case CTF_FONTCHARSET:   pFontCharSet = &(*property);    break;
 
-        case CTF_FONTFAMILYNAME_CJK:    pFontFamilyNameCJK = property;  break;
-        case CTF_FONTSTYLENAME_CJK: pFontStyleNameCJK = property;   break;
-        case CTF_FONTFAMILY_CJK:    pFontFamilyCJK = property;  break;
-        case CTF_FONTPITCH_CJK: pFontPitchCJK = property;   break;
-        case CTF_FONTCHARSET_CJK:   pFontCharSetCJK = property; break;
+        case CTF_FONTFAMILYNAME_CJK:    pFontFamilyNameCJK = &(*property);  break;
+        case CTF_FONTSTYLENAME_CJK: pFontStyleNameCJK = &(*property);   break;
+        case CTF_FONTFAMILY_CJK:    pFontFamilyCJK = &(*property);  break;
+        case CTF_FONTPITCH_CJK: pFontPitchCJK = &(*property);   break;
+        case CTF_FONTCHARSET_CJK:   pFontCharSetCJK = &(*property); break;
 
-        case CTF_FONTFAMILYNAME_CTL:    pFontFamilyNameCTL = property;  break;
-        case CTF_FONTSTYLENAME_CTL: pFontStyleNameCTL = property;   break;
-        case CTF_FONTFAMILY_CTL:    pFontFamilyCTL = property;  break;
-        case CTF_FONTPITCH_CTL: pFontPitchCTL = property;   break;
-        case CTF_FONTCHARSET_CTL:   pFontCharSetCTL = property; break;
+        case CTF_FONTFAMILYNAME_CTL:    pFontFamilyNameCTL = &(*property);  break;
+        case CTF_FONTSTYLENAME_CTL: pFontStyleNameCTL = &(*property);   break;
+        case CTF_FONTFAMILY_CTL:    pFontFamilyCTL = &(*property);  break;
+        case CTF_FONTPITCH_CTL: pFontPitchCTL = &(*property);   break;
+        case CTF_FONTCHARSET_CTL:   pFontCharSetCTL = &(*property); break;
 
-        case CTF_ALLBORDERDISTANCE:     pAllBorderDistance = property; break;
-        case CTF_LEFTBORDERDISTANCE:    pBorderDistances[XML_LINE_LEFT] = property; break;
-        case CTF_RIGHTBORDERDISTANCE:   pBorderDistances[XML_LINE_RIGHT] = property; break;
-        case CTF_TOPBORDERDISTANCE:     pBorderDistances[XML_LINE_TOP] = property; break;
-        case CTF_BOTTOMBORDERDISTANCE:  pBorderDistances[XML_LINE_BOTTOM] = property; break;
-        case CTF_ALLBORDER:             pAllBorder = property; break;
-        case CTF_LEFTBORDER:            pBorders[XML_LINE_LEFT] = property; break;
-        case CTF_RIGHTBORDER:           pBorders[XML_LINE_RIGHT] = property; break;
-        case CTF_TOPBORDER:             pBorders[XML_LINE_TOP] = property; break;
-        case CTF_BOTTOMBORDER:          pBorders[XML_LINE_BOTTOM] = property; break;
+        case CTF_ALLBORDERDISTANCE:     pAllBorderDistance = &(*property); break;
+        case CTF_LEFTBORDERDISTANCE:    pBorderDistances[XML_LINE_LEFT] = &(*property); break;
+        case CTF_RIGHTBORDERDISTANCE:   pBorderDistances[XML_LINE_RIGHT] = &(*property); break;
+        case CTF_TOPBORDERDISTANCE:     pBorderDistances[XML_LINE_TOP] = &(*property); break;
+        case CTF_BOTTOMBORDERDISTANCE:  pBorderDistances[XML_LINE_BOTTOM] = &(*property); break;
+        case CTF_ALLBORDER:             pAllBorder = &(*property); break;
+        case CTF_LEFTBORDER:            pBorders[XML_LINE_LEFT] = &(*property); break;
+        case CTF_RIGHTBORDER:           pBorders[XML_LINE_RIGHT] = &(*property); break;
+        case CTF_TOPBORDER:             pBorders[XML_LINE_TOP] = &(*property); break;
+        case CTF_BOTTOMBORDER:          pBorders[XML_LINE_BOTTOM] = &(*property); break;
 
-        case CTF_ALLBORDERWIDTH:        pAllBorderWidth = property; break;
-        case CTF_LEFTBORDERWIDTH:       pBorderWidths[XML_LINE_LEFT] = property; break;
-        case CTF_RIGHTBORDERWIDTH:      pBorderWidths[XML_LINE_RIGHT] = property; break;
-        case CTF_TOPBORDERWIDTH:        pBorderWidths[XML_LINE_TOP] = property; break;
-        case CTF_BOTTOMBORDERWIDTH:     pBorderWidths[XML_LINE_BOTTOM] = property; break;
-        case CTF_ANCHORTYPE:            pAnchorType = property; break;
-        case CTF_VERTICALPOS:           pVertOrient = property; break;
-        case CTF_VERTICALREL_ASCHAR:    pVertOrientRelAsChar = property; break;
+        case CTF_ALLBORDERWIDTH:        pAllBorderWidth = &(*property); break;
+        case CTF_LEFTBORDERWIDTH:       pBorderWidths[XML_LINE_LEFT] = &(*property); break;
+        case CTF_RIGHTBORDERWIDTH:      pBorderWidths[XML_LINE_RIGHT] = &(*property); break;
+        case CTF_TOPBORDERWIDTH:        pBorderWidths[XML_LINE_TOP] = &(*property); break;
+        case CTF_BOTTOMBORDERWIDTH:     pBorderWidths[XML_LINE_BOTTOM] = &(*property); break;
+        case CTF_ANCHORTYPE:            pAnchorType = &(*property); break;
+        case CTF_VERTICALPOS:           pVertOrient = &(*&(*property)); break;
+        case CTF_VERTICALREL_ASCHAR:    pVertOrientRelAsChar = &(*property); break;
 
         case CTF_FRAMEHEIGHT_MIN_ABS:
         case CTF_FRAMEHEIGHT_MIN_REL:
@@ -414,8 +414,8 @@ void XMLTextImportPropertyMapper::finished(
         case CTF_FRAMEHEIGHT_REL:
 //      case CTF_SYNCHEIGHT:
                                         bHasAnyHeight = sal_True; break;
-        case CTF_BACKGROUND_TRANSPARENCY: pBackTransparency = property; break;
-        case CTF_BACKGROUND_TRANSPARENT:  pBackTransparent = property; break;
+        case CTF_BACKGROUND_TRANSPARENCY: pBackTransparency = &(*property); break;
+        case CTF_BACKGROUND_TRANSPARENT:  pBackTransparent = &(*property); break;
 
         }
     }
