@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3fmts.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:42:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,13 +74,18 @@
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
-#ifndef _SVX_CSCOITEM_HXX
-#include <bf_svx/cscoitem.hxx>
-#endif
+// auto strip #ifndef _SVX_CSCOITEM_HXX
+// auto strip #include <bf_svx/cscoitem.hxx>
+// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
@@ -108,12 +113,16 @@
 #include <fmtflcnt.hxx>
 #endif
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
 #include "swerror.h"
 #include "doc.hxx"
-#include "docary.hxx"
+// auto strip #include "docary.hxx"
 #include "pagefrm.hxx"
 #include "cntfrm.hxx"
 #include "pam.hxx"
