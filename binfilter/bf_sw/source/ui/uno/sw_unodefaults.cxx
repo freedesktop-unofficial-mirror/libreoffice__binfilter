@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unodefaults.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:30:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,11 @@
 #include <bf_svx/svdmodel.hxx>
 #endif
 #include <bf_svx/unoprov.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include <doc.hxx>
 namespace binfilter {
 
