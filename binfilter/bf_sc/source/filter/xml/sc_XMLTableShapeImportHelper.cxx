@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLTableShapeImportHelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:29:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,20 +82,20 @@
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
 #ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
-#include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-#include <com/sun/star/drawing/XShapes.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
+// auto strip #include <com/sun/star/drawing/XShape.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
+// auto strip #include <com/sun/star/drawing/XShapes.hpp>
+// auto strip #endif
 namespace binfilter {
 
 #define SC_LAYERID "LayerID"
