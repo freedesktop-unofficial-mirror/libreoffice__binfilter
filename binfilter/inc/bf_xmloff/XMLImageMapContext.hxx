@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLImageMapContext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:17:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:52:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include "xmlictxt.hxx"
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
