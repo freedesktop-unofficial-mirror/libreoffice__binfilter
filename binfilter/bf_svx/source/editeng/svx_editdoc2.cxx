@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,7 +97,7 @@
 #include <vcl/svapp.hxx>    // Fuer AppWindow...
 namespace binfilter {
 
-/*N*/ DBG_NAME( EE_ParaPortion );
+/*N*/ DBG_NAME( EE_ParaPortion )
 
 /*N*/ SV_IMPL_VARARR( CharPosArray, long );
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:15 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,11 +99,11 @@ namespace binfilter {
 
 //========================================================================
 
-DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 )//STRIP008 ;
+DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 
 //========================================================================
 
-/*N*/ DBG_NAME(SfxObjectFactory);
+/*N*/ DBG_NAME(SfxObjectFactory)
 /*N*/ TYPEINIT1(SfxObjectFactory,SvFactory);
 
 /*N*/ static SfxObjectFactoryArr_Impl* pObjFac = 0;

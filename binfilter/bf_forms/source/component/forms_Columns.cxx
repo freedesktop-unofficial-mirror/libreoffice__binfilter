@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Columns.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:01 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -278,7 +278,7 @@ Any SAL_CALL OGridColumn::queryAggregation( const Type& _rType ) throw (RuntimeE
     return aReturn;
 }
 
-DBG_NAME(OGridColumn);
+DBG_NAME(OGridColumn)
 //------------------------------------------------------------------------------
 OGridColumn::OGridColumn(const Reference<XMultiServiceFactory>& _rxFactory, const ::rtl::OUString& _sModelName)
     :OGridColumn_BASE(m_aMutex)

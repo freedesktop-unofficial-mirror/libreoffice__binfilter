@@ -2,9 +2,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:05 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,8 +121,8 @@ class SvtCTLOptions;
 class SvUShorts;
 namespace binfilter {
 
-DBG_NAMEEX( EditView )//STRIP008 ;
-DBG_NAMEEX( EditEngine )//STRIP008 ;
+DBG_NAMEEX( EditView )//STRIP008
+DBG_NAMEEX( EditEngine )//STRIP008
 
 #define PIMPEE      pImpEditView->pEditEngine->pImpEditEngine
 

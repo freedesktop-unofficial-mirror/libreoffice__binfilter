@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_GroupManager.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:08 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -301,7 +301,7 @@ Sequence< Reference<XControlModel>  > OGroup::GetControlModels() const
     return aControlModelSeq;
 }
 
-DBG_NAME(OGroupManager);
+DBG_NAME(OGroupManager)
 //------------------------------------------------------------------
 OGroupManager::OGroupManager(const Reference< XContainer >& _rxContainer)
     :m_pCompGroup(new OGroup(ALL_COMPONENTS_GROUP_NAME))

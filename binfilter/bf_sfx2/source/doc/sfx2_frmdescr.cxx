@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:18 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,8 +76,8 @@
 #include "app.hxx"
 namespace binfilter {
 
-/*N*/ DBG_NAME(SfxFrameSetDescriptor);
-/*N*/ DBG_NAME(SfxFrameDescriptor);
+/*N*/ DBG_NAME(SfxFrameSetDescriptor)
+/*N*/ DBG_NAME(SfxFrameDescriptor)
 
 #define VERSION (USHORT) 3
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:16 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -280,7 +280,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ DBG_NAME(SdrObjGeoData);
+/*N*/ DBG_NAME(SdrObjGeoData)
 
 /*N*/ SdrObjGeoData::SdrObjGeoData():
 /*N*/   pGPL(NULL),
@@ -1255,7 +1255,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ DBG_NAME(SdrObject);
+/*N*/ DBG_NAME(SdrObject)
 /*N*/ TYPEINIT1(SdrObject,SfxListener);
 
 /*N*/ SdrObject::SdrObject():

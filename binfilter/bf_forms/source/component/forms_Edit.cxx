@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Edit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:03 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -156,7 +156,7 @@ Any SAL_CALL OEditControl::queryAggregation(const Type& _rType) throw (RuntimeEx
     return aReturn;
 }
 
-DBG_NAME(OEditControl);
+DBG_NAME(OEditControl)
 //------------------------------------------------------------------------------
 OEditControl::OEditControl(const Reference<XMultiServiceFactory>& _rxFactory)
                :OBoundControl(_rxFactory, VCL_CONTROL_EDIT)
@@ -353,7 +353,7 @@ Sequence<Type> OEditModel::_getTypes()
 }
 
 
-DBG_NAME(OEditModel);
+DBG_NAME(OEditModel)
 //------------------------------------------------------------------
 OEditModel::OEditModel(const Reference<XMultiServiceFactory>& _rxFactory)
              :OEditBaseModel( _rxFactory, VCL_CONTROLMODEL_EDIT, FRM_CONTROL_EDIT )

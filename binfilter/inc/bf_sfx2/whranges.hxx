@@ -2,9 +2,9 @@
  *
  *  $RCSfile: whranges.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:33 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,7 +68,7 @@
 #endif
 namespace binfilter {
 
-DBG_NAMEEX(SfxWhichRanges)//STRIP008 ;
+DBG_NAMEEX(SfxWhichRanges)//STRIP008
 
 // -----------------------------------------------------------------------
 

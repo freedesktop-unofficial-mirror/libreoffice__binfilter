@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-11 15:30:13 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:22:58 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,11 +65,12 @@ BFPRJ=..
 
 PRJNAME=binfilter
 TARGET=schart3
-LIBTARGET=NO
 
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
+
+LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------------
 .INCLUDE :  svpre.mk

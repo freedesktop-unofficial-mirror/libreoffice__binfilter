@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormattedField.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -239,7 +239,7 @@ Any SAL_CALL OFormattedControl::queryAggregation(const Type& _rType) throw (Runt
 }
 
 
-DBG_NAME(OFormattedControl);
+DBG_NAME(OFormattedControl)
 //------------------------------------------------------------------------------
 OFormattedControl::OFormattedControl(const Reference<XMultiServiceFactory>& _rxFactory)
                :OBoundControl(_rxFactory, VCL_CONTROL_FORMATTEDFIELD)

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_index.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:15 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -451,7 +451,7 @@ int SwIndex::nSerial = 0;
 #ifndef CFRONT
 
 
-//STRIP001 xub_StrLen SwIndex::operator++(int)
+xub_StrLen SwIndex::operator++(int) {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
 //STRIP001 {
 //STRIP001  ASSERT_ID( nIndex < INVALID_INDEX, ERR_OUTOFSCOPE );
 //STRIP001
@@ -463,7 +463,7 @@ int SwIndex::nSerial = 0;
 #endif
 
 
-//STRIP001 xub_StrLen SwIndex::operator++()
+xub_StrLen SwIndex::operator++() {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
 //STRIP001 {
 //STRIP001  ASSERT_ID( nIndex < INVALID_INDEX, ERR_OUTOFSCOPE );
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,7 +158,7 @@ using namespace ::com::sun::star::linguistic2;
 
 
 
-/*N*/ DBG_NAME( EditEngine );
+/*N*/ DBG_NAME( EditEngine )
 /*N*/ DBG_NAMEEX( EditView )//STRIP008 ;
 
 #if (OSL_DEBUG_LEVEL > 1) || defined ( DBG_UTIL )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: e3ditem.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:38 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,7 +75,7 @@ namespace binfilter {
 #define _SVXVECT3DITEM_HXX
 
 
-DBG_NAMEEX(SvxVector3DItem)//STRIP008 ;
+DBG_NAMEEX(SvxVector3DItem)//STRIP008
 
 class SvxVector3DItem: public SfxPoolItem
 {

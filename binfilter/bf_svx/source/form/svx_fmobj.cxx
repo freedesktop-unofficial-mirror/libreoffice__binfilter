@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:40 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,7 +142,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 
 /*N*/ TYPEINIT1(FmFormObj, SdrUnoObj);
-/*N*/ DBG_NAME(FmFormObj);
+/*N*/ DBG_NAME(FmFormObj)
 //------------------------------------------------------------------
 //STRIP001 FmFormObj::FmFormObj(const ::rtl::OUString& rModelName,sal_Int32 _nType)
 //STRIP001        :SdrUnoObj(rModelName, sal_False)

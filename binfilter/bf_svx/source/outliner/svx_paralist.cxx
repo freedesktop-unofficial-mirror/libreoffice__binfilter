@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_paralist.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:55 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,7 +66,7 @@
 #include <numdef.hxx>
 namespace binfilter {
 
-/*N*/ DBG_NAME(Paragraph);
+/*N*/ DBG_NAME(Paragraph)
 
 /*N*/ Paragraph::Paragraph( USHORT nDDepth )
 /*N*/   : aBulSize( -1, -1)

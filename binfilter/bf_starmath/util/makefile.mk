@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-11 15:30:18 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:23:39 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -62,13 +62,15 @@
 
 PRJ=..$/..
 BFPRJ=..
+
 PRJNAME=binfilter
 TARGET=smath3
-LIBTARGET=NO
 
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
+
+LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------------
 

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:14:08 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:23:43 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -68,6 +68,11 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/svx_svxpch
 
 PRJNAME=binfilter
 TARGET=svx_dialogs
+
+#GEN_HID=TRUE
+#GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
+
 AUTOSEG=true
 VERSION=$(UPD)
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:02 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -765,7 +765,7 @@ Any SAL_CALL ODatabaseForm::queryAggregation(const Type& _rType) throw(RuntimeEx
     return aReturn;
 }
 
-DBG_NAME(ODatabaseForm);
+DBG_NAME(ODatabaseForm)
 //------------------------------------------------------------------
 ODatabaseForm::ODatabaseForm(const Reference<XMultiServiceFactory>& _rxFactory)
         :OFormComponents(_rxFactory)

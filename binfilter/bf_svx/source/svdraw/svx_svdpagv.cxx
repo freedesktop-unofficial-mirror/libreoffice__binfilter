@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:27 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -696,7 +696,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ DBG_NAME(SdrPageView);
+/*N*/ DBG_NAME(SdrPageView)
 
 
 /*N*/ SdrPageView::SdrPageView(SdrPage* pPage1, const Point& rOffs, SdrView& rNewView):

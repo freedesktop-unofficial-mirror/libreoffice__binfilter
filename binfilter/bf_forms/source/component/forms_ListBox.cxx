@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:10 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -190,7 +190,7 @@ Sequence< Type> OListBoxModel::_getTypes()
 }
 
 
-DBG_NAME(OListBoxModel);
+DBG_NAME(OListBoxModel)
 //------------------------------------------------------------------
 OListBoxModel::OListBoxModel(const Reference<XMultiServiceFactory>& _rxFactory)
     :OBoundControlModel(_rxFactory, VCL_CONTROLMODEL_LISTBOX, FRM_CONTROL_LISTBOX)
@@ -1195,7 +1195,7 @@ Any SAL_CALL OListBoxControl::queryAggregation(const Type& _rType) throw (Runtim
     return aReturn;
 }
 
-DBG_NAME(OListBoxControl);
+DBG_NAME(OListBoxControl)
 //------------------------------------------------------------------------------
 OListBoxControl::OListBoxControl(const Reference<XMultiServiceFactory>& _rxFactory)
                   :OBoundControl(_rxFactory, VCL_CONTROL_LISTBOX)

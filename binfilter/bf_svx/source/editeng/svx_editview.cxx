@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:08 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,7 +100,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
 
 
-/*N*/ DBG_NAME( EditView );
+/*N*/ DBG_NAME( EditView )
 
 // From SW => Create common method
 //STRIP001 LanguageType lcl_CheckLanguage( const OUString &rWord, Reference< XSpellChecker1 >  xSpell )

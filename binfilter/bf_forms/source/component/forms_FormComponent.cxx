@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormComponent.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -347,7 +347,7 @@ sal_Bool SAL_CALL OControl::isTransparent() throw ( RuntimeException)
 //==================================================================
 //= OBoundControl
 //==================================================================
-DBG_NAME(frm_OBoundControl);
+DBG_NAME(frm_OBoundControl)
 //------------------------------------------------------------------
 OBoundControl::OBoundControl(const Reference<com::sun::star::lang::XMultiServiceFactory>& _rxFactory, const ::rtl::OUString& _sService)
         :OControl(_rxFactory, _sService)
@@ -920,7 +920,7 @@ void OControlModel::setFastPropertyValue_NoBroadcast(sal_Int32 _nHandle, const A
 //==================================================================
 //= OBoundControlModel
 //==================================================================
-DBG_NAME(frm_OBoundControlModel);
+DBG_NAME(frm_OBoundControlModel)
 //------------------------------------------------------------------
 Any SAL_CALL OBoundControlModel::queryAggregation( const Type& _rType ) throw (RuntimeException)
 {

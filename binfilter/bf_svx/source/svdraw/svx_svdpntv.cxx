@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:28 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -473,7 +473,7 @@ using namespace ::com::sun::star;
 
 /*N*/ TYPEINIT2(SdrPaintView,SfxListener,SfxRepeatTarget);
 
-/*N*/ DBG_NAME(SdrPaintView);
+/*N*/ DBG_NAME(SdrPaintView)
 
 /*N*/ void SdrPaintView::ImpClearVars()
 /*N*/ {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:43 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:25:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -307,7 +307,7 @@ String  FormatNumber(USHORT nNum, ULONG nFormat);
  --------------------------------------------------------------------*/
 class SwFldNames;
 
-DBG_NAMEEX(SwFieldType)//STRIP008 ;
+DBG_NAMEEX(SwFieldType)//STRIP008
 
 class SwFieldType : public SwModify
 {

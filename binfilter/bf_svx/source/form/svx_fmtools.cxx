@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmtools.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:44 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -699,7 +699,7 @@ using namespace ::connectivity::simple;
 //STRIP001 }
 
 //==============================================================================
-//STRIP001 DBG_NAME(FmXDisposeMultiplexer);
+//STRIP001 DBG_NAME(FmXDisposeMultiplexer)
 //------------------------------------------------------------------------------
 //STRIP001 FmXDisposeMultiplexer::FmXDisposeMultiplexer(FmXDisposeListener* _pListener, const Reference< ::com::sun::star::lang::XComponent>& _rxObject, sal_Int16 _nId)
 //STRIP001  :m_pListener(_pListener)
@@ -1013,7 +1013,7 @@ using namespace ::connectivity::simple;
 //  SMART_UNO_IMPLEMENTATION(FmSlotDispatch, UsrObject);
 
 
-//STRIP001 DBG_NAME(FmSlotDispatch);
+//STRIP001 DBG_NAME(FmSlotDispatch)
 //------------------------------------------------------------------------------
 //STRIP001 FmSlotDispatch::FmSlotDispatch(const  URL& rUrl, sal_Int16 nSlotId, SfxBindings& rBindings)
 //STRIP001  :SfxControllerItem(nSlotId, rBindings)
@@ -1143,7 +1143,7 @@ using namespace ::connectivity::simple;
 //= FmXDispatchInterceptorImpl
 //========================================================================
 
-/*N*/ DBG_NAME(FmXDispatchInterceptorImpl);
+/*N*/ DBG_NAME(FmXDispatchInterceptorImpl)
 //------------------------------------------------------------------------
 /*N*/ FmXDispatchInterceptorImpl::FmXDispatchInterceptorImpl(
 /*N*/           const Reference< XDispatchProviderInterception >& _rxToIntercept, FmDispatchInterceptor* _pMaster,

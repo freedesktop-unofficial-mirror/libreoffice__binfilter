@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlvw.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:55 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,7 +100,7 @@ namespace binfilter {
 #define OL_SCROLL_HOROFFSET         20  /* in % von VisibleSize.Width */
 #define OL_SCROLL_VEROFFSET         20  /* in % von VisibleSize.Height */
 
-/*N*/ DBG_NAME(OutlinerView);
+/*N*/ DBG_NAME(OutlinerView)
 
 
 /*N*/ OutlinerView::OutlinerView( Outliner* pOut, Window* pWin )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:24 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,8 +93,8 @@
 #endif
 namespace binfilter {
 
-/*N*/ DBG_NAME(Polygon3D);
-/*N*/ DBG_NAME(PolyPolygon3D);
+/*N*/ DBG_NAME(Polygon3D)
+/*N*/ DBG_NAME(PolyPolygon3D)
 
 /*************************************************************************
 |*

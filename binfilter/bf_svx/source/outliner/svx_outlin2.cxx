@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:53 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,7 +86,7 @@
 #include <editstat.hxx>
 namespace binfilter {
 
-DBG_NAMEEX(Outliner)//STRIP008 ;
+DBG_NAMEEX(Outliner)//STRIP008
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;

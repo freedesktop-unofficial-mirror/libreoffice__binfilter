@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_e3ditem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,7 +75,7 @@ using namespace ::com::sun::star;
 
 // STATIC DATA -----------------------------------------------------------
 
-/*N*/ DBG_NAME(SvxVector3DItem);
+/*N*/ DBG_NAME(SvxVector3DItem)
 
 // -----------------------------------------------------------------------
 

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:13:20 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:22:53 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,8 +65,14 @@ BFPRJ=..
 
 PROJECTPCH=sch
 PROJECTPCHSOURCE=$(BFPRJ)$/util\sch_sch
+
 PRJNAME=binfilter
 TARGET=sch
+
+#GEN_HID=TRUE
+#GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
+
 LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:16 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,7 +113,7 @@ namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
-/*N*/ DBG_NAME(SfxFilter);
+/*N*/ DBG_NAME(SfxFilter)
 /*N*/
 /*N*/ SfxFilter::SfxFilter(  const String &rName,
 /*N*/                      const String &rWildCard,

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:36 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,7 +165,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SvStringsDtor* SwFieldType::pFldNames = 0;
 
-/*N*/ DBG_NAME(SwFieldType);
+/*N*/ DBG_NAME(SwFieldType)
 
 //STRIP001  USHORT __FAR_DATA aTypeTab[] = {
 //STRIP001  /* RES_DBFLD            */      TYP_DBFLD,

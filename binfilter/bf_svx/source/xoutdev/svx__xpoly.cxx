@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xpoly.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:37 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,8 +74,8 @@ namespace binfilter {
 
 #define GLOBALOVERFLOW
 
-/*N*/ DBG_NAME(XPolygon);
-/*N*/ DBG_NAME(XPolyPolygon);
+/*N*/ DBG_NAME(XPolygon)
+/*N*/ DBG_NAME(XPolyPolygon)
 
 /*************************************************************************
 |*

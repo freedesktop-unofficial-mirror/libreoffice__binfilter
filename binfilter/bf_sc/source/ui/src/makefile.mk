@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:13:06 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:22:47 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,6 +65,9 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sc_ui
 
+#GEN_HID=TRUE
+#GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 

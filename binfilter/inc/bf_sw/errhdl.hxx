@@ -2,9 +2,9 @@
  *
  *  $RCSfile: errhdl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:41 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:25:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,6 @@
 #include <sal/types.h>
 #endif
 
-
 namespace binfilter {
 // -----------------------------------------------------------------------
 // Ausgabe einer Fehlermeldung inkl. Dateiname und Zeilennummer
@@ -116,17 +115,19 @@ extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
        ::binfilter::AssertFail( (USHORT)id, _pFileName, __LINE__ ); \
     }
 #endif
+} //namespace binfilter
 
 // -----------------------------------------------------------------------
 // Beim Bilden der Produktversion werden alle Debug-Utilities automatisch
 // ignoriert
 // -----------------------------------------------------------------------
-#else
+#else // PRODUCT
+
+namespace binfilter {
 #define ASSERT( cond, message )     ;
 #define ASSERT_ID( cond, id )       ;
+} //namespace binfilter
+
 #endif // PRODUCT
 
-
-
-} //namespace binfilter
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:15 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -131,28 +131,28 @@ namespace binfilter {
 
 //===================================================================
 
-/*DBG_NAME(SfxAppMainIntro);
-DBG_NAME(SfxAppMainSO_Init);
-DBG_NAME(SfxAppMainAppRes);
-DBG_NAME(SfxAppMainInit0);
-DBG_NAME(SfxAppMainCreateAppWin);
-DBG_NAME(SfxAppMainInit1);
-DBG_NAME(SfxAppMainCfgMgr);
-DBG_NAME(SfxAppMainInitController);
-DBG_NAME(SfxAppMainInitException);
-DBG_NAME(SfxAppMainRegisterIF);
-DBG_NAME(SfxAppMainInit);
-DBG_NAME(SfxAppMainLoadBasMgr);
-DBG_NAME(SfxAppMainSbxInit);*/
-//STRIP001 DBG_NAME(SfxAppMainNewMenu);
-//STRIP001 DBG_NAME(SfxAppMainBmkMenu);
-//STRIP001 DBG_NAME(SfxAppMainWizMenu);
-//STRIP001 DBG_NAME(SfxAppMainOLEReg);
-//STRIP001 DBG_NAME(SfxAppMainCHAOSReg);
-/*DBG_NAME(SfxAppMainInitDispatcher);
-DBG_NAME(SfxAppMainLoadConfig);
-DBG_NAME(SfxAppMainInitAppWin);
-DBG_NAME(SfxAppMainAppEvents);*/
+/*DBG_NAME(SfxAppMainIntro)
+DBG_NAME(SfxAppMainSO_Init)
+DBG_NAME(SfxAppMainAppRes)
+DBG_NAME(SfxAppMainInit0)
+DBG_NAME(SfxAppMainCreateAppWin)
+DBG_NAME(SfxAppMainInit1)
+DBG_NAME(SfxAppMainCfgMgr)
+DBG_NAME(SfxAppMainInitController)
+DBG_NAME(SfxAppMainInitException)
+DBG_NAME(SfxAppMainRegisterIF)
+DBG_NAME(SfxAppMainInit)
+DBG_NAME(SfxAppMainLoadBasMgr)
+DBG_NAME(SfxAppMainSbxInit)*/
+//STRIP001 DBG_NAME(SfxAppMainNewMenu)
+//STRIP001 DBG_NAME(SfxAppMainBmkMenu)
+//STRIP001 DBG_NAME(SfxAppMainWizMenu)
+//STRIP001 DBG_NAME(SfxAppMainOLEReg)
+//STRIP001 DBG_NAME(SfxAppMainCHAOSReg)
+/*DBG_NAME(SfxAppMainInitDispatcher)
+DBG_NAME(SfxAppMainLoadConfig)
+DBG_NAME(SfxAppMainInitAppWin)
+DBG_NAME(SfxAppMainAppEvents)*/
 
 //===================================================================
 

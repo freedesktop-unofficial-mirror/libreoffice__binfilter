@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:15 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -332,7 +332,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ DBG_NAME(SdrModel);
+/*N*/ DBG_NAME(SdrModel)
 /*N*/ TYPEINIT1(SdrModel,SfxBroadcaster);
 
 /*N*/ void SdrModel::ImpCtor(SfxItemPool* pPool, SvPersist* pPers,

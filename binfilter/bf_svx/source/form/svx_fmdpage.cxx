@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmdpage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:39 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,7 +88,7 @@
 #endif
 namespace binfilter {
 
-/*N*/ DBG_NAME(SvxFmDrawPage);
+/*N*/ DBG_NAME(SvxFmDrawPage)
 /*N*/ SvxFmDrawPage::SvxFmDrawPage( SdrPage* pInPage ) :
 /*N*/   SvxDrawPage( pInPage )
 /*N*/ {

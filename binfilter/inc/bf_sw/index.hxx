@@ -2,9 +2,9 @@
  *
  *  $RCSfile: index.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:56 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:25:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,10 +109,10 @@ public:
 //STRIP001  SwIndex( const SwIndex &, short nDiff );
     ~SwIndex() { Remove(); }
 
-    INLINE xub_StrLen operator++(){DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+    INLINE xub_StrLen operator++();
 //STRIP001  INLINE xub_StrLen operator--();
 #ifndef CFRONT
-    INLINE xub_StrLen operator++(int){DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+    INLINE xub_StrLen operator++(int);
     INLINE xub_StrLen operator--(int);
 #endif
 
@@ -195,21 +195,21 @@ public:
 
 #ifdef PRODUCT
 
-inline xub_StrLen SwIndex::operator++()
-{
-    return ChgValue( *this, nIndex+1 ).nIndex;
-}
-inline xub_StrLen SwIndex::operator--()
-{
-    return ChgValue( *this, nIndex-1 ).nIndex;
-}
+inline xub_StrLen SwIndex::operator++() {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+//STRIP001{
+//STRIP001  return ChgValue( *this, nIndex+1 ).nIndex;
+//STRIP001}
+//STRIP001inline xub_StrLen ::binfilter::SwIndex::operator--()
+//STRIP001{
+//STRIP001  return ChgValue( *this, nIndex-1 ).nIndex;
+//STRIP001}
 #ifndef CFRONT
-inline xub_StrLen SwIndex::operator++(int)
-{
-    xub_StrLen nOldIndex = nIndex;
-    ChgValue( *this, nIndex+1 );
-    return nOldIndex;
-}
+inline xub_StrLen SwIndex::operator++(int) {DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+//STRIP001{
+//STRIP001  xub_StrLen nOldIndex = nIndex;
+//STRIP001  ChgValue( *this, nIndex+1 );
+//STRIP001  return nOldIndex;
+//STRIP001}
  inline xub_StrLen SwIndex::operator--(int)
  {
      xub_StrLen nOldIndex = nIndex;
@@ -222,18 +222,18 @@ inline xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
 {
     return ChgValue( *this, nIndex + nWert ).nIndex;
 }
-inline xub_StrLen SwIndex::operator-=( xub_StrLen nWert )
-{
-    return ChgValue( *this, nIndex - nWert ).nIndex;
-}
+//STRIP001inline xub_StrLen SwIndex::operator-=( xub_StrLen nWert )
+//STRIP001{
+//STRIP001  return ChgValue( *this, nIndex - nWert ).nIndex;
+//STRIP001}
 inline xub_StrLen SwIndex::operator+=( const  SwIndex& rIndex )
 {
     return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
 }
-inline xub_StrLen SwIndex::operator-=( const SwIndex& rIndex )
-{
-    return ChgValue( *this, nIndex - rIndex.nIndex ).nIndex;
-}
+//STRIP001inline xub_StrLen SwIndex::operator-=( const SwIndex& rIndex )
+//STRIP001{
+//STRIP001  return ChgValue( *this, nIndex - rIndex.nIndex ).nIndex;
+//STRIP001}
 
   inline BOOL SwIndex::operator<( const SwIndex& rIndex ) const
   {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editundo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:07 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,7 +69,7 @@
 #include <editeng.hxx>
 namespace binfilter {
 
-DBG_NAME( EditUndo );
+DBG_NAME( EditUndo )
 
 #define MAX_UNDOS   100     // ab dieser Menge darf geloescht werden....
 #define MIN_UNDOS   50      // soviel muss stehen bleiben...

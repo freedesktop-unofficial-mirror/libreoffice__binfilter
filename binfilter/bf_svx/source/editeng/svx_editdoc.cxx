@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:06 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -201,10 +201,10 @@ using namespace ::com::sun::star;
 // Sollte spaeter zentral nach TOOLS/STRING (Aktuell: 303)
 // fuer Grep: WS_TARGET
 
-/*N*/ DBG_NAME( EE_TextPortion );
-/*N*/ DBG_NAME( EE_EditLine );
-/*N*/ DBG_NAME( EE_ContentNode );
-/*N*/ DBG_NAME( EE_CharAttribList );
+/*N*/ DBG_NAME( EE_TextPortion )
+/*N*/ DBG_NAME( EE_EditLine )
+/*N*/ DBG_NAME( EE_ContentNode )
+/*N*/ DBG_NAME( EE_CharAttribList )
 
 /*N*/ SfxItemInfo aItemInfos[EDITITEMCOUNT] = {
 /*N*/       { SID_ATTR_FRAMEDIRECTION, SFX_ITEM_POOLABLE },         // EE_PARA_WRITINGDIR

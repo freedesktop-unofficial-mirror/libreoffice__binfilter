@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_scrrect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:11 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:24:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,7 +104,7 @@
 #include "setmapvirtdev.hxx"
 namespace binfilter {
 
-//STRIP001 DBG_NAME(RefreshTimer);
+//STRIP001 DBG_NAME(RefreshTimer)
 //STRIP001
 //STRIP001 SV_IMPL_VARARR(SwStripeArr,SwStripe);
 //STRIP001 SV_IMPL_OP_PTRARR_SORT(SwScrollStripes, SwStripesPtr);

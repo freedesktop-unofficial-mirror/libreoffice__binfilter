@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmpgeimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:41 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:23:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,7 +178,7 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::form;
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 
-/*N*/ DBG_NAME(FmFormPageImpl);
+/*N*/ DBG_NAME(FmFormPageImpl)
 //------------------------------------------------------------------------------
 /*N*/ FmFormPageImpl::FmFormPageImpl(FmFormPage* _pPage)
 /*N*/                :pPage(_pPage)

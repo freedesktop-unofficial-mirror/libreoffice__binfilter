@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-09 14:13:47 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:23:08 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,8 +65,14 @@ BFPRJ=..$/..$/..
 
 PROJECTPCH=sd
 PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
+
 PRJNAME=binfilter
 TARGET=sd_unoidl
+
+#GEN_HID=TRUE
+#GEN_HID_OTHER=TRUE
+NO_HIDS=TRUE
+
 ENABLE_EXCEPTIONS=TRUE
 AUTOSEG=true
 

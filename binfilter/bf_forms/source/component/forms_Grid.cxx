@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Grid.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:07 $
+ *  last change: $Author: aw $ $Date: 2003-11-18 19:22:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -177,7 +177,7 @@ InterfaceRef SAL_CALL OGridControlModel_CreateInstance(const Reference<XMultiSer
     return *(new OGridControlModel(_rxFactory));
 }
 
-DBG_NAME(OGridControlModel);
+DBG_NAME(OGridControlModel)
 //------------------------------------------------------------------
 OGridControlModel::OGridControlModel(const Reference<XMultiServiceFactory>& _rxFactory)
                     :OControlModel(_rxFactory, ::rtl::OUString())

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-11 15:30:17 $
+#   last change: $Author: aw $ $Date: 2003-11-18 19:23:34 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -63,16 +63,17 @@
 BFPRJ=..
 PRJ=..$/..
 
-
 ENABLE_EXCEPTIONS=TRUE
+
 PRJNAME=binfilter
 TARGET=bf_sfx
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-#sfx.hid generieren
 
 #GEN_HID=TRUE
 #GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
+
+.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
+#sfx.hid generieren
 
 # --- Settings -----------------------------------------------------
 
