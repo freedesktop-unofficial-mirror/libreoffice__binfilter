@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_asciiopt.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:01:19 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:39:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,12 +97,12 @@
 //STRIP001      Text[ chinese_simplified ] = "å­—æ®µ";
 //STRIP001      Text[ russian ] = "Ïî?";
 //STRIP001      Text[ polish ] = "Pola";
-//STRIP001      Text[ japanese ] = "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ?;
+//STRIP001      Text[ japanese ] = "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ?";
 //STRIP001      Text[ chinese_traditional ] = "æ¬„ä½";
 //STRIP001      Text[ arabic ] = "ÍŞæá";
 //STRIP001      Text[ dutch ] = "Velden";
 //STRIP001      Text[ chinese_simplified ] = "å­—æ®µ";
-//STRIP001      Text[ greek ] = "Ğåäß?;
+//STRIP001      Text[ greek ] = "Ğåäß?";
 //STRIP001      Text[ korean ] = "í•„ë“œ";
 //STRIP001      Text[ turkish ] = "Alanlar";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -110,8 +110,8 @@
 //STRIP001      Text[ finnish ] = "Kentät";
 //STRIP001      Text[ thai ] = "à¹€à¸‚à¸•à¸‚à¹‰à¸­à¸¡à¸¹à¸¥";
 //STRIP001      Text[ czech ] = "Pole";
-//STRIP001      Text[ hebrew ] = "â€®×©×“×•×ªâ€?;
-//STRIP001      Text[ hindi ] = "à¤•à¥à¤·à¥‡à¤¤à¥à¤°à¥‡à¤?;
+//STRIP001      Text[ hebrew ] = "â€®×©×“×•×ªâ€?";
+//STRIP001      Text[ hindi ] = "à¤•à¥à¤·à¥‡à¤¤à¥à¤°à¥‡à¤?";
 //STRIP001  };
 //STRIP001  FixedText FT_TYPE
 //STRIP001  {
@@ -137,12 +137,12 @@
 //STRIP001      Text[ chinese_simplified ] = "åˆ—ç±»å?~Y)";
 //STRIP001      Text[ chinese_traditional ] = "æ¬„çš„é¡å‹(~Y)";
 //STRIP001      Text[ turkish ] = "Sütun T~ipi";
-//STRIP001      Text[ arabic ] = "Çáäæ?;
+//STRIP001      Text[ arabic ] = "Çáäæ?";
 //STRIP001      Text[ catalan ] = "T~ipus";
 //STRIP001      Text[ thai ] = "=à¸Š~à¸™à¸´à¸”à¸„à¸­à¸¥à¸±à¸¡à¸™à¹Œ";
 //STRIP001      Text[ czech ] = "Typ sloupce";
 //STRIP001      Text[ hebrew ] = "Spaltent~yp";
-//STRIP001      Text[ hindi ] = "à¤¸à¥à¤¤à¤‚à¤?à¤µ~à¤°à¥à¤?;
+//STRIP001      Text[ hindi ] = "à¤¸à¥à¤¤à¤‚à¤?à¤µ~à¤°à¥à¤?";
 //STRIP001  };
 //STRIP001  ListBox LB_TYPE1
 //STRIP001  {
@@ -169,16 +169,16 @@
 //STRIP001      Text[ chinese_simplified ] = "åˆ†éš”é€‰é¡¹";
 //STRIP001      Text[ russian ] = "Ïàğàìåòğ?ğàçäåëåí?";
 //STRIP001      Text[ polish ] = "Opcje separatora";
-//STRIP001      Text[ japanese ] = "åŒºåˆ‡ã‚Šã®ã‚ªãƒ—ã‚·ãƒ§ãƒ?;
+//STRIP001      Text[ japanese ] = "åŒºåˆ‡ã‚Šã®ã‚ªãƒ—ã‚·ãƒ§ãƒ?";
 //STRIP001      Text[ chinese_traditional ] = "åˆ†éš”é¸é …";
-//STRIP001      Text[ arabic ] = "ÎÕÇÆ?ÇáİÕ?;
+//STRIP001      Text[ arabic ] = "ÎÕÇÆ?ÇáİÕ?";
 //STRIP001      Text[ dutch ] = "Afscheidingsopties";
 //STRIP001      Text[ chinese_simplified ] = "åˆ†éš”é€‰é¡¹";
-//STRIP001      Text[ greek ] = "Åğéëïãİò äéá÷ùñéóôéêï?;
+//STRIP001      Text[ greek ] = "Åğéëïãİò äéá÷ùñéóôéêï?";
 //STRIP001      Text[ korean ] = "êµ¬ë¶„ ê¸°í˜¸ ì˜µì…˜";
 //STRIP001      Text[ turkish ] = "Ayra?seçenekleri";
 //STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Opcions de separaci?;
+//STRIP001      Text[ catalan ] = "Opcions de separaci?";
 //STRIP001      Text[ finnish ] = "Erottimen asetukset";
 //STRIP001      Text[ thai ] = "à¸•à¸±à¸§à¹€à¸¥à¸·à¸­à¸à¸•à¸±à¸§à¹à¸¢à¸";
 //STRIP001      Text[ czech ] = "Volby oddÄ›lovaÄe";
@@ -215,7 +215,7 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Amplada fixa";
 //STRIP001      Text[ finnish ] = "~Kiinte?leveys";
-//STRIP001      Text[ thai ] = "~à¸‹à¹ˆà¸­à¸¡à¸„à¸§à¸²à¸¡à¸à¸§à¹‰à¸²à¸?;
+//STRIP001      Text[ thai ] = "~à¸‹à¹ˆà¸­à¸¡à¸„à¸§à¸²à¸¡à¸à¸§à¹‰à¸²à¸?";
 //STRIP001      Text[ czech ] = "PevnÃ¡ Å¡Ã­Å™ka";
 //STRIP001      Text[ hebrew ] = "~Feste Breite";
 //STRIP001      Text[ hindi ] = "~à¤¸à¥à¤¥à¤¿à¤?à¤šà¥Œà¤¡à¤¼à¤¾à¤ˆ";
@@ -229,7 +229,7 @@
 //STRIP001      Text [ DANISH ] = "Delt" ;
 //STRIP001      Text [ ENGLISH_US ] = "~Separated by" ;
 //STRIP001      Text [ SPANISH ] = "~Separado" ;
-//STRIP001      Text [ FRENCH ] = "Sépar? ;
+//STRIP001      Text [ FRENCH ] = "Sépar?" ;
 //STRIP001      Text [ ITALIAN ] = "Separato" ;
 //STRIP001      Text [ DUTCH ] = "~Gescheiden" ;
 //STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "~Separado por" ;
@@ -238,23 +238,23 @@
 //STRIP001      TabStop = TRUE ;
 //STRIP001      Check = TRUE ;
 //STRIP001      Text[ chinese_simplified ] = "åˆ†éš”(~S)";
-//STRIP001      Text[ russian ] = "Ğàçäåëåí?;
+//STRIP001      Text[ russian ] = "Ğàçäåëåí?";
 //STRIP001      Text[ polish ] = "~Rozdzielony";
 //STRIP001      Text[ japanese ] = "åŒºåˆ‡ã‚?~S)";
 //STRIP001      Text[ chinese_traditional ] = "åˆ†éš”(~S)";
-//STRIP001      Text[ arabic ] = "ãİÕæ?;
+//STRIP001      Text[ arabic ] = "ãİÕæ?";
 //STRIP001      Text[ dutch ] = "~Gescheiden";
 //STRIP001      Text[ chinese_simplified ] = "åˆ†éš”(~S)";
-//STRIP001      Text[ greek ] = "Äéá÷ùñéæüìåí?;
+//STRIP001      Text[ greek ] = "Äéá÷ùñéæüìåí?";
 //STRIP001      Text[ korean ] = "í•„ë“œ êµ¬ë¶„ ê¸°í˜¸(~S)";
 //STRIP001      Text[ turkish ] = "~Ayrıştırılmış";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Separat per";
 //STRIP001      Text[ finnish ] = "~Erottimena";
-//STRIP001      Text[ thai ] = "à¹~à¸¢à¸à¹‚à¸”à¸?;
+//STRIP001      Text[ thai ] = "à¹~à¸¢à¸à¹‚à¸”à¸?";
 //STRIP001      Text[ czech ] = "OddÄ›leno pomocÃ­";
 //STRIP001      Text[ hebrew ] = "~Getrennt";
-//STRIP001      Text[ hindi ] = "à¤¸à¥‡ ~à¤…à¤²à¤—à¤¾à¤¯à¤¾ à¤¹à¥à¤?;
+//STRIP001      Text[ hindi ] = "à¤¸à¥‡ ~à¤…à¤²à¤—à¤¾à¤¯à¤¾ à¤¹à¥à¤?";
 //STRIP001  };
 //STRIP001  FixedText FT_CHARSET
 //STRIP001  {
@@ -272,7 +272,7 @@
 //STRIP001      Text [ SWEDISH ] = "~Teckenuppsättning" ;
 //STRIP001      Text [ PORTUGUESE ] = "Conjunto de caracteres" ;
 //STRIP001      Text[ chinese_simplified ] = "å­—ç¬¦é›?~A)";
-//STRIP001      Text[ russian ] = "Êîäèğîâê?;
+//STRIP001      Text[ russian ] = "Êîäèğîâê?";
 //STRIP001      Text[ polish ] = "Z~estaw znaków";
 //STRIP001      Text[ japanese ] = "æ–‡å­—åˆ?~A)";
 //STRIP001      Text[ chinese_traditional ] = "å­—å‹(~A)";
@@ -284,7 +284,7 @@
 //STRIP001      Text[ korean ] = "ë¬¸ìì§‘í•©(~A)";
 //STRIP001      Text[ turkish ] = "~Karakter kümesi";
 //STRIP001      Text[ catalan ] = "Joc de c~aràcters";
-//STRIP001      Text[ finnish ] = "~Merkist?;
+//STRIP001      Text[ finnish ] = "~Merkist?";
 //STRIP001      Text[ thai ] = "à¸Šà¸¸à¸”à¸•à¸±à¸§~à¸­à¸±à¸à¸‚à¸£à¸°";
 //STRIP001      Text[ czech ] = "ZnakovÃ¡ sada";
 //STRIP001      Text[ hebrew ] = "Z~eichensatz";
@@ -316,18 +316,18 @@
 //STRIP001      Text[ chinese_simplified ] = "è¾“å…¥";
 //STRIP001      Text[ russian ] = "Èìïîğò";
 //STRIP001      Text[ polish ] = "Importuj";
-//STRIP001      Text[ japanese ] = "ã‚¤ãƒ³ãƒãƒ¼ãƒ?;
+//STRIP001      Text[ japanese ] = "ã‚¤ãƒ³ãƒãƒ¼ãƒ?";
 //STRIP001      Text[ chinese_traditional ] = "åŒ¯å…¥";
-//STRIP001      Text[ arabic ] = "ÇÓÊíÑÇ?;
+//STRIP001      Text[ arabic ] = "ÇÓÊíÑÇ?";
 //STRIP001      Text[ dutch ] = "Import";
 //STRIP001      Text[ chinese_simplified ] = "è¾“å…¥";
 //STRIP001      Text[ greek ] = "ÅéóáãùãŞ";
-//STRIP001      Text[ korean ] = "ê°€ì ¸ì˜¤ê¸?;
+//STRIP001      Text[ korean ] = "ê°€ì ¸ì˜¤ê¸?";
 //STRIP001      Text[ turkish ] = "İçeri aktarım";
 //STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Importaci?;
+//STRIP001      Text[ catalan ] = "Importaci?";
 //STRIP001      Text[ finnish ] = "Tuo";
-//STRIP001      Text[ thai ] = "à¸™à¸³à¹€à¸‚à¹‰à¸?;
+//STRIP001      Text[ thai ] = "à¸™à¸³à¹€à¸‚à¹‰à¸?";
 //STRIP001      Text[ czech ] = "Importovat";
 //STRIP001      Text[ hebrew ] = "Import";
 //STRIP001      Text[ hindi ] = "à¤†à¤¯à¤¾à¤¤";
@@ -361,7 +361,7 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Delimitador de te~xt";
 //STRIP001      Text[ finnish ] = "~Tekstin erottimet";
-//STRIP001      Text[ thai ] = "à¸•à¸±à¸§à¸„à¸±à¹ˆà¸™à¸‚à¹‰~à¸­à¸„à¸§à¸²à¸?;
+//STRIP001      Text[ thai ] = "à¸•à¸±à¸§à¸„à¸±à¹ˆà¸™à¸‚à¹‰~à¸­à¸„à¸§à¸²à¸?";
 //STRIP001      Text[ czech ] = "OddÄ›lovaÄ textu";
 //STRIP001      Text[ hebrew ] = "Te~xttrenner";
 //STRIP001      Text[ hindi ] = "à¤Ÿà¥‡~à¤•à¥à¤¸à¥à¤Ÿà¥ à¤ªà¤°à¤¿à¤¸à¥€à¤®à¤¿à¤?à¤•à¤°à¤¨à¥‡à¤µà¤¾à¤²à¤¾";
@@ -413,7 +413,7 @@
 //STRIP001      Text[ polish ] = "~Tabulator";
 //STRIP001      Text[ japanese ] = "ã‚¿ãƒ–(~T)";
 //STRIP001      Text[ chinese_traditional ] = "å®šä½é?~T)";
-//STRIP001      Text[ arabic ] = "ÚáÇã?ÌÏæá?;
+//STRIP001      Text[ arabic ] = "ÚáÇã?ÌÏæá?";
 //STRIP001      Text[ dutch ] = "~Tabulator";
 //STRIP001      Text[ chinese_simplified ] = "åˆ¶è¡¨ç¬?~T)";
 //STRIP001      Text[ greek ] = "Óôçëïèİôçò";
@@ -425,7 +425,7 @@
 //STRIP001      Text[ thai ] = "~à¸£à¸°à¸¢à¸°à¸à¸±à¹‰à¸™";
 //STRIP001      Text[ czech ] = "TabelÃ¡tor";
 //STRIP001      Text[ hebrew ] = "~Tabulator";
-//STRIP001      Text[ hindi ] = "~à¤Ÿà¥‰à¤?;
+//STRIP001      Text[ hindi ] = "~à¤Ÿà¥‰à¤?";
 //STRIP001  };
 //STRIP001  CheckBox CKB_SEMICOLON
 //STRIP001  {
@@ -444,7 +444,7 @@
 //STRIP001      Text [ dutch ] = "~Puntkomma" ;
 //STRIP001      Text [ portuguese ] = "~Ponto e vírgula" ;
 //STRIP001      Text[ chinese_simplified ] = "åˆ†å·(~E)";
-//STRIP001      Text[ russian ] = "Òî÷ê??çà?òî?;
+//STRIP001      Text[ russian ] = "Òî÷ê??çà?òî?";
 //STRIP001      Text[ polish ] = "Œrednik";
 //STRIP001      Text[ japanese ] = "ã‚»ãƒŸã‚³ãƒ­ãƒ?~E)";
 //STRIP001      Text[ chinese_traditional ] = "åˆ†è™Ÿ(~E)";
@@ -460,7 +460,7 @@
 //STRIP001      Text[ thai ] = "à¸­à¸±~à¸’à¸ à¸²à¸„";
 //STRIP001      Text[ czech ] = "StÅ™ednÃ­k";
 //STRIP001      Text[ hebrew ] = "~Semikolon";
-//STRIP001      Text[ hindi ] = "à¤…à¤°à¥à¤§ ~à¤µà¤¿à¤°à¤¾à¤?à¤šà¤¿à¤¹à¥à¤?;
+//STRIP001      Text[ hindi ] = "à¤…à¤°à¥à¤§ ~à¤µà¤¿à¤°à¤¾à¤?à¤šà¤¿à¤¹à¥à¤?";
 //STRIP001  };
 //STRIP001  CheckBox CKB_COMMA
 //STRIP001  {
@@ -483,10 +483,10 @@
 //STRIP001      Text[ polish ] = "~Przecinek";
 //STRIP001      Text[ japanese ] = "ã‚³ãƒ³ãƒ?~C)";
 //STRIP001      Text[ chinese_traditional ] = "é€—è™Ÿ(~C)";
-//STRIP001      Text[ arabic ] = "İÇÕá?;
+//STRIP001      Text[ arabic ] = "İÇÕá?";
 //STRIP001      Text[ dutch ] = "~Komma";
 //STRIP001      Text[ chinese_simplified ] = "é€—å·(~C)";
-//STRIP001      Text[ greek ] = "Êüìì?;
+//STRIP001      Text[ greek ] = "Êüìì?";
 //STRIP001      Text[ korean ] = "ì‰¼í‘œ(~C)";
 //STRIP001      Text[ turkish ] = "~Virgül";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -495,7 +495,7 @@
 //STRIP001      Text[ thai ] = "~à¸ˆà¸¸à¸¥à¸ à¸²à¸„";
 //STRIP001      Text[ czech ] = "ÄŒÃ¡rka";
 //STRIP001      Text[ hebrew ] = "~Komma";
-//STRIP001      Text[ hindi ] = "~à¤›à¥‹à¤Ÿà¤¾ à¤µà¤¿à¤°à¤¾à¤?à¤šà¤¿à¤¹à¥à¤?;
+//STRIP001      Text[ hindi ] = "~à¤›à¥‹à¤Ÿà¤¾ à¤µà¤¿à¤°à¤¾à¤?à¤šà¤¿à¤¹à¥à¤?";
 //STRIP001  };
 //STRIP001  CheckBox CKB_SPACE
 //STRIP001  {
@@ -518,7 +518,7 @@
 //STRIP001      Text[ polish ] = "S~pacja";
 //STRIP001      Text[ japanese ] = "ã‚¹ãƒšãƒ¼ã‚¹(~P)";
 //STRIP001      Text[ chinese_traditional ] = "ç©ºæ ¼(~P)";
-//STRIP001      Text[ arabic ] = "ÍÑ?ãÓÇİ?;
+//STRIP001      Text[ arabic ] = "ÍÑ?ãÓÇİ?";
 //STRIP001      Text[ dutch ] = "~Spatie";
 //STRIP001      Text[ chinese_simplified ] = "ç©ºæ ¼(~P)";
 //STRIP001      Text[ greek ] = "Êåíü";
@@ -553,7 +553,7 @@
 //STRIP001      Text[ polish ] = "~Inne";
 //STRIP001      Text[ japanese ] = "ãã®ä»?~O)";
 //STRIP001      Text[ chinese_traditional ] = "å…¶ä»–(~O)";
-//STRIP001      Text[ arabic ] = "Ûí?Ğá?;
+//STRIP001      Text[ arabic ] = "Ûí?Ğá?";
 //STRIP001      Text[ dutch ] = "~Andere";
 //STRIP001      Text[ chinese_simplified ] = "å…¶ä»–(~O)";
 //STRIP001      Text[ greek ] = "¢ëëá";
@@ -562,7 +562,7 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Altres";
 //STRIP001      Text[ finnish ] = "~Muu";
-//STRIP001      Text[ thai ] = "~à¸­à¸·à¹ˆà¸™ à¹?;
+//STRIP001      Text[ thai ] = "~à¸­à¸·à¹ˆà¸™ à¹?";
 //STRIP001      Text[ czech ] = "JinÃ½";
 //STRIP001      Text[ hebrew ] = "~Andere";
 //STRIP001      Text[ hindi ] = "~à¤…à¤¨à¥à¤¯";
@@ -603,8 +603,8 @@
 //STRIP001      Text[ turkish ] = "Sa~tırdan";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Des de la f~ila";
-//STRIP001      Text[ finnish ] = "Rivilt~?;
-//STRIP001      Text[ thai ] = "à¸ˆà¸²à¸à¹à¸–~à¸?;
+//STRIP001      Text[ finnish ] = "Rivilt~?";
+//STRIP001      Text[ thai ] = "à¸ˆà¸²à¸à¹à¸–~à¸?";
 //STRIP001      Text[ czech ] = "Od Å™Ã¡dku";
 //STRIP001      Text[ hebrew ] = "Ab ~Zeile";
 //STRIP001      Text[ hindi ] = "à¤ªà¤‚~à¤•à¥à¤¤à¤¿ à¤¸à¥‡";
@@ -646,7 +646,7 @@
 //STRIP001      Text [ dutch ] = "Vel~dscheidingstekens samenvatten" ;
 //STRIP001      Text [ portuguese ] = "Agrupar ~separadores de campos" ;
 //STRIP001      Text[ chinese_simplified ] = "å‹ç¼©æ˜¾ç¤º(~D)";
-//STRIP001      Text[ russian ] = "Îáúåäèíèòü ğàçäåëèòåë?;
+//STRIP001      Text[ russian ] = "Îáúåäèíèòü ğàçäåëèòåë?";
 //STRIP001      Text[ polish ] = "Scal ~separatory";
 //STRIP001      Text[ japanese ] = "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åŒºåˆ‡ã‚Šã®çµå?~D)";
 //STRIP001      Text[ chinese_traditional ] = "å£“ç¸®é¡¯ç¤º(~D)";
@@ -659,10 +659,10 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Fusiona els ~delimitadors";
 //STRIP001      Text[ finnish ] = "~Yhdist?erottimet";
-//STRIP001      Text[ thai ] = "à¸œà¸ªà¸²à¸™~à¸•à¸±à¸§à¸„à¸±à¹ˆà¸?;
+//STRIP001      Text[ thai ] = "à¸œà¸ªà¸²à¸™~à¸•à¸±à¸§à¸„à¸±à¹ˆà¸?";
 //STRIP001      Text[ czech ] = "SlouÄit oddÄ›lovaÄe";
 //STRIP001      Text[ hebrew ] = "Fel~dtrenner zusammenfassen";
-//STRIP001      Text[ hindi ] = "~à¤ªà¤°à¤¿à¤¸à¥€à¤®à¤¿à¤?à¤•à¤°à¤¨à¥‡à¤µà¤¾à¤²à¥‡ à¤•à¥‹ à¤®à¤¿à¤²à¤¾à¤?;
+//STRIP001      Text[ hindi ] = "~à¤ªà¤°à¤¿à¤¸à¥€à¤®à¤¿à¤?à¤•à¤°à¤¨à¥‡à¤µà¤¾à¤²à¥‡ à¤•à¥‹ à¤®à¤¿à¤²à¤¾à¤?";
 //STRIP001  };
 //STRIP001  Text[ chinese_simplified ] = "è¾“å…¥æ–‡å­—";
 //STRIP001  Text[ russian ] = "Èìïîğò òåêñòà";
@@ -673,7 +673,7 @@
 //STRIP001  Text[ dutch ] = "Tekstimport";
 //STRIP001  Text[ chinese_simplified ] = "è¾“å…¥æ–‡å­—";
 //STRIP001  Text[ greek ] = "ÅéóáãùãŞ êåéìİíïõ";
-//STRIP001  Text[ korean ] = "í…ìŠ¤íŠ?ê°€ì ¸ì˜¤ê¸?;
+//STRIP001  Text[ korean ] = "í…ìŠ¤íŠ?ê°€ì ¸ì˜¤ê¸?";
 //STRIP001  Text[ turkish ] = "İçe aktar (metin)";
 //STRIP001  Text[ language_user1 ] = " ";
 //STRIP001  Text[ catalan ] = "Importaci?de text";
