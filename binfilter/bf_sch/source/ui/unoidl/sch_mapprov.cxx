@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_mapprov.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:24:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,11 +61,11 @@
 
 #include "mapprov.hxx"
 #include "schattr.hxx"
-#include "defines.hxx"
-#include "chtmodel.hxx"
-#include "datapoin.hxx"
-#include "datarow.hxx"
-#include "chtscene.hxx"
+// auto strip #include "defines.hxx"
+// auto strip #include "chtmodel.hxx"
+// auto strip #include "datapoin.hxx"
+// auto strip #include "datarow.hxx"
+// auto strip #include "chtscene.hxx"
 
 #ifndef _SCH_APP_HRC
 #include "app.hrc"          // for SID_TEXTBREAK
@@ -75,31 +75,31 @@
 #endif
 
 // for SdrObject
-#ifndef _SVDOBJ_HXX
-#include <bf_svx/svdobj.hxx>
-#endif
+// auto strip #ifndef _SVDOBJ_HXX
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
 // for SdrObjList
-#ifndef _SVDPAGE_HXX
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 // for SdrObjListIter
-#ifndef _SVDITER_HXX
-#include <bf_svx/svditer.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
 // header for E3dExtrudeObj
-#ifndef _E3D_EXTRUD3D_HXX
-#include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_LATHE3D_HXX
-#include <bf_svx/lathe3d.hxx>
-#endif
-#ifndef _POLY3D_HXX
-#include <bf_svx/poly3d.hxx>
-#endif
+// auto strip #ifndef _E3D_EXTRUD3D_HXX
+// auto strip #include <bf_svx/extrud3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_LATHE3D_HXX
+// auto strip #include <bf_svx/lathe3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _POLY3D_HXX
+// auto strip #include <bf_svx/poly3d.hxx>
+// auto strip #endif
 // for SVX_UNOEDIT_CHAR_PROPERTIES, SVX_UNOEDIT_FONT_PROPERTIES
-#ifndef _SVX_UNOTEXT_HXX
-#include <bf_svx/unotext.hxx>
-#endif
+// auto strip #ifndef _SVX_UNOTEXT_HXX
+// auto strip #include <bf_svx/unotext.hxx>
+// auto strip #endif
 #ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
 #endif
@@ -128,6 +128,9 @@
 
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
+#endif
+#ifndef _SCH_UNONAMES_HXX
+#include "unonames.hxx"
 #endif
 namespace binfilter {
 
