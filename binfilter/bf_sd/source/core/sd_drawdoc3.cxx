@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:28:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,91 +62,91 @@
 #include <utility>
 #include <algorithm>
 
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#ifndef _SVDOPATH_HXX
-#include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVDITER_HXX
-#include <bf_svx/svditer.hxx>
-#endif
-#include <svtools/style.hxx>
-#include <bf_svx/linkmgr.hxx>
-#ifndef _SVDPAGV_HXX //autogen
-#include <bf_svx/svdpagv.hxx>
-#endif
-#ifndef _SVDOGRP_HXX //autogen
-#include <bf_svx/svdogrp.hxx>
-#endif
-#ifndef _SVDUNDO_HXX //autogen
-#include <bf_svx/svdundo.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX //autogen
-#include <sot/formats.hxx>
-#endif
+// auto strip #ifndef _SVDOPATH_HXX
+// auto strip #include <bf_svx/svdopath.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
+// auto strip #include <svtools/style.hxx>
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #ifndef _SVDPAGV_HXX //autogen
+// auto strip #include <bf_svx/svdpagv.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDUNDO_HXX //autogen
+// auto strip #include <bf_svx/svdundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_STORAGE_HXX
+// auto strip #include <sot/storage.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_FORMATS_HXX //autogen
+// auto strip #include <sot/formats.hxx>
+// auto strip #endif
 
 #include <set>
 
 #include "glob.hrc"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-#include "stlpool.hxx"
-#include "sdresid.hxx"
-#include "sdiocmpt.hxx"
+// auto strip #include "stlpool.hxx"
+// auto strip #include "sdresid.hxx"
+// auto strip #include "sdiocmpt.hxx"
 #include "strmname.h"
-#include "anminfo.hxx"
+// auto strip #include "anminfo.hxx"
 
 #ifdef MAC
-#include "::ui:inc:unmovss.hxx"
-#include "::ui:inc:unchss.hxx"
-#include "::ui:inc:unprlout.hxx"
-#include "::ui:inc:docshell.hxx"
-#include "::ui:inc:grdocsh.hxx"
-#include "::ui:inc:viewshel.hxx"
-#include "::ui:inc:sdview.hxx"
-#include "::ui:inc:cfgids.hxx"
+// auto strip #include "::ui:inc:unmovss.hxx"
+// auto strip #include "::ui:inc:unchss.hxx"
+// auto strip #include "::ui:inc:unprlout.hxx"
+// auto strip #include "::ui:inc:docshell.hxx"
+// auto strip #include "::ui:inc:grdocsh.hxx"
+// auto strip #include "::ui:inc:viewshel.hxx"
+// auto strip #include "::ui:inc:sdview.hxx"
+// auto strip #include "::ui:inc:cfgids.hxx"
 #include "::ui:inc:strings.hrc"
 #else
 #ifdef UNX
-#include "../ui/inc/unmovss.hxx"
-#include "../ui/inc/unchss.hxx"
-#include "../ui/inc/unprlout.hxx"
-#include "../ui/inc/docshell.hxx"
+// auto strip #include "../ui/inc/unmovss.hxx"
+// auto strip #include "../ui/inc/unchss.hxx"
+// auto strip #include "../ui/inc/unprlout.hxx"
+// auto strip #include "../ui/inc/docshell.hxx"
 #include "../ui/inc/grdocsh.hxx"
 #include "../ui/inc/viewshel.hxx"
 #include "../ui/inc/sdview.hxx"
-#include "../ui/inc/cfgids.hxx"
+// auto strip #include "../ui/inc/cfgids.hxx"
 #include "../ui/inc/strings.hrc"
 #else
-#include "..\ui\inc\unmovss.hxx"
-#include "..\ui\inc\unchss.hxx"
-#include "..\ui\inc\unprlout.hxx"
+// auto strip #include "..\ui\inc\unmovss.hxx"
+// auto strip #include "..\ui\inc\unchss.hxx"
+// auto strip #include "..\ui\inc\unprlout.hxx"
 #include "..\ui\inc\docshell.hxx"
-#include "..\ui\inc\grdocsh.hxx"
+// auto strip #include "..\ui\inc\grdocsh.hxx"
 #include "..\ui\inc\viewshel.hxx"
 #include "..\ui\inc\sdview.hxx"
-#include "..\ui\inc\cfgids.hxx"
+// auto strip #include "..\ui\inc\cfgids.hxx"
 #include "..\ui\inc\strings.hrc"
 #endif
 #endif

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:27:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,26 +61,26 @@
 
 #pragma hdrstop
 
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 
 #ifndef SVX_LIGHT
-#include <so3/iface.hxx>
+// auto strip #include <so3/iface.hxx>
 #ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #include "sdoutl.hxx"
 #else   // SVX_LIGHT
-#ifndef _OUTLINER_HXX //autogen wg. Outliner
-#include <bf_svx/outliner.hxx>
-#endif
-#ifndef _SVDOUTL_HXX //autogen wg. Outliner
-#include <bf_svx/svdoutl.hxx>
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen wg. Outliner
+// auto strip #include <bf_svx/outliner.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOUTL_HXX //autogen wg. Outliner
+// auto strip #include <bf_svx/svdoutl.hxx>
+// auto strip #endif
 #define SfxPrinter Printer
 #endif // !SVX_LIGHT
 
@@ -90,18 +90,18 @@
 #ifndef _SVDOPAGE_HXX //autogen
 #include <bf_svx/svdopage.hxx>
 #endif
-#ifndef _SVDOOLE2_HXX //autogen
-#include <bf_svx/svdoole2.hxx>
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
-#include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _SVDOGRAF_HXX //autogen
-#include <bf_svx/svdograf.hxx>
-#endif
-#ifndef _SVDUNDO_HXX //autogen
-#include <bf_svx/svdundo.hxx>
-#endif
+// auto strip #ifndef _SVDOOLE2_HXX //autogen
+// auto strip #include <bf_svx/svdoole2.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOTEXT_HXX //autogen
+// auto strip #include <bf_svx/svdotext.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOGRAF_HXX //autogen
+// auto strip #include <bf_svx/svdograf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDUNDO_HXX //autogen
+// auto strip #include <bf_svx/svdundo.hxx>
+// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
@@ -119,52 +119,53 @@
 #endif
 
 
-#include <bf_svx/linkmgr.hxx>
-#include <bf_svx/editdata.hxx>
+// auto strip #include <bf_svx/linkmgr.hxx>
+// auto strip #include <bf_svx/editdata.hxx>
 #include <bf_svx/dialogs.hrc>
-#include <bf_svx/dialmgr.hxx>                   // SVX_RESSTR
+// auto strip #include <bf_svx/dialmgr.hxx>                 // SVX_RESSTR
 
-#include "eetext.hxx"
+// auto strip #include "eetext.hxx"
 
-#ifndef _SVDITER_HXX //autogen
-#include <bf_svx/svditer.hxx>
-#endif
-#ifndef _GOODIES_IMAPOBJ_HXX //autogen
-#include <svtools/imapobj.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX //autogen
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
 
 
 #include "sdresid.hxx"
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
-#include "pglink.hxx"
+// auto strip #include "pglink.hxx"
 #include "glob.hrc"
-#include "glob.hxx"
-#include "stlpool.hxx"
-#include "sdiocmpt.hxx"
-#include "anminfo.hxx"
-#include "imapinfo.hxx"
+// auto strip #include "glob.hxx"
+// auto strip #include "stlpool.hxx"
+// auto strip #include "sdiocmpt.hxx"
+// auto strip #include "anminfo.hxx"
+// auto strip #include "imapinfo.hxx"
 #include "cusshow.hxx"
 
 #ifndef SVX_LIGHT
 #ifdef MAC
-#include "::ui:inc:docshell.hxx"
-#include "::ui:inc:frmview.hxx"
-#include "::ui:inc:cfgids.hxx"
+// auto strip #include "::ui:inc:docshell.hxx"
+// auto strip #include "::ui:inc:frmview.hxx"
+// auto strip #include "::ui:inc:cfgids.hxx"
 #include "::ui:inc:strings.hrc"
 #else
 #ifdef UNX
 #include "../ui/inc/docshell.hxx"
 #include "../ui/inc/frmview.hxx"
-#include "../ui/inc/cfgids.hxx"
+// auto strip #include "../ui/inc/cfgids.hxx"
 #include "../ui/inc/strings.hrc"
 #else
 #include "..\ui\inc\docshell.hxx"
-#include "..\ui\inc\frmview.hxx"
-#include "..\ui\inc\cfgids.hxx"
+// auto strip #include "..\ui\inc\frmview.hxx"
+// auto strip #include "..\ui\inc\cfgids.hxx"
 #include "..\ui\inc\strings.hrc"
 #endif
 #endif
+
 namespace binfilter {
 
 #endif // !SVX_LIGHT
