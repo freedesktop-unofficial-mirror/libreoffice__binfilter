@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 12:21:02 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 10:42:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #ifdef PCH
 // auto strip #include "ui_pch.hxx"
 #endif
@@ -1104,6 +1103,25 @@ uno::Reference< container::XIndexAccess > SAL_CALL ScModelObj::getViewData(  )
                 aSeq[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_ACTIVETABLE));
                 aSeq[0].Value <<= sOUName;
                 xCont->insertByIndex( 0, uno::makeAny( aSeq ) );
+            }
+        }
+        else if ( pDocShell )
+        {
+            // #116578# Convert manually loaded state from sfx window data
+            // into view data sequence
+
+            String aUserData = pDocShell->GetUserData();
+            if ( aUserData.Len() )
+            {
+                ScViewData aLocalViewData( pDocShell, NULL );   // no ViewShell
+                aLocalViewData.ReadUserData( aUserData );
+                uno::Sequence< beans::PropertyValue > aSeq;
+                aLocalViewData.WriteUserDataSequence( aSeq );
+
+                xRet = uno::Reference < container::XIndexAccess >::query(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.IndexedPropertyValues"))));
+                uno::Reference < container::XIndexContainer > xCont( xRet, uno::UNO_QUERY );
+                if( xCont.is() )
+                    xCont->insertByIndex( 0, uno::makeAny( aSeq ) );
             }
         }
     }
