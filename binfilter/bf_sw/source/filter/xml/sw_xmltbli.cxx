@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltbli.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:27:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,9 +114,19 @@
 #ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _FMTFORDR_HXX
 #include "fmtfordr.hxx"
 #endif
@@ -129,6 +139,11 @@
 #ifndef _SWTBLFMT_HXX
 #include "swtblfmt.hxx"
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _PAM_HXX
 #include "pam.hxx"
 #endif
