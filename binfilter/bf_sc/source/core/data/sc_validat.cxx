@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_validat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:12:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,36 +60,36 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include "scitems.hxx"
-#include <bf_sfx2/app.hxx>
-#include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/objsh.hxx>
-#include <basic/sbmeth.hxx>
-#include <basic/sbmod.hxx>
-#include <basic/sbstar.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #include <bf_sfx2/objsh.hxx>
+// auto strip #include <basic/sbmeth.hxx>
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #include <basic/sbstar.hxx>
 
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
 
-#include <svtools/sbx.hxx>
-#include <svtools/zforlist.hxx>
-#include <vcl/msgbox.hxx>
-#include <tools/urlobj.hxx>
-#include <rtl/math.hxx>
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #include <rtl/math.hxx>
 #include <math.h>
 
 
 #include "validat.hxx"
-#include "document.hxx"
-#include "cell.hxx"
+// auto strip #include "document.hxx"
+// auto strip #include "cell.hxx"
 #include "patattr.hxx"
 #include "rechead.hxx"
 #include "globstr.hrc"
