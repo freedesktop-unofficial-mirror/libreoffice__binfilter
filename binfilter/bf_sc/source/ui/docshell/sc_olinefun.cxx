@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_olinefun.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:48:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,21 +60,21 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <vcl/sound.hxx>
+// auto strip #include <vcl/sound.hxx>
 #include <bf_sfx2/bindings.hxx>
 
 #include "olinefun.hxx"
 
 #include "docsh.hxx"
-#include "olinetab.hxx"
-#include "undodat.hxx"
+// auto strip #include "olinetab.hxx"
+// auto strip #include "undodat.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
 namespace binfilter {
