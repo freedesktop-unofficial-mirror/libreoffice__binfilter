@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: waratah $ $Date: 2004-06-24 12:43:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -789,7 +789,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/ short SwSubFont::_CheckKerning( )
 /*N*/ {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   static nTst = 6;
+/*N*/   static short nTst = 6;
 /*N*/   short nKernx = - short( Font::GetSize().Height() / nTst );
 /*N*/ #else
 /*N*/   short nKernx = - short( Font::GetSize().Height() / 6 );
