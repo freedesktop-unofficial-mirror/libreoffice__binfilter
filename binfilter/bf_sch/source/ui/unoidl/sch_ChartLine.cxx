@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_ChartLine.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:23:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 #include "ChartLine.hxx"
 
 #include "mapprov.hxx"
-#include "defines.hxx"
+// auto strip #include "defines.hxx"
 
 // header for class OGuard
 #ifndef _VOS_MUTEX_HXX_
@@ -74,9 +74,9 @@
 #ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
 #endif
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
