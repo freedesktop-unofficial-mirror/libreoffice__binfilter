@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_GroupManager.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:22:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:50:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,21 +66,21 @@
 #include "DatabaseForm.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
-#include <com/sun/star/beans/XFastPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XFastPropertySet.hpp>
+// auto strip #endif
 
 #ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
 #endif
-#ifndef _COMPHELPER_UNO3_HXX_
-#include <comphelper/uno3.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_UNO3_HXX_
+// auto strip #include <comphelper/uno3.hxx>
+// auto strip #endif
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
 #endif
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 
 #include "property.hrc"
 
