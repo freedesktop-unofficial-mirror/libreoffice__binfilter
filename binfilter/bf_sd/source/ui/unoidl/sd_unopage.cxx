@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unopage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:07:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,18 +59,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
-#include <com/sun/star/presentation/ClickAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
-#include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
-#include <com/sun/star/presentation/AnimationEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
-#include <com/sun/star/presentation/PresentationRange.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
+// auto strip #include <com/sun/star/presentation/ClickAction.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
+// auto strip #include <com/sun/star/presentation/FadeEffect.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
+// auto strip #include <com/sun/star/presentation/AnimationEffect.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HPP_
+// auto strip #include <com/sun/star/presentation/PresentationRange.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
 #endif
@@ -81,21 +81,21 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-#ifndef _SV_BITMAPEX_HXX
-#include <vcl/bitmapex.hxx>
-#endif
+// auto strip #ifndef _SV_BITMAPEX_HXX
+// auto strip #include <vcl/bitmapex.hxx>
+// auto strip #endif
 #ifndef _SV_METAACT_HXX
 #include <vcl/metaact.hxx>
 #endif
-#ifndef _TOOLKIT_UNOIFACE_HXX
-#include <toolkit/unohlp.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_SETTINGS_HXX
-#include <vcl/settings.hxx>
-#endif
+// auto strip #ifndef _TOOLKIT_UNOIFACE_HXX
+// auto strip #include <toolkit/unohlp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SETTINGS_HXX
+// auto strip #include <vcl/settings.hxx>
+// auto strip #endif
 #ifndef _UNOMODEL_HXX
 #include <unomodel.hxx>
 #endif
@@ -105,12 +105,12 @@
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
-#include <bf_svx/svdmodel.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDMODEL_HXX //autogen
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
 #ifndef _SDRESID_HXX
 #include <sdresid.hxx>
 #endif
@@ -121,9 +121,9 @@
 #ifndef _SD_UNOPRNMS_HXX
 #include <unoprnms.hxx>
 #endif
-#ifndef _SDATTR_HXX
-#include <sdattr.hxx>
-#endif
+// auto strip #ifndef _SDATTR_HXX
+// auto strip #include <sdattr.hxx>
+// auto strip #endif
 #ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
 #endif
@@ -133,12 +133,12 @@
 #ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
 #endif
-#ifndef _SVDORECT_HXX
-#include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _SVDORECT_HXX
+// auto strip #include <bf_svx/svdorect.hxx>
+// auto strip #endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _SFXSTYLE_HXX
 #include <svtools/style.hxx>
 #endif
@@ -157,13 +157,13 @@
 #include <bf_svx/svdoole2.hxx>
 #endif
 
-#include <bf_svx/svdview.hxx>
-#include "misc.hxx"
+// auto strip #include <bf_svx/svdview.hxx>
+// auto strip #include "misc.hxx"
 #include "sdview.hxx"
 #ifndef SVX_LIGHT
 #include "docshell.hxx"
 #endif
-#include "viewshel.hxx"
+// auto strip #include "viewshel.hxx"
 #include "drviewsh.hxx"
 #include "unoobj.hxx"
 #include "res_bmp.hrc"
