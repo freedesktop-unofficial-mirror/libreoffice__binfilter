@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:26:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,7 +65,7 @@
 #ifndef SVX_LIGHT
 #include <so3/lnkbase.hxx>
 #else
-#include <svtools/pathoptions.hxx>
+// auto strip #include <svtools/pathoptions.hxx>
 #endif
 
 #include <math.h>
@@ -75,35 +75,40 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <svtools/style.hxx>
-#include <svtools/filter.hxx>
+// auto strip #include <svtools/filter.hxx>
 #include <svtools/urihelper.hxx>
-#include <goodies/grfmgr.hxx>
+// auto strip #include <goodies/grfmgr.hxx>
 #include "linkmgr.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdetc.hxx"
 #include "svdglob.hxx"
 #include "svdstr.hrc"
 #include "svdpool.hxx"
-#include "svdmodel.hxx"
-#include "svdpage.hxx"
-#include "svdmrkv.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdmrkv.hxx"
 #include "svdpagv.hxx"
 #include "svdviter.hxx"
 #include "svdview.hxx"
 #include "impgrf.hxx"
 #include "svdograf.hxx"
-#include "svdogrp.hxx"
-#include "xbitmap.hxx"
-#include "xbtmpit.hxx"
-#include "xflbmtit.hxx"
-#include "svdundo.hxx"
-#include "svdfmtf.hxx"
+// auto strip #include "svdogrp.hxx"
+// auto strip #include "xbitmap.hxx"
+// auto strip #include "xbtmpit.hxx"
+// auto strip #include "xflbmtit.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdfmtf.hxx"
 #include "sdgcpitm.hxx"
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
+#endif
+
 namespace binfilter {
 
 // -----------
