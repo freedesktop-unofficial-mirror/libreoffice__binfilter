@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unobtabl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,20 +59,20 @@
  *
  ************************************************************************/
 
-#ifndef _SFXITEMPOOL_HXX
-#include <svtools/itempool.hxx>
-#endif
+// auto strip #ifndef _SFXITEMPOOL_HXX
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
 
 #ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
 #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
-#ifndef _SVX_XIT_HXX
-#include <xit.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_XIT_HXX
+// auto strip #include <xit.hxx>
+// auto strip #endif
 #ifndef SVX_LIGHT
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
@@ -83,11 +83,15 @@
 #include "UnoNameItemTable.hxx"
 #endif
 
+#ifndef _XDEF_HXX
+#include "xdef.hxx"
+#endif
+
 #include "xbtmpit.hxx"
-#include "svdmodel.hxx"
-#include "xflhtit.hxx"
-#include "unoapi.hxx"
-#include "impgrf.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "xflhtit.hxx"
+// auto strip #include "unoapi.hxx"
+// auto strip #include "impgrf.hxx"
 #include "unomid.hxx"
 #include "unoprnms.hxx"
 namespace binfilter {
@@ -154,12 +158,12 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
     return *new SvxUnoBitmapTable(pModel);
 }
 } //STRIP009 namespace bifilter
-#ifndef _STREAM_HXX
-#include <tools/stream.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-#include <unotools/localfilehelper.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
+// auto strip #include <unotools/localfilehelper.hxx>
+// auto strip #endif
 
 namespace binfilter {//STRIP009
 /** returns a GraphicObject for this URL */
