@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdogrp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:26:19 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:42:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,6 +117,7 @@
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #ifndef SVX_LIGHT
@@ -282,7 +283,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*N*/       aRelFileName = INetURLObject::AbsToRel( aFileName,
+/*N*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -324,7 +325,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
-/*N*/       aFileName = ::URIHelper::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/       aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -579,10 +580,10 @@ namespace binfilter {
 //STRIP001       pModel->GetPersist() )
 //STRIP001  {
 //STRIP001      // Nicht 2x Anmelden
-//STRIP001      INetURLObject aURLObj( ::URIHelper::SmartRelToAbs( pModel->GetPersist()->GetFileName(), FALSE,
+//STRIP001      INetURLObject aURLObj( so3::StaticBaseUrl::SmartRelToAbs( pModel->GetPersist()->GetFileName(), FALSE,
 //STRIP001                                                         INetURLObject::WAS_ENCODED,
 //STRIP001                                                         INetURLObject::DECODE_UNAMBIGUOUS ) );
-//STRIP001      INetURLObject aLinkURLObj( ::URIHelper::SmartRelToAbs( pData->aFileName, FALSE,
+//STRIP001      INetURLObject aLinkURLObj( so3::StaticBaseUrl::SmartRelToAbs( pData->aFileName, FALSE,
 //STRIP001                                                             INetURLObject::WAS_ENCODED,
 //STRIP001                                                             INetURLObject::DECODE_UNAMBIGUOUS ) );
 //STRIP001
