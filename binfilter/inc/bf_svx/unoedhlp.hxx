@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoedhlp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:34:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,9 @@
 #ifndef _TEXTDATA_HXX
 #include <svtools/textdata.hxx>
 #endif
-#ifndef _SFXHINT_HXX
-#include <svtools/hint.hxx>
-#endif
+// auto strip #ifndef _SFXHINT_HXX
+// auto strip #include <svtools/hint.hxx>
+// auto strip #endif
 #ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
 #endif

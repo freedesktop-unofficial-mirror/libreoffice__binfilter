@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoedsrc.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:34:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,25 +68,25 @@
 #ifndef _LANG_HXX //autogen
 #include <tools/lang.hxx>
 #endif
-#ifndef _LINK_HXX
-#include <tools/link.hxx>
-#endif
-#ifndef _SV_GEN_HXX
-#include <tools/gen.hxx>
-#endif
+// auto strip #ifndef _LINK_HXX
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_GEN_HXX
+// auto strip #include <tools/gen.hxx>
+// auto strip #endif
 #ifndef _SV_MAPMOD_HXX
 #include <vcl/mapmod.hxx>
 #endif
 
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
-#include <tools/color.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _COLOR_HXX //autogen
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <svtools/itempool.hxx>
 #endif
