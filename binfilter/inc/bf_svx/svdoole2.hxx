@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdoole2.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:53 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:36:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,7 +121,7 @@ protected:
 
 protected:
 
-//STRIP001  void ImpSetVisAreaSize();
+/*NBFF*/    void ImpSetVisAreaSize();
 //STRIP001     void ImpAssign( const SdrObject& rObj, SdrPage* pNewPage = NULL, SdrModel* pNewModel = NULL );
 //STRIP001     void ImpCopyObject( SvPersist& rSrcPersist, SvPersist& rDstPersist, String& rPersistName );
 
