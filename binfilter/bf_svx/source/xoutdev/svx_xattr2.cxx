@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattr2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:51:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,17 +66,22 @@
 #ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
 #include "dialogs.hrc"
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
+
 #include "xattr.hxx"
-#include "xtable.hxx"
-#include "xoutx.hxx"
-#include "dialmgr.hxx"
-#include "itemtype.hxx"
-#include "xdef.hxx"
+// auto strip #include "xtable.hxx"
+// auto strip #include "xoutx.hxx"
+// auto strip #include "dialmgr.hxx"
+// auto strip #include "itemtype.hxx"
+// auto strip #include "xdef.hxx"
 namespace binfilter {
 
 #define GLOBALOVERFLOW
