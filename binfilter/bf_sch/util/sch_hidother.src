@@ -1,0 +1,99 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sch_hidother.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:35 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+#include "..\source\ui\inc\schhids.h"
+
+hidspecial HID_SCH_DATA_ROW            { HelpId = HID_SCH_DATA_ROW; };
+hidspecial HID_SCH_DATA_LINE           { HelpId = HID_SCH_DATA_LINE; };
+hidspecial HID_SCH_DATA_POINT          { HelpId = HID_SCH_DATA_POINT; };
+hidspecial HID_SCH_DIAGRAM_X_AXIS      { HelpId = HID_SCH_DIAGRAM_X_AXIS; };
+hidspecial HID_SCH_DIAGRAM_Y_AXIS      { HelpId = HID_SCH_DIAGRAM_Y_AXIS; };
+hidspecial HID_SCH_ALIGNMENT           { HelpId = HID_SCH_ALIGNMENT; };
+hidspecial HID_SCH_LEGEND_POS          { HelpId = HID_SCH_LEGEND_POS; };
+hidspecial HID_SCH_DATA_DESCR          { HelpId = HID_SCH_DATA_DESCR; };
+hidspecial HID_SCH_SCALE_Y             { HelpId = HID_SCH_SCALE_Y; };
+hidspecial HID_SCH_STAT                { HelpId = HID_SCH_STAT; };
+hidspecial HID_SCH_WIN_DOCUMENT        { HelpId = HID_SCH_WIN_DOCUMENT; };
+hidspecial HID_SCH_VIEWSHELL_DOCUMENT  { HelpId = HID_SCH_VIEWSHELL_DOCUMENT; };
+hidspecial HID_SCH_CTL_DATA            { HelpId = HID_SCH_CTL_DATA; };
+hidspecial HID_SCH_CT_INDICATE         { HelpId = HID_SCH_CT_INDICATE; };
+hidspecial HID_SCH_CT_REGRESS          { HelpId = HID_SCH_CT_REGRESS; };
+hidspecial HID_SCH_CT_1_CHARTTYPE      { HelpId = HID_SCH_CT_1_CHARTTYPE; };
+hidspecial HID_SCH_CT_2_CHARTVARIANT   { HelpId = HID_SCH_CT_2_CHARTVARIANT; };
+hidspecial HID_SCH_CTL_TYPE            { HelpId = HID_SCH_CTL_TYPE; };
+hidspecial HID_SCH_CTL_VARIANT         { HelpId = HID_SCH_CTL_VARIANT; };
+hidspecial HID_SCH_CT_REGRESS2         { HelpId = HID_SCH_CT_REGRESS2; };
+hidspecial HID_SCH_CT_INDICATE2        { HelpId = HID_SCH_CT_INDICATE2; };
+hidspecial HID_SCH_TBI_EDIT_CANCEL     { HelpId = HID_SCH_TBI_EDIT_CANCEL; };
+hidspecial HID_SCH_TBI_EDIT_ACCEPT     { HelpId = HID_SCH_TBI_EDIT_ACCEPT; };
+hidspecial HID_SCH_TBI_DATA_TRANSFER   { HelpId = HID_SCH_TBI_DATA_TRANSFER; };
+hidspecial HID_SCH_TBI_DATA_INSERT_ROW { HelpId = HID_SCH_TBI_DATA_INSERT_ROW; };
+hidspecial HID_SCH_TBI_DATA_INSERT_COL { HelpId = HID_SCH_TBI_DATA_INSERT_COL; };
+hidspecial HID_SCH_TBI_DATA_DELETE_ROW { HelpId = HID_SCH_TBI_DATA_DELETE_ROW; };
+hidspecial HID_SCH_TBI_DATA_DELETE_COL { HelpId = HID_SCH_TBI_DATA_DELETE_COL; };
+hidspecial HID_SCH_TBI_DATA_SWAP_COL   { HelpId = HID_SCH_TBI_DATA_SWAP_COL; };
+hidspecial HID_SCH_TBI_DATA_SWAP_ROW   { HelpId = HID_SCH_TBI_DATA_SWAP_ROW; };
+hidspecial HID_SCH_TBI_DATA_SORT_ROW   { HelpId = HID_SCH_TBI_DATA_SORT_ROW; };
+hidspecial HID_SCH_TBI_DATA_SORT_COL   { HelpId = HID_SCH_TBI_DATA_SORT_COL; };
+hidspecial HID_SCH_TBI_DATA_SORT_TABLE_ROW   { HelpId = HID_SCH_TBI_DATA_SORT_TABLE_ROW; };
+hidspecial HID_SCH_TBI_DATA_SORT_TABLE_COL   { HelpId = HID_SCH_TBI_DATA_SORT_TABLE_COL; };
+hidspecial HID_SCH_TBX_EDIT_FIELD   { HelpId = HID_SCH_TBX_EDIT_FIELD; };
+
+

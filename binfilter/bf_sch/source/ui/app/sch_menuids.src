@@ -1,0 +1,1345 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sch_menuids.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:48 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+
+#include "app.hrc"
+ //#include <dialogs.hrc>
+
+
+//STRIP001 #define SEPARATOR \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Separator = TRUE ; \
+//STRIP001     };
+
+//STRIP001 #define MN_DIAGRAM_OBJECTS \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_OBJECTS ; \
+//STRIP001         HelpID = SID_DIAGRAM_OBJECTS ; \
+//STRIP001         Text = "~Objekteigenschaften..." ; \
+//STRIP001         Text [ ENGLISH ] = "~Properties..." ; \
+//STRIP001         Text [ norwegian ] = "Data linje/~punkt..." ; \
+//STRIP001         Text [ italian ] = "Propriet?~oggetto..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Propriedades do Objeto..." ; \
+//STRIP001         Text [ portuguese ] = "~Propriedades do objecto..." ; \
+//STRIP001         Text [ finnish ] = "~Objektin ominaisuudet..." ; \
+//STRIP001         Text [ danish ] = "Objektegenskaber..." ; \
+//STRIP001         Text [ french ] = "PropriÈtÈs de l'~objet..." ; \
+//STRIP001         Text [ swedish ] = "~Objektegenskaper..." ; \
+//STRIP001         Text [ dutch ] = "~Objecteigenschappen..." ; \
+//STRIP001         Text [ spanish ] = "Propiedades del ~objeto..." ; \
+//STRIP001         Text [ english_us ] = "~Object Properties..." ; \
+//STRIP001      Text[ chinese_simplified ] = "ÂØπË±°Â±ûÊÄ?~O)...";\
+//STRIP001      Text[ russian ] = "—‚ÓÈÒÚ‚‡ Ó·˙ÂÍÚ?..";\
+//STRIP001      Text[ polish ] = "W≥aúciwoúci ~obiektu...";\
+//STRIP001      Text[ japanese ] = "„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂ±ûÊÄ?~O)...";\
+//STRIP001      Text[ chinese_traditional ] = "Áâ©‰ª∂Â±¨ÊÄ?~O)...";\
+//STRIP001      Text[ arabic ] = "...Œ’«∆?«·ﬂ«∆‰";\
+//STRIP001      Text[ greek ] = "…‰È¸ÙÁÙÂ?·ÌÙÈÍÂÈÏ›Ì~Ôı...";\
+//STRIP001      Text[ korean ] = "Í∞úÏ≤¥ Îì±Î°ù Ï†ïÎ≥¥(~O)...";\
+//STRIP001      Text[ turkish ] = "Nesne ˆzellikleri...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Propietats de l'~objecte...";\
+//STRIP001      Text[ extern ] = "~Object Properties...";\
+//STRIP001      Text[ thai ] = "‡∏Ñ‡∏∏‡∏ì‡∏™‡∏°‡∏ö‡∏±‡∏ï‡∏¥~‡∏ß‡∏±‡∏ï‡∏ñ‡∏?..";\
+//STRIP001      Text[ czech ] = "Vlastnosti objektu...";\
+//STRIP001      Text[ hebrew ] = "~Objekteigenschaften...";\
+//STRIP001      Text[ hindi ] = "~‡§µ‡§∏‡•ç‡§§‡•?‡§ï‡§æ ‡§µ‡§ø‡§∂‡•á‡§∑‡§§‡§æ‡§Ø‡•á‡§Ç...";\
+//STRIP001  };
+
+//STRIP001 #define MN_CHART_TITLE \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_CHART_TITLE ; \
+//STRIP001         HelpID = SID_CHART_TITLE ; \
+//STRIP001         Text = "~Titel" ; \
+//STRIP001         Text [ ENGLISH ] = "~Title" ; \
+//STRIP001         Text [ norwegian ] = "~Tittel" ; \
+//STRIP001         Text [ italian ] = "Titolo" ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~TÌtulo" ; \
+//STRIP001         Text [ portuguese ] = "~TÌtulo" ; \
+//STRIP001         Text [ finnish ] = "~Otsikko" ; \
+//STRIP001         Text [ danish ] = "Titel" ; \
+//STRIP001         Text [ french ] = "~Titre" ; \
+//STRIP001         Text [ swedish ] = "~Rubrik" ; \
+//STRIP001         Text [ dutch ] = "~Titel" ; \
+//STRIP001         Text [ spanish ] = "~TÌtulo" ; \
+//STRIP001         Text [ english_us ] = "~Title" ; \
+//STRIP001         SubMenu = Menu\
+//STRIP001         {\
+//STRIP001             ItemList = \
+//STRIP001             {\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_MAIN ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_MAIN ; \
+//STRIP001                     Text = "~Haupttitel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Maintitle..." ; \
+//STRIP001                     Text [ english_us ] = "Main Title..." ; \
+//STRIP001                     Text [ dutch ] = "~Hoofdtitel..." ; \
+//STRIP001                     Text [ italian ] = "Titolo principale..." ; \
+//STRIP001                     Text [ spanish ] = "TÌtulo ~principal..." ; \
+//STRIP001                     Text [ french ] = "Titre ~principal..." ; \
+//STRIP001                     Text [ swedish ] = "~Huvudrubrik..." ; \
+//STRIP001                     Text [ danish ] = "Hovedoverskrift..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "TÌtulo Principal..." ; \
+//STRIP001                     Text [ portuguese ] = "TÌtulo ~principal..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "‰∏ªÊ†áÈ¢?..";\
+//STRIP001                  Text[ russian ] = "√Î‡‚Ì˚?Á‡„ÓÎÓ‚Ó?..";\
+//STRIP001                  Text[ polish ] = "Tytu?g≥Ûwny...";\
+//STRIP001                  Text[ japanese ] = "„É°„Ç§„É≥„Çø„Ç§„Éà„É?..";\
+//STRIP001                  Text[ chinese_traditional ] = "‰∏ªÊ®ôÈ°?..";\
+//STRIP001                  Text[ arabic ] = "«·⁄‰Ê«?«·—∆Ì”?..";\
+//STRIP001                  Text[ greek ] = "~ ˝ÒÈÔÚ ÙﬂÙÎÔÚ...";\
+//STRIP001                  Text[ korean ] = "Ï£?Ï†úÎ™©...";\
+//STRIP001                  Text[ turkish ] = "Ana ba˛l˝k...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "TÌtol ~principal...";\
+//STRIP001                  Text[ finnish ] = "P‰‰otsikko...";\
+//STRIP001                  Text[ extern ] = "Main Title...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡∏´‡∏•‡∏±‡∏Å...";\
+//STRIP001                  Text[ czech ] = "Hlavn√≠ nadpis...";\
+//STRIP001                  Text[ hebrew ] = "~Haupttitel...";\
+//STRIP001                  Text[ hindi ] = "Main Title...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_SUB ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_SUB ; \
+//STRIP001                     Text = "~Untertitel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Subtitle..." ; \
+//STRIP001                     Text [ english_us ] = "Subtitle..." ; \
+//STRIP001                     Text [ italian ] = "Sottotitolo..." ; \
+//STRIP001                     Text [ spanish ] = "~SubtÌtulo..." ; \
+//STRIP001                     Text [ french ] = "~Sous-titre..." ; \
+//STRIP001                     Text [ dutch ] = "~Subtitel..." ; \
+//STRIP001                     Text [ swedish ] = "~Underrubrik..." ; \
+//STRIP001                     Text [ danish ] = "Undertitel..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "SubtÌtulo..." ; \
+//STRIP001                     Text [ portuguese ] = "~SubtÌtulo..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "ÂàÜÊ†áÈ¢?..";\
+//STRIP001                  Text[ russian ] = "œÓ‰Á‡„ÓÎÓ‚ÓÍ...";\
+//STRIP001                  Text[ polish ] = "Podtytu?..";\
+//STRIP001                  Text[ japanese ] = "„Çµ„Éñ„Çø„Ç§„Éà„É´...";\
+//STRIP001                  Text[ chinese_traditional ] = "ÂàÜÊ®ôÈ°?..";\
+//STRIP001                  Text[ arabic ] = "...⁄‰Ê«?›—⁄Ì";\
+//STRIP001                  Text[ greek ] = "~’¸ÙÈÙÎÔ?..";\
+//STRIP001                  Text[ korean ] = "Î∂ÄÏ†?..";\
+//STRIP001                  Text[ turkish ] = "Alt ba˛l˝k...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "~SubtÌtol...";\
+//STRIP001                  Text[ finnish ] = "Aliotsikko...";\
+//STRIP001                  Text[ extern ] = "Subtitle...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡∏£‡∏≠‡∏?..";\
+//STRIP001                  Text[ czech ] = "Podtitulek...";\
+//STRIP001                  Text[ hebrew ] = "~Untertitel...";\
+//STRIP001                  Text[ hindi ] = "‡§â‡§™‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_X ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_X ; \
+//STRIP001                     Text = "~X-Achsentitel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Title on X-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~X Axis Title..." ; \
+//STRIP001                     Text [ italian ] = "Titolo asse X..." ; \
+//STRIP001                     Text [ spanish ] = "TÌtulo del eje ~X..." ; \
+//STRIP001                     Text [ french ] = "Titre de l'axe ~X..." ; \
+//STRIP001                     Text [ dutch ] = "Titel ~X-as..." ; \
+//STRIP001                     Text [ swedish ] = "~X-axelrubrik..." ; \
+//STRIP001                     Text [ danish ] = "X-aksetitel..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "TÌtulo do Eixo ~X..." ; \
+//STRIP001                     Text [ portuguese ] = "TÌtulo do eixo ~X..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~X ËΩ¥Ê†áÈ¢?..";\
+//STRIP001                  Text[ russian ] = "«‡„ÓÎÓ‚Ó?ÓÒ?X...";\
+//STRIP001                  Text[ polish ] = "Tytu?osi ~X...";\
+//STRIP001                  Text[ japanese ] = "~X Ëª∏„Çø„Ç§„Éà„É?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~X Ëª∏Ê®ôÈ°?..";\
+//STRIP001                  Text[ arabic ] = "...⁄‰Ê«?«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ?~?..";\
+//STRIP001                  Text[ korean ] = "~X Ï∂?Ï†úÎ™©...";\
+//STRIP001                  Text[ turkish ] = "Ba˛l˝k (X ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "TÌtol de l'eix ~X...";\
+//STRIP001                  Text[ finnish ] = "~X-akselin otsikko...";\
+//STRIP001                  Text[ extern ] = "~X Axis Title...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡πÅ‡∏Å‡∏ô~X ...";\
+//STRIP001                  Text[ czech ] = "Titulek osy X...";\
+//STRIP001                  Text[ hebrew ] = "~X-Achsentitel...";\
+//STRIP001                  Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï....";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_Y ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_Y ; \
+//STRIP001                     Text = "~Y-Achsentitel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Title on Y-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Y Axis Title..." ; \
+//STRIP001                     Text [ italian ] = "Titolo asse Y..." ; \
+//STRIP001                     Text [ spanish ] = "TÌtulo del eje ~Y..." ; \
+//STRIP001                     Text [ french ] = "Titre de l'axe ~Y..." ; \
+//STRIP001                     Text [ dutch ] = "Titel ~Y-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Y-axelrubrik..." ; \
+//STRIP001                     Text [ danish ] = "Y-aksetitel..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "TÌtulo do Eixo ~Y..." ; \
+//STRIP001                     Text [ portuguese ] = "TÌtulo do eixo ~Y..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Y ËΩ¥Ê†áÈ¢?..";\
+//STRIP001                  Text[ russian ] = "«‡„ÓÎÓ‚Ó?ÓÒ?Y...";\
+//STRIP001                  Text[ polish ] = "Tytu?osi ~Y...";\
+//STRIP001                  Text[ japanese ] = "~Y Ëª∏„Çø„Ç§„Éà„É?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Y Ëª∏Ê®ôÈ°?..";\
+//STRIP001                  Text[ arabic ] = "...⁄‰Ê«?«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ?~Y...";\
+//STRIP001                  Text[ korean ] = "~Y Ï∂?Ï†úÎ™©...";\
+//STRIP001                  Text[ turkish ] = "Ba˛l˝k (Y ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "TÌtol de l'eix ~Y...";\
+//STRIP001                  Text[ finnish ] = "~Y-akselin otsikko...";\
+//STRIP001                  Text[ extern ] = "~Y Axis Title...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡πÅ‡∏Å‡∏ô~Y ...";\
+//STRIP001                  Text[ czech ] = "Titulek osy Y...";\
+//STRIP001                  Text[ hebrew ] = "~Y-Achsentitel...";\
+//STRIP001                  Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_Z ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_Z ; \
+//STRIP001                     Text = "~Z-Achsentitel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Title on Z-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Z Axis Title..." ; \
+//STRIP001                     Text [ italian ] = "Titolo asse Z..." ; \
+//STRIP001                     Text [ spanish ] = "TÌtulo del eje ~Z..." ; \
+//STRIP001                     Text [ french ] = "Titre de l'axe ~Z..." ; \
+//STRIP001                     Text [ dutch ] = "Titel ~Z-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Z-axelrubrik..." ; \
+//STRIP001                     Text [ danish ] = "Z-aksetitel..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "TÌtulo do Eixo ~Z..." ; \
+//STRIP001                     Text [ portuguese ] = "TÌtulo do eixo ~Z..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Z ËΩ¥Ê†áÈ¢?..";\
+//STRIP001                  Text[ russian ] = "«‡„ÓÎÓ‚Ó?ÓÒ?Z...";\
+//STRIP001                  Text[ polish ] = "Tytu?osi ~Z...";\
+//STRIP001                  Text[ japanese ] = "~Z Ëª∏„Çø„Ç§„Éà„É?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Z Ëª∏Ê®ôÈ°?..";\
+//STRIP001                  Text[ arabic ] = "...⁄‰Ê«?«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ?~Z...";\
+//STRIP001                  Text[ korean ] = "ZÏ∂?Ï†úÎ™©(~Z)...";\
+//STRIP001                  Text[ turkish ] = "Ba˛l˝k (Z ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "TÌtol de l'eix ~Z...";\
+//STRIP001                  Text[ finnish ] = "~Z-akselin otsikko...";\
+//STRIP001                  Text[ extern ] = "~Z Axis Title...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡πÅ‡∏Å‡∏ô~Z ...";\
+//STRIP001                  Text[ czech ] = "Titulek osy Z...";\
+//STRIP001                  Text[ hebrew ] = "~Z-Achsentitel...";\
+//STRIP001                  Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_TITLE_ALL ; \
+//STRIP001                     HelpID = SID_DIAGRAM_TITLE_ALL ; \
+//STRIP001                     Text = "~Alle Titel..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~All Titles..." ; \
+//STRIP001                     Text [ english_us ] = "~All Titles..." ; \
+//STRIP001                     Text [ dutch ] = "~Alle titels..." ; \
+//STRIP001                     Text [ italian ] = "Tutti i titoli..." ; \
+//STRIP001                     Text [ spanish ] = "~Todos los tÌtulos..." ; \
+//STRIP001                     Text [ french ] = "T~ous les titres..." ; \
+//STRIP001                     Text [ swedish ] = "~Alla rubriker..." ; \
+//STRIP001                     Text [ danish ] = "Alle titler..." ; \
+//STRIP001                     Text [ portuguese ] = "~Todos os tÌtulos..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "~Todos os TÌtulos..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "ÂÖ®ÈÉ®Ê†áÈ¢ò(~A)...";\
+//STRIP001                  Text[ russian ] = "¬Ò?Á‡„ÓÎÓ‚Í?..";\
+//STRIP001                  Text[ polish ] = "~Wszystkie tytu≥y...";\
+//STRIP001                  Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆ„Çø„Ç§„Éà„É´(~A)...";\
+//STRIP001                  Text[ chinese_traditional ] = "ÂÖ®ÈÉ®Ê®ôÈ°å(~A)...";\
+//STRIP001                  Text[ arabic ] = "...ﬂ· «·⁄‰«ÊÌ‰";\
+//STRIP001                  Text[ greek ] = "ºÎ~ÔÈ ÔÈ ÙﬂÙÎÔÈ...";\
+//STRIP001                  Text[ korean ] = "Î™®Îì† Ï†úÎ™©(~A)...";\
+//STRIP001                  Text[ turkish ] = "T¸m ba˛l˝klar";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "~Tots els tÌtols...";\
+//STRIP001                  Text[ finnish ] = "~Kaikki otsikot...";\
+//STRIP001                  Text[ extern ] = "~All Titles...";\
+//STRIP001                  Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠~‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏?..";\
+//STRIP001                  Text[ czech ] = "V≈°echny n√°zvy...";\
+//STRIP001                  Text[ hebrew ] = "~Alle Titel...";\
+//STRIP001                  Text[ hindi ] = "~All Titles...";\
+//STRIP001              };\
+//STRIP001             };\
+//STRIP001         };\
+//STRIP001      Text[ chinese_simplified ] = "Ê†áÈ¢ò(~T)";\
+//STRIP001      Text[ russian ] = "«‡„ÓÎÓ‚Ó?;\
+//STRIP001      Text[ polish ] = "~Tytu?;\
+//STRIP001      Text[ japanese ] = "„Çø„Ç§„Éà„É´(~T)";\
+//STRIP001      Text[ chinese_traditional ] = "Ê®ôÈ°å(~T)";\
+//STRIP001      Text[ arabic ] = "⁄‰Ê«?;\
+//STRIP001      Text[ greek ] = "~‘ﬂÙÎÔÚ";\
+//STRIP001      Text[ korean ] = "Ï†úÎ™©(~T)";\
+//STRIP001      Text[ turkish ] = "Ba˛l˝k";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "~TÌtol";\
+//STRIP001      Text[ extern ] = "~Title";\
+//STRIP001      Text[ thai ] = "~‡∏ä‡∏∑‡πà‡∏≠";\
+//STRIP001      Text[ czech ] = "Titulek";\
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊õ◊ï◊™◊®◊™‚Ä?;\
+//STRIP001      Text[ hindi ] = "~‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï";\
+//STRIP001  };
+
+//STRIP001 #define MN_LEGEND \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_LEGEND ; \
+//STRIP001         HelpID = SID_LEGEND ; \
+//STRIP001         Text = "~Legende..." ; \
+//STRIP001         Text [ ENGLISH ] = "~Legend..." ; \
+//STRIP001         Text [ norwegian ] = "~Tegnforklaring..." ; \
+//STRIP001         Text [ italian ] = "~Legenda..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Legenda..." ; \
+//STRIP001         Text [ portuguese ] = "~Legenda..." ; \
+//STRIP001         Text [ finnish ] = "~Selite..." ; \
+//STRIP001         Text [ danish ] = "Forklaring..." ; \
+//STRIP001         Text [ french ] = "~LÈgende..." ; \
+//STRIP001         Text [ swedish ] = "Fˆrk~laring..." ; \
+//STRIP001         Text [ dutch ] = "~Legenda..." ; \
+//STRIP001         Text [ spanish ] = "~Leyenda..." ; \
+//STRIP001         Text [ english_us ] = "~Legend..." ; \
+//STRIP001      Text[ chinese_simplified ] = "Âõæ‰æã(~L)...";\
+//STRIP001      Text[ russian ] = "ÀÂ„ÂÌ‰?..";\
+//STRIP001      Text[ polish ] = "~Legenda...";\
+//STRIP001      Text[ japanese ] = "Âá°‰æã(~L)...";\
+//STRIP001      Text[ chinese_traditional ] = "Âúñ‰æã(~L)...";\
+//STRIP001      Text[ arabic ] = "„› «?—”?»Ì«‰?..";\
+//STRIP001      Text[ greek ] = "’¸ÏÌÁÏ·...";\
+//STRIP001      Text[ korean ] = "Î≤îÎ°Ä(~L)...";\
+//STRIP001      Text[ turkish ] = "AÁ˝klama...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "~Llegenda";\
+//STRIP001      Text[ extern ] = "~Legend...";\
+//STRIP001      Text[ thai ] = "~‡∏Ñ‡∏≥‡∏≠‡∏ò‡∏¥‡∏ö‡∏≤‡∏¢...";\
+//STRIP001      Text[ czech ] = "Legenda...";\
+//STRIP001      Text[ hebrew ] = "~Legende...";\
+//STRIP001      Text[ hindi ] = "~‡§≤‡•á‡§ú‡§º‡§®‡•ç‡§°‡§º...";\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_AXIS \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_AXIS ; \
+//STRIP001         HelpID = SID_DIAGRAM_AXIS ; \
+//STRIP001         Text = "~Achse" ; \
+//STRIP001         Text [ ENGLISH ] = "~Axis" ; \
+//STRIP001         Text [ norwegian ] = "~Akse" ; \
+//STRIP001         Text [ italian ] = "~Asse" ; \
+//STRIP001         Text [ portuguese_brazilian ] = "Ei~xo" ; \
+//STRIP001         Text [ portuguese ] = "~Eixos" ; \
+//STRIP001         Text [ finnish ] = "A~kselit" ; \
+//STRIP001         Text [ danish ] = "Akse" ; \
+//STRIP001         Text [ french ] = "A~xe" ; \
+//STRIP001         Text [ swedish ] = "~Axel" ; \
+//STRIP001         Text [ dutch ] = "~As" ; \
+//STRIP001         Text [ spanish ] = "~Eje" ; \
+//STRIP001         Text [ english_us ] = "A~xis" ; \
+//STRIP001         SubMenu = Menu\
+//STRIP001         {\
+//STRIP001             ItemList = \
+//STRIP001             {\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_X ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_X ; \
+//STRIP001                     Text = "~X-Achse..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~X-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~X Axis..." ; \
+//STRIP001                     Text [ dutch ] = "~X-as..." ; \
+//STRIP001                     Text [ italian ] = "Asse X..." ; \
+//STRIP001                     Text [ spanish ] = "Eje ~X..." ; \
+//STRIP001                     Text [ french ] = "Axe ~ X..." ; \
+//STRIP001                     Text [ swedish ] = "~X-axel..." ; \
+//STRIP001                     Text [ danish ] = "X-akse..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Eixo ~X..." ; \
+//STRIP001                     Text [ portuguese ] = "Eixo ~X..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~X ËΩ?..";\
+//STRIP001                  Text[ russian ] = "ŒÒ?X...";\
+//STRIP001                  Text[ polish ] = "O?~X...";\
+//STRIP001                  Text[ japanese ] = "~X Ëª?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~X-Ëª?..";\
+//STRIP001                  Text[ arabic ] = "...«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¢ÓÔÌ·Ú ~X...";\
+//STRIP001                  Text[ korean ] = "XÏ∂?~X)...";\
+//STRIP001                  Text[ turkish ] = "X ekseni...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Eix ~X...";\
+//STRIP001                  Text[ finnish ] = "~X-akseli...";\
+//STRIP001                  Text[ extern ] = "~X Axis...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏ô~X ...";\
+//STRIP001                  Text[ czech ] = "Osa X...";\
+//STRIP001                  Text[ hebrew ] = "~X-Achse...";\
+//STRIP001                  Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_Y ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_Y ; \
+//STRIP001                     Text = "~Y-Achse..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Y-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Y Axis..." ; \
+//STRIP001                     Text [ italian ] = "Asse Y..." ; \
+//STRIP001                     Text [ spanish ] = "Eje ~Y..." ; \
+//STRIP001                     Text [ french ] = "Axe ~Y..." ; \
+//STRIP001                     Text [ dutch ] = "~Y-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Y-axel..." ; \
+//STRIP001                     Text [ danish ] = "Y-akse..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Eixo ~Y..." ; \
+//STRIP001                     Text [ portuguese ] = "Eixo ~Y..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Y ËΩ?..";\
+//STRIP001                  Text[ russian ] = "ŒÒ?Y...";\
+//STRIP001                  Text[ polish ] = "O?~Y...";\
+//STRIP001                  Text[ japanese ] = "~Y Ëª?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Y Ëª?..";\
+//STRIP001                  Text[ arabic ] = "...«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¢ÓÔÌ·Ú ~Y...";\
+//STRIP001                  Text[ korean ] = "YÏ∂?~Y)...";\
+//STRIP001                  Text[ turkish ] = "Y ekseni...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Eix ~Y...";\
+//STRIP001                  Text[ finnish ] = "~Y-akseli...";\
+//STRIP001                  Text[ extern ] = "~Y Axis...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏ô~Y ...";\
+//STRIP001                  Text[ czech ] = "Osa Y...";\
+//STRIP001                  Text[ hebrew ] = "~Y-Achse...";\
+//STRIP001                  Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_Z ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_Z ; \
+//STRIP001                     Text = "~Z-Achse..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Z-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Z Axis..." ; \
+//STRIP001                     Text [ italian ] = "Asse Z..." ; \
+//STRIP001                     Text [ spanish ] = "Eje ~Z..." ; \
+//STRIP001                     Text [ french ] = "Axe ~Z..." ; \
+//STRIP001                     Text [ dutch ] = "~Z-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Z-axel..." ; \
+//STRIP001                     Text [ danish ] = "Z-akse..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Eixo ~Z..." ; \
+//STRIP001                     Text [ portuguese ] = "Eixo ~Z..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Z ËΩ?..";\
+//STRIP001                  Text[ russian ] = "ŒÒ?Z...";\
+//STRIP001                  Text[ polish ] = "O?~Z...";\
+//STRIP001                  Text[ japanese ] = "~Z Ëª?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Z Ëª?..";\
+//STRIP001                  Text[ arabic ] = "...«·„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¢ÓÔÌ·Ú ~Z...";\
+//STRIP001                  Text[ korean ] = "ZÏ∂?~Z)...";\
+//STRIP001                  Text[ turkish ] = "Z ekseni...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Eix ~Z...";\
+//STRIP001                  Text[ finnish ] = "~Z-akseli...";\
+//STRIP001                  Text[ extern ] = "~Z Axis...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏ô~Z ...";\
+//STRIP001                  Text[ czech ] = "Osa Z...";\
+//STRIP001                  Text[ hebrew ] = "~Z-Achse...";\
+//STRIP001                  Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_A ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_A ; \
+//STRIP001                     Text = "~Sekund‰re X-Achse..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~Secondary X Axis..." ; \
+//STRIP001                  Text[ english_us ] = "Secondary X Axis...";\
+//STRIP001                  Text[ portuguese ] = "Eixo X ~secund·rio...";\
+//STRIP001                  Text[ russian ] = "ƒÓÔÓÎÌËÚÂÎ¸Ì? ÓÒ?X...";\
+//STRIP001                  Text[ greek ] = "~ƒÂıÙÂÒÂ˝˘Ì ‹ÓÔÌ·Ú X...";\
+//STRIP001                  Text[ dutch ] = "~Secundaire X-as...";\
+//STRIP001                  Text[ french ] = "~Axe X secondaire...";\
+//STRIP001                  Text[ spanish ] = "Eje secundario ~X...";\
+//STRIP001                  Text[ italian ] = "Asse X ~secondaria...";\
+//STRIP001                  Text[ danish ] = "SekundÊr X-akse...";\
+//STRIP001                  Text[ swedish ] = "Sekund‰r X-axel...";\
+//STRIP001                  Text[ polish ] = "Pomocnicza o?X...";\
+//STRIP001                  Text[ portuguese_brazilian ] = "Eixo X Secund·rio...";\
+//STRIP001                  Text[ japanese ] = "Á¨?XËª?..";\
+//STRIP001                  Text[ korean ] = "2Ï∞?XÏ∂?..";\
+//STRIP001                  Text[ chinese_simplified ] = "Á¨¨‰∫å‰∏?X ËΩ?..";\
+//STRIP001                  Text[ chinese_traditional ] = "Ê¨?X Ëª?..";\
+//STRIP001                  Text[ arabic ] = "«·„ÕÊ— ?«·›—⁄Ì...";\
+//STRIP001                  Text[ turkish ] = "›kincil X ekseni...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Eix X secundari...";\
+//STRIP001                  Text[ finnish ] = "Toissijainen X-akseli...";\
+//STRIP001                  Text[ extern ] = "Secondary X Axis...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏?X ‡∏ó‡∏∏‡∏ï‡∏¥‡∏¢‡∏†‡∏π‡∏°‡∏?..";\
+//STRIP001                  Text[ czech ] = "Sekund√°rn√≠ osa X...";\
+//STRIP001                  Text[ hebrew ] = "~Sekund√§re X-Achse...";\
+//STRIP001                  Text[ hindi ] = "Secondary X Axis...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_B ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_B ; \
+//STRIP001                     Text = "~Sekund‰re Y-Achse..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Secondary Y ~Axis..." ; \
+//STRIP001                  Text[ english_us ] = "~2nd Y Axis...";\
+//STRIP001                  Text[ portuguese ] = "Eixo Y ~secund·rio...";\
+//STRIP001                  Text[ russian ] = "ƒÓÔÓÎÌËÚÂÎ¸Ì? ÓÒ?Y...";\
+//STRIP001                  Text[ dutch ] = "~Secundaire Y-as...";\
+//STRIP001                  Text[ french ] = "Axe Y secondaire...";\
+//STRIP001                  Text[ spanish ] = "~Eje secundario Y...";\
+//STRIP001                  Text[ italian ] = "Asse Y secondario...";\
+//STRIP001                  Text[ danish ] = "SekundÊr Y-akse...";\
+//STRIP001                  Text[ swedish ] = "~Sekund‰r Y-axel...";\
+//STRIP001                  Text[ polish ] = "~Pomocnicza o?Y...";\
+//STRIP001                  Text[ portuguese_brazilian ] = "Eixo ~Y Secund·rio...";\
+//STRIP001                  Text[ japanese ] = "Á¨¨~2YËª?..";\
+//STRIP001                  Text[ chinese_simplified ] = "Á¨¨‰∫å‰∏?Y ËΩ?..";\
+//STRIP001                  Text[ chinese_traditional ] = "Á¨¨‰∫åÂÄ?Y-Ëª?..";\
+//STRIP001                  Text[ arabic ] = "...„ÕÊ— ?›—⁄Ì";\
+//STRIP001                  Text[ greek ] = "~ƒÂıÙÂÒÂ˝˘Ì ‹ÓÔÌ·Ú Y...";\
+//STRIP001                  Text[ korean ] = "2Ï∞?YÏ∂?..";\
+//STRIP001                  Text[ turkish ] = "›kincil Y ekseni...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "~2n eix Y...";\
+//STRIP001                  Text[ finnish ] = "~Toinen Y-akseli...";\
+//STRIP001                  Text[ extern ] = "~2nd Y Axis...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏?Y ‡∏ó‡∏µ‡πà~2...";\
+//STRIP001                  Text[ czech ] = "Druh√° osa Y...";\
+//STRIP001                  Text[ hebrew ] = "~Sekund√§re Y-Achse...";\
+//STRIP001                  Text[ hindi ] = "~2nd Y Axis...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_AXIS_ALL ; \
+//STRIP001                     HelpID = SID_DIAGRAM_AXIS_ALL ; \
+//STRIP001                     Text = "~Alle Achsen..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~All Axes..." ; \
+//STRIP001                     Text [ english_us ] = "~All Axes..." ; \
+//STRIP001                     Text [ dutch ] = "~Alle assen..." ; \
+//STRIP001                     Text [ italian ] = "Tutti gli assi..." ; \
+//STRIP001                     Text [ spanish ] = "~Todos los ejes..." ; \
+//STRIP001                     Text [ french ] = "~Tous les axes..." ; \
+//STRIP001                     Text [ swedish ] = "~Alla axlar..." ; \
+//STRIP001                     Text [ danish ] = "Alle akser..." ; \
+//STRIP001                     Text [ portuguese ] = "~Todos os eixos..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Todos os Eixos..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~ÂÖ®ÈÉ®ÁöÑËΩ¥...";\
+//STRIP001                  Text[ russian ] = "¬Ò?ÓÒ?..";\
+//STRIP001                  Text[ polish ] = "Wszystkie osie...";\
+//STRIP001                  Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆËª?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~ÂÖ®ÈÉ®ÁöÑËª∏...";\
+//STRIP001                  Text[ arabic ] = "...ﬂ· «·„Õ«Ê?;\
+//STRIP001                  Text[ greek ] = "º~ÎÔ?ÔÈ ‹ÓÔÌÂÚ...";\
+//STRIP001                  Text[ korean ] = "Î™®Îì† Ï∂?..";\
+//STRIP001                  Text[ turkish ] = "T¸m eksenler...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Tots els eixos...";\
+//STRIP001                  Text[ finnish ] = "Kaikki akselit...";\
+//STRIP001                  Text[ extern ] = "All Axes...";\
+//STRIP001                  Text[ thai ] = "‡πÅ‡∏Å‡∏ô‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î...";\
+//STRIP001                  Text[ czech ] = "V≈°echny osy...";\
+//STRIP001                  Text[ hebrew ] = "~Alle Achsen...";\
+//STRIP001                  Text[ hindi ] = "‡§∏‡§¨ ‡§Ö‡§ï‡•ç‡§∑...";\
+//STRIP001              };\
+//STRIP001             };\
+//STRIP001         };\
+//STRIP001      Text[ chinese_simplified ] = "ËΩ?~X)";\
+//STRIP001      Text[ russian ] = "ŒÒ?;\
+//STRIP001      Text[ polish ] = "~O?;\
+//STRIP001      Text[ japanese ] = "Ëª?~X)";\
+//STRIP001      Text[ chinese_traditional ] = "Ëª?~X)";\
+//STRIP001      Text[ arabic ] = "„ÕÊ—";\
+//STRIP001      Text[ greek ] = "¢ÓÔÌ~·Ú";\
+//STRIP001      Text[ korean ] = "Ï∂?~X)";\
+//STRIP001      Text[ turkish ] = "Eksen";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Ei~x";\
+//STRIP001      Text[ extern ] = "A~xis";\
+//STRIP001      Text[ thai ] = "‡πÅ‡∏Å~‡∏?;\
+//STRIP001      Text[ czech ] = "Osa";\
+//STRIP001      Text[ hebrew ] = "~Achse";\
+//STRIP001      Text[ hindi ] = "‡§Ö‡§ï‡•ç‡§∑";\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_GRID \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_GRID ; \
+//STRIP001         HelpID = SID_DIAGRAM_GRID ; \
+//STRIP001         Text = "~Gitter" ; \
+//STRIP001         Text [ ENGLISH ] = "~Grid" ; \
+//STRIP001         Text [ norwegian ] = "~Rutenett..." ; \
+//STRIP001         Text [ italian ] = "~Griglia" ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Grade" ; \
+//STRIP001         Text [ portuguese ] = "~Grelha..." ; \
+//STRIP001         Text [ finnish ] = "~Ruudukko" ; \
+//STRIP001         Text [ danish ] = "Gitter" ; \
+//STRIP001         Text [ french ] = "~Grille" ; \
+//STRIP001         Text [ swedish ] = "~Gitter" ; \
+//STRIP001         Text [ dutch ] = "~Raster" ; \
+//STRIP001         Text [ spanish ] = "~CuadrÌcula" ; \
+//STRIP001         Text [ english_us ] = "~Grid" ; \
+//STRIP001         SubMenu = Menu\
+//STRIP001         {\
+//STRIP001             ItemList = \
+//STRIP001             {\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_Y_MAIN ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_Y_MAIN ; \
+//STRIP001                     Text = "~X-Achsenhauptgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~X-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~X Axis Main Grid..." ; \
+//STRIP001                     Text [ dutch ] = "Hoofdraster ~X-as..." ; \
+//STRIP001                     Text [ italian ] = "Griglia principale asse X..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula principal del eje ~X..." ; \
+//STRIP001                     Text [ french ] = "Grille principale ~X..." ; \
+//STRIP001                     Text [ swedish ] = "~X-axelhuvudgitter..." ; \
+//STRIP001                     Text [ danish ] = "X-akse overordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Principal do Eixo ~X..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha principal do eixo ~X..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~X ËΩ¥‰∏ªÁΩëÊ†ºÁ∫?..";\
+//STRIP001                  Text[ russian ] = "ŒÒÌÓ‚Ì? ÒÂÚÍ?ÓÒ?X...";\
+//STRIP001                  Text[ polish ] = "G≥Ûwna siatka osi ~X...";\
+//STRIP001                  Text[ japanese ] = "~X Ëª∏‰∏ªÁõÆÁõõÁ∑?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~X-Ëª∏‰∏ªÁ∂≤Ê†º...";\
+//STRIP001                  Text[ arabic ] = "...‘»ﬂ… —∆Ì”Ì… ··„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = " ˝ÒÈ?Î›„Ï· ‹ÓÔÌ?~?..";\
+//STRIP001                  Text[ korean ] = "XÏ∂?Ï£?ÎààÍ∏àÏÑ?~X)...";\
+//STRIP001                  Text[ turkish ] = "Birincil k˝lavuz Áizgileri (X ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Graella principal de l'eix ~X...";\
+//STRIP001                  Text[ finnish ] = "~X-akselin p‰‰ruudukko...";\
+//STRIP001                  Text[ extern ] = "~X Axis Main Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~X ...";\
+//STRIP001                  Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy X...";\
+//STRIP001                  Text[ hebrew ] = "~X-Achsenhauptgitter...";\
+//STRIP001                  Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§?..";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_X_MAIN ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_X_MAIN ; \
+//STRIP001                     Text = "~Y-Achsenhauptgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~Y-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Y Axis Main Grid..." ; \
+//STRIP001                     Text [ italian ] = "Griglia principale asse Y..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula principal del eje ~Y..." ; \
+//STRIP001                     Text [ french ] = "Grille principale de l'axe ~Y..." ; \
+//STRIP001                     Text [ dutch ] = "Hoofdraster ~Y-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Y-axelhuvudgitter..." ; \
+//STRIP001                     Text [ danish ] = "Y-akse overordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Principal do Eixo ~Y..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha ~principal do eixo Y..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Y ËΩ¥‰∏ªÁΩëÊ†ºÁ∫?..";\
+//STRIP001                  Text[ russian ] = "ŒÒÌÓ‚Ì? ÒÂÚÍ?ÓÒ?Y...";\
+//STRIP001                  Text[ polish ] = "G≥Ûwna siatka osi ~Y...";\
+//STRIP001                  Text[ japanese ] = "~Y Ëª∏‰∏ªÁõÆÁõõÁ∑?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Y Ëª∏‰∏ªË¶ÅÁ∂≤Ê†ºÁ∑ö...";\
+//STRIP001                  Text[ arabic ] = "...‘»ﬂ… —∆Ì”Ì… ··„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = " ˝ÒÈ?Î›„Ï· ‹ÓÔÌ?~Y...";\
+//STRIP001                  Text[ korean ] = "YÏ∂?Ï£?ÎààÍ∏àÏÑ?~Y)...";\
+//STRIP001                  Text[ turkish ] = "Birincil k˝lavuz Áizgileri (Y ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Graella principal de l'eix ~Y...";\
+//STRIP001                  Text[ finnish ] = "~Y-akselin p‰‰ruudukko...";\
+//STRIP001                  Text[ extern ] = "~Y Axis Main Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~Y ...";\
+//STRIP001                  Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy Y...";\
+//STRIP001                  Text[ hebrew ] = "~Y-Achsenhauptgitter...";\
+//STRIP001                  Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§?...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_Z_MAIN ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_Z_MAIN ; \
+//STRIP001                     Text = "~Z-Achsenhauptgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~Z-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~Z Axis Main Grid..." ; \
+//STRIP001                     Text [ italian ] = "Griglia principale asse Z..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula principal del eje ~Z..." ; \
+//STRIP001                     Text [ french ] = "Grille principale de l'axe ~Z..." ; \
+//STRIP001                     Text [ dutch ] = "~Hoofdraster Z-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Z-axelhuvudgitter..." ; \
+//STRIP001                     Text [ danish ] = "Z-akse overordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Principal do Eixo ~Z..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha p~rincipal do eixo ~Z..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~Z ËΩ¥‰∏ªÁΩëÊ†ºÁ∫?..";\
+//STRIP001                  Text[ russian ] = "ŒÒÌÓ‚Ì? ÒÂÚÍ?ÓÒ?Z...";\
+//STRIP001                  Text[ polish ] = "G≥Ûwna siatka osi ~Z...";\
+//STRIP001                  Text[ japanese ] = "~Z Ëª∏‰∏ªÁõÆÁõõÁ∑?..";\
+//STRIP001                  Text[ chinese_traditional ] = "~Z Ëª∏‰∏ªË¶ÅÁ∂≤Ê†ºÁ∑ö...";\
+//STRIP001                  Text[ arabic ] = "‘»ﬂ… —∆Ì”Ì… ··„ÕÊ— ?..";\
+//STRIP001                  Text[ greek ] = " ˝ÒÈ?Î›„Ï· ‹ÓÔÌ?~Z...";\
+//STRIP001                  Text[ korean ] = "ZÏ∂?Ï£?ÎààÍ∏àÏÑ?~Z)...";\
+//STRIP001                  Text[ turkish ] = "Birincil k˝lavuz Áizgileri (Z ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "Graella principal de l'eix ~Z...";\
+//STRIP001                  Text[ finnish ] = "~Z-akselin p‰‰ruudukko...";\
+//STRIP001                  Text[ extern ] = "~Z Axis Main Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~Z ...";\
+//STRIP001                  Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy Z...";\
+//STRIP001                  Text[ hebrew ] = "~Z-Achsenhauptgitter...";\
+//STRIP001                  Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§?...";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_Y_HELP ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_Y_HELP ; \
+//STRIP001                     Text = "~X-Achsenhilfsgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~X-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "~X Axis ~Minor Grid..." ; \
+//STRIP001                     Text [ dutch ] = "Hulpraster ~X-as..." ; \
+//STRIP001                     Text [ italian ] = "Griglia ausiliaria asse X..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula auxiliar del eje ~X..." ; \
+//STRIP001                     Text [ french ] = "Grille auxiliaire de l'axe ~X..." ; \
+//STRIP001                     Text [ swedish ] = "~X-axelstˆdgitter..." ; \
+//STRIP001                     Text [ danish ] = "X-akse underordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Auxiliar do Eixo ~X..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha ~auxiliar do eixo X..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "~X ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫?..";\
+//STRIP001                  Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ?ÓÒ?X...";\
+//STRIP001                  Text[ polish ] = "Pomocnicza siatka osi ~X...";\
+//STRIP001                  Text[ japanese ] = "~X Ëª∏Ë£úÂä©ÁõÆÁõõÁ∑ö...";\
+//STRIP001                  Text[ chinese_traditional ] = "~X Ëª∏Ê¨°Ë¶ÅÁ∂≤Ê†ºÁ∑ö...";\
+//STRIP001                  Text[ arabic ] = "...‘»ﬂ… „”«⁄œ… ··„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¬ÔÁËÁÙÈÍ?Î›„Ï· ‹ÓÔÌ?~?..";\
+//STRIP001                  Text[ korean ] = "XÏ∂?Î≥¥Ï°∞ ÎààÍ∏àÏÑ?~X)...";\
+//STRIP001                  Text[ turkish ] = "›kincil k˝lavuz Áizgileri (X ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~X...";\
+//STRIP001                  Text[ finnish ] = "~X-akselin apuruudukko...";\
+//STRIP001                  Text[ extern ] = "~X Axis ~Minor Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á~‡∏£‡∏≠‡∏á‡πÅ‡∏Å‡∏ô~X ...";\
+//STRIP001                  Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy X...";\
+//STRIP001                  Text[ hebrew ] = "~X-Achsenhilfsgitter...";\
+//STRIP001                  Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§?..";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_X_HELP ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_X_HELP ; \
+//STRIP001                     Text = "~Y-Achsenhilfsgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~Y-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "Y Axis Minor ~Grid..." ; \
+//STRIP001                     Text [ italian ] = "Griglia ausiliaria asse Y..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula auxiliar del eje ~Y..." ; \
+//STRIP001                     Text [ french ] = "Grille auxiliaire de l'axe ~Y..." ; \
+//STRIP001                     Text [ dutch ] = "Hulpraster ~Y-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Y-axelstˆdgitter..." ; \
+//STRIP001                     Text [ danish ] = "Y-akse underordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Auxiliar do Eixo ~Y..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha auxiliar do eixo ~Y..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "Y ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫?~G)...";\
+//STRIP001                  Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ?ÓÒ?Y...";\
+//STRIP001                  Text[ polish ] = "Pomocnicza siatka osi Y...";\
+//STRIP001                  Text[ japanese ] = "YËª∏Ë£úÂä©ÁõÆÁõõÁ∑ö(~G)...";\
+//STRIP001                  Text[ chinese_traditional ] = "Y Ëª∏Ê¨°Ë¶ÅÁ∂≤Ê†ºÁ∑ö(~G)...";\
+//STRIP001                  Text[ arabic ] = "...‘»ﬂ… „”«⁄œ… ··„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¬ÔÁËÁÙÈÍ?Î›„Ï· ‹ÓÔÌ?~Y...";\
+//STRIP001                  Text[ korean ] = "YÏ∂?Î≥¥Ï°∞ ÎààÍ∏àÏÑ?~G)...";\
+//STRIP001                  Text[ turkish ] = "›kincil k˝lavuz Áizgileri (Y ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~Y...";\
+//STRIP001                  Text[ finnish ] = "Y-aksel~in toissijainen ruudukko...";\
+//STRIP001                  Text[ extern ] = "Y Axis Minor ~Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ~‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏£‡∏≠‡∏á‡πÅ‡∏Å‡∏ô Y ...";\
+//STRIP001                  Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy Y...";\
+//STRIP001                  Text[ hebrew ] = "~Y-Achsenhilfsgitter...";\
+//STRIP001                  Text[ hindi ] = "Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§?..";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_Z_HELP ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_Z_HELP ; \
+//STRIP001                     Text = "~Z-Achsenhilfsgitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "Grid on ~Z-Axis..." ; \
+//STRIP001                     Text [ english_us ] = "Z Ax~is Minor Grid..." ; \
+//STRIP001                     Text [ italian ] = "Griglia ausiliaria asse Z..." ; \
+//STRIP001                     Text [ spanish ] = "CuadrÌcula auxiliar del eje ~Z..." ; \
+//STRIP001                     Text [ french ] = "Grille auxiliaire de l'axe ~Z..." ; \
+//STRIP001                     Text [ dutch ] = "Hulpraster ~Z-as..." ; \
+//STRIP001                     Text [ swedish ] = "~Z-axelstˆdgitter..." ; \
+//STRIP001                     Text [ danish ] = "Z-akse underordnet gitter..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "Grade Auxiliar do Eixo ~Z..." ; \
+//STRIP001                     Text [ portuguese ] = "Grelha a~uxiliar do eixo Z..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "Z ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫?~I)...";\
+//STRIP001                  Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ?ÓÒ?Z...";\
+//STRIP001                  Text[ polish ] = "Pomocnicza siatka osi Z...";\
+//STRIP001                  Text[ japanese ] = "ZËª∏Ë£úÂä©ÁõÆÁõõÁ∑ö(~I)...";\
+//STRIP001                  Text[ chinese_traditional ] = "Z Ëª∏Ê¨°Ë¶ÅÁ∂≤Ê†ºÁ∑ö(~I)...";\
+//STRIP001                  Text[ arabic ] = "...‘»ﬂ… „”«⁄œ… ··„ÕÊ— ?;\
+//STRIP001                  Text[ greek ] = "¬ÔÁËÁÙÈÍ?Î›„Ï· ‹ÓÔÌ?~Z...";\
+//STRIP001                  Text[ korean ] = "ZÏ∂?Î≥¥Ï°∞ ÎààÍ∏àÏÑ?~I)...";\
+//STRIP001                  Text[ turkish ] = "›kincil k˝lavuz Áizgileri (Z ekseni)...";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~Z...";\
+//STRIP001                  Text[ finnish ] = "Z Ak~selin toissijainen ruudukko...";\
+//STRIP001                  Text[ extern ] = "Z Ax~is Minor Grid...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏£‡∏≠‡∏á‡πÅ‡∏Å~‡∏?Z ...";\
+//STRIP001                  Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy Z...";\
+//STRIP001                  Text[ hebrew ] = "~Z-Achsenhilfsgitter...";\
+//STRIP001                  Text[ hindi ] = "Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§?..";\
+//STRIP001              };\
+//STRIP001                 MenuItem\
+//STRIP001                 {\
+//STRIP001                     Identifier = SID_DIAGRAM_GRID_ALL ; \
+//STRIP001                     HelpID = SID_DIAGRAM_GRID_ALL ; \
+//STRIP001                     Text = "~Alle Achsengitter..." ; \
+//STRIP001                     Text [ ENGLISH ] = "~All grids..." ; \
+//STRIP001                     Text [ english_us ] = "~All Axis Grids..." ; \
+//STRIP001                     Text [ dutch ] = "~Alle asrasters..." ; \
+//STRIP001                     Text [ italian ] = "Tutte le griglie degli assi..." ; \
+//STRIP001                     Text [ spanish ] = "~Todas las cuadrÌculas de ejes..." ; \
+//STRIP001                     Text [ french ] = "~Toutes les grilles d'axes..." ; \
+//STRIP001                     Text [ swedish ] = "~Alla axelgitter..." ; \
+//STRIP001                     Text [ danish ] = "Alle aksegitre..." ; \
+//STRIP001                     Text [ portuguese ] = "~Todas as grelhas dos eixos..." ; \
+//STRIP001                     Text [ portuguese_brazilian ] = "~Todas as Grades do Eixo..." ; \
+//STRIP001                  Text[ chinese_simplified ] = "ÂÖ®ÈÉ®ÁöÑËΩ¥ÁΩëÊ†ºÁ∫?~A)...";\
+//STRIP001                  Text[ russian ] = "¬Ò?ÒÂÚÍ?ÓÒÂÈ...";\
+//STRIP001                  Text[ polish ] = "~Wszystkie siatki osi...";\
+//STRIP001                  Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆËª∏ÁõÆÁõõÁ∑ö(~A)...";\
+//STRIP001                  Text[ chinese_traditional ] = "ÂÖ®ÈÉ®ÁöÑËª∏Á∂≤Ê†ºÁ∑?~A)...";\
+//STRIP001                  Text[ arabic ] = "...ﬂ· ‘»ﬂ«?«·„ÕÊ—";\
+//STRIP001                  Text[ greek ] = "ºÎ~?Ù· Î›„Ï·Ù· ·Ó¸Ì˘Ì...";\
+//STRIP001                  Text[ korean ] = "Î™®Îì† Ï∂?ÎààÍ∏àÏÑ?~A)...";\
+//STRIP001                  Text[ turkish ] = "T¸m eksen k˝lavuz Áizgileri";\
+//STRIP001                  Text[ language_user1 ] = " ";\
+//STRIP001                  Text[ catalan ] = "~Totes les graelles de l'eix...";\
+//STRIP001                  Text[ finnish ] = "~Kaikki akseliruudukot...";\
+//STRIP001                  Text[ extern ] = "~All Axis Grids...";\
+//STRIP001                  Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡πÅ‡∏Å‡∏ô~‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏?..";\
+//STRIP001                  Text[ czech ] = "M≈ô√≠≈æky v≈°ech os...";\
+//STRIP001                  Text[ hebrew ] = "~Alle Achsengitter...";\
+//STRIP001                  Text[ hindi ] = "~‡§∏‡§¨ ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§ú‡§æ‡§?.";\
+//STRIP001              };\
+//STRIP001             };\
+//STRIP001         };\
+//STRIP001      Text[ chinese_simplified ] = "ÁΩëÊ†ºÁ∫?~G)";\
+//STRIP001      Text[ russian ] = "—ÂÚÍ?;\
+//STRIP001      Text[ polish ] = "~Siatka";\
+//STRIP001      Text[ japanese ] = "ÁõÆÁõõÁ∑?~G)";\
+//STRIP001      Text[ chinese_traditional ] = "Á∂≤Ê†º(~G)";\
+//STRIP001      Text[ arabic ] = "‘»ﬂ…";\
+//STRIP001      Text[ greek ] = "–Î›~„Ï?;\
+//STRIP001      Text[ korean ] = "ÎààÍ∏àÏÑ?~G)";\
+//STRIP001      Text[ turkish ] = "K˝lavuz Áizgileri";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "~Graella";\
+//STRIP001      Text[ extern ] = "~Grid";\
+//STRIP001      Text[ thai ] = "‡πÄ~‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á";\
+//STRIP001      Text[ czech ] = "M≈ô√≠≈æka";\
+//STRIP001      Text[ hebrew ] = "~Gitter";\
+//STRIP001      Text[ hindi ] = "~‡§ú‡§æ‡§?;\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_WALL \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_WALL ; \
+//STRIP001         HelpID = SID_DIAGRAM_WALL ; \
+//STRIP001         Text = "Diagramm~wand..." ; \
+//STRIP001         Text [ ENGLISH ] = "Diagram ~wall..." ; \
+//STRIP001         Text [ norwegian ] = "Diagram ~vegg..." ; \
+//STRIP001         Text [ italian ] = "~Pareti del diagramma..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Parede do Gr·fico..." ; \
+//STRIP001         Text [ portuguese ] = "~Parede do gr·fico..." ; \
+//STRIP001         Text [ finnish ] = "Kaavio~sein?.." ; \
+//STRIP001         Text [ danish ] = "DiagramvÊg..." ; \
+//STRIP001         Text [ french ] = "P~aroi du diagramme" ; \
+//STRIP001         Text [ swedish ] = "Diagram~v‰gg..." ; \
+//STRIP001         Text [ dutch ] = "Diagram~wand..." ; \
+//STRIP001         Text [ spanish ] = "~Plano lateral..." ; \
+//STRIP001         Text [ english_us ] = "Chart ~Wall..." ; \
+//STRIP001      Text[ chinese_simplified ] = "ÂõæË°®ËÉåÊôØÂ¢?~W)...";\
+//STRIP001      Text[ russian ] = "Œ·Î‡ÒÚ?ÔÓÒÚÓÂÌ? ‰Ë‡„‡ÏÏ?..";\
+//STRIP001      Text[ polish ] = "åciana ~wykresu...";\
+//STRIP001      Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÂ£ÅÈù¢(~W)...";\
+//STRIP001      Text[ chinese_traditional ] = "ÂúñË°®ËÉåÊôØÁâ?~W)...";\
+//STRIP001      Text[ arabic ] = "...Ãœ«— «·—”?«·»Ì«‰?;\
+//STRIP001      Text[ greek ] = "‘Ôﬂ˜Ô~?‰È·„Ò‹ÏÏ·ÙÔÚ...";\
+//STRIP001      Text[ korean ] = "Ï∞®Ìä∏ ÏòÜÎ©¥(~W)...";\
+//STRIP001      Text[ turkish ] = "ﬁema ~duvar?..";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "~Pla lateral del diagrama...";\
+//STRIP001      Text[ extern ] = "Chart ~Wall...";\
+//STRIP001      Text[ thai ] = "~‡∏ú‡∏ô‡∏±‡∏á‡πÅ‡∏ú‡∏ô‡∏†‡∏π‡∏°‡∏?..";\
+//STRIP001      Text[ czech ] = "Stƒõna grafu...";\
+//STRIP001      Text[ hebrew ] = "Diagramm~wand...";\
+//STRIP001      Text[ hindi ] = "Chart ~Wall...";\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_FLOOR \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_FLOOR ; \
+//STRIP001         HelpID = SID_DIAGRAM_FLOOR ; \
+//STRIP001         Text = "Diagramm~boden..." ; \
+//STRIP001         Text [ ENGLISH ] = "Diagram ~floor..." ; \
+//STRIP001         Text [ norwegian ] = "Diagram ~gulv..." ; \
+//STRIP001         Text [ italian ] = "~Pavimento del diagramma..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Piso do Gr·fico..." ; \
+//STRIP001         Text [ portuguese ] = "~Base do gr·fico..." ; \
+//STRIP001         Text [ finnish ] = "~Kaavion perusta..." ; \
+//STRIP001         Text [ danish ] = "Diagramgulv..." ; \
+//STRIP001         Text [ french ] = "~Plancher du diagramme..." ; \
+//STRIP001         Text [ swedish ] = "Diagram~golv..." ; \
+//STRIP001         Text [ dutch ] = "Diagram~bodem..." ; \
+//STRIP001         Text [ spanish ] = "Base del ~diagrama..." ; \
+//STRIP001         Text [ english_us ] = "~Chart Floor..." ; \
+//STRIP001      Text[ chinese_simplified ] = "ÂõæË°®Âü∫Â∫ï(~C)...";\
+//STRIP001      Text[ russian ] = "ŒÒÌÓ‚‡ÌË?‰Ë‡„‡ÏÏ?..";\
+//STRIP001      Text[ polish ] = "~Podstawa wykresu...";\
+//STRIP001      Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÂ∫äÈù¢(~C)...";\
+//STRIP001      Text[ chinese_traditional ] = "Â∫ßÊ®ôËª?~C)...";\
+//STRIP001      Text[ arabic ] = "...√—÷Ì?«·—”?«·»Ì«‰?;\
+//STRIP001      Text[ greek ] = "ƒ‹~Â‰Ô ‰È·„Ò‹ÏÏ·ÙÔÚ...";\
+//STRIP001      Text[ korean ] = "Ï∞®Ìä∏ Î∞ëÎ©¥(~C)...";\
+//STRIP001      Text[ turkish ] = "ﬁema ~taban?..";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Base del ~diagrama...";\
+//STRIP001      Text[ extern ] = "~Chart Floor...";\
+//STRIP001      Text[ thai ] = "‡∏û‡∏∑‡πâ‡∏ô‡πÅ‡∏ú~‡∏ô‡∏†‡∏π‡∏°‡∏?..";\
+//STRIP001      Text[ czech ] = "Pata grafu...";\
+//STRIP001      Text[ hebrew ] = "Diagramm~boden...";\
+//STRIP001      Text[ hindi ] = "~‡§ö‡§æ‡§∞‡•ç‡§ü‡•ç ‡§´‡§º‡•ç‡§≤‡•ã‡§∞...";\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_AREA \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_AREA ; \
+//STRIP001         HelpID = SID_DIAGRAM_AREA ; \
+//STRIP001         Text = "Diagram~mfl‰che..." ; \
+//STRIP001         Text [ ENGLISH ] = "Diagram a~rea..." ; \
+//STRIP001         Text [ norwegian ] = "Diagram o~mrÂde..." ; \
+//STRIP001         Text [ italian ] = "~Area del diagramma..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "¡re~a do Gr·fico..." ; \
+//STRIP001         Text [ portuguese ] = "¡~rea do gr·fico..." ; \
+//STRIP001         Text [ finnish ] = "Kaa~vioalue..." ; \
+//STRIP001         Text [ danish ] = "DiagramomrÂde..." ; \
+//STRIP001         Text [ french ] = "~ArriËre-plan du diagramme..." ; \
+//STRIP001         Text [ swedish ] = "Diagra~momrÂde..." ; \
+//STRIP001         Text [ dutch ] = "Diagram~oppervlak..." ; \
+//STRIP001         Text [ spanish ] = "~Superficie del diagrama..." ; \
+//STRIP001         Text [ english_us ] = "C~hart Area..." ; \
+//STRIP001      Text[ chinese_simplified ] = "ÂõæË°®Âå?~H)...";\
+//STRIP001      Text[ russian ] = "Œ·Î‡ÒÚ?‰Ë‡„‡ÏÏ?..";\
+//STRIP001      Text[ polish ] = "~Obszar wykresu...";\
+//STRIP001      Text[ japanese ] = "„Ç∞„É©„Éï„Ç®„É™„Ç¢(~H)...";\
+//STRIP001      Text[ chinese_traditional ] = "ÂúñË°®Âπ≥Èù¢(~H)...";\
+//STRIP001      Text[ arabic ] = "„”«Õ?«·—”?«·»Ì«‰?..";\
+//STRIP001      Text[ greek ] = "–ÂÒÈÔ˜?‰È·„Ò‹Ï~Ï·ÙÔ?..";\
+//STRIP001      Text[ korean ] = "Ï∞®Ìä∏ ÏòÅÏó≠(~H)...";\
+//STRIP001      Text[ turkish ] = "ﬁema ~y¸zeyi...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "~¿rea del diagrama...";\
+//STRIP001      Text[ extern ] = "C~hart Area...";\
+//STRIP001      Text[ thai ] = "‡∏û‡∏∑‡πâ‡∏ô‡∏ó‡∏µ‡πà‡πÅ‡∏ú‡∏ô~‡∏†‡∏π‡∏°‡∏¥...";\
+//STRIP001      Text[ czech ] = "Plocha grafu...";\
+//STRIP001      Text[ hebrew ] = "Diagram~mfl√§che...";\
+//STRIP001      Text[ hindi ] = "‡§ö‡§æ~‡§∞‡•ç‡§?‡§µ‡§ø‡§∏‡•ç‡§§‡•Ä‡§∞‡•ç‡§?..";\
+//STRIP001  };
+
+//STRIP001 #define MN_DIAGRAM_TYPE \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_DIAGRAM_TYPE ; \
+//STRIP001         HelpID = SID_DIAGRAM_TYPE ; \
+//STRIP001         Text = "~Diagrammtyp..." ; \
+//STRIP001         Text [ ENGLISH ] = "~Diagram type..." ; \
+//STRIP001         Text [ norwegian ] = "~Diagram type..." ; \
+//STRIP001         Text [ italian ] = "Tipo di dia~gramma..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~Tipo do Gr·fico..." ; \
+//STRIP001         Text [ portuguese ] = "~Tipo de gr·fico..." ; \
+//STRIP001         Text [ finnish ] = "Kaa~viotyyppi..." ; \
+//STRIP001         Text [ danish ] = "Diagramtype..." ; \
+//STRIP001         Text [ french ] = "Type de ~diagramme..." ; \
+//STRIP001         Text [ swedish ] = "~Diagramtyp..." ; \
+//STRIP001         Text [ dutch ] = "~Diagramtype..." ; \
+//STRIP001         Text [ spanish ] = "Tipo de ~diagrama..." ; \
+//STRIP001         Text [ english_us ] = "Cha~rt Type..." ; \
+//STRIP001      Text[ chinese_simplified ] = "ÂõæË°®Á±ªÂûã(~R)...";\
+//STRIP001      Text[ russian ] = "“Ë?‰Ë‡„‡ÏÏ?..";\
+//STRIP001      Text[ polish ] = "~Typ wykresu...";\
+//STRIP001      Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÁ®ÆÈ°û(~R)...";\
+//STRIP001      Text[ chinese_traditional ] = "ÂúñË°®È°ûÂûã(~R)...";\
+//STRIP001      Text[ arabic ] = "‰Ê?«·—”?«·»Ì«‰?;\
+//STRIP001      Text[ greek ] = "‘˝Ô?~‰È·„Ò‹ÏÏ·ÙÔÚ...";\
+//STRIP001      Text[ korean ] = "Ï∞®Ìä∏ Ïú†Ìòï(~R)...";\
+//STRIP001      Text[ turkish ] = "ﬁema tipi...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Tipus de diag~rama...";\
+//STRIP001      Text[ extern ] = "Cha~rt Type...";\
+//STRIP001      Text[ thai ] = "‡∏ä‡∏ô‡∏¥‡∏î‡πÅ‡∏ú‡∏ô‡∏†‡∏π~‡∏°‡∏¥...";\
+//STRIP001      Text[ czech ] = "Typ grafu...";\
+//STRIP001      Text[ hebrew ] = "~Diagrammtyp...";\
+//STRIP001      Text[ hindi ] = "Cha~rt Type...";\
+//STRIP001  };
+
+//STRIP001 #define MN_AUTOFORMAT \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_AUTOFORMAT ; \
+//STRIP001         HelpID = HID_SCH_CHART_AUTO_FORMAT ; \
+//STRIP001         Text = "Auto~Format..." ; \
+//STRIP001         Text [ ENGLISH ] = "Auto~Format..." ; \
+//STRIP001         Text [ norwegian ] = "Auto~Format..." ; \
+//STRIP001         Text [ italian ] = "Formattazione ~automatica..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "Auto~FormataÁ„o..." ; \
+//STRIP001         Text [ portuguese ] = "Auto~Formato..." ; \
+//STRIP001         Text [ finnish ] = "~Automaattinen muotoilu..." ; \
+//STRIP001         Text [ danish ] = "Auto~Format..." ; \
+//STRIP001         Text [ french ] = "~AutoFormat..." ; \
+//STRIP001         Text [ swedish ] = "Auto~Format..." ; \
+//STRIP001         Text [ dutch ] = "A~utoOpmaak..." ; \
+//STRIP001         Text [ spanish ] = "~Formateado autom·tico..." ; \
+//STRIP001         Text [ english_us ] = "Auto~Format..." ; \
+//STRIP001      Text[ chinese_simplified ] = "Ëá™Âä®Ê†ºÂºè(~F)...";\
+//STRIP001      Text[ russian ] = "¿‚ÚÓÙÓÏ‡Ú...";\
+//STRIP001      Text[ polish ] = "Auto~formatowanie...";\
+//STRIP001      Text[ japanese ] = "„Ç™„Éº„Éà„Éï„Ç©„Éº„Éû„ÉÉ„É?~F)...";\
+//STRIP001      Text[ chinese_traditional ] = "Ëá™ÂãïÊ†ºÂºè(~F)...";\
+//STRIP001      Text[ arabic ] = "... ‰”Ì? ·ﬁ«∆Ì";\
+//STRIP001      Text[ greek ] = "¡ıÙÔÃÔÒ~ˆﬁ...";\
+//STRIP001      Text[ korean ] = "ÏûêÎèô ÏÑúÏãù(~F)...";\
+//STRIP001      Text[ turkish ] = "Otomatik formatlama...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "A~utoFormat...";\
+//STRIP001      Text[ extern ] = "Auto~Format...";\
+//STRIP001      Text[ thai ] = "~‡∏£‡∏π‡∏õ‡πÅ‡∏ö‡∏ö‡∏≠‡∏±‡∏ï‡πÇ‡∏ô‡∏°‡∏±‡∏ï‡∏?..";\
+//STRIP001      Text[ czech ] = "Auto~Format...";\
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊¢◊ô◊¶◊ï◊?◊ê◊ï◊ò◊ï◊û◊ò◊ô...‚Ä?;\
+//STRIP001      Text[ hindi ] = "Auto~Format...";\
+//STRIP001  };
+
+//STRIP001 #define MN_3D_WIN \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_3D_WIN ; \
+//STRIP001         HelpID = SID_3D_WIN ; \
+//STRIP001         Text = "3D-~Effekte" ; \
+//STRIP001         Text [ ENGLISH ] = "3-D ~effects" ; \
+//STRIP001         Text [ english_us ] = "~3D Effects" ; \
+//STRIP001         Text [ portuguese_brazilian ] = "Efeit~os 3D" ; \
+//STRIP001         Text [ swedish ] = "3D-~effekter" ; \
+//STRIP001         Text [ danish ] = "3D-effekter" ; \
+//STRIP001         Text [ italian ] = "~Effetti 3D" ; \
+//STRIP001         Text [ spanish ] = "~Efectos 3D" ; \
+//STRIP001         Text [ french ] = "~Effets 3D" ; \
+//STRIP001         Text [ dutch ] = "3D-~effecten" ; \
+//STRIP001         Text [ portuguese ] = "Efeit~os 3D" ; \
+//STRIP001      Text[ chinese_simplified ] = "~3 Áª¥ÊïàÊû?;\
+//STRIP001      Text[ russian ] = "“ÂıÏÂÌ˚Â ˝ÙÙÂÍÚ?;\
+//STRIP001      Text[ polish ] = "Efekty ~3D";\
+//STRIP001      Text[ japanese ] = "~3D ÂäπÊûú";\
+//STRIP001      Text[ chinese_traditional ] = "~3D ÊïàÊûú";\
+//STRIP001      Text[ arabic ] = " √ÀÌ—«?À·«ÀÌ… «·√»⁄«?;\
+//STRIP001      Text[ greek ] = "~≈ˆ?3?;\
+//STRIP001      Text[ korean ] = "3Ôº?Ìö®Í≥º";\
+//STRIP001      Text[ turkish ] = "3-B efektleri";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Efectes ~3D";\
+//STRIP001      Text[ finnish ] = "~Kolmiulotteiset tehosteet";\
+//STRIP001      Text[ extern ] = "~3D Effects";\
+//STRIP001      Text[ thai ] = "‡∏•‡∏±‡∏Å‡∏©‡∏ì‡∏∞‡∏û‡∏¥‡πÄ‡∏®‡∏©~3‡∏°‡∏¥‡∏ï‡∏¥";\
+//STRIP001      Text[ czech ] = "3D efekty";\
+//STRIP001      Text[ hebrew ] = "3D-~Effekte";\
+//STRIP001      Text[ hindi ] = "~3D ‡§™‡•ç‡§∞‡§≠‡§æ‡§µ";\
+//STRIP001  };
+
+//STRIP001 #define MN_3D_VIEW \
+//STRIP001     MenuItem\
+//STRIP001     {\
+//STRIP001         Identifier = SID_3D_VIEW ; \
+//STRIP001         HelpID = SID_3D_VIEW ; \
+//STRIP001         Text = "3D-An~sicht..." ; \
+//STRIP001         Text [ ENGLISH ] = "~3D view..." ; \
+//STRIP001         Text [ norwegian ] = "~vis 3D..." ; \
+//STRIP001         Text [ italian ] = "~Visualizzazione 3D..." ; \
+//STRIP001         Text [ portuguese_brazilian ] = "~VisualizaÁ„o 3D..." ; \
+//STRIP001         Text [ portuguese ] = "~Vista 3D..." ; \
+//STRIP001         Text [ finnish ] = "Kolmi~ulotteinen n‰kym?.." ; \
+//STRIP001         Text [ danish ] = "3D-visning..." ; \
+//STRIP001         Text [ french ] = "Affichage ~3D..." ; \
+//STRIP001         Text [ swedish ] = "~3D-vy..." ; \
+//STRIP001         Text [ dutch ] = "~3D-weergave..." ; \
+//STRIP001         Text [ spanish ] = "~Ver en 3D..." ; \
+//STRIP001         Text [ english_us ] = "3~D View..." ; \
+//STRIP001      Text[ chinese_simplified ] = "3 Áª¥ËßÜÂõ?~D)...";\
+//STRIP001      Text[ russian ] = "“ÂıÏÂÌ˚È ‚Ë?..";\
+//STRIP001      Text[ polish ] = "Widok 3~D...";\
+//STRIP001      Text[ japanese ] = "3~D Ë°®Á§∫...";\
+//STRIP001      Text[ chinese_traditional ] = "3~D Ê™¢Ë¶ñ...";\
+//STRIP001      Text[ arabic ] = "...⁄—?À·«À?«·√»⁄«?;\
+//STRIP001      Text[ greek ] = "–ÒÔ~‚ÔÎﬁ 3?..";\
+//STRIP001      Text[ korean ] = "3Ôº?Î≥¥Í∏∞(~D)...";\
+//STRIP001      Text[ turkish ] = "3-B gˆr¸n¸m...";\
+//STRIP001      Text[ language_user1 ] = " ";\
+//STRIP001      Text[ catalan ] = "Vista 3~D...";\
+//STRIP001      Text[ extern ] = "3~D View...";\
+//STRIP001      Text[ thai ] = "‡∏°‡∏∏‡∏°‡∏°‡∏≠‡∏á3~‡∏°‡∏¥‡∏ï‡∏¥...";\
+//STRIP001      Text[ czech ] = "3D pohled...";\
+//STRIP001      Text[ hebrew ] = "3D-An~sicht...";\
+//STRIP001      Text[ hindi ] = "3~D View...";\
+//STRIP001  };
+
+#define MN_ROW_POSITION \
+MenuItem\
+{\
+    Identifier = SID_ROW_POSITION ; \
+    HelpID = SID_ROW_POSITION;\
+    Text = "A~nordnung" ; \
+    Text [ ENGLISH ] = "~Arrange" ; \
+    Text [ norwegian ] = "~Arrange" ;\
+    Text [ italian ] = "~Disponi" ; \
+    Text [ portuguese_brazilian ] = "Dis~posiÁ„o" ; \
+    Text [ portuguese ] = "~DisposiÁ„o" ; \
+    Text [ finnish ] = "J~‰rjestys" ; \
+    Text [ danish ] = "Placering" ; \
+    Text [ french ] = "~Disposition" ; \
+    Text [ swedish ] = "~Placering" ; \
+    Text [ dutch ] = "~Rangschikking" ; \
+    Text [ spanish ] = "~DisposiciÛn" ; \
+    Text [ english_us ] = "A~rrangement" ; \
+    Text[ russian ] = "–‡ÒÔÓÎÓÊÂÌËÂ";   \
+    Text[ polish ] = "~Rozmieszczenie"; \
+    Text[ greek ] = "‘·ÍÙÔÔﬂÁÛÁ";  \
+    Text[ japanese ] = "ÈÖçÁΩÆ(~R)";    \
+    Text[ korean ] = "Î∞∞Ïπò(~R)";  \
+    Text[ chinese_simplified ] = "ÊéíÂ∫è(~R)";  \
+    Text[ chinese_traditional ] = "ÊéíÂ∫è(~R)"; \
+    Text[ turkish ] = "D¸zenleme";  \
+    Text[ arabic ] = "«· — Ì»"; \
+    Text[ catalan ] = "~Organitza"; \
+    Text[ extern ] = "A~rrangement"; \
+    Text[ thai ] = "‡∏à‡∏±~‡∏î‡πÄ‡∏£‡∏µ‡∏¢‡∏á"; \
+    Text[ czech ] = "Uspo≈ô√°d√°n√≠";   \
+    Text[ hindi ] = "A~rrangement"  ;   \
+        Text[ hebrew ] = "A~nordnung";  \
+    SubMenu = Menu\
+    {\
+        ItemList = \
+        {\
+            MenuItem\
+            {\
+                Identifier = SID_ROW_MOREFRONT ; \
+                HelpID = SID_ROW_MOREFRONT;\
+                Text = "W~eiter nach vorn" ; \
+                Text [ ENGLISH ] = "Bring ~Forward" ; \
+                Text [ norwegian ] = "Flytt ~Framover" ; \
+                Text [ italian ] = "Porta pi˘ avanti" ; \
+                Text [ portuguese_brazilian ] = "A~vanÁar" ; \
+                Text [ portuguese ] = "~Mais para a frente" ; \
+                Text [ finnish ] = "Siirr‰ ~eteenp‰in" ; \
+                Text [ danish ] = "LÊngere ~fremad" ; \
+                Text [ french ] = "V~ers l'avant" ; \
+                Text [ swedish ] = "L‰ngre fra~m" ; \
+                Text [ dutch ] = "Naar v~oren" ; \
+                Text [ spanish ] = "Traer ~adelante" ; \
+                Text [ english_us ] = "Bring ~Forward" ; \
+                Text[ chinese_simplified ] = "‰∏äÁßª‰∏ÄÂ±Ç(~F)";\
+                    Text[ russian ] = "œÂÂÏÂÒÚËÚ¸ ~‚ÔÂÂ‰";\
+                    Text[ polish ] = "P~rzesuÒ do przodu";\
+                    Text[ japanese ] = "ÂâçÊñπ„Å´ÁßªÂãï(~F)";\
+                    Text[ chinese_traditional ] = "‰∏äÁßª‰∏ÄÂ±§(~F)";\
+                    Text[ arabic ] = "≈Õ÷«— √„«„«";\
+                    Text[ greek ] = "Ã~ÂÙ·ˆÔÒ‹ ›Ì· ÂﬂÂ‰Ô ÂÏÒ¸Ú";\
+                    Text[ korean ] = "ÏïûÏúºÎ°ú Ïù¥Îèô(~F)";\
+                    Text[ turkish ] = "~Bir ˆne getir";\
+                    Text[ language_user1 ] = " ";\
+                    Text[ catalan ] = "Porta al ~davant";\
+                    Text[ extern ] = "Bring ~Forward";\
+                    Text[ thai ] = "‡∏ô‡∏≥‡πÑ‡∏õ~‡∏Ç‡πâ‡∏≤‡∏á‡∏´‡∏ô‡πâ‡∏≤";\
+                    Text[ czech ] = "P≈ôen√©st bl√≠≈æ";\
+                    Text[ hebrew ] = "W~eiter nach vorn";\
+                    Text[ hindi ] = "~‡§Ü‡§ó‡•á ‡§™‡•ç‡§∞‡§∏‡•ç‡§§‡•Å‡§§ ‡§ï‡§∞‡§®‡§æ";\
+                };\
+            MenuItem\
+            {\
+                Identifier = SID_ROW_MOREBACK ; \
+                HelpID = SID_ROW_MOREBACK;\
+                Text = "Weiter ~nach hinten" ; \
+                Text [ ENGLISH ] = "Send ~Backward" ; \
+                Text [ norwegian ] = "Send ~Bakover" ; \
+                Text [ italian ] = "Porta pi˘ i~ndietro" ; \
+                Text [ portuguese_brazilian ] = "Rec~uar" ; \
+                Text [ portuguese ] = "Mais para o f~undo" ; \
+                Text [ finnish ] = "Siirr‰ taakse~p‰in" ; \
+                Text [ danish ] = "LÊngere ~tilbage" ; \
+                Text [ french ] = "~Vers l'arriËre" ; \
+                Text [ swedish ] = "L‰ngre ba~k" ; \
+                Text [ dutch ] = "Naar a~chteren" ; \
+                Text [ spanish ] = "Enviar a~tr·s" ; \
+                Text [ english_us ] = "Send Back~ward" ; \
+                Text[ chinese_simplified ] = "‰∏ãÁßª‰∏ÄÂ±Ç(~W)";\
+                    Text[ russian ] = "œÂÂÏÂÒÚËÚ¸ ~Ì‡Á‡‰";\
+                    Text[ polish ] = "Pr~zesuÒ do ty≥u";\
+                    Text[ japanese ] = "ÂæåÊñπ„Å´ÁßªÂãï(~W)";\
+                    Text[ chinese_traditional ] = "‰∏ãÁßª‰∏ÄÂ±§(~W)";\
+                    Text[ arabic ] = "≈—”«· Œ·›«";\
+                    Text[ greek ] = "~ÃÂÙ·ˆÔÒ‹ ﬂÛ˘";\
+                    Text[ korean ] = "Îí§Î°ú Ïù¥Îèô(~W)";\
+                    Text[ turkish ] = "Bir alta gˆnder";\
+                    Text[ language_user1 ] = " ";\
+                    Text[ catalan ] = "Envia cap ~enrere";\
+                    Text[ extern ] = "Send Back~ward";\
+                    Text[ thai ] = "‡∏™‡πà‡∏á‡∏Å‡∏•‡∏±‡∏ö‡∏Ç‡πâ‡∏≤‡∏á~‡∏´‡∏•‡∏±‡∏á";\
+                    Text[ czech ] = "P≈ôen√©st d√°l";\
+                    Text[ hebrew ] = "Weiter ~nach hinten";\
+                    Text[ hindi ] = "‡§™‡§ø‡§õ‡§≤‡•Ä ~‡§ì‡§∞ ‡§≠‡•á‡§ú‡•ã";\
+                };\
+        };\
+    };\
+}
+
+//STRIP001 #define MN_DIAGRAM_DATA \
+//STRIP001  MenuItem \
+//STRIP001  { \
+//STRIP001      Identifier = SID_DIAGRAM_DATA; \
+//STRIP001      HelpID = SID_DIAGRAM_DATA; \
+//STRIP001      Text = "~Diagrammdaten"; \
+//STRIP001      Text [ ENGLISH ] = "Diagram data"; \
+//STRIP001      Text [ english_us ] = "~Chart Data"; \
+//STRIP001      Text [ swedish ] = "~Diagramdata"; \
+//STRIP001      Text [ danish ] = "Diagramdata"; \
+//STRIP001      Text [ italian ] = "~Dati del diagramma"; \
+//STRIP001      Text [ spanish ] = "Datos del ~diagrama"; \
+//STRIP001      Text [ french ] = "~DonnÈes du diagramme"; \
+//STRIP001      Text [ dutch ] = "~Diagramgegevens"; \
+//STRIP001      Text [ portuguese_brazilian ] = "Diagrammdaten"; \
+//STRIP001      Text [ portuguese ] = "~Dados do gr·fico"; \
+//STRIP001      Text[ chinese_simplified ] = "ÂõæË°®Êï∞ÊçÆ(~C)"; \
+//STRIP001      Text[ russian ] = "~ƒ‡ÌÌ˚Â ‰Ë‡„‡ÏÏ?; \
+//STRIP001      Text[ polish ] = "Dane wykresu"; \
+//STRIP001      Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆ„Éá„Éº„Ç?~C)"; \
+//STRIP001      Text[ chinese_traditional ] = "ÂúñË°®Ë≥áÊñô(~C)"; \
+//STRIP001      Text[ arabic ] = "»Ì«‰«  «·—”?«·»Ì«‰?; \
+//STRIP001      Text[ greek ] = "~ƒÂ‰ÔÏ›Ì· ‰È·„Ò‹ÏÏ·ÙÔÚ"; \
+//STRIP001      Text[ korean ] = "Ï∞®Ìä∏ Îç∞Ïù¥ÌÑ?~C)"; \
+//STRIP001      Text[ turkish ] = "~«izelge Verisi"; \
+//STRIP001      Text[ language_user1 ] = " "; \
+//STRIP001      Text[ catalan ] = "Dades del ~diagrama";\
+//STRIP001      Text[ finnish ] = "~Kaaviotiedot";\
+//STRIP001      Text[ extern ] = "~Chart Data";\
+//STRIP001      Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÅ~‡∏ú‡∏ô‡∏†‡∏π‡∏°‡∏¥";\
+//STRIP001      Text[ czech ] = "Data grafu";\
+//STRIP001      Text[ hebrew ] = "~Diagrammdaten";\
+//STRIP001  };
+
+#define MN_TRANSFORM \
+    MenuItem\
+    {\
+        Identifier = SID_ATTR_TRANSFORM ; \
+        HelpID = SID_ATTR_TRANSFORM ; \
+        Text = "P~osition und Grˆﬂe..." ; \
+        Text [ ENGLISH ] = "P~osition and Size..." ; \
+        Text [ norwegian ] = "P~osition and Size..." ; \
+        Text [ italian ] = "P~osizione e dimensione..." ; \
+        Text [ portuguese_brazilian ] = "P~osi??o e Tamanho..." ; \
+        Text [ portuguese ] = "P~osiÁ„o e tamanho..." ; \
+        Text [ finnish ] = "Sijainti ja ko~ko" ; \
+        Text [ danish ] = "Pla~cering og st¯rrelse..." ; \
+        Text [ french ] = "P~osition et taille..." ; \
+        Text [ swedish ] = "P~osition och storlek..." ; \
+        Text [ dutch ] = "~Positie en grootte..." ; \
+        Text [ spanish ] = "P~osiciÛn y tamaÒo..." ; \
+        Text [ english_us ] = "Position and Si~ze..." ; \
+        Text[ chinese_simplified ] = "‰ΩçÁΩÆÂíåÂ§ßÂ∞è(~Z)...";\
+        Text[ russian ] = "~œÓÁËˆËˇ Ë ‡ÁÏÂ...";\
+        Text[ polish ] = "~Pozycja i rozmiar...";\
+        Text[ japanese ] = "‰ΩçÁΩÆ„Å®„Çµ„Ç§„Ç∫(~Z)...";\
+        Text[ chinese_traditional ] = "‰ΩçÁΩÆÂíåÂ§ßÂ∞è(~Z)...";\
+        Text[ arabic ] = "...«·„Ê÷⁄ Ê«·ÕÃ„~";\
+        Text[ greek ] = "»›ÛÁ Í·È Ï›„ÂË~ÔÚ...";\
+        Text[ korean ] = "ÏúÑÏπò Î∞è ÌÅ¨Í∏∞(~Z)...";\
+        Text[ turkish ] = "Konum ve ~Boyut";\
+        Text[ language_user1 ] = " ";\
+        Text[ catalan ] = "Position and Si~ze...";\
+        Text[ thai ] = "‡∏ï‡∏≥‡πÅ‡∏´‡∏ô‡πà‡∏á‡πÅ‡∏•‡∏∞‡∏Ç~‡∏ô‡∏≤‡∏î...";\
+    Text[ czech ] = "Um√≠stƒõn√≠ a velikost...";    \
+    Text[ hindi ] = "Position and Si~ze..." ; \
+        Text[ hebrew ] = "P~osition und Gr√∂√üe...";    \
+    }
+
+// EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

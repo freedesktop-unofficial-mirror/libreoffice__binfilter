@@ -1,0 +1,1386 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sw_view.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:51 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+#include <bf_svx/svxids.hrc>
+#include <bf_svx/globlmn.hrc>
+#include "view.hrc"
+#include "shells.hrc"
+#include "globals.hrc"
+#include "popup.hrc"
+#include "helpid.h"
+#include "cmdid.h"
+//STRIP001 ImageButton BTN_PAGEUP
+//STRIP001 {
+//STRIP001  SVLOOK = TRUE ;
+//STRIP001  HIDE = TRUE ;
+//STRIP001  RectStyle = TRUE ;
+//STRIP001  SmallStyle = TRUE ;
+//STRIP001  SYMBOL = IMAGEBUTTON_PAGEUP ;
+//STRIP001 };
+//STRIP001 ImageButton BTN_PAGEDOWN
+//STRIP001 {
+//STRIP001  SVLOOK = TRUE ;
+//STRIP001  HIDE = TRUE ;
+//STRIP001  RectStyle = TRUE ;
+//STRIP001  SmallStyle = TRUE ;
+//STRIP001  SYMBOL = IMAGEBUTTON_PAGEDOWN ;
+//STRIP001 };
+//STRIP001 QueryBox DLG_WRAP
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO ;
+//STRIP001  DEFBUTTON = WB_DEF_YES ;
+//STRIP001  MESSAGE = "Überprüfung am Anfang des Dokumentes fortsetzen?" ;
+//STRIP001  MESSAGE [ English ] = "Do you want to continue checking at the start of the document?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Do you want to continue checking at the start of the document?" ;
+//STRIP001  MESSAGE [ italian ] = "Continuare a controllare dall'inizio del documento?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "Deseja continuar a verificação pelo início do documento?" ;
+//STRIP001  MESSAGE [ portuguese ] = "Deseja continuar com a verificação no início do documento?" ;
+//STRIP001  MESSAGE [ finnish ] = "Haluatko jatkaa tarkistusta asiakirjan alusta?" ;
+//STRIP001  MESSAGE [ danish ] = "Vil du fortsætte kontrollen fra dokumentets start?" ;
+//STRIP001  MESSAGE [ french ] = "Continuer la vérification au début du document ?" ;
+//STRIP001  MESSAGE [ swedish ] = "Vill du fortsätta kontrollen i början p?dokumentet?" ;
+//STRIP001  MESSAGE [ dutch ] = "Wilt u dat de spellingcontrole wordt voortgezet bij het begin van het document?" ;
+//STRIP001  MESSAGE [ spanish ] = "¿Desea continuar la revisión desde el comienzo del documento?" ;
+//STRIP001  MESSAGE [ english_us ] = "Do you want to continue checking at the beginning of the document?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "ä»æ–‡ä»¶å¼€ç«¯ç»§ç»­æ£€æŸ¥ï¼Ÿ";
+//STRIP001  MESSAGE[ russian ] = "Ïğîäîëæèòü ïğîâåğêó äîêóìåíò??íà÷àëà?";
+//STRIP001  MESSAGE[ polish ] = "Czy chcesz kontynuowa?sprawdzanie od pocz¹tku dokumentu?";
+//STRIP001  MESSAGE[ japanese ] = "æ–‡æ›¸ã®å§‹ã‚ã«æˆ»ã£ã¦ãƒã‚§ãƒƒã‚¯ã‚’ç¶šã‘ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "å¾æª”æ¡ˆèµ·å§‹ä½ç½®ç¹¼çºŒæœå°‹ï¹–";
+//STRIP001  MESSAGE[ arabic ] = "ııåá ÊÑíÏ ãÊÇÈÚÉ ÇáÊÏŞí?Úä?ÈÏÇí?ÇáãÓÊäÏ¿";
+//STRIP001  MESSAGE[ greek ] = "Èİëåôå íá óõíå÷éóôåß ?İëåã÷ï?áğ?ôç?áñ÷Ş ôï?åããñÜöïõ;";
+//STRIP001  MESSAGE[ korean ] = "ë¬¸ì„œì?ì‹œì‘ë¶€ë¶„ì—ì„?ê²€ì‚¬ë¥¼ ê³„ì†í•˜ê² ìŠµë‹ˆê¹?";
+//STRIP001  MESSAGE[ turkish ] = "Belgenin başından denetime devam etmek istiyor musunuz?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "Voleu continuar revisant des de l'inici del document?";
+//STRIP001  MESSAGE[ thai ] = "à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸—à¸³à¸à¸²à¸£à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸•à¹ˆà¸­à¸—à¸µà¹ˆà¸ˆà¸¸à¸”à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™à¹€à¸­à¸à¸ªà¸²à¸£à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
+//STRIP001  MESSAGE[ czech ] = "PÅ™ejete si pokraÄovat v kontrole od zaÄÃ¡tku dokumentu?";
+//STRIP001  MESSAGE[ hebrew ] = "ÃœberprÃ¼fung am Anfang des Dokumentes fortsetzen?";
+//STRIP001  MESSAGE[ hindi ] = "à¤²à¥‡à¤–à¤ªà¤¤à¥à¤?à¤•à¥‡ à¤ªà¥à¤°à¤¾à¤°à¤‚à¤?à¤¸à¥‡ à¤œà¤¾à¤à¤š à¤•à¥‹ à¤œà¤¾à¤°à¥€ à¤°à¤–à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ?";
+//STRIP001  MESSAGE[ slovak ] = "Prajete si pokraÄovaÅ¥ v kontrole od zaÄiatku dokumentu?";
+//STRIP001 };
+//STRIP001 QueryBox DLG_BODY
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO ;
+//STRIP001  DEFBUTTON = WB_DEF_NO ;
+//STRIP001  MESSAGE = "Wollen Sie den Haupttext prüfen?" ;
+//STRIP001  MESSAGE [ English ] = "Do you want to check the Bodytext?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Do you want to check the Bodytext?" ;
+//STRIP001  MESSAGE [ italian ] = "Controllare il testo principale?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "Deseja verificar o texto principal?" ;
+//STRIP001  MESSAGE [ portuguese ] = "Deseja verificar o texto principal?" ;
+//STRIP001  MESSAGE [ finnish ] = "Haluatko tarkistaa päätekstin?" ;
+//STRIP001  MESSAGE [ danish ] = "Vil du kontrollere brødteksten?" ;
+//STRIP001  MESSAGE [ french ] = "Voulez-vous vérifier le texte principal?" ;
+//STRIP001  MESSAGE [ swedish ] = "Vill du kontrollera huvudtexten?" ;
+//STRIP001  MESSAGE [ dutch ] = "Wilt u de hoofdtekst controleren?" ;
+//STRIP001  MESSAGE [ spanish ] = "¿Desea verificar el texto principal?" ;
+//STRIP001  MESSAGE [ english_us ] = "Do you want to check the main text?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "æ‚¨è¦æ£€æŸ¥æ­£æ–‡å—ï¼?;
+//STRIP001  MESSAGE[ russian ] = "Ïğîâåğèò?ãëàâíû?òåêñ?";
+//STRIP001  MESSAGE[ polish ] = "Czy chcesz sprawdzi?tekst g³ówny?";
+//STRIP001  MESSAGE[ japanese ] = "æœ¬æ–‡ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "æ‚¨è¦æª¢æŸ¥å…§æ–‡ï¹?;
+//STRIP001  MESSAGE[ arabic ] = "åá ÊÑíÏ ÇáÊÏŞí?İí ÇáäÕ ÇáÑÆíÓí¿";
+//STRIP001  MESSAGE[ greek ] = "Èİëåôå íá ãßíå?İëåã÷ï?ôï?êıñéïõ êåéìİíïõ;";
+//STRIP001  MESSAGE[ korean ] = "ì£?í…ìŠ¤íŠ¸ë¥¼ ê²€ì‚¬í•˜ê² ìŠµë‹ˆê¹Œ?";
+//STRIP001  MESSAGE[ turkish ] = "Ana metni denetlemek istiyor musunuz?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "Voleu revisar el text principal?";
+//STRIP001  MESSAGE[ thai ] = "à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸«à¸¥à¸±à¸à¸«à¸£à¸·à¸­à¹„à¸¡à¹?";
+//STRIP001  MESSAGE[ czech ] = "PÅ™ejete si zkontrolovat hlavnÃ­ text?";
+//STRIP001  MESSAGE[ hebrew ] = "Wollen Sie den Haupttext prÃ¼fen?";
+//STRIP001  MESSAGE[ hindi ] = "à¤®à¥à¤–à¥à¤?à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥ à¤®à¥‡à¤?à¤œà¤¾à¤à¤š à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ?";
+//STRIP001  MESSAGE[ slovak ] = "Prajete si  skontrolovaÅ¥ hlavnÃ½ text?";
+//STRIP001 };
+//STRIP001 QueryBox DLG_PRT_FIELDNAME
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO_CANCEL ;
+//STRIP001  DEFBUTTON = WB_DEF_CANCEL ;
+//STRIP001  MESSAGE = "Option Feldname anzeigen ist aktiviert.\nWollen Sie das Dokument mit Feldnamen drucken?" ;
+//STRIP001  MESSAGE [ English ] = "Option Show fieldname is checked.\nDo you want to print the document with fieldnames?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Option Show fieldname is checked.\nDo you want to print the document with fieldnames?" ;
+//STRIP001  MESSAGE [ italian ] = "L'opzione Mostra nome campo ?attivata.\nDesiderate stampare il documento con i nomi dei campi?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "O comando opcional de Mostrar Campos est?ativado.\nDeseja imprimir o documento com os nomes dos campos?" ;
+//STRIP001  MESSAGE [ portuguese ] = "A opção 'Mostrar nome do campo' est?activada.\nImprimir o documento com os nomes do campo?" ;
+//STRIP001  MESSAGE [ french ] = "L'option Afficher le nom de champ est activée.\nVoulez-vous imprimer le document avec le nom de champ ?" ;
+//STRIP001  MESSAGE [ dutch ] = "Optie 'Veldnaam weergeven' is actief.\nWilt u het document met de veldnaam afdrukken?" ;
+//STRIP001  MESSAGE [ spanish ] = "La opción nombre de campo est?activada. \n¿Desea imprimir el archivo con nombres de campo?" ;
+//STRIP001  MESSAGE [ danish ] = "Vis feltnavn er aktiveret\nVil du udskrive dokumentet med feltnavn?" ;
+//STRIP001  MESSAGE [ swedish ] = "Alternativet Visa fältnamn är aktiverat.\nVill du skriva ut dokumentet med fältnamn?" ;
+//STRIP001  MESSAGE [ finnish ] = "Näyt?kenttäkomennot -asetus on valittuna.\nHaluatko tulostaa asiakirjan niin, ett?kenttänimet näkyvät?" ;
+//STRIP001  MESSAGE [ english_us ] = "Show field commands option is checked.\nDo you want to print the document with field names?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "å­—æ®µåç§°é€‰é¡¹è¿˜å¤„äºä½¿ç”¨çš„çŠ¶æ€ã€‚\næ‚¨è¦è¿åŒå­—æ®µåç§°ä¸€èµ·æ‰“å°è¿™ä¸ªæ–‡ä»¶å—ï¼?;
+//STRIP001  MESSAGE[ russian ] = "Ïàğàìåòğ 'Ïîêàçàòü èìÿ ïî?' óñòàíîâëåí.\nÍàïå÷àòàòü äîêóìåíò ?èìåíàì?ïî??";
+//STRIP001  MESSAGE[ polish ] = "Opcja \"Poka?nazw?pola\" jest uaktywniona.\nCzy wydrukowa?ten dokument z nazwami pól?";
+//STRIP001  MESSAGE[ japanese ] = "ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã¾ã™ã€‚\næ–‡æ›¸ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‚’å°åˆ·ã—ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "æ¬„ä½åç¨±é¸é …é‚„è™•æ–¼ä½¿ç”¨ç‹€æ…‹ã€‚\næ‚¨è¦é€£åŒæ¬„ä½åç¨±ä¸€èµ·åˆ—å°é€™å€‹æª”æ¡ˆï¹–";
+//STRIP001  MESSAGE[ arabic ] = "ÇáÎíÇÑ \"ÅÙåÇ?ÇÓ?ÇáÍŞá\" äÔ?\nåá ÊÑíÏ ØÈÇÚ?ÇáãÓÊä?ÈÃÓãÇÁ ÇáÍŞæá?;
+//STRIP001  MESSAGE[ greek ] = "?åğéëïã?üíïì?ğåäßïõ åßíá?åíåñãïğïéçìİíç.\nÈİëåôå íá åêôõğùèå?ôï İããñáö?ìáæß ìå ôá ïíüìáô?ôù?ğåäßùí;";
+//STRIP001  MESSAGE[ korean ] = "ì˜µì…˜ í•„ë“œì?ì´ë¦„ í‘œì‹œê°€ í™œì„±í™”ë˜ì–?ìˆìŠµë‹ˆë‹¤.\ní•„ë“œ ì´ë¦„ì?ê°™ì´ ë¬¸ì„œì—?ì¸ì‡„í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+//STRIP001  MESSAGE[ turkish ] = "\"Alan adın?görüntüle\" seçeneği etkin.\nBelgeyi alan adlarıyla yazdırmak istiyor musunuz?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "L'opci?Mostra les ordres de camp est?activada. \nVoleu imprimir el document amb els noms de camp?";
+//STRIP001  MESSAGE[ thai ] = "à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸à¸²à¸£à¹à¸ªà¸”à¸‡à¸•à¸±à¸§à¹€à¸¥à¸·à¸­à¸à¸„à¸³à¸ªà¸±à¹ˆà¸‡à¹€à¸‚à¸•à¸‚à¹‰à¸­à¸¡à¸¹à¸¥\nà¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸à¸´à¸¡à¸à¹Œà¹€à¸­à¸à¸ªà¸²à¸£à¸”à¹‰à¸§à¸¢à¸Šà¸·à¹ˆà¸­à¹€à¸‚à¸•à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸«à¸£à¸·à¸­à¹„à¸¡à¹?";
+//STRIP001  MESSAGE[ czech ] = "Je zaÅ¡krtnuta volba Zobrazit pole.\nChcete vytisknout dokument s nÃ¡zvy polÃ­?";
+//STRIP001  MESSAGE[ hebrew ] = "Option Feldname anzeigen ist aktiviert.\nWollen Sie das Dokument mit Feldnamen drucken?";
+//STRIP001  MESSAGE[ hindi ] = "à¤¦à¤¿à¤–à¤¾à¤?à¤•à¥à¤·à¥‡à¤¤à¥à¤?à¤†à¤œà¥à¤à¥‹à¤‚ à¤•à¤¾ à¤µà¤¿à¤•à¤²à¥à¤ª à¤•à¥‹ à¤šà¤¿à¤¹à¥à¤¨à¤¿à¤?à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥¤\nà¤†à¤ª à¤²à¥‡à¤–à¤ªà¤¤à¥à¤?à¤•à¥‹ à¤•à¥à¤·à¥‡à¤¤à¥à¤?à¤¨à¤¾à¤®à¥‹à¤?à¤•à¥‡ à¤¸à¤¹à¤¿à¤¤ à¤›à¤ªà¤¾à¤ˆ à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ ?";
+//STRIP001  MESSAGE[ slovak ] = "Je zaÅ¡krtnutÃ¡ voÄ¾ba ZobraziÅ¥ pole.\nChcete vytlaÄiÅ¥ dokument s nÃ¡zvami polÃ­?";
+//STRIP001 };
+//STRIP001 QueryBox DLG_SPECIAL
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO ;
+//STRIP001  DEFBUTTON = WB_DEF_NO ;
+//STRIP001  MESSAGE = "Sonderbereiche prüfen?" ;
+//STRIP001  MESSAGE [ English ] = "Do you want check the special regions?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Do you want check the special regions?" ;
+//STRIP001  MESSAGE [ italian ] = "Controllare le aree speciali?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "Deseja verificar as regiões especiais?" ;
+//STRIP001  MESSAGE [ portuguese ] = "Deseja verificar as regiões especiais?" ;
+//STRIP001  MESSAGE [ finnish ] = "Tarkistetaanko erityisalueet?" ;
+//STRIP001  MESSAGE [ danish ] = "Vil du kontrollere særområderne?" ;
+//STRIP001  MESSAGE [ french ] = "Voulez-vous vérifier les zones spéciales?" ;
+//STRIP001  MESSAGE [ swedish ] = "Vill du kontrollera specialområden?" ;
+//STRIP001  MESSAGE [ dutch ] = "Wilt u de speciale bereiken controleren?" ;
+//STRIP001  MESSAGE [ spanish ] = "¿Desea verificar las áreas especiales?" ;
+//STRIP001  MESSAGE [ english_us ] = "Do you want check the special regions?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "æ‚¨è¦æ£€æŸ¥ç‰¹æ®ŠåŒºåŸŸå—ï¼?;
+//STRIP001  MESSAGE[ russian ] = "Ïğîâåğèò?ñïåöèàëüíû?îáëàñò?";
+//STRIP001  MESSAGE[ polish ] = "Czy chcesz sprawdzi?obszary specjalne?";
+//STRIP001  MESSAGE[ japanese ] = "ç‰¹åˆ¥ç¯„å›²ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "æ‚¨è¦æª¢æŸ¥ç‰¹æ®Šå€åŸŸï¹–";
+//STRIP001  MESSAGE[ arabic ] = "åá ÊÑíÏ ÇáÊÏŞí?İí ÇáãäÇØ?ÇáÎÇÕÉ?;
+//STRIP001  MESSAGE[ greek ] = "Íá ãßíå?İëåã÷ï?ôù?åéäéêş?ğåñéï÷şí;";
+//STRIP001  MESSAGE[ korean ] = "íŠ¹ìˆ˜ ì˜ì—­ì?ê²€ì‚¬í•˜ì‹œê² ìŠµë‹ˆê¹?";
+//STRIP001  MESSAGE[ turkish ] = "Özel bölümler denetlensin mi?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "Voleu revisar les regions especials?";
+//STRIP001  MESSAGE[ thai ] = "à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸šà¸£à¸´à¹€à¸§à¸“à¸à¸´à¹€à¸¨à¸©à¸«à¸£à¸·à¸­à¹„à¸¡à¹?";
+//STRIP001  MESSAGE[ czech ] = "PÅ™ejete si zkontrolovat speciÃ¡lnÃ­ oblasti?";
+//STRIP001  MESSAGE[ hebrew ] = "Sonderbereiche prÃ¼fen?";
+//STRIP001  MESSAGE[ hindi ] = "à¤µà¤¿à¤¶à¥‡à¤?à¤•à¥à¤·à¥‡à¤¤à¥à¤°à¥‹à¤?à¤®à¥‡à¤?à¤œà¤¾à¤à¤š à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ?";
+//STRIP001  MESSAGE[ slovak ] = "Prajete si skontrolovaÅ¥ Å¡peciÃ¡lne oblasti?";
+//STRIP001 };
+//STRIP001 QueryBox DLG_THESAURUS
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO ;
+//STRIP001  DEFBUTTON = WB_DEF_NO ;
+//STRIP001  MESSAGE = "Dieses Wort sollten Sie vermeiden! Thesaurus starten?" ;
+//STRIP001  MESSAGE [ English ] = "Please avoid this word! Start thesaurus?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Please avoid this word! Start thesaurus?" ;
+//STRIP001  MESSAGE [ italian ] = "Tale temine andrebbe evitato. Avviare il dizionario dei sinonimi?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "Esta palavra aparece na lista de palavras que se deseja evitar! Deseja iniciar o dicionário de sinônimos?" ;
+//STRIP001  MESSAGE [ portuguese ] = "Evite esta palavra! Iniciar o dicionário de sinónimos?" ;
+//STRIP001  MESSAGE [ finnish ] = "Täm?sana esiintyy vältettävien sanojen luettelossa. Avataanko synonyymisanasto?" ;
+//STRIP001  MESSAGE [ danish ] = "Undg?venligst dette ord! Vil du bruge synonymordbogen?" ;
+//STRIP001  MESSAGE [ french ] = "Il vaudrait mieux éviter d'employer ce mot ! Souhaitez-vous consulter le dictionnaire des synonymes ?" ;
+//STRIP001  MESSAGE [ swedish ] = "Undvik det här ordet! Starta synonymordlista?" ;
+//STRIP001  MESSAGE [ dutch ] = "Dit woord niet gebruiken! Thesaurus starten?" ;
+//STRIP001  MESSAGE [ spanish ] = "¡Evite esta palabra! ¿Iniciar búsqueda de sinónimos?" ;
+//STRIP001  MESSAGE [ english_us ] = "This word appears in the list of words you want to avoid! Start thesaurus?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "æ‚¨åº”è¯¥é¿å…ä½¿ç”¨è¿™ä¸ªå­—ï¼æ‚¨è¦å¯åŠ¨åŒä¹‰è¯è¯å…¸å—ï¼Ÿ";
+//STRIP001  MESSAGE[ russian ] = "Óïîòğåáëåíèå ıòîã?ñëîâ?ñëåäóå?èçáåãàòü! Çàïóñòèò?òåçàóğóñ?";
+//STRIP001  MESSAGE[ polish ] = "Ten wyraz najduje si?na liœcie s³ów, których nale¿y unika? Czy uruchomi?Tezaurus?";
+//STRIP001  MESSAGE[ japanese ] = "ã“ã®å˜èªã®ä½¿ç”¨ã¯é¿ã‘ã¦ãã ã•ã„ã€‚é¡ç¾©èªè¾å…¸ã‚’é–‹å§‹ã—ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "æ‚¨æ‡‰è©²é¿å…ä½¿ç”¨é€™å€‹å­—ï¹—æ‚¨è¦å•Ÿå‹•åŒç¾©è©è©å…¸å—ï¹–";
+//STRIP001  MESSAGE[ arabic ] = "íÌ?Úáíß ÊÌäÈ åĞ?ÇáßáãÉ! åá ÊÑíÏ ÈÏ?ÊÔÛí?ŞÇãæ?ÇáãÑÇÏİÇÊ¿";
+//STRIP001  MESSAGE[ greek ] = "Áğïöıãåô?áõôŞ ôç ëİîç! Íá áíïßîå??èçóáõñüò ëİîåùí;";
+//STRIP001  MESSAGE[ korean ] = "ì´ë‹¨ì–´ëŠ” ì‚¬ìš©í•˜ì§€ ì•Šì„ ë‹¨ì–´ í•­ëª©ì—?ìˆëŠ” ë‹¨ì–´ ì…ë‹ˆë‹?! ë™ì˜ì–?ì‚¬ì „ì?ì‹œì‘í•˜ê² ìŠµë‹ˆê¹?";
+//STRIP001  MESSAGE[ turkish ] = "Bu sözcük kullanmak istemediğiniz sözcükler arasında! E?anlamlılar sözlüğüne başvurmak ister misiniz?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "Aquesta paraula apareix a la llista de paraules que voleu evitar! Voleu iniciar el tesaurus?";
+//STRIP001  MESSAGE[ thai ] = "à¸„à¸³à¸™à¸µà¹‰à¸›à¸£à¸²à¸à¸à¹ƒà¸™à¸£à¸²à¸¢à¸à¸²à¸£à¸„à¸³à¸—à¸µà¹ˆà¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸«à¸¥à¸µà¸à¹€à¸¥à¸µà¹ˆà¸¢à¸? à¹€à¸£à¸´à¹ˆà¸¡à¸­à¸£à¸£à¸–à¸²à¸ à¸´à¸˜à¸²à¸™à¸«à¸£à¸·à¸­à¹„à¸¡à¹?";
+//STRIP001  MESSAGE[ czech ] = "Toto slovo se objevuje v seznamu slov, kterÃ½m se chcete vyhnout. Spustit slovnÃ­k synonym?";
+//STRIP001  MESSAGE[ hebrew ] = "Dieses Wort sollten Sie vermeiden! Thesaurus starten?";
+//STRIP001  MESSAGE[ hindi ] = "à¤‡à¤¸ à¤¶à¤¬à¥à¤¦ à¤‰à¤¨ à¤¶à¤¬à¥à¤¦à¥‹à¤‚ à¤•à¥€ à¤¸à¥‚à¤šà¥€ à¤®à¥‡à¤?à¤¹à¥ˆ à¤œà¤¿à¤¸à¤•à¥?à¤†à¤ª à¤¤à¥à¤¯à¤¾à¤—à¤¨à¤?à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ ! à¤¶à¤¬à¥à¤¦à¤•à¥‹à¤?à¤ªà¥à¤°à¤¾à¤°à¤‚à¤?à¤•à¤°à¤¨à¤¾ à¤¹à¥ˆ?";
+//STRIP001  MESSAGE[ slovak ] = "Toto slovo sa objavuje v zozname slov, ktorÃ½m sa chcete vyhnÃºÅ¥. SpustiÅ¥ slovnÃ­k synonÃ½m?";
+//STRIP001 };
+//STRIP001 QueryBox DLG_SPECIAL_FORCED
+//STRIP001 {
+//STRIP001  BUTTONS = WB_YES_NO ;
+//STRIP001  DEFBUTTON = WB_DEF_NO ;
+//STRIP001  MESSAGE = "Sonderbereichprüfung ist ausgeschaltet, Trotzdem prüfen?" ;
+//STRIP001  MESSAGE [ English ] = "Check in Special regions is turned off, Proof anyway?" ;
+//STRIP001  MESSAGE [ norwegian ] = "Check in Special regions is turned off, Proof anyway?" ;
+//STRIP001  MESSAGE [ italian ] = "Il controllo delle aree speciali non ?attivo, controllare lo stesso?" ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "A verificação de regiões especiais est?desativada. Verificar mesmo assim?" ;
+//STRIP001  MESSAGE [ portuguese ] = "A verificação de zonas especiais est?desactivada, mesmo assim prosseguir?" ;
+//STRIP001  MESSAGE [ finnish ] = "Tarkista erityisalueet -toiminto on poistettu käytöst? Tarkistetaanko kuitenkin?" ;
+//STRIP001  MESSAGE [ danish ] = "Stavekontrol af særområder er slået fra, skal der kontrolleres alligevel?" ;
+//STRIP001  MESSAGE [ french ] = "La vérification dans les zones spéciales est désactivée. Vérifier tout de même ?" ;
+//STRIP001  MESSAGE [ swedish ] = "Kontroll av specialområden är avstängd. Kontrollera änd?" ;
+//STRIP001  MESSAGE [ dutch ] = "De functie 'Speciale bereiken controleren' is uitgeschakeld. Controle toch uitvoeren?" ;
+//STRIP001  MESSAGE [ spanish ] = "La verificación de las áreas especiales est?desactivada, ¿Desea de todas maneras verificar?" ;
+//STRIP001  MESSAGE [ english_us ] = "Check special regions is deactivated. Check anyway?" ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "ç‰¹æ®ŠåŒºåŸŸçš„æ£€æŸ¥å·²ç»å…³é—­ï¼Œæ‚¨è¿˜æ˜¯è¦æ‰§è¡Œè¿™é¡¹æ£€æŸ¥ï¼Ÿ";
+//STRIP001  MESSAGE[ russian ] = "Ïğîâåğêà ñïåöèàëüíû?îáëàñòåé îòêëş÷åí? Ïğîâåğèò? íå ñìîò? íà ıò?";
+//STRIP001  MESSAGE[ polish ] = "Sprawdzanie obszarów specjalnych jest nieaktywne. Czy sprawdzi?mimo to?";
+//STRIP001  MESSAGE[ japanese ] = "ç‰¹åˆ¥ç¯„å›²ã¯ã‚ªãƒ•ã«ãªã£ã¦ã„ã¾ã™ã€‚ãã‚Œã§ã‚‚ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã‹ã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "å·²ç¶“é—œé–‰ç‰¹æ®Šå€åŸŸçš„æª¢æŸ¥ï¹é‚„æ˜¯è¦åŸ·è¡Œé€™å€‹æŒ‡ä»¤ï¹–";
+//STRIP001  MESSAGE[ arabic ] = "ÊÏŞí?ÇáãäÇØ?ÇáÎÇÕÉ Ûí?äÔ? åá ÊÑíÏ ÇáÊÏŞí?ÈÇáÑÛã ãä Ğáß¿";
+//STRIP001  MESSAGE[ greek ] = "?åğéëïã?\"¸ëåã÷ï?åéäéêş?ğåñéï÷şí\" åßíá?áğåíåñãïğïéçìİíç.Èİëåôå íá åëåã÷èïı?êá?áõôİ?";
+//STRIP001  MESSAGE[ korean ] = "íŠ¹ì •í•?ì˜ì—­ì?ê²€ì‚¬ê°€ í•´ì œë˜ì—ˆìŠµë‹ˆë‹? ê·¸ë˜ë?ê²€ì‚¬í•˜ê² ìŠµë‹ˆê¹Œ?";
+//STRIP001  MESSAGE[ turkish ] = "Özel bölüm denetimi etkin değil. Yine de denetlensin mi?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "La verificaci?d'àrees especials est?desactivada. Voleu verificar-les igualment?";
+//STRIP001  MESSAGE[ thai ] = "à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸à¸·à¹‰à¸™à¸—à¸µà¹ˆà¸à¸´à¹€à¸¨à¸©à¸—à¸µà¹ˆà¹„à¸¡à¹ˆà¹„à¸”à¹‰à¹ƒà¸Šà¹‰à¸‡à¸²à¸?à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
+//STRIP001  MESSAGE[ czech ] = "Kontrola speciÃ¡lnÃ­ch oblastÃ­ je vypnuta. PÅ™esto zkontrolovat?";
+//STRIP001  MESSAGE[ hebrew ] = "SonderbereichprÃ¼fung ist ausgeschaltet, Trotzdem prÃ¼fen?";
+//STRIP001  MESSAGE[ hindi ] = "à¤µà¤¿à¤¶à¥‡à¤?à¤•à¥à¤·à¥‡à¤¤à¥à¤°à¥‹à¤?à¤•à¥€ à¤œà¤¾à¤à¤š à¤•à¥‹ à¤¨à¤¿à¤·à¥à¤•à¥à¤°à¤¿à¤?à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥?à¤«à¤¿à¤?à¤­à¥€ à¤œà¤¾à¤à¤š à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ?";
+//STRIP001  MESSAGE[ slovak ] = "Kontrola Å¡peciÃ¡lnych oblastÃ­ je vypnutÃ¡. SkontrolovaÅ¥ napriek tomu?";
+//STRIP001 };
+//STRIP001 QueryBox MSG_SEARCH_END
+//STRIP001 {
+//STRIP001  Buttons = WB_YES_NO ;
+//STRIP001  DefButton = WB_DEF_YES ;
+//STRIP001  Message = "%PRODUCTNAME Writer hat bis zum Ende des Dokumentes gesucht. Möchten Sie die Suche am Dokumentanfang fortsetzen?" ;
+//STRIP001  Message [ ENGLISH ] = "%PRODUCTNAME Writer has searched to the end of the document. Do you want to continue at the beginning?" ;
+//STRIP001  Message [ norwegian ] = "%PRODUCTNAME Writer har søkt til slutten av  dokumentet. Vil du fortsette fra begynnelsen?" ;
+//STRIP001  Message [ italian ] = "%PRODUCTNAME Writer ha cercato fino alla fine del documento. Volete continuare dall'inizio del documento?" ;
+//STRIP001  Message [ portuguese_brazilian ] = "O %PRODUCTNAME Writer pesquisou at?o final do documento. Deseja continuar pelo início?" ;
+//STRIP001  Message [ portuguese ] = "O %PRODUCTNAME Writer procurou at?ao fim do documento. Continuar a procura no início do documento?" ;
+//STRIP001  Message [ finnish ] = "%PRODUCTNAME Writer on tehnyt haun asiakirjan loppuun asti. Haluatko jatkaa hakua alkuun?" ;
+//STRIP001  Message [ danish ] = "%PRODUCTNAME Writer har søgt til slutningen af dokumentet. Vil du fortsætte søgningen fra starten af dokumentet?" ;
+//STRIP001  Message [ french ] = "%PRODUCTNAME Writer a atteint la fin du document. Souhaitez-vous reprendre la recherche au début du document ?" ;
+//STRIP001  Message [ swedish ] = "%PRODUCTNAME Writer har sökt till slutet av dokument. Vill du fortsätta sökningen i början av dokumentet?" ;
+//STRIP001  Message [ dutch ] = "%PRODUCTNAME Writer heeft tot aan het einde van het document gezocht. Wilt u doorgaan met zoeken vanaf het begin?" ;
+//STRIP001  Message [ spanish ] = "%PRODUCTNAME Writer ha buscado hasta el final del documento. ¿Desea continuar la búsqueda desde el principio?" ;
+//STRIP001  Message [ english_us ] = "%PRODUCTNAME Writer has searched to the end of the document. Do you want to continue at the beginning?" ;
+//STRIP001  Message[ chinese_simplified ] = "%PRODUCTNAME Writer å·²ç»æœå¯»è‡³æ–‡æ¡£çš„ç»“æŸä½ç½®ã€‚è¦ç»§ç»­ä»æ–‡æ¡£çš„èµ·å§‹ä½ç½®å¼€å§‹æœå¯»ï¼Ÿ";
+//STRIP001  Message[ russian ] = "%PRODUCTNAME Writer îñóùåñòâèë ïîèñ??êîíö?äîêóìåíò? Ïğîäîëæèòü ïîèñ??íà÷àëà äîêóìåíò?";
+//STRIP001  Message[ polish ] = "%PRODUCTNAME Writer przeszuka?dokument do koñca. Czy kontynuowa?wyszukiwanie od pocz¹tku dokumentu?";
+//STRIP001  Message[ japanese ] = "%PRODUCTNAME Writer ã¯ã€æ–‡æ›¸æœ«ã¾ã§æ¤œç´¢ã—ã¾ã—ãŸã€‚æ–‡æ›¸ã®å§‹ã‚ã«æˆ»ã£ã¦ç¶šè¡Œã—ã¾ã™ã‹ã€?;
+//STRIP001  Message[ chinese_traditional ] = "%PRODUCTNAME Writer å·²ç¶“æœå°‹è‡³æ–‡ä»¶çš„çµæŸä½ç½®ã€‚è¦å¾æ–‡ä»¶çš„èµ·å§‹ä½ç½®ç¹¼çºŒæœå°‹ï¼?;
+//STRIP001  Message[ arabic ] = "ŞÇ?%PRODUCTNAME Writer ÈÇáÈÍË ÍÊ?äåÇí?ÇáãÓÊä? åá ÊÑíÏ ãÊÇÈÚÉ ÇáÈÍ?Úä?ÈÏÇí?ÇáãÓÊäÏ¿";
+//STRIP001  Message[ greek ] = "Ôï %PRODUCTNAME Writer ïëïêëŞñùóå ôç?áíáæŞôçó?ùò ôï ôİëï?ôï?åããñÜöïõ. Èİëåôå íá óõíå÷éóôåß ?áíáæŞôçó?áğ?ôç?áñ÷Ş ôï?åããñÜöïõ;";
+//STRIP001  Message[ korean ] = "%PRODUCTNAME Writerê°€ ë¬¸ì„œì?ëê¹Œì§€ ê²€ìƒ‰í–ˆìŠµë‹ˆë‹? ë¬¸ì„œì?ì‹œì‘ë¶€ë¶„ì—ì„?ê²€ìƒ‰ì„ ê³„ì†í•˜ê² ìŠµë‹ˆê¹?";
+//STRIP001  Message[ turkish ] = "%PRODUCTNAME Writer dokümanın sonuna ulaşt? Başa doğru devam etmek ister misiniz? ";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "El %PRODUCTNAME Writer ha cercat fins al final del document. Voleu seguir des del començament?";
+//STRIP001  Message[ thai ] = "à¸„à¹‰à¸™à¸«à¸?%PRODUCTNAME Writer à¸—à¸µà¹ˆà¸—à¹‰à¸²à¸¢à¹€à¸­à¸à¸ªà¸²à¸?à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸—à¸³à¸•à¹ˆà¸­à¸—à¸µà¹ˆà¸ˆà¸¸à¸”à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
+//STRIP001  Message[ czech ] = "%PRODUCTNAME Writer hledal aÅ¾ do konce dokumentu. Chcete pokraÄovat na zaÄÃ¡tku?";
+//STRIP001  Message[ hebrew ] = "%PRODUCTNAME Writer hat bis zum Ende des Dokumentes gesucht. MÃ¶chten Sie die Suche am Dokumentanfang fortsetzen?";
+//STRIP001  Message[ hindi ] = "%PRODUCTNAME à¤²à¥‡à¤–à¤• à¤²à¥‡à¤–à¤ªà¤¤à¥à¤?à¤•à¤¾ à¤…à¤‚à¤?à¤¤à¤• à¤–à¥‹à¤?à¤•à¤¿à¤¯à¤¾ à¥?à¤†à¤ª à¤–à¥‹à¤?à¤•à¥‹ à¤ªà¥à¤°à¤¾à¤°à¤‚à¤?à¤¸à¥‡ à¤œà¤¾à¤°à¥€ à¤°à¤–à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ ?";
+//STRIP001  Message[ slovak ] = "%PRODUCTNAME Writer hÄ¾adal aÅ¾ do konca dokumentu. Chcete pokraÄovaÅ¥ na zaÄiatku?";
+//STRIP001 };
+//STRIP001 QueryBox MSG_SEARCH_START
+//STRIP001 {
+//STRIP001  Buttons = WB_YES_NO ;
+//STRIP001  DefButton = WB_DEF_YES ;
+//STRIP001  Message = "%PRODUCTNAME Writer hat bis zum Anfang des Dokumentes gesucht. Möchten Sie die Suche am Dokumentende fortsetzen?" ;
+//STRIP001  Message [ ENGLISH ] = "%PRODUCTNAME Writer has searched to the beginning of the document. Do you want to continue at the end?" ;
+//STRIP001  Message [ norwegian ] = "%PRODUCTNAME Writer har søkt til begynnelsen av dokumentet. Vil du fortsette fra slutten?" ;
+//STRIP001  Message [ italian ] = "%PRODUCTNAME Writer ha cercato fino all'inizio del documento. Volete continuare dalla fine del documento?" ;
+//STRIP001  Message [ portuguese_brazilian ] = "O %PRODUCTNAME Writer pesquisou at?o início do documento. Deseja continuar pelo final?" ;
+//STRIP001  Message [ portuguese ] = "O %PRODUCTNAME Writer procurou at?ao início do documento. Continuar a procura no fim do documento?" ;
+//STRIP001  Message [ finnish ] = "%PRODUCTNAME Writer on tehnyt haun asiakirjan alkuun asti. Haluatko jatkaa hakua loppuun?" ;
+//STRIP001  Message [ danish ] = "%PRODUCTNAME Writer har søgt til starten af dokumentet. Vil du fortsætte søgningen fra slutningen af dokumentet?" ;
+//STRIP001  Message [ french ] = "%PRODUCTNAME Writer a atteint le début du document. Souhaitez-vous reprendre la recherche ?la fin du document ?" ;
+//STRIP001  Message [ swedish ] = "%PRODUCTNAME Writer har sökt till början av dokumentet. Vill du fortsätta sökningen i slutet av dokumentet?" ;
+//STRIP001  Message [ dutch ] = "%PRODUCTNAME Writer heeft tot aan het begin van het document gezocht. Wilt u doorgaan met zoeken vanaf het einde?" ;
+//STRIP001  Message [ spanish ] = "%PRODUCTNAME Writer ha buscado hasta el principio del documento. ¿Desea continuar desde el final?" ;
+//STRIP001  Message [ english_us ] = "%PRODUCTNAME Writer has searched to the beginning of the document. Do you want to continue at the end?" ;
+//STRIP001  Message[ chinese_simplified ] = "%PRODUCTNAME Writer å·²ç»æœå¯»è‡³æ–‡æ¡£çš„èµ·å§‹ä½ç½®ã€‚è¦ç»§ç»­ä»æ–‡ä»¶çš„ç»“æŸä½ç½®å¼€å§‹æœå¯»ï¼Ÿ";
+//STRIP001  Message[ russian ] = "%PRODUCTNAME Writer îñóùåñòâèë ïîèñ??íà÷àëó äîêóìåíò? Ïğîäîëæèòü ïîèñ??êîíö?äîêóìåíò?";
+//STRIP001  Message[ polish ] = "%PRODUCTNAME Writer przeszuka?dokument do pocz¹tku. Czy kontynuowa?wyszukiwanie od koñca dokumentu?";
+//STRIP001  Message[ japanese ] = "%PRODUCTNAME Writer ã¯ã€æ–‡æ›¸ã®å§‹ã‚ã¾ã§æ¤œç´¢ã—ã¾ã—ãŸã€‚æ–‡æ›¸æœ«ã«æˆ»ã£ã¦æ¤œç´¢ã‚’ç¶šã‘ã¾ã™ã‹ã€?;
+//STRIP001  Message[ chinese_traditional ] = "%PRODUCTNAME Writer å·²ç¶“æœå°‹è‡³æ–‡ä»¶çš„èµ·å§‹ä½ç½®ã€‚è¦å¾æ–‡ä»¶çš„çµæŸä½ç½®ç¹¼çºŒæœå°‹ï¹?;
+//STRIP001  Message[ arabic ] = "ŞÇ?%PRODUCTNAME Writer ÈÇáÈÍË ÍÊ?ÈÏÇí?ÇáãÓÊä? åá ÊÑíÏ ãÊÇÈÚÉ ÇáÈÍ?Úä?äåÇí?ÇáãÓÊäÏ¿";
+//STRIP001  Message[ greek ] = "Ôï %PRODUCTNAME Writer ïëïêëŞñùóå ôç?áíáæŞôçó?ùò ôç?áñ÷Ş ôï?åããñÜöïõ. Èİëåôå íá óõíå÷éóôåß ?áíáæŞôçó?áğ?ôï ôİëï?ôï?åããñÜöïõ;";
+//STRIP001  Message[ korean ] = "%PRODUCTNAME Writerê°€ ë¬¸ì„œì?ì‹œì‘ê¹Œì§€ ê²€ìƒ‰í–ˆìŠµë‹ˆë‹? ë¬¸ì„œì?ëì—ì„?ê²€ìƒ‰ì„ ê³„ì†í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+//STRIP001  Message[ turkish ] = "%PRODUCTNAME Writer dokümanın başına ulaşt? Sona doğru devam etmek ister misiniz?";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "%PRODUCTNAME Writer ha buscado hasta el principio del documento. ¿Desea continuar desde el final?";
+//STRIP001  Message[ thai ] = "à¸„à¹‰à¸™à¸«à¸?%PRODUCTNAME Writer à¸—à¸µà¹ˆà¸ˆà¸¸à¸”à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™à¹€à¸­à¸à¸ªà¸²à¸?à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸—à¸³à¸•à¹ˆà¸­à¸—à¸µà¹ˆà¸ªà¹ˆà¸§à¸™à¸—à¹‰à¸²à¸¢à¸«à¸£à¸·à¸­à¹„à¸¡à¹?";
+//STRIP001  Message[ czech ] = "%PRODUCTNAME Writer hledal aÅ¾ na zaÄÃ¡tek dokumentu. Chcete pokraÄovat na konci?";
+//STRIP001  Message[ hebrew ] = "%PRODUCTNAME Writer hat bis zum Anfang des Dokumentes gesucht. MÃ¶chten Sie die Suche am Dokumentende fortsetzen?";
+//STRIP001  Message[ hindi ] = "%PRODUCTNAME à¤²à¥‡à¤–à¤• à¤²à¥‡à¤–à¤ªà¤¤à¥à¤?à¤•à¤¾ à¤ªà¥à¤°à¤¾à¤°à¤‚à¤?à¤¤à¤• à¤–à¥‹à¤?à¤•à¤¿à¤¯à¤¾ à¥?à¤†à¤ª à¤–à¥‹à¤?à¤•à¥‹ à¤…à¤‚à¤?à¤¸à¥‡ à¤œà¤¾à¤°à¥€ à¤°à¤–à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ ?";
+//STRIP001  Message[ slovak ] = "%PRODUCTNAME Writer hÄ¾adal aÅ¾ na zaÄiatok dokumentu. Chcete pokraÄovaÅ¥ na konci?";
+//STRIP001 };
+//STRIP001 InfoBox MSG_NO_MERGE_ENTRY
+//STRIP001 {
+//STRIP001  MESSAGE = "Es konnte nichts zusammengeführt werden." ;
+//STRIP001  MESSAGE [ English ] = "Could not merge document." ;
+//STRIP001  Message [ english_us ] = "Could not merge documents." ;
+//STRIP001  Message [ portuguese_brazilian ] = "Não foi possível mesclar os documentos." ;
+//STRIP001  Message [ swedish ] = "Inget kunde sammanföras." ;
+//STRIP001  Message [ danish ] = "Det var ikke muligt at udføre fletning." ;
+//STRIP001  Message [ italian ] = "Non ?stato possibile unire alcunch?" ;
+//STRIP001  Message [ spanish ] = "No se pudieron fusionar los documentos." ;
+//STRIP001  Message [ french ] = "Impossible de fusionner les documents." ;
+//STRIP001  Message [ dutch ] = "Er is geen samenvoeging van documenten mogelijk." ;
+//STRIP001  Message [ portuguese ] = "Foi impossível intercalar os documentos." ;
+//STRIP001  Message[ chinese_simplified ] = "æ— æ³•åˆå¹¶æ–‡æ¡£ã€?;
+//STRIP001  Message[ russian ] = "Íåâîçìîæíî îáúåäèíèòü äîêóìåíò?";
+//STRIP001  Message[ polish ] = "Nie mo¿na scali?dokumentów.";
+//STRIP001  Message[ japanese ] = "ãªã«ã‚‚çµåˆã§ãã¾ã›ã‚“ã§ã—ãŸã€?;
+//STRIP001  Message[ chinese_traditional ] = "ç„¡æ³•åˆä½µæ–‡ä»¶ã€?;
+//STRIP001  Message[ arabic ] = ".áã íãßä Ïã?Ãí?ãÓÊäÏÇ?;
+//STRIP001  Message[ greek ] = "?óõã÷şíåõóç äå?Şôáí äõíáôŞ.";
+//STRIP001  Message[ korean ] = "ë³‘í•©ì?í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
+//STRIP001  Message[ turkish ] = "Belgeler birleştirilemedi.";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "No s'han pogut fusionar els documents.";
+//STRIP001  Message[ finnish ] = "Asiakirjoja ei voitu yhdistää.";
+//STRIP001  Message[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¸œà¸ªà¸²à¸™à¹€à¸­à¸à¸ªà¸²à¸£à¹„à¸”à¹‰";
+//STRIP001  Message[ czech ] = "NenÃ­ moÅ¾nÃ© slouÄit soubory.";
+//STRIP001  Message[ hebrew ] = "Es konnte nichts zusammengefÃ¼hrt werden.";
+//STRIP001  Message[ hindi ] = "à¤²à¥‡à¤–à¤ªà¤¤à¥à¤°à¥‹à¤?à¤•à¥‹ à¤¨à¤¹à¥€à¤?à¤®à¤¿à¤²à¤¾ à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ à¥?;
+//STRIP001  Message[ slovak ] = "Nie je moÅ¾nÃ© zlÃºÄiÅ¥ sÃºbory.";
+//STRIP001 };
+//STRIP001 InfoBox MSG_ERR_INSERT_GLOS
+//STRIP001 {
+//STRIP001  MESSAGE = "AutoText konnte nicht angelegt werden." ;
+//STRIP001  MESSAGE [ English ] = "Could not insert AutoText." ;
+//STRIP001  MESSAGE [ norwegian ] = "Could not insert AutoText." ;
+//STRIP001  MESSAGE [ italian ] = "Impossibile creare voce di glossario." ;
+//STRIP001  MESSAGE [ portuguese_brazilian ] = "Não foi possível criar o AutoTexto" ;
+//STRIP001  MESSAGE [ portuguese ] = "Impossível inserir o AutoTexto." ;
+//STRIP001  MESSAGE [ finnish ] = "Automaattista teksti?ei voitu luoda." ;
+//STRIP001  MESSAGE [ danish ] = "Det var ikke muligt at oprette AutoTekst." ;
+//STRIP001  MESSAGE [ french ] = "Impossible de créer l'AutoTexte." ;
+//STRIP001  MESSAGE [ swedish ] = "AutoText kunde inte skapas." ;
+//STRIP001  MESSAGE [ dutch ] = "AutoTekst kan niet worden toegepast." ;
+//STRIP001  MESSAGE [ spanish ] = "No se pudo crear el Texto automático." ;
+//STRIP001  MESSAGE [ english_us ] = "AutoText could not be created." ;
+//STRIP001  MESSAGE[ chinese_simplified ] = "æ— æ³•å»ºç«‹è‡ªåŠ¨å›¾æ–‡é›†ã€?;
+//STRIP001  MESSAGE[ russian ] = "Íåâîçìîæíî ñîçäàò?àâòîòåêñ?";
+//STRIP001  MESSAGE[ polish ] = "Nie mo¿na utworzy?Autotekstu.";
+//STRIP001  MESSAGE[ japanese ] = "å…¥åŠ›æ”¯æ´ãŒä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€?;
+//STRIP001  MESSAGE[ chinese_traditional ] = "ç„¡æ³•å»ºç«‹è‡ªå‹•åœ–æ–‡é›†ã€?;
+//STRIP001  MESSAGE[ arabic ] = ".ÊÚĞÑ ÅÖÇİ?ÇáäÕ ÇáÊáŞÇÆí";
+//STRIP001  MESSAGE[ greek ] = "Äå?Şôáí äõíáôü?íá ğñïóôåèå?ôï áõôüìáôï êåßìåí?";
+//STRIP001  MESSAGE[ korean ] = "ìë™ í…ìŠ¤íŠ¸ë¥¼ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
+//STRIP001  MESSAGE[ turkish ] = "Otomatik metin yaratılamad?";
+//STRIP001  MESSAGE[ language_user1 ] = " ";
+//STRIP001  MESSAGE[ catalan ] = "No s'ha pogut crear el text automàtic.";
+//STRIP001  MESSAGE[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¸ªà¸£à¹‰à¸²à¸‡à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´à¹„à¸”à¹?;
+//STRIP001  MESSAGE[ czech ] = "AutomatickÃ½ text nelze vytvoÅ™it.";
+//STRIP001  MESSAGE[ hebrew ] = "AutoText konnte nicht angelegt werden.";
+//STRIP001  MESSAGE[ hindi ] = "à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥ à¤•à¥‹ à¤‰à¤¤à¥à¤ªà¤¨à¥à¤?à¤¨à¤¹à¥€à¤?à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ à¥?;
+//STRIP001  MESSAGE[ slovak ] = "AutomatickÃ½ text nie je moÅ¾nÃ© vytvoriÅ¥";
+//STRIP001 };
+//STRIP001 InfoBox MSG_ERR_SRCSTREAM
+//STRIP001 {
+//STRIP001  MESSAGE = "Der Quelltext kann nicht geladen werden." ;
+//STRIP001  MESSAGE [ English ] = "The source cannot be loaded." ;
+//STRIP001  Message [ english_us ] = "The source cannot be loaded." ;
+//STRIP001  Message [ portuguese_brazilian ] = "A origem não pode ser carregada." ;
+//STRIP001  Message [ swedish ] = "Källtexten kan inte laddas." ;
+//STRIP001  Message [ danish ] = "Kildeteksten kan ikke indlæses." ;
+//STRIP001  Message [ italian ] = "Non ?possibile caricare il testo sorgente." ;
+//STRIP001  Message [ spanish ] = "No es posible cargar el texto fuente." ;
+//STRIP001  Message [ french ] = "Le texte source ne peut pas être charg?" ;
+//STRIP001  Message [ dutch ] = "De brontekst kan niet worden geladen." ;
+//STRIP001  Message [ portuguese ] = "?impossível carregar o texto-fonte." ;
+//STRIP001  Message[ chinese_simplified ] = "æ— æ³•è£…å…¥æºæ–‡æœ¬ã€?;
+//STRIP001  Message[ russian ] = "Íåâîçìîæíî çàãğóçèò?èñõîäíûé òåêñ?";
+//STRIP001  Message[ polish ] = "Nie mo¿na za³adowa?Ÿród³a.";
+//STRIP001  Message[ japanese ] = "ã‚½ãƒ¼ã‚¹ãƒ†ã‚­ã‚¹ãƒˆã‚’èª­ã¿è¾¼ã¿ã§ãã¾ã›ã‚“ã€?;
+//STRIP001  Message[ chinese_traditional ] = "ç„¡æ³•è¼‰å…¥åŸå§‹æª”ã€?;
+//STRIP001  Message[ arabic ] = ".áÇ íãßä ÊÍãí?äÕ ÇáãÕÏÑ";
+//STRIP001  Message[ greek ] = "Äå?åßíá?äõíáôü?íá öïñôùèåß ôï êİéìåí?ğñïİëåõóçò.";
+//STRIP001  Message[ korean ] = "ì›ë³¸ì?ë¡œë“œí•?ìˆ?ì—†ìŠµë‹ˆë‹¤.";
+//STRIP001  Message[ turkish ] = "Kaynak yüklenemiyor.";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "No es pot carregar el text font";
+//STRIP001  Message[ finnish ] = "Lähdett?ei voi ladata.";
+//STRIP001  Message[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¹‚à¸«à¸¥à¸”à¹à¸«à¸¥à¹ˆà¸‡à¸—à¸µà¹ˆà¸¡à¸²à¹„à¸”à¹‰";
+//STRIP001  Message[ czech ] = "Zdroj nenÃ­ moÅ¾nÃ© naÄÃ­st.";
+//STRIP001  Message[ hebrew ] = "Der Quelltext kann nicht geladen werden.";
+//STRIP001  Message[ hindi ] = "à¤®à¥‚à¤?à¤•à¥‹ à¤²à¥‹à¤¡à¤¼ à¤¨à¤¹à¥€à¤?à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ à¥?;
+//STRIP001  Message[ slovak ] = "Zdroj nie je moÅ¾nÃ© naÄÃ­taÅ¥.";
+//STRIP001 };
+//STRIP001 InfoBox MSG_ERR_NO_FAX
+//STRIP001 {
+//STRIP001  MESSAGE = "Kein Fax-Drucker unter Extras/Optionen/%1/Drucken eingestellt." ;
+//STRIP001  MESSAGE [ English ] = "No fax printer at Settings/Options/%1/Printer configured." ;
+//STRIP001  Message [ dutch ] = "Geen faxprinter geconfigureerd onder: Extra/Opties/%1/Afdrukken." ;
+//STRIP001  Message [ english_us ] = "No fax printer has been set under Tools/Options/%1/Print." ;
+//STRIP001  Message [ italian ] = "Nessuna stampante-fax installata in Strumenti/Opzioni/%1/Stampa." ;
+//STRIP001  Message [ spanish ] = "En Herramientas/Opciones/%1/Imprimir no se ha configurado ninguna impresora fax." ;
+//STRIP001  Message [ french ] = "Aucune imprimante fax n'a ét?paramétrée sous Outils/Options/%1/Impression." ;
+//STRIP001  Message [ swedish ] = "Ingen faxskrivare har ställts in under Verktyg/Alternativ/%1/Skriv ut." ;
+//STRIP001  Message [ danish ] = "Der er ikke indstillet nogen faxprinter under Funktioner/Indstillinger/%1/Udskriv." ;
+//STRIP001  Message [ portuguese_brazilian ] = "Não foi configurada nenhuma impressora para Fax em Ferramentas/Opções/%1/Imprimir." ;
+//STRIP001  Message [ portuguese ] = "Não foi configurada nenhuma impressora para fax em Ferramentas/Opções/%1/Imprimir." ;
+//STRIP001  Message[ polish ] = "Nie ustawiono drukarki faksu (Narzêdzia/Opcje/%1/Drukuj).";
+//STRIP001  Message[ turkish ] = "Tools/Options/%1/Print altında tanıml?faks yoktur.";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ russian ] = "?Ñåğâèñ/Ïàğàìåòğ?%1/Ôàêñ-ïğèíòå?íå óñòàíîâëåí.";
+//STRIP001  Message[ greek ] = "Äå?İ÷åé ïñéóôå?åêôõğùôŞ?ãé?öá?óô?äéáäñïìŞ Åñãáëåßá/Åğéëïãİò/%1/Åêôığùóç.";
+//STRIP001  Message[ japanese ] = "ãƒ„ãƒ¼ãƒ?â†?ã‚ªãƒ—ã‚·ãƒ§ãƒ?â†?%1 â†?å°åˆ·ã?Fax ãƒ—ãƒªãƒ³ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€?;
+//STRIP001  Message[ korean ] = "ë„êµ¬ -> ì˜µì…˜ -> %1 -> ì¸ì‡„ì—ì„œ íŒ©ìŠ¤ í”„ë¦°í„°ê°€ ì„¤ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹?";
+//STRIP001  Message[ chinese_simplified ] = "åœ¨å·¥å…?é€‰é¡¹/%1/æ‰“å°æœºå¤„æ²¡æœ‰è®¾å®šä¼ çœŸæ‰“å°æœºã€?;
+//STRIP001  Message[ chinese_traditional ] = "åœ¨å·¥å…?é¸é …/%1/æ©Ÿå°è¡¨æ©Ÿè™•æ²’æœ‰è¨­å®šåˆ—å°å‚³çœŸçš„é©…å‹•ç¨‹å¼ã€?;
+//STRIP001  Message[ arabic ] = "áíÓÊ åäÇß ÅÚÏÇÏÇ?ØÇÈÚ?İÇßÓ ÊÍ?\"ÃÏæÇ?ÎíÇÑÇÊ/%1/ØÈÇÚÉ\".";
+//STRIP001  Message[ catalan ] = "No s'ha definit cap impressora fax a Eines/Opcions/%1/Imprimeix.";
+//STRIP001  Message[ finnish ] = "Faksitulostinta ei ole määritetty kohdassa Työkalut/Asetukset/%1/Tulostus.";
+//STRIP001  Message[ thai ] = "à¹„à¸¡à¹ˆà¹„à¸”à¹‰à¸à¸³à¸«à¸™à¸”à¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡à¸à¸´à¸¡à¸à¹Œà¹‚à¸—à¸£à¸ªà¸²à¸£à¸ à¸²à¸¢à¹ƒà¸•à¹‰à¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡à¸¡à¸·à¸?à¸•à¸±à¸§à¹€à¸¥à¸·à¸­à¸/%1/à¸à¸´à¸¡à¸à¹?;
+//STRIP001  Message[ czech ] = "V nastavenÃ­ NÃ¡stroje/Volby/%1/Tisk nebyla urÄena faxovÃ¡ tiskÃ¡rna.";
+//STRIP001  Message[ hebrew ] = "Kein Fax-Drucker unter Extras/Optionen/%1/Drucken eingestellt.";
+//STRIP001  Message[ hindi ] = "à¤”à¤œà¤¼à¤¾à¤?à¤µà¤¿à¤•à¤²à¥à¤ª/%1/à¤›à¤ªà¤¾à¤ˆ à¤•à¥‡ à¤¨à¥€à¤šà¥‡ à¤•à¥‹à¤?à¤«à¥‰à¤•à¥à¤?à¤®à¥à¤¦à¥à¤°à¤• à¤•à¥‹ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤?à¤¨à¤¹à¥€à¤?à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥?;
+//STRIP001  Message[ slovak ] = "V nastavenÃ­ NÃ¡stroje/MoÅ¾nosti/%1/TlaÄ nebola urÄenÃ¡ faxovÃ¡ tlaÄiareÅˆ.";
+//STRIP001 };
+String STR_WEBOPTIONS
+{
+    TEXT = "HTML-Dokument" ;
+    TEXT [ English ] = "HTML document" ;
+    TEXT[ english_us ] = "HTML document";
+    TEXT[ portuguese ] = "Documento HTML";
+    TEXT[ russian ] = "Âåá-ñòğàíèöà";
+    TEXT[ greek ] = "¸ããñáöï HTML";
+    TEXT[ dutch ] = "HTML-document";
+    TEXT[ french ] = "Document HTML";
+    TEXT[ spanish ] = "Documento HTML";
+    TEXT[ italian ] = "Documento HTML";
+    TEXT[ danish ] = "HTML-dokument";
+    TEXT[ swedish ] = "HTML-dokument";
+    TEXT[ polish ] = "Dokument HTML";
+    TEXT[ portuguese_brazilian ] = "Documento HTML";
+    TEXT[ japanese ] = "HTML å½¢å¼ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ";
+    TEXT[ korean ] = "HTML ë¬¸ì„œ";
+    TEXT[ chinese_simplified ] = "HTML æ–‡æ¡£";
+    TEXT[ chinese_traditional ] = "HTML æ–‡ä»¶";
+    TEXT[ turkish ] = "HTML belgesi";
+    TEXT[ arabic ] = "HTML ãÓÊäÏ";
+    TEXT[ catalan ] = "Document HTML";
+    TEXT[ finnish ] = "HTML-asiakirja";
+    TEXT[ thai ] = "à¹€à¸­à¸à¸ªà¸²à¸£ HTML ";
+    TEXT[ czech ] = "HTML dokument";
+    TEXT[ hebrew ] = "â€®××¡××š LMTHâ€¬";
+    TEXT[ hindi ] = "HTML à¤²à¥‡à¤–à¤ªà¤¤à¥à¤°";
+    TEXT[ slovak ] = "HTML dokument";
+};
+String STR_TEXTOPTIONS
+{
+    TEXT = "Textdokument" ;
+    TEXT [ English ] = "Text document" ;
+    TEXT[ english_us ] = "Text document";
+    TEXT[ portuguese ] = "Documento de texto";
+    TEXT[ russian ] = "Òåêñòîâûé äîêóìåíò";
+    TEXT[ greek ] = "¸ããñáöï êåéìİíïõ";
+    TEXT[ dutch ] = "Tekstdocument";
+    TEXT[ french ] = "Document texte";
+    TEXT[ spanish ] = "Documento de texto";
+    TEXT[ italian ] = "Documento di testo";
+    TEXT[ danish ] = "Tekstdokument";
+    TEXT[ swedish ] = "Textdokument";
+    TEXT[ polish ] = "Dokument tekstowy";
+    TEXT[ portuguese_brazilian ] = "Documento de texto";
+    TEXT[ japanese ] = "æ–‡æ›¸ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ";
+    TEXT[ korean ] = "í…ìŠ¤íŠ¸ ë¬¸ì„œ";
+    TEXT[ chinese_simplified ] = "æ–‡å­—æ–‡æ¡£";
+    TEXT[ chinese_traditional ] = "æ–‡å­—æ–‡ä»¶";
+    TEXT[ turkish ] = "Metin belgesi";
+    TEXT[ arabic ] = "ãÓÊäÏ äÕ";
+    TEXT[ catalan ] = "Document de text";
+    TEXT[ finnish ] = "Tekstiasiakirja";
+    TEXT[ thai ] = "à¹€à¸­à¸à¸ªà¸²à¸£à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡";
+    TEXT[ czech ] = "TextovÃ½ dokument";
+    TEXT[ hebrew ] = "â€®××¡××šâ€¬";
+    TEXT[ hindi ] = "à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥ à¤²à¥‡à¤–à¤ªà¤¤à¥à¤°";
+    TEXT[ slovak ] = "TextovÃ½ dokument";
+};
+//STRIP001 InfoBox MSG_NOT_FOUND
+//STRIP001 {
+//STRIP001  Message = "Suchbegriff nicht gefunden." ;
+//STRIP001  Message [ ENGLISH ] = "Search pattern not found." ;
+//STRIP001  Message [ norwegian ] = "Søkekriterier ikke funnet." ;
+//STRIP001  Message [ italian ] = "Termine non trovato" ;
+//STRIP001  Message [ portuguese_brazilian ] = "A chave da pesquisa não foi encontrada." ;
+//STRIP001  Message [ portuguese ] = "Impossível encontrar expressão procurada." ;
+//STRIP001  Message [ finnish ] = "Etsittävää ei löytynyt." ;
+//STRIP001  Message [ danish ] = "Søgningen gav intet resultat." ;
+//STRIP001  Message [ french ] = "Terme recherch?introuvable !" ;
+//STRIP001  Message [ swedish ] = "Sökord hittades inte." ;
+//STRIP001  Message [ dutch ] = "Zoekbegrip niet gevonden." ;
+//STRIP001  Message [ spanish ] = "No se encontr?la expresión buscada." ;
+//STRIP001  Message [ english_us ] = "Search key not found." ;
+//STRIP001  Message[ chinese_simplified ] = "æ²¡æœ‰æ‰¾åˆ°æ‰€è¦æœå¯»æ¡ç›®ã€?;
+//STRIP001  Message[ russian ] = "Ñëîâ?íå íàéäåí?";
+//STRIP001  Message[ polish ] = "Nie znaleziono szukanego has³a.";
+//STRIP001  Message[ japanese ] = "æ¤œç´¢ã‚­ãƒ¼ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€?;
+//STRIP001  Message[ chinese_traditional ] = "æ²’æœ‰æ‰¾åˆ°æ‰€è¦æœå°‹çš„æ¢ç›®ã€?;
+//STRIP001  Message[ arabic ] = "ÊÚĞÑ ÇáÚËæÑ Úá?ÇáÈíÇäÇÊ ÇáÊí ÊÈÍË ÚäåÇ.";
+//STRIP001  Message[ greek ] = "Äå?âñİèçêáí ôá äåäïìİíá ğï?áíáæçôÜô?";
+//STRIP001  Message[ korean ] = "ê²€ìƒ?í‚¤ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
+//STRIP001  Message[ turkish ] = "Arama terimi bulunamad?";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "No s'ha trobat la clau de cerca.";
+//STRIP001  Message[ thai ] = "à¸„à¹‰à¸™à¸«à¸²à¸à¸¸à¸à¹à¸ˆà¹„à¸¡à¹ˆà¸à¸?;
+//STRIP001  Message[ czech ] = "HledanÃ© klÃ­ÄovÃ© slovo nenalezeno.";
+//STRIP001  Message[ hebrew ] = "Suchbegriff nicht gefunden.";
+//STRIP001  Message[ hindi ] = "à¤–à¥‹à¤?à¤•à¥€ à¤¨à¤¹à¥€à¤?à¤®à¤¿à¤²à¤¾ à¥?;
+//STRIP001  Message[ slovak ] = "HÄ¾adanÃ© kÄ¾ÃºÄovÃ© slovo nenÃ¡jdenÃ©";
+//STRIP001 };
+//STRIP001 InfoBox MSG_INDEX_OVERFLOW
+//STRIP001 {
+//STRIP001  Message = " gefunden." ;
+//STRIP001  Message [ ENGLISH ] = "Search pattern not found." ;
+//STRIP001  Message [ norwegian ] = "Søkekriterier ikke funnet." ;
+//STRIP001  Message [ italian ] = "Termine non trovato" ;
+//STRIP001  Message [ portuguese_brazilian ] = "localizado" ;
+//STRIP001  Message [ portuguese ] = "localizado." ;
+//STRIP001  Message [ finnish ] = "löytynyt." ;
+//STRIP001  Message [ danish ] = "fundet." ;
+//STRIP001  Message [ french ] = "trouv?e/s)." ;
+//STRIP001  Message [ swedish ] = "funnet." ;
+//STRIP001  Message [ dutch ] = "gevonden." ;
+//STRIP001  Message [ spanish ] = "encontrado." ;
+//STRIP001  Message [ english_us ] = "found." ;
+//STRIP001  Message[ chinese_simplified ] = "æ‰¾åˆ°ã€?;
+//STRIP001  Message[ russian ] = "íàéäåí.";
+//STRIP001  Message[ polish ] = "znaleziono.";
+//STRIP001  Message[ japanese ] = "è¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€?;
+//STRIP001  Message[ chinese_traditional ] = "æ‰¾åˆ°ã€?;
+//STRIP001  Message[ arabic ] = ".æÌöÏ ";
+//STRIP001  Message[ greek ] = "âñİèçê?";
+//STRIP001  Message[ korean ] = "ì°¾ì•˜ìŠµë‹ˆë‹?";
+//STRIP001  Message[ turkish ] = "bulundu.";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "trobat.";
+//STRIP001  Message[ thai ] = "à¸à¸š";
+//STRIP001  Message[ czech ] = "nalezeno.";
+//STRIP001  Message[ hebrew ] = " gefunden.";
+//STRIP001  Message[ hindi ] = "à¤®à¤¿à¤²à¤¾  à¥?;
+//STRIP001  Message[ slovak ] = "nÃ¡jdenÃ©.";
+//STRIP001 };
+//STRIP001 InfoBox MSG_SCAN_NOSOURCE
+//STRIP001 {
+//STRIP001  Message = "Quelle nicht gesetzt." ;
+//STRIP001  Message [ ENGLISH ] = "Source not set." ;
+//STRIP001  Message [ english_us ] = "Source not specified." ;
+//STRIP001  Message [ swedish ] = "Källa är inte specificerad." ;
+//STRIP001  Message [ danish ] = "Kilden er ikke specifiseret." ;
+//STRIP001  Message [ italian ] = "Sorgente non specificata." ;
+//STRIP001  Message [ spanish ] = "No se especific?la fuente." ;
+//STRIP001  Message [ french ] = "Source non définie." ;
+//STRIP001  Message [ dutch ] = "Bron niet gedefinieerd." ;
+//STRIP001  Message [ portuguese_brazilian ] = "Origem não especificada." ;
+//STRIP001  Message [ portuguese ] = "Fonte não especificada." ;
+//STRIP001  Message[ chinese_simplified ] = "æ²¡æœ‰æŒ‡å®šæºã€?;
+//STRIP001  Message[ russian ] = "Èñòî÷íèê íå óêàçàí";
+//STRIP001  Message[ polish ] = "Nie okreœlono Ÿród³a.";
+//STRIP001  Message[ japanese ] = "ã‚½ãƒ¼ã‚¹ãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€?;
+//STRIP001  Message[ chinese_traditional ] = "æ²’æœ‰å®šç¾©ä¾†æºã€?;
+//STRIP001  Message[ arabic ] = ".áã íÊ?ÊÍÏí?ÇáãÕÏÑ";
+//STRIP001  Message[ greek ] = "Äå?ïñßóôçêå ?ğñïİëåõó?";
+//STRIP001  Message[ korean ] = "ì›ë³¸ì?ì§€ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹?";
+//STRIP001  Message[ turkish ] = "Kaynak belirtilmedi.";
+//STRIP001  Message[ language_user1 ] = " ";
+//STRIP001  Message[ catalan ] = "No s'ha indicat la font.";
+//STRIP001  Message[ finnish ] = "Lähdett?ei määritetty.";
+//STRIP001  Message[ thai ] = "à¹„à¸¡à¹ˆà¸£à¸°à¸šà¸¸à¹à¸«à¸¥à¹ˆà¸‡à¸—à¸µà¹ˆà¸¡à¸?;
+//STRIP001  Message[ czech ] = "Zdroj nenÃ­ urÄen.";
+//STRIP001  Message[ hebrew ] = "Quelle nicht gesetzt.";
+//STRIP001  Message[ hindi ] = "à¤®à¥‚à¤?à¤•à¥‹ à¤¨à¤¿à¤°à¥à¤¦à¤¿à¤·à¥à¤?à¤¨à¤¹à¥€à¤?à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥?;
+//STRIP001  Message[ slovak ] = "Zdroj nie je urÄenÃ½";
+//STRIP001 };
+String STR_NOGLOS1
+{
+    TEXT = "AutoText zum Kürzel '" ;
+    TEXT [ English ] = "AutoText for Short Name '" ;
+    TEXT [ norwegian ] = "AutoText for Short Name '" ;
+    TEXT [ italian ] = "Testo automatico per la sigla '" ;
+    TEXT [ portuguese_brazilian ] = "AutoTexto para Atalho" ;
+    TEXT [ portuguese ] = "AutoTexto para abreviatura '" ;
+    TEXT [ finnish ] = "Automaattista tekstiä pikavalinnalle" ;
+    TEXT [ danish ] = "AutoTekst til genvej '" ;
+    TEXT [ french ] = "AutoTexte pour raccourci ' " ;
+    TEXT [ swedish ] = "AutoText för genväg '" ;
+    TEXT [ dutch ] = "AutoTekst voor afkortingen '" ;
+    TEXT [ spanish ] = "Texto automático para la abreviatura '" ;
+    TEXT [ english_us ] = "AutoText for Shortcut '" ;
+    TEXT[ chinese_simplified ] = "è‡ªåŠ¨å›¾æ–‡é›†ç¼©å†™ '";
+    TEXT[ russian ] = "Àâòîòåêñò ê ñîêğàùåíèş '";
+    TEXT[ polish ] = "Autotekst skrótu '";
+    TEXT[ japanese ] = "å…¥åŠ›æ”¯æ´ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã€Œ";
+    TEXT[ chinese_traditional ] = "è‡ªå‹•åœ–æ–‡é›†ç¸®å¯«<";
+    TEXT[ arabic ] = "äÕ ÇáÊáŞÇÆí ááÇÎÊÕÇÑ '";
+    TEXT[ greek ] = "Áõôüìáôï êåßìåíï ãéá ôá áñ÷éêÜ '";
+    TEXT[ korean ] = "ìë™ í…ìŠ¤íŠ¸ ë°”ë¡œ ê°€ê¸° '";
+    TEXT[ turkish ] = "Otomatik metin kısayolu '";
+    TEXT[ language_user1 ] = " ";
+    TEXT[ catalan ] = "El text automàtic per a la drecera '";
+    TEXT[ thai ] = "à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´à¸ªà¸³à¸«à¸£à¸±à¸šà¹€à¸›à¹‡à¸™à¸—à¸²à¸‡à¸¥à¸±à¸” '";
+    TEXT[ czech ] = "AutomatickÃ½ text pro zkratku '";
+    TEXT[ hebrew ] = "AutoText zum KÃ¼rzel '";
+    TEXT[ hindi ] = "à¤¸à¤°à¤² à¤µà¤¿à¤§à¤¿ à¤•à¥‡à¤²à¤¿à¤ à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥ '";
+    TEXT[ slovak ] = "AutomatickÃ½ text pre skratku '";
+};
+String STR_NOGLOS2
+{
+    /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
+    /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
+    /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
+    /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
+    TEXT = "' nicht gefunden." ;
+    TEXT [ English ] = "' not found." ;
+    TEXT [ norwegian ] = "' not found." ;
+    TEXT [ italian ] = "' non trovato." ;
+    TEXT [ portuguese_brazilian ] = " não encontrado." ;
+    TEXT [ portuguese ] = "' não encontrado." ;
+    TEXT [ finnish ] = "ei löydy." ;
+    TEXT [ danish ] = "'blev ikke fundet." ;
+    TEXT [ french ] = "' est introuvable." ;
+    TEXT [ swedish ] = "' hittades inte." ;
+    TEXT [ dutch ] = "' niet gevonden." ;
+    TEXT [ spanish ] = "' no se encontró." ;
+    TEXT [ english_us ] = "' not found." ;
+    TEXT[ chinese_simplified ] = "' æ²¡æœ‰è¢«æ‰¾åˆ°ã€‚";
+    TEXT[ russian ] = " íå íàéäåí.";
+    TEXT[ polish ] = "' nie znaleziono.";
+    TEXT[ japanese ] = "ã€ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚";
+    TEXT[ chinese_traditional ] = ">æ²’æœ‰æ‰¾åˆ°ã€‚";
+    TEXT[ arabic ] = "áã íõÚËÑ Úáíå '";
+    TEXT[ greek ] = "' äåí âñİèçêå.";
+    TEXT[ korean ] = "' ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.";
+    TEXT[ turkish ] = "' bulunamadı.";
+    TEXT[ language_user1 ] = " ";
+    TEXT[ catalan ] = "' no s'ha trobat.";
+    TEXT[ thai ] = "' à¹„à¸¡à¹ˆà¸à¸š";
+    TEXT[ czech ] = "' nenalezen.";
+    TEXT[ hebrew ] = "' nicht gefunden.";
+    TEXT[ hindi ] = "' à¤¨à¤¹à¥€à¤‚ à¤®à¤¿à¤²à¤¾ à¥¤";
+    TEXT[ slovak ] = "' nenÃ¡jdenÃ½.";
+};
+String STR_NUM_LEVEL
+{
+    TEXT = "Ebene " ;
+    TEXT [ English ] = "Level " ;
+    Text [ dutch ] = "Niveau" ;
+    Text [ english_us ] = "Level " ;
+    Text [ italian ] = "Livello " ;
+    Text [ spanish ] = "Nivel  " ;
+    Text [ french ] = "Niveau " ;
+    Text [ swedish ] = "Nivå " ;
+    Text [ danish ] = "Niveau " ;
+    Text [ portuguese_brazilian ] = "Nível" ;
+    Text [ portuguese ] = "Nível " ;
+    Text[ chinese_simplified ] = "çº§ ";
+    Text[ russian ] = "Óğîâåíü  ";
+    Text[ polish ] = "Poziom  ";
+    Text[ japanese ] = "ãƒ¬ãƒ™ãƒ« ";
+    Text[ chinese_traditional ] = "ç´š ";
+    Text[ arabic ] = "ÇáãÓÊæì";
+    Text[ greek ] = "Åğßğåäï ";
+    Text[ korean ] = "ìˆ˜ì¤€ ";
+    Text[ turkish ] = "Düzey ";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Nivell ";
+    Text[ finnish ] = "Taso ";
+    Text[ thai ] = "à¸£à¸°à¸”à¸±à¸š ";
+    Text[ czech ] = "ÃšroveÅˆ ";
+    Text[ hebrew ] = "Ebene";
+    Text[ hindi ] = "à¤¸à¥à¤¤à¤°";
+    Text[ slovak ] = "ÃšroveÅˆ ";
+};
+String STR_ERROR_NOLANG
+{
+    TEXT = "Im geprüften Bereich ist keine Sprache eingestellt." ;
+    TEXT [ English ] = "No language choosed in checked region." ;
+    TEXT [ norwegian ] = "Språk ikke valgt i kontrollert område." ;
+    TEXT [ italian ] = "Nell'area verificata non è stata impostata nessuna lingua." ;
+    TEXT [ portuguese_brazilian ] = "Nenhum idioma foi selecionado na seção verificada." ;
+    TEXT [ portuguese ] = "Na secção verificada não existe nenhuma língua definida." ;
+    TEXT [ finnish ] = "Tarkistettavassa osassa ei ole valittu kieltä." ;
+    TEXT [ danish ] = "Der er ikke angivet et sprog i det kontrollerede område." ;
+    TEXT [ french ] = "Aucune langue choisie pour région définie." ;
+    TEXT [ swedish ] = "Inget språk är inställt i det kontrollerade området." ;
+    TEXT [ dutch ] = "In gecontroleerd bereik is geen taal vastgelegd." ;
+    TEXT [ spanish ] = "No se ha seleccionado ningún idioma para la sección controlada." ;
+    TEXT [ english_us ] = "No language is selected in the proofed section." ;
+    TEXT[ chinese_simplified ] = "åœ¨æ£€æŸ¥çš„åŒºåŸŸå†…æ²¡æœ‰é€‰ä¸­ä»»ä½•è¯­è¨€ã€‚";
+    TEXT[ russian ] = "Â ïğîâåğåííîì ğàçäåëå ÿçûê íå óñòàíîâëåí.";
+    TEXT[ polish ] = "W sprawdzanej sekcji nie ustawiono jêzyka.";
+    TEXT[ japanese ] = "ãƒã‚§ãƒƒã‚¯ã—ãŸç¯„å›²ã«ã¯è¨€èªãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚";
+    TEXT[ chinese_traditional ] = "åœ¨å·²ç¶“æª¢æŸ¥çš„å€åŸŸå…§æ²’æœ‰è¨­å®šä»»ä½•ä¸€å€‹èªè¨€ã€‚";
+    TEXT[ arabic ] = ".áã íÊã ÊÍÏíÏ ÃíÉ áÛÉ İí ÇáäØÇŞ ÇáãÏŞŞ İíå";
+    TEXT[ greek ] = "Äåí ïñßóôçêå ãëşóóá ãéá ôçí åëåã÷üìåíç åíüôçôá.";
+    TEXT[ korean ] = "ê²€ìƒ‰ëœ êµ¬ì—­ì—ëŠ” ì„¤ì •ëœ ì–¸ì–´ê°€ ì—†ìŠµë‹ˆë‹¤.";
+    TEXT[ turkish ] = "Denetlenen bölümde dil seçilmedi.";
+    TEXT[ language_user1 ] = " ";
+    TEXT[ catalan ] = "No s'ha seleccionat cap idioma en l'àrea revisada.";
+    TEXT[ thai ] = "à¹„à¸¡à¹ˆà¹„à¸”à¹‰à¹€à¸¥à¸·à¸­à¸à¸ à¸²à¸©à¸²à¹ƒà¸™à¸ªà¹ˆà¸§à¸™à¸—à¸µà¹ˆà¸à¸´à¸ªà¸¹à¸ˆà¸™à¹Œà¹à¸¥à¹‰à¸§";
+    TEXT[ czech ] = "NenÃ­ zvolen jazyk kontrolovanÃ© oblasti.";
+    TEXT[ hebrew ] = "Im geprÃ¼ften Bereich ist keine Sprache eingestellt.";
+    TEXT[ hindi ] = "à¤ªà¥à¤°à¤®à¤¾à¤£à¤¿à¤¤ à¤•à¥€ à¤¹à¥à¤¯à¥€ à¤µà¤¿à¤­à¤¾à¤— à¤®à¥‡à¤‚ à¤•à¥‹à¤ˆ à¤­à¤¾à¤·à¤¾ à¤•à¥‹ à¤¨à¤¹à¥€à¤‚ à¤šà¥à¤¨à¤¾ à¥¤";
+    TEXT[ slovak ] = "Nie je zvolenÃ½ jazyk kontrolovanej oblasti.";
+};
+String STR_EDIT_FOOTNOTE
+{
+    TEXT = "Fußnote bearbeiten" ;
+    TEXT [ ENGLISH ] = "Edit footnote" ;
+    TEXT [ norwegian ] = "Redigerer fotnote" ;
+    TEXT [ italian ] = "Modifica nota a piè pagina" ;
+    TEXT [ portuguese_brazilian ] = "Editar Nota de Rodapé" ;
+    TEXT [ portuguese ] = "Editar nota de rodapé" ;
+    TEXT [ finnish ] = "Muokkaa alaviitettä" ;
+    TEXT [ danish ] = "Rediger fodnote" ;
+    TEXT [ french ] = "Édition de note de bas de page" ;
+    TEXT [ swedish ] = "Redigera fotnot" ;
+    TEXT [ dutch ] = "Voetnoot bewerken" ;
+    TEXT [ spanish ] = "Editar nota al pie" ;
+    TEXT [ english_us ] = "Edit Footnote" ;
+    TEXT[ chinese_simplified ] = "ç¼–è¾‘æ³¨è„š";
+    TEXT[ russian ] = "Ïğàâêà ñíîñîê";
+    TEXT[ polish ] = "Edytuj przypis dolny";
+    TEXT[ japanese ] = "è„šæ³¨ã®ç·¨é›†";
+    TEXT[ chinese_traditional ] = "ç·¨è¼¯è¨»è…³";
+    TEXT[ arabic ] = "ÊÍÑíÑ ÍÇÔíÉ ÓİáíÉ";
+    TEXT[ greek ] = "Åğåîåñãáóßá õğïóçìåßùóçò";
+    TEXT[ korean ] = "ê°ì£¼ í¸ì§‘";
+    TEXT[ turkish ] = "Dipnotu düzenle";
+    TEXT[ language_user1 ] = " ";
+    TEXT[ catalan ] = "Edita la nota al peu";
+    TEXT[ thai ] = "à¹à¸à¹‰à¹„à¸‚à¹€à¸Šà¸´à¸‡à¸­à¸£à¸£à¸–";
+    TEXT[ czech ] = "Upravit poznÃ¡mku pod Äarou";
+    TEXT[ hebrew ] = "FuÃŸnote bearbeiten";
+    TEXT[ hindi ] = "à¤ªà¥ƒà¤·à¥à¤  à¤•à¥‡ à¤¨à¥€à¤šà¥‡ à¤•à¥€ à¤Ÿà¥€à¤•à¤¾ à¤•à¤¾ à¤¸à¤‚à¤ªà¤¾à¤¦à¤¨";
+    TEXT[ slovak ] = "UpraviÅ¥ poznÃ¡mku pod Äiarou";
+};
+String STR_NB_REPLACED
+{
+    Text = "Suchbegriff XXmal ersetzt." ;
+    Text [ ENGLISH ] = "Search pattern replaced XX times." ;
+    Text [ norwegian ] = "Søkekriterier erstattet XX ganger." ;
+    Text [ italian ] = "Testo sostituito XX volte" ;
+    Text [ portuguese_brazilian ] = "A chave da pesquisa foi substituída XX vezes." ;
+    Text [ portuguese ] = "Expressão procurada substituída XX vezes." ;
+    Text [ finnish ] = "Etsittävä korvattu XX kertaa." ;
+    Text [ danish ] = "Søgeord erstattet XX gange." ;
+    Text [ french ] = "Le terme recherché a été remplacé XX fois." ;
+    Text [ swedish ] = "Sökord ersatt XX gånger." ;
+    Text [ dutch ] = "Zoekbegrip XX keer vervangen." ;
+    Text [ spanish ] = "La expresión buscada ha sido reemplazada XX veces." ;
+    Text [ english_us ] = "Search key replaced XX times." ;
+    Text[ chinese_simplified ] = "æœå¯»æ¡ç›®è¢« XX æ¬¡æ›¿æ¢ã€‚";
+    Text[ russian ] = "Èñêîìîå ñëîâî çàìåíåíî XX ğàç.";
+    Text[ polish ] = "Szukane has³o zast¹piono XX razy.";
+    Text[ japanese ] = "XX å€‹ã®æ¤œç´¢ã‚­ãƒ¼ãŒç½®æ›ã•ã‚Œã¾ã—ãŸã€‚";
+    Text[ chinese_traditional ] = "æœå°‹é …ç›®è¢« XX æ¬¡ä»£æ›¿ã€‚";
+    Text[ arabic ] = "Êã ÇÓÊÈÏÇá ÈíÇäÇÊ ÇáÈÍË ××× ãÑÉ.";
+    Text[ greek ] = "Ôï áíáæçôïıìåíï óôïé÷åßï áíôéêáôáóôÜèçêå XX öïñİò.";
+    Text[ korean ] = "ê²€ìƒ‰ í‚¤ê°€ XXë²ˆ ë°”ë€Œì—ˆìŠµë‹ˆë‹¤.";
+    Text[ turkish ] = "Arama terimi XX kez değiştirildi.";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "La clau de cerca ha estat reemplaçada XX vegades.";
+    Text[ thai ] = "à¸„à¹‰à¸™à¸«à¸²à¸à¸¸à¸à¹à¸ˆà¹à¸—à¸™à¸—à¸µà¹ˆ XX à¸„à¸£à¸±à¹‰à¸‡";
+    Text[ czech ] = "HledanÃ© klÃ­ÄovÃ© slovo bylo XX-krÃ¡t nahrazeno.";
+    Text[ hebrew ] = "Suchbegriff XXmal ersetzt.";
+    Text[ hindi ] = "à¤–à¥‹à¤œ à¤•à¥€ à¤•à¥‹ XX à¤¬à¤¾à¤° à¤ªà¥à¤°à¤¤à¤¿à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤ à¤•à¤¿à¤¯à¤¾ à¥¤";
+    Text[ slovak ] = "HÄ¾adanÃ© kÄ¾ÃºÄovÃ© slovo bolo nahradenÃ© XX-krÃ¡t.";
+};
+String RID_TOOLS_TOOLBOX
+{
+    Text = "Werkzeugleiste" ;
+    Text [ English ] = "Toolbar" ;
+    Text [ english_us ] = "Main Toolbar" ;
+    Text [ italian ] = "Barra degli strumenti" ;
+    Text [ spanish ] = "Barra de herramientas" ;
+    Text [ french ] = "Barre d'instruments" ;
+    Text [ dutch ] = "Werktuigbalk" ;
+    Text [ swedish ] = "Verktygslist" ;
+    Text [ danish ] = "Værktøjslinje" ;
+    Text [ portuguese ] = "Barra de ferramentas" ;
+    Text [ portuguese_brazilian ] = "Barra de Ferramentas Principal" ;
+    Text[ chinese_simplified ] = "ä¸»å·¥å…·æ ";
+    Text[ russian ] = "Ïàíåëü èíñòğóìåíòîâ";
+    Text[ polish ] = "G³ówny pasek narzêdzi";
+    Text[ japanese ] = "æ¨™æº–ãƒ„ãƒ¼ãƒ«ãƒãƒ¼";
+    Text[ chinese_traditional ] = "ä¸»å·¥å…·åˆ—";
+    Text[ arabic ] = "ÔÑíØ ÇáÃÏæÇÊ";
+    Text[ greek ] = "Êıñéá ãñáììŞ åñãáëåßùí";
+    Text[ korean ] = "ì£¼ ë„êµ¬ ëª¨ìŒ";
+    Text[ turkish ] = "Ana araç çubuğu";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Barra d'eines principal";
+    Text[ finnish ] = "Päätyökalurivi";
+    Text[ thai ] = "à¹à¸–à¸šà¹€à¸„à¸£à¸·à¹ˆà¸­à¸‡à¸¡à¸·à¸­à¸«à¸¥à¸±à¸";
+    Text[ czech ] = "HlavnÃ­ panel nÃ¡strojÅ¯";
+    Text[ hebrew ] = "â€®×¡×¨×’×œ ×¨××©×™â€¬";
+    Text[ hindi ] = "à¤®à¥à¤–à¥à¤¯ à¤”à¤œà¤¼à¤¾à¤° à¤ªà¤Ÿà¥à¤Ÿà¥€";
+    Text[ slovak ] = "HlavnÃ½ panel nÃ¡strojov";
+};
+String STR_SRCVIEW_ROW
+{
+    Text = "Zeile " ;
+    Text [ English ] = "Row " ;
+    Text [ norwegian ] = "Rad " ;
+    Text [ italian ] = "Riga " ;
+    Text [ portuguese_brazilian ] = "Linha " ;
+    Text [ portuguese ] = "Linha " ;
+    Text [ finnish ] = "Rivi " ;
+    Text [ danish ] = "Række " ;
+    Text [ french ] = "Ligne " ;
+    Text [ swedish ] = "Rad  " ;
+    Text [ dutch ] = "Rij" ;
+    Text [ spanish ] = "Fila  " ;
+    Text [ english_us ] = "Row " ;
+    Text[ chinese_simplified ] = "è¡Œ ";
+    Text[ russian ] = "Ñòğîêà  ";
+    Text[ polish ] = "Wiersz  ";
+    Text[ japanese ] = "è¡Œ ";
+    Text[ chinese_traditional ] = "è¡Œ ";
+    Text[ arabic ] = "Õİ";
+    Text[ greek ] = "ÃñáììŞ ";
+    Text[ korean ] = "í–‰ ";
+    Text[ turkish ] = "Satır ";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Fila ";
+    Text[ thai ] = "à¹à¸–à¸§ ";
+    Text[ czech ] = "Å˜Ã¡dek ";
+    Text[ hebrew ] = "Zeile";
+    Text[ hindi ] = "à¤ªà¤‚à¤•à¥à¤¤à¤¿";
+    Text[ slovak ] = "Riadok ";
+};
+String STR_SRCVIEW_COL
+{
+    Text = "Spalte " ;
+    Text [ English ] = "Column " ;
+    Text [ norwegian ] = "Kolonne " ;
+    Text [ italian ] = "Colonna " ;
+    Text [ portuguese_brazilian ] = "Coluna " ;
+    Text [ portuguese ] = "Coluna " ;
+    Text [ finnish ] = "Palsta " ;
+    Text [ danish ] = "Kolonne " ;
+    Text [ french ] = "Colonne " ;
+    Text [ swedish ] = "Kolumn  " ;
+    Text [ dutch ] = "Kolom" ;
+    Text [ spanish ] = "Columna  " ;
+    Text [ english_us ] = "Column " ;
+    Text[ chinese_simplified ] = "åˆ— ";
+    Text[ russian ] = "Ñòîëáåö";
+    Text[ polish ] = "Kolumna  ";
+    Text[ japanese ] = "åˆ— ";
+    Text[ chinese_traditional ] = "æ¬„ ";
+    Text[ arabic ] = "ÚãæÏ";
+    Text[ greek ] = "ÓôŞëç ";
+    Text[ korean ] = "ì—´ ";
+    Text[ turkish ] = "Sütun ";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Columna ";
+    Text[ thai ] = "à¸„à¸­à¸¥à¸±à¸¡à¸™à¹Œ ";
+    Text[ czech ] = "Sloupec ";
+    Text[ hebrew ] = "Spalte";
+    Text[ hindi ] = "à¤¸à¥à¤¤à¤‚à¤­ ";
+    Text[ slovak ] = "StÄºpec ";
+};
+String STR_PRINT_TITLE
+{
+    Text = "Drucken der Selektion" ;
+    Text [ English ] = "Printing of selection" ;
+    Text[ italian ] = "Stampa la selezione";
+    Text[ portuguese_brazilian ] = "Imprimindo a seleção";
+    Text[ portuguese ] = "A imprimir selecção";
+    Text[ danish ] = "Udskriv det markerede";
+    Text[ french ] = "Imprimer la sélection";
+    Text[ swedish ] = "Skriv ut det markerade";
+    Text[ dutch ] = "Selectie afdrukken";
+    Text[ spanish ] = "Imprimir la selección";
+    Text[ english_us ] = "Printing selection";
+    Text[ chinese_simplified ] = "æ‰“å°é€‰ä¸­çš„éƒ¨åˆ†";
+    Text[ russian ] = "Ïå÷àòü âûäåëåííîãî ôğàãìåíòà";
+    Text[ polish ] = "Drukowanie zaznaczonego fragmentu";
+    Text[ japanese ] = "é¸æŠç¯„å›²ã®å°åˆ·";
+    Text[ chinese_traditional ] = "åˆ—å°é¸å–éƒ¨ä»½";
+    Text[ arabic ] = "ØÈÇÚÉ ÇáÊÍÏíÏ";
+    Text[ greek ] = "Åêôığùóç åğéëïãŞò";
+    Text[ korean ] = "ì„ íƒí•œ ë²”ìœ„ ì¸ì‡„";
+    Text[ turkish ] = "Yazma seçimi";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Impressió de la selecció";
+    Text[ finnish ] = "Tulostusvalinta";
+    Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸à¸à¸²à¸£à¸à¸´à¸¡à¸à¹Œ";
+    Text[ czech ] = "Tisk vybranÃ½ch ÄÃ¡stÃ­";
+    Text[ hebrew ] = "Drucken der Selektion";
+    Text[ hindi ] = "à¤›à¤ªà¤¾à¤ˆ à¤šà¥à¤¨à¤¾à¤µ ";
+    Text[ slovak ] = "TlaÄ vybranÃ½ch ÄastÃ­Â­";
+};
+String STR_PRINT_MSG
+{
+    Text = "Wollen Sie die Selektion oder das gesamte Dokument drucken?" ;
+    Text [ English ] = "Print selection or whole document?" ;
+    Text[ italian ] = "Volete stampare la selezione o l'intero documento?";
+    Text[ portuguese_brazilian ] = "Deseja imprimir apenas a área selecionada ou o documento inteiro?";
+    Text[ portuguese ] = "Deseja imprimir a selecção ou o documento inteiro?";
+    Text[ danish ] = "Vil du udskrive det markerede eller hele dokumentet?";
+    Text[ french ] = "Souhaitez vous imprimer uniquement la sélection ou bien le document entier ?";
+    Text[ swedish ] = "Vill du skriva ut det markerade eller hela dokumentet?";
+    Text[ dutch ] = "Wilt u de selectie of het hele document afdrukken?";
+    Text[ spanish ] = "¿Desea imprimir solo la selección o todo el documento?";
+    Text[ english_us ] = "Do you want to print the selection or the entire document?";
+    Text[ chinese_simplified ] = "è¦æ‰“å°é€‰ä¸­çš„éƒ¨åˆ†è¿˜æ˜¯è¦æ‰“å°æ•´ä¸ªæ–‡æ¡£ï¼Ÿ";
+    Text[ russian ] = "Íàïå÷àòàòü âåñü äîêóìåíò èëè òîëüêî âûäåëåííîå?";
+    Text[ polish ] = "Czy chcesz wydrukowaæ zaznaczony obszar czy ca³y dokument?";
+    Text[ japanese ] = "é¸æŠç¯„å›²ã‹æ–‡æ›¸å…¨ä½“ã®ã©ã¡ã‚‰ã‚’å°åˆ·ã—ã¾ã™ã‹ï¼Ÿ";
+    Text[ chinese_traditional ] = "æ‚¨è¦åˆ—å°é¸å–çš„éƒ¨ä»½é‚„æ˜¯è¦åˆ—å°æ•´å€‹æ–‡ä»¶ï¹–";
+    Text[ arabic ] = "åá ÊÑíÏ ØÈÇÚÉ ÇáÊÍÏíÏ Ãã ÇáãÓÊäÏ ÈÃßãáå¿";
+    Text[ greek ] = "Èİëåôå íá åêôõğşóåôå ôçí åğéëåãìİíç ğåñéï÷Ş Ş ïëüêëçñï ôï İããñáöï;";
+    Text[ korean ] = "ì„ íƒ ë²”ìœ„ë§Œ ì¸ì‡„í•˜ì‹œê² ìŠµë‹ˆê¹Œ, ì•„ë‹ˆë©´ ì „ì²´ ë¬¸ì„œë¥¼ ì¸ì‡„í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+    Text[ turkish ] = "Seçimi yapılan alanı veya tüm belgeyi yazdırmak istiyor musunuz?";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Voleu imprimir la selecció o bé tot el document?";
+    Text[ finnish ] = "Haluatko tulostaa vain valinnan vai koko asiakirjan?";
+    Text[ thai ] = "à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸à¸´à¸¡à¸à¹Œà¹€à¸­à¸à¸ªà¸²à¸£à¸—à¸µà¹ˆà¹€à¸¥à¸·à¸­à¸à¸«à¸£à¸·à¸­à¸—à¸±à¹‰à¸‡à¹€à¸­à¸à¸ªà¸²à¸£?";
+    Text[ czech ] = "Chcete vytisknout pouze vÃ½bÄ›r nebo celÃ½ dokument?";
+    Text[ hebrew ] = "Wollen Sie die Selektion oder das gesamte Dokument drucken?";
+    Text[ hindi ] = "à¤†à¤ª à¤šà¥à¤¨à¤¾à¤µ à¤•à¤¾ à¤…à¤¥à¤µà¤¾ à¤¸à¤®à¥à¤ªà¥‚à¤°à¥à¤£ à¤²à¥‡à¤–à¤ªà¤¤à¥à¤° à¤•à¤¾ à¤›à¤ªà¤¾à¤ˆ à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥‡ à¤¹à¥ˆ?";
+    Text[ slovak ] = "Chcete vytlaÄiÅ¥ len vÃ½ber alebo celÃ½ dokument?";
+};
+String STR_PRINT_ALL
+{
+    Text = "~Alles" ;
+    Text [ English ] = "All" ;
+    Text[ italian ] = "~Tutto";
+    Text[ portuguese_brazilian ] = "Tudo";
+    Text[ portuguese ] = "~Tudo";
+    Text[ danish ] = "Alt";
+    Text[ french ] = "~Tout";
+    Text[ swedish ] = "Allt";
+    Text[ dutch ] = "~Alles";
+    Text[ spanish ] = "~Todo";
+    Text[ english_us ] = "All";
+    Text[ chinese_simplified ] = "å…¨éƒ¨";
+    Text[ russian ] = "Âñå";
+    Text[ polish ] = "Wszystko";
+    Text[ japanese ] = "ã™ã¹ã¦";
+    Text[ chinese_traditional ] = "å…¨éƒ¨";
+    Text[ arabic ] = "Çáßá";
+    Text[ greek ] = "¼ëá";
+    Text[ korean ] = "ëª¨ë‘";
+    Text[ turkish ] = "Tümü";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Tot";
+    Text[ finnish ] = "Kaikki";
+    Text[ thai ] = "à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”";
+    Text[ czech ] = "VÅ¡e";
+    Text[ hebrew ] = "â€®×”×›×œâ€¬";
+    Text[ hindi ] = "à¤¸à¤¬";
+    Text[ slovak ] = "VÅ¡etko";
+};
+String STR_PRINT_SELECTION
+{
+    Text = "~Selektion" ;
+    Text [ English ] = "Selection" ;
+    Text[ italian ] = "~Selezione";
+    Text[ portuguese_brazilian ] = "Seleção";
+    Text[ portuguese ] = "~Selecção";
+    Text[ danish ] = "Markering";
+    Text[ french ] = "~Sélection";
+    Text[ swedish ] = "Markering";
+    Text[ dutch ] = "~Selectie";
+    Text[ spanish ] = "Sele~cción";
+    Text[ english_us ] = "Selection";
+    Text[ chinese_simplified ] = "é€‰ä¸­";
+    Text[ russian ] = "Âûäåëåíèå";
+    Text[ polish ] = "Zaznaczenie";
+    Text[ japanese ] = "é¸æŠç¯„å›²";
+    Text[ chinese_traditional ] = "é¸å–";
+    Text[ arabic ] = "ÇáÊÍÏíÏ";
+    Text[ greek ] = "ÅğéëïãŞ";
+    Text[ korean ] = "ì„ íƒ";
+    Text[ turkish ] = "Seçim";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Selecció";
+    Text[ finnish ] = "Valinta";
+    Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸";
+    Text[ czech ] = "VÃ½bÄ›r";
+    Text[ hebrew ] = "â€®××‘×—×¨â€¬";
+    Text[ hindi ] = "à¤šà¥à¤¨à¤¾à¤µ";
+    Text[ slovak ] = "VÃ½ber";
+};
+String STR_READONLY_SEL
+{
+    TEXT = "schreibgeschützt" ;
+    TEXT [ English ] = "readonly" ;
+    TEXT[ english_us ] = "read-only";
+    TEXT[ portuguese ] = "só leitura";
+    TEXT[ russian ] = "òîëüêî äëÿ ÷òåíèÿ";
+    TEXT[ dutch ] = "Alleen-lezen";
+    TEXT[ french ] = "en lecture seule";
+    TEXT[ spanish ] = "sólo lectura";
+    TEXT[ italian ] = "a sola lettura";
+    TEXT[ danish ] = "skrivebeskyttet";
+    TEXT[ swedish ] = "skrivskyddad";
+    TEXT[ polish ] = "Tylko do odczytu";
+    TEXT[ portuguese_brazilian ] = "somente leitura";
+    TEXT[ japanese ] = "èª­ã¿å–ã‚Šå°‚ç”¨";
+    TEXT[ chinese_simplified ] = "é˜²æ”¹å†™";
+    TEXT[ chinese_traditional ] = "å”¯è®€";
+    TEXT[ arabic ] = "ááŞÑÇÁÉ İŞØ";
+    TEXT[ greek ] = "ìüíï ãéá áíÜãíùóç";
+    TEXT[ korean ] = "ì½ê¸° ì „ìš©";
+    TEXT[ turkish ] = "okuma amaçlı";
+    TEXT[ language_user1 ] = " ";
+    TEXT[ catalan ] = "només de lectura";
+    TEXT[ finnish ] = "Vain luku";
+    TEXT[ thai ] = "à¸­à¹ˆà¸²à¸™à¸­à¸¢à¹ˆà¸²à¸‡à¹€à¸”à¸µà¸¢à¸§";
+    TEXT[ czech ] = "pouze ke ÄtenÃ­";
+    TEXT[ hebrew ] = "â€®×§×¨×™××” ×‘×œ×‘×“â€¬";
+    TEXT[ hindi ] = "à¤•à¥‡à¤µà¤² à¤ªà¤¢à¤¼à¤¨à¥‡ à¤•à¥‡à¤²à¤¿à¤";
+    TEXT[ slovak ] = "len na ÄÃ­tanie";
+};
+String STR_SAVEAS_SRC
+{
+    Text = "Q~uelltext exportieren..." ;
+    Text [ English ] = "Export source as..." ;
+    Text [ portuguese_brazilian ] = "~Exportar origem..." ;
+    Text [ swedish ] = "Exportera källtext..." ;
+    Text [ danish ] = "Eksporter kildetekst..." ;
+    Text [ italian ] = "~Esporta testo sorgente..." ;
+    Text [ spanish ] = "~Exportar texto fuente..." ;
+    Text [ french ] = "E~xport du texte source..." ;
+    Text [ dutch ] = "~Brontekst exporteren..." ;
+    Text [ portuguese ] = "Exportar texto-~fonte..." ;
+    Text [ english_us ] = "~Export source..." ;
+    Text[ chinese_simplified ] = "è¾“å‡ºæºæ–‡æœ¬(~E)...";
+    Text[ russian ] = "İêñïîğò èñõîäíîãî òåêñòà...";
+    Text[ polish ] = "~Eksportuj tekst Ÿród³owy...";
+    Text[ japanese ] = "ã‚½ãƒ¼ã‚¹ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã™ã‚‹(~E)...";
+    Text[ chinese_traditional ] = "åŒ¯å‡ºåŸå§‹æª”(~E)...";
+    Text[ arabic ] = "ÊÕÏíÑ äÕ ÇáãÕÏÑ...";
+    Text[ greek ] = "ÅîáãùãŞ êåéìİíïõ ğñïİëåõóçò...";
+    Text[ korean ] = "ì›ë³¸ ë‚´ë³´ë‚´ê¸°(~E)...";
+    Text[ turkish ] = "~Kaynağı dışa aktar...";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "~Exporta la font...";
+    Text[ finnish ] = "~Vie lähde...";
+    Text[ thai ] = "~à¸ªà¹ˆà¸‡à¸­à¸­à¸à¸—à¸µà¹ˆà¸¡à¸²...";
+    Text[ czech ] = "Exportovat zdroj...";
+    Text[ hebrew ] = "Q~uelltext exportieren...";
+    Text[ hindi ] = "~à¤®à¥‚à¤² à¤•à¥‹ à¤¨à¤¿à¤°à¥à¤¯à¤¾à¤¤ à¤•à¤°à¥‹...";
+    Text[ slovak ] = "~ExportovaÅ¥ zdroj...";
+};
+String MN_SRCVIEW_POPUPMENU
+{
+    Text = "HTML - Quelltext" ;
+    Text [ English ] = "HTML source" ;
+    Text [ portuguese ] = "Fonte HTML" ;
+    Text [ english_us ] = "HTML source" ;
+    Text [ portuguese_brazilian ] = "Origem HTML" ;
+    Text [ swedish ] = "HTML-källtext" ;
+    Text [ danish ] = "HTML-kildetekst" ;
+    Text [ italian ] = "Testo sorgente HTML" ;
+    Text [ spanish ] = "Texto fuente HTML" ;
+    Text [ french ] = "Texte source HTML" ;
+    Text [ dutch ] = "HTML-brontekst" ;
+    Text[ chinese_simplified ] = "HTML æºæ–‡æœ¬";
+    Text[ russian ] = "Èñõîäíûé òåêñò â ôîğìàòå HTML";
+    Text[ polish ] = "Tekst Ÿród³owy HTML";
+    Text[ japanese ] = "HTML ã‚½ãƒ¼ã‚¹ãƒ†ã‚­ã‚¹ãƒˆ";
+    Text[ chinese_traditional ] = "HTML åŸå§‹æª”";
+    Text[ arabic ] = "äÕ ãÕÏÑ HTML";
+    Text[ greek ] = "Áñ÷åßï ğñïİëåõóçò HTML";
+    Text[ korean ] = "HTML ì›ë³¸";
+    Text[ turkish ] = "HTML kodu";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "Font HTML";
+    Text[ finnish ] = "HTML-lähde";
+    Text[ thai ] = "à¹à¸«à¸¥à¹ˆà¸‡ HTML ";
+    Text[ czech ] = "ZdrojovÃ½ HTML text";
+    Text[ hebrew ] = "HTMLâ€®×§×•×“ â€¬";
+    Text[ hindi ] = "HTML à¤®à¥‚à¤²";
+    Text[ slovak ] = "ZdrojovÃ½ HTML text";
+};
+
+ToolBox RID_TOOLS_TOOLBOX
+{
+    HelpID = HID_TOOLS_TOOLBOX ;
+    Border = TRUE ;
+    SVLook = TRUE ;
+    Dockable = TRUE ;
+    Moveable = TRUE ;
+    Sizeable = TRUE ;
+    Closeable = TRUE ;
+    Zoomable = TRUE ;
+    LineSpacing = TRUE ;
+    HideWhenDeactivate = TRUE ;
+    Customize = TRUE ;
+    MenuStrings = TRUE ;
+    Scroll = TRUE ;
+    Align = BOXALIGN_LEFT ;
+    Hide = TRUE ;
+    ItemList =
+    {
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_CTRL ;
+            HelpID = HID_INSERT_CTRL ;
+            DropDown = TRUE ;
+        };
+        ToolBoxItem
+        {
+            Type = TOOLBOXITEM_SEPARATOR ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_FIELD_CTRL ;
+            HelpID = HID_INSERT_FIELD_CTRL ;
+            DropDown = TRUE ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_OBJ_CTRL ;
+            HelpID = HID_INSERT_OBJ_CTRL ;
+            DropDown = TRUE ;
+        };
+        ToolBoxItem
+        {
+            ITEM_TOOLBAR_INSERT_DRAW
+        };
+        ToolBoxItem
+        {
+            ITEM_FORM_CONFIG
+        };
+        ToolBoxItem
+        {
+            Type = TOOLBOXITEM_SEPARATOR ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_GLOSSARY_DLG ;
+            HelpID = FN_GLOSSARY_DLG ;
+            DropDown = TRUE ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_CAPTION;
+            HelpID = FN_INSERT_CAPTION ;
+            Hide = TRUE ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_IDX_ENTRY_DLG;
+            HelpId = FN_INSERT_IDX_ENTRY_DLG;
+            Hide = TRUE;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_INSERT_REF_FIELD;
+            HelpID = FN_INSERT_REF_FIELD ;
+            Hide = TRUE ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_SHADOWCURSOR ;
+            HelpID = FN_SHADOWCURSOR ;
+        };
+        ToolBoxItem
+        {
+            Type = TOOLBOXITEM_SEPARATOR ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_SPELLING_DLG ;
+            HelpID = FN_SPELLING_DLG ;
+        };
+        ToolBoxItem
+        {
+            ITEM_TOOLBAR_AUTOSPELL_CHECK
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_HYPHENATE_OPT_DLG;
+            HelpID = FN_HYPHENATE_OPT_DLG;
+            Hide = TRUE;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_THESAURUS_DLG;
+            HelpID = FN_THESAURUS_DLG;
+            Hide = TRUE;
+        };
+        ToolBoxItem
+        {
+            Type = TOOLBOXITEM_SEPARATOR ;
+        };
+        ToolBoxItem
+        {
+            Identifier = SID_SEARCH_DLG ;
+            HelpID = SID_SEARCH_DLG ;
+        };
+        ToolBoxItem
+        {
+            Identifier = SID_VIEW_DATA_SOURCE_BROWSER ;
+            HelpID = SID_VIEW_DATA_SOURCE_BROWSER ;
+        };
+        ToolBoxItem
+        {
+            Type = TOOLBOXITEM_SEPARATOR ;
+        };
+        ToolBoxItem
+        {
+            Identifier = SID_ATTR_ZOOM;
+            HelpID = SID_ATTR_ZOOM ;
+            Hide = TRUE;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_VIEW_META_CHARS ;
+            HelpID = FN_VIEW_META_CHARS ;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_VIEW_FIELDNAME ;
+            HelpID = FN_VIEW_FIELDNAME ;
+            Hide = TRUE;
+        };
+        ToolBoxItem
+        {
+            Identifier = FN_VIEW_GRAPHIC ;
+            HelpID = FN_VIEW_GRAPHIC ;
+        };
+        ToolBoxItem
+        {
+            Identifier = SID_BROWSER_MODE ;
+            HelpID = SID_BROWSER_MODE ;
+        };
+    };
+};
+Menu MN_SRCVIEW_POPUPMENU
+{
+    ItemList =
+    {
+        MenuItem
+        {
+            ITEM_FORMAT_ATTR_CHAR_FONT
+        };
+        MenuItem
+        {
+            ITEM_FORMAT_ATTR_CHAR_FONTHEIGHT
+        };
+        MenuItem
+        {
+            Separator = TRUE ;
+        };
+        MenuItem
+        {
+            Identifier = SID_SOURCEVIEW ;
+            HelpID = HID_SOURCEVIEW ;
+            Text = "HTML-Quelltext" ;
+            Text [ ENGLISH ] = "HTML source" ;
+            Text [ dutch ] = "HTML-brontekst" ;
+            Text [ english_us ] = "HTML Source" ;
+            Text [ italian ] = "Testo sorgente HTML" ;
+            Text [ spanish ] = "Texto fuente HTML" ;
+            Text [ french ] = "Texte source HTML" ;
+            Text [ swedish ] = "HTML-källtext" ;
+            Text [ danish ] = "HTML-kildetekst" ;
+            Text [ portuguese ] = "Fonte HTML" ;
+            Text [ portuguese_brazilian ] = "Origem HTML" ;
+            Text[ chinese_simplified ] = "HTML æºæ–‡æœ¬";
+            Text[ russian ] = "Èñõîäíûé òåêñò â ôîğìàòå HTML";
+            Text[ polish ] = "Tekst Ÿród³owy HTML";
+            Text[ japanese ] = "HTML ã‚½ãƒ¼ã‚¹ãƒ†ã‚­ã‚¹ãƒˆ";
+            Text[ chinese_traditional ] = "HTML åŸå§‹æª”";
+            Text[ arabic ] = "äÕ ãÕÏÑ HTML";
+            Text[ greek ] = "Êåßìåíï ğñïİëåõóçò HTML";
+            Text[ korean ] = "HTML ì›ë³¸";
+            Text[ turkish ] = "HTML kodu";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "Font HTML";
+            Text[ finnish ] = "HTML-lähde";
+            Text[ thai ] = "à¹à¸«à¸¥à¹ˆà¸‡ HTML ";
+            Text[ czech ] = "ZdrojovÃ½ HTML text";
+            Text[ hebrew ] = "HTMLâ€®×§×•×“ â€¬";
+            Text[ hindi ] = "HTML à¤®à¥‚à¤²";
+            Text[ slovak ] = "ZdrojovÃ½ HTML text";
+        };
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1965 @@
+/*************************************************************************
+ *
+ *  $RCSfile: starmath_commands.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:20 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+
+#include <bf_sfx2/sfx.hrc>
+#include "starmath.hrc"
+
+
+////////////////////////////////////////////////////////////
+
+
+String RID_PLUSX            { Text = "+<?> " ; };
+String RID_MINUSX           { Text = "-<?> " ; };
+String RID_PLUSMINUSX       { Text = "+-<?> " ; };
+String RID_MINUSPLUSX       { Text = "-+<?> " ; };
+String RID_NEGX             { Text = "neg <?> " ; };
+String RID_XPLUSY           { Text = "<?> + <?> " ; };
+String RID_XMINUSY          { Text = "<?> - <?> " ; };
+String RID_XCDOTY           { Text = "<?> cdot <?> " ; };
+String RID_XTIMESY          { Text = "<?> times <?> " ; };
+String RID_XSYMTIMESY       { Text = "<?> * <?> " ; };
+String RID_XSYMDIVIDEY      { Text = "<?> / <?> " ; };
+String RID_XDIVY            { Text = "<?> div <?> " ; };
+String RID_XOVERY           { Text = "<?> over <?> " ; };
+String RID_XODIVIDEY        { Text = "<?> odivide <?> " ; };
+String RID_XODOTY           { Text = "<?> odot <?> " ; };
+String RID_XOMINUSY         { Text = "<?> ominus <?> " ; };
+String RID_XOPLUSY          { Text = "<?> oplus <?> " ; };
+String RID_XOTIMESY         { Text = "<?> otimes <?> " ; };
+String RID_XANDY            { Text = "<?> and <?> " ; };
+String RID_XORY             { Text = "<?> or <?> " ; };
+String RID_XEQY             { Text = "<?> = <?> " ; };
+String RID_XNEQY            { Text = "<?> <> <?> " ; };
+String RID_XLTY             { Text = "<?> < <?> " ; };
+String RID_XGTY             { Text = "<?> > <?> " ; };
+String RID_XLEY             { Text = "<?> <= <?> " ; };
+String RID_XGEY             { Text = "<?> >= <?> " ; };
+String RID_XLESLANTY        { Text = "<?> leslant <?> " ; };
+String RID_XGESLANTY        { Text = "<?> geslant <?> " ; };
+String RID_XLLY             { Text = "<?> << <?> " ; };
+String RID_XGGY             { Text = "<?> >> <?> " ; };
+String RID_XDEFY            { Text = "<?> def <?> " ; };
+String RID_XEQUIVY          { Text = "<?> equiv <?> " ; };
+String RID_XAPPROXY         { Text = "<?> approx <?> " ; };
+String RID_XSIMY            { Text = "<?> sim <?> " ; };
+String RID_XSIMEQY          { Text = "<?> simeq <?> " ; };
+String RID_XPROPY           { Text = "<?> prop <?> " ; };
+String RID_XORTHOY          { Text = "<?> ortho <?> " ; };
+String RID_XPARALLELY       { Text = "<?> parallel <?> " ; };
+String RID_XTOWARDY         { Text = "<?> toward <?> " ; };
+String RID_XTRANSLY         { Text = "<?> transl <?> " ; };
+String RID_XTRANSRY         { Text = "<?> transr <?> " ; };
+String RID_XINY             { Text = "<?> in <?> " ; };
+String RID_XNOTINY          { Text = "<?> notin <?> " ; };
+String RID_XOWNSY           { Text = "<?> owns <?> " ; };
+String RID_XUNIONY          { Text = "<?> union <?> " ; };
+String RID_XINTERSECTIONY   { Text = "<?> intersection <?> " ; };
+String RID_XSETMINUSY       { Text = "<?> setminus <?> " ; };
+String RID_XSLASHY          { Text = "<?> slash <?> " ; };
+String RID_XSUBSETY         { Text = "<?> subset <?> " ; };
+String RID_XSUBSETEQY       { Text = "<?> subseteq <?> " ; };
+String RID_XSUPSETY         { Text = "<?> supset <?> " ; };
+String RID_XSUPSETEQY       { Text = "<?> supseteq <?> " ; };
+String RID_XNSUBSETY        { Text = "<?> nsubset <?> " ; };
+String RID_XNSUBSETEQY      { Text = "<?> nsubseteq <?> " ; };
+String RID_XNSUPSETY        { Text = "<?> nsupset <?> " ; };
+String RID_XNSUPSETEQY      { Text = "<?> nsupseteq <?> " ; };
+String RID_ABSX             { Text = "abs{<?>} " ; };
+String RID_FACTX            { Text = "fact <?> " ; };
+String RID_SQRTX            { Text = "sqrt{<?>} " ; };
+String RID_NROOTXY          { Text = "nroot{<?>}{<?>} " ; };
+String RID_EX               { Text = "func e^{<?>} " ; };
+String RID_EXPX             { Text = "exp(<?>) " ; };
+String RID_LNX              { Text = "ln(<?>) " ; };
+String RID_LOGX             { Text = "log(<?>) " ; };
+String RID_SINX             { Text = "sin(<?>) " ; };
+String RID_COSX             { Text = "cos(<?>) " ; };
+String RID_TANX             { Text = "tan(<?>) " ; };
+String RID_COTX             { Text = "cot(<?>) " ; };
+String RID_ARCSINX          { Text = "arcsin(<?>) " ; };
+String RID_ARCCOSX          { Text = "arccos(<?>) " ; };
+String RID_ARCTANX          { Text = "arctan(<?>) " ; };
+String RID_ARCCOTX          { Text = "arccot(<?>) " ; };
+String RID_SINHX            { Text = "sinh(<?>) " ; };
+String RID_COSHX            { Text = "cosh(<?>) " ; };
+String RID_TANHX            { Text = "tanh(<?>) " ; };
+String RID_COTHX            { Text = "coth(<?>) " ; };
+String RID_ARSINHX          { Text = "arsinh(<?>) " ; };
+String RID_ARCOSHX          { Text = "arcosh(<?>) " ; };
+String RID_ARTANHX          { Text = "artanh(<?>) " ; };
+String RID_ARCOTHX          { Text = "arcoth(<?>) " ; };
+String RID_SUMX             { Text = "sum <?> " ; };
+String RID_PRODX            { Text = "prod <?> " ; };
+String RID_COPRODX          { Text = "coprod <?> " ; };
+String RID_LIMX             { Text = "lim <?> " ; };
+String RID_LIMINFX          { Text = "liminf <?> " ; };
+String RID_LIMSUPX          { Text = "limsup <?> " ; };
+String RID_EXISTS           { Text = "exists " ; };
+String RID_FORALL           { Text = "forall " ; };
+String RID_INTX             { Text = "int <?> " ; };
+String RID_IINTX            { Text = "iint <?> " ; };
+String RID_IIINTX           { Text = "iiint <?> " ; };
+String RID_LINTX            { Text = "lint <?> " ; };
+String RID_LLINTX           { Text = "llint <?> " ; };
+String RID_LLLINTX          { Text = "lllint <?> " ; };
+String RID_FROMX            { Text = "from{<?>} <?> " ; };
+String RID_TOX              { Text = "to{<?>} <?> " ; };
+String RID_FROMXTOY         { Text = "from{<?>} to{<?>} <?> " ; };
+String RID_ACUTEX           { Text = "acute <?> " ; };
+String RID_BARX             { Text = "bar <?> " ; };
+String RID_BREVEX           { Text = "breve <?> " ; };
+String RID_CHECKX           { Text = "check <?> " ; };
+String RID_CIRCLEX          { Text = "circle <?> " ; };
+String RID_DOTX             { Text = "dot <?> " ; };
+String RID_DDOTX            { Text = "ddot <?> " ; };
+String RID_DDDOTX           { Text = "dddot <?> " ; };
+String RID_GRAVEX           { Text = "grave <?> " ; };
+String RID_HATX             { Text = "hat <?> " ; };
+String RID_TILDEX           { Text = "tilde <?> " ; };
+String RID_VECX             { Text = "vec <?> " ; };
+String RID_UNDERLINEX       { Text = "underline <?> " ; };
+String RID_OVERLINEX        { Text = "overline <?> " ; };
+String RID_OVERSTRIKEX      { Text = "overstrike <?> " ; };
+String RID_PHANTOMX         { Text = "phantom <?> " ; };
+String RID_BOLDX            { Text = "bold <?> " ; };
+String RID_ITALX            { Text = "ital <?> " ; };
+String RID_SIZEXY           { Text = "size <?> <?> " ; };
+String RID_FONTXY           { Text = "font <?> <?> " ; };
+String RID_COLORX           { Text = "color <?> <?> " ; };
+String RID_LRGROUPX         { Text = "{<?>} " ; };
+String RID_LRPARENTX        { Text = "(<?>) " ; };
+String RID_LRBRACKETX       { Text = "[<?>] " ; };
+String RID_LRDBRACKETX      { Text = "ldbracket <?> rdbracket " ; };
+String RID_LRBRACEX         { Text = "lbrace <?> rbrace " ; };
+String RID_LRANGLEX         { Text = "langle <?> rangle " ; };
+String RID_LRCEILX          { Text = "lceil <?> rceil " ; };
+String RID_LRFLOORX         { Text = "lfloor <?> rfloor " ; };
+String RID_LRLINEX          { Text = "lline <?> rline " ; };
+String RID_LRDLINEX         { Text = "ldline <?> rdline " ; };
+String RID_LMRANGLEXY       { Text = "langle <?> mline <?> rangle " ; };
+String RID_SLRPARENTX       { Text = "left ( <?> right ) " ; };
+String RID_SLRBRACKETX      { Text = "left [ <?> right ] " ; };
+String RID_SLRDBRACKETX     { Text = "left ldbracket <?> right rdbracket " ; };
+String RID_SLRBRACEX        { Text = "left lbrace <?> right rbrace " ; };
+String RID_SLRANGLEX        { Text = "left langle <?> right rangle " ; };
+String RID_SLRCEILX         { Text = "left lceil <?> right rceil " ; };
+String RID_SLRFLOORX        { Text = "left lfloor <?> right rfloor " ; };
+String RID_SLRLINEX         { Text = "left lline <?> right rline " ; };
+String RID_SLRDLINEX        { Text = "left ldline <?> right rdline " ; };
+String RID_SLMRANGLEXY      { Text = "left langle <?> mline <?> right rangle " ; };
+String RID_XOVERBRACEY      { Text = "<?> overbrace <?> " ; };
+String RID_XUNDERBRACEY     { Text = "<?> underbrace <?> " ; };
+String RID_RSUBX            { Text = "<?>_{<?>}" ; };
+String RID_RSUPX            { Text = "<?>^{<?>}" ; };
+String RID_LSUBX            { Text = "<?> lsub{<?>} " ; };
+String RID_LSUPX            { Text = "<?> lsup{<?>} " ; };
+String RID_CSUBX            { Text = "<?> csub{<?>} " ; };
+String RID_CSUPX            { Text = "<?> csup{<?>} " ; };
+String RID_SBLANK           { Text = "`" ; };
+String RID_BLANK            { Text = "~" ; };
+String RID_NEWLINE          { Text = "newline " ; };
+String RID_BINOMXY          { Text = "binom{<?>}{<?>} " ; };
+String RID_STACK            { Text = "stack{<?> # <?> # <?>} " ; };
+String RID_MATRIX           { Text = "matrix{<?> # <?> ## <?> # <?>} " ; };
+String RID_ALIGNLX          { Text = "alignl <?> " ; };
+String RID_ALIGNCX          { Text = "alignc <?> " ; };
+String RID_ALIGNRX          { Text = "alignr <?> " ; };
+String RID_ALEPH            { Text = "aleph " ; };
+String RID_EMPTYSET         { Text = "emptyset " ; };
+String RID_RE               { Text = "Re " ; };
+String RID_IM               { Text = "Im " ; };
+String RID_INFINITY         { Text = "infinity " ; };
+String RID_PARTIAL          { Text = "partial " ; };
+String RID_NABLA            { Text = "nabla " ; };
+String RID_WP               { Text = "wp " ; };
+String RID_DOTSAXIS         { Text = "dotsaxis " ; };
+String RID_DOTSUP           { Text = "dotsup " ; };
+String RID_DOTSDOWN         { Text = "dotsdown " ; };
+String RID_DOTSLOW          { Text = "dotslow " ; };
+String RID_DOTSVERT         { Text = "dotsvert " ; };
+String RID_XCIRCY           { Text = "<?> circ <?> " ; };
+String RID_XWIDESLASHY      { Text = "<?> wideslash <?> " ; };
+String RID_XWIDEBSLASHY     { Text = "<?> widebslash <?> " ; };
+String RID_XDIVIDESY        { Text = "<?> divides <?> " ; };
+String RID_XNDIVIDESY       { Text = "<?> ndivides <?> " ; };
+String RID_DLARROW          { Text = "<?> dlarrow <?> " ; };
+String RID_DLRARROW         { Text = "<?> dlrarrow <?> " ; };
+String RID_DRARROW          { Text = "<?> drarrow <?> " ; };
+String RID_SETN             { Text = "setN " ; };
+String RID_SETZ             { Text = "setZ " ; };
+String RID_SETQ             { Text = "setQ " ; };
+String RID_SETR             { Text = "setR " ; };
+String RID_SETC             { Text = "setC " ; };
+String RID_WIDEHATX         { Text = "widehat <?> " ; };
+String RID_WIDETILDEX       { Text = "widetilde <?> " ; };
+String RID_WIDEVECX         { Text = "widevec <?> " ; };
+String RID_HBAR             { Text = "hbar " ; };
+String RID_LAMBDABAR        { Text = "lambdabar " ; };
+String RID_LEFTARROW        { Text = "leftarrow " ; };
+String RID_RIGHTARROW       { Text = "rightarrow " ; };
+String RID_UPARROW          { Text = "uparrow " ; };
+String RID_DOWNARROW        { Text = "downarrow " ; };
+
+
+//////////////////////////////////////////
+
+
+//STRIP001 Menu RID_COMMANDMENU
+//STRIP001 {
+//STRIP001  ItemList =
+//STRIP001  {
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_UNBINOPS_MENU ;
+//STRIP001          HelpId = HID_SMA_UNBINOPS_TBX ;
+//STRIP001          Text = "~Un‰re/Bin‰re Operatoren" ;
+//STRIP001          Text [ ENGLISH ] = "Unary/binary operators" ;
+//STRIP001          Text [ english_us ] = "~Unary/Binary Operators" ;
+//STRIP001          Text [ portuguese_brazilian ] = "Operadores ~Un·rios/Bin·rios" ;
+//STRIP001          Text [ swedish ] = "~Un‰ra/bin‰ra operatorer" ;
+//STRIP001          Text [ danish ] = "Monadiske/binÊre operatorer" ;
+//STRIP001          Text [ italian ] = "Operatori unari/binari" ;
+//STRIP001          Text [ spanish ] = "Operadores ~unarios/binarios" ;
+//STRIP001          Text [ french ] = "OpÈrateurs u~naires/binaires" ;
+//STRIP001          Text [ dutch ] = "~Monadische/binaire operatoren" ;
+//STRIP001          Text [ portuguese ] = "Operadores ~un·rios/bin·rios" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_PLUSX;
+//STRIP001                      HelpId = HID_SMA_PLUSX;
+//STRIP001                      Text = "+a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_MINUSX;
+//STRIP001                      HelpId = HID_SMA_MINUSX;
+//STRIP001                      Text = "-a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_PLUSMINUSX;
+//STRIP001                      HelpId = HID_SMA_PLUSMINUSX;
+//STRIP001                      Text = "+-a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_MINUSPLUSX;
+//STRIP001                      HelpId = HID_SMA_MINUSPLUSX;
+//STRIP001                      Text = "-+a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XPLUSY;
+//STRIP001                      HelpId = HID_SMA_XPLUSY;
+//STRIP001                      Text = "a + b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XMINUSY;
+//STRIP001                      HelpId = HID_SMA_XMINUSY;
+//STRIP001                      Text = "a - b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XCDOTY;
+//STRIP001                      HelpId = HID_SMA_XCDOTY;
+//STRIP001                      Text = "a cdot b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XTIMESY;
+//STRIP001                      HelpId = HID_SMA_XTIMESY;
+//STRIP001                      Text = "a times b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSYMTIMESY;
+//STRIP001                      HelpId = HID_SMA_XSYMTIMESY;
+//STRIP001                      Text = "a * b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XOVERY;
+//STRIP001                      HelpId = HID_SMA_XOVERY;
+//STRIP001                      Text = "a over b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XDIVY;
+//STRIP001                      HelpId = HID_SMA_XDIVY;
+//STRIP001                      Text = "a div b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSYMDIVIDEY;
+//STRIP001                      HelpId = HID_SMA_XSYMDIVIDEY;
+//STRIP001                      Text = "a / b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XCIRCY;
+//STRIP001                      HelpId = HID_SMA_XCIRCY;
+//STRIP001                      Text = "a circ b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XWIDESLASHY;
+//STRIP001                      HelpId = HID_SMA_XWIDESLASHY;
+//STRIP001                      Text = "a wideslash b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XWIDEBSLASHY;
+//STRIP001                      HelpId = HID_SMA_XWIDEBSLASHY;
+//STRIP001                      Text = "a widebslash b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_NEGX;
+//STRIP001                      HelpId = HID_SMA_NEGX;
+//STRIP001                      Text = "neg a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XANDY;
+//STRIP001                      HelpId = HID_SMA_XANDY;
+//STRIP001                      Text = "a and b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XORY;
+//STRIP001                      HelpId = HID_SMA_XORY;
+//STRIP001                      Text = "a or b";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "‰∏ÄÂÖ?‰∫åÂÖÉËøêÁÆóÁ¨?~U)";
+//STRIP001          Text[ russian ] = "”Ì‡Ì˚?·ËÌ‡Ì˚Â ÓÔÂ‡ÚÓ?;
+//STRIP001          Text[ polish ] = "Operatory ~jedno- lub dwuargumentowe";
+//STRIP001          Text[ japanese ] = "ÂçòÈ†Ö„Éª‰∫åÈ†ÖÊºîÁÆóÂ≠ê(~U)";
+//STRIP001          Text[ chinese_traditional ] = "‰∏ÄÂÖ?‰∫åÂÖÉÈÅãÁÆóÁ¨?~U)";
+//STRIP001          Text[ dutch ] = "~Monadische/binaire operatoren";
+//STRIP001          Text[ chinese_simplified ] = "‰∏ÄÂÖ?‰∫åÂÖÉËøêÁÆóÁ¨?~U)";
+//STRIP001          Text[ greek ] = "≈Ì·~‰ÈÍÔ?ƒı·‰ÈÍÔﬂ ÙÂÎÂÛÙ›Ú";
+//STRIP001          Text[ korean ] = "Îã®Ìï≠/Ïù¥Ìï≠ Ïó∞ÏÇ∞Ïû?~U)";
+//STRIP001          Text[ arabic ] = "⁄Ê«„? ‘€Ì?√Õ«œÌ…/À‰«∆Ì…";
+//STRIP001          Text[ turkish ] = "Birli/ikili i˛leÁler";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Operadors Monaris/Binaris";
+//STRIP001          Text[ finnish ] = "~Yksi- ja kaksipaikkaiset operaattorit";
+//STRIP001          Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏õ‡∏è‡∏¥‡∏ö‡∏±‡∏ï‡∏¥‡∏Å‡∏≤‡∏£~Unary/Binary ";
+//STRIP001          Text[ czech ] = "Un√°rn√≠/bin√°rn√≠ oper√°tory";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊ê◊ï◊§◊®◊ò◊ï◊®◊ô◊?◊ê◊ï◊†◊®◊ô◊ô◊ù\\◊ë◊ô◊†◊®◊ô◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§Ø‡•Ç‡§®‡§æ‡§∞‡§ø/‡§¨‡•à‡§®‡§æ‡§∞‡§ø ‡§™‡•ç‡§∞‡§µ‡§∞‡•ç‡§§‡§ï";
+//STRIP001          Text[ slovak ] = "~Un√°rne/bin√°rne oper√°tory";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_RELATIONS_MENU ;
+//STRIP001          HelpId = HID_SMA_RELATIONS_TBX ;
+//STRIP001          Text = "~Relationen" ;
+//STRIP001          Text [ ENGLISH ] = "Relations" ;
+//STRIP001          Text [ english_us ] = "~Relations" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~RelaÁıes" ;
+//STRIP001          Text [ swedish ] = "~Relationer" ;
+//STRIP001          Text [ danish ] = "Relationer" ;
+//STRIP001          Text [ italian ] = "Relazioni" ;
+//STRIP001          Text [ spanish ] = "~Relaciones" ;
+//STRIP001          Text [ french ] = "~Relations" ;
+//STRIP001          Text [ dutch ] = "~Relaties" ;
+//STRIP001          Text [ portuguese ] = "~RelaÁıes" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XEQY;
+//STRIP001                      HelpId = HID_SMA_XEQY;
+//STRIP001                      Text = "a = b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNEQY;
+//STRIP001                      HelpId = HID_SMA_XNEQY;
+//STRIP001                      Text = "a <> b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XLTY;
+//STRIP001                      HelpId = HID_SMA_XLTY;
+//STRIP001                      Text = "a < b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XLEY;
+//STRIP001                      HelpId = HID_SMA_XLEY;
+//STRIP001                      Text = "a <= b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XLESLANTY;
+//STRIP001                      HelpId = HID_SMA_XLESLANTY;
+//STRIP001                      Text = "a leslant b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XGTY;
+//STRIP001                      HelpId = HID_SMA_XGTY;
+//STRIP001                      Text = "a > b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XGEY;
+//STRIP001                      HelpId = HID_SMA_XGEY;
+//STRIP001                      Text = "a >= b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XGESLANTY;
+//STRIP001                      HelpId = HID_SMA_XGESLANTY;
+//STRIP001                      Text = "a geslant b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XAPPROXY;
+//STRIP001                      HelpId = HID_SMA_XAPPROXY;
+//STRIP001                      Text = "a approx b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSIMY;
+//STRIP001                      HelpId = HID_SMA_XSIMY;
+//STRIP001                      Text = "a sim b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSIMEQY;
+//STRIP001                      HelpId = HID_SMA_XSIMEQY;
+//STRIP001                      Text = "a simeq b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XEQUIVY;
+//STRIP001                      HelpId = HID_SMA_XEQUIVY;
+//STRIP001                      Text = "a equiv b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XPROPY;
+//STRIP001                      HelpId = HID_SMA_XPROPY;
+//STRIP001                      Text = "a prop b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XPARALLELY;
+//STRIP001                      HelpId = HID_SMA_XPARALLELY;
+//STRIP001                      Text = "a parallel b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XORTHOY;
+//STRIP001                      HelpId = HID_SMA_XORTHOY;
+//STRIP001                      Text = "a ortho b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XDIVIDESY;
+//STRIP001                      HelpId = HID_SMA_XDIVIDESY;
+//STRIP001                      Text = "a divides b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNDIVIDESY;
+//STRIP001                      HelpId = HID_SMA_XNDIVIDESY;
+//STRIP001                      Text = "a ndivides b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XTOWARDY;
+//STRIP001                      HelpId = HID_SMA_XTOWARDY;
+//STRIP001                      Text = "a toward b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DLARROW;
+//STRIP001                      HelpId = HID_SMA_DLARROW;
+//STRIP001                      Text = "a dlarrow b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DLRARROW;
+//STRIP001                      HelpId = HID_SMA_DLRARROW;
+//STRIP001                      Text = "a dlrarrow b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DRARROW;
+//STRIP001                      HelpId = HID_SMA_DRARROW;
+//STRIP001                      Text = "a drarrow b";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "ÂÖ≥Á≥ª(~R)";
+//STRIP001          Text[ russian ] = "ŒÚÌÓ¯ÂÌËˇ";
+//STRIP001          Text[ polish ] = "~Relacje";
+//STRIP001          Text[ japanese ] = "ÊØîËºÉÊºîÁÆó(~R)";
+//STRIP001          Text[ chinese_traditional ] = "Èóú‰øÇ(~R)";
+//STRIP001          Text[ dutch ] = "~Relaties";
+//STRIP001          Text[ chinese_simplified ] = "ÂÖ≥Á≥ª(~R)";
+//STRIP001          Text[ greek ] = "~”˜›ÛÂÈ?;
+//STRIP001          Text[ korean ] = "Í¥ÄÍ≥?~R)";
+//STRIP001          Text[ arabic ] = "⁄·«ﬁ« ";
+//STRIP001          Text[ turkish ] = "›li˛kiler";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Relacions";
+//STRIP001          Text[ finnish ] = "~Relaatiot";
+//STRIP001          Text[ thai ] = "~‡∏Ñ‡∏ß‡∏≤‡∏°‡∏™‡∏±‡∏°‡∏û‡∏±‡∏ô‡∏ò‡πå";
+//STRIP001          Text[ czech ] = "Relace";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊ô◊ó◊°◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§∏‡§Æ‡•ç‡§¨‡§®‡•ç‡§ß‡•á‡§?;
+//STRIP001          Text[ slovak ] = "~Rel√°cie";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_SETOPERATIONS_MENU ;
+//STRIP001          HelpId = HID_SMA_SETOPERATIONS_TBX ;
+//STRIP001          Text = "~Mengenoperationen" ;
+//STRIP001          Text [ ENGLISH ] = "Set operations" ;
+//STRIP001          Text [ english_us ] = "~Set Operations" ;
+//STRIP001          Text [ portuguese_brazilian ] = "OperaÁıes de ~Conjuntos" ;
+//STRIP001          Text [ swedish ] = "~M‰ngdoperationer" ;
+//STRIP001          Text [ danish ] = "MÊngdeoperationer" ;
+//STRIP001          Text [ italian ] = "Operazioni degli insiemi" ;
+//STRIP001          Text [ spanish ] = "~Operaciones de conjuntos" ;
+//STRIP001          Text [ french ] = "O~pÈrateurs d'ensemble" ;
+//STRIP001          Text [ dutch ] = "~Definities" ;
+//STRIP001          Text [ portuguese ] = "~OperaÁıes de conjuntos" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XINY;
+//STRIP001                      HelpId = HID_SMA_XINY;
+//STRIP001                      Text = "a in A";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNOTINY;
+//STRIP001                      HelpId = HID_SMA_XNOTINY;
+//STRIP001                      Text = "a notin A";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XOWNSY;
+//STRIP001                      HelpId = HID_SMA_XOWNSY;
+//STRIP001                      Text = "A owns a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XINTERSECTIONY;
+//STRIP001                      HelpId = HID_SMA_XINTERSECTIONY;
+//STRIP001                      Text = "A intersection B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XUNIONY;
+//STRIP001                      HelpId = HID_SMA_XUNIONY;
+//STRIP001                      Text = "A union B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSETMINUSY;
+//STRIP001                      HelpId = HID_SMA_XSETMINUSY;
+//STRIP001                      Text = "A \\ B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSLASHY;
+//STRIP001                      HelpId = HID_SMA_XSLASHY;
+//STRIP001                      Text = "A / B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSUBSETY;
+//STRIP001                      HelpId = HID_SMA_XSUBSETY;
+//STRIP001                      Text = "A subset B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSUBSETEQY;
+//STRIP001                      HelpId = HID_SMA_XSUBSETEQY;
+//STRIP001                      Text = "A subseteq B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSUPSETY;
+//STRIP001                      HelpId = HID_SMA_XSUPSETY;
+//STRIP001                      Text = "A supset B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XSUPSETEQY;
+//STRIP001                      HelpId = HID_SMA_XSUPSETEQY;
+//STRIP001                      Text = "A supseteq B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNSUBSETY;
+//STRIP001                      HelpId = HID_SMA_XNSUBSETY;
+//STRIP001                      Text = "A nsubset B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNSUBSETEQY;
+//STRIP001                      HelpId = HID_SMA_XNSUBSETEQY;
+//STRIP001                      Text = "A nsubseteq B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNSUPSETY;
+//STRIP001                      HelpId = HID_SMA_XNSUPSETY;
+//STRIP001                      Text = "A nsupset B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XNSUPSETEQY;
+//STRIP001                      HelpId = HID_SMA_XNSUPSETEQY;
+//STRIP001                      Text = "A nsupseteq B";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_EMPTYSET;
+//STRIP001                      HelpId = HID_SMA_EMPTYSET;
+//STRIP001                      Text = "emptyset";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ALEPH;
+//STRIP001                      HelpId = HID_SMA_ALEPH;
+//STRIP001                      Text = "aleph";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SETN;
+//STRIP001                      HelpId = HID_SMA_SETN;
+//STRIP001                      Text = "setN";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SETZ;
+//STRIP001                      HelpId = HID_SMA_SETZ;
+//STRIP001                      Text = "setZ";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SETQ;
+//STRIP001                      HelpId = HID_SMA_SETQ;
+//STRIP001                      Text = "setQ";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SETR;
+//STRIP001                      HelpId = HID_SMA_SETR;
+//STRIP001                      Text = "setR";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SETC;
+//STRIP001                      HelpId = HID_SMA_SETC;
+//STRIP001                      Text = "setC";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "ÈõÜÂêàËøêÁÆó(~S)";
+//STRIP001          Text[ russian ] = "ŒÔÂ‡ˆËË Ì‡?ÏÌÓÊÂÒÚ‚ÓÏ";
+//STRIP001          Text[ polish ] = "~Operacje na zbiorach";
+//STRIP001          Text[ japanese ] = "ÈõÜÂêàÊºîÁÆó(~S)";
+//STRIP001          Text[ chinese_traditional ] = "ÈõÜÂêàÈÅãÁÆó(~S)";
+//STRIP001          Text[ dutch ] = "~Definities";
+//STRIP001          Text[ chinese_simplified ] = "ÈõÜÂêàËøêÁÆó(~S)";
+//STRIP001          Text[ greek ] = "~–Ò‹ÓÂÈ?ÛıÌ¸Î˘?;
+//STRIP001          Text[ korean ] = "ÏßëÌï© Ïó∞ÏÇ∞(~S)";
+//STRIP001          Text[ arabic ] = "„Ã„Ê⁄… ⁄„·Ì« ";
+//STRIP001          Text[ turkish ] = "K¸me i˛lemleri";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Operacions de conjunts";
+//STRIP001          Text[ finnish ] = "~Joukko-operaattorit";
+//STRIP001          Text[ thai ] = "~‡∏ï‡∏±‡πâ‡∏á‡∏Å‡∏≤‡∏£‡∏õ‡∏è‡∏¥‡∏ö‡∏±‡∏ï‡∏¥‡∏Å‡∏≤‡∏?;
+//STRIP001          Text[ czech ] = "Mno≈æinov√© operace";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊§◊¢◊ï◊ú◊ï◊?◊¢◊ú ◊°◊ò◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§ï‡§æ‡§∞‡•ç‡§?‡§∏‡•á‡§ü‡•ç‡§?‡§ï‡§∞‡•?;
+//STRIP001          Text[ slovak ] = "Mno≈æinov√© o~per√°cie";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_FUNCTIONS_MENU ;
+//STRIP001          HelpId = HID_SMA_FUNCTIONS_TBX ;
+//STRIP001          Text = "~Funktionen" ;
+//STRIP001          Text [ ENGLISH ] = "Functions" ;
+//STRIP001          Text [ english_us ] = "~Functions" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~FunÁıes" ;
+//STRIP001          Text [ swedish ] = "~Funktioner" ;
+//STRIP001          Text [ danish ] = "Funktioner" ;
+//STRIP001          Text [ italian ] = "Funzioni" ;
+//STRIP001          Text [ spanish ] = "~Funciones" ;
+//STRIP001          Text [ french ] = "~Fonctions" ;
+//STRIP001          Text [ dutch ] = "~Functies" ;
+//STRIP001          Text [ portuguese ] = "~FunÁıes" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ABSX;
+//STRIP001                      HelpId = HID_SMA_ABSX;
+//STRIP001                      Text = "|x|";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FACTX;
+//STRIP001                      HelpId = HID_SMA_FACTX;
+//STRIP001                      Text = "x!";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SQRTX;
+//STRIP001                      HelpId = HID_SMA_SQRTX;
+//STRIP001                      Text = "sqrt x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_NROOTXY;
+//STRIP001                      HelpId = HID_SMA_NROOTXY;
+//STRIP001                      Text = "nroot x y";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_RSUPX;
+//STRIP001                      HelpId = HID_SMA_RSUPX;
+//STRIP001                      Text = "x^y";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_EX;
+//STRIP001                      HelpId = HID_SMA_EX;
+//STRIP001                      Text = "e^x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LNX;
+//STRIP001                      HelpId = HID_SMA_LNX;
+//STRIP001                      Text = "ln(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_EXPX;
+//STRIP001                      HelpId = HID_SMA_EXPX;
+//STRIP001                      Text = "exp(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LOGX;
+//STRIP001                      HelpId = HID_SMA_LOGX;
+//STRIP001                      Text = "log(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SINX;
+//STRIP001                      HelpId = HID_SMA_SINX;
+//STRIP001                      Text = "sin(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_COSX;
+//STRIP001                      HelpId = HID_SMA_COSX;
+//STRIP001                      Text = "cos(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_TANX;
+//STRIP001                      HelpId = HID_SMA_TANX;
+//STRIP001                      Text = "tan(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_COTX;
+//STRIP001                      HelpId = HID_SMA_COTX;
+//STRIP001                      Text = "cot(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SINHX;
+//STRIP001                      HelpId = HID_SMA_SINHX;
+//STRIP001                      Text = "sinh(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_COSHX;
+//STRIP001                      HelpId = HID_SMA_COSHX;
+//STRIP001                      Text = "cosh(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_TANHX;
+//STRIP001                      HelpId = HID_SMA_TANHX;
+//STRIP001                      Text = "tanh(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_COTHX;
+//STRIP001                      HelpId = HID_SMA_COTHX;
+//STRIP001                      Text = "coth(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FUNCTIONSOTHER1_MENU;
+//STRIP001                      HelpId = HID_SMA_FUNCTIONSOTHER1_MENU;
+//STRIP001                      Text = "andere";
+//STRIP001                      Text [ ENGLISH ] = "other";
+//STRIP001                      TEXT[ italian ] = "altri";
+//STRIP001                      TEXT[ portuguese_brazilian ] = "Mais";
+//STRIP001                      TEXT[ portuguese ] = "Outros";
+//STRIP001                      TEXT[ danish ] = "andre";
+//STRIP001                      TEXT[ french ] = "Autres";
+//STRIP001                      TEXT[ swedish ] = "andra";
+//STRIP001                      TEXT[ dutch ] = "andere";
+//STRIP001                      TEXT[ spanish ] = "otros";
+//STRIP001                      TEXT[ english_us ] = "More";
+//STRIP001                      SubMenu = Menu
+//STRIP001                      {
+//STRIP001                          ItemList =
+//STRIP001                          {
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCSINX;
+//STRIP001                                  HelpId = HID_SMA_ARCSINX;
+//STRIP001                                  Text = "arcsin(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCCOSX;
+//STRIP001                                  HelpId = HID_SMA_ARCCOSX;
+//STRIP001                                  Text = "arccos(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCTANX;
+//STRIP001                                  HelpId = HID_SMA_ARCTANX;
+//STRIP001                                  Text = "arctan(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCCOTX;
+//STRIP001                                  HelpId = HID_SMA_ARCCOTX;
+//STRIP001                                  Text = "arcot(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARSINHX;
+//STRIP001                                  HelpId = HID_SMA_ARSINHX;
+//STRIP001                                  Text = "arsinh(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCOSHX;
+//STRIP001                                  HelpId = HID_SMA_ARCOSHX;
+//STRIP001                                  Text = "arcosh(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARTANHX;
+//STRIP001                                  HelpId = HID_SMA_ARTANHX;
+//STRIP001                                  Text = "artanh(x)";
+//STRIP001                              };
+//STRIP001                              MenuItem
+//STRIP001                              {
+//STRIP001                                  Identifier = RID_ARCOTHX;
+//STRIP001                                  HelpId = HID_SMA_ARCOTHX;
+//STRIP001                                  Text = "arcoth(x)";
+//STRIP001                              };
+//STRIP001                          };
+//STRIP001                      };
+//STRIP001                      TEXT[ chinese_simplified ] = "ÂÖ∂‰ªñ";
+//STRIP001                      TEXT[ russian ] = "ƒÛ„ËÂ";
+//STRIP001                      TEXT[ polish ] = "inne";
+//STRIP001                      TEXT[ japanese ] = "„Åù„ÅÆ‰ª?;
+//STRIP001                      TEXT[ chinese_traditional ] = "ÂÖ∂‰ªñ";
+//STRIP001                      TEXT[ language_user1 ] = " ";
+//STRIP001                      TEXT[ dutch ] = "andere";
+//STRIP001                      TEXT[ chinese_simplified ] = "ÂÖ∂‰ªñ";
+//STRIP001                      TEXT[ greek ] = "‹ÎÎ·";
+//STRIP001                      TEXT[ korean ] = "Í∏∞ÌÉÄ";
+//STRIP001                      TEXT[ arabic ] = "€Ì?–·?;
+//STRIP001                      TEXT[ turkish ] = "Dier";
+//STRIP001                      TEXT[ catalan ] = "altres";
+//STRIP001                      TEXT[ finnish ] = "Lis‰‰";
+//STRIP001                      TEXT[ thai ] = "‡∏°‡∏≤‡∏Å‡∏Å‡∏ß‡πà‡∏?;
+//STRIP001                      TEXT[ czech ] = "V√≠ce";
+//STRIP001                      TEXT[ hebrew ] = "‚ÄÆ◊¢◊ï◊ì‚Ä?;
+//STRIP001                      TEXT[ hindi ] = "‡§Ö‡§ß‡§ø‡§ï";
+//STRIP001                      TEXT[ slovak ] = "Viac";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "ÂáΩÊï∞(~F)";
+//STRIP001          Text[ russian ] = "‘ÛÌÍˆË?;
+//STRIP001          Text[ polish ] = "~Funkcje";
+//STRIP001          Text[ japanese ] = "Èñ¢Êï∞(~F)";
+//STRIP001          Text[ chinese_traditional ] = "ÂáΩÊï∏(~F)";
+//STRIP001          Text[ dutch ] = "~Functies";
+//STRIP001          Text[ chinese_simplified ] = "ÂáΩÊï∞(~F)";
+//STRIP001          Text[ greek ] = "~”ıÌ·ÒÙﬁÛÂÈ?;
+//STRIP001          Text[ korean ] = "Ìï®Ïàò(~F)";
+//STRIP001          Text[ arabic ] = "œ«·«?;
+//STRIP001          Text[ turkish ] = "Fonksiyonlar";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Funcions";
+//STRIP001          Text[ finnish ] = "~Funktiot";
+//STRIP001          Text[ thai ] = "~‡∏ü‡∏±‡∏á‡∏Å‡πå‡∏ä‡∏±‡πà‡∏?;
+//STRIP001          Text[ czech ] = "Funkce";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊™◊§◊ß◊ï◊ì◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§´‡§Ç‡§ï‡•ç‡§∂‡§®‡•?;
+//STRIP001          Text[ slovak ] = "~Funkcie";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_OPERATORS_MENU ;
+//STRIP001          HelpId = HID_SMA_OPERATORS_TBX ;
+//STRIP001          Text = "~Operatoren" ;
+//STRIP001          Text [ ENGLISH ] = "Operators" ;
+//STRIP001          Text [ english_us ] = "O~perators" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~Operadores" ;
+//STRIP001          Text [ swedish ] = "~Operatorer" ;
+//STRIP001          Text [ danish ] = "Operatorer" ;
+//STRIP001          Text [ italian ] = "Operatori" ;
+//STRIP001          Text [ spanish ] = "~Operadores" ;
+//STRIP001          Text [ french ] = "~OpÈrateurs" ;
+//STRIP001          Text [ dutch ] = "O~peratoren" ;
+//STRIP001          Text [ portuguese ] = "~Operadores" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LIMX;
+//STRIP001                      HelpId = HID_SMA_LIMX;
+//STRIP001                      Text = "lim x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SUMX;
+//STRIP001                      HelpId = HID_SMA_SUMX;
+//STRIP001                      Text = "sum x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_PRODX;
+//STRIP001                      HelpId = HID_SMA_PRODX;
+//STRIP001                      Text = "prod x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_COPRODX;
+//STRIP001                      HelpId = HID_SMA_COPRODX;
+//STRIP001                      Text = "coprod x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_INTX;
+//STRIP001                      HelpId = HID_SMA_INTX;
+//STRIP001                      Text = "int x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_IINTX;
+//STRIP001                      HelpId = HID_SMA_IINTX;
+//STRIP001                      Text = "iint x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_IIINTX;
+//STRIP001                      HelpId = HID_SMA_IIINTX;
+//STRIP001                      Text = "iiint x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LINTX;
+//STRIP001                      HelpId = HID_SMA_LINTX;
+//STRIP001                      Text = "lint x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LLINTX;
+//STRIP001                      HelpId = HID_SMA_LLINTX;
+//STRIP001                      Text = "llint x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LLLINTX;
+//STRIP001                      HelpId = HID_SMA_LLLINTX;
+//STRIP001                      Text = "lllint x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FROMXTOY;
+//STRIP001                      HelpId = HID_SMA_FROMXTOY;
+//STRIP001                      Text = "... from a to b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FROMX;
+//STRIP001                      HelpId = HID_SMA_FROMX;
+//STRIP001                      Text = "... from a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_TOX;
+//STRIP001                      HelpId = HID_SMA_TOX;
+//STRIP001                      Text = "... to b";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "ËøêÁÆóÁ¨?~P)";
+//STRIP001          Text[ russian ] = "ŒÔÂ‡ÚÓ?;
+//STRIP001          Text[ polish ] = "O~peratory";
+//STRIP001          Text[ japanese ] = "ÊºîÁÆóÂ≠?~P)";
+//STRIP001          Text[ chinese_traditional ] = "ÈÅãÁÆóÁ¨?~P)";
+//STRIP001          Text[ dutch ] = "O~peratoren";
+//STRIP001          Text[ chinese_simplified ] = "ËøêÁÆóÁ¨?~P)";
+//STRIP001          Text[ greek ] = "~‘ÂÎÂÛÙ›Ú";
+//STRIP001          Text[ korean ] = "Ïó∞ÏÇ∞Ïû?~P)";
+//STRIP001          Text[ arabic ] = "⁄Ê«„?«· ‘€Ì?;
+//STRIP001          Text[ turkish ] = "›˛leÁler";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "O~peradors";
+//STRIP001          Text[ finnish ] = "~Operaattorit";
+//STRIP001          Text[ thai ] = "‡∏ï‡∏±~‡∏ß‡∏õ‡∏è‡∏¥‡∏ö‡∏±‡∏ï‡∏¥‡∏Å‡∏≤‡∏?;
+//STRIP001          Text[ czech ] = "Oper√°tory";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊ê◊ï◊§◊®◊ò◊ï◊®◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§™‡•ç‡§∞‡§µ‡§∞‡•ç‡§§‡§ï";
+//STRIP001          Text[ slovak ] = "O~per√°tory";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_ATTRIBUTES_MENU ;
+//STRIP001          HelpId = HID_SMA_ATTRIBUTES_TBX ;
+//STRIP001          Text = "~Attribute" ;
+//STRIP001          Text [ ENGLISH ] = "Attributes" ;
+//STRIP001          Text [ portuguese ] = "~Atributos" ;
+//STRIP001          Text [ english_us ] = "~Attributes" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~Atributos" ;
+//STRIP001          Text [ swedish ] = "~Attribut" ;
+//STRIP001          Text [ danish ] = "Attributter" ;
+//STRIP001          Text [ italian ] = "Attributi" ;
+//STRIP001          Text [ spanish ] = "Atributos" ;
+//STRIP001          Text [ french ] = "~Attributs" ;
+//STRIP001          Text [ dutch ] = "~Attributen" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ACUTEX;
+//STRIP001                      HelpId = HID_SMA_ACUTEX;
+//STRIP001                      Text = "acute a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_GRAVEX;
+//STRIP001                      HelpId = HID_SMA_GRAVEX;
+//STRIP001                      Text = "grave a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_CHECKX;
+//STRIP001                      HelpId = HID_SMA_CHECKX;
+//STRIP001                      Text = "check a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_BREVEX;
+//STRIP001                      HelpId = HID_SMA_BREVEX;
+//STRIP001                      Text = "breve a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_CIRCLEX;
+//STRIP001                      HelpId = HID_SMA_CIRCLEX;
+//STRIP001                      Text = "circle a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTX;
+//STRIP001                      HelpId = HID_SMA_DOTX;
+//STRIP001                      Text = "dot a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DDOTX;
+//STRIP001                      HelpId = HID_SMA_DDOTX;
+//STRIP001                      Text = "ddot a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DDDOTX;
+//STRIP001                      HelpId = HID_SMA_DDDOTX;
+//STRIP001                      Text = "dddot a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_BARX;
+//STRIP001                      HelpId = HID_SMA_BARX;
+//STRIP001                      Text = "bar a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_VECX;
+//STRIP001                      HelpId = HID_SMA_VECX;
+//STRIP001                      Text = "vec a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_TILDEX;
+//STRIP001                      HelpId = HID_SMA_TILDEX;
+//STRIP001                      Text = "tilde a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_HATX;
+//STRIP001                      HelpId = HID_SMA_HATX;
+//STRIP001                      Text = "hat a";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_WIDEVECX;
+//STRIP001                      HelpId = HID_SMA_WIDEVECX;
+//STRIP001                      Text = "widevec abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_WIDETILDEX;
+//STRIP001                      HelpId = HID_SMA_WIDETILDEX;
+//STRIP001                      Text = "widetilde abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_WIDEHATX;
+//STRIP001                      HelpId = HID_SMA_WIDEHATX;
+//STRIP001                      Text = "widehat abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_OVERLINEX;
+//STRIP001                      HelpId = HID_SMA_OVERLINEX;
+//STRIP001                      Text = "overline abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_UNDERLINEX;
+//STRIP001                      HelpId = HID_SMA_UNDERLINEX;
+//STRIP001                      Text = "underline abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_OVERSTRIKEX;
+//STRIP001                      HelpId = HID_SMA_OVERSTRIKEX;
+//STRIP001                      Text = "overstrike abc";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_PHANTOMX;
+//STRIP001                      HelpId = HID_SMA_PHANTOMX;
+//STRIP001                      Text = "phantom b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_BOLDX;
+//STRIP001                      HelpId = HID_SMA_BOLDX;
+//STRIP001                      Text = "bold b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ITALX;
+//STRIP001                      HelpId = HID_SMA_ITALX;
+//STRIP001                      Text = "ital b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SIZEXY;
+//STRIP001                      HelpId = HID_SMA_SIZEXY;
+//STRIP001                      Text = "size s b";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FONTXY;
+//STRIP001                      HelpId = HID_SMA_FONTXY;
+//STRIP001                      Text = "font f b";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "Â±ûÊÄ?~A)";
+//STRIP001          Text[ russian ] = "¿ÚË·ÛÚ˚";
+//STRIP001          Text[ polish ] = "~Atrybuty";
+//STRIP001          Text[ japanese ] = "Â±ûÊÄ?~A)";
+//STRIP001          Text[ chinese_traditional ] = "Â±¨ÊÄ?~A)";
+//STRIP001          Text[ dutch ] = "~Attributen";
+//STRIP001          Text[ chinese_simplified ] = "Â±ûÊÄ?~A)";
+//STRIP001          Text[ greek ] = "~…‰È¸ÙÁÙÂ?;
+//STRIP001          Text[ korean ] = "ÏÜçÏÑ±(~A)";
+//STRIP001          Text[ arabic ] = "”„« ";
+//STRIP001          Text[ turkish ] = "÷znitelikler";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Atributs";
+//STRIP001          Text[ finnish ] = "~M‰‰ritteet";
+//STRIP001          Text[ thai ] = "~‡∏Ñ‡∏∏‡∏ì‡∏•‡∏±‡∏Å‡∏©‡∏ì‡∏?;
+//STRIP001          Text[ czech ] = "P≈ô√≠znaky";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊™◊õ◊ï◊†◊ï◊™‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§ê‡§ü‡•ç‡§∞‡§ø‡§¨‡•ç‡§Ø‡•Ç‡§ü‡•ç‡§∏";
+//STRIP001          Text[ slovak ] = "Pr√≠zn~aky";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_BRACKETS_MENU ;
+//STRIP001          HelpId = HID_SMA_BRACKETS_TBX ;
+//STRIP001          Text = "~Klammern" ;
+//STRIP001          Text [ ENGLISH ] = "Parentheses" ;
+//STRIP001          Text [ english_us ] = "~Brackets" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~Colchetes" ;
+//STRIP001          Text [ swedish ] = "~Parenteser" ;
+//STRIP001          Text [ danish ] = "Parenteser" ;
+//STRIP001          Text [ italian ] = "Parentesi" ;
+//STRIP001          Text [ spanish ] = "~ParÈntesis" ;
+//STRIP001          Text [ french ] = "~ParenthËses" ;
+//STRIP001          Text [ dutch ] = "~Haakjes" ;
+//STRIP001          Text [ portuguese ] = "~ParÍnteses" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRGROUPX;
+//STRIP001                      HelpId = HID_SMA_LRGROUPX;
+//STRIP001                      Text = "{...}";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRPARENTX;
+//STRIP001                      HelpId = HID_SMA_LRPARENTX;
+//STRIP001                      Text = "(x)";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRBRACKETX;
+//STRIP001                      HelpId = HID_SMA_LRBRACKETX;
+//STRIP001                      Text = "[x]";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRDBRACKETX;
+//STRIP001                      HelpId = HID_SMA_LRDBRACKETX;
+//STRIP001                      Text = "ldbracket x rdbracket ";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRBRACEX;
+//STRIP001                      HelpId = HID_SMA_LRBRACEX;
+//STRIP001                      Text = "{x}";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRANGLEX;
+//STRIP001                      HelpId = HID_SMA_LRANGLEX;
+//STRIP001                      Text = "langle x rangle";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LMRANGLEXY;
+//STRIP001                      HelpId = HID_SMA_LMRANGLEXY;
+//STRIP001                      Text = "langle x mline y rangle";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRCEILX;
+//STRIP001                      HelpId = HID_SMA_LRCEILX;
+//STRIP001                      Text = "lceil x rceil";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRFLOORX;
+//STRIP001                      HelpId = HID_SMA_LRFLOORX;
+//STRIP001                      Text = "lfloor x rfloor";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRLINEX;
+//STRIP001                      HelpId = HID_SMA_LRLINEX;
+//STRIP001                      Text = "lline x rline";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LRDLINEX;
+//STRIP001                      HelpId = HID_SMA_LRDLINEX;
+//STRIP001                      Text = "ldline x rdline";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRPARENTX;
+//STRIP001                      HelpId = HID_SMA_SLRPARENTX;
+//STRIP001                      Text = "left ( x rigth )";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRBRACKETX;
+//STRIP001                      HelpId = HID_SMA_SLRBRACKETX;
+//STRIP001                      Text = "left [ x right ]";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRDBRACKETX;
+//STRIP001                      HelpId = HID_SMA_SLRDBRACKETX;
+//STRIP001                      Text = "left ldbracket x right rdbracket ";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRBRACEX;
+//STRIP001                      HelpId = HID_SMA_SLRBRACEX;
+//STRIP001                      Text = "left { x right }";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRANGLEX;
+//STRIP001                      HelpId = HID_SMA_SLRANGLEX;
+//STRIP001                      Text = "left langle x right rangle";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLMRANGLEXY;
+//STRIP001                      HelpId = HID_SMA_SLMRANGLEXY;
+//STRIP001                      Text = "left langle x mline y right rangle";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRCEILX;
+//STRIP001                      HelpId = HID_SMA_SLRCEILX;
+//STRIP001                      Text = "left lceil x right rceil";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRFLOORX;
+//STRIP001                      HelpId = HID_SMA_SLRFLOORX;
+//STRIP001                      Text = "left lfloor x right rfloor";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRLINEX;
+//STRIP001                      HelpId = HID_SMA_SLRLINEX;
+//STRIP001                      Text = "left lline x right rline";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SLRDLINEX;
+//STRIP001                      HelpId = HID_SMA_SLRDLINEX;
+//STRIP001                      Text = "left ldline x right rdline";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XOVERBRACEY;
+//STRIP001                      HelpId = HID_SMA_XOVERBRACEY;
+//STRIP001                      Text = "x overbrace y";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_XUNDERBRACEY;
+//STRIP001                      HelpId = HID_SMA_XUNDERBRACEY;
+//STRIP001                      Text = "x underbrace y";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "Êã¨Âè∑(~B)";
+//STRIP001          Text[ russian ] = "—ÍÓ·ÍË";
+//STRIP001          Text[ polish ] = "~Nawiasy";
+//STRIP001          Text[ japanese ] = "„Åã„Å£„Å?~B)";
+//STRIP001          Text[ chinese_traditional ] = "Êã¨Ëôü(~B)";
+//STRIP001          Text[ dutch ] = "~Haakjes";
+//STRIP001          Text[ chinese_simplified ] = "Êã¨Âè∑(~B)";
+//STRIP001          Text[ greek ] = "~–·ÒÂÌË›ÛÂÈ?;
+//STRIP001          Text[ korean ] = "Í¥ÑÌò∏(~B)";
+//STRIP001          Text[ arabic ] = "√ﬁÊ«?;
+//STRIP001          Text[ turkish ] = "AyraÁlar";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~ParËntesi";
+//STRIP001          Text[ finnish ] = "~Sulkeet";
+//STRIP001          Text[ thai ] = "~‡∏ß‡∏á‡πÄ‡∏•‡πá‡∏ö‡∏Å‡πâ‡∏≤‡∏°‡∏õ‡∏?;
+//STRIP001          Text[ czech ] = "Z√°vorky";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊°◊ï◊í◊®◊ô◊ô◊?◊û◊®◊ï◊ë◊¢◊ï◊™‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§ï‡•ã‡§∑‡•ç‡§†‡§ï‡•á‡§Ç";
+//STRIP001          Text[ slovak ] = "Z√°tv~orky";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_FORMAT_MENU ;
+//STRIP001          HelpId = HID_SMA_FORMAT_TBX ;
+//STRIP001          Text = "Formatieru~ngen" ;
+//STRIP001          Text [ ENGLISH ] = "Format" ;
+//STRIP001          Text [ english_us ] = "For~mats" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~Formatos" ;
+//STRIP001          Text [ swedish ] = "~Formateringar" ;
+//STRIP001          Text [ danish ] = "Formateringer" ;
+//STRIP001          Text [ italian ] = "Formattazioni" ;
+//STRIP001          Text [ spanish ] = "~Formatos" ;
+//STRIP001          Text [ french ] = "Format~age" ;
+//STRIP001          Text [ dutch ] = "~Opmaak" ;
+//STRIP001          Text [ portuguese ] = "~Formatos" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_RSUPX;
+//STRIP001                      HelpId = HID_SMA_RSUPX;
+//STRIP001                      Text = "^x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_RSUBX;
+//STRIP001                      HelpId = HID_SMA_RSUBX;
+//STRIP001                      Text = "_x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LSUPX;
+//STRIP001                      HelpId = HID_SMA_LSUPX;
+//STRIP001                      Text = "lsup x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LSUBX;
+//STRIP001                      HelpId = HID_SMA_LSUBX;
+//STRIP001                      Text = "lsub x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_CSUPX;
+//STRIP001                      HelpId = HID_SMA_CSUPX;
+//STRIP001                      Text = "csup x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_CSUBX;
+//STRIP001                      HelpId = HID_SMA_CSUBX;
+//STRIP001                      Text = "csub x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_NEWLINE;
+//STRIP001                      HelpId = HID_SMA_NEWLINE;
+//STRIP001                      Text = "neue Zeile";
+//STRIP001                      Text [ ENGLISH ] = "new line" ;
+//STRIP001                      Text[ italian ] = "Nuova riga";
+//STRIP001                      Text[ portuguese_brazilian ] = "nova linha";
+//STRIP001                      Text[ portuguese ] = "nova linha";
+//STRIP001                      Text[ danish ] = "ny linje";
+//STRIP001                      Text[ french ] = "nouvelle ligne";
+//STRIP001                      Text[ swedish ] = "ny rad";
+//STRIP001                      Text[ dutch ] = "nieuwe regel";
+//STRIP001                      Text[ spanish ] = "lÌnea nueva";
+//STRIP001                      Text[ english_us ] = "New Line";
+//STRIP001                      Text[ chinese_simplified ] = "Êç¢Ë°å";
+//STRIP001                      Text[ russian ] = "—ÓÁ‰‡Ú?ÌÓ‚Û?ÒÚÓÍÛ";
+//STRIP001                      Text[ polish ] = "nowy wiersz";
+//STRIP001                      Text[ japanese ] = "newline";
+//STRIP001                      Text[ chinese_traditional ] = "ÊèõË°å";
+//STRIP001                      Text[ dutch ] = "nieuwe regel";
+//STRIP001                      Text[ chinese_simplified ] = "Êç¢Ë°å";
+//STRIP001                      Text[ greek ] = "Õ›?„Ò·ÏÏﬁ";
+//STRIP001                      Text[ korean ] = "ÏÉ?Ìñ?;
+//STRIP001                      Text[ arabic ] = "Œÿ ÃœÌœ";
+//STRIP001                      Text[ turkish ] = "Yeni sat˝r";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "lÌnia nova";
+//STRIP001                      Text[ finnish ] = "Rivinvaihto";
+//STRIP001                      Text[ thai ] = "‡∏ö‡∏£‡∏£‡∏ó‡∏±‡∏î‡πÉ‡∏´‡∏°‡πà";
+//STRIP001                      Text[ czech ] = "Nov√Ω ≈ô√°dek";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊ß◊?◊ó◊ì◊©‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§®‡§Ø‡§?‡§∞‡•á‡§ñ‡§æ";
+//STRIP001                      Text[ slovak ] = "Nov√Ω riadok";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_SBLANK;
+//STRIP001                      HelpId = HID_SMA_SBLANK;
+//STRIP001                      Text = "kleiner Zwischenraum";
+//STRIP001                      Text [ ENGLISH ] = "small space" ;
+//STRIP001                      Text[ italian ] = "Spazio intemedio piccolo";
+//STRIP001                      Text[ portuguese_brazilian ] = "Intervalo Pequeno";
+//STRIP001                      Text[ portuguese ] = "espaÁamento pequeno";
+//STRIP001                      Text[ danish ] = "lille mellemrum";
+//STRIP001                      Text[ french ] = "Petit espace";
+//STRIP001                      Text[ swedish ] = "Litet mellanrum";
+//STRIP001                      Text[ dutch ] = "kleine spatie";
+//STRIP001                      Text[ spanish ] = "espacio pequeÒo";
+//STRIP001                      Text[ english_us ] = "Small Gap";
+//STRIP001                      Text[ chinese_simplified ] = "Â∞èÈó¥Èö?;
+//STRIP001                      Text[ russian ] = " ÓÓÚÍËÈ ÔÓ·ÂÎ";
+//STRIP001                      Text[ polish ] = "Ma≥y odstÍp";
+//STRIP001                      Text[ japanese ] = "„Çπ„Éö„Éº„ÇπÂ∞?;
+//STRIP001                      Text[ chinese_traditional ] = "Â∞èÈñìÈö?;
+//STRIP001                      Text[ dutch ] = "kleine spatie";
+//STRIP001                      Text[ chinese_simplified ] = "Â∞èÈó¥Èö?;
+//STRIP001                      Text[ greek ] = "ÏÈÍÒ?‰È‹ÍÂÌ?;
+//STRIP001                      Text[ korean ] = "ÏûëÏùÄ Í∞ÑÍ≤©";
+//STRIP001                      Text[ arabic ] = " »«⁄?’€Ì—";
+//STRIP001                      Text[ turkish ] = "K¸Á¸k aral˝k";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "espai petit";
+//STRIP001                      Text[ finnish ] = "Kapea v‰li";
+//STRIP001                      Text[ thai ] = "‡∏ä‡πà‡∏≠‡∏á‡∏ß‡πà‡∏≤‡∏á‡πÄ‡∏•‡πá‡∏?;
+//STRIP001                      Text[ czech ] = "Mal√° mezera";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊û◊®◊ï◊ï◊?◊ß◊ò◊ü‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§õ‡•ã‡§ü‡§æ ‡§Ö‡§Ç‡§§‡§∞";
+//STRIP001                      Text[ slovak ] = "Mal√° medzera";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_BLANK;
+//STRIP001                      HelpId = HID_SMA_BLANK;
+//STRIP001                      Text = "Zwischenraum";
+//STRIP001                      Text [ ENGLISH ] = "space" ;
+//STRIP001                      Text[ italian ] = "Spazio intermedio";
+//STRIP001                      Text[ portuguese_brazilian ] = "Intervalo";
+//STRIP001                      Text[ portuguese ] = "espaÁamento";
+//STRIP001                      Text[ danish ] = "mellemrum";
+//STRIP001                      Text[ french ] = "Espace";
+//STRIP001                      Text[ swedish ] = "mellanrum";
+//STRIP001                      Text[ dutch ] = "spatie";
+//STRIP001                      Text[ spanish ] = "espacio";
+//STRIP001                      Text[ english_us ] = "Gap";
+//STRIP001                      Text[ chinese_simplified ] = "Èó¥Èöî";
+//STRIP001                      Text[ russian ] = "œÓ·ÂÎ";
+//STRIP001                      Text[ polish ] = "OdstÍp";
+//STRIP001                      Text[ japanese ] = "„Çπ„Éö„Éº„Çπ";
+//STRIP001                      Text[ chinese_traditional ] = "ÈñìÈöî";
+//STRIP001                      Text[ dutch ] = "spatie";
+//STRIP001                      Text[ chinese_simplified ] = "Èó¥Èöî";
+//STRIP001                      Text[ greek ] = "ƒÈ‹ÍÂÌ?;
+//STRIP001                      Text[ korean ] = "Í∞ÑÍ≤©";
+//STRIP001                      Text[ arabic ] = " »«⁄?;
+//STRIP001                      Text[ turkish ] = "Aral˝k";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "Espai";
+//STRIP001                      Text[ finnish ] = "V‰li";
+//STRIP001                      Text[ thai ] = "‡∏ä‡πà‡∏≠‡∏á‡∏ß‡πà‡∏≤‡∏á";
+//STRIP001                      Text[ czech ] = "Mezera";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊û◊®◊ï◊ï◊ó‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§Ö‡§Ç‡§§‡§∞";
+//STRIP001                      Text[ slovak ] = "Voƒæn√Ω priestor";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_BINOMXY;
+//STRIP001                      HelpId = HID_SMA_BINOMXY;
+//STRIP001                      Text = "binom x y";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_STACK;
+//STRIP001                      HelpId = HID_SMA_STACK;
+//STRIP001                      Text = "stack {...}";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_MATRIX;
+//STRIP001                      HelpId = HID_SMA_MATRIX;
+//STRIP001                      Text = "matrix {...}";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ALIGNLX;
+//STRIP001                      HelpId = HID_SMA_ALIGNLX;
+//STRIP001                      Text = "alignl x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ALIGNCX;
+//STRIP001                      HelpId = HID_SMA_ALIGNCX;
+//STRIP001                      Text = "alignc x";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_ALIGNRX;
+//STRIP001                      HelpId = HID_SMA_ALIGNRX;
+//STRIP001                      Text = "alignr x";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "Ê†ºÂºèÂå?~M)";
+//STRIP001          Text[ russian ] = "‘ÓÏ‡Ú?;
+//STRIP001          Text[ polish ] = "For~maty";
+//STRIP001          Text[ japanese ] = "Êõ∏ÂºèË®≠ÂÆö(~M)";
+//STRIP001          Text[ chinese_traditional ] = "Ê†ºÂºèÂå?~M)";
+//STRIP001          Text[ dutch ] = "~Opmaak";
+//STRIP001          Text[ chinese_simplified ] = "Ê†ºÂºèÂå?~M)";
+//STRIP001          Text[ greek ] = "ÃÔÒ~ˆÔÔÈﬁÛÂÈÚ";
+//STRIP001          Text[ korean ] = "ÏÑúÏãù(~M)";
+//STRIP001          Text[ arabic ] = " ‰”Ì?;
+//STRIP001          Text[ turkish ] = "Formatlar";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "For~mats";
+//STRIP001          Text[ finnish ] = "~Muotoilu";
+//STRIP001          Text[ thai ] = "‡∏£‡∏π‡∏õ‡πÅ~‡∏ö‡∏ö";
+//STRIP001          Text[ czech ] = "Form√°t";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊¶◊ï◊®◊ï◊™‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§∞‡§ö‡§®‡§æ";
+//STRIP001          Text[ slovak ] = "Fo~rm√°ty";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = RID_MISC_MENU ;
+//STRIP001          HelpId = HID_SMA_MISC_MENU ;
+//STRIP001          Text = "~Sonstiges" ;
+//STRIP001          Text [ ENGLISH ] = "Misc" ;
+//STRIP001          Text [ english_us ] = "~Others" ;
+//STRIP001          Text [ portuguese_brazilian ] = "~Outros" ;
+//STRIP001          Text [ swedish ] = "÷~vrigt" ;
+//STRIP001          Text [ danish ] = "Andet" ;
+//STRIP001          Text [ italian ] = "Altro" ;
+//STRIP001          Text [ spanish ] = "~Otros" ;
+//STRIP001          Text [ french ] = "~Autres" ;
+//STRIP001          Text [ dutch ] = "Over~ige" ;
+//STRIP001          Text [ portuguese ] = "~Outros" ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_INFINITY;
+//STRIP001                      HelpId = HID_SMA_INFINITY;
+//STRIP001                      Text = "infinity";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_PARTIAL;
+//STRIP001                      HelpId = HID_SMA_PARTIAL;
+//STRIP001                      Text = "partial";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_NABLA;
+//STRIP001                      HelpId = HID_SMA_NABLA;
+//STRIP001                      Text = "nabla";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_EXISTS;
+//STRIP001                      HelpId = HID_SMA_EXISTS;
+//STRIP001                      Text = "exists";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_FORALL;
+//STRIP001                      HelpId = HID_SMA_FORALL;
+//STRIP001                      Text = "forall";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_HBAR;
+//STRIP001                      HelpId = HID_SMA_HBAR;
+//STRIP001                      Text = "hbar";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LAMBDABAR;
+//STRIP001                      HelpId = HID_SMA_LAMBDABAR;
+//STRIP001                      Text = "lambdabar";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_RE;
+//STRIP001                      HelpId = HID_SMA_RE;
+//STRIP001                      Text = "Re";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_IM;
+//STRIP001                      HelpId = HID_SMA_IM;
+//STRIP001                      Text = "Im";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_WP;
+//STRIP001                      HelpId = HID_SMA_WP;
+//STRIP001                      Text = "wp";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_LEFTARROW;
+//STRIP001                      HelpId = HID_SMA_LEFTARROW;
+//STRIP001                      Text = "leftarrow";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_RIGHTARROW;
+//STRIP001                      HelpId = HID_SMA_RIGHTARROW;
+//STRIP001                      Text = "rightarrow";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_UPARROW;
+//STRIP001                      HelpId = HID_SMA_UPARROW;
+//STRIP001                      Text = "uparrow";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOWNARROW;
+//STRIP001                      HelpId = HID_SMA_DOWNARROW;
+//STRIP001                      Text = "downarrow";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Separator = TRUE;
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTSLOW;
+//STRIP001                      HelpId = HID_SMA_DOTSLOW;
+//STRIP001                      Text = "dotslow";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTSAXIS;
+//STRIP001                      HelpId = HID_SMA_DOTSAXIS;
+//STRIP001                      Text = "dotsaxis";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTSVERT;
+//STRIP001                      HelpId = HID_SMA_DOTSVERT;
+//STRIP001                      Text = "dotsvert";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTSUP;
+//STRIP001                      HelpId = HID_SMA_DOTSUP;
+//STRIP001                      Text = "dotsup";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = RID_DOTSDOWN;
+//STRIP001                      HelpId = HID_SMA_DOTSDOWN;
+//STRIP001                      Text = "dotsdown";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text[ chinese_simplified ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001          Text[ russian ] = "œÓ˜ÂÂ";
+//STRIP001          Text[ polish ] = "~Inne";
+//STRIP001          Text[ japanese ] = "„Åù„ÅÆ‰ª?~O)";
+//STRIP001          Text[ chinese_traditional ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001          Text[ dutch ] = "Over~ige";
+//STRIP001          Text[ chinese_simplified ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001          Text[ greek ] = "~ƒÈ‹ˆÔÒ?;
+//STRIP001          Text[ korean ] = "Í∏∞ÌÉÄ(~O)";
+//STRIP001          Text[ arabic ] = "„« ⁄œ?–·?;
+//STRIP001          Text[ turkish ] = "Dierleri";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "~Altres";
+//STRIP001          Text[ finnish ] = "~Muut";
+//STRIP001          Text[ thai ] = "~‡∏≠‡∏∑‡πà‡∏ô ‡π?;
+//STRIP001          Text[ czech ] = "Ostatn√≠";
+//STRIP001          Text[ hebrew ] = "‚ÄÆ◊ê◊ó◊®◊ô◊ù‚Ä?;
+//STRIP001          Text[ hindi ] = "~‡§Ö‡§®‡•ç‡§Ø";
+//STRIP001          Text[ slovak ] = "~Ostatn√©";
+//STRIP001      };
+//STRIP001  };
+//STRIP001 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

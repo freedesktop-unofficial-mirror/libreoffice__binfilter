@@ -1,0 +1,321 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sc_imoptdlg.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:18 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+
+#include "imoptdlg.hrc"
+
+//STRIP001 ModalDialog RID_SCDLG_IMPORTOPT
+//STRIP001 {
+//STRIP001  HelpId = HID_SC_INPORTOPT ;
+//STRIP001  OutputSize = TRUE ;
+//STRIP001  SVLook = TRUE ;
+//STRIP001     Size = MAP_APPFONT ( 256 , 66 ) ;
+//STRIP001  Moveable = TRUE ;
+//STRIP001  Closeable = FALSE ;
+//STRIP001  Text = "Datei Importieren" ;
+//STRIP001  Text [ ENGLISH ] = "Import File" ;
+//STRIP001  Text [ norwegian ] = "Import File" ;
+//STRIP001  Text [ italian ] = "Importa file" ;
+//STRIP001  Text [ portuguese_brazilian ] = "Importar Arquivo" ;
+//STRIP001  Text [ portuguese ] = "Importar ficheiro" ;
+//STRIP001  Text [ french ] = "Import de fichier" ;
+//STRIP001  Text [ dutch ] = "Bestand importeren" ;
+//STRIP001  Text [ spanish ] = "Importar archivo" ;
+//STRIP001  Text [ danish ] = "Importer fil" ;
+//STRIP001  Text [ swedish ] = "Importera fil" ;
+//STRIP001  Text [ finnish ] = "Tuo tiedosto" ;
+//STRIP001  Text [ english_us ] = "Import File" ;
+//STRIP001  FixedText FT_FIELDSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 32 ) ;
+//STRIP001         Size = MAP_APPFONT ( 55 , 8 ) ;
+//STRIP001      Text = "~Feldtrenner" ;
+//STRIP001      Text [ ENGLISH ] = "~Field delimiter" ;
+//STRIP001      Text [ norwegian ] = "~Field delimiter" ;
+//STRIP001      Text [ italian ] = "Separatore di campo" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Delimitador de ~campo" ;
+//STRIP001      Text [ portuguese ] = "Separador de ~campo" ;
+//STRIP001      Text [ french ] = "~SÈparateur de champ" ;
+//STRIP001      Text [ dutch ] = "~Veldbegrenzing" ;
+//STRIP001      Text [ spanish ] = "Separador de campos" ;
+//STRIP001      Text [ danish ] = "Feltseparator" ;
+//STRIP001      Text [ swedish ] = "~F‰ltavgr‰nsare" ;
+//STRIP001      Text [ finnish ] = "~Kent‰n erotin" ;
+//STRIP001      Text [ english_us ] = "~Field delimiter" ;
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÊÆµÂàÜÈöîÁ¨?~F)";
+//STRIP001      Text[ russian ] = "–‡Á‰ÂÎËÚÂÎ?ÔÓ?";
+//STRIP001      Text[ polish ] = "Separator ~pola";
+//STRIP001      Text[ japanese ] = "„Éï„Ç£„Éº„É´„Éâ„ÅÆÂå∫Âàá„ÇäË®òÂè?~F)";
+//STRIP001      Text[ chinese_traditional ] = "Ê¨Ñ‰ΩçÂàÜÈöîÁ¨?~F)";
+//STRIP001      Text[ arabic ] = "›«’· «·Õﬁ?;
+//STRIP001      Text[ greek ] = "ƒÈ·˜˘ÒÈÛÙÈÍ¸ Â‰ﬂ˘Ì";
+//STRIP001      Text[ korean ] = "ÌïÑÎìú Íµ¨Î∂Ñ Í∏∞Ìò∏(~F)";
+//STRIP001      Text[ turkish ] = "~Alan ayrac?;
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Delimitador de camp";
+//STRIP001      Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏Ñ‡∏±‡πà‡∏ô‡πÄ~‡∏Ç‡∏ï‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•";
+//STRIP001      Text[ czech ] = "Oddƒõlovaƒç pole";
+//STRIP001      Text[ hebrew ] = "~Feldtrenner";
+//STRIP001      Text[ hindi ] = "~‡§ï‡•ç‡§∑‡•á‡§§‡•ç‡§?‡§™‡§∞‡§ø‡§∏‡•Ä‡§Æ‡§ø‡§?‡§ï‡§∞‡§®‡•á‡§µ‡§æ‡§≤‡§æ";
+//STRIP001  };
+//STRIP001  ComboBox ED_FIELDSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 70 , 30 ) ;
+//STRIP001         Size = MAP_APPFONT ( 121 , 60 ) ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001  };
+//STRIP001  FixedText FT_TEXTSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 48 ) ;
+//STRIP001         Size = MAP_APPFONT ( 55 , 8 ) ;
+//STRIP001      Text = "~Texttrenner" ;
+//STRIP001      Text [ ENGLISH ] = "~Text delimiter" ;
+//STRIP001      Text [ norwegian ] = "~Text delimiter" ;
+//STRIP001      Text [ italian ] = "Separatore di ~testo" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Delimitador de ~texto" ;
+//STRIP001      Text [ portuguese ] = "Delimitador de ~texto" ;
+//STRIP001      Text [ french ] = "SÈparateur de ~texte" ;
+//STRIP001      Text [ dutch ] = "~Tekstbegrenzing" ;
+//STRIP001      Text [ spanish ] = "S~eparador de texto" ;
+//STRIP001      Text [ danish ] = "Tekstseparator" ;
+//STRIP001      Text [ swedish ] = "~Textavgr‰nsare" ;
+//STRIP001      Text [ finnish ] = "~Tekstin erottimet" ;
+//STRIP001      Text [ english_us ] = "~Text delimiter" ;
+//STRIP001      Text[ chinese_simplified ] = "ÊñáÂ≠óÂàÜÈöîÁ¨?~T)";
+//STRIP001      Text[ russian ] = "–‡Á‰ÂÎËÚÂÎ?ÚÂÍÒÚ‡";
+//STRIP001      Text[ polish ] = "Separator ~tekstu";
+//STRIP001      Text[ japanese ] = "„ÉÜ„Ç≠„Çπ„Éà„ÅÆÂå∫Âàá„ÇäË®òÂè∑(~T)";
+//STRIP001      Text[ chinese_traditional ] = "ÊñáÂ≠óÂàÜÈöîÁ¨?~T)";
+//STRIP001      Text[ arabic ] = "›«’· «·‰’";
+//STRIP001      Text[ greek ] = "ƒÈ·˜˘ÒÈÛÙÈÍ¸ ÍÂÈÏ›ÌÔı";
+//STRIP001      Text[ korean ] = "ÌÖçÏä§Ìä?Íµ¨Î∂Ñ Í∏∞Ìò∏(~T)";
+//STRIP001      Text[ turkish ] = "~Metin ayrac?;
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Delimitador de text";
+//STRIP001      Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏Ñ‡∏±‡πà‡∏ô~‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏ß‡∏≤‡∏?;
+//STRIP001      Text[ czech ] = "Oddƒõlovaƒç textu";
+//STRIP001      Text[ hebrew ] = "~Texttrenner";
+//STRIP001      Text[ hindi ] = "~‡§ü‡•á‡§ï‡•ç‡§∏‡•ç‡§ü‡•ç ‡§™‡§∞‡§ø‡§∏‡•Ä‡§Æ‡§ø‡§?‡§ï‡§∞‡§®‡•á‡§µ‡§æ‡§≤‡§æ";
+//STRIP001  };
+//STRIP001  ComboBox ED_TEXTSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 70 , 46 ) ;
+//STRIP001         Size = MAP_APPFONT ( 121 , 60 ) ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001  };
+//STRIP001  FixedText FT_FONT
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 12 , 16 ) ;
+//STRIP001         Size = MAP_APPFONT ( 55 , 8 ) ;
+//STRIP001      Text = "~Zeichensatz" ;
+//STRIP001      Text [ ENGLISH ] = "F~ont" ;
+//STRIP001      Text [ norwegian ] = "F~ont" ;
+//STRIP001      Text [ italian ] = "~Tipo di carattere" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Conjunto de caracteres" ;
+//STRIP001      Text [ portuguese ] = "~Conjunto de caracteres" ;
+//STRIP001      Text [ french ] = "~Jeu de caractËres" ;
+//STRIP001      Text [ dutch ] = "~Tekenset" ;
+//STRIP001      Text [ spanish ] = "J~uego de caracteres" ;
+//STRIP001      Text [ danish ] = "TegnsÊt" ;
+//STRIP001      Text [ swedish ] = "Te~ckenupps‰ttning" ;
+//STRIP001      Text [ finnish ] = "~Merkist? ;
+//STRIP001      Text [ english_us ] = "~Character set" ;
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÁ¨¶Èõ?~C)";
+//STRIP001      Text[ russian ] = " Ó‰ËÓ‚Í?;
+//STRIP001      Text[ polish ] = "Z~estaw znakÛw";
+//STRIP001      Text[ japanese ] = "ÊñáÂ≠óÂà?~C)";
+//STRIP001      Text[ chinese_traditional ] = "Â≠óÂûã(~C)";
+//STRIP001      Text[ arabic ] = "„Ã„Ê⁄… √Õ—›";
+//STRIP001      Text[ greek ] = "~”Â?˜·Ò·ÍÙﬁÒ˘Ì";
+//STRIP001      Text[ korean ] = "Î¨∏ÏûêÏßëÌï©(~C)";
+//STRIP001      Text[ turkish ] = "~Karakter k¸mesi";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Joc de car‡cters";
+//STRIP001      Text[ thai ] = "‡∏ä‡∏∏‡∏î~‡∏ï‡∏±‡∏ß‡∏≠‡∏±‡∏Å‡∏Ç‡∏£‡∏?;
+//STRIP001      Text[ czech ] = "Znakov√° sada";
+//STRIP001      Text[ hebrew ] = "~Zeichensatz";
+//STRIP001      Text[ hindi ] = "~‡§Ö‡§ï‡•ç‡§∑‡§?‡§∏‡§Æ‡•Ç‡§π";
+//STRIP001  };
+//STRIP001  ListBox DDLB_FONT
+//STRIP001  {
+//STRIP001      Border = TRUE;
+//STRIP001      Sort = TRUE;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 70 , 14 ) ;
+//STRIP001         Size = MAP_APPFONT ( 121 , 52 ) ;
+//STRIP001  };
+//STRIP001  ListBox LB_FONT
+//STRIP001  {
+//STRIP001      Border = TRUE;
+//STRIP001      Sort = TRUE;
+//STRIP001      DropDown = FALSE ;
+//STRIP001         Pos = MAP_APPFONT ( 12 , 14 ) ;
+//STRIP001      Size = MAP_APPFONT ( 179 , 50 ) ;
+//STRIP001  };
+//STRIP001     FixedLine FL_FIELDOPT
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 6 , 3 ) ;
+//STRIP001         Size = MAP_APPFONT ( 188 , 8 ) ;
+//STRIP001         Text = "Feldoptionen" ;
+//STRIP001      Text [ ENGLISH ] = "Field Options" ;
+//STRIP001      Text [ norwegian ] = "Field Options" ;
+//STRIP001      Text [ italian ] = "Opzioni campo" ;
+//STRIP001      Text [ portuguese_brazilian ] = "OpÁıes do campo" ;
+//STRIP001      Text [ portuguese ] = "OpÁıes de campo" ;
+//STRIP001      Text [ french ] = "Options de champ" ;
+//STRIP001      Text [ dutch ] = "Veldopties" ;
+//STRIP001      Text [ spanish ] = "Opciones de campo" ;
+//STRIP001      Text [ danish ] = "Feltindstillinger" ;
+//STRIP001      Text [ swedish ] = "F‰ltalternativ" ;
+//STRIP001      Text [ finnish ] = "Kent‰n asetukset" ;
+//STRIP001      Text [ english_us ] = "Field options" ;
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÊÆµÈÄâÈ°π";
+//STRIP001      Text[ russian ] = "œ‡‡ÏÂÚ?ÔÓ?";
+//STRIP001      Text[ polish ] = "Opcje pola";
+//STRIP001      Text[ japanese ] = "„Éï„Ç£„Éº„É´„Éâ„ÅÆ„Ç™„Éó„Ç∑„Éß„É?;
+//STRIP001      Text[ chinese_traditional ] = "Ê¨Ñ‰ΩçÈÅ∏È†Ö";
+//STRIP001      Text[ arabic ] = "ŒÌ«—«  «·Õﬁ?;
+//STRIP001      Text[ greek ] = "≈ÈÎÔ„›Ú Â‰ﬂÔı";
+//STRIP001      Text[ korean ] = "ÌïÑÎìú ÏòµÏÖò";
+//STRIP001      Text[ turkish ] = "Alan seÁenekleri";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Opcions de camp";
+//STRIP001      Text[ thai ] = "‡∏ï‡∏±‡∏ß‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡πÄ‡∏Ç‡∏ï‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•";
+//STRIP001      Text[ czech ] = "Volby pole";
+//STRIP001      Text[ hebrew ] = "Feldoptionen";
+//STRIP001      Text[ hindi ] = "‡§ï‡•ç‡§∑‡•á‡§§‡•ç‡§?‡§µ‡§ø‡§ï‡§≤‡•ç‡§™";
+//STRIP001  };
+//STRIP001     CheckBox CB_FIXEDWIDTH
+//STRIP001     {
+//STRIP001         Pos = MAP_APPFONT( 12, 66 );
+//STRIP001         Size = MAP_APPFONT( 172, 10 );
+//STRIP001         Hide = TRUE;
+//STRIP001         Text = "Feste Spalten~breite";
+//STRIP001         Text[ english ] = "Fixed column ~width";
+//STRIP001         Text[ english_us ] = "Fixed column ~width";
+//STRIP001      Text[ portuguese ] = "Fixed text ~width";
+//STRIP001      Text[ russian ] = "Fixed text ~width";
+//STRIP001      Text[ greek ] = "Fixed text ~width";
+//STRIP001      Text[ dutch ] = "Fixed text ~width";
+//STRIP001      Text[ french ] = "Largeur de colonne fixe";
+//STRIP001      Text[ spanish ] = "~Ancho de columna fijo";
+//STRIP001      Text[ finnish ] = "Fixed text ~width";
+//STRIP001      Text[ italian ] = "Ampiezza colonna fissa";
+//STRIP001      Text[ danish ] = "Fixed text ~width";
+//STRIP001      Text[ swedish ] = "Fast kolumn~bredd";
+//STRIP001      Text[ polish ] = "Fixed text ~width";
+//STRIP001      Text[ japanese ] = "ÊåáÂÆö„Åï„Çå„ÅüÂàóÂπ?;
+//STRIP001      Text[ korean ] = "Í≥†Ï†ï Ïó?ÎÑàÎπÑ";
+//STRIP001      Text[ chinese_simplified ] = "Âõ∫ÂÆöÁöÑÂàóÂÆ?;
+//STRIP001      Text[ chinese_traditional ] = "Âõ∫ÂÆöÁöÑÊ¨ÑÂØ?;
+//STRIP001      Text[ turkish ] = "Sabit kolon ~geni˛lii";
+//STRIP001      Text[ arabic ] = "Fixed text ~width";
+//STRIP001      Text[ czech ] = "Pevn√° ≈°√≠≈ôka sloupce";
+//STRIP001      Text[ hebrew ] = "Feste Spalten~breite";
+//STRIP001      Text[ catalan ] = "Fixed column ~width";
+//STRIP001      Text[ portuguese_brazilian ] = "Fixed column ~width";
+//STRIP001      Text[ thai ] = "Fixed column ~width";
+//STRIP001      Text[ hindi ] = "Fixed column ~width";
+//STRIP001  };
+//STRIP001  OKButton BTN_OK
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 202 , 6 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      DefButton = TRUE ;
+//STRIP001  };
+//STRIP001  CancelButton BTN_CANCEL
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 202 , 24 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001  };
+//STRIP001  HelpButton BTN_HELP
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 202 , 43 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001  };
+//STRIP001  Text[ chinese_simplified ] = "ËæìÂÖ•Êñá‰ª∂";
+//STRIP001  Text[ russian ] = "»ÏÔÓÚ Ù‡ÈÎ?;
+//STRIP001  Text[ polish ] = "Importuj plik";
+//STRIP001  Text[ japanese ] = "„Éï„Ç°„Ç§„É´„ÅÆ„Ç§„É≥„Éù„Éº„Éà";
+//STRIP001  Text[ chinese_traditional ] = "ÂåØÂÖ•Ê™îÊ°à";
+//STRIP001  Text[ arabic ] = "«” Ì—«?„·?;
+//STRIP001  Text[ greek ] = "≈ÈÛ·„˘„ﬁ ·Ò˜ÂﬂÔ?;
+//STRIP001  Text[ korean ] = "ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏?;
+//STRIP001  Text[ turkish ] = "Dosyay?iÁe aktar";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "Importa el fitxer";
+//STRIP001  Text[ thai ] = "‡∏ô‡∏≥‡πÄ‡∏Ç‡πâ‡∏≤‡πÅ‡∏ü‡πâ‡∏?;
+//STRIP001  Text[ czech ] = "Importovat soubor";
+//STRIP001  Text[ hebrew ] = "Datei Importieren";
+//STRIP001  Text[ hindi ] = "‡§´‡§æ‡§á‡§≤ ‡§ï‡•ã ‡§®‡§ø‡§∞‡•ç‡§Ø‡§æ‡§?‡§ï‡§∞‡•?;
+//STRIP001 };
+
+
+
+
+
+
+
+
+
+
+
+

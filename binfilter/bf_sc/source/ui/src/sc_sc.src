@@ -1,0 +1,170 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sc_sc.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:35 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+ //==================================================================
+ // StarCalc Applikations Resource
+ //
+ // (C) 1994 StarDivision GmbH, Hamburg, Germany
+ // $Author: hjs $ $Date: 2003-10-01 12:18:35 $ $Revision: 1.1.1.1 $
+ // $Logfile:   T:/sc/source/ui/src/sc.srv  $ $Workfile:   sc.src  $
+ //==================================================================
+
+
+#include "bf_sc.hrc" // -> #include <sfx.hrc>
+
+
+
+ // Version und App-Titel------------------------------------------------------
+
+String RID_BUILDVERSION
+{
+    Text = UPDVER ;
+};
+
+String RID_APPTITLE
+{
+    /* ### ACHTUNG: Neuer Text in Resource? StarCalc 4.0 : StarCalc 3.1 */
+    Text = "%PRODUCTNAME Calc" ;
+    Text [ ENGLISH ] = "StarCalc 4.0" ;
+    Text [ norwegian ] = "StarCalc 4.0" ;
+    Text [ italian ] = "%PRODUCTNAME Calc" ;
+    Text [ portuguese_brazilian ] = "%PRODUCTNAME Calc" ;
+    Text [ portuguese ] = "%PRODUCTNAME Calc" ;
+    Text [ finnish ] = "%PRODUCTNAME Calc" ;
+    Text [ danish ] = "%PRODUCTNAME Calc" ;
+    Text [ french ] = "%PRODUCTNAME Calc" ;
+    Text [ swedish ] = "%PRODUCTNAME Calc" ;
+    Text [ dutch ] = "%PRODUCTNAME Calc" ;
+    Text [ spanish ] = "%PRODUCTNAME Calc" ;
+    Text [ english_us ] = "%PRODUCTNAME Calc" ;
+    Text[ chinese_simplified ] = "%PRODUCTNAME Calc";
+    Text[ russian ] = "%PRODUCTNAME Calc";
+    Text[ polish ] = "%PRODUCTNAME Calc";
+    Text[ japanese ] = "%PRODUCTNAME Calc";
+    Text[ chinese_traditional ] = "%PRODUCTNAME Calc";
+    Text[ arabic ] = "%PRODUCTNAME Calc";
+    Text[ greek ] = "%PRODUCTNAME Calc";
+    Text[ korean ] = "%PRODUCTNAME Calc";
+    Text[ turkish ] = "%PRODUCTNAME Calc";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "%PRODUCTNAME Calc";
+    Text[ thai ] = "%PRODUCTNAME Calc";
+    Text[ czech ] = "%PRODUCTNAME Calc";
+    Text[ hebrew ] = "%PRODUCTNAME Calc";
+    Text[ hindi ] = "%PRODUCTNAME गणना";
+};
+
+ // About-Dialog --------------------------------------------------------------
+
+ // Icons & Bitmaps: ----------------------------------------------------------
+
+//STRIP001 Image RID_BMP_REFBTN1
+//STRIP001 {
+//STRIP001  ImageBitmap = Bitmap
+//STRIP001  {
+//STRIP001      File = "refinp1.bmp";
+//STRIP001  };
+//STRIP001     MaskColor = STD_MASKCOLOR;
+//STRIP001 };
+
+//STRIP001 Image RID_BMP_REFBTN1_H
+//STRIP001 {
+//STRIP001  ImageBitmap = Bitmap
+//STRIP001  {
+//STRIP001         File = "refinp1_h.bmp";
+//STRIP001  };
+//STRIP001     MaskColor = SC_HC_MASKCOLOR;
+//STRIP001 };
+
+//STRIP001 Image RID_BMP_REFBTN2
+//STRIP001 {
+//STRIP001  ImageBitmap = Bitmap
+//STRIP001  {
+//STRIP001      File = "refinp2.bmp";
+//STRIP001  };
+//STRIP001     MaskColor = STD_MASKCOLOR;
+//STRIP001 };
+
+//STRIP001 Image RID_BMP_REFBTN2_H
+//STRIP001 {
+//STRIP001  ImageBitmap = Bitmap
+//STRIP001  {
+//STRIP001         File = "refinp2_h.bmp";
+//STRIP001  };
+//STRIP001     MaskColor = SC_HC_MASKCOLOR;
+//STRIP001 };
+
+
+ // ???
+String 30001 { Text = "Dummy1" ; };
+String 30002 { Text = "Dummy2" ; };
+String 30006 { Text = "Dummy3" ; };
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,252 @@
+/*************************************************************************
+ *
+ *  $RCSfile: xmltbli.hxx,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:27 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+#ifndef _XMLTBLI_HXX
+#define _XMLTBLI_HXX
+
+#ifndef _XMLOFF_XMLTEXTTABLECONTEXT_HXX
+#include <xmloff/XMLTextTableContext.hxx>
+#endif
+
+// STL include
+#include <hash_map>
+
+#if !defined(_SVSTDARR_USHORTS_DECL) || !defined(_SVSTDARR_BOOLS_DECL) || !defined(_SVSTDARR_STRINGSDTOR_DECL)
+#define _SVSTDARR_USHORTS
+#define _SVSTDARR_BOOLS
+#define _SVSTDARR_STRINGSDTOR
+#include <svtools/svstdarr.hxx>
+#endif
+
+class SwXMLImport;
+class SwTableNode;
+class SwTableBox;
+class SwTableLine;
+class SwStartNode;
+class SwTableBoxFmt;
+class SwTableLineFmt;
+class SwXMLTableCell_Impl;
+class SwXMLTableRows_Impl;
+class SwXMLDDETableContext_Impl;
+class TableBoxIndexHasher;
+class TableBoxIndex;
+
+namespace com { namespace sun { namespace star {
+    namespace text { class XTextContent; }
+    namespace text { class XTextCursor; }
+} } }
+
+
+
+class SwXMLTableContext : public XMLTextTableContext
+{
+    ::rtl::OUString     aStyleName;
+    ::rtl::OUString     aDfltCellStyleName;
+
+    SvUShorts           aColumnWidths;
+    SvBools             aColumnRelWidths;
+    SvStringsDtor       *pColumnDefaultCellStyleNames;
+
+    ::com::sun::star::uno::Reference <
+        ::com::sun::star::text::XTextCursor > xOldCursor;
+    ::com::sun::star::uno::Reference <
+        ::com::sun::star::text::XTextContent > xTextContent;
+
+    SwXMLTableRows_Impl *pRows;
+
+    SwTableNode         *pTableNode;
+    SwTableBox          *pBox1;
+    const SwStartNode   *pSttNd1;
+
+    SwTableBoxFmt       *pBoxFmt;
+    SwTableLineFmt      *pLineFmt;
+
+    // hash map of shared format, indexed by the (XML) style name,
+    // the column width, and protection flag
+    typedef std::hash_map<TableBoxIndex,SwTableBoxFmt*,
+                          TableBoxIndexHasher> map_BoxFmt;
+    map_BoxFmt* pSharedBoxFormats;
+
+    SvXMLImportContextRef   xParentTable;   // if table is a sub table
+
+    SwXMLDDETableContext_Impl   *pDDESource;
+
+    sal_Bool            bFirstSection : 1;
+    sal_Bool            bRelWidth : 1;
+    sal_Bool            bHasHeading : 1;
+
+    sal_uInt32          nCurRow;
+    sal_uInt32          nCurCol;
+    sal_Int32           nWidth;
+
+    SwTableBox *NewTableBox( const SwStartNode *pStNd,
+                             SwTableLine *pUpper );
+    SwTableBox *MakeTableBox( SwTableLine *pUpper,
+                              const SwXMLTableCell_Impl *pStartNode,
+                              sal_uInt32 nTopRow, sal_uInt32 nLeftCol,
+                              sal_uInt32 nBottomRow, sal_uInt32 nRightCol );
+    SwTableBox *MakeTableBox( SwTableLine *pUpper,
+                              sal_uInt32 nTopRow, sal_uInt32 nLeftCol,
+                              sal_uInt32 nBottomRow, sal_uInt32 nRightCol );
+    SwTableLine *MakeTableLine( SwTableBox *pUpper,
+                                sal_uInt32 nTopRow, sal_uInt32 nLeftCol,
+                                sal_uInt32 nBottomRow, sal_uInt32 nRightCol );
+
+    void _MakeTable( SwTableBox *pBox=0 );
+    void MakeTable( SwTableBox *pBox, sal_Int32 nWidth );
+    void MakeTable();
+
+    inline SwXMLTableContext *GetParentTable() const;
+
+    const SwStartNode *GetPrevStartNode( sal_uInt32 nRow,
+                                         sal_uInt32 nCol ) const;
+    inline const SwStartNode *GetLastStartNode() const;
+    void FixRowSpan( sal_uInt32 nRow, sal_uInt32 nCol, sal_uInt32 nColSpan );
+    void ReplaceWithEmptyCell( sal_uInt32 nRow, sal_uInt32 nCol );
+
+    /** sets the appropriate SwTblBoxFmt at pBox. */
+    SwTableBoxFmt* GetSharedBoxFormat(
+        SwTableBox* pBox,   /// the table box
+        const ::rtl::OUString& rStyleName, /// XML style name
+        sal_Int32 nColumnWidth,     /// width of column
+        sal_Bool bProtected,        /// is cell protected?
+        sal_Bool bMayShare, /// may the format be shared (no value, formula...)
+        sal_Bool& bNew,     /// true, if the format it not from the cache
+        sal_Bool* pModifyLocked );  /// if set, call pBox->LockModify() and return old lock status
+
+public:
+
+    TYPEINFO();
+
+    SwXMLTableContext( SwXMLImport& rImport, sal_uInt16 nPrfx,
+                   const ::rtl::OUString& rLName,
+                const ::com::sun::star::uno::Reference<
+                    ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
+    SwXMLTableContext( SwXMLImport& rImport, sal_uInt16 nPrfx,
+                   const ::rtl::OUString& rLName,
+                  const ::com::sun::star::uno::Reference<
+                    ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
+                SwXMLTableContext *pTable );
+
+    virtual ~SwXMLTableContext();
+
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+                const ::rtl::OUString& rLocalName,
+                const ::com::sun::star::uno::Reference<
+                    ::com::sun::star::xml::sax::XAttributeList > & xAttrList );
+
+    SwXMLImport& GetSwImport() { return (SwXMLImport&)GetImport(); }
+
+    void InsertColumn( sal_Int32 nWidth, sal_Bool bRelWidth,
+                       const ::rtl::OUString *pDfltCellStyleName = 0 );
+    sal_Int32 GetColumnWidth( sal_uInt32 nCol, sal_uInt32 nColSpan=1UL ) const;
+    ::rtl::OUString GetColumnDefaultCellStyleName( sal_uInt32 nCol ) const;
+    inline sal_uInt32 GetColumnCount() const;
+    inline sal_Bool HasColumnDefaultCellStyleNames() const;
+
+    sal_Bool IsInsertCellPossible() const { return nCurCol < GetColumnCount(); }
+    sal_Bool IsInsertColPossible() const { return nCurCol < USHRT_MAX; }
+    sal_Bool IsInsertRowPossible() const { return nCurRow < USHRT_MAX; }
+    sal_Bool IsValid() const { return pTableNode != 0; }
+
+    void InsertCell( const ::rtl::OUString& rStyleName,
+                     sal_uInt32 nRowSpan=1U, sal_uInt32 nColSpan=1U,
+                     const SwStartNode *pStNd=0,
+                     SwXMLTableContext *pTable=0,
+                     sal_Bool bIsProtected = sal_False,
+                     const ::rtl::OUString *pFormula=0,
+                     sal_Bool bHasValue = sal_False,
+                     double fValue = 0.0 );
+    void InsertRow( const ::rtl::OUString& rStyleName,
+                    const ::rtl::OUString& rDfltCellStyleName,
+                    sal_Bool bInHead );
+    void FinishRow();
+    void InsertRepRows( sal_uInt32 nCount );
+    SwXMLTableCell_Impl *GetCell( sal_uInt32 nRow, sal_uInt32 nCol ) const;
+    const SwStartNode *InsertTableSection( const SwStartNode *pPrevSttNd=0 );
+
+    virtual void EndElement();
+
+    virtual ::com::sun::star::uno::Reference <
+            ::com::sun::star::text::XTextContent > GetXTextContent() const;
+};
+
+inline SwXMLTableContext *SwXMLTableContext::GetParentTable() const
+{
+    return (SwXMLTableContext *)&xParentTable;
+}
+
+inline sal_uInt32 SwXMLTableContext::GetColumnCount() const
+{
+    return aColumnWidths.Count();
+}
+
+inline const SwStartNode *SwXMLTableContext::GetLastStartNode() const
+{
+    return GetPrevStartNode( 0UL, GetColumnCount() );
+}
+
+inline sal_Bool SwXMLTableContext::HasColumnDefaultCellStyleNames() const
+{
+    return pColumnDefaultCellStyleNames != 0;
+}
+
+#endif

@@ -1,0 +1,1572 @@
+/*************************************************************************
+ *
+ *  $RCSfile: svx_imapdlg.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:20 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+ // include ---------------------------------------------------------------
+#include "helpid.hrc"
+#include "imapdlg.hrc"
+ // pragma ----------------------------------------------------------------
+
+ // RID_SVXDLG_IMAP ----------------------------------------------------
+//STRIP001 ModelessDialog RID_SVXDLG_IMAP
+//STRIP001 {
+//STRIP001  OutputSize = TRUE ;
+//STRIP001  Hide = TRUE ;
+//STRIP001  SVLook = TRUE ;
+//STRIP001  Pos = MAP_APPFONT ( 0 , 0 ) ;
+//STRIP001  Size = MAP_APPFONT ( 270 , 213 ) ;
+//STRIP001  Text = "ImageMap-Editor" ;
+//STRIP001  Text [ ENGLISH ] = "Image Map Editor" ;
+//STRIP001  Sizeable = TRUE ;
+//STRIP001  Moveable = TRUE ;
+//STRIP001  Closeable = TRUE ;
+//STRIP001  ToolBox TBX_IMAPDLG1
+//STRIP001  {
+//STRIP001      SVLook = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 6 , 6 ) ;
+//STRIP001      HelpId = HID_IMAPDLG_TOOLBOX ;
+//STRIP001
+//STRIP001      ItemList =
+//STRIP001      {
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_APPLY ;
+//STRIP001              HelpId = HID_IMAPDLG_APPLY ;
+//STRIP001              Text = "Zuweisen" ;
+//STRIP001              Text [ ENGLISH ] = "Apply" ;
+//STRIP001              Text [ english_us ] = "Apply" ;
+//STRIP001              Text [ italian ] = "Assegna" ;
+//STRIP001              Text [ spanish ] = "Aplicar" ;
+//STRIP001              Text [ french ] = "Assigner" ;
+//STRIP001              Text [ dutch ] = "Toewijzen" ;
+//STRIP001              Text [ swedish ] = "Tilldela" ;
+//STRIP001              Text [ danish ] = "Tildel" ;
+//STRIP001              Text [ portuguese ] = "Aplicar" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Aplicar" ;
+//STRIP001              Text[ chinese_simplified ] = "æŒ‡å®š";
+//STRIP001              Text[ russian ] = "Ïğèìåíèò?;
+//STRIP001              Text[ polish ] = "Zastosuj";
+//STRIP001              Text[ japanese ] = "é©ç”¨";
+//STRIP001              Text[ chinese_traditional ] = "æŒ‡å®š";
+//STRIP001              Text[ arabic ] = "ÊØÈí?;
+//STRIP001              Text[ greek ] = "Áíôéóôïß÷éóç";
+//STRIP001              Text[ korean ] = "ì ìš©";
+//STRIP001              Text[ turkish ] = "Uygula";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Aplica";
+//STRIP001              Text[ finnish ] = "Käyt?;
+//STRIP001              Text[ thai ] = "à¹ƒà¸Šà¹?;
+//STRIP001              Text[ czech ] = "PouÅ¾Ã­t";
+//STRIP001              Text[ hebrew ] = "â€®×™×™×©×•×â€?;
+//STRIP001              Text[ hindi ] = "à¤²à¤¾à¤—à¥‚ à¤•à¤°à¥?;
+//STRIP001              Text[ slovak ] = "PouÅ¾iÅ¥";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_OPEN ;
+//STRIP001              HelpId = HID_IMAPDLG_OPEN ;
+//STRIP001              Text = "Öffnen..." ;
+//STRIP001              Text [ ENGLISH ] = "Open..." ;
+//STRIP001              Text [ dutch ] = "Openen..." ;
+//STRIP001              Text [ english_us ] = "Open..." ;
+//STRIP001              Text [ italian ] = "Apri..." ;
+//STRIP001              Text [ spanish ] = "Abrir..." ;
+//STRIP001              Text [ french ] = "Ouvrir..." ;
+//STRIP001              Text [ swedish ] = "Öppna..." ;
+//STRIP001              Text [ danish ] = "Åbn" ;
+//STRIP001              Text [ portuguese ] = "Abrir..." ;
+//STRIP001              Text [ portuguese_brazilian ] = "Abrir ..." ;
+//STRIP001              Text[ chinese_simplified ] = "æ‰“å¼€...";
+//STRIP001              Text[ russian ] = "Îòêğûò?..";
+//STRIP001              Text[ polish ] = "Otwórz...";
+//STRIP001              Text[ japanese ] = "é–‹ã...";
+//STRIP001              Text[ chinese_traditional ] = "é–‹å•ŸèˆŠæª”...";
+//STRIP001              Text[ arabic ] = "...İÊ?;
+//STRIP001              Text[ greek ] = "¢íïéãì?..";
+//STRIP001              Text[ korean ] = "ì—´ê¸°...";
+//STRIP001              Text[ turkish ] = "A?..";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Obre...";
+//STRIP001              Text[ finnish ] = "Avaa...";
+//STRIP001              Text[ thai ] = "à¹€à¸›à¸´à¸?..";
+//STRIP001              Text[ czech ] = "OtevÅ™Ã­t...";
+//STRIP001              Text[ hebrew ] = "â€®×¤×ª×™×—×?..â€?;
+//STRIP001              Text[ hindi ] = "à¤–à¥‹à¤²à¥‹...";
+//STRIP001              Text[ slovak ] = "OtvoriÅ¥...";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_SAVEAS ;
+//STRIP001              HelpId = HID_IMAPDLG_SAVEAS ;
+//STRIP001
+//STRIP001              Text= "Speichern...";
+//STRIP001              Text [ ENGLISH ] = "Save..." ;
+//STRIP001              Text [ english_us ] = "Save..." ;
+//STRIP001              Text [ dutch ] = "Opslaan..." ;
+//STRIP001              Text [ italian ] = "Salva..." ;
+//STRIP001              Text [ spanish ] = "Guardar..." ;
+//STRIP001              Text [ french ] = "Enregistrer..." ;
+//STRIP001              Text [ swedish ] = "Spara..." ;
+//STRIP001              Text [ danish ] = "Gem..." ;
+//STRIP001              Text [ portuguese ] = "Guardar..." ;
+//STRIP001              Text [ portuguese_brazilian ] = "Salvar..." ;
+//STRIP001              Text[ arabic ] = "Íİ?..";
+//STRIP001              Text[ chinese_simplified ] = "å­˜ç›˜...";
+//STRIP001              Text[ chinese_traditional ] = "å„²å­˜...";
+//STRIP001              Text[ japanese ] = "ä¿å­˜...";
+//STRIP001              Text[ russian ] = "Ñîõğàíèò?..";
+//STRIP001              Text[ greek ] = "ÁğïèŞêåõóç...";
+//STRIP001              Text[ polish ] = "Zapisz...";
+//STRIP001              Text[ korean ] = "ì €ì?..";
+//STRIP001              Text[ turkish ] = "Kaydet...";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Desa...";
+//STRIP001              Text[ finnish ] = "Tallenna...";
+//STRIP001              Text[ thai ] = "à¸šà¸±à¸™à¸—à¸¶à¸...";
+//STRIP001              Text[ czech ] = "UloÅ¾it...";
+//STRIP001              Text[ hebrew ] = "â€®×©××™×¨×”â€?;
+//STRIP001              Text[ hindi ] = "à¤¸à¤‚à¤šà¤¿à¤?à¤•à¤°à¥?..";
+//STRIP001              Text[ slovak ] = "UloÅ¾iÅ¥...";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Type = TOOLBOXITEM_SEPARATOR ;
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_SELECT ;
+//STRIP001              HelpId = HID_IMAPDLG_SELECT ;
+//STRIP001              Text = "Auswahl" ;
+//STRIP001              Text [ ENGLISH ] = "Selection" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text [ dutch ] = "Selectie" ;
+//STRIP001              Text [ english_us ] = "Select" ;
+//STRIP001              Text [ italian ] = "Selezione" ;
+//STRIP001              Text [ spanish ] = "Selección" ;
+//STRIP001              Text [ french ] = "Sélection" ;
+//STRIP001              Text [ swedish ] = "Urval" ;
+//STRIP001              Text [ danish ] = "Marker" ;
+//STRIP001              Text [ portuguese ] = "Seleccionar" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Selecionar" ;
+//STRIP001              Text[ chinese_simplified ] = "é€‰æ‹©";
+//STRIP001              Text[ russian ] = "Âûáî?;
+//STRIP001              Text[ polish ] = "Wybierz";
+//STRIP001              Text[ japanese ] = "é¸æŠ";
+//STRIP001              Text[ chinese_traditional ] = "é¸æ“‡";
+//STRIP001              Text[ arabic ] = "ÊÍÏí?;
+//STRIP001              Text[ greek ] = "Åğéëïã?;
+//STRIP001              Text[ korean ] = "ì„ íƒ";
+//STRIP001              Text[ turkish ] = "Seçim";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Selecciona";
+//STRIP001              Text[ finnish ] = "Valintatyökalu";
+//STRIP001              Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸";
+//STRIP001              Text[ czech ] = "Vybrat";
+//STRIP001              Text[ hebrew ] = "â€®×‘×—×™×¨×”â€?;
+//STRIP001              Text[ hindi ] = "à¤šà¥à¤¨à¥‹";
+//STRIP001              Text[ slovak ] = "VybraÅ¥";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_RECT ;
+//STRIP001              HelpId = HID_IMAPDLG_RECT ;
+//STRIP001              Text = "Rechteck" ;
+//STRIP001              Text [ ENGLISH ] = "Rectangle" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text [ dutch ] = "Rechthoek" ;
+//STRIP001              Text [ english_us ] = "Rectangle" ;
+//STRIP001              Text [ italian ] = "Rettangolo" ;
+//STRIP001              Text [ spanish ] = "Rectángulo" ;
+//STRIP001              Text [ french ] = "Rectangle" ;
+//STRIP001              Text [ swedish ] = "Rektangel" ;
+//STRIP001              Text [ danish ] = "Rektangel" ;
+//STRIP001              Text [ portuguese ] = "Rectângulo" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Retângulo" ;
+//STRIP001              Text[ chinese_simplified ] = "é•¿æ–¹å½?;
+//STRIP001              Text[ russian ] = "Ïğÿìîóãîëüíèê";
+//STRIP001              Text[ polish ] = "Prostok¹t";
+//STRIP001              Text[ japanese ] = "å››è§’å½?;
+//STRIP001              Text[ chinese_traditional ] = "é•·æ–¹å½?;
+//STRIP001              Text[ arabic ] = "ãÓÊØíá";
+//STRIP001              Text[ greek ] = "Ïñèïãşíé?;
+//STRIP001              Text[ korean ] = "ì§ì‚¬ê°í˜•";
+//STRIP001              Text[ turkish ] = "Dikdörtgen";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Rectangle";
+//STRIP001              Text[ finnish ] = "Suorakulmio";
+//STRIP001              Text[ thai ] = "à¸ªà¸µà¹ˆà¹€à¸«à¸¥à¸µà¹ˆà¸¢à¸¡";
+//STRIP001              Text[ czech ] = "ObdÃ©lnÃ­k";
+//STRIP001              Text[ hebrew ] = "â€®××¨×•×‘×¢â€?;
+//STRIP001              Text[ hindi ] = "à¤†à¤¯à¤?;
+//STRIP001              Text[ slovak ] = "ObdÄºÅ¾nik";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_CIRCLE ;
+//STRIP001              HelpId = HID_IMAPDLG_CIRCLE ;
+//STRIP001              Text = "Ellipse" ;
+//STRIP001              Text [ ENGLISH ] = "Ellipse" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text [ dutch ] = "Ellips" ;
+//STRIP001              Text [ english_us ] = "Ellipse" ;
+//STRIP001              Text [ italian ] = "Ellisse" ;
+//STRIP001              Text [ spanish ] = "Elipse" ;
+//STRIP001              Text [ french ] = "Ellipse" ;
+//STRIP001              Text [ swedish ] = "Ellips" ;
+//STRIP001              Text [ danish ] = "Ellipse" ;
+//STRIP001              Text [ portuguese ] = "Elipse" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Elipse" ;
+//STRIP001              Text[ chinese_simplified ] = "æ¤­åœ†";
+//STRIP001              Text[ russian ] = "İëëèïñ?;
+//STRIP001              Text[ polish ] = "Elipsa";
+//STRIP001              Text[ japanese ] = "æ¥•å††";
+//STRIP001              Text[ chinese_traditional ] = "æ©¢åœ“";
+//STRIP001              Text[ arabic ] = "Ôß?ÈíÖæ?;
+//STRIP001              Text[ greek ] = "¸ëëåéø?;
+//STRIP001              Text[ korean ] = "íƒ€ì›?;
+//STRIP001              Text[ turkish ] = "Elips";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Elipse";
+//STRIP001              Text[ finnish ] = "Ellipsi";
+//STRIP001              Text[ thai ] = "à¸§à¸‡à¸£à¸µ";
+//STRIP001              Text[ czech ] = "Elipsa";
+//STRIP001              Text[ hebrew ] = "â€®××¢×’×œâ€?;
+//STRIP001              Text[ hindi ] = "à¤¦à¥€à¤°à¥à¤˜à¤µà¥ƒà¤¤à¥à¤¤";
+//STRIP001              Text[ slovak ] = "Elipsa";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_POLY ;
+//STRIP001              HelpId = HID_IMAPDLG_POLY ;
+//STRIP001              Text = "Polygon" ;
+//STRIP001              Text [ ENGLISH ] = "Polygon" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text [ english_us ] = "Polygon" ;
+//STRIP001              Text [ italian ] = "Poligono" ;
+//STRIP001              Text [ spanish ] = "Polígono" ;
+//STRIP001              Text [ french ] = "Polygone" ;
+//STRIP001              Text [ dutch ] = "Veelhoek" ;
+//STRIP001              Text [ swedish ] = "Polygon" ;
+//STRIP001              Text [ danish ] = "Polygon" ;
+//STRIP001              Text [ portuguese ] = "Polígono" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Polígono" ;
+//STRIP001              Text[ chinese_simplified ] = "å¤šè¾¹å½?;
+//STRIP001              Text[ russian ] = "Ìíîãîóãîëüíè?;
+//STRIP001              Text[ polish ] = "Wielok¹t";
+//STRIP001              Text[ japanese ] = "å¤šè§’å½?;
+//STRIP001              Text[ chinese_traditional ] = "å¤šé‚Šå½?;
+//STRIP001              Text[ arabic ] = "ãÖáÚ";
+//STRIP001              Text[ greek ] = "Ğïëıãùíï";
+//STRIP001              Text[ korean ] = "ë‹¤ê°í˜?;
+//STRIP001              Text[ turkish ] = "Çokgen";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Polígon";
+//STRIP001              Text[ finnish ] = "Monikulmio";
+//STRIP001              Text[ thai ] = "à¸«à¸¥à¸²à¸¢à¹€à¸«à¸¥à¸µà¹ˆà¸¢à¸¡";
+//STRIP001              Text[ czech ] = "MnohoÃºhelnÃ­k";
+//STRIP001              Text[ hebrew ] = "â€®×¤×•×œ×™×’×•× ×™×â€?;
+//STRIP001              Text[ hindi ] = "à¤¬à¤¹à¥à¤­à¥à¤œ à¤•à¥à¤·à¥‡à¤¤à¥à¤?;
+//STRIP001              Text[ slovak ] = "MnohouholnÃ­k";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_FREEPOLY ;
+//STRIP001              HelpId = HID_IMAPDLG_FREEPOLY ;
+//STRIP001              Text = "Freihandpolygon" ;
+//STRIP001              Text [ ENGLISH ] = "Freeline polygon" ;
+//STRIP001              Text [ english_us ] = "Freeform Polygon" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text [ portuguese ] = "Polígono, forma livre" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Polígono de mão-livre" ;
+//STRIP001              Text [ swedish ] = "Frihandspolygon" ;
+//STRIP001              Text [ danish ] = "Frihåndspolygon" ;
+//STRIP001              Text [ italian ] = "Poligono a mano libera" ;
+//STRIP001              Text [ spanish ] = "Polígono a mano alzada" ;
+//STRIP001              Text [ french ] = "Polygone ?main levée" ;
+//STRIP001              Text [ dutch ] = "Vrije hand-veelhoek" ;
+//STRIP001              Text[ chinese_simplified ] = "è‡ªç”±å¤šè¾¹å½?;
+//STRIP001              Text[ russian ] = "Ğèñîâàííûé ìíîãîóãîëüíè?;
+//STRIP001              Text[ polish ] = "Wielok¹t odrêczny";
+//STRIP001              Text[ japanese ] = "ãƒ•ãƒªãƒ¼ãƒ•ã‚©ãƒ¼ãƒ ã®å¤šè§’å½?;
+//STRIP001              Text[ chinese_traditional ] = "è‡ªç”±å¤šé‚Šå½?;
+//STRIP001              Text[ arabic ] = "ãÖáÚ ÍÑ";
+//STRIP001              Text[ greek ] = "Ğïëıãùíï åëåıèåñç?ó÷åäßáóç?;
+//STRIP001              Text[ korean ] = "ììœ  ë‹¤ê°í˜?;
+//STRIP001              Text[ turkish ] = "Serbest çokgen";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Polígon a m?alçada";
+//STRIP001              Text[ finnish ] = "Vapaamuotoinen monikulmio";
+//STRIP001              Text[ thai ] = "à¸£à¸¹à¸›à¸«à¸¥à¸²à¸¢à¹€à¸«à¸¥à¸µà¹ˆà¸¢à¸¡à¹à¸šà¸šà¸­à¸´à¸ªà¸£à¸°";
+//STRIP001              Text[ czech ] = "VolnÃ½ mnohoÃºhelnÃ­k";
+//STRIP001              Text[ hebrew ] = "Freihandpolygon";
+//STRIP001              Text[ hindi ] = "à¤¸à¥à¤µà¤¤à¤‚à¤¤à¥à¤° à¤¬à¤¹à¥à¤­à¥à¤œ à¤•à¥à¤·à¥‡à¤¤à¥à¤?;
+//STRIP001              Text[ slovak ] = "Ä½ubovoÄ¾nÃ¡ forma";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Type = TOOLBOXITEM_SEPARATOR ;
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_POLYEDIT ;
+//STRIP001              HelpId = HID_IMAPDLG_POLYEDIT ;
+//STRIP001              Text = "Punkte bearbeiten" ;
+//STRIP001              Text [ norwegian ] = "Edit Points" ;
+//STRIP001              Text [ italian ] = "Modifica punti" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Editar Pontos" ;
+//STRIP001              Text [ portuguese ] = "Editar pontos" ;
+//STRIP001              Text [ finnish ] = "Muokkaa pisteit? ;
+//STRIP001              Text [ danish ] = "Rediger punkter" ;
+//STRIP001              Text [ french ] = "Éditer des points" ;
+//STRIP001              Text [ swedish ] = "Redigera punkter" ;
+//STRIP001              Text [ dutch ] = "Punten bewerken" ;
+//STRIP001              Text [ spanish ] = "Editar puntos" ;
+//STRIP001              Text [ english_us ] = "Edit Points" ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text[ chinese_simplified ] = "ç¼–è¾‘æ¥ç‚¹";
+//STRIP001              Text[ russian ] = "Èçìåíåíè?ãåîìåòğè?;
+//STRIP001              Text[ polish ] = "Edytuj punkty";
+//STRIP001              Text[ japanese ] = "åˆ¶å¾¡ç‚¹ã®ç·¨é›†";
+//STRIP001              Text[ chinese_traditional ] = "ç·¨è¼¯æ¥é»";
+//STRIP001              Text[ arabic ] = "ÊÍÑí?ÇáäŞÇØ";
+//STRIP001              Text[ greek ] = "Åğåîåñãáóß?óçìåßù?;
+//STRIP001              Text[ korean ] = "ì ?í¸ì§‘";
+//STRIP001              Text[ turkish ] = "Noktalar?düzenle";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Edita els punts";
+//STRIP001              Text[ thai ] = "à¹à¸à¹‰à¹„à¸‚à¸ˆà¸¸à¸”";
+//STRIP001              Text[ czech ] = "Upravit body";
+//STRIP001              Text[ hebrew ] = "â€®×¢×¨×™×›×?× ×§×•×“×•×ªâ€?;
+//STRIP001              Text[ hindi ] = "à¤¬à¤¿à¤¨à¥à¤¦à¥à¤“à¤‚ à¤•à¤¾ à¤¸à¤‚à¤ªà¤¾à¤¦à¤¨";
+//STRIP001              Text[ slovak ] = "UpraviÅ¥ body";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_POLYMOVE ;
+//STRIP001              HelpId = HID_IMAPDLG_POLYMOVE ;
+//STRIP001              Text = "Punkte verschieben" ;
+//STRIP001              Text [ ENGLISH ] = "Edit Points" ;
+//STRIP001              Text [ norwegian ] = "Edit Points" ;
+//STRIP001              Text [ italian ] = "Sposta punti" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Mover Pontos" ;
+//STRIP001              Text [ portuguese ] = "Mover pontos" ;
+//STRIP001              Text [ finnish ] = "Siirr?pisteit? ;
+//STRIP001              Text [ danish ] = "Flyt punkter" ;
+//STRIP001              Text [ french ] = "Déplacer des points" ;
+//STRIP001              Text [ swedish ] = "Flytta punkter" ;
+//STRIP001              Text [ dutch ] = "Punten verplaatsen" ;
+//STRIP001              Text [ spanish ] = "Desplazar puntos" ;
+//STRIP001              Text [ english_us ] = "Move Points" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text[ chinese_simplified ] = "ç§»åŠ¨ç‚?;
+//STRIP001              Text[ russian ] = "Ïåğåìåñòèò?óçëû";
+//STRIP001              Text[ polish ] = "Przesu?punkty";
+//STRIP001              Text[ japanese ] = "åˆ¶å¾¡ç‚¹ã®ç§»å‹•";
+//STRIP001              Text[ chinese_traditional ] = "ç§»å‹•é»?;
+//STRIP001              Text[ arabic ] = "ÊÍÑí?ÇáäŞÇØ";
+//STRIP001              Text[ greek ] = "Ìåôáêßíçóç óçìåßù?;
+//STRIP001              Text[ korean ] = "ì ?ì´ë™";
+//STRIP001              Text[ turkish ] = "Noktalar?taşı";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Mou els punts";
+//STRIP001              Text[ thai ] = "à¸¢à¹‰à¸²à¸¢à¸ˆà¸¸à¸?;
+//STRIP001              Text[ czech ] = "PÅ™esunout body";
+//STRIP001              Text[ hebrew ] = "â€®×”×–×–×?× ×§×•×“×•×ªâ€?;
+//STRIP001              Text[ hindi ] = "à¤¬à¤¿à¤¨à¥à¤¦à¥à¤“à¤‚ à¤•à¤¾ à¤¸à¥à¤¥à¤¾à¤?à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨ à¤•à¤°à¥?;
+//STRIP001              Text[ slovak ] = "PresunÃºÅ¥ body";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_POLYINSERT ;
+//STRIP001              HelpId = HID_IMAPDLG_POLYINSERT ;
+//STRIP001              /* ### ACHTUNG: Neuer Text in Resource? Punkte einfügen : Punkte einf³gen */
+//STRIP001              /* ### ACHTUNG: Neuer Text in Resource? Punkte einfügen : Punkte einf³gen */
+//STRIP001              Text = "Punkte einfügen" ;
+//STRIP001              Text [ ENGLISH ] = "Insert Points" ;
+//STRIP001              Text [ norwegian ] = "Insert Points" ;
+//STRIP001              Text [ italian ] = "Inserisci punti" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Inserir Pontos" ;
+//STRIP001              Text [ portuguese ] = "Inserir pontos" ;
+//STRIP001              Text [ finnish ] = "Lisää pisteet" ;
+//STRIP001              Text [ danish ] = "Indsæt punkter" ;
+//STRIP001              Text [ french ] = "Insérer des points" ;
+//STRIP001              Text [ swedish ] = "Infoga punkter" ;
+//STRIP001              Text [ dutch ] = "Punten invoegen" ;
+//STRIP001              Text [ spanish ] = "Insertar puntos" ;
+//STRIP001              Text [ english_us ] = "Insert Points" ;
+//STRIP001              RadioCheck = TRUE ;
+//STRIP001              AutoCheck = TRUE ;
+//STRIP001              Text[ chinese_simplified ] = "æ’å…¥æ¥ç‚¹";
+//STRIP001              Text[ russian ] = "Âñòàâèòü óçëû";
+//STRIP001              Text[ polish ] = "Wstaw punkty";
+//STRIP001              Text[ japanese ] = "åˆ¶å¾¡ç‚¹ã®æŒ¿å…¥";
+//STRIP001              Text[ chinese_traditional ] = "æ’å…¥æ¥é»";
+//STRIP001              Text[ arabic ] = "ÅÖÇİ?äŞÇØ";
+//STRIP001              Text[ greek ] = "ÅéóáãùãŞ óçìåßù?;
+//STRIP001              Text[ korean ] = "ì ?ì‚½ì…";
+//STRIP001              Text[ turkish ] = "Nokta ekle";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Insereix els punts";
+//STRIP001              Text[ thai ] = "à¹à¸—à¸£à¸à¸ˆà¸¸à¸?;
+//STRIP001              Text[ czech ] = "VloÅ¾it body";
+//STRIP001              Text[ hebrew ] = "â€®×”×•×¡×¤×?× ×§×•×“×•×ªâ€?;
+//STRIP001              Text[ hindi ] = "à¤¬à¤¿à¤¨à¥à¤¦à¥à¤“à¤‚ à¤•à¥‹ à¤œà¥‹à¤¡à¤¼à¥?;
+//STRIP001              Text[ slovak ] = "VloÅ¾iÅ¥ body";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_POLYDELETE ;
+//STRIP001              HelpId = HID_IMAPDLG_POLYDELETE ;
+//STRIP001              /* ### ACHTUNG: Neuer Text in Resource? Punkte löschen : Punkte l÷schen */
+//STRIP001              /* ### ACHTUNG: Neuer Text in Resource? Punkte löschen : Punkte l÷schen */
+//STRIP001              Text = "Punkte löschen" ;
+//STRIP001              Text [ ENGLISH ] = "Delete Points" ;
+//STRIP001              Text [ norwegian ] = "Delete Points" ;
+//STRIP001              Text [ italian ] = "Elimina punti" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Excluir Pontos" ;
+//STRIP001              Text [ portuguese ] = "Eliminar pontos" ;
+//STRIP001              Text [ finnish ] = "Poista pisteet" ;
+//STRIP001              Text [ danish ] = "Slet punkter" ;
+//STRIP001              Text [ french ] = "Supprimer des points" ;
+//STRIP001              Text [ swedish ] = "Radera punkter" ;
+//STRIP001              Text [ dutch ] = "Punten verwijderen" ;
+//STRIP001              Text [ spanish ] = "Borrar puntos" ;
+//STRIP001              Text [ english_us ] = "Delete Points" ;
+//STRIP001              Text[ chinese_simplified ] = "åˆ é™¤ç‚?;
+//STRIP001              Text[ russian ] = "Óäàëèò?óçëû";
+//STRIP001              Text[ polish ] = "Usu?punkty";
+//STRIP001              Text[ japanese ] = "åˆ¶å¾¡ç‚¹ã®å‰Šé™¤";
+//STRIP001              Text[ chinese_traditional ] = "åˆªé™¤æ¥é»";
+//STRIP001              Text[ arabic ] = "ÍĞ?äŞÇØ";
+//STRIP001              Text[ greek ] = "ÄéáãñáöŞ óçìåßù?;
+//STRIP001              Text[ korean ] = "ì ?ì‚­ì œ";
+//STRIP001              Text[ turkish ] = "Noktalar?sil";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Suprimeix els punts";
+//STRIP001              Text[ thai ] = "à¸¥à¸šà¸ˆà¸¸à¸?;
+//STRIP001              Text[ czech ] = "Odstranit body";
+//STRIP001              Text[ hebrew ] = "â€®××—×™×§×?× ×§×•×“×•×ªâ€?;
+//STRIP001              Text[ hindi ] = "à¤¬à¤¿à¤¨à¥à¤¦à¥à¤“à¤‚ à¤•à¥‹ à¤®à¤¿à¤Ÿà¤¾à¤?;
+//STRIP001              Text[ slovak ] = "OdstrÃ¡niÅ¥ body";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Type = TOOLBOXITEM_SEPARATOR ;
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_UNDO ;
+//STRIP001              HelpId = HID_IMAPDLG_UNDO ;
+//STRIP001              Text = "Rückgängig " ;
+//STRIP001              Text [ English ] = "Undo " ;
+//STRIP001              Text [ norwegian ] = "Angre " ;
+//STRIP001              Text [ italian ] = "Annulla  " ;
+//STRIP001              Text [ portuguese_brazilian ] = "Desfazer" ;
+//STRIP001              Text [ portuguese ] = "Anular  " ;
+//STRIP001              Text [ finnish ] = "Kumoa " ;
+//STRIP001              Text [ danish ] = "Fortryd " ;
+//STRIP001              Text [ french ] = "Annuler " ;
+//STRIP001              Text [ swedish ] = "Ångra  " ;
+//STRIP001              Text [ dutch ] = "Ongedaan maken" ;
+//STRIP001              Text [ spanish ] = "Deshacer  " ;
+//STRIP001              Text [ english_us ] = "Undo " ;
+//STRIP001              Text[ chinese_simplified ] = "æ’¤æ¶ˆå‘½ä»¤ ";
+//STRIP001              Text[ russian ] = "Îòìåíèòü";
+//STRIP001              Text[ polish ] = "Cofnij ";
+//STRIP001              Text[ japanese ] = "å…ƒã«æˆ»ã™ ";
+//STRIP001              Text[ chinese_traditional ] = "å¾©åŸ ";
+//STRIP001              Text[ arabic ] = "ÊÑÇÌ?;
+//STRIP001              Text[ greek ] = "Áíáßñåóç ";
+//STRIP001              Text[ korean ] = "ì‹¤í–‰ ì·¨ì†Œ ";
+//STRIP001              Text[ turkish ] = "Geri";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Desfés  ";
+//STRIP001              Text[ thai ] = "à¹€à¸¥à¸´à¸à¸—à¸?";
+//STRIP001              Text[ czech ] = "ZpÄ›t ";
+//STRIP001              Text[ hebrew ] = "â€®×‘×™×˜×•×?×¤×¢×•×œ×”â€?;
+//STRIP001              Text[ hindi ] = "à¤…à¤¨à¤¾à¤µà¥ƒà¤¤à¥à¤¤à¤?";
+//STRIP001              Text[ slovak ] = "SpÃ¤Å¥ ";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_REDO ;
+//STRIP001              HelpId = HID_IMAPDLG_REDO ;
+//STRIP001              Text = "Wiederherstellen " ;
+//STRIP001              Text [ English ] = "Redo " ;
+//STRIP001              Text [ english_us ] = "Redo" ;
+//STRIP001              Text [ portuguese ] = "Restaurar  " ;
+//STRIP001              Text [ portuguese_brazilian ] = "Refazer" ;
+//STRIP001              Text [ swedish ] = "Återställ   " ;
+//STRIP001              Text [ danish ] = "Gendan " ;
+//STRIP001              Text [ italian ] = "Ripristina  " ;
+//STRIP001              Text [ spanish ] = "Restaurar  " ;
+//STRIP001              Text [ french ] = "Restaurer " ;
+//STRIP001              Text [ dutch ] = "Herstellen" ;
+//STRIP001              Text[ chinese_simplified ] = "æ¢å¤æ’¤æ¶ˆå‘½ä»¤ ";
+//STRIP001              Text[ russian ] = "Âåğíóò?;
+//STRIP001              Text[ polish ] = "Ponów";
+//STRIP001              Text[ japanese ] = "ã‚„ã‚Šç›´ã— ";
+//STRIP001              Text[ chinese_traditional ] = "æ¢å¾© ";
+//STRIP001              Text[ arabic ] = "ÅÚÇÏ?;
+//STRIP001              Text[ greek ] = "Åğáíåêôİëåóç ";
+//STRIP001              Text[ korean ] = "ë‹¤ì‹œ ì‹¤í–‰";
+//STRIP001              Text[ turkish ] = "Tekrar Yap";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Restaura  ";
+//STRIP001              Text[ finnish ] = "Toista";
+//STRIP001              Text[ thai ] = "à¸—à¸³à¸‹à¹‰à¸?;
+//STRIP001              Text[ czech ] = "Znovu";
+//STRIP001              Text[ hebrew ] = "â€®×©×—×–×•×?×¤×¢×•×œ×”â€?;
+//STRIP001              Text[ hindi ] = "à¤«à¤¿à¤?à¤¸à¥‡ à¤•à¤°à¥?;
+//STRIP001              Text[ slovak ] = "Znova";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Type = TOOLBOXITEM_SEPARATOR ;
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_ACTIVE ;
+//STRIP001              HelpId = HID_IMAPDLG_ACTIVE ;
+//STRIP001              Text = "Aktiv" ;
+//STRIP001              Text [ ENGLISH ] = "Active" ;
+//STRIP001              Text [ english_us ] = "Active" ;
+//STRIP001              Text [ italian ] = "Attivo" ;
+//STRIP001              Text [ spanish ] = "Activo" ;
+//STRIP001              Text [ french ] = "Actif" ;
+//STRIP001              Text [ dutch ] = "Actief" ;
+//STRIP001              Text [ swedish ] = "Aktiv" ;
+//STRIP001              Text [ danish ] = "Aktiv" ;
+//STRIP001              Text [ portuguese ] = "Activo" ;
+//STRIP001              Text [ portuguese_brazilian ] = "Ativo" ;
+//STRIP001              Text[ chinese_simplified ] = "ä½¿ç”¨ä¸?;
+//STRIP001              Text[ russian ] = "Àêòèâíûé";
+//STRIP001              Text[ polish ] = "Aktywny";
+//STRIP001              Text[ japanese ] = "ã‚¢ã‚¯ãƒ†ã‚£ãƒ?;
+//STRIP001              Text[ chinese_traditional ] = "ä½¿ç”¨ä¸?;
+//STRIP001              Text[ arabic ] = "äÔ?;
+//STRIP001              Text[ greek ] = "ÅíåñãÜ";
+//STRIP001              Text[ korean ] = "í™œì„±";
+//STRIP001              Text[ turkish ] = "Etkin";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Actiu";
+//STRIP001              Text[ finnish ] = "Aktiivinen";
+//STRIP001              Text[ thai ] = "à¹ƒà¸Šà¹‰à¸‡à¸²à¸™à¸­à¸¢à¸¹à¹ˆ";
+//STRIP001              Text[ czech ] = "AktivnÃ­";
+//STRIP001              Text[ hebrew ] = "Aktiv";
+//STRIP001              Text[ hindi ] = "à¤•à¥à¤°à¤¿à¤¯à¤¾à¤¶à¥€à¤?;
+//STRIP001              Text[ slovak ] = "AktÃ­vny";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_MACRO ;
+//STRIP001              HelpId = HID_IMAPDLG_MACRO ;
+//STRIP001              Text = "Makro..." ;
+//STRIP001              Text [ ENGLISH ] = "Macro..." ;
+//STRIP001              Text [ english_us ] = "Macro..." ;
+//STRIP001              Text [ dutch ] = "Macro..." ;
+//STRIP001              Text [ swedish ] = "Makro..." ;
+//STRIP001              Text [ danish ] = "Makro..." ;
+//STRIP001              Text [ italian ] = "Macro..." ;
+//STRIP001              Text [ spanish ] = "Macro..." ;
+//STRIP001              Text [ french ] = "Macro..." ;
+//STRIP001              Text [ portuguese ] = "Macro..." ;
+//STRIP001              Text [ portuguese_brazilian ] = "Macro..." ;
+//STRIP001              Text[ chinese_simplified ] = "å®?..";
+//STRIP001              Text[ russian ] = "Ìàêğîñ...";
+//STRIP001              Text[ polish ] = "Makro...";
+//STRIP001              Text[ japanese ] = "ãƒã‚¯ãƒ?..";
+//STRIP001              Text[ chinese_traditional ] = "å·¨é›†...";
+//STRIP001              Text[ arabic ] = "...ãÇßÑ?;
+//STRIP001              Text[ greek ] = "Ìáêñïåíôïë?..";
+//STRIP001              Text[ korean ] = "ë§¤í¬ë¡?..";
+//STRIP001              Text[ turkish ] = "Makro...";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Macro...";
+//STRIP001              Text[ finnish ] = "Makrot...";
+//STRIP001              Text[ thai ] = "à¸¡à¸²à¹‚à¸„à¸?..";
+//STRIP001              Text[ czech ] = "Makro...";
+//STRIP001              Text[ hebrew ] = "â€®×”×¤×¢×œ×?×××§×¨×•...â€?;
+//STRIP001              Text[ hindi ] = "à¤®à¥‰à¤•à¥à¤°à¥‹...";
+//STRIP001              Text[ slovak ] = "Makro...";
+//STRIP001          };
+//STRIP001          ToolBoxItem
+//STRIP001          {
+//STRIP001              Identifier = TBI_PROPERTY ;
+//STRIP001              HelpId = HID_IMAPDLG_PROPERTY ;
+//STRIP001              Text = "Eigenschaften..." ;
+//STRIP001              Text [ ENGLISH ] = "Properties..." ;
+//STRIP001              Text [ english_us ] = "Properties..." ;
+//STRIP001              Text [ portuguese ] = "Propriedades..." ;
+//STRIP001              Text [ portuguese_brazilian ] = "Propriedades..." ;
+//STRIP001              Text [ swedish ] = "Egenskaper..." ;
+//STRIP001              Text [ danish ] = "Egenskaber..." ;
+//STRIP001              Text [ italian ] = "Propriet?.." ;
+//STRIP001              Text [ spanish ] = "Propiedades..." ;
+//STRIP001              Text [ french ] = "Propriétés..." ;
+//STRIP001              Text [ dutch ] = "Eigenschappen..." ;
+//STRIP001              Text[ chinese_simplified ] = "å±æ€?..";
+//STRIP001              Text[ russian ] = "Ñâîéñòâà...";
+//STRIP001              Text[ polish ] = "W³aœciwoœci...";
+//STRIP001              Text[ japanese ] = "ãƒ—ãƒ­ãƒ‘ãƒ†ã‚?..";
+//STRIP001              Text[ chinese_traditional ] = "å±¬æ€?..";
+//STRIP001              Text[ arabic ] = "...ÎÕÇÆ?;
+//STRIP001              Text[ greek ] = "Éäéüôçôå?..";
+//STRIP001              Text[ korean ] = "ë“±ë¡ ì •ë³´...";
+//STRIP001              Text[ turkish ] = "Özellikler...";
+//STRIP001              Text[ language_user1 ] = " ";
+//STRIP001              Text[ catalan ] = "Propietats...";
+//STRIP001              Text[ finnish ] = "Ominaisuudet...";
+//STRIP001              Text[ thai ] = "à¸„à¸¸à¸“à¸ªà¸¡à¸šà¸±à¸•à¸?..";
+//STRIP001              Text[ czech ] = "Vlastnosti...";
+//STRIP001              Text[ hebrew ] = "â€®×××¤×™× ×™×?..â€?;
+//STRIP001              Text[ hindi ] = "à¤µà¤¿à¤¶à¥‡à¤·à¤¤à¤¾à¤¯à¥‡à¤‚...";
+//STRIP001              Text[ slovak ] = "Vlastnosti...";
+//STRIP001          };
+//STRIP001      };
+//STRIP001      Text[ english_us ] = "Image Map Editor";
+//STRIP001      Text[ portuguese ] = "Mapa de imagens Editor";
+//STRIP001      Text[ russian ] = "Ğåäàêòîğ Image Map";
+//STRIP001      Text[ dutch ] = "ImageMap-editor";
+//STRIP001      Text[ french ] = "Editeur ImageMap";
+//STRIP001      Text[ spanish ] = "Editor Image Map";
+//STRIP001      Text[ italian ] = "Editor ImageMap";
+//STRIP001      Text[ danish ] = "ImageMap-Editor";
+//STRIP001      Text[ swedish ] = "ImageMap-Editor";
+//STRIP001      Text[ polish ] = "Edytor mapy obrazkowej";
+//STRIP001      Text[ portuguese_brazilian ] = "ImageMap-Editor";
+//STRIP001      Text[ japanese ] = "ImageMap-´ÃŞ¨?;
+//STRIP001      Text[ chinese_simplified ] = "Í¼ÏñÓ³Éä±à¼­Æ÷";
+//STRIP001
+//STRIP001  };
+//STRIP001
+//STRIP001  FixedText FT_URL
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 6 , 25 ) ;
+//STRIP001      Size = MAP_APPFONT ( 30 , 12 ) ;
+//STRIP001      Text = "Adresse:" ;
+//STRIP001      Text [ ENGLISH ] = "Address:" ;
+//STRIP001      Text [ english_us ] = "Address:" ;
+//STRIP001      Text [ italian ] = "Indirizzo:" ;
+//STRIP001      Text [ spanish ] = "Dirección:" ;
+//STRIP001      Text [ french ] = "Adresse :" ;
+//STRIP001      Text [ dutch ] = "Adres:" ;
+//STRIP001      Text [ swedish ] = "Adress:" ;
+//STRIP001      Text [ danish ] = "Adresse:" ;
+//STRIP001      Text [ portuguese ] = "Endereço:" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Endereço:" ;
+//STRIP001      Text[ chinese_simplified ] = "åœ°å€:";
+//STRIP001      Text[ russian ] = "Àäğå?";
+//STRIP001      Text[ polish ] = "Adres:";
+//STRIP001      Text[ japanese ] = "ã‚¢ãƒ‰ãƒ¬ã‚¹:";
+//STRIP001      Text[ chinese_traditional ] = "åœ°å€:";
+//STRIP001      Text[ arabic ] = ":ÇáÚäæÇ?;
+//STRIP001      Text[ greek ] = "Äéåıèõíó?";
+//STRIP001      Text[ korean ] = "ì£¼ì†Œ:";
+//STRIP001      Text[ turkish ] = "Adres:";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Direcci?";
+//STRIP001      Text[ finnish ] = "Osoite:";
+//STRIP001      Text[ thai ] = "à¸—à¸µà¹ˆà¸­à¸¢à¸¹à¹?";
+//STRIP001      Text[ czech ] = "Adresa:";
+//STRIP001      Text[ hebrew ] = "Adresse:";
+//STRIP001      Text[ hindi ] = "à¤ªà¤¤à¤?";
+//STRIP001      Text[ slovak ] = "Adresa:";
+//STRIP001  };
+//STRIP001  ComboBox CBB_URL
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 39 , 23 ) ;
+//STRIP001      Size = MAP_APPFONT ( 225 , 69 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      AutoSize = TRUE ;
+//STRIP001      AutoHScroll = TRUE ;
+//STRIP001  };
+//STRIP001  FixedText FT_TEXT
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 6 , 43 ) ;
+//STRIP001      Size = MAP_APPFONT ( 30 , 12 ) ;
+//STRIP001      Text = "Text:" ;
+//STRIP001      Text [ ENGLISH ] = "Text:" ;
+//STRIP001      Text [ english_us ] = "Text:" ;
+//STRIP001      Text [ italian ] = "Testo:" ;
+//STRIP001      Text [ spanish ] = "Texto:" ;
+//STRIP001      Text [ french ] = "Texte :" ;
+//STRIP001      Text [ dutch ] = "Tekst:" ;
+//STRIP001      Text [ swedish ] = "Text:" ;
+//STRIP001      Text [ danish ] = "T~ekst:" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Texto:" ;
+//STRIP001      Text [ portuguese ] = "Texto:" ;
+//STRIP001      Text[ chinese_simplified ] = "æ–‡å­—ï¼?;
+//STRIP001      Text[ russian ] = "Òåêñ?";
+//STRIP001      Text[ polish ] = "Tekst:";
+//STRIP001      Text[ japanese ] = "ãƒ†ã‚­ã‚¹ãƒˆ:";
+//STRIP001      Text[ chinese_traditional ] = "æ–‡å­—:";
+//STRIP001      Text[ arabic ] = ":ÇáäÕ";
+//STRIP001      Text[ greek ] = "Êåßìåí?";
+//STRIP001      Text[ korean ] = "í…ìŠ¤íŠ?";
+//STRIP001      Text[ turkish ] = "Metin:";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Text:";
+//STRIP001      Text[ finnish ] = "Teksti:";
+//STRIP001      Text[ thai ] = "à¸‚à¹‰à¸­à¸„à¸§à¸²à¸?";
+//STRIP001      Text[ czech ] = "Text:";
+//STRIP001      Text[ hebrew ] = "â€®×˜×§×¡×?â€?;
+//STRIP001      Text[ hindi ] = "à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥:";
+//STRIP001      Text[ slovak ] = "Text:";
+//STRIP001  };
+//STRIP001  Edit EDT_TEXT
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      SVLook = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 39 , 41 ) ;
+//STRIP001      Size = MAP_APPFONT ( 143 , 12 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Left = TRUE ;
+//STRIP001  };
+//STRIP001  Text [ english_us ] = "ImageMap Editor" ;
+//STRIP001  Text [ portuguese_brazilian ] = "Editor de imagens" ;
+//STRIP001  Text [ swedish ] = "Image map-redigerare" ;
+//STRIP001  Text [ danish ] = "ImageMap-redigering" ;
+//STRIP001  Text [ italian ] = "Editor ImageMap" ;
+//STRIP001  Text [ spanish ] = "Editor de mapa de imágenes" ;
+//STRIP001  Text [ french ] = "Éditeur d'Image Map" ;
+//STRIP001  Text [ dutch ] = "ImageMap Editor" ;
+//STRIP001  Text [ portuguese ] = "Mapa de imagens Editor" ;
+//STRIP001  Text[ chinese_simplified ] = "å›¾åƒæ˜ å°„ç¼–è¾‘å™?;
+//STRIP001  Text[ russian ] = "Ğåäàêòîğ Image Map";
+//STRIP001  Text[ polish ] = "Edytor mapy obrazkowej";
+//STRIP001  Text[ japanese ] = "ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒƒãƒ?ã‚¨ãƒ‡ã‚£ã‚¿";
+//STRIP001  Text[ chinese_traditional ] = "å½±åƒæ˜ å°„ç·¨è¼¯å™?;
+//STRIP001  Text[ arabic ] = "ãÍÑÑ ãÎØØ ÇáÕæÑÉ";
+//STRIP001  Text[ greek ] = "ÅğåîåñãáóôŞò ImageMap";
+//STRIP001  Text[ korean ] = "ì´ë¯¸ì§€ ë§?í¸ì§‘ê¸?;
+//STRIP001  Text[ turkish ] = "ImageMap Düzenleyicisi";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "Editor del mapa d'imatge";
+//STRIP001  Text[ finnish ] = "Kuvakartan editori";
+//STRIP001
+//STRIP001  FixedText RID_SVXCTL_FT_TARGET
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 188 , 43 ) ;
+//STRIP001      Size = MAP_APPFONT ( 22 , 12 ) ;
+//STRIP001      Text = "Frame: " ;
+//STRIP001  };
+//STRIP001   // nur temporaer
+//STRIP001  ComboBox RID_SVXCTL_CBB_TARGET
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      Sort = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 213 , 41 ) ;
+//STRIP001      Size = MAP_APPFONT ( 51 , 50 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      HScroll = TRUE ;
+//STRIP001  };
+//STRIP001  Text[ thai ] = "à¸‰à¸šà¸±à¸šà¸ à¸²à¸à¹à¸œà¸™à¸—à¸µà¹?;
+//STRIP001
+//STRIP001
+//STRIP001 #define IMAPDLG_IDLIST \
+//STRIP001         IdList =            \
+//STRIP001         {                   \
+//STRIP001          TBI_APPLY ; \
+//STRIP001          TBI_OPEN ;  \
+//STRIP001          TBI_SAVEAS ;    \
+//STRIP001          TBI_SELECT ;    \
+//STRIP001          TBI_RECT ;  \
+//STRIP001          TBI_CIRCLE ;    \
+//STRIP001          TBI_POLY ;  \
+//STRIP001          TBI_FREEPOLY ;  \
+//STRIP001          TBI_POLYEDIT ;  \
+//STRIP001          TBI_POLYMOVE ; \
+//STRIP001          TBI_POLYINSERT ;    \
+//STRIP001          TBI_POLYDELETE ;    \
+//STRIP001          TBI_UNDO ;  \
+//STRIP001          TBI_REDO ;  \
+//STRIP001          TBI_ACTIVE ; \
+//STRIP001          TBI_MACRO ; \
+//STRIP001          TBI_PROPERTY ; \
+//STRIP001         };                 \
+//STRIP001         IdCount = { 17 ; };
+//STRIP001
+//STRIP001  ImageList IL_IMAPDLG
+//STRIP001  {
+//STRIP001         ImageBitmap = Bitmap { File = "id_imagelist.bmp" ; };
+//STRIP001      MaskColor = Color { Red = 0xFFFF; Green = 0x0000; Blue = 0xFFFF; } ;
+//STRIP001         IMAPDLG_IDLIST
+//STRIP001     };
+//STRIP001     ImageList ILH_IMAPDLG
+//STRIP001  {
+//STRIP001         ImageBitmap = Bitmap { File = "idh_imagelist.bmp" ; };
+//STRIP001      MaskColor = Color { Red = 0xFFFF; Green = 0x0000; Blue = 0xFFFF; } ;
+//STRIP001         IMAPDLG_IDLIST
+//STRIP001     };
+//STRIP001  Text[ czech ] = "Editor obrÃ¡zkovÃ½ch map";
+//STRIP001  Text[ hebrew ] = "ImageMap-Editor";
+//STRIP001  Text[ hindi ] = "ImageMap Editor";
+//STRIP001  Text[ slovak ] = "Editor obrÃ¡zkovÃ½ch mÃ¡p";
+//STRIP001 };
+Control RID_SVXCTL_IMAP
+{
+    Border = TRUE ;
+    SVLook = TRUE ;
+    Pos = MAP_APPFONT ( 6 , 56 ) ;
+    HelpId = HID_IMAPDLG_GRAPHWND ;
+};
+
+/******************************************************************************/
+Menu RID_SVXMN_IMAP
+{
+    ItemList =
+    {
+        MenuItem
+        {
+            Identifier = MN_URL ;
+            Text = "~Beschreibung..." ;
+            Text [ ENGLISH ] = "~Description..." ;
+            Text [ english_us ] = "Description..." ;
+            Text [ italian ] = "D~escrizione..." ;
+            Text [ spanish ] = "~Descripción..." ;
+            Text [ french ] = "~Description..." ;
+            Text [ dutch ] = "~Beschrijving..." ;
+            Text [ swedish ] = "~Beskrivning..." ;
+            Text [ danish ] = "Beskrivelse..." ;
+            Text [ portuguese_brazilian ] = "Descrição..." ;
+            Text [ portuguese ] = "~Descrição..." ;
+            Text[ chinese_simplified ] = "è¯´æ˜...";
+            Text[ russian ] = "Îïèñàíèå...";
+            Text[ polish ] = "Opis...";
+            Text[ japanese ] = "èª¬æ˜...";
+            Text[ chinese_traditional ] = "æè¿°...";
+            Text[ arabic ] = "...ÇáæÕİ";
+            Text[ greek ] = "~ĞåñéãñáöŞ...";
+            Text[ korean ] = "ì„¤ëª…...";
+            Text[ turkish ] = "Açıklama...";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Descripció...";
+            Text[ finnish ] = "Kuvaus...";
+            Text[ thai ] = "à¸„à¸³à¸­à¸˜à¸´à¸šà¸²à¸¢...";
+            Text[ czech ] = "Popis...";
+            Text[ hebrew ] = "â€®×ª××•×¨...â€¬";
+            Text[ hindi ] = "à¤µà¤¿à¤µà¤°à¤£...";
+            Text[ slovak ] = "Popis...";
+        };
+        MenuItem
+        {
+            Identifier = MN_MACRO ;
+            Text = "Ma~kro..." ;
+            Text [ ENGLISH ] = "Ma~cro..." ;
+            Text [ english_us ] = "~Macro..." ;
+            Text [ swedish ] = "Ma~kro..." ;
+            Text [ danish ] = "Makro..." ;
+            Text [ italian ] = "Macro..." ;
+            Text [ spanish ] = "Ma~cro..." ;
+            Text [ french ] = "Ma~cro..." ;
+            Text [ dutch ] = "Ma~cro..." ;
+            Text [ portuguese_brazilian ] = "~Macro..." ;
+            Text [ portuguese ] = "Ma~cro..." ;
+            Text[ chinese_simplified ] = "å®(~M)...";
+            Text[ russian ] = "Ìàêğîñ...";
+            Text[ polish ] = "~Makro...";
+            Text[ japanese ] = "ãƒã‚¯ãƒ­(~M)...";
+            Text[ chinese_traditional ] = "å·¨é›†(~M)...";
+            Text[ arabic ] = "...ãÇßÑæ";
+            Text[ greek ] = "Ìá~êñïåíôïëŞ...";
+            Text[ korean ] = "ë§¤í¬ë¡œ(~M)...";
+            Text[ turkish ] = "Makro...";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Macro...";
+            Text[ finnish ] = "~Makro...";
+            Text[ thai ] = "~à¸¡à¸²à¹‚à¸„à¸£...";
+            Text[ czech ] = "Makro...";
+            Text[ hebrew ] = "â€®×”×¤×¢×œ×ª ×××§×¨×•...â€¬";
+            Text[ hindi ] = "~à¤®à¥‰à¤•à¥à¤°à¥‹...";
+            Text[ slovak ] = "~Makro...";
+        };
+        MenuItem
+        {
+            Identifier = MN_ACTIVATE ;
+            Text = "~Aktiv" ;
+            Text [ ENGLISH ] = "~Activated" ;
+            Text [ dutch ] = "~Actief" ;
+            Text [ english_us ] = "Active" ;
+            Text [ italian ] = "~Attivo" ;
+            Text [ spanish ] = "~Activo" ;
+            Text [ french ] = "~Actif" ;
+            Text [ swedish ] = "~Aktiv" ;
+            Text [ danish ] = "Aktiv" ;
+            Text [ portuguese_brazilian ] = "Ativo" ;
+            Text [ portuguese ] = "~Activo" ;
+            Text[ chinese_simplified ] = "ä½¿ç”¨";
+            Text[ russian ] = "Àêòèâíûé";
+            Text[ polish ] = "Aktywny";
+            Text[ japanese ] = "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–";
+            Text[ chinese_traditional ] = "å•Ÿå‹•";
+            Text[ arabic ] = "äÔØ";
+            Text[ greek ] = "Åíåñ~ãÜ";
+            Text[ korean ] = "í™œì„±";
+            Text[ turkish ] = "Etkin";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "Actiu";
+            Text[ finnish ] = "Aktiivinen";
+            Text[ thai ] = "à¹ƒà¸Šà¹‰à¸‡à¸²à¸™à¸­à¸¢à¸¹à¹ˆ";
+            Text[ czech ] = "AktivnÃ­";
+            Text[ hebrew ] = "~Aktiv";
+            Text[ hindi ] = "à¤•à¥à¤°à¤¿à¤¯à¤¾à¤¶à¥€à¤²";
+            Text[ slovak ] = "AktÃ­vny";
+        };
+        MenuItem
+        {
+            Separator = TRUE ;
+        };
+        MenuItem
+        {
+            Identifier = MN_POSITION ;
+            Text = "A~nordnung" ;
+            Text [ ENGLISH ] = "~Arrange" ;
+            Text [ norwegian ] = "~Arrange" ;
+            Text [ italian ] = "~Disponi" ;
+            Text [ portuguese_brazilian ] = "Organizar" ;
+            Text [ portuguese ] = "~Disposição" ;
+            Text [ finnish ] = "Järjestä" ;
+            Text [ danish ] = "Placering" ;
+            Text [ french ] = "~Disposition" ;
+            Text [ swedish ] = "~Placering" ;
+            Text [ dutch ] = "~Positie" ;
+            Text [ spanish ] = "~Disposición" ;
+            Text [ english_us ] = "Arrange" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        Identifier = MN_FRAME_TO_TOP ;
+                        Text = "Ganz nach ~vorn" ;
+                        Text [ ENGLISH ] = "Bring to Front" ;
+                        Text [ norwegian ] = "Bring to Front" ;
+                        Text [ italian ] = "Porta in primo piano" ;
+                        Text [ portuguese_brazilian ] = "Trazer para a Frente" ;
+                        Text [ portuguese ] = "P~rimeiro plano" ;
+                        Text [ finnish ] = "Tuo eteen" ;
+                        Text [ danish ] = "~Placer forrest" ;
+                        Text [ french ] = "Tout à l'~avant" ;
+                        Text [ swedish ] = "Längst ~fram" ;
+                        Text [ dutch ] = "~Vooraan" ;
+                        Text [ spanish ] = "Traer al ~frente" ;
+                        Text [ english_us ] = "Bring to Front" ;
+                        Text[ chinese_simplified ] = "ç§»åŠ¨åˆ°æœ€ä¸Šé¢";
+                        Text[ russian ] = "Âûíåñòè íà ~ïåğåäíèé ïëàí";
+                        Text[ polish ] = "~Przesuñ na wierzch";
+                        Text[ japanese ] = "æœ€å‰é¢ã¸ç§»å‹•";
+                        Text[ chinese_traditional ] = "ç§»å‹•åˆ°æœ€ä¸Šé¢";
+                        Text[ arabic ] = "ÅÍÖÇÑ Åáì ÇáÃãÇã";
+                        Text[ greek ] = "ÌåôáöïñÜ óå ğ~ñşôï ğëÜíï";
+                        Text[ korean ] = "ë§¨ ì•ìœ¼ë¡œ";
+                        Text[ turkish ] = "En öne getir";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Porta al davant";
+                        Text[ thai ] = "à¸™à¸³à¹„à¸›à¸”à¹‰à¸²à¸™à¸«à¸™à¹‰à¸²";
+                        Text[ czech ] = "PÅ™enÃ©st do popÅ™edÃ­";
+                        Text[ hebrew ] = "Ganz nach ~vorn";
+                        Text[ hindi ] = "à¤¸à¤¾à¤®à¤¨à¥‡ à¤²à¤¾à¤“";
+                        Text[ slovak ] = "PreniesÅ¥ do popredia";
+                    };
+                    MenuItem
+                    {
+                        Identifier = MN_MOREFRONT ;
+                        Text = "W~eiter nach vorn" ;
+                        Text [ ENGLISH ] = "Bring ~Forward" ;
+                        Text [ norwegian ] = "Flytt ~Framover" ;
+                        Text [ italian ] = "Porta più avanti" ;
+                        Text [ portuguese_brazilian ] = "A~vançar" ;
+                        Text [ portuguese ] = "~Mais para a frente" ;
+                        Text [ finnish ] = "Siirrä ~eteenpäin" ;
+                        Text [ danish ] = "F~lyt fremad" ;
+                        Text [ french ] = "V~ers l'avant" ;
+                        Text [ swedish ] = "Längre fra~m" ;
+                        Text [ dutch ] = "Naar v~oren" ;
+                        Text [ spanish ] = "Traer ~adelante" ;
+                        Text [ english_us ] = "Bring ~Forward" ;
+                        Text[ chinese_simplified ] = "ä¸Šç§»ä¸€å±‚(~F)";
+                        Text[ russian ] = "Ïåğåìåñòèòü ~âïåğåä";
+                        Text[ polish ] = "P~rzesuñ do przodu";
+                        Text[ japanese ] = "ã•ã‚‰ã«å‰ã¸(~F)";
+                        Text[ chinese_traditional ] = "ä¸Šç§»ä¸€å±¤(~F)";
+                        Text[ arabic ] = "ÅÍÖÇÑ ÃãÇãÇğ";
+                        Text[ greek ] = "Ì~åôáöïñÜ İíá åğßğåäï åìğñüò";
+                        Text[ korean ] = "ì•ìœ¼ë¡œ ì´ë™(~F)";
+                        Text[ turkish ] = "Bir öne getir";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Porta ~més endavant";
+                        Text[ thai ] = "à¸™à¸³~à¸ªà¹ˆà¸‡à¸•à¹ˆà¸­";
+                        Text[ czech ] = "PÅ™enÃ©st blÃ­Å¾";
+                        Text[ hebrew ] = "W~eiter nach vorn";
+                        Text[ hindi ] = "~à¤†à¤—à¥‡ à¤²à¤¾à¤“";
+                        Text[ slovak ] = "PreniesÅ¥ ~bliÅ¾Å¡ie";
+                    };
+                    MenuItem
+                    {
+                        Identifier = MN_MOREBACK ;
+                        Text = "Weiter ~nach hinten" ;
+                        Text [ ENGLISH ] = "Send ~Backward" ;
+                        Text [ norwegian ] = "Send ~Bakover" ;
+                        Text [ italian ] = "Porta più i~ndietro" ;
+                        Text [ portuguese_brazilian ] = "Rec~uar" ;
+                        Text [ portuguese ] = "Mais para o f~undo" ;
+                        Text [ finnish ] = "Siirrä taakse~päin" ;
+                        Text [ danish ] = "Flyt bag~ud" ;
+                        Text [ french ] = "~Vers l'arrière" ;
+                        Text [ swedish ] = "Längre ba~k" ;
+                        Text [ dutch ] = "Naar a~chteren" ;
+                        Text [ spanish ] = "Enviar a~trás" ;
+                        Text [ english_us ] = "Send Back~ward" ;
+                        Text[ chinese_simplified ] = "ä¸‹ç§»ä¸€å±‚(~W)";
+                        Text[ russian ] = "Ïåğåìåñòèòü ~íàçàä";
+                        Text[ polish ] = "Pr~zesuñ do ty³u";
+                        Text[ japanese ] = "ã•ã‚‰ã«å¾Œã¸(~W)";
+                        Text[ chinese_traditional ] = "ä¸‹ç§»ä¸€å±¤(~W)";
+                        Text[ arabic ] = "ÅÑÓÇá ÎáİÇó";
+                        Text[ greek ] = "~ÌåôáöïñÜ ğßóù";
+                        Text[ korean ] = "ë’¤ë¡œ ì´ë™(~W)";
+                        Text[ turkish ] = "Bir alta gönder";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Envia cap ~enrere";
+                        Text[ thai ] = "à¸ªà¹ˆà¸‡à¸¢à¹‰à¸­à¸™~à¸à¸¥à¸±à¸š";
+                        Text[ czech ] = "PÅ™enÃ©st dÃ¡l";
+                        Text[ hebrew ] = "Weiter ~nach hinten";
+                        Text[ hindi ] = "à¤ªà¤¿~à¤›à¤²à¥€ à¤“à¤° à¤­à¥‡à¤œà¥‹";
+                        Text[ slovak ] = "P~reniesÅ¥ Äalej";
+                    };
+                    MenuItem
+                    {
+                        Identifier = MN_FRAME_TO_BOTTOM ;
+                        Text = "Ganz nach ~hinten" ;
+                        Text [ ENGLISH ] = "Send to Bac~k" ;
+                        Text [ norwegian ] = "Send to Bac~k" ;
+                        Text [ italian ] = "Porta in fondo" ;
+                        Text [ portuguese_brazilian ] = "Enviar para Trá~s" ;
+                        Text [ portuguese ] = "Enviar para ~trás" ;
+                        Text [ finnish ] = "Vie ~taakse" ;
+                        Text [ danish ] = "Placer ~bagest" ;
+                        Text [ french ] = "Tout à l'a~rrière" ;
+                        Text [ swedish ] = "Längst b~ak" ;
+                        Text [ dutch ] = "~Achteraan" ;
+                        Text [ spanish ] = "Enviar al ~fondo" ;
+                        Text [ english_us ] = "~Send to Back" ;
+                        Text[ chinese_simplified ] = "ç§»åˆ°åº•å±‚(~S)";
+                        Text[ russian ] = "Íà ~çàäíèé ïëàí";
+                        Text[ polish ] = "Prz~esuñ na spód";
+                        Text[ japanese ] = "æœ€èƒŒé¢ã¸ç§»å‹•(~S)";
+                        Text[ chinese_traditional ] = "ç§»å‹•åˆ°æœ€ä¸‹é¢(~S)";
+                        Text[ arabic ] = "ÅÑÓÇá Åáì ÇáÎáİ";
+                        Text[ greek ] = "ÌåôáöïñÜ óå ~äåıôåñï ğëÜíï";
+                        Text[ korean ] = "ë§¨ ë’¤ë¡œ(~S)";
+                        Text[ turkish ] = "En alta gönder";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Envia al fons";
+                        Text[ thai ] = "~à¸¢à¹‰à¸²à¸¢à¹„à¸›à¹„à¸§à¹‰à¸‚à¹‰à¸²à¸‡à¸«à¸¥à¸±à¸‡à¸ªà¸¸à¸”";
+                        Text[ czech ] = "Odeslat na pozadÃ­";
+                        Text[ hebrew ] = "Ganz nach ~hinten";
+                        Text[ hindi ] = "à¤ªà¥€à¤›à¥‡ ~à¤­à¥‡à¤œà¥‹";
+                        Text[ slovak ] = "Odo~slaÅ¥ na pozadie";
+                    };
+                };
+            };
+            Text[ chinese_simplified ] = "æ’åº";
+            Text[ russian ] = "Ğàñïîëîæèòü";
+            Text[ polish ] = "Rozmieszczenie";
+            Text[ japanese ] = "æ•´åˆ—";
+            Text[ chinese_traditional ] = "æ’åº";
+            Text[ arabic ] = "ÊÑÊíÈ";
+            Text[ greek ] = "~Ôáêôïğïßçóç";
+            Text[ korean ] = "ë°°ì¹˜";
+            Text[ turkish ] = "Sıralama";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "Organitza";
+            Text[ thai ] = "à¸ˆà¸±à¸”à¹€à¸£à¸µà¸¢à¸‡";
+            Text[ czech ] = "UspoÅ™Ã¡dat";
+            Text[ hebrew ] = "â€®×¡×™×“×•×¨â€¬";
+            Text[ hindi ] = "à¤•à¥à¤°à¤® à¤®à¥‡à¤‚ à¤°à¤–à¥‹";
+            Text[ slovak ] = "UsporiadaÅ¥";
+        };
+        MenuItem
+        {
+            Separator = TRUE ;
+        };
+        MenuItem
+        {
+            Identifier = MN_MARK_ALL ;
+            /* ### ACHTUNG: Neuer Text in Resource? Alles ausw~ählen : Alles ausw~õhlen */
+            /* ### ACHTUNG: Neuer Text in Resource? Alles ausw~ählen : Alles ausw~õhlen */
+            Text = "Alles ausw~ählen" ;
+            Text [ ENGLISH ] = "Select All" ;
+            Text [ norwegian ] = "Select All" ;
+            Text [ italian ] = "Seleziona tutto" ;
+            Text [ portuguese_brazilian ] = "Selecionar ~Tudo" ;
+            Text [ portuguese ] = "Seleccionar t~udo" ;
+            Text [ finnish ] = "~Valitse kaikki" ;
+            Text [ danish ] = "Marker alt" ;
+            Text [ french ] = "Tout s~électionner" ;
+            Text [ swedish ] = "~Välj ut allt" ;
+            Text [ dutch ] = "Alles ~selecteren" ;
+            Text [ spanish ] = "~Seleccionar todo" ;
+            Text [ english_us ] = "Select ~All" ;
+            Text[ chinese_simplified ] = "å…¨éƒ¨é€‰ä¸­(~A)";
+            Text[ russian ] = "Âûäåëèòü âñå";
+            Text[ polish ] = "Zaznacz ~wszystko";
+            Text[ japanese ] = "ã™ã¹ã¦é¸æŠ(~A)";
+            Text[ chinese_traditional ] = "å…¨éƒ¨é¸å–(~A)";
+            Text[ arabic ] = "ÊÍÏíÏ Çáßá";
+            Text[ greek ] = "ÅğéëïãŞ üë~ùí";
+            Text[ korean ] = "ëª¨ë‘ ì„ íƒ(~A)";
+            Text[ turkish ] = "Tümünü seç";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "Selecciona ~tots";
+            Text[ thai ] = "à¹€à¸¥à¸·à¸­à¸~à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”";
+            Text[ czech ] = "Vybrat vÅ¡e";
+            Text[ hebrew ] = "â€®×‘×—×™×¨×” ×›×•×œ×œ×ªâ€¬";
+            Text[ hindi ] = "~à¤¸à¤¬ à¤šà¥à¤¨à¥‹";
+            Text[ slovak ] = "VybraÅ¥ ~vÅ¡etko";
+        };
+        MenuItem
+        {
+            Identifier = MN_DELETE ;
+            /* ### ACHTUNG: Neuer Text in Resource? ~Löschen : ~L÷schen */
+            /* ### ACHTUNG: Neuer Text in Resource? ~Löschen : ~L÷schen */
+            Text = "~Löschen" ;
+            Text [ ENGLISH ] = "~Delete" ;
+            Text [ norwegian ] = "~Slett" ;
+            Text [ italian ] = "~Cancella" ;
+            Text [ portuguese_brazilian ] = "E~xcluir" ;
+            Text [ portuguese ] = "E~liminar" ;
+            Text [ finnish ] = "~Poista" ;
+            Text [ danish ] = "~Slet" ;
+            Text [ french ] = "~Supprimer" ;
+            Text [ swedish ] = "~Radera" ;
+            Text [ dutch ] = "~Wissen" ;
+            Text [ spanish ] = "~Borrar" ;
+            Text [ english_us ] = "~Delete" ;
+            /* ### ACHTUNG: Neuer Text in Resource? Die Selektion löschen : Die Selektion l÷schen */
+            Text[ chinese_simplified ] = "åˆ é™¤(~D)";
+            Text[ russian ] = "Óäàëèòü";
+            Text[ polish ] = "~Usuñ";
+            Text[ japanese ] = "å‰Šé™¤(~D)";
+            Text[ chinese_traditional ] = "åˆªé™¤(~D)";
+            Text[ arabic ] = "ÍĞİ";
+            Text[ greek ] = "Äéáãñá~öŞ";
+            Text[ korean ] = "ì‚­ì œ(~D)";
+            Text[ turkish ] = "Sil";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Suprimeix";
+            Text[ thai ] = "~à¸¥à¸š";
+            Text[ czech ] = "Smazat";
+            Text[ hebrew ] = "â€®××—×™×§×”â€¬";
+            Text[ hindi ] = "~à¤®à¤¿à¤Ÿà¤¾à¤“";
+            Text[ slovak ] = "~ZmazaÅ¥";
+        };
+    };
+};
+/******************************************************************************/
+//STRIP001 ModalDialog RID_SVXDLG_IMAPURL
+//STRIP001 {
+//STRIP001  SVLook = TRUE ;
+//STRIP001  OutputSize = TRUE ;
+//STRIP001  Closeable = TRUE ;
+//STRIP001  Moveable = TRUE ;
+//STRIP001     Size = MAP_APPFONT ( 214 , 80 ) ;
+//STRIP001  Text = "Beschreibung" ;
+//STRIP001  Text [ English ] = "Description" ;
+//STRIP001  Text [ english_us ] = "Description" ;
+//STRIP001  Text [ italian ] = "Descrizione" ;
+//STRIP001  Text [ spanish ] = "Descripción" ;
+//STRIP001  Text [ french ] = "Description" ;
+//STRIP001  Text [ dutch ] = "Beschrijving" ;
+//STRIP001  Text [ swedish ] = "Beskrivning" ;
+//STRIP001  Text [ danish ] = "Beskrivelse" ;
+//STRIP001  FixedText FT_URLDESCRIPTION
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 32 ) ;
+//STRIP001         Size = MAP_APPFONT ( 48 , 8 ) ;
+//STRIP001         Text = "~Alternativtext" ;
+//STRIP001         Text [ ENGLISH ] = "~Alternative text" ;
+//STRIP001         Text [ english_us ] = "Alternative ~text" ;
+//STRIP001      Text [ italian ] = "Testo alternativo" ;
+//STRIP001      Text [ spanish ] = "Texto alternativo" ;
+//STRIP001      Text [ french ] = "Texte (facultatif)" ;
+//STRIP001      Text [ dutch ] = "~Alternatieve tekst" ;
+//STRIP001      Text [ swedish ] = "~Alternativtext" ;
+//STRIP001      Text [ danish ] = "~Alternativtekst" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Texto alternativo" ;
+//STRIP001      Text [ portuguese ] = "Te~xto facultativo" ;
+//STRIP001      Text[ chinese_simplified ] = "æ›¿ä»£æ–‡å­—(~T)";
+//STRIP001      Text[ russian ] = "Òåêñ?;
+//STRIP001      Text[ polish ] = "Tekst ~alternatywny";
+//STRIP001      Text[ japanese ] = "ä»£ç”¨ãƒ†ã‚­ã‚¹ãƒˆ(~T)";
+//STRIP001      Text[ chinese_traditional ] = "æ›¿ä»£æ–‡å­—(~T)";
+//STRIP001      Text[ arabic ] = ":äÕ ÈÏíá";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ greek ] = "Åíáëëáêôéê?êåßìå~íï";
+//STRIP001      Text[ korean ] = "ëŒ€ì²?í…ìŠ¤íŠ?~T):";
+//STRIP001      Text[ turkish ] = "Alternatif ~metin";
+//STRIP001      Text[ catalan ] = "Text alternatiu:";
+//STRIP001      Text[ finnish ] = "~Vaihtoehtoinen teksti";
+//STRIP001      Text[ thai ] = "~à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸—à¸”à¹à¸—à¸™";
+//STRIP001      Text[ czech ] = "AlternativnÃ­ text";
+//STRIP001      Text[ hebrew ] = "~Alternativtext";
+//STRIP001      Text[ hindi ] = "à¤µà¤¿à¤•à¤²à¥à¤ª ~à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥";
+//STRIP001      Text[ slovak ] = "AlternatÃ­vny ~text";
+//STRIP001  };
+//STRIP001  Edit EDT_URLDESCRIPTION
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Left = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 62 , 30 ) ;
+//STRIP001         Size = MAP_APPFONT ( 84 , 12 ) ;
+//STRIP001  };
+//STRIP001  FixedText FT_URL1
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 16 ) ;
+//STRIP001         Size = MAP_APPFONT ( 48 , 8 ) ;
+//STRIP001         Text = "~URL" ;
+//STRIP001         Text [ English ] = "~URL Text" ;
+//STRIP001      Text [ dutch ] = "~URL" ;
+//STRIP001         Text [ english_us ] = "~URL" ;
+//STRIP001      Text [ italian ] = "URL" ;
+//STRIP001      Text [ spanish ] = "URL" ;
+//STRIP001      Text [ french ] = "URL" ;
+//STRIP001      Text [ swedish ] = "~URL" ;
+//STRIP001      Text [ danish ] = "~URL" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~URL" ;
+//STRIP001      Text [ portuguese ] = "~URL" ;
+//STRIP001      Text[ chinese_simplified ] = "~URL";
+//STRIP001      Text[ russian ] = "Àäğå?URL";
+//STRIP001      Text[ polish ] = "Adres ~URL";
+//STRIP001      Text[ japanese ] = "~URL";
+//STRIP001      Text[ chinese_traditional ] = "~URL";
+//STRIP001      Text[ arabic ] = ":URL äÕ";
+//STRIP001      Text[ greek ] = "~URL";
+//STRIP001      Text[ korean ] = "~URL í…ìŠ¤íŠ?";
+//STRIP001      Text[ turkish ] = "~URL";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Text URL:";
+//STRIP001      Text[ finnish ] = "~URL-osoite";
+//STRIP001      Text[ thai ] = "~URL";
+//STRIP001      Text[ czech ] = "URL";
+//STRIP001      Text[ hebrew ] = "~URL";
+//STRIP001      Text[ hindi ] = "~URL";
+//STRIP001      Text[ slovak ] = "~URL";
+//STRIP001  };
+//STRIP001  Edit EDT_URL
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Left = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 62 , 14 ) ;
+//STRIP001         Size = MAP_APPFONT ( 84 , 12 ) ;
+//STRIP001  };
+//STRIP001  OKButton BTN_OK
+//STRIP001  {
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DefButton = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 158 , 6 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001  };
+//STRIP001  CancelButton BTN_CANCEL
+//STRIP001  {
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Pos = MAP_APPFONT ( 158 , 23 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001  };
+//STRIP001     FixedLine FL_URL
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 6 , 3 ) ;
+//STRIP001         Size = MAP_APPFONT ( 146 , 8 ) ;
+//STRIP001      Text = "Hyperlink" ;
+//STRIP001      Text [ ENGLISH ] = "Hyperlink" ;
+//STRIP001      Text [ english_us ] = "Hyperlink" ;
+//STRIP001      Text [ italian ] = "Hyperlink" ;
+//STRIP001      Text [ spanish ] = "Hiperenlace" ;
+//STRIP001      Text [ french ] = "Hyperlien" ;
+//STRIP001      Text [ dutch ] = "Hyperlink" ;
+//STRIP001      Text [ swedish ] = "Hyperlänk" ;
+//STRIP001      Text [ danish ] = "Hyperlink" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Hiperlink" ;
+//STRIP001      Text [ portuguese ] = "Hiperligação" ;
+//STRIP001      Text[ chinese_simplified ] = "è¶…é“¾æ?;
+//STRIP001      Text[ russian ] = "Ãèïåğññûëê?;
+//STRIP001      Text[ polish ] = "Hiper³¹cze";
+//STRIP001      Text[ japanese ] = "ãƒã‚¤ãƒ‘ãƒ¼ãƒªãƒ³ã‚?;
+//STRIP001      Text[ chinese_traditional ] = "è¶…é€£çµ";
+//STRIP001      Text[ arabic ] = "ÇÑÊÈÇØ ÊÔÚÈ?;
+//STRIP001      Text[ greek ] = "~Õğåñ-óıíäåó?;
+//STRIP001      Text[ korean ] = "í•˜ì´í¼ë§í?;
+//STRIP001      Text[ turkish ] = "Hiperlink";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Hiperenlla?;
+//STRIP001      Text[ finnish ] = "Hyperlinkki";
+//STRIP001      Text[ thai ] = "à¹€à¸Šà¸·à¹ˆà¸­à¸¡à¹‚à¸¢à¸‡à¸«à¸¥à¸²à¸¢à¸¡à¸´à¸•à¸´";
+//STRIP001      Text[ czech ] = "HypertextovÃ½ odkaz";
+//STRIP001      Text[ hebrew ] = "Hyperlink";
+//STRIP001      Text[ hindi ] = "à¤¹à¤¾à¤‡à¤ªà¤°à¤²à¤¿à¤‚à¤?;
+//STRIP001      Text[ slovak ] = "HypertextovÃ½ odkaz";
+//STRIP001  };
+//STRIP001  FixedText FT_TARGET
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 48 ) ;
+//STRIP001         Size = MAP_APPFONT ( 48 , 8 ) ;
+//STRIP001         Text = "~Frame" ;
+//STRIP001         Text [ ENGLISH ] = "~Frame" ;
+//STRIP001         Text [ english_us ] = "F~rame" ;
+//STRIP001      Text [ portuguese_brazilian ] = "F~rame" ;
+//STRIP001      Text [ swedish ] = "~Ram" ;
+//STRIP001      Text [ danish ] = "~Frame" ;
+//STRIP001      Text [ italian ] = "Frame" ;
+//STRIP001      Text [ spanish ] = "~Marco" ;
+//STRIP001      Text [ french ] = "Cadre" ;
+//STRIP001      Text [ dutch ] = "~Frame" ;
+//STRIP001      Text [ portuguese ] = "~Frame" ;
+//STRIP001      Text[ chinese_simplified ] = "æ¡†å¯¹è±?~R)";
+//STRIP001      Text[ russian ] = "Ôğåé?;
+//STRIP001      Text[ polish ] = "~Ramka";
+//STRIP001      Text[ japanese ] = "ãƒ•ãƒ¬ãƒ¼ãƒ (~R)";
+//STRIP001      Text[ chinese_traditional ] = "è¨Šæ¡†(~R)";
+//STRIP001      Text[ arabic ] = "ÅØÇÑ:";
+//STRIP001      Text[ greek ] = "~Ğëáßóé?;
+//STRIP001      Text[ korean ] = "í”„ë ˆì?~R):";
+//STRIP001      Text[ turkish ] = "Çerçeve:";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Marc:";
+//STRIP001      Text[ finnish ] = "K~ehys";
+//STRIP001      Text[ thai ] = "à¸~à¸£à¸­à¸?;
+//STRIP001      Text[ czech ] = "RÃ¡mec";
+//STRIP001      Text[ hebrew ] = "â€®××¡×’×¨×ªâ€?;
+//STRIP001      Text[ hindi ] = "~à¤«à¤¼à¥à¤°à¥‡à¤®";
+//STRIP001      Text[ slovak ] = "~RÃ¡mec";
+//STRIP001  };
+//STRIP001  ComboBox CBB_TARGETS
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      Sort = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 62 , 46 ) ;
+//STRIP001         Size = MAP_APPFONT ( 84 , 50 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      HScroll = TRUE ;
+//STRIP001  };
+//STRIP001  FixedText FT_NAME
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 64 ) ;
+//STRIP001         Size = MAP_APPFONT ( 48 , 8 ) ;
+//STRIP001         Text = "~Name" ;
+//STRIP001         Text [ English ] = "~Name" ;
+//STRIP001         Text [ english_us ] = "~Name" ;
+//STRIP001      Text [ portuguese ] = "~Nome" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Nome" ;
+//STRIP001      Text [ swedish ] = "~Namn" ;
+//STRIP001      Text [ danish ] = "~Navn" ;
+//STRIP001      Text [ italian ] = "Nome" ;
+//STRIP001      Text [ spanish ] = "Nombre" ;
+//STRIP001      Text [ french ] = "Nom" ;
+//STRIP001      Text [ dutch ] = "~Naam" ;
+//STRIP001      Text[ chinese_simplified ] = "åç§°(~N)";
+//STRIP001      Text[ russian ] = "Èìÿ";
+//STRIP001      Text[ polish ] = "~Nazwa";
+//STRIP001      Text[ japanese ] = "åå‰(~N)";
+//STRIP001      Text[ chinese_traditional ] = "åç¨±(~N)";
+//STRIP001      Text[ arabic ] = ":ÇáÇÓ?;
+//STRIP001      Text[ greek ] = "¼íï~ìá";
+//STRIP001      Text[ korean ] = "ì´ë¦„(~N):";
+//STRIP001      Text[ turkish ] = "Ad";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Nom:";
+//STRIP001      Text[ finnish ] = "~Nimi";
+//STRIP001      Text[ thai ] = "~à¸Šà¸·à¹ˆà¸­";
+//STRIP001      Text[ czech ] = "NÃ¡zev";
+//STRIP001      Text[ hebrew ] = "~Name";
+//STRIP001      Text[ hindi ] = "~à¤¨à¤¾à¤?;
+//STRIP001      Text[ slovak ] = "~NÃ¡zov";
+//STRIP001  };
+//STRIP001  Edit EDT_NAME
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Left = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 62 , 62 ) ;
+//STRIP001         Size = MAP_APPFONT ( 84 , 12 ) ;
+//STRIP001  };
+//STRIP001  Text [ portuguese ] = "Descrição" ;
+//STRIP001  Text [ portuguese_brazilian ] = "Descrição" ;
+//STRIP001  Text[ chinese_simplified ] = "è¯´æ˜";
+//STRIP001  Text[ russian ] = "Îïèñàíèå";
+//STRIP001  Text[ polish ] = "Opis";
+//STRIP001  Text[ japanese ] = "èª¬æ˜";
+//STRIP001  Text[ chinese_traditional ] = "æè¿°";
+//STRIP001  Text[ arabic ] = "ÇáæÕ?;
+//STRIP001  Text[ greek ] = "Ğåñéãñáö?;
+//STRIP001  Text[ korean ] = "ì„¤ëª…";
+//STRIP001  Text[ turkish ] = "Açıklama";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "Descripci?;
+//STRIP001  Text[ finnish ] = "Kuvaus";
+//STRIP001  Text[ thai ] = "à¸„à¸³à¸­à¸˜à¸´à¸šà¸²à¸¢";
+//STRIP001  Text[ czech ] = "Popis";
+//STRIP001  Text[ hebrew ] = "â€®×ª××•×¨â€?;
+//STRIP001  Text[ hindi ] = "à¤µà¤¿à¤µà¤°à¤?;
+//STRIP001  Text[ slovak ] = "Popis";
+//STRIP001 };
+/******************************************************************************/
+String STR_IMAPDLG_SAVE
+{
+    Text= "Die ImageMap wurde geändert.\nSollen die Änderungen gespeichert werden?";
+    Text [ English ] = "The ImageMap has been modified.\nDo you want to save your changes?" ;
+    Text[ english_us ] = "The ImageMap has been modified.\nDo you want to save the changes?";
+    Text[ chinese_simplified ] = "å›¾åƒæ˜ å°„å·²ç»è¢«æ”¹åŠ¨ã€‚\næ‚¨è¦å­˜ç›˜æ›´æ”¹å—ï¼Ÿ";
+    Text[ russian ] = "Ñåíñîğíîå èçîáğàæåíèå èçìåíåíî.\nÑîõğàíèòü ıòè èçìåíåíèÿ?";
+    Text[ polish ] = "Mapa obrazkowa zosta³a zmieniona.\nCzy zmiany maj¹ byæ zapisane?";
+    Text[ japanese ] = "ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒƒãƒ—ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã¾ã™ã€‚\nå¤‰æ›´ã‚’ä¿å­˜ã—ã¾ã™ã‹ã€‚";
+    Text[ chinese_traditional ] = "å½±åƒæ˜ å°„å·²ç¶“è¢«è®Šæ›´ã€‚\næ‚¨è¦å„²å­˜è®Šæ›´ï¼Ÿ";
+    Text[ arabic ] = "Êã ÊÛííÑ ãÎØØ ÇáÕæÑÉ .\nåá ÊÑíÏ ÍİÙ ÇáÊÛííÑÇÊ¿";
+    Text [ italian ] = "L'ImageMap è stata cambiata.\nSalvare le modifiche?" ;
+    Text [ spanish ] = "El mapa de imágenes se ha modificado.\n¿Desea guardar las modificaciones?" ;
+    Text [ french ] = "L'Image Map a été modifiée.\nEnregistrer les modifications?" ;
+    Text [ dutch ] = "De ImageMap is gewijzigd.\nWilt u de wijzigingen opslaan?" ;
+    /* ### ACHTUNG: Neuer Text in Resource? Die ImageMap wurde geändert.\nSollen die Änderungen gespeichert werden? : Die ImageMap wurde geõndert.\nSollen die nderungen gespeichert werden? */
+    /* ### ACHTUNG: Neuer Text in Resource? Die ImageMap wurde geändert.\nSollen die Änderungen gespeichert werden? : Die ImageMap wurde geõndert.\nSollen die nderungen gespeichert werden? */
+    Text = "Die ImageMap wurde geändert.\nSollen die Änderungen gespeichert werden?" ;
+    Text [ swedish ] = "Image map har ändrats.\nSkall ändringarna sparas?" ;
+    Text [ danish ] = "ImageMap er blevet ændret.\nVil du gemme ændringerne?" ;
+    Text [ portuguese_brazilian ] = "O editor de imagens foi modificado.\nDeseja salvar as modificações?" ;
+    Text [ portuguese ] = "O ImageMap foi modificado.\nDeseja guardar as modificações?" ;
+    Text[ greek ] = "Ôï ImageMap ôñïğïğïéŞèçêå.\nÈİëåôå íá áğïèçêåõôïıí ïé áëëáãİò;";
+    Text[ korean ] = "ì´ë¯¸ì§€ ë§µì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\në³€ê²½ëœ ë‚´ìš©ì„ ì €ì¥í•˜ê² ìŠµë‹ˆê¹Œ?";
+    Text[ turkish ] = "Resim eşlem değiştirildi.\nDeğişiklikler kaydedilsin mi?";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "S'ha modificat el mapa d'imatge.\nVoleu desar-ne els canvis?";
+    Text[ finnish ] = "Kuvakarttaa on muutettu.\nTallennetaanko muutokset?";
+    Text[ thai ] = "à¸”à¸±à¸”à¹à¸›à¸¥à¸‡à¹à¸à¹‰à¹„à¸‚à¸ à¸²à¸à¹à¸œà¸™à¸—à¸µà¹ˆà¹à¸¥à¹‰à¸§\nà¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸šà¸±à¸™à¸—à¸¶à¸à¸à¸²à¸£à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹à¸›à¸¥à¸‡à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
+    Text[ czech ] = "Tato obrÃ¡zkovÃ¡ mapa byla zmÄ›nÄ›na.\nPÅ™ejete si uloÅ¾it zmÄ›ny?";
+    Text[ hebrew ] = "Die ImageMap wurde geÃ¤ndert.\nSollen die Ã„nderungen gespeichert werden?";
+    Text[ hindi ] = "à¤šà¤¿à¤¤à¥à¤° à¤¨à¤•à¥à¤¶à¤¾ à¤•à¥‹ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨ à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥¤\nà¤†à¤ª à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨à¥‹à¤‚ à¤•à¥‹ à¤¸à¤‚à¤šà¤¿à¤¤ à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥‡ à¤¹à¥ˆ?";
+    Text[ slovak ] = "TÃ¡to obrÃ¡zkovÃ¡ mapa bola zmenenÃ¡.\nPrajete si uloÅ¾iÅ¥ zmeny?";
+};
+String STR_IMAPDLG_MODIFY
+{
+    /* ### ACHTUNG: Neuer Text in Resource? Die ImageMap wurde geändert.\nSollen die Änderungen übernommen werden? : Die ImageMap wurde geõndert.\nSollen die nderungen ³bernommen werden? */
+    /* ### ACHTUNG: Neuer Text in Resource? Die ImageMap wurde geändert.\nSollen die Änderungen übernommen werden? : Die ImageMap wurde geõndert.\nSollen die nderungen ³bernommen werden? */
+    Text = "Die ImageMap wurde geändert.\nSollen die Änderungen übernommen werden?" ;
+    Text [ English ] = "The ImageMap has been modified.\nDo you want to take your changes?" ;
+    Text [ english_us ] = "The ImageMap has been modified.\nDo you want to save the changes?" ;
+    Text [ swedish ] = "Image map har ändrats.\nSkall ändringarna övertas?" ;
+    Text [ danish ] = "ImageMap er blevet ændret.\nSkal ændringerne overtages?" ;
+    Text [ italian ] = "La ImageMap è stata cambiata.\nAccettare le modifiche?" ;
+    Text [ spanish ] = "El mapa de imágenes se ha modificado.\n¿Desea guardar las modificaciones?" ;
+    Text [ french ] = "L'Image Map a été modifiée.\nAppliquer les modifications ?" ;
+    Text [ dutch ] = "De ImageMap is gewijzigd.\nWilt u de wijzigingen overnemen?" ;
+    Text [ portuguese_brazilian ] = "O editor de imagens foi modificado.\nDeseja salvar as modificações?" ;
+    Text [ portuguese ] = "O ImageMap foi modificado.\nDeseja aplicar as modificações?" ;
+    Text[ chinese_simplified ] = "å›¾åƒæ˜ å°„å·²ç»è¢«æ”¹åŠ¨ã€‚\næ‚¨è¦æ¥å—æ›´æ”¹å—ï¼Ÿ";
+    Text[ russian ] = "Ñåíñîğíîå èçîáğàæåíèå èçìåíåíî.\nÏğèíÿòü ıòè èçìåíåíèÿ?";
+    Text[ polish ] = "Mapa obrazkowa zosta³a zmieniona.\nCzy zmiany maj¹ byæ zapisane?";
+    Text[ japanese ] = "ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒƒãƒ—ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã¾ã™ã€‚\nå¤‰æ›´ã‚’ä¿å­˜ã—ã¾ã™ã‹ã€‚";
+    Text[ chinese_traditional ] = "å½±åƒæ˜ å°„å·²ç¶“è¢«è®Šæ›´ã€‚\næ‚¨è¦æ¥å—è®Šæ›´ï¹–";
+    Text[ arabic ] = "Êã ÊÛííÑ ãÎØØ ÇáÕæÑÉ .\nåá ÊÑíÏ ÍİÙ ÇáÊÛííÑÇÊ¿";
+    Text[ greek ] = "Ôï ImageMap ôñïğïğïéŞèçêå.\nÈİëåôå íá åöáñìïóôïıí ïé áëëáãİò;";
+    Text[ korean ] = "ì´ë¯¸ì§€ ë§µì´ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\në³€ê²½ëœ ë‚´ìš©ì„ ì ìš©í•˜ê² ìŠµë‹ˆê¹Œ?";
+    Text[ turkish ] = "Resim eşlem değiştirildi.\nDeğişiklikler kaydedilsin mi?";
+    Text[ language_user1 ] = " ";
+    Text[ catalan ] = "S'ha modificat el mapa d'imatge.\nVoleu desar-ne els canvis?";
+    Text[ finnish ] = "Kuvakarttaa on muutettu.\nTallennetaanko muutokset?";
+    Text[ thai ] = "à¸”à¸±à¸”à¹à¸›à¸¥à¸‡à¹à¸à¹‰à¹„à¸‚à¸ à¸²à¸à¹à¸œà¸™à¸—à¸µà¹ˆà¹à¸¥à¹‰à¸§\nà¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¸šà¸±à¸™à¸—à¸¶à¸à¸à¸²à¸£à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹à¸›à¸¥à¸‡à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
+    Text[ czech ] = "Tato obrÃ¡zkovÃ¡ mapa byla zmÄ›nÄ›na.\nPÅ™ejete si uloÅ¾it zmÄ›ny?";
+    Text[ hebrew ] = "Die ImageMap wurde geÃ¤ndert.\nSollen die Ã„nderungen Ã¼bernommen werden?";
+    Text[ hindi ] = "à¤šà¤¿à¤¤à¥à¤° à¤¨à¤•à¥à¤¶à¤¾ à¤•à¥‹ à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨ à¤•à¤¿à¤¯à¤¾ à¤¹à¥ˆ à¥¤\nà¤†à¤ª à¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨à¥‹à¤‚ à¤•à¥‹ à¤¸à¤‚à¤šà¤¿à¤¤ à¤•à¤°à¤¨à¤¾ à¤šà¤¾à¤¹à¤¤à¥‡ à¤¹à¥ˆ?";
+    Text[ slovak ] = "TÃ¡to obrÃ¡zkovÃ¡ mapa bola zmenenÃ¡.\nPrajete si uloÅ¾iÅ¥ zmeny?";
+};
+/******************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

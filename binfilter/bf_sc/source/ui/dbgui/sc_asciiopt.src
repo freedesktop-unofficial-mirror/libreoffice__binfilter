@@ -1,0 +1,720 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sc_asciiopt.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:18 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+#include "asciiopt.hrc"
+
+//STRIP001 ModalDialog RID_SCDLG_ASCII
+//STRIP001 {
+//STRIP001  OutputSize = TRUE ;
+//STRIP001  SVLook = TRUE ;
+//STRIP001     Size = MAP_APPFONT ( 320 , 247 ) ;
+//STRIP001  Text = "Textimport" ;
+//STRIP001  Text [ ENGLISH ] = "Text import" ;
+//STRIP001  Text [ DANISH ] = "Tekstimport" ;
+//STRIP001  Text [ ENGLISH_US ] = "Text Import" ;
+//STRIP001  Text [ SPANISH ] = "Importar texto" ;
+//STRIP001  Text [ FRENCH ] = "Import de texte" ;
+//STRIP001  Text [ ITALIAN ] = "Importazione testo" ;
+//STRIP001  Text [ DUTCH ] = "Tekstimport" ;
+//STRIP001  Text [ PORTUGUESE_BRAZILIAN ] = "ImportaÁ„o de Texto" ;
+//STRIP001  Text [ SWEDISH ] = "Textimport" ;
+//STRIP001  Text [ PORTUGUESE ] = "Importar texto" ;
+//STRIP001  Moveable = TRUE ;
+//STRIP001     FixedLine FL_WIDTH
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 132 ) ;
+//STRIP001         Size = MAP_APPFONT ( 252 , 8 ) ;
+//STRIP001      Text = "Felder" ;
+//STRIP001      Text [ ENGLISH ] = "Field width" ;
+//STRIP001      Text [ DANISH ] = "Felter" ;
+//STRIP001      Text [ ENGLISH_US ] = "Fields" ;
+//STRIP001      Text [ SPANISH ] = "Campos" ;
+//STRIP001      Text [ FRENCH ] = "Champs" ;
+//STRIP001      Text [ ITALIAN ] = "Campi" ;
+//STRIP001      Text [ DUTCH ] = "Velden" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "Campos" ;
+//STRIP001      Text [ SWEDISH ] = "F‰lt" ;
+//STRIP001      Text [ PORTUGUESE ] = "Campos" ;
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÊÆµ";
+//STRIP001      Text[ russian ] = "œÓ?";
+//STRIP001      Text[ polish ] = "Pola";
+//STRIP001      Text[ japanese ] = "„Éï„Ç£„Éº„É´„É?;
+//STRIP001      Text[ chinese_traditional ] = "Ê¨Ñ‰Ωç";
+//STRIP001      Text[ arabic ] = "ÕﬁÊ·";
+//STRIP001      Text[ dutch ] = "Velden";
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÊÆµ";
+//STRIP001      Text[ greek ] = "–Â‰ﬂ?;
+//STRIP001      Text[ korean ] = "ÌïÑÎìú";
+//STRIP001      Text[ turkish ] = "Alanlar";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Camps";
+//STRIP001      Text[ finnish ] = "Kent‰t";
+//STRIP001      Text[ thai ] = "‡πÄ‡∏Ç‡∏ï‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•";
+//STRIP001      Text[ czech ] = "Pole";
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊©◊ì◊ï◊™‚Ä?;
+//STRIP001      Text[ hindi ] = "‡§ï‡•ç‡§∑‡•á‡§§‡•ç‡§∞‡•á‡§?;
+//STRIP001  };
+//STRIP001  FixedText FT_TYPE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 145 ) ;
+//STRIP001         Size = MAP_APPFONT ( 60 , 8 ) ;
+//STRIP001         Text = "Spaltent~yp" ;
+//STRIP001         Text [ ENGLISH ] = "Column t~ype" ;
+//STRIP001      Text[ english_us ] = "Column t~ype";
+//STRIP001      Text[ portuguese ] = "Tipo";
+//STRIP001      Text[ russian ] = "“Ë?ÒÚÓÎ·ˆÓ‚";
+//STRIP001      Text[ greek ] = "‘˝Ô?ÛÙ~ıÎ˛Ì";
+//STRIP001      Text[ dutch ] = "Kolomt~ype";
+//STRIP001      Text[ french ] = "Type";
+//STRIP001      Text[ spanish ] = "T~ipo de columna";
+//STRIP001      Text[ finnish ] = "Saraket~yyppi";
+//STRIP001      Text[ italian ] = "Tipo colonna";
+//STRIP001      Text[ danish ] = "Kolonnet~ype";
+//STRIP001      Text[ swedish ] = "Kolumnt~yp";
+//STRIP001      Text[ polish ] = "T~yp kolumny";
+//STRIP001      Text[ portuguese_brazilian ] = "T~ipo de coluna";
+//STRIP001      Text[ japanese ] = "Âàó„ÅÆÁ®ÆÈ°û(~Y)";
+//STRIP001      Text[ korean ] = "Îã?Ïú†Ìòï(~Y)";
+//STRIP001      Text[ chinese_simplified ] = "ÂàóÁ±ªÂû?~Y)";
+//STRIP001      Text[ chinese_traditional ] = "Ê¨ÑÁöÑÈ°ûÂûã(~Y)";
+//STRIP001      Text[ turkish ] = "S¸tun T~ipi";
+//STRIP001      Text[ arabic ] = "«·‰Ê?;
+//STRIP001      Text[ catalan ] = "T~ipus";
+//STRIP001      Text[ thai ] = "=‡∏ä~‡∏ô‡∏¥‡∏î‡∏Ñ‡∏≠‡∏•‡∏±‡∏°‡∏ô‡πå";
+//STRIP001      Text[ czech ] = "Typ sloupce";
+//STRIP001      Text[ hebrew ] = "Spaltent~yp";
+//STRIP001      Text[ hindi ] = "‡§∏‡•ç‡§§‡§Ç‡§?‡§µ~‡§∞‡•ç‡§?;
+//STRIP001  };
+//STRIP001  ListBox LB_TYPE1
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 76 , 143 ) ;
+//STRIP001         Size = MAP_APPFONT ( 60 , 68 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001  };
+//STRIP001     FixedLine FL_SEPOPT
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 48 ) ;
+//STRIP001         Size = MAP_APPFONT ( 252 , 8 ) ;
+//STRIP001      Text = "Trennoptionen" ;
+//STRIP001      Text [ ENGLISH ] = "Field separation" ;
+//STRIP001      Text [ DANISH ] = "Separatorindstillinger" ;
+//STRIP001      Text [ ENGLISH_US ] = "Separator options" ;
+//STRIP001      Text [ SPANISH ] = "Opciones de separaciÛn" ;
+//STRIP001      Text [ FRENCH ] = "Options de sÈparation" ;
+//STRIP001      Text [ ITALIAN ] = "Opzioni di sillabazione" ;
+//STRIP001      Text [ DUTCH ] = "Afscheidingsopties" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "OpÁıes de separador" ;
+//STRIP001      Text [ SWEDISH ] = "Delningsalternativ" ;
+//STRIP001      Text [ PORTUGUESE ] = "OpÁıes de separaÁ„o" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÈöîÈÄâÈ°π";
+//STRIP001      Text[ russian ] = "œ‡‡ÏÂÚ?‡Á‰ÂÎÂÌ?";
+//STRIP001      Text[ polish ] = "Opcje separatora";
+//STRIP001      Text[ japanese ] = "Âå∫Âàá„Çä„ÅÆ„Ç™„Éó„Ç∑„Éß„É?;
+//STRIP001      Text[ chinese_traditional ] = "ÂàÜÈöîÈÅ∏È†Ö";
+//STRIP001      Text[ arabic ] = "Œ’«∆?«·›’?;
+//STRIP001      Text[ dutch ] = "Afscheidingsopties";
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÈöîÈÄâÈ°π";
+//STRIP001      Text[ greek ] = "≈ÈÎÔ„›Ú ‰È·˜˘ÒÈÛÙÈÍÔ?;
+//STRIP001      Text[ korean ] = "Íµ¨Î∂Ñ Í∏∞Ìò∏ ÏòµÏÖò";
+//STRIP001      Text[ turkish ] = "Ayra?seÁenekleri";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Opcions de separaci?;
+//STRIP001      Text[ finnish ] = "Erottimen asetukset";
+//STRIP001      Text[ thai ] = "‡∏ï‡∏±‡∏ß‡πÄ‡∏•‡∏∑‡∏≠‡∏Å‡∏ï‡∏±‡∏ß‡πÅ‡∏¢‡∏Å";
+//STRIP001      Text[ czech ] = "Volby oddƒõlovaƒçe";
+//STRIP001      Text[ hebrew ] = "Trennoptionen";
+//STRIP001      Text[ hindi ] = "‡§Ö‡§≤‡§ó‡§æ‡§®‡•á‡§µ‡§æ‡§≤‡§æ ‡§µ‡§ø‡§ï‡§≤‡•ç‡§™";
+//STRIP001  };
+//STRIP001  RadioButton RB_FIXED
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 59 ) ;
+//STRIP001         Size = MAP_APPFONT ( 243 , 10 ) ;
+//STRIP001      Text = "~Feste Breite" ;
+//STRIP001      Text [ ENGLISH ] = "Fixed width" ;
+//STRIP001      Text [ DANISH ] = "Fast bredde" ;
+//STRIP001      Text [ ENGLISH_US ] = "~Fixed width" ;
+//STRIP001      Text [ SPANISH ] = "Ancho ~fijo" ;
+//STRIP001      Text [ FRENCH ] = "Largeur fixe" ;
+//STRIP001      Text [ ITALIAN ] = "Larghezza fissa" ;
+//STRIP001      Text [ DUTCH ] = "~Vaste breedte" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "Largura ~fixa" ;
+//STRIP001      Text [ SWEDISH ] = "~Fast bredd" ;
+//STRIP001      Text [ PORTUGUESE ] = "Largura fixa" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text[ chinese_simplified ] = "Âõ∫ÂÆöÁöÑÂÆΩÂ∫?~F)";
+//STRIP001      Text[ russian ] = "‘ËÍÒËÓ‚‡ÌÌ‡ˇ ¯ËËÌ‡";
+//STRIP001      Text[ polish ] = "~Sta≥a szerokoúÊ";
+//STRIP001      Text[ japanese ] = "Âõ∫ÂÆöÂπ?~F)";
+//STRIP001      Text[ chinese_traditional ] = "Âõ∫ÂÆöÁöÑÂØ¨Â∫?~F)";
+//STRIP001      Text[ arabic ] = "⁄—?À«» ";
+//STRIP001      Text[ dutch ] = "~Vaste breedte";
+//STRIP001      Text[ chinese_simplified ] = "Âõ∫ÂÆöÁöÑÂÆΩÂ∫?~F)";
+//STRIP001      Text[ greek ] = "”Ù·ËÂÒ?Î‹ÙÔÚ";
+//STRIP001      Text[ korean ] = "Í≥†Ï†ï ÎÑàÎπÑ(~F)";
+//STRIP001      Text[ turkish ] = "~Sabit geni˛lik";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Amplada fixa";
+//STRIP001      Text[ finnish ] = "~Kiinte?leveys";
+//STRIP001      Text[ thai ] = "~‡∏ã‡πà‡∏≠‡∏°‡∏Ñ‡∏ß‡∏≤‡∏°‡∏Å‡∏ß‡πâ‡∏≤‡∏?;
+//STRIP001      Text[ czech ] = "Pevn√° ≈°√≠≈ôka";
+//STRIP001      Text[ hebrew ] = "~Feste Breite";
+//STRIP001      Text[ hindi ] = "~‡§∏‡•ç‡§•‡§ø‡§?‡§ö‡•å‡§°‡§º‡§æ‡§à";
+//STRIP001  };
+//STRIP001  RadioButton RB_SEPARATED
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 73 ) ;
+//STRIP001         Size = MAP_APPFONT ( 243 , 10 ) ;
+//STRIP001      Text = "~Getrennt" ;
+//STRIP001      Text [ ENGLISH ] = "Separated" ;
+//STRIP001      Text [ DANISH ] = "Delt" ;
+//STRIP001      Text [ ENGLISH_US ] = "~Separated by" ;
+//STRIP001      Text [ SPANISH ] = "~Separado" ;
+//STRIP001      Text [ FRENCH ] = "SÈpar? ;
+//STRIP001      Text [ ITALIAN ] = "Separato" ;
+//STRIP001      Text [ DUTCH ] = "~Gescheiden" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "~Separado por" ;
+//STRIP001      Text [ SWEDISH ] = "Delad" ;
+//STRIP001      Text [ PORTUGUESE ] = "Separado" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Check = TRUE ;
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÈöî(~S)";
+//STRIP001      Text[ russian ] = "–‡Á‰ÂÎÂÌ?;
+//STRIP001      Text[ polish ] = "~Rozdzielony";
+//STRIP001      Text[ japanese ] = "Âå∫Âàá„Ç?~S)";
+//STRIP001      Text[ chinese_traditional ] = "ÂàÜÈöî(~S)";
+//STRIP001      Text[ arabic ] = "„›’Ê?;
+//STRIP001      Text[ dutch ] = "~Gescheiden";
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÈöî(~S)";
+//STRIP001      Text[ greek ] = "ƒÈ·˜˘ÒÈÊ¸ÏÂÌ?;
+//STRIP001      Text[ korean ] = "ÌïÑÎìú Íµ¨Î∂Ñ Í∏∞Ìò∏(~S)";
+//STRIP001      Text[ turkish ] = "~Ayr˝˛t˝r˝lm˝˛";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Separat per";
+//STRIP001      Text[ finnish ] = "~Erottimena";
+//STRIP001      Text[ thai ] = "‡πÅ~‡∏¢‡∏Å‡πÇ‡∏î‡∏?;
+//STRIP001      Text[ czech ] = "Oddƒõleno pomoc√≠";
+//STRIP001      Text[ hebrew ] = "~Getrennt";
+//STRIP001      Text[ hindi ] = "‡§∏‡•á ~‡§Ö‡§≤‡§ó‡§æ‡§Ø‡§æ ‡§π‡•Å‡§?;
+//STRIP001  };
+//STRIP001  FixedText FT_CHARSET
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 16 ) ;
+//STRIP001         Size = MAP_APPFONT ( 60 , 8 ) ;
+//STRIP001      Text = "Z~eichensatz" ;
+//STRIP001      Text [ ENGLISH ] = "Charset" ;
+//STRIP001      Text [ DANISH ] = "TegnsÊt" ;
+//STRIP001      Text [ ENGLISH_US ] = "Ch~aracter set" ;
+//STRIP001      Text [ SPANISH ] = "Juego de caracteres" ;
+//STRIP001      Text [ FRENCH ] = "Jeu de caractËres" ;
+//STRIP001      Text [ ITALIAN ] = "Ti~po di carattere" ;
+//STRIP001      Text [ DUTCH ] = "~Tekenset" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "Conjunto de c~aracteres" ;
+//STRIP001      Text [ SWEDISH ] = "~Teckenupps‰ttning" ;
+//STRIP001      Text [ PORTUGUESE ] = "Conjunto de caracteres" ;
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÁ¨¶Èõ?~A)";
+//STRIP001      Text[ russian ] = " Ó‰ËÓ‚Í?;
+//STRIP001      Text[ polish ] = "Z~estaw znakÛw";
+//STRIP001      Text[ japanese ] = "ÊñáÂ≠óÂà?~A)";
+//STRIP001      Text[ chinese_traditional ] = "Â≠óÂûã(~A)";
+//STRIP001      Text[ arabic ] = "„Ã„Ê⁄… √Õ—›";
+//STRIP001      Text[ dutch ] = "~Tekenset";
+//STRIP001      Text[ chinese_simplified ] = "Â≠óÁ¨¶Èõ?~A)";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ greek ] = "”~ÂÙ ˜·Ò·ÍÙﬁÒ˘Ì";
+//STRIP001      Text[ korean ] = "Î¨∏ÏûêÏßëÌï©(~A)";
+//STRIP001      Text[ turkish ] = "~Karakter k¸mesi";
+//STRIP001      Text[ catalan ] = "Joc de c~ar‡cters";
+//STRIP001      Text[ finnish ] = "~Merkist?;
+//STRIP001      Text[ thai ] = "‡∏ä‡∏∏‡∏î‡∏ï‡∏±‡∏ß~‡∏≠‡∏±‡∏Å‡∏Ç‡∏£‡∏∞";
+//STRIP001      Text[ czech ] = "Znakov√° sada";
+//STRIP001      Text[ hebrew ] = "Z~eichensatz";
+//STRIP001      Text[ hindi ] = "‡§Ö~‡§ï‡•ç‡§∑‡§∞ ‡§∏‡§Æ‡•Ç‡§π";
+//STRIP001  };
+//STRIP001  ListBox LB_CHARSET
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 76 , 14 ) ;
+//STRIP001         Size = MAP_APPFONT ( 130 , 61 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      Sort = TRUE;
+//STRIP001  };
+//STRIP001     FixedLine FL_FIELDOPT
+//STRIP001  {
+//STRIP001      Pos = MAP_APPFONT ( 6 , 3 ) ;
+//STRIP001         Size = MAP_APPFONT ( 252 , 8 ) ;
+//STRIP001      Text = "Import" ;
+//STRIP001      Text [ ENGLISH ] = "Import" ;
+//STRIP001      Text [ english_us ] = "Import" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Importar" ;
+//STRIP001      Text [ swedish ] = "Import" ;
+//STRIP001      Text [ danish ] = "Importer" ;
+//STRIP001      Text [ italian ] = "Importa" ;
+//STRIP001      Text [ spanish ] = "ImportaciÛn" ;
+//STRIP001      Text [ french ] = "Import" ;
+//STRIP001      Text [ dutch ] = "Import" ;
+//STRIP001      Text [ portuguese ] = "Importar" ;
+//STRIP001      Text[ chinese_simplified ] = "ËæìÂÖ•";
+//STRIP001      Text[ russian ] = "»ÏÔÓÚ";
+//STRIP001      Text[ polish ] = "Importuj";
+//STRIP001      Text[ japanese ] = "„Ç§„É≥„Éù„Éº„É?;
+//STRIP001      Text[ chinese_traditional ] = "ÂåØÂÖ•";
+//STRIP001      Text[ arabic ] = "«” Ì—«?;
+//STRIP001      Text[ dutch ] = "Import";
+//STRIP001      Text[ chinese_simplified ] = "ËæìÂÖ•";
+//STRIP001      Text[ greek ] = "≈ÈÛ·„˘„ﬁ";
+//STRIP001      Text[ korean ] = "Í∞ÄÏ†∏Ïò§Í∏?;
+//STRIP001      Text[ turkish ] = "›Áeri aktar˝m";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Importaci?;
+//STRIP001      Text[ finnish ] = "Tuo";
+//STRIP001      Text[ thai ] = "‡∏ô‡∏≥‡πÄ‡∏Ç‡πâ‡∏?;
+//STRIP001      Text[ czech ] = "Importovat";
+//STRIP001      Text[ hebrew ] = "Import";
+//STRIP001      Text[ hindi ] = "‡§Ü‡§Ø‡§æ‡§§";
+//STRIP001  };
+//STRIP001  FixedText FT_TEXTSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 156 , 114 ) ;
+//STRIP001         Size = MAP_APPFONT ( 60 , 8 ) ;
+//STRIP001      Text = "Te~xttrenner" ;
+//STRIP001      Text [ ENGLISH ] = "Text Separator" ;
+//STRIP001      Text [ DANISH ] = "Tekstseparator" ;
+//STRIP001      Text [ ENGLISH_US ] = "Te~xt delimiter" ;
+//STRIP001      Text [ SPANISH ] = "Separador de te~xto" ;
+//STRIP001      Text [ FRENCH ] = "SÈparateur de texte" ;
+//STRIP001      Text [ ITALIAN ] = "Separ. di testo" ;
+//STRIP001      Text [ DUTCH ] = "T~ekstafscheiding" ;
+//STRIP001      Text [ PORTUGUESE_BRAZILIAN ] = "Delimitador de te~xto" ;
+//STRIP001      Text [ SWEDISH ] = "Te~xtavgr‰nsare" ;
+//STRIP001      Text [ PORTUGUESE ] = "Separadores de texto" ;
+//STRIP001      Text[ chinese_simplified ] = "ÊñáÂ≠óÂàÜÈöîÁ¨?~X)";
+//STRIP001      Text[ russian ] = "–‡Á‰ÂÎËÚÂÎ?ÚÂÍÒÚ‡";
+//STRIP001      Text[ polish ] = "Separator te~kstu";
+//STRIP001      Text[ japanese ] = "„ÉÜ„Ç≠„Çπ„Éà„ÅÆÂå∫Âàá„ÇäË®òÂè∑(~X)";
+//STRIP001      Text[ chinese_traditional ] = "ÊñáÂ≠óÂàÜÈöîÁ¨?~X)";
+//STRIP001      Text[ arabic ] = "›«’· «·‰’";
+//STRIP001      Text[ dutch ] = "T~ekstafscheiding";
+//STRIP001      Text[ chinese_simplified ] = "ÊñáÂ≠óÂàÜÈöîÁ¨?~X)";
+//STRIP001      Text[ greek ] = "ƒÈ·˜˘ÒÈÛÙÈÍ¸ ÍÂÈÏ›ÌÔı";
+//STRIP001      Text[ korean ] = "ÌÖçÏä§Ìä?Íµ¨Î∂Ñ Í∏∞Ìò∏(~X)";
+//STRIP001      Text[ turkish ] = "Me~tin ay˝rma i˛areti";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Delimitador de te~xt";
+//STRIP001      Text[ finnish ] = "~Tekstin erottimet";
+//STRIP001      Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏Ñ‡∏±‡πà‡∏ô‡∏Ç‡πâ~‡∏≠‡∏Ñ‡∏ß‡∏≤‡∏?;
+//STRIP001      Text[ czech ] = "Oddƒõlovaƒç textu";
+//STRIP001      Text[ hebrew ] = "Te~xttrenner";
+//STRIP001      Text[ hindi ] = "‡§ü‡•á~‡§ï‡•ç‡§∏‡•ç‡§ü‡•ç ‡§™‡§∞‡§ø‡§∏‡•Ä‡§Æ‡§ø‡§?‡§ï‡§∞‡§®‡•á‡§µ‡§æ‡§≤‡§æ";
+//STRIP001  };
+//STRIP001  ComboBox CB_TEXTSEP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 218 , 112 ) ;
+//STRIP001         Size = MAP_APPFONT ( 37 , 94 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001  };
+//STRIP001  OKButton BTN_OK
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 264 , 6 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DefButton = TRUE ;
+//STRIP001  };
+//STRIP001  CancelButton BTN_CANCEL
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 264 , 23 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001  };
+//STRIP001  HelpButton BTN_HELP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 264 , 43 ) ;
+//STRIP001      Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001  };
+//STRIP001  CheckBox CKB_TAB
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 20 , 86 ) ;
+//STRIP001         Size = MAP_APPFONT ( 68 , 10 ) ;
+//STRIP001      Text = "~Tabulator" ;
+//STRIP001      Text [ ENGLISH ] = "Tab" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "~Tab" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~TabulaÁ„o" ;
+//STRIP001      Text [ swedish ] = "Tabu~lator" ;
+//STRIP001      Text [ danish ] = "Tabulator" ;
+//STRIP001      Text [ italian ] = "~Tabulazione" ;
+//STRIP001      Text [ spanish ] = "~Tabulador" ;
+//STRIP001      Text [ french ] = "Tabulation" ;
+//STRIP001      Text [ dutch ] = "~Tabulator" ;
+//STRIP001      Text [ portuguese ] = "~TabulaÁ„o" ;
+//STRIP001      Text[ chinese_simplified ] = "Âà∂Ë°®Á¨?~T)";
+//STRIP001      Text[ russian ] = "“‡·Û?ˆËˇ";
+//STRIP001      Text[ polish ] = "~Tabulator";
+//STRIP001      Text[ japanese ] = "„Çø„Éñ(~T)";
+//STRIP001      Text[ chinese_traditional ] = "ÂÆö‰ΩçÈç?~T)";
+//STRIP001      Text[ arabic ] = "⁄·«„?ÃœÊ·?;
+//STRIP001      Text[ dutch ] = "~Tabulator";
+//STRIP001      Text[ chinese_simplified ] = "Âà∂Ë°®Á¨?~T)";
+//STRIP001      Text[ greek ] = "”ÙÁÎÔË›ÙÁÚ";
+//STRIP001      Text[ korean ] = "ÌÉ?~T)";
+//STRIP001      Text[ turkish ] = "~Sekme";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Pestanya";
+//STRIP001      Text[ finnish ] = "~Sarkain";
+//STRIP001      Text[ thai ] = "~‡∏£‡∏∞‡∏¢‡∏∞‡∏Å‡∏±‡πâ‡∏ô";
+//STRIP001      Text[ czech ] = "Tabel√°tor";
+//STRIP001      Text[ hebrew ] = "~Tabulator";
+//STRIP001      Text[ hindi ] = "~‡§ü‡•â‡§?;
+//STRIP001  };
+//STRIP001  CheckBox CKB_SEMICOLON
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 20 , 99 ) ;
+//STRIP001         Size = MAP_APPFONT ( 68 , 10 ) ;
+//STRIP001      Text = "~Semikolon" ;
+//STRIP001      Text [ ENGLISH ] = "Semicolon" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "S~emicolon" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Ponto-e-vÌrgula" ;
+//STRIP001      Text [ swedish ] = "~Semikolon" ;
+//STRIP001      Text [ danish ] = "Semikolon" ;
+//STRIP001      Text [ italian ] = "Punto e virgola" ;
+//STRIP001      Text [ spanish ] = "~Punto y coma" ;
+//STRIP001      Text [ french ] = "Point-virgule" ;
+//STRIP001      Text [ dutch ] = "~Puntkomma" ;
+//STRIP001      Text [ portuguese ] = "~Ponto e vÌrgula" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÂè∑(~E)";
+//STRIP001      Text[ russian ] = "“Ó˜Í??Á‡?ÚÓ?;
+//STRIP001      Text[ polish ] = "årednik";
+//STRIP001      Text[ japanese ] = "„Çª„Éü„Ç≥„É≠„É?~E)";
+//STRIP001      Text[ chinese_traditional ] = "ÂàÜËôü(~E)";
+//STRIP001      Text[ arabic ] = "›«’·?„‰ﬁÊÿ…";
+//STRIP001      Text[ dutch ] = "~Puntkomma";
+//STRIP001      Text[ chinese_simplified ] = "ÂàÜÂè∑(~E)";
+//STRIP001      Text[ greek ] = "¢Ì?ÙÂÎÂﬂ·";
+//STRIP001      Text[ korean ] = "ÏÑ∏ÎØ∏ÏΩúÎ°†(~E)";
+//STRIP001      Text[ turkish ] = "N~oktal?virg¸l";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "P~unt i coma";
+//STRIP001      Text[ finnish ] = "~Puolipiste";
+//STRIP001      Text[ thai ] = "‡∏≠‡∏±~‡∏í‡∏†‡∏≤‡∏Ñ";
+//STRIP001      Text[ czech ] = "St≈ôedn√≠k";
+//STRIP001      Text[ hebrew ] = "~Semikolon";
+//STRIP001      Text[ hindi ] = "‡§Ö‡§∞‡•ç‡§ß ~‡§µ‡§ø‡§∞‡§æ‡§?‡§ö‡§ø‡§π‡•ç‡§?;
+//STRIP001  };
+//STRIP001  CheckBox CKB_COMMA
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 92 , 86 ) ;
+//STRIP001         Size = MAP_APPFONT ( 68 , 10 ) ;
+//STRIP001      Text = "~Komma" ;
+//STRIP001         Text [ ENGLISH ] = "~Comma" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "~Comma" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~VÌrgula" ;
+//STRIP001      Text [ swedish ] = "~Komma" ;
+//STRIP001      Text [ danish ] = "Komma" ;
+//STRIP001      Text [ italian ] = "~Virgola" ;
+//STRIP001      Text [ spanish ] = "Co~ma" ;
+//STRIP001      Text [ french ] = "~Virgule" ;
+//STRIP001      Text [ dutch ] = "~Komma" ;
+//STRIP001      Text [ portuguese ] = "~VÌrgula" ;
+//STRIP001      Text[ chinese_simplified ] = "ÈÄóÂè∑(~C)";
+//STRIP001      Text[ russian ] = "«‡?Ú‡ˇ";
+//STRIP001      Text[ polish ] = "~Przecinek";
+//STRIP001      Text[ japanese ] = "„Ç≥„É≥„É?~C)";
+//STRIP001      Text[ chinese_traditional ] = "ÈÄóËôü(~C)";
+//STRIP001      Text[ arabic ] = "›«’·?;
+//STRIP001      Text[ dutch ] = "~Komma";
+//STRIP001      Text[ chinese_simplified ] = "ÈÄóÂè∑(~C)";
+//STRIP001      Text[ greek ] = " ¸ÏÏ?;
+//STRIP001      Text[ korean ] = "ÏâºÌëú(~C)";
+//STRIP001      Text[ turkish ] = "~Virg¸l";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Coma";
+//STRIP001      Text[ finnish ] = "~Pilkku";
+//STRIP001      Text[ thai ] = "~‡∏à‡∏∏‡∏•‡∏†‡∏≤‡∏Ñ";
+//STRIP001      Text[ czech ] = "ƒå√°rka";
+//STRIP001      Text[ hebrew ] = "~Komma";
+//STRIP001      Text[ hindi ] = "~‡§õ‡•ã‡§ü‡§æ ‡§µ‡§ø‡§∞‡§æ‡§?‡§ö‡§ø‡§π‡•ç‡§?;
+//STRIP001  };
+//STRIP001  CheckBox CKB_SPACE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 92 , 99 ) ;
+//STRIP001         Size = MAP_APPFONT ( 68 , 10 ) ;
+//STRIP001      Text = "~Leerzeichen" ;
+//STRIP001      Text [ ENGLISH ] = "Space" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "S~pace" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Es~paÁo" ;
+//STRIP001      Text [ swedish ] = "~Blanksteg" ;
+//STRIP001      Text [ danish ] = "Mellemrum" ;
+//STRIP001      Text [ italian ] = "~Spazio" ;
+//STRIP001      Text [ spanish ] = "Espacio" ;
+//STRIP001      Text [ french ] = "~Espace" ;
+//STRIP001      Text [ dutch ] = "~Spatie" ;
+//STRIP001      Text [ portuguese ] = "~EspaÁo" ;
+//STRIP001      Text[ chinese_simplified ] = "Á©∫Ê†º(~P)";
+//STRIP001      Text[ russian ] = "œÓ·ÂÎ";
+//STRIP001      Text[ polish ] = "S~pacja";
+//STRIP001      Text[ japanese ] = "„Çπ„Éö„Éº„Çπ(~P)";
+//STRIP001      Text[ chinese_traditional ] = "Á©∫Ê†º(~P)";
+//STRIP001      Text[ arabic ] = "Õ—?„”«›?;
+//STRIP001      Text[ dutch ] = "~Spatie";
+//STRIP001      Text[ chinese_simplified ] = "Á©∫Ê†º(~P)";
+//STRIP001      Text[ greek ] = " ÂÌ¸";
+//STRIP001      Text[ korean ] = "Í≥µÎ∞±(~P)";
+//STRIP001      Text[ turkish ] = "B~o˛luk";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Es~pai";
+//STRIP001      Text[ finnish ] = "~V‰li";
+//STRIP001      Text[ thai ] = "‡∏ä‡πà~‡∏≠‡∏á‡∏ß‡πà‡∏≤‡∏á";
+//STRIP001      Text[ czech ] = "Mezera";
+//STRIP001      Text[ hebrew ] = "~Leerzeichen";
+//STRIP001      Text[ hindi ] = "‡§Ö‡§Ç~‡§§‡§∞";
+//STRIP001  };
+//STRIP001  CheckBox CKB_OTHER
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 164 , 86 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 10 ) ;
+//STRIP001      Text = "~Andere" ;
+//STRIP001      Text [ ENGLISH ] = "Other" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "~Other" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Outros" ;
+//STRIP001      Text [ swedish ] = "~Andra" ;
+//STRIP001      Text [ danish ] = "~Andre" ;
+//STRIP001      Text [ italian ] = "~Altri" ;
+//STRIP001      Text [ spanish ] = "~Otros" ;
+//STRIP001      Text [ french ] = "~Autres" ;
+//STRIP001      Text [ dutch ] = "~Andere" ;
+//STRIP001      Text [ portuguese ] = "~Outros" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001      Text[ russian ] = "ƒÛ„ËÂ";
+//STRIP001      Text[ polish ] = "~Inne";
+//STRIP001      Text[ japanese ] = "„Åù„ÅÆ‰ª?~O)";
+//STRIP001      Text[ chinese_traditional ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001      Text[ arabic ] = "€Ì?–·?;
+//STRIP001      Text[ dutch ] = "~Andere";
+//STRIP001      Text[ chinese_simplified ] = "ÂÖ∂‰ªñ(~O)";
+//STRIP001      Text[ greek ] = "¢ÎÎ·";
+//STRIP001      Text[ korean ] = "Í∏∞ÌÉÄ(~O)";
+//STRIP001      Text[ turkish ] = "~Dier";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Altres";
+//STRIP001      Text[ finnish ] = "~Muu";
+//STRIP001      Text[ thai ] = "~‡∏≠‡∏∑‡πà‡∏ô ‡π?;
+//STRIP001      Text[ czech ] = "Jin√Ω";
+//STRIP001      Text[ hebrew ] = "~Andere";
+//STRIP001      Text[ hindi ] = "~‡§Ö‡§®‡•ç‡§Ø";
+//STRIP001  };
+//STRIP001  Edit ED_OTHER
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 218 , 84 ) ;
+//STRIP001         Size = MAP_APPFONT ( 37 , 12 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001         MaxTextLength = 10 ;
+//STRIP001  };
+//STRIP001  FixedText FT_AT_ROW
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 32 ) ;
+//STRIP001         Size = MAP_APPFONT ( 60 , 8 ) ;
+//STRIP001      Text = "Ab ~Zeile" ;
+//STRIP001      Text [ ENGLISH ] = "At Row" ;
+//STRIP001      Text [ english_us ] = "From ro~w" ;
+//STRIP001      Text [ portuguese_brazilian ] = "A partir da ~linha" ;
+//STRIP001      Text [ swedish ] = "FrÂn ~rad" ;
+//STRIP001      Text [ danish ] = "Fra rÊkke" ;
+//STRIP001      Text [ italian ] = "Dalla ~riga" ;
+//STRIP001      Text [ spanish ] = "A partir de ~lÌnea" ;
+//STRIP001      Text [ french ] = "A partir de la ~ligne" ;
+//STRIP001      Text [ dutch ] = "Vanaf~rij" ;
+//STRIP001      Text [ portuguese ] = "A partir da ~linha" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂºÄÂßãÁöÑË°åÊï∞(~W)";
+//STRIP001      Text[ russian ] = "—Ó ÒÚÓÍË";
+//STRIP001      Text[ polish ] = "Od ~wiersza";
+//STRIP001      Text[ japanese ] = "Âßã„ÇÅ„ÅÆË°å(~W)";
+//STRIP001      Text[ chinese_traditional ] = "ÈñãÂßãÁöÑÂàóÊï?~W)";
+//STRIP001      Text[ arabic ] = "»œ«Ì?„‰ «·’›";
+//STRIP001      Text[ dutch ] = "Vanaf~rij";
+//STRIP001      Text[ chinese_simplified ] = "ÂºÄÂßãÁöÑË°åÊï∞(~W)";
+//STRIP001      Text[ greek ] = "¡?„Ò·ÏÏﬁ";
+//STRIP001      Text[ korean ] = "ÏãúÏûë Ìñ?~W)";
+//STRIP001      Text[ turkish ] = "Sa~t˝rdan";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Des de la f~ila";
+//STRIP001      Text[ finnish ] = "Rivilt~?;
+//STRIP001      Text[ thai ] = "‡∏à‡∏≤‡∏Å‡πÅ‡∏ñ~‡∏?;
+//STRIP001      Text[ czech ] = "Od ≈ô√°dku";
+//STRIP001      Text[ hebrew ] = "Ab ~Zeile";
+//STRIP001      Text[ hindi ] = "‡§™‡§Ç~‡§ï‡•ç‡§§‡§ø ‡§∏‡•á";
+//STRIP001  };
+//STRIP001  NumericField NF_AT_ROW
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001      SVLook = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 76 , 30 ) ;
+//STRIP001         Size = MAP_APPFONT ( 30 , 12 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Spin = TRUE ;
+//STRIP001         Repeat = TRUE ;
+//STRIP001      Minimum = 1 ;
+//STRIP001      Maximum = 32000 ;
+//STRIP001  };
+//STRIP001     Control CTR_TABLEBOX
+//STRIP001  {
+//STRIP001      HelpId = HID_SC_ASCII_TABCTR ;
+//STRIP001      Border = TRUE ;
+//STRIP001         DialogControl = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 12 , 159 ) ;
+//STRIP001         Size = MAP_APPFONT ( 243 , 82 ) ;
+//STRIP001  };
+//STRIP001  CheckBox CB_ASONCE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 20 , 114 ) ;
+//STRIP001         Size = MAP_APPFONT ( 130 , 10 ) ;
+//STRIP001      Text = "Fel~dtrenner zusammenfassen" ;
+//STRIP001      Text [ ENGLISH ] = "Treat delimiters as one" ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Text [ english_us ] = "Merge ~delimiters" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Mesclar ~delimitadores" ;
+//STRIP001      Text [ swedish ] = "Sammanfatta f~‰ltavgr‰nsare" ;
+//STRIP001      Text [ danish ] = "Kombiner feltseparatorer" ;
+//STRIP001      Text [ italian ] = "Raggruppa i separatori di campo" ;
+//STRIP001      Text [ spanish ] = "Reagrupar los ~separadores de campo" ;
+//STRIP001      Text [ french ] = "~Regrouper sÈparateurs de champ" ;
+//STRIP001      Text [ dutch ] = "Vel~dscheidingstekens samenvatten" ;
+//STRIP001      Text [ portuguese ] = "Agrupar ~separadores de campos" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂéãÁº©ÊòæÁ§∫(~D)";
+//STRIP001      Text[ russian ] = "Œ·˙Â‰ËÌËÚ¸ ‡Á‰ÂÎËÚÂÎ?;
+//STRIP001      Text[ polish ] = "Scal ~separatory";
+//STRIP001      Text[ japanese ] = "„Éï„Ç£„Éº„É´„ÉâÂå∫Âàá„Çä„ÅÆÁµêÂê?~D)";
+//STRIP001      Text[ chinese_traditional ] = "Â£ìÁ∏ÆÈ°ØÁ§∫(~D)";
+//STRIP001      Text[ arabic ] = "÷„ ›Ê«’?«·ÕﬁÊ·";
+//STRIP001      Text[ dutch ] = "Vel~dscheidingstekens samenvatten";
+//STRIP001      Text[ chinese_simplified ] = "ÂéãÁº©ÊòæÁ§∫(~D)";
+//STRIP001      Text[ greek ] = "”˝ÌÔ¯Á ‰È·˜˘ÒÈÛÙÈÍ˛?Â‰ﬂ˘Ì";
+//STRIP001      Text[ korean ] = "ÌïÑÎìú Íµ¨Î∂Ñ Í∏∞Ìò∏ Î≥ëÌï©(~D)";
+//STRIP001      Text[ turkish ] = "Ay~raÁlar?ˆzetle";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Fusiona els ~delimitadors";
+//STRIP001      Text[ finnish ] = "~Yhdist?erottimet";
+//STRIP001      Text[ thai ] = "‡∏ú‡∏™‡∏≤‡∏ô~‡∏ï‡∏±‡∏ß‡∏Ñ‡∏±‡πà‡∏?;
+//STRIP001      Text[ czech ] = "Slouƒçit oddƒõlovaƒçe";
+//STRIP001      Text[ hebrew ] = "Fel~dtrenner zusammenfassen";
+//STRIP001      Text[ hindi ] = "~‡§™‡§∞‡§ø‡§∏‡•Ä‡§Æ‡§ø‡§?‡§ï‡§∞‡§®‡•á‡§µ‡§æ‡§≤‡•á ‡§ï‡•ã ‡§Æ‡§ø‡§≤‡§æ‡§?;
+//STRIP001  };
+//STRIP001  Text[ chinese_simplified ] = "ËæìÂÖ•ÊñáÂ≠ó";
+//STRIP001  Text[ russian ] = "»ÏÔÓÚ ÚÂÍÒÚ‡";
+//STRIP001  Text[ polish ] = "Import tekstu";
+//STRIP001  Text[ japanese ] = "„ÉÜ„Ç≠„Çπ„Éà„ÅÆ„Ç§„É≥„Éù„Éº„Éà";
+//STRIP001  Text[ chinese_traditional ] = "ÂåØÂÖ•ÊñáÂ≠ó";
+//STRIP001  Text[ arabic ] = "«” Ì—«?‰’";
+//STRIP001  Text[ dutch ] = "Tekstimport";
+//STRIP001  Text[ chinese_simplified ] = "ËæìÂÖ•ÊñáÂ≠ó";
+//STRIP001  Text[ greek ] = "≈ÈÛ·„˘„ﬁ ÍÂÈÏ›ÌÔı";
+//STRIP001  Text[ korean ] = "ÌÖçÏä§Ìä?Í∞ÄÏ†∏Ïò§Í∏?;
+//STRIP001  Text[ turkish ] = "›Áe aktar (metin)";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "Importaci?de text";
+//STRIP001  Text[ finnish ] = "Tekstin tuonti";
+//STRIP001  Text[ thai ] = "‡∏ô‡∏≥‡πÄ‡∏Ç‡πâ‡∏≤‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏ß‡∏≤‡∏°";
+//STRIP001  Text[ czech ] = "Importovat text";
+//STRIP001  Text[ hebrew ] = "Textimport";
+//STRIP001  Text[ hindi ] = "‡§ü‡•á‡§ï‡•ç‡§∏‡•ç‡§ü‡•ç ‡§Ü‡§Ø‡§æ‡§§";
+//STRIP001 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,2127 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sch_menu.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:17:46 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+
+
+#ifndef _GLOBLMN_HRC //autogen
+#include <bf_svx/globlmn.hrc>
+#endif
+
+#include "sch_menuids.src"
+
+#define MN_SUB_VIEW 91
+#define MN_SUB_TOOLBAR 92
+#define MN_SUB_GRAPHIC 93
+#define MN_SUB_SPELLING 94
+#define MN_SUB_TEMPLATES 95
+
+
+#define MN_WIN 28
+#define WORKAROUND_20 20
+#define WORKAROUND_21 21
+#define WORKAROUND_22 22
+#define WORKAROUND_23 23
+#define WORKAROUND_25 25
+
+
+ // defines fuer das Helpmenu
+ // in globlmn.hrc nur fuer Writer benoetigt
+#ifndef MN_HELP
+#define MN_HELP
+#endif
+
+#ifdef IS_DEFAULT
+Accelerator RID_DEFAULTACCEL
+#else
+Accelerator RID_ACCEL
+#endif
+{
+    ItemList =
+    {
+        AcceleratorItem
+        {
+            Identifier = SID_SHOW_ITEMBROWSER ;
+            Key = KeyCode
+            {
+                Code = KEY_9 ;
+                Shift = TRUE ;
+                Modifier1 = TRUE ;
+                Modifier2 = TRUE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_NEWDOC ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_NEW ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_OPENDOC ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_OPEN ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_SAVEDOC ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_SAVE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_SAVEASDOC ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_SAVEAS ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_PRINTDOC ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_PRINT ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_QUITAPP ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_QUIT ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_CUT ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_CUT ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_COPY ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_COPY ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_PASTE ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_PASTE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_DELETE ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_DELETE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_UNDO ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_UNDO ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_REDO ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_REDO ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_REPEAT ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_REPEAT ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_FOCUSURLBOX ;
+            Key = KeyCode
+            {
+                Code = KEY_O ;
+                Shift = TRUE ; Modifier1 = TRUE ; Modifier2 = FALSE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_WIN_FULLSCREEN ;
+            Key = KeyCode
+            {
+                Code = KEY_J ;
+                Shift = TRUE ;
+                Modifier1 = TRUE ;
+                Modifier2 = FALSE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_DESKTOPMODE ;
+            Key = KeyCode
+            {
+                Code = KEY_I ;
+                Shift = TRUE ;
+                Modifier1 = TRUE ;
+                Modifier2 = FALSE ;
+            };
+        };
+        AcceleratorItem
+        {
+            Identifier = SID_CLOSEWIN ;
+            Key = KeyCode
+            {
+                Function = KEYFUNC_CLOSE ;
+            };
+        };
+    };
+};
+
+#ifdef IS_DEFAULT
+Menu RID_DEFAULTMENU
+#else
+Menu RID_MENU
+#endif
+{
+    ItemList =
+    {
+        MenuItem
+        {
+            ITEM_FILE_PICKLIST
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        Identifier = SID_NEWDOCDIRECT ;
+                        HelpID = SID_NEWDOCDIRECT ;
+                        Text = "~Neu" ;
+                        Text [ ENGLISH ] = "~New" ;
+                        Text [ norwegian ] = "~New" ;
+                        Text [ italian ] = "Nuovo" ;
+                        Text [ portuguese_brazilian ] = "~Novo" ;
+                        Text [ portuguese ] = "~Novo" ;
+                        Text [ finnish ] = "~Uusi" ;
+                        Text [ danish ] = "~Ny(t)" ;
+                        Text [ french ] = "N~ouveau" ;
+                        Text [ swedish ] = "~Nytt" ;
+                        Text [ dutch ] = "~Nieuw" ;
+                        Text [ spanish ] = "~Nuevo" ;
+                        Text [ english_us ] = "~New" ;
+                        Text[ chinese_simplified ] = "Êñ∞Âª∫(~N)";
+                        Text[ russian ] = "—ÓÁ‰~‡Ú¸";
+                        Text[ polish ] = "~Nowy";
+                        Text[ japanese ] = "Êñ∞Ë¶è‰ΩúÊàê(~N)";
+                        Text[ chinese_traditional ] = "ÈñãÂïüÊñ∞Ê™î(~N)";
+                        Text[ arabic ] = "ÃœÌœ";
+                        Text[ greek ] = "~ƒÁÏÈÔıÒ„ﬂ·";
+                        Text[ korean ] = "ÏÉàÎ°ú ÎßåÎì§Í∏∞(~N)";
+                        Text[ turkish ] = "Yeni";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Nou";
+                        Text[ thai ] = "‡πÉ~‡∏´‡∏°‡πà";
+                        Text[ czech ] = "Nov√©";
+                        Text[ hebrew ] = "‚ÄÆ◊ó◊ì◊©‚Ä¨";
+                        Text[ hindi ] = "~‡§®‡§Ø‡§æ";
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_OPENDOC
+                    };
+                    ITEM_FILE_AUTOPILOT
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_CLOSEDOC
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_SAVEDOC
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_SAVEASDOC
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_SAVEDOCS
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_LASTVERSIONDOC
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_VERSIONDIALOG
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_MAIL_SENDDOC
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_DOCINFO
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_PRINTDOC
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_SETUPPRINTER
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        ITEM_FILE_QUITAPP
+                    };
+                };
+            };
+        };
+        MenuItem
+        {
+            Identifier = WORKAROUND_20 ;
+            HelpID = 20 ;
+            Text = "~Bearbeiten" ;
+            Text [ ENGLISH ] = "~Edit" ;
+            Text [ norwegian ] = "~Rediger" ;
+            Text [ italian ] = "~Modifica" ;
+            Text [ portuguese_brazilian ] = "~Editar" ;
+            Text [ portuguese ] = "~Editar" ;
+            Text [ finnish ] = "~Muokkaa" ;
+            Text [ danish ] = "~Rediger" ;
+            Text [ french ] = "~…dition" ;
+            Text [ swedish ] = "~Redigera" ;
+            Text [ dutch ] = "Be~werken" ;
+            Text [ spanish ] = "~Editar" ;
+            Text [ english_us ] = "~Edit" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        ITEM_EDIT_UNDO
+                    };
+                    MenuItem
+                    {
+                        ITEM_EDIT_REDO
+                    };
+                    MenuItem
+                    {
+                        ITEM_EDIT_REPEAT
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_DATA ;
+                        HelpID = SID_DIAGRAM_DATA ;
+                        Text = "~Diagrammdaten" ;
+                        Text [ ENGLISH ] = "Diagram data" ;
+                        Text [ english_us ] = "~Chart Data" ;
+                        Text [ swedish ] = "~Diagramdata" ;
+                        Text [ danish ] = "Diagramdata" ;
+                        Text [ italian ] = "~Dati del diagramma" ;
+                        Text [ spanish ] = "Datos del ~diagrama" ;
+                        Text [ french ] = "~DonnÈes du diagramme" ;
+                        Text [ dutch ] = "~Diagramgegevens" ;
+                        Text [ portuguese_brazilian ] = "Diagrammdaten" ;
+                        Text [ portuguese ] = "~Dados do gr·fico" ;
+                        Text[ chinese_simplified ] = "ÂõæË°®Êï∞ÊçÆ(~C)";
+                        Text[ russian ] = "~ƒ‡ÌÌ˚Â ‰Ë‡„‡ÏÏ˚";
+                        Text[ polish ] = "Dane wykresu";
+                        Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆ„Éá„Éº„Çø(~C)";
+                        Text[ chinese_traditional ] = "ÂúñË°®Ë≥áÊñô(~C)";
+                        Text[ arabic ] = "»Ì«‰«  «·—”„ «·»Ì«‰Ì";
+                        Text[ greek ] = "~ƒÂ‰ÔÏ›Ì· ‰È·„Ò‹ÏÏ·ÙÔÚ";
+                        Text[ korean ] = "Ï∞®Ìä∏ Îç∞Ïù¥ÌÑ∞(~C)";
+                        Text[ turkish ] = "~Karakter Verisi";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Dades del ~diagrama ";
+                        Text[ finnish ] = "~Kaaviotiedot";
+                        Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÅ~‡∏ú‡∏ô‡∏†‡∏π‡∏°‡∏¥";
+                        Text[ czech ] = "Data grafu";
+                        Text[ hebrew ] = "~Diagrammdaten";
+                        Text[ hindi ] = "~‡§ö‡§æ‡§∞‡•ç‡§ü‡•ç ‡§°‡•â‡§ü‡§æ";
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        ITEM_EDIT_CUT
+                    };
+                    MenuItem
+                    {
+                        ITEM_EDIT_COPY
+                    };
+                    MenuItem
+                    {
+                        ITEM_EDIT_PASTE
+                    };
+                };
+            };
+            Text[ chinese_simplified ] = "ÁºñËæë(~E)";
+            Text[ russian ] = "~œ‡‚Í‡";
+            Text[ polish ] = "~Edytuj";
+            Text[ japanese ] = "Á∑®ÈõÜ(~E)";
+            Text[ chinese_traditional ] = "Á∑®ËºØ(~E)";
+            Text[ arabic ] = "~ Õ—Ì—";
+            Text[ greek ] = "~≈ÂÓÂÒ„·Ûﬂ·";
+            Text[ korean ] = "Ìé∏Ïßë(~E)";
+            Text[ turkish ] = "D¸~zenle";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Edita";
+            Text[ thai ] = "‡πÅ~‡∏Å‡πâ‡πÑ‡∏Ç";
+            Text[ czech ] = "Upravit";
+            Text[ hebrew ] = "‚ÄÆ◊¢◊®◊ô◊õ◊î‚Ä¨";
+            Text[ hindi ] = "~‡§∏‡§Ç‡§™‡§æ‡§¶‡§®";
+        };
+        MenuItem
+        {
+            Identifier = WORKAROUND_21 ;
+            HelpID = 21 ;
+            Text = "~Ansicht" ;
+            Text [ ENGLISH ] = "~View" ;
+            Text [ norwegian ] = "~Vis" ;
+            Text [ italian ] = "~Visualizza" ;
+            Text [ portuguese_brazilian ] = "~Ver" ;
+            Text [ portuguese ] = "~Ver" ;
+            Text [ finnish ] = "~N‰yt‰" ;
+            Text [ danish ] = "~Vis" ;
+            Text [ french ] = "~Affichage" ;
+            Text [ swedish ] = "Vi~sa" ;
+            Text [ dutch ] = "Beel~d" ;
+            Text [ spanish ] = "~Ver" ;
+            Text [ english_us ] = "~View" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        Identifier = MN_SUB_TOOLBAR ;
+                        HelpID = MN_SUB_TOOLBAR ;
+                        Text = "S~ymbolleisten" ;
+                        Text [ English ] = "Toolbars" ;
+                        SubMenu = Menu
+                        {
+                            ItemList =
+                            {
+                                MenuItem
+                                {
+                                    ITEM_VIEW_TOGGLEFUNCTIONBAR
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_TOGGLETOOLBAR ;
+                                    HelpID = SID_TOGGLETOOLBAR ;
+                                    Text = "~Werkzeugleiste" ;
+                                    Text [ ENGLISH ] = "Toolba~r" ;
+                                    Text [ norwegian ] = "Toolba~r" ;
+                                    Text [ italian ] = "Barra st~rumenti" ;
+                                    Text [ portuguese_brazilian ] = "Barra de ~ferramentas" ;
+                                    Text [ portuguese ] = "Barra de ~ferramentas" ;
+                                    Text [ finnish ] = "P‰‰~tyˆkalurivi" ;
+                                    Text [ danish ] = "~VÊrkt¯jslinje" ;
+                                    Text [ french ] = "Barre d'~instruments" ;
+                                    Text [ swedish ] = "~Verktygslist" ;
+                                    Text [ dutch ] = "~Werktuigbalk" ;
+                                    Text [ spanish ] = "Barra de ~herramientas" ;
+                                    Text [ english_us ] = "Main ~Toolbar" ;
+                                    Text[ chinese_simplified ] = "‰∏ªÂ∑•ÂÖ∑Ê†è(~T)";
+                                    Text[ russian ] = "~œ‡ÌÂÎ¸ ËÌÒÚÛÏÂÌÚÓ‚";
+                                    Text[ polish ] = "Pasek narzÍdziowy";
+                                    Text[ japanese ] = "Ê®ôÊ∫ñ„ÉÑ„Éº„É´„Éê„Éº(~T)";
+                                    Text[ chinese_traditional ] = "‰∏ªÂ∑•ÂÖ∑Âàó(~T)";
+                                    Text[ arabic ] = "‘—Ìÿ «·√œÊ« ";
+                                    Text[ greek ] = "~√Ò·ÏÏﬁ ÂÒ„·ÎÂÈ˛Ì";
+                                    Text[ korean ] = "Ï£º ÎèÑÍµ¨ Î™®Ïùå(~T)";
+                                    Text[ turkish ] = "Ana ~AraÁÁubuu";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Barra d'~eines principal";
+                                    Text[ thai ] = "‡πÅ~‡∏ñ‡∏ö‡πÄ‡∏Ñ‡∏£‡∏∑‡πà‡∏≠‡∏á‡∏°‡∏∑‡∏≠‡∏´‡∏•‡∏±‡∏Å";
+                                    Text[ czech ] = "Hlavn√≠ panel n√°stroj≈Ø";
+                                    Text[ hebrew ] = "~Werkzeugleiste";
+                                    Text[ hindi ] = "~‡§Æ‡•Å‡§ñ‡•ç‡§Ø ‡§î‡§ú‡§º‡§æ‡§∞ ‡§™‡§ü‡•ç‡§ü‡•Ä";
+                                };
+                                MenuItem
+                                {
+                                    ITEM_INSERT_HYPERLINK_INSERT
+                                };
+                                MenuItem
+                                {
+                                    Separator = TRUE ;
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_CUSTOMIZETOOLBOX ;
+                                    HelpID = SID_CUSTOMIZETOOLBOX ;
+                                    Text = "~Bearbeiten..." ;
+                                    Text [ English ] = "~Configure..." ;
+                                    Text [ norwegian ] = "~Configure..." ;
+                                    Text [ italian ] = "~Modifica..." ;
+                                    Text [ portuguese_brazilian ] = "~Configurar..." ;
+                                    Text [ portuguese ] = "~Personalizar..." ;
+                                    Text [ finnish ] = "Mukau~ta" ;
+                                    Text [ danish ] = "~Rediger..." ;
+                                    Text [ french ] = "~Personnaliser..." ;
+                                    Text [ swedish ] = "~Redigera..." ;
+                                    Text [ dutch ] = "Be~werken..." ;
+                                    Text [ spanish ] = "~Personalizar..." ;
+                                    Text [ english_us ] = "Customi~ze..." ;
+                                    Text[ chinese_simplified ] = "ÁºñËæë(~Z)...";
+                                    Text[ russian ] = "~œ‡‚Í‡...";
+                                    Text[ polish ] = "Edytuj...";
+                                    Text[ japanese ] = "„Ç´„Çπ„Çø„Éû„Ç§„Ç∫(~Z)...";
+                                    Text[ chinese_traditional ] = "Á∑®ËºØ(~Z)...";
+                                    Text[ arabic ] = " Õ—Ì—...";
+                                    Text[ greek ] = "~≈ÂÓÂÒ„·Ûﬂ·...";
+                                    Text[ korean ] = "ÏÇ¨Ïö©Ïûê Ï†ïÏùò(~Z)...";
+                                    Text[ turkish ] = "÷zelle~˛tir...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Personalit~za...";
+                                    Text[ thai ] = "‡∏Å‡∏≥‡∏´‡∏ô‡∏î‡πÄ~‡∏≠‡∏á...";
+                                    Text[ czech ] = "P≈ôizp≈Øsobit...";
+                                    Text[ hebrew ] = "~Bearbeiten...";
+                                    Text[ hindi ] = "~‡§µ‡•ç‡§Ø‡§µ‡§∏‡•ç‡§•‡§æ ‡§ï‡§∞‡•ã...";
+                                };
+                            };
+                        };
+                        Text [ english_us ] = "~Toolbars" ;
+                        Text [ swedish ] = "S~ymbollister" ;
+                        Text [ danish ] = "Ikonlin~jer" ;
+                        Text [ italian ] = "~Barre dei simboli" ;
+                        Text [ spanish ] = "~Barras de sÌmbolos" ;
+                        Text [ french ] = "Barres d'~outils" ;
+                        Text [ dutch ] = "~Werkbalken" ;
+                        Text [ portuguese ] = "Barras de ~ferramentas" ;
+                        Text [ portuguese_brazilian ] = "Barras de ~ferramentas" ;
+                        Text[ chinese_simplified ] = "ÂõæÊ†áÊ†è(~T)";
+                        Text[ russian ] = "œ‡ÌÂÎË ÒËÏ‚ÓÎÓ‚";
+                        Text[ polish ] = "Paski symboli";
+                        Text[ japanese ] = "„ÉÑ„Éº„É´„Éê„Éº(~T)";
+                        Text[ chinese_traditional ] = "Â∑•ÂÖ∑Âàó(~T)";
+                        Text[ arabic ] = "√‘—ÿ… «·—„Ê“";
+                        Text[ greek ] = "√Ò·ÏÏ›Ú Û~ıÏ‚¸Î˘Ì";
+                        Text[ korean ] = "ÎèÑÍµ¨ Î™®Ïùå(~T)";
+                        Text[ turkish ] = "~AraÁ Áubuklar˝";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Barres d'eines";
+                        Text[ finnish ] = "~Tyˆkalurivit";
+                        Text[ thai ] = "‡πÅ~‡∏ñ‡∏ö‡πÄ‡∏Ñ‡∏£‡∏∑‡πà‡∏≠‡∏á‡∏°‡∏∑‡∏≠";
+                        Text[ czech ] = "Panely n√°stroj≈Ø";
+                        Text[ hebrew ] = "‚ÄÆ◊°◊®◊í◊ú◊ô ◊õ◊ú◊ô◊ù‚Ä¨";
+                        Text[ hindi ] = "~‡§î‡§ú‡§º‡§æ‡§∞ ‡§™‡§ü‡•ç‡§ü‡•Ä";
+                    };
+                    MenuItem
+                    {
+                        ITEM_VIEW_TOGGLESTATUSBAR //ITEM_VIEW_TASKBAR
+                    };
+                    MenuItem
+                    {
+                        ITEM_VIEW_TOGGLEIMESTATUSWINDOW
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    ITEM_VIEW_SCREENMODE
+                };
+            };
+            Text[ chinese_simplified ] = "ËßÜÂõæ(~V)";
+            Text[ russian ] = "~¬Ë‰";
+            Text[ polish ] = "~Widok";
+            Text[ japanese ] = "Ë°®Á§∫(~V)";
+            Text[ chinese_traditional ] = "Ê™¢Ë¶ñ(~V)";
+            Text[ arabic ] = "~⁄—÷";
+            Text[ greek ] = "–ÒÔ~‚ÔÎﬁ";
+            Text[ korean ] = "Î≥¥Í∏∞(~V)";
+            Text[ turkish ] = "~Gˆr¸nt¸le";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Visualitza";
+            Text[ thai ] = "~‡∏°‡∏∏‡∏°‡∏°‡∏≠‡∏á";
+            Text[ czech ] = "Zobrazit";
+            Text[ hebrew ] = "‚ÄÆ◊™◊¶◊ï◊í◊î‚Ä¨";
+            Text[ hindi ] = "~√†¬§¬¶√†¬•∆í√†¬§¬∂√†¬•¬ç√†¬§¬Ø";
+        };
+        MenuItem
+        {
+            Identifier = WORKAROUND_22 ;
+            HelpID = 22 ;
+            Text = "~Einf¸gen" ;
+            Text [ ENGLISH ] = "~Insert" ;
+            Text [ norwegian ] = "~Insert" ;
+            Text [ italian ] = "~Inserisci" ;
+            Text [ portuguese_brazilian ] = "~Inserir" ;
+            Text [ portuguese ] = "~Inserir" ;
+            Text [ finnish ] = "~Lis‰‰" ;
+            Text [ danish ] = "~IndsÊt" ;
+            Text [ french ] = "~Insertion" ;
+            Text [ swedish ] = "~Infoga" ;
+            Text [ dutch ] = "~Invoegen" ;
+            Text [ spanish ] = "~Insertar" ;
+            Text [ english_us ] = "~Insert" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_TITLE ;
+                        HelpID = SID_INSERT_TITLE ;
+                        Text = "~Titel..." ;
+                        Text [ ENGLISH ] = "Title..." ;
+                        Text [ norwegian ] = "Tittel..." ;
+                        Text [ italian ] = "~Titolo..." ;
+                        Text [ portuguese_brazilian ] = "T?tulo..." ;
+                        Text [ portuguese ] = "~TÌtulo..." ;
+                        Text [ finnish ] = "~Otsikko" ;
+                        Text [ danish ] = "Titel..." ;
+                        Text [ french ] = "~Titre..." ;
+                        Text [ swedish ] = "~Rubrik..." ;
+                        Text [ dutch ] = "~Titel..." ;
+                        Text [ spanish ] = "~TÌtulo..." ;
+                        Text [ english_us ] = "~Title..." ;
+                        Text[ chinese_simplified ] = "Ê†áÈ¢ò(~T)...";
+                        Text[ russian ] = "~«‡„ÓÎÓ‚ÓÍ...";
+                        Text[ polish ] = "~Tytu≥...";
+                        Text[ japanese ] = "„Çø„Ç§„Éà„É´(~T)...";
+                        Text[ chinese_traditional ] = "Ê®ôÈ°å(~T)...";
+                        Text[ arabic ] = "⁄‰Ê«‰...";
+                        Text[ greek ] = "~‘ﬂÙÎÔÚ...";
+                        Text[ korean ] = "Ï†úÎ™©(~T)...";
+                        Text[ turkish ] = "~Ba˛l˝k...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~TÌtol...";
+                        Text[ thai ] = "~‡∏ä‡∏∑‡πà‡∏≠...";
+                        Text[ czech ] = "Titulek...";
+                        Text[ hebrew ] = "‚ÄÆ◊õ◊ï◊™◊®◊™...‚Ä¨";
+                        Text[ hindi ] = "~Title...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_CHART_LEGEND ;
+                        HelpID = SID_INSERT_CHART_LEGEND ;
+                        Text = "~Legende..." ;
+                        Text [ ENGLISH ] = "Legend..." ;
+                        Text [ norwegian ] = "Tegnforklaring..." ;
+                        Text [ italian ] = "~Legenda..." ;
+                        Text [ portuguese_brazilian ] = "Legenda..." ;
+                        Text [ portuguese ] = "~Legenda..." ;
+                        Text [ finnish ] = "~Selite..." ;
+                        Text [ danish ] = "Forklaring..." ;
+                        Text [ french ] = "~LÈgende..." ;
+                        Text [ swedish ] = "~Fˆrklaring..." ;
+                        Text [ dutch ] = "~Legenda..." ;
+                        Text [ spanish ] = "~Leyenda..." ;
+                        Text [ english_us ] = "~Legend..." ;
+                        Text[ chinese_simplified ] = "Âõæ‰æã(~L)...";
+                        Text[ russian ] = "ÀÂ„ÂÌ‰‡...";
+                        Text[ polish ] = "~Legenda...";
+                        Text[ japanese ] = "Âá°‰æã(~L)...";
+                        Text[ chinese_traditional ] = "Âúñ‰æã(~L)...";
+                        Text[ arabic ] = "„› «Õ «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "’¸ÏÌÁÏ·...";
+                        Text[ korean ] = "Î≤îÎ°Ä(~L)...";
+                        Text[ turkish ] = "~Gˆsterge";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Llegenda...";
+                        Text[ thai ] = "~‡∏Ñ‡∏≥‡∏≠‡∏ò‡∏¥‡∏ö‡∏≤‡∏¢...";
+                        Text[ czech ] = "Legenda...";
+                        Text[ hebrew ] = "~Legende...";
+                        Text[ hindi ] = "~‡§≤‡•á‡§ú‡§º‡§®‡•ç‡§°‡§º...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_DESCRIPTION ;
+                        HelpID = SID_INSERT_DESCRIPTION ;
+                        Text = "~Datenbeschriftung..." ;
+                        Text [ ENGLISH ] = "Data description..." ;
+                        Text [ norwegian ] = "Data beskrivelse..." ;
+                        Text [ italian ] = "~Dicitura dati..." ;
+                        Text [ portuguese_brazilian ] = "Descri??o dos dados..." ;
+                        Text [ portuguese ] = "~RÛtulos de dados..." ;
+                        Text [ finnish ] = "~Tietonimiˆt" ;
+                        Text [ danish ] = "Dataetiketter..." ;
+                        Text [ french ] = "…tiquetage des ~donnÈes..." ;
+                        Text [ swedish ] = "~Dataetiketter..." ;
+                        Text [ dutch ] = "~Gegevenslabels..." ;
+                        Text [ spanish ] = "~Etiqueta datos..." ;
+                        Text [ english_us ] = "~Data Labels..." ;
+                        Text[ chinese_simplified ] = "Êï∞ÊçÆÊ†áÂøó(~D)...";
+                        Text[ russian ] = "~œÓ‰ÔËÒ¸ ‰‡ÌÌ˚ı...";
+                        Text[ polish ] = "~Etykiety danych...";
+                        Text[ japanese ] = "„Éá„Éº„Çø„É©„Éô„É´(~D)...";
+                        Text[ chinese_traditional ] = "Ë≥áÊñôÊ®ôÁ±§(~D)...";
+                        Text[ arabic ] = "⁄‰Ê‰… «·»Ì«‰« ...";
+                        Text[ greek ] = "≈È„Ò·ˆﬁ ‰Â~‰ÔÏ›Ì˘Ì...";
+                        Text[ korean ] = "Îç∞Ïù¥ÌÑ∞ Î†àÏù¥Î∏î(~D)...";
+                        Text[ turkish ] = "~Veri Etiketleri...";
+                        Text[ catalan ] = "Etiquetes de ~dades...";
+                        Text[ thai ] = "‡∏õ‡πâ‡∏≤‡∏¢‡∏ä‡∏∑‡πà‡∏≠~‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•...";
+                        Text[ czech ] = "Popisky dat";
+                        Text[ hebrew ] = "~Datenbeschriftung...";
+                        Text[ hindi ] = "~Data Labels...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_AXIS ;
+                        HelpID = SID_INSERT_AXIS ;
+                        Text = "~Achsen..." ;
+                        Text [ ENGLISH ] = "~Axes..." ;
+                        Text [ english_us ] = "~Axes..." ;
+//                          Text [ norwegian ] = "Akse og rutenett" ;
+//                          Text [ italian ] = "~Assi e Griglia..." ;
+//                          Text [ portuguese_brazilian ] = "Eixo e grade" ;
+//                          Text [ portuguese ] = "Eixos e ~grelhas..." ;
+//                          Text [ finnish ] = "Akseli ja taustaruudukko" ;
+//                          Text [ danish ] = "Akser og gitterlinjer..." ;
+//                          Text [ french ] = "~Axes et grilles..." ;
+//                          Text [ swedish ] = "~Axlar och stˆdraster..." ;
+//                          Text [ dutch ] = "~Assen en rasters..." ;
+//                          Text [ spanish ] = "~Ejes y cuadrÌculas..." ;
+//                          Text[ chinese_simplified ] = "÷· ˝÷µ∫ÕÕ¯∏Òœﬂ(~A)...";
+//                          Text[ russian ] = "~ŒÒË Ë ÒÂÚÍË...";
+//                          Text[ polish ] = "Osie i siatki...";
+//                          Text[ japanese ] = "é≤Ç∆ñ⁄ê∑ê¸(~A)...";
+//                          Text[ chinese_traditional ] = "∂b©M∫ÙÆÊΩu(~A)...";
+//                          Text[ arabic ] = "„Õ«Ê— Ê‘»ﬂ« ...";
+                        Text[ portuguese ] = "Ei~xos...";
+                        Text[ russian ] = "~ŒÒË...";
+                        Text[ greek ] = "¢ÓÔÌ~ÂÚ...";
+                        Text[ dutch ] = "~Assen...";
+                        Text[ french ] = "~Axes...";
+                        Text[ spanish ] = "~Ejes...";
+                        Text[ italian ] = "~Assi...";
+                        Text[ danish ] = "Akser...";
+                        Text[ swedish ] = "~Axlar...";
+                        Text[ polish ] = "~Osie...";
+                        Text[ portuguese_brazilian ] = "Eixo e grade";
+                        Text[ japanese ] = "Ëª∏(~A)...";
+                        Text[ korean ] = "Ï∂ï(~A)...";
+                        Text[ chinese_simplified ] = "ËΩ¥(~A)...";
+                        Text[ chinese_traditional ] = "Ëª∏(~A)...";
+                        Text[ arabic ] = "„Õ«Ê—...";
+                        Text[ turkish ] = "~Eksenler...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Eixos...";
+                        Text[ finnish ] = "~Akselit";
+                        Text[ thai ] = "‡πÅ~‡∏Å‡∏ô...";
+                        Text[ czech ] = "Osy...";
+                        Text[ hebrew ] = "~Achsen...";
+                        Text[ hindi ] = "~Axes...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_GRIDS ;
+                        HelpID = SID_INSERT_GRIDS ;
+                        Text = "~Gitter...";
+                        Text [ ENGLISH ] = "~Gridlines...";
+                        Text [ english_us ] = "~Grids...";
+                        Text[ portuguese ] = "~Grelhas...";
+                        Text[ russian ] = "~—ÂÚÍ‡...";
+                        Text[ greek ] = "–Î›~„Ï·...";
+                        Text[ dutch ] = "~Rasters...";
+                        Text[ french ] = "~Grilles...";
+                        Text[ spanish ] = "~CuadrÌculas...";
+                        Text[ italian ] = "~Griglia...";
+                        Text[ danish ] = "Gitre...";
+                        Text[ swedish ] = "~Gitter...";
+                        Text[ polish ] = "~Siatki...";
+                        Text[ portuguese_brazilian ] = "~Gridlines...";
+                        Text[ japanese ] = "ÁõÆÁõõÁ∑ö(~G)...";
+                        Text[ korean ] = "ÎààÍ∏àÏÑ†(~G)...";
+                        Text[ chinese_simplified ] = "ÁΩëÊ†ºÁ∫ø(~G)...";
+                        Text[ chinese_traditional ] = "Á∂≤Ê†ºÁ∑ö(~G)...";
+                        Text[ arabic ] = "‘»ﬂ« ...";
+                        Text[ turkish ] = "~Izgaralar...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Graelles...";
+                        Text[ finnish ] = "~Ruudukot";
+                        Text[ thai ] = "‡πÄ~‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á...";
+                        Text[ czech ] = "M≈ô√≠≈æky...";
+                        Text[ hebrew ] = "~Gitter...";
+                        Text[ hindi ] = "~Grids...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_INSERT_STATISTICS ;
+                        HelpID = SID_INSERT_STATISTICS ;
+                        Text = "~Statistik..." ;
+                        Text [ ENGLISH ] = "Statistics" ;
+                        Text [ norwegian ] = "Akse og rutenett" ;
+                        Text [ italian ] = "~Statistica..." ;
+                        Text [ portuguese_brazilian ] = "Eixo e grade" ;
+                        Text [ portuguese ] = "~EstatÌstica..." ;
+                        Text [ finnish ] = "~Tilastotiedot" ;
+                        Text [ danish ] = "Statistik..." ;
+                        Text [ french ] = "~Statistiques..." ;
+                        Text [ swedish ] = "~Statistik..." ;
+                        Text [ dutch ] = "~Statistiek..." ;
+                        Text [ spanish ] = "~EstadÌstica..." ;
+                        Text [ english_us ] = "~Statistics..." ;
+                        Text[ chinese_simplified ] = "ÁªüËÆ°(~S)...";
+                        Text[ russian ] = "—Ú‡ÚËÒÚËÍ‡...";
+                        Text[ polish ] = "~Statystyka...";
+                        Text[ japanese ] = "Áµ±Ë®à(~S)...";
+                        Text[ chinese_traditional ] = "Áµ±Ë®à(~S)...";
+                        Text[ arabic ] = "≈Õ’«∆Ì« ...";
+                        Text[ greek ] = "~”Ù·ÙÈÛÙÈÍ‹...";
+                        Text[ korean ] = "ÌÜµÍ≥Ñ(~S)...";
+                        Text[ turkish ] = "~›statistikler...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~EstadÌstica...";
+                        Text[ thai ] = "~‡∏™‡∏ñ‡∏¥‡∏ï‡∏¥...";
+                        Text[ czech ] = "Statistika...";
+                        Text[ hebrew ] = "‚ÄÆ◊°◊ò◊ò◊ô◊°◊ò◊ô◊ß◊ï◊™...‚Ä¨";
+                        Text[ hindi ] = "~Statistics...";
+                    };
+                     //------------------------------
+                    MenuItem { Separator = TRUE ; };
+                     //------------------------------
+                    MenuItem
+                    {
+                        Identifier = SID_CHARMAP ;
+                        HelpId = SID_CHARMAP ;
+                        Text = "~Sonderzeichen..." ;
+                        Text [ ENGLISH ] = "Symbol..." ;
+                        Text [ norwegian ] = "Symbol..." ;
+                        Text [ italian ] = "Caratteri ~speciali..." ;
+                        Text [ portuguese_brazilian ] = "S?mbolo..." ;
+                        Text [ portuguese ] = "~Caracteres especiais..." ;
+                        Text [ finnish ] = "E~rikoismerkki" ;
+                        Text [ danish ] = "~Specialtegn..." ;
+                        Text [ french ] = "~CaractËres spÈciaux..." ;
+                        Text [ swedish ] = "S~pecialtecken..." ;
+                        Text [ dutch ] = "~Speciale tekens..." ;
+                        Text [ spanish ] = "~SÌmbolos..." ;
+                        Text [ english_us ] = "S~pecial Character..." ;
+                        Text[ chinese_simplified ] = "ÁâπÊÆäÂ≠óÁ¨¶(~P)...";
+                        Text[ russian ] = "—ÔÂˆË‡Î¸Ì˚Â ÒËÏ‚ÓÎ˚...";
+                        Text[ polish ] = "~Znaki specjalne...";
+                        Text[ japanese ] = "Ë®òÂè∑„Å®ÁâπÊÆäÊñáÂ≠ó(~P)...";
+                        Text[ chinese_traditional ] = "ÁâπÊÆäÂ≠óÂÖÉ(~P)...";
+                        Text[ arabic ] = "—„Ê“ Œ«’…...";
+                        Text[ greek ] = "≈È‰ÈÍÔﬂ ~˜·Ò·ÍÙﬁÒÂÚ...";
+                        Text[ korean ] = "Í∏∞Ìò∏ Î∞è ÌäπÏàò Î¨∏Ïûê(~P)...";
+                        Text[ turkish ] = "~÷zel Karakterler...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~SÌmbols...";
+                        Text[ thai ] = "‡∏ï‡∏±‡∏ß‡∏≠‡∏±‡∏Å‡∏Ç‡∏£‡∏∞‡∏û‡∏¥‡πÄ~‡∏®‡∏©...";
+                        Text[ czech ] = "Speci√°ln√≠ znak...";
+                        Text[ hebrew ] = "~Sonderzeichen...";
+                        Text[ hindi ] = "~‡§µ‡§ø‡§∂‡•á‡§∑ ‡§Ö‡§ï‡•ç‡§∑‡§∞...";
+                    };
+                };
+                Text[ russian ] = "~¬ÒÚ‡‚Í‡";
+            Text[ polish ] = "Wstaw";
+            Text[ japanese ] = "ë}ì¸(~I)";  Text[ chinese_simplified ] = "≤Â»Î(~I)";
+
+
+
+
+
+
+
+            Text[ chinese_simplified ] = "ç’ÉŸ (~I)";
+        };
+            Text[ chinese_simplified ] = "ÊèíÂÖ•(~I)";
+            Text[ russian ] = "¬ÒÚ~‡‚Í‡";
+            Text[ polish ] = "W~staw";
+            Text[ japanese ] = "ÊåøÂÖ•(~I)";
+            Text[ chinese_traditional ] = "ÊèíÂÖ•(~I)";
+            Text[ arabic ] = "≈œ~—«Ã";
+            Text[ greek ] = "~≈ÈÛ·„˘„ﬁ";
+            Text[ korean ] = "ÏÇΩÏûÖ(~I)";
+            Text[ turkish ] = "~Ekle";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "~Insereix";
+            Text[ thai ] = "‡πÅ~‡∏ó‡∏£‡∏Å";
+            Text[ czech ] = "Vlo≈æit";
+            Text[ hebrew ] = "~Einf√ºgen";
+            Text[ hindi ] = "~‡§õ‡§ø‡§™‡§ï‡§æ‡§ì";
+        };
+        MenuItem
+        {
+            Identifier = WORKAROUND_23 ;
+            HelpID = 23 ;
+            Text = "~Format" ;
+            Text [ ENGLISH ] = "Form~at" ;
+            Text [ norwegian ] = "Form~at" ;
+            Text [ italian ] = "F~ormato" ;
+            Text [ portuguese_brazilian ] = "Form~at" ;
+            Text [ portuguese ] = "~Formatar" ;
+            Text [ french ] = "Forma~t" ;
+            Text [ dutch ] = "~Formaat" ;
+            Text [ spanish ] = "~Formato" ;
+            Text [ danish ] = "Forma~ter" ;
+            Text [ swedish ] = "F~ormat" ;
+            Text [ finnish ] = "~Muotoile" ;
+            Text [ english_us ] = "F~ormat" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_OBJECTS ;
+                        HelpID = SID_DIAGRAM_OBJECTS ;
+                        Text = "~Objekteigenschaften..." ;
+                        Text [ ENGLISH ] = "~Properties..." ;
+                        Text [ norwegian ] = "Data linje/~punkt..." ;
+                        Text [ italian ] = "Propriet‡ ~oggetto..." ;
+                        Text [ portuguese_brazilian ] = "Linha de dados/~ponto..." ;
+                        Text [ portuguese ] = "~Propriedades do objecto..." ;
+                        Text [ finnish ] = "~Objektin ominaisuudet" ;
+                        Text [ danish ] = "Objektegenskaber..." ;
+                        Text [ french ] = "PropriÈtÈs de l'~objet..." ;
+                        Text [ swedish ] = "~Objektegenskaper..." ;
+                        Text [ dutch ] = "~Objecteigenschappen" ;
+                        Text [ spanish ] = "~Propiedades del objeto..." ;
+                        Text [ english_us ] = "~Object Properties..." ;
+                        Text[ chinese_simplified ] = "ÂØπË±°Â±ûÊÄß(~O)...";
+                        Text[ russian ] = "~—‚ÓÈÒÚ‚‡ Ó·˙ÂÍÚ‡...";
+                        Text[ polish ] = "W≥aúciwoúci obiektu...";
+                        Text[ japanese ] = "„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂ±ûÊÄß(~O)...";
+                        Text[ chinese_traditional ] = "Áâ©‰ª∂Â±¨ÊÄß(~O)...";
+                        Text[ arabic ] = "Œ’«∆’ «·ﬂ«∆‰...";
+                        Text[ greek ] = "…‰È¸ÙÁÙÂÚ ·ÌÙÈÍÂÈÏ›Ì~˘Ì...";
+                        Text[ korean ] = "Í∞úÏ≤¥ Îì±Î°ù Ï†ïÎ≥¥(~O)...";
+                        Text[ turkish ] = "~Nesne ÷zellikleri...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Propietats de l'objecte...";
+                        Text[ thai ] = "‡∏Ñ‡∏∏‡∏ì‡∏™‡∏°‡∏ö‡∏±‡∏ï‡∏¥~‡∏ß‡∏±‡∏ï‡∏ñ‡∏∏...";
+                        Text[ czech ] = "Vlastnosti objektu...";
+                        Text[ hebrew ] = "~Objekteigenschaften...";
+                        Text[ hindi ] = "~‡§µ‡§∏‡•ç‡§§‡•Å ‡§ï‡§æ ‡§µ‡§ø‡§∂‡•á‡§∑‡§§‡§æ‡§Ø‡•á‡§Ç...";
+                    };
+                    MN_TRANSFORM;
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_CHART_TITLE ;
+                        HelpID = SID_CHART_TITLE ;
+                        Text = "~Titel" ;
+                        Text [ ENGLISH ] = "~Title" ;
+                        Text [ norwegian ] = "~Tittel" ;
+                        Text [ italian ] = "~Titolo" ;
+                        Text [ portuguese_brazilian ] = "~T?tulo" ;
+                        Text [ portuguese ] = "~TÌtulo" ;
+                        Text [ finnish ] = "~Otsikko" ;
+                        Text [ danish ] = "Titel" ;
+                        Text [ french ] = "~Titre" ;
+                        Text [ swedish ] = "~Rubrik" ;
+                        Text [ dutch ] = "Tite~l" ;
+                        Text [ spanish ] = "~TÌtulo" ;
+                        Text [ english_us ] = "~Title" ;
+                        SubMenu = Menu
+                        {
+                            ItemList =
+                            {
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_MAIN ;
+                                    HelpID = SID_DIAGRAM_TITLE_MAIN ;
+                                    Text = "~Haupttitel..." ;
+                                    Text [ ENGLISH ] = "~Maintitle..." ;
+                                    Text [ english_us ] = "~Main Title..." ;
+                                    Text [ dutch ] = "~Hoofdtitel..." ;
+                                    Text [ italian ] = "Titolo principale..." ;
+                                    Text [ spanish ] = "TÌtulo ~principal..." ;
+                                    Text [ french ] = "Titre ~principal..." ;
+                                    Text [ swedish ] = "~Huvudrubrik..." ;
+                                    Text [ danish ] = "Hovedtitel..." ;
+                                    Text [ portuguese_brazilian ] = "TÌtulo ~principal..." ;
+                                    Text [ portuguese ] = "~TÌtulo principal..." ;
+                                    Text[ chinese_simplified ] = "‰∏ªÊ†áÈ¢ò(~M)...";
+                                    Text[ russian ] = "√Î‡‚Ì˚È Á‡„ÓÎÓ‚ÓÍ...";
+                                    Text[ polish ] = "Tytu≥ g≥Ûwny...";
+                                    Text[ japanese ] = "„É°„Ç§„É≥„Çø„Ç§„Éà„É´(~M)...";
+                                    Text[ chinese_traditional ] = "‰∏ªÊ®ôÈ°å(~M)...";
+                                    Text[ arabic ] = "«·⁄‰Ê«‰ «·—∆Ì”Ì...";
+                                    Text[ greek ] = "~ ˝ÒÈÔÚ ÙﬂÙÎÔÚ...";
+                                    Text[ korean ] = "Ï£º Ï†úÎ™©(~M)...";
+                                    Text[ turkish ] = "Ana ~Ba˛l˝k..";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "TÌtol ~principal...";
+                                    Text[ finnish ] = "~P‰‰otsikko";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠~‡∏´‡∏•‡∏±‡∏Å...";
+                                    Text[ czech ] = "Hlavn√≠ nadpis...";
+                                    Text[ hebrew ] = "~Haupttitel...";
+                                    Text[ hindi ] = "~‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï‡•ç...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_SUB ;
+                                    HelpID = SID_DIAGRAM_TITLE_SUB ;
+                                    Text = "~Untertitel..." ;
+                                    Text [ ENGLISH ] = "~Subtitle..." ;
+                                    Text [ english_us ] = "S~ubtitle..." ;
+                                    Text [ italian ] = "Sottotitolo..." ;
+                                    Text [ spanish ] = "~SubtÌtulo..." ;
+                                    Text [ french ] = "~Sous-titre..." ;
+                                    Text [ dutch ] = "~Subtitel..." ;
+                                    Text [ swedish ] = "~Underrubrik..." ;
+                                    Text [ danish ] = "Undertitel..." ;
+                                    Text [ portuguese_brazilian ] = "~Sub-tÌtulo..." ;
+                                    Text [ portuguese ] = "~SubtÌtulo..." ;
+                                    Text[ chinese_simplified ] = "ÂàÜÊ†áÈ¢ò(~U)...";
+                                    Text[ russian ] = "œÓ‰Á‡„ÓÎÓ‚ÓÍ...";
+                                    Text[ polish ] = "Podtytu≥...";
+                                    Text[ japanese ] = "„Çµ„Éñ„Çø„Ç§„Éà„É´(~U)...";
+                                    Text[ chinese_traditional ] = "ÂàÜÊ®ôÈ°å(~U)...";
+                                    Text[ arabic ] = "⁄‰Ê«‰ ›—⁄Ì...";
+                                    Text[ greek ] = "~’¸ÙÈÙÎÔÚ...";
+                                    Text[ korean ] = "Î∂ÄÏ†ú(~U)...";
+                                    Text[ turkish ] = "~Altba˛l˝k...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "~SubtÌtol...";
+                                    Text[ finnish ] = "Ala~otsikko";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠~‡∏£‡∏≠‡∏á...";
+                                    Text[ czech ] = "Podtitul...";
+                                    Text[ hebrew ] = "~Untertitel...";
+                                    Text[ hindi ] = "‡§â~‡§™‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_X ;
+                                    HelpID = SID_DIAGRAM_TITLE_X ;
+                                    Text = "~X-Achsentitel..." ;
+                                    Text [ ENGLISH ] = "~Title on X-Axis..." ;
+                                    Text [ english_us ] = "Title (~X Axis)..." ;
+                                    Text [ italian ] = "Titolo asse ~X..." ;
+                                    Text [ spanish ] = "TÌtulo del eje ~X..." ;
+                                    Text [ french ] = "Titre de l'axe ~X..." ;
+                                    Text [ dutch ] = "Titel  ~X-as..." ;
+                                    Text [ swedish ] = "~X-axelrubrik..." ;
+                                    Text [ danish ] = "X-aksetitel..." ;
+                                    Text [ portuguese_brazilian ] = "TÌtulo do eixo ~X..." ;
+                                    Text [ portuguese ] = "TÌtulo do eixo ~X..." ;
+                                    Text[ chinese_simplified ] = "~X ËΩ¥Ê†áÈ¢ò...";
+                                    Text[ russian ] = "«‡„ÓÎÓ‚ÓÍ ÓÒË X...";
+                                    Text[ polish ] = "Tytu≥ osi X...";
+                                    Text[ japanese ] = "XËª∏„Çø„Ç§„Éà„É´...(~X)";
+                                    Text[ chinese_traditional ] = "Ê®ôÈ°å(~X Ëª∏)...";
+                                    Text[ arabic ] = "⁄‰Ê«‰ «·„ÕÊ— ”...";
+                                    Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ· ~X...";
+                                    Text[ korean ] = "XÏ∂ï Ï†úÎ™©(~X)...";
+                                    Text[ turkish ] = "Ba˛l˝k (~X Ekseni)...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "TÌtol de l'eix ~X...";
+                                    Text[ finnish ] = "Otsikko (~X-akseli)";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠ (‡πÅ‡∏Å‡∏ô~X )...";
+                                    Text[ czech ] = "Popis osy X";
+                                    Text[ hebrew ] = "~X-Achsentitel...";
+                                    Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï....";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_Y ;
+                                    HelpID = SID_DIAGRAM_TITLE_Y ;
+                                    Text = "~Y-Achsentitel..." ;
+                                    Text [ ENGLISH ] = "~Title on Y-Axis..." ;
+                                    Text [ english_us ] = "Title (~Y Axis)..." ;
+                                    Text [ italian ] = "Titolo asse ~Y..." ;
+                                    Text [ spanish ] = "TÌtulo del eje ~Y..." ;
+                                    Text [ french ] = "Titre de l'axe ~Y..." ;
+                                    Text [ dutch ] = "Titel ~ Y -as..." ;
+                                    Text [ swedish ] = "~Y-axelrubrik..." ;
+                                    Text [ danish ] = "Y-aksetitel..." ;
+                                    Text [ portuguese_brazilian ] = "TÌtulo do eixo ~Y..." ;
+                                    Text [ portuguese ] = "TÌtulo do eixo ~Y..." ;
+                                    Text[ chinese_simplified ] = "~Y ËΩ¥Ê†áÈ¢ò...";
+                                    Text[ russian ] = "«‡„ÓÎÓ‚ÓÍ ÓÒË Y...";
+                                    Text[ polish ] = "Tytu≥ osi Y...";
+                                    Text[ japanese ] = "YËª∏„Çø„Ç§„Éà„É´...(~Y)";
+                                    Text[ chinese_traditional ] = "Ê®ôÈ°å(~Y Ëª∏)...";
+                                    Text[ arabic ] = "⁄‰Ê«‰ «·„ÕÊ— ’...";
+                                    Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ· ~Y...";
+                                    Text[ korean ] = "YÏ∂ï Ï†úÎ™©(~Y)...";
+                                    Text[ turkish ] = "Ba˛l˝k (~Y Eksen)...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "TÌtol de l'eix ~Y...";
+                                    Text[ finnish ] = "Otsikko (~Y-akseli)";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠ (‡πÅ‡∏Å‡∏ô~Y )...";
+                                    Text[ czech ] = "Popis osy Y";
+                                    Text[ hebrew ] = "~Y-Achsentitel...";
+                                    Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_Z ;
+                                    HelpID = SID_DIAGRAM_TITLE_Z ;
+                                    Text = "~Z-Achsentitel..." ;
+                                    Text [ ENGLISH ] = "~Title on Z-Axis..." ;
+                                    Text [ english_us ] = "Title (~Z Axis)..." ;
+                                    Text [ italian ] = "Titolo asse ~Z..." ;
+                                    Text [ spanish ] = "TÌtulo del eje ~Z..." ;
+                                    Text [ french ] = "Titre de l'axe ~Z..." ;
+                                    Text [ dutch ] = "Titel  ~Z-as..." ;
+                                    Text [ swedish ] = "~Z-axelrubrik..." ;
+                                    Text [ danish ] = "Z-aksetitel..." ;
+                                    Text [ portuguese_brazilian ] = "TÌtulo do eixo ~Z..." ;
+                                    Text [ portuguese ] = "TÌtulo do eixo ~Z..." ;
+                                    Text[ chinese_simplified ] = "~Z ËΩ¥Ê†áÈ¢ò...";
+                                    Text[ russian ] = "«‡„ÓÎÓ‚ÓÍ ÓÒË Z...";
+                                    Text[ polish ] = "Tytu≥ osi Z...";
+                                    Text[ japanese ] = "ZËª∏„Çø„Ç§„Éà„É´...(~Z)";
+                                    Text[ chinese_traditional ] = "Ê®ôÈ°å(~Z Ëª∏)...";
+                                    Text[ arabic ] = "⁄‰Ê«‰ «·„ÕÊ— ⁄...";
+                                    Text[ greek ] = "‘ﬂÙÎÔÚ ‹ÓÔÌ· ~Z...";
+                                    Text[ korean ] = "ZÏ∂ï Ï†úÎ™©(~Z)...";
+                                    Text[ turkish ] = "Ba˛l˝k (~Z Ekseni)...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "TÌtol de l'eix ~Z...";
+                                    Text[ finnish ] = "Otsikko (~Z-akseli)";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠ (‡πÅ‡∏Å‡∏ô~Z )...";
+                                    Text[ czech ] = "Popis osy Z";
+                                    Text[ hebrew ] = "~Z-Achsentitel...";
+                                    Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_TITLE_ALL ;
+                                    HelpID = SID_DIAGRAM_TITLE_ALL ;
+                                    Text = "~Alle Titel..." ;
+                                    Text [ ENGLISH ] = "~All Titles..." ;
+                                    Text [ english_us ] = "~All Titles..." ;
+                                    Text [ dutch ] = "~Alle titels..." ;
+                                    Text [ italian ] = "~Tutti i titoli..." ;
+                                    Text [ spanish ] = "~Todos los tÌtulos..." ;
+                                    Text [ french ] = "T~ous les titres..." ;
+                                    Text [ swedish ] = "~Alla rubriker..." ;
+                                    Text [ danish ] = "Alle titler..." ;
+                                    Text [ portuguese ] = "~Todos os tÌtulos..." ;
+                                    Text [ portuguese_brazilian ] = "~Todos os tÌtulos..." ;
+                                    Text[ chinese_simplified ] = "ÂÖ®ÈÉ®ÁöÑÊ†áÈ¢ò(~A)...";
+                                    Text[ russian ] = "¬ÒÂ Á‡„ÓÎÓ‚ÍË...";
+                                    Text[ polish ] = "Wszystkie tytu≥y...";
+                                    Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆ„Çø„Ç§„Éà„É´(~A)...";
+                                    Text[ chinese_traditional ] = "ÂÖ®ÈÉ®ÁöÑÊ®ôÈ°å(~A)...";
+                                    Text[ arabic ] = "ﬂ· «·⁄‰«ÊÌ‰...";
+                                    Text[ greek ] = "ºÎ~ÔÈ ÔÈ ÙﬂÙÎÔÈ...";
+                                    Text[ korean ] = "Î™®Îì† Ï†úÎ™©(~A)...";
+                                    Text[ turkish ] = "B¸t¸n Ba˛l˝klar...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "~Tots els tÌtols...";
+                                    Text[ finnish ] = "Kaikki otsikot...";
+                                    Text[ thai ] = "‡∏ä‡∏∑‡πà‡∏≠‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î...";
+                                    Text[ czech ] = "V≈°echny n√°zvy...";
+                                    Text[ hebrew ] = "~Alle Titel...";
+                                    Text[ hindi ] = "‡§∏‡§¨ ‡§∂‡•Ä‡§∞‡•ç‡§∑‡§ï‡•ç...";
+                                };
+                            };
+                        };
+                        Text[ chinese_simplified ] = "Ê†áÈ¢ò(~T)";
+                        Text[ russian ] = "«‡„ÓÎÓ‚ÓÍ";
+                        Text[ polish ] = "Tytu≥";
+                        Text[ japanese ] = "„Çø„Ç§„Éà„É´(~T)";
+                        Text[ chinese_traditional ] = "Ê®ôÈ°å(~T)";
+                        Text[ arabic ] = "«·⁄‰Ê«‰";
+                        Text[ greek ] = "~‘ﬂÙÎÔÚ";
+                        Text[ korean ] = "Ï†úÎ™©(~T)";
+                        Text[ turkish ] = "~Ba˛l˝k";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~TÌtol";
+                        Text[ thai ] = "~‡∏ä‡∏∑‡πà‡∏≠";
+                        Text[ czech ] = "Titul...";
+                        Text[ hebrew ] = "‚ÄÆ◊õ◊ï◊™◊®◊™‚Ä¨";
+                        Text[ hindi ] = "~‡§â‡§™‡§æ‡§ß‡§ø";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_LEGEND ;
+                        HelpID = SID_LEGEND ;
+                        Text = "~Legende..." ;
+                        Text [ ENGLISH ] = "~Legend..." ;
+                        Text [ norwegian ] = "~Tegnforklaring..." ;
+                        Text [ italian ] = "~Legenda..." ;
+                        Text [ portuguese_brazilian ] = "~Legenda..." ;
+                        Text [ portuguese ] = "~Legenda..." ;
+                        Text [ finnish ] = "~Selite..." ;
+                        Text [ danish ] = "Forklaring..." ;
+                        Text [ french ] = "~LÈgende..." ;
+                        Text [ swedish ] = "Fˆrk~laring..." ;
+                        Text [ dutch ] = "~Legenda..." ;
+                        Text [ spanish ] = "~Leyenda..." ;
+                        Text [ english_us ] = "~Legend..." ;
+                        Text[ chinese_simplified ] = "Âõæ‰æã(~L)...";
+                        Text[ russian ] = "ÀÂ„ÂÌ‰‡...";
+                        Text[ polish ] = "Legenda...";
+                        Text[ japanese ] = "Âá°‰æã(~L)...";
+                        Text[ chinese_traditional ] = "Âúñ‰æã(~L)...";
+                        Text[ arabic ] = "„› «Õ «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "’¸ÏÌÁÏ·...";
+                        Text[ korean ] = "Î≤îÎ°Ä(~L)...";
+                        Text[ turkish ] = "~Gˆsterge";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Llegenda...";
+                        Text[ thai ] = "~‡∏Ñ‡∏≥‡∏≠‡∏ò‡∏¥‡∏ö‡∏≤‡∏¢...";
+                        Text[ czech ] = "Legenda";
+                        Text[ hebrew ] = "~Legende...";
+                        Text[ hindi ] = "~‡§≤‡•á‡§ú‡§º‡§®‡•ç‡§°‡§º...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_AXIS ;
+                        HelpID = SID_DIAGRAM_AXIS ;
+                        Text = "~Achse" ;
+                        Text [ ENGLISH ] = "~Axis" ;
+                        Text [ norwegian ] = "~Akse" ;
+                        Text [ italian ] = "A~sse" ;
+                        Text [ portuguese_brazilian ] = "~Eixo" ;
+                        Text [ portuguese ] = "~Eixo" ;
+                        Text [ finnish ] = "A~kselit" ;
+                        Text [ danish ] = "Akse" ;
+                        Text [ french ] = "A~xe" ;
+                        Text [ swedish ] = "~Axel" ;
+                        Text [ dutch ] = "~As" ;
+                        Text [ spanish ] = "~Eje" ;
+                        Text [ english_us ] = "A~xis" ;
+                        SubMenu = Menu
+                        {
+                            ItemList =
+                            {
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_X ;
+                                    HelpID = SID_DIAGRAM_AXIS_X ;
+                                    Text = "~X-Achse..." ;
+                                    Text [ ENGLISH ] = "~X-Axis..." ;
+                                    Text [ english_us ] = "~X Axis..." ;
+                                    Text [ dutch ] = "~X-as..." ;
+                                    Text [ italian ] = "Asse ~X..." ;
+                                    Text [ spanish ] = "Eje ~X..." ;
+                                    Text [ french ] = "Axe ~X..." ;
+                                    Text [ swedish ] = "~X-axel..." ;
+                                    Text [ danish ] = "X-akse..." ;
+                                    Text [ portuguese_brazilian ] = "Eixo ~X..." ;
+                                    Text [ portuguese ] = "Eixo ~X..." ;
+                                    Text[ chinese_simplified ] = "~X ËΩ¥...";
+                                    Text[ russian ] = "ŒÒ¸ X...";
+                                    Text[ polish ] = "Oú X...";
+                                    Text[ japanese ] = "XËª∏...(~X)";
+                                    Text[ chinese_traditional ] = "~X Ëª∏...";
+                                    Text[ arabic ] = "«·„ÕÊ— ”...";
+                                    Text[ greek ] = "¢ÓÔÌ·Ú ~◊...";
+                                    Text[ korean ] = "XÏ∂ï(~X)...";
+                                    Text[ turkish ] = "~X Ekseni...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Eix ~X...";
+                                    Text[ finnish ] = "~X-akseli";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô~X ...";
+                                    Text[ czech ] = "Osa X";
+                                    Text[ hebrew ] = "~X-Achse...";
+                                    Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_Y ;
+                                    HelpID = SID_DIAGRAM_AXIS_Y ;
+                                    Text = "~Y-Achse..." ;
+                                    Text [ ENGLISH ] = "~Y-Axis..." ;
+                                    Text [ english_us ] = "~Y Axis..." ;
+                                    Text [ italian ] = "Asse ~Y..." ;
+                                    Text [ spanish ] = "Eje ~Y..." ;
+                                    Text [ french ] = "Axe ~Y..." ;
+                                    Text [ dutch ] = "~Y-as..." ;
+                                    Text [ swedish ] = "~Y-axel..." ;
+                                    Text [ danish ] = "Y-akse..." ;
+                                    Text [ portuguese_brazilian ] = "Eixo ~Y..." ;
+                                    Text [ portuguese ] = "Eixo ~Y..." ;
+                                    Text[ chinese_simplified ] = "~Y ËΩ¥...";
+                                    Text[ russian ] = "ŒÒ¸ Y...";
+                                    Text[ polish ] = "Oú Y...";
+                                    Text[ japanese ] = "YËª∏...(~Y)";
+                                    Text[ chinese_traditional ] = "~Y Ëª∏...";
+                                    Text[ arabic ] = "«·„ÕÊ— ’...";
+                                    Text[ greek ] = "¢ÓÔÌ·Ú ~Y...";
+                                    Text[ korean ] = "YÏ∂ï(~Y)...";
+                                    Text[ turkish ] = "~Y Ekseni...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Eix ~Y...";
+                                    Text[ finnish ] = "~Y-akseli...";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô~Y ...";
+                                    Text[ czech ] = "Osa Y";
+                                    Text[ hebrew ] = "~Y-Achse...";
+                                    Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_Z ;
+                                    HelpID = SID_DIAGRAM_AXIS_Z ;
+                                    Text = "~Z-Achse..." ;
+                                    Text [ ENGLISH ] = "~Z-Axis..." ;
+                                    Text [ english_us ] = "~Z Axis..." ;
+                                    Text [ italian ] = "Asse ~Z..." ;
+                                    Text [ spanish ] = "Eje ~Z..." ;
+                                    Text [ french ] = "Axe ~Z..." ;
+                                    Text [ dutch ] = "~Z-as..." ;
+                                    Text [ swedish ] = "~Z-axel..." ;
+                                    Text [ danish ] = "Z-akse..." ;
+                                    Text [ portuguese_brazilian ] = "Eixo ~Z..." ;
+                                    Text [ portuguese ] = "Eixo ~Z..." ;
+                                    Text[ chinese_simplified ] = "~Z ËΩ¥...";
+                                    Text[ russian ] = "ŒÒ¸ Z...";
+                                    Text[ polish ] = "Oú Z...";
+                                    Text[ japanese ] = "ZËª∏...(~Z)";
+                                    Text[ chinese_traditional ] = "~Z Ëª∏...";
+                                    Text[ arabic ] = "«·„ÕÊ— ⁄...";
+                                    Text[ greek ] = "¢ÓÔÌ·Ú ~Z...";
+                                    Text[ korean ] = "ZÏ∂ï(~Z)...";
+                                    Text[ turkish ] = "~Z Ekseni...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Eix ~Z...";
+                                    Text[ finnish ] = "~Z-akseli...";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô~Z ...";
+                                    Text[ czech ] = "Osa Z";
+                                    Text[ hebrew ] = "~Z-Achse...";
+                                    Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_A ;
+                                    HelpID = SID_DIAGRAM_AXIS_A ;
+                                    Text = "~Sekund‰re X-Achse..." ;
+                                    Text [ ENGLISH ] = "~Secondary X-Axis..." ;
+                                    Text[ english_us ] = "~Secondary X Axis...";
+                                    Text[ portuguese ] = "Eixo X ~secund·rio...";
+                                    Text[ russian ] = "ƒÓÔÓÎÌËÚÂÎ¸Ì‡ˇ ÓÒ¸ X...";
+                                    Text[ greek ] = "~ƒÂıÙÂÒÂ˝˘Ì ‹ÓÔÌ·Ú ◊...";
+                                    Text[ dutch ] = "~Secundaire X as...";
+                                    Text[ french ] = "Axe X ~secondaire...";
+                                    Text[ spanish ] = "Eje ~secundario X...";
+                                    Text[ italian ] = "Asse ~X secondario...";
+                                    Text[ danish ] = "SekundÊr X-akse...";
+                                    Text[ swedish ] = "Sekund‰r X-axel...";
+                                    Text[ polish ] = "Pomocnicze osie X...";
+                                    Text[ portuguese_brazilian ] = "2nd X Axis...";
+                                    Text[ japanese ] = "Á¨¨2XËª∏(~S)...";
+                                    Text[ korean ] = "2Ï∞® XÏ∂ï...";
+                                    Text[ chinese_simplified ] = "Á¨¨‰∫å‰∏™ Y ËΩ¥(~S)...";
+                                    Text[ chinese_traditional ] = "Á¨¨‰∫åÂÄã X Ëª∏(~S)...";
+                                    Text[ arabic ] = "«·„ÕÊ— ” «·›—⁄Ì...";
+                                    Text[ turkish ] = "~›kinci X Ekseni...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Eix X secundari...";
+                                    Text[ finnish ] = "Toissijainen X-akseli...";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô X ‡∏ó‡∏∏‡∏ï‡∏¥‡∏¢‡∏†‡∏π‡∏°‡∏¥...";
+                                    Text[ czech ] = "Sekund√°rn√≠ osa X...";
+                                    Text[ hebrew ] = "~Sekund√§re X-Achse...";
+                                    Text[ hindi ] = "‡§¶‡•Ç‡§∏‡§∞‡•á X ‡§Ö‡§ï‡•ç‡§∑...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_B ;
+                                    HelpID = SID_DIAGRAM_AXIS_B ;
+                                    Text = "~Sekund‰re Y-Achse..." ;
+                                    Text [ ENGLISH ] = "~Secondary Y-Axis..." ;
+                                    Text[ english_us ] = "S~econdary Y Axis...";
+                                    Text[ portuguese ] = "Eixo Y ~secund·rio...";
+                                    Text[ russian ] = "ƒÓÔÓÎÌËÚÂÎ¸Ì‡ˇ ÓÒ¸ Y...";
+                                    Text[ dutch ] = "~Secundaire Y-as...";
+                                    Text[ french ] = "Axe Y s~econdaire...";
+                                    Text[ spanish ] = "~Eje secundario Y...";
+                                    Text[ italian ] = "Asse ~Y secondario...";
+                                    Text[ danish ] = "SekundÊr Y-akse...";
+                                    Text[ swedish ] = "~Sekund‰r Y-axel...";
+                                    Text[ polish ] = "Pomocnicza oú Y...";
+                                    Text[ portuguese_brazilian ] = "~Secondary Y-Axis...";
+                                    Text[ japanese ] = "Á¨¨2YËª∏(~E)...";
+                                    Text[ chinese_simplified ] = "Á¨¨‰∫å‰∏™ Y ËΩ¥(~E)...";
+                                    Text[ chinese_traditional ] = "Á¨¨‰∫åÂÄã Y Ëª∏(~e)...";
+                                    Text[ arabic ] = "«·„ÕÊ— ’ ›—⁄Ì...";
+                                    Text[ greek ] = "~ƒÂıÙÂÒÂ˝˘Ì ‹ÓÔÌ·Ú Y...";
+                                    Text[ korean ] = "2Ï∞® YÏ∂ï...";
+                                    Text[ turkish ] = "~›kinci Y Ekseni...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Eix Y secundari...";
+                                    Text[ finnish ] = "Toissijainen Y-akseli...";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô Y ‡∏ó‡∏∏‡∏ï‡∏¥‡∏¢‡∏†‡∏π‡∏°‡∏¥...";
+                                    Text[ czech ] = "Sekund√°rn√≠ osa Y...";
+                                    Text[ hebrew ] = "~Sekund√§re Y-Achse...";
+                                    Text[ hindi ] = "~2nd Y Axis...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_AXIS_ALL ;
+                                    HelpID = SID_DIAGRAM_AXIS_ALL ;
+                                    Text = "~Alle Achsen..." ;
+                                    Text [ ENGLISH ] = "~All Axes..." ;
+                                    Text [ english_us ] = "~All Axes..." ;
+                                    Text [ dutch ] = "~Alle assen..." ;
+                                    Text [ italian ] = "~Tutti gli assi..." ;
+                                    Text [ spanish ] = "~Todos los ejes..." ;
+                                    Text [ french ] = "~Tous les axes..." ;
+                                    Text [ swedish ] = "~Alla axlar..." ;
+                                    Text [ danish ] = "Alle akser..." ;
+                                    Text [ portuguese_brazilian ] = "~Todos os eixos..." ;
+                                    Text [ portuguese ] = "~Todos os eixos..." ;
+                                    Text[ chinese_simplified ] = "ÊâÄÊúâÁöÑËΩ¥(~A)...";
+                                    Text[ russian ] = "¬ÒÂ ÓÒË...";
+                                    Text[ polish ] = "Wszystkie osie...";
+                                    Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆËª∏(~A)...";
+                                    Text[ chinese_traditional ] = "ÊâÄÊúâÁöÑËª∏(~A)...";
+                                    Text[ arabic ] = "ﬂ· «·„Õ«Ê—...";
+                                    Text[ greek ] = "º~ÎÔÈ ÔÈ ‹ÓÔÌÂÚ...";
+                                    Text[ korean ] = "Î™®Îì† Ï∂ï...";
+                                    Text[ turkish ] = "~T¸m Eksenler...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Tots els eixos...";
+                                    Text[ finnish ] = "Kaikki akselit...";
+                                    Text[ thai ] = "‡πÅ‡∏Å‡∏ô‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î...";
+                                    Text[ czech ] = "V≈°echny osy";
+                                    Text[ hebrew ] = "~Alle Achsen...";
+                                    Text[ hindi ] = "‡§∏‡§¨ ‡§Ö‡§ï‡•ç‡§∑...";
+                                };
+                            };
+                        };
+                        Text[ chinese_simplified ] = "ËΩ¥(~X)";
+                        Text[ russian ] = "ŒÒ¸";
+                        Text[ polish ] = "Oú";
+                        Text[ japanese ] = "Ëª∏(~X)";
+                        Text[ chinese_traditional ] = "Ëª∏(~X)";
+                        Text[ arabic ] = "„ÕÊ—";
+                        Text[ greek ] = "¢ÓÔÌ~·Ú";
+                        Text[ korean ] = "Ï∂ï(~X)";
+                        Text[ turkish ] = "~Eksen";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Ei~x";
+                        Text[ thai ] = "‡πÅ‡∏Å~‡∏ô";
+                        Text[ czech ] = "Osa";
+                        Text[ hebrew ] = "~Achse";
+                        Text[ hindi ] = "‡§Ö~‡§ï‡•ç‡§∑";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_GRID ;
+                        HelpID = SID_DIAGRAM_GRID ;
+                         // ### ACHTUNG: Neuer Text in Resource? ~Gitter : ~Gitter...
+                        Text = "~Gitter" ;
+                        Text [ ENGLISH ] = "~Grid" ;
+                        Text [ norwegian ] = "~Rutenett..." ;
+                        Text [ italian ] = "~Griglia" ;
+                        Text [ portuguese_brazilian ] = "~Grade..." ;
+                        Text [ portuguese ] = "~Grelha" ;
+                        Text [ finnish ] = "~Ruudukko" ;
+                        Text [ danish ] = "Gitter" ;
+                        Text [ french ] = "~Grille" ;
+                        Text [ swedish ] = "~Gitter" ;
+                        Text [ dutch ] = "~Raster" ;
+                        Text [ spanish ] = "~CuadrÌcula" ;
+                        Text [ english_us ] = "~Grid" ;
+                         // ### ACHTUNG: Neuer Text in Resource? Gitter bearbeiten : Gitter bearbeiten...
+                        SubMenu = Menu
+                        {
+                            ItemList =
+                            {
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_Y_MAIN ;
+                                    HelpID = SID_DIAGRAM_GRID_Y_MAIN ;
+                                    Text = "~X-Achsenhauptgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~X-Axis..." ;
+                                    Text [ english_us ] = "~X Axis Main Grid..." ;
+                                    Text [ dutch ] = "Hoofdraster ~X-as..." ;
+                                    Text [ italian ] = "Griglia principale asse ~X..." ;
+                                    Text [ spanish ] = "CuadrÌcula principal del eje ~X...." ;
+                                    Text [ french ] = "Grille principale de l'axe ~X..." ;
+                                    Text [ swedish ] = "~X-axelhuvudgitter..." ;
+                                    Text [ danish ] = "X-akse overordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "~Y-Achsenhauptgitter..." ;
+                                    Text [ portuguese ] = "Grelha ~principal do eixo X..." ;
+                                    Text[ chinese_simplified ] = "~X ËΩ¥‰∏ªÁΩëÊ†ºÁ∫ø...";
+                                    Text[ russian ] = "ŒÒÌÓ‚Ì‡ˇ ÒÂÚÍ‡ ÓÒË X...";
+                                    Text[ polish ] = "G≥Ûwna siatka osi X...";
+                                    Text[ japanese ] = "XËª∏‰∏ªÁõÆÁõõÁ∑ö...(~X)";
+                                    Text[ chinese_traditional ] = "~X Ëª∏‰∏ªÁ∂≤Ê†ºÁ∑ö...";
+                                    Text[ arabic ] = "«·‘»ﬂ… «·—∆Ì”Ì… ··„ÕÊ— ”...";
+                                    Text[ greek ] = " ˝ÒÈÔ Î›„Ï· ‹ÓÔÌ· ~◊...";
+                                    Text[ korean ] = "XÏ∂ï Ï£º ÎààÍ∏àÏÑ†(~X)...";
+                                    Text[ turkish ] = "X ~Koordinat˝ Ana Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Graella principal de l'eix ~X...";
+                                    Text[ finnish ] = "~X-akselin p‰‰ruudukko";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~ X ...";
+                                    Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy X...";
+                                    Text[ hebrew ] = "~X-Achsenhauptgitter...";
+                                    Text[ hindi ] = "~X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_X_MAIN ;
+                                    HelpID = SID_DIAGRAM_GRID_X_MAIN ;
+                                    Text = "~Y-Achsenhauptgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~Y-Axis..." ;
+                                    Text [ english_us ] = "~Y Axis Main Grid..." ;
+                                    Text [ italian ] = "Griglia principale asse ~Y..." ;
+                                    Text [ spanish ] = "CuadrÌcula principal del eje ~Y..." ;
+                                    Text [ french ] = "Grille principale de l'axe ~Y..." ;
+                                    Text [ dutch ] = "Hoofdraster ~Y-as..." ;
+                                    Text [ swedish ] = "~Y-axelhuvudgitter..." ;
+                                    Text [ danish ] = "Y-akse overordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "~X-Achsenhauptgitter..." ;
+                                    Text [ portuguese ] = "Grelha principal do eixo ~Y..." ;
+                                    Text[ chinese_simplified ] = "~Y ËΩ¥‰∏ªÁΩëÊ†ºÁ∫ø...";
+                                    Text[ russian ] = "ŒÒÌÓ‚Ì‡ˇ ÒÂÚÍ‡ ÓÒË Y...";
+                                    Text[ polish ] = "G≥Ûwna siatka osi Y...";
+                                    Text[ japanese ] = "YËª∏‰∏ªÁõÆÁõõÁ∑ö...(~Y)";
+                                    Text[ chinese_traditional ] = "~Y Ëª∏Á∂≤Ê†ºÁ∑ö...";
+                                    Text[ arabic ] = "«·‘»ﬂ… «·—∆Ì”Ì… ··„ÕÊ— ’...";
+                                    Text[ greek ] = " ˝ÒÈÔ Î›„Ï· ‹ÓÔÌ· ~Y...";
+                                    Text[ korean ] = "YÏ∂ï Ï£º ÎààÍ∏àÏÑ†(~Y)...";
+                                    Text[ turkish ] = "~Y Ekseni Ana Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Graella principal de l'eix ~Y...";
+                                    Text[ finnish ] = "~Y-akselin p‰‰ruudukko...";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~Y ...";
+                                    Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy Y...";
+                                    Text[ hebrew ] = "~Y-Achsenhauptgitter...";
+                                    Text[ hindi ] = "~Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_Z_MAIN ;
+                                    HelpID = SID_DIAGRAM_GRID_Z_MAIN ;
+                                    Text = "~Z-Achsenhauptgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~Z-Axis..." ;
+                                    Text [ english_us ] = "~Z Axis Main Grid..." ;
+                                    Text [ italian ] = "Griglia principale asse ~Z..." ;
+                                    Text [ spanish ] = "CuadrÌcula principal del eje ~Z..." ;
+                                    Text [ french ] = "Grille principale de l'axe ~Z..." ;
+                                    Text [ dutch ] = "Hoofdraster ~Z-as..." ;
+                                    Text [ swedish ] = "~Z-axelhuvudgitter..." ;
+                                    Text [ danish ] = "Z-akse overordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "Grade principal do eixo ~Z..." ;
+                                    Text [ portuguese ] = "Grelha p~rincipal do eixo Z..." ;
+                                    Text[ chinese_simplified ] = "~Z ËΩ¥‰∏ªÁΩëÊ†ºÁ∫ø...";
+                                    Text[ russian ] = "ŒÒÌÓ‚Ì‡ˇ ÒÂÚÍ‡ ÓÒË Z...";
+                                    Text[ polish ] = "G≥Ûwna siatka osi Z...";
+                                    Text[ japanese ] = "ZËª∏‰∏ªÁõÆÁõõÁ∑ö...(~Z)";
+                                    Text[ chinese_traditional ] = "~Z Ëª∏‰∏ªÁ∂≤Ê†ºÁ∑ö...";
+                                    Text[ arabic ] = "‘»ﬂ… —∆Ì”Ì… ··„ÕÊ— ⁄...";
+                                    Text[ greek ] = " ˝ÒÈÔ Î›„Ï· ‹ÓÔÌ· ~Z...";
+                                    Text[ korean ] = "ZÏ∂ï Ï£º ÎààÍ∏àÏÑ†(~Z)...";
+                                    Text[ turkish ] = "~Z Ekseni Ana Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "Graella principal de l'eix ~Z...";
+                                    Text[ finnish ] = "~Z-akselin p‰‰ruudukko...";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏´‡∏•‡∏±‡∏Å‡πÅ‡∏Å‡∏ô~Z ...";
+                                    Text[ czech ] = "Hlavn√≠ m≈ô√≠≈æka osy Z";
+                                    Text[ hebrew ] = "~Z-Achsenhauptgitter...";
+                                    Text[ hindi ] = "~Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§™‡•ç‡§∞‡§ß‡§æ‡§® ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_Y_HELP ;
+                                    HelpID = SID_DIAGRAM_GRID_Y_HELP ;
+                                    Text = "X-A~chsenhilfsgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~X-Axis..." ;
+                                    Text [ english_us ] = "X Axis ~Minor Grid..." ;
+                                    Text [ dutch ] = "Hulpraster ~X-as..." ;
+                                    Text [ italian ] = "Griglia ausiliaria a~sse X..." ;
+                                    Text [ spanish ] = "CuadrÌcula auxiliar del eje ~X..." ;
+                                    Text [ french ] = "Grille auxiliaire de l'axe ~X..." ;
+                                    Text [ swedish ] = "X-axels~tˆdgitter..." ;
+                                    Text [ danish ] = "X-akse underordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "~Y-Achsenhilfsgitter..." ;
+                                    Text [ portuguese ] = "Grelha auxiliar do eixo ~X..." ;
+                                    Text[ chinese_simplified ] = "X ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫ø(~M)...";
+                                    Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ‡ ÓÒË X...";
+                                    Text[ polish ] = "Pomocnicza siatka osi X...";
+                                    Text[ japanese ] = "XËª∏Ë£úÂä©ÁõÆÁõõÁ∑ö(~M)...";
+                                    Text[ chinese_traditional ] = "X Ëª∏Ê¨°Á∂≤Ê†ºÁ∑ö(~M)...";
+                                    Text[ arabic ] = "‘»ﬂ… „”«⁄œ… ··„ÕÊ— ”...";
+                                    Text[ greek ] = "¬ÔÁ~ËÁÙÈÍ¸ Î›„Ï· ÙÔı ‹ÓÔÌ· ◊...";
+                                    Text[ korean ] = "XÏ∂ï Î≥¥Ï°∞ ÎààÍ∏àÏÑ†(~M)...";
+                                    Text[ turkish ] = "X Ekseni ~K¸Á¸k Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~X...";
+                                    Text[ finnish ] = "X-akselin toissijainen ruudukko...";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á~‡∏£‡∏≠‡∏á‡πÅ‡∏Å‡∏ô X ...";
+                                    Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy X...";
+                                    Text[ hebrew ] = "X-A~chsenhilfsgitter...";
+                                    Text[ hindi ] = "X ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_X_HELP ;
+                                    HelpID = SID_DIAGRAM_GRID_X_HELP ;
+                                    Text = "Y-Ac~hsenhilfsgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~Y-Axis..." ;
+                                    Text [ english_us ] = "Y Axis Minor ~Grid..." ;
+                                    Text [ italian ] = "Griglia ausiliaria ~asse Y..." ;
+                                    Text [ spanish ] = "CuadrÌcula auxiliar del eje ~Y..." ;
+                                    Text [ french ] = "Grille auxiliaire de l'axe ~Y..." ;
+                                    Text [ dutch ] = "Hulpraster ~Y-as..." ;
+                                    Text [ swedish ] = "Y-axel~stˆdgitter..." ;
+                                    Text [ danish ] = "Y-akse underordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "~X-Achsenhilfsgitter..." ;
+                                    Text [ portuguese ] = "Grelha auxiliar do eixo ~Y..." ;
+                                    Text[ chinese_simplified ] = "Y ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫ø(~G)...";
+                                    Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ‡ ÓÒË Y...";
+                                    Text[ polish ] = "Pomocnicza siatka osi Y...";
+                                    Text[ japanese ] = "YËª∏Ë£úÂä©ÁõÆÁõõÁ∑ö(~G)...";
+                                    Text[ chinese_traditional ] = "Y Ëª∏Ê¨°Á∂≤Ê†ºÁ∑ö(~G)...";
+                                    Text[ arabic ] = "‘»ﬂ… „”«⁄œ… ··„ÕÊ— ’...";
+                                    Text[ greek ] = "¬ÔÁ~ËÁÙÈÍ¸ Î›„Ï· ÙÔı ‹ÓÔÌ· Y...";
+                                    Text[ korean ] = "YÏ∂ï Î≥¥Ï°∞ ÎààÍ∏àÏÑ†(~G)...";
+                                    Text[ turkish ] = "Y Ekseni K¸Á¸k ~Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~Y...";
+                                    Text[ finnish ] = "Y-akselin toissijainen ruudukko...";
+                                    Text[ thai ] = "‡πÄ~‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏£‡∏≠‡∏á‡πÅ‡∏Å‡∏ô Y...";
+                                    Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy Y...";
+                                    Text[ hebrew ] = "Y-Ac~hsenhilfsgitter...";
+                                    Text[ hindi ] = "Y ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_Z_HELP ;
+                                    HelpID = SID_DIAGRAM_GRID_Z_HELP ;
+                                    Text = "Z-Ach~senhilfsgitter..." ;
+                                    Text [ ENGLISH ] = "Grid on ~Z-Axis..." ;
+                                    Text [ english_us ] = "Z Ax~is Minor Grid..." ;
+                                    Text [ italian ] = "Griglia ausiliaria ass~e Z..." ;
+                                    Text [ spanish ] = "CuadrÌcula auxiliar del eje ~Z..." ;
+                                    Text [ french ] = "Grille auxiliaire de l'axe ~Z..." ;
+                                    Text [ dutch ] = "Hulpraster ~Z-as..." ;
+                                    Text [ swedish ] = "Z-axelstˆ~dgitter..." ;
+                                    Text [ danish ] = "Z-akse underordnet gitter..." ;
+                                    Text [ portuguese_brazilian ] = "~Z-Achsenhilfsgitter..." ;
+                                    Text [ portuguese ] = "Grelha a~uxiliar do eixo Z..." ;
+                                    Text[ chinese_simplified ] = "Z ËΩ¥Ê¨°ÁΩëÊ†ºÁ∫ø(~I)...";
+                                    Text[ russian ] = "œÓÏÂÊÛÚÓ˜Ì‡ˇ ÒÂÚÍ‡ ÓÒË Z...";
+                                    Text[ polish ] = "Pomocnicza siatka osi Z...";
+                                    Text[ japanese ] = "ZËª∏Ë£úÂä©ÁõÆÁõõÁ∑ö(~I)...";
+                                    Text[ chinese_traditional ] = "Z Ëª∏Ê¨°Á∂≤Ê†ºÁ∑ö(~I)...";
+                                    Text[ arabic ] = "‘»ﬂ… „”«⁄œ… ··„ÕÊ— ⁄...";
+                                    Text[ greek ] = "¬ÔÁËÁÙÈÍ¸ Î›„Ï· ÙÔı ‹ÓÔÌ· Z...";
+                                    Text[ korean ] = "ZÏ∂ï Î≥¥Ï°∞ ÎààÍ∏àÏÑ†(~I)...";
+                                    Text[ turkish ] = "Z Ek~seni K¸Á¸k Izgaras˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "CuadrÌcula auxiliar de l'eix ~Z...";
+                                    Text[ finnish ] = "Z Ak~selin toissijainen ruudukko...";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡∏£‡∏≠‡∏á‡πÅ‡∏Å~‡∏ô Z ...";
+                                    Text[ czech ] = "Vedlej≈°√≠ m≈ô√≠≈æka osy Z...";
+                                    Text[ hebrew ] = "Z-Ach~senhilfsgitter...";
+                                    Text[ hindi ] = "Z ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ~‡§õ‡•ã‡§ü‡§æ ‡§ú‡§æ‡§≤...";
+                                };
+                                MenuItem
+                                {
+                                    Identifier = SID_DIAGRAM_GRID_ALL ;
+                                    HelpID = SID_DIAGRAM_GRID_ALL ;
+                                    Text = "~Alle Achsengitter..." ;
+                                    Text [ ENGLISH ] = "~All grids..." ;
+                                    Text [ english_us ] = "~All Axis Grids..." ;
+                                    Text [ dutch ] = "~Alle asrasters..." ;
+                                    Text [ italian ] = "Tutte le griglie degli assi..." ;
+                                    Text [ spanish ] = "~Todas las cuadrÌculas de ejes..." ;
+                                    Text [ french ] = "~Toutes les grilles d'axes..." ;
+                                    Text [ swedish ] = "~Alla axelgitter..." ;
+                                    Text [ danish ] = "Alle aksegitre..." ;
+                                    Text [ portuguese_brazilian ] = "~Todas as grades dos eixos..." ;
+                                    Text [ portuguese ] = "~Todas as grelhas dos eixos..." ;
+                                    Text[ chinese_simplified ] = "ÂÖ®ÈÉ®ÁöÑËΩ¥ÁΩëÊ†ºÁ∫ø(~A)...";
+                                    Text[ russian ] = "¬ÒÂ ÒÂÚÍË ÓÒË...";
+                                    Text[ polish ] = "Wszystkie siatki osi...";
+                                    Text[ japanese ] = "„Åô„Åπ„Å¶„ÅÆËª∏ÁõÆÁõõÁ∑ö(~A)...";
+                                    Text[ chinese_traditional ] = "ÊâÄÊúâÁöÑËª∏Á∂≤Ê†ºÁ∑ö(~A)...";
+                                    Text[ arabic ] = "ﬂ· ‘»ﬂ«  «·„Õ«Ê—...";
+                                    Text[ greek ] = "ºÎ~· Ù· Î›„Ï·Ù· ·Ó¸Ì˘Ì...";
+                                    Text[ korean ] = "Î™®Îì† Ï∂ï ÎààÍ∏àÏÑ†(~A)...";
+                                    Text[ turkish ] = "~T¸m Eksen Izgaralar˝...";
+                                    Text[ language_user1 ] = " ";
+                                    Text[ catalan ] = "~Totes les graelles de l'eix...";
+                                    Text[ finnish ] = "~Kaikki akseliruudukot...";
+                                    Text[ thai ] = "‡πÄ‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á‡πÅ‡∏Å‡∏ô~‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î...";
+                                    Text[ czech ] = "M≈ô√≠≈æky v≈°ech os";
+                                    Text[ hebrew ] = "~Alle Achsengitter...";
+                                    Text[ hindi ] = "~‡§∏‡§¨ ‡§Ö‡§ï‡•ç‡§∑ ‡§ï‡§æ ‡§ú‡§æ‡§≤..";
+                                };
+                            };
+                        };
+                        Text[ chinese_simplified ] = "ÁΩëÊ†ºÁ∫ø(~G)";
+                        Text[ russian ] = "—ÂÚÍ‡";
+                        Text[ polish ] = "Siatka";
+                        Text[ japanese ] = "ÁõÆÁõõÁ∑ö(~G)";
+                        Text[ chinese_traditional ] = "Á∂≤Ê†ºÁ∑ö(~G)";
+                        Text[ arabic ] = "‘»ﬂ…";
+                        Text[ greek ] = "–Î›~„Ï·";
+                        Text[ korean ] = "ÎààÍ∏àÏÑ†(~G)";
+                        Text[ turkish ] = "~Izgara";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Graella";
+                        Text[ thai ] = "‡πÄ~‡∏™‡πâ‡∏ô‡∏ï‡∏≤‡∏£‡∏≤‡∏á";
+                        Text[ czech ] = "M≈ô√≠≈æka";
+                        Text[ hebrew ] = "~Gitter";
+                        Text[ hindi ] = "~‡§ú‡§æ‡§≤";
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_WALL ;
+                        HelpID = SID_DIAGRAM_WALL ;
+                        Text = "Diagramm~wand..." ;
+                        Text [ ENGLISH ] = "Diagram ~wall..." ;
+                        Text [ norwegian ] = "Diagram ~vegg..." ;
+                        Text [ italian ] = "~Pareti del diagramma..." ;
+                        Text [ portuguese_brazilian ] = "Diagram ~wall..." ;
+                        Text [ portuguese ] = "~Parede do gr·fico..." ;
+                        Text [ finnish ] = "Kaavio~sein‰..." ;
+                        Text [ danish ] = "DiagramvÊg..." ;
+                        Text [ french ] = "P~aroi du diagramme..." ;
+                        Text [ swedish ] = "Diagram~v‰gg..." ;
+                        Text [ dutch ] = "Diagram~wand..." ;
+                        Text [ spanish ] = "~Pared del diagrama..." ;
+                        Text [ english_us ] = "Chart ~Wall..." ;
+                        Text[ chinese_simplified ] = "ÂõæË°®ËÉåÊôØÂ¢ô(~W)...";
+                        Text[ russian ] = "—ÚÂÌ‡ ‰Ë‡„‡ÏÏ˚...";
+                        Text[ polish ] = "åciana wykresu...";
+                        Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÂ£ÅÈù¢(~W)...";
+                        Text[ chinese_traditional ] = "ÂúñË°®ËÉåÊôØÁâÜ(~W)...";
+                        Text[ arabic ] = "Õ«∆ÿ «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "‘Ôﬂ˜Ô~Ú ‰È·„Ò‹ÏÏ·ÙÔÚ...";
+                        Text[ korean ] = "Ï∞®Ìä∏ ÏòÜÎ©¥(~W)...";
+                        Text[ turkish ] = "Harita ~Alan˝...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~Pla lateral del diagrama...";
+                        Text[ thai ] = "~‡∏ú‡∏ô‡∏±‡∏á‡πÅ‡∏ú‡∏ô‡∏†‡∏π‡∏°‡∏¥...";
+                        Text[ czech ] = "Stƒõna grafu...";
+                        Text[ hebrew ] = "Diagramm~wand...";
+                        Text[ hindi ] = "‡§ö‡§æ‡§∞‡•ç‡§ü ~‡§µ‡•â‡§≤...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_FLOOR ;
+                        HelpID = SID_DIAGRAM_FLOOR ;
+                        Text = "Diagramm~boden..." ;
+                        Text [ ENGLISH ] = "Diagram ~floor..." ;
+                        Text [ norwegian ] = "Diagram ~gulv..." ;
+                        Text [ italian ] = "~Pavimento del diagramma..." ;
+                        Text [ portuguese_brazilian ] = "Diagram ~floor..." ;
+                        Text [ portuguese ] = "~Base do gr·fico..." ;
+                        Text [ finnish ] = "~Kaavion perusta" ;
+                        Text [ danish ] = "Diagramgulv..." ;
+                        Text [ french ] = "P~lancher du diagramme..." ;
+                        Text [ swedish ] = "D~iagramgolv..." ;
+                        Text [ dutch ] = "Diagram~bodem..." ;
+                        Text [ spanish ] = "~Base del diagrama..." ;
+                        Text [ english_us ] = "~Chart Floor..." ;
+                        Text[ chinese_simplified ] = "ÂõæË°®Âü∫Â∫ï(~C)...";
+                        Text[ russian ] = "ŒÒÌÓ‚‡ÌËÂ ‰Ë‡„‡ÏÏ˚...";
+                        Text[ polish ] = "Pod≥oøe wykresu...";
+                        Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÂ∫äÈù¢(~C)...";
+                        Text[ chinese_traditional ] = "Â∫ßÊ®ôËª∏(~C)...";
+                        Text[ arabic ] = "√—÷Ì… «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "ƒ‹~Â‰Ô ‰È·„Ò‹ÏÏ·ÙÔÚ...";
+                        Text[ korean ] = "Ï∞®Ìä∏ Î∞ëÎ©¥(~C)...";
+                        Text[ turkish ] = "~Karakter Alt˝...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Base del ~diagrama...";
+                        Text[ thai ] = "‡∏û‡∏∑‡πâ‡∏ô‡πÅ‡∏ú~‡∏ô‡∏†‡∏π‡∏°‡∏¥...";
+                        Text[ czech ] = "Pata grafu...";
+                        Text[ hebrew ] = "Diagramm~boden...";
+                        Text[ hindi ] = "~‡§ö‡§æ‡§∞‡•ç‡§ü‡•ç ‡§´‡§º‡•ã‡§∞‡•ç...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_AREA ;
+                        HelpID = SID_DIAGRAM_AREA ;
+                        Text = "Diagram~mfl‰che..." ;
+                        Text [ ENGLISH ] = "Diagram a~rea..." ;
+                        Text [ norwegian ] = "Diagram o~mrÂde..." ;
+                        Text [ italian ] = "~Area del diagramma..." ;
+                        Text [ portuguese_brazilian ] = "?~rea do diagrama..." ;
+                        Text [ portuguese ] = "¡~rea do gr·fico..." ;
+                        Text [ finnish ] = "Kaa~vioalue" ;
+                        Text [ danish ] = "DiagramomrÂde..." ;
+                        Text [ french ] = "~ArriËre-plan du diagramme..." ;
+                        Text [ swedish ] = "Diagra~momrÂde..." ;
+                        Text [ dutch ] = "Diagram~oppervlak..." ;
+                        Text [ spanish ] = "~Superficie del diagrama..." ;
+                        Text [ english_us ] = "C~hart Area..." ;
+                        Text[ chinese_simplified ] = "ÂõæË°®Âπ≥Èù¢(~H)...";
+                        Text[ russian ] = "Œ·Î‡ÒÚ¸ ‰Ë‡„‡ÏÏ˚...";
+                        Text[ polish ] = "Obszar wykresu...";
+                        Text[ japanese ] = "„Ç∞„É©„Éï„Ç®„É™„Ç¢(~H)...";
+                        Text[ chinese_traditional ] = "ÂúñË°®Âπ≥Èù¢(~H)...";
+                        Text[ arabic ] = "„”«Õ… «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "–ÂÒÈÔ˜ﬁ ‰È·„Ò‹~ÏÏ·ÙÔÚ...";
+                        Text[ korean ] = "Ï∞®Ìä∏ ÏòÅÏó≠(~H)...";
+                        Text[ turkish ] = "K~arakter Alan˝...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "~¿rea de diagrama...";
+                        Text[ thai ] = "‡∏û‡∏∑‡πâ‡∏ô‡∏ó‡∏µ‡πà‡πÅ‡∏ú‡∏ô~‡∏†‡∏π‡∏°‡∏¥...";
+                        Text[ czech ] = "Plocha grafu...";
+                        Text[ hebrew ] = "Diagram~mfl√§che...";
+                        Text[ hindi ] = "‡§ö‡§æ~‡§∞‡•ç‡§ü ‡§µ‡§ø‡§∏‡•ç‡§§‡•Ä‡§∞‡•ç‡§£...";
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_DIAGRAM_TYPE ;
+                        HelpID = SID_DIAGRAM_TYPE ;
+                        Text = "~Diagrammtyp..." ;
+                        Text [ ENGLISH ] = "~Diagram type..." ;
+                        Text [ norwegian ] = "~Diagram type..." ;
+                        Text [ italian ] = "Ti~po di diagramma..." ;
+                        Text [ portuguese_brazilian ] = "~Tipo de diagrama..." ;
+                        Text [ portuguese ] = "~Tipo de gr·fico..." ;
+                        Text [ finnish ] = "Kaa~viotyyppi..." ;
+                        Text [ danish ] = "Diagramtype..." ;
+                        Text [ french ] = "Type de ~diagramme..." ;
+                        Text [ swedish ] = "~Diagramtyp..." ;
+                        Text [ dutch ] = "Diagram~type..." ;
+                        Text [ spanish ] = "~Tipo de diagrama..." ;
+                        Text [ english_us ] = "Cha~rt Type..." ;
+                        Text[ chinese_simplified ] = "ÂõæË°®Á±ªÂûã(~R)...";
+                        Text[ russian ] = "“ËÔ ‰Ë‡„‡ÏÏ˚...";
+                        Text[ polish ] = "Typ wykresu...";
+                        Text[ japanese ] = "„Ç∞„É©„Éï„ÅÆÁ®ÆÈ°û(~R)...";
+                        Text[ chinese_traditional ] = "ÂúñË°®È°ûÂûã(~R)...";
+                        Text[ arabic ] = "‰Ê⁄ «·—”„ «·»Ì«‰Ì...";
+                        Text[ greek ] = "‘˝ÔÚ ~‰È·„Ò‹ÏÏ·ÙÔÚ...";
+                        Text[ korean ] = "Ï∞®Ìä∏ Ïú†Ìòï(~R)...";
+                        Text[ turkish ] = "Ka~rakter T¸r¸...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Tipus de diag~rama...";
+                        Text[ thai ] = "‡∏ä‡∏ô‡∏¥‡∏î‡πÅ‡∏ú‡∏ô‡∏†‡∏π~‡∏°‡∏¥...";
+                        Text[ czech ] = "Typ grafu...";
+                        Text[ hebrew ] = "~Diagrammtyp...";
+                        Text[ hindi ] = "‡§ö‡§æ~‡§∞‡•ç‡§ü ‡§µ‡§∞‡•ç‡§ó....";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_AUTOFORMAT ;
+                        HelpID = HID_SCH_CHART_AUTO_FORMAT ;
+                        /* ### ACHTUNG: Neuer Text in Resource? Auto~Format... : Auto~format... */
+                        /* ### ACHTUNG: Neuer Text in Resource? Auto~Format... : Auto~format... */
+                        Text = "Auto~Format..." ;
+                        Text [ ENGLISH ] = "Auto~Format..." ;
+                        Text [ norwegian ] = "Auto~Format..." ;
+                        Text [ italian ] = "~Formattazione automatica..." ;
+                        Text [ portuguese_brazilian ] = "Auto ~formata??o..." ;
+                        Text [ portuguese ] = "Auto~Formato..." ;
+                        Text [ finnish ] = "~Automaattinen muotoilu" ;
+                        Text [ danish ] = "AutoFormat..." ;
+                        Text [ french ] = "Auto~Format..." ;
+                        Text [ swedish ] = "Auto~Format..." ;
+                        Text [ dutch ] = "A~utoOpmaak..." ;
+                        Text [ spanish ] = "~Formateado autom·tico..." ;
+                        Text [ english_us ] = "Auto~Format..." ;
+                        Text[ chinese_simplified ] = "Ëá™Âä®Ê†ºÂºè(~F)...";
+                        Text[ russian ] = "¿‚ÚÓÙÓÏ‡Ú...";
+                        Text[ polish ] = "Autoformat...";
+                        Text[ japanese ] = "„Ç™„Éº„Éà„Éï„Ç©„Éº„Éû„ÉÉ„Éà(~F)...";
+                        Text[ chinese_traditional ] = "Ëá™ÂãïÊ†ºÂºè(~F)...";
+                        Text[ arabic ] = " ‰”Ìﬁ  ·ﬁ«∆Ì...";
+                        Text[ greek ] = "¡ıÙÔÃÔÒ~ˆﬁ...";
+                        Text[ korean ] = "ÏûêÎèô ÏÑúÏãù(~F)...";
+                        Text[ turkish ] = "Otomat˝k ~BiÁim...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "A~utoFormat...";
+                        Text[ thai ] = "~‡∏£‡∏π‡∏õ‡πÅ‡∏ö‡∏ö‡∏≠‡∏±‡∏ï‡πÇ‡∏ô‡∏°‡∏±‡∏ï‡∏¥...";
+                        Text[ czech ] = "Auto~Format...";
+                        Text[ hebrew ] = "‚ÄÆ◊¢◊ô◊¶◊ï◊ë ◊ê◊ï◊ò◊ï◊û◊ò◊ô...‚Ä¨";
+                        Text[ hindi ] = "‡§∏‡•ç‡§µ‡§ö‡§æ‡§≤‡§ø‡§§ ~‡§¢‡§Ç‡§ó ‡§∏‡•á ‡§∞‡§ö‡§®‡§æ...";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_3D_WIN ;
+                        HelpID = SID_3D_WIN ;
+                        Text = "~3D-Effekte" ;
+                        Text [ ENGLISH ] = "~3-D Effects" ;
+                        Text [ english_us ] = "~3D Effects" ;
+                        Text [ portuguese_brazilian ] = "3D-~Effekte" ;
+                        Text [ swedish ] = "~3D-effekter" ;
+                        Text [ danish ] = "3D-effekter" ;
+                        Text [ italian ] = "Effetti ~3D" ;
+                        Text [ spanish ] = "~Efectos 3D" ;
+                        Text [ french ] = "~Effets 3D" ;
+                        Text [ dutch ] = "3D-~effecten" ;
+                        Text [ portuguese ] = "~Efeitos-3D" ;
+                        Text[ chinese_simplified ] = "~3 Áª¥ÊïàÊûú";
+                        Text[ russian ] = "›ÙÙÂÍÚ˚ 3-Ã";
+                        Text[ polish ] = "Efekty 3-W";
+                        Text[ japanese ] = "3D ÂäπÊûú(~3)";
+                        Text[ chinese_traditional ] = "~3D ÊïàÊûú";
+                        Text[ arabic ] = " √ÀÌ—«  À·«ÀÌ… «·√»⁄«œ";
+                        Text[ greek ] = "≈ˆ› ~3ƒ";
+                        Text[ korean ] = "3Ôº§ Ìö®Í≥º";
+                        Text[ turkish ] = "~3D Efektleri";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Efectes ~3D";
+                        Text[ finnish ] = "~Kolmiulotteiset tehosteet";
+                        Text[ thai ] = "‡∏•‡∏±‡∏Å‡∏©‡∏ì‡∏∞‡∏û‡∏¥‡πÄ‡∏®‡∏©~3‡∏°‡∏¥‡∏ï‡∏¥";
+                        Text[ czech ] = "3D efekty";
+                        Text[ hebrew ] = "~3D-Effekte";
+                        Text[ hindi ] = "~3D ‡§™‡•ç‡§∞‡§≠‡§æ‡§µ";
+                    };
+                    MenuItem
+                    {
+                        Identifier = SID_3D_VIEW ;
+                        HelpID = SID_3D_VIEW ;
+                        Text = "3D-An~sicht..." ;
+                        Text [ ENGLISH ] = "~3D view..." ;
+                        Text [ norwegian ] = "~vis 3D..." ;
+                        Text [ italian ] = "~Vista 3D..." ;
+                        Text [ portuguese_brazilian ] = "~Ver 3D..." ;
+                        Text [ portuguese ] = "~Vista 3D..." ;
+                        Text [ finnish ] = "Kolmi~ulotteinen n‰kym‰..." ;
+                        Text [ danish ] = "3D-visning..." ;
+                        Text [ french ] = "Affichage ~3D..." ;
+                        Text [ swedish ] = "3D-v~y..." ;
+                        Text [ dutch ] = "~3D-weergave..." ;
+                        Text [ spanish ] = "~Ver en 3D..." ;
+                        Text [ english_us ] = "3~D View..." ;
+                        Text[ chinese_simplified ] = "~3 Áª¥ËßÜÂõæ...";
+                        Text[ russian ] = "¬Ë‰ 3-Ã...";
+                        Text[ polish ] = "Widok 3-W...";
+                        Text[ japanese ] = "3D Ë°®Á§∫...(~D)";
+                        Text[ chinese_traditional ] = "~3D Ê™¢Ë¶ñ...";
+                        Text[ arabic ] = "⁄—÷ À·«ÀÌ «·√»⁄«œ...";
+                        Text[ greek ] = "–ÒÔ~‚ÔÎﬁ 3ƒ...";
+                        Text[ korean ] = "3Ôº§ Î≥¥Í∏∞(~D)...";
+                        Text[ turkish ] = "3~B Gˆr¸n¸m...";
+                        Text[ language_user1 ] = " ";
+                        Text[ catalan ] = "Vista 3~D...";
+                        Text[ thai ] = "‡∏°‡∏∏‡∏°‡∏°‡∏≠‡∏á 3~‡∏°‡∏¥‡∏ï‡∏¥...";
+                        Text[ czech ] = "3D pohled";
+                        Text[ hebrew ] = "3D-An~sicht...";
+                        Text[ hindi ] = "3~D ‡§¶‡•É‡§∂‡•ç‡§Ø";
+                    };
+                    MenuItem
+                    {
+                        Separator = TRUE ;
+                    };
+                    MN_ROW_POSITION;
+                };
+                Text[ russian ] = "‘ÓÏ‡Ú";
+    Text[ polish ] = "Format";
+    Text[ japanese ] = "èëéÆ";
+    Text[ chinese_simplified ] = "∏Ò Ω(~O)";
+};
+            Text[ chinese_simplified ] = "Ê†ºÂºè(~O)";
+            Text[ russian ] = "‘Ó~Ï‡Ú";
+            Text[ polish ] = "Format";
+            Text[ japanese ] = "Êõ∏Âºè(~O)";
+            Text[ chinese_traditional ] = "Ê†ºÂºè(~O)";
+            Text[ arabic ] = " ‰”~Ìﬁ";
+            Text[ greek ] = "ÃÔÒ~ˆÔÔﬂÁÛÁ";
+            Text[ korean ] = "ÏÑúÏãù(~O)";
+            Text[ turkish ] = "~BiÁim";
+            Text[ catalan ] = "F~ormata";
+            Text[ thai ] = "‡∏£‡∏π~‡∏õ‡πÅ‡∏ö‡∏ö";
+            Text[ czech ] = "Form√°t";
+            Text[ hebrew ] = "‚ÄÆ◊¢◊ô◊¶◊ï◊ë‚Ä¨";
+            Text[ hindi ] = "~‡§∞‡§ö‡§®‡§æ";
+        };
+        MenuItem
+        {
+            Identifier = WORKAROUND_25 ;
+            HelpID = 25 ;
+            Text = "E~xtras" ;
+            Text [ ENGLISH ] = "T~ools" ;
+            Text [ norwegian ] = "Verk~t¯y" ;
+            Text [ italian ] = "~Strumenti" ;
+            Text [ portuguese_brazilian ] = "F~erramentas" ;
+            Text [ portuguese ] = "~Ferramentas" ;
+            Text [ french ] = "~Outils" ;
+            Text [ dutch ] = "E~xtra" ;
+            Text [ spanish ] = "~Herramientas" ;
+            Text [ danish ] = "Fun~ktioner" ;
+            Text [ swedish ] = "~Verktyg" ;
+            Text [ finnish ] = "~Tyˆkalut" ;
+            Text [ english_us ] = "~Tools" ;
+            SubMenu = Menu
+            {
+                ItemList =
+                {
+                    MenuItem
+                    {
+                        ITEM_TOOLS_CONFIG
+                    };
+                    ITEM_MN_OPTIONS
+                    /*
+                    MenuItem
+                    {
+                        Identifier = SID_OPTIONS ;
+                        HelpID = SID_OPTIONS ;
+                        Text = "Optionen..." ;
+                        Text [ ENGLISH ] = "Options..." ;
+                        Text [ norwegian ] = "Options..." ;
+                        Text [ italian ] = "Opzioni..." ;
+                        Text [ portuguese_brazilian ] = "OpÁıes..." ;
+                        Text [ portuguese ] = "OpÁıes..." ;
+                        Text [ finnish ] = "M‰‰ritykset..." ;
+                        Text [ danish ] = "Indstillinger..." ;
+                        Text [ french ] = "Options..." ;
+                        Text [ swedish ] = "Alternativ..." ;
+                        Text [ dutch ] = "Selectie..." ;
+                        Text [ spanish ] = "Opciones..." ;
+                        Text [ english_us ] = "Options..." ;
+                    };
+                                        */
+                };
+            };
+            Text[ chinese_simplified ] = "Â∑•ÂÖ∑(~T)";
+            Text[ russian ] = "~—Â‚ËÒ";
+            Text[ polish ] = "~NarzÍdzia";
+            Text[ japanese ] = "„ÉÑ„Éº„É´(~T)";
+            Text[ chinese_traditional ] = "Â∑•ÂÖ∑(~T)";
+            Text[ arabic ] = "√~œÊ« ";
+            Text[ greek ] = "≈~Ò„·ÎÂﬂ·";
+            Text[ korean ] = "ÎèÑÍµ¨(~T)";
+            Text[ turkish ] = "~AraÁlar";
+            Text[ language_user1 ] = " ";
+            Text[ catalan ] = "Ei~nes";
+            Text[ thai ] = "‡πÄ~‡∏Ñ‡∏£‡∏∑‡πà‡∏≠‡∏á‡∏°‡∏∑‡∏≠";
+            Text[ czech ] = "N√°stroje";
+            Text[ hebrew ] = "‚ÄÆ◊õ◊ú◊ô◊ù‚Ä¨";
+            Text[ hindi ] = "~‡§î‡§ú‡§º‡§æ‡§∞";
+        };
+        ITEM_WINDOW_MENU
+        ITEM_HELP_MENU
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

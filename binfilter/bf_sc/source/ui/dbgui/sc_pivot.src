@@ -1,0 +1,1046 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sc_pivot.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:16 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+
+#include "pivot.hrc"
+
+//STRIP001 ModelessDialog RID_SCDLG_PIVOT_LAYOUT
+//STRIP001 {
+//STRIP001  OutputSize = TRUE ;
+//STRIP001  HelpId = SID_OPENDLG_PIVOTTABLE ;
+//STRIP001     Size = MAP_APPFONT ( 336 , 164 ) ;
+//STRIP001  Hide = TRUE ;
+//STRIP001  SVLook = TRUE ;
+//STRIP001  Moveable = TRUE ;
+//STRIP001  Closeable = FALSE ;
+//STRIP001  Text = "Datenpilot" ;
+//STRIP001  Text [ ENGLISH ] = "Data Pilot" ;
+//STRIP001  Text [ norwegian ] = "Data Pilot" ;
+//STRIP001  Text [ italian ] = "DataPilot" ;
+//STRIP001  Text [ portuguese_brazilian ] = "Tabela Din‚mica" ;
+//STRIP001  Text [ portuguese ] = "Piloto de dados" ;
+//STRIP001  Text [ english_us ] = "DataPilot" ;
+//STRIP001  Text[ danish ] = "DataPilot";
+//STRIP001  Text[ french ] = "Pilote de donnÈes";
+//STRIP001  Text[ swedish ] = "Datapilot";
+//STRIP001  Text[ dutch ] = "DataPiloot";
+//STRIP001  Text[ spanish ] = "Piloto de datos";
+//STRIP001  Text[ chinese_simplified ] = "Êï∞ÊçÆÂä©ÁêÜ";
+//STRIP001  Text[ russian ] = "—‚Ó‰Ì‡ˇ Ú‡·ÎËˆ?;
+//STRIP001  Text[ polish ] = "Pilot danych";
+//STRIP001  Text[ japanese ] = "„Éá„Éº„Çø„Éë„Ç§„É≠„ÉÉ„Éà";
+//STRIP001  Text[ chinese_traditional ] = "Ë≥áÊñôÂä©ÁêÜ";
+//STRIP001  Text[ arabic ] = "„—‘œ «·»Ì«‰« ";
+//STRIP001  Text [ spanish ] = "Piloto de datos" ;
+//STRIP001  Text [ french ] = "Pilote de donnÈes" ;
+//STRIP001  Text [ dutch ] = "DataPiloot" ;
+//STRIP001  Text [ swedish ] = "Datapilot" ;
+//STRIP001  Text [ danish ] = "DataPilot" ;
+//STRIP001  Text[ greek ] = "–ÈÎ¸ÙÔ?‰Â‰ÔÏ›Ì˘?;
+//STRIP001  Text[ korean ] = "Îç∞Ïù¥ÌÑ?ÌååÏùºÎü?;
+//STRIP001  Text[ turkish ] = "Veri pilotu";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "DataPilot";
+//STRIP001  Text[ finnish ] = "Tietojen ohjaus";
+//STRIP001
+//STRIP001     FixedText FT_COL
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 231 , 142 ) ;
+//STRIP001         Size = MAP_APPFONT ( 37 , 8 ) ;
+//STRIP001         Text = "Spalte" ;
+//STRIP001         Text[ ENGLISH ] = "Column" ;
+//STRIP001         Text[ english_us ] = "Column" ;
+//STRIP001      Text[ portuguese ] = "Coluna";
+//STRIP001      Text[ russian ] = " ÓÎÓÌÍ?;
+//STRIP001      Text[ greek ] = "”ÙﬁÎ?;
+//STRIP001      Text[ dutch ] = "Kolom";
+//STRIP001      Text[ french ] = "Colonne";
+//STRIP001      Text[ spanish ] = "Columna";
+//STRIP001      Text[ finnish ] = "Sarake";
+//STRIP001      Text[ italian ] = "Colonna";
+//STRIP001      Text[ danish ] = "Kolonne";
+//STRIP001      Text[ swedish ] = "Kolumn";
+//STRIP001      Text[ polish ] = "Kolumna";
+//STRIP001      Text[ portuguese_brazilian ] = "Column";
+//STRIP001      Text[ japanese ] = "Âà?;
+//STRIP001      Text[ korean ] = "Ïó?;
+//STRIP001      Text[ chinese_simplified ] = "Âà?;
+//STRIP001      Text[ chinese_traditional ] = "Ê¨?;
+//STRIP001      Text[ turkish ] = "S¸tun";
+//STRIP001      Text[ arabic ] = "⁄„Êœ";
+//STRIP001      Text[ catalan ] = "Column";
+//STRIP001      Text[ thai ] = "‡∏Ñ‡∏≠‡∏•‡∏±‡∏°‡∏ô‡π?;
+//STRIP001      Text[ czech ] = "Sloupec";
+//STRIP001      Text[ hebrew ] = "Spalte";
+//STRIP001      Text[ hindi ] = "Column";
+//STRIP001  };
+//STRIP001     Control WND_COL
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 44 , 14 ) ;
+//STRIP001         Size = MAP_APPFONT ( 144 , 24 ) ;
+//STRIP001         TabStop = TRUE ;
+//STRIP001  };
+//STRIP001     FixedText FT_ROW
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 194 , 150 ) ;
+//STRIP001         Size = MAP_APPFONT ( 37 , 8 ) ;
+//STRIP001         Text = "Zeile" ;
+//STRIP001         Text[ ENGLISH ] = "Row" ;
+//STRIP001         Text[ english_us ] = "Row" ;
+//STRIP001      Text[ portuguese ] = "Linha";
+//STRIP001      Text[ russian ] = "—“–Œ ¿";
+//STRIP001      Text[ greek ] = "√Ò·ÏÏﬁ";
+//STRIP001      Text[ dutch ] = "Rij";
+//STRIP001      Text[ french ] = "Ligne";
+//STRIP001      Text[ spanish ] = "Fila";
+//STRIP001      Text[ finnish ] = "Rivit";
+//STRIP001      Text[ italian ] = "Riga";
+//STRIP001      Text[ danish ] = "RÊkke";
+//STRIP001      Text[ swedish ] = "Rad";
+//STRIP001      Text[ polish ] = "Wiersz";
+//STRIP001      Text[ portuguese_brazilian ] = "Row";
+//STRIP001      Text[ japanese ] = "Ë°?;
+//STRIP001      Text[ korean ] = "Ìñ?;
+//STRIP001      Text[ chinese_simplified ] = "Ë°?;
+//STRIP001      Text[ chinese_traditional ] = "Âà?;
+//STRIP001      Text[ turkish ] = "Sat˝r";
+//STRIP001      Text[ arabic ] = "’›";
+//STRIP001      Text[ catalan ] = "fila";
+//STRIP001      Text[ thai ] = "‡∏ö‡∏£‡∏£‡∏ó‡∏±‡∏î";
+//STRIP001      Text[ czech ] = "≈ò√°dek";
+//STRIP001      Text[ hebrew ] = "Zeile";
+//STRIP001      Text[ hindi ] = "Row";
+//STRIP001  };
+//STRIP001     Control WND_ROW
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 40 ) ;
+//STRIP001         Size = MAP_APPFONT ( 36 , 96 ) ;
+//STRIP001         TabStop = TRUE ;
+//STRIP001  };
+//STRIP001     FixedText FT_DATA
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 231, 150 ) ;
+//STRIP001         Size = MAP_APPFONT ( 37 , 8 ) ;
+//STRIP001         Text = "Daten" ;
+//STRIP001         Text[ ENGLISH ] = "Data" ;
+//STRIP001         Text[ english_us ] = "Data" ;
+//STRIP001      Text[ portuguese ] = "DADOS";
+//STRIP001      Text[ russian ] = "ƒ¿ÕÕ€≈";
+//STRIP001      Text[ greek ] = "ƒÂ‰ÔÏ›Ì·";
+//STRIP001      Text[ dutch ] = "Gegevens";
+//STRIP001      Text[ french ] = "DonnÈes";
+//STRIP001      Text[ spanish ] = "Datos";
+//STRIP001      Text[ finnish ] = "Tiedot";
+//STRIP001      Text[ italian ] = "Dati";
+//STRIP001      Text[ danish ] = "DATA";
+//STRIP001      Text[ swedish ] = "Data";
+//STRIP001      Text[ polish ] = "DANE";
+//STRIP001      Text[ portuguese_brazilian ] = "Data";
+//STRIP001      Text[ japanese ] = "„Éá„Éº„Ç?;
+//STRIP001      Text[ korean ] = "Îç∞Ïù¥ÌÑ?;
+//STRIP001      Text[ chinese_simplified ] = "Êï∞ÊçÆ";
+//STRIP001      Text[ chinese_traditional ] = "Ë≥áÊñô";
+//STRIP001      Text[ turkish ] = "Veri";
+//STRIP001      Text[ arabic ] = "X_range";
+//STRIP001      Text[ catalan ] = "Dades";
+//STRIP001      Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•";
+//STRIP001      Text[ czech ] = "Data";
+//STRIP001      Text[ hebrew ] = "Daten";
+//STRIP001      Text[ hindi ] = "Data";
+//STRIP001  };
+//STRIP001     Control WND_DATA
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 44 , 40 ) ;
+//STRIP001         Size = MAP_APPFONT ( 144 , 96 ) ;
+//STRIP001         TabStop = TRUE ;
+//STRIP001  };
+//STRIP001     Control WND_SELECT
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 194 , 14 ) ;
+//STRIP001      Size = MAP_APPFONT ( 70 , 100 ) ;
+//STRIP001         TabStop = TRUE ;
+//STRIP001  };
+//STRIP001  String STR_SELECT
+//STRIP001  {
+//STRIP001      Text = "Auswahlbereich";
+//STRIP001      Text [ english ] = "Selection area";
+//STRIP001      Text[ language_user1 ] = "EM Oct 2002: (not \"range\") In the datapilot dialog, object description of control that lists the fields that you can drag to one of the other three areas/controls.";
+//STRIP001      Text[ english_us ] = "Selection area";
+//STRIP001      Text[ portuguese ] = "Selection area";
+//STRIP001      Text[ russian ] = "Selection area";
+//STRIP001      Text[ greek ] = "Selection area";
+//STRIP001      Text[ dutch ] = "Selection area";
+//STRIP001      Text[ french ] = "Zone de sÈlection";
+//STRIP001      Text[ spanish ] = "¡rea de selecciÛn";
+//STRIP001      Text[ finnish ] = "Selection area";
+//STRIP001      Text[ italian ] = "Area di selezione";
+//STRIP001      Text[ danish ] = "Selection area";
+//STRIP001      Text[ swedish ] = "MarkeringsomrÂde";
+//STRIP001      Text[ polish ] = "Selection area";
+//STRIP001      Text[ portuguese_brazilian ] = "Selection area";
+//STRIP001      Text[ japanese ] = "ÈÅ∏ÊäûÁØÑÂõ≤";
+//STRIP001      Text[ korean ] = "ÏòÅÏó≠ ÏÑ†ÌÉù";
+//STRIP001      Text[ chinese_simplified ] = "ÈÄâÊã©Âå∫Âüü";
+//STRIP001      Text[ chinese_traditional ] = "ÈÅ∏ÂèñÂçÄÂü?;
+//STRIP001      Text[ turkish ] = "SeÁim alan?;
+//STRIP001      Text[ arabic ] = "Selection area";
+//STRIP001      Text[ catalan ] = "Selection area";
+//STRIP001      Text[ thai ] = "Selection area";
+//STRIP001      Text[ czech ] = "Oblast v√Ωbƒõru";
+//STRIP001      Text[ hebrew ] = "Auswahlbereich";
+//STRIP001      Text[ hindi ] = "Selection area";
+//STRIP001  };
+//STRIP001     ScrollBar WND_HSCROLL
+//STRIP001     {
+//STRIP001         Pos = MAP_APPFONT ( 194 , 118 ) ;
+//STRIP001         Size = MAP_APPFONT ( 70 , 8 ) ;
+//STRIP001         HScroll = TRUE ;
+//STRIP001         TabStop = FALSE ;
+//STRIP001     };
+//STRIP001  FixedText FT_INFO
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 142 ) ;
+//STRIP001         Size = MAP_APPFONT ( 182 , 16 ) ;
+//STRIP001      WordBreak = TRUE ;
+//STRIP001      Text = "Ziehen Sie die Felder auf der rechten Seite mit der Maus in die gew¸nschten Bereiche." ;
+//STRIP001      Text [ ENGLISH ] = "Drag the fields from the right into the desired area using the mouse." ;
+//STRIP001      Text [ norwegian ] = "Dra feltene fra h¯yre og inn I det ¯nskede omrÂdet ved ?bruke musen." ;
+//STRIP001      Text [ italian ] = "Trascinate i campi da destra nell'area desiderata usando il mouse." ;
+//STRIP001      Text [ portuguese_brazilian ] = "Arraste os campos da direita para a ·rea desejada usando o mouse." ;
+//STRIP001      Text [ portuguese ] = "Com o rato arraste os campos da direita para as ·reas desejadas." ;
+//STRIP001      Text [ finnish ] = "Ved?oikealla olevat kent‰t haluamaasi kohtaan." ;
+//STRIP001      Text [ danish ] = "TrÊk felterne p?h¯jre side til de ¯nskede omrÂder ved hjÊlp af musen." ;
+//STRIP001      Text [ french ] = "Faites glisser les champs de droite vers leur plage de destination ?l'aide de la souris." ;
+//STRIP001      Text [ swedish ] = "Dra f‰lten p?den hˆgra sidan till ˆnskade omrÂden med musen." ;
+//STRIP001      Text [ dutch ] = "Sleep de velden aan de rechterzijde met de muis naar het gewenste bereik." ;
+//STRIP001      Text [ spanish ] = "Arrastre los campos de la p·gina derecha hacia el ·rea deseada." ;
+//STRIP001      Text [ english_us ] = "Drag the fields from the right into the desired position." ;
+//STRIP001      Text[ chinese_simplified ] = "Áî®Èº†Ê†áÂ∞ÜÂè≥È°µ‰∏≠ÁöÑÂ≠óÊÆµÁßªÂà∞ÊåáÂÆöÁöÑÂå∫Âüü„Ä?;
+//STRIP001      Text[ russian ] = "œÂÂÚ‡˘ËÚÂ ÔÓ? ?Ô‡‚ÓÈ ÒÚÓÓÌ??ÊÂÎ‡ÂÏÛ˛ Ó·Î‡ÒÚ?";
+//STRIP001      Text[ polish ] = "Przeciπgnij pola z prawej strony w øπdane miejsce.";
+//STRIP001      Text[ japanese ] = "Âè≥ÂÅ¥„Å´„ÅÇ„Çã„Éï„Ç£„Éº„É´„Éâ„Éú„Çø„É≥„Çí‰ªªÊÑè„ÅÆÁØÑÂõ≤„Å´„Éâ„É©„ÉÉ„Ç∞„Åó„Åæ„Åô„Ä?;
+//STRIP001      Text[ chinese_traditional ] = "Ë´ã‰ΩøÁî®ÊªëÈº†ÈçµÂ∞áÊ¨Ñ‰ΩçÊãñÊãâÂà∞Âè≥È†ÅÁöÑ‰ªªÊÑè‰∏ÄÂÄãÂçÄÂüü„Ä?;
+//STRIP001      Text[ arabic ] = "«”Õ» «·ÕﬁÊ· „‰ «·’›Õ… «·Ì„‰Ï »Ê«”ÿ… «·„«Ê” ≈·?«·„‰«ÿ?«· Ì  —€» ›ÌÂ«.";
+//STRIP001      Text[ greek ] = "”˝ÒÂÙÂ ÏÂ ÙÔ ÔÌÙﬂÍ?Ù· Â‰ﬂ?ÙÁ?‰ÂÓÈ‹Ú ÛÂÎﬂ‰·?ÛÙÈÚ ÂÒÈÔ˜›Ú Ô?ÂÈËıÏÂﬂÙÂ.";
+//STRIP001      Text[ korean ] = "ÎßàÏö∞Ïä§Î•º Ïù¥Ïö©ÌïòÏó¨ Ïò§Î•∏Ï™ΩÏóêÏÑúÎ∂ÄÌÑ?ÏõêÌïòÎä?ÏòÅÏó≠ÏúºÎ°ú ÌïÑÎìúÎ•?ÎÅÑÏã≠ÏãúÏò§";
+//STRIP001      Text[ turkish ] = "Sadaki alanlar?istenilen konuma s¸r¸kleyin.";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Arrossega els camps de la dreta fins a la posici?desitjada.";
+//STRIP001      Text[ thai ] = "‡∏•‡∏≤‡∏Å‡πÄ‡∏Ç‡∏ï‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏à‡∏≤‡∏Å‡∏Ç‡∏ß‡∏≤‡∏°‡∏∑‡∏≠‡πÑ‡∏õ‡∏¢‡∏±‡∏á‡∏ï‡∏≥‡πÅ‡∏´‡∏ô‡πà‡∏á‡∏ó‡∏µ‡πà‡∏ï‡πâ‡∏≠‡∏á‡∏Å‡∏≤‡∏?;
+//STRIP001      Text[ czech ] = "P≈ôet√°hnƒõte pole z prav√© ƒç√°sti na po≈æadovan√© m√≠sto.";
+//STRIP001      Text[ hebrew ] = "Ziehen Sie die Felder auf der rechten Seite mit der Maus in die gew√ºnschten Bereiche.";
+//STRIP001      Text[ hindi ] = "‡§ï‡•ç‡§∑‡•á‡§§‡•ç‡§∞‡•ã‡§?‡§ï‡•ã ‡§¶‡§æ‡§π‡§ø‡§®‡•Ä ‡§ì‡§∞ ‡§∏‡•á ‡§ñ‡•Ä‡§Ç‡§ö‡§ï‡§∞ ‡§á‡§∑‡•ç‡§ü ‡§∏‡•ç‡§•‡§æ‡§?‡§Æ‡•á‡§?‡§∞‡§ñ‡•?‡•?;
+//STRIP001  };
+//STRIP001     FixedLine FL_LAYOUT
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 3 ) ;
+//STRIP001         Size = MAP_APPFONT ( 268 , 8 ) ;
+//STRIP001      Text = "Layout" ;
+//STRIP001         Text [ ENGLISH ] = "Layout" ;
+//STRIP001      Text[ english_us ] = "Layout";
+//STRIP001      Text[ portuguese ] = "ConfiguraÁ„o";
+//STRIP001      Text[ russian ] = "–‡ÁÏÂÚÍ‡";
+//STRIP001      Text[ greek ] = "ƒÈ‹Ù·Ó?;
+//STRIP001      Text[ dutch ] = "Lay-out";
+//STRIP001      Text[ french ] = "Mise en page";
+//STRIP001      Text[ spanish ] = "DiseÒo";
+//STRIP001      Text[ finnish ] = "Asettelu";
+//STRIP001      Text[ italian ] = "Layout";
+//STRIP001      Text[ danish ] = "Layout";
+//STRIP001      Text[ swedish ] = "Layout";
+//STRIP001      Text[ polish ] = "Uk≥ad";
+//STRIP001      Text[ portuguese_brazilian ] = "Layout";
+//STRIP001      Text[ japanese ] = "„É¨„Ç§„Ç¢„Ç¶„É?;
+//STRIP001      Text[ korean ] = "Î†àÏù¥ÏïÑÏõÉ";
+//STRIP001      Text[ chinese_simplified ] = "ÁâàÂºè";
+//STRIP001      Text[ chinese_traditional ] = "ÁâàÂºè";
+//STRIP001      Text[ turkish ] = "Yerle˛im";
+//STRIP001      Text[ arabic ] = " ŒÿÌ?;
+//STRIP001      Text[ catalan ] = "Disseny";
+//STRIP001      Text[ thai ] = "‡πÄ‡∏Ñ‡πâ‡∏≤‡πÇ‡∏Ñ‡∏£‡∏?;
+//STRIP001      Text[ czech ] = "Rozlo≈æen√≠";
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊§◊®◊ô◊°◊î‚Ä?;
+//STRIP001      Text[ hindi ] = "‡§Ö‡§≠‡§ø‡§®‡•ç‡§Ø‡§æ‡§∏";
+//STRIP001  };
+//STRIP001  OKButton BTN_OK
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 6 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DefButton = TRUE ;
+//STRIP001  };
+//STRIP001  CancelButton BTN_CANCEL
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 23 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001  };
+//STRIP001  HelpButton BTN_HELP
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 43 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001  };
+//STRIP001     PushButton BTN_REMOVE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 63 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001         Text = "Entfernen" ;
+//STRIP001         Text [ ENGLISH ] = "Remove" ;
+//STRIP001      Text[ english_us ] = "Remove";
+//STRIP001      Text[ portuguese ] = "Remover";
+//STRIP001      Text[ russian ] = "”‰‡ÎÂÌËÂ";
+//STRIP001      Text[ greek ] = "ƒÈ·„Ò·ˆﬁ";
+//STRIP001      Text[ dutch ] = "Verwijderen";
+//STRIP001      Text[ french ] = "Supprimer";
+//STRIP001      Text[ spanish ] = "Borrar";
+//STRIP001      Text[ finnish ] = "poista";
+//STRIP001      Text[ italian ] = "Deinstallazione";
+//STRIP001      Text[ danish ] = "Fjern";
+//STRIP001      Text[ swedish ] = "Ta bort";
+//STRIP001      Text[ polish ] = "usu?;
+//STRIP001      Text[ portuguese_brazilian ] = "Remove";
+//STRIP001      Text[ japanese ] = "ÂâäÈô§";
+//STRIP001      Text[ korean ] = "Ï†úÍ±∞";
+//STRIP001      Text[ chinese_simplified ] = "ÁßªÈô§";
+//STRIP001      Text[ chinese_traditional ] = "ÁßªÈô§";
+//STRIP001      Text[ turkish ] = "Sil";
+//STRIP001      Text[ arabic ] = "≈“«·?;
+//STRIP001      Text[ catalan ] = "Remove";
+//STRIP001      Text[ thai ] = "‡πÄ‡∏≠‡∏≤‡∏≠‡∏≠‡∏?;
+//STRIP001      Text[ czech ] = "Odstranit";
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊î◊°◊®◊î‚Ä?;
+//STRIP001      Text[ hindi ] = "Remove";
+//STRIP001  };
+//STRIP001     PushButton BTN_OPTIONS
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 80 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001         Text = "Optionen..." ;
+//STRIP001         Text [ ENGLISH ] = "Options..." ;
+//STRIP001      Text[ english_us ] = "Options...";
+//STRIP001      Text[ portuguese ] = "Options...";
+//STRIP001      Text[ russian ] = "Options...";
+//STRIP001      Text[ greek ] = "Options...";
+//STRIP001      Text[ dutch ] = "Options...";
+//STRIP001      Text[ french ] = "Options...";
+//STRIP001      Text[ spanish ] = "Opciones...";
+//STRIP001      Text[ finnish ] = "Options...";
+//STRIP001      Text[ italian ] = "Opzioni...";
+//STRIP001      Text[ danish ] = "Options...";
+//STRIP001      Text[ swedish ] = "Alternativ...";
+//STRIP001      Text[ polish ] = "Options...";
+//STRIP001      Text[ portuguese_brazilian ] = "Options...";
+//STRIP001      Text[ japanese ] = "„Ç™„Éó„Ç∑„Éß„É?O)...";
+//STRIP001      Text[ korean ] = "ÏòµÏÖò...";
+//STRIP001      Text[ chinese_simplified ] = "ÈÄâÈ°π...";
+//STRIP001      Text[ chinese_traditional ] = "ÈÅ∏È†Ö...";
+//STRIP001      Text[ turkish ] = "SeÁenekler...";
+//STRIP001      Text[ arabic ] = "Options...";
+//STRIP001      Text[ catalan ] = "Options...";
+//STRIP001      Text[ thai ] = "Options...";
+//STRIP001      Text[ czech ] = "Volby...";
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊ê◊§◊©◊®◊ï◊ô◊ï◊™‚Ä?;
+//STRIP001      Text[ hindi ] = "Options...";
+//STRIP001  };
+//STRIP001  MoreButton BTN_MORE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 280 , 144 ) ;
+//STRIP001         Size = MAP_APPFONT ( 50 , 14 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      MapUnit = MAP_APPFONT ;
+//STRIP001      Delta = 59 ;
+//STRIP001  };
+//STRIP001  Window WND_FIELD
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 0 , 0 ) ;
+//STRIP001         Size = MAP_APPFONT ( 36 , 12 ) ;
+//STRIP001  };
+//STRIP001     Window WND_FIELD_SPACE
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 0 , 0 ) ;
+//STRIP001         Size = MAP_APPFONT ( 2 , 2 ) ;
+//STRIP001  };
+//STRIP001     FixedLine FL_OUTPUT
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 6 , 164 ) ;
+//STRIP001         Size = MAP_APPFONT ( 268 , 8 ) ;
+//STRIP001      Text = "Ergebnis" ;
+//STRIP001      Text [ ENGLISH ] = "Result" ;
+//STRIP001      Text [ norwegian ] = "Resultat" ;
+//STRIP001      Text [ italian ] = "Risultato" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Resultado" ;
+//STRIP001      Text [ portuguese ] = "Resultado" ;
+//STRIP001      Text [ finnish ] = "Tulos" ;
+//STRIP001      Text [ danish ] = "Resultat" ;
+//STRIP001      Text [ french ] = "RÈsultat" ;
+//STRIP001      Text [ swedish ] = "Resultat" ;
+//STRIP001      Text [ dutch ] = "Resultaat" ;
+//STRIP001      Text [ spanish ] = "Resultado" ;
+//STRIP001      Text [ english_us ] = "Result" ;
+//STRIP001      Hide = TRUE ;
+//STRIP001      Text[ chinese_simplified ] = "ÁªìÊûú";
+//STRIP001      Text[ russian ] = "–ÂÁÛÎ¸Ú‡?;
+//STRIP001      Text[ polish ] = "Wynik";
+//STRIP001      Text[ japanese ] = "ÁµêÊûú";
+//STRIP001      Text[ chinese_traditional ] = "ÁµêÊûú";
+//STRIP001      Text[ arabic ] = "«·‰ ÌÃ?;
+//STRIP001      Text[ greek ] = "¡ÔÙ›ÎÂÛÏ·";
+//STRIP001      Text[ korean ] = "Í≤∞Í≥º";
+//STRIP001      Text[ turkish ] = "Sonu?;
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Resultat";
+//STRIP001      Text[ thai ] = "‡∏ú‡∏•‡∏•‡∏±‡∏û‡∏ò‡π?;
+//STRIP001      Text[ czech ] = "V√Ωsledek";
+//STRIP001      Text[ hebrew ] = "Ergebnis";
+//STRIP001      Text[ hindi ] = "‡§®‡§§‡•Ä‡§ú‡§æ";
+//STRIP001  };
+//STRIP001  FixedText FT_OUTAREA
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 177 ) ;
+//STRIP001         Size = MAP_APPFONT ( 59 , 8 ) ;
+//STRIP001      Hide = TRUE ;
+//STRIP001         Text = "~Ausgabe ab" ;
+//STRIP001         Text [ ENGLISH ] = "~Output from" ;
+//STRIP001      Text [ norwegian ] = "UtgÂende fra " ;
+//STRIP001      Text [ italian ] = "Risultato da" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Resultados em" ;
+//STRIP001      Text [ portuguese ] = "~Resultado em" ;
+//STRIP001      Text [ finnish ] = "Tulokset" ;
+//STRIP001      Text [ danish ] = "~Output fra" ;
+//STRIP001      Text [ french ] = "Destination" ;
+//STRIP001      Text [ swedish ] = "Utd~ata frÂn" ;
+//STRIP001      Text [ dutch ] = "~Weergave vanaf" ;
+//STRIP001      Text [ spanish ] = "Resultado en" ;
+//STRIP001      Text [ english_us ] = "Results to" ;
+//STRIP001      Text[ chinese_simplified ] = "ËæìÂá∫Âå∫Âüü‰ª?;
+//STRIP001      Text[ russian ] = "–ÂÁÛÎ¸Ú‡??;
+//STRIP001      Text[ polish ] = "Wyniki do";
+//STRIP001      Text[ japanese ] = "ÁµêÊûúË≤º„Çä‰ªò„ÅëÂÖ?;
+//STRIP001      Text[ chinese_traditional ] = "ÂåØÂá∫ÂçÄÂüüÂæû";
+//STRIP001      Text[ arabic ] = "«·‰ «∆?≈·?;
+//STRIP001      Text[ greek ] = "≈Ó~·„˘„?·?;
+//STRIP001      Text[ korean ] = "Í≤∞Í≥º";
+//STRIP001      Text[ turkish ] = "SonuÁlar";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Resultats a";
+//STRIP001      Text[ thai ] = "‡∏ú‡∏•‡∏•‡∏±‡∏û‡∏ò‡πå‡∏ï‡πà‡∏≠";
+//STRIP001      Text[ czech ] = "V√Ωsledky do";
+//STRIP001      Text[ hebrew ] = "~Ausgabe ab";
+//STRIP001      Text[ hindi ] = "‡§Æ‡•á‡§?‡§®‡§§‡•Ä‡§ú‡§æ";
+//STRIP001  };
+//STRIP001  ListBox LB_OUTAREA
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 73 , 175 ) ;
+//STRIP001         Size = MAP_APPFONT ( 75 , 90 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      DropDown = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001  };
+//STRIP001  Edit ED_OUTAREA
+//STRIP001  {
+//STRIP001      Border = TRUE ;
+//STRIP001         Pos = MAP_APPFONT ( 152 , 175 ) ;
+//STRIP001         Size = MAP_APPFONT ( 100 , 12 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001  };
+//STRIP001  ImageButton RB_OUTAREA
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 256 , 175 ) ;
+//STRIP001      Size = MAP_APPFONT ( 12 , 12 ) ;
+//STRIP001         TabStop = TRUE ;
+//STRIP001         Hide = TRUE ;
+//STRIP001      QuickHelpText = "Verkleinern" ;
+//STRIP001      QuickHelpText [ ENGLISH ] = "Shrink" ;
+//STRIP001      QuickHelpText [ portuguese ] = "Afastar" ;
+//STRIP001      QuickHelpText [ english_us ] = "Shrink" ;
+//STRIP001      QuickHelpText [ portuguese_brazilian ] = "Verkleinern" ;
+//STRIP001      QuickHelpText [ swedish ] = "Fˆrminska" ;
+//STRIP001      QuickHelpText [ danish ] = "Formindsk" ;
+//STRIP001      QuickHelpText [ italian ] = "Zoom indietro" ;
+//STRIP001      QuickHelpText [ spanish ] = "Reducir" ;
+//STRIP001      QuickHelpText [ french ] = "RÈduire" ;
+//STRIP001      QuickHelpText [ dutch ] = "Verkleinen" ;
+//STRIP001      QuickHelpText[ russian ] = "”ÏÂÌ¸¯ËÚ?;
+//STRIP001      QuickHelpText[ polish ] = "Pomniejsz";
+//STRIP001      QuickHelpText[ japanese ] = "Á∏ÆÂ∞è";
+//STRIP001      QuickHelpText[ chinese_simplified ] = "Áº©Â∞è";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "Á∏ÆÂ∞è";
+//STRIP001      QuickHelpText[ arabic ] = " ’€Ì?;
+//STRIP001      QuickHelpText[ greek ] = "”ÏﬂÍÒıÌÛ?;
+//STRIP001      QuickHelpText[ korean ] = "Ï∂ïÏÜå";
+//STRIP001      QuickHelpText[ language_user1 ] = " ";
+//STRIP001      QuickHelpText[ turkish ] = "Verkleinern";
+//STRIP001      QuickHelpText[ catalan ] = "Redueix";
+//STRIP001      QuickHelpText[ finnish ] = "Kutista";
+//STRIP001      QuickHelpText[ thai ] = "Shrink";
+//STRIP001      QuickHelpText[ czech ] = "Zmen≈°it";
+//STRIP001      QuickHelpText[ hebrew ] = "Verkleinern";
+//STRIP001      QuickHelpText[ hindi ] = "‡§∏‡§ø‡§ï‡•Å‡§°‡§®‡§?;
+//STRIP001  };
+//STRIP001  CheckBox BTN_IGNEMPTYROWS
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 193 ) ;
+//STRIP001         Size = MAP_APPFONT ( 124 , 10 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001      Text = "Leerzeilen ~ignorieren" ;
+//STRIP001      Text [ ENGLISH ] = "~Ignore empty rows" ;
+//STRIP001      Text [ norwegian ] = "~Ignorer tomme rader " ;
+//STRIP001      Text [ italian ] = "~Ignora le righe vuote" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Ignorar linhas vazias" ;
+//STRIP001      Text [ portuguese ] = "~Ignorar linhas vazias" ;
+//STRIP001      Text [ finnish ] = "~Ohita tyhj‰t rivit" ;
+//STRIP001      Text [ danish ] = "Ignorer tomme rÊkker" ;
+//STRIP001      Text [ french ] = "~Ignorer les lignes vides" ;
+//STRIP001      Text [ swedish ] = "~Ignorera tomma rader" ;
+//STRIP001      Text [ dutch ] = "~Lege rijen negeren" ;
+//STRIP001      Text [ spanish ] = "~Ignorar las filas vacÌas" ;
+//STRIP001      Text [ english_us ] = "Ignore ~empty rows" ;
+//STRIP001      Text[ chinese_simplified ] = "ÂøΩÁï•Á©∫Ë°å(~E)";
+//STRIP001      Text[ russian ] = "œÓÔÛÒÍ‡Ú¸ ÔÛÒÚ˚Â ÒÚÓÍË";
+//STRIP001      Text[ polish ] = "Ignoruj ~puste wiersze";
+//STRIP001      Text[ japanese ] = "Á©∫ÁôΩË°å„ÇíÁÑ°Ë¶ñ„Åô„Çã(~E)";
+//STRIP001      Text[ chinese_traditional ] = "ÂøΩÁï•Á©∫Âàó(~E)";
+//STRIP001      Text[ arabic ] = " Ã«Â?«·’›Ê› «·›«—€?;
+//STRIP001      Text[ greek ] = "–·Ò‹‚ÎÂ¯?ÍÂÌ˛?„Ò·ÏÏ˛?;
+//STRIP001      Text[ korean ] = "Îπ?Ìñ?Î¨¥Ïãú(~E)";
+//STRIP001      Text[ turkish ] = "Bo?sat˝rlar?~yoksay";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Ignora les files ~buides";
+//STRIP001      Text[ thai ] = "‡πÄ‡∏•‡∏¥‡∏Å‡πÅ‡∏ñ‡∏ß~‡∏ß‡πà‡∏≤‡∏á";
+//STRIP001      Text[ czech ] = "Ignorovat pr√°zdn√© ≈ô√°dky";
+//STRIP001      Text[ hebrew ] = "Leerzeilen ~ignorieren";
+//STRIP001      Text[ hindi ] = "~‡§ñ‡§æ‡§≤‡•Ä ‡§™‡§Ç‡§ï‡•ç‡§§‡§ø‡§Ø‡•ã‡§?‡§ï‡•ã ‡§â‡§™‡•á‡§ï‡•ç‡§∑‡§?‡§ï‡§∞‡•?;
+//STRIP001  };
+//STRIP001  CheckBox BTN_DETECTCAT
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 142 , 193 ) ;
+//STRIP001         Size = MAP_APPFONT ( 124 , 10 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001      Text = "~Kategorieerkennung" ;
+//STRIP001      Text [ ENGLISH ] = "~Detect Categories" ;
+//STRIP001      Text [ norwegian ] = "~Finn Kategorier " ;
+//STRIP001      Text [ italian ] = "~Individua categorie" ;
+//STRIP001      Text [ portuguese_brazilian ] = "~Identificar categorias" ;
+//STRIP001      Text [ portuguese ] = "~Indicar categorias" ;
+//STRIP001      Text [ finnish ] = "~Tunnista luokat" ;
+//STRIP001      Text [ danish ] = "Identificer kategorier" ;
+//STRIP001      Text [ french ] = "~Identifier les catÈgories" ;
+//STRIP001      Text [ swedish ] = "Identifiera ~kategorier" ;
+//STRIP001      Text [ dutch ] = "~CategorieÎn opsporen" ;
+//STRIP001      Text [ spanish ] = "I~dentificar las categorÌas" ;
+//STRIP001      Text [ english_us ] = "~Identify categories" ;
+//STRIP001      Text[ chinese_simplified ] = "ËØÜÂà´ÂàÜÁ±ª(~I)";
+//STRIP001      Text[ russian ] = "–‡ÒÔÓÁÌ‡‚‡ÌË?Í‡ÚÂ„ÓË?;
+//STRIP001      Text[ polish ] = "~Identyfikuj kategorie";
+//STRIP001      Text[ japanese ] = "ÂàÜÈ°ûÈ†ÖÁõÆ„ÅÆË™çË≠?~I)";
+//STRIP001      Text[ chinese_traditional ] = "Ë≠òÂà•ÂàÜÈ°û(~I)";
+//STRIP001      Text[ arabic ] = " ⁄—Ì?«·›∆?;
+//STRIP001      Text[ greek ] = "¡Ì·„Ì˛ÒÈÛÁ Í·ÙÁ„ÔÒÈ˛Ì";
+//STRIP001      Text[ korean ] = "Î∂ÑÎ•ò Ìï≠Î™© ÏãùÎ≥Ñ(~I)";
+//STRIP001      Text[ turkish ] = "~Kategorileri tan˝mla";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Identifica les categories";
+//STRIP001      Text[ thai ] = "~‡∏£‡∏∞‡∏ö‡∏∏‡∏õ‡∏£‡∏∞‡πÄ‡∏†‡∏ó";
+//STRIP001      Text[ czech ] = "Identifikovat kategorie";
+//STRIP001      Text[ hebrew ] = "~Kategorieerkennung";
+//STRIP001      Text[ hindi ] = "‡§µ‡§∞‡•ç‡§ó‡•ã‡§Ç ‡§ï‡•Ä ~‡§™‡§π‡§ö‡§æ‡§?;
+//STRIP001  };
+//STRIP001  CheckBox BTN_TOTALCOL
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 12 , 207 ) ;
+//STRIP001         Size = MAP_APPFONT ( 124 , 10 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001         Text = "Gesamtergebnis-Spalten" ;
+//STRIP001         Text [ ENGLISH ] = "Add total colunms" ;
+//STRIP001         Text [ english_us ] = "Total columns" ;
+//STRIP001      Text [ portuguese ] = "Soma total - ~colunas" ;
+//STRIP001      Text [ swedish ] = "Totalresultat kolumner" ;
+//STRIP001      Text [ danish ] = "Total kolonner" ;
+//STRIP001      Text [ italian ] = "Risultato complessivo colonne" ;
+//STRIP001      Text [ spanish ] = "Columnas de totales" ;
+//STRIP001      Text [ french ] = "Total - colonnes" ;
+//STRIP001      Text [ dutch ] = "Saldo ~kolommen" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Total das ~colunas" ;
+//STRIP001      Text[ chinese_simplified ] = "ÊÄªËÆ°ÁöÑÂàó";
+//STRIP001      Text[ russian ] = "¬ÒÂ„?ÒÚÓÎ·ˆÓ‚";
+//STRIP001      Text[ polish ] = "Suma ~kolumn";
+//STRIP001      Text[ japanese ] = "Âàó„ÅÆÁ∑èË®à";
+//STRIP001      Text[ chinese_traditional ] = "Á∏ΩË®àÁöÑÊ¨Ñ";
+//STRIP001      Text[ arabic ] = "√⁄„œ?«·„Ã„Ê?;
+//STRIP001      Text[ greek ] = "”ıÌÔÎÈÍ¸ ‹ËÒÔÈÛÏ· ÛÙÁÎ˛Ì";
+//STRIP001      Text[ korean ] = "Ïó?Ìï©Í≥Ñ";
+//STRIP001      Text[ turkish ] = "Toplam ~s¸tun say˝s?;
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Total de ~columnes";
+//STRIP001      Text[ finnish ] = "~Sarakkeita yhteens?;
+//STRIP001      Text[ thai ] = "‡∏ú‡∏•‡∏£‡∏ß‡∏°~‡∏Ñ‡∏≠‡∏•‡∏±‡∏°‡∏ô‡π?;
+//STRIP001      Text[ czech ] = "Seƒç√≠st sloupce";
+//STRIP001      Text[ hebrew ] = "Gesamtergebnis-Spalten";
+//STRIP001      Text[ hindi ] = "~‡§∏‡•ç‡§§‡§Ç‡§≠‡•ã‡§?‡§ï‡•Ä ‡§ï‡•Å‡§?‡§∏‡§Ç‡§ñ‡•ç‡§Ø‡§æ";
+//STRIP001  };
+//STRIP001  CheckBox BTN_TOTALROW
+//STRIP001  {
+//STRIP001         Pos = MAP_APPFONT ( 142 , 207 ) ;
+//STRIP001         Size = MAP_APPFONT ( 124 , 10 ) ;
+//STRIP001      TabStop = TRUE ;
+//STRIP001      Hide = TRUE ;
+//STRIP001      Text = "~Gesamtergebnis-Zeilen" ;
+//STRIP001      Text [ ENGLISH ] = "Add total ~rows" ;
+//STRIP001      Text [ english_us ] = "~Total rows" ;
+//STRIP001      Text [ portuguese ] = "Soma ~total - linhas" ;
+//STRIP001      Text [ swedish ] = "Totalresultat ~rader" ;
+//STRIP001      Text [ danish ] = "Total rÊkker" ;
+//STRIP001      Text [ italian ] = "Risultato c~omplessivo righe" ;
+//STRIP001      Text [ spanish ] = "~Filas de totales" ;
+//STRIP001      Text [ french ] = "Total - ~lignes" ;
+//STRIP001      Text [ dutch ] = "~Saldo rijen" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Total das ~linhas" ;
+//STRIP001      Text[ chinese_simplified ] = "ÊÄªËÆ°ÁöÑË°å(~T)";
+//STRIP001      Text[ russian ] = "¬ÒÂ„?ÒÚÓ?;
+//STRIP001      Text[ polish ] = "£πczni~e wierszy";
+//STRIP001      Text[ japanese ] = "Ë°å„ÅÆÁ∑èË®à(~T)";
+//STRIP001      Text[ chinese_traditional ] = "Á∏ΩË®àÁöÑÂàó(~T)";
+//STRIP001      Text[ arabic ] = "’›Ê› «·„Ã„Ê?;
+//STRIP001      Text[ greek ] = "”ıÌÔÎÈÍ¸ ‹ËÒÔÈÛÏ· „Ò·ÏÏ˛?;
+//STRIP001      Text[ korean ] = "Ìñ?Ìï©Í≥Ñ(~T)";
+//STRIP001      Text[ turkish ] = "~Toplam sat˝r say˝s?;
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "~Total de files";
+//STRIP001      Text[ finnish ] = "~Rivej?yhteens?;
+//STRIP001      Text[ thai ] = "~‡∏ú‡∏•‡∏£‡∏ß‡∏°‡πÅ‡∏ñ‡∏ß";
+//STRIP001      Text[ czech ] = "Seƒç√≠st ≈ô√°dky";
+//STRIP001      Text[ hebrew ] = "~Gesamtergebnis-Zeilen";
+//STRIP001      Text[ hindi ] = "‡§™‡§Ç‡§ï‡•ç‡§§‡§ø‡§Ø‡•ã‡§?‡§ï‡•Ä ~‡§ï‡•Å‡§?‡§∏‡§Ç‡§ñ‡•ç‡§Ø‡§æ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_SUM
+//STRIP001  {
+//STRIP001      Text = "Summe - " ;
+//STRIP001      Text [ ENGLISH ] = "Sum - " ;
+//STRIP001      Text [ norwegian ] = "Sum - " ;
+//STRIP001      Text [ italian ] = "Somma - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Soma - " ;
+//STRIP001      Text [ portuguese ] = "Soma - " ;
+//STRIP001      Text [ finnish ] = "Summa - " ;
+//STRIP001      Text [ danish ] = "Sum - " ;
+//STRIP001      Text [ french ] = "Somme - " ;
+//STRIP001      Text [ swedish ] = "Summa -  " ;
+//STRIP001      Text [ dutch ] = "Som -" ;
+//STRIP001      Text [ spanish ] = "Total -  " ;
+//STRIP001      Text [ english_us ] = "Sum - " ;
+//STRIP001      Text[ chinese_simplified ] = "ÊÄªËÆ° - ";
+//STRIP001      Text[ russian ] = "—ÛÏÏ?-  ";
+//STRIP001      Text[ polish ] = "Suma -   ";
+//STRIP001      Text[ japanese ] = "ÂêàË®à - ";
+//STRIP001      Text[ chinese_traditional ] = "Á∏ΩË®à - ";
+//STRIP001      Text[ arabic ] = "- Sum";
+//STRIP001      Text[ greek ] = "Sum - ";
+//STRIP001      Text[ korean ] = "Ìï©Í≥Ñ - ";
+//STRIP001      Text[ turkish ] = "Toplam - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Suma - ";
+//STRIP001      Text[ thai ] = "‡∏ú‡∏•‡∏£‡∏ß‡∏?- ";
+//STRIP001      Text[ czech ] = "Souƒçet - ";
+//STRIP001      Text[ hebrew ] = "‚ÄÆ◊°◊õ◊ï◊?-‚Ä?;
+//STRIP001      Text[ hindi ] = "‡§ú‡•ã‡§?- ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_COUNT
+//STRIP001  {
+//STRIP001      Text = "Anzahl - " ;
+//STRIP001      Text [ ENGLISH ] = "Count - " ;
+//STRIP001      Text [ norwegian ] = "Antall - " ;
+//STRIP001      Text [ italian ] = "Numero - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Contagem - " ;
+//STRIP001      Text [ portuguese ] = "Contar  - " ;
+//STRIP001      Text [ finnish ] = "Laske - " ;
+//STRIP001      Text [ danish ] = "Antal - " ;
+//STRIP001      Text [ french ] = "Nombre - " ;
+//STRIP001      Text [ swedish ] = "Antal -  " ;
+//STRIP001      Text [ dutch ] = "Aantal -" ;
+//STRIP001      Text [ spanish ] = "Cantidad -  " ;
+//STRIP001      Text [ english_us ] = "Count - " ;
+//STRIP001      Text[ chinese_simplified ] = "Êï∞ÁõÆ - ";
+//STRIP001      Text[ russian ] = " ÓÎË˜ÂÒÚ‚Ó -  ";
+//STRIP001      Text[ polish ] = "Liczba - ";
+//STRIP001      Text[ japanese ] = "Á∑èÊï∞ - ";
+//STRIP001      Text[ chinese_traditional ] = "Êï∏ÁõÆ - ";
+//STRIP001      Text[ arabic ] = "- Count";
+//STRIP001      Text[ greek ] = "–ÎﬁËÔÚ - ";
+//STRIP001      Text[ korean ] = "Í∞úÏàò - ";
+//STRIP001      Text[ turkish ] = "Say - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Compta - ";
+//STRIP001      Text[ thai ] = "‡∏ô‡∏±‡∏?- ";
+//STRIP001      Text[ czech ] = "Poƒçet - ";
+//STRIP001      Text[ hebrew ] = "Anzahl -";
+//STRIP001      Text[ hindi ] = "‡§ó‡§ø‡§®‡§§‡•Ä - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_AVG
+//STRIP001  {
+//STRIP001      Text = "Mittelwert - " ;
+//STRIP001      Text [ ENGLISH ] = "Average - " ;
+//STRIP001      Text [ norwegian ] = "Gjennomsnitt - " ;
+//STRIP001      Text [ italian ] = "Media - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "MÈdia - " ;
+//STRIP001      Text [ portuguese ] = "MÈdia - " ;
+//STRIP001      Text [ finnish ] = "Keskiarvo - " ;
+//STRIP001      Text [ danish ] = "Middel - " ;
+//STRIP001      Text [ french ] = "Moyenne - " ;
+//STRIP001      Text [ swedish ] = "Medel - " ;
+//STRIP001      Text [ dutch ] = "Gemiddelde -" ;
+//STRIP001      Text [ spanish ] = "Media -  " ;
+//STRIP001      Text [ english_us ] = "Mean - " ;
+//STRIP001      Text[ chinese_simplified ] = "‰∏≠Èó¥ÂÄ?- ";
+//STRIP001      Text[ russian ] = "—Â‰ÌÂ?ÁÌ‡˜ÂÌËÂ -  ";
+//STRIP001      Text[ polish ] = "årednia - ";
+//STRIP001      Text[ japanese ] = "Âπ≥ÂùáÂÄ?- ";
+//STRIP001      Text[ chinese_traditional ] = "Âπ≥ÂùáÂÄ?- ";
+//STRIP001      Text[ arabic ] = "?Average";
+//STRIP001      Text[ greek ] = "Ã›ÛÁ ÙÈÏﬁ - ";
+//STRIP001      Text[ korean ] = "ÌèâÍ∑†Í∞?-  ";
+//STRIP001      Text[ turkish ] = "Ortalama - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Mitjana - ";
+//STRIP001      Text[ thai ] = "‡∏Ñ‡πà‡∏≤‡πÄ‡∏â‡∏•‡∏µ‡πà‡∏?- ";
+//STRIP001      Text[ czech ] = "St≈ôedn√≠ hodnota - ";
+//STRIP001      Text[ hebrew ] = "Mittelwert -";
+//STRIP001      Text[ hindi ] = "‡§Æ‡§æ‡§ß‡•ç‡§?- ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_MAX
+//STRIP001  {
+//STRIP001      Text = "Max - " ;
+//STRIP001      Text [ ENGLISH ] = "Max - " ;
+//STRIP001      Text [ norwegian ] = "Maks - " ;
+//STRIP001      Text [ italian ] = "Max - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "M·x - " ;
+//STRIP001      Text [ portuguese ] = "M·x - " ;
+//STRIP001      Text [ finnish ] = "MAKS - " ;
+//STRIP001      Text [ danish ] = "Maks - " ;
+//STRIP001      Text [ french ] = "Max - " ;
+//STRIP001      Text [ swedish ] = "Max -  " ;
+//STRIP001      Text [ dutch ] = "Max -" ;
+//STRIP001      Text [ spanish ] = "M·x -  " ;
+//STRIP001      Text [ english_us ] = "Max - " ;
+//STRIP001      Text[ chinese_simplified ] = "ÊúÄÂ§? - ";
+//STRIP001      Text[ russian ] = "Ã‡ÍÒËÏÛÏ -  ";
+//STRIP001      Text[ polish ] = "Maks - ";
+//STRIP001      Text[ japanese ] = "ÊúÄÂ§ßÂÄ?- ";
+//STRIP001      Text[ chinese_traditional ] = "ÊúÄÂ§? - ";
+//STRIP001      Text[ arabic ] = "- Max";
+//STRIP001      Text[ greek ] = "Max - ";
+//STRIP001      Text[ korean ] = "ÏµúÎåÄ - ";
+//STRIP001      Text[ turkish ] = "Max - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "M‡x. - ";
+//STRIP001      Text[ thai ] = "‡∏°‡∏≤‡∏Å‡∏ó‡∏µ‡πà‡∏™‡∏∏‡∏?- ";
+//STRIP001      Text[ czech ] = "Max - ";
+//STRIP001      Text[ hebrew ] = "Max - ";
+//STRIP001      Text[ hindi ] = "‡§Ö‡§ß‡§ø‡§ï‡§§‡§Æ - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_MIN
+//STRIP001  {
+//STRIP001      Text = "Min - " ;
+//STRIP001      Text [ ENGLISH ] = "Min - " ;
+//STRIP001      Text [ norwegian ] = "Min - " ;
+//STRIP001      Text [ italian ] = "Min - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Min - " ;
+//STRIP001      Text [ portuguese ] = "MÌn - " ;
+//STRIP001      Text [ finnish ] = "Min - " ;
+//STRIP001      Text [ danish ] = "Min - " ;
+//STRIP001      Text [ french ] = "Min - " ;
+//STRIP001      Text [ swedish ] = "Min -  " ;
+//STRIP001      Text [ dutch ] = "Min -" ;
+//STRIP001      Text [ spanish ] = "MÌn -  " ;
+//STRIP001      Text [ english_us ] = "Min - " ;
+//STRIP001      Text[ chinese_simplified ] = "ÊúÄÂ∞?- ";
+//STRIP001      Text[ russian ] = "ÃËÌËÏÛ?-  ";
+//STRIP001      Text[ polish ] = "Min - ";
+//STRIP001      Text[ japanese ] = "ÊúÄÂ∞èÂÄ?- ";
+//STRIP001      Text[ chinese_traditional ] = "ÊúÄÂ∞?- ";
+//STRIP001      Text[ arabic ] = "- Min";
+//STRIP001      Text[ greek ] = "Min - ";
+//STRIP001      Text[ korean ] = "ÏµúÏÜå - ";
+//STRIP001      Text[ turkish ] = "Min - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "MÌn. - ";
+//STRIP001      Text[ thai ] = "‡∏ô‡πâ‡∏≠‡∏¢‡∏ó‡∏µ‡πà‡∏™‡∏∏‡∏î - ";
+//STRIP001      Text[ czech ] = "Min - ";
+//STRIP001      Text[ hebrew ] = "Min - ";
+//STRIP001      Text[ hindi ] = "‡§®‡•ç‡§Ø‡•Ç‡§®‡§§‡§?- ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_PROD
+//STRIP001  {
+//STRIP001      Text = "Produkt - " ;
+//STRIP001      Text [ ENGLISH ] = "Product - " ;
+//STRIP001      Text [ norwegian ] = "Produkt - " ;
+//STRIP001      Text [ italian ] = "Prodotto - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Produto - " ;
+//STRIP001      Text [ portuguese ] = "Produto - " ;
+//STRIP001      Text [ finnish ] = "TULO - " ;
+//STRIP001      Text [ danish ] = "Produkt - " ;
+//STRIP001      Text [ french ] = "Produit - " ;
+//STRIP001      Text [ swedish ] = "Produkt -  " ;
+//STRIP001      Text [ dutch ] = "Product -" ;
+//STRIP001      Text [ spanish ] = "Producto -  " ;
+//STRIP001      Text [ english_us ] = "Product - " ;
+//STRIP001      Text[ chinese_simplified ] = "‰πòÁßØ- ";
+//STRIP001      Text[ russian ] = "œÓËÁ‚Â‰ÂÌËÂ -  ";
+//STRIP001      Text[ polish ] = "Iloczyn -  ";
+//STRIP001      Text[ japanese ] = "Á©?- ";
+//STRIP001      Text[ chinese_traditional ] = "‰πòÁ©ç- ";
+//STRIP001      Text[ arabic ] = "- Product";
+//STRIP001      Text[ greek ] = "Product - ";
+//STRIP001      Text[ korean ] = "Í≥?- ";
+//STRIP001      Text[ turkish ] = "«arp˝m - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Producte - ";
+//STRIP001      Text[ thai ] = "‡∏ú‡∏•‡∏¥‡∏ï‡∏†‡∏±‡∏ì‡∏ë‡π?- ";
+//STRIP001      Text[ czech ] = "Produkt - ";
+//STRIP001      Text[ hebrew ] = "Produkt -";
+//STRIP001      Text[ hindi ] = "‡§ó‡•Å‡§£‡§® - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_COUNT2
+//STRIP001  {
+//STRIP001      Text = "Anzahl - " ;
+//STRIP001      Text [ ENGLISH ] = "Count - " ;
+//STRIP001      Text [ norwegian ] = "Antall2 - " ;
+//STRIP001      Text [ italian ] = "Cont - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Contagem - " ;
+//STRIP001      Text [ portuguese ] = "Contar - " ;
+//STRIP001      Text [ finnish ] = "Laske - " ;
+//STRIP001      Text [ danish ] = "Antal - " ;
+//STRIP001      Text [ french ] = "Nombre - " ;
+//STRIP001      Text [ swedish ] = "Antal -  " ;
+//STRIP001      Text [ dutch ] = "Aantal -" ;
+//STRIP001      Text [ spanish ] = "Cantidad -  " ;
+//STRIP001      Text [ english_us ] = "Count - " ;
+//STRIP001      Text[ chinese_simplified ] = "Êï∞ÁõÆ - ";
+//STRIP001      Text[ russian ] = " ÓÎË˜ÂÒÚ‚Ó -  ";
+//STRIP001      Text[ polish ] = "Liczba - ";
+//STRIP001      Text[ japanese ] = "Á∑èÊï∞ - ";
+//STRIP001      Text[ chinese_traditional ] = "Êï∏ÁõÆ - ";
+//STRIP001      Text[ arabic ] = "- Count";
+//STRIP001      Text[ greek ] = "–ÎﬁËÔÚ - ";
+//STRIP001      Text[ korean ] = "Ïà´Ïûê - ";
+//STRIP001      Text[ turkish ] = "Say - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Compta - ";
+//STRIP001      Text[ thai ] = "‡∏ô‡∏±‡∏?- ";
+//STRIP001      Text[ czech ] = "Poƒçet - ";
+//STRIP001      Text[ hebrew ] = "Anzahl -";
+//STRIP001      Text[ hindi ] = "‡§ó‡§ø‡§®‡§§‡•Ä - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_DEV
+//STRIP001  {
+//STRIP001      Text = "StAbw - " ;
+//STRIP001      Text [ ENGLISH ] = "Dev - " ;
+//STRIP001      Text [ norwegian ] = "Avv - " ;
+//STRIP001      Text [ italian ] = "Dev - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "DesvPad - " ;
+//STRIP001      Text [ portuguese ] = "DesvP - " ;
+//STRIP001      Text [ finnish ] = "KESKIHAJONTA - " ;
+//STRIP001      Text [ danish ] = "Stdafv - " ;
+//STRIP001      Text [ french ] = "Ecartype -   " ;
+//STRIP001      Text [ swedish ] = "StdAv - " ;
+//STRIP001      Text [ dutch ] = "StAfw -" ;
+//STRIP001      Text [ spanish ] = "DevNorm -  " ;
+//STRIP001      Text [ english_us ] = "StDev - " ;
+//STRIP001      Text[ chinese_simplified ] = "Ê†áÂáÜÂÅèÂ∑Æ(ÊäΩÊ†∑) - ";
+//STRIP001      Text[ russian ] = "—ÏÂ˘ÂÌÌÓ?ÓÚÍÎÓÌÂÌËÂ -  ";
+//STRIP001      Text[ polish ] = "Odch.std ";
+//STRIP001      Text[ japanese ] = "StDev - ";
+//STRIP001      Text[ chinese_traditional ] = "Ê®ôÊ∫ñÂÅèÂ∑Æ(ÊäΩÊ®£) - ";
+//STRIP001      Text[ arabic ] = "- StDev";
+//STRIP001      Text[ greek ] = "StDev - ";
+//STRIP001      Text[ korean ] = "StDev - ";
+//STRIP001      Text[ turkish ] = "StSapma - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "StDev - ";
+//STRIP001      Text[ thai ] = "StDev - ";
+//STRIP001      Text[ czech ] = "StDev - ";
+//STRIP001      Text[ hebrew ] = "StAbw -";
+//STRIP001      Text[ hindi ] = "StDev - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_DEV2
+//STRIP001  {
+//STRIP001      Text = "StAbwN - " ;
+//STRIP001      Text [ ENGLISH ] = "Dev2 - " ;
+//STRIP001      Text [ norwegian ] = "Avv2 - " ;
+//STRIP001      Text [ italian ] = "DevP - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "DesvPadP - " ;
+//STRIP001      Text [ portuguese ] = "DesvPadP - " ;
+//STRIP001      Text [ finnish ] = "KESKIHAJONTAP - " ;
+//STRIP001      Text [ danish ] = "StdafvP - " ;
+//STRIP001      Text [ french ] = "EcarTypeP -    " ;
+//STRIP001      Text [ swedish ] = "StdAvP - " ;
+//STRIP001      Text [ dutch ] = "StAfwP -" ;
+//STRIP001      Text [ spanish ] = "DevNormP -  " ;
+//STRIP001      Text [ english_us ] = "StDevP - " ;
+//STRIP001      Text[ chinese_simplified ] = "Ê†áÂáÜÂÅèÂ∑Æ(ÂÖ®ÈÉ®Âü∫Êï∞) - ";
+//STRIP001      Text[ russian ] = "ÕÂÒÏÂ˘ÂÌÌÓ?ÓÚÍÎÓÌÂÌËÂ -  ";
+//STRIP001      Text[ polish ] = "Odch.stdc  ";
+//STRIP001      Text[ japanese ] = "StDevP - ";
+//STRIP001      Text[ chinese_traditional ] = "Ê®ôÊ∫ñÂÅèÂ∑Æ(ÂÖ®ÈÉ®Âü∫Êï∏) - ";
+//STRIP001      Text[ arabic ] = "- StDevP";
+//STRIP001      Text[ greek ] = "StDevP - ";
+//STRIP001      Text[ korean ] = "StDevP - ";
+//STRIP001      Text[ turkish ] = "StSapmaP - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "StDevP - ";
+//STRIP001      Text[ thai ] = "StDevP - ";
+//STRIP001      Text[ czech ] = "StDevP - ";
+//STRIP001      Text[ hebrew ] = "StAbwN -";
+//STRIP001      Text[ hindi ] = "StDevP - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_VAR
+//STRIP001  {
+//STRIP001      Text = "Varianz - " ;
+//STRIP001      Text [ ENGLISH ] = "Var - " ;
+//STRIP001      Text [ norwegian ] = " Var - " ;
+//STRIP001      Text [ italian ] = "Var - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "Var -" ;
+//STRIP001      Text [ portuguese ] = "Vari‚ncia - " ;
+//STRIP001      Text [ finnish ] = "Var - " ;
+//STRIP001      Text [ danish ] = "Varians - " ;
+//STRIP001      Text [ french ] = "Var - " ;
+//STRIP001      Text [ swedish ] = "Varians -  " ;
+//STRIP001      Text [ dutch ] = "Variantie -" ;
+//STRIP001      Text [ spanish ] = "Var -  " ;
+//STRIP001      Text [ english_us ] = "Var - " ;
+//STRIP001      Text[ chinese_simplified ] = "ÊñπÂ∑Æ- ";
+//STRIP001      Text[ russian ] = "—ÏÂ˘ÂÌÌ‡ˇ ‰ËÒÔÂÒËˇ -  ";
+//STRIP001      Text[ polish ] = "Wariancja - ";
+//STRIP001      Text[ japanese ] = "ÂàÜÊï£ - ";
+//STRIP001      Text[ chinese_traditional ] = "ÊñπÂ∑Æ- ";
+//STRIP001      Text[ arabic ] = "- VAR";
+//STRIP001      Text[ greek ] = "Var - ";
+//STRIP001      Text[ korean ] = "Î∂ÑÏÇ∞ - ";
+//STRIP001      Text[ turkish ] = "Dei˛ken - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Var - ";
+//STRIP001      Text[ thai ] = "Var - ";
+//STRIP001      Text[ czech ] = "Var - ";
+//STRIP001      Text[ hebrew ] = "Varianz -";
+//STRIP001      Text[ hindi ] = "Var - ";
+//STRIP001  };
+//STRIP001  String PIVOTSTR_VAR2
+//STRIP001  {
+//STRIP001      Text = "Varianzen - " ;
+//STRIP001      Text [ ENGLISH ] = "Var2 - " ;
+//STRIP001      Text [ norwegian ] = " Var2 - " ;
+//STRIP001      Text [ italian ] = "Var2 - " ;
+//STRIP001      Text [ portuguese_brazilian ] = "VarP-" ;
+//STRIP001      Text [ portuguese ] = "Vari‚ncias - " ;
+//STRIP001      Text [ finnish ] = "VarP - " ;
+//STRIP001      Text [ danish ] = "VariansP - " ;
+//STRIP001      Text [ french ] = "VarP - " ;
+//STRIP001      Text [ swedish ] = "VariansP - " ;
+//STRIP001      Text [ dutch ] = "Varianties -" ;
+//STRIP001      Text [ spanish ] = "VarP - " ;
+//STRIP001      Text [ english_us ] = "VarP - " ;
+//STRIP001      Text[ chinese_simplified ] = "ÊñπÂ∑Æ - ";
+//STRIP001      Text[ russian ] = "ÕÂÒÏÂ˘ÂÌÌ‡ˇ ‰ËÒÔÂÒËˇ -  ";
+//STRIP001      Text[ polish ] = "Wariancje - ";
+//STRIP001      Text[ japanese ] = "ÂàÜÊï£ - ";
+//STRIP001      Text[ chinese_traditional ] = "ÊñπÂ∑Æ - ";
+//STRIP001      Text[ arabic ] = "- VARP";
+//STRIP001      Text[ greek ] = "VarP - ";
+//STRIP001      Text[ korean ] = "Î∂ÑÏÇ∞ - ";
+//STRIP001      Text[ turkish ] = "Dei˛kenP - ";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "VarP - ";
+//STRIP001      Text[ thai ] = "VarP - ";
+//STRIP001      Text[ czech ] = "VarP - ";
+//STRIP001      Text[ hebrew ] = "Varianzen -";
+//STRIP001      Text[ hindi ] = "VarP - ";
+//STRIP001  };
+//STRIP001  Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏ô‡∏≥‡∏£‡πà‡∏≠‡∏á";
+//STRIP001  Text[ czech ] = "Kontingenƒçn√≠ tabulka";
+//STRIP001  Text[ hebrew ] = "Datenpilot";
+//STRIP001  Text[ hindi ] = "‡§°‡§º‡•â‡§ü‡§æ‡§™‡•à‡§≤‡§ü‡•ç";
+//STRIP001 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

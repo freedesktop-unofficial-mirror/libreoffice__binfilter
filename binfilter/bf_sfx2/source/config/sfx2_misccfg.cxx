@@ -1,0 +1,221 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sfx2_misccfg.cxx,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:23:08 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+
+#pragma hdrstop
+
+#ifndef _ZFORLIST_HXX //autogen
+#include <svtools/zforlist.hxx>
+#endif
+
+#ifndef _TOOLS_DEBUG_HXX
+#include <tools/debug.hxx>
+#endif
+#include "misccfg.hxx"
+
+#define DEFAULT_TAB 2000
+
+#define DEF_INCH    2540L
+#define DEF_RELTWIP 1440L
+
+using namespace rtl;
+using namespace com::sun::star::uno;
+
+#define C2U(cChar) OUString::createFromAscii(cChar)
+/*--------------------------------------------------------------------
+     Beschreibung:
+ --------------------------------------------------------------------*/
+/*N*/ SfxMiscCfg::SfxMiscCfg() :
+/*N*/   ConfigItem(C2U("Office.Common") ),
+/*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() ),
+/*N*/   bNotFound (FALSE),
+/*N*/   bPaperSize(FALSE),
+/*N*/   bPaperOrientation (FALSE)
+/*N*/ {
+/*N*/   Load();
+/*N*/ }
+/* -----------------------------02.03.01 15:31--------------------------------
+
+ ---------------------------------------------------------------------------*/
+/*N*/ SfxMiscCfg::~SfxMiscCfg()
+/*N*/ {
+/*N*/ }
+/*--------------------------------------------------------------------
+     Beschreibung:
+ --------------------------------------------------------------------*/
+
+/*?*/ void SfxMiscCfg::SetNotFoundWarning( BOOL bSet)
+/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001  if(bNotFound != bSet)
+//STRIP001      SetModified();
+//STRIP001  bNotFound = bSet;
+/*?*/ }
+
+/*--------------------------------------------------------------------
+     Beschreibung:
+ --------------------------------------------------------------------*/
+
+/*?*/ void SfxMiscCfg::SetPaperSizeWarning( BOOL bSet)
+/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001  if(bPaperSize != bSet)
+//STRIP001      SetModified();
+//STRIP001  bPaperSize = bSet;
+/*?*/ }
+
+/*--------------------------------------------------------------------
+     Beschreibung:
+ --------------------------------------------------------------------*/
+/*?*/ void SfxMiscCfg::SetPaperOrientationWarning( BOOL bSet)
+/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001  if(bPaperOrientation != bSet)
+//STRIP001      SetModified();
+//STRIP001  bPaperOrientation = bSet;
+/*?*/ }
+/*--------------------------------------------------------------------
+     Beschreibung:
+ --------------------------------------------------------------------*/
+
+/*?*/ void SfxMiscCfg::SetYear2000( sal_Int32 nSet )
+/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001  if(nYear2000 != nSet)
+//STRIP001      SetModified();
+//STRIP001  nYear2000 = nSet;
+/*?*/ }
+/* -----------------------------02.03.01 15:31--------------------------------
+
+ ---------------------------------------------------------------------------*/
+/*N*/ const Sequence<OUString>& SfxMiscCfg::GetPropertyNames()
+/*N*/ {
+/*N*/   static Sequence<OUString> aNames;
+/*N*/   if(!aNames.getLength())
+/*N*/   {
+/*N*/       static const char* aPropNames[] =
+/*N*/       {
+/*N*/               "Print/Warning/PaperSize",              //  0
+/*N*/               "Print/Warning/PaperOrientation",       //  1
+/*N*/               "Print/Warning/NotFound",               //  2
+/*N*/           "DateFormat/TwoDigitYear",              //  3
+/*N*/       };
+/*N*/         const int nCount = 4;
+/*N*/       aNames.realloc(nCount);
+/*N*/       OUString* pNames = aNames.getArray();
+/*N*/       for(int i = 0; i < nCount; i++)
+/*N*/           pNames[i] = OUString::createFromAscii(aPropNames[i]);
+/*N*/   }
+/*N*/   return aNames;
+/*N*/ }
+/* -----------------------------02.03.01 15:31--------------------------------
+
+ ---------------------------------------------------------------------------*/
+/*N*/ void SfxMiscCfg::Load()
+/*N*/ {
+/*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
+/*N*/   Sequence<Any> aValues = GetProperties(aNames);
+/*N*/   EnableNotification(aNames);
+/*N*/   const Any* pValues = aValues.getConstArray();
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   if(aValues.getLength() == aNames.getLength())
+/*N*/   {
+/*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
+/*N*/       {
+/*N*/           if(pValues[nProp].hasValue())
+/*N*/           {
+/*N*/               switch(nProp)
+/*N*/               {
+/*N*/                   case  0: bPaperSize        = *(sal_Bool*)pValues[nProp].getValue(); break;      //"Print/Warning/PaperSize",
+/*N*/                     case  1: bPaperOrientation = *(sal_Bool*)pValues[nProp].getValue();  break;     //"Print/Warning/PaperOrientation",
+/*N*/                     case  2: bNotFound         = *(sal_Bool*)pValues[nProp].getValue()  ;  break;   //"Print/Warning/NotFound",
+/*N*/                   case  3: pValues[nProp] >>= nYear2000;break;                                    //"DateFormat/TwoDigitYear",
+/*N*/               }
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/ }
+/* -----------------------------02.03.01 15:31--------------------------------
+
+ ---------------------------------------------------------------------------*/
+/*?*/ void SfxMiscCfg::Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames)
+/*?*/ {
+/*?*/   Load();
+/*?*/ }
+/* -----------------------------02.03.01 15:31--------------------------------
+
+ ---------------------------------------------------------------------------*/
+/*?*/ void SfxMiscCfg::Commit()
+/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
+//STRIP001     const OUString* pNames = aNames.getConstArray();
+//STRIP001  Sequence<Any> aValues(aNames.getLength());
+//STRIP001  Any* pValues = aValues.getArray();
+//STRIP001
+//STRIP001  const Type& rType = ::getBooleanCppuType();
+//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
+//STRIP001  {
+//STRIP001      switch(nProp)
+//STRIP001      {
+//STRIP001          case  0: pValues[nProp].setValue(&bPaperSize, rType);break;  //"Print/Warning/PaperSize",
+//STRIP001          case  1: pValues[nProp].setValue(&bPaperOrientation, rType);break;     //"Print/Warning/PaperOrientation",
+//STRIP001          case  2: pValues[nProp].setValue(&bNotFound, rType);break;   //"Print/Warning/NotFound",
+//STRIP001          case  3: pValues[nProp] <<= nYear2000;break;                 //"DateFormat/TwoDigitYear",
+//STRIP001      }
+//STRIP001  }
+//STRIP001  PutProperties(aNames, aValues);
+/*?*/ }
+

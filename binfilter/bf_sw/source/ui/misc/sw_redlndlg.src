@@ -1,0 +1,424 @@
+/*************************************************************************
+ *
+ *  $RCSfile: sw_redlndlg.src,v $
+ *
+ *  $Revision: 1.1.1.1 $
+ *
+ *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:56 $
+ *
+ *  The Contents of this file are made available subject to the terms of
+ *  either of the following licenses
+ *
+ *         - GNU Lesser General Public License Version 2.1
+ *         - Sun Industry Standards Source License Version 1.1
+ *
+ *  Sun Microsystems Inc., October, 2000
+ *
+ *  GNU Lesser General Public License Version 2.1
+ *  =============================================
+ *  Copyright 2000 by Sun Microsystems, Inc.
+ *  901 San Antonio Road, Palo Alto, CA 94303, USA
+ *
+ *  This library is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License version 2.1, as published by the Free Software Foundation.
+ *
+ *  This library is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ *  MA  02111-1307  USA
+ *
+ *
+ *  Sun Industry Standards Source License Version 1.1
+ *  =================================================
+ *  The contents of this file are subject to the Sun Industry Standards
+ *  Source License Version 1.1 (the "License"); You may not use this file
+ *  except in compliance with the License. You may obtain a copy of the
+ *  License at http://www.openoffice.org/license.html.
+ *
+ *  Software provided under this License is provided on an "AS IS" basis,
+ *  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING,
+ *  WITHOUT LIMITATION, WARRANTIES THAT THE SOFTWARE IS FREE OF DEFECTS,
+ *  MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE, OR NON-INFRINGING.
+ *  See the License for the specific provisions governing your rights and
+ *  obligations concerning the Software.
+ *
+ *  The Initial Developer of the Original Code is: Sun Microsystems, Inc.
+ *
+ *  Copyright: 2000 by Sun Microsystems, Inc.
+ *
+ *  All Rights Reserved.
+ *
+ *  Contributor(s): _______________________________________
+ *
+ *
+ ************************************************************************/
+/* StarView ressource file */
+
+#include "redlndlg.hrc"
+#include "misc.hrc"
+#include "helpid.h"
+
+#define WIDTH 297
+#define HEIGHT 169
+
+#define REDLNDLG \
+    OutputSize = TRUE ; \
+    SVLook = TRUE ; \
+    Size = MAP_APPFONT ( WIDTH , HEIGHT ) ; \
+    Moveable = TRUE ; \
+    Closeable = TRUE ; \
+    Sizeable = TRUE ; \
+    Hide = TRUE ; \
+    Control CTRL_TABPAGES\
+    {\
+        Pos = MAP_APPFONT ( XBORDER , YBORDER ) ; \
+        Size = MAP_APPFONT ( WIDTH - XBORDER * 2 , HEIGHT - YBORDER * 2 ) ; \
+        HelpID = HID_REDLINE_CTRL ; \
+        TabStop = TRUE ; \
+    };\
+
+//STRIP001 ModelessDialog DLG_REDLINE_ACCEPT
+//STRIP001 {
+//STRIP001  HelpID = HID_REDLINE_ACCEPT ;
+//STRIP001  /* ### ACHTUNG: Neuer Text in Resource? ƒnderungen akzeptieren oder verwerfen : Redlining */
+//STRIP001  Text = "ƒnderungen akzeptieren oder verwerfen" ;
+//STRIP001  Text [ English ] = "Accept or reject changes" ;
+//STRIP001  Text [ english_us ] = "Accept or Reject Changes" ;
+//STRIP001  Text [ portuguese_brazilian ] = "Aceitar ou Rejeitar ModificaÁıes" ;
+//STRIP001  Text [ swedish ] = "Acceptera eller ignorera ‰ndringar" ;
+//STRIP001  Text [ danish ] = "Accepter eller forkast Êndringer" ;
+//STRIP001  Text [ italian ] = "Accetta o annulla le modifiche" ;
+//STRIP001  Text [ spanish ] = "Aceptar o rechazar modificaciones" ;
+//STRIP001  Text [ french ] = "Accepter ou rejeter les modifications" ;
+//STRIP001  Text [ dutch ] = "Wijzigingen accepteren of verwerpen" ;
+//STRIP001  Text [ portuguese ] = "Aceitar ou rejeitar modificaÁıes" ;
+//STRIP001  REDLNDLG
+//STRIP001  Text[ chinese_simplified ] = "Êé•ÂèóÊàñËÄÖËàçÂºÉÊõ¥ÊîπÂÜÖÂÆ?;
+//STRIP001  Text[ russian ] = "œËÌˇÚ¸ ËÎ?ÓÚÍÎÓÌËÚ?ËÁÏÂÌÂÌËˇ";
+//STRIP001  Text[ polish ] = "Akceptuj albo odrzu?zmiany";
+//STRIP001  Text[ japanese ] = "Â§âÊõ¥„ÅÆÊâøË™ç„Åæ„Åü„ÅØÂç¥‰∏ã";
+//STRIP001  Text[ chinese_traditional ] = "Êé•ÂèóÊàñÊç®Ê£ÑËÆäÊõ¥ÂÖßÂÆ?;
+//STRIP001  Text[ arabic ] = "ﬁ»Ê· √Ê —›?«· €ÌÌ—«?;
+//STRIP001  Text[ greek ] = "¡Ô‰Ô˜??·¸ÒÒÈ¯Á ·ÎÎ·„˛?;
+//STRIP001  Text[ korean ] = "Î≥ÄÍ≤?ÏÇ¨Ìï≠ Ï†ÅÏö© ÎòêÎäî Î¨¥Ïãú";
+//STRIP001  Text[ turkish ] = "Dei˛iklikleri onayla veyareddet";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "Accepta o rebutja canvis";
+//STRIP001  Text[ finnish ] = "Hyv‰ksy tai hylk‰‰ muutokset";
+//STRIP001  Text[ thai ] = "‡∏¢‡∏≠‡∏°‡∏£‡∏±‡∏ö‡∏´‡∏£‡∏∑‡∏≠‡∏õ‡∏è‡∏¥‡πÄ‡∏™‡∏ò‡∏Å‡∏≤‡∏£‡πÄ‡∏õ‡∏•‡∏µ‡πà‡∏¢‡∏ô‡πÅ‡∏õ‡∏•‡∏á";
+//STRIP001  Text[ czech ] = "P≈ôijmout nebo odm√≠tnout zmƒõny";
+//STRIP001  Text[ hebrew ] = "√Ñnderungen akzeptieren oder verwerfen";
+//STRIP001  Text[ hindi ] = "‡§™‡§∞‡§ø‡§µ‡§∞‡•ç‡§§‡§®‡•ã‡§Ç ‡§ï‡•ã ‡§∏‡•ç‡§µ‡•Ä‡§ï‡§æ‡§?‡§Ö‡§•‡§µ‡§æ ‡§Ö‡§∏‡•ç‡§µ‡•Ä‡§ï‡§æ‡§?‡§ï‡§∞‡•?;
+//STRIP001  Text[ slovak ] = "Prija≈• alebo odmietnu≈• zmeny";
+//STRIP001 };
+
+//STRIP001 ModalDialog DLG_MOD_REDLINE_ACCEPT
+//STRIP001 {
+//STRIP001  HelpID = HID_REDLINE_AUTOFMT_ACCEPT ;
+//STRIP001  Text = "AutoFormat: ƒnderungen akzeptieren oder verwerfen" ;
+//STRIP001  Text [ English ] = "Accept or reject AutoFormat changes" ;
+//STRIP001  REDLNDLG
+//STRIP001  Text[ italian ] = "Formattazione automatica: accetta o annulla cambiamenti";
+//STRIP001  Text[ portuguese_brazilian ] = "Aceitar ou Rejeitar ModificaÁıes da AutoFormataÁ„o";
+//STRIP001  Text[ portuguese ] = "AutoFormato: aceitar ou rejeitar modificaÁıes";
+//STRIP001  Text[ danish ] = "Accepter eller forkast AutoFormat Êndringer";
+//STRIP001  Text[ french ] = "AutoFormat : Accepter ou rejeter les modifications";
+//STRIP001  Text[ swedish ] = "Acceptera eller ignorera AutoFormat-‰ndringar";
+//STRIP001  Text[ dutch ] = "AutoOpmaak: Wijzigingen accepteren of verwerpen";
+//STRIP001  Text[ spanish ] = "Aceptar o rechazar modificaciones del Formateado autom·tico";
+//STRIP001  Text[ english_us ] = "Accept or Reject AutoFormat Changes";
+//STRIP001  Text[ chinese_simplified ] = "Ëá™Âä®Ê†ºÂºè: Êé•ÂèóÊàñËÄÖËàçÂºÉÊõ¥ÊîπÂÜÖÂÆ?;
+//STRIP001  Text[ russian ] = "¿‚ÚÓÙÓÏ‡Ú: ÔËÌˇÚ¸ ËÎ?ÓÚÍÎÓÌËÚ?ËÁÏÂÌÂÌËˇ";
+//STRIP001  Text[ polish ] = "Akceptuj albo odrzu?zmiany Autoformatowania";
+//STRIP001  Text[ japanese ] = "„Ç™„Éº„Éà„Éï„Ç©„Éº„Éû„ÉÉ„É? Â§âÊõ¥„ÅÆÊâøË™ç„Åæ„Åü„ÅØÂç¥‰∏ã";
+//STRIP001  Text[ chinese_traditional ] = "Ëá™ÂãïÊ†ºÂºè: Êé•ÂèóÊàñÊç®Ê£ÑËÆäÊõ¥ÂÖßÂÆ?;
+//STRIP001  Text[ arabic ] = "ﬁ»Ê· √Ê —›? €ÌÌ—«?«· ‰”Ì?«· ·ﬁ«∆Ì";
+//STRIP001  Text[ greek ] = "¡ıÙ¸Ï·ÙÁ ÏÔÒˆÔÔÈÁÛ?¡Ô‰Ô˜??·¸ÒÒÈ¯Á ·ÎÎ·„˛?;
+//STRIP001  Text[ korean ] = "ÏûêÎèô ÏÑúÏãù  Î≥ÄÍ≤?ÏÇ¨Ìï≠ Ï†ÅÏö© ÎòêÎäî Î¨¥Ïãú";
+//STRIP001  Text[ turkish ] = "Otomatik formatlama: Dei˛iklikleri onayla ya da reddet";
+//STRIP001  Text[ language_user1 ] = " ";
+//STRIP001  Text[ catalan ] = "AutoFormat: Accepta o rebutja canvis";
+//STRIP001  Text[ finnish ] = "Hyv‰ksy tai hylk‰‰ automaattisen muotoilun muutokset";
+//STRIP001  Text[ thai ] = "‡∏¢‡∏≠‡∏°‡∏£‡∏±‡∏ö‡∏´‡∏£‡∏∑‡∏≠‡∏õ‡∏è‡∏¥‡πÄ‡∏™‡∏ò‡∏Å‡∏≤‡∏£‡πÄ‡∏õ‡∏•‡∏µ‡πà‡∏¢‡∏ô‡πÅ‡∏õ‡∏•‡∏á‡∏£‡∏π‡∏õ‡πÅ‡∏ö‡∏ö‡∏≠‡∏±‡∏ï‡πÇ‡∏ô‡∏°‡∏±‡∏ï‡∏?;
+//STRIP001  Text[ czech ] = "P≈ôijmout nebo odm√≠tnout zmƒõny proveden√© automatick√Ωm form√°tov√°n√≠m";
+//STRIP001  Text[ hebrew ] = "AutoFormat: √Ñnderungen akzeptieren oder verwerfen";
+//STRIP001  Text[ hindi ] = "‡§∏‡•ç‡§µ‡§ö‡§æ‡§≤‡§ø‡§§ ‡§∞‡§ö‡§®‡§æ ‡§ï‡•á ‡§™‡§∞‡§ø‡§µ‡§∞‡•ç‡§§‡§®‡•ã‡§Ç ‡§ï‡•ã ‡§∏‡•ç‡§µ‡•Ä‡§ï‡§æ‡§?‡§Ö‡§•‡§µ‡§æ ‡§Ö‡§∏‡•ç‡§µ‡•Ä‡§ï‡§æ‡§?‡§ï‡§∞‡•?;
+//STRIP001  Text[ slovak ] = "Prija≈• alebo odmietnu≈• zmeny vykonan√© automatick√Ωm form√°tovan√≠m";
+//STRIP001 };
+
+//STRIP001 Menu MN_REDLINE_POPUP
+//STRIP001 {
+//STRIP001  ItemList =
+//STRIP001  {
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = MN_EDIT_COMMENT ;
+//STRIP001          HelpID = HID_EDIT_COMMENT ;
+//STRIP001          Text = "Kommentar bearbeiten..." ;
+//STRIP001          Text [ English ] = "Edit Comment..." ;
+//STRIP001          Text [ english_us ] = "Edit Comment..." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Editar Coment·rio..." ;
+//STRIP001          Text [ swedish ] = "Redigera kommentar..." ;
+//STRIP001          Text [ danish ] = "Rediger kommentar..." ;
+//STRIP001          Text [ italian ] = "Modifica commento..." ;
+//STRIP001          Text [ spanish ] = "Editar comentario..." ;
+//STRIP001          Text [ french ] = "…diter le commentaire..." ;
+//STRIP001          Text [ dutch ] = "Opmerkingen bewerken..." ;
+//STRIP001          Text [ portuguese ] = "Editar coment·rio..." ;
+//STRIP001          Text[ chinese_simplified ] = "ÁºñËæëÊ≥®Ëß£...";
+//STRIP001          Text[ russian ] = "œ‡‚Í‡ ÍÓÏÏÂÌÚ‡Ëˇ...";
+//STRIP001          Text[ polish ] = "Edytuj komentarz...";
+//STRIP001          Text[ japanese ] = "„Ç≥„É°„É≥„Éà„ÅÆÁ∑®Èõ?..";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ chinese_traditional ] = "Á∑®ËºØË®ªËß£...";
+//STRIP001          Text[ arabic ] = " Õ—Ì?«· ⁄·Ì?..";
+//STRIP001          Text[ greek ] = "≈ÂÓÂÒ„·Ûﬂ?Û˜ÔÎﬂÔ?..";
+//STRIP001          Text[ korean ] = "ÏÑ§Î™Ö Ìé∏Ïßë...";
+//STRIP001          Text[ turkish ] = "AÁ˝klamalar?d¸zenle...";
+//STRIP001          Text[ catalan ] = "Edita el comentari...";
+//STRIP001          Text[ finnish ] = "Muokkaa huomautusta...";
+//STRIP001          Text[ thai ] = "‡πÅ‡∏Å‡πâ‡πÑ‡∏Ç‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏¥‡∏î‡πÄ‡∏´‡πá‡∏?..";
+//STRIP001          Text[ czech ] = "Upravit koment√°≈ô...";
+//STRIP001          Text[ hebrew ] = "Kommentar bearbeiten...";
+//STRIP001          Text[ hindi ] = "‡§Ö‡§™‡§µ‡§æ‡§?‡§ï‡§æ ‡§∏‡§Ç‡§™‡§æ‡§¶‡§®...";
+//STRIP001          Text[ slovak ] = "Upravi≈• koment√°r...";
+//STRIP001      };
+//STRIP001      MenuItem
+//STRIP001      {
+//STRIP001          Identifier = MN_SUB_SORT ;
+//STRIP001          Text = "Sortiere" ;
+//STRIP001          Text [ english ] = "Sort" ;
+//STRIP001          RadioCheck = TRUE ;
+//STRIP001          SubMenu = Menu
+//STRIP001          {
+//STRIP001              ItemList =
+//STRIP001              {
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = MN_SORT_ACTION ;
+//STRIP001                      HelpID = HID_SORT_ACTION ;
+//STRIP001                      Text = "Aktion" ;
+//STRIP001                      Text [ english ] = "Action" ;
+//STRIP001                      RadioCheck = TRUE ;
+//STRIP001                      Text [ english_us ] = "Action" ;
+//STRIP001                      Text [ portuguese_brazilian ] = "AÁ„o" ;
+//STRIP001                      Text [ swedish ] = "≈tg‰rd" ;
+//STRIP001                      Text [ danish ] = "Handling" ;
+//STRIP001                      Text [ italian ] = "Operazione" ;
+//STRIP001                      Text [ spanish ] = "AcciÛn" ;
+//STRIP001                      Text [ french ] = "Action" ;
+//STRIP001                      Text [ dutch ] = "Activiteit" ;
+//STRIP001                      Text [ portuguese ] = "AcÁ„o" ;
+//STRIP001                      Text[ chinese_simplified ] = "Êìç‰Ωú";
+//STRIP001                      Text[ russian ] = "ƒÂÈÒÚ‚ËÂ";
+//STRIP001                      Text[ polish ] = "Akcja";
+//STRIP001                      Text[ japanese ] = "„Ç¢„ÇØ„Ç∑„Éß„É?;
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ chinese_traditional ] = "Âãï‰Ωú";
+//STRIP001                      Text[ arabic ] = "≈Ã—«?;
+//STRIP001                      Text[ greek ] = "≈Ì›Ò„ÂÈ·";
+//STRIP001                      Text[ korean ] = "ÏûëÎèô";
+//STRIP001                      Text[ turkish ] = "›˛lem";
+//STRIP001                      Text[ catalan ] = "Acci?;
+//STRIP001                      Text[ finnish ] = "Toiminto";
+//STRIP001                      Text[ thai ] = "‡∏Å‡∏≤‡∏£‡∏Å‡∏£‡∏∞‡∏ó‡∏≥";
+//STRIP001                      Text[ czech ] = "ƒåinnost";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊§◊¢◊ï◊ú◊î‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§ï‡§æ‡§∞‡•ç‡§?;
+//STRIP001                      Text[ slovak ] = "ƒåinnos≈•";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = MN_SORT_AUTHOR ;
+//STRIP001                      HelpID = HID_SORT_AUTHOR ;
+//STRIP001                      Text = "Autor" ;
+//STRIP001                      Text [ english ] = "Author" ;
+//STRIP001                      RadioCheck = TRUE ;
+//STRIP001                      Text [ english_us ] = "Author" ;
+//STRIP001                      Text [ portuguese_brazilian ] = "Autor" ;
+//STRIP001                      Text [ swedish ] = "Fˆrfattare" ;
+//STRIP001                      Text [ danish ] = "Forfatter" ;
+//STRIP001                      Text [ italian ] = "Autore" ;
+//STRIP001                      Text [ spanish ] = "Autor" ;
+//STRIP001                      Text [ french ] = "Auteur" ;
+//STRIP001                      Text [ dutch ] = "Auteur" ;
+//STRIP001                      Text [ portuguese ] = "Autor" ;
+//STRIP001                      Text[ chinese_simplified ] = "‰ΩúËÄ?;
+//STRIP001                      Text[ russian ] = "¿‚ÚÓ?;
+//STRIP001                      Text[ polish ] = "Autor";
+//STRIP001                      Text[ japanese ] = "‰ΩúÊàêËÄ?;
+//STRIP001                      Text[ chinese_traditional ] = "‰ΩúËÄ?;
+//STRIP001                      Text[ arabic ] = "«·„ƒ·›";
+//STRIP001                      Text[ greek ] = "”ıÌÙ‹ÍÙÁ?;
+//STRIP001                      Text[ korean ] = "ÏûëÏÑ±Ïû?;
+//STRIP001                      Text[ turkish ] = "Yazar";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "Autor";
+//STRIP001                      Text[ finnish ] = "Tekij?;
+//STRIP001                      Text[ thai ] = "‡∏ú‡∏π‡πâ‡πÄ‡∏Ç‡∏µ‡∏¢‡∏ô";
+//STRIP001                      Text[ czech ] = "Autor";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊û◊ó◊ë◊®‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§≤‡•á‡§ñ‡§ï";
+//STRIP001                      Text[ slovak ] = "Autor";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = MN_SORT_DATE ;
+//STRIP001                      HelpID = HID_SORT_DATE ;
+//STRIP001                      Text = "Datum" ;
+//STRIP001                      Text [ english ] = "Date" ;
+//STRIP001                      RadioCheck = TRUE ;
+//STRIP001                      Text [ english_us ] = "Date" ;
+//STRIP001                      Text [ portuguese_brazilian ] = "Data" ;
+//STRIP001                      Text [ swedish ] = "Datum" ;
+//STRIP001                      Text [ danish ] = "Dato" ;
+//STRIP001                      Text [ italian ] = "Data" ;
+//STRIP001                      Text [ spanish ] = "Fecha" ;
+//STRIP001                      Text [ french ] = "Date" ;
+//STRIP001                      Text [ dutch ] = "Datum" ;
+//STRIP001                      Text [ portuguese ] = "Data" ;
+//STRIP001                      Text[ chinese_simplified ] = "Êó•Êúü";
+//STRIP001                      Text[ russian ] = "ƒ‡Ú‡";
+//STRIP001                      Text[ polish ] = "Data";
+//STRIP001                      Text[ japanese ] = "Êó•‰ªò";
+//STRIP001                      Text[ chinese_traditional ] = "Êó•Êúü";
+//STRIP001                      Text[ arabic ] = "«· «—Ì?;
+//STRIP001                      Text[ greek ] = "«ÏÂÒÔÏÁÌﬂ·";
+//STRIP001                      Text[ korean ] = "ÎÇ†Ïßú";
+//STRIP001                      Text[ turkish ] = "Tarih";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "Data";
+//STRIP001                      Text[ finnish ] = "P‰iv‰m‰‰r?;
+//STRIP001                      Text[ thai ] = "‡∏ß‡∏±‡∏ô‡∏ó‡∏µ‡πà";
+//STRIP001                      Text[ czech ] = "Datum";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊™◊ê◊®◊ô◊ö‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§¶‡§ø‡§®‡§æ‡§Ç‡§ï";
+//STRIP001                      Text[ slovak ] = "D√°tum";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = MN_SORT_COMMENT ;
+//STRIP001                      HelpID = HID_SORT_COMMENT ;
+//STRIP001                      Text = "Beschreibung" ;
+//STRIP001                      Text [ english ] = "Comment" ;
+//STRIP001                      RadioCheck = TRUE ;
+//STRIP001                      Text [ english_us ] = "Comment" ;
+//STRIP001                      Text [ portuguese_brazilian ] = "Coment·rio" ;
+//STRIP001                      Text [ swedish ] = "Beskrivning" ;
+//STRIP001                      Text [ danish ] = "Beskrivelse" ;
+//STRIP001                      Text [ italian ] = "Descrizione" ;
+//STRIP001                      Text [ spanish ] = "DescripciÛn" ;
+//STRIP001                      Text [ french ] = "Description" ;
+//STRIP001                      Text [ dutch ] = "Beschrijving" ;
+//STRIP001                      Text [ portuguese ] = "DescriÁ„o" ;
+//STRIP001                      Text[ chinese_simplified ] = "ËØ¥Êòé";
+//STRIP001                      Text[ russian ] = " ÓÏÏÂÌÚ‡Ë?;
+//STRIP001                      Text[ polish ] = "Komentarz";
+//STRIP001                      Text[ japanese ] = "„Ç≥„É°„É≥„Éà";
+//STRIP001                      Text[ chinese_traditional ] = "ÊèèËø∞";
+//STRIP001                      Text[ arabic ] = " ⁄·Ì?;
+//STRIP001                      Text[ greek ] = "–ÂÒÈ„Ò·ˆ?;
+//STRIP001                      Text[ korean ] = "ÏÑ§Î™Ö";
+//STRIP001                      Text[ turkish ] = "AÁ˝klama";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "Comentari";
+//STRIP001                      Text[ finnish ] = "Huomautus";
+//STRIP001                      Text[ thai ] = "‡∏Ç‡πâ‡∏≠‡∏Ñ‡∏¥‡∏î‡πÄ‡∏´‡πá‡∏?;
+//STRIP001                      Text[ czech ] = "Koment√°≈ô";
+//STRIP001                      Text[ hebrew ] = "‚ÄÆ◊î◊¢◊®◊ï◊™‚Ä?;
+//STRIP001                      Text[ hindi ] = "‡§Ö‡§™‡§µ‡§æ‡§?;
+//STRIP001                      Text[ slovak ] = "Koment√°r";
+//STRIP001                  };
+//STRIP001                  MenuItem
+//STRIP001                  {
+//STRIP001                      Identifier = MN_SORT_POSITION ;
+//STRIP001                      HelpID = HID_SW_SORT_POSITION ;
+//STRIP001                      Text = "Dokumentposition" ;
+//STRIP001                      Text [ english ] = "Document position" ;
+//STRIP001                      RadioCheck = TRUE ;
+//STRIP001                      Text [ english_us ] = "Document position" ;
+//STRIP001                      Text [ portuguese_brazilian ] = "PosiÁ„o do documento" ;
+//STRIP001                      Text [ swedish ] = "Dokumentposition" ;
+//STRIP001                      Text [ danish ] = "Dokumentplacering" ;
+//STRIP001                      Text [ italian ] = "Posizione documento" ;
+//STRIP001                      Text [ spanish ] = "PosiciÛn del documento" ;
+//STRIP001                      Text [ french ] = "Emplacement dans le document" ;
+//STRIP001                      Text [ dutch ] = "Documentpositie" ;
+//STRIP001                      Text [ portuguese ] = "PosiÁ„o no documento" ;
+//STRIP001                      Text[ chinese_simplified ] = "ÊñáÊ°£‰ΩçÁΩÆ";
+//STRIP001                      Text[ russian ] = "–‡ÒÔÓÎÓÊÂÌËÂ ?‰ÓÍÛÏÂÌÚ?;
+//STRIP001                      Text[ polish ] = "Pozycja dokumentu";
+//STRIP001                      Text[ japanese ] = "„Éâ„Ç≠„É•„É°„É≥„Éà„ÅÆ‰ΩçÁΩ?;
+//STRIP001                      Text[ chinese_traditional ] = "Êñá‰ª∂‰ΩçÁΩÆ";
+//STRIP001                      Text[ arabic ] = "«·„Ê÷⁄ ›Ì «·„” ‰?;
+//STRIP001                      Text[ greek ] = "»›ÛÁ Â„„Ò‹ˆÔı";
+//STRIP001                      Text[ korean ] = "Î¨∏ÏÑú ÏúÑÏπò";
+//STRIP001                      Text[ turkish ] = "Belge konumu";
+//STRIP001                      Text[ language_user1 ] = " ";
+//STRIP001                      Text[ catalan ] = "Posici?del documento";
+//STRIP001                      Text[ finnish ] = "Asiakirjan sijainti";
+//STRIP001                      Text[ thai ] = "‡∏ï‡∏≥‡πÅ‡∏´‡∏ô‡πà‡∏á‡πÄ‡∏≠‡∏Å‡∏™‡∏≤‡∏?;
+//STRIP001                      Text[ czech ] = "Pozice dokumentu";
+//STRIP001                      Text[ hebrew ] = "Dokumentposition";
+//STRIP001                      Text[ hindi ] = "‡§≤‡•á‡§ñ‡§™‡§§‡•ç‡§?‡§∏‡•ç‡§•‡§æ‡§?;
+//STRIP001                      Text[ slovak ] = "Poz√≠cia dokumentu";
+//STRIP001                  };
+//STRIP001              };
+//STRIP001          };
+//STRIP001          Text [ english_us ] = "Sort By" ;
+//STRIP001          Text [ portuguese_brazilian ] = "Ordenar por" ;
+//STRIP001          Text [ swedish ] = "Sortera efter" ;
+//STRIP001          Text [ danish ] = "Sorter" ;
+//STRIP001          Text [ italian ] = "Ordina" ;
+//STRIP001          Text [ spanish ] = "Ordenar" ;
+//STRIP001          Text [ french ] = "Trier" ;
+//STRIP001          Text [ dutch ] = "Sorteer" ;
+//STRIP001          Text [ portuguese ] = "Ordenar" ;
+//STRIP001          Text[ chinese_simplified ] = "ÊéíÂ∫è";
+//STRIP001          Text[ russian ] = "—ÓÚËÓ‚Í‡";
+//STRIP001          Text[ polish ] = "Sortuj wg";
+//STRIP001          Text[ japanese ] = "‰∏¶„ÅπÊõø„Åà";
+//STRIP001          Text[ chinese_traditional ] = "ÊéíÂ∫è";
+//STRIP001          Text[ arabic ] = "›—?;
+//STRIP001          Text[ greek ] = "‘·ÓÈÌ¸ÏÁÛÁ";
+//STRIP001          Text[ korean ] = "Ï†ïÎ†¨ Í∏∞Ï§Ä";
+//STRIP001          Text[ turkish ] = "gˆre s˝ralanm˝˛";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Ordena per";
+//STRIP001          Text[ finnish ] = "Lajitteluperuste";
+//STRIP001          Text[ thai ] = "‡πÄ‡∏£‡∏µ‡∏¢‡∏á‡πÇ‡∏î‡∏?;
+//STRIP001          Text[ czech ] = "Se≈ôadit podle";
+//STRIP001          Text[ hebrew ] = "Sortiere";
+//STRIP001          Text[ hindi ] = "‡§∏‡•á ‡§∏‡•ã‡§∞‡•ç‡§?‡§ï‡§∞‡•?;
+//STRIP001          Text[ slovak ] = "Triedi≈• podƒæa";
+//STRIP001      };
+//STRIP001  };
+//STRIP001 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
