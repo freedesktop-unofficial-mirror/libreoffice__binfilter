@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:30:22 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:53:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -312,6 +312,7 @@
 #endif
 
 #include <sw3io.hxx>
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star::ui::dialogs;
@@ -1699,9 +1700,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 //STRIP001  pSrcView->SetPool(&GetPool());
 //STRIP001
 //STRIP001
-//STRIP001  String sBaseURL = INetURLObject::GetBaseURL();
+//STRIP001  String sBaseURL = so3::StaticBaseUrl::GetBaseURL();
 //STRIP001  const String& rMedname = GetMedium()->GetName();
-//STRIP001  INetURLObject::SetBaseURL( rMedname );
+//STRIP001  so3::StaticBaseUrl::SetBaseURL( rMedname );
 //STRIP001
 //STRIP001  // fix #51032#: Die HTML-Vorlage muss noch gesetzt werden
 //STRIP001  SetHTMLTemplate( *GetDoc() );   //Styles aus HTML.vor
@@ -1717,7 +1718,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 //STRIP001  SwReader aReader( aMed, rMedname, pDoc );
 //STRIP001  aReader.Read( *ReadHTML );
 //STRIP001
-//STRIP001  INetURLObject::SetBaseURL(sBaseURL);
+//STRIP001  so3::StaticBaseUrl::SetBaseURL(sBaseURL);
 //STRIP001     const SwView* pView = GetView();
 //STRIP001     //in print layout the first page(s) may have been formatted as a mix of browse
 //STRIP001     //and print layout
@@ -1793,8 +1794,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 //STRIP001  INetURLObject aURLObj( rURL );
 //STRIP001  String sURL( aURLObj.GetMainURL( INetURLObject::NO_DECODE ) );
 //STRIP001
-//STRIP001  String sBaseURL( INetURLObject::GetBaseURL() );
-//STRIP001  INetURLObject::SetBaseURL( sURL );
+//STRIP001  String sBaseURL( so3::StaticBaseUrl::GetBaseURL() );
+//STRIP001  so3::StaticBaseUrl::SetBaseURL( sURL );
 //STRIP001
 //STRIP001  SwRead pRead = 0;
 //STRIP001  SwReader* pReader = 0;
@@ -1851,7 +1852,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 //STRIP001  }
 //STRIP001  delete pPam;
 //STRIP001  delete pReader;
-//STRIP001  INetURLObject::SetBaseURL( sBaseURL );
+//STRIP001  so3::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/   return nErr;
 /*N*/ }
 
