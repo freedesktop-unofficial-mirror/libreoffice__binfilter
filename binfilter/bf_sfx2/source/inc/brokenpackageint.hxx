@@ -2,9 +2,9 @@
  *
  *  $RCSfile: brokenpackageint.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:55:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,15 +59,15 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DOCUMENT_BROKENPACKAGEREQUEST_HPP_
-#include <com/sun/star/document/BrokenPackageRequest.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONAPPROVE_HPP_
-#include <com/sun/star/task/XInteractionApprove.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONDISAPPROVE_HPP_
-#include <com/sun/star/task/XInteractionDisapprove.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_BROKENPACKAGEREQUEST_HPP_
+// auto strip #include <com/sun/star/document/BrokenPackageRequest.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONAPPROVE_HPP_
+// auto strip #include <com/sun/star/task/XInteractionApprove.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TASK_XINTERACTIONDISAPPROVE_HPP_
+// auto strip #include <com/sun/star/task/XInteractionDisapprove.hpp>
+// auto strip #endif
 
 #ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
 #include <framework/interaction.hxx>
