@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_feshview.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:28:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,54 +70,54 @@
 #define _FESHVIEW_ONLY_INLINE_NEEDED
 #endif
 
-#ifndef _SVDOUNO_HXX //autogen
-#include <bf_svx/svdouno.hxx>
-#endif
-#ifndef _SVDOOLE2_HXX //autogen
-#include <bf_svx/svdoole2.hxx>
-#endif
-#ifndef _SVDOGRP_HXX //autogen
-#include <bf_svx/svdogrp.hxx>
-#endif
-#ifndef _SVDOCIRC_HXX
-#include <bf_svx/svdocirc.hxx>
-#endif
+// auto strip #ifndef _SVDOUNO_HXX //autogen
+// auto strip #include <bf_svx/svdouno.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOOLE2_HXX //autogen
+// auto strip #include <bf_svx/svdoole2.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOCIRC_HXX
+// auto strip #include <bf_svx/svdocirc.hxx>
+// auto strip #endif
 #ifndef _SVDOPATH_HXX
 #include <bf_svx/svdopath.hxx>
 #endif
-#ifndef _SXCIAITM_HXX
-#include <bf_svx/sxciaitm.hxx>
-#endif
-#ifndef _SVX_FILLITEM_HXX //autogen
-#include <bf_svx/xfillit.hxx>
-#endif
+// auto strip #ifndef _SXCIAITM_HXX
+// auto strip #include <bf_svx/sxciaitm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FILLITEM_HXX //autogen
+// auto strip #include <bf_svx/xfillit.hxx>
+// auto strip #endif
 #ifndef _SVDVMARK_HXX //autogen
 #include <bf_svx/svdvmark.hxx>
 #endif
-#ifndef _XPOLY_HXX //autogen
-#include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVDCAPT_HXX //autogen
-#include <bf_svx/svdocapt.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
+// auto strip #ifndef _XPOLY_HXX //autogen
+// auto strip #include <bf_svx/xpoly.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDCAPT_HXX //autogen
+// auto strip #include <bf_svx/svdocapt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
 #ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
 #endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _SVDPAGV_HXX //autogen wg. SdrPageView
-#include <bf_svx/svdpagv.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGV_HXX //autogen wg. SdrPageView
+// auto strip #include <bf_svx/svdpagv.hxx>
+// auto strip #endif
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
@@ -131,59 +131,64 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
-#include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTCNCT_HXX //autogen
-#include <fmtcnct.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _TBLSEL_HXX //autogen
-#include <tblsel.hxx>
-#endif
-#ifndef _SWTABLE_HXX //autogen
-#include <swtable.hxx>
-#endif
-#ifndef _FLYFRMS_HXX
-#include <flyfrms.hxx>
-#endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLCNT_HXX //autogen
+// auto strip #include <fmtflcnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNCT_HXX //autogen
+// auto strip #include <fmtcnct.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX //autogen
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX //autogen
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYFRMS_HXX
+// auto strip #include <flyfrms.hxx>
+// auto strip #endif
 #include "fesh.hxx"
-#include "rootfrm.hxx"
-#include "pagefrm.hxx"
-#include "sectfrm.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "pagefrm.hxx"
+// auto strip #include "sectfrm.hxx"
 #include "doc.hxx"
 #include "dview.hxx"
 #include "dflyobj.hxx"
 #include "dcontact.hxx"
 #include "viewimp.hxx"
 #include "flyfrm.hxx"
-#include "pam.hxx"
+// auto strip #include "pam.hxx"
 #include "ndole.hxx"
-#include "ndgrf.hxx"
-#include "ndtxt.hxx"
-#include "viewopt.hxx"                  // fuer GetHTMLMode
-#include "swundo.hxx"
-#include "notxtfrm.hxx"
+// auto strip #include "ndgrf.hxx"
+// auto strip #include "ndtxt.hxx"
+// auto strip #include "viewopt.hxx"                    // fuer GetHTMLMode
+// auto strip #include "swundo.hxx"
+// auto strip #include "notxtfrm.hxx"
 #include "txtfrm.hxx"
-#include "txatbase.hxx"
-#include "mdiexp.hxx"                   // fuer Update der Statuszeile bei drag
+// auto strip #include "txatbase.hxx"
+// auto strip #include "mdiexp.hxx"                 // fuer Update der Statuszeile bei drag
 namespace binfilter {
 
 #define SCROLLVAL 75
