@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtatr2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
+ *  last change: $Author: aw $ $Date: 2004-04-22 09:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -316,20 +316,20 @@ using namespace ::rtl;
 
 
 
-//STRIP001 void SwFmtINetFmt::SetMacro( USHORT nEvent, const SvxMacro& rMacro )
-//STRIP001 {
-//STRIP001  if( !pMacroTbl )
-//STRIP001      pMacroTbl = new SvxMacroTableDtor;
-//STRIP001
-//STRIP001  SvxMacro *pOldMacro;
-//STRIP001  if( 0 != ( pOldMacro = pMacroTbl->Get( nEvent )) )
-//STRIP001  {
-//STRIP001      delete pOldMacro;
-//STRIP001      pMacroTbl->Replace( nEvent, new SvxMacro( rMacro ) );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pMacroTbl->Insert( nEvent, new SvxMacro( rMacro ) );
-//STRIP001 }
+/*N #i27164#*/ void SwFmtINetFmt::SetMacro( USHORT nEvent, const SvxMacro& rMacro )
+/*N #i27164#*/ {
+/*N #i27164#*/  if( !pMacroTbl )
+/*N #i27164#*/  pMacroTbl = new SvxMacroTableDtor;
+/*N #i27164#*/
+/*N #i27164#*/  SvxMacro *pOldMacro;
+/*N #i27164#*/  if( 0 != ( pOldMacro = pMacroTbl->Get( nEvent )) )
+/*N #i27164#*/  {
+/*N #i27164#*/  delete pOldMacro;
+/*N #i27164#*/  pMacroTbl->Replace( nEvent, new SvxMacro( rMacro ) );
+/*N #i27164#*/  }
+/*N #i27164#*/  else
+/*N #i27164#*/  pMacroTbl->Insert( nEvent, new SvxMacro( rMacro ) );
+/*N #i27164#*/ }
 
 
 

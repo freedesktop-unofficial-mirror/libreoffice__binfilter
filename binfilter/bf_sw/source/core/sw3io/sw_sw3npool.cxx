@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:53 $
+ *  last change: $Author: aw $ $Date: 2004-04-22 09:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -630,12 +630,12 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   rStrm >> nCnt;
 /*N*/   while( nCnt-- )
 /*N*/   {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        USHORT nCurKey;
-//STRIP001 /*?*/        String aLibName, aMacName;
-//STRIP001 /*?*/        rStrm >> nCurKey;
-//STRIP001 /*?*/        rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
-//STRIP001 /*?*/        rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
-//STRIP001 /*?*/        pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
+/*N #i27164#*/      USHORT nCurKey;
+/*N #i27164#*/      String aLibName, aMacName;
+/*N #i27164#*/      rStrm >> nCurKey;
+/*N #i27164#*/      rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/      rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/      pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName, STARBASIC ) );
 /*N*/   }
 /*N*/   if( nIVer >= 1 )
 /*N*/   {
@@ -648,14 +648,14 @@ const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/       rStrm >> nCnt;
 /*N*/       while( nCnt-- )
 /*N*/       {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nCurKey, nScriptType;
-//STRIP001 /*?*/            String aLibName, aMacName;
-//STRIP001 /*?*/            rStrm >> nCurKey;
-//STRIP001 /*?*/            rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
-//STRIP001 /*?*/            rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
-//STRIP001 /*?*/            rStrm >> nScriptType;
-//STRIP001 /*?*/            pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName,
-//STRIP001 /*?*/                                        (ScriptType)nScriptType ) );
+/*N #i27164#*/          USHORT nCurKey, nScriptType;
+/*N #i27164#*/          String aLibName, aMacName;
+/*N #i27164#*/          rStrm >> nCurKey;
+/*N #i27164#*/          rStrm.ReadByteString( aLibName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/          rStrm.ReadByteString( aMacName, rStrm.GetStreamCharSet() );
+/*N #i27164#*/          rStrm >> nScriptType;
+/*N #i27164#*/          pNew->SetMacro( nCurKey, SvxMacro( aMacName, aLibName,
+/*N #i27164#*/                                      (ScriptType)nScriptType ) );
 /*N*/       }
 /*N*/   }
 /*N*/
