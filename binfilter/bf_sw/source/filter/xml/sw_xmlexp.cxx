@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlexp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:22:41 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:52:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -626,7 +626,8 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
         pDoc->GetDocShell()->SfxInPlaceObject::GetVisArea();
     sal_Bool bTwip = pDoc->GetDocShell()->SfxInPlaceObject::GetMapUnit ( ) == MAP_TWIP;
 
-    ASSERT ( bTwip, "Map unit for visible area is not in TWIPS!" );
+    ASSERT( bTwip || ( pDoc->GetDocShell()->SfxInPlaceObject::GetMapUnit() == MAP_100TH_MM ),
+        "Map unit for visible area is neither in TWIPS nor in 100th mm!" );
 
     pValue[nIndex].Name = OUString( RTL_CONSTASCII_USTRINGPARAM ( "ViewAreaTop") );
     pValue[nIndex++].Value <<= bTwip ? TWIP_TO_MM100 ( rRect.Top() ) : rRect.Top();
