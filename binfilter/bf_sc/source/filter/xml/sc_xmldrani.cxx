@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmldrani.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:31:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,20 +60,20 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#include "xmldrani.hxx"
+// auto strip #include "xmldrani.hxx"
 #include "xmlimprt.hxx"
 #include "xmlfilti.hxx"
 #include "xmlsorti.hxx"
 #include "document.hxx"
 #include "globstr.hrc"
-#include "docuno.hxx"
+// auto strip #include "docuno.hxx"
 #include "dbcolect.hxx"
 #include "datauno.hxx"
 
@@ -90,30 +90,30 @@
 #include "XMLConverter.hxx"
 #endif
 
-#include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 #ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
 #endif
-#include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#include <com/sun/star/sheet/XDatabaseRanges.hpp>
-#include <com/sun/star/sheet/XDatabaseRange.hpp>
-#include <com/sun/star/table/CellRangeAddress.hpp>
+// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
+// auto strip #include <com/sun/star/sheet/XDatabaseRanges.hpp>
+// auto strip #include <com/sun/star/sheet/XDatabaseRange.hpp>
+// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
-#ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
-#include <com/sun/star/uno/RuntimeException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
-#include <com/sun/star/xml/sax/XLocator.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/uno/RuntimeException.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
+// auto strip #include <com/sun/star/xml/sax/XLocator.hpp>
+// auto strip #endif
 namespace binfilter {
 
 #define SC_ENABLEUSERSORTLIST   "EnableUserSortList"
