@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:02:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,8 +69,8 @@
     #include <stdio.h>          // in SwLinguStatistik::DTOR
     #include <stdlib.h>         // getenv()
     #include <time.h>           // clock()
-    #include "viewsh.hxx"       // ViewShell::GetHyphenator
-    #include <tools/stream.hxx>
+// auto strip   #include "viewsh.hxx"       // ViewShell::GetHyphenator
+// auto strip     #include <tools/stream.hxx>
 #endif
 
 #ifndef _HINTIDS_HXX
@@ -80,76 +80,81 @@
 #ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _SVX_SPLWRAP_HXX
-#include <bf_svx/splwrap.hxx>
-#endif
+// auto strip #ifndef _SVX_SPLWRAP_HXX
+// auto strip #include <bf_svx/splwrap.hxx>
+// auto strip #endif
 #ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
 #endif
 #ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
 #endif
-#ifndef _LINGUISTIC_LNGPROPS_HHX_
-#include <bf_linguistic/lngprops.hxx>
-#endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _LINGUISTIC_LNGPROPS_HHX_
+// auto strip #include <bf_linguistic/lngprops.hxx>
+// auto strip #endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#ifndef _DLELSTNR_HXX_
-#include <dlelstnr.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>    // needed for SW_MOD() macro
-#endif
-#ifndef _SPLARGS_HXX
-#include <splargs.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
+// auto strip #ifndef _DLELSTNR_HXX_
+// auto strip #include <dlelstnr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>    // needed for SW_MOD() macro
+// auto strip #endif
+// auto strip #ifndef _SPLARGS_HXX
+// auto strip #include <splargs.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx> // ViewShell
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>      // GetDoc()
 #endif
-#ifndef _FRMSH_HXX
-#include <frmsh.hxx>
-#endif
+// auto strip #ifndef _FRMSH_HXX
+// auto strip #include <frmsh.hxx>
+// auto strip #endif
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _SPLARGS_HXX
-#include <splargs.hxx>
-#endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _SPLARGS_HXX
+// auto strip #include <splargs.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
@@ -162,27 +167,27 @@
 #ifndef _WRONG_HXX
 #include <wrong.hxx>
 #endif
-#ifndef _TXTTYPES_HXX
-#include <txttypes.hxx>
-#endif
+// auto strip #ifndef _TXTTYPES_HXX
+// auto strip #include <txttypes.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-#ifndef _CRSTATE_HXX
-#include <crstate.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _TXATRITR_HXX
-#include <txatritr.hxx>
-#endif
-#ifndef _REDLINE_HXX
-#include <redline.hxx>      // SwRedline
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>       // SwRedlineTbl
-#endif
+// auto strip #ifndef _CRSTATE_HXX
+// auto strip #include <crstate.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNDOBJ_HXX
+// auto strip #include <undobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXATRITR_HXX
+// auto strip #include <txatritr.hxx>
+// auto strip #endif
+// auto strip #ifndef _REDLINE_HXX
+// auto strip #include <redline.hxx>        // SwRedline
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>     // SwRedlineTbl
+// auto strip #endif
 #ifndef _DRAWFONT_HXX
 #include <drawfont.hxx> // SwDrawTextInfo
 #endif
