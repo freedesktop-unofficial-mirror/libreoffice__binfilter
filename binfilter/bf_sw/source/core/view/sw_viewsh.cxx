@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewsh.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:16:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,24 +68,29 @@
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif
-#ifndef _SVX_SRCHDLG_HXX //autogen
-#include <bf_svx/srchdlg.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
-#include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SFXVIEWSH_HXX
-#include <bf_sfx2/viewsh.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHDLG_HXX //autogen
+// auto strip #include <bf_svx/srchdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOBJ_HXX //autogen
+// auto strip #include <bf_svx/svdobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWSH_HXX
+// auto strip #include <bf_sfx2/viewsh.hxx>
+// auto strip #endif
 #ifndef _SHL_HXX
 //#include <tools/shl.hxx>
 #endif
 #ifndef _SWWAIT_HXX
 #include <swwait.hxx>
 #endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
@@ -98,9 +103,9 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
 #endif
@@ -119,12 +124,12 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _FMTFSIZE_HXX
-#include <fmtfsize.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
-#include <docufld.hxx>
-#endif
+// auto strip #ifndef _FMTFSIZE_HXX
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCUFLD_HXX
+// auto strip #include <docufld.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
@@ -134,44 +139,44 @@
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
-#ifndef _SCRRECT_HXX
-#include <scrrect.hxx>      // SwScrollRect, SwScrollRects
-#endif
+// auto strip #ifndef _SCRRECT_HXX
+// auto strip #include <scrrect.hxx>        // SwScrollRect, SwScrollRects
+// auto strip #endif
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
-#ifndef _PTQUEUE_HXX
-#include <ptqueue.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _PTQUEUE_HXX
+// auto strip #include <ptqueue.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _DOCUFLD_HXX
-#include <docufld.hxx>
-#endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _DOCUFLD_HXX
+// auto strip #include <docufld.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifdef ACCESSIBLE_LAYOUT
-#ifndef _ACCMAP_HXX
-#include <accmap.hxx>
+// auto strip #ifndef _ACCMAP_HXX
+// auto strip #include <accmap.hxx>
+// auto strip #endif
 #endif
-#endif
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <svtools/accessibilityoptions.hxx>
+// auto strip #endif
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
 #endif
@@ -179,9 +184,9 @@
 #include <statstr.hrc>
 #endif
 // OD 14.01.2003 #103492#
-#ifndef _PAGEPREVIEWLAYOUT_HXX
-#include <pagepreviewlayout.hxx>
-#endif
+// auto strip #ifndef _PAGEPREVIEWLAYOUT_HXX
+// auto strip #include <pagepreviewlayout.hxx>
+// auto strip #endif
 namespace binfilter {
 
 BOOL ViewShell::bLstAct = FALSE;
