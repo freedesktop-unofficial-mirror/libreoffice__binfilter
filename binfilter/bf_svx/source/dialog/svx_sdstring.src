@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_sdstring.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:32:49 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 18:12:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -5150,6 +5150,7 @@ String RID_SVXSTR_DASH10_DEF
     Text = "Dashed (var)";
 };
 /* nicht uebersetzen */
+// needed: #i33205#
 String RID_SVXSTR_DASH11_DEF
 {
     Text = "Dash";
@@ -5901,6 +5902,7 @@ String RID_SVXSTR_LEND11
 //
 
 /* nicht uebersetzen */
+// needed: #i33205#
 String RID_SVXSTR_TRASNGR0_DEF
 {
     Text = "Transparency";
