@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xtabbtmp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:53:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
 #endif
@@ -72,21 +72,21 @@
 #include <unotools/ucbstreamhelper.hxx>
 #endif
 
-#include "xmlxtexp.hxx"
+// auto strip #include "xmlxtexp.hxx"
 #include "xmlxtimp.hxx"
 
 #endif
 
 #include <tools/urlobj.hxx>
-#include <vcl/virdev.hxx>
-#include <svtools/itemset.hxx>
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #include <svtools/itemset.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include "dialogs.hrc"
 #include "dialmgr.hxx"
 #include "xtable.hxx"
 #include "xiocomp.hxx"
-#include "xpool.hxx"
-#include "xoutx.hxx"
+// auto strip #include "xpool.hxx"
+// auto strip #include "xoutx.hxx"
 namespace binfilter {
 
 #define GLOBALOVERFLOW
