@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paintfrm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:38:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,159 +65,164 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #include <hintids.hxx>
 
-#ifndef _SOUND_HXX //autogen
-#include <vcl/sound.hxx>
-#endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _SOUND_HXX //autogen
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 #define _SVSTDARR_LONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef _XOUTBMP_HXX //autogen
-#include <bf_svx/xoutbmp.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX //autogen
-#include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_PRNTITEM_HXX //autogen
-#include <bf_svx/prntitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
-#include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _GRAPH_HXX //autogen
-#include <vcl/graph.hxx>
-#endif
+// auto strip #ifndef _XOUTBMP_HXX //autogen
+// auto strip #include <bf_svx/xoutbmp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PROGRESS_HXX //autogen
+// auto strip #include <bf_sfx2/progress.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PRNTITEM_HXX //autogen
+// auto strip #include <bf_svx/prntitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SHADITEM_HXX //autogen
+// auto strip #include <bf_svx/shaditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _GRAPH_HXX //autogen
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
 #ifndef _SVDPAGV_HXX //autogen
 #include <bf_svx/svdpagv.hxx>
 #endif
-#ifndef SW_TGRDITEM_HXX
-#include <tgrditem.hxx>
-#endif
+// auto strip #ifndef SW_TGRDITEM_HXX
+// auto strip #include <tgrditem.hxx>
+// auto strip #endif
 
 
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
+// auto strip #ifndef _SECTFRM_HXX
+// auto strip #include <sectfrm.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _SECTFRM_HXX
-#include <sectfrm.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
-#ifndef _SWATRSET_HXX
-#include <swatrset.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
-#include <dflyobj.hxx>
-#endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWATRSET_HXX
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
+// auto strip #ifndef _DFLYOBJ_HXX
+// auto strip #include <dflyobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
-#ifndef _DVIEW_HXX
-#include <dview.hxx>
-#endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
-#ifndef _FTNFRM_HXX
-#include <ftnfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
-#ifndef _NOTXTFRM_HXX
-#include <notxtfrm.hxx>
-#endif
-#ifndef _FRMSH_HXX
-#include <frmsh.hxx>
-#endif
-#ifndef _SWREGION_HXX
-#include <swregion.hxx>
-#endif
-#ifndef _LAYACT_HXX
-#include <layact.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _PTQUEUE_HXX
-#include <ptqueue.hxx>
-#endif
-#ifndef _NOTEURL_HXX
-#include <noteurl.hxx>
-#endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DVIEW_HXX
+// auto strip #include <dview.hxx>
+// auto strip #endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _FTNFRM_HXX
+// auto strip #include <ftnfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _NOTXTFRM_HXX
+// auto strip #include <notxtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMSH_HXX
+// auto strip #include <frmsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWREGION_HXX
+// auto strip #include <swregion.hxx>
+// auto strip #endif
+// auto strip #ifndef _LAYACT_HXX
+// auto strip #include <layact.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PTQUEUE_HXX
+// auto strip #include <ptqueue.hxx>
+// auto strip #endif
+// auto strip #ifndef _NOTEURL_HXX
+// auto strip #include <noteurl.hxx>
+// auto strip #endif
 #ifndef _VIRTOUTP_HXX
 #include <virtoutp.hxx>
 #endif
-#ifndef _LINEINFO_HXX
-#include <lineinfo.hxx>
-#endif
-#ifndef _DBG_LAY_HXX
-#include <dbg_lay.hxx>
-#endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
-#include <accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _LINEINFO_HXX
+// auto strip #include <lineinfo.hxx>
+// auto strip #endif
+// auto strip #ifndef _DBG_LAY_HXX
+// auto strip #include <dbg_lay.hxx>
+// auto strip #endif
+// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <accessibilityoptions.hxx>
+// auto strip #endif
 // OD 20.12.2002 #94627#
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
 // OD 28.02.2003 #b4779636#, #107692#
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 // OD 02.07.2003 #108784#
-#ifndef _SVDOGRP_HXX
-#include <bf_svx/svdogrp.hxx>
-#endif
+// auto strip #ifndef _SVDOGRP_HXX
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ #define GETOBJSHELL()     ((SfxObjectShell*)rSh.GetDoc()->GetDocShell())
