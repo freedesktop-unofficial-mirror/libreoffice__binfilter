@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfxuno.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:03:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 //  generated header
 //________________________________________________________________________________________________________________________
 
-#ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP_
-#include <com/sun/star/uno/Exception.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP_
+// auto strip #include <com/sun/star/uno/Exception.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -78,17 +78,17 @@
 #include <com/sun/star/util/URL.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XSingleServiceFactory.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
-#include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+// auto strip #include <com/sun/star/lang/XTypeProvider.hpp>
+// auto strip #endif
 
 //________________________________________________________________________________________________________________________
 //  fix uno header
@@ -106,17 +106,17 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
-#include <cppuhelper/typeprovider.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
+// auto strip #include <cppuhelper/typeprovider.hxx>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
@@ -126,13 +126,13 @@
 //  something else ... header
 //________________________________________________________________________________________________________________________
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRING_HXX
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 class SfxAllItemSet;
 class SfxItemSet;
 namespace binfilter {
