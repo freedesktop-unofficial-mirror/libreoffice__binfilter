@@ -2,9 +2,9 @@
  *
  *  $RCSfile: table.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:00 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -298,15 +298,15 @@ public:
 
 //STRIP001  void        GetLastDataPos(USHORT& rCol, USHORT& rRow) const;
 
-//STRIP001  BOOL        TestInsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nSize );
-//STRIP001  void        InsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize );
-//STRIP001  void        DeleteRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize,
-//STRIP001                          BOOL* pUndoOutline = NULL );
-
-//STRIP001  BOOL        TestInsertCol( USHORT nStartRow, USHORT nEndRow, USHORT nSize );
-//STRIP001  void        InsertCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize );
-//STRIP001  void        DeleteCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize,
-//STRIP001                          BOOL* pUndoOutline = NULL );
+/*N*/   BOOL        TestInsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nSize );
+/*N*/   void        InsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize );
+/*N*/   void        DeleteRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize,
+/*N*/                           BOOL* pUndoOutline = NULL );
+/*N*/
+/*N*/   BOOL        TestInsertCol( USHORT nStartRow, USHORT nEndRow, USHORT nSize );
+/*N*/   void        InsertCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize );
+/*N*/   void        DeleteCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize,
+/*N*/                           BOOL* pUndoOutline = NULL );
 
     void        DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nDelFlag);
 //STRIP001  void        CopyToClip(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScTable* pTable,
@@ -700,8 +700,8 @@ private:
     void        StartListening( const ScAddress& rAddress, SfxListener* pListener );
     void        EndListening( const ScAddress& rAddress, SfxListener* pListener );
     void        StartAllListeners();
-//STRIP001     void        StartNameListeners( BOOL bOnlyRelNames );
-//STRIP001  void        SetRelNameDirty();
+/*N*/    void        StartNameListeners( BOOL bOnlyRelNames );
+/*N*/   void        SetRelNameDirty();
 
     USHORT      FillMaxRot( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2,
                             USHORT nCol, USHORT nAttrRow1, USHORT nAttrRow2, USHORT nArrY,

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: olinetab.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:56 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,15 +94,15 @@ public:
     virtual DataObject*     Clone() const;
 //STRIP001
     USHORT                  GetStart() const    { return nStart; }
-//STRIP001  USHORT                  GetSize() const     { return nSize; }
+/*N*/   USHORT                  GetSize() const     { return nSize; }
     USHORT                  GetEnd() const      { return nStart+nSize-1; }
     BOOL                    IsHidden() const    { return bHidden; }             // Gruppe versteckt
 //STRIP001  BOOL                    IsVisible() const   { return bVisible; }            // Control sichtbar?
 //STRIP001
-//STRIP001  void                    Move( short nDelta );
-//STRIP001  void                    SetSize( USHORT nNewSize );
-//STRIP001  void                    SetPosSize( USHORT nNewPos, USHORT nNewSize );
-//STRIP001  void                    SetHidden( BOOL bNewHidden );
+/*N*/   void                    Move( short nDelta );
+/*N*/   void                    SetSize( USHORT nNewSize );
+/*N*/   void                    SetPosSize( USHORT nNewPos, USHORT nNewSize );
+/*N*/   void                    SetHidden( BOOL bNewHidden );
     void                    SetVisible( BOOL bNewVisible );
 };
 
@@ -126,7 +126,7 @@ private:
     USHORT                  nDepth;
     ScOutlineCollection     aCollections[SC_OL_MAXDEPTH];
 
-//STRIP001  BOOL                    DecDepth();
+/*N*/   BOOL                    DecDepth();
     void                    FindEntry( USHORT nSearchPos, USHORT& rFindLevel, USHORT& rFindIndex,
                                         USHORT nMaxLevel = SC_OL_MAXDEPTH );
 //STRIP001  void                    RemoveSub( USHORT nStartPos, USHORT nEndPos, USHORT nLevel );
@@ -160,9 +160,9 @@ public:
 //STRIP001     void                    GetRange( USHORT& rStart, USHORT& rEnd ) const;
 //STRIP001  void                    ExtendBlock( USHORT nLevel, USHORT& rBlkStart, USHORT& rBlkEnd );
 
-//STRIP001     BOOL                    TestInsertSpace( USHORT nSize, USHORT nMaxVal ) const;
-//STRIP001  void                    InsertSpace( USHORT nStartPos, USHORT nSize );
-//STRIP001  BOOL                    DeleteSpace( USHORT nStartPos, USHORT nSize );
+/*N*/    BOOL                    TestInsertSpace( USHORT nSize, USHORT nMaxVal ) const;
+/*N*/   void                    InsertSpace( USHORT nStartPos, USHORT nSize );
+/*N*/   BOOL                    DeleteSpace( USHORT nStartPos, USHORT nSize );
 
     BOOL                    ManualAction( USHORT nStartPos, USHORT nEndPos,
                                             BOOL bShow, BYTE* pHiddenFlags );
@@ -189,12 +189,12 @@ public:
     const ScOutlineArray*   GetRowArray() const     { return &aRowOutline; }
      ScOutlineArray*            GetRowArray()           { return &aRowOutline; }
 
-//STRIP001  BOOL                    TestInsertCol( USHORT nSize );
-//STRIP001  void                    InsertCol( USHORT nStartCol, USHORT nSize );
-//STRIP001  BOOL                    DeleteCol( USHORT nStartCol, USHORT nSize );    // TRUE: Undo nur ueber Original
-//STRIP001  BOOL                    TestInsertRow( USHORT nSize );
-//STRIP001  void                    InsertRow( USHORT nStartRow, USHORT nSize );
-//STRIP001  BOOL                    DeleteRow( USHORT nStartRow, USHORT nSize );
+/*N*/   BOOL                    TestInsertCol( USHORT nSize );
+/*N*/   void                    InsertCol( USHORT nStartCol, USHORT nSize );
+/*N*/   BOOL                    DeleteCol( USHORT nStartCol, USHORT nSize );    // TRUE: Undo nur ueber Original
+/*N*/   BOOL                    TestInsertRow( USHORT nSize );
+/*N*/   void                    InsertRow( USHORT nStartRow, USHORT nSize );
+/*N*/   BOOL                    DeleteRow( USHORT nStartRow, USHORT nSize );
 //STRIP001
     void                    Load( SvStream& rStream );
      void                   Store( SvStream& rStream );
@@ -219,7 +219,7 @@ public:
     ScOutlineEntry*         GetNext();
 //STRIP001  USHORT                  LastLevel() const;
 //STRIP001  USHORT                  LastEntry() const;
-//STRIP001  void                    DeleteLast();
+/*N*/   void                    DeleteLast();
 };
 
 } //namespace binfilter

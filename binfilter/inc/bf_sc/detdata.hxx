@@ -2,9 +2,9 @@
  *
  *  $RCSfile: detdata.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:41 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,8 +129,8 @@ public:
         ScDetOpList(const ScDetOpList& rList);
         ~ScDetOpList() {}
 
-//STRIP001  void    UpdateReference( ScDocument* pDoc, UpdateRefMode eUpdateRefMode,
-//STRIP001                              const ScRange& rRange, short nDx, short nDy, short nDz );
+/*N*/   void    UpdateReference( ScDocument* pDoc, UpdateRefMode eUpdateRefMode,
+/*N*/                               const ScRange& rRange, short nDx, short nDy, short nDz );
 
 //STRIP001  BOOL    operator==( const ScDetOpList& r ) const;       // fuer Ref-Undo
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: attarray.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:28 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,7 +159,7 @@ public:
 //STRIP001  void    ApplyLineStyleArea( USHORT nStartRow, USHORT nEndRow,
 //STRIP001                              const SvxBorderLine* pLine, BOOL bColorOnly );
 
-//STRIP001  void    ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich );
+/*N*/   void    ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich );
 //STRIP001  void    ChangeIndent( USHORT nStartRow, USHORT nEndRow, BOOL bIncrement );
 
 //STRIP001  short   GetNextUnprotected( short nRow, BOOL bUp ) const;   // inkl. aktuelle
@@ -170,7 +170,7 @@ public:
 //STRIP001                          BOOL bUp, ScMarkArray* pMarkArray = NULL );
 
     BOOL    ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
-//STRIP001  BOOL    RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
+/*N*/   BOOL    RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
 
     BOOL    Search( USHORT nRow, short& nIndex ) const;
 
@@ -201,13 +201,13 @@ public:
                             USHORT nStartRow, USHORT nEndRow ) const;
     BOOL    IsAllEqual( const ScAttrArray& rOther, USHORT nStartRow, USHORT nEndRow ) const;
 
-//STRIP001  BOOL    TestInsertCol( USHORT nStartRow, USHORT nEndRow) const;
-//STRIP001  BOOL    TestInsertRow( USHORT nSize ) const;
-//STRIP001  void    InsertRow( USHORT nStartRow, USHORT nSize );
-//STRIP001  void    DeleteRow( USHORT nStartRow, USHORT nSize );
-//STRIP001  void    DeleteRange( USHORT nStartIndex, USHORT nEndIndex );
+/*N*/   BOOL    TestInsertCol( USHORT nStartRow, USHORT nEndRow) const;
+/*N*/   BOOL    TestInsertRow( USHORT nSize ) const;
+/*N*/   void    InsertRow( USHORT nStartRow, USHORT nSize );
+/*N*/   void    DeleteRow( USHORT nStartRow, USHORT nSize );
+/*N*/   void    DeleteRange( USHORT nStartIndex, USHORT nEndIndex );
     void    DeleteArea( USHORT nStartRow, USHORT nEndRow );
-//STRIP001  void    MoveTo( USHORT nStartRow, USHORT nEndRow, ScAttrArray& rAttrArray );
+/*N*/   void    MoveTo( USHORT nStartRow, USHORT nEndRow, ScAttrArray& rAttrArray );
     void    CopyArea( USHORT nStartRow, USHORT nEndRow, short nDy, ScAttrArray& rAttrArray,
                         INT16 nStripFlags = 0 );
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: patattr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:57 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -123,8 +123,8 @@ public:
     const SfxPoolItem&      GetItem( USHORT nWhich, const SfxItemSet* pCondSet ) const;
 
                             // pWhich sind keine Ranges, sondern einzelne IDs, 0-terminiert
-//STRIP001  BOOL                    HasItemsSet( const USHORT* pWhich ) const;
-//STRIP001  void                    ClearItems( const USHORT* pWhich );
+/*N*/   BOOL                    HasItemsSet( const USHORT* pWhich ) const;
+/*N*/   void                    ClearItems( const USHORT* pWhich );
 
     void                    DeleteUnchanged( const ScPatternAttr* pOldAttrs );
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: column.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:36 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,7 +188,7 @@ public:
     BOOL        IsEmptyVisData(BOOL bNotes) const;      // ohne Broadcaster
     BOOL        IsEmptyData() const;
     BOOL        IsEmptyAttr() const;
-//STRIP001  BOOL        IsEmpty() const;
+/*N*/   BOOL        IsEmpty() const;
 
                 // nur Daten:
 //STRIP001  BOOL        IsEmptyBlock(USHORT nStartRow, USHORT nEndRow) const;
@@ -221,10 +221,10 @@ public:
                                     USHORT nEndRow = MAXROW ) const;
     BOOL        IsAllAttrEqual( const ScColumn& rCol, USHORT nStartRow, USHORT nEndRow ) const;
 
-//STRIP001  BOOL        TestInsertCol( USHORT nStartRow, USHORT nEndRow) const;
-//STRIP001  BOOL        TestInsertRow( USHORT nSize ) const;
-//STRIP001  void        InsertRow( USHORT nStartRow, USHORT nSize );
-//STRIP001  void        DeleteRow( USHORT nStartRow, USHORT nSize );
+/*N*/   BOOL        TestInsertCol( USHORT nStartRow, USHORT nEndRow) const;
+/*N*/   BOOL        TestInsertRow( USHORT nSize ) const;
+/*N*/   void        InsertRow( USHORT nStartRow, USHORT nSize );
+/*N*/   void        DeleteRow( USHORT nStartRow, USHORT nSize );
     void        DeleteRange( USHORT nStartIndex, USHORT nEndIndex, USHORT nDelFlag );
     void        DeleteArea(USHORT nStartRow, USHORT nEndRow, USHORT nDelFlag );
 //STRIP001  void        CopyToClip(USHORT nRow1, USHORT nRow2, ScColumn& rColumn, BOOL bKeepScenarioFlags);
@@ -268,8 +268,8 @@ public:
 
 //STRIP001  void        CopyUpdated( const ScColumn& rPosCol, ScColumn& rDestCol ) const;
 
-//STRIP001  void        SwapCol(ScColumn& rCol);
-//STRIP001  void        MoveTo(USHORT nStartRow, USHORT nEndRow, ScColumn& rCol);
+/*N*/   void        SwapCol(ScColumn& rCol);
+/*N*/   void        MoveTo(USHORT nStartRow, USHORT nEndRow, ScColumn& rCol);
 
     BOOL        HasEditCells(USHORT nStartRow, USHORT nEndRow, USHORT& rFirst) const;
 
@@ -365,8 +365,8 @@ public:
 //STRIP001                                  BOOL bUp, BOOL bInSelection, const ScMarkData& rMark );
 
     BOOL        ApplyFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
-//STRIP001  BOOL        RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
-//STRIP001  void        ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich );
+/*N*/   BOOL        RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags );
+/*N*/   void        ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich );
 
 //STRIP001  void        RemoveProtected( USHORT nStartRow, USHORT nEndRow );
 
@@ -418,10 +418,10 @@ public:
 
     void        StartListening( SfxListener& rLst, USHORT nRow );
     void        EndListening( SfxListener& rLst, USHORT nRow );
-//STRIP001  void        MoveListeners( ScBroadcasterList& rSource, USHORT nDestRow );
+/*N*/   void        MoveListeners( ScBroadcasterList& rSource, USHORT nDestRow );
     void        StartAllListeners();
-//STRIP001     void        StartNameListeners( BOOL bOnlyRelNames );
-//STRIP001  void        SetRelNameDirty();
+/*N*/    void        StartNameListeners( BOOL bOnlyRelNames );
+/*N*/   void        SetRelNameDirty();
 
 //STRIP001  void        CompileDBFormula();
     void        CompileDBFormula( BOOL bCreateFormulaString );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: detfunc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:42 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -153,7 +153,7 @@ class ScDetectiveFunc
     USHORT      FindSuccLevel( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                 USHORT nLevel, USHORT nDeleteLevel );
 
-//STRIP001  BOOL        FindFrameForObject( SdrObject* pObject, ScRange& rRange );
+/*N*/   BOOL        FindFrameForObject( SdrObject* pObject, ScRange& rRange );
 
 
 public:
@@ -176,7 +176,7 @@ public:
     BOOL        HideComment( USHORT nCol, USHORT nRow );
 
     void        UpdateAllComments();        // on all tables
-//STRIP001  void        UpdateAllArrowColors();     // on all tables
+/*N*/   void        UpdateAllArrowColors();     // on all tables
 
 //STRIP001  static BOOL IsNonAlienArrow( SdrObject* pObject );
 

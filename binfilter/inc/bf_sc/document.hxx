@@ -2,9 +2,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:43 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -650,7 +650,7 @@ public:
     void            CreateValidTabName(String& rName) const;
     BOOL            InsertTab( USHORT nPos, const String& rName,
                                 BOOL bExternalDocument = FALSE );
-//STRIP001  BOOL            DeleteTab( USHORT nTab, ScDocument* pRefUndoDoc = NULL );
+/*N*/   BOOL            DeleteTab( USHORT nTab, ScDocument* pRefUndoDoc = NULL );
     BOOL            RenameTab( USHORT nTab, const String& rName,
                                 BOOL bUpdateRef = TRUE,
                                 BOOL bExternalDocument = FALSE );
@@ -910,29 +910,29 @@ public:
 //STRIP001                                                  USHORT& rEndCol, USHORT& rEndRow );
 //STRIP001  void            LimitChartIfAll( ScRangeListRef& rRangeList );
 
-//STRIP001  BOOL            InsertRow( USHORT nStartCol, USHORT nStartTab,
-//STRIP001                             USHORT nEndCol,   USHORT nEndTab,
-//STRIP001                             USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
-//STRIP001  BOOL            InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
-//STRIP001  void            DeleteRow( USHORT nStartCol, USHORT nStartTab,
-//STRIP001                             USHORT nEndCol,   USHORT nEndTab,
-//STRIP001                             USHORT nStartRow, USHORT nSize,
-//STRIP001                             ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
-//STRIP001  void            DeleteRow( const ScRange& rRange,
-//STRIP001                             ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
-//STRIP001  BOOL            InsertCol( USHORT nStartRow, USHORT nStartTab,
-//STRIP001                             USHORT nEndRow,   USHORT nEndTab,
-//STRIP001                             USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
-//STRIP001  BOOL            InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
-//STRIP001  void            DeleteCol( USHORT nStartRow, USHORT nStartTab,
-//STRIP001                             USHORT nEndRow, USHORT nEndTab,
-//STRIP001                             USHORT nStartCol, USHORT nSize,
-//STRIP001                             ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
-//STRIP001  void            DeleteCol( const ScRange& rRange,
-//STRIP001                             ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/   BOOL            InsertRow( USHORT nStartCol, USHORT nStartTab,
+/*N*/                              USHORT nEndCol,   USHORT nEndTab,
+/*N*/                              USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
+/*N*/   BOOL            InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
+/*N*/   void            DeleteRow( USHORT nStartCol, USHORT nStartTab,
+/*N*/                              USHORT nEndCol,   USHORT nEndTab,
+/*N*/                              USHORT nStartRow, USHORT nSize,
+/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/   void            DeleteRow( const ScRange& rRange,
+/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/   BOOL            InsertCol( USHORT nStartRow, USHORT nStartTab,
+/*N*/                              USHORT nEndRow,   USHORT nEndTab,
+/*N*/                              USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc = NULL );
+/*N*/   BOOL            InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc = NULL );
+/*N*/   void            DeleteCol( USHORT nStartRow, USHORT nStartTab,
+/*N*/                              USHORT nEndRow, USHORT nEndTab,
+/*N*/                              USHORT nStartCol, USHORT nSize,
+/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
+/*N*/   void            DeleteCol( const ScRange& rRange,
+/*N*/                              ScDocument* pRefUndoDoc = NULL, BOOL* pUndoOutline = NULL );
 
-//STRIP001  BOOL            CanInsertRow( const ScRange& rRange ) const;
-//STRIP001  BOOL            CanInsertCol( const ScRange& rRange ) const;
+/*N*/   BOOL            CanInsertRow( const ScRange& rRange ) const;
+/*N*/   BOOL            CanInsertCol( const ScRange& rRange ) const;
 
     void            FitBlock( const ScRange& rOld, const ScRange& rNew, BOOL bClear = TRUE );
     BOOL            CanFitBlock( const ScRange& rOld, const ScRange& rNew );
@@ -991,7 +991,7 @@ public:
 
 //STRIP001  BOOL            HasClipFilteredRows();
 
-//STRIP001  BOOL            IsClipboardSource() const;
+/*N*/   BOOL            IsClipboardSource() const;
 
 //STRIP001  void            TransposeClip( ScDocument* pTransClip, USHORT nFlags, BOOL bAsLink );
 
@@ -1039,10 +1039,10 @@ public:
 
 //STRIP001  void            CopyUpdated( ScDocument* pPosDoc, ScDocument* pDestDoc );
 
-//STRIP001  void            UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-//STRIP001                                   USHORT nCol2, USHORT nRow2, USHORT nTab2,
-//STRIP001                                   short nDx, short nDy, short nDz,
-//STRIP001                                   ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
+/*N*/   void            UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
+/*N*/                                    USHORT nCol2, USHORT nRow2, USHORT nTab2,
+/*N*/                                    short nDx, short nDy, short nDz,
+/*N*/                                    ScDocument* pUndoDoc = NULL, BOOL bIncludeDraw = TRUE );
 
 //STRIP001  void            UpdateTranspose( const ScAddress& rDestPos, ScDocument* pClipDoc,
 //STRIP001                                      const ScMarkData& rMark, ScDocument* pUndoDoc = NULL );
@@ -1497,9 +1497,9 @@ public:
     void                AreaBroadcastInRange( const ScRange& rRange,
                                               const ScHint& rHint );
     void                DelBroadcastAreasInRange( const ScRange& rRange );
-//STRIP001  void                UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
-//STRIP001                                          const ScRange& rRange,
-//STRIP001                                          short nDx, short nDy, short nDz );
+/*N*/   void                UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
+/*N*/                                           const ScRange& rRange,
+/*N*/                                           short nDx, short nDy, short nDz );
 
 
     void                StartListeningCell( const ScAddress& rAddress,
@@ -1606,8 +1606,8 @@ public:
     //! EndChangeTracking() and takes ownership of new ChangeTrack pTrack
     void            SetChangeTrack( ScChangeTrack* pTrack );
 
-//STRIP001  void            StartChangeTracking();
-//STRIP001  void            EndChangeTracking();
+/*N*/   void            StartChangeTracking();
+/*N*/   void            EndChangeTracking();
 
 //STRIP001  void            CompareDocument( ScDocument& rOtherDoc );
 

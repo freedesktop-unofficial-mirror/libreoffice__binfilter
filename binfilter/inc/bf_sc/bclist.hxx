@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bclist.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:30 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,7 +88,7 @@ public:
     BOOL    HasListeners() const;
     void    Broadcast( const SfxHint &rHint );
 
-//STRIP001  void    MoveListenersTo( ScBroadcasterList& rNew );
+/*N*/   void    MoveListenersTo( ScBroadcasterList& rNew );
 };
 
 

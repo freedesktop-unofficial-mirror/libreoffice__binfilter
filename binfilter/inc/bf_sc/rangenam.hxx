@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rangenam.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:59 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,9 +175,9 @@ public:
                                     BOOL bEnglish = FALSE, BOOL bCompileXML = FALSE );
     void            UpdateSymbol( ::rtl::OUStringBuffer& rBuffer, const ScAddress&,
                                     BOOL bEnglish = FALSE, BOOL bCompileXML = FALSE );
-//STRIP001  void            UpdateReference( UpdateRefMode eUpdateRefMode,
-//STRIP001                           const ScRange& r,
-//STRIP001                           short nDx, short nDy, short nDz );
+/*N*/   void            UpdateReference( UpdateRefMode eUpdateRefMode,
+/*N*/                            const ScRange& r,
+/*N*/                            short nDx, short nDy, short nDz );
     BOOL            IsModified() const              { return bModified; }
 
 //STRIP001  void            GuessPosition();
@@ -247,12 +247,12 @@ public:
     BOOL                    Load( SvStream& rStream, USHORT nVer );
     BOOL                    Store( SvStream& rStream ) const;
     BOOL                    SearchName( const String& rName, USHORT& rPos ) const;
-//STRIP001  void                    UpdateReference(UpdateRefMode eUpdateRefMode,
-//STRIP001                              const ScRange& rRange,
-//STRIP001                              short nDx, short nDy, short nDz );
+/*N*/   void                    UpdateReference(UpdateRefMode eUpdateRefMode,
+/*N*/                               const ScRange& rRange,
+/*N*/                               short nDx, short nDy, short nDz );
     void                    UpdateTabRef(USHORT nTable, USHORT nFlag, USHORT nNewTable = 0);
-//STRIP001  void                    UpdateTranspose( const ScRange& rSource, const ScAddress& rDest );
-//STRIP001  void                    UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
+/*N*/   void                    UpdateTranspose( const ScRange& rSource, const ScAddress& rDest );
+/*N*/   void                    UpdateGrow( const ScRange& rArea, USHORT nGrowX, USHORT nGrowY );
     virtual BOOL            Insert(DataObject* pDataObject);
     ScRangeData*            FindIndex(USHORT nIndex);
     USHORT                  GetSharedMaxIndex()             { return nSharedMaxIndex; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chgtrack.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:35 $
+ *  last change: $Author: er $ $Date: 2004-03-25 14:46:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,8 +104,11 @@
 #include "refupdat.hxx"
 #endif
 #endif
-/*STRIP001 */#include <tools/debug.hxx>
+/*N*/#include <tools/debug.hxx>
+/*N*/
 class SvStream;
+/*N*/class Stack;
+/*N*/
 namespace binfilter {
 
 class ScBaseCell;
@@ -160,7 +163,7 @@ class ScChangeActionLinkEntry
                                 // not implemented, prevent usage
                                 ScChangeActionLinkEntry(
                                     const ScChangeActionLinkEntry& );
-//STRIP001  ScChangeActionLinkEntry&    operator=( const ScChangeActionLinkEntry& );
+/*N*/   ScChangeActionLinkEntry&    operator=( const ScChangeActionLinkEntry& );
 
 protected:
 
@@ -285,11 +288,11 @@ class ScChangeAction
     friend class ScChangeActionDel;
     friend class ScChangeActionMove;
     friend class ScChangeActionContent;
-//STRIP001
-//STRIP001                              // not implemented, prevent usage
-//STRIP001                              ScChangeAction( const ScChangeAction& );
+/*N*/
+/*N*/                               // not implemented, prevent usage
+/*N*/                               ScChangeAction( const ScChangeAction& );
             ScChangeAction&     operator=( const ScChangeAction& );
-//STRIP001
+/*N*/
 protected:
 
              ScBigRange         aBigRange;          // Ins/Del/MoveTo/ContentPos
@@ -324,7 +327,7 @@ protected:
                                                 const DateTime& aDateTime,
                                                 const String& aUser,
                                                 const String& aComment );
-//STRIP001                              // only to be used in the XML import
+/*N*/                               // only to be used in the XML import
                                 ScChangeAction( ScChangeActionType,
                                                 const ScBigRange&,
                                                 const ULONG nAction);
@@ -332,103 +335,103 @@ protected:
                                 ScChangeAction( SvStream&,
                                     ScMultipleReadHeader&, ScChangeTrack* );
     virtual                     ~ScChangeAction();
-//STRIP001
-//STRIP001  static  void                StoreCell( ScBaseCell*, SvStream&,
-//STRIP001                                  ScMultipleWriteHeader& );
-//STRIP001  static ScBaseCell*          LoadCell( SvStream&, ScMultipleReadHeader&,
-//STRIP001                                  ScDocument*, USHORT nVer );
-//STRIP001
-//STRIP001  static  BOOL                StoreLinkChain( ScChangeActionLinkEntry*,
-//STRIP001                                  SvStream& );
-//STRIP001  static  BOOL                LoadLinkChain( ScChangeAction*,
-//STRIP001                                  ScChangeActionLinkEntry**,
-//STRIP001                                  SvStream&, ScChangeTrack*,
-//STRIP001                                  BOOL bLinkDeleted );
-//STRIP001
-//STRIP001  static  BOOL                StoreCellList( ScChangeActionCellListEntry*,
-//STRIP001                                  SvStream& );
-//STRIP001  static  BOOL                LoadCellList( ScChangeAction* pOfAction,
-//STRIP001                                  ScChangeActionCellListEntry*&, SvStream&,
-//STRIP001                                  ScChangeTrack* );
-//STRIP001
-//STRIP001          String              GetRefString( const ScBigRange&,
-//STRIP001                                  ScDocument*, BOOL bFlag3D = FALSE ) const;
-//STRIP001
-//STRIP001          void                SetActionNumber( ULONG n ) { nAction = n; }
-//STRIP001          void                SetRejectAction( ULONG n ) { nRejectAction = n; }
-//STRIP001          void                SetUser( const String& r ) { aUser = r; }
-//STRIP001          void                SetType( ScChangeActionType e ) { eType = e; }
-//STRIP001          void                SetState( ScChangeActionState e ) { eState = e; }
-//STRIP001          void                SetRejected();
-//STRIP001
+/*N*/
+/*N*/   static  void                StoreCell( ScBaseCell*, SvStream&,
+/*N*/                                   ScMultipleWriteHeader& );
+/*N*/   static ScBaseCell*          LoadCell( SvStream&, ScMultipleReadHeader&,
+/*N*/                                   ScDocument*, USHORT nVer );
+/*N*/
+/*N*/   static  BOOL                StoreLinkChain( ScChangeActionLinkEntry*,
+/*N*/                                   SvStream& );
+/*N*/   static  BOOL                LoadLinkChain( ScChangeAction*,
+/*N*/                                   ScChangeActionLinkEntry**,
+/*N*/                                   SvStream&, ScChangeTrack*,
+/*N*/                                   BOOL bLinkDeleted );
+/*N*/
+/*N*/   static  BOOL                StoreCellList( ScChangeActionCellListEntry*,
+/*N*/                                   SvStream& );
+/*N*/   static  BOOL                LoadCellList( ScChangeAction* pOfAction,
+/*N*/                                   ScChangeActionCellListEntry*&, SvStream&,
+/*N*/                                   ScChangeTrack* );
+/*N*/
+/*N*/           String              GetRefString( const ScBigRange&,
+/*N*/                                   ScDocument*, BOOL bFlag3D = FALSE ) const;
+/*N*/
+/*N*/           void                SetActionNumber( ULONG n ) { nAction = n; }
+/*N*/           void                SetRejectAction( ULONG n ) { nRejectAction = n; }
+/*N*/           void                SetUser( const String& r ) { aUser = r; }
+/*N*/           void                SetType( ScChangeActionType e ) { eType = e; }
+/*N*/           void                SetState( ScChangeActionState e ) { eState = e; }
+/*N*/           void                SetRejected();
+/*N*/
             ScBigRange&         GetBigRange() { return aBigRange; }
-//STRIP001
-//STRIP001          ScChangeActionLinkEntry*    AddLink( ScChangeAction* p,
-//STRIP001                                          ScChangeActionLinkEntry* pL )
-//STRIP001                                  {
-//STRIP001                                      ScChangeActionLinkEntry* pLnk =
-//STRIP001                                          new ScChangeActionLinkEntry(
-//STRIP001                                          &pLinkAny, p );
-//STRIP001                                      pLnk->SetLink( pL );
-//STRIP001                                      return pLnk;
-//STRIP001                                  }
-//STRIP001          void                RemoveLink( ScChangeAction* p );
-//STRIP001          void                RemoveAllAnyLinks();
-//STRIP001                              // zeigt ein AnyLink auf p?
-//STRIP001          BOOL                DependsOn( ScChangeAction* p ) const;
-//STRIP001
+/*N*/
+/*N*/           ScChangeActionLinkEntry*    AddLink( ScChangeAction* p,
+/*N*/                                           ScChangeActionLinkEntry* pL )
+/*N*/                                   {
+/*N*/                                       ScChangeActionLinkEntry* pLnk =
+/*N*/                                           new ScChangeActionLinkEntry(
+/*N*/                                           &pLinkAny, p );
+/*N*/                                       pLnk->SetLink( pL );
+/*N*/                                       return pLnk;
+/*N*/                                   }
+/*N*/           void                RemoveLink( ScChangeAction* p );
+/*N*/           void                RemoveAllAnyLinks();
+/*N*/                               // zeigt ein AnyLink auf p?
+/*N*/           BOOL                DependsOn( ScChangeAction* p ) const;
+/*N*/
      virtual    ScChangeActionLinkEntry*    GetDeletedIn() const
                                              { return pLinkDeletedIn; }
-//STRIP001  virtual ScChangeActionLinkEntry**   GetDeletedInAddress()
-//STRIP001                                          { return &pLinkDeletedIn; }
-//STRIP001          ScChangeActionLinkEntry*    AddDeletedIn( ScChangeAction* p )
-//STRIP001                                  {
-//STRIP001                                      return new ScChangeActionLinkEntry(
-//STRIP001                                          GetDeletedInAddress(), p );
-//STRIP001                                  }
-//STRIP001          BOOL                RemoveDeletedIn( const ScChangeAction* );
-//STRIP001          void                RemoveAllDeletedIn();
-//STRIP001          void                SetDeletedIn( ScChangeAction* );
-//STRIP001
-//STRIP001          ScChangeActionLinkEntry*    AddDeleted( ScChangeAction* p )
-//STRIP001                                  {
-//STRIP001                                      return new ScChangeActionLinkEntry(
-//STRIP001                                          &pLinkDeleted, p );
-//STRIP001                                  }
-//STRIP001          BOOL                RemoveDeleted( const ScChangeAction* p );
-//STRIP001          void                RemoveAllDeleted();
-//STRIP001
+/*N*/   virtual ScChangeActionLinkEntry**   GetDeletedInAddress()
+/*N*/                                           { return &pLinkDeletedIn; }
+/*N*/           ScChangeActionLinkEntry*    AddDeletedIn( ScChangeAction* p )
+/*N*/                                   {
+/*N*/                                       return new ScChangeActionLinkEntry(
+/*N*/                                           GetDeletedInAddress(), p );
+/*N*/                                   }
+/*N*/           BOOL                RemoveDeletedIn( const ScChangeAction* );
+/*N*/           void                RemoveAllDeletedIn();
+/*N*/           void                SetDeletedIn( ScChangeAction* );
+/*N*/
+/*N*/           ScChangeActionLinkEntry*    AddDeleted( ScChangeAction* p )
+/*N*/                                   {
+/*N*/                                       return new ScChangeActionLinkEntry(
+/*N*/                                           &pLinkDeleted, p );
+/*N*/                                   }
+/*N*/           BOOL                RemoveDeleted( const ScChangeAction* p );
+/*N*/           void                RemoveAllDeleted();
+/*N*/
             ScChangeActionLinkEntry*    AddDependent( ScChangeAction* p )
                                     {
                                         return new ScChangeActionLinkEntry(
                                             &pLinkDependent, p );
                                     }
-//STRIP001          void                RemoveDependent( ScChangeAction* p );
-//STRIP001          void                RemoveAllDependent();
-//STRIP001
+/*N*/           void                RemoveDependent( ScChangeAction* p );
+/*N*/           void                RemoveAllDependent();
+/*N*/
             void                RemoveAllLinks();
-//STRIP001
-//STRIP001  virtual void                AddContent( ScChangeActionContent* ) = 0;
-//STRIP001  virtual void                DeleteCellEntries() = 0;
-//STRIP001
-//STRIP001  virtual void                UpdateReference( const ScChangeTrack*,
-//STRIP001                                  UpdateRefMode, const ScBigRange&,
-//STRIP001                                  INT32 nDx, INT32 nDy, INT32 nDz );
-//STRIP001
-//STRIP001          void                Accept();
-//STRIP001  virtual BOOL                Reject( ScDocument* ) = 0;
-//STRIP001          void                RejectRestoreContents( ScChangeTrack*,
-//STRIP001                                  short nDx, short nDy );
-//STRIP001
-//STRIP001                              // used in Reject() instead of IsRejectable()
-//STRIP001          BOOL                IsInternalRejectable() const;
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001  virtual BOOL                StoreLinks( SvStream& ) const;
-//STRIP001  virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
-//STRIP001
+/*N*/
+/*N*/   virtual void                AddContent( ScChangeActionContent* ) = 0;
+/*N*/   virtual void                DeleteCellEntries() = 0;
+/*N*/
+/*N*/   virtual void                UpdateReference( const ScChangeTrack*,
+/*N*/                                   UpdateRefMode, const ScBigRange&,
+/*N*/                                   INT32 nDx, INT32 nDy, INT32 nDz );
+/*N*/
+/*N*/           void                Accept();
+/*N*/   virtual BOOL                Reject( ScDocument* ) = 0;
+/*N*/           void                RejectRestoreContents( ScChangeTrack*,
+/*N*/                                   short nDx, short nDy );
+/*N*/
+/*N*/                               // used in Reject() instead of IsRejectable()
+/*N*/           BOOL                IsInternalRejectable() const;
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
+/*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
+/*N*/
 public:
-//STRIP001
+/*N*/
              BOOL               IsInsertType() const
                                      {
                                          return eType == SC_CAT_INSERT_COLS ||
@@ -441,61 +444,61 @@ public:
                                              eType == SC_CAT_DELETE_ROWS ||
                                              eType == SC_CAT_DELETE_TABS;
                                      }
-//STRIP001          BOOL                IsVirgin() const
-//STRIP001                                  { return eState == SC_CAS_VIRGIN; }
+/*N*/           BOOL                IsVirgin() const
+/*N*/                                   { return eState == SC_CAS_VIRGIN; }
              BOOL               IsAccepted() const
                                      { return eState == SC_CAS_ACCEPTED; }
              BOOL               IsRejected() const
                                      { return eState == SC_CAS_REJECTED; }
-//STRIP001
-//STRIP001                              // Action rejects another Action
+/*N*/
+/*N*/                               // Action rejects another Action
              BOOL               IsRejecting() const
                                      { return nRejectAction != 0; }
-//STRIP001
-//STRIP001                              // ob Action im Dokument sichtbar ist
-//STRIP001          BOOL                IsVisible() const;
-//STRIP001
-//STRIP001                              // ob Action anfassbar ist
-//STRIP001          BOOL                IsTouchable() const;
-//STRIP001
-//STRIP001                              // ob Action ein Eintrag in Dialog-Root ist
-//STRIP001          BOOL                IsDialogRoot() const;
-//STRIP001
-//STRIP001                              // ob ein Eintrag im Dialog aufklappbar sein soll
-//STRIP001          BOOL                IsDialogParent() const;
-//STRIP001
-//STRIP001                              // ob Action ein Delete ist, unter dem
-//STRIP001                              // aufgeklappt mehrere einzelne Deletes sind
-//STRIP001          BOOL                IsMasterDelete() const;
-//STRIP001
-//STRIP001                              // ob Action akzeptiert/selektiert/abgelehnt
-//STRIP001                              // werden kann
-//STRIP001          BOOL                IsClickable() const;
-//STRIP001
-//STRIP001                              // ob Action abgelehnt werden kann
-//STRIP001          BOOL                IsRejectable() const;
-//STRIP001
+/*N*/
+/*N*/                               // ob Action im Dokument sichtbar ist
+/*N*/           BOOL                IsVisible() const;
+/*N*/
+/*N*/                               // ob Action anfassbar ist
+/*N*/           BOOL                IsTouchable() const;
+/*N*/
+/*N*/                               // ob Action ein Eintrag in Dialog-Root ist
+/*N*/           BOOL                IsDialogRoot() const;
+/*N*/
+/*N*/                               // ob ein Eintrag im Dialog aufklappbar sein soll
+/*N*/           BOOL                IsDialogParent() const;
+/*N*/
+/*N*/                               // ob Action ein Delete ist, unter dem
+/*N*/                               // aufgeklappt mehrere einzelne Deletes sind
+/*N*/           BOOL                IsMasterDelete() const;
+/*N*/
+/*N*/                               // ob Action akzeptiert/selektiert/abgelehnt
+/*N*/                               // werden kann
+/*N*/           BOOL                IsClickable() const;
+/*N*/
+/*N*/                               // ob Action abgelehnt werden kann
+/*N*/           BOOL                IsRejectable() const;
+/*N*/
             const ScBigRange&   GetBigRange() const { return aBigRange; }
-//STRIP001          DateTime            GetDateTime() const;        // local time
+/*N*/           DateTime            GetDateTime() const;        // local time
              const DateTime&        GetDateTimeUTC() const      // UTC time
                                      { return aDateTime; }
             const String&       GetUser() const { return aUser; }
             const String&       GetComment() const { return aComment; }
             ScChangeActionType  GetType() const { return eType; }
-//STRIP001          ScChangeActionState GetState() const { return eState; }
+/*N*/           ScChangeActionState GetState() const { return eState; }
             ULONG               GetActionNumber() const { return nAction; }
             ULONG               GetRejectAction() const { return nRejectAction; }
-//STRIP001
+/*N*/
             ScChangeAction*     GetNext() const { return pNext; }
-//STRIP001          ScChangeAction*     GetPrev() const { return pPrev; }
-//STRIP001
+/*N*/           ScChangeAction*     GetPrev() const { return pPrev; }
+/*N*/
              BOOL               IsDeletedIn() const
                                      { return GetDeletedIn() != NULL; }
-//STRIP001          BOOL                IsDeleted() const
-//STRIP001                                  { return IsDeleteType() || IsDeletedIn(); }
-//STRIP001          BOOL                IsDeletedIn( const ScChangeAction* ) const;
-//STRIP001          BOOL                IsDeletedInDelType( ScChangeActionType ) const;
-//STRIP001
+/*N*/           BOOL                IsDeleted() const
+/*N*/                                   { return IsDeleteType() || IsDeletedIn(); }
+/*N*/           BOOL                IsDeletedIn( const ScChangeAction* ) const;
+/*N*/           BOOL                IsDeletedInDelType( ScChangeActionType ) const;
+/*N*/
              const ScChangeActionLinkEntry* GetFirstDeletedEntry() const
                                      { return pLinkDeleted; }
              const ScChangeActionLinkEntry* GetFirstDependentEntry() const
@@ -504,30 +507,30 @@ public:
                                      { return pLinkDependent != NULL; }
              BOOL               HasDeleted() const
                                      { return pLinkDeleted != NULL; }
-//STRIP001
-//STRIP001                              // Description wird an String angehaengt.
-//STRIP001                              // Mit bSplitRange wird bei Delete nur
-//STRIP001                              // eine Spalte/Zeile beruecksichtigt (fuer
-//STRIP001                              // Auflistung der einzelnen Eintraege).
-//STRIP001  virtual void                GetDescription( String&, ScDocument*,
-//STRIP001                                  BOOL bSplitRange = FALSE ) const {}
-//STRIP001
-//STRIP001  virtual void                GetRefString( String&, ScDocument*,
-//STRIP001                                  BOOL bFlag3D = FALSE ) const;
-//STRIP001
-//STRIP001                              // fuer DocumentMerge altes Datum einer anderen
-//STRIP001                              // Action setzen, mit GetDateTimeUTC geholt
-//STRIP001          void                SetDateTimeUTC( const DateTime& rDT )
-//STRIP001                                  { aDateTime = rDT; }
-//STRIP001
-//STRIP001                              // Benutzerkommentar setzen
-//STRIP001          void                SetComment( const String& rStr )
-//STRIP001                                  { aComment = rStr; }
-//STRIP001
-//STRIP001                              // only to be used in the XML import
+/*N*/
+/*N*/                               // Description wird an String angehaengt.
+/*N*/                               // Mit bSplitRange wird bei Delete nur
+/*N*/                               // eine Spalte/Zeile beruecksichtigt (fuer
+/*N*/                               // Auflistung der einzelnen Eintraege).
+/*N*/   virtual void                GetDescription( String&, ScDocument*,
+/*N*/                                   BOOL bSplitRange = FALSE ) const {}
+/*N*/
+/*N*/   virtual void                GetRefString( String&, ScDocument*,
+/*N*/                                   BOOL bFlag3D = FALSE ) const;
+/*N*/
+/*N*/                               // fuer DocumentMerge altes Datum einer anderen
+/*N*/                               // Action setzen, mit GetDateTimeUTC geholt
+/*N*/           void                SetDateTimeUTC( const DateTime& rDT )
+/*N*/                                   { aDateTime = rDT; }
+/*N*/
+/*N*/                               // Benutzerkommentar setzen
+/*N*/           void                SetComment( const String& rStr )
+/*N*/                                   { aComment = rStr; }
+/*N*/
+/*N*/                               // only to be used in the XML import
             void                SetDeletedInThis( ULONG nActionNumber,
                                         const ScChangeTrack* pTrack );
-//STRIP001                              // only to be used in the XML import
+/*N*/                               // only to be used in the XML import
             void                AddDependent( ULONG nActionNumber,
                                         const ScChangeTrack* pTrack );
 };
@@ -543,14 +546,14 @@ class ScChangeActionIns : public ScChangeAction
                                 ScChangeActionIns( SvStream&,
                                     ScMultipleReadHeader&, ScChangeTrack* );
     virtual                     ~ScChangeActionIns();
-//STRIP001
-//STRIP001  virtual void                AddContent( ScChangeActionContent* ) {}
-//STRIP001  virtual void                DeleteCellEntries() {}
-//STRIP001
-//STRIP001  virtual BOOL                Reject( ScDocument* );
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001
+/*N*/
+/*N*/   virtual void                AddContent( ScChangeActionContent* ) {}
+/*N*/   virtual void                DeleteCellEntries() {}
+/*N*/
+/*N*/   virtual BOOL                Reject( ScDocument* );
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/
 public:
                                 ScChangeActionIns(const ULONG nActionNumber,
                                         const ScChangeActionState eState,
@@ -561,8 +564,8 @@ public:
                                         const String &sComment,
                                         const ScChangeActionType eType); // only to use in the XML import
 
-//STRIP001  virtual void                GetDescription( String&, ScDocument*,
-//STRIP001                                  BOOL bSplitRange = FALSE ) const;
+/*N*/   virtual void                GetDescription( String&, ScDocument*,
+/*N*/                                   BOOL bSplitRange = FALSE ) const;
 };
 
 
@@ -589,30 +592,30 @@ class ScChangeActionDelMoveEntry : public ScChangeActionLinkEntry
                                             (ScChangeAction*) pMove ),
                                         nCutOffFrom( nFrom ),
                                         nCutOffTo( nTo )
-                                    {DBG_ASSERT(0, "STRIP");} //STRIP001 {};
+/*N*/                                   {};
 
-//STRIP001          ScChangeActionDelMoveEntry* GetNext()
-//STRIP001                                  {
-//STRIP001                                      return (ScChangeActionDelMoveEntry*)
-//STRIP001                                      ScChangeActionLinkEntry::GetNext();
-//STRIP001                                  }
-//STRIP001          ScChangeActionMove* GetMove()
-//STRIP001                                  {
-//STRIP001                                      return (ScChangeActionMove*)
-//STRIP001                                      ScChangeActionLinkEntry::GetAction();
-//STRIP001                                  }
-//STRIP001
+/*N*/           ScChangeActionDelMoveEntry* GetNext()
+/*N*/                                   {
+/*N*/                                       return (ScChangeActionDelMoveEntry*)
+/*N*/                                       ScChangeActionLinkEntry::GetNext();
+/*N*/                                   }
+/*N*/           ScChangeActionMove* GetMove()
+/*N*/                                   {
+/*N*/                                       return (ScChangeActionMove*)
+/*N*/                                       ScChangeActionLinkEntry::GetAction();
+/*N*/                                   }
+/*N*/
 public:
              const ScChangeActionDelMoveEntry*  GetNext() const
                                      {
                                          return (const ScChangeActionDelMoveEntry*)
                                          ScChangeActionLinkEntry::GetNext();
                                      }
-//STRIP001          const ScChangeActionMove*   GetMove() const
-//STRIP001                                  {
-//STRIP001                                      return (const ScChangeActionMove*)
-//STRIP001                                      ScChangeActionLinkEntry::GetAction();
-//STRIP001                                  }
+/*N*/           const ScChangeActionMove*   GetMove() const
+/*N*/                                   {
+/*N*/                                       return (const ScChangeActionMove*)
+/*N*/                                       ScChangeActionLinkEntry::GetAction();
+/*N*/                                   }
             short               GetCutOffFrom() const { return nCutOffFrom; }
             short               GetCutOffTo() const { return nCutOffTo; }
 };
@@ -621,7 +624,7 @@ public:
 class ScChangeActionDel : public ScChangeAction
 {
     friend class ScChangeTrack;
-//STRIP001  friend void ScChangeAction::Accept();
+/*N*/   friend void ScChangeAction::Accept();
 
             ScChangeTrack*      pTrack;
             ScChangeActionCellListEntry* pFirstCell;
@@ -636,26 +639,26 @@ class ScChangeActionDel : public ScChangeAction
                                 ScChangeActionDel( SvStream&,
                                     ScMultipleReadHeader&, ScDocument*,
                                     USHORT nVer, ScChangeTrack* );
-//STRIP001  virtual                     ~ScChangeActionDel();
-//STRIP001
+/*N*/   virtual                     ~ScChangeActionDel();
+/*N*/
             ScChangeActionIns*  GetCutOffInsert() { return pCutOff; }
-//STRIP001
-//STRIP001  virtual void                AddContent( ScChangeActionContent* );
-//STRIP001  virtual void                DeleteCellEntries();
-//STRIP001
-//STRIP001          void                UndoCutOffMoves();
-//STRIP001          void                UndoCutOffInsert();
-//STRIP001
-//STRIP001  virtual void                UpdateReference( const ScChangeTrack*,
-//STRIP001                                  UpdateRefMode, const ScBigRange&,
-//STRIP001                                  INT32 nDx, INT32 nDy, INT32 nDz );
-//STRIP001
-//STRIP001  virtual BOOL                Reject( ScDocument* );
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001  virtual BOOL                StoreLinks( SvStream& ) const;
-//STRIP001  virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
-//STRIP001
+/*N*/
+/*N*/   virtual void                AddContent( ScChangeActionContent* );
+/*N*/   virtual void                DeleteCellEntries();
+/*N*/
+/*N*/           void                UndoCutOffMoves();
+/*N*/           void                UndoCutOffInsert();
+/*N*/
+/*N*/   virtual void                UpdateReference( const ScChangeTrack*,
+/*N*/                                   UpdateRefMode, const ScBigRange&,
+/*N*/                                   INT32 nDx, INT32 nDy, INT32 nDz );
+/*N*/
+/*N*/   virtual BOOL                Reject( ScDocument* );
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
+/*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
+/*N*/
 public:
                                 ScChangeActionDel(const ULONG nActionNumber,
                                                 const ScChangeActionState eState,
@@ -671,36 +674,36 @@ public:
 
                                 // ob dieses das unterste einer Reihe (oder
                                 // auch einzeln) ist
-//STRIP001          BOOL                IsBaseDelete() const;
+/*N*/           BOOL                IsBaseDelete() const;
 
                                 // ob dieses das oberste einer Reihe (oder
                                 // auch einzeln) ist
-//STRIP001          BOOL                IsTopDelete() const;
+/*N*/           BOOL                IsTopDelete() const;
 
                                 // ob dieses ein Teil einer Reihe ist
-            BOOL                IsMultiDelete() const{DBG_ASSERT(0, "STRIP");return FALSE;} //STRIP001 BOOL             IsMultiDelete() const;
+/*N*/           BOOL                IsMultiDelete() const;
 
                                 // ob es eine Col ist, die zu einem TabDelete gehoert
-//STRIP001          BOOL                IsTabDeleteCol() const;
+/*N*/           BOOL                IsTabDeleteCol() const;
 
             short               GetDx() const { return nDx; }
             short               GetDy() const { return nDy; }
-//STRIP001          ScBigRange          GetOverAllRange() const;    // BigRange + (nDx, nDy)
+/*N*/           ScBigRange          GetOverAllRange() const;    // BigRange + (nDx, nDy)
 
-//STRIP001          const ScChangeActionCellListEntry* GetFirstCellEntry() const
-//STRIP001                                  { return pFirstCell; }
+/*N*/           const ScChangeActionCellListEntry* GetFirstCellEntry() const
+/*N*/                                   { return pFirstCell; }
              const ScChangeActionDelMoveEntry* GetFirstMoveEntry() const
                                      { return pLinkMove; }
             const ScChangeActionIns*    GetCutOffInsert() const { return pCutOff; }
         short               GetCutOffCount() const { return nCutOff; }
-//STRIP001
-//STRIP001  virtual void                GetDescription( String&, ScDocument*,
-//STRIP001                                  BOOL bSplitRange = FALSE ) const;
+/*N*/
+/*N*/   virtual void                GetDescription( String&, ScDocument*,
+/*N*/                                   BOOL bSplitRange = FALSE ) const;
             void                SetCutOffInsert( ScChangeActionIns* p, short n )
                                     { pCutOff = p; nCutOff = n; }   // only to use in the XML import
-//STRIP001                                                                  // this should be protected, but for the XML import it is public
-//STRIP001          // only to use in the XML import
-//STRIP001          // this should be protected, but for the XML import it is public
+/*N*/                                                                   // this should be protected, but for the XML import it is public
+/*N*/           // only to use in the XML import
+/*N*/           // this should be protected, but for the XML import it is public
             ScChangeActionDelMoveEntry* AddCutOffMove( ScChangeActionMove* pMove,
                                         short nFrom, short nTo )
                                     {
@@ -715,7 +718,7 @@ public:
 class ScChangeActionMove : public ScChangeAction
 {
     friend class ScChangeTrack;
-//STRIP001  friend void ScChangeActionDel::UndoCutOffMoves();
+/*N*/   friend void ScChangeActionDel::UndoCutOffMoves();
 
             ScBigRange          aFromRange;
             ScChangeTrack*      pTrack;
@@ -732,31 +735,31 @@ class ScChangeActionMove : public ScChangeAction
                                         pFirstCell( NULL ),
                                         nStartLastCut(0),
                                         nEndLastCut(0)
-                                    {DBG_ASSERT(0, "STRIP");} //STRIP001 {};
+/*N*/                                   {};
                                 ScChangeActionMove( SvStream&,
                                     ScMultipleReadHeader&, ScChangeTrack* );
-//STRIP001  virtual                     ~ScChangeActionMove();
+/*N*/   virtual                     ~ScChangeActionMove();
 
-//STRIP001  virtual void                AddContent( ScChangeActionContent* );
-//STRIP001  virtual void                DeleteCellEntries();
-//STRIP001
+/*N*/   virtual void                AddContent( ScChangeActionContent* );
+/*N*/   virtual void                DeleteCellEntries();
+/*N*/
             ScBigRange&         GetFromRange() { return aFromRange; }
-//STRIP001
-//STRIP001          void                SetStartLastCut( ULONG nVal ) { nStartLastCut = nVal; }
-//STRIP001          ULONG               GetStartLastCut() const { return nStartLastCut; }
-//STRIP001          void                SetEndLastCut( ULONG nVal ) { nEndLastCut = nVal; }
-//STRIP001          ULONG               GetEndLastCut() const { return nEndLastCut; }
-//STRIP001
-//STRIP001  virtual void                UpdateReference( const ScChangeTrack*,
-//STRIP001                                  UpdateRefMode, const ScBigRange&,
-//STRIP001                                  INT32 nDx, INT32 nDy, INT32 nDz );
-//STRIP001
-//STRIP001  virtual BOOL                Reject( ScDocument* );
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001  virtual BOOL                StoreLinks( SvStream& ) const;
-//STRIP001  virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
-//STRIP001
+/*N*/
+/*N*/           void                SetStartLastCut( ULONG nVal ) { nStartLastCut = nVal; }
+/*N*/           ULONG               GetStartLastCut() const { return nStartLastCut; }
+/*N*/           void                SetEndLastCut( ULONG nVal ) { nEndLastCut = nVal; }
+/*N*/           ULONG               GetEndLastCut() const { return nEndLastCut; }
+/*N*/
+/*N*/   virtual void                UpdateReference( const ScChangeTrack*,
+/*N*/                                   UpdateRefMode, const ScBigRange&,
+/*N*/                                   INT32 nDx, INT32 nDy, INT32 nDz );
+/*N*/
+/*N*/   virtual BOOL                Reject( ScDocument* );
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
+/*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
+/*N*/
 public:
                                 ScChangeActionMove(const ULONG nActionNumber,
                                                 const ScChangeActionState eState,
@@ -767,17 +770,17 @@ public:
                                                 const String &sComment,
                                                 const ScBigRange& aFromBigRange,
                                                 ScChangeTrack* pTrack); // only to use in the XML import
-//STRIP001          const ScChangeActionCellListEntry* GetFirstCellEntry() const
-//STRIP001                                  { return pFirstCell; } // only to use in the XML export
-//STRIP001
+/*N*/           const ScChangeActionCellListEntry* GetFirstCellEntry() const
+/*N*/                                   { return pFirstCell; } // only to use in the XML export
+/*N*/
             const ScBigRange&   GetFromRange() const { return aFromRange; }
-//STRIP001          void                GetDelta( INT32& nDx, INT32& nDy, INT32& nDz ) const;
-//STRIP001
-//STRIP001  virtual void                GetDescription( String&, ScDocument*,
-//STRIP001                                  BOOL bSplitRange = FALSE ) const;
-//STRIP001
-//STRIP001  virtual void                GetRefString( String&, ScDocument*,
-//STRIP001                                  BOOL bFlag3D = FALSE ) const;
+/*N*/           void                GetDelta( INT32& nDx, INT32& nDy, INT32& nDz ) const;
+/*N*/
+/*N*/   virtual void                GetDescription( String&, ScDocument*,
+/*N*/                                   BOOL bSplitRange = FALSE ) const;
+/*N*/
+/*N*/   virtual void                GetRefString( String&, ScDocument*,
+/*N*/                                   BOOL bFlag3D = FALSE ) const;
 };
 
 
@@ -790,8 +793,6 @@ enum ScChangeActionContentCellType
     SC_CACCT_MATORG,
     SC_CACCT_MATREF
 };
-
-class Stack;
 
 class ScChangeActionContent : public ScChangeAction
 {
@@ -810,88 +811,88 @@ class ScChangeActionContent : public ScChangeAction
                                     ScMultipleReadHeader&, ScDocument*,
                                     USHORT nVer, ScChangeTrack* );
 
-//STRIP001          void                InsertInSlot( ScChangeActionContent** pp )
-//STRIP001                                  {
-//STRIP001                                      if ( !ppPrevInSlot )
-//STRIP001                                      {
-//STRIP001                                          ppPrevInSlot = pp;
-//STRIP001                                          if ( pNextInSlot = *pp )
-//STRIP001                                              pNextInSlot->ppPrevInSlot = &pNextInSlot;
-//STRIP001                                          *pp = this;
-//STRIP001                                      }
-//STRIP001                                  }
-//STRIP001          void                RemoveFromSlot()
-//STRIP001                                  {
-//STRIP001                                      if ( ppPrevInSlot )
-//STRIP001                                      {
-//STRIP001                                          if ( *ppPrevInSlot = pNextInSlot )
-//STRIP001                                              pNextInSlot->ppPrevInSlot = ppPrevInSlot;
-//STRIP001                                          ppPrevInSlot = NULL;    // not inserted
-//STRIP001                                      }
-//STRIP001                                  }
-//STRIP001      ScChangeActionContent*  GetNextInSlot() { return pNextInSlot; }
-//STRIP001
-//STRIP001          void                ClearTrack();
-//STRIP001
-//STRIP001  static  void                GetStringOfCell( String& rStr,
-//STRIP001                                  const ScBaseCell* pCell,
-//STRIP001                                  const ScDocument* pDoc,
-//STRIP001                                  const ScAddress& rPos );
-//STRIP001
-//STRIP001  static  void                GetStringOfCell( String& rStr,
-//STRIP001                                  const ScBaseCell* pCell,
-//STRIP001                                  const ScDocument* pDoc,
-//STRIP001                                  ULONG nFormat );
-//STRIP001
-//STRIP001  static  void                SetValue( String& rStr, ScBaseCell*& pCell,
-//STRIP001                                  const ScAddress& rPos,
-//STRIP001                                  const ScBaseCell* pOrgCell,
-//STRIP001                                  const ScDocument* pFromDoc,
-//STRIP001                                  ScDocument* pToDoc );
-//STRIP001
-//STRIP001  static  void                SetValue( String& rStr, ScBaseCell*& pCell,
-//STRIP001                                  ULONG nFormat,
-//STRIP001                                  const ScBaseCell* pOrgCell,
-//STRIP001                                  const ScDocument* pFromDoc,
-//STRIP001                                  ScDocument* pToDoc );
-//STRIP001
-//STRIP001  static  void                SetCell( String& rStr, ScBaseCell* pCell,
-//STRIP001                                  ULONG nFormat, const ScDocument* pDoc );
-//STRIP001
-//STRIP001  static  BOOL                NeedsNumberFormat( const ScBaseCell* );
-//STRIP001
-//STRIP001          void                SetValueString( String& rValue,
-//STRIP001                                  ScBaseCell*& pCell, const String& rStr,
-//STRIP001                                  ScDocument* pDoc );
-//STRIP001
-//STRIP001          void                GetValueString( String& rStr,
-//STRIP001                                  const String& rValue,
-//STRIP001                                  const ScBaseCell* pCell ) const;
-//STRIP001
-//STRIP001          void                GetFormulaString( String& rStr,
-//STRIP001                                  const ScFormulaCell* pCell ) const;
-//STRIP001
-//STRIP001  virtual void                AddContent( ScChangeActionContent* ) {}
-//STRIP001  virtual void                DeleteCellEntries() {}
-//STRIP001
-//STRIP001  virtual void                UpdateReference( const ScChangeTrack*,
-//STRIP001                                  UpdateRefMode, const ScBigRange&,
-//STRIP001                                  INT32 nDx, INT32 nDy, INT32 nDz );
-//STRIP001
-//STRIP001  virtual BOOL                Reject( ScDocument* );
-//STRIP001
-//STRIP001                              // pRejectActions!=NULL: reject actions get
-//STRIP001                              // stacked, no SetNewValue, no Append
-//STRIP001          BOOL                Select( ScDocument*, ScChangeTrack*,
-//STRIP001                                  BOOL bOldest, Stack* pRejectActions );
-//STRIP001
-//STRIP001          void                PutValueToDoc( ScBaseCell*, const String&,
-//STRIP001                                  ScDocument*, short nDx, short nDy ) const;
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001  virtual BOOL                StoreLinks( SvStream& ) const;
-//STRIP001  virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
-//STRIP001
+/*N*/           void                InsertInSlot( ScChangeActionContent** pp )
+/*N*/                                   {
+/*N*/                                       if ( !ppPrevInSlot )
+/*N*/                                       {
+/*N*/                                           ppPrevInSlot = pp;
+/*N*/                                           if ( pNextInSlot = *pp )
+/*N*/                                               pNextInSlot->ppPrevInSlot = &pNextInSlot;
+/*N*/                                           *pp = this;
+/*N*/                                       }
+/*N*/                                   }
+/*N*/           void                RemoveFromSlot()
+/*N*/                                   {
+/*N*/                                       if ( ppPrevInSlot )
+/*N*/                                       {
+/*N*/                                           if ( *ppPrevInSlot = pNextInSlot )
+/*N*/                                               pNextInSlot->ppPrevInSlot = ppPrevInSlot;
+/*N*/                                           ppPrevInSlot = NULL;    // not inserted
+/*N*/                                       }
+/*N*/                                   }
+/*N*/       ScChangeActionContent*  GetNextInSlot() { return pNextInSlot; }
+/*N*/
+/*N*/           void                ClearTrack();
+/*N*/
+/*N*/   static  void                GetStringOfCell( String& rStr,
+/*N*/                                   const ScBaseCell* pCell,
+/*N*/                                   const ScDocument* pDoc,
+/*N*/                                   const ScAddress& rPos );
+/*N*/
+/*N*/   static  void                GetStringOfCell( String& rStr,
+/*N*/                                   const ScBaseCell* pCell,
+/*N*/                                   const ScDocument* pDoc,
+/*N*/                                   ULONG nFormat );
+/*N*/
+/*N*/   static  void                SetValue( String& rStr, ScBaseCell*& pCell,
+/*N*/                                   const ScAddress& rPos,
+/*N*/                                   const ScBaseCell* pOrgCell,
+/*N*/                                   const ScDocument* pFromDoc,
+/*N*/                                   ScDocument* pToDoc );
+/*N*/
+/*N*/   static  void                SetValue( String& rStr, ScBaseCell*& pCell,
+/*N*/                                   ULONG nFormat,
+/*N*/                                   const ScBaseCell* pOrgCell,
+/*N*/                                   const ScDocument* pFromDoc,
+/*N*/                                   ScDocument* pToDoc );
+/*N*/
+/*N*/   static  void                SetCell( String& rStr, ScBaseCell* pCell,
+/*N*/                                   ULONG nFormat, const ScDocument* pDoc );
+/*N*/
+/*N*/   static  BOOL                NeedsNumberFormat( const ScBaseCell* );
+/*N*/
+/*N*/           void                SetValueString( String& rValue,
+/*N*/                                   ScBaseCell*& pCell, const String& rStr,
+/*N*/                                   ScDocument* pDoc );
+/*N*/
+/*N*/           void                GetValueString( String& rStr,
+/*N*/                                   const String& rValue,
+/*N*/                                   const ScBaseCell* pCell ) const;
+/*N*/
+/*N*/           void                GetFormulaString( String& rStr,
+/*N*/                                   const ScFormulaCell* pCell ) const;
+/*N*/
+/*N*/   virtual void                AddContent( ScChangeActionContent* ) {}
+/*N*/   virtual void                DeleteCellEntries() {}
+/*N*/
+/*N*/   virtual void                UpdateReference( const ScChangeTrack*,
+/*N*/                                   UpdateRefMode, const ScBigRange&,
+/*N*/                                   INT32 nDx, INT32 nDy, INT32 nDz );
+/*N*/
+/*N*/   virtual BOOL                Reject( ScDocument* );
+/*N*/
+/*N*/                               // pRejectActions!=NULL: reject actions get
+/*N*/                               // stacked, no SetNewValue, no Append
+/*N*/           BOOL                Select( ScDocument*, ScChangeTrack*,
+/*N*/                                   BOOL bOldest, Stack* pRejectActions );
+/*N*/
+/*N*/           void                PutValueToDoc( ScBaseCell*, const String&,
+/*N*/                                   ScDocument*, short nDx, short nDy ) const;
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
+/*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
+/*N*/
 public:
 
     DECL_FIXEDMEMPOOL_NEWDEL( ScChangeActionContent )
@@ -904,7 +905,7 @@ public:
                                         pPrevContent( NULL ),
                                         pNextInSlot( NULL ),
                                         ppPrevInSlot( NULL )
-                                    {DBG_ASSERT(0, "STRIP");} //STRIP001 {};
+/*N*/                                   {};
                                 ScChangeActionContent(const ULONG nActionNumber,
                                                 const ScChangeActionState eState,
                                                 const ULONG nRejectingNumber,
@@ -919,115 +920,113 @@ public:
                                                 ScBaseCell* pNewCell,
                                                 const ScBigRange& aBigRange,
                                                 ScDocument* pDoc); // to use for XML Import of Generated Actions
-//STRIP001  virtual                     ~ScChangeActionContent();
-//STRIP001
-//STRIP001      ScChangeActionContent*  GetNextContent() const { return pNextContent; }
+/*N*/   virtual                     ~ScChangeActionContent();
+/*N*/
+/*N*/       ScChangeActionContent*  GetNextContent() const { return pNextContent; }
         ScChangeActionContent*  GetPrevContent() const { return pPrevContent; }
-//STRIP001      ScChangeActionContent*  GetTopContent() const;
+/*N*/       ScChangeActionContent*  GetTopContent() const;
              BOOL               IsTopContent() const
                                      { return pNextContent == NULL; }
-//STRIP001
-//STRIP001  virtual ScChangeActionLinkEntry*    GetDeletedIn() const;
-//STRIP001  virtual ScChangeActionLinkEntry**   GetDeletedInAddress();
-//STRIP001
-//STRIP001          void                PutOldValueToDoc( ScDocument*,
-//STRIP001                                  short nDx, short nDy ) const;
-//STRIP001          void                PutNewValueToDoc( ScDocument*,
-//STRIP001                                  short nDx, short nDy ) const;
-//STRIP001
-//STRIP001          void                SetOldValue( const ScBaseCell*,
-//STRIP001                                  const ScDocument* pFromDoc,
-//STRIP001                                  ScDocument* pToDoc,
-//STRIP001                                  ULONG nFormat );
-//STRIP001          void                SetOldValue( const ScBaseCell*,
-//STRIP001                                  const ScDocument* pFromDoc,
-//STRIP001                                  ScDocument* pToDoc );
-//STRIP001          void                SetNewValue( const ScBaseCell*, ScDocument* );
-//STRIP001
-//STRIP001                              // Used in import filter AppendContentOnTheFly,
-//STRIP001                              // takes ownership of cells.
-//STRIP001          void                SetOldNewCells( ScBaseCell* pOldCell,
-//STRIP001                                  ULONG nOldFormat, ScBaseCell* pNewCell,
-//STRIP001                                  ULONG nNewFormat, ScDocument* pDoc );
-//STRIP001
-//STRIP001                              // Use this only in the XML import,
-//STRIP001                              // takes ownership of cell.
+/*N*/
+/*N*/   virtual ScChangeActionLinkEntry*    GetDeletedIn() const;
+/*N*/   virtual ScChangeActionLinkEntry**   GetDeletedInAddress();
+/*N*/
+/*N*/           void                PutOldValueToDoc( ScDocument*,
+/*N*/                                   short nDx, short nDy ) const;
+/*N*/           void                PutNewValueToDoc( ScDocument*,
+/*N*/                                   short nDx, short nDy ) const;
+/*N*/
+/*N*/           void                SetOldValue( const ScBaseCell*,
+/*N*/                                   const ScDocument* pFromDoc,
+/*N*/                                   ScDocument* pToDoc,
+/*N*/                                   ULONG nFormat );
+/*N*/           void                SetOldValue( const ScBaseCell*,
+/*N*/                                   const ScDocument* pFromDoc,
+/*N*/                                   ScDocument* pToDoc );
+/*N*/           void                SetNewValue( const ScBaseCell*, ScDocument* );
+/*N*/
+/*N*/                               // Used in import filter AppendContentOnTheFly,
+/*N*/                               // takes ownership of cells.
+/*N*/           void                SetOldNewCells( ScBaseCell* pOldCell,
+/*N*/                                   ULONG nOldFormat, ScBaseCell* pNewCell,
+/*N*/                                   ULONG nNewFormat, ScDocument* pDoc );
+/*N*/
+/*N*/                               // Use this only in the XML import,
+/*N*/                               // takes ownership of cell.
             void                SetNewCell( ScBaseCell* pNewCell, ScDocument* pDoc );
-//STRIP001
-//STRIP001                              // These functions should be protected but for
-//STRIP001                              // the XML import they are public.
+/*N*/
+/*N*/                               // These functions should be protected but for
+/*N*/                               // the XML import they are public.
             void                SetNextContent( ScChangeActionContent* p )
                                     { pNextContent = p; }
             void                SetPrevContent( ScChangeActionContent* p )
                                     { pPrevContent = p; }
-//STRIP001
-//STRIP001                              // moeglichst nicht verwenden,
-//STRIP001                              // setzt nur String bzw. generiert Formelzelle
-//STRIP001          void                SetOldValue( const String& rOld, ScDocument* );
-//STRIP001          void                SetNewValue( const String& rNew, ScDocument* );
-//STRIP001
-            void                GetOldString( String& ) const{DBG_ASSERT(0, "STRIP");} //STRIP001 void              GetOldString( String& ) const;
-            void                GetNewString( String& ) const{DBG_ASSERT(0, "STRIP");} //STRIP001 void              GetNewString( String& ) const;
+/*N*/
+/*N*/                               // moeglichst nicht verwenden,
+/*N*/                               // setzt nur String bzw. generiert Formelzelle
+/*N*/           void                SetOldValue( const String& rOld, ScDocument* );
+/*N*/           void                SetNewValue( const String& rNew, ScDocument* );
+/*N*/
+/*N*/           void                GetOldString( String& ) const;
+/*N*/           void                GetNewString( String& ) const;
             const ScBaseCell*   GetOldCell() const { return pOldCell; }
             const ScBaseCell*   GetNewCell() const { return pNewCell; }
-//STRIP001  virtual void                GetDescription( String&, ScDocument*,
-//STRIP001                                  BOOL bSplitRange = FALSE ) const;
-//STRIP001  virtual void                GetRefString( String&, ScDocument*,
-//STRIP001                                  BOOL bFlag3D = FALSE ) const;
-//STRIP001
-//STRIP001  static  ScChangeActionContentCellType   GetContentCellType( const ScBaseCell* );
-//STRIP001
-//STRIP001                              // NewCell
-//STRIP001          BOOL                IsMatrixOrigin() const
-//STRIP001                                  {
-//STRIP001                                      return GetContentCellType( GetNewCell() )
-//STRIP001                                          == SC_CACCT_MATORG;
-//STRIP001                                  }
-//STRIP001          BOOL                IsMatrixReference() const
-//STRIP001                                  {
-//STRIP001                                      return GetContentCellType( GetNewCell() )
-//STRIP001                                          == SC_CACCT_MATREF;
-//STRIP001                                  }
-//STRIP001                              // OldCell
-//STRIP001          BOOL                IsOldMatrixOrigin() const
-//STRIP001                                  {
-//STRIP001                                      return GetContentCellType( GetOldCell() )
-//STRIP001                                          == SC_CACCT_MATORG;
-//STRIP001                                  }
-//STRIP001          BOOL                IsOldMatrixReference() const
-//STRIP001                                  {
-//STRIP001                                      return GetContentCellType( GetOldCell() )
-//STRIP001                                          == SC_CACCT_MATREF;
-//STRIP001                                  }
-//STRIP001
+/*N*/   virtual void                GetDescription( String&, ScDocument*,
+/*N*/                                   BOOL bSplitRange = FALSE ) const;
+/*N*/   virtual void                GetRefString( String&, ScDocument*,
+/*N*/                                   BOOL bFlag3D = FALSE ) const;
+/*N*/
+/*N*/   static  ScChangeActionContentCellType   GetContentCellType( const ScBaseCell* );
+/*N*/
+/*N*/                               // NewCell
+/*N*/           BOOL                IsMatrixOrigin() const
+/*N*/                                   {
+/*N*/                                       return GetContentCellType( GetNewCell() )
+/*N*/                                           == SC_CACCT_MATORG;
+/*N*/                                   }
+/*N*/           BOOL                IsMatrixReference() const
+/*N*/                                   {
+/*N*/                                       return GetContentCellType( GetNewCell() )
+/*N*/                                           == SC_CACCT_MATREF;
+/*N*/                                   }
+/*N*/                               // OldCell
+/*N*/           BOOL                IsOldMatrixOrigin() const
+/*N*/                                   {
+/*N*/                                       return GetContentCellType( GetOldCell() )
+/*N*/                                           == SC_CACCT_MATORG;
+/*N*/                                   }
+/*N*/           BOOL                IsOldMatrixReference() const
+/*N*/                                   {
+/*N*/                                       return GetContentCellType( GetOldCell() )
+/*N*/                                           == SC_CACCT_MATREF;
+/*N*/                                   }
+/*N*/
 };
 
 
 // --- ScChangeActionReject -------------------------------------------------
 
-class Stack;
-
 class ScChangeActionReject : public ScChangeAction
 {
     friend class ScChangeTrack;
-//STRIP001  friend BOOL ScChangeActionContent::Select( ScDocument*, ScChangeTrack*, BOOL, Stack* );
+/*N*/   friend BOOL ScChangeActionContent::Select( ScDocument*, ScChangeTrack*, BOOL, Stack* );
 
                                 ScChangeActionReject( ULONG nReject )
                                     : ScChangeAction( SC_CAT_REJECT, ScRange() )
                                     {
-                                        DBG_ASSERT(0, "STRIP"); //STRIP001 SetRejectAction( nReject );
-//STRIP001                                      SetState( SC_CAS_ACCEPTED );
+/*N*/                                       SetRejectAction( nReject );
+/*N*/                                       SetState( SC_CAS_ACCEPTED );
                                     }
                                 ScChangeActionReject( SvStream&,
                                     ScMultipleReadHeader&, ScChangeTrack* );
 
-//STRIP001  virtual void                AddContent( ScChangeActionContent* ) {}
-//STRIP001  virtual void                DeleteCellEntries() {}
-//STRIP001
-//STRIP001  virtual BOOL                Reject( ScDocument* p ) { return FALSE; }
-//STRIP001
-//STRIP001  virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
-//STRIP001
+/*N*/   virtual void                AddContent( ScChangeActionContent* ) {}
+/*N*/   virtual void                DeleteCellEntries() {}
+/*N*/
+/*N*/   virtual BOOL                Reject( ScDocument* p ) { return FALSE; }
+/*N*/
+/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/
 public:
                                 ScChangeActionReject(const ULONG nActionNumber,
                                                 const ScChangeActionState eState,
@@ -1060,8 +1059,8 @@ struct ScChangeTrackMsgInfo
 };
 
 // MsgQueue fuer Benachrichtigung via ModifiedLink
-//STRIP001 DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* );
-//STRIP001 DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* );
+/*N*/ DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* );
+/*N*/ DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* );
 
 enum ScChangeTrackMergeState
 {
@@ -1073,7 +1072,7 @@ enum ScChangeTrackMergeState
 
 // zusaetzlich zu pFirst/pNext/pLast/pPrev eine Table, um schnell sowohl
 // per ActionNumber als auch ueber Liste zugreifen zu koennen
-DECLARE_TABLE( ScChangeActionTable, ScChangeAction* )//STRIP008 ;
+/*N*/DECLARE_TABLE( ScChangeActionTable, ScChangeAction* )
 
 // Intern generierte Actions beginnen bei diesem Wert (fast alle Bits gesetzt)
 // und werden runtergezaehlt, um sich in einer Table wertemaessig nicht mit den
@@ -1084,11 +1083,11 @@ DECLARE_TABLE( ScChangeActionTable, ScChangeAction* )//STRIP008 ;
 
 class ScChangeTrack : public SfxListener
 {
-//STRIP001  friend void ScChangeAction::RejectRestoreContents( ScChangeTrack*, short, short );
-//STRIP001  friend BOOL ScChangeActionDel::Reject( ScDocument* pDoc );
-//STRIP001  friend void ScChangeActionDel::DeleteCellEntries();
-//STRIP001  friend void ScChangeActionMove::DeleteCellEntries();
-//STRIP001  friend BOOL ScChangeActionMove::Reject( ScDocument* pDoc );
+/*N*/   friend void ScChangeAction::RejectRestoreContents( ScChangeTrack*, short, short );
+/*N*/   friend BOOL ScChangeActionDel::Reject( ScDocument* pDoc );
+/*N*/   friend void ScChangeActionDel::DeleteCellEntries();
+/*N*/   friend void ScChangeActionMove::DeleteCellEntries();
+/*N*/   friend BOOL ScChangeActionMove::Reject( ScDocument* pDoc );
 
     static  const USHORT        nContentRowsPerSlot;
     static  const USHORT        nContentSlots;
@@ -1097,9 +1096,9 @@ class ScChangeTrack : public SfxListener
              ScChangeActionTable    aTable;
              ScChangeActionTable    aGeneratedTable;
              ScChangeActionTable    aPasteCutTable;
-//STRIP001          ScChangeTrackMsgQueue   aMsgQueue;
-//STRIP001          ScChangeTrackMsgStack   aMsgStackTmp;
-//STRIP001          ScChangeTrackMsgStack   aMsgStackFinal;
+/*N*/       ScChangeTrackMsgQueue   aMsgQueue;
+/*N*/       ScChangeTrackMsgStack   aMsgStackTmp;
+/*N*/       ScChangeTrackMsgStack   aMsgStackFinal;
              StrCollection      aUserCollection;
              String             aUser;
              Link               aModifiedLink;
@@ -1133,7 +1132,7 @@ class ScChangeTrack : public SfxListener
              BOOL                bTime100thSeconds;
 
                                 // not implemented, prevent usage
-                                ScChangeTrack( const ScChangeTrack& ){DBG_ASSERT(0, "STRIP");} //STRIP001 ScChangeTrack( const ScChangeTrack& );
+/*N*/                               ScChangeTrack( const ScChangeTrack& );
             ScChangeTrack&      operator=( const ScChangeTrack& );
 
 #ifdef SC_CHGTRACK_CXX
@@ -1141,327 +1140,327 @@ class ScChangeTrack : public SfxListener
 
                                 // TRUE if one is MM_FORMULA and the other is
                                 // not, or if both are and range differs
-//STRIP001  static  BOOL                IsMatrixFormulaRangeDifferent(
-//STRIP001                                  const ScBaseCell* pOldCell,
-//STRIP001                                  const ScBaseCell* pNewCell );
-
-//STRIP001  virtual void                Notify( SfxBroadcaster&, const SfxHint& );
-//STRIP001          void                Init();
-//STRIP001          void                DtorClear();
-//STRIP001          void                SetLoadSave( BOOL bVal ) { bLoadSave = bVal; }
-//STRIP001          void                SetInDeleteRange( const ScRange& rRange )
-//STRIP001                                  { aInDeleteRange = rRange; }
-//STRIP001          void                SetInDelete( BOOL bVal )
-//STRIP001                                  { bInDelete = bVal; }
-//STRIP001          void                SetInDeleteTop( BOOL bVal )
-//STRIP001                                  { bInDeleteTop = bVal; }
-//STRIP001          void                SetInDeleteUndo( BOOL bVal )
-//STRIP001                                  { bInDeleteUndo = bVal; }
-//STRIP001          void                SetInPasteCut( BOOL bVal )
-//STRIP001                                  { bInPasteCut = bVal; }
-//STRIP001          void                SetMergeState( ScChangeTrackMergeState eState )
-//STRIP001                                  { eMergeState = eState; }
-//STRIP001      ScChangeTrackMergeState GetMergeState() const { return eMergeState; }
-//STRIP001          void                SetLastMerge( ULONG nVal ) { nLastMerge = nVal; }
-//STRIP001          ULONG               GetLastMerge() const { return nLastMerge; }
-//STRIP001
-//STRIP001          void                SetLastCutMoveRange( const ScRange&, ScDocument* );
-//STRIP001
-//STRIP001                              // ModifyMsg blockweise und nicht einzeln erzeugen
-//STRIP001          void                StartBlockModify( ScChangeTrackMsgType,
-//STRIP001                                  ULONG nStartAction );
-//STRIP001          void                EndBlockModify( ULONG nEndAction );
-//STRIP001
-//STRIP001          void                AddDependentWithNotify( ScChangeAction* pParent,
-//STRIP001                                  ScChangeAction* pDependent );
-//STRIP001
-//STRIP001          void                Dependencies( ScChangeAction* );
-//STRIP001          void                UpdateReference( ScChangeAction*, BOOL bUndo );
-//STRIP001          void                UpdateReference( ScChangeAction** ppFirstAction,
-//STRIP001                                  ScChangeAction* pAct, BOOL bUndo );
-//STRIP001          void                Append( ScChangeAction* pAppend, ULONG nAction );
-//STRIP001          void                AppendDeleteRange( const ScRange&,
-//STRIP001                                  ScDocument* pRefDoc, short nDz,
-//STRIP001                                  ULONG nRejectingInsert );
-//STRIP001          void                AppendOneDeleteRange( const ScRange& rOrgRange,
-//STRIP001                                  ScDocument* pRefDoc,
-//STRIP001                                  short nDx, short nDy, short nDz,
-//STRIP001                                  ULONG nRejectingInsert );
-//STRIP001          void                LookUpContents( const ScRange& rOrgRange,
-//STRIP001                                  ScDocument* pRefDoc,
-//STRIP001                                  short nDx, short nDy, short nDz );
-//STRIP001          void                Remove( ScChangeAction* );
-//STRIP001          void                MasterLinks( ScChangeAction* );
-//STRIP001
-//STRIP001                              // Content on top an Position
-//STRIP001      ScChangeActionContent*  SearchContentAt( const ScBigAddress&,
-//STRIP001                                  ScChangeAction* pButNotThis ) const;
-//STRIP001                              // das gleiche fuer generierte Del-Eintraege,
-//STRIP001                              // wobei der Content nicht in der angegebenen
-//STRIP001                              // Richtung geloescht sein darf
-//STRIP001      ScChangeActionContent*  SearchGeneratedDelContentAt(
-//STRIP001                                  const ScBigAddress&,
-//STRIP001                                  ScChangeActionType eNotInDelType ) const;
-//STRIP001          void                DeleteGeneratedDelContent(
-//STRIP001                                  ScChangeActionContent* );
-//STRIP001      ScChangeActionContent*  GenerateDelContent( const ScAddress&,
-//STRIP001                                  const ScBaseCell*,
-//STRIP001                                  const ScDocument* pFromDoc );
-//STRIP001          void                DeleteCellEntries(
-//STRIP001                                  ScChangeActionCellListEntry*&,
-//STRIP001                                  ScChangeAction* pDeletor );
-//STRIP001
-//STRIP001                              // Action und alle abhaengigen rejecten,
-//STRIP001                              // Table stammt aus vorherigem GetDependents,
-//STRIP001                              // ist nur bei Insert und Move (MasterType)
-//STRIP001                              // noetig, kann ansonsten NULL sein.
-//STRIP001                              // bRecursion == Aufruf aus Reject mit Table
-//STRIP001          BOOL                Reject( ScChangeAction*,
-//STRIP001                                  ScChangeActionTable*, BOOL bRecursion );
-//STRIP001
+/*N*/   static  BOOL                IsMatrixFormulaRangeDifferent(
+/*N*/                                   const ScBaseCell* pOldCell,
+/*N*/                                   const ScBaseCell* pNewCell );
+/*N*/
+/*N*/   virtual void                Notify( SfxBroadcaster&, const SfxHint& );
+/*N*/           void                Init();
+/*N*/           void                DtorClear();
+/*N*/           void                SetLoadSave( BOOL bVal ) { bLoadSave = bVal; }
+/*N*/           void                SetInDeleteRange( const ScRange& rRange )
+/*N*/                                   { aInDeleteRange = rRange; }
+/*N*/           void                SetInDelete( BOOL bVal )
+/*N*/                                   { bInDelete = bVal; }
+/*N*/           void                SetInDeleteTop( BOOL bVal )
+/*N*/                                   { bInDeleteTop = bVal; }
+/*N*/           void                SetInDeleteUndo( BOOL bVal )
+/*N*/                                   { bInDeleteUndo = bVal; }
+/*N*/           void                SetInPasteCut( BOOL bVal )
+/*N*/                                   { bInPasteCut = bVal; }
+/*N*/           void                SetMergeState( ScChangeTrackMergeState eState )
+/*N*/                                   { eMergeState = eState; }
+/*N*/       ScChangeTrackMergeState GetMergeState() const { return eMergeState; }
+/*N*/           void                SetLastMerge( ULONG nVal ) { nLastMerge = nVal; }
+/*N*/           ULONG               GetLastMerge() const { return nLastMerge; }
+/*N*/
+/*N*/           void                SetLastCutMoveRange( const ScRange&, ScDocument* );
+/*N*/
+/*N*/                               // ModifyMsg blockweise und nicht einzeln erzeugen
+/*N*/           void                StartBlockModify( ScChangeTrackMsgType,
+/*N*/                                   ULONG nStartAction );
+/*N*/           void                EndBlockModify( ULONG nEndAction );
+/*N*/
+/*N*/           void                AddDependentWithNotify( ScChangeAction* pParent,
+/*N*/                                   ScChangeAction* pDependent );
+/*N*/
+/*N*/           void                Dependencies( ScChangeAction* );
+/*N*/           void                UpdateReference( ScChangeAction*, BOOL bUndo );
+/*N*/           void                UpdateReference( ScChangeAction** ppFirstAction,
+/*N*/                                   ScChangeAction* pAct, BOOL bUndo );
+/*N*/           void                Append( ScChangeAction* pAppend, ULONG nAction );
+/*N*/           void                AppendDeleteRange( const ScRange&,
+/*N*/                                   ScDocument* pRefDoc, short nDz,
+/*N*/                                   ULONG nRejectingInsert );
+/*N*/           void                AppendOneDeleteRange( const ScRange& rOrgRange,
+/*N*/                                   ScDocument* pRefDoc,
+/*N*/                                   short nDx, short nDy, short nDz,
+/*N*/                                   ULONG nRejectingInsert );
+/*N*/           void                LookUpContents( const ScRange& rOrgRange,
+/*N*/                                   ScDocument* pRefDoc,
+/*N*/                                   short nDx, short nDy, short nDz );
+/*N*/           void                Remove( ScChangeAction* );
+/*N*/           void                MasterLinks( ScChangeAction* );
+/*N*/
+/*N*/                               // Content on top an Position
+/*N*/       ScChangeActionContent*  SearchContentAt( const ScBigAddress&,
+/*N*/                                   ScChangeAction* pButNotThis ) const;
+/*N*/                               // das gleiche fuer generierte Del-Eintraege,
+/*N*/                               // wobei der Content nicht in der angegebenen
+/*N*/                               // Richtung geloescht sein darf
+/*N*/       ScChangeActionContent*  SearchGeneratedDelContentAt(
+/*N*/                                   const ScBigAddress&,
+/*N*/                                   ScChangeActionType eNotInDelType ) const;
+/*N*/           void                DeleteGeneratedDelContent(
+/*N*/                                   ScChangeActionContent* );
+/*N*/       ScChangeActionContent*  GenerateDelContent( const ScAddress&,
+/*N*/                                   const ScBaseCell*,
+/*N*/                                   const ScDocument* pFromDoc );
+/*N*/           void                DeleteCellEntries(
+/*N*/                                   ScChangeActionCellListEntry*&,
+/*N*/                                   ScChangeAction* pDeletor );
+/*N*/
+/*N*/                               // Action und alle abhaengigen rejecten,
+/*N*/                               // Table stammt aus vorherigem GetDependents,
+/*N*/                               // ist nur bei Insert und Move (MasterType)
+/*N*/                               // noetig, kann ansonsten NULL sein.
+/*N*/                               // bRecursion == Aufruf aus Reject mit Table
+/*N*/           BOOL                Reject( ScChangeAction*,
+/*N*/                                   ScChangeActionTable*, BOOL bRecursion );
+/*N*/
 #endif  // SC_CHGTRACK_CXX
-//STRIP001
-//STRIP001          void                ClearMsgQueue();
-//STRIP001
+/*N*/
+/*N*/           void                ClearMsgQueue();
+/*N*/
 public:
 
-//STRIP001  static  USHORT              ComputeContentSlot( INT32 nRow )
-//STRIP001                                  {
-//STRIP001                                      if ( nRow < 0 || nRow > MAXROW )
-//STRIP001                                          return nContentSlots - 1;
-//STRIP001                                      return nRow / nContentRowsPerSlot;
-//STRIP001                                  }
+/*N*/   static  USHORT              ComputeContentSlot( INT32 nRow )
+/*N*/                                   {
+/*N*/                                       if ( nRow < 0 || nRow > MAXROW )
+/*N*/                                           return nContentSlots - 1;
+/*N*/                                       return nRow / nContentRowsPerSlot;
+/*N*/                                   }
 
-                                ScChangeTrack( ScDocument* ){DBG_ASSERT(0, "STRIP");} //STRIP001 ScChangeTrack( ScDocument* );
+/*N*/                               ScChangeTrack( ScDocument* );
                                 ScChangeTrack( ScDocument*,
-                                            const StrCollection& ) {DBG_ASSERT(0, "STRIP");} //STRIP001 const StrCollection& ); // only to use in the XML import
-//STRIP001  virtual                     ~ScChangeTrack();
-//STRIP001          void                Clear();
-//STRIP001
+/*N*/                                           const StrCollection& ); // only to use in the XML import
+/*N*/   virtual                     ~ScChangeTrack();
+/*N*/           void                Clear();
+/*N*/
             ScChangeActionContent*  GetFirstGenerated() const { return pFirstGeneratedDelContent; }
             ScChangeAction*     GetFirst() const { return pFirst; }
             ScChangeAction*     GetLast() const { return pLast; }
             ULONG               GetActionMax() const { return nActionMax; }
              BOOL               IsGenerated( ULONG nAction ) const
-                                     { DBG_ASSERT(0, "STRIP");return FALSE;} //STRIP001 { return nAction >= nGeneratedMin;}
+/*N*/                                   { return nAction >= nGeneratedMin;}
             ScChangeAction*     GetAction( ULONG nAction ) const
                                     { return aTable.Get( nAction ); }
-//STRIP001          ScChangeAction*     GetGenerated( ULONG nGenerated ) const
-//STRIP001                                  { return aGeneratedTable.Get( nGenerated ); }
-//STRIP001          ScChangeAction*     GetActionOrGenerated( ULONG nAction ) const
-//STRIP001                                  {
-//STRIP001                                      return IsGenerated( nAction ) ?
-//STRIP001                                          GetGenerated( nAction ) :
-//STRIP001                                          GetAction( nAction );
-//STRIP001                                  }
-//STRIP001          ULONG               GetLastSavedActionNumber() const
-//STRIP001                                  { return nMarkLastSaved; }
+/*N*/           ScChangeAction*     GetGenerated( ULONG nGenerated ) const
+/*N*/                                   { return aGeneratedTable.Get( nGenerated ); }
+/*N*/           ScChangeAction*     GetActionOrGenerated( ULONG nAction ) const
+/*N*/                                   {
+/*N*/                                       return IsGenerated( nAction ) ?
+/*N*/                                           GetGenerated( nAction ) :
+/*N*/                                           GetAction( nAction );
+/*N*/                                   }
+/*N*/           ULONG               GetLastSavedActionNumber() const
+/*N*/                                   { return nMarkLastSaved; }
             void                SetLastSavedActionNumber(ULONG nNew)
                                     { nMarkLastSaved = nNew; }
-//STRIP001          ScChangeAction*     GetLastSaved() const
-//STRIP001                                  { return aTable.Get( nMarkLastSaved ); }
-//STRIP001      ScChangeActionContent** GetContentSlots() const { return ppContentSlots; }
-//STRIP001
-//STRIP001          BOOL                IsLoadSave() const { return bLoadSave; }
-//STRIP001          const ScRange&      GetInDeleteRange() const
-//STRIP001                                  { return aInDeleteRange; }
-//STRIP001          BOOL                IsInDelete() const { return bInDelete; }
-//STRIP001          BOOL                IsInDeleteTop() const { return bInDeleteTop; }
+/*N*/           ScChangeAction*     GetLastSaved() const
+/*N*/                                   { return aTable.Get( nMarkLastSaved ); }
+/*N*/       ScChangeActionContent** GetContentSlots() const { return ppContentSlots; }
+/*N*/
+/*N*/           BOOL                IsLoadSave() const { return bLoadSave; }
+/*N*/           const ScRange&      GetInDeleteRange() const
+/*N*/                                   { return aInDeleteRange; }
+/*N*/           BOOL                IsInDelete() const { return bInDelete; }
+/*N*/           BOOL                IsInDeleteTop() const { return bInDeleteTop; }
             BOOL                IsInDeleteUndo() const { return bInDeleteUndo; }
-//STRIP001          BOOL                IsInPasteCut() const { return bInPasteCut; }
-//STRIP001          void                SetUser( const String& );
-//STRIP001          const String&       GetUser() const { return aUser; }
+/*N*/           BOOL                IsInPasteCut() const { return bInPasteCut; }
+/*N*/           void                SetUser( const String& );
+/*N*/           const String&       GetUser() const { return aUser; }
             const StrCollection&    GetUserCollection() const
                                     { return aUserCollection; }
-//STRIP001          ScDocument*         GetDocument() const { return pDoc; }
-//STRIP001                              // for import filter
-//STRIP001          const DateTime&     GetFixDateTime() const { return aFixDateTime; }
-//STRIP001
-//STRIP001                              // set this if the date/time set with
-//STRIP001                              // SetFixDateTime...() shall be applied to
-//STRIP001                              // appended actions
-//STRIP001          void                SetUseFixDateTime( BOOL bVal )
-//STRIP001                                  { bUseFixDateTime = bVal; }
-//STRIP001                              // for MergeDocument, apply original date/time as UTC
-//STRIP001          void                SetFixDateTimeUTC( const DateTime& rDT )
-//STRIP001                                  { aFixDateTime = rDT; }
-//STRIP001                              // for import filter, apply original date/time as local time
-//STRIP001          void                SetFixDateTimeLocal( const DateTime& rDT )
-//STRIP001                                  { aFixDateTime = rDT; aFixDateTime.ConvertToUTC(); }
-//STRIP001
-//STRIP001          void                Append( ScChangeAction* );
-//STRIP001
-//STRIP001                              // pRefDoc may be NULL => no lookup of contents
-//STRIP001                              // => no generation of deleted contents
-//STRIP001          void                AppendDeleteRange( const ScRange&,
-//STRIP001                                  ScDocument* pRefDoc,
-//STRIP001                                  ULONG& nStartAction, ULONG& nEndAction,
-//STRIP001                                  short nDz = 0 );
-//STRIP001                                  // nDz: Multi-TabDel, LookUpContent ist
-//STRIP001                                  // um -nDz verschoben zu suchen
-//STRIP001
-//STRIP001                              // nachdem neuer Wert im Dokument gesetzt wurde,
-//STRIP001                              // alter Wert aus RefDoc/UndoDoc
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  ScDocument* pRefDoc );
-//STRIP001                              // nachdem neue Werte im Dokument gesetzt wurden,
-//STRIP001                              // alte Werte aus RefDoc/UndoDoc
-//STRIP001          void                AppendContentRange( const ScRange& rRange,
-//STRIP001                                  ScDocument* pRefDoc,
-//STRIP001                                  ULONG& nStartAction, ULONG& nEndAction,
-//STRIP001                                  ScChangeActionClipMode eMode = SC_CACM_NONE );
-//STRIP001                              // nachdem neuer Wert im Dokument gesetzt wurde,
-//STRIP001                              // alter Wert aus pOldCell, nOldFormat,
-//STRIP001                              // RefDoc==NULL => Doc
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  const ScBaseCell* pOldCell,
-//STRIP001                                  ULONG nOldFormat, ScDocument* pRefDoc = NULL );
-//STRIP001                              // nachdem neuer Wert im Dokument gesetzt wurde,
-//STRIP001                              // alter Wert aus pOldCell, Format aus Doc
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  const ScBaseCell* pOldCell );
-//STRIP001                              // nachdem neuer Wert im Dokument gesetzt wurde,
-//STRIP001                              // alter Wert aus pOldCell, Format aus RefDoc
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  const ScBaseCell* pOldCell,
-//STRIP001                                  ScDocument* pRefDoc );
-//STRIP001                              // nachdem neue Werte im Dokument gesetzt wurden,
-//STRIP001                              // alte Werte aus RefDoc/UndoDoc.
-//STRIP001                              // Alle Contents, wo im RefDoc eine Zelle steht.
-//STRIP001          void                AppendContentsIfInRefDoc( ScDocument* pRefDoc,
-//STRIP001                                  ULONG& nStartAction, ULONG& nEndAction );
-//STRIP001
-//STRIP001                              // Meant for import filter, creates and inserts
-//STRIP001                              // an unconditional content action of the two
-//STRIP001                              // cells without querying the document, not
-//STRIP001                              // even for number formats (though the number
-//STRIP001                              // formatter of the document may be used).
-//STRIP001                              // The action is returned and may be used to
-//STRIP001                              // set user name, description, date/time et al.
-//STRIP001                              // Takes ownership of the cells!
-//STRIP001      ScChangeActionContent*  AppendContentOnTheFly( const ScAddress& rPos,
-//STRIP001                                  ScBaseCell* pOldCell,
-//STRIP001                                  ScBaseCell* pNewCell,
-//STRIP001                                  ULONG nOldFormat = 0,
-//STRIP001                                  ULONG nNewFormat = 0 );
-//STRIP001
-//STRIP001                              // die folgenden beiden nur benutzen wenn's
-//STRIP001                              // nicht anders geht (setzen nur String fuer
-//STRIP001                              // NewValue bzw. Formelerzeugung)
-//STRIP001
-//STRIP001                              // bevor neuer Wert im Dokument gesetzt wird
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  const String& rNewValue );
-//STRIP001                              // bevor neuer Wert im Dokument gesetzt wird
-//STRIP001          void                AppendContent( const ScAddress& rPos,
-//STRIP001                                  const String& rNewValue,
-//STRIP001                                  ScBaseCell* pOldCell );
-//STRIP001
-//STRIP001          void                AppendInsert( const ScRange& );
-//STRIP001
-//STRIP001                              // pRefDoc may be NULL => no lookup of contents
-//STRIP001                              // => no generation of deleted contents
-//STRIP001          void                AppendMove( const ScRange& rFromRange,
-//STRIP001                                  const ScRange& rToRange,
-//STRIP001                                  ScDocument* pRefDoc );
-//STRIP001
-//STRIP001                              // Cut to Clipboard
-//STRIP001          void                ResetLastCut()
-//STRIP001                                  {
-//STRIP001                                      nStartLastCut = nEndLastCut = 0;
-//STRIP001                                      if ( pLastCutMove )
-//STRIP001                                      {
-//STRIP001                                          delete pLastCutMove;
-//STRIP001                                          pLastCutMove = NULL;
-//STRIP001                                      }
-//STRIP001                                  }
-//STRIP001          BOOL                HasLastCut() const
-//STRIP001                                  {
-//STRIP001                                      return nEndLastCut > 0 &&
-//STRIP001                                          nStartLastCut <= nEndLastCut &&
-//STRIP001                                          pLastCutMove;
-//STRIP001                                  }
-//STRIP001
-//STRIP001          void                Undo( ULONG nStartAction, ULONG nEndAction );
-//STRIP001
-//STRIP001                              // fuer MergeDocument, Referenzen anpassen,
-//STRIP001                              //! darf nur in einem temporaer geoeffneten
-//STRIP001                              //! Dokument verwendet werden, der Track
-//STRIP001                              //! ist danach verhunzt
-//STRIP001          void                MergePrepare( ScChangeAction* pFirstMerge );
-//STRIP001          void                MergeOwn( ScChangeAction* pAct, ULONG nFirstMerge );
-//STRIP001  static  BOOL                MergeIgnore( const ScChangeAction&, ULONG nFirstMerge );
-//STRIP001
-//STRIP001                              // Abhaengige in Table einfuegen.
-//STRIP001                              // Bei Insert sind es echte Abhaengige,
-//STRIP001                              // bei Move abhaengige Contents im FromRange
-//STRIP001                              // und geloeschte im ToRange bzw. Inserts in
-//STRIP001                              // FromRange oder ToRange,
-//STRIP001                              // bei Delete eine Liste der geloeschten,
-//STRIP001                              // bei Content andere Contents an gleicher
-//STRIP001                              // Position oder MatrixReferences zu MatrixOrigin.
-//STRIP001                              // Mit bListMasterDelete werden unter einem
-//STRIP001                              // MasterDelete alle zu diesem Delete gehoerenden
-//STRIP001                              // Deletes einer Reihe gelistet.
-//STRIP001                              // Mit bAllFlat werden auch alle Abhaengigen
-//STRIP001                              // der Abhaengigen flach eingefuegt.
-//STRIP001          void                GetDependents( ScChangeAction*,
-//STRIP001                                  ScChangeActionTable&,
-//STRIP001                                  BOOL bListMasterDelete = FALSE,
-//STRIP001                                  BOOL bAllFlat = FALSE );
-//STRIP001
-//STRIP001                              // Reject visible Action (und abhaengige)
-//STRIP001          BOOL                Reject( ScChangeAction* );
-//STRIP001
-//STRIP001                              // Accept visible Action (und abhaengige)
-//STRIP001          BOOL                Accept( ScChangeAction* );
-//STRIP001
-//STRIP001          void                AcceptAll();    // alle Virgins
-//STRIP001          BOOL                RejectAll();    // alle Virgins
-//STRIP001
-//STRIP001                              // Selektiert einen Content von mehreren an
-//STRIP001                              // gleicher Position und akzeptiert diesen und
-//STRIP001                              // die aelteren, rejected die neueren.
-//STRIP001                              // Mit bOldest==TRUE wird der erste OldValue
-//STRIP001                              // einer Virgin-Content-Kette restauriert.
-//STRIP001          BOOL                SelectContent( ScChangeAction*,
-//STRIP001                                  BOOL bOldest = FALSE );
-//STRIP001
-//STRIP001                              // wenn ModifiedLink gesetzt, landen
-//STRIP001                              // Aenderungen in ScChangeTrackMsgQueue
-//STRIP001          void                SetModifiedLink( const Link& r )
-//STRIP001                                  { aModifiedLink = r; ClearMsgQueue(); }
-//STRIP001          const Link&         GetModifiedLink() const { return aModifiedLink; }
-//STRIP001          ScChangeTrackMsgQueue& GetMsgQueue() { return aMsgQueue; }
-//STRIP001
-//STRIP001          void                NotifyModified( ScChangeTrackMsgType eMsgType,
-//STRIP001                                  ULONG nStartAction, ULONG nEndAction );
-//STRIP001
-//STRIP001          BOOL                Load( SvStream& rStrm, USHORT nVer );
-//STRIP001          BOOL                Store( SvStream& rStrm );
-//STRIP001          USHORT              GetLoadedFileFormatVersion() const
-//STRIP001                                  { return nLoadedFileFormatVersion; }
-//STRIP001
+/*N*/           ScDocument*         GetDocument() const { return pDoc; }
+/*N*/                               // for import filter
+/*N*/           const DateTime&     GetFixDateTime() const { return aFixDateTime; }
+/*N*/
+/*N*/                               // set this if the date/time set with
+/*N*/                               // SetFixDateTime...() shall be applied to
+/*N*/                               // appended actions
+/*N*/           void                SetUseFixDateTime( BOOL bVal )
+/*N*/                                   { bUseFixDateTime = bVal; }
+/*N*/                               // for MergeDocument, apply original date/time as UTC
+/*N*/           void                SetFixDateTimeUTC( const DateTime& rDT )
+/*N*/                                   { aFixDateTime = rDT; }
+/*N*/                               // for import filter, apply original date/time as local time
+/*N*/           void                SetFixDateTimeLocal( const DateTime& rDT )
+/*N*/                                   { aFixDateTime = rDT; aFixDateTime.ConvertToUTC(); }
+/*N*/
+/*N*/           void                Append( ScChangeAction* );
+/*N*/
+/*N*/                               // pRefDoc may be NULL => no lookup of contents
+/*N*/                               // => no generation of deleted contents
+/*N*/           void                AppendDeleteRange( const ScRange&,
+/*N*/                                   ScDocument* pRefDoc,
+/*N*/                                   ULONG& nStartAction, ULONG& nEndAction,
+/*N*/                                   short nDz = 0 );
+/*N*/                                   // nDz: Multi-TabDel, LookUpContent ist
+/*N*/                                   // um -nDz verschoben zu suchen
+/*N*/
+/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
+/*N*/                               // alter Wert aus RefDoc/UndoDoc
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   ScDocument* pRefDoc );
+/*N*/                               // nachdem neue Werte im Dokument gesetzt wurden,
+/*N*/                               // alte Werte aus RefDoc/UndoDoc
+/*N*/           void                AppendContentRange( const ScRange& rRange,
+/*N*/                                   ScDocument* pRefDoc,
+/*N*/                                   ULONG& nStartAction, ULONG& nEndAction,
+/*N*/                                   ScChangeActionClipMode eMode = SC_CACM_NONE );
+/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
+/*N*/                               // alter Wert aus pOldCell, nOldFormat,
+/*N*/                               // RefDoc==NULL => Doc
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   const ScBaseCell* pOldCell,
+/*N*/                                   ULONG nOldFormat, ScDocument* pRefDoc = NULL );
+/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
+/*N*/                               // alter Wert aus pOldCell, Format aus Doc
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   const ScBaseCell* pOldCell );
+/*N*/                               // nachdem neuer Wert im Dokument gesetzt wurde,
+/*N*/                               // alter Wert aus pOldCell, Format aus RefDoc
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   const ScBaseCell* pOldCell,
+/*N*/                                   ScDocument* pRefDoc );
+/*N*/                               // nachdem neue Werte im Dokument gesetzt wurden,
+/*N*/                               // alte Werte aus RefDoc/UndoDoc.
+/*N*/                               // Alle Contents, wo im RefDoc eine Zelle steht.
+/*N*/           void                AppendContentsIfInRefDoc( ScDocument* pRefDoc,
+/*N*/                                   ULONG& nStartAction, ULONG& nEndAction );
+/*N*/
+/*N*/                               // Meant for import filter, creates and inserts
+/*N*/                               // an unconditional content action of the two
+/*N*/                               // cells without querying the document, not
+/*N*/                               // even for number formats (though the number
+/*N*/                               // formatter of the document may be used).
+/*N*/                               // The action is returned and may be used to
+/*N*/                               // set user name, description, date/time et al.
+/*N*/                               // Takes ownership of the cells!
+/*N*/       ScChangeActionContent*  AppendContentOnTheFly( const ScAddress& rPos,
+/*N*/                                   ScBaseCell* pOldCell,
+/*N*/                                   ScBaseCell* pNewCell,
+/*N*/                                   ULONG nOldFormat = 0,
+/*N*/                                   ULONG nNewFormat = 0 );
+/*N*/
+/*N*/                               // die folgenden beiden nur benutzen wenn's
+/*N*/                               // nicht anders geht (setzen nur String fuer
+/*N*/                               // NewValue bzw. Formelerzeugung)
+/*N*/
+/*N*/                               // bevor neuer Wert im Dokument gesetzt wird
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   const String& rNewValue );
+/*N*/                               // bevor neuer Wert im Dokument gesetzt wird
+/*N*/           void                AppendContent( const ScAddress& rPos,
+/*N*/                                   const String& rNewValue,
+/*N*/                                   ScBaseCell* pOldCell );
+/*N*/
+/*N*/           void                AppendInsert( const ScRange& );
+/*N*/
+/*N*/                               // pRefDoc may be NULL => no lookup of contents
+/*N*/                               // => no generation of deleted contents
+/*N*/           void                AppendMove( const ScRange& rFromRange,
+/*N*/                                   const ScRange& rToRange,
+/*N*/                                   ScDocument* pRefDoc );
+/*N*/
+/*N*/                               // Cut to Clipboard
+/*N*/           void                ResetLastCut()
+/*N*/                                   {
+/*N*/                                       nStartLastCut = nEndLastCut = 0;
+/*N*/                                       if ( pLastCutMove )
+/*N*/                                       {
+/*N*/                                           delete pLastCutMove;
+/*N*/                                           pLastCutMove = NULL;
+/*N*/                                       }
+/*N*/                                   }
+/*N*/           BOOL                HasLastCut() const
+/*N*/                                   {
+/*N*/                                       return nEndLastCut > 0 &&
+/*N*/                                           nStartLastCut <= nEndLastCut &&
+/*N*/                                           pLastCutMove;
+/*N*/                                   }
+/*N*/
+/*N*/           void                Undo( ULONG nStartAction, ULONG nEndAction );
+/*N*/
+/*N*/                               // fuer MergeDocument, Referenzen anpassen,
+/*N*/                               //! darf nur in einem temporaer geoeffneten
+/*N*/                               //! Dokument verwendet werden, der Track
+/*N*/                               //! ist danach verhunzt
+/*N*/           void                MergePrepare( ScChangeAction* pFirstMerge );
+/*N*/           void                MergeOwn( ScChangeAction* pAct, ULONG nFirstMerge );
+/*N*/   static  BOOL                MergeIgnore( const ScChangeAction&, ULONG nFirstMerge );
+/*N*/
+/*N*/                               // Abhaengige in Table einfuegen.
+/*N*/                               // Bei Insert sind es echte Abhaengige,
+/*N*/                               // bei Move abhaengige Contents im FromRange
+/*N*/                               // und geloeschte im ToRange bzw. Inserts in
+/*N*/                               // FromRange oder ToRange,
+/*N*/                               // bei Delete eine Liste der geloeschten,
+/*N*/                               // bei Content andere Contents an gleicher
+/*N*/                               // Position oder MatrixReferences zu MatrixOrigin.
+/*N*/                               // Mit bListMasterDelete werden unter einem
+/*N*/                               // MasterDelete alle zu diesem Delete gehoerenden
+/*N*/                               // Deletes einer Reihe gelistet.
+/*N*/                               // Mit bAllFlat werden auch alle Abhaengigen
+/*N*/                               // der Abhaengigen flach eingefuegt.
+/*N*/           void                GetDependents( ScChangeAction*,
+/*N*/                                   ScChangeActionTable&,
+/*N*/                                   BOOL bListMasterDelete = FALSE,
+/*N*/                                   BOOL bAllFlat = FALSE );
+/*N*/
+/*N*/                               // Reject visible Action (und abhaengige)
+/*N*/           BOOL                Reject( ScChangeAction* );
+/*N*/
+/*N*/                               // Accept visible Action (und abhaengige)
+/*N*/           BOOL                Accept( ScChangeAction* );
+/*N*/
+/*N*/           void                AcceptAll();    // alle Virgins
+/*N*/           BOOL                RejectAll();    // alle Virgins
+/*N*/
+/*N*/                               // Selektiert einen Content von mehreren an
+/*N*/                               // gleicher Position und akzeptiert diesen und
+/*N*/                               // die aelteren, rejected die neueren.
+/*N*/                               // Mit bOldest==TRUE wird der erste OldValue
+/*N*/                               // einer Virgin-Content-Kette restauriert.
+/*N*/           BOOL                SelectContent( ScChangeAction*,
+/*N*/                                   BOOL bOldest = FALSE );
+/*N*/
+/*N*/                               // wenn ModifiedLink gesetzt, landen
+/*N*/                               // Aenderungen in ScChangeTrackMsgQueue
+/*N*/           void                SetModifiedLink( const Link& r )
+/*N*/                                   { aModifiedLink = r; ClearMsgQueue(); }
+/*N*/           const Link&         GetModifiedLink() const { return aModifiedLink; }
+/*N*/           ScChangeTrackMsgQueue& GetMsgQueue() { return aMsgQueue; }
+/*N*/
+/*N*/           void                NotifyModified( ScChangeTrackMsgType eMsgType,
+/*N*/                                   ULONG nStartAction, ULONG nEndAction );
+/*N*/
+/*N*/           BOOL                Load( SvStream& rStrm, USHORT nVer );
+/*N*/           BOOL                Store( SvStream& rStrm );
+/*N*/           USHORT              GetLoadedFileFormatVersion() const
+/*N*/                                   { return nLoadedFileFormatVersion; }
+/*N*/
             ULONG               AddLoadedGenerated(ScBaseCell* pOldCell,
                                                 const ScBigRange& aBigRange ); // only to use in the XML import
              void               AppendLoaded( ScChangeAction* pAppend ); // this is only for the XML import public, it should be protected
              void               SetActionMax(ULONG nTempActionMax)
                                     { nActionMax = nTempActionMax; } // only to use in the XML import
-//STRIP001
+/*N*/
             void                SetProtection( const ::com::sun::star::uno::Sequence< sal_Int8 >& rPass )
                                     { aProtectPass = rPass; }
      ::com::sun::star::uno::Sequence< sal_Int8 >   GetProtection() const
                                      { return aProtectPass; }
              BOOL                IsProtected() const
                                      { return aProtectPass.getLength() != 0; }
-//STRIP001
-//STRIP001                                 // If time stamps of actions of this
-//STRIP001                                 // ChangeTrack and a second one are to be
-//STRIP001                                 // compared including 100th seconds.
+/*N*/
+/*N*/                                 // If time stamps of actions of this
+/*N*/                                 // ChangeTrack and a second one are to be
+/*N*/                                 // compared including 100th seconds.
             void                SetTime100thSeconds( BOOL bVal )
                                     { bTime100thSeconds = bVal; }
-//STRIP001             BOOL                IsTime100thSeconds() const
-//STRIP001                                     { return bTime100thSeconds; }
+/*N*/             BOOL                IsTime100thSeconds() const
+/*N*/                                     { return bTime100thSeconds; }
 };
 
 
