@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:30:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,59 +64,64 @@
 #define _IPOBJ_HXX
 #endif
 
-#ifndef _SOT_STORAGE_HXX
-#include <sot/storage.hxx>
-#endif
+// auto strip #ifndef _SOT_STORAGE_HXX
+// auto strip #include <sot/storage.hxx>
+// auto strip #endif
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _PERSIST_HXX
-#include <so3/persist.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _PERSIST_HXX
+// auto strip #include <so3/persist.hxx>
+// auto strip #endif
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
-#include "svdpage.hxx"
+// auto strip #include "svdpage.hxx"
 #include <string.h>
 #ifndef _STRING_H
 #define _STRING_H
 #endif
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
 
 #include "svdetc.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdio.hxx"
-#include "svdobj.hxx"
-#include "svdogrp.hxx"
+// auto strip #include "svdobj.hxx"
+// auto strip #include "svdogrp.hxx"
 #include "svdograf.hxx" // fuer SwapInAll()
-#include "svdoedge.hxx" // Zum kopieren der Konnektoren
+// auto strip #include "svdoedge.hxx" // Zum kopieren der Konnektoren
 #include "svdoole2.hxx" // Sonderbehandlung OLE beim SdrExchangeFormat
 #include "svditer.hxx"
-#include "svdmodel.hxx"
-#include "svdlayer.hxx"
-#include "svdotext.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdlayer.hxx"
+// auto strip #include "svdotext.hxx"
 #include "svdpagv.hxx"
-#include "svdundo.hxx"
-#include "fmglob.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "fmglob.hxx"
 #include "polysc3d.hxx"
 
 #ifndef SVX_LIGHT
 #include "fmdpage.hxx"
 #else
-#include "unopage.hxx"
+// auto strip #include "unopage.hxx"
 #endif
 
-#ifndef _SV_SALBTYPE_HXX
-#include <vcl/salbtype.hxx>     // FRound
+// auto strip #ifndef _SV_SALBTYPE_HXX
+// auto strip #include <vcl/salbtype.hxx>       // FRound
+// auto strip #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
 #endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
