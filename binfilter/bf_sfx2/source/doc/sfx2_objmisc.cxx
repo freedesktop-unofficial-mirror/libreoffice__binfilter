@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:52:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,59 +71,59 @@
 #ifndef _SFXINTITEM_HXX //autogen
 #include <svtools/intitem.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #include <so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
 
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HPP_
-#include <com/sun/star/script/XTypeConverter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_FINISHENGINEEVENT_HPP_
-#include <com/sun/star/script/FinishEngineEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_INTERRUPTREASON_HPP_
-#include <com/sun/star/script/InterruptReason.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XENGINELISTENER_HPP_
-#include <com/sun/star/script/XEngineListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XDEBUGGING_HPP_
-#include <com/sun/star/script/XDebugging.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XINVOKATION_HPP_
-#include <com/sun/star/script/XInvocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_CONTEXTINFORMATION_HPP_
-#include <com/sun/star/script/ContextInformation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_FINISHREASON_HPP_
-#include <com/sun/star/script/FinishReason.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XENGINE_HPP_
-#include <com/sun/star/script/XEngine.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_INTERRUPTENGINEEVENT_HPP_
-#include <com/sun/star/script/InterruptEngineEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYACCESS_HPP_
-#include <com/sun/star/script/XLibraryAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HPP_
+// auto strip #include <com/sun/star/script/XTypeConverter.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_FINISHENGINEEVENT_HPP_
+// auto strip #include <com/sun/star/script/FinishEngineEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_INTERRUPTREASON_HPP_
+// auto strip #include <com/sun/star/script/InterruptReason.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XENGINELISTENER_HPP_
+// auto strip #include <com/sun/star/script/XEngineListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XDEBUGGING_HPP_
+// auto strip #include <com/sun/star/script/XDebugging.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XINVOKATION_HPP_
+// auto strip #include <com/sun/star/script/XInvocation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_CONTEXTINFORMATION_HPP_
+// auto strip #include <com/sun/star/script/ContextInformation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_FINISHREASON_HPP_
+// auto strip #include <com/sun/star/script/FinishReason.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XENGINE_HPP_
+// auto strip #include <com/sun/star/script/XEngine.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_INTERRUPTENGINEEVENT_HPP_
+// auto strip #include <com/sun/star/script/InterruptEngineEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYACCESS_HPP_
+// auto strip #include <com/sun/star/script/XLibraryAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
 #endif
 
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
-#include <toolkit/unohlp.hxx>
-#endif
+// auto strip #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
+// auto strip #include <toolkit/unohlp.hxx>
+// auto strip #endif
 
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/uno/Any.h>
 #include <com/sun/star/ucb/XContent.hpp>
-#include <svtools/securityoptions.hxx>
+// auto strip #include <svtools/securityoptions.hxx>
 
 
 using namespace ::com::sun::star::uno;
@@ -133,52 +133,52 @@ using namespace ::com::sun::star::document;
 #ifndef _SB_SBUNO_HXX
 #include <basic/sbuno.hxx>
 #endif
-#ifndef _SB_SBSTAR_HXX
-#include <basic/sbstar.hxx>
-#endif
+// auto strip #ifndef _SB_SBSTAR_HXX
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
 #ifndef _SB_BASMGR_HXX
 #include <basic/basmgr.hxx>
 #endif
-#ifndef _VCL_MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _VCL_MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _SBXCLASS_HXX //autogen
 #include <svtools/sbx.hxx>
 #endif
-#ifndef _SFXECODE_HXX
-#include <svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
-#include <svtools/ehdl.hxx>
-#endif
+// auto strip #ifndef _SFXECODE_HXX
+// auto strip #include <svtools/sfxecode.hxx>
+// auto strip #endif
+// auto strip #ifndef _EHDL_HXX
+// auto strip #include <svtools/ehdl.hxx>
+// auto strip #endif
 
-#include <svtools/pathoptions.hxx>
+// auto strip #include <svtools/pathoptions.hxx>
 #include <unotools/ucbhelper.hxx>
-#include <tools/inetmime.hxx>
+// auto strip #include <tools/inetmime.hxx>
 #include <svtools/inettype.hxx>
 
-#include "appdata.hxx"
+// auto strip #include "appdata.hxx"
 #include "request.hxx"
-#include "bindings.hxx"
+// auto strip #include "bindings.hxx"
 #include "sfxresid.hxx"
 #include "docfile.hxx"
-#include "docinf.hxx"
-#include "docfilt.hxx"
+// auto strip #include "docinf.hxx"
+// auto strip #include "docfilt.hxx"
 #include "interno.hxx"
-#include "objsh.hxx"
+// auto strip #include "objsh.hxx"
 #include "objshimp.hxx"
-#include "event.hxx"
+// auto strip #include "event.hxx"
 #include "fltfnc.hxx"
 #include "sfx.hrc"
 #include "dispatch.hxx"
-#include "viewfrm.hxx"
+// auto strip #include "viewfrm.hxx"
 #include "viewsh.hxx"
-#include "ctrlitem.hxx"
-#include "arrdecl.hxx"
-#include "module.hxx"
+// auto strip #include "ctrlitem.hxx"
+// auto strip #include "arrdecl.hxx"
+// auto strip #include "module.hxx"
 #include "macrconf.hxx"
 #include "docfac.hxx"
-#include "helper.hxx"
+// auto strip #include "helper.hxx"
 #include "doc.hrc"
 namespace binfilter {
 
