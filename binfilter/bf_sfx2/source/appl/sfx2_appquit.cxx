@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appquit.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:19:25 $
+ *  last change: $Author: vg $ $Date: 2004-12-23 11:30:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,7 +58,6 @@
  *
  *
  ************************************************************************/
-
 #ifndef _BASMGR_HXX //autogen
 #include <basic/basmgr.hxx>
 #endif
@@ -81,7 +80,6 @@
 // auto strip #include <svtools/eitem.hxx>
 // auto strip #endif
 
-#include <svtools/inethist.hxx>
 // auto strip #include <svtools/saveopt.hxx>
 
 #pragma hdrstop
@@ -282,8 +280,6 @@ void SfxApplication::Quit()
 /*?*/   pAppDispat->Flush();
 /*?*/   bDowning = TRUE;
 /*?*/   pAppDispat->DoDeactivate_Impl( TRUE );
-/*?*/
-/*?*/   INetURLHistory::Delete();
 /*?*/
 /*?*/   // call derived application-exit
 /*?*/   bInExit = TRUE;
