@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:34 $
+#   last change: $Author: hjs $ $Date: 2004-06-25 13:53:50 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -188,6 +188,7 @@ LIB1FILES=  $(SLB)$/sfx2_appl.lib		\
 SFXSRSLIST=\
         $(SRS)$/sfx2_accel.srs \
         $(SRS)$/sfx2_appl.srs \
+        $(SRS)$/sfx2_sfx.srs \
         $(SRS)$/sfx2_doc.srs \
         $(SRS)$/sfx2_view.srs \
         $(SRS)$/sfx2_config.srs \
