@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:35:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,31 +70,31 @@
 #endif
 
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
 
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
-#include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _SVX_PMDLITEM_HXX //autogen
-#include <bf_svx/pmdlitem.hxx>
-#endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCFILE_HXX //autogen
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PMDLITEM_HXX //autogen
+// auto strip #include <bf_svx/pmdlitem.hxx>
+// auto strip #endif
 #ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
 #endif
@@ -107,25 +107,29 @@
 #ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
 #endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
-#ifndef _VCL_LSTBOX_HXX //autogen
-#include <vcl/lstbox.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
+// auto strip #ifndef _VCL_LSTBOX_HXX //autogen
+// auto strip #include <vcl/lstbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _TABCOL_HXX //autogen
-#include <tabcol.hxx>
-#endif
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABCOL_HXX //autogen
+// auto strip #include <tabcol.hxx>
+// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -133,51 +137,56 @@
 #ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _SWWVIEW_HXX //autogen
-#include <wview.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWWVIEW_HXX //autogen
+// auto strip #include <wview.hxx>
+// auto strip #endif
 #ifndef _UIITEMS_HXX
 #include <uiitems.hxx>
 #endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _WRTSH_HXX
-#include <wrtsh.hxx>
-#endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _VIEW_HXX
-#include <view.hxx>
-#endif
-#ifndef _UITOOL_HXX
-#include <uitool.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+
+// auto strip #ifndef _WRTSH_HXX
+// auto strip #include <wrtsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
+// auto strip #ifndef _UITOOL_HXX
+// auto strip #include <uitool.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
 #ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
 #endif
-#ifndef _POOLFMT_HXX
-#include <poolfmt.hxx>
-#endif
-#ifndef _USRPREF_HXX
-#include "usrpref.hxx"
-#endif
+// auto strip #ifndef _POOLFMT_HXX
+// auto strip #include <poolfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _USRPREF_HXX
+// auto strip #include "usrpref.hxx"
+// auto strip #endif
 
 #ifndef _ERROR_H
 #include <error.h>
@@ -194,12 +203,12 @@
 #ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen wg. SwCharFmt
-#include <charfmt.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _CHARFMT_HXX //autogen wg. SwCharFmt
+// auto strip #include <charfmt.hxx>
+// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
