@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docfld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:50 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:35:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,7 +143,7 @@ public:
 //STRIP001
      ULONG GetNode() const { return nNode; }
 //STRIP001  xub_StrLen GetCntnt() const { return nCntnt; }
-//STRIP001  const void* GetPointer() const { return CNTNT.pTxtFld; }
+    const void* GetPointer() const { return CNTNT.pTxtFld; }
 //STRIP001
 //STRIP001  void GetPos( SwPosition& rPos ) const;
 //STRIP001  void GetPosOfContent( SwPosition& rPos ) const;
@@ -203,7 +203,7 @@ class SwDocUpdtFld
 
     void _MakeFldList( SwDoc& pDoc, int eGetMode );
     void GetBodyNode( const SwTxtFld& , USHORT nFldWhich );
-//STRIP001  void GetBodyNode( const SwSectionNode&);
+    void GetBodyNode( const SwSectionNode&);
 public:
     SwDocUpdtFld();
     ~SwDocUpdtFld();
