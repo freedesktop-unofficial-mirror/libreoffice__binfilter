@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_utlui.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:54:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 08:43:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,12 +81,12 @@
 //STRIP001      Text [ dutch ] = "Lege alinea's verwijderen" ;
 //STRIP001      Text [ portuguese_brazilian ] = "Remover par�grafos vazios" ;
 //STRIP001      Text [ portuguese ] = "Remover par�grafos vazios" ;
-//STRIP001      Text[ chinese_simplified ] = "删除空白的段�?;
+//STRIP001      Text[ chinese_simplified ] = "删除空白的段�?";
 //STRIP001      Text[ russian ] = "������?������ ������";
 //STRIP001      Text[ polish ] = "Usu?puste akapity";
-//STRIP001      Text[ japanese ] = "空の段落を削�?;
-//STRIP001      Text[ chinese_traditional ] = "刪除空白的段�?;
-//STRIP001      Text[ arabic ] = "����?������?������?;
+//STRIP001      Text[ japanese ] = "空の段落を削�?";
+//STRIP001      Text[ chinese_traditional ] = "刪除空白的段�?";
+//STRIP001      Text[ arabic ] = "����?������?������?";
 //STRIP001      Text[ greek ] = "�������� ����?����������";
 //STRIP001      Text[ korean ] = "�?단락 제거";
 //STRIP001      Text[ turkish ] = "Bo?paragraflar?kald�r";
@@ -113,11 +113,11 @@
 //STRIP001      Text [ portuguese_brazilian ] = "Usar tabela de substitui��o" ;
 //STRIP001      Text [ portuguese ] = "Aplicar tabela de substitui��o" ;
 //STRIP001      Text[ chinese_simplified ] = "使用替换表格";
-//STRIP001      Text[ russian ] = "��������?������?����?;
+//STRIP001      Text[ russian ] = "��������?������?����?";
 //STRIP001      Text[ polish ] = "U�yj tabeli zamian";
-//STRIP001      Text[ japanese ] = "置換テーブルの使�?;
+//STRIP001      Text[ japanese ] = "置換テーブルの使�?";
 //STRIP001      Text[ chinese_traditional ] = "使用替代清單";
-//STRIP001      Text[ arabic ] = "������?����?��������?;
+//STRIP001      Text[ arabic ] = "������?����?��������?";
 //STRIP001      Text[ greek ] = "�������� ��?������ ��������������";
 //STRIP001      Text[ korean ] = "대�?테이�?사용";
 //STRIP001      Text[ turkish ] = "De�i�tirme tablosu kullan";
@@ -127,7 +127,7 @@
 //STRIP001      Text[ thai ] = "ใช้ตารางแทนที่";
 //STRIP001      Text[ czech ] = "Použít tabulku náhrad";
 //STRIP001      Text[ hebrew ] = "Ersetzungstabelle anwenden";
-//STRIP001      Text[ hindi ] = "प्रतिस्थापना सारणी का उपयो�?कर�?;
+//STRIP001      Text[ hindi ] = "प्रतिस्थापना सारणी का उपयो�?कर�?";
 //STRIP001      Text[ slovak ] = "Použiť tabuľku náhrad";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_CPTL_STT_WORD+1
@@ -147,12 +147,12 @@
 //STRIP001      Text [ spanish ] = "Corregir DOs MAy�sculas a principio de PAlabra" ;
 //STRIP001      Text [ english_us ] = "Correct TWo INitial CApitals" ;
 //STRIP001      Text[ chinese_simplified ] = "更正字首双重大写字母";
-//STRIP001      Text[ russian ] = "������?�� ��?��������?����??������ ����?;
+//STRIP001      Text[ russian ] = "������?�� ��?��������?����??������ ����?";
 //STRIP001      Text[ polish ] = "Poprawiaj DWie POcz�tkowe wielkie litery";
 //STRIP001      Text[ japanese ] = "2文字目を小文字にする";
-//STRIP001      Text[ chinese_traditional ] = "校正字首雙大寫字�?;
+//STRIP001      Text[ chinese_traditional ] = "校正字首雙大寫字�?";
 //STRIP001      Text[ arabic ] = "����?����?���������� �� ����?������";
-//STRIP001      Text[ greek ] = "�������� ��?��������?��������?���� ���� ��?����?;
+//STRIP001      Text[ greek ] = "�������� ��?��������?��������?���� ���� ��?����?";
 //STRIP001      Text[ korean ] = "단어 어두�?대문자가 두개�?경우 수정";
 //STRIP001      Text[ turkish ] = "S�zc�k ba��ndaki �Ki b�y�k harfi d�zelt";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -160,7 +160,7 @@
 //STRIP001      Text[ thai ] = "แก้ไขตัวพิมพ์ใหญ่สองตัวแรกให้ถูกต้อง";
 //STRIP001      Text[ czech ] = "Opravit první DVě VElká PÍsmena";
 //STRIP001      Text[ hebrew ] = "ZWei Großbuchstaben am WOrtanfang korrigieren";
-//STRIP001      Text[ hindi ] = "पहिल�?का दो बड़े अक्ष�?को ठी�?कर�?;
+//STRIP001      Text[ hindi ] = "पहिल�?का दो बड़े अक्ष�?को ठी�?कर�?";
 //STRIP001      Text[ slovak ] = "Opraviť prvé DVe VEľké písmená";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_CPTL_STT_SENT+1
@@ -180,17 +180,17 @@
 //STRIP001      Text [ spanish ] = "Iniciar cada frase con una letra may�scula" ;
 //STRIP001      Text [ english_us ] = "Capitalize first letter of sentences" ;
 //STRIP001      Text[ chinese_simplified ] = "每个句首采用大写字母";
-//STRIP001      Text[ russian ] = "�������� ������ ����������??��������?����?;
+//STRIP001      Text[ russian ] = "�������� ������ ����������??��������?����?";
 //STRIP001      Text[ polish ] = "Pocz�tek zdania z wielkiej litery";
-//STRIP001      Text[ japanese ] = "すべての文を大文字で始め�?;
-//STRIP001      Text[ chinese_traditional ] = "每個句首採用大寫字�?;
+//STRIP001      Text[ japanese ] = "すべての文を大文字で始め�?";
+//STRIP001      Text[ chinese_traditional ] = "每個句首採用大寫字�?";
 //STRIP001      Text[ arabic ] = "��?�� ���� ���� ��������";
 //STRIP001      Text[ greek ] = "�������� ���� �������� �� �������� ������";
 //STRIP001      Text[ korean ] = "모든 문장�?대문자�?시작";
 //STRIP001      Text[ turkish ] = "C�mlelerin ilk hafrlerini b�y�k harf ile ba�lat.";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Escriu en maj�scula la primera lletra de cada frase";
-//STRIP001      Text[ thai ] = "ทำตัวอักษรตัวแรกของประโยคเป็นตัวพิมพ์ใหญ�?;
+//STRIP001      Text[ thai ] = "ทำตัวอักษรตัวแรกของประโยคเป็นตัวพิมพ์ใหญ�?";
 //STRIP001      Text[ czech ] = "Začínat každou větu velkým písmenem";
 //STRIP001      Text[ hebrew ] = "Jeden Satz mit einem Großbuchstaben beginnen";
 //STRIP001      Text[ hindi ] = "वाक्�?का पहिल�?अक्ष�?को बड़े अक्ष�?मे�?बदलो";
@@ -204,7 +204,7 @@
 //STRIP001      Text [ italian ] = "Sostituisci virgolette \"Standard\" con virgolette %1tipografiche%2" ;
 //STRIP001      Text [ portuguese_brazilian ] = "Substituir aspas 'padr�o' por aspas %1personalizadas%2" ;
 //STRIP001      Text [ portuguese ] = "Substituir aspas \"padr�o\" por aspas %1tipogr�ficas%2" ;
-//STRIP001      Text [ finnish ] = "Korvaa \"tavalliset\" lainausmerkit %1mukautetuilla%2 lainausmerkeill? ;
+//STRIP001      Text [ finnish ] = "Korvaa \"tavalliset\" lainausmerkit %1mukautetuilla%2 lainausmerkeill?" ;
 //STRIP001      Text [ danish ] = "Erstat \"lige\" anf�rselstegn med %1typografiske%2" ;
 //STRIP001      Text [ french ] = "Remplacer les \"paires d'apostrophes\" par des guillemets %1typographiques%2" ;
 //STRIP001      Text [ swedish ] = "Ers�tt \"raka\" citationstecken med %1typografiska%2 citationstecken" ;
@@ -214,17 +214,17 @@
 //STRIP001      Text[ chinese_simplified ] = "\"直型\"引号�?1字型引号%2 代替";
 //STRIP001      Text[ russian ] = "����?�� \"������\" ������?%1������������?%2";
 //STRIP001      Text[ polish ] = "Zamie?cudzys�owy \"proste\" na %1drukarskie%2";
-//STRIP001      Text[ japanese ] = "\"コンピュータ用\"クォーテーションマークを%1印刷�?2に置�?;
+//STRIP001      Text[ japanese ] = "\"コンピュータ用\"クォーテーションマークを%1印刷�?2に置�?";
 //STRIP001      Text[ chinese_traditional ] = "直型引號�?1字型引號%2 替代";
 //STRIP001      Text[ arabic ] = "������?������ ����?\"�����\" �������� ����?1����������%2";
 //STRIP001      Text[ greek ] = "������������?\"����\" ����������?�� %1����������?2";
-//STRIP001      Text[ korean ] = "\"표준\" 인용 부호를 %1인쇄�?2 인용 부호로 바꾸�?;
+//STRIP001      Text[ korean ] = "\"표준\" 인용 부호를 %1인쇄�?2 인용 부호로 바꾸�?";
 //STRIP001      Text[ turkish ] = "\"Standart\" t�rnak i�aretlerini %1�zel i�aretler%2 ile de�i�tir";
 //STRIP001      Text[ catalan ] = "Reempla�a les cometes \"est�ndard\" per cometes %1personalitzades%2";
 //STRIP001      Text[ thai ] = "แทนที่ \"มาตรฐาน\" อ้างคำพูดด้ว�?%1คำพู�?2 ที่กำหนดเอง";
 //STRIP001      Text[ czech ] = "Nahradit \"standardní\" uvozovky %1vlastními%2";
 //STRIP001      Text[ hebrew ] = "\"Gerade\" Anführungszeichen durch %1typografische%2 ersetzen";
-//STRIP001      Text[ hindi ] = "\"स्टान्डर्ड\" क्वोट्�?को %1custom%2 क्वोट्�?से प्रतिस्थापित कर�?;
+//STRIP001      Text[ hindi ] = "\"स्टान्डर्ड\" क्वोट्�?को %1custom%2 क्वोट्�?से प्रतिस्थापित कर�?";
 //STRIP001      Text[ slovak ] = "Nahradiť \"štandardné\" úvodzovky %1vlastnými%2";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_USER_STYLE+1
@@ -240,22 +240,22 @@
 //STRIP001      Text [ french ] = "Remplacer les styles personnalis�s" ;
 //STRIP001      Text [ portuguese ] = "Substituir estilos personalizados" ;
 //STRIP001      Text [ portuguese_brazilian ] = "Substituir Estilos Personalizados" ;
-//STRIP001      Text[ chinese_simplified ] = "替换使用者样�?;
+//STRIP001      Text[ chinese_simplified ] = "替换使用者样�?";
 //STRIP001      Text[ russian ] = "�������� ����?����������?";
 //STRIP001      Text[ polish ] = "Zamie?style niestandardowe";
 //STRIP001      Text[ japanese ] = "ユーザー定義のスタイルに置換";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ chinese_traditional ] = "替代自訂樣式";
-//STRIP001      Text[ arabic ] = "������?������?������?;
+//STRIP001      Text[ arabic ] = "������?������?������?";
 //STRIP001      Text[ greek ] = "������������?�������������� ��������";
-//STRIP001      Text[ korean ] = "사용�?정의 스타�?바꾸�?;
+//STRIP001      Text[ korean ] = "사용�?정의 스타�?바꾸�?";
 //STRIP001      Text[ turkish ] = "Kullan�c?bi�imini de�i�tir";
 //STRIP001      Text[ catalan ] = "Reempla�a els estils personalitzats";
 //STRIP001      Text[ finnish ] = "Korvaa mukautetut tyylit";
 //STRIP001      Text[ thai ] = "แทนที่ลักษณะที่กำหนดเอง";
 //STRIP001      Text[ czech ] = "Nahradit vlastní styly";
 //STRIP001      Text[ hebrew ] = "Benutzervorlagen ersetzen";
-//STRIP001      Text[ hindi ] = "व्यवस्था शैलिया�?प्रतिस्थापित कर�?;
+//STRIP001      Text[ hindi ] = "व्यवस्था शैलिया�?प्रतिस्थापित कर�?";
 //STRIP001      Text[ slovak ] = "Nahradiť vlastné štýly";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_BULLET+1
@@ -275,18 +275,18 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ russian ] = "������?��������";
 //STRIP001      Text[ polish ] = "Zamienione znaki wypunktowania";
-//STRIP001      Text[ japanese ] = "箇条書き記号に置�?;
+//STRIP001      Text[ japanese ] = "箇条書き記号に置�?";
 //STRIP001      Text[ chinese_traditional ] = "代替項目符號";
-//STRIP001      Text[ arabic ] = "������?������ ������?;
+//STRIP001      Text[ arabic ] = "������?������ ������?";
 //STRIP001      Text[ greek ] = "?������������?�������� ������������";
-//STRIP001      Text[ korean ] = "글머리 기호 바꾸�?;
+//STRIP001      Text[ korean ] = "글머리 기호 바꾸�?";
 //STRIP001      Text[ turkish ] = "Madde i�aretleri de�i�tirildi";
 //STRIP001      Text[ catalan ] = "S'han reempla�at els pics";
 //STRIP001      Text[ finnish ] = "Korvatut luettelomerkit";
-//STRIP001      Text[ thai ] = "แทนที่สัญลักษณ์แสดงหัวข้อย่อ�?;
+//STRIP001      Text[ thai ] = "แทนที่สัญลักษณ์แสดงหัวข้อย่อ�?";
 //STRIP001      Text[ czech ] = "Odrážky nahrazeny";
 //STRIP001      Text[ hebrew ] = "Bulletzeichen ersetzt";
-//STRIP001      Text[ hindi ] = "पर्तिस्थापित बुल्लेट्�?;
+//STRIP001      Text[ hindi ] = "पर्तिस्थापित बुल्लेट्�?";
 //STRIP001      Text[ slovak ] = "Odrážky nahradené";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_UNDER+1
@@ -306,7 +306,7 @@
 //STRIP001      Text[ russian ] = "�������������� _�������������_";
 //STRIP001      Text[ polish ] = "Automatyczne _podkre�lanie_";
 //STRIP001      Text[ japanese ] = "自動_下線_";
-//STRIP001      Text[ chinese_traditional ] = "自動加底�?;
+//STRIP001      Text[ chinese_traditional ] = "自動加底�?";
 //STRIP001      Text[ arabic ] = "_�� ����_ ��������";
 //STRIP001      Text[ greek ] = "�������� _�����������_";
 //STRIP001      Text[ korean ] = "자동으로  _밑줄_";
@@ -345,7 +345,7 @@
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "*Negreta* autom�tica";
 //STRIP001      Text[ finnish ] = "Automaattinen *lihavoitu*";
-//STRIP001      Text[ thai ] = "*ตัวหนา*อัตโนมัต�?;
+//STRIP001      Text[ thai ] = "*ตัวหนา*อัตโนมัต�?";
 //STRIP001      Text[ czech ] = "Automatické *tučné*";
 //STRIP001      Text[ hebrew ] = "Automatisch *fett*";
 //STRIP001      Text[ hindi ] = "स्वचालित *मोटा*";
@@ -358,7 +358,7 @@
 //STRIP001      Text [ english_us ] = "Replace 1/2 ... with ?..." ;
 //STRIP001      Text [ swedish ] = "Ers�tt 1/2 ... med  ?..." ;
 //STRIP001      Text [ danish ] = "Erstat 1/2 ...med ?..." ;
-//STRIP001      Text [ italian ] = "Sostituisci 1/2 ... con ? ;
+//STRIP001      Text [ italian ] = "Sostituisci 1/2 ... con ?" ;
 //STRIP001      Text [ spanish ] = "Reemplazar 1/2 ... por ?..." ;
 //STRIP001      Text [ dutch ] = "1/2 ... vervangen door 1/2 ..." ;
 //STRIP001      Text [ portuguese_brazilian ] = "Substituir 1/2 ... por ? " ;
@@ -367,11 +367,11 @@
 //STRIP001      Text[ chinese_simplified ] = "�?½ ... 替换 1/2 ...";
 //STRIP001      Text[ russian ] = "����?�� 1/2 ... �� ����?...";
 //STRIP001      Text[ polish ] = "Zamie?1/2 ... na  ? ...";
-//STRIP001      Text[ japanese ] = "1/2 ...�?½ ...に置�?;
+//STRIP001      Text[ japanese ] = "1/2 ...�?½ ...に置�?";
 //STRIP001      Text[ chinese_traditional ] = "�?½ ... 代替 1/2 ...";
 //STRIP001      Text[ arabic ] = "������?1/2 ... �� ?..";
 //STRIP001      Text[ greek ] = "������������?1/2 ... �� 1/2 ...";
-//STRIP001      Text[ korean ] = "1/2 ...�?½...�?바꾸�?;
+//STRIP001      Text[ korean ] = "1/2 ...�?½...�?바꾸�?";
 //STRIP001      Text[ turkish ] = "1/2 yaz�ld���nda ... ?ile de�i�tir ...";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Reempla�a 1/2 ... per 1/2 ...";
@@ -379,7 +379,7 @@
 //STRIP001      Text[ thai ] = "แทนที่ 1/2 ... ด้วย �?...";
 //STRIP001      Text[ czech ] = "Nahradit 1/2 ... za ½ ...";
 //STRIP001      Text[ hebrew ] = "1/2 ... durch ½ ... ersetzen";
-//STRIP001      Text[ hindi ] = "1/2 ... को Â½ ... से प्रतिस्थापित कर�?;
+//STRIP001      Text[ hindi ] = "1/2 ... को Â½ ... से प्रतिस्थापित कर�?";
 //STRIP001      Text[ slovak ] = "Nahradiť 1/2 ... za ½ ...";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_DETECT_URL+1
@@ -403,14 +403,14 @@
 //STRIP001      Text[ arabic ] = "������ ��?URL";
 //STRIP001      Text[ greek ] = "���������� URL";
 //STRIP001      Text[ korean ] = "URL 인식";
-//STRIP001      Text[ turkish ] = "URL tan�nmas?;
+//STRIP001      Text[ turkish ] = "URL tan�nmas?";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Reconeixement d'URL";
 //STRIP001      Text[ finnish ] = "URL-tunnistus";
 //STRIP001      Text[ thai ] = "จดจำ URL ";
 //STRIP001      Text[ czech ] = "Rozpoznání URL";
 //STRIP001      Text[ hebrew ] = "URL erkennen";
-//STRIP001      Text[ hindi ] = "URL पहचा�?;
+//STRIP001      Text[ hindi ] = "URL पहचा�?";
 //STRIP001      Text[ slovak ] = "Rozpoznanie URL";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_DASH+1
@@ -426,14 +426,14 @@
 //STRIP001      Text [ dutch ] = "Streepjes vervangen" ;
 //STRIP001      Text [ portuguese_brazilian ] = "Substituir h�fens" ;
 //STRIP001      Text [ portuguese ] = "Substituir h�fens" ;
-//STRIP001      Text[ chinese_simplified ] = "替换破折�?;
+//STRIP001      Text[ chinese_simplified ] = "替换破折�?";
 //STRIP001      Text[ russian ] = "�������� ����";
 //STRIP001      Text[ polish ] = "Zamie?my�lniki";
 //STRIP001      Text[ japanese ] = "ダッシュに置換";
-//STRIP001      Text[ chinese_traditional ] = "代替破折�?;
-//STRIP001      Text[ arabic ] = "������?������?;
+//STRIP001      Text[ chinese_traditional ] = "代替破折�?";
+//STRIP001      Text[ arabic ] = "������?������?";
 //STRIP001      Text[ greek ] = "������������?������";
-//STRIP001      Text[ korean ] = "대�?바꾸�?;
+//STRIP001      Text[ korean ] = "대�?바꾸�?";
 //STRIP001      Text[ turkish ] = "Tireleri de�i�tir";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Reempla�a els tra�os";
@@ -441,7 +441,7 @@
 //STRIP001      Text[ thai ] = "แทนที่เส้นประ";
 //STRIP001      Text[ czech ] = "Nahradit pomlčky";
 //STRIP001      Text[ hebrew ] = "Gedankenstriche ersetzen";
-//STRIP001      Text[ hindi ] = "डॉशो�?को प्रतिस्थापित कर�?;
+//STRIP001      Text[ hindi ] = "डॉशो�?को प्रतिस्थापित कर�?";
 //STRIP001      Text[ slovak ] = "Nahradiť pomlčky";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_ORDINAL+1
@@ -455,7 +455,7 @@
 //STRIP001      Text [ dutch ] = "1st ... vervangen door 1^st ..." ;
 //STRIP001      Text [ swedish ] = "Ers�tt engelska ordningstal (1st)... med 1^st..." ;
 //STRIP001      Text [ danish ] = "Erstat 1st ... med 1^st ..." ;
-//STRIP001      Text [ portuguese_brazilian ] = "Substituir 1o... por 1? ;
+//STRIP001      Text [ portuguese_brazilian ] = "Substituir 1o... por 1?" ;
 //STRIP001      Text [ portuguese ] = "Substituir 1o... por 1?.." ;
 //STRIP001      Text[ chinese_simplified ] = "�?1^st... 替换 1st...";
 //STRIP001      Text[ russian ] = "�������� ���������� ��?������ (1st) ... �� ������?������ (1^st)...";
@@ -464,7 +464,7 @@
 //STRIP001      Text[ chinese_traditional ] = "�?1^st... 代替 1st...";
 //STRIP001      Text[ arabic ] = "������?1st ... �� 1^st ...";
 //STRIP001      Text[ greek ] = "������������?1?.. �� 1^?..";
-//STRIP001      Text[ korean ] = "1st...�?를）1^st...�?바꾸�?;
+//STRIP001      Text[ korean ] = "1st...�?를）1^st...�?바꾸�?";
 //STRIP001      Text[ turkish ] = "1st yaz�ld���nda... 1^st ile de�i�tir...";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "Reempla�a 1st ... per 1^st ...";
@@ -472,7 +472,7 @@
 //STRIP001      Text[ thai ] = "แทนที่ 1st... ด้วย 1^st...";
 //STRIP001      Text[ czech ] = "Nahradit 1st... za 1^st...";
 //STRIP001      Text[ hebrew ] = "1st ... durch 1^st ... ersetzen";
-//STRIP001      Text[ hindi ] = "1st... को 1^st... से प्रतिस्थापित कर�?;
+//STRIP001      Text[ hindi ] = "1st... को 1^st... से प्रतिस्थापित कर�?";
 //STRIP001      Text[ slovak ] = "Nahradiť 1st... za 1^st...";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_RIGHT_MARGIN+1
@@ -489,7 +489,7 @@
 //STRIP001      Text[ spanish ] = "Unir p�rrafos de una l�nea";
 //STRIP001      Text[ english_us ] = "Combine single line paragraphs";
 //STRIP001      Text[ chinese_simplified ] = "合并单行段落";
-//STRIP001      Text[ russian ] = "����������?������������ ������?;
+//STRIP001      Text[ russian ] = "����������?������������ ������?";
 //STRIP001      Text[ polish ] = "Po��cz akapity jednowierszowe";
 //STRIP001      Text[ japanese ] = "1行段落の結合";
 //STRIP001      Text[ chinese_traditional ] = "合併單行段落";
@@ -503,7 +503,7 @@
 //STRIP001      Text[ thai ] = "เชื่อมย่อหน้าบรรทัดเดียว";
 //STRIP001      Text[ czech ] = "Porovnat jednotlivé řádky odstavců";
 //STRIP001      Text[ hebrew ] = "Zusammenfassen von einzeiligen Absätzen";
-//STRIP001      Text[ hindi ] = "अकेल�?रेखा परिच्छेदों को मिला�?;
+//STRIP001      Text[ hindi ] = "अकेल�?रेखा परिच्छेदों को मिला�?";
 //STRIP001      Text[ slovak ] = "Porovnať jednotlivé riadky odstavcov";
 //STRIP001  };
 //STRIP001
@@ -535,7 +535,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"เนื้อความ\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Tělo textu\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Textkörper\"";
-//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भाग\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भाग\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl\"Telo textu\"";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_SET_TMPL_INDENT  +1
@@ -566,7 +566,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"ระยะเยื้องเนื้อความ\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Odsazení těla textu\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Textkörper Einzug\"";
-//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भा�?इन्डेन्ट\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भा�?इन्डेन्ट\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl \"Odsadenie tela textu\"";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_SET_TMPL_NEG_INDENT  +1
@@ -597,7 +597,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"ระยะเยื้องลอย\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Předsazení prvního řádku\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Textkörper Einzug negativ\"";
-//STRIP001      Text[ hindi ] = "\"हांगिं�?इन्डेन्ट\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"हांगिं�?इन्डेन्ट\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl\"Odsadenie prvého riadku\"";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_SET_TMPL_TEXT_INDENT +1
@@ -628,7 +628,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"ระยะเยื้องเนื้อความ\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Odsazení těla textu\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Textkörper Einrückung\"";
-//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भा�?इन्डेन्ट\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"टेक्स्ट् का मुख्�?भा�?इन्डेन्ट\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl \"Odsadenie tela textu\"";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_SET_TMPL_HEADLINE +1
@@ -659,7 +659,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"หัวข้อ $(ARG1)\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Nadpisu $(ARG1)\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Überschrift $(ARG1)\"";
-//STRIP001      Text[ hindi ] = "\"शीर्षक $(ARG1)\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"शीर्षक $(ARG1)\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl \"Nadpisu $(ARG1)\"";
 //STRIP001  };
 //STRIP001  String STR_AUTOFMTREDL_SET_NUMBULET +1
@@ -690,7 +690,7 @@
 //STRIP001      Text[ thai ] = "กำหนดลักษณ�?\"สัญลักษณ์แสดงหัวข้อย่อย\" หรือ \"ลำดับตัวเลข\" ";
 //STRIP001      Text[ czech ] = "Nastavit styl \"Odrážek\" nebo \"Číslování\"";
 //STRIP001      Text[ hebrew ] = "Setze Vorlage \"Aufzählung\" oder \"Nummerierung\"";
-//STRIP001      Text[ hindi ] = "\"बुल्लेट्\" अथवा \"संख्या देना\" शैली को सेट्�?कर�?;
+//STRIP001      Text[ hindi ] = "\"बुल्लेट्\" अथवा \"संख्या देना\" शैली को सेट्�?कर�?";
 //STRIP001      Text[ slovak ] = "Nastaviť štýl \"odrážok\" alebo \"číslovanie\"";
 //STRIP001  };
 //STRIP001
@@ -708,11 +708,11 @@
 //STRIP001      Text[ spanish ] = "Combinar p�rrafos";
 //STRIP001      Text[ english_us ] = "Combine paragraphs";
 //STRIP001      Text[ chinese_simplified ] = "合并段落";
-//STRIP001      Text[ russian ] = "����������?������?;
+//STRIP001      Text[ russian ] = "����������?������?";
 //STRIP001      Text[ polish ] = "Po��cz akapity";
-//STRIP001      Text[ japanese ] = "段落の結�?;
+//STRIP001      Text[ japanese ] = "段落の結�?";
 //STRIP001      Text[ chinese_traditional ] = "合併段落";
-//STRIP001      Text[ arabic ] = "�� ������?;
+//STRIP001      Text[ arabic ] = "�� ������?";
 //STRIP001      Text[ greek ] = "����?����������";
 //STRIP001      Text[ korean ] = "단락 결합";
 //STRIP001      Text[ turkish ] = "Paragraflar?birle�tir";
@@ -722,7 +722,7 @@
 //STRIP001      Text[ thai ] = "เชื่อมย่อหน้า";
 //STRIP001      Text[ czech ] = "Srovnání odstavců";
 //STRIP001      Text[ hebrew ] = "Zusammenfassen von Absätzen";
-//STRIP001      Text[ hindi ] = "परिच्छेदों को मिला�?;
+//STRIP001      Text[ hindi ] = "परिच्छेदों को मिला�?";
 //STRIP001      Text[ slovak ] = "Zarovnanie odstavcov";
 //STRIP001  };
 //STRIP001
@@ -731,389 +731,416 @@
 /*---------------------------------------------------------------------
     Diverses
  ---------------------------------------------------------------------*/
-String STR_EVENT_OBJECT_SELECT
-{
-    Text [ de ] = "Objekt anklicken" ;
-    Text [ en-US ] = "Click object" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Seleccionar objecto";
-    Text[ ru ] = "Выбор объекта";
-    Text[ el ] = "Επιλογή αντικειμένου";
-    Text[ nl ] = "Object selecteren";
-    Text[ fr ] = "Clic sur l'objet";
-    Text[ es ] = "Pulsar el objeto";
-    Text[ fi ] = "Napsauta objektia";
-    Text[ ca ] = "Feu clic a l'objecte";
-    Text[ it ] = "Cliccate l'oggetto";
-    Text[ sk ] = "Kliknúť na objekt";
-    Text[ da ] = "Klik på objekt";
-    Text[ sv ] = "Klicka på objekt";
-    Text[ pl ] = "Kliknij obiekt";
-    Text[ pt-BR ] = "Clicar objeto";
-    Text[ th ] = "คลิ๊กที่วัตถุ";
-    Text[ ja ] = "オブジェクトのクリック";
-    Text[ ko ] = "개체 클릭";
-    Text[ zh-CN ] = "按击对象";
-    Text[ zh-TW ] = "按一下物件";
-    Text[ tr ] = "Nesneye tıkla";
-    Text[ hi-IN ] = "वस्तु में क्लिक करो";
-    Text[ ar ] = "النقر فوق الكائن";
-    Text[ he ] = "Objekt anklicken";
-};
-String STR_EVENT_START_INS_GLOSSARY
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Vor AutoText einf�gen : Vor AutoText einf�gen */
-    Text [ de ] = "Vor Einf�gen des AutoTextes" ;
-    Text [ en-US ] = "Before inserting AutoText";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir antes de AutoTexto";
-    Text[ ru ] = "Перед вставкой автотекста";
-    Text[ el ] = "Πριν από την εισαγωγή του αυτόματου κειμένου";
-    Text[ nl ] = "Voor het invoegen van AutoTekst";
-    Text[ fr ] = "Avant insertion de l'AutoTexte";
-    Text[ es ] = "Antes de insertar el Texto automático";
-    Text[ fi ] = "Ennen automaattisen tekstin lisäämistä";
-    Text[ ca ] = "Abans d'inserir el text automàtic";
-    Text[ it ] = "Prima d'inserire il testo automatico";
-    Text[ sk ] = "Pred vložením automatického textu";
-    Text[ da ] = "Inden input af AutoTekst";
-    Text[ sv ] = "Innan AutoText infogas";
-    Text[ pl ] = "Przed wstawieniem Autotekstu";
-    Text[ pt-BR ] = "Antes de inserir AutoTexto";
-    Text[ th ] = "ก่อนแทรกข้อความอัตโนมัติ";
-    Text[ ja ] = "入力支援を挿入する前";
-    Text[ ko ] = "자동 텍스트 삽입 전";
-    Text[ zh-CN ] = "在插入自动图文集之前";
-    Text[ zh-TW ] = "在插入自動圖文集之前";
-    Text[ tr ] = "Otomatik metin eklemeden önce";
-    Text[ hi-IN ] = "स्वचालित टेक्स्ट् को जोड़ने से पहिले";
-    Text[ ar ] = "قبل إدراج النص التلقائي";
-    Text[ he ] = "Vor Einfügen des AutoTextes";
-};
-String STR_EVENT_END_INS_GLOSSARY
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Nach AutoText einf�gen : Nach AutoText einf�gen */
-    Text [ de ] = "Nach Einf�gen des AutoTextes" ;
-    Text [ en-US ] = "After inserting AutoText";
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Inserir após AutoTexto";
-    Text[ ru ] = "После вставки автотекста";
-    Text[ el ] = "Μετά την εισαγωγή του αυτόματου κειμένου";
-    Text[ nl ] = "Na invoegen van AutoTekst";
-    Text[ fr ] = "Après insertion de l'AutoTexte";
-    Text[ es ] = "Tras insertar el Texto automático";
-    Text[ fi ] = "Automaattisen tekstin lisäämisen jälkeen";
-    Text[ ca ] = "Després d'inserir el text automàtic";
-    Text[ it ] = "Dopo aver inserito il testo automatico";
-    Text[ sk ] = "Po vložení automatického textu";
-    Text[ da ] = "Efter input af AutoTekst";
-    Text[ sv ] = "När AutoText har infogats";
-    Text[ pl ] = "Po wstawieniu Autotekstu";
-    Text[ pt-BR ] = "Após inserir o AutoTexto";
-    Text[ th ] = "หลังจากแทรกข้อความอัตโนมัติ";
-    Text[ ja ] = "入力支援を挿入した後";
-    Text[ ko ] = "자동 텍스트 삽입 후";
-    Text[ zh-CN ] = "在插入自动图文集之后";
-    Text[ zh-TW ] = "在自動圖文集插入之後";
-    Text[ tr ] = "Otomatik metin ekledikten sonra";
-    Text[ hi-IN ] = "स्वचालित टेक्स्ट् जोड़ने के पश्चात्";
-    Text[ ar ] = "بعد إدراج النص التلقائي";
-    Text[ he ] = "Nach Einfügen des AutoTextes";
-};
-String STR_EVENT_MOUSEOVER_OBJECT
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Maus �ber Objekt : Maus �ber Objekt */
-    Text [ de ] = "Maus �ber Objekt" ;
-    Text [ en-US ] = "Mouse over object" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Rato sobre objecto";
-    Text[ ru ] = "Мышь над объектом";
-    Text[ el ] = "Ποντίκι πάνω από αντικείμενο";
-    Text[ nl ] = "Muis over object";
-    Text[ fr ] = "Souris sur l'objet";
-    Text[ es ] = "Ratón sobre el objeto";
-    Text[ fi ] = "Hiiri objektin kohdalla";
-    Text[ ca ] = "Ratolí sobre l'objecte";
-    Text[ it ] = "Mouse sull'oggetto";
-    Text[ sk ] = "Myš na objekte";
-    Text[ da ] = "Mus over objekt";
-    Text[ sv ] = "Mus över objekt";
-    Text[ pl ] = "Mysz nad obiektem";
-    Text[ pt-BR ] = "Mouse sobre objeto";
-    Text[ th ] = "เม้าส์บนวัตถุ";
-    Text[ ja ] = "マウスをオブジェクト上に移動";
-    Text[ ko ] = "마우스를 개체 위에";
-    Text[ zh-CN ] = "鼠标在对象之上";
-    Text[ zh-TW ] = "鼠標在物件之上";
-    Text[ tr ] = "Fare nesne üzerinde";
-    Text[ hi-IN ] = "मौस वस्तु के ऊपर";
-    Text[ ar ] = "الماوس فوق الكائن";
-    Text[ he ] = "Maus über Objekt";
-};
-String STR_EVENT_MOUSECLICK_OBJECT
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Hyperlink ausl�sen : Hyperlink ausl�sen */
-    Text [ de ] = "Hyperlink ausl�sen" ;
-    Text [ en-US ] = "Trigger hyperlink" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Activar hiperligação";
-    Text[ ru ] = "Переход по гиперссылке";
-    Text[ el ] = "Εφαρμογή υπερ-σύνδεσης";
-    Text[ nl ] = "Hyperlink uitvoeren";
-    Text[ fr ] = "Déclencher l'hyperlien";
-    Text[ es ] = "Ejecutar hiperenlace";
-    Text[ fi ] = "Käynnistä hyperlinkki";
-    Text[ ca ] = "Activa l'hiperenllaç";
-    Text[ it ] = "Esegui hyperlink";
-    Text[ sk ] = "Previesť hypertextový odkaz";
-    Text[ da ] = "Udfør hyperlink";
-    Text[ sv ] = "Utför hyperlänk";
-    Text[ pl ] = "Uaktywnij hiperłącze";
-    Text[ pt-BR ] = "Ativar hiperlink";
-    Text[ th ] = "เชื่อมโยงหลายมิติแบบทริกเกอร";
-    Text[ ja ] = "ハイパーリンクの実行";
-    Text[ ko ] = "트리거 하이퍼링크";
-    Text[ zh-CN ] = "执行超链接";
-    Text[ zh-TW ] = "執行超連結";
-    Text[ tr ] = "Hiperlinki etkinleştir";
-    Text[ hi-IN ] = "ट्रिग्गर हाइपरलिंक";
-    Text[ ar ] = "تنفيذ ارتباط تشعبي";
-    Text[ he ] = "Hyperlink auslösen";
-};
-String STR_EVENT_MOUSEOUT_OBJECT
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Maus verl��t Objekt : Maus verl��t Objekt */
-    Text [ de ] = "Maus verl�sst Objekt" ;
-    Text [ en-US ] = "Mouse leaves object" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Rato abandona objecto";
-    Text[ ru ] = "Мышь покидает объект";
-    Text[ el ] = "Ποντίκι απομακρύνεται από αντικείμενο";
-    Text[ nl ] = "Muis verlaat object";
-    Text[ fr ] = "Souris quitte l'objet";
-    Text[ es ] = "El ratón abandona el objeto";
-    Text[ fi ] = "Hiiri poistuu objektista";
-    Text[ ca ] = "El ratolí deixa l'objecte";
-    Text[ it ] = "Mouse abbandona l'oggetto";
-    Text[ sk ] = "Myš opúšťa objekt";
-    Text[ da ] = "Mus forlader objekt";
-    Text[ sv ] = "Mus lämnar objekt";
-    Text[ pl ] = "Mysz opuszcza obiekt";
-    Text[ pt-BR ] = "Mouse abandona o objeto";
-    Text[ th ] = "เม้าส์ออกจากวัตถุ";
-    Text[ ja ] = "マウスをオブジェクト外に移動";
-    Text[ ko ] = "마우스가 개체를 벗어남";
-    Text[ zh-CN ] = "鼠标离开对象";
-    Text[ zh-TW ] = "鼠標離開物件";
-    Text[ tr ] = "Fare nesneden ayrılıyor";
-    Text[ hi-IN ] = "मौस वस्तु से बाहर";
-    Text[ ar ] = "ابتعاد الماوس عن الكائن";
-    Text[ he ] = "Maus verlässt Objekt";
-};
-String STR_EVENT_IMAGE_LOAD
-{
-    Text [ de ] = "Grafik laden erfolgreich" ;
-    Text [ en-US ] = "Graphics load successful" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Carregar imagem concluído";
-    Text[ ru ] = "Графика загружена успешно";
-    Text[ el ] = "Η φόρτωση των γραφικών πέτυχε";
-    Text[ nl ] = "Afbeelding met succes geladen";
-    Text[ fr ] = "Chargement de l'image terminé";
-    Text[ es ] = "La carga de la imagen ha finalizado con éxito";
-    Text[ fi ] = "Kuvan lataus onnistunut";
-    Text[ ca ] = "Els gràfics s'han carregat amb èxit";
-    Text[ it ] = "Caricamento immagine riuscito";
-    Text[ sk ] = "Obrázok bol úspešne načítaný";
-    Text[ da ] = "Indlæsning af grafik fuldført";
-    Text[ sv ] = "Laddning av grafik lyckades";
-    Text[ pl ] = "Pomyślnie załadowano grafikę";
-    Text[ pt-BR ] = "A figura foi carregada com sucesso";
-    Text[ th ] = "โหลดกราฟิคสำเร็จ";
-    Text[ ja ] = "図の読み込み完了";
-    Text[ ko ] = "그림 로드를 성공적으로 완료 ";
-    Text[ zh-CN ] = "装入图形成功";
-    Text[ zh-TW ] = "載入圖形成功";
-    Text[ tr ] = "Grafik başarıyla yüklendi";
-    Text[ hi-IN ] = "सुचित्र का लोड़ सफल हुआ";
-    Text[ ar ] = "تحميل الصورة بنجاح";
-    Text[ he ] = "Grafik laden erfolgreich";
-};
-String STR_EVENT_IMAGE_ABORT
-{
-    Text [ de ] = "Grafik laden abgebrochen" ;
-    Text [ en-US ] = "Graphics load terminated" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Carregar imagem cancelado";
-    Text[ ru ] = "Загрузка графики прервана";
-    Text[ el ] = "Διακοπή φόρτωσης γραφικού";
-    Text[ nl ] = "Laden van afbeelding gestopt";
-    Text[ fr ] = "Chargement de l'image interrompu";
-    Text[ es ] = "Interrumpida la carga de la imagen";
-    Text[ fi ] = "Kuvan lataus päättynyt";
-    Text[ ca ] = "S'ha interromput la càrrega dels gràfics";
-    Text[ it ] = "Caricamento immagine interrotto";
-    Text[ sk ] = "Načítanie obrázku ukončené";
-    Text[ da ] = "Indlæsning af grafik afbrudt";
-    Text[ sv ] = "Laddning av grafik avbröts";
-    Text[ pl ] = "Przerwano ładowanie grafiki";
-    Text[ pt-BR ] = "Terminou a carga da figura";
-    Text[ th ] = "โหลดกราฟิคถูกยกเลิก";
-    Text[ ja ] = "図の読み込み中止";
-    Text[ ko ] = "그림 로드 중단됨";
-    Text[ zh-CN ] = "中断装入图形";
-    Text[ zh-TW ] = "中斷載入圖形";
-    Text[ tr ] = "Grafik yüklemesi kesildi";
-    Text[ hi-IN ] = "सुचित्र का लोड़ समाप्त हुआ";
-    Text[ ar ] = "انقطاع عملية تحميل الصورة";
-    Text[ he ] = "Grafik laden abgebrochen";
-};
-String STR_EVENT_IMAGE_ERROR
-{
-    Text [ de ] = "Grafik laden fehlerhaft" ;
-    Text [ en-US ] = "Graphics load faulty" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Erro ao carregar imagem";
-    Text[ ru ] = "Ошибка при загрузке графики";
-    Text[ el ] = "Σφάλμα κατά τη φόρτωση γραφικού";
-    Text[ nl ] = "Fout bij laden van afbeelding";
-    Text[ fr ] = "Erreur lors du chargement de l'image";
-    Text[ es ] = "Error al cargar la imagen";
-    Text[ fi ] = "Virhe kuvan latauksessa";
-    Text[ ca ] = "Els gràfics s'han carregat de manera defectuosa";
-    Text[ it ] = "Caricamento immagine errato";
-    Text[ sk ] = "Obrázok nebolo možné načítať";
-    Text[ da ] = "Indlæsning af grafik fejlagtig";
-    Text[ sv ] = "Fel vid laddning av grafik";
-    Text[ pl ] = "Błąd ładowania grafiki";
-    Text[ pt-BR ] = "A figura foi carregada com erros";
-    Text[ th ] = "โหลดกราฟิคผิด";
-    Text[ ja ] = "図の読み込みエラー";
-    Text[ ko ] = "그림 로드 오류";
-    Text[ zh-CN ] = "装入的图形不完整";
-    Text[ zh-TW ] = "載入圖形不完整";
-    Text[ tr ] = "Grafik yüklemede hata";
-    Text[ hi-IN ] = "दोषयुक्त सुचित्र का लोड़";
-    Text[ ar ] = "خطأ في عملية تحميل الصورة";
-    Text[ he ] = "Grafik laden fehlerhaft";
-};
-String STR_EVENT_FRM_KEYINPUT_A
-{
-    Text [ de ] = "Eingabe von Alphazeichen" ;
-    Text [ en-US ] = "Input of alphanumeric characters" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Entrada de caracteres alfa";
-    Text[ ru ] = "Ввод алф.-цифр. символов";
-    Text[ el ] = "Εισαγωγή χαρακτήρων Άλφα";
-    Text[ nl ] = "Invoer van alfanumerieke tekens";
-    Text[ fr ] = "Saisie de caractères alphanumériques";
-    Text[ es ] = "Entrada de caracteres alfanuméricos";
-    Text[ fi ] = "Aakkosnumeeristen merkkien syöttö";
-    Text[ ca ] = "Entrada de caràcters alfanumèrics";
-    Text[ it ] = "Digitazione di caratteri alfa";
-    Text[ sk ] = "Vkladanie alfanumerických znakov";
-    Text[ da ] = "Input af alfategn";
-    Text[ sv ] = "Inmatning av alfatecken";
-    Text[ pl ] = "Wpisz znaki alfanumeryczne";
-    Text[ pt-BR ] = "Entrada de caracteres alfanuméricos";
-    Text[ th ] = "ใส่ตัวอักขระตัวเลขพยัญชนะ";
-    Text[ ja ] = "アルファベット文字の入力";
-    Text[ ko ] = "알파벳 문자 입력";
-    Text[ zh-CN ] = "输入希腊语字母阿尔法";
-    Text[ zh-TW ] = "輸入希臘語第一個字母";
-    Text[ tr ] = "Alfasayısal karakter girişi";
-    Text[ hi-IN ] = "अल्फान्यूमरिक अक्षरों की इनपुट्";
-    Text[ ar ] = "إدخال أحرف ألفا";
-    Text[ he ] = "Eingabe von Alphazeichen";
-};
-String STR_EVENT_FRM_KEYINPUT_NOA
-{
-    Text [ de ] = "Eingabe von Nicht-Alphazeichen" ;
-    Text [ en-US ] = "Input of non-alphanumeric characters" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Entrada de caracteres não-alfa.";
-    Text[ ru ] = "Ввод не алф.-цифр. символов";
-    Text[ el ] = "Εισαγωγή μη-Άλφα χαρακτήρων";
-    Text[ nl ] = "Invoer van niet-alfanumerieke tekens";
-    Text[ fr ] = "Saisie de caractères non alphanumériques";
-    Text[ es ] = "Entrada de caracteres no-alfanuméricos";
-    Text[ fi ] = "Muiden kuin aakkosnumeeristen merkkien syöttö";
-    Text[ ca ] = "Entrada de caràcters no-alfanumèrics";
-    Text[ it ] = "Digitazione di caratteri non alfanumerici";
-    Text[ sk ] = "Vkladanie iných ako alfanumerických znakov";
-    Text[ da ] = "Input af ikke-alfategn";
-    Text[ sv ] = "Inmatning av icke-alfatecken";
-    Text[ pl ] = "Wpisz znaki niealfanumeryczne";
-    Text[ pt-BR ] = "Entrada de caracteres não-alfanuméricos";
-    Text[ th ] = "ใส่ตัวอักขระที่ไม่ใช่ตัวเลขพยัญชนะ";
-    Text[ ja ] = "アルファベットでない文字の入力";
-    Text[ ko ] = "알파벳이 아닌 문자 입력";
-    Text[ zh-CN ] = "输入的不是希腊语字母阿尔法";
-    Text[ zh-TW ] = "輸入的不是希臘語第一個字母";
-    Text[ tr ] = "Alfasayısal olmayan karakter girişi";
-    Text[ hi-IN ] = "बिना-अल्फान्यूमरिक अक्षरों की इनपुट्";
-    Text[ ar ] = "إدخال أحرف غير ألفا";
-    Text[ he ] = "Eingabe von Nicht-Alphazeichen";
-};
-String STR_EVENT_FRM_RESIZE
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Rahmengr��e ver�ndern : Rahmengr��e ver�ndern */
-    Text [ de ] = "Rahmengr��e ver�ndern" ;
-    Text [ en-US ] = "Resize frame" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Redimensionar moldura";
-    Text[ ru ] = "Изменить размер рамки";
-    Text[ el ] = "Αλλαγή μεγέθους πλαισίου";
-    Text[ nl ] = "Kadergrootte wijzigen";
-    Text[ fr ] = "Modifier la taille du cadre";
-    Text[ es ] = "Modificar el tamaño del marco";
-    Text[ fi ] = "Muuta kehyksen kokoa";
-    Text[ ca ] = "Canvia la mida del marc";
-    Text[ it ] = "Cambia dimensione cornice";
-    Text[ sk ] = "Zmeniť veľkosť rámca";
-    Text[ da ] = "Modificer rammestørrelse";
-    Text[ sv ] = "Ändra ramstorlek";
-    Text[ pl ] = "Zmień rozmiar ramki";
-    Text[ pt-BR ] = "Redimensionar moldura";
-    Text[ th ] = "ปรับขนาดกรอบ";
-    Text[ ja ] = "枠のサイズ変更";
-    Text[ ko ] = "프레임 크기 변경";
-    Text[ zh-CN ] = "更改框的大小";
-    Text[ zh-TW ] = "變更框大小";
-    Text[ tr ] = "Çerçeve boyutunu değiştir";
-    Text[ hi-IN ] = "फ्रेम को पुनःपरिमाण दो";
-    Text[ ar ] = "تعديل حجم الكادر";
-    Text[ he ] = "Rahmengröße verändern";
-};
-String STR_EVENT_FRM_MOVE
-{
-    Text [ de ] = "Rahmen verschieben" ;
-    Text [ en-US ] = "Move frame" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Mover moldura";
-    Text[ ru ] = "Переместить рамку";
-    Text[ el ] = "Μετακίνηση πλαισίου";
-    Text[ nl ] = "Kader verplaatsen";
-    Text[ fr ] = "Déplacer le cadre";
-    Text[ es ] = "Desplazar marco";
-    Text[ fi ] = "Siirrä kehystä";
-    Text[ ca ] = "Mou el marc";
-    Text[ it ] = "Sposta cornice";
-    Text[ sk ] = "Presunúť rámec";
-    Text[ da ] = "Flyt ramme";
-    Text[ sv ] = "Flytta ram";
-    Text[ pl ] = "Przenieś ramkę";
-    Text[ pt-BR ] = "Mover moldura";
-    Text[ th ] = "ย้ายกรอบ";
-    Text[ ja ] = "枠の移動";
-    Text[ ko ] = "프레임 이동";
-    Text[ zh-CN ] = "移动框";
-    Text[ zh-TW ] = "移動框";
-    Text[ tr ] = "Çerçeveyi taşı";
-    Text[ hi-IN ] = "फ्रेम का स्थान परिवर्तन करो";
-    Text[ ar ] = "إزاحة الكادر";
-    Text[ he ] = "Rahmen verschieben";
-};
+//STRIP001 String STR_EVENT_OBJECT_SELECT
+//STRIP001 {
+//STRIP001      TEXT = "Objekt anklicken" ;
+//STRIP001      TEXT [ English ] = "Object on click" ;
+//STRIP001      Text [ dutch ] = "Object selecteren" ;
+//STRIP001      Text [ english_us ] = "Click object" ;
+//STRIP001      Text [ italian ] = "Cliccate l'oggetto" ;
+//STRIP001      Text [ spanish ] = "Pulsar el objeto" ;
+//STRIP001      Text [ french ] = "Clic sur l'objet" ;
+//STRIP001      Text [ swedish ] = "Klicka p?objekt" ;
+//STRIP001      Text [ danish ] = "Klik p?objekt" ;
+//STRIP001      Text [ portuguese ] = "Seleccionar objecto" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Clicar objeto" ;
+//STRIP001      Text[ chinese_simplified ] = "按击对象";
+//STRIP001      Text[ russian ] = "����?������?";
+//STRIP001      Text[ polish ] = "Kliknij obiekt";
+//STRIP001      Text[ japanese ] = "オブジェクトのクリッ�?";
+//STRIP001      Text[ chinese_traditional ] = "按一下物�?";
+//STRIP001      Text[ arabic ] = "����?��?������";
+//STRIP001      Text[ greek ] = "������?������������";
+//STRIP001      Text[ korean ] = "개체 클릭";
+//STRIP001      Text[ turkish ] = "Nesneye t�kla";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Feu clic a l'objecte";
+//STRIP001      Text[ finnish ] = "Napsauta objektia";
+//STRIP001      Text[ thai ] = "คลิ๊กที่วัตถ�?";
+//STRIP001      Text[ czech ] = "Kliknutí na objekt";
+//STRIP001      Text[ hebrew ] = "Objekt anklicken";
+//STRIP001      Text[ hindi ] = "वस्त�?मे�?क्लि�?कर�?";
+//STRIP001      Text[ slovak ] = "Kliknúť na objekt";
+//STRIP001 };
+//STRIP001 String STR_EVENT_START_INS_GLOSSARY
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Vor AutoText einf�gen : Vor AutoText einf�gen */
+//STRIP001      TEXT = "Vor Einf�gen des AutoTextes" ;
+//STRIP001      TEXT [ English ] = "Before insert AutoText" ;
+//STRIP001      TEXT[ english_us ] = "Before inserting AutoText";
+//STRIP001      TEXT[ portuguese ] = "Inserir antes de AutoTexto";
+//STRIP001      TEXT[ russian ] = "����?�������� ����������";
+//STRIP001      TEXT[ greek ] = "���� ��?��?�������� ��?��������?��������";
+//STRIP001      TEXT[ dutch ] = "Voor het invoegen van AutoTekst";
+//STRIP001      TEXT[ french ] = "Avant insertion de l'AutoTexte";
+//STRIP001      TEXT[ spanish ] = "Antes de insertar el Texto autom�tico";
+//STRIP001      TEXT[ italian ] = "Prima d'inserire il testo automatico";
+//STRIP001      TEXT[ danish ] = "Inden input af AutoTekst";
+//STRIP001      TEXT[ swedish ] = "Innan AutoText infogas";
+//STRIP001      TEXT[ polish ] = "Przed wstawieniem Autotekstu";
+//STRIP001      TEXT[ portuguese_brazilian ] = "Antes de inserir AutoTexto";
+//STRIP001      TEXT[ japanese ] = "入力支援を挿入する前";
+//STRIP001      TEXT[ korean ] = "자동 텍스�?삽입 �?";
+//STRIP001      TEXT[ chinese_simplified ] = "在插入自动图文集之前";
+//STRIP001      TEXT[ chinese_traditional ] = "在插入自動圖文集之前";
+//STRIP001      TEXT[ arabic ] = "��?����?���� ��������";
+//STRIP001      TEXT[ turkish ] = "Otomatik metin eklemeden �nce";
+//STRIP001      TEXT[ language_user1 ] = " ";
+//STRIP001      TEXT[ catalan ] = "Abans d'inserir el text autom�tic";
+//STRIP001      TEXT[ finnish ] = "Ennen automaattisen tekstin lis��mist?";
+//STRIP001      TEXT[ thai ] = "ก่อนแทรกข้อความอัตโนมัติ";
+//STRIP001      TEXT[ czech ] = "Před vložením automatického textu";
+//STRIP001      TEXT[ hebrew ] = "Vor Einfügen des AutoTextes";
+//STRIP001      TEXT[ hindi ] = "स्वचालित टेक्स्ट् को जोड़ने से पहिल�?";
+//STRIP001      TEXT[ slovak ] = "Pred vložením automatického textu";
+//STRIP001 };
+//STRIP001 String STR_EVENT_END_INS_GLOSSARY
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Nach AutoText einf�gen : Nach AutoText einf�gen */
+//STRIP001      TEXT = "Nach Einf�gen des AutoTextes" ;
+//STRIP001      TEXT [ English ] = "After insert AutoText" ;
+//STRIP001      TEXT[ english_us ] = "After inserting AutoText";
+//STRIP001      TEXT[ portuguese ] = "Inserir ap�s AutoTexto";
+//STRIP001      TEXT[ russian ] = "����?������?����������";
+//STRIP001      TEXT[ greek ] = "���� ��?�������� ��?��������?��������";
+//STRIP001      TEXT[ dutch ] = "Na invoegen van AutoTekst";
+//STRIP001      TEXT[ french ] = "Apr�s insertion de l'AutoTexte";
+//STRIP001      TEXT[ spanish ] = "Tras insertar el Texto autom�tico";
+//STRIP001      TEXT[ italian ] = "Dopo aver inserito il testo automatico";
+//STRIP001      TEXT[ danish ] = "Efter input af AutoTekst";
+//STRIP001      TEXT[ swedish ] = "N�r AutoText har infogats";
+//STRIP001      TEXT[ polish ] = "Po wstawieniu Autotekstu";
+//STRIP001      TEXT[ portuguese_brazilian ] = "Ap�s inserir o AutoTexto";
+//STRIP001      TEXT[ japanese ] = "入力支援を挿入した後";
+//STRIP001      TEXT[ korean ] = "자동 텍스�?삽입 �?";
+//STRIP001      TEXT[ chinese_simplified ] = "在插入自动图文集之后";
+//STRIP001      TEXT[ chinese_traditional ] = "在自動圖文集插入之後";
+//STRIP001      TEXT[ arabic ] = "��?����?���� ��������";
+//STRIP001      TEXT[ turkish ] = "Otomatik metin ekledikten sonra";
+//STRIP001      TEXT[ language_user1 ] = " ";
+//STRIP001      TEXT[ catalan ] = "Despr�s d'inserir el text autom�tic";
+//STRIP001      TEXT[ finnish ] = "Automaattisen tekstin lis��misen j�lkeen";
+//STRIP001      TEXT[ thai ] = "หลังจากแทรกข้อความอัตโนมัต�?";
+//STRIP001      TEXT[ czech ] = "Po vložení automatického textu";
+//STRIP001      TEXT[ hebrew ] = "Nach Einfügen des AutoTextes";
+//STRIP001      TEXT[ hindi ] = "स्वचालित टेक्स्ट् जोड़ने के पश्चात�?";
+//STRIP001      TEXT[ slovak ] = "Po vložení automatického textu";
+//STRIP001 };
+//STRIP001 String STR_EVENT_MOUSEOVER_OBJECT
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Maus �ber Objekt : Maus �ber Objekt */
+//STRIP001      TEXT = "Maus �ber Objekt" ;
+//STRIP001      TEXT [ English ] = "Mouse over Object" ;
+//STRIP001      Text [ english_us ] = "Mouse over object" ;
+//STRIP001      Text [ italian ] = "Mouse sull'oggetto" ;
+//STRIP001      Text [ spanish ] = "Rat�n sobre el objeto" ;
+//STRIP001      Text [ french ] = "Souris sur l'objet" ;
+//STRIP001      Text [ dutch ] = "Muis over object" ;
+//STRIP001      Text [ swedish ] = "Mus �ver objekt" ;
+//STRIP001      Text [ danish ] = "Mus over objekt" ;
+//STRIP001      Text [ portuguese ] = "Rato sobre objecto" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Mouse sobre objeto" ;
+//STRIP001      Text[ chinese_simplified ] = "鼠标在对象之�?";
+//STRIP001      Text[ russian ] = "���� ��?��������";
+//STRIP001      Text[ polish ] = "Mysz nad obiektem";
+//STRIP001      Text[ japanese ] = "マウスをオブジェクト上に移動";
+//STRIP001      Text[ chinese_traditional ] = "鼠標在物件之�?";
+//STRIP001      Text[ arabic ] = "������ ��?������";
+//STRIP001      Text[ greek ] = "������?���� ��?����������?";
+//STRIP001      Text[ korean ] = "마우스를 개체 위에";
+//STRIP001      Text[ turkish ] = "Fare nesne �zerinde";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Ratol?sobre l'objecte";
+//STRIP001      Text[ finnish ] = "Hiiri objektin kohdalla";
+//STRIP001      Text[ thai ] = "เม้าส์บนวัตถุ";
+//STRIP001      Text[ czech ] = "Myš na objektu";
+//STRIP001      Text[ hebrew ] = "Maus über Objekt";
+//STRIP001      Text[ hindi ] = "मौ�?वस्त�?के ऊप�?";
+//STRIP001      Text[ slovak ] = "Myš na objekte";
+//STRIP001 };
+//STRIP001 String STR_EVENT_MOUSECLICK_OBJECT
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Hyperlink ausl�sen : Hyperlink ausl�sen */
+//STRIP001      TEXT = "Hyperlink ausl�sen" ;
+//STRIP001      TEXT [ English ] = "Trigger Hyperlink" ;
+//STRIP001      Text [ dutch ] = "Hyperlink uitvoeren" ;
+//STRIP001      Text [ english_us ] = "Trigger hyperlink" ;
+//STRIP001      Text [ italian ] = "Esegui hyperlink" ;
+//STRIP001      Text [ spanish ] = "Ejecutar hiperenlace" ;
+//STRIP001      Text [ french ] = "D�clencher l'hyperlien" ;
+//STRIP001      Text [ swedish ] = "Utf�r hyperl�nk" ;
+//STRIP001      Text [ danish ] = "Udf�r hyperlink" ;
+//STRIP001      Text [ portuguese ] = "Activar hiperliga��o" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Ativar hiperlink" ;
+//STRIP001      Text[ chinese_simplified ] = "执行超链�?";
+//STRIP001      Text[ russian ] = "������?�� ����������?";
+//STRIP001      Text[ polish ] = "Uaktywnij hiper��cze";
+//STRIP001      Text[ japanese ] = "ハイパーリンクの実行";
+//STRIP001      Text[ chinese_traditional ] = "執行超連結";
+//STRIP001      Text[ arabic ] = "����?������ ����?";
+//STRIP001      Text[ greek ] = "�������� ����-��������";
+//STRIP001      Text[ korean ] = "트리�?하이퍼링�?";
+//STRIP001      Text[ turkish ] = "Hiperlinki etkinle�tir";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Activa l'hiperenlla?";
+//STRIP001      Text[ finnish ] = "K�ynnist?hyperlinkki";
+//STRIP001      Text[ thai ] = "เชื่อมโยงหลายมิติแบบทริกเกอ�?";
+//STRIP001      Text[ czech ] = "Provést hyper. odkaz";
+//STRIP001      Text[ hebrew ] = "Hyperlink auslösen";
+//STRIP001      Text[ hindi ] = "ट्रिग्गर हाइपरलिं�?";
+//STRIP001      Text[ slovak ] = "Previesť hypertextový odkaz";
+//STRIP001 };
+//STRIP001 String STR_EVENT_MOUSEOUT_OBJECT
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Maus verl��t Objekt : Maus verl��t Objekt */
+//STRIP001      TEXT = "Maus verl�sst Objekt" ;
+//STRIP001      TEXT [ English ] = "Mouse leave Object" ;
+//STRIP001      Text [ dutch ] = "Muis verlaat object" ;
+//STRIP001      Text [ english_us ] = "Mouse leaves object" ;
+//STRIP001      Text [ swedish ] = "Mus l�mnar objekt" ;
+//STRIP001      Text [ danish ] = "Mus forlader objekt" ;
+//STRIP001      Text [ italian ] = "Mouse abbandona l'oggetto" ;
+//STRIP001      Text [ spanish ] = "El rat�n abandona el objeto" ;
+//STRIP001      Text [ french ] = "Souris quitte l'objet" ;
+//STRIP001      Text [ portuguese ] = "Rato abandona objecto" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Mouse abandona o objeto" ;
+//STRIP001      Text[ chinese_simplified ] = "鼠标离开对象";
+//STRIP001      Text[ russian ] = "���� �������� ������";
+//STRIP001      Text[ polish ] = "Mysz opuszcza obiekt";
+//STRIP001      Text[ japanese ] = "マウスをオブジェクト外に移動";
+//STRIP001      Text[ chinese_traditional ] = "鼠標離開物件";
+//STRIP001      Text[ arabic ] = "������ ������ �� ������";
+//STRIP001      Text[ greek ] = "������?������������?��?����������?";
+//STRIP001      Text[ korean ] = "마우스가 개체�?벗어�?";
+//STRIP001      Text[ turkish ] = "Fare nesneden ayr�l�yor";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "El ratol?deixa l'objecte";
+//STRIP001      Text[ finnish ] = "Hiiri poistuu objektista";
+//STRIP001      Text[ thai ] = "เม้าส์ออกจากวัตถุ";
+//STRIP001      Text[ czech ] = "Myš opouští objekt";
+//STRIP001      Text[ hebrew ] = "Maus verlässt Objekt";
+//STRIP001      Text[ hindi ] = "मौ�?वस्त�?से बाहर";
+//STRIP001      Text[ slovak ] = "Myš opúšťa objekt";
+//STRIP001 };
+//STRIP001 String STR_EVENT_IMAGE_LOAD
+//STRIP001 {
+//STRIP001      TEXT = "Grafik laden erfolgreich" ;
+//STRIP001      TEXT [ English ] = "Graphic load" ;
+//STRIP001      Text [ dutch ] = "Afbeelding met succes geladen" ;
+//STRIP001      Text [ english_us ] = "Graphics load successful" ;
+//STRIP001      Text [ swedish ] = "Laddning av grafik lyckades" ;
+//STRIP001      Text [ danish ] = "Indl�sning af grafik fuldf�rt" ;
+//STRIP001      Text [ italian ] = "Caricamento immagine riuscito" ;
+//STRIP001      Text [ spanish ] = "La carga de la imagen ha finalizado con �xito" ;
+//STRIP001      Text [ french ] = "Chargement de l'image termin?" ;
+//STRIP001      Text [ portuguese ] = "Carregar imagem conclu�do" ;
+//STRIP001      Text [ portuguese_brazilian ] = "A figura foi carregada com sucesso" ;
+//STRIP001      Text[ chinese_simplified ] = "装入图形成功";
+//STRIP001      Text[ russian ] = "������?��������?������?";
+//STRIP001      Text[ polish ] = "Pomy�lnie za�adowano grafik?";
+//STRIP001      Text[ japanese ] = "図の読み込み完了";
+//STRIP001      Text[ chinese_traditional ] = "載入圖形成功";
+//STRIP001      Text[ arabic ] = "����?������ ����?";
+//STRIP001      Text[ greek ] = "?������?��?�������� ������";
+//STRIP001      Text[ korean ] = "그림 로드�?성공적으�?완료 ";
+//STRIP001      Text[ turkish ] = "Grafik ba�ar�yla y�klendi";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Els gr�fics s'han carregat amb �xit";
+//STRIP001      Text[ finnish ] = "Kuvan lataus onnistunut";
+//STRIP001      Text[ thai ] = "โหลดกราฟิคสำเร็�?";
+//STRIP001      Text[ czech ] = "Obrázek byl úspěšně načten";
+//STRIP001      Text[ hebrew ] = "Grafik laden erfolgreich";
+//STRIP001      Text[ hindi ] = "सुचित्�?का लोड़ सफ�?हु�?";
+//STRIP001      Text[ slovak ] = "Obrázok bol úspešne načítaný";
+//STRIP001 };
+//STRIP001 String STR_EVENT_IMAGE_ABORT
+//STRIP001 {
+//STRIP001      TEXT = "Grafik laden abgebrochen" ;
+//STRIP001      TEXT [ English ] = "Graphic load abord" ;
+//STRIP001      Text [ dutch ] = "Laden van afbeelding gestopt" ;
+//STRIP001      Text [ english_us ] = "Graphics load terminated" ;
+//STRIP001      Text [ swedish ] = "Laddning av grafik avbr�ts" ;
+//STRIP001      Text [ danish ] = "Indl�sning af grafik afbrudt" ;
+//STRIP001      Text [ italian ] = "Caricamento immagine interrotto" ;
+//STRIP001      Text [ spanish ] = "Interrumpida la carga de la imagen" ;
+//STRIP001      Text [ french ] = "Chargement de l'image interrompu" ;
+//STRIP001      Text [ portuguese ] = "Carregar imagem cancelado" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Terminou a carga da figura" ;
+//STRIP001      Text[ chinese_simplified ] = "中断装入图形";
+//STRIP001      Text[ russian ] = "�������� ������?��������";
+//STRIP001      Text[ polish ] = "Przerwano �adowanie grafiki";
+//STRIP001      Text[ japanese ] = "図の読み込み中止";
+//STRIP001      Text[ chinese_traditional ] = "中斷載入圖形";
+//STRIP001      Text[ arabic ] = "������ ����?����?������";
+//STRIP001      Text[ greek ] = "������?�������� ��������";
+//STRIP001      Text[ korean ] = "그림 로드 중단�?";
+//STRIP001      Text[ turkish ] = "Grafik y�klemesi kesildi";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "S'ha interromput la c�rrega dels gr�fics";
+//STRIP001      Text[ finnish ] = "Kuvan lataus p��ttynyt";
+//STRIP001      Text[ thai ] = "โหลดกราฟิคถูกยกเลิ�?";
+//STRIP001      Text[ czech ] = "Načítání obrázku ukončeno";
+//STRIP001      Text[ hebrew ] = "Grafik laden abgebrochen";
+//STRIP001      Text[ hindi ] = "सुचित्�?का लोड़ समाप्त हु�?";
+//STRIP001      Text[ slovak ] = "Načítanie obrázku ukončené";
+//STRIP001 };
+//STRIP001 String STR_EVENT_IMAGE_ERROR
+//STRIP001 {
+//STRIP001      TEXT = "Grafik laden fehlerhaft" ;
+//STRIP001      TEXT [ English ] = "Graphic load error" ;
+//STRIP001      Text [ dutch ] = "Fout bij laden van afbeelding" ;
+//STRIP001      Text [ english_us ] = "Graphics load faulty" ;
+//STRIP001      Text [ swedish ] = "Fel vid laddning av grafik" ;
+//STRIP001      Text [ danish ] = "Indl�sning af grafik fejlagtig" ;
+//STRIP001      Text [ italian ] = "Caricamento immagine errato" ;
+//STRIP001      Text [ spanish ] = "Error al cargar la imagen" ;
+//STRIP001      Text [ french ] = "Erreur lors du chargement de l'image" ;
+//STRIP001      Text [ portuguese ] = "Erro ao carregar imagem" ;
+//STRIP001      Text [ portuguese_brazilian ] = "A figura foi carregada com erros" ;
+//STRIP001      Text[ chinese_simplified ] = "装入的图形不完整";
+//STRIP001      Text[ russian ] = "������ ��?�������� ������?";
+//STRIP001      Text[ polish ] = "B��d �adowania grafiki";
+//STRIP001      Text[ japanese ] = "図の読み込みエラ�?";
+//STRIP001      Text[ chinese_traditional ] = "載入圖形不完�?";
+//STRIP001      Text[ arabic ] = "��?�� ����?����?������";
+//STRIP001      Text[ greek ] = "������ ���� �� ������?��������";
+//STRIP001      Text[ korean ] = "그림 로드 오류";
+//STRIP001      Text[ turkish ] = "Grafik y�klemede hata";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Els gr�fics s'han carregat de manera defectuosa";
+//STRIP001      Text[ finnish ] = "Virhe kuvan latauksessa";
+//STRIP001      Text[ thai ] = "โหลดกราฟิคผิ�?";
+//STRIP001      Text[ czech ] = "Obrázek nebylo možné načíst";
+//STRIP001      Text[ hebrew ] = "Grafik laden fehlerhaft";
+//STRIP001      Text[ hindi ] = "दोषयुक्त सुचित्�?का लोड़";
+//STRIP001      Text[ slovak ] = "Obrázok nebolo možné načítať";
+//STRIP001 };
+//STRIP001 String STR_EVENT_FRM_KEYINPUT_A
+//STRIP001 {
+//STRIP001      TEXT = "Eingabe von Alphazeichen" ;
+//STRIP001      TEXT [ English ] = "Input of alpha chars" ;
+//STRIP001      Text [ portuguese ] = "Entrada de caracteres alfa" ;
+//STRIP001      Text [ english_us ] = "Input of alphanumeric characters" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Entrada de caracteres alfanum�ricos" ;
+//STRIP001      Text [ swedish ] = "Inmatning av alfatecken" ;
+//STRIP001      Text [ danish ] = "Input af alfategn" ;
+//STRIP001      Text [ italian ] = "Digitazione di caratteri alfa" ;
+//STRIP001      Text [ spanish ] = "Entrada de caracteres alfanum�ricos" ;
+//STRIP001      Text [ french ] = "Saisie de caract�res alphanum�riques" ;
+//STRIP001      Text [ dutch ] = "Invoer van alfanumerieke tekens" ;
+//STRIP001      Text[ chinese_simplified ] = "输入希腊语字母阿尔法";
+//STRIP001      Text[ russian ] = "���� ��?-����. ��������";
+//STRIP001      Text[ polish ] = "Wpisz znaki alfanumeryczne";
+//STRIP001      Text[ japanese ] = "アルファベット文字の入力";
+//STRIP001      Text[ chinese_traditional ] = "輸入希臘語第一個字�?";
+//STRIP001      Text[ arabic ] = "����?���� ����";
+//STRIP001      Text[ greek ] = "�������� ���������� ����";
+//STRIP001      Text[ korean ] = "알파�?문자 입력";
+//STRIP001      Text[ turkish ] = "Alfasay�sal karakter giri�i";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Entrada de car�cters alfanum�rics";
+//STRIP001      Text[ finnish ] = "Aakkosnumeeristen merkkien sy�tt?";
+//STRIP001      Text[ thai ] = "ใส่ตัวอักขระตัวเลขพยัญชน�?";
+//STRIP001      Text[ czech ] = "Vkládání alfanumerických znaků";
+//STRIP001      Text[ hebrew ] = "Eingabe von Alphazeichen";
+//STRIP001      Text[ hindi ] = "अल्फान्यूमरि�?अक्षरो�?की इनपुट्";
+//STRIP001      Text[ slovak ] = "Vkladanie alfanumerických znakov";
+//STRIP001 };
+//STRIP001 String STR_EVENT_FRM_KEYINPUT_NOA
+//STRIP001 {
+//STRIP001      TEXT = "Eingabe von Nicht-Alphazeichen" ;
+//STRIP001      TEXT [ English ] = "Input of non alpha chars" ;
+//STRIP001      Text [ portuguese ] = "Entrada de caracteres n�o-alfa." ;
+//STRIP001      Text [ english_us ] = "Input of non-alphanumeric characters" ;
+//STRIP001      Text [ swedish ] = "Inmatning av icke-alfatecken" ;
+//STRIP001      Text [ italian ] = "Digitazione di caratteri non alfanumerici" ;
+//STRIP001      Text [ spanish ] = "Entrada de caracteres no-alfanum�ricos" ;
+//STRIP001      Text [ french ] = "Saisie de caract�res non alphanum�riques" ;
+//STRIP001      Text [ dutch ] = "Invoer van niet-alfanumerieke tekens" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Entrada de caracteres n�o-alfanum�ricos" ;
+//STRIP001      Text [ danish ] = "Input af ikke-alfategn" ;
+//STRIP001      Text[ chinese_simplified ] = "输入的不是希腊语字母阿尔�?";
+//STRIP001      Text[ russian ] = "���� �� ��?-����. ��������";
+//STRIP001      Text[ polish ] = "Wpisz znaki niealfanumeryczne";
+//STRIP001      Text[ japanese ] = "アルファベットでない文字の入�?";
+//STRIP001      Text[ chinese_traditional ] = "輸入的不是希臘語第一個字�?";
+//STRIP001      Text[ arabic ] = "����?���� ��?����";
+//STRIP001      Text[ greek ] = "�������� ��-���� ����������";
+//STRIP001      Text[ korean ] = "알파벳이 아닌 문자 입력";
+//STRIP001      Text[ turkish ] = "Alfasay�sal olmayan karakter giri�i";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Entrada de car�cters no-alfanum�rics";
+//STRIP001      Text[ finnish ] = "Muiden kuin aakkosnumeeristen merkkien sy�tt?";
+//STRIP001      Text[ thai ] = "ใส่ตัวอักขระที่ไม่ใช่ตัวเลขพยัญชน�?";
+//STRIP001      Text[ czech ] = "Vkládání jiných než alfanumerických znaků";
+//STRIP001      Text[ hebrew ] = "Eingabe von Nicht-Alphazeichen";
+//STRIP001      Text[ hindi ] = "बिना-अल्फान्यूमरि�?अक्षरो�?की इनपुट्";
+//STRIP001      Text[ slovak ] = "Vkladanie iných ako alfanumerických znakov";
+//STRIP001 };
+//STRIP001 String STR_EVENT_FRM_RESIZE
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Rahmengr��e ver�ndern : Rahmengr��e ver�ndern */
+//STRIP001      TEXT = "Rahmengr��e ver�ndern" ;
+//STRIP001      TEXT [ English ] = "Resize Frane" ;
+//STRIP001      Text [ portuguese ] = "Redimensionar moldura" ;
+//STRIP001      Text [ english_us ] = "Resize frame" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Redimensionar moldura" ;
+//STRIP001      Text [ swedish ] = "�ndra ramstorlek" ;
+//STRIP001      Text [ danish ] = "Modificer rammest�rrelse" ;
+//STRIP001      Text [ italian ] = "Cambia dimensione cornice" ;
+//STRIP001      Text [ spanish ] = "Modificar el tama�o del marco" ;
+//STRIP001      Text [ french ] = "Modifier la taille du cadre" ;
+//STRIP001      Text [ dutch ] = "Kadergrootte wijzigen" ;
+//STRIP001      Text[ chinese_simplified ] = "更改框的大小";
+//STRIP001      Text[ russian ] = "�������� ������ ����?";
+//STRIP001      Text[ polish ] = "Zmie?rozmiar ramki";
+//STRIP001      Text[ japanese ] = "枠のサイズ変�?";
+//STRIP001      Text[ chinese_traditional ] = "變更框大�?";
+//STRIP001      Text[ arabic ] = "����?��?������";
+//STRIP001      Text[ greek ] = "������ �������� ��������";
+//STRIP001      Text[ korean ] = "프레�?크기 변�?";
+//STRIP001      Text[ turkish ] = "�er�eve boyutunu de�i�tir";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Canvia la mida del marc";
+//STRIP001      Text[ finnish ] = "Muuta kehyksen kokoa";
+//STRIP001      Text[ thai ] = "ปรับขนาดกรอบ";
+//STRIP001      Text[ czech ] = "Změnit velikost rámce";
+//STRIP001      Text[ hebrew ] = "Rahmengröße verändern";
+//STRIP001      Text[ hindi ] = "फ्रे�?को पुनःपरिमाण दो";
+//STRIP001      Text[ slovak ] = "Zmeniť veľkosť rámca";
+//STRIP001 };
+//STRIP001 String STR_EVENT_FRM_MOVE
+//STRIP001 {
+//STRIP001      TEXT = "Rahmen verschieben" ;
+//STRIP001      TEXT [ English ] = "Move Frame" ;
+//STRIP001      Text [ portuguese ] = "Mover moldura" ;
+//STRIP001      Text [ english_us ] = "Move frame" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Mover moldura" ;
+//STRIP001      Text [ swedish ] = "Flytta ram" ;
+//STRIP001      Text [ danish ] = "Flyt ramme" ;
+//STRIP001      Text [ italian ] = "Sposta cornice" ;
+//STRIP001      Text [ spanish ] = "Desplazar marco" ;
+//STRIP001      Text [ french ] = "D�placer le cadre" ;
+//STRIP001      Text [ dutch ] = "Kader verplaatsen" ;
+//STRIP001      Text[ chinese_simplified ] = "移动�?";
+//STRIP001      Text[ russian ] = "����������?����?";
+//STRIP001      Text[ polish ] = "Przenie?ramk?";
+//STRIP001      Text[ japanese ] = "枠の移動";
+//STRIP001      Text[ chinese_traditional ] = "移動�?";
+//STRIP001      Text[ arabic ] = "����?������";
+//STRIP001      Text[ greek ] = "���������� ��������";
+//STRIP001      Text[ korean ] = "프레�?이동";
+//STRIP001      Text[ turkish ] = "�er�eveyi ta��";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Mou el marc";
+//STRIP001      Text[ finnish ] = "Siirr?kehyst?";
+//STRIP001      Text[ thai ] = "ย้ายกรอบ";
+//STRIP001      Text[ czech ] = "Přesunout rámec";
+//STRIP001      Text[ hebrew ] = "Rahmen verschieben";
+//STRIP001      Text[ hindi ] = "फ्रे�?का स्था�?परिवर्तन कर�?";
+//STRIP001      Text[ slovak ] = "Presunúť rámec";
+//STRIP001 };
+
 String STR_CONTENT_TYPE_OUTLINE
 {
     /* ### ACHTUNG: Neuer Text in Resource? �berschriften : �berschriften */
@@ -1841,146 +1868,156 @@ String STR_DEFINE_NUMBERFORMAT
     Text[ ar ] = "...تنسيقات إضافية";
     Text[ he ] = "Weitere Formate...";
 };
-String RID_STR_SYSTEM
-{
-    Text [ de ] = "[System]" ;
-    Text [ en-US ] = "[System]";
-    Text[ pt ] = "[Sistema]";
-    Text[ ru ] = "[Система]";
-    Text[ el ] = "[Σύστημα]";
-    Text[ nl ] = "[Systeem]";
-    Text[ fr ] = "[Système]";
-    Text[ es ] = "[Sistema]";
-    Text[ fi ] = "[Järjestelmä]";
-    Text[ ca ] = "[Sistema]";
-    Text[ it ] = "[Sistema]";
-    Text[ sk ] = "[Systém]";
-    Text[ da ] = "[System]";
-    Text[ sv ] = "[System]";
-    Text[ pl ] = "[System]";
-    Text[ pt-BR ] = "[Sistema]";
-    Text[ th ] = "[ระบบ]";
-    Text[ ja ] = "[システム]";
-    Text[ ko ] = "[시스템]";
-    Text[ zh-CN ] = "[系统]";
-    Text[ zh-TW ] = "[系統]";
-    Text[ tr ] = "[Sistem]";
-    Text[ hi-IN ] = "[सिस्टम]";
-    Text[ ar ] = "[نظام]";
-    Text[ he ] = "[System]";
-};
-String STR_MULT_INTERACT_SPELL_WARN
-{
-    Text [ de ] = "Die Interaktive Rechschreibpr�fung ist\nbereits in anderem Dokument aktiv" ;
-    Text [ en-US ] = "The interactive spellcheck is already active\\in a different document";
-    Text[ pt ] = "A verificação ortográfica interactiva já está\nactiva noutro documento";
-    Text[ ru ] = "Интерактивная проверка орфографии\nуже включена в другом документе";
-    Text[ el ] = "Το αναδραστικό πρόγραμμα ορθογραφικού ελέγχου\nχρησιμοποιείται από κάποιο άλλο έγγραφο";
-    Text[ nl ] = "De interactieve spellingcontrole is\nreeds actief in een ander document.";
-    Text[ fr ] = "La vérification orthographique interactive est\nen cours d'utilisation dans un autre document.";
-    Text[ es ] = "La corrección ortográfica interactiva\nya está activada en otro documento";
-    Text[ fi ] = "Vuorovaikutteinen oikeinkirjoituksen tarkistus on jo käytössä toisessa asiakirjassa";
-    Text[ ca ] = "La verificació ortogràfica interactiva ja és activa\\en un altre document";
-    Text[ it ] = "Il controllo ortografico interattivo è\ngià stato attivato in un altro documento.";
-    Text[ sk ] = "Interaktívna kontrola pravopisu je už spustená v inom dokumente";
-    Text[ da ] = "Den interaktive stavekontrol er\nallerede aktiv i et andet dokument";
-    Text[ sv ] = "Den interaktiva rättstavningskontrollen\när redan aktiv i ett annat dokument";
-    Text[ pl ] = "Interaktywne sprawdzanie pisowni\njest już uaktywnione w innym dokumencie.";
-    Text[ pt-BR ] = "A verificação ortográfica interativa já está\n ativa em outro documento";
-    Text[ th ] = "การตรวจสอบการสะกดแบบโต้ตอบถูกใช้งานอยู่แล้ว\\ในเอกสารอื่น";
-    Text[ ja ] = "インタラクティブスペルチェックはすでに\nほかのドキュメントでアクティブになっています";
-    Text[ ko ] = "대화형 맞춤법 검사가 \n이미 다른 문서에서 활성화되어 있습니다.";
-    Text[ zh-CN ] = "交互式拼写检查功能已经作在另一个文档中";
-    Text[ zh-TW ] = "另一個文件已經使用互動式拼寫功能";
-    Text[ tr ] = "Etkileşimli yazım denetimi\nşu an başka bir belgede etkin";
-    Text[ hi-IN ] = "इन्टराक्टिव अक्षर की जाँच पहिले से ही\\अलग लेखपत्र में क्रियाशील है";
-    Text[ ar ] = "التدقيق الإملائي التبادلي\nنشط بالفعل في مستند آخر";
-    Text[ he ] = "Die Interaktive Rechschreibprüfung ist\nbereits in anderem Dokument aktiv";
-};
-String STR_MULT_INTERACT_HYPH_WARN
-{
-    Text [ de ] = "Die Interaktive Silbentrennung ist\nbereits in anderem Dokument aktiv" ;
-    Text [ en-US ] = "The interactive hyphenation is already active\\in a different document";
-    Text[ pt ] = "A divisão silábica interactiva já está\nactiva noutro documento";
-    Text[ ru ] = "Интерактивная расстановка переносов\nуже включена в другом документе";
-    Text[ el ] = "Το διαλογικό πρόγραμμα συλλαβισμού\nχρησιμοποιείται από κάποιο άλλο έγγραφο";
-    Text[ nl ] = "De interactieve woordafbreking is\nreeds actief in een ander document";
-    Text[ fr ] = "La coupure interactive des mots est\nen cours d'utilisation dans un autre document.";
-    Text[ es ] = "La separación silábica interactiva\nya está activa en otro documento";
-    Text[ fi ] = "Vuorovaikutteinen tavutus on jo käytössä toisessa asiakirjassa";
-    Text[ ca ] = "La partició de mots interactiva ja és activa\\en un altre document";
-    Text[ it ] = "La sillabazione  interattiva è\ngià stata attivata in un altro documento.";
-    Text[ sk ] = "Interaktívne delenie slov je už spustené v inom dokumente";
-    Text[ da ] = "Den interaktive orddeling er\nallerede aktiv i et andet dokument";
-    Text[ sv ] = "Den interaktiva avstavningen är\nredan aktiv i ett annat dokument";
-    Text[ pl ] = "Interaktywne dzielenie wyrazów na sylaby\njest już uaktywnione w innym dokumencie.";
-    Text[ pt-BR ] = "A divisão silábica interativa já está\n ativa em outro documento";
-    Text[ th ] = "การใช้ยัติภังค์แบบโต้ตอบถูกใช้งานอยู่แล้ว\\ในเอกสารอื่น";
-    Text[ ja ] = "インタラクティブハイフネーションはすでに\nほかのドキュメントでアクティブになっています";
-    Text[ ko ] = "대화형 하이픈 넣기가 \n이미 다른 문서에서 활성화되어 있습니다.";
-    Text[ zh-CN ] = "交互式连字符\n已经使用在一个其它文档中";
-    Text[ zh-TW ] = "另一個文件已經使用互動式連字符功能";
-    Text[ tr ] = "Etkileşimli heceleme\nşu an başka bir belgede etkin";
-    Text[ hi-IN ] = "इन्टराक्टिव हाइफनेशन पहिले से ही\\अलग लेखपत्र में क्रियाशील है";
-    Text[ ar ] = "فصل المقاطع التبادلي\nنشط بالفعل في مستند آخر";
-    Text[ he ] = "Die Interaktive Silbentrennung ist\nbereits in anderem Dokument aktiv";
-};
-String STR_SPELL_TITLE
-{
-    Text [ de ] = "Rechtschreibpr�fung" ;
-    Text [ en-US ] = "Spellcheck";
-    Text[ pt ] = "Ortografia";
-    Text[ ru ] = "Проверка орфографии";
-    Text[ el ] = "Ορθογραφικός έλεγχος";
-    Text[ nl ] = "Spellingcontrole";
-    Text[ fr ] = "Vérification orthographique";
-    Text[ es ] = "Corrección ortográfica";
-    Text[ fi ] = "Oikeinkirjoituksen tarkistus";
-    Text[ ca ] = "Verificació ortogràfica";
-    Text[ it ] = "Controllo ortografico";
-    Text[ sk ] = "Kontrola pravopisu";
-    Text[ da ] = "Stavekontrol";
-    Text[ sv ] = "Rättstavningskontroll";
-    Text[ pl ] = "Sprawdzanie pisowni";
-    Text[ pt-BR ] = "Verificação Ortográfica";
-    Text[ th ] = "ตรวจสอบการสะกด";
-    Text[ ja ] = "スペルチェック";
-    Text[ ko ] = "맞춤법 검사";
-    Text[ zh-CN ] = "拼写检查";
-    Text[ zh-TW ] = "拼寫檢查";
-    Text[ tr ] = "Yazım denetimi";
-    Text[ hi-IN ] = "अक्षर की जाँच";
-    Text[ ar ] = "التدقيق الإملائي";
-    Text[ he ] = "‮בדיקת איות‬";
-};
-String STR_HYPH_TITLE
-{
-    Text [ de ] = "Silbentrennung" ;
-    Text [ en-US ] = "Hyphenation";
-    Text[ pt ] = "Divisão silábica";
-    Text[ ru ] = "Расстановка переносов";
-    Text[ el ] = "Συλλαβισμός";
-    Text[ nl ] = "Woordafbreking";
-    Text[ fr ] = "Coupure des mots";
-    Text[ es ] = "Separación silábica";
-    Text[ fi ] = "Tavutus";
-    Text[ ca ] = "Partició de mots";
-    Text[ it ] = "Sillabazione";
-    Text[ sk ] = "Delenie slov";
-    Text[ da ] = "Orddeling";
-    Text[ sv ] = "Avstavning";
-    Text[ pl ] = "Dzielenie wyrazów";
-    Text[ pt-BR ] = "Divisão Silábica";
-    Text[ th ] = "ใช้ยัติภังค์";
-    Text[ ja ] = "ハイフネーション";
-    Text[ ko ] = "하이픈 넣기";
-    Text[ zh-CN ] = "连字符";
-    Text[ zh-TW ] = "連字符";
-    Text[ tr ] = "Heceleme";
-    Text[ hi-IN ] = "हाइफनेशन";
-    Text[ ar ] = "فصل المقاطع";
-    Text[ he ] = "‮שבירת מלים‬";
-};
+//STRIP001 String RID_STR_SYSTEM
+//STRIP001 {
+//STRIP001      Text = "[System]" ;
+//STRIP001      Text [ ENGLISH ] = " [System]" ;
+//STRIP001      Text[ english_us ] = "[System]";
+//STRIP001      Text[ portuguese ] = "[Sistema]";
+//STRIP001      Text[ russian ] = "[�������]";
+//STRIP001      Text[ greek ] = "[�������]";
+//STRIP001      Text[ dutch ] = "[Systeem]";
+//STRIP001      Text[ french ] = "[Syst�me]";
+//STRIP001      Text[ spanish ] = "[Sistema]";
+//STRIP001      Text[ italian ] = "[Sistema]";
+//STRIP001      Text[ danish ] = "[System]";
+//STRIP001      Text[ swedish ] = "[System]";
+//STRIP001      Text[ polish ] = "[System]";
+//STRIP001      Text[ portuguese_brazilian ] = "[Sistema]";
+//STRIP001      Text[ japanese ] = "[システム]";
+//STRIP001      Text[ korean ] = "[시스템]";
+//STRIP001      Text[ chinese_simplified ] = "[系统]";
+//STRIP001      Text[ chinese_traditional ] = "[系統]";
+//STRIP001      Text[ arabic ] = "[����]";
+//STRIP001      Text[ turkish ] = "[Sistem]";
+//STRIP001      Text[ catalan ] = "[Sistema]";
+//STRIP001      Text[ finnish ] = "[J�rjestelm�]";
+//STRIP001      Text[ thai ] = "[ระบบ]";
+//STRIP001      Text[ czech ] = "[Systém]";
+//STRIP001      Text[ hebrew ] = "[System]";
+//STRIP001      Text[ hindi ] = "[सिस्टम]";
+//STRIP001      Text[ slovak ] = "[Systém]";
+//STRIP001 };
+//STRIP001 String STR_MULT_INTERACT_SPELL_WARN
+//STRIP001 {
+//STRIP001      Text = "Die Interaktive Rechschreibpr�fung ist\nbereits in anderem Dokument aktiv" ;
+//STRIP001      Text [ ENGLISH ] = "The interactive spelling already active\in a different document" ;
+//STRIP001      Text[ english_us ] = "The interactive spellcheck is already active\\in a different document";
+//STRIP001      Text[ portuguese ] = "A verifica��o ortogr�fica interactiva j?est�\nactiva noutro documento";
+//STRIP001      Text[ russian ] = "������������� �������� ����������\n��?�������� ?������ ��������?";
+//STRIP001      Text[ greek ] = "�� ����������?��������?������������ �������\n��������������?��?������ ���� ������?";
+//STRIP001      Text[ dutch ] = "De interactieve spellingcontrole is\nreeds actief in een ander document.";
+//STRIP001      Text[ french ] = "La v�rification orthographique interactive est\nen cours d'utilisation dans un autre document.";
+//STRIP001      Text[ spanish ] = "La correcci�n ortogr�fica interactiva\nya est?activada en otro documento";
+//STRIP001      Text[ italian ] = "Il controllo ortografico interattivo �\ngi?stato attivato in un altro documento.";
+//STRIP001      Text[ danish ] = "Den interaktive stavekontrol er\nallerede aktiv i et andet dokument";
+//STRIP001      Text[ swedish ] = "Den interaktiva r�ttstavningskontrollen\n�r redan aktiv i ett annat dokument";
+//STRIP001      Text[ polish ] = "Interaktywne sprawdzanie pisowni\njest ju?uaktywnione w innym dokumencie.";
+//STRIP001      Text[ portuguese_brazilian ] = "A verifica��o ortogr�fica interativa j?est�\n ativa em outro documento";
+//STRIP001      Text[ japanese ] = "インタラクティブスペルチェックはすでに\nほかのドキュメントでアクティブになっています";
+//STRIP001      Text[ korean ] = "대화형 맞춤�?검사가 \n이미 다른 문서에서 활성화되�?있습니다.";
+//STRIP001      Text[ chinese_simplified ] = "交互式拼写检查功能已经作在另一个文档中";
+//STRIP001      Text[ chinese_traditional ] = "另一個文件已經使用互動式拼寫功能";
+//STRIP001      Text[ arabic ] = "������?�������� ��������\n��?������ �� ����?��?";
+//STRIP001      Text[ turkish ] = "Etkile�imli yaz�m denetimi\n�u an ba�ka bir belgede etkin";
+//STRIP001      Text[ catalan ] = "La verificaci?ortogr�fica interactiva ja �s activa\\en un altre document";
+//STRIP001      Text[ finnish ] = "Vuorovaikutteinen oikeinkirjoituksen tarkistus on jo k�yt�ss?toisessa asiakirjassa";
+//STRIP001      Text[ thai ] = "การตรวจสอบการสะกดแบบโต้ตอบถูกใช้งานอยู่แล้ว\\ในเอกสารอื่�?";
+//STRIP001      Text[ czech ] = "Interaktivní kontrola pravopisu již je spuštěna v jiném dokumentu";
+//STRIP001      Text[ hebrew ] = "Die Interaktive Rechschreibprüfung ist\nbereits in anderem Dokument aktiv";
+//STRIP001      Text[ hindi ] = "इन्टराक्टि�?अक्ष�?की जाँच पहिल�?से ही\\अल�?लेखपत्�?मे�?क्रियाशी�?है";
+//STRIP001      Text[ slovak ] = "Interaktívna kontrola pravopisu je už spustená v inom dokumente";
+//STRIP001 };
+//STRIP001 String STR_MULT_INTERACT_HYPH_WARN
+//STRIP001 {
+//STRIP001      Text = "Die Interaktive Silbentrennung ist\nbereits in anderem Dokument aktiv" ;
+//STRIP001      Text [ ENGLISH ] = "The interactive hyphenation already active\in a different document" ;
+//STRIP001      Text[ english_us ] = "The interactive hyphenation is already active\\in a different document";
+//STRIP001      Text[ portuguese ] = "A divis�o sil�bica interactiva j?est�\nactiva noutro documento";
+//STRIP001      Text[ russian ] = "������������� ����������?���������\n��?�������� ?������ ��������?";
+//STRIP001      Text[ greek ] = "�� ��������?��������?�����������\n��������������?��?������ ���� ������?";
+//STRIP001      Text[ dutch ] = "De interactieve woordafbreking is\nreeds actief in een ander document";
+//STRIP001      Text[ french ] = "La coupure interactive des mots est\nen cours d'utilisation dans un autre document.";
+//STRIP001      Text[ spanish ] = "La separaci�n sil�bica interactiva\nya est?activa en otro documento";
+//STRIP001      Text[ italian ] = "La sillabazione  interattiva �\ngi?stata attivata in un altro documento.";
+//STRIP001      Text[ danish ] = "Den interaktive orddeling er\nallerede aktiv i et andet dokument";
+//STRIP001      Text[ swedish ] = "Den interaktiva avstavningen �r\nredan aktiv i ett annat dokument";
+//STRIP001      Text[ polish ] = "Interaktywne dzielenie wyraz�w na sylaby\njest ju?uaktywnione w innym dokumencie.";
+//STRIP001      Text[ portuguese_brazilian ] = "A divis�o sil�bica interativa j?est�\n ativa em outro documento";
+//STRIP001      Text[ japanese ] = "インタラクティブハイフネーションはすでに\nほかのドキュメントでアクティブになっています";
+//STRIP001      Text[ korean ] = "대화형 하이�?넣기가 \n이미 다른 문서에서 활성화되�?있습니다.";
+//STRIP001      Text[ chinese_simplified ] = "交互式连字符\n已经使用在一个其它文档中";
+//STRIP001      Text[ chinese_traditional ] = "另一個文件已經使用互動式連字符功�?";
+//STRIP001      Text[ arabic ] = "��?������?��������\n��?������ �� ����?��?";
+//STRIP001      Text[ turkish ] = "Etkile�imli heceleme\n�u an ba�ka bir belgede etkin";
+//STRIP001      Text[ catalan ] = "La partici?de mots interactiva ja �s activa\\en un altre document";
+//STRIP001      Text[ finnish ] = "Vuorovaikutteinen tavutus on jo k�yt�ss?toisessa asiakirjassa";
+//STRIP001      Text[ thai ] = "การใช้ยัติภังค์แบบโต้ตอบถูกใช้งานอยู่แล้ว\\ในเอกสารอื่�?";
+//STRIP001      Text[ czech ] = "Interaktivní dělení slov již je spuštěno v jiném dokumentu";
+//STRIP001      Text[ hebrew ] = "Die Interaktive Silbentrennung ist\nbereits in anderem Dokument aktiv";
+//STRIP001      Text[ hindi ] = "इन्टराक्टि�?हाइफनेशन पहिल�?से ही\\अल�?लेखपत्�?मे�?क्रियाशी�?है";
+//STRIP001      Text[ slovak ] = "Interaktívne delenie slov je už spustené v inom dokumente";
+//STRIP001 };
+//STRIP001 String STR_SPELL_TITLE
+//STRIP001 {
+//STRIP001      Text = "Rechtschreibpr�fung" ;
+//STRIP001      Text [ ENGLISH ] = "Spelling" ;
+//STRIP001      Text[ english_us ] = "Spellcheck";
+//STRIP001      Text[ portuguese ] = "Ortografia";
+//STRIP001      Text[ russian ] = "�������� ����������";
+//STRIP001      Text[ greek ] = "������������ ������?";
+//STRIP001      Text[ dutch ] = "Spellingcontrole";
+//STRIP001      Text[ french ] = "V�rification orthographique";
+//STRIP001      Text[ spanish ] = "Correcci�n ortogr�fica";
+//STRIP001      Text[ italian ] = "Controllo ortografico";
+//STRIP001      Text[ danish ] = "Stavekontrol";
+//STRIP001      Text[ swedish ] = "R�ttstavningskontroll";
+//STRIP001      Text[ polish ] = "Sprawdzanie pisowni";
+//STRIP001      Text[ portuguese_brazilian ] = "Verifica��o Ortogr�fica";
+//STRIP001      Text[ japanese ] = "スペルチェッ�?";
+//STRIP001      Text[ korean ] = "맞춤�?검�?";
+//STRIP001      Text[ chinese_simplified ] = "拼写检�?";
+//STRIP001      Text[ chinese_traditional ] = "拼寫檢查";
+//STRIP001      Text[ arabic ] = "������?��������";
+//STRIP001      Text[ turkish ] = "Yaz�m denetimi";
+//STRIP001      Text[ catalan ] = "Verificaci?ortogr�fica";
+//STRIP001      Text[ finnish ] = "Oikeinkirjoituksen tarkistus";
+//STRIP001      Text[ thai ] = "ตรวจสอบการสะกด";
+//STRIP001      Text[ czech ] = "Kontrola pravopisu";
+//STRIP001      Text[ hebrew ] = "‮בדיק�?איות�?";
+//STRIP001      Text[ hindi ] = "अक्ष�?की जाँच";
+//STRIP001      Text[ slovak ] = "Kontrola pravopisu";
+//STRIP001 };
+//STRIP001 String STR_HYPH_TITLE
+//STRIP001 {
+//STRIP001      Text = "Silbentrennung" ;
+//STRIP001      Text [ ENGLISH ] = "Hyphenation" ;
+//STRIP001      Text[ english_us ] = "Hyphenation";
+//STRIP001      Text[ portuguese ] = "Divis�o sil�bica";
+//STRIP001      Text[ russian ] = "����������?��������?";
+//STRIP001      Text[ greek ] = "����������?";
+//STRIP001      Text[ dutch ] = "Woordafbreking";
+//STRIP001      Text[ french ] = "Coupure des mots";
+//STRIP001      Text[ spanish ] = "Separaci�n sil�bica";
+//STRIP001      Text[ italian ] = "Sillabazione";
+//STRIP001      Text[ danish ] = "Orddeling";
+//STRIP001      Text[ swedish ] = "Avstavning";
+//STRIP001      Text[ polish ] = "Dzielenie wyraz�w";
+//STRIP001      Text[ portuguese_brazilian ] = "Divis�o Sil�bica";
+//STRIP001      Text[ japanese ] = "ハイフネーション";
+//STRIP001      Text[ korean ] = "하이�?넣기";
+//STRIP001      Text[ chinese_simplified ] = "连字�?";
+//STRIP001      Text[ chinese_traditional ] = "連字�?";
+//STRIP001      Text[ arabic ] = "��?������?";
+//STRIP001      Text[ turkish ] = "Heceleme";
+//STRIP001      Text[ catalan ] = "Partici?de mots";
+//STRIP001      Text[ finnish ] = "Tavutus";
+//STRIP001      Text[ thai ] = "ใช้ยัติภังค์";
+//STRIP001      Text[ czech ] = "Dělení slov";
+//STRIP001      Text[ hebrew ] = "‮שביר�?מלים�?";
+//STRIP001      Text[ hindi ] = "हाइफनेशन";
+//STRIP001      Text[ slovak ] = "Delenie slov";
+//STRIP001 };
 
 #define IMGLIST_IDS\
     IdList = \
@@ -2042,6 +2079,7 @@ String STR_HYPH_TITLE
 //STRIP001  };
 //STRIP001     MaskColor = IMAGE_MASK_COLOR ;
 //STRIP001 };
+
 String STR_HYPERCTRL_SEL
 {
     Text [ de ] = "SEL" ;
@@ -2070,6 +2108,7 @@ String STR_HYPERCTRL_SEL
     Text[ ar ] = "SEL";
     Text[ he ] = "SEL";
 };
+
 String STR_HYPERCTRL_HYP
 {
     Text [ de ] = "HYP" ;
@@ -2098,97 +2137,3 @@ String STR_HYPERCTRL_HYP
     Text[ ar ] = "HYP";
     Text[ he ] = "HYP";
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
