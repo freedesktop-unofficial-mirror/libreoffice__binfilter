@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:35 $
+ *  last change: $Author: aw $ $Date: 2003-10-16 17:12:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -146,6 +146,37 @@ void SAL_CALL SvxOle2Shape::setPropertyValue( const OUString& aPropertyName, con
             // init a ole object with a global name
             if( pObj )
             {
+                // to force creation of the corresponding stripped OLE, translate
+                // wanted CLSID to BF_* CLSID.
+                if(0L == aCLSID.compareTo(SvGlobalName(SO3_SW_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SW_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SWWEB_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SWWEB_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SC_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SC_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SDRAW_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SDRAW_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SIMPRESS_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SIMPRESS_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SCH_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SCH_CLASSID).GetHexName();
+                }
+                else if(0L == aCLSID.compareTo(SvGlobalName(SO3_SM_CLASSID).GetHexName()))
+                {
+                    aCLSID = SvGlobalName(BF_SO3_SM_CLASSID).GetHexName();
+                }
+
                 SvGlobalName aClassName;
                 if( aClassName.MakeId( aCLSID ) )
                 {

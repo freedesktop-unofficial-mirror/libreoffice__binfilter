@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:19 $
+ *  last change: $Author: aw $ $Date: 2003-10-16 17:12:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -253,6 +253,12 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/   }
 /*N*/   else if ( nFileFormat == SOFFICE_FILEFORMAT_60 )
 /*N*/   {
+            // for binfilter, we need the FormatIDs to be set. Not setting them
+            // has always been an error (!)
+             *pClassName        = SvGlobalName( BF_SO3_SC_CLASSID_60 );
+            *pFormat        = SOT_FORMATSTR_ID_STARCALC_60;
+             *pAppName      = String( ScResId( SCSTR_APPLICATION ) );
+
 /*N*/       *pFullTypeName  = String( ScResId( SCSTR_LONG_SCDOC_NAME ) );
 /*N*/       *pShortTypeName = String( ScResId( SCSTR_SHORT_SCDOC_NAME ) );
 /*N*/   }

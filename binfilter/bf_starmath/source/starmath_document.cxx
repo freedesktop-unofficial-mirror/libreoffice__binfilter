@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:19:19 $
+ *  last change: $Author: aw $ $Date: 2003-10-16 17:12:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2072,6 +2072,12 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   {
 /*N*/       *pFullTypeName  = String(SmResId(STR_MATH_DOCUMENT_FULLTYPE_60));
 /*N*/       *pShortTypeName = String(SmResId(RID_DOCUMENTSTR));
+
+            // for binfilter, we need the FormatIDs to be set. Not setting them
+            // has always been an error (!)
+             *pClassName    = SvGlobalName(BF_SO3_SM_CLASSID_60);
+             *pFormat       = SOT_FORMATSTR_ID_STARMATH_60;
+
 /*N*/   }
 /*N*/ }
 

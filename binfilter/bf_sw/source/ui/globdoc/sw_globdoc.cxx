@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_globdoc.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:03 $
+ *  last change: $Author: aw $ $Date: 2003-10-16 17:12:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -121,6 +121,12 @@
 /*N*/   else if (nVersion == SOFFICE_FILEFORMAT_60)
 /*N*/   {
 /*N*/       *pLongUserName = SW_RESSTR(STR_WRITER_GLOBALDOC_FULLTYPE);
+
+            // for binfilter, we need the FormatIDs to be set. Not setting them
+            // has always been an error (!)
+            *pClassName = SvGlobalName( BF_SO3_SWGLOB_CLASSID_60 );
+            *pClipFormat = SOT_FORMATSTR_ID_STARWRITERGLOB_60;
+
 /*N*/   }
 /*N*/
 /*N*/   *pUserName = SW_RESSTR(STR_HUMAN_SWGLOBDOC_NAME);
