@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmsearch.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:14:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,9 +97,9 @@
 #include <tools/link.hxx>
 #endif
 
-#ifndef _SFXCFGITEM_HXX //autogen
-#include <bf_sfx2/cfgitem.hxx>
-#endif
+// auto strip #ifndef _SFXCFGITEM_HXX //autogen
+// auto strip #include <bf_sfx2/cfgitem.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
@@ -107,9 +107,9 @@
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
 namespace binfilter {
 
