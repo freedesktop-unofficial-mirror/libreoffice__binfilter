@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLStarBasicContextFactory.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:17:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:52:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _XMLOFF_XMLSTARBASICCONTEXTFACTORY_HXX
 #define _XMLOFF_XMLSTARBASICCONTEXTFACTORY_HXX
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
