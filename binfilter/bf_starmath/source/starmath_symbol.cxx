@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_symbol.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:14:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,34 +61,34 @@
 
 #pragma hdrstop
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENT_HXX
-#include <ucbhelper/content.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _UCBHELPER_CONTENT_HXX
+// auto strip #include <ucbhelper/content.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _SV_RESARY_HXX
-#include <tools/resary.hxx>
-#endif
+// auto strip #ifndef _SV_RESARY_HXX
+// auto strip #include <tools/resary.hxx>
+// auto strip #endif
 
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
 
-#include "symbol.hxx"
-#include "view.hxx"
-#include "utility.hxx"
-#include "dialog.hxx"
+// auto strip #include "symbol.hxx"
+// auto strip #include "view.hxx"
+// auto strip #include "utility.hxx"
+// auto strip #include "dialog.hxx"
 #include "config.hxx"
-#include "cfgitem.hxx"
-#include "smmod.hxx"
+// auto strip #include "cfgitem.hxx"
+// auto strip #include "smmod.hxx"
 #include "starmath.hrc"
 namespace binfilter {
 
