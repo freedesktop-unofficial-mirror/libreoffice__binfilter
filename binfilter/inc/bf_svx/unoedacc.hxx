@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoedacc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:33:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,21 +68,21 @@
 #include <tools/gen.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
-#include <com/sun/star/accessibility/XAccessible.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
+// auto strip #include <com/sun/star/accessibility/XAccessible.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HPP_
-#include <com/sun/star/accessibility/XAccessibleContext.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HPP_
+// auto strip #include <com/sun/star/accessibility/XAccessibleContext.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECOMPONENT_HPP_
 #include <com/sun/star/accessibility/XAccessibleComponent.hpp>
