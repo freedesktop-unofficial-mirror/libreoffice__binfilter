@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyle.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:34:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,14 +61,14 @@
 
 #pragma hdrstop
 
-#ifndef _SC_XMLSTYLE_HXX
-#include "xmlstyle.hxx"
-#endif
+// auto strip #ifndef _SC_XMLSTYLE_HXX
+// auto strip #include "xmlstyle.hxx"
+// auto strip #endif
 #include "xmlexprt.hxx"
 #include "xmlimprt.hxx"
 
 /*#ifndef _PROPIMP0_HXX
-#include "propimp0.hxx"
+// auto strip #include "propimp0.hxx"
 #endif*/
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
@@ -76,21 +76,21 @@
 
 #include <bf_xmloff/xmlnmspe.hxx>
 #include <bf_xmloff/xmluconv.hxx>
-#include <bf_xmloff/xmltypes.hxx>
-#include <bf_xmloff/families.hxx>
+// auto strip #include <bf_xmloff/xmltypes.hxx>
+// auto strip #include <bf_xmloff/families.hxx>
 
-#ifndef _XMLOFF_XMLNUMFE_HXX
-#include <bf_xmloff/xmlnumfe.hxx>
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
-#include <bf_xmloff/xmlnumfi.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include <bf_xmloff/attrlist.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
+// auto strip #include <bf_xmloff/xmlnumfe.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLNUMFI_HXX
+// auto strip #include <bf_xmloff/xmlnumfi.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include <bf_xmloff/nmspmap.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include <bf_xmloff/attrlist.hxx>
+// auto strip #endif
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
@@ -126,7 +126,7 @@
 #include <comphelper/extract.hxx>
 #endif
 
-#include <rtl/ustrbuf.hxx>
+// auto strip #include <rtl/ustrbuf.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
