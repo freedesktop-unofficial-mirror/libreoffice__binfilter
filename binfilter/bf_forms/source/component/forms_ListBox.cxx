@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-09-08 13:48:42 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:38:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -614,7 +614,7 @@ void SAL_CALL OListBoxModel::read(const Reference<stario::XObjectInputStream>& _
     if (nVersion > 2)
         readHelpTextCompatibly(_rxInStream);
 
-    // Stringliste muß gelehrt werden, wenn nicht ueber WerteListe gefuellt wird
+    // Stringliste muss gelehrt werden, wenn nicht ueber WerteListe gefuellt wird
     // dieses kann der Fall sein wenn im alive modus gespeichert wird
     if (m_eListSourceType != ListSourceType_VALUELIST && m_xAggregateSet.is())
     {
@@ -902,7 +902,7 @@ void OListBoxModel::loadData()
                     xColumns->getByIndex(nBoundColumn) >>= xBoundField;
                 m_bBoundComponent = xBoundField.is();
 
-                //  Ist die LB an ein Feld gebunden und sind Leereinträge zulaessig
+                //  Ist die LB an ein Feld gebunden und sind Leereintraege zulaessig
                 //  dann wird die Position fuer einen Leereintrag gemerkt
 
                 ::rtl::OUString aStr;
