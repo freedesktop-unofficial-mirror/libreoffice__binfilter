@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndgrf.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:01 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,7 +175,7 @@ public:
                   const GraphicObject* pGrfObj = 0,
                   BOOL bModify = TRUE );
         // Laden der Grafik unmittelbar vor der Anzeige
-//STRIP001  short SwapIn( BOOL bWaitForData = FALSE );
+    short SwapIn( BOOL bWaitForData = FALSE );
         // Entfernen der Grafik, um Speicher freizugeben
 //STRIP001  short SwapOut();
         // Schreiben der Grafik

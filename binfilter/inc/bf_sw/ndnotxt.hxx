@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ndnotxt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:02 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,12 +129,12 @@ public:
     BOOL               GetContourAPI( PolyPolygon &rPoly ) const;
 
     void               SetPixelContour( BOOL bSet ) { bPixelContour = bSet; }
-    const BOOL         IsPixelContour() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const BOOL         IsPixelContour() const;
+    const BOOL         IsPixelContour() const;
 
     const BOOL         IsContourMapModeValid() const { return bContourMapModeValid; }
 
     //Besorgt die Graphic, mit SwapIn fuer GrfNode, per GetData fuer OLE.
-//STRIP001  Graphic GetGraphic() const;
+    Graphic GetGraphic() const;
 };
 
 inline SwGrfFmtColl* SwNoTxtNode::GetGrfColl() const
