@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:13 $
+ *  last change: $Author: obo $ $Date: 2004-05-13 10:18:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -818,8 +818,10 @@ namespace binfilter {
 /*N*/     if ( pImp->pTempFile )
 /*N*/     {
 /*?*/       String aURL;
+#ifdef DBG_UTIL
 /*?*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL ) )
 /*?*/           DBG_ERROR("Physical name not convertable!");
+#endif
 /*?*/         pImp->bIsStorage = SotStorage::IsStorageFile( aURL );
 /*?*/         if ( !pImp->bIsStorage )
 /*?*/             bTriedStorage = TRUE;
@@ -1697,10 +1699,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( pImp->m_bRemoveBackup )
 /*N*/   {
+#ifdef DBG_UTIL
 /*?*/       if ( pImp->m_aBackupURL.getLength() )
 /*?*/           if ( !::utl::UCBContentHelper::Kill( pImp->m_aBackupURL ) )
 /*?*/               DBG_ERROR("Couldn't remove backup file!");
-/*?*/
+#endif
 /*?*/       pImp->m_bRemoveBackup = sal_False;
 /*N*/   }
 /*N*/
@@ -2373,6 +2376,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/
 /*N*/     delete pSet;
 /*N*/
+/*N*/     #ifdef  DBG_UTIL
 /*N*/     if( pImp->bIsTemp && aName.Len() )
 /*N*/     {
 /*N*/         String aTemp;
@@ -2382,6 +2386,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/         if ( !::utl::UCBContentHelper::Kill( aTemp ) )
 /*N*/           DBG_ERROR("Couldn't remove temporary file!");
 /*N*/     }
+/*N*/     #endif
 /*N*/
 /*N*/     pFilter = 0;
 /*N*/
