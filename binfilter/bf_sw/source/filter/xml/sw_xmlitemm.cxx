@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitemm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:25:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,9 +74,9 @@
 #ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
 #ifndef _UNOMID_H
 #include <unomid.h>

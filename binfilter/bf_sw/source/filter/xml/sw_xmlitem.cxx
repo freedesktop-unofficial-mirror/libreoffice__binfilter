@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:11:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:24:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
