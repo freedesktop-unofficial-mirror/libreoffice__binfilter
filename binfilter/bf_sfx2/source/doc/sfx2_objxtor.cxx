@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:20:08 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:37:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,6 +175,7 @@ using namespace ::com::sun::star::script;
 #endif
 
 //====================================================================
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 /*N*/ DBG_NAME(SfxObjectShell)
@@ -703,7 +704,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   BasicManager* pBasicManager;
 /*N*/   if ( pStor )
 /*N*/   {
-/*N*/       String aOldURL = INetURLObject::GetBaseURL();
+/*N*/       String aOldURL = so3::StaticBaseUrl::GetBaseURL();
 /*N*/       String aNewURL;
 /*N*/       if( HasName() )
 /*N*/           aNewURL = GetMedium()->GetName();
@@ -711,9 +712,9 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/       {
 /*N*/           aNewURL = GetDocInfo().GetTemplateFileName();
 /*N*/           // Bei Templates keine ::com::sun::star::util::URL...
-/*N*/             aNewURL = URIHelper::SmartRelToAbs( aNewURL );
+/*N*/             aNewURL = so3::StaticBaseUrl::SmartRelToAbs( aNewURL );
 /*N*/       }
-/*N*/       INetURLObject::SetBaseURL( aNewURL );
+/*N*/       so3::StaticBaseUrl::SetBaseURL( aNewURL );
 /*N*/
 /*N*/       // load BASIC-manager
 /*N*/       SfxErrorContext aErrContext( ERRCTX_SFX_LOADBASIC, GetTitle() );
@@ -723,7 +724,10 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/ #else
 /*N*/       String aAppBasicDir = SvtPathOptions().GetBasicPath();
 /*N*/ #endif
-/*N*/         pImp->pBasicMgr = pBasicManager = new BasicManager( *pStor, pAppBasic, &aAppBasicDir );
+/*N*/         pImp->pBasicMgr = pBasicManager = new BasicManager(
+                *pStor,
+                so3::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE),
+                pAppBasic, &aAppBasicDir );
 /*N*/       if ( pImp->pBasicMgr->HasErrors() )
 /*N*/       {
 /*?*/           // handle errors
@@ -743,7 +747,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*?*/           }
 /*N*/       }
 /*N*/
-/*N*/       INetURLObject::SetBaseURL( aOldURL );
+/*N*/       so3::StaticBaseUrl::SetBaseURL( aOldURL );
 /*N*/   }
 /*N*/
 /*N*/   // not loaded?
