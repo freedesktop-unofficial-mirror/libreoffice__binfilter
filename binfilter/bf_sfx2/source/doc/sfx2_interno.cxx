@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:51:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,15 +66,15 @@
 
 #include <string> // HACK: prevent conflict between STLPORT and Workshop headers
 
-#ifndef _SV_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 
 #include <svtools/eitem.hxx>
 
@@ -82,29 +82,34 @@
 
 #define _SFX_INTERNO_CXX
 
-#include "sfxtypes.hxx"
-#include "tbxmgr.hxx"
-#include "app.hxx"
+// auto strip #include "sfxtypes.hxx"
+
+#ifndef _SVTOOLS_IMGDEF_HXX
+#include <svtools/imgdef.hxx>
+#endif
+
+// auto strip #include "tbxmgr.hxx"
+// auto strip #include "app.hxx"
 #include "dispatch.hxx"
 #include "request.hxx"
 #include "docfac.hxx"
-#include "docfilt.hxx"
-#include "viewfrm.hxx"
+// auto strip #include "docfilt.hxx"
+// auto strip #include "viewfrm.hxx"
 #include "viewsh.hxx"
-#include "virtmenu.hxx"
-#include "mnumgr.hxx"
+// auto strip #include "virtmenu.hxx"
+// auto strip #include "mnumgr.hxx"
 #include "interno.hxx"
-#include "ipfrm.hxx"
+// auto strip #include "ipfrm.hxx"
 #include "ipenv.hxx"
-#include "imgmgr.hxx"
-#include "childwin.hxx"
-#include "arrdecl.hxx"
-#include "cfgmgr.hxx"
-#include "tbxconf.hxx"
+// auto strip #include "imgmgr.hxx"
+// auto strip #include "childwin.hxx"
+// auto strip #include "arrdecl.hxx"
+// auto strip #include "cfgmgr.hxx"
+// auto strip #include "tbxconf.hxx"
 #include "fltfnc.hxx"
-#include "accmgr.hxx"
+// auto strip #include "accmgr.hxx"
 #include "sfxresid.hxx"
-#include "topfrm.hxx"
+// auto strip #include "topfrm.hxx"
 #include "doc.hrc"
 namespace binfilter {
 
