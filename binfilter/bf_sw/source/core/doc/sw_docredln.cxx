@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: kz $ $Date: 2004-07-30 14:52:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1300,8 +1300,8 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/ BOOL SwDoc::DeleteRedline( const SwStartNode& rNode, BOOL bSaveInUndo,
 /*N*/                           USHORT nDelType )
 /*N*/ {
-/*N*/   return DeleteRedline( SwPaM( *rNode.EndOfSectionNode(), rNode ),
-/*N*/                           bSaveInUndo, nDelType );
+/*N*/   SwPaM aTemp( *rNode.EndOfSectionNode(), rNode );
+/*N*/   return DeleteRedline( aTemp, bSaveInUndo, nDelType );
 /*N*/ }
 
 //STRIP001 void SwDoc::DeleteRedline( USHORT nPos )
