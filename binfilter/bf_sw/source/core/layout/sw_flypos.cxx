@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flypos.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:35:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,8 +62,17 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
-#include "node.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
+// auto strip #include "node.hxx"
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -75,7 +84,7 @@
 #include "flypos.hxx"
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
-#include "dview.hxx"
+// auto strip #include "dview.hxx"
 #include "flyfrm.hxx"
 #include "dflyobj.hxx"
 #include "ndindex.hxx"
