@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:11 $
+#   last change: $Author: rt $ $Date: 2004-06-14 13:56:14 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -148,6 +148,10 @@ SLOFILES=\
          $(SLO)$/svx_svdvmark.obj        \
          $(SLO)$/svx_svdxcgv.obj		 \
          $(SLO)$/svx_clonelist.obj
+
+.IF "$(OS)$(CPU)"=="LINUXI"
+NOOPTFILES=$(SLO)$/svx_svdattr.obj
+.ENDIF
 
 SVXLIGHTOBJFILES=\
          $(OBJ)$/svx_svdoutlinercache.obj \
