@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_node.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:45 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1185,7 +1185,7 @@ SmNode * SmTableNode::GetLeftMost()
 
 double Det(const Point &rHeading1, const Point &rHeading2)
  // gibt den Wert der durch die beiden Punkte gebildeten Determinante
- // zurück
+ // zurueck
 {
  return rHeading1.X() * rHeading2.Y() - rHeading1.Y() * rHeading2.X();
 }
@@ -1193,7 +1193,7 @@ double Det(const Point &rHeading1, const Point &rHeading2)
 
 BOOL IsPointInLine(const Point &rPoint1,
                 const Point &rPoint2, const Point &rHeading2)
- // ergibt TRUE genau dann, wenn der Punkt 'rPoint1' zu der Gerade gehört die
+ // ergibt TRUE genau dann, wenn der Punkt 'rPoint1' zu der Gerade gehoert die
  // durch den Punkt 'rPoint2' geht und den Richtungsvektor 'rHeading2' hat
 {
  DBG_ASSERT(rHeading2 != Point(), "Sm : 0 vector");
@@ -1227,7 +1227,7 @@ USHORT GetLineIntersectionPoint(Point &rResult,
  USHORT nRes = 1;
  const double eps = 5.0 * DBL_EPSILON;
 
- // sind die Richtumgsvektoren linear abhängig ?
+ // sind die Richtumgsvektoren linear abhaengig ?
  double  fDet = Det(rHeading1, rHeading2);
  if (fabs(fDet) < eps)
  {
@@ -1237,7 +1237,7 @@ USHORT GetLineIntersectionPoint(Point &rResult,
  else
  {
      // hier achten wir nicht auf Rechengenauigkeit
-     // (das würde aufwendiger und lohnt sich hier kaum)
+     // (das wuerde aufwendiger und lohnt sich hier kaum)
      double fLambda = (    (rPoint1.Y() - rPoint2.Y()) * rHeading2.X()
                          - (rPoint1.X() - rPoint2.X()) * rHeading2.Y())
                       / fDet;
@@ -1260,8 +1260,8 @@ SmBinDiagonalNode::SmBinDiagonalNode(const SmToken &rNodeToken)
 
 void SmBinDiagonalNode::GetOperPosSize(Point &rPos, Size &rSize,
                         const Point &rDiagPoint, double fAngleDeg) const
-    // gibt die Position und Größe für den Diagonalstrich zurück.
-    // Vor.: das SmRect des Nodes gibt die Begrenzung vor(!), muß also selbst
+    // gibt die Position und Groesse fuer den Diagonalstrich zurueck.
+    // Vor.: das SmRect des Nodes gibt die Begrenzung vor(!), muss also selbst
     //      bereits bekannt sein.
 
 {
@@ -1276,7 +1276,7 @@ void SmBinDiagonalNode::GetOperPosSize(Point &rPos, Size &rSize,
             aDiagHdg      ( (long)(100.0 * cos(fAngleRad)),
                             (long)(-100.0 * sin(fAngleRad)) );
 
-    long  nLeft, nRight, nTop, nBottom;     // Ränder des Rechtecks für die
+    long  nLeft, nRight, nTop, nBottom;     // Raender des Rechtecks fuer die
                                             // Diagonale
     Point aPoint;
     if (IsAscending())
@@ -1388,7 +1388,7 @@ void SmBinDiagonalNode::GetOperPosSize(Point &rPos, Size &rSize,
 
 void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
 {
-    //! die beiden Argumente müssen in den Subnodes vor dem Operator kommen,
+    //! die beiden Argumente muessen in den Subnodes vor dem Operator kommen,
     //! damit das anklicken im GraphicWindow den FormulaCursor richtig setzt
     //! (vgl SmRootNode)
     SmNode *pLeft  = GetSubNode(0),
@@ -1434,7 +1434,7 @@ void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rForma
     ExtendBy(*pRight, RCP_NONE);
 
 
-    // Position und Größe des Diagonalstrich ermitteln
+    // Position und Groesse des Diagonalstrich ermitteln
     Size  aSize;
     GetOperPosSize(aPos, aSize, aLogCenter, IsAscending() ? 60.0 : -60.0);
 
@@ -1674,16 +1674,16 @@ void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rForma
 /*N*/
 /*N*/   long  nFaceHeight = GetFont().GetSize().Height();
 /*N*/
-/*N*/   // Übergröße in % ermitteln
+/*N*/   // Uebergroesse in % ermitteln
 /*N*/   USHORT  nPerc = 0;
 /*N*/   if (!bIsABS && bScale)
-/*N*/   {   // im Fall von Klammern mit Übergröße...
+/*N*/   {   // im Fall von Klammern mit Uebergroesse...
 /*N*/       int  nIndex = GetScaleMode() == SCALE_HEIGHT ?
 /*N*/                           DIS_BRACKETSIZE : DIS_NORMALBRACKETSIZE;
 /*N*/       nPerc = rFormat.GetDistance(nIndex);
 /*N*/   }
 /*N*/
-/*N*/   // ermitteln der Höhe für die Klammern
+/*N*/   // ermitteln der Hoehe fuer die Klammern
 /*N*/   long  nBraceHeight;
 /*N*/   if (bScale)
 /*N*/   {
@@ -1699,12 +1699,12 @@ void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rForma
 /*N*/   nPerc = bIsABS ? 0 : rFormat.GetDistance(DIS_BRACKETSPACE);
 /*N*/   long  nDist = nFaceHeight * nPerc / 100L;
 /*N*/
-/*N*/   // sofern erwünscht skalieren der Klammern auf die gewünschte Größe
+/*N*/   // sofern erwuenscht skalieren der Klammern auf die gewuenschte Groesse
 /*N*/   if (bScale)
 /*N*/   {
 /*N*/       Size  aSize (pLeft->GetFont().GetSize());
 /*N*/       DBG_ASSERT(pRight->GetFont().GetSize() == aSize,
-/*N*/                   "Sm : unterschiedliche Fontgrößen");
+/*N*/                   "Sm : unterschiedliche Fontgroessen");
 /*N*/       aSize.Width() = Min((long) nBraceHeight * 60L / 100L,
 /*N*/                           rFormat.GetBaseSize().Height() * 3L / 2L);
 /*N*/         // correction factor since change from StarMath to StarSymbol font
@@ -1727,7 +1727,7 @@ void SmBinDiagonalNode::Arrange(const OutputDevice &rDev, const SmFormat &rForma
 /*N*/   pLeft ->Arrange(rDev, rFormat);
 /*N*/   pRight->Arrange(rDev, rFormat);
 /*N*/
-/*N*/   // damit auch "\(a\) - (a) - left ( a right )" vernünftig aussieht
+/*N*/   // damit auch "\(a\) - (a) - left ( a right )" vernuenftig aussieht
 /*N*/   RectVerAlign  eVerAlign = bScale ? RVA_CENTERY : RVA_BASELINE;
 /*N*/
 /*N*/   Point         aPos;
@@ -2280,7 +2280,7 @@ void SmPolyLineNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 
 /*N*/ void SmRootSymbolNode::AdaptToY(const OutputDevice &rDev, ULONG nHeight)
 /*N*/ {
-/*N*/     // etwas extra Länge damit der horizontale Balken später über dem
+/*N*/     // etwas extra Laenge damit der horizontale Balken spaeter ueber dem
 /*N*/     // Argument positioniert ist
 /*N*/     SmMathSymbolNode::AdaptToY(rDev, nHeight + nHeight / 10L);
 /*N*/ }
@@ -2702,7 +2702,7 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/     GetFont().FreezeBorderWidth();
 /*N*/     Size  aFntSize (GetFont().GetSize());
 /*N*/
-/*N*/     // da wir nur die Höhe skalieren wollen müsen wir hier ggf die Fontweite
+/*N*/     // da wir nur die Hoehe skalieren wollen muesen wir hier ggf die Fontweite
 /*N*/     // ermitteln um diese beizubehalten.
 /*N*/     if (aFntSize.Width() == 0)
 /*N*/     {
@@ -2870,8 +2870,8 @@ void SmRectangleNode::Draw(OutputDevice &rDev, const Point &rPosition) const
 /*N*/   //! eigentlich sollten nur WEIGHT_NORMAL und WEIGHT_BOLD vorkommen...
 /*N*/   //! In der sms-Datei gibt es jedoch zB auch 'WEIGHT_ULTRALIGHT'
 /*N*/   //! daher vergleichen wir hier mit  >  statt mit  !=  .
-/*N*/   //! (Langfristig sollte die Notwendigkeit für 'PrepareAttribut', und damit
-/*N*/   //! für dieses hier, mal entfallen.)
+/*N*/   //! (Langfristig sollte die Notwendigkeit fuer 'PrepareAttribut', und damit
+/*N*/   //! fuer dieses hier, mal entfallen.)
 /*N*/     //
 /*N*/     //! see also SmFontStyles::GetStyleName
 /*N*/   if (GetFont().GetWeight() > WEIGHT_NORMAL)
@@ -2987,7 +2987,7 @@ void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rForm
 /*N*/   SmNode::Prepare(rFormat, rDocShell);
 /*N*/
 /*N*/   //! hier mu?sollte es lediglich nicht der StarMath Font sein,
-/*N*/   //! damit für das in Arrange verwendete Zeichen ein "normales"
+/*N*/   //! damit fuer das in Arrange verwendete Zeichen ein "normales"
 /*N*/   //! (ungecliptes) Rechteck erzeugt wird.
 /*N*/   GetFont() = rFormat.GetFont(FNT_VARIABLE);
 /*N*/
@@ -3000,8 +3000,8 @@ void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rForm
 /*N*/     SmTmpDevice  aTmpDev ((OutputDevice &) rDev, TRUE);
 /*N*/   aTmpDev.SetFont(GetFont());
 /*N*/
-/*N*/   // Abstand von der Fonthöhe abhängig machen
-/*N*/   // (damit er beim skalieren (zB size *2 {a ~ b}) mitwächst)
+/*N*/   // Abstand von der Fonthoehe abhaengig machen
+/*N*/   // (damit er beim skalieren (zB size *2 {a ~ b}) mitwaechst)
 /*N*/   long  nDist  = GetFont().GetSize().Height() / 10L,
 /*N*/         nSpace = nNum * nDist;
 /*N*/
@@ -3009,7 +3009,7 @@ void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rForm
 /*N*/   SmRect::operator = (SmRect(aTmpDev, &rFormat, XubString(xub_Unicode(' ')),
 /*N*/                              GetFont().GetBorderWidth()));
 /*N*/
-/*N*/   // und dieses auf die gewünschte Breite bringen
+/*N*/   // und dieses auf die gewuenschte Breite bringen
 /*N*/   SetItalicSpaces(0, 0);
 /*N*/   SetWidth(nSpace);
 /*N*/ }
