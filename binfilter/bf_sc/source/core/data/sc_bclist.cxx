@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bclist.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:02:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,14 +60,14 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 //------------------------------------------------------------------
 
-#include <svtools/brdcst.hxx>
+// auto strip #include <svtools/brdcst.hxx>
 #include <svtools/lstner.hxx>
 #include <tools/list.hxx>
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:02:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -84,20 +84,20 @@
 #include <svtools/zforlist.hxx>
 #include <float.h>          // _finite
 
-#include "scitems.hxx"
-#include "attrib.hxx"
-#include "cell.hxx"
-#include "compiler.hxx"
+// auto strip #include "scitems.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "cell.hxx"
+// auto strip #include "compiler.hxx"
 #include "interpre.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "scmatrix.hxx"
-#include "dociter.hxx"
+// auto strip #include "dociter.hxx"
 #include "docoptio.hxx"
 #include "rechead.hxx"
 #include "rangenam.hxx"
-#include "brdcst.hxx"
-#include "ddelink.hxx"
-#include "validat.hxx"
+// auto strip #include "brdcst.hxx"
+// auto strip #include "ddelink.hxx"
+// auto strip #include "validat.hxx"
 #include "progress.hxx"
 #include "bclist.hxx"
 namespace binfilter {
