@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_textuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:24:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,31 +60,52 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
-#include <bf_svx/unomid.hxx>
-#include <bf_svx/unoprnms.hxx>
+// auto strip #include <bf_svx/unomid.hxx>
+// auto strip #include <bf_svx/unoprnms.hxx>
 #include <bf_svx/unofored.hxx>
 #include <rtl/uuid.h>
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
-#include <com/sun/star/awt/FontSlant.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
+// auto strip #include <com/sun/star/awt/FontSlant.hpp>
+// auto strip #endif
 
-#include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include "textuno.hxx"
 #include "fielduno.hxx"
