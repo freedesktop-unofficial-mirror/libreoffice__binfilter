@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docpool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:04:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,16 +60,16 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-#include <tools/shl.hxx>
+// auto strip #include <tools/shl.hxx>
 #include <vcl/outdev.hxx>
 #include <svtools/aeitem.hxx>
-#include <svtools/itemiter.hxx>
+// auto strip #include <svtools/itemiter.hxx>
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/brshitem.hxx>
@@ -77,14 +77,14 @@
 #include <bf_svx/cntritem.hxx>
 #include <bf_svx/colritem.hxx>
 #include <bf_svx/crsditem.hxx>
-#include <bf_svx/dialmgr.hxx>
+// auto strip #include <bf_svx/dialmgr.hxx>
 #include <bf_svx/emphitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/forbiddenruleitem.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/hngpnctitem.hxx>
-#include <bf_svx/itemtype.hxx>
+// auto strip #include <bf_svx/itemtype.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/pageitem.hxx>
@@ -103,7 +103,7 @@
 #include <bf_svx/xmlcnitm.hxx>
 
 #include "docpool.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
 #include "globstr.hrc"
