@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdxcgv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:34:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,47 +60,47 @@
  ************************************************************************/
 
 #include <vector>
-#include "editeng.hxx"
-#include "xexch.hxx"
-#include "xflclit.hxx"
+// auto strip #include "editeng.hxx"
+// auto strip #include "xexch.hxx"
+// auto strip #include "xflclit.hxx"
 #include "svdxcgv.hxx"
-#include "svdoutl.hxx"
-#include "svditext.hxx"
-#include "svdetc.hxx"
-#include "svdxout.hxx"
-#include "svdundo.hxx"
-#include "svdograf.hxx"
-#include "svdoole2.hxx" // fuer kein OLE im SdrClipboardFormat
-#include "svdorect.hxx"
-#include "svdoedge.hxx" // fuer Konnektoren uebers Clipboard
-#include "svdopage.hxx" // fuer Konnektoren uebers Clipboard
-#include "svdpage.hxx"
-#include "svdpagv.hxx"
-#include "svdtrans.hxx" // Fuer GetMapFactor zum umskalieren bei PasteModel
+// auto strip #include "svdoutl.hxx"
+// auto strip #include "svditext.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdograf.hxx"
+// auto strip #include "svdoole2.hxx" // fuer kein OLE im SdrClipboardFormat
+// auto strip #include "svdorect.hxx"
+// auto strip #include "svdoedge.hxx" // fuer Konnektoren uebers Clipboard
+// auto strip #include "svdopage.hxx" // fuer Konnektoren uebers Clipboard
+// auto strip #include "svdpage.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdtrans.hxx" // Fuer GetMapFactor zum umskalieren bei PasteModel
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
-#include "xoutbmp.hxx"
+// auto strip #include "svdglob.hxx"  // StringCache
+// auto strip #include "xoutbmp.hxx"
 
-#ifndef _SV_METAACT_HXX
-#include <vcl/metaact.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
-#include <svtools/itempool.hxx>
-#endif
-#ifndef _BIGINT_HXX //autogen
-#include <tools/bigint.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX //autogen
-#include <sot/formats.hxx>
-#endif
+// auto strip #ifndef _SV_METAACT_HXX
+// auto strip #include <vcl/metaact.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMPOOL_HXX //autogen
+// auto strip #include <svtools/itempool.hxx>
+// auto strip #endif
+// auto strip #ifndef _BIGINT_HXX //autogen
+// auto strip #include <tools/bigint.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_FORMATS_HXX //autogen
+// auto strip #include <sot/formats.hxx>
+// auto strip #endif
 
 // #i13033#
-#ifndef _CLONELIST_HXX_
-#include <clonelist.hxx>
-#endif
+// auto strip #ifndef _CLONELIST_HXX_
+// auto strip #include <clonelist.hxx>
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
