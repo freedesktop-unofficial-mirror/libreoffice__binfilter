@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmain.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
+ *  last change: $Author: obo $ $Date: 2005-01-03 17:00:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -361,11 +361,6 @@ SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
 /*N*/     {
 /*N*/       // versuchen, die Label-DLL zu erzeugen
 /*N*/       pAppData_Impl->pLabelResMgr = CreateResManager( pLabelPrefix );
-/*N*/
-/*N*/       // keine separate Label-DLL vorhanden?
-/*N*/       if ( !pAppData_Impl->pLabelResMgr )
-/*N*/           // dann den ResMgr vom Executable verwenden
-/*?*/           pAppData_Impl->pLabelResMgr = new ResMgr;
 /*N*/   }
 /*N*/     else
 /*N*/     {
