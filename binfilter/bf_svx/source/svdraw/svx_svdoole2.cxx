@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -892,62 +892,62 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 void SdrOle2Obj::ImpSetVisAreaSize()
-//STRIP001 {
-//STRIP001  GetObjRef();    // try to load inplace object
-//STRIP001  SvInPlaceObjectRef& rIPRef=*ppObjRef;
-//STRIP001
-//STRIP001  if (rIPRef.Is())
-//STRIP001  {
-//STRIP001      if (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_SERVERRESIZE)
-//STRIP001      {
-//STRIP001          // Server resized selbst (StarChart)
-//STRIP001          // Neue VisArea setzen
-//STRIP001          Rectangle aVisArea = OutputDevice::LogicToLogic( aRect,
-//STRIP001                                  pModel->GetScaleUnit(), rIPRef->GetMapUnit() );
-//STRIP001          rIPRef->SetVisArea(aVisArea);
-//STRIP001
-//STRIP001          // Wurde die VisArea akzeptiert?
-//STRIP001          Rectangle aAcceptedVisArea(rIPRef->GetVisArea());
-//STRIP001
-//STRIP001          if (aVisArea.GetSize() != aAcceptedVisArea.GetSize())
-//STRIP001          {
-//STRIP001              // VisArea wurde nicht akzeptiert -> korrigieren
-//STRIP001              aRect.SetSize(OutputDevice::LogicToLogic( aAcceptedVisArea.GetSize(),
-//STRIP001                      rIPRef->GetMapUnit(), pModel->GetScaleUnit()));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          /**********************************************************************
-//STRIP001          * Nun wird nicht mehr die VisArea gesetzt, sondern es erfolgt eine
-//STRIP001          * Skalierung
-//STRIP001          **********************************************************************/
-//STRIP001          SvEmbeddedClient* pClient = (*ppObjRef)->GetClient();
-//STRIP001
-//STRIP001          if (pClient)
-//STRIP001          {
-//STRIP001              SvClientData* pData = pClient->GetClientData();
-//STRIP001              Size aObjAreaSize = rIPRef->GetVisArea().GetSize();
-//STRIP001              aObjAreaSize = OutputDevice::LogicToLogic( aObjAreaSize,
-//STRIP001                                                         rIPRef->GetMapUnit(),
-//STRIP001                                                         pModel->GetScaleUnit() );
-//STRIP001
-//STRIP001              Size aSize = aRect.GetSize();
-//STRIP001              Fraction aScaleWidth (aSize.Width(),  aObjAreaSize.Width() );
-//STRIP001              Fraction aScaleHeight(aSize.Height(), aObjAreaSize.Height() );
-//STRIP001              // Nun auf 10 Binaerstellen kuerzen
-//STRIP001              Kuerzen(aScaleHeight, 10);
-//STRIP001              Kuerzen(aScaleWidth,  10);
-//STRIP001
-//STRIP001              pData->SetSizeScale(aScaleWidth, aScaleHeight);
-//STRIP001
-//STRIP001              Rectangle aScaleRect(aRect.TopLeft(), aObjAreaSize);
-//STRIP001              pData->SetObjArea(aScaleRect);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*NBFF*/ void SdrOle2Obj::ImpSetVisAreaSize()
+/*NBFF*/ {
+/*NBFF*/    GetObjRef();    // try to load inplace object
+/*NBFF*/    SvInPlaceObjectRef& rIPRef=*ppObjRef;
+/*NBFF*/
+/*NBFF*/    if (rIPRef.Is())
+/*NBFF*/    {
+/*NBFF*/        if (rIPRef->GetMiscStatus() & SVOBJ_MISCSTATUS_SERVERRESIZE)
+/*NBFF*/        {
+/*NBFF*/            // Server resized selbst (StarChart)
+/*NBFF*/            // Neue VisArea setzen
+/*NBFF*/            Rectangle aVisArea = OutputDevice::LogicToLogic( aRect,
+/*NBFF*/                                    pModel->GetScaleUnit(), rIPRef->GetMapUnit() );
+/*NBFF*/            rIPRef->SetVisArea(aVisArea);
+/*NBFF*/
+/*NBFF*/            // Wurde die VisArea akzeptiert?
+/*NBFF*/            Rectangle aAcceptedVisArea(rIPRef->GetVisArea());
+/*NBFF*/
+/*NBFF*/            if (aVisArea.GetSize() != aAcceptedVisArea.GetSize())
+/*NBFF*/            {
+/*NBFF*/                // VisArea wurde nicht akzeptiert -> korrigieren
+/*NBFF*/                aRect.SetSize(OutputDevice::LogicToLogic( aAcceptedVisArea.GetSize(),
+/*NBFF*/                        rIPRef->GetMapUnit(), pModel->GetScaleUnit()));
+/*NBFF*/            }
+/*NBFF*/        }
+/*NBFF*/        else
+/*NBFF*/        {
+/*NBFF*/            ///**********************************************************************
+/*NBFF*/            //* Nun wird nicht mehr die VisArea gesetzt, sondern es erfolgt eine
+/*NBFF*/            //* Skalierung
+/*NBFF*/            //**********************************************************************/
+/*NBFF*/            SvEmbeddedClient* pClient = (*ppObjRef)->GetClient();
+/*NBFF*/
+/*NBFF*/            if (pClient)
+/*NBFF*/            {
+/*NBFF*/                SvClientData* pData = pClient->GetClientData();
+/*NBFF*/                Size aObjAreaSize = rIPRef->GetVisArea().GetSize();
+/*NBFF*/                aObjAreaSize = OutputDevice::LogicToLogic( aObjAreaSize,
+/*NBFF*/                                                           rIPRef->GetMapUnit(),
+/*NBFF*/                                                           pModel->GetScaleUnit() );
+/*NBFF*/
+/*NBFF*/                Size aSize = aRect.GetSize();
+/*NBFF*/                Fraction aScaleWidth (aSize.Width(),  aObjAreaSize.Width() );
+/*NBFF*/                Fraction aScaleHeight(aSize.Height(), aObjAreaSize.Height() );
+/*NBFF*/                // Nun auf 10 Binaerstellen kuerzen
+/*NBFF*/                Kuerzen(aScaleHeight, 10);
+/*NBFF*/                Kuerzen(aScaleWidth,  10);
+/*NBFF*/
+/*NBFF*/                pData->SetSizeScale(aScaleWidth, aScaleHeight);
+/*NBFF*/
+/*NBFF*/                Rectangle aScaleRect(aRect.TopLeft(), aObjAreaSize);
+/*NBFF*/                pData->SetObjArea(aScaleRect);
+/*NBFF*/            }
+/*NBFF*/        }
+/*NBFF*/    }
+/*NBFF*/ }
 
 // -----------------------------------------------------------------------------
 
@@ -966,7 +966,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       SetRectsDirty();
 /*N*/   }
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
+/*NBFF*/    ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -984,7 +984,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetSnapRect(rRect);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ImpSetVisAreaSize();
+/*NBFF*/    ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -993,7 +993,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetLogicRect(rRect);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
+/*NBFF*/    ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1142,7 +1142,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcMove(rSize);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ImpSetVisAreaSize();
+/*NBFF*/    ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
