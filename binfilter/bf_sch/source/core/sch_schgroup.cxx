@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schgroup.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:48:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,20 +61,20 @@
 
 #pragma hdrstop
 
-#ifndef _SVDOPATH_HXX //autogen
-#include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVDHDL_HXX //autogen
-#include <bf_svx/svdhdl.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDOPATH_HXX //autogen
+// auto strip #include <bf_svx/svdopath.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDHDL_HXX //autogen
+// auto strip #include <bf_svx/svdhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 #include "glob.hxx"
-#include "schdll.hxx"
-#include "objid.hxx"
-#include "chtmodel.hxx"
+// auto strip #include "schdll.hxx"
+// auto strip #include "objid.hxx"
+// auto strip #include "chtmodel.hxx"
 #include "schgroup.hxx"
 #include <math.h>
 namespace binfilter {

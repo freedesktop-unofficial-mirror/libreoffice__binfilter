@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_stlsheet.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:48:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #include <bf_svx/xdef.hxx>
 #endif
 
-#ifndef _SFXSTYLE_HXX //autogen
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SFXSTYLE_HXX //autogen
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
