@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frameobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:50:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,46 +59,55 @@
  *
  ************************************************************************/
 
-#include <sot/formats.hxx>
+// auto strip #include <sot/formats.hxx>
 #ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
 #endif
-#include <tools/list.hxx>
-#ifndef _SOERR_HXX //autogen
-#include <so3/soerr.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #include <tools/list.hxx>
+// auto strip #ifndef _SOERR_HXX //autogen
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _IPWIN_HXX //autogen
 #include <so3/ipwin.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 
-#include <svtools/urihelper.hxx>
+// auto strip #include <svtools/urihelper.hxx>
 
 #pragma hdrstop
 
 #include "frameobj.hxx"
 
 #include "frmenv.hxx"
-#include "frmdescr.hxx"
+// auto strip #include "frmdescr.hxx"
 #include "urlframe.hxx"
-#include "viewfrm.hxx"
-#include "viewsh.hxx"
-#include "clientsh.hxx"
-#include "docfile.hxx"
-#include "basedlgs.hxx"
-#include "framedlg.hxx"
+// auto strip #include "viewfrm.hxx"
+// auto strip #include "viewsh.hxx"
+// auto strip #include "clientsh.hxx"
+// auto strip #include "docfile.hxx"
+// auto strip #include "basedlgs.hxx"
+// auto strip #include "framedlg.hxx"
 #include "doc.hrc"
 #include "sfxresid.hxx"
-#include "request.hxx"
-#include "interno.hxx"
-#include "filedlghelper.hxx"
+// auto strip #include "request.hxx"
+// auto strip #include "interno.hxx"
+// auto strip #include "filedlghelper.hxx"
 
 #include <appdata.hxx>
+
+#ifndef _SFXAPP_HXX
+#include "app.hxx"
+#endif
+
+#ifndef _SFX_OBJSH_HXX
+#include "objsh.hxx"
+#endif
+
 namespace binfilter {
 
 //STRIP001 class SfxFrameObjectEditDialog_Impl : public SfxSingleTabDialog
