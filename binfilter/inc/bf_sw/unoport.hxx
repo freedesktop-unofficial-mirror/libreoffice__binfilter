@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoport.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:50:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,21 +67,21 @@
 #ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
 #endif
-#ifndef _CPPUHELPER_IMPLBASE6_HXX_
-#include <cppuhelper/implbase6.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE6_HXX_
+// auto strip #include <cppuhelper/implbase6.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
-#include <com/sun/star/text/XTextRange.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
+// auto strip #include <com/sun/star/text/XTextRange.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTENTENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
-#include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
+// auto strip #include <com/sun/star/container/XEnumerationAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
