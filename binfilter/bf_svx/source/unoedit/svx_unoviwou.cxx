@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoviwou.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:48:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,13 +59,13 @@
  *
  ************************************************************************/
 
-#ifndef _SV_OUTDEV_HXX
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 
-#ifndef _SV_WINDOW_HXX
-#include <vcl/window.hxx>
-#endif
+// auto strip #ifndef _SV_WINDOW_HXX
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
 
 #include "unoviwou.hxx"
 #include "outliner.hxx"
