@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbconfig.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:34:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif

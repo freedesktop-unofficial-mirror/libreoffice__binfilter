@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_modcfg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:35:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,30 +62,30 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _MAILENUM_HXX //autogen
-#include <goodies/mailenum.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _MAILENUM_HXX //autogen
+// auto strip #include <goodies/mailenum.hxx>
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 #ifndef _FACTORY_HXX //autogen
 #include <so3/factory.hxx>
 #endif
@@ -99,16 +99,16 @@
 #ifndef _MODCFG_HXX
 #include <modcfg.hxx>
 #endif
-#ifndef _FLDUPDE_HXX
-#include <fldupde.hxx>
-#endif
+// auto strip #ifndef _FLDUPDE_HXX
+// auto strip #include <fldupde.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace utl;

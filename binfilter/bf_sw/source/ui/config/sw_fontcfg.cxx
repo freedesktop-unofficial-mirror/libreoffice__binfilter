@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fontcfg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:35:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,23 +68,23 @@
 #ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 
 // #107253#
 #ifndef _SWLINGUCONFIG_HXX
