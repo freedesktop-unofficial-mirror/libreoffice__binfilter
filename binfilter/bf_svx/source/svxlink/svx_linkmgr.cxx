@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_linkmgr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:34:58 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:42:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,7 @@
 #include "dialmgr.hxx"
 #include "dialogs.hrc"
 // auto strip #include "unolingu.hxx"
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 //STRIP001 class SvxInternalLink : public ::so3::SvLinkSource
@@ -330,9 +331,9 @@ namespace binfilter {
 //STRIP001  INetURLObject aURL( rTopic );
 //STRIP001  if( INET_PROT_NOT_VALID == aURL.GetProtocol() )
 //STRIP001      utl::LocalFileHelper::ConvertSystemPathToURL( rTopic,
-//STRIP001                                      INetURLObject::GetBaseURL(), sRet );
+//STRIP001                                      so3::StaticBaseUrl::GetBaseURL(), sRet );
 //STRIP001  if( !sRet.Len() )
-//STRIP001      sRet = URIHelper::SmartRelToAbs( rTopic );
+//STRIP001      sRet = so3::StaticBaseUrl::SmartRelToAbs( rTopic );
 //STRIP001  return sRet;
 //STRIP001 }
 

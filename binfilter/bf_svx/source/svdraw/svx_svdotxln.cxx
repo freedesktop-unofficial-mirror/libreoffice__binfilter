@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxln.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:28:56 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:42:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,6 +98,7 @@
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 #ifndef SVX_LIGHT
@@ -235,7 +236,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*N*/       aRelFileName = INetURLObject::AbsToRel( aFileName,
+/*N*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -271,7 +272,7 @@ namespace binfilter {
 /*N*/   if( aFileNameRel.Len() )
 /*N*/   {
 /*N*/
-/*N*/       aFileName = ::URIHelper::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/       aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                               INetURLObject::WAS_ENCODED,
 /*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
