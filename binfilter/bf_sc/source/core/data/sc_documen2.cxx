@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:04:22 $
+ *  last change: $Author: vg $ $Date: 2005-03-08 15:34:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -350,7 +350,7 @@ namespace binfilter {
 /*N*/       pEOFormulaTrack( NULL ),
 /*N*/       nFormulaTrackCount(0),
 /*N*/       bInsertingFromOtherDoc( FALSE ),
-/*N*/       bImportingXML( TRUE ),//STRIP004 bImportingXML( FALSE ),
+            bImportingXML( FALSE ),             // #i41083# this has to be set in ScXMLImport::startDocument
 /*N*/       nHardRecalcState(0),
 /*N*/       bCalcingAfterLoad( FALSE ),
 /*N*/       bNoListening( FALSE ),
