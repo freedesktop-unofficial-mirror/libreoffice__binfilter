@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:34:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,18 +69,18 @@
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
-#ifndef _GRAPH_HXX //autogen
-#include <vcl/graph.hxx>
-#endif
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
-#ifndef _CONTDLG_HXX_ //autogen
-#include <bf_svx/contdlg.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
+// auto strip #ifndef _GRAPH_HXX //autogen
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
+// auto strip #ifndef _CONTDLG_HXX_ //autogen
+// auto strip #include <bf_svx/contdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
 #ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
 #endif
@@ -112,12 +112,17 @@
 #ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
 #ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
@@ -125,33 +130,33 @@
 #include <layhelp.hxx>
 #endif
 // OD 16.04.2003 #i13147# - for <SwFlyFrm::GetContour(..)>
-#ifndef _NDGRF_HXX
-#include <ndgrf.hxx>
-#endif
+// auto strip #ifndef _NDGRF_HXX
+// auto strip #include <ndgrf.hxx>
+// auto strip #endif
 
 #include "doc.hxx"
 #include "viewsh.hxx"
-#include "layouter.hxx"
+// auto strip #include "layouter.hxx"
 #include "pagefrm.hxx"
-#include "rootfrm.hxx"
-#include "cntfrm.hxx"
-#include "pam.hxx"
-#include "frmatr.hxx"
+// auto strip #include "rootfrm.hxx"
+// auto strip #include "cntfrm.hxx"
+// auto strip #include "pam.hxx"
+// auto strip #include "frmatr.hxx"
 #include "viewimp.hxx"
-#include "errhdl.hxx"
+// auto strip #include "errhdl.hxx"
 #include "dcontact.hxx"
 #include "dflyobj.hxx"
 #include "dview.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
-#include "swregion.hxx"
+// auto strip #include "swregion.hxx"
 #include "frmsh.hxx"
 #include "tabfrm.hxx"
 #include "txtfrm.hxx"
 #include "ndnotxt.hxx"
-#include "notxtfrm.hxx"   // GetGrfArea
+// auto strip #include "notxtfrm.hxx"   // GetGrfArea
 #include "flyfrms.hxx"
 #include "ndindex.hxx"   // GetGrfArea
 #include "sectfrm.hxx"
