@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Button.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:46:34 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:28:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,6 +92,7 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
 
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 //.........................................................................
@@ -207,7 +208,7 @@ void OButtonModel::write(const Reference<XObjectOutputStream>& _rxOutStream) thr
 
         _rxOutStream->writeShort( (sal_uInt16)m_eButtonType );
 
-        ::rtl::OUString sTmp = INetURLObject::decode(INetURLObject::AbsToRel( m_sTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
+        ::rtl::OUString sTmp = INetURLObject::decode(so3::StaticBaseUrl::AbsToRel( m_sTargetURL ), '%', INetURLObject::DECODE_UNAMBIGUOUS);
         _rxOutStream << sTmp;
         _rxOutStream << m_sTargetFrame;
         writeHelpTextCompatibly(_rxOutStream);
@@ -229,7 +230,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
 
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = INetURLObject::RelToAbs( sTmp );
+            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
             _rxInStream >> m_sTargetFrame;
         }
         break;
@@ -240,7 +241,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
 
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = INetURLObject::RelToAbs( sTmp );
+            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
             _rxInStream >> m_sTargetFrame;
             readHelpTextCompatibly(_rxInStream);
         }
@@ -257,7 +258,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
             // URL
             ::rtl::OUString sTmp;
             _rxInStream >> sTmp;
-            m_sTargetURL = INetURLObject::RelToAbs( sTmp );
+            m_sTargetURL = so3::StaticBaseUrl::RelToAbs( sTmp );
 
             // target frame
             _rxInStream >> m_sTargetFrame;
