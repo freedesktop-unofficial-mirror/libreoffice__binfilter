@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bcaslot.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:02:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 // System - Includes -----------------------------------------------------
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,12 +73,12 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "document.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "bcaslot.hxx"
 #include "scerrors.hxx"
-#include "docoptio.hxx"
-#include "refupdat.hxx"
-#include "table.hxx"
+// auto strip #include "docoptio.hxx"
+// auto strip #include "refupdat.hxx"
+// auto strip #include "table.hxx"
 namespace binfilter {
 
 // Anzahl der Slots je Dimension
