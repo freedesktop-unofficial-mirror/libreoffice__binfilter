@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:33:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2229,7 +2229,7 @@ namespace binfilter {
 /*N*/           else if( pFmt->GetNumberingType() != SVX_NUM_NUMBER_NONE )
 /*N*/           {
 /*?*/               if ( nRelPos == 0xFFFF )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pParaList->GetParent( pPara, nRelPos );
+/*NBFF*/                pParaList->GetParent( pPara, nRelPos );
 /*?*/               USHORT nNumber = nRelPos + pFmt->GetStart();
 /*?*/               aBulletText += pFmt->GetNumStr( nNumber );
 /*N*/           }
