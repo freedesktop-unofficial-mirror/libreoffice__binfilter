@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_filtnav.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:21:56 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:13:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,141 +58,135 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
 
 #include "svxids.hrc"
 #include "fmresids.hrc"
 Menu RID_FM_FILTER_MENU
 {
-    ItemList =
+    ItemList  =
     {
         MenuItem
         {
             Identifier = SID_FM_DELETE ;
             HelpID = SID_FM_DELETE ;
-            Text = "~L�schen" ;
-            Text [ ENGLISH ] = "~Delete" ;
-            Text [ english_us ] = "~Delete" ;
-            Text [ portuguese_brazilian ] = "E~xcluir" ;
-            Text [ swedish ] = "~Radera" ;
-            Text [ danish ] = "Slet" ;
-            Text [ italian ] = "~Elimina" ;
-            Text [ spanish ] = "~Borrar" ;
-            Text [ french ] = "~Supprimer" ;
-            Text [ dutch ] = "Wi~ssen" ;
-            Text [ portuguese ] = "E~liminar" ;
-            Text[ chinese_simplified ] = "删除(~D)";
-            Text[ russian ] = "�������";
-            Text[ polish ] = "~Usu�";
-            Text[ japanese ] = "削除(~D)";
-            Text[ chinese_traditional ] = "刪除(~D)";
-            Text[ arabic ] = "���";
-            Text[ greek ] = "������~��";
-            Text[ korean ] = "삭제(~D)";
-            Text[ turkish ] = "Sil";
-            Text[ language_user1 ] = " ";
-            Text[ catalan ] = "~Suprimeix";
-            Text[ finnish ] = "~Poista";
-            Text[ thai ] = "~ลบ";
-            Text[ czech ] = "Smazat";
-            Text[ hebrew ] = "‮מחיקה‬";
-            Text[ hindi ] = "~मिटाओ";
-            Text[ slovak ] = "~Zmazať";
+            Text [ de ] = "~L�schen" ;
+            Text [ en-US ] = "~Delete" ;
+            Text [ x-comment ] = " ";
+            Text[ pt ] = "E~liminar";
+            Text[ ru ] = "Удалить";
+            Text[ el ] = "Διαγρα~φή";
+            Text[ nl ] = "Wi~ssen";
+            Text[ fr ] = "~Supprimer";
+            Text[ es ] = "~Borrar";
+            Text[ fi ] = "~Poista";
+            Text[ ca ] = "~Suprimeix";
+            Text[ it ] = "~Elimina";
+            Text[ sk ] = "~Zmazať";
+            Text[ da ] = "Slet";
+            Text[ sv ] = "~Radera";
+            Text[ pl ] = "~Usuń";
+            Text[ pt-BR ] = "E~xcluir";
+            Text[ th ] = "~ลบ";
+            Text[ ja ] = "削除(~D)";
+            Text[ ko ] = "삭제(~D)";
+            Text[ zh-CN ] = "删除(~D)";
+            Text[ zh-TW ] = "刪除(~D)";
+            Text[ tr ] = "Sil";
+            Text[ hi-IN ] = "~मिटाओ";
+            Text[ ar ] = "حذف";
+            Text[ he ] = "‮מחיקה‬";
         };
         MenuItem
         {
             Identifier = SID_FM_FILTER_EDIT ;
             HelpID = SID_FM_FILTER_EDIT ;
-            Text = "~Bearbeiten" ;
-            Text [ english_us ] = "~Edit" ;
-            Text[ portuguese ] = "~Editar";
-            Text[ russian ] = "~������";
-            Text[ greek ] = "~�����������";
-            Text[ dutch ] = "B~ewerken";
-            Text[ french ] = "~�diter";
-            Text[ spanish ] = "~Editar";
-            Text[ italian ] = "~Modifica";
-            Text[ danish ] = "~Rediger";
-            Text[ swedish ] = "~Redigera";
-            Text[ polish ] = "~Edytuj";
-            Text[ portuguese_brazilian ] = "~Editar";
-            Text[ japanese ] = "編集(~E)";
-            Text[ korean ] = "편집(~E)";
-            Text[ chinese_simplified ] = "编辑(~E)";
-            Text[ chinese_traditional ] = "編輯(~E)";
-            Text[ arabic ] = "~�����";
-            Text[ turkish ] = "D�zenle";
-            Text[ language_user1 ] = " ";
-            Text[ catalan ] = "~Edita";
-            Text[ finnish ] = "~Muokkaa";
-            Text[ thai ] = "แ~ก้ไข";
-            Text[ czech ] = "Upravit";
-            Text[ hebrew ] = "‮עריכה‬";
-            Text[ hindi ] = "~संपादन";
-            Text[ slovak ] = "~Upraviť";
+            Text [ de ] = "~Bearbeiten" ;
+            Text [ en-US ] = "~Edit" ;
+            Text [ x-comment ] = " ";
+            Text[ pt ] = "~Editar";
+            Text[ ru ] = "~Правка";
+            Text[ el ] = "~Επεξεργασία";
+            Text[ nl ] = "B~ewerken";
+            Text[ fr ] = "~Éditer";
+            Text[ es ] = "~Editar";
+            Text[ fi ] = "~Muokkaa";
+            Text[ ca ] = "~Edita";
+            Text[ it ] = "~Modifica";
+            Text[ sk ] = "~Upraviť";
+            Text[ da ] = "~Rediger";
+            Text[ sv ] = "~Redigera";
+            Text[ pl ] = "~Edytuj";
+            Text[ pt-BR ] = "~Editar";
+            Text[ th ] = "แ~ก้ไข";
+            Text[ ja ] = "編集(~E)";
+            Text[ ko ] = "편집(~E)";
+            Text[ zh-CN ] = "编辑(~E)";
+            Text[ zh-TW ] = "編輯(~E)";
+            Text[ tr ] = "Düzenle";
+            Text[ hi-IN ] = "~संपादन";
+            Text[ ar ] = "~تحرير";
+            Text[ he ] = "‮עריכה‬";
         };
         MenuItem
         {
             Identifier = SID_FM_FILTER_IS_NULL ;
             HelpID = SID_FM_FILTER_IS_NULL ;
-            Text = "~Ist Leer" ;
-            Text [ english_us ] = "~Is Null" ;
-            Text [ ENGLISH ] = "~IS NULL" ;
-            Text[ portuguese ] = "~Vazio";
-            Text[ russian ] = "~�����";
-            Text[ greek ] = "����~� ��������� ����������";
-            Text[ dutch ] = "~Is leeg";
-            Text[ french ] = "~Est vide";
-            Text[ spanish ] = "~Vac�o";
-            Text[ italian ] = "� ~vuoto";
-            Text[ danish ] = "Er tom";
-            Text[ swedish ] = "~�r tom";
-            Text[ polish ] = "~Jest pusty";
-            Text[ portuguese_brazilian ] = "~� Vazio";
-            Text[ japanese ] = "空白(~I)";
-            Text[ korean ] = "비어 있음(~I)";
-            Text[ chinese_simplified ] = "是空缺(~I)";
-            Text[ chinese_traditional ] = "是空缺(~I)";
-            Text[ arabic ] = "����";
-            Text[ turkish ] = "Bo�";
-            Text[ catalan ] = "~Buit";
-            Text[ finnish ] = "~Ei p�de";
-            Text[ thai ] = "เ~ป็น Null";
-            Text[ czech ] = "Je null";
-            Text[ hebrew ] = "‮ריק‬";
-            Text[ hindi ] = "Null है ~क्या";
-            Text[ slovak ] = "~Je Null";
+            Text [ de ] = "~Ist Leer" ;
+            Text [ en-US ] = "~Is Null" ;
+            Text[ pt ] = "~Vazio";
+            Text[ ru ] = "~Пусто";
+            Text[ el ] = "Είνα~ι μηδενικός χαρακτήρας";
+            Text[ nl ] = "~Is leeg";
+            Text[ fr ] = "~Est vide";
+            Text[ es ] = "~Vacío";
+            Text[ fi ] = "~Ei päde";
+            Text[ ca ] = "~Buit";
+            Text[ it ] = "È ~vuoto";
+            Text[ sk ] = "~Je Null";
+            Text[ da ] = "Er tom";
+            Text[ sv ] = "~Är tom";
+            Text[ pl ] = "~Jest pusty";
+            Text[ pt-BR ] = "~É Vazio";
+            Text[ th ] = "เ~ป็น Null";
+            Text[ ja ] = "空白(~I)";
+            Text[ ko ] = "비어 있음(~I)";
+            Text[ zh-CN ] = "是空缺(~I)";
+            Text[ zh-TW ] = "是空缺(~I)";
+            Text[ tr ] = "Boş";
+            Text[ hi-IN ] = "Null है ~क्या";
+            Text[ ar ] = "خالي";
+            Text[ he ] = "‮ריק‬";
         };
         MenuItem
         {
             Identifier = SID_FM_FILTER_IS_NOT_NULL ;
             HelpID = SID_FM_FILTER_IS_NOT_NULL ;
-            Text = "~Ist nicht leer" ;
-            Text [ english_us ] = "I~s not Null" ;
-            Text [ ENGLISH ] = "~IS NOT NULL" ;
-            Text[ portuguese ] = "~N�o vazio";
-            Text[ russian ] = "~�� �����";
-            Text[ greek ] = "��� ����~� ��������� ����������";
-            Text[ dutch ] = "~Is niet leeg";
-            Text[ french ] = "~N'est pas vide";
-            Text[ spanish ] = "~No Vac�o";
-            Text[ italian ] = "~Non � vuoto";
-            Text[ danish ] = "Er ikke tom";
-            Text[ swedish ] = "~�r inte tom";
-            Text[ polish ] = "~Nie jest pusty";
-            Text[ portuguese_brazilian ] = "~N�o � Vazio";
-            Text[ japanese ] = "空白でない(~S)";
-            Text[ korean ] = "비어 있지 않음(~S)";
-            Text[ chinese_simplified ] = "不是空缺(~S)";
-            Text[ chinese_traditional ] = "不是空缺(~S)";
-            Text[ arabic ] = "��� ����";
-            Text[ turkish ] = "Bo� de�il";
-            Text[ catalan ] = "~No buit";
-            Text[ finnish ] = "~P�tee";
-            Text[ thai ] = "ไ~ม่เป็น  Null";
-            Text[ czech ] = "Není null";
-            Text[ hebrew ] = "‮לא ריק‬";
-            Text[ hindi ] = "Null ~नहीं है क्या";
-            Text[ slovak ] = "~Nie je null";
+            Text [ de ] = "~Ist nicht leer" ;
+            Text [ en-US ] = "I~s not Null" ;
+            Text[ pt ] = "~Não vazio";
+            Text[ ru ] = "~Не пусто";
+            Text[ el ] = "Δεν είνα~ι μηδενικός χαρακτήρας";
+            Text[ nl ] = "~Is niet leeg";
+            Text[ fr ] = "~N'est pas vide";
+            Text[ es ] = "~No Vacío";
+            Text[ fi ] = "~Pätee";
+            Text[ ca ] = "~No buit";
+            Text[ it ] = "~Non è vuoto";
+            Text[ sk ] = "~Nie je null";
+            Text[ da ] = "Er ikke tom";
+            Text[ sv ] = "~Är inte tom";
+            Text[ pl ] = "~Nie jest pusty";
+            Text[ pt-BR ] = "~Não é Vazio";
+            Text[ th ] = "ไ~ม่เป็น  Null";
+            Text[ ja ] = "空白でない(~S)";
+            Text[ ko ] = "비어 있지 않음(~S)";
+            Text[ zh-CN ] = "不是空缺(~S)";
+            Text[ zh-TW ] = "不是空缺(~S)";
+            Text[ tr ] = "Boş değil";
+            Text[ hi-IN ] = "Null ~नहीं है क्या";
+            Text[ ar ] = "غير خالي";
+            Text[ he ] = "‮לא ריק‬";
         };
     };
 };
