@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtrans.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:34:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -743,37 +743,37 @@ namespace binfilter {
 /*N*/   return 0x7fffffff;
 /*N*/ }
 
-//STRIP001 void Kuerzen(Fraction& rF, unsigned nDigits)
-//STRIP001 {
-//STRIP001  INT32 nMul=rF.GetNumerator();
-//STRIP001  INT32 nDiv=rF.GetDenominator();
-//STRIP001  FASTBOOL bNeg=FALSE;
-//STRIP001  if (nMul<0) { nMul=-nMul; bNeg=!bNeg; }
-//STRIP001  if (nDiv<0) { nDiv=-nDiv; bNeg=!bNeg; }
-//STRIP001  if (nMul==0 || nDiv==0) return;
-//STRIP001  UINT32 a;
-//STRIP001  a=UINT32(nMul); unsigned nMulZ=0; // Fuehrende Nullen zaehlen
-//STRIP001  while (a<0x00800000) { nMulZ+=8; a<<=8; }
-//STRIP001  while (a<0x80000000) { nMulZ++; a<<=1; }
-//STRIP001  a=UINT32(nDiv); unsigned nDivZ=0; // Fuehrende Nullen zaehlen
-//STRIP001  while (a<0x00800000) { nDivZ+=8; a<<=8; }
-//STRIP001  while (a<0x80000000) { nDivZ++; a<<=1; }
-//STRIP001  // Anzahl der verwendeten Digits bestimmen
-//STRIP001  int nMulDigits=32-nMulZ;
-//STRIP001  int nDivDigits=32-nDivZ;
-//STRIP001  // Nun bestimmen, wieviele Stellen hinten weg koennen
-//STRIP001  int nMulWeg=nMulDigits-nDigits; if (nMulWeg<0) nMulWeg=0;
-//STRIP001  int nDivWeg=nDivDigits-nDigits; if (nDivWeg<0) nDivWeg=0;
-//STRIP001  int nWeg=Min(nMulWeg,nDivWeg);
-//STRIP001  nMul>>=nWeg;
-//STRIP001  nDiv>>=nWeg;
-//STRIP001  if (nMul==0 || nDiv==0) {
-//STRIP001      DBG_WARNING("Oups, beim kuerzen einer Fraction hat sich Joe verrechnet.");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  if (bNeg) nMul=-nMul;
-//STRIP001  rF=Fraction(nMul,nDiv);
-//STRIP001 }
+/*NBFF*/ void Kuerzen(Fraction& rF, unsigned nDigits)
+/*NBFF*/ {
+/*NBFF*/    INT32 nMul=rF.GetNumerator();
+/*NBFF*/    INT32 nDiv=rF.GetDenominator();
+/*NBFF*/    FASTBOOL bNeg=FALSE;
+/*NBFF*/    if (nMul<0) { nMul=-nMul; bNeg=!bNeg; }
+/*NBFF*/    if (nDiv<0) { nDiv=-nDiv; bNeg=!bNeg; }
+/*NBFF*/    if (nMul==0 || nDiv==0) return;
+/*NBFF*/    UINT32 a;
+/*NBFF*/    a=UINT32(nMul); unsigned nMulZ=0; // Fuehrende Nullen zaehlen
+/*NBFF*/    while (a<0x00800000) { nMulZ+=8; a<<=8; }
+/*NBFF*/    while (a<0x80000000) { nMulZ++; a<<=1; }
+/*NBFF*/    a=UINT32(nDiv); unsigned nDivZ=0; // Fuehrende Nullen zaehlen
+/*NBFF*/    while (a<0x00800000) { nDivZ+=8; a<<=8; }
+/*NBFF*/    while (a<0x80000000) { nDivZ++; a<<=1; }
+/*NBFF*/    // Anzahl der verwendeten Digits bestimmen
+/*NBFF*/    int nMulDigits=32-nMulZ;
+/*NBFF*/    int nDivDigits=32-nDivZ;
+/*NBFF*/    // Nun bestimmen, wieviele Stellen hinten weg koennen
+/*NBFF*/    int nMulWeg=nMulDigits-nDigits; if (nMulWeg<0) nMulWeg=0;
+/*NBFF*/    int nDivWeg=nDivDigits-nDigits; if (nDivWeg<0) nDivWeg=0;
+/*NBFF*/    int nWeg=Min(nMulWeg,nDivWeg);
+/*NBFF*/    nMul>>=nWeg;
+/*NBFF*/    nDiv>>=nWeg;
+/*NBFF*/    if (nMul==0 || nDiv==0) {
+/*NBFF*/        DBG_WARNING("Oups, beim kuerzen einer Fraction hat sich Joe verrechnet.");
+/*NBFF*/        return;
+/*NBFF*/    }
+/*NBFF*/    if (bNeg) nMul=-nMul;
+/*NBFF*/    rF=Fraction(nMul,nDiv);
+/*NBFF*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Wieviele eU-Einheiten passen in einen mm bzw. Inch?
