@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:18 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:45:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,9 +78,9 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
@@ -91,12 +91,17 @@
 #endif
 
 #include "unoshprp.hxx"
-#include "unoapi.hxx"
+// auto strip #include "unoapi.hxx"
 
-#ifndef _SVDGLOB_HXX
-#include "svdglob.hxx"
-#endif
+// auto strip #ifndef _SVDGLOB_HXX
+// auto strip #include "svdglob.hxx"
+// auto strip #endif
 #include "svdstr.hrc"
+
+#ifndef _FRAMEOBJ_HXX
+#include <bf_sfx2/frameobj.hxx>
+#endif
+
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////
