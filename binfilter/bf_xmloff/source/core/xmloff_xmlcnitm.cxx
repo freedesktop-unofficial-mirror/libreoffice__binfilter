@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlcnitm.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:47:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,12 +65,12 @@
 #ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
-#include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
+// auto strip #include <com/sun/star/lang/XUnoTunnel.hpp>
+// auto strip #endif
 
 #include "xmlcnimp.hxx"
-#include "unoatrcn.hxx"
+// auto strip #include "unoatrcn.hxx"
 namespace binfilter {
 
 using namespace rtl;

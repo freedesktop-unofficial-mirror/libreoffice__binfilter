@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlexp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:47:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,14 +60,14 @@
  ************************************************************************/
 
 #ifdef PRECOMPILED
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #include <rtl/uuid.h>
 #ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
@@ -81,12 +81,12 @@
 //#include <comphelper/processfactory.hxx>
 //#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
 #endif
@@ -94,9 +94,9 @@
 #include <com/sun/star/xml/sax/SAXInvalidCharacterException.hpp>
 #endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
-#include "attrlist.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_ATTRLIST_HXX
+// auto strip #include "attrlist.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -109,17 +109,17 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
-#include "xmlexp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEXP_HXX
+// auto strip #include "xmlexp.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNUMFE_HXX
-#include "xmlnumfe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
+// auto strip #include "xmlnumfe.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
@@ -129,9 +129,9 @@
 #include "xmlscripte.hxx"
 #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
@@ -149,12 +149,12 @@
 #include "SettingsExportHelper.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #endif

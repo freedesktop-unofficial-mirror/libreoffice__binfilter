@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlerror.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:47:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,25 +67,25 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XLOCATOR_HPP_
 #include <com/sun/star/xml/sax/XLocator.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
-#include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
+// auto strip #include <com/sun/star/xml/sax/SAXParseException.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
