@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_expfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-23 14:05:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:25:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
 #endif
@@ -88,6 +88,11 @@
 #include <com/sun/star/text/SetVariableType.hpp>
 #endif
 
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOFIELD_HXX
 #include <unofield.hxx>
 #endif
@@ -103,24 +108,29 @@
 #ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
 #endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _LAYFRM_HXX
-#include <layfrm.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _LAYFRM_HXX
+// auto strip #include <layfrm.hxx>
+// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
@@ -139,12 +149,12 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _CALC_HXX
-#include <calc.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _CALC_HXX
+// auto strip #include <calc.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
