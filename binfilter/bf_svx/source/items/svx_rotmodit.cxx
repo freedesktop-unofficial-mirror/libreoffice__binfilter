@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_rotmodit.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:05:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,45 +64,45 @@
 #endif
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
-#include <com/sun/star/table/BorderLine.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
+// auto strip #include <com/sun/star/table/BorderLine.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
-#include <com/sun/star/table/ShadowLocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
-#include <com/sun/star/table/TableBorder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
-#include <com/sun/star/table/ShadowFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
-#include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
-#include <com/sun/star/table/CellContentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
-#include <com/sun/star/table/TableOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
-#include <com/sun/star/table/CellHoriJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
-#include <com/sun/star/util/SortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
-#include <com/sun/star/util/SortFieldType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
-#include <com/sun/star/table/CellOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
-#include <com/sun/star/table/CellAddress.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
+// auto strip #include <com/sun/star/table/ShadowLocation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
+// auto strip #include <com/sun/star/table/TableBorder.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
+// auto strip #include <com/sun/star/table/ShadowFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
+// auto strip #include <com/sun/star/table/CellRangeAddress.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
+// auto strip #include <com/sun/star/table/CellContentType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
+// auto strip #include <com/sun/star/table/TableOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
+// auto strip #include <com/sun/star/table/CellHoriJustify.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
+// auto strip #include <com/sun/star/util/SortField.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
+// auto strip #include <com/sun/star/util/SortFieldType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
+// auto strip #include <com/sun/star/table/CellOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
+// auto strip #include <com/sun/star/table/CellAddress.hpp>
+// auto strip #endif
 
 #include "rotmodit.hxx"
 namespace binfilter {
