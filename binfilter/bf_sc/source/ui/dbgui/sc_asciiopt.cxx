@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_asciiopt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:39:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,26 +60,26 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#include "global.hxx"
-#include "scresid.hxx"
-#include "impex.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "scresid.hxx"
+// auto strip #include "impex.hxx"
 #include "asciiopt.hxx"
 #include "asciiopt.hrc"
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 #ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
 #endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
