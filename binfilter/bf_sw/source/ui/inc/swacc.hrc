@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swacc.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:01 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 14:41:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,6 +86,28 @@
 #define AT_FN_NUM_BULLET_MOVEDOWN   ACC_CODE( FN_NUM_BULLET_MOVEDOWN, KEY_DOWN, FALSE, TRUE, TRUE )
 #define AT_FN_END_TABLE             ACC_CODE( FN_END_TABLE, KEY_DOWN, TRUE, TRUE, FALSE )
 #define AT_FN_REPEAT_SEARCH         AcceleratorItem { Identifier = FN_REPEAT_SEARCH; \
+                                        ACC_DEF_KEY(    KEY_F, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( de ,   KEY_G, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( en-us  ,   KEY_F, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( it ,       KEY_B, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( fr ,       KEY_F, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( nl ,       KEY_F, TRUE, TRUE, FALSE ) };
+
+#define AT_FN_SET_SUPER_SCRIPT      AcceleratorItem { Identifier = FN_SET_SUPER_SCRIPT; \
+                                        ACC_DEF_KEY(    KEY_P, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( de ,   KEY_H, FALSE, TRUE, FALSE ) \
+                                        ACC_KEY( it ,       KEY_A, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( en-US ,    KEY_P, TRUE, TRUE, FALSE ) };
+
+#define AT_FN_SET_SUB_SCRIPT        AcceleratorItem { Identifier = FN_SET_SUB_SCRIPT; \
+                                        ACC_DEF_KEY(    KEY_B, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( de ,   KEY_T, FALSE, TRUE, FALSE ) \
+                                        ACC_KEY( en-US ,    KEY_B, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( it ,       KEY_P, TRUE, TRUE, FALSE ) \
+                                        ACC_KEY( nl ,       KEY_P, TRUE, TRUE, FALSE ) };
+
+/* old ones
+#define AT_FN_REPEAT_SEARCH         AcceleratorItem { Identifier = FN_REPEAT_SEARCH; \
                                         ACC_DEF_KEY(    KEY_G, TRUE, TRUE, FALSE ) \
                                         ACC_KEY( English_us,    KEY_F, TRUE, TRUE, FALSE ) \
                                         ACC_KEY( Italian,       KEY_B, TRUE, TRUE, FALSE ) \
@@ -102,7 +124,7 @@
                                         ACC_KEY( English_us,    KEY_B, TRUE, TRUE, FALSE ) \
                                         ACC_KEY( Italian,       KEY_P, TRUE, TRUE, FALSE ) \
                                         ACC_KEY( Dutch,         KEY_P, TRUE, TRUE, FALSE ) };
-
+*/
 
 
 
@@ -525,7 +547,7 @@ WEB_ACC_PARA_BLOCK                      \
             Shift = FALSE;  Modifier1 = TRUE;   \
             Modifier2 = FALSE;                      \
             };                                      \
-            Key[spanish]  = KeyCode {               \
+            Key[ es ]  = KeyCode {               \
             Code = KEY_B;                           \
             Shift = FALSE;  Modifier1 = TRUE;   \
             Modifier2 = FALSE;                      \
