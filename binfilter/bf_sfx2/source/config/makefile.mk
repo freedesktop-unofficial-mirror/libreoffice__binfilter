@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:16 $
+#   last change: $Author: hjs $ $Date: 2004-06-28 12:32:03 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -83,21 +83,6 @@ AUTOSEG=true
 INC+= -I$(PRJ)$/inc$/bf_sfx2
 
 # --- Files --------------------------------------------------------
-
-# Every source directory generates headers in a own output directory to
-# enable parallel building of the source directories within a project!
-UNOUCROUT=$(OUT)$/inc$/$(PRJNAME)$/$(TARGET)
-INCPRE+=$(UNOUCROUT)
-
-UNOTYPES=\
-    com.sun.star.lang.XMultiServiceFactory \
-        com.sun.star.beans.XPropertyChangeListener \
-        com.sun.star.uno.TypeClass \
-        com.sun.star.uno.XWeak \
-        com.sun.star.uno.XAggregation \
-        com.sun.star.lang.XTypeProvider \
-        com.sun.star.frame.XConfigManager \
-        com.sun.star.registry.XSimpleRegistry
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
