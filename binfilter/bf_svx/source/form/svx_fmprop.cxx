@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmprop.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:47:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,28 +62,28 @@
 
 #define USE_PROPERTY_HELPER
 
-#ifndef _SVX_FMPROP_HXX
-#include "fmprop.hxx"
-#endif
+// auto strip #ifndef _SVX_FMPROP_HXX
+// auto strip #include "fmprop.hxx"
+// auto strip #endif
 #ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SVX_DIALMGR_HXX //autogen
-#include "dialmgr.hxx"
-#endif
+// auto strip #ifndef _SVX_DIALMGR_HXX //autogen
+// auto strip #include "dialmgr.hxx"
+// auto strip #endif
 
-#ifndef _TOOLS_RESID_HXX //autogen
-#include <tools/resid.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESID_HXX //autogen
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
 
 #ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
@@ -91,16 +91,16 @@
 #ifndef _SVX_FMHELP_HRC
 #include "fmhelp.hrc"
 #endif
-#ifndef _SVX_FMTOOLS_HXX
-#include "fmtools.hxx"
-#endif
+// auto strip #ifndef _SVX_FMTOOLS_HXX
+// auto strip #include "fmtools.hxx"
+// auto strip #endif
 
-#ifndef _XCEPTION_HXX_ //autogen
-#include <vos/xception.hxx>
-#endif
-#ifndef _FM_STATIC_HXX_
-#include "fmstatic.hxx"
-#endif
+// auto strip #ifndef _XCEPTION_HXX_ //autogen
+// auto strip #include <vos/xception.hxx>
+// auto strip #endif
+// auto strip #ifndef _FM_STATIC_HXX_
+// auto strip #include "fmstatic.hxx"
+// auto strip #endif
 namespace binfilter {
 
 //STRIP001 sal_uInt16 FmPropertyInfoService::nCount = 0;
