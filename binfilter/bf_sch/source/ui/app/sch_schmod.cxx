@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schmod.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:50:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,63 +63,63 @@
 
 #pragma hdrstop
 
-#ifndef _FACTORY_HXX //autogen
-#include <so3/factory.hxx>
-#endif
+// auto strip #ifndef _FACTORY_HXX //autogen
+// auto strip #include <so3/factory.hxx>
+// auto strip #endif
 
 #include <bf_svx/svxids.hrc>
 
-#include "schdll0.hxx"
+// auto strip #include "schdll0.hxx"
 
 #ifndef _SFXOBJFACE_HXX //autogen
 #include <bf_sfx2/objface.hxx>
 #endif
 
-#ifndef _SFXMSG_HXX //autogen
-#include <bf_sfx2/msg.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXMSG_HXX //autogen
+// auto strip #include <bf_sfx2/msg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
-#ifndef _OBJFAC3D_HXX //autogen
-#include <bf_svx/objfac3d.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
-#include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
-#ifndef _XPOOL_HXX //autogen
-#include <bf_svx/xpool.hxx>
-#endif
+// auto strip #ifndef _OBJFAC3D_HXX //autogen
+// auto strip #include <bf_svx/objfac3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXREQUEST_HXX //autogen
+// auto strip #include <bf_sfx2/request.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
+// auto strip #ifndef _XPOOL_HXX //autogen
+// auto strip #include <bf_svx/xpool.hxx>
+// auto strip #endif
 
 #define _SCH_DLL                 // fuer SD_MOD()
 #include "schmod.hxx"
-#include "schdll.hxx"
+// auto strip #include "schdll.hxx"
 #include "schresid.hxx"
-#include "objfac.hxx"
+// auto strip #include "objfac.hxx"
 
 #include "app.hrc"
 #include "glob.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
-#include "cfgids.hxx"
+// auto strip #include "cfgids.hxx"
 
 //STRIP008 /*N*/ TYPEINIT1( SchModuleDummy, SfxModule );
 //STRIP008 /*N*/ TYPEINIT1( SchModule, SchModuleDummy );
