@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_linkmgr.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:23:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:19:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -119,37 +119,43 @@ String RID_SVXSTR_GRAFIKLINK
     Text[ ar ] = "صورة";
     Text[ he ] = "‮גרפיקה‬";
 };
-String RID_SVXSTR_EDITGRFLINK
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Grafik Verkn�pfen : Grafik Verkn�pfen */
-    /* ### ACHTUNG: Neuer Text in Resource? Grafik Verkn�pfen : Grafik Verkn�pfen */
-    Text [ de ] = "Grafik Verkn�pfen" ;
-    Text [ en-US ] = "Link graphics" ;
-    Text [ x-comment ] = "; LS 09.08.99 Wir wollen in der franz?ischen Version m?lichst Substantive als Dialog?erschriften haben. Hier wird die bestehende Verkn?fung ge?dert, d.h., es wird eine neue Grafik ausgew?lt";
-    Text[ pt ] = "Ligar imagem";
-    Text[ ru ] = "Установление связи";
-    Text[ el ] = "Σύνδεση γραφικού";
-    Text[ nl ] = "Afbeelding koppelen";
-    Text[ fr ] = "Image du lien";
-    Text[ es ] = "Enlazar imagen";
-    Text[ fi ] = "Linkitä kuvat";
-    Text[ ca ] = "Enllaça la imatge";
-    Text[ it ] = "Collega immagine";
-    Text[ sk ] = "Prepojiť obrázky";
-    Text[ da ] = "Kæd grafik";
-    Text[ sv ] = "Länka till grafik";
-    Text[ pl ] = "Dołącz grafikę";
-    Text[ pt-BR ] = "Vincular Figuras";
-    Text[ th ] = "เชื่อมโยงกราฟิค";
-    Text[ ja ] = "図をリンクする";
-    Text[ ko ] = "그림 연결";
-    Text[ zh-CN ] = "链接图形";
-    Text[ zh-TW ] = "連結圖形";
-    Text[ tr ] = "Grafik bağlantısı oluştur";
-    Text[ hi-IN ] = "सुचित्र को लिंक करो";
-    Text[ ar ] = "ربط الرسومات";
-    Text[ he ] = "‮קישור גרפיקה‬";
-};
+//STRIP001 String RID_SVXSTR_EDITGRFLINK
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Grafik Verkn�pfen : Grafik Verkn�pfen */
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Grafik Verkn�pfen : Grafik Verkn�pfen */
+//STRIP001      Text = "Grafik Verkn�pfen" ;
+//STRIP001      Text [ ENGLISH ] = "Link to Graphic" ;
+//STRIP001      Text [ norwegian ] = "Koble til Grafikk" ;
+//STRIP001      Text [ italian ] = "Collega immagine" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Vincular Figuras" ;
+//STRIP001      Text [ portuguese ] = "Ligar imagem" ;
+//STRIP001      Text [ finnish ] = "Linkit?kuvat" ;
+//STRIP001      Text [ danish ] = "K�d grafik" ;
+//STRIP001      Text [ french ] = "Image du lien" ;
+//STRIP001      Text [ swedish ] = "L�nka till grafik" ;
+//STRIP001      Text [ dutch ] = "Afbeelding koppelen" ;
+//STRIP001      Text [ spanish ] = "Enlazar imagen" ;
+//STRIP001      Text [ english_us ] = "Link graphics" ;
+//STRIP001      Text[ chinese_simplified ] = "链接图形";
+//STRIP001      Text[ russian ] = "������������ �����";
+//STRIP001      Text[ polish ] = "Do��cz grafik?";
+//STRIP001      Text[ japanese ] = "図をリンクす�?";
+//STRIP001      Text[ chinese_traditional ] = "連結圖形";
+//STRIP001      Text[ arabic ] = "��?��������";
+//STRIP001      Text[ language_user1 ] = "; LS 09.08.99 Wir wollen in der franz?ischen Version m?lichst Substantive als Dialog?erschriften haben. Hier wird die bestehende Verkn?fung ge?dert, d.h., es wird eine neue Grafik ausgew?lt";
+//STRIP001      Text[ dutch ] = "Afbeelding koppelen";
+//STRIP001      Text[ chinese_simplified ] = "链接图形";
+//STRIP001      Text[ greek ] = "������?��������";
+//STRIP001      Text[ korean ] = "그림 연결";
+//STRIP001      Text[ turkish ] = "Grafik ba�lant�s?olu�tur";
+//STRIP001      Text[ catalan ] = "Enlla�a la imatge";
+//STRIP001      Text[ thai ] = "เชื่อมโยงกราฟิค";
+//STRIP001      Text[ czech ] = "Propojit obrázky";
+//STRIP001      Text[ hebrew ] = "‮קישו�?גרפיקה�?";
+//STRIP001      Text[ hindi ] = "सुचित्�?को लिंक कर�?";
+//STRIP001      Text[ slovak ] = "Prepojiť obrázky";
+//STRIP001 };
+
 String RID_SVXSTR_GRFLINKPROGRESS
 {
     Text [ de ] = "Importiere Grafik..." ;
@@ -183,34 +189,3 @@ String RID_SVXSTR_GRFLINKPROGRESS
 //STRIP001 {
 //STRIP001  File = "grfload.bmp" ;
 //STRIP001 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
