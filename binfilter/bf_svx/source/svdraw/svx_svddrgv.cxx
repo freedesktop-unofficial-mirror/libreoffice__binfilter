@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svddrgv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:19:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,21 +60,21 @@
  ************************************************************************/
 
 #include "svddrgv.hxx"
-#include "xattr.hxx"
-#include "xpoly.hxx"
-#include "svdxout.hxx"
-#include "svdetc.hxx"
-#include "svdtrans.hxx"
-#include "svdundo.hxx"
-#include "svdocapt.hxx"
+// auto strip #include "xattr.hxx"
+// auto strip #include "xpoly.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdetc.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "svdocapt.hxx"
 #include "svdio.hxx"
-#include "svdpagv.hxx"
-#include "svdopath.hxx" // wg. Sonderbehandlung in SetDragPolys()
-#include "svdoedge.hxx" // wg. Sonderbehandlung in IsInsGluePossible()
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdopath.hxx" // wg. Sonderbehandlung in SetDragPolys()
+// auto strip #include "svdoedge.hxx" // wg. Sonderbehandlung in IsInsGluePossible()
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
-#include "svddrgm1.hxx"
-#include "obj3d.hxx"
+// auto strip #include "svdglob.hxx"  // StringCache
+// auto strip #include "svddrgm1.hxx"
+// auto strip #include "obj3d.hxx"
 namespace binfilter {
 
 #define XOR_DRAG_PEN   PEN_DOT
