@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:15:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,18 +61,18 @@
 
 #pragma hdrstop
 
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 //#ifndef NOOLDSV //autogen
 //#include <vcl/system.hxx>
 //#endif
-#ifndef _STRING_HXX
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _STRING_HXX
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 #ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
 #endif
@@ -82,10 +82,10 @@
 
 #include "starmath.hrc"
 
-#include "utility.hxx"
+// auto strip #include "utility.hxx"
 #include "dialog.hxx"
 #include "view.hxx"
-#include "smdll.hxx"
+// auto strip #include "smdll.hxx"
 namespace binfilter {
 
 
