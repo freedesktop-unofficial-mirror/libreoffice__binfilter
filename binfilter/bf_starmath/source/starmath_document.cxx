@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:31:11 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -312,7 +312,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001  {
 //STRIP001      case HINT_FORMATCHANGED:
 //STRIP001          SetFormulaArranged(FALSE);
-//STRIP001          nModifyCount++;     //! merkwrdig...
+//STRIP001          nModifyCount++;     //! merkwuerdig...
 //STRIP001                              // ohne dies wird die Grafik letztlich
 //STRIP001                              // nicht geupdatet
 //STRIP001          Resize();
@@ -425,7 +425,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 /*N*/ void SmDocShell::ArrangeFormula()
 /*N*/ {
-/*N*/   //! Nur für die Dauer der Existenz dieses Objekts sind am Drucker die
+/*N*/   //! Nur fuer die Dauer der Existenz dieses Objekts sind am Drucker die
 /*N*/   //! richtigen Einstellungen garantiert.
 /*N*/     SmPrinterAccess  aPrtAcc(*this);
 /*N*/ //    OutputDevice    *pOutDev = aPrtAcc.GetPrinter();
@@ -436,7 +436,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       DBG_WARNING("Sm : kein Drucker vorhanden");
 /*N*/ #endif
 /*N*/
-/*N*/   // falls nötig ein anderes OutputDevice holen für das formatiert wird
+/*N*/   // falls noetig ein anderes OutputDevice holen fuer das formatiert wird
 /*N*/   if (!pOutDev)
 /*N*/   {
 /*N*/       SmViewShell *pView = SmGetActiveView();
@@ -812,7 +812,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/
 /*N*/   SetShell(this);
 /*N*/   SetModel( new SmModel(this) );  //! das hier mit new erzeugte Model brauch
-/*N*/                                   //! im Destruktor nicht explizit gelöscht werden.
+/*N*/                                   //! im Destruktor nicht explizit geloescht werden.
 /*N*/                                   //! Dies erledigt das Sfx.
 /*N*/ }
 
@@ -1388,7 +1388,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 //STRIP001 /*?*/                 UpdateText();
 //STRIP001 /*?*/                ArrangeFormula();
 //STRIP001 /*?*/                Resize();
-//STRIP001 /*?*/                // Fenster anpassen, neuzeichnen, ModifyCount erhöhen,...
+//STRIP001 /*?*/                // Fenster anpassen, neuzeichnen, ModifyCount erhoehen,...
 //STRIP001 /*?*/                if (pBindings)
 //STRIP001 /*?*/                    pBindings->Invalidate(SID_GRAPHIC);
 //STRIP001 /*?*/            }
