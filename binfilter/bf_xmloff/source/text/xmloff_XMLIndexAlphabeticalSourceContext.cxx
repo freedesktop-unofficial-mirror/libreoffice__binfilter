@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLIndexAlphabeticalSourceContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:23:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,61 +64,61 @@
 #include "XMLIndexAlphabeticalSourceContext.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-#include <com/sun/star/container/XIndexReplace.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLINDEXTITLETEMPLATECONTEXT_HXX_
-#include "XMLIndexTitleTemplateContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLINDEXTITLETEMPLATECONTEXT_HXX_
+// auto strip #include "XMLIndexTitleTemplateContext.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLINDEXTOCSTYLESCONTEXT_HXX_
-#include "XMLIndexTOCStylesContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLINDEXTOCSTYLESCONTEXT_HXX_
+// auto strip #include "XMLIndexTOCStylesContext.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
-#include "xmlimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLIMP_HXX
+// auto strip #include "xmlimp.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
