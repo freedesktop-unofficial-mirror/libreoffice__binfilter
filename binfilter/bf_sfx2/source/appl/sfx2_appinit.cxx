@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2004-12-23 11:30:39 $
+ *  last change: $Author: vg $ $Date: 2005-02-21 16:32:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -361,9 +361,7 @@ public:
 /*N*/   pAppData_Impl->pPool = NoChaos::GetItemPool();
 /*N*/   SetPool( pAppData_Impl->pPool );
 /*N*/
-/*N*/   InsertLateInitHdl( LINK(pNewHdl, SfxNewHdl, InitMem_Impl) );
-/*N*/   InsertLateInitHdl( LINK(this, SfxApplication,SpecialService_Impl) );
-/*N*/     InsertLateInitHdl( STATIC_LINK( pAppData_Impl, SfxAppData_Impl, CreateDocumentTemplates ) );
+/*N*/     //InsertLateInitHdl( STATIC_LINK( pAppData_Impl, SfxAppData_Impl, CreateDocumentTemplates ) );
 /*N*/
 /*N*/   bInInit = sal_False;
 /*N*/   if ( bDowning )
@@ -374,67 +372,12 @@ public:
 /*N*/     pAppDispat->Flush();
 /*N*/   pAppDispat->DoActivate_Impl( sal_True );
 /*N*/
-/*N*/     SvtSaveOptions aSaveOptions;
-/*N*/     pImp->pAutoSaveTimer->SetTimeout( aSaveOptions.GetAutoSaveTime() * 60000 );
-/*N*/   pImp->pAutoSaveTimer->SetTimeoutHdl( LINK( pApp, SfxApplication, AutoSaveHdl_Impl ) );
-/*N*/
-/*N*/ //(dv)    if ( !pAppData_Impl->bBean )
-/*N*/ //(mba)        doFirstTimeInit();
-/*N*/
-/*N*/ //    Application::PostUserEvent( LINK( this, SfxApplication, OpenClients_Impl ) );
-/*N*/
-/*N*/ //    DELETEZ(pImp->pIntro);
-/*N*/
 /*N*/     // start LateInit
-/*N*/     SfxAppData_Impl *pAppData = Get_Impl();
-/*N*/     pAppData->aLateInitTimer.SetTimeout( 250 );
-/*N*/     pAppData->aLateInitTimer.SetTimeoutHdl( LINK( this, SfxApplication, LateInitTimerHdl_Impl ) );
-/*N*/     pAppData->aLateInitTimer.Start();
+/*N*/     //SfxAppData_Impl *pAppData = Get_Impl();
+/*N*/     //pAppData->aLateInitTimer.SetTimeout( 250 );
+/*N*/     //pAppData->aLateInitTimer.SetTimeoutHdl( LINK( this, SfxApplication, LateInitTimerHdl_Impl ) );
+/*N*/     //pAppData->aLateInitTimer.Start();
 /*N*/
 /*N*/     return sal_True;
 /*N*/ }
-
-/*N*/ IMPL_LINK( SfxApplication, SpecialService_Impl, void*, pVoid )
-/*N*/ {
-/*N*/   if ( pAppData_Impl->bBean )
-/*N*/           return 0;
-/*N*/
-/*N*/ #if SUPD<613//MUSTINI
-/*N*/   String aWizard = GetIniManager()->Get( DEFINE_CONST_UNICODE("Common"), 0, 0, DEFINE_CONST_UNICODE("RunWizard") );
-/*N*/   sal_Bool bRunWizard = (sal_Bool) (sal_uInt16) aWizard.ToInt32();
-/*N*/     if ( bRunWizard )
-/*N*/   {
-/*N*/       SfxStringItem aReferer( SID_REFERER, DEFINE_CONST_UNICODE("private:user") );
-/*N*/       SfxStringItem aMacro( SID_FILE_NAME, DEFINE_CONST_UNICODE("macro://#InternetSetup.Run.Main()") );
-/*N*/ //(mba)        pAppDispat->Execute( SID_OPENDOC, SFX_CALLMODE_ASYNCHRON, &aMacro, &aReferer, 0L );
-/*N*/         GetIniManager()->DeleteKey( DEFINE_CONST_UNICODE("Common"), DEFINE_CONST_UNICODE("RunWizard") );
-/*N*/         GetIniManager()->Flush();
-/*N*/   }
-/*N*/     else if ( !pAppData_Impl->bBean )
-/*N*/   {
-/*N*/       // StarOffice registration
-/*N*/       INetURLObject aORegObj( GetIniManager()->Get( SFX_KEY_USERCONFIG_PATH ), INET_PROT_FILE );
-/*N*/       aORegObj.insertName( DEFINE_CONST_UNICODE( "oreg.ini" ) );
-/*N*/         Config aCfg( aORegObj.PathToFileName() );
-/*N*/         aCfg.SetGroup( "reg" );
-/*N*/         sal_uInt16 nRegKey = (sal_uInt16) aCfg.ReadKey( "registration", "0" ).ToInt32();
-/*N*/         if( nRegKey == 0 )
-/*N*/             GetAppDispatcher_Impl()->Execute(SID_ONLINE_REGISTRATION_DLG, SFX_CALLMODE_ASYNCHRON);
-/*N*/   }
-/*N*/ #else
-/*N*/     if ( !pAppData_Impl->bBean )
-/*N*/   {
-/*N*/       // StarOffice registration
-/*N*/       INetURLObject aORegObj( SvtPathOptions().GetUserConfigPath(), INET_PROT_FILE );
-/*N*/       aORegObj.insertName( DEFINE_CONST_UNICODE( "oreg.ini" ) );
-/*N*/         Config aCfg( aORegObj.PathToFileName() );
-/*N*/         aCfg.SetGroup( "reg" );
-/*N*/         sal_uInt16 nRegKey = (sal_uInt16) aCfg.ReadKey( "registration", "0" ).ToInt32();
-/*N*/         if( nRegKey == 0 )
-/*N*/             GetAppDispatcher_Impl()->Execute(SID_ONLINE_REGISTRATION_DLG, SFX_CALLMODE_ASYNCHRON);
-/*N*/   }
-/*N*/ #endif
-/*N*/   return 0;
-/*N*/ }
-
 }
