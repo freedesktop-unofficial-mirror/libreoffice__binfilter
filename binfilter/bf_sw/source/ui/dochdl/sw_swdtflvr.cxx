@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-06-24 12:55:49 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:40:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,170 +60,175 @@
  ************************************************************************/
 
 #ifdef PRECOMPILED
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
-#ifndef _SOT_FORMATS_HXX
-#include <sot/formats.hxx>
-#endif
-#ifndef _LINKMGR_HXX
-#include <so3/linkmgr.hxx>
-#endif
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
+// auto strip #ifndef _SOT_FORMATS_HXX
+// auto strip #include <sot/formats.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINKMGR_HXX
+// auto strip #include <so3/linkmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
 #ifndef _PASTEDLG_HXX
 #include <so3/pastedlg.hxx>
 #endif
-#ifndef _WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _MSGBOX_HXX
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX
-#include <svtools/stritem.hxx>
-#endif
-#ifndef _IMAP_HXX
-#include <svtools/imap.hxx>
-#endif
-#ifndef _SVSTOR_HXX
-#include <so3/svstor.hxx>
-#endif
-#ifndef _GRAPH_HXX
-#include <vcl/graph.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
-#include <svtools/urihelper.hxx>
-#endif
-#ifndef _SVDMODEL_HXX
-#include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVX_XEXCH_HXX
-#include <bf_svx/xexch.hxx>
-#endif
-#ifndef _SVX_DBAEXCHANGE_HXX_
-#include <bf_svx/dbaexchange.hxx>
-#endif
-#ifndef _SFXFRAME_HXX
-#include <bf_sfx2/frame.hxx>
-#endif
+// auto strip #ifndef _WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _MSGBOX_HXX
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDISPATCH_HXX
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTRITEM_HXX
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
+// auto strip #ifndef _IMAP_HXX
+// auto strip #include <svtools/imap.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _GRAPH_HXX
+// auto strip #include <vcl/graph.hxx>
+// auto strip #endif
+// auto strip #ifndef SVTOOLS_URIHELPER_HXX
+// auto strip #include <svtools/urihelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include <bf_svx/svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_XEXCH_HXX
+// auto strip #include <bf_svx/xexch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_DBAEXCHANGE_HXX_
+// auto strip #include <bf_svx/dbaexchange.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXFRAME_HXX
+// auto strip #include <bf_sfx2/frame.hxx>
+// auto strip #endif
 #ifndef _SVX_CLIPFMTITEM_HXX
 #include <bf_svx/clipfmtitem.hxx>
 #endif
-#ifndef _MIECLIP_HXX
-#include <bf_sfx2/mieclip.hxx>
-#endif
-#ifndef _OFF_APP_HXX
-#include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SVDETC_HXX
-#include <bf_svx/svdetc.hxx>
-#endif
-#ifndef _XOUTBMP_HXX
-#include <bf_svx/xoutbmp.hxx>
-#endif
-#ifndef _URLBMK_HXX
-#include <svtools/urlbmk.hxx>
-#endif
-#ifndef _HTMLOUT_HXX
-#include <svtools/htmlout.hxx>
-#endif
-#ifndef _SVX_HLNKITEM_HXX
-#include <bf_svx/hlnkitem.hxx>
-#endif
-#ifndef _INETIMG_HXX
-#include <svtools/inetimg.hxx>
-#endif
+// auto strip #ifndef _MIECLIP_HXX
+// auto strip #include <bf_sfx2/mieclip.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFF_APP_HXX
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDETC_HXX
+// auto strip #include <bf_svx/svdetc.hxx>
+// auto strip #endif
+// auto strip #ifndef _XOUTBMP_HXX
+// auto strip #include <bf_svx/xoutbmp.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLBMK_HXX
+// auto strip #include <svtools/urlbmk.hxx>
+// auto strip #endif
+// auto strip #ifndef _HTMLOUT_HXX
+// auto strip #include <svtools/htmlout.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_HLNKITEM_HXX
+// auto strip #include <bf_svx/hlnkitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _INETIMG_HXX
+// auto strip #include <svtools/inetimg.hxx>
+// auto strip #endif
 #ifndef _SVX_PAPERINF_HXX
 #include <bf_svx/paperinf.hxx>
 #endif
 #ifndef _SVX_FMVIEW_HXX
 #include <bf_svx/fmview.hxx>
 #endif
-#ifndef _SVX_IMPGRF_HXX
-#include <bf_svx/impgrf.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
-#include <bf_svx/scripttypeitem.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX
-#include <sot/formats.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX
-#include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _FILELIST_HXX
-#include <so3/filelist.hxx>
-#endif
-#ifndef _LINKSRC_HXX
-#include <so3/linksrc.hxx>
-#endif
-#ifndef _GOODIES_IMAPOBJ_HXX
-#include <svtools/imapobj.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX
-#include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
-#include <unotools/streamwrap.hxx>
-#endif
+// auto strip #ifndef _SVX_IMPGRF_HXX
+// auto strip #include <bf_svx/impgrf.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SCRIPTTYPEITEM_HXX
+// auto strip #include <bf_svx/scripttypeitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOT_FORMATS_HXX
+// auto strip #include <sot/formats.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FILELIST_HXX
+// auto strip #include <so3/filelist.hxx>
+// auto strip #endif
+// auto strip #ifndef _LINKSRC_HXX
+// auto strip #include <so3/linksrc.hxx>
+// auto strip #endif
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDOCFILE_HXX
+// auto strip #include <bf_sfx2/docfile.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
+// auto strip #ifndef _UTL_STREAM_WRAPPER_HXX_
+// auto strip #include <unotools/streamwrap.hxx>
+// auto strip #endif
 
-#include <bf_svx/unomodel.hxx>
+// auto strip #include <bf_svx/unomodel.hxx>
 
-#ifndef _FMTURL_HXX
-#include <fmturl.hxx>
-#endif
-#ifndef _FMTINFMT_HXX
-#include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
-#include <fmtfsize.hxx>
-#endif
+// auto strip #ifndef _FMTURL_HXX
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTINFMT_HXX
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
 #ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
 #endif
-#ifndef _SHELLIO_HXX
-#include <shellio.hxx>
+// auto strip #ifndef _SHELLIO_HXX
+// auto strip #include <shellio.hxx>
+// auto strip #endif
+// auto strip #ifndef _DDEFLD_HXX
+// auto strip #include <ddefld.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DDEFLD_HXX
-#include <ddefld.hxx>
-#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _BOOKMRK_HXX
-#include <bookmrk.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
-#ifndef _EDTWIN_HXX
-#include <edtwin.hxx>
-#endif
-#ifndef _NAVICONT_HXX
-#include <navicont.hxx>
-#endif
-#ifndef _SWCONT_HXX
-#include <swcont.hxx>
-#endif
+// auto strip #ifndef _BOOKMRK_HXX
+// auto strip #include <bookmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _EDTWIN_HXX
+// auto strip #include <edtwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _NAVICONT_HXX
+// auto strip #include <navicont.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWCONT_HXX
+// auto strip #include <swcont.hxx>
+// auto strip #endif
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
@@ -233,42 +238,42 @@
 #ifndef _VIEW_HXX
 #include <view.hxx>
 #endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
-#ifndef _DOCSH_HXX
-#include <docsh.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCSH_HXX
+// auto strip #include <docsh.hxx>
+// auto strip #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>       //DDE
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>       // fuer Undo-Ids
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NDOLE_HXX
-#include <ndole.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
-#ifndef _SWUNODEF_HXX
-#include <swunodef.hxx>
-#endif
-#ifndef _SV_SOUND_HXX
-#include <vcl/sound.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>     //DDE
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>     // fuer Undo-Ids
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDOLE_HXX
+// auto strip #include <ndole.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNODEF_HXX
+// auto strip #include <swunodef.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_SOUND_HXX
+// auto strip #include <vcl/sound.hxx>
+// auto strip #endif
 
 #ifndef _SWSWERROR_H
 #include <swerror.h>
@@ -282,32 +287,32 @@
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
 #endif
-#include <sot/stg.hxx>
+// auto strip #include <sot/stg.hxx>
 
 // #108584#
-#ifndef _SVDITER_HXX
-#include <bf_svx/svditer.hxx>
-#endif
+// auto strip #ifndef _SVDITER_HXX
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
 
 // #108584#
-#ifndef _EEITEM_HXX
-#include <bf_svx/eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX
+// auto strip #include <bf_svx/eeitem.hxx>
+// auto strip #endif
 
 // #108584#
-#ifndef _SVX_FHGTITEM_HXX
-#include <bf_svx/fhgtitem.hxx>
-#endif
+// auto strip #ifndef _SVX_FHGTITEM_HXX
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #endif
 
 // #108584#
-#ifndef _SVDPAGE_HXX
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 
 // #109590#
-#ifndef _SWCRSR_HXX
-#include <swcrsr.hxx>
-#endif
+// auto strip #ifndef _SWCRSR_HXX
+// auto strip #include <swcrsr.hxx>
+// auto strip #endif
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
 #endif
@@ -346,17 +351,17 @@ using namespace ::com::sun::star::datatransfer;
 // (MS platform sdk)
 //---------------------------------------------
 
-/*N*/ struct OleObjectDescriptor
-/*N*/ {
-/*N*/         sal_uInt32      cbSize;
-/*N*/         ClsId           clsid;
-/*N*/         sal_uInt32      dwDrawAspect;
-/*N*/         Size            sizel;
-/*N*/         Point           pointl;
-/*N*/         sal_uInt32      dwStatus;
-/*N*/         sal_uInt32      dwFullUserTypeName;
-/*N*/         sal_uInt32      dwSrcOfCopy;
-/*N*/ };
+///*N*/ struct OleObjectDescriptor
+///*N*/ {
+///*N*/         sal_uInt32      cbSize;
+///*N*/         ClsId           clsid;
+///*N*/         sal_uInt32      dwDrawAspect;
+///*N*/         Size            sizel;
+///*N*/         Point           pointl;
+///*N*/         sal_uInt32      dwStatus;
+///*N*/         sal_uInt32      dwFullUserTypeName;
+///*N*/         sal_uInt32      dwSrcOfCopy;
+///*N*/ };
 
 //STRIP001 class SwTrnsfrDdeLink : public ::so3::SvBaseLink
 //STRIP001 {
