@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtswtbl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:21:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 15:03:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,6 +84,9 @@
 
 #ifndef _WRTSWTBL_HXX
 #include <wrtswtbl.hxx>
+#endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
