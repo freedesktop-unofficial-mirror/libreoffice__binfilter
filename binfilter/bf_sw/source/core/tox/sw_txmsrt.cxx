@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txmsrt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:58:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,76 +62,84 @@
 
 #pragma hdrstop
 
-#ifndef _TOOLS_RESID_HXX
-#include <tools/resid.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
-#include <unotools/charclass.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-#include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
+// auto strip #ifndef _TOOLS_RESID_HXX
+// auto strip #include <tools/resid.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
+// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
+// auto strip #endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
 
-#ifndef _TXTFLD_HXX
-#include <txtfld.hxx>
+// auto strip #ifndef _TXTFLD_HXX
+// auto strip #include <txtfld.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
-#include <txttxmrk.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _TXMSRT_HXX
-#include <txmsrt.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTTXMRK_HXX //autogen
+// auto strip #include <txttxmrk.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXMSRT_HXX
+// auto strip #include <txmsrt.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>
-#endif
-#ifndef _FMTCOL_HXX
-#include <fmtcol.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
-#ifndef _NUMRULE_HXX
-#include <numrule.hxx>
-#endif
-#ifndef _AUTHFLD_HXX
-#include <authfld.hxx>
-#endif
-#ifndef _TOXWRAP_HXX
-#include <toxwrap.hxx>
-#endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCOL_HXX
+// auto strip #include <fmtcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _NUMRULE_HXX
+// auto strip #include <numrule.hxx>
+// auto strip #endif
+// auto strip #ifndef _AUTHFLD_HXX
+// auto strip #include <authfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOXWRAP_HXX
+// auto strip #include <toxwrap.hxx>
+// auto strip #endif
 
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>
