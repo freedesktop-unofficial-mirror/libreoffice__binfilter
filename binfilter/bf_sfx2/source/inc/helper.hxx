@@ -2,9 +2,9 @@
  *
  *  $RCSfile: helper.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:57:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,13 +66,13 @@
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
-#ifndef  _COM_SUN_STAR_UCB_NAMECLASH_HPP_
-#include <com/sun/star/ucb/NameClash.hpp>
-#endif
+// auto strip #ifndef  _COM_SUN_STAR_UCB_NAMECLASH_HPP_
+// auto strip #include <com/sun/star/ucb/NameClash.hpp>
+// auto strip #endif
 
-#include <tools/string.hxx>
-#include <tools/errcode.hxx>
-#include <tools/bigint.hxx>
+// auto strip #include <tools/string.hxx>
+// auto strip #include <tools/errcode.hxx>
+// auto strip #include <tools/bigint.hxx>
 namespace binfilter {
 
 // class SfxContentHelper ------------------------------------------------
