@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scerrors.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:14:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:39:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,9 @@
 #include "scerrors.hxx"
 #include "bf_sc.hrc"
 
-
+#ifndef _ERRCODE_HXX //autogen
+#include <tools/errcode.hxx>
+#endif
 
 #define SH_MAX 0x7fff
 
@@ -157,62 +159,66 @@ Resource RID_ERRHDLSC
         Text[ ar ] = "حدث خطأ غير معروف.";
         Text[ he ] = "Ein unbekannter Fehler ist aufgetreten.";
     };
-    String SCERR_IMPORT_OUTOFMEM & SH_MAX
-    {
-        Text [ de ] = "Nicht genug Speicher beim Importieren." ;
-        Text [ en-US ] = "Not enough memory while importing." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Memória insuficiente ao importar.";
-        Text[ ru ] = "Недостаточно памяти для осуществления импорта.";
-        Text[ el ] = "Κατά την εισαγωγή προέκυψε πρόβλημα μνήμης.";
-        Text[ nl ] = "Niet genoeg geheugen bij het importeren.";
-        Text[ fr ] = "Mémoire insuffisante lors de l'import.";
-        Text[ es ] = "Memoria insuficiente al importar.";
-        Text[ fi ] = "Muisti ei riitä viemiseen.";
-        Text[ ca ] = "Memòria insuficient durant la importació.";
-        Text[ it ] = "Memoria insufficiente durante l'importazione.";
-        Text[ da ] = "Ikke tilstrækkelig hukommelse ved import.";
-        Text[ sv ] = "Inte tillräckligt med minne under importen.";
-        Text[ pl ] = "Za mało pamięci, aby zaimportować.";
-        Text[ pt-BR ] = "Memória insuficiente ao importar.";
-        Text[ th ] = "หน่วยความจำไม่พอขณะนำเข้า";
-        Text[ ja ] = "インポートに必要なディスク空き容量が足りません。";
-        Text[ ko ] = "가져오기 실행 중 메모리가 부족합니다.";
-        Text[ zh-CN ] = "在输入时内存不足。";
-        Text[ zh-TW ] = "匯入時記憶體不足。";
-        Text[ tr ] = "İçe aktarma işleminde bellek yetersiz.";
-        Text[ hi-IN ] = "आयात करने के समय मेमरी पर्याप्त नहीं है ।";
-        Text[ ar ] = "الذاكرة ليست كافية أثناء الاستيراد.";
-        Text[ he ] = "Nicht genug Speicher beim Importieren.";
-    };
-    String SCERR_IMPORT_UNKNOWN_WK & SH_MAX
-    {
-        Text [ de ] = "Unbekanntes Lotus-123-Dateiformat." ;
-        Text [ en-US ] = "Unknown Lotus1-2-3 file format." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Formato de ficheiro Lotus-123 desconhecido.";
-        Text[ ru ] = "Неизвестный формат файла Lotus-123.";
-        Text[ el ] = "Άγνωστη μορφή αρχείου Lotus1-2-3.";
-        Text[ nl ] = "Onbekende Lotus-123-bestandsindeling.";
-        Text[ fr ] = "Format de fichier Lotus-123 inconnu.";
-        Text[ es ] = "Formato del archivo Lotus 123 desconocido.";
-        Text[ fi ] = "Tuntematon Lotus1-2-3-tiedostomuoto";
-        Text[ ca ] = "Format de fitxer Lotus1-2-3 desconegut.";
-        Text[ it ] = "Formato file Lotus 123 sconosciuto.";
-        Text[ da ] = "Ukendt Lotus-123-filformat.";
-        Text[ sv ] = "Obekant Lotus-123-filformat.";
-        Text[ pl ] = "Nieznany format pliku Lotus1-2-3.";
-        Text[ pt-BR ] = "Formato de arquivo Lotus-123 desconhecido.";
-        Text[ th ] = "ไม่รู้จักรูปแบบแฟ้ม Lotus1-2-3 ";
-        Text[ ja ] = "不明な Lotus 123 ファイル書式。";
-        Text[ ko ] = "알 수 없는 Lotus1-2-3 파일 형식";
-        Text[ zh-CN ] = "不明的 Lotus1-2-3 文件格式。";
-        Text[ zh-TW ] = "不明的 Lotus1-2-3 檔案格式。";
-        Text[ tr ] = "Bilinmeyen Lotus-123 dosya formatı.";
-        Text[ hi-IN ] = "अज्ञात प्रकार का Lotus1-2-3 फाइल रचना ।";
-        Text[ ar ] = "تنسيق ملف Lotus-123 غير معروف.";
-        Text[ he ] = "Unbekanntes Lotus-123-Dateiformat.";
-    };
+//STRIP001  String SCERR_IMPORT_OUTOFMEM & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Nicht genug Speicher beim Importieren." ;
+//STRIP001          Text [ ENGLISH ] = "Not enough memory while importing." ;
+//STRIP001          Text [ dutch ] = "Niet genoeg geheugen bij het importeren." ;
+//STRIP001          Text [ english_us ] = "Not enough memory while importing." ;
+//STRIP001          Text [ italian ] = "Memoria insufficiente durante l'importazione." ;
+//STRIP001          Text [ spanish ] = "Memoria insuficiente al importar." ;
+//STRIP001          Text [ french ] = "M�moire insuffisante lors de l'import." ;
+//STRIP001          Text [ swedish ] = "Inte tillr�ckligt med minne under importen." ;
+//STRIP001          Text [ danish ] = "Ikke tilstr�kkelig hukommelse ved import." ;
+//STRIP001          Text [ portuguese ] = "Mem�ria insuficiente ao importar." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Mem�ria insuficiente ao importar." ;
+//STRIP001          Text[ chinese_simplified ] = "在输入时内存不足�?";
+//STRIP001          Text[ russian ] = "������������ ��?�� ��� ������������� ������?";
+//STRIP001          Text[ polish ] = "Za ma�o pami�ci, aby zaimportowa?";
+//STRIP001          Text[ japanese ] = "インポートに必要なディスク空き容量が足りません�?";
+//STRIP001          Text[ chinese_traditional ] = "匯入時記憶體不足�?";
+//STRIP001          Text[ arabic ] = "������?���� ����?����?��������?";
+//STRIP001          Text[ greek ] = "���� ��?�������� �������� �������� ������.";
+//STRIP001          Text[ korean ] = "가져오�?실행 �?메모리가 부족합니다.";
+//STRIP001          Text[ turkish ] = "��e aktarma i�leminde bellek yetersiz.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Mem�ria insuficient durant la importaci?";
+//STRIP001          Text[ finnish ] = "Muisti ei riit?viemiseen.";
+//STRIP001          Text[ thai ] = "หน่วยความจำไม่พอขณะนำเข้�?";
+//STRIP001          Text[ czech ] = "Nedostatek paměti při importu.";
+//STRIP001          Text[ hebrew ] = "Nicht genug Speicher beim Importieren.";
+//STRIP001          Text[ hindi ] = "आयात करने के सम�?मेमरी पर्याप्त नही�?है �?";
+//STRIP001      };
+//STRIP001  String SCERR_IMPORT_UNKNOWN_WK & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Unbekanntes Lotus-123-Dateiformat." ;
+//STRIP001          Text [ ENGLISH ] = "Unknown Lotus-123 file format." ;
+//STRIP001          Text [ dutch ] = "Onbekende Lotus-123-bestandsindeling." ;
+//STRIP001          Text [ english_us ] = "Unknown Lotus1-2-3 file format." ;
+//STRIP001          Text [ italian ] = "Formato file Lotus 123 sconosciuto." ;
+//STRIP001          Text [ spanish ] = "Formato del archivo Lotus 123 desconocido." ;
+//STRIP001          Text [ french ] = "Format de fichier Lotus-123 inconnu." ;
+//STRIP001          Text [ swedish ] = "Obekant Lotus-123-filformat." ;
+//STRIP001          Text [ danish ] = "Ukendt Lotus-123-filformat." ;
+//STRIP001          Text [ portuguese ] = "Formato de ficheiro Lotus-123 desconhecido." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Formato de arquivo Lotus-123 desconhecido." ;
+//STRIP001          Text[ chinese_simplified ] = "不明�?Lotus1-2-3 文件格式�?";
+//STRIP001          Text[ russian ] = "����������?������ ����?Lotus-123.";
+//STRIP001          Text[ polish ] = "Nieznany format pliku Lotus1-2-3.";
+//STRIP001          Text[ japanese ] = "不明�?Lotus 123 ファイル書式�?";
+//STRIP001          Text[ chinese_traditional ] = "不明�?Lotus1-2-3 檔案格式�?";
+//STRIP001          Text[ arabic ] = "����?��?Lotus-123 ��?����?";
+//STRIP001          Text[ greek ] = "������?����?������?Lotus1-2-3.";
+//STRIP001          Text[ korean ] = "�?�?없는 Lotus1-2-3 파일 형식";
+//STRIP001          Text[ turkish ] = "Bilinmeyen Lotus-123 dosya format?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Format de fitxer Lotus1-2-3 desconegut.";
+//STRIP001          Text[ finnish ] = "Tuntematon Lotus1-2-3-tiedostomuoto";
+//STRIP001          Text[ thai ] = "ไม่รู้จักรูปแบบแฟ้�?Lotus1-2-3 ";
+//STRIP001          Text[ czech ] = "Neznámý formát souboru aplikace Lotus 1-2-3.";
+//STRIP001          Text[ hebrew ] = "Unbekanntes Lotus-123-Dateiformat.";
+//STRIP001          Text[ hindi ] = "अज्ञात प्रकार का Lotus1-2-3 फाइल रचना �?";
+//STRIP001      };
     String SCERR_IMPORT_FORMAT & SH_MAX
     {
         Text [ de ] = "Fehler in Dateistruktur beim Importieren." ;
@@ -270,120 +276,128 @@ Resource RID_ERRHDLSC
         Text[ ar ] = "لم يتم تنفيذ فلتر لهذا النوع من الملفات.";
         Text[ he ] = "Für diesen Dateityp ist kein Filter implementiert.";
     };
-    String SCERR_IMPORT_UNKNOWN_BIFF & SH_MAX
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Nicht unterst�tztes oder unbekanntes Excel-Dateiformat. : Nicht unterst�tztes oder unbekanntes Excel-Dateiformat. */
-        Text [ de ] = "Nicht unterst�tztes oder unbekanntes Excel-Dateiformat." ;
-        Text [ en-US ] = "Unknown or unsupported Excel file format." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Formato de ficheiro Excel sem suporte ou desconhecido.";
-        Text[ ru ] = "Неизвестный или неподдерживаемый формат файла Excel.";
-        Text[ el ] = "Άγνωστη ή μη υποστηριζόμενη μορφή αρχείου Excel.";
-        Text[ nl ] = "Niet ondersteund of onbekende Excel-bestandsindeling.";
-        Text[ fr ] = "Format de fichier Excel inconnu ou incompatible.";
-        Text[ es ] = "Formato de archivo Excel no admitido o desconocido.";
-        Text[ fi ] = "Tuntematon tai tukematon Excel-tiedostomuoto";
-        Text[ ca ] = "Format de fitxer Excel no permès o desconegut.";
-        Text[ it ] = "Formato file Excel sconosciuto o non supportato";
-        Text[ da ] = "Et ikke understøttet eller ukendt Excel-filformat.";
-        Text[ sv ] = "Ej understött eller obekant Excel-filformat.";
-        Text[ pl ] = "Nieobsługiwany lub nieznany format pliku Excel.";
-        Text[ pt-BR ] = "Formato de arquivo Excel sem suporte ou desconhecido.";
-        Text[ th ] = "ไม่รู้จักหรือไม่สนับสนุนรูปแบบแฟ้ม Excel ";
-        Text[ ja ] = "支援されない、または不明な Excel のファイル書式。";
-        Text[ ko ] = "알 수 없거나 지원하지 않는 Excel 파일 형식";
-        Text[ zh-CN ] = "不受支持的或不明的 Excel 文件格式。";
-        Text[ zh-TW ] = "不受支援的或不明的 Excel 檔案格式。";
-        Text[ tr ] = "Desteklenmeyen ya da bilinmeyen Excel dosya formatı.";
-        Text[ hi-IN ] = "अज्ञात अथवा असमर्थित Excel फाइल रचना ।";
-        Text[ ar ] = "تنسيق ملف Excel غير مدعوم، أو غير معروف.";
-        Text[ he ] = "Nicht unterstütztes oder unbekanntes Excel-Dateiformat.";
-    };
-    String SCERR_IMPORT_NI_BIFF & SH_MAX
-    {
-        Text [ de ] = "Noch nicht implementiertes Excel-Dateiformat." ;
-        Text [ en-US ] = "Excel file format not yet implemented." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Formato de ficheiro Excel ainda não implementado.";
-        Text[ ru ] = "Формат файла Excel еще не реализован.";
-        Text[ el ] = "Μορφή αρχείου Excel που δεν έχει υλοποιηθεί ακόμη.";
-        Text[ nl ] = "Nog niet geïmplementeerde Excel-bestandsindeling.";
-        Text[ fr ] = "Format de fichier Excel pas encore appliqué.";
-        Text[ es ] = "Formato del archivo Excel aún no implementado.";
-        Text[ fi ] = "Excel-tiedostomuotoa ei ole vielä otettu käyttöön.";
-        Text[ ca ] = "El format de fitxer Excel encara no s'ha implementat.";
-        Text[ it ] = "Formato di file Excel non ancora implementato.";
-        Text[ da ] = "Endnu ikke implementeret Excel-filformat.";
-        Text[ sv ] = "Ännu inte implementerat Excel-filformat.";
-        Text[ pl ] = "Format pliku Excel nie jest jeszcze zaimplementowany.";
-        Text[ pt-BR ] = "Formato de arquivo Excel ainda não implementado.";
-        Text[ th ] = "ยังไม่ได้ใช้งานรูปแบบแฟ้ม Excel ";
-        Text[ ja ] = "まだ実装されてない Excel ファイル書式。";
-        Text[ ko ] = "아직 구현되지 않은 Excel 파일 형식";
-        Text[ zh-CN ] = "还不受支持的 Excel 文件格式。";
-        Text[ zh-TW ] = "還不受支援的 Excel 檔案格式。";
-        Text[ tr ] = "Henüz kullanılmayan Excel dosya formatı.";
-        Text[ hi-IN ] = "Excel file format not yet implemented.";
-        Text[ ar ] = "تنسيق ملف Excel لم يتم تنفيذه بعد.";
-        Text[ he ] = "Noch nicht implementiertes Excel-Dateiformat.";
-    };
-    String SCERR_IMPORT_FILEPASSWD & SH_MAX
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Die Datei ist durch ein Kennwort gesch�tzt. : Die Datei ist durch ein Kennwort gesch�tzt. */
-        Text [ de ] = "Die Datei ist durch ein Kennwort gesch�tzt." ;
-        Text [ en-US ] = "This file is password-protected." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "O ficheiro está protegido por senha.";
-        Text[ ru ] = "Файл защищен паролем.";
-        Text[ el ] = "Το αρχείο προστατεύεται με κωδικό πρόσβασης.";
-        Text[ nl ] = "Het bestand is door een wachtwoord beveiligd";
-        Text[ fr ] = "Fichier protégé par un mot de passe.";
-        Text[ es ] = "El archivo está protegido con una palabra clave.";
-        Text[ fi ] = "Tämä tiedosto on suojattu salasanalla.";
-        Text[ ca ] = "Aquest fitxer està protegit amb una contrasenya.";
-        Text[ it ] = "Il file è protetto da una password";
-        Text[ da ] = "Filen er beskyttet med en adgangskode.";
-        Text[ sv ] = "Filen är skyddad med ett lösenord.";
-        Text[ pl ] = "Plik jest zabezpieczony hasłem.";
-        Text[ pt-BR ] = "Este arquivo está protegido por senha.";
-        Text[ th ] = "แฟ้มนี้ถูกป้องกันโดยรหัสผ่าน";
-        Text[ ja ] = "ファイルはパスワードによって保護されています。";
-        Text[ ko ] = "파일은 암호로 보호되어 있습니다.";
-        Text[ zh-CN ] = "这个文件受到密码保护。";
-        Text[ zh-TW ] = "這個檔案受到密碼保護。";
-        Text[ tr ] = "Dosya şifre ile korunuyor.";
-        Text[ hi-IN ] = "इस फाइल कूटशब्द-रक्षित है ।";
-        Text[ ar ] = "هذا الملف محمي بكلمة سر.";
-        Text[ he ] = "Die Datei ist durch ein Kennwort geschützt.";
-    };
-    String SCERR_IMPORT_INTERNAL & SH_MAX
-    {
-        Text [ de ] = "Interner Importfehler" ;
-        Text [ en-US ] = "Internal import error." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Erro de importação interno.";
-        Text[ ru ] = "Внутренняя ошибка импорта.";
-        Text[ el ] = "Εσωτερικό σφάλμα εισαγωγής.";
-        Text[ nl ] = "Interne importfout";
-        Text[ fr ] = "Erreur d'import interne";
-        Text[ es ] = "Error de importación interno.";
-        Text[ fi ] = "Sisäinen tuontivirhe";
-        Text[ ca ] = "S'ha produït un error d'importació intern.";
-        Text[ it ] = "Errore interno di import";
-        Text[ da ] = "Intern importfejl.";
-        Text[ sv ] = "Internt importfel";
-        Text[ pl ] = "Wewnętrzny błąd importu";
-        Text[ pt-BR ] = "Erro interno de importação.";
-        Text[ th ] = "นำเข้าภายในผิดพลาด";
-        Text[ ja ] = "内部のインポートエラー。";
-        Text[ ko ] = "내부의 가져오기 오류";
-        Text[ zh-CN ] = "内部输入错误。";
-        Text[ zh-TW ] = "內部輸入錯誤。";
-        Text[ tr ] = "İç içe aktarma hatası";
-        Text[ hi-IN ] = "भीतरी आयात गलती ।";
-        Text[ ar ] = "خطأ استيراد داخلي";
-        Text[ he ] = "Interner Importfehler";
-    };
+//STRIP001  String SCERR_IMPORT_UNKNOWN_BIFF & SH_MAX
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Nicht unterst�tztes oder unbekanntes Excel-Dateiformat. : Nicht unterst�tztes oder unbekanntes Excel-Dateiformat. */
+//STRIP001          Text = "Nicht unterst�tztes oder unbekanntes Excel-Dateiformat." ;
+//STRIP001          Text [ ENGLISH ] = "Unknown or not supported Excel file format" ;
+//STRIP001          Text [ english_us ] = "Unknown or unsupported Excel file format." ;
+//STRIP001          Text [ italian ] = "Formato file Excel sconosciuto o non supportato" ;
+//STRIP001          Text [ spanish ] = "Formato de archivo Excel no admitido o desconocido." ;
+//STRIP001          Text [ french ] = "Format de fichier Excel inconnu ou incompatible." ;
+//STRIP001          Text [ dutch ] = "Niet ondersteund of onbekende Excel-bestandsindeling." ;
+//STRIP001          Text [ swedish ] = "Ej underst�tt eller obekant Excel-filformat." ;
+//STRIP001          Text [ danish ] = "Et ikke underst�ttet eller ukendt Excel-filformat." ;
+//STRIP001          Text [ portuguese ] = "Formato de ficheiro Excel sem suporte ou desconhecido." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Formato de arquivo Excel sem suporte ou desconhecido." ;
+//STRIP001          Text[ chinese_simplified ] = "不受支持的或不明�?Excel 文件格式�?";
+//STRIP001          Text[ russian ] = "����������?��?���������������� ������ ����?Excel.";
+//STRIP001          Text[ polish ] = "Nieobs�ugiwany lub nieznany format pliku Excel.";
+//STRIP001          Text[ japanese ] = "支援されない、または不明�?Excel のファイル書式�?";
+//STRIP001          Text[ chinese_traditional ] = "不受支援的或不明�?Excel 檔案格式�?";
+//STRIP001          Text[ arabic ] = "����?��?Excel ��?����� �� ��?����?";
+//STRIP001          Text[ greek ] = "������??�� �������������� ����?������?Excel.";
+//STRIP001          Text[ korean ] = "�?�?없거�?지원하지 않는 Excel 파일 형식";
+//STRIP001          Text[ turkish ] = "Desteklenmeyen ya da bilinmeyen Excel dosya format?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Format de fitxer Excel no perm�s o desconegut.";
+//STRIP001          Text[ finnish ] = "Tuntematon tai tukematon Excel-tiedostomuoto";
+//STRIP001          Text[ thai ] = "ไม่รู้จักหรือไม่สนับสนุนรูปแบบแฟ้ม Excel ";
+//STRIP001          Text[ czech ] = "Neznámý nebo nepodporovaný formát souborů aplikace MS Excel.";
+//STRIP001          Text[ hebrew ] = "Nicht unterstütztes oder unbekanntes Excel-Dateiformat.";
+//STRIP001          Text[ hindi ] = "अज्ञात अथवा असमर्थित Excel फाइल रचना �?";
+//STRIP001      };
+//STRIP001  String SCERR_IMPORT_NI_BIFF & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Noch nicht implementiertes Excel-Dateiformat." ;
+//STRIP001          Text [ ENGLISH ] = "Not yet implemented Excel file format" ;
+//STRIP001          Text [ dutch ] = "Nog niet ge�mplementeerde Excel-bestandsindeling." ;
+//STRIP001          Text [ english_us ] = "Excel file format not yet implemented." ;
+//STRIP001          Text [ italian ] = "Formato di file Excel non ancora implementato." ;
+//STRIP001          Text [ spanish ] = "Formato del archivo Excel a�n no implementado." ;
+//STRIP001          Text [ french ] = "Format de fichier Excel pas encore appliqu?" ;
+//STRIP001          Text [ swedish ] = "�nnu inte implementerat Excel-filformat." ;
+//STRIP001          Text [ danish ] = "Endnu ikke implementeret Excel-filformat." ;
+//STRIP001          Text [ portuguese ] = "Formato de ficheiro Excel ainda n�o implementado." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Formato de arquivo Excel ainda n�o implementado." ;
+//STRIP001          Text[ chinese_simplified ] = "还不受支持的 Excel 文件格式�?";
+//STRIP001          Text[ russian ] = "������ ����?Excel ��?�� ����������.";
+//STRIP001          Text[ polish ] = "Format pliku Excel nie jest jeszcze zaimplementowany.";
+//STRIP001          Text[ japanese ] = "まだ実装されてな�?Excel ファイル書式�?";
+//STRIP001          Text[ chinese_traditional ] = "還不受支援的 Excel 檔案格式�?";
+//STRIP001          Text[ arabic ] = "����?��?Excel �� ��?������ ��?";
+//STRIP001          Text[ greek ] = "����?������?Excel ��?��?���� ���������� ����?";
+//STRIP001          Text[ korean ] = "아직 구현되지 않은 Excel 파일 형식";
+//STRIP001          Text[ turkish ] = "Hen�z kullan�lmayan Excel dosya format?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "El format de fitxer Excel encara no s'ha implementat.";
+//STRIP001          Text[ finnish ] = "Excel-tiedostomuotoa ei ole viel?otettu k�ytt��n.";
+//STRIP001          Text[ thai ] = "ยังไม่ได้ใช้งานรูปแบบแฟ้�?Excel ";
+//STRIP001          Text[ czech ] = "Formát souborů Excel ještě není implementován.";
+//STRIP001          Text[ hebrew ] = "Noch nicht implementiertes Excel-Dateiformat.";
+//STRIP001          Text[ hindi ] = "Excel file format not yet implemented.";
+//STRIP001      };
+//STRIP001  String SCERR_IMPORT_FILEPASSWD & SH_MAX
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Die Datei ist durch ein Kennwort gesch�tzt. : Die Datei ist durch ein Kennwort gesch�tzt. */
+//STRIP001          Text = "Die Datei ist durch ein Kennwort gesch�tzt." ;
+//STRIP001          Text [ ENGLISH ] = "This file is password protected." ;
+//STRIP001          Text [ dutch ] = "Het bestand is door een wachtwoord beveiligd" ;
+//STRIP001          Text [ english_us ] = "This file is password-protected." ;
+//STRIP001          Text [ italian ] = "Il file ?protetto da una password" ;
+//STRIP001          Text [ spanish ] = "El archivo est?protegido con una palabra clave." ;
+//STRIP001          Text [ french ] = "Fichier prot�g?par un mot de passe." ;
+//STRIP001          Text [ swedish ] = "Filen �r skyddad med ett l�senord." ;
+//STRIP001          Text [ danish ] = "Filen er beskyttet med en adgangskode." ;
+//STRIP001          Text [ portuguese ] = "O ficheiro est?protegido por senha." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Este arquivo est?protegido por senha." ;
+//STRIP001          Text[ chinese_simplified ] = "这个文件受到密码保护�?";
+//STRIP001          Text[ russian ] = "���� ������?������?";
+//STRIP001          Text[ polish ] = "Plik jest zabezpieczony has�em.";
+//STRIP001          Text[ japanese ] = "ファイルはパスワードによって保護されています�?";
+//STRIP001          Text[ chinese_traditional ] = "這個檔案受到密碼保護�?";
+//STRIP001          Text[ arabic ] = "��?����?���� ����?��.";
+//STRIP001          Text[ greek ] = "�� ������ ������������?�� ������ ��������?";
+//STRIP001          Text[ korean ] = "파일은 암호�?보호되어 있습니다.";
+//STRIP001          Text[ turkish ] = "Dosya �ifre ile korunuyor.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Aquest fitxer est?protegit amb una contrasenya.";
+//STRIP001          Text[ finnish ] = "T�m?tiedosto on suojattu salasanalla.";
+//STRIP001          Text[ thai ] = "แฟ้มนี้ถูกป้องกันโดยรหัสผ่าน";
+//STRIP001          Text[ czech ] = "Soubor je chráněn heslem.";
+//STRIP001          Text[ hebrew ] = "Die Datei ist durch ein Kennwort geschützt.";
+//STRIP001          Text[ hindi ] = "इस फाइल कूटशब्�?रक्षित है �?";
+//STRIP001      };
+//STRIP001  String SCERR_IMPORT_INTERNAL & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Interner Importfehler" ;
+//STRIP001          Text [ ENGLISH ] = "An internal error occurred while importing." ;
+//STRIP001          Text [ english_us ] = "Internal import error." ;
+//STRIP001          Text [ italian ] = "Errore interno di import" ;
+//STRIP001          Text [ spanish ] = "Error de importaci�n interno." ;
+//STRIP001          Text [ french ] = "Erreur d'import interne" ;
+//STRIP001          Text [ dutch ] = "Interne importfout" ;
+//STRIP001          Text [ swedish ] = "Internt importfel" ;
+//STRIP001          Text [ danish ] = "Intern importfejl." ;
+//STRIP001          Text [ portuguese ] = "Erro de importa��o interno." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Erro interno de importa��o." ;
+//STRIP001          Text[ chinese_simplified ] = "内部输入错误�?";
+//STRIP001          Text[ russian ] = "���������� ������ ������?";
+//STRIP001          Text[ polish ] = "Wewn�trzny b��d importu";
+//STRIP001          Text[ japanese ] = "内部のインポートエラー�?";
+//STRIP001          Text[ chinese_traditional ] = "內部輸入錯誤�?";
+//STRIP001          Text[ arabic ] = "��?������?����?";
+//STRIP001          Text[ greek ] = "��������?������ ��������?";
+//STRIP001          Text[ korean ] = "내부�?가져오�?오류";
+//STRIP001          Text[ turkish ] = "�� i�e aktarma hatas?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "S'ha produ�t un error d'importaci?intern.";
+//STRIP001          Text[ finnish ] = "Sis�inen tuontivirhe";
+//STRIP001          Text[ thai ] = "นำเข้าภายในผิดพลา�?";
+//STRIP001          Text[ czech ] = "Vnitřní chyba při importu.";
+//STRIP001          Text[ hebrew ] = "Interner Importfehler";
+//STRIP001          Text[ hindi ] = "भीतरी आयात गलती �?";
+//STRIP001      };
     String SCERR_IMPORT_8K_LIMIT & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Datei enth�lt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden. : Die Datei enth�lt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden. */
@@ -471,93 +485,99 @@ Resource RID_ERRHDLSC
     };
 
      // Export ----------------------------------------------------
-    String SCERR_EXPORT_CONNECT & SH_MAX
-    {
-        Text [ de ] = "Es konnte keine Verbindung zu der Datei hergestellt werden." ;
-        Text [ en-US ] = "Connection to the file could not be established." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Não foi possível estabelecer ligação com o ficheiro.";
-        Text[ ru ] = "Невозможно установить соединение с файлом.";
-        Text[ el ] = "Δεν ήταν δυνατόν να γίνει σύνδεση με το αρχείο.";
-        Text[ nl ] = "Er kan geen verbinding met het bestand tot stand worden gebracht.";
-        Text[ fr ] = "Impossible d'établir un lien avec le fichier.";
-        Text[ es ] = "No se pudo establecer conexión con el archivo.";
-        Text[ fi ] = "Tiedostoon ei voitu muodostaa yhteyttä.";
-        Text[ ca ] = "No s'ha pogut establir la connexió al fitxer.";
-        Text[ it ] = "Impossibile stabilire un collegamento al file.";
-        Text[ da ] = "Det var ikke muligt at oprette en forbindelse til filen.";
-        Text[ sv ] = "En förbindelse till filen kunde inte etableras.";
-        Text[ pl ] = "Nie można nawiązać połączenia z plikiem.";
-        Text[ pt-BR ] = "Não foi possível estabelecer a conexão com o arquivo.";
-        Text[ th ] = "ไม่สามารถสร้างการติดต่อกับแฟ้มได้";
-        Text[ ja ] = "ファイルへの接続はできませんでした。";
-        Text[ ko ] = "파일로 연결하지 못했습니다.";
-        Text[ zh-CN ] = "无法连接文件。";
-        Text[ zh-TW ] = "無法連結檔案。";
-        Text[ tr ] = "Dosya ile bağlantı oluşturulamadı.";
-        Text[ hi-IN ] = "फाइल केलिए कनेक्शन् स्थापित नहीं कर सकते है ।";
-        Text[ ar ] = "تعذر الاتصال بالملف.";
-        Text[ he ] = "Es konnte keine Verbindung zu der Datei hergestellt werden.";
-    };
-    String SCERR_EXPORT_DATA & SH_MAX
-    {
-        Text [ de ] = "Die Daten konnten nicht geschrieben werden." ;
-        Text [ en-US ] = "Data could not be written." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Não foi possível gravar os dados.";
-        Text[ ru ] = "Невозможно записать данные.";
-        Text[ el ] = "Δεν ήταν δυνατή η εγγραφή των δεδομένων.";
-        Text[ nl ] = "De gegevens kunnen niet worden geschreven.";
-        Text[ fr ] = "Impossible d'écrire ces données.";
-        Text[ es ] = "No se pudieron guardar los datos.";
-        Text[ fi ] = "Tietoja ei voitu kirjoittaa.";
-        Text[ ca ] = "No s'han pogut escriure les dades.";
-        Text[ it ] = "Impossibile scrivere i dati.";
-        Text[ da ] = "Det var ikke muligt at skrive data.";
-        Text[ sv ] = "Data kunde inte skrivas.";
-        Text[ pl ] = "Nie można zapisać danych.";
-        Text[ pt-BR ] = "Não foi possível gravar os dados.";
-        Text[ th ] = "ไม่สามารถเขียนข้อมูลได้";
-        Text[ ja ] = "データは書き込みできませんでした。";
-        Text[ ko ] = "데이터를 쓸 수 없었습니다.";
-        Text[ zh-CN ] = "无法写入数据。";
-        Text[ zh-TW ] = "無法寫入數據。";
-        Text[ tr ] = "Veriler yazılamadı.";
-        Text[ hi-IN ] = "ड़ॉटा को नहीं लिख सकते है ।";
-        Text[ ar ] = "تعذر كتابة البيانات.";
-        Text[ he ] = "Die Daten konnten nicht geschrieben werden.";
-    };
+//STRIP001  String SCERR_EXPORT_CONNECT & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Es konnte keine Verbindung zu der Datei hergestellt werden." ;
+//STRIP001          Text [ ENGLISH ] = "No connection could be established." ;
+//STRIP001          Text [ english_us ] = "Connection to the file could not be established." ;
+//STRIP001          Text [ italian ] = "Impossibile stabilire un collegamento al file." ;
+//STRIP001          Text [ spanish ] = "No se pudo establecer conexi�n con el archivo." ;
+//STRIP001          Text [ french ] = "Impossible d'�tablir un lien avec le fichier." ;
+//STRIP001          Text [ dutch ] = "Er kan geen verbinding met het bestand tot stand worden gebracht." ;
+//STRIP001          Text [ swedish ] = "En f�rbindelse till filen kunde inte etableras." ;
+//STRIP001          Text [ danish ] = "Det var ikke muligt at oprette en forbindelse til filen." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o foi poss�vel estabelecer a conex�o com o arquivo." ;
+//STRIP001          Text [ portuguese ] = "N�o foi poss�vel estabelecer liga��o com o ficheiro." ;
+//STRIP001          Text[ chinese_simplified ] = "无法连接文件�?";
+//STRIP001          Text[ russian ] = "���������� ���������� ���������� ?������.";
+//STRIP001          Text[ polish ] = "Nie mo�na nawi�za?po��czenia z plikiem.";
+//STRIP001          Text[ japanese ] = "ファイルへの接続はできませんでした�?";
+//STRIP001          Text[ chinese_traditional ] = "無法連結檔案�?";
+//STRIP001          Text[ arabic ] = "���� ������?������.";
+//STRIP001          Text[ greek ] = "��?���� ������?�� ����?������?�� �� ������.";
+//STRIP001          Text[ korean ] = "파일�?연결하지 못했습니�?";
+//STRIP001          Text[ turkish ] = "Dosya ile ba�lant?olu�turulamad?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No s'ha pogut establir la connexi?al fitxer.";
+//STRIP001          Text[ finnish ] = "Tiedostoon ei voitu muodostaa yhteytt?";
+//STRIP001          Text[ thai ] = "ไม่สามารถสร้างการติดต่อกับแฟ้มได�?";
+//STRIP001          Text[ czech ] = "Nelze se připojit k souboru.";
+//STRIP001          Text[ hebrew ] = "Es konnte keine Verbindung zu der Datei hergestellt werden.";
+//STRIP001          Text[ hindi ] = "फाइल केलि�?कनेक्शन् स्थापि�?नही�?कर सकते है �?";
+//STRIP001      };
+//STRIP001  String SCERR_EXPORT_DATA & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Die Daten konnten nicht geschrieben werden." ;
+//STRIP001          Text [ ENGLISH ] = "Data could not be written." ;
+//STRIP001          Text [ english_us ] = "Data could not be written." ;
+//STRIP001          Text [ italian ] = "Impossibile scrivere i dati." ;
+//STRIP001          Text [ spanish ] = "No se pudieron guardar los datos." ;
+//STRIP001          Text [ french ] = "Impossible d'�crire ces donn�es." ;
+//STRIP001          Text [ dutch ] = "De gegevens kunnen niet worden geschreven." ;
+//STRIP001          Text [ swedish ] = "Data kunde inte skrivas." ;
+//STRIP001          Text [ danish ] = "Det var ikke muligt at skrive data." ;
+//STRIP001          Text [ portuguese ] = "N�o foi poss�vel gravar os dados." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o foi poss�vel gravar os dados." ;
+//STRIP001          Text[ chinese_simplified ] = "无法写入数据�?";
+//STRIP001          Text[ russian ] = "���������� �������� ������.";
+//STRIP001          Text[ polish ] = "Nie mo�na zapisa?danych.";
+//STRIP001          Text[ japanese ] = "データは書き込みできませんでした�?";
+//STRIP001          Text[ chinese_traditional ] = "無法寫入數據�?";
+//STRIP001          Text[ arabic ] = "���� ����?��������.";
+//STRIP001          Text[ greek ] = "��?���� ������ ?������?��?��������?";
+//STRIP001          Text[ korean ] = "데이터를 �?�?없었습니�?";
+//STRIP001          Text[ turkish ] = "Veriler yaz�lamad?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No s'han pogut escriure les dades.";
+//STRIP001          Text[ finnish ] = "Tietoja ei voitu kirjoittaa.";
+//STRIP001          Text[ thai ] = "ไม่สามารถเขียนข้อมูลได�?";
+//STRIP001          Text[ czech ] = "Data nelze zapsat.";
+//STRIP001          Text[ hebrew ] = "Die Daten konnten nicht geschrieben werden.";
+//STRIP001          Text[ hindi ] = "ड़ॉट�?को नही�?लि�?सकते है �?";
+//STRIP001      };
      //------------------------------------------------------------
      // WARNINGS ---------------------------------------------------
      //------------------------------------------------------------
-    String SCWARN_EXPORT_ASCII & SH_MAX
-    {
-        Text [ de ] = "Es wurde nur die aktuelle Tabelle gespeichert." ;
-        Text [ en-US ] = "Only the active sheet was saved." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Só foi guardada a folha activa.";
-        Text[ ru ] = "Сохранен только активный лист.";
-        Text[ el ] = "Αποθηκεύτηκε μόνο ο τρέχων πίνακας.";
-        Text[ nl ] = "Alleen de huidige tabel is opgeslagen.";
-        Text[ fr ] = "Seule la feuille active a été enregistrée.";
-        Text[ es ] = "Sólo se ha guardado la hoja actual.";
-        Text[ fi ] = "Vain aktiivinen taulukko tallennettiin.";
-        Text[ ca ] = "Només s'ha desat el full actiu.";
-        Text[ it ] = "È stata salvata solo la tabella attuale.";
-        Text[ da ] = "Kun det aktuelle ark blev gemt.";
-        Text[ sv ] = "Endast den aktuella tabellen sparades.";
-        Text[ pl ] = "Został zapisany tylko aktywny arkusz.";
-        Text[ pt-BR ] = "Somente a planilha ativa foi salva.";
-        Text[ th ] = "บันทึกแผ่นงานที่ใช้งานอยู่อย่างเดียว";
-        Text[ ja ] = "現在の表のみが保存されました。";
-        Text[ ko ] = "활성화된 시트만이 저장되었습니다.";
-        Text[ zh-CN ] = "只能存盘当前的工作表。";
-        Text[ zh-TW ] = "只能儲存目前的工作表。";
-        Text[ tr ] = "Yalnızca yürürlükteki tablo kaydedildi.";
-        Text[ hi-IN ] = "केवल क्रियाशील शीट् को संचित कर सकते है ।";
-        Text[ ar ] = "تم حفظ الجدول الحالي فقط.";
-        Text[ he ] = "Es wurde nur die aktuelle Tabelle gespeichert.";
-    };
+//STRIP001  String SCWARN_EXPORT_ASCII & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Es wurde nur die aktuelle Tabelle gespeichert." ;
+//STRIP001          Text [ ENGLISH ] = "The current table has only been saved." ;
+//STRIP001          Text [ dutch ] = "Alleen de huidige tabel is opgeslagen." ;
+//STRIP001          Text [ english_us ] = "Only the active sheet was saved." ;
+//STRIP001          Text [ italian ] = "?stata salvata solo la tabella attuale." ;
+//STRIP001          Text [ spanish ] = "S�lo se ha guardado la hoja actual." ;
+//STRIP001          Text [ french ] = "Seule la feuille active a �t?enregistr�e." ;
+//STRIP001          Text [ swedish ] = "Endast den aktuella tabellen sparades." ;
+//STRIP001          Text [ danish ] = "Kun det aktuelle ark blev gemt." ;
+//STRIP001          Text [ portuguese ] = "S?foi guardada a folha activa." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Somente a planilha ativa foi salva." ;
+//STRIP001          Text[ chinese_simplified ] = "只能存盘当前的工作表�?";
+//STRIP001          Text[ russian ] = "�������� ������ �������� ����.";
+//STRIP001          Text[ polish ] = "Zosta?zapisany tylko aktywny arkusz.";
+//STRIP001          Text[ japanese ] = "現在の表のみが保存されました�?";
+//STRIP001          Text[ chinese_traditional ] = "只能儲存目前的工作表�?";
+//STRIP001          Text[ arabic ] = "�� ��?������ ������ ��?";
+//STRIP001          Text[ greek ] = "������������ ���� ?������ ������?";
+//STRIP001          Text[ korean ] = "활성화된 시트만이 저장되었습니다.";
+//STRIP001          Text[ turkish ] = "Yaln�zca y�r�rl�kteki tablo kaydedildi.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Nom�s s'ha desat el full actiu.";
+//STRIP001          Text[ finnish ] = "Vain aktiivinen taulukko tallennettiin.";
+//STRIP001          Text[ thai ] = "บันทึกแผ่นงานที่ใช้งานอยู่อย่างเดียว";
+//STRIP001          Text[ czech ] = "Byl uložen jen aktivní list.";
+//STRIP001          Text[ hebrew ] = "Es wurde nur die aktuelle Tabelle gespeichert.";
+//STRIP001          Text[ hindi ] = "केवल क्रियाशी�?शीट् को संचि�?कर सकते है �?";
+//STRIP001      };
     String SCWARN_IMPORT_RANGE_OVERFLOW & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Maximalanzahl von Zeilen wurde �berschritten. �berz�hlige Zeilen wurden nicht mitimportiert! : Die Maximalanzahl von Zeilen wurde �berschritten. �berz�hlige Zeilen wurden nicht mitimportiert! */
@@ -668,64 +688,68 @@ Resource RID_ERRHDLSC
         Text[ ar ] = "Some sheets could not be loaded because the maximum number of sheets was exceeded.";
         Text[ he ] = "Einige Tabellen konnten nicht geladen werden, da die maximale Anzahl von Tabellen überschritten wurde.";
     };
-    String SCWARN_IMPORT_OPEN_FM3 & SH_MAX
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden. : Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden. */
-        Text [ de ] = "Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden." ;
-        Text [ en-US ] = "Corresponding FM3-File could not be opened." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Foi impossível abrir o ficheiro FM3 correspondente.";
-        Text[ ru ] = "Невозможно открыть соответствующий файл FM3.";
-        Text[ el ] = "Δεν ήταν δυνατόν να ανοιχθεί το αντίστοιχο αρχείο FM3.";
-        Text[ nl ] = "Bijbehorend FM3-bestand kan niet worden geopend.";
-        Text[ fr ] = "Impossible d'ouvrir le fichier FM3 correspondant.";
-        Text[ es ] = "No se pudo abrir el archivo correspondiente FM3.";
-        Text[ fi ] = "Vastaavaa FM3-tiedostoa ei voitu avata.";
-        Text[ ca ] = "No s'ha pogut obrir el fitxer FM3 corresponent.";
-        Text[ it ] = "Impossibile aprire il file relativo FM3.";
-        Text[ da ] = "Det var ikke muligt at åbne tilhørende FM3-fil.";
-        Text[ sv ] = "Tillhörande FM3-fil kunde inte öppnas.";
-        Text[ pl ] = "Nie można otworzyć odpowiedniego pliku FM3.";
-        Text[ pt-BR ] = "Não foi possível abrir o arquivo FM3 correspondente.";
-        Text[ th ] = "ไม่สามารถเปิดแฟ้ม FM3-ได้";
-        Text[ ja ] = "従属する FM3 ファイルを開けませんでした。";
-        Text[ ko ] = "해당 FM3-파일을 열수 없었습니다..";
-        Text[ zh-CN ] = "无法开启从属的 FM3-文件。";
-        Text[ zh-TW ] = "無法開啟從屬的 FM3-檔案。";
-        Text[ tr ] = "İlgili FM3 dosyası açlamadı.";
-        Text[ hi-IN ] = "अनुरूप का FM3-फाइल को नहीं खोल सकते है ।";
-        Text[ ar ] = "تعذر فتح الملف FM3 المرتبط.";
-        Text[ he ] = "Zugehörige FM3-Datei konnte nicht geöffnet werden.";
-    };
-    String SCWARN_IMPORT_WRONG_FM3 & SH_MAX
-    {
-        /* ### ACHTUNG: Neuer Text in Resource? Fehler in Dateistruktur der zugeh�rigen FM3-Datei. : Fehler in Dateistruktur der zugeh�rigen FM3-Datei. */
-        Text [ de ] = "Fehler in Dateistruktur der zugeh�rigen FM3-Datei." ;
-        Text [ en-US ] = "Error in file structure of corresponding FM3-File." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Erro na estrutura do ficheiro FM3 correspondente.";
-        Text[ ru ] = "Ошибка структуры соответствующего файла FM3.";
-        Text[ el ] = "Σφάλμα στη δομή αρχείου του αντίστοιχου αρχείου FM3.";
-        Text[ nl ] = "Fout in bestandstructuur van bijbehorend FM3-bestand";
-        Text[ fr ] = "Erreur dans la structure du fichier FM3 correspondant.";
-        Text[ es ] = "Error en la estructura del archivo FM3 correspondiente.";
-        Text[ fi ] = "Virhe tiedostorakenteessa tai vastaavassa FM3-tiedostossa.";
-        Text[ ca ] = "S'ha produït un error a l'estructura del fitxer FM3 corresponent.";
-        Text[ it ] = "Errore nella struttura del file del relativo file FM3.";
-        Text[ da ] = "Fejl i den tilhørende FM3-fils filstruktur.";
-        Text[ sv ] = "Fel i den tillhörande FM3-filens filstruktur.";
-        Text[ pl ] = "Błąd w strukturze pokrewnego pliku FM3.";
-        Text[ pt-BR ] = "Erro na estrutura do arquivo FM3 correspondente.";
-        Text[ th ] = "ข้อผิดพลาดในโครงสร้างแฟ้มของแฟ้ม FM3-";
-        Text[ ja ] = "従属する FM3 ファイルのファイル構造でのエラー。";
-        Text[ ko ] = "해당 FM3-파일의 파일 구조에 오류.";
-        Text[ zh-CN ] = "从属的 FM3-文件的文件结构含有错误。";
-        Text[ zh-TW ] = "從屬的 FM3-檔案的檔案結構含有錯誤。";
-        Text[ tr ] = "İlgili FM3 dosyasının dosya yapısında hata.";
-        Text[ hi-IN ] = "अनुरूप का FM3-फाइल का फाइल बनावट में गलती ।";
-        Text[ ar ] = "خطأ في بنية الملف في الملف FM3 المرتبط.";
-        Text[ he ] = "Fehler in Dateistruktur der zugehörigen FM3-Datei.";
-    };
+//STRIP001  String SCWARN_IMPORT_OPEN_FM3 & SH_MAX
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden. : Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden. */
+//STRIP001          Text = "Zugeh�rige FM3-Datei konnte nicht ge�ffnet werden." ;
+//STRIP001          Text [ ENGLISH ] = "Related FM3-File could not be opened." ;
+//STRIP001          Text [ dutch ] = "Bijbehorend FM3-bestand kan niet worden geopend." ;
+//STRIP001          Text [ english_us ] = "Corresponding FM3-File could not be opened." ;
+//STRIP001          Text [ italian ] = "Impossibile aprire il file relativo FM3." ;
+//STRIP001          Text [ spanish ] = "No se pudo abrir el archivo correspondiente FM3." ;
+//STRIP001          Text [ french ] = "Impossible d'ouvrir le fichier FM3 correspondant." ;
+//STRIP001          Text [ swedish ] = "Tillh�rande FM3-fil kunde inte �ppnas." ;
+//STRIP001          Text [ danish ] = "Det var ikke muligt at �bne tilh�rende FM3-fil." ;
+//STRIP001          Text [ portuguese ] = "Foi imposs�vel abrir o ficheiro FM3 correspondente." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o foi poss�vel abrir o arquivo FM3 correspondente." ;
+//STRIP001          Text[ chinese_simplified ] = "无法开启从属的 FM3-文件�?";
+//STRIP001          Text[ russian ] = "���������� ������?��������������?���� FM3.";
+//STRIP001          Text[ polish ] = "Nie mo�na otworzy?odpowiedniego pliku FM3.";
+//STRIP001          Text[ japanese ] = "従属する FM3 ファイルを開けませんでした�?";
+//STRIP001          Text[ chinese_traditional ] = "無法開啟從屬�?FM3-檔案�?";
+//STRIP001          Text[ arabic ] = "���� ��?����?FM3 ������?";
+//STRIP001          Text[ greek ] = "��?���� ������?�� �������� �� ���������� ������ FM3.";
+//STRIP001          Text[ korean ] = "해당 FM3-파일�?열수 없었습니�?.";
+//STRIP001          Text[ turkish ] = "�lgili FM3 dosyas?a�lamad?";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "No s'ha pogut obrir el fitxer FM3 corresponent.";
+//STRIP001          Text[ finnish ] = "Vastaavaa FM3-tiedostoa ei voitu avata.";
+//STRIP001          Text[ thai ] = "ไม่สามารถเปิดแฟ้�?FM3-ได�?";
+//STRIP001          Text[ czech ] = "Odpovídající FM3 soubor nelze otevřít.";
+//STRIP001          Text[ hebrew ] = "Zugehörige FM3-Datei konnte nicht geöffnet werden.";
+//STRIP001          Text[ hindi ] = "अनुरूप का FM3-फाइल को नही�?खो�?सकते है �?";
+//STRIP001      };
+//STRIP001  String SCWARN_IMPORT_WRONG_FM3 & SH_MAX
+//STRIP001      {
+//STRIP001          /* ### ACHTUNG: Neuer Text in Resource? Fehler in Dateistruktur der zugeh�rigen FM3-Datei. : Fehler in Dateistruktur der zugeh�rigen FM3-Datei. */
+//STRIP001          Text = "Fehler in Dateistruktur der zugeh�rigen FM3-Datei." ;
+//STRIP001          Text [ ENGLISH ] = "Error in file structure in the related FM3-File." ;
+//STRIP001          Text [ dutch ] = "Fout in bestandstructuur van bijbehorend FM3-bestand" ;
+//STRIP001          Text [ english_us ] = "Error in file structure of corresponding FM3-File." ;
+//STRIP001          Text [ italian ] = "Errore nella struttura del file del relativo file FM3." ;
+//STRIP001          Text [ spanish ] = "Error en la estructura del archivo FM3 correspondiente." ;
+//STRIP001          Text [ french ] = "Erreur dans la structure du fichier FM3 correspondant." ;
+//STRIP001          Text [ swedish ] = "Fel i den tillh�rande FM3-filens filstruktur." ;
+//STRIP001          Text [ danish ] = "Fejl i den tilh�rende FM3-fils filstruktur." ;
+//STRIP001          Text [ portuguese ] = "Erro na estrutura do ficheiro FM3 correspondente." ;
+//STRIP001          Text [ portuguese_brazilian ] = "Erro na estrutura do arquivo FM3 correspondente." ;
+//STRIP001          Text[ chinese_simplified ] = "从属�?FM3-文件的文件结构含有错误�?";
+//STRIP001          Text[ russian ] = "������ ��������?���������������� ����?FM3.";
+//STRIP001          Text[ polish ] = "B��d w strukturze pokrewnego pliku FM3.";
+//STRIP001          Text[ japanese ] = "従属する FM3 ファイルのファイル構造でのエラー�?";
+//STRIP001          Text[ chinese_traditional ] = "從屬�?FM3-檔案的檔案結構含有錯誤�?";
+//STRIP001          Text[ arabic ] = "��?�� ���� ����?�� ����?FM3 ������?";
+//STRIP001          Text[ greek ] = "������ ��?���� ������?��?����������?������?FM3.";
+//STRIP001          Text[ korean ] = "해당 FM3-파일�?파일 구조�?오류.";
+//STRIP001          Text[ turkish ] = "�lgili FM3 dosyas�n�n dosya yap�s�nda hata.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "S'ha produ�t un error a l'estructura del fitxer FM3 corresponent.";
+//STRIP001          Text[ finnish ] = "Virhe tiedostorakenteessa tai vastaavassa FM3-tiedostossa.";
+//STRIP001          Text[ thai ] = "ข้อผิดพลาดในโครงสร้างแฟ้มของแฟ้ม FM3-";
+//STRIP001          Text[ czech ] = "Chyba ve struktuře souboru odpovídajícího FM3 souboru.";
+//STRIP001          Text[ hebrew ] = "Fehler in Dateistruktur der zugehörigen FM3-Datei.";
+//STRIP001          Text[ hindi ] = "अनुरूप का FM3-फाइल का फाइल बनाव�?मे�?गलती �?";
+//STRIP001      };
     String SCWARN_CORE_HARD_RECALC & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Dokument zu komplex f�r automatische Berechnung. Neuberechnung mit F9. : Dokument zu komplex f�r automatische Berechnung. Neuberechnung mit F9. */
@@ -813,61 +837,65 @@ Resource RID_ERRHDLSC
         Text[ ar ] = "يحتوي المستند على معلومات غريبة على إصدار البرنامج هذا.\nهذه البيانات سوف تضيع عند إعادة حفظ المستند!";
         Text[ he ] = "Das Dokument enthält Informationen, die dieser Programmversion unbekannt sind.\nBei erneutem Speichern gehen diese Informationen verloren";
     };
-    String SCWARN_EXPORT_DATALOST & SH_MAX
-    {
-        Text [ de ] = "Es konnten nicht alle Zellinhalte in dem angegebenen Format gespeichert werden." ;
-        Text [ en-US ] = "Not all cell contents could be saved in the specified format." ;
-        Text [ x-comment ] = " ";
-        Text[ pt ] = "Não foi possível guardar todos os conteúdos das células no formato especificado.";
-        Text[ ru ] = "Невозможно сохранить все содержимое ячейки в заданном формате.";
-        Text[ el ] = "Δεν ήταν δυνατόν να αποθηκευτούν όλα τα περιεχόμενα κελιών στη δεδομένη μορφή.";
-        Text[ nl ] = "Niet van elke cel kan de inhoud in het opgegeven formaat worden opgeslagen.";
-        Text[ fr ] = "Il n'a pas été possible d'enregistrer le contenu de toutes les cellules dans le format spécifié.";
-        Text[ es ] = "No se pudo guardar el contenido de las celdas en el formato especificado.";
-        Text[ fi ] = "Kaikkia solujen sisältöjä ei voitu tallentaa määritetyssä muodossa.";
-        Text[ ca ] = "Part del contingut de les cel.les no s'ha pogut desar en el format indicat.";
-        Text[ it ] = "Non è stato possibile salvare tutti i contenuti delle celle nel formato specificato .";
-        Text[ da ] = "Det var ikke muligt at gemme alle celleindhold i det angivne format.";
-        Text[ sv ] = "Allt innehåll i cellerna kunde inte sparas i det angivna formatet.";
-        Text[ pl ] = "Nie wszystkie zawartości komórek mogły zostać zapisane w wybranym formacie.";
-        Text[ pt-BR ] = "Não foi possível salvar todos os conteúdos das células no formato especificado.";
-        Text[ th ] = "ไม่สามารถบันทึกเนื้อหาเซลล์บางเซลล์ในรูปแบบเฉพาะ";
-        Text[ ja ] = "指定した書式で、すべてのセルの内容は保存できませんでした。";
-        Text[ ko ] = "셀의 모든 내용을 지정된 서식으로 저장하지는 못했습니다.";
-        Text[ zh-CN ] = "无法用指定的格式存盘全部的单元格内容。";
-        Text[ zh-TW ] = "無法用指定的格式儲存全部的儲存格內容。";
-        Text[ tr ] = "Tüm hücre içerikleri belirtilen formatta kaydedilemedi.";
-        Text[ hi-IN ] = "निर्दिष्ट किया हुआ रचना में सब कोष्ठ का विषयों को संचित नहीं कर सकते है ।";
-        Text[ ar ] = "تعذر حفظ كل محتويات الخلايا في التنسيق المحدد.";
-        Text[ he ] = "Es konnten nicht alle Zellinhalte in dem angegebenen Format gespeichert werden.";
-    };
-    String SCWARN_EXPORT_NONCONVERTIBLE_CHARS & SH_MAX
-    {
-        Text [ de ] = "Die folgenden Zeichen konnten nicht in den gew�hlten Zeichensatz konvertiert werden\nund wurden in &#1234; Ersatzdarstellung geschrieben:\n\n$(ARG1)";
-        Text [ en-US ] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
-        Text[ pt ] = "Foi impossível converter os seguintes caracteres para o conjunto de caracteres seleccionado;\nestes foram escritos como caracteres polivalentes &#1234:\n\n$(ARG1)";
-        Text[ ru ] = "Невозможно преобразовать следующие символы в выбранную кодировку.\nОни представлены как &#1234:\n\n$(ARG1)";
-        Text[ el ] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
-        Text[ nl ] = "De volgende tekens kunnen niet worden geconverteerd naar de geselecteerde tekenset\nen worden geschreven als ? vervangende weergave:\n\n$(ARG1)";
-        Text[ fr ] = "Impossible de convertir les caractères suivants dans le jeu choisi ;\nils ont été écrits comme substitution &#1234; :\n\n$(ARG1)";
-        Text[ es ] = "No se pudieron convertir los siguientes caracteres en los juegos de caracteres seleccionados,\npor lo que se guardaron en la representación sustitutoria:\n\n$(ARG1)";
-        Text[ fi ] = "Seuraavia merkkejä ei voitu muuntaa valittuun merkistöön,\njoten ne kirjoitettiin &#1234; sijaisiksi:\n\n$(ARG1)";
-        Text[ ca ] = "Els següents caràcters no es poden convertir a la taula de caràcters seleccionada\ni s'han escrit com a &#1234; surrogates:\n\n$(ARG1)";
-        Text[ it ] = "I seguenti caratteri non possono essere convertiti secondo il tipo di caratttere selezionato\ne sono stati scritti come surrogati &#1234; :\n\n$(ARG1)";
-        Text[ da ] = "Følgende tegn kunne ikke konverteres til det valgte tegnsæt\nog blev skrevet i &#1234; erstatningsvisning:\n\n$(ARG1)";
-        Text[ sv ] = "Det gick inte att konvertera de följande tecknen till den valda teckenuppsättningen\noch de ersattes med &#1234;:\n\n$(ARG1)";
-        Text[ pl ] = "Konwersja następujących znaków do wybranego zestawu znaków nie powiodła się.\nZnaki zostały zapisane w formie zastępczej &#1234;:\n\n$(ARG1)";
-        Text[ pt-BR ] = "Não foi possível converter os seguintes caracteres para o conjunto de caracteres selecionado;\nestes foram escritos como caracteres polivalentes &#1234:\n\n$(ARG1)";
-        Text[ th ] = "ไม่สามารถแปลงตัวอักขระต่อไปนี้เป็นชุดตัวอักขระที่เลือกได้\nและถูกเขียนเป็น &#1234; ตัวแทน:\n\n$(ARG1)";
-        Text[ ja ] = "以下の文字は選択した文字セットでは変換できず、\n代替表示 Ӓ で書き込まれました:\n\n$(ARG1)";
-        Text[ ko ] = "다음 문자를 선택한 문자열로 변환할 수 없었으므로 \n&#1234로 대체하여 저장하였습니다;\n\n$(ARG1)";
-        Text[ zh-CN ] = "以下的字符无法转换成选择的字符集的字符。\n采用替代表示方式 Ӓ :\n\n$(ARG1)";
-        Text[ zh-TW ] = "以下的字元無法轉換成選取的字元集的字元。\n採用替代表示方式 Ӓ :\n\n$(ARG1)";
-        Text[ tr ] = "Bu karakterler, seçilen karakter kümesine göre dönüştürülemedi\nve &1234 şeklimde yazıldı; ";
-        Text[ hi-IN ] = "चुने हुए अक्षर समूह में निम्नलिखित अक्षरों को बदल नहीं सकते है\nऔर उनको &#1234 जैसे लिखा जाएगा; प्रतिनिधियाँ:\n\n$(ARG1)";
-        Text[ ar ] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
-        Text[ he ] = "Die folgenden Zeichen konnten nicht in den gewählten Zeichensatz konvertiert werden\nund wurden in &#1234; Ersatzdarstellung geschrieben:\n\n$(ARG1)";
-    };
+//STRIP001  String SCWARN_EXPORT_DATALOST & SH_MAX
+//STRIP001      {
+//STRIP001          Text = "Es konnten nicht alle Zellinhalte in dem angegebenen Format gespeichert werden." ;
+//STRIP001          Text [ ENGLISH ] = "Not all cell contents could be saved in the specified format." ;
+//STRIP001          Text [ portuguese ] = "N�o foi poss�vel guardar todos os conte�dos das c�lulas no formato especificado." ;
+//STRIP001          Text [ english_us ] = "Not all cell contents could be saved in the specified format." ;
+//STRIP001          Text [ portuguese_brazilian ] = "N�o foi poss�vel salvar todos os conte�dos das c�lulas no formato especificado." ;
+//STRIP001          Text [ swedish ] = "Allt inneh�ll i cellerna kunde inte sparas i det angivna formatet." ;
+//STRIP001          Text [ danish ] = "Det var ikke muligt at gemme alle celleindhold i det angivne format." ;
+//STRIP001          Text [ italian ] = "Non ?stato possibile salvare tutti i contenuti delle celle nel formato specificato ." ;
+//STRIP001          Text [ spanish ] = "No se pudo guardar el contenido de las celdas en el formato especificado." ;
+//STRIP001          Text [ french ] = "Il n'a pas �t?possible d'enregistrer le contenu de toutes les cellules dans le format sp�cifi?" ;
+//STRIP001          Text [ dutch ] = "Niet van elke cel kan de inhoud in het opgegeven formaat worden opgeslagen." ;
+//STRIP001          Text[ chinese_simplified ] = "无法用指定的格式存盘全部的单元格内容�?";
+//STRIP001          Text[ russian ] = "���������� ��������?��?���������� �����??�������� ������?";
+//STRIP001          Text[ polish ] = "Nie wszystkie zawarto�ci kom�rek mog�y zosta?zapisane w wybranym formacie.";
+//STRIP001          Text[ japanese ] = "指定した書式で、すべてのセルの内容は保存できませんでした�?";
+//STRIP001          Text[ chinese_traditional ] = "無法用指定的格式儲存全部的儲存格內容�?";
+//STRIP001          Text[ arabic ] = "���� ��?�� ������?������?�� ������?������.";
+//STRIP001          Text[ greek ] = "��?���� ������?�� ������������ ��?�� ����������?������ ��?�������� ����?";
+//STRIP001          Text[ korean ] = "셀�?모든 내용�?지정된 서식으로 저장하지�?못했습니�?";
+//STRIP001          Text[ turkish ] = "T�m h�cre i�erikleri belirtilen formatta kaydedilemedi.";
+//STRIP001          Text[ language_user1 ] = " ";
+//STRIP001          Text[ catalan ] = "Part del contingut de les cel.les no s'ha pogut desar en el format indicat.";
+//STRIP001          Text[ finnish ] = "Kaikkia solujen sis�lt�j?ei voitu tallentaa m��ritetyss?muodossa.";
+//STRIP001          Text[ thai ] = "ไม่สามารถบันทึกเนื้อหาเซลล์บางเซลล์ในรูปแบบเฉพาะ";
+//STRIP001          Text[ czech ] = "Ve specifikovaném formátu nebylo možné uložit obsah všech buněk.";
+//STRIP001          Text[ hebrew ] = "Es konnten nicht alle Zellinhalte in dem angegebenen Format gespeichert werden.";
+//STRIP001          Text[ hindi ] = "निर्दिष्�?किया हु�?रचना मे�?सब कोष्�?का विषयों को संचि�?नही�?कर सकते है �?";
+//STRIP001      };
+//STRIP001     String SCWARN_EXPORT_NONCONVERTIBLE_CHARS & SH_MAX
+//STRIP001      {
+//STRIP001         Text = "Die folgenden Zeichen konnten nicht in den gew�hlten Zeichensatz konvertiert werden\nund wurden in &#1234; Ersatzdarstellung geschrieben:\n\n$(ARG1)";
+//STRIP001         Text[ENGLISH] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
+//STRIP001         Text[ENGLISH_US] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
+//STRIP001          Text[ portuguese ] = "Foi imposs�vel converter os seguintes caracteres para o conjunto de caracteres seleccionado;\nestes foram escritos como caracteres polivalentes &#1234:\n\n$(ARG1)";
+//STRIP001          Text[ russian ] = "���������� ������������?��������?������??��������?��������?\n��?������������ ��?&#1234:\n\n$(ARG1)";
+//STRIP001          Text[ greek ] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
+//STRIP001          Text[ dutch ] = "De volgende tekens kunnen niet worden geconverteerd naar de geselecteerde tekenset\nen worden geschreven als ? vervangende weergave:\n\n$(ARG1)";
+//STRIP001          Text[ french ] = "Impossible de convertir les caract�res suivants dans le jeu choisi ;\nils ont �t?�crits comme substitution &#1234; :\n\n$(ARG1)";
+//STRIP001          Text[ spanish ] = "No se pudieron convertir los siguientes caracteres en los juegos de caracteres seleccionados,\npor lo que se guardaron en la representaci�n sustitutoria:\n\n$(ARG1)";
+//STRIP001          Text[ finnish ] = "Seuraavia merkkej?ei voitu muuntaa valittuun merkist��n,\njoten ne kirjoitettiin &#1234; sijaisiksi:\n\n$(ARG1)";
+//STRIP001          Text[ italian ] = "I seguenti caratteri non possono essere convertiti secondo il tipo di caratttere selezionato\ne sono stati scritti come surrogati &#1234; :\n\n$(ARG1)";
+//STRIP001          Text[ danish ] = "F�lgende tegn kunne ikke konverteres til det valgte tegns�t\nog blev skrevet i &#1234; erstatningsvisning:\n\n$(ARG1)";
+//STRIP001          Text[ swedish ] = "Det gick inte att konvertera de f�ljande tecknen till den valda teckenupps�ttningen\noch de ersattes med &#1234;:\n\n$(ARG1)";
+//STRIP001          Text[ polish ] = "Konwersja nast�puj�cych znak�w do wybranego zestawu znak�w nie powiod�a si?\nZnaki zosta�y zapisane w formie zast�pczej &#1234;:\n\n$(ARG1)";
+//STRIP001          Text[ portuguese_brazilian ] = "N�o foi poss�vel converter os seguintes caracteres para o conjunto de caracteres selecionado;\nestes foram escritos como caracteres polivalentes &#1234:\n\n$(ARG1)";
+//STRIP001          Text[ japanese ] = "以下の文字は選択した文字セットでは変換できず、\n代替表示 Ӓ で書き込まれまし�?\n\n$(ARG1)";
+//STRIP001          Text[ korean ] = "다음 문자�?선택�?문자열로 변환할 �?없었으므�?\n&#1234�?대체하�?저장하였습니�?\n\n$(ARG1)";
+//STRIP001          Text[ chinese_simplified ] = "以下的字符无法转换成选择的字符集的字符。\n采用替代表示方式 Ӓ :\n\n$(ARG1)";
+//STRIP001          Text[ chinese_traditional ] = "以下的字元無法轉換成選取的字元集的字元。\n採用替代表示方式 Ӓ :\n\n$(ARG1)";
+//STRIP001          Text[ turkish ] = "Bu karakterler, se�ilen karakter k�mesine g�re d�n��t�r�lemedi\nve &1234 �eklimde yaz�ld? ";
+//STRIP001          Text[ arabic ] = "The following characters could not be converted to the selected character set\nand were written as &#1234; surrogates:\n\n$(ARG1)";
+//STRIP001          Text[ catalan ] = "Els seg�ents car�cters no es poden convertir a la taula de car�cters seleccionada\ni s'han escrit com a &#1234; surrogates:\n\n$(ARG1)";
+//STRIP001          Text[ thai ] = "ไม่สามารถแปลงตัวอักขระต่อไปนี้เป็นชุดตัวอักขระที่เลือกได้\nและถูกเขียนเป็�?&#1234; ตัวแทน:\n\n$(ARG1)";
+//STRIP001          Text[ czech ] = "Následující znaky nebylo možné převést do vybrané znakové sady\n a byly proto zapsány ve tvaru &#1234; :\n\n$(ARG1)";
+//STRIP001          Text[ hebrew ] = "Die folgenden Zeichen konnten nicht in den gewählten Zeichensatz konvertiert werden\nund wurden in &#1234; Ersatzdarstellung geschrieben:\n\n$(ARG1)";
+//STRIP001          Text[ hindi ] = "चुने हु�?अक्ष�?समूह मे�?निम्नलिखित अक्षरो�?को बद�?नही�?सकते है\nऔर उनको &#1234 जैसे लिखा जाएग�? प्रतिनिधियाँ:\n\n$(ARG1)";
+//STRIP001      };
     String SCWARN_IMPORT_FILE_ROWCOL & SH_MAX
     {
         Text [ de ] = "Formatfehler in Teildokument $(ARG1) an Position $(ARG2)(Zeile,Spalte) in der Datei entdeckt" ;
