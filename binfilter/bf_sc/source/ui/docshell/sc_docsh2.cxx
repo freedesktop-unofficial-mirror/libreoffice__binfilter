@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:46:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #ifndef _SVDPAGE_HXX //autogen
@@ -72,31 +72,31 @@
 
 
 #include "scitems.hxx"
-#include <tools/gen.hxx>
-#include <bf_sfx2/interno.hxx>
-#include <so3/svstor.hxx>
+// auto strip #include <tools/gen.hxx>
+// auto strip #include <bf_sfx2/interno.hxx>
+// auto strip #include <so3/svstor.hxx>
 #include <svtools/ctrltool.hxx>
 #include <bf_svx/flstitem.hxx>
 #include <bf_svx/drawitem.hxx>
 #include <bf_sfx2/printer.hxx>
-#include <svtools/smplhint.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 #include <bf_svx/svditer.hxx>
-#include <bf_svx/svdobj.hxx>
+// auto strip #include <bf_svx/svdobj.hxx>
 #include <bf_svx/svdoole2.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 #include <bf_offmgr/app.hxx>
 #include <bf_svx/asiancfg.hxx>
 #include <bf_svx/forbiddencharacterstable.hxx>
-#include <bf_svx/unolingu.hxx>
+// auto strip #include <bf_svx/unolingu.hxx>
 #include <rtl/logfile.hxx>
 
 
 
 // INCLUDE ---------------------------------------------------------------
 /*
-#include <svdrwetc.hxx>
-#include <svdrwobx.hxx>
-#include <sostor.hxx>
+// auto strip #include <svdrwetc.hxx>
+// auto strip #include <svdrwobx.hxx>
+// auto strip #include <sostor.hxx>
 */
 #include "drwlayer.hxx"
 #include "stlpool.hxx"
