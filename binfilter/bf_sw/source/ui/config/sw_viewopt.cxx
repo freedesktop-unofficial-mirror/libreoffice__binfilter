@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewopt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:37:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,48 +65,53 @@
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
-#ifndef _SVX_HTMLMODE_HXX //autogen
-#include <bf_svx/htmlmode.hxx>
-#endif
-#ifndef _OFA_HTMLCFG_HXX //autogen
-#include <bf_offmgr/htmlcfg.hxx>
-#endif
+// auto strip #ifndef _SVX_HTMLMODE_HXX //autogen
+// auto strip #include <bf_svx/htmlmode.hxx>
+// auto strip #endif
+// auto strip #ifndef _OFA_HTMLCFG_HXX //autogen
+// auto strip #include <bf_offmgr/htmlcfg.hxx>
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SVX_SVXENUM_HXX //autogen
-#include <bf_svx/svxenum.hxx>
-#endif
+// auto strip #ifndef _SVX_SVXENUM_HXX //autogen
+// auto strip #include <bf_svx/svxenum.hxx>
+// auto strip #endif
 #ifndef _MySVXACORR_HXX //autogen
 #include <bf_svx/svxacorr.hxx>
 #endif
 #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
 #endif
-#ifndef _REGION_HXX //autogen
-#include <vcl/region.hxx>
-#endif
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _REGION_HXX //autogen
+// auto strip #include <vcl/region.hxx>
+// auto strip #endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
 #endif
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
 #endif
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
 #endif
 #ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
 #endif
-#ifndef _SWRECT_HXX
-#include <swrect.hxx>
+// auto strip #ifndef _SWRECT_HXX
+// auto strip #include <swrect.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _CRSTATE_HXX
 #include <crstate.hxx>
 #endif
@@ -115,6 +120,9 @@
 #endif
 #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
 #include <svtools/accessibilityoptions.hxx>
+#endif
+#ifndef _AUTHRATR_HXX
+#include "authratr.hxx"
 #endif
 namespace binfilter {
 
