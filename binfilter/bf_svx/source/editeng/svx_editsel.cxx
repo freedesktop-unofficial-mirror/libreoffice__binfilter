@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editsel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:34:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,11 +59,24 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
-#include <editsel.hxx>
+// auto strip #include <editsel.hxx>
+
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _VCL_POINTR_HXX
+// auto strip #include <vcl/pointr.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
 #include <editview.hxx>
 namespace binfilter {
