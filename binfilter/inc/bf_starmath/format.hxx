@@ -2,9 +2,9 @@
  *
  *  $RCSfile: format.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:16 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:38:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -196,8 +196,8 @@ public:
 
     SmFormat &      operator = (const SmFormat &rFormat);
 
-//STRIP001     BOOL            operator == (const SmFormat &rFormat) const;
-//STRIP001     inline BOOL     operator != (const SmFormat &rFormat) const;
+     BOOL            operator == (const SmFormat &rFormat) const;
+     inline BOOL     operator != (const SmFormat &rFormat) const;
 
     void RequestApplyChanges() const
     {
@@ -212,10 +212,10 @@ public:
     friend SvStream & operator >> (SvStream &rStream, SmFormat &rFormat);
 };
 
-//STRIP001 inline BOOL    SmFormat::operator != (const SmFormat &rFormat) const
-//STRIP001 {
-//STRIP001     return !(*this == rFormat);
-//STRIP001 }
+inline BOOL    SmFormat::operator != (const SmFormat &rFormat) const
+{
+    return !(*this == rFormat);
+}
 
 } //namespace binfilter
 #endif
