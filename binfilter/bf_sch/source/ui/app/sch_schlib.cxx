@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schlib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:50 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:49:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,12 +66,12 @@
 #include <bf_sfx2/docfilt.hxx>
 #endif
 
-#ifndef _SFXMODULE_HXX //autogen
-#include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX //autogen
-#include <bf_sfx2/docfac.hxx>
-#endif
+// auto strip #ifndef _SFXMODULE_HXX //autogen
+// auto strip #include <bf_sfx2/module.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
@@ -79,12 +79,12 @@
 
 
 #pragma hdrstop
-#ifndef _SCHDLL0_HXX //autogen
-#include "schdll0.hxx"
-#endif
+// auto strip #ifndef _SCHDLL0_HXX //autogen
+// auto strip #include "schdll0.hxx"
+// auto strip #endif
 #include <sot/formats.hxx>
 #include "schmod.hxx"
-#include "schdll.hxx"
+// auto strip #include "schdll.hxx"
 #include "docshell.hxx"
 #include "schlib.hxx"
 
