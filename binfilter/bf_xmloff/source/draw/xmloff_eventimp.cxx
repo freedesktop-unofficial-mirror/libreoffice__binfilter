@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_eventimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:51:08 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:12:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -333,10 +333,8 @@ SdXMLEventContext::SdXMLEventContext( SvXMLImport& rImport,  sal_uInt16 nPrfx, c
         case XML_NAMESPACE_XLINK:
             if( IsXMLToken( aLocalName, XML_HREF ) )
             {
-                const UniString aTmp( rImport.GetAbsoluteReference(sValue) );
-                UniString aTmp2;
-                INetURLObject::translateToInternal( aTmp, aTmp2, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8 );
-                msBookmark = aTmp2;
+                const rtl::OUString &rTmp( rImport.GetAbsoluteReference(sValue) );
+                INetURLObject::translateToInternal( rTmp, msBookmark, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8 );
             }
             break;
         }
