@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLPropertyBackpatcher.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:20:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,9 +76,9 @@
 #include <comphelper/stl_types.hxx>
 #endif
 #else
-#ifndef _XMLOFF_FUNCTIONAL_HXX
-#include "functional.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FUNCTIONAL_HXX
+// auto strip #include "functional.hxx"
+// auto strip #endif
 #endif
 
 namespace rtl { class OUString; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLIndexMarkExport.hxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:20:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 #ifndef _XMLOFF_XMLINDEXMARKEXPORT_HXX_
 #define _XMLOFF_XMLINDEXMARKEXPORT_HXX_
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
 #endif
