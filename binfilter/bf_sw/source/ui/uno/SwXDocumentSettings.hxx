@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwXDocumentSettings.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:28:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 #define _SW_XDOCUMENT_SETTINGS_HXX
 
 #ifdef PRECOMPILED
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 #pragma hdrstop
 
@@ -76,12 +76,12 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include  <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
-#include  <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
-#include <cppuhelper/weak.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+// auto strip #include  <com/sun/star/lang/XTypeProvider.hpp>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_WEAK_HXX_
+// auto strip #include <cppuhelper/weak.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
