@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unoframe.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:10:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,12 +68,22 @@
 #ifndef _HINTS_HXX //autogen
 #include <hints.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
 #ifndef _DOCSH_HXX //autogen
 #include <docsh.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _NDINDEX_HXX //autogen
 #include <ndindex.hxx>
 #endif
@@ -268,6 +278,9 @@
 #endif
 
 #include <so3/outplace.hxx>
+#ifndef _SFX_SFXUNO_HXX
+#include <bf_sfx2/sfxuno.hxx>
+#endif
 namespace binfilter {
 
 // from fefly1.cxx
