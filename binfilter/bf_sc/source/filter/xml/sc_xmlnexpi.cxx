@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlnexpi.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:33:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,28 +60,28 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
-#include <rtl/ustrbuf.hxx>
+// auto strip #include <rtl/ustrbuf.hxx>
 
 #include "xmlnexpi.hxx"
 #include "xmlimprt.hxx"
-#include "xmlcelli.hxx"
+// auto strip #include "xmlcelli.hxx"
 #include "docuno.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 //#include "document.hxx"
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
 #endif
 
-#include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-#include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/sheet/XNamedRanges.hpp>
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #ifndef _COM_SUN_STAR_SHEET_XNAMEDRANGE_HPP_

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlrowi.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:33:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,30 +68,30 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "xmlrowi.hxx"
-#include "xmlimprt.hxx"
+// auto strip #include "xmlimprt.hxx"
 #include "xmlcelli.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "xmlstyli.hxx"
 #include "document.hxx"
 #include "docuno.hxx"
 #include "olinetab.hxx"
 
-#include <bf_xmloff/xmltkmap.hxx>
+// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include <bf_xmloff/families.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include <bf_xmloff/families.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-#include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
-#include <com/sun/star/sheet/XSpreadsheet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
+// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
+// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
 #endif
@@ -99,7 +99,7 @@
 #include <com/sun/star/sheet/XPrintAreas.hpp>
 #endif
 
-#include <com/sun/star/table/CellAddress.hpp>
+// auto strip #include <com/sun/star/table/CellAddress.hpp>
 namespace binfilter {
 
 #define SC_ISVISIBLE "IsVisible"
