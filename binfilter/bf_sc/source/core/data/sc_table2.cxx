@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:10:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,10 +68,10 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/boxitem.hxx>
+// auto strip #include <bf_svx/boxitem.hxx>
 #include <tools/urlobj.hxx>
-#include <svtools/poolcach.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <svtools/poolcach.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <math.h>
 #ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <svtools/PasswordHelper.hxx>
@@ -82,7 +82,7 @@
 
 #include "patattr.hxx"
 #include "docpool.hxx"
-#include "cell.hxx"
+// auto strip #include "cell.hxx"
 #include "document.hxx"
 #include "drwlayer.hxx"
 #include "olinetab.hxx"
