@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 12:42:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -660,7 +660,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/                                   const ScRange& r,
 /*N*/                                   short nDx, short nDy, short nDz,
 /*N*/                                   ScDocument* pUndoDoc )
-/*N*/  {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/  {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*N*/    USHORT nCol1 = r.aStart.Col();
 //STRIP001 /*N*/    USHORT nRow1 = r.aStart.Row();
 //STRIP001 /*N*/    USHORT nTab1 = r.aStart.Tab();
@@ -1074,7 +1074,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/ BOOL ScFormulaCell::TestTabRefAbs(USHORT nTable)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-DBG_ASSERT(0, "STRIP"); /*N*/   if( !pDocument->IsClipOrUndo() )
+DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/   {
 /*N*/       pCode->Reset();
 /*N*/       ScToken* p = pCode->GetNextReferenceRPN();
@@ -1108,7 +1108,7 @@ DBG_ASSERT(0, "STRIP"); /*N*/   if( !pDocument->IsClipOrUndo() )
 /*N*/ void ScFormulaCell::UpdateCompile( BOOL bForceIfNameInUse )
 /*N*/ {
 /*N*/   if ( bForceIfNameInUse && !bCompile )
-/*?*/      { DBG_ASSERT(0, "STRIP");} /*N*/    bCompile = pCode->HasNameOrColRowName();
+/*?*/      { DBG_BF_ASSERT(0, "STRIP");} /*N*/    bCompile = pCode->HasNameOrColRowName();
 /*N*/   if ( bCompile )
 /*?*/       pCode->SetError( 0 );   // damit auch wirklich kompiliert wird
 /*N*/   CompileTokenArray();

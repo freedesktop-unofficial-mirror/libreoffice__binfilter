@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porrst.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,7 +158,7 @@ namespace binfilter {
 
 SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Height( rPortion.Height() );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Height( rPortion.Height() );
 //STRIP001  SetAscent( rPortion.GetAscent() );
 //STRIP001  SetWhichPor( POR_TMPEND );
 }
@@ -287,7 +287,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 
 /*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( Width() )
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( Width() )
 //STRIP001  {
 //STRIP001         // bBackground is set for Kerning Portions between two fields
 //STRIP001         if ( bBackground )
@@ -330,7 +330,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/ SwArrowPortion::SwArrowPortion( const SwLinePortion &rPortion ) :
 /*N*/   bLeft( sal_True )
 /*N*/ {
-/*N*/ DBG_ASSERT(0, "STRIP"); //STRIP001    Height( rPortion.Height() );
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     Height( rPortion.Height() );
 //STRIP001  SetAscent( rPortion.GetAscent() );
 //STRIP001  nLineLength = 0;
 //STRIP001  SetWhichPor( POR_ARROW );
@@ -339,7 +339,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/ SwArrowPortion::SwArrowPortion( const SwTxtPaintInfo &rInf )
 /*N*/   : bLeft( sal_False )
 /*N*/ {
-  DBG_ASSERT(0, "STRIP"); //STRIP001   Height( (USHORT)(rInf.GetTxtFrm()->Prt().Height()) );
+  DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Height( (USHORT)(rInf.GetTxtFrm()->Prt().Height()) );
 //STRIP001  aPos.X() = rInf.GetTxtFrm()->Frm().Left() +
 //STRIP001             rInf.GetTxtFrm()->Prt().Right();
 //STRIP001  aPos.Y() = rInf.GetTxtFrm()->Frm().Top() +
@@ -348,7 +348,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 
 /*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
-/*N*/       DBG_ASSERT(0, "STRIP");  //STRIP001     ((SwArrowPortion*)this)->aPos = rInf.GetPos();
+/*N*/       DBG_BF_ASSERT(0, "STRIP");  //STRIP001  ((SwArrowPortion*)this)->aPos = rInf.GetPos();
 /*N*/ }
 
 /*N*/ SwLinePortion *SwArrowPortion::Compress() { return this; }
@@ -388,7 +388,7 @@ SwTmpEndPortion::SwTmpEndPortion( const SwLinePortion &rPortion )
 /*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
 /*N*/         if( MSHRT_MAX != nRedlPos )
 /*N*/         {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwAttrHandler aAttrHandler;
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwAttrHandler aAttrHandler;
 //STRIP001 /*?*/             aAttrHandler.Init( GetTxtNode()->GetSwAttrSet(),
 //STRIP001 /*?*/                               *GetTxtNode()->GetDoc(), NULL );
 //STRIP001 /*?*/             SwRedlineItr aRedln( rTxtNode, *pFnt, aAttrHandler,

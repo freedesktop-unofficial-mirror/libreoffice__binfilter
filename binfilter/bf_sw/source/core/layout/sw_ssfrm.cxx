@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ssfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -310,7 +310,7 @@ namespace binfilter {
 /*N*/     SetInvalidR2L( TRUE );
 /*N*/     BOOL bChg = bOldR2L != IsRightToLeft();
 /*N*/     if( ( IsVertical() != bOldVert ) || bChg || IsReverse() != bOldRev )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001         InvalidateAll();
 //STRIP001         if( IsLayoutFrm() )
 //STRIP001         {
@@ -467,7 +467,7 @@ namespace binfilter {
 /*?*/           ViewShell *pVSh = pRootFrm->GetCurrShell();
 /*?*/           if( pVSh && pVSh->Imp() )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 ASSERT( !GetLower(), "Lowers should be dispose already!" );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( !GetLower(), "Lowers should be dispose already!" );
 //STRIP001 /*?*/                pVSh->Imp()->DisposeAccessibleFrm( this );
 /*?*/           }
 /*N*/       }
@@ -568,7 +568,7 @@ namespace binfilter {
 /*?*/             }
 /*?*/             while( nPos < rFtnIdxs.Count() )
 /*?*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 pTxtFtn = rFtnIdxs[ nPos ];
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTxtFtn = rFtnIdxs[ nPos ];
 //STRIP001 /*?*/                 if( pTxtFtn->GetTxtNode().GetIndex() > nIndex )
 //STRIP001 /*?*/                     break;
 //STRIP001 /*?*/                 pTxtFtn->DelFrms();

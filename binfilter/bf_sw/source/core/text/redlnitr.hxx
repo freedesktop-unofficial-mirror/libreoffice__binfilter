@@ -2,9 +2,9 @@
  *
  *  $RCSfile: redlnitr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,7 +129,7 @@ class SwRedlineItr
 public:
 SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,//STRIP001 SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,
 xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,//STRIP001         xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
-xub_StrLen nStart = STRING_LEN ){DBG_ASSERT(0, "STRIP");} ;//STRIP001        xub_StrLen nStart = STRING_LEN );
+xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        xub_StrLen nStart = STRING_LEN );
 //STRIP001  ~SwRedlineItr();
     inline sal_Bool IsOn() const { return bOn || ( pExt && pExt->IsOn() ); }
 //STRIP001  inline void Clear( SwFont* pFnt ) { if( bOn ) _Clear( pFnt ); }
@@ -142,7 +142,7 @@ xub_StrLen nStart = STRING_LEN ){DBG_ASSERT(0, "STRIP");} ;//STRIP001        xub
 //STRIP001      { if( bShow || pExt ) return _GetNextRedln( nNext ); return nNext; }
 //STRIP001  inline sal_Bool ChkSpecialUnderline() const
 //STRIP001      { if ( IsOn() ) return _ChkSpecialUnderline(); return sal_False; }
-            sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001    sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd );
+            sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001     sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd );
 //STRIP001     inline sal_Bool LeaveExtend( SwFont& rFnt, xub_StrLen nNew )
 //STRIP001      { return pExt->Leave(rFnt, nNew ); }
     inline sal_Bool ExtOn() { if( pExt ) return pExt->IsOn(); return sal_False; }

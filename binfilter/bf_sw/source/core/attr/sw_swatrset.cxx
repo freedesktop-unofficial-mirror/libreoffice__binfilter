@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swatrset.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -283,7 +283,7 @@ namespace binfilter {
 /*N*/   if( SFX_ITEM_SET == GetItemState( RES_BOXATR_FORMULA, FALSE, &pItem ) &&
 /*N*/       ((SwTblBoxFormula*)pItem)->GetDefinedIn() != pModify )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ((SwTblBoxFormula*)pItem)->ChgDefinedIn( pModify );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwTblBoxFormula*)pItem)->ChgDefinedIn( pModify );
 /*N*/   }
 /*N*/ }
 

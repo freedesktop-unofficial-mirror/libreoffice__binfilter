@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -388,7 +388,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       if ( bChanged )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if ( nDz != 0 )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nDz != 0 )
 //STRIP001 /*?*/            {   // #81844# sheet to be deleted or inserted or moved
 //STRIP001 /*?*/                // => no valid sheet names for references right now
 //STRIP001 /*?*/                pChartListener->ChangeListening( aNewRLR, bDataChanged );
@@ -427,7 +427,7 @@ namespace binfilter {
 
 /*N*/ SchMemChart* ScDocument::FindChartData(const String& rName, BOOL bForModify)
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if (!pDrawLayer)
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (!pDrawLayer)
 //STRIP001      return NULL;
 //STRIP001
 //STRIP001  //  die Seiten hier vom Draw-Layer nehmen,

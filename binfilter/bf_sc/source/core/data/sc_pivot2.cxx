@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pivot2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -333,7 +333,7 @@ namespace binfilter {
 /*N*/       // Strings vergleichen:
 /*N*/
 /*N*/       if (pUserData)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    nResult = pUserData->ICompare(rData1.aStrValue, rData2.aStrValue);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nResult = pUserData->ICompare(rData1.aStrValue, rData2.aStrValue);
 /*N*/       else
 /*N*/       {
 /*N*/             nResult = (short) ScGlobal::pTransliteration->compareString(

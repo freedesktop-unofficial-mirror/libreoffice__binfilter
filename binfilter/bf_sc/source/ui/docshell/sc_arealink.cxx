@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_arealink.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:04 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,7 +149,7 @@ namespace binfilter {
 /*N*/  void __EXPORT ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
-        DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/    //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/     //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im
 //STRIP001  //  LinkManager zu setzen, ohne die Daten im Dokument zu aendern
 //STRIP001
 //STRIP001  if (bInCreate)
@@ -306,7 +306,7 @@ namespace binfilter {
 /*N*/   String aTempArea;
 /*N*/
 /*N*/   if( rNewFilter == ScDocShell::GetWebQueryFilterName() )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      aTempArea = ScHTMLImport::GetHTMLRangeNameList( pSrcDoc, rNewArea );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       aTempArea = ScHTMLImport::GetHTMLRangeNameList( pSrcDoc, rNewArea );
 /*N*/   else
 /*N*/       aTempArea = rNewArea;
 /*N*/
@@ -446,7 +446,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bAddUndo && bUndo)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
 //STRIP001 /*?*/            pRedoDoc->InitUndo( pDoc, nDestTab, nDestTab );
 //STRIP001 /*?*/            pDoc->CopyToDocument( aNewRange, IDF_ALL, FALSE, pRedoDoc );
 //STRIP001 /*?*/
@@ -474,7 +474,7 @@ namespace binfilter {
 /*N*/           aDestArea = aNewRange;
 /*N*/
 /*N*/       if ( nNewRefresh != GetRefreshDelay() )
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SetRefreshDelay( nNewRefresh );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRefreshDelay( nNewRefresh );
 /*N*/
 /*N*/       USHORT nPaintEndX = Max( aOldRange.aEnd.Col(), aNewRange.aEnd.Col() );
 /*N*/       USHORT nPaintEndY = Max( aOldRange.aEnd.Row(), aNewRange.aEnd.Row() );
@@ -523,7 +523,7 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, pCaller )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
+    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
 //STRIP001      GetRefreshDelay() ) != 0;
 //STRIP001  return nRes;
 /*N*/ }

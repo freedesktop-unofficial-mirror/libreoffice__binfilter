@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvlfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -574,7 +574,7 @@ namespace binfilter {
 //Frame in wiederholter Headline?
 /*N*/ FASTBOOL lcl_IsInRepeatedHeadline( const SwFrm *pFrm,
 /*N*/                                   const SwTabFrm** ppTFrm = 0 )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  const SwTabFrm *pTab = pFrm->FindTabFrm();
 //STRIP001  if( ppTFrm )
 //STRIP001      *ppTFrm = pTab;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1614,7 +1614,7 @@ using namespace ::com::sun::star::datatransfer;
 /*N*/   ObjCntType eOType;
 /*N*/   if( pPt )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SdrObject *pObj = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrObject *pObj = 0;
 //STRIP001 /*?*/        eOType = rSh.GetObjCntType( *pPt, pObj );
 /*N*/   }
 /*N*/   else
@@ -1624,7 +1624,7 @@ using namespace ::com::sun::star::datatransfer;
 /*N*/   {
 /*N*/   case OBJCNT_GRF:
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bIMap, bLink;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bIMap, bLink;
 //STRIP001 /*?*/            if( pPt )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                bIMap = 0 != rSh.GetFmtFromObj( *pPt )->GetURL().GetMap();

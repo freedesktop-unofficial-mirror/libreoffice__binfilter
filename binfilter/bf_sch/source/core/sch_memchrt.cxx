@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -392,12 +392,12 @@ namespace binfilter {
 /*N*/
 /*N*/   //aNewInfo der Translationstabelle anpassen
 /*N*/   if(nTranslated == TRANS_ROW)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 aNewInfo.nRow=GetTableIndexRow(aInfo.nRow);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aNewInfo.nRow=GetTableIndexRow(aInfo.nRow);
 /*N*/   else if(nTranslated == TRANS_COL)
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 aNewInfo.nCol=GetTableIndexCol(aInfo.nCol);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 aNewInfo.nCol=GetTableIndexCol(aInfo.nCol);
 /*N*/
 /*N*/   if(aNewInfo == aSelectionInfo || aNewInfo.nSelection==0)
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 return nLastSelInfoReturn; //reduzieren doppelter Selektionen bzw. speziell der Deselektion!
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 return nLastSelInfoReturn; //reduzieren doppelter Selektionen bzw. speziell der Deselektion!
 /*N*/   aSelectionInfo = aNewInfo;
 /*N*/   if(aAppLink.IsSet())
 /*N*/   {
@@ -1251,7 +1251,7 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/             // quote table name if it contains spaces or quotes
 /*?*/             if( bNeedsQuoting )
-/*?*/             {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                 // leading quote
 //STRIP001 /*?*/                 aBuffer.append( aQuote );
 //STRIP001 /*?*/

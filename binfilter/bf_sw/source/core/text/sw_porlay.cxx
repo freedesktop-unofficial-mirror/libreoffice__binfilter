@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,7 +179,7 @@ namespace binfilter {
 /*N*/   if( GetNext() )
 /*N*/       delete GetNext();
 /*N*/   if( pBlink )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pBlink->Delete( this );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/   delete pSpaceAdd;
 /*N*/     if ( pKanaComp )
 /*?*/         delete pKanaComp;
@@ -200,7 +200,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/           pPortion = new SwTxtPortion( *(SwLinePortion*)this );
 /*N*/           if( IsBlinking() && pBlink )
 /*N*/           {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                SetBlinking( sal_False );
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SetBlinking( sal_False );
 //STRIP001 /*?*/                pBlink->Replace( this, pPortion );
 /*N*/           }
 /*N*/       }
@@ -929,7 +929,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/ #ifdef BIDI
 /*N*/         // we search for connecting opportunities (kashida)
 /*N*/         else if ( bAdjustBlock && i18n::ScriptType::COMPLEX == nScript )
-/*N*/         {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             SwScanner aScanner( rNode, NULL,
 //STRIP001 /*?*/                                 ::com::sun::star::i18n::WordType::DICTIONARY_WORD,
 //STRIP001 /*?*/                                 nLastKashida, nChg, sal_False, sal_False );

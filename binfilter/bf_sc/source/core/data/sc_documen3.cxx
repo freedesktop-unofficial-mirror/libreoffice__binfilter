@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -921,7 +921,7 @@ using namespace ::com::sun::star;
 /*N*/                       USHORT nFillCount, FillDir eFillDir, FillCmd eFillCmd, FillDateCmd eFillDateCmd,
 /*N*/                       double nStepValue, double nMaxValue)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nCol1, nCol2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nCol1, nCol2 );
 //STRIP001 /*?*/    PutInOrder( nRow1, nRow2 );
 //STRIP001 /*?*/    for (USHORT i=0; i <= MAXTAB; i++)
 //STRIP001 /*?*/        if (pTab[i])
@@ -943,7 +943,7 @@ using namespace ::com::sun::star;
 /*N*/ void ScDocument::AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
 /*N*/                                   USHORT nFormatNo, const ScMarkData& rMark )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nStartCol, nEndCol );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nStartCol, nEndCol );
 //STRIP001 /*?*/    PutInOrder( nStartRow, nEndRow );
 //STRIP001 /*?*/    for (USHORT i=0; i <= MAXTAB; i++)
 //STRIP001 /*?*/        if (pTab[i])
@@ -1167,7 +1167,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void ScDocument::Sort(USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        BOOL bOldDisableIdle = IsIdleDisabled();
 //STRIP001 /*?*/        DisableIdle( TRUE );
@@ -1178,7 +1178,7 @@ using namespace ::com::sun::star;
 
 /*N*/ USHORT ScDocument::Query(USHORT nTab, const ScQueryParam& rQueryParam, BOOL bKeepSub)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
 //STRIP001 /*?*/        return pTab[nTab]->Query((ScQueryParam&)rQueryParam, bKeepSub);
 //STRIP001 /*?*/
 //STRIP001 /*?*/    DBG_ERROR("missing tab");
@@ -1250,7 +1250,7 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocument::HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
 /*N*/                                   USHORT nTab )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
 //STRIP001 /*?*/        if (pTab[nTab])
 //STRIP001 /*?*/            return pTab[nTab]->HasColHeader( nStartCol, nStartRow, nEndCol, nEndRow );
 //STRIP001 /*?*/
@@ -1260,7 +1260,7 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocument::HasRowHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
 /*N*/                                   USHORT nTab )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
 //STRIP001 /*?*/        if (pTab[nTab])
 //STRIP001 /*?*/            return pTab[nTab]->HasRowHeader( nStartCol, nStartRow, nEndCol, nEndRow );
 //STRIP001 /*?*/
@@ -1755,7 +1755,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void ScDocument::SetExtDocOptions( ScExtDocOptions* pNewOptions )
 /*N*/ {
-/*N*/    DBG_ASSERT(0, "STRIP"); //STRIP001 delete pExtDocOptions;
+/*N*/    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pExtDocOptions;
 //STRIP001 /*N*/    pExtDocOptions = pNewOptions;
 /*N*/ }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsort.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -416,7 +416,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ BOOL SwDoc::SortText(const SwPaM& rPaM, const SwSortOptions& rOpt)
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 // pruefen ob Rahmen im Text
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // pruefen ob Rahmen im Text
 //STRIP001  const SwPosition *pStart = rPaM.Start(), *pEnd = rPaM.End();
 //STRIP001  // Index auf den Start der Selektion
 //STRIP001
@@ -579,7 +579,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& rBoxes, const SwSortOptions& rOpt)
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 // uebers SwDoc fuer Undo !!
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // uebers SwDoc fuer Undo !!
 //STRIP001  ASSERT( rBoxes.Count(), "keine gueltige Box-Liste" );
 //STRIP001  SwTableNode* pTblNd = (SwTableNode*)rBoxes[0]->GetSttNd()->FindTableNode();
 //STRIP001  if( !pTblNd )

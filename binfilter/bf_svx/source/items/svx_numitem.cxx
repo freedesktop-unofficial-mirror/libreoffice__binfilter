@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_numitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -433,7 +433,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   DELETEZ(pGraphicBrush);
 /*N*/   if(rFormat.pGraphicBrush)
 /*N*/     {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        pGraphicBrush = new SvxBrushItem(*rFormat.pGraphicBrush);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pGraphicBrush = new SvxBrushItem(*rFormat.pGraphicBrush);
 //STRIP001 /*?*/         pGraphicBrush->SetDoneLink( STATIC_LINK( this, SvxNumberFormat, GraphicArrived) );
 /*N*/     }
 /*N*/   DELETEZ(pBulletFont);
@@ -488,7 +488,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   }
 /*N*/   else if(!pGraphicBrush || pGraphicBrush && !(*pBrushItem == *pGraphicBrush))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        delete pGraphicBrush;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         delete pGraphicBrush;
 //STRIP001 /*?*/        pGraphicBrush =  (SvxBrushItem*)pBrushItem->Clone();
 //STRIP001 /*?*/         pGraphicBrush->SetDoneLink( STATIC_LINK( this, SvxNumberFormat, GraphicArrived) );
 /*N*/    }
@@ -996,7 +996,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/                   pLinkStr->Len() &&
 /*N*/                   0 !=(pGraphic = pBrush->GetGraphic()))
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                SvxBrushItem aTempItem(*pBrush);
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SvxBrushItem aTempItem(*pBrush);
 //STRIP001 /*?*/                aTempItem.SetGraphicLink( String());
 //STRIP001 /*?*/                aTempItem.SetGraphic(*pGraphic);
 //STRIP001 /*?*/                SvxFrameVertOrient  eOrient = aFmt.GetVertOrient();

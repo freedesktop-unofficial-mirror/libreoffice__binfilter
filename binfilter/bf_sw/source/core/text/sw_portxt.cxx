@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_portxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/
 /*N*/         if ( LANGUAGE_THAI == aLang )
 /*N*/         {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             nCnt = SwScriptInfo::ThaiJustify( *pStr, 0, 0, nPos, nEnd - nPos );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             nCnt = SwScriptInfo::ThaiJustify( *pStr, 0, 0, nPos, nEnd - nPos );
 //STRIP001 /*?*/
 //STRIP001 /*?*/             const SwLinePortion* pPor = rPor.GetPortion();
 //STRIP001 /*?*/             if ( pPor && pPor->IsKernPortion() )
@@ -202,7 +202,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/     // Kashida Justification: Insert Kashidas
 /*N*/     if ( nEnd > nPos && pSI && COMPLEX == nScript )
 /*N*/     {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/         LanguageType aLang =
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         LanguageType aLang =
 //STRIP001 /*?*/             rInf.GetTxtFrm()->GetTxtNode()->GetLang( rInf.GetIdx(), 1, nScript );
 //STRIP001 /*?*/
 //STRIP001 /*?*/         if ( SwScriptInfo::IsArabicLanguage( aLang ) )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: SwAppletImpl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,13 +117,13 @@ class SwApplet_Impl
 //STRIP001  String            sAlt;
 
 public:
-    static USHORT GetOptionType( const String& rName, BOOL bApplet ){DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 static USHORT GetOptionType( const String& rName, BOOL bApplet );
+    static USHORT GetOptionType( const String& rName, BOOL bApplet ){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 static USHORT GetOptionType( const String& rName, BOOL bApplet );
 //STRIP001  SwApplet_Impl( SfxItemPool& rPool, USHORT nWhich1, USHORT nWhich2 );
     SwApplet_Impl( SfxItemSet& rSet ): aItemSet ( rSet) {}
-    ~SwApplet_Impl(){DBG_ASSERT(0, "STRIP");}; //STRIP001 ~SwApplet_Impl();
+    ~SwApplet_Impl(){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 ~SwApplet_Impl();
 
     void CreateApplet( const String& rCode, const String& rName,//STRIP001  void CreateApplet( const String& rCode, const String& rName,
-        BOOL bMayScript, const String& rCodeBase ){DBG_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001                     BOOL bMayScript, const String& rCodeBase );
+        BOOL bMayScript, const String& rCodeBase ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001                      BOOL bMayScript, const String& rCodeBase );
         sal_Bool CreateApplet();
 //STRIP001                     //const String& rAlt );
 //STRIP001  void FinishApplet();

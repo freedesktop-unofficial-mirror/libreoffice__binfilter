@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vprint.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -948,7 +948,7 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 //STRIP001     return pPrtDoc;
 //STRIP001 }
 /*N*/ SwDoc * ViewShell::FillPrtDoc( SwDoc *pPrtDoc, const SfxPrinter* pPrt)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001 /*?*/     ASSERT( this->IsA( TYPE(SwFEShell) ),"ViewShell::Prt for FEShell only");
 //STRIP001 /*?*/     SwFEShell* pFESh = (SwFEShell*)this;
 //STRIP001 /*?*/     // Wir bauen uns ein neues Dokument
@@ -1047,7 +1047,7 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 
 /*N*/ BOOL ViewShell::Prt( SwPrtOptions& rOptions, SfxProgress& rProgress,
 /*N*/                      OutputDevice *pPDFOut )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 /*?*/ //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //STRIP001 /*?*/ //Immer die Druckroutine in viewpg.cxx (fuer Seitenvorschau) mitpflegen!!
 //STRIP001 /*?*/ //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: itrtxt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -310,7 +310,7 @@ public:
     sal_Bool GetCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
         const long nMax = 0 );
     sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,//STRIP001     sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
-    const long nMax = 0 ){DBG_ASSERT(0, "STRIP"); return FALSE;} ;//STRIP001        const long nMax = 0 );
+    const long nMax = 0 ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} ;//STRIP001         const long nMax = 0 );
     xub_StrLen GetCrsrOfst( SwPosition *pPos, const Point &rPoint,
                 const MSHORT nChgNode, const SwCrsrMoveState* = 0 ) const;
     // 1170: beruecksichtigt Mehrdeutigkeiten; Implementierung s.u.

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swbaslnk.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -221,7 +221,7 @@ namespace binfilter {
 /*?*/           SwFrmFmt* pFmt;
 /*?*/           if( nEvent && 0 != ( pFmt = pCntntNode->GetFlyFmt() ))
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SwCallMouseEvent aCallEvent;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCallMouseEvent aCallEvent;
 //STRIP001 /*?*/                aCallEvent.Set( EVENT_OBJECT_IMAGE, pFmt );
 //STRIP001 /*?*/                pDoc->CallEvent( nEvent, aCallEvent );
 /*?*/           }
@@ -464,7 +464,7 @@ namespace binfilter {
 /*?*/                       pTblNd->GetTable().GetHTMLTableLayout();
 /*?*/                   if( pLayout )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nBrowseWidth =
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nBrowseWidth =
 //STRIP001 /*?*/                            pLayout->GetBrowseWidthByTable( *pDoc );
 //STRIP001 /*?*/                        if( nBrowseWidth )
 //STRIP001 /*?*/                            pLayout->Resize( nBrowseWidth, TRUE, TRUE,

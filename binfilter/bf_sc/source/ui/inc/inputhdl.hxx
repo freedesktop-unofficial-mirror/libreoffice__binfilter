@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inputhdl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -221,7 +221,7 @@ public:
 //STRIP001  void            InputSelection( EditView* pView );
 //STRIP001  void            InputChanged( EditView* pView );
 
-    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_ASSERT(0, "STRIP");}; //STRIP001 void            ViewShellGone(ScTabViewShell* pViewSh);
+    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void         ViewShellGone(ScTabViewShell* pViewSh);
     void            SetRefViewShell(ScTabViewShell* pRefVsh) {pRefViewSh=pRefVsh;}
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dpoutput.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -323,7 +323,7 @@ ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsS
     nColFmtCount( 0 ),
     nRowFmtCount( 0 )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 nTabStartCol = nTabStartRow = nMemberStartCol = nMemberStartRow =
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nTabStartCol = nTabStartRow = nMemberStartCol = nMemberStartRow =
 //STRIP001      nDataStartCol = nDataStartRow = nTabEndCol = nTabEndRow = 0;
 //STRIP001
 //STRIP001  pColFields  = new ScDPOutLevelData[SC_DPOUT_MAXLEVELS];

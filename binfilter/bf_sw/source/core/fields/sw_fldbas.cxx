@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -423,7 +423,7 @@ using namespace ::com::sun::star;
 /*N*/   String sRet;
 /*N*/   if( bName )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nTypeId = GetTypeId();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTypeId = GetTypeId();
 //STRIP001 /*?*/        if( RES_DATETIMEFLD == GetTyp()->Which() )
 //STRIP001 /*?*/            nTypeId = GetSubType() & DATEFLD ? TYP_DATEFLD : TYP_TIMEFLD;
 //STRIP001 /*?*/

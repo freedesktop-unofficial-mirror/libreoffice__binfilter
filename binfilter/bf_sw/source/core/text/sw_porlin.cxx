@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porlin.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:30 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,7 +116,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/ SwLinePortion::~SwLinePortion()
 /*N*/ {
 /*N*/   if( pBlink )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pBlink->Delete( this );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/ }
 
 /*N*/ SwLinePortion *SwLinePortion::Compress()

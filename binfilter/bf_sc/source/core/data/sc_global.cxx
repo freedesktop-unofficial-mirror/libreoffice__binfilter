@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -593,7 +593,7 @@ void global_InitAppOptions();
 
 /*N*/ SvxBrushItem* ScGlobal::GetButtonBrushItem()
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 pButtonBrushItem->SetColor( Application::GetSettings().GetStyleSettings().GetFaceColor() );
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 pButtonBrushItem->SetColor( Application::GetSettings().GetStyleSettings().GetFaceColor() );
 //STRIP001     return pButtonBrushItem;
 /*N*/ }
 
@@ -1472,7 +1472,7 @@ void global_InitAppOptions();
 /*N*/ ScFunctionList::ScFunctionList() :
 /*N*/       nMaxFuncNameLen ( 0 )
 /*N*/ {
-/*N*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScFuncDesc*      pDesc   = NULL;
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFuncDesc*       pDesc   = NULL;
 //STRIP001  xub_StrLen      nStrLen = 0;
 //STRIP001  FuncCollection* pFuncColl;
 //STRIP001  USHORT i,j;
@@ -1781,7 +1781,7 @@ void global_InitAppOptions();
 /*N*/   :   pFuncList   ( ScGlobal::GetStarCalcFunctionList() ),
 /*N*/       pCurCatList ( NULL )
 /*N*/{
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 /*N*/    DBG_ASSERT( pFuncList, "Funktionsliste nicht gefunden." );
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/ DBG_ASSERT( pFuncList, "Funktionsliste nicht gefunden." );
 //STRIP001  ULONG       nCount  = pFuncList->GetCount();
 //STRIP001  ScFuncDesc* pDesc;
 //STRIP001  List*       pRootList;
@@ -1820,7 +1820,7 @@ void global_InitAppOptions();
 
 /*N*/ ScFunctionMgr::~ScFunctionMgr()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i = 0; i < MAX_FUNCCAT; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i = 0; i < MAX_FUNCCAT; i++)
 //STRIP001      delete aCatLists[i];
 //STRIP001 //   delete pFuncList;       // Macht später die App
 /*N*/ }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_srchitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:46 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -316,7 +316,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 /*N*/ void SvxSearchItem::GetFromDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor >& rDescr )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SetSearchString( rDescr->getSearchString() );
 //STRIP001  ::com::sun::star::uno::Any aAny = rDescr->getPropertyValue( DEFINE_CONST_UNICODE("SearchWords") );
 //STRIP001  sal_Bool bTemp ;
@@ -353,7 +353,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 /*N*/ void SvxSearchItem::SetToDescriptor( ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  rDescr->setSearchString( GetSearchString() );
 //STRIP001  ::com::sun::star::uno::Any aAny;
 //STRIP001  aAny <<= GetWordOnly() ;
@@ -380,7 +380,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::Notify( const Sequence< OUString > &rPropertyNames )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // applies transliteration changes in the configuration database
 //STRIP001  // to the current SvxSearchItem
 //STRIP001  SetTransliterationFlags( SvtSearchOptions().GetTransliterationFlags() );
@@ -388,7 +388,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetMatchFullHalfWidthForms( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if (bVal)
 //STRIP001      aSearchOpt.transliterateFlags |=  TransliterationModules_IGNORE_WIDTH;
 //STRIP001  else
@@ -397,7 +397,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetWordOnly( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (bVal)
 //STRIP001      aSearchOpt.searchFlag |=  SearchFlags::NORM_WORD_ONLY;
 //STRIP001  else
@@ -406,7 +406,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetExact( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (!bVal)
 //STRIP001      aSearchOpt.transliterateFlags |=  TransliterationModules_IGNORE_CASE;
 //STRIP001  else
@@ -415,7 +415,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetSelection( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (bVal)
 //STRIP001  {
 //STRIP001      aSearchOpt.searchFlag |=  (SearchFlags::REG_NOT_BEGINOFLINE |
@@ -430,7 +430,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetRegExp( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (bVal)
 //STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_REGEXP;
 //STRIP001  else
@@ -439,7 +439,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetLEVRelaxed( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (bVal)
 //STRIP001      aSearchOpt.searchFlag |=  SearchFlags::LEV_RELAXED;
 //STRIP001  else
@@ -448,7 +448,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ void SvxSearchItem::SetLevenshtein( sal_Bool bVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (bVal)
 //STRIP001      aSearchOpt.algorithmType = SearchAlgorithms_APPROXIMATE;
 //STRIP001  else
@@ -458,11 +458,11 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ void SvxSearchItem::SetTransliterationFlags( sal_Int32 nFlags )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  aSearchOpt.transliterateFlags = nFlags;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   aSearchOpt.transliterateFlags = nFlags;
 /*N*/ }
 
 /*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
 //STRIP001     switch ( nMemberId )
@@ -522,7 +522,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  aSearchOpt.transliterateFlags = nFlags;
 // -----------------------------------------------------------------------
 
 /*N*/ sal_Bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
 //STRIP001     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 //STRIP001     nMemberId &= ~CONVERT_TWIPS;
 //STRIP001     sal_Bool bRet = sal_False;

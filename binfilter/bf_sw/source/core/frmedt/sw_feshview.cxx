@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_feshview.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -235,7 +235,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwFEShell::SelectObj( const Point& rPt, BYTE nFlag, SdrObject *pObj )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  SET_CURR_SHELL( this );
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   SET_CURR_SHELL( this );
 //STRIP001  StartAction();          //Aktion ist Notwendig, damit nicht mehrere
 //STRIP001                          //AttrChgdNotify (etwa durch Unmark->MarkListHasChgd)
 //STRIP001                          //durchkommen
@@ -2514,7 +2514,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*N*/           ASSERT( pFrm->IsFlyFrm(), "Wrong FrmType" );
 /*N*/           if( bSelFrm )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001   SelectObj( pFrm->Frm().Pos(), 0, ((SwFlyFrm*)pFrm)->GetVirtDrawObj() );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SelectObj( pFrm->Frm().Pos(), 0, ((SwFlyFrm*)pFrm)->GetVirtDrawObj() );
 //STRIP001 /*?*/                if( !ActionPend() )
 //STRIP001 /*?*/                    MakeVisible( pFrm->Frm() );
 /*N*/           }
@@ -2524,7 +2524,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*N*/               SwCntntFrm *pCFrm = pFrm->ContainsCntnt();
 /*N*/               if ( pCFrm )
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 SwCntntNode  *pCNode = pCFrm->GetNode();
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCntntNode   *pCNode = pCFrm->GetNode();
 //STRIP001 /*?*/                    ClearMark();
 //STRIP001 /*?*/                    SwPaM* pCrsr = GetCrsr();
 //STRIP001 /*?*/
@@ -2560,7 +2560,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*N*/   if( Imp()->HasDrawView() &&
 /*N*/       Imp()->GetDrawView()->GetMarkList().GetMarkCount() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 MakeVisible( Imp()->GetDrawView()->GetAllMarkedRect() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 MakeVisible( Imp()->GetDrawView()->GetAllMarkedRect() );
 /*N*/   }
 /*N*/   else
 /*N*/       SwCrsrShell::MakeSelVisible();
@@ -2843,9 +2843,9 @@ bool SwFEShell::IsSelContainsControl() const
 /*N*/ void SwFEShell::HideChainMarker()
 /*N*/ {
 /*N*/   if ( pChainFrom )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 pChainFrom->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pChainFrom->Hide();
 /*N*/   if ( pChainTo )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pChainTo->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pChainTo->Hide();
 /*N*/ }
 
 /*N*/ void SwFEShell::SetChainMarker()
@@ -2858,7 +2858,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*?*/
 /*?*/       XPolygon aPoly(3);
 /*?*/       if ( pFly->GetPrevLink() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            bDelFrom = FALSE;
 //STRIP001 /*?*/            const SwFrm *pPre = pFly->GetPrevLink();
 //STRIP001 /*?*/            aPoly[0] = Point( pPre->Frm().Right(), pPre->Frm().Bottom());
@@ -2870,7 +2870,7 @@ bool SwFEShell::IsSelContainsControl() const
 //STRIP001 /*?*/            pChainFrom->Show();
 /*?*/       }
 /*?*/       if ( pFly->GetNextLink() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            bDelTo = FALSE;
 //STRIP001 /*?*/            const SwFlyFrm *pNxt = pFly->GetNextLink();
 //STRIP001 /*?*/            aPoly[0] = Point( pFly->Frm().Right(), pFly->Frm().Bottom());
@@ -3141,7 +3141,7 @@ bool SwFEShell::IsSelContainsControl() const
 /*?*/                     ASSERT( pPageFrm, "inconsistent modell - no page!");
 /*?*/                     if ( pPageFrm )
 /*?*/                     {
-/*?*/                        DBG_ASSERT(0, "STRIP"); //STRIP001  aRetColor = pPageFrm->GetDrawBackgrdColor();
+/*?*/                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  aRetColor = pPageFrm->GetDrawBackgrdColor();
 /*?*/                     }
 /*?*/                 }
 /*?*/             }

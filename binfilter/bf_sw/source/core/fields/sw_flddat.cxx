@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flddat.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:53:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SwFieldType* SwDateTimeFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwDateTimeFieldType *pTmp = new SwDateTimeFieldType(GetDoc());
+DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldType *pTmp = new SwDateTimeFieldType(GetDoc());
 //STRIP001  return pTmp;
 /*N*/ }
 

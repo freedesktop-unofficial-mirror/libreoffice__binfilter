@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:16 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -271,7 +271,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::SetModified(BOOL bMod)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bModified = bMod;
 //STRIP001  if ( bMod && pObjShell)
 //STRIP001      pObjShell->SetModified( TRUE );
@@ -421,7 +421,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/ }
 
 /*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* pStorage )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/     BOOL bRet = TRUE;
 //STRIP001
 //STRIP001     // store directly into the destination storage
@@ -587,7 +587,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/ }
 
 /*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& rCItem )
-/*?*/ {DBG_ASSERT(0, "STRIP");return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;//STRIP001
 //STRIP001     DBG_ASSERT( m_xStorage.Is(), "No storage for configurations!" );
 //STRIP001     if ( !m_xStorage.Is() )
 //STRIP001         return FALSE;
@@ -659,7 +659,7 @@ static const char pStorageName[] = "Configurations";
 //STRIP001 }
 
 /*?*/ void SfxConfigManager::CopyConfigItem( SfxConfigManager& rMgr, USHORT nType )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  BOOL bIsDefault = TRUE;
 //STRIP001  for( USHORT i = 0; i < rMgr.pItemArr->Count(); ++i )
 //STRIP001     {
@@ -708,7 +708,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::RemovePersistentConfigItem( USHORT nType )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
 //STRIP001     {
 //STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
@@ -742,7 +742,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ReInitialize( USHORT nType )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
 //STRIP001     {
 //STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
@@ -788,7 +788,7 @@ static const char pStorageName[] = "Configurations";
 //STRIP001 }
 
 /*?*/ void SfxConfigManager::ReInitialize( SfxConfigItem* pCItem )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
 //STRIP001     {
 //STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
@@ -811,7 +811,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ResetConfigItem( USHORT nType )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
 //STRIP001     {
 //STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
@@ -833,7 +833,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::ReConnect( USHORT nType, SfxConfigManager* pOther )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( USHORT i = 0; i < pItemArr->Count(); ++i )
 //STRIP001     {
 //STRIP001         SfxConfigItem_Impl* pItem = (*pItemArr)[i];

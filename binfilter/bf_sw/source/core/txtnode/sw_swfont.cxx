@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swfont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1207,7 +1207,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   rInf.SetLen( nLn );
 /*N*/   xub_StrLen nCrsr = 0;
 /*N*/   if( IsCapital() && nLn )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      nCrsr = GetCapitalCrsrOfst( rInf );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       nCrsr = GetCapitalCrsrOfst( rInf );
 /*N*/   else
 /*N*/   {
 /*N*/       const XubString &rOldTxt = rInf.GetText();
@@ -1215,9 +1215,9 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/       rInf.SetKern( CheckKerning() );
 /*N*/       SV_STAT( nGetTextSize );
 /*N*/       if ( !IsCaseMap() )
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 nCrsr = pLastFont->GetCrsrOfst( rInf );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nCrsr = pLastFont->GetCrsrOfst( rInf );
 /*N*/       else
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            String aTmp = CalcCaseMap( rInf.GetText() );
 //STRIP001 /*?*/            rInf.SetText( aTmp );
 //STRIP001 /*?*/            nCrsr = pLastFont->GetCrsrOfst( rInf );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: autostyl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,7 +93,7 @@ class ScAutoStyleList
 //STRIP001  DECL_LINK( InitHdl, Timer* );
 
 public:
-            ScAutoStyleList(ScDocShell* pShell){DBG_ASSERT(0, "STRIP");} //STRIP001 ScAutoStyleList(ScDocShell* pShell);
+            ScAutoStyleList(ScDocShell* pShell){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScAutoStyleList(ScDocShell* pShell);
 //STRIP001          ~ScAutoStyleList();
 //STRIP001
 //STRIP001  void    AddInitial( const ScRange& rRange, const String& rStyle1,

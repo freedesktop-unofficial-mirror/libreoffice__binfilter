@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedxv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -173,7 +173,7 @@ namespace binfilter {
 /*N*/ SdrObjEditView::~SdrObjEditView()
 /*N*/ {
 /*N*/   pTextEditWin = NULL;            // Damit es in EndTextEdit kein ShowCursor gibt
-/*N*/   if (IsTextEdit()){DBG_ASSERT(0, "STRIP"); }//STRIP001  EndTextEdit();
+/*N*/   if (IsTextEdit()){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  EndTextEdit();
 /*N*/     if (pTextEditOutliner!=NULL) {
 /*?*/         delete pTextEditOutliner;
 /*N*/     }
@@ -236,7 +236,7 @@ namespace binfilter {
 /*?*/             // ...
 /*?*/         }
 /*?*/         if (eKind==HINT_MODELSAVED) { // #43095#
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 pTextEditOutliner->ClearModifyFlag();
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTextEditOutliner->ClearModifyFlag();
 /*?*/         }
 /*N*/     }
 /*N*/ }
@@ -244,9 +244,9 @@ namespace binfilter {
 /*N*/ void SdrObjEditView::ModelHasChanged()
 /*N*/ {
 /*N*/     SdrGlueEditView::ModelHasChanged();
-/*N*/     if (IsTextEdit() && !pTextEditObj->IsInserted()) {DBG_ASSERT(0, "STRIP"); }//STRIP001 EndTextEdit(); // Objekt geloescht
+/*N*/     if (IsTextEdit() && !pTextEditObj->IsInserted()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EndTextEdit(); // Objekt geloescht
 /*N*/     // TextEditObj geaendert?
-/*N*/     if (IsTextEdit()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     if (IsTextEdit()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         SdrTextObj* pTextObj=PTR_CAST(SdrTextObj,pTextEditObj);
 //STRIP001 /*?*/         if (pTextObj!=NULL) {
 //STRIP001 /*?*/             ULONG nOutlViewAnz=pTextEditOutliner->GetViewCount();
@@ -570,14 +570,14 @@ namespace binfilter {
 /*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject* pObj, SdrPageView* pPV, Window* pWin,
 /*N*/   SdrOutliner* pGivenOutliner, OutlinerView* pGivenOutlinerView,
 /*N*/   BOOL bDontDeleteOutliner, BOOL bOnlyOneView)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     return BegTextEdit(pObj,pPV,pWin,FALSE,pGivenOutliner,pGivenOutlinerView,bDontDeleteOutliner,bOnlyOneView);
 /*N*/ }
 
 /*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject* pObj, SdrPageView* pPV, Window* pWin, BOOL bIsNewObj,
 /*N*/   SdrOutliner* pGivenOutliner, OutlinerView* pGivenOutlinerView,
 /*N*/   BOOL bDontDeleteOutliner, BOOL bOnlyOneView)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     EndTextEdit();
 //STRIP001     if (!HAS_BASE(SdrTextObj,pObj)) return FALSE; // z.Zt. nur mit meinen Textobjekten
 //STRIP001     bTextEditDontDelete=bDontDeleteOutliner && pGivenOutliner!=NULL;
@@ -754,7 +754,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL bDontDeleteReally)
-/*N*/ {DBG_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
 //STRIP001     SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED;
 //STRIP001     SdrObject*    pTEObj         =pTextEditObj;
 //STRIP001     SdrPageView*  pTEPV          =pTextEditPV;
@@ -941,7 +941,7 @@ namespace binfilter {
 /*?*/         nTol=nTol/3;
 /*?*/         nTol=0; // Joe am 6.3.1997: Keine Hittoleranz mehr hier
 /*?*/         if (!bOk) {
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 Rectangle aEditArea;
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Rectangle aEditArea;
 //STRIP001 /*?*/             OutlinerView* pOLV=pTextEditOutliner->GetView(0);
 //STRIP001 /*?*/             if (pOLV!=NULL) {
 //STRIP001 /*?*/                 aEditArea.Union(pOLV->GetOutputArea());
@@ -969,7 +969,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     BOOL bOk=FALSE;
 /*N*/     if (pTextEditObj!=NULL) {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 SdrTextObj* pText=PTR_CAST(SdrTextObj,pTextEditObj);
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrTextObj* pText=PTR_CAST(SdrTextObj,pTextEditObj);
 //STRIP001 /*?*/         OutlinerView* pOLV=pTextEditOutliner->GetView(0);
 //STRIP001 /*?*/        if( pOLV )
 //STRIP001 /*?*/        {
@@ -1491,7 +1491,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SdrObjEditView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  // if we are currently in edit mode we must also set the stylesheet
 //STRIP001  // on all paragraphs in the Outliner for the edit view
 //STRIP001  // #92191#
@@ -1557,7 +1557,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     SdrGlueEditView::DelWin(pWin1);
 /*N*/     if (pTextEditObj!=NULL && !bTextEditOnlyOneView && pWin1->GetOutDevType()==OUTDEV_WINDOW) {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 for (ULONG i=pTextEditOutliner->GetViewCount(); i>0;) {
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (ULONG i=pTextEditOutliner->GetViewCount(); i>0;) {
 //STRIP001 /*?*/             i--;
 //STRIP001 /*?*/             OutlinerView* pOLV=pTextEditOutliner->GetView(i);
 //STRIP001 /*?*/             if (pOLV && pOLV->GetWindow()==(Window*)pWin1) {
@@ -1667,7 +1667,7 @@ namespace binfilter {
 
 /*N*/ void SdrObjEditView::BrkMacroObj()
 /*N*/ {
-/*N*/     if (pMacroObj!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     if (pMacroObj!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         ImpMacroUp(aMacroDownPos);
 //STRIP001 /*?*/         pMacroObj=NULL;
 //STRIP001 /*?*/         pMacroPV=NULL;

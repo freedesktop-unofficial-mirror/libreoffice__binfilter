@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:16 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -579,7 +579,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // fuer ein bereits "lebendes" Model die Attribute von einem Pool in den anderen schieben
 /*N*/       if(pOldModel)
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            // Checken, ob sich die ScaleUnit geaendert hat.
 //STRIP001 /*?*/            // Denn dann muessen naemlich alle MetrikItems umgerechnet werden.
 //STRIP001 /*?*/            MapUnit aOldUnit(pOldModel->GetScaleUnit());

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ namespace binfilter {
 /*N*/           if (i == nTab1)
 /*N*/               pTab[i]->PutCell(nCol1, nRow1, pCell);
 /*N*/           else
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                pTab[i]->PutCell(nCol1, nRow1, pCell->Clone(this, ScAddress( nCol1, nRow1, i)));
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCol1, nRow1, pCell->Clone(this, ScAddress( nCol1, nRow1, i)));
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -352,7 +352,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                pTab[i]->PutCell(nCol1, 
 
 /*N*/ void ScDocument::CompileDBFormula()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        if (pTab[i]) pTab[i]->CompileDBFormula();
 //STRIP001 /*?*/    }
@@ -369,7 +369,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                pTab[i]->PutCell(nCol1, 
 /*N*/ void ScDocument::CompileNameFormula( BOOL bCreateFormulaString )
 /*N*/ {
 /*N*/   if ( pCondFormList )
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        pCondFormList->CompileAll();    // nach ScNameDlg noetig
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();    // nach ScNameDlg noetig
 /*N*/
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
 /*N*/   {
@@ -478,7 +478,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        pCondFormList->CompileAll();    
 
 /*N*/ double ScDocument::RoundValueAsShown( double fVal, ULONG nFormat )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  short nType;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   short nType;
 //STRIP001  if ( (nType = GetFormatTable()->GetType( nFormat )) != NUMBERFORMAT_DATE
 //STRIP001    && nType != NUMBERFORMAT_TIME && nType != NUMBERFORMAT_DATETIME )
 //STRIP001  {

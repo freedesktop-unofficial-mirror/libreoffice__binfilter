@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -760,7 +760,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   if (bOnlineSpell && (bForceSpelling || bInitialOnlineSpellingEnabled) &&
 /*N*/       pDocSh && !pDocSh->IsReadOnly() )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 StopOnlineSpelling();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 StopOnlineSpelling();
 //STRIP001
 //STRIP001 /*?*/        SdOutliner* pOutl = GetInternalOutliner(TRUE);
 //STRIP001
@@ -785,7 +785,7 @@ using namespace ::com::sun::star::linguistic2;
 //STRIP001 /*?*/        for (USHORT nPage = 0; nPage < GetPageCount(); nPage++)
 //STRIP001 /*?*/        {
 //STRIP001          // Alle Pages durchsuchen
-//STRIP001 /*?*/            DBG_ASSERT(0, "STRIP"); //STRIP001 FillOnlineSpellingList((SdPage*) GetPage(nPage));
+//STRIP001 /*?*/            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FillOnlineSpellingList((SdPage*) GetPage(nPage));
 //STRIP001 /*?*/        }
 //STRIP001
 //STRIP001 /*?*/        for (nPage = 0; nPage < GetMasterPageCount(); nPage++)

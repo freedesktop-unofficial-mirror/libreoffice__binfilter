@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doctxm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:11:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -297,7 +297,7 @@ typedef LinkStruct* LinkStructPtr;
 
 /*N*/ void SwDoc::Delete( SwTOXMark* pTOXMark )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 //STRIP001  SwTxtTOXMark* pTxtTOXMark = pTOXMark->GetTxtTOXMark();
 //STRIP001  ASSERT( pTxtTOXMark, "Kein TxtTOXMark, kann nicht geloescht werden" );
 //STRIP001
@@ -494,7 +494,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 /*N*/       pSectNd->SetNewSection( pNew );
 /*N*/
 /*N*/       if( bExpand )
-/*N*/         {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001             // OD 19.03.2003 #106329# - add value for 2nd parameter = true to
 //STRIP001             // indicate, that a creation of a new table of content has to be performed.
 //STRIP001             // Value of 1st parameter = default value.
@@ -663,7 +663,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 
 /*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& rTOXBase, BOOL bDelNodes )
 /*N*/ {
-/*N*/  DBG_ASSERT(0, "STRIP"); return TRUE;//STRIP001   // its only delete the TOX, not the nodes
+/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;//STRIP001    // its only delete the TOX, not the nodes
 //STRIP001  BOOL bRet = FALSE;
 //STRIP001  ASSERT( rTOXBase.ISA( SwTOXBaseSection ), "keine TOXBaseSection!" );
 //STRIP001
@@ -963,7 +963,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  // hole den TextNode und
 
 /*N*/ void SwTOXBaseSection::Update(const SfxItemSet* pAttr,
 /*N*/                               const bool        _bNewTOX )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwSectionNode* pSectNd;
 //STRIP001  if( !SwTOXBase::GetRegisteredIn()->GetDepends() ||
 //STRIP001      !GetFmt() || 0 == (pSectNd = GetFmt()->GetSectionNode() ) ||

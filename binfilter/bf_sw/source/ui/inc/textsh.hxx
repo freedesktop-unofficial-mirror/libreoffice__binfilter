@@ -2,9 +2,9 @@
  *
  *  $RCSfile: textsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,29 +93,29 @@ public:
 //STRIP001  void    Execute(SfxRequest &);
     void    GetState(SfxItemSet &);
 
-    void    ExecInsert(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecInsert(SfxRequest &);
+    void    ExecInsert(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecInsert(SfxRequest &);
     void    StateInsert(SfxItemSet&);
 //STRIP001  void    ExecDelete(SfxRequest &);
-    void    ExecEnterNum(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecEnterNum(SfxRequest &);
-    void    ExecBasicMove(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecBasicMove(SfxRequest &);
-    void    ExecMove(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMove(SfxRequest &);
-    void    ExecMovePage(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMovePage(SfxRequest &);
-    void    ExecMoveCol(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMoveCol(SfxRequest &);
-    void    ExecMoveLingu(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecMoveLingu(SfxRequest &);
-    void    ExecMoveMisc(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMoveMisc(SfxRequest &);
+    void    ExecEnterNum(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecEnterNum(SfxRequest &);
+    void    ExecBasicMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecBasicMove(SfxRequest &);
+    void    ExecMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMove(SfxRequest &);
+    void    ExecMovePage(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMovePage(SfxRequest &);
+    void    ExecMoveCol(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecMoveCol(SfxRequest &);
+    void    ExecMoveLingu(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMoveLingu(SfxRequest &);
+    void    ExecMoveMisc(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMoveMisc(SfxRequest &);
 //STRIP001  void    ExecField(SfxRequest &rReq);
     void    StateField(SfxItemSet &);
-    void    ExecIdx(SfxRequest &){DBG_ASSERT(0, "STRIP");}  ;//STRIP001     void    ExecIdx(SfxRequest &);
+    void    ExecIdx(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}  ;//STRIP001  void    ExecIdx(SfxRequest &);
     void    GetIdxState(SfxItemSet &);
     void    ExecGlossary(SfxRequest &);//STRIP001   void    ExecGlossary(SfxRequest &);
 
-    void    ExecCharAttr(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecCharAttr(SfxRequest &);
-    void    ExecCharAttrArgs(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecCharAttrArgs(SfxRequest &);
-    void    ExecParaAttr(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecParaAttr(SfxRequest &);
-    void    ExecParaAttrArgs(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecParaAttrArgs(SfxRequest &);
+    void    ExecCharAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecCharAttr(SfxRequest &);
+    void    ExecCharAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecCharAttrArgs(SfxRequest &);
+    void    ExecParaAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecParaAttr(SfxRequest &);
+    void    ExecParaAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecParaAttrArgs(SfxRequest &);
     void    ExecAttr(SfxRequest &);
-    void    ExecDB(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecDB(SfxRequest &);
-    void    ExecTransliteration(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecTransliteration(SfxRequest &);
+    void    ExecDB(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecDB(SfxRequest &);
+    void    ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecTransliteration(SfxRequest &);
 
     void    GetAttrState(SfxItemSet &);
 

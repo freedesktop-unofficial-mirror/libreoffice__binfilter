@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cellform.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -162,7 +162,7 @@ const ScFormulaCell* pLastFormulaTreeTop = 0;
 /*N*/                       USHORT nErrCode = pFCell->GetErrCode();
 /*N*/                       if ( nErrCode == errInterpOverflow )
 /*N*/                       {   // maxrecursion ausbuegeln, Err527 Workaround
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = pFCell->GetDocument();
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = pFCell->GetDocument();
 //STRIP001 /*?*/                            // z.B. nach Import von Fremdformaten FormulaTree
 //STRIP001 /*?*/                            // aufbauen
 //STRIP001 /*?*/                            if ( !pDoc->IsInFormulaTree( pFCell ) )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sectfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -789,7 +789,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   // Der Inhalt wird eingefuegt..
 /*N*/   if( pSave )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        lcl_InvalidateInfFlags( pSave, bSize );
 //STRIP001 /*?*/        ::RestoreCntnt( pSave, pUp, pPrv );
 //STRIP001 /*?*/        pUp->FindPageFrm()->InvalidateCntnt();
@@ -902,7 +902,7 @@ namespace binfilter {
 /*N*/   SwSectionFrm *pSect = this;
 /*N*/   if( nMode )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt *pFmt = IsEndnAtEnd() ? GetEndSectFmt() :
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt *pFmt = IsEndnAtEnd() ? GetEndSectFmt() :
 //STRIP001 /*?*/                                   pSection->GetFmt();
 //STRIP001 /*?*/        do {
 //STRIP001 /*?*/            while( pSect->HasFollow() )
@@ -933,7 +933,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& rMinDiff ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if( ToMaximize( TRUE ) )
 //STRIP001  {
 //STRIP001         SWRECTFN( this )
@@ -1084,7 +1084,7 @@ namespace binfilter {
 /*N*/                  (Prt().*fnRect->fnGetTop)() > (Frm().*fnRect->fnGetHeight)() );
 /*N*/     if( !bCalc && !bGrow && IsAnyNoteAtEnd() && !IsInFtn() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwSectionFrm *pSect = this;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSectionFrm *pSect = this;
 //STRIP001 /*?*/        BOOL bEmpty = FALSE;
 //STRIP001 /*?*/        SwLayoutFrm* pFtn = IsEndnAtEnd() ?
 //STRIP001 /*?*/            lcl_FindEndnote( pSect, bEmpty, NULL ) : NULL;
@@ -2282,7 +2282,7 @@ namespace binfilter {
 /*?*/               //nicht auf das alte Spaltenattribut verlassen. Da diese
 /*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
 /*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SwFmtCol aCol;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtCol aCol;
 //STRIP001 /*?*/                if ( Lower() && Lower()->IsColumnFrm() )
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    USHORT nCol = 0;
@@ -2334,7 +2334,7 @@ namespace binfilter {
 /*?*/       case RES_END_AT_TXTEND:
 /*?*/           if( !IsInFtn() )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bOld = IsEndnAtEnd();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOld = IsEndnAtEnd();
 //STRIP001 /*?*/                BOOL bMyOld = IsEndnoteAtMyEnd();
 //STRIP001 /*?*/                CalcEndAtEndFlag();
 //STRIP001 /*?*/                if( bOld != IsEndnAtEnd() || bMyOld != IsEndnoteAtMyEnd())
@@ -2355,7 +2355,7 @@ namespace binfilter {
 /*?*/             break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           { DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                ViewShell *pSh = GetShell();
 //STRIP001 /*?*/                if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
 //STRIP001 /*?*/                    pSh->Imp()->InvalidateAccessibleEditableState( sal_True, this );
@@ -2404,7 +2404,7 @@ namespace binfilter {
 /*?*/   BOOL bRet = FALSE;
 /*?*/   while( pCont && !bRet )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( pCont->FindFootNote() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pCont->FindFootNote() )
 //STRIP001 /*?*/            bRet = TRUE;
 //STRIP001 /*?*/        else
 //STRIP001 /*?*/            pCont = ContainsFtnCont( pCont );

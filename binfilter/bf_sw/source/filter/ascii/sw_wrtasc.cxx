@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtasc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:14 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -222,7 +222,7 @@ namespace binfilter {
 /*?*/                   const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
 /*?*/                   if( pIdx )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 delete pCurPam;
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pCurPam;
 //STRIP001 /*?*/                        pCurPam = NewSwPaM( *pDoc, pIdx->GetIndex(),
 //STRIP001 /*?*/                                    pIdx->GetNode().EndOfSectionIndex() );
 //STRIP001 /*?*/                        pCurPam->Exchange();

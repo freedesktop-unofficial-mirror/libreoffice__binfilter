@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -430,7 +430,7 @@ namespace binfilter {
 /*N*/ void SwViewImp::DisposeAccessible( const SwFrm *pFrm,
 /*N*/                                  const SdrObject *pObj,
 /*N*/                                  sal_Bool bRecursive )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*N*/    ASSERT( !pFrm || pFrm->IsAccessibleFrm(), "frame is not accessible" );
 //STRIP001 /*N*/    ViewShell *pVSh = GetShell();
 //STRIP001 /*N*/    ViewShell *pTmp = pVSh;
@@ -444,7 +444,7 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
 /*N*/                               const SwRect& rOldFrm )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*N*/    ASSERT( !pFrm || pFrm->IsAccessibleFrm(), "frame is not accessible" );
 //STRIP001 /*N*/    ViewShell *pVSh = GetShell();
 //STRIP001 /*N*/    ViewShell *pTmp = pVSh;
@@ -458,7 +458,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm *pFrm )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*N*/    ASSERT( pFrm->IsAccessibleFrm(), "frame is not accessible" );
 //STRIP001 /*N*/    ViewShell *pVSh = GetShell();
 //STRIP001 /*N*/    ViewShell *pTmp = pVSh;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_filtuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -193,7 +193,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         if ( xInputStream.is() )
             pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
-        DBG_ASSERT(0, "STRIP"); //STRIP001 ScImportAsciiDlg* pDlg = new ScImportAsciiDlg( NULL, aPrivDatName, pInStream, cAsciiDel );
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportAsciiDlg* pDlg = new ScImportAsciiDlg( NULL, aPrivDatName, pInStream, cAsciiDel );
 //STRIP001      if ( pDlg->Execute() == RET_OK )
 //STRIP001      {
 //STRIP001          ScAsciiOptions aOptions;
@@ -272,7 +272,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         }
 
         ScImportOptions aOptions( cAsciiDel, cStrDel, eEncoding);
-        DBG_ASSERT(0, "STRIP"); //STRIP001 ScImportOptionsDlg* pDlg = new ScImportOptionsDlg( NULL, bAscii,
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportOptionsDlg* pDlg = new ScImportOptionsDlg( NULL, bAscii,
 //STRIP001                                  &aOptions, &aTitle, bMultiByte, bDBEnc,
 //STRIP001                                     !bExport );
 //STRIP001

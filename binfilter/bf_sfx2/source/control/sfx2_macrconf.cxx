@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_macrconf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,7 +127,7 @@ static const sal_uInt16 nVersion = 3;
 SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 /*N*/ SfxMacroConfig* SfxMacroConfig::GetOrCreate()
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  ::osl::MutexGuard aGuard( ::osl::Mutex::getGlobalMutex() );
 //STRIP001  if ( !pMacroConfig )
 //STRIP001      pMacroConfig = new SfxMacroConfig;
@@ -158,7 +158,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 /*?*/ SbMethod* SfxQueryMacro_Impl( BasicManager* pMgr , const String& rMacro,
 /*?*/   const String &rLibName, const String& rModule )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  IntlWrapper aIntlWrapper( ::legacy_binfilters::getLegacyProcessServiceFactory(), Application::GetSettings().GetLocale() );
 //STRIP001  const CollatorWrapper* pCollator = aIntlWrapper.getCollator();
 //STRIP001  sal_uInt16 nLibCount = pMgr->GetLibCount();
@@ -193,7 +193,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ }
 
 /*?*/ SbMethod* SfxQueryMacro( BasicManager* pMgr , const String& rMacro )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  sal_uInt16 nLast = 0;
 //STRIP001  String aMacro = rMacro;
 //STRIP001  String aLibName = aMacro.GetToken( 0, '.', nLast );
@@ -205,7 +205,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 /*?*/ ErrCode SfxCallMacro( BasicManager* pMgr, const String& rCode,
 /*?*/                     SbxArray *pArgs, SbxValue *pRet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  ErrCode nErr;
 //STRIP001  SfxApplication *pApp = SFX_APP();
 //STRIP001  pApp->EnterBasicCall();
@@ -231,7 +231,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   nRefCnt(0),
 /*?*/   pSlot(0),
 /*?*/   pHelpText(0)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( rURL.CompareToAscii( "macro:", 6 ) == COMPARE_EQUAL )
 //STRIP001     {
 //STRIP001         String aTmp = rURL.Copy( 6 );
@@ -289,7 +289,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   nRefCnt(0),
 /*?*/   pSlot(0),
 /*?*/   pHelpText(0)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  sal_uInt16 nCount = rQualifiedName.GetTokenCount('.');
 //STRIP001  aMethodName = rQualifiedName.GetToken( nCount-1, '.' );
 //STRIP001  if ( nCount > 1 )
@@ -323,7 +323,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ sal_Bool SfxMacroInfo::operator==(const SfxMacroInfo& rOther) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if ( GetQualifiedName() == rOther.GetQualifiedName() &&
 //STRIP001          bAppBasic   == rOther.bAppBasic )
 //STRIP001      return sal_True;
@@ -334,7 +334,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ String SfxMacroInfo::GetMacroName() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String(); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String(); //STRIP001
 //STRIP001  String aMacroName = aMethodName;
 //STRIP001  aMacroName += '(';
 //STRIP001  aMacroName += aLibName;
@@ -347,7 +347,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ String SfxMacroInfo::GetQualifiedName() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
 //STRIP001  String aMacroName;
 //STRIP001  if( aMacroName.Len() || aLibName.Len() )
 //STRIP001  {
@@ -364,7 +364,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ }
 
 /*?*/ String SfxMacroInfo::GetFullQualifiedName() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
 //STRIP001  // Liefert nur Unsinn, wenn f"ur ein ::com::sun::star::script::JavaScript aufgerufen !
 //STRIP001  String aRet;
 //STRIP001  if ( bAppBasic )
@@ -375,7 +375,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ }
 
 /*?*/ String SfxMacroInfo::GetURL() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
 //STRIP001  if ( !aLibName.Len() )
 //STRIP001      return aMethodName;
 //STRIP001
@@ -399,7 +399,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ BasicManager* SfxMacroInfo::GetBasicManager() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
 //STRIP001  if (bAppBasic)
 //STRIP001  {
 //STRIP001      return SFX_APP()->GetBasicManager();
@@ -415,7 +415,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ String SfxMacroInfo::GetBasicName() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();//STRIP001
 //STRIP001  if (bAppBasic)
 //STRIP001  {
 //STRIP001      return SFX_APP()->GetName();
@@ -431,14 +431,14 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ }
 
 /*?*/ String SfxMacroInfo::GetHelpText() const
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
     //STRIP001 if ( pHelpText )
 //STRIP001      return *pHelpText;
 //STRIP001  return String();
 /*?*/ }
 
 /*?*/ String SfxMacroConfig::RequestHelp( sal_uInt16 nId )
-/*?*/ {DBG_ASSERT(0, "STRIP");return String();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
 //STRIP001  SfxMacroInfo *pInfo = SFX_APP()->GetMacroConfig()->GetMacroInfo( nId );
 //STRIP001  if ( !pInfo )
 //STRIP001      return String();
@@ -456,7 +456,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/ }
 
 /*?*/ void SfxMacroInfo::SetHelpText( const String& rName )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( !pHelpText )
 //STRIP001      pHelpText = new String;
 //STRIP001  *pHelpText = rName;
@@ -553,7 +553,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 /*?*/ SfxMacroConfig::SfxMacroConfig()
 /*?*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
 /*?*/ }
 
 //==========================================================================
@@ -571,7 +571,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 /*?*/ SFX_EXEC_STUB( SfxApplication, MacroExec_Impl )
 
 /*?*/ sal_uInt16 SfxMacroConfig::GetSlotId(SfxMacroInfoPtr pInfo)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  sal_uInt16 nCount = pImp->aArr.Count();      // Macro suchen
 //STRIP001  sal_uInt16 i;
 //STRIP001  for (i=0; i<nCount; i++)
@@ -635,7 +635,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ void SfxMacroConfig::ReleaseSlotId(sal_uInt16 nId)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( IsMacroSlot( nId ), "SlotId ist kein Macro!");
 //STRIP001
 //STRIP001  sal_uInt16 nCount = pImp->aArr.Count();
@@ -692,7 +692,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ void SfxMacroConfig::RegisterSlotId(sal_uInt16 nId)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( IsMacroSlot( nId ), "SlotId ist kein Macro!");
 //STRIP001
 //STRIP001  sal_uInt16 nCount = pImp->aArr.Count();
@@ -711,7 +711,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ const SfxMacroInfoPtr SfxMacroConfig::GetMacroInfo(sal_uInt16 nId) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  sal_uInt16 nCount = pImp->aArr.Count();
 //STRIP001  for (sal_uInt16 i=0; i<nCount; i++)
 //STRIP001      if ((pImp->aArr)[i]->nSlotId == nId)
@@ -723,7 +723,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ const SfxMacroInfoPtr SfxMacroConfig::GetMacroInfo_Impl( const SvxMacro *pMacro ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  sal_uInt16 nCount = pImp->aArr.Count();
 //STRIP001  for (sal_uInt16 i=0; i<nCount; i++)
 //STRIP001      if ((pImp->aArr)[i]->Compare(*pMacro) )
@@ -734,7 +734,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ sal_Bool SfxMacroConfig::ExecuteMacro( sal_uInt16 nId, const String& rArgs ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  const SfxMacroInfoPtr pInfo = GetMacroInfo( nId );
 //STRIP001  if ( !pInfo )
 //STRIP001      return sal_False;
@@ -750,7 +750,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 /*?*/ }
 
 /*?*/ sal_Bool SfxMacroConfig::ExecuteMacro( SfxObjectShell *pSh, const SvxMacro* pMacro, const String& rArgs ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  SfxApplication *pApp = SFX_APP();
 //STRIP001
 //STRIP001  // Name des Macros oder Scripts bzw. ScriptCode
@@ -828,7 +828,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 /*?*/ }
 
 /*?*/ sal_Bool SfxMacroConfig::CheckMacro( SfxObjectShell *pSh, const SvxMacro* pMacro ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  SfxApplication *pApp = SFX_APP();
 //STRIP001
 //STRIP001  // Name des Macros oder Scripts bzw. ScriptCode
@@ -856,7 +856,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 //==========================================================================
 
 /*?*/ sal_Bool SfxMacroConfig::CheckMacro( sal_uInt16 nId ) const
-/*?*/ {DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 //STRIP001  const SfxMacroInfoPtr pInfo = GetMacroInfo( nId );
 //STRIP001  if ( !pInfo )
 //STRIP001      return sal_False;
@@ -887,19 +887,19 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 
 /*?*/ IMPL_LINK( SfxMacroConfig, CallbackHdl_Impl, SfxMacroConfig*, pConfig )
 /*?*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 pImp->bWaitingForCallback = sal_False;
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->bWaitingForCallback = sal_False;
 /*?*/   return 0;
 /*?*/ }
 
 /*?*/ IMPL_LINK( SfxMacroConfig, EventHdl_Impl, SfxMacroInfo*, pInfo )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    delete pInfo;
 /*?*/   pImp->nEventId = 0;
 /*?*/   return 0;
 /*?*/ }
 
 /*?*/ sal_Bool SfxMacroConfig::IsBasic( SbxObject* pVCtrl, const String& rCode, BasicManager* pMgr )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 /*?*/    sal_Bool bFound;
 //STRIP001 /*?*/    SFX_APP()->EnterBasicCall();
 //STRIP001 /*?*/    bFound = SfxQueryMacro( pMgr, rCode ) != 0;
@@ -909,7 +909,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  pImp = new SfxMacroConfig_Impl;
 
 /*?*/ ErrCode SfxMacroConfig::Call( SbxObject* pVCtrl,
 /*?*/   const String& rCode, BasicManager* pMgr, SbxArray *pArgs, SbxValue *pRet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  SfxApplication *pApp = SFX_APP();
 //STRIP001  pApp->EnterBasicCall();
 //STRIP001  SbMethod* pMethod = SfxQueryMacro( pMgr, rCode );

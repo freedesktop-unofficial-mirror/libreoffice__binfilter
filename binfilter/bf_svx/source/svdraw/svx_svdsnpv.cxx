@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdsnpv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,10 +185,10 @@ namespace binfilter {
 /*N*/ void SdrSnapView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrPaintView::ToggleShownXor(pOut,pRegion);
-/*N*/   if (IsSetPageOrg()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsSetPageOrg()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        DrawSetPageOrg(pOut);
 /*N*/   }
-/*N*/   if (IsDragHelpLine()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsDragHelpLine()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        DrawDragHelpLine(pOut);
 /*N*/   }
 /*N*/ }
@@ -476,7 +476,7 @@ namespace binfilter {
 
 /*N*/ void SdrSnapView::BrkSetPageOrg()
 /*N*/ {
-/*N*/   if (bSetPageOrg) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bSetPageOrg) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        HideSetPageOrg(pDragWin);
 //STRIP001 /*?*/        bSetPageOrg=FALSE;
 /*N*/   }
@@ -630,7 +630,7 @@ namespace binfilter {
 
 /*N*/ void SdrSnapView::BrkDragHelpLine()
 /*N*/ {
-/*N*/   if (bDragHelpLine) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bDragHelpLine) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        HideDragHelpLine(pDragWin);
 //STRIP001 /*?*/        bDragHelpLine=FALSE;
 //STRIP001 /*?*/        pDragHelpLinePV=NULL;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porexp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -125,7 +125,7 @@ class SwPostItsPortion : public SwExpandPortion
 //STRIP001  KSHORT  nViewWidth;
 //STRIP001  sal_Bool    bScript;
 public:
-    SwPostItsPortion( sal_Bool bScrpt ){DBG_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001             SwPostItsPortion( sal_Bool bScrpt );
+    SwPostItsPortion( sal_Bool bScrpt ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001          SwPostItsPortion( sal_Bool bScrpt );
 //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;

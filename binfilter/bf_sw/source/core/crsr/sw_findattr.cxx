@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,7 +168,7 @@ using namespace ::com::sun::star::util;
 
 /*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
 /*N*/                                   xub_StrLen nCntntPos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  while( rPos < rHtsArr.Count() )
 //STRIP001  {
 //STRIP001      const SwTxtAttr *pTxtHt = rHtsArr.GetStart( rPos++ );
@@ -182,7 +182,7 @@ using namespace ::com::sun::star::util;
 
 /*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
 /*N*/                                 xub_StrLen nCntntPos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  while( rPos > 0 )
 //STRIP001  {
 //STRIP001      //Hack mit cast fuer das Update
@@ -1292,7 +1292,7 @@ struct SwFindParaAttr : public SwFindParas
 /*N*/int SwFindParaAttr::Find( SwPaM* pCrsr, SwMoveFn fnMove, const SwPaM* pRegion,
 /*N*/                           FASTBOOL bInReadOnly )
 /*N*/{
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     // String ersetzen ?? (nur wenn Text angegeben oder nicht attributiert
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      // String ersetzen ?? (nur wenn Text angegeben oder nicht attributiert
 //STRIP001  //                      gesucht wird)
 //STRIP001  BOOL bReplaceTxt = pSearchOpt && ( pSearchOpt->replaceString.getLength() ||
 //STRIP001                                  !pSet->Count() );
@@ -1455,7 +1455,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     // String ersetzen ?? (nur wenn 
 
 /*N*/int SwFindParaAttr::IsReplaceMode() const
 /*N*/{
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     return ( pSearchOpt && pSearchOpt->replaceString.getLength() ) ||
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOpt->replaceString.getLength() ) ||
 //STRIP001         ( pReplSet && pReplSet->Count() );
 /*N*/ }
 

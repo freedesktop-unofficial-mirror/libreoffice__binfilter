@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docnum.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:13:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -880,7 +880,7 @@ namespace binfilter {
 /*N*/
 /*N*/     }
 /*N*/   else if( rRule.IsAutoRule() && !(*pNew == rRule) )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*N*/        // die Rule existiert schon, wurde aber veraendert. Dann muss hier
 //STRIP001 /*N*/        // entschieden werden, in wie weit eine neue erzeugt wird oder
 //STRIP001 /*N*/        // die aktuelle geupdatet wird.
@@ -1020,7 +1020,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::SetNumRuleStart( const SwPosition& rPos, BOOL bFlag )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().GetTxtNode();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode().GetTxtNode();
 //STRIP001  const SwNumRule* pRule;
 //STRIP001  if( pTxtNd && pTxtNd->GetNum() && 0 != ( pRule = pTxtNd->GetNumRule() )
 //STRIP001      && bFlag != pTxtNd->GetNum()->IsStart())
@@ -1082,7 +1082,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 /*N*/       SwHistory* pHistory = 0;
 /*N*/       if( DoesUndo() && pRule->IsAutoRule() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  ClearRedo();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
 //STRIP001 /*?*/            pUndo = new SwUndoInsNum( *pRule, rRule );
 //STRIP001 /*?*/            pHistory = pUndo->GetHistory();
 /*?*/           AppendUndo( pUndo );
@@ -1090,7 +1090,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 /*N*/       ::binfilter::lcl_ChgNumRule( *this, rRule, pHistory );
 /*N*/
 /*N*/       if( pUndo )
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 pUndo->SetLRSpaceEndPos();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pUndo->SetLRSpaceEndPos();
 /*N*/
 /*N*/       SetModified();
 /*N*/   }
@@ -1112,7 +1112,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 /*N*/           for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
 /*N*/                   pFrm; pFrm = (SwFrm*)aIter.Next() )
 /*N*/               if( ((SwTxtFrm*)pFrm)->HasAnimation() )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); }//STRIP001 ((SwTxtFrm*)pFrm)->StopAnimation( pOut );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ((SwTxtFrm*)pFrm)->StopAnimation( pOut );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1275,7 +1275,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwTxtNode* pTxtNd = rPos.nNode.GetNode().Get
 
 /*N*/ BOOL SwDoc::DelNumRules( const SwPaM& rPam )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ULONG nStt = rPam.GetPoint()->nNode.GetIndex(),
+    DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ULONG nStt = rPam.GetPoint()->nNode.GetIndex(),
 //STRIP001          nEnd = rPam.GetMark()->nNode.GetIndex();
 //STRIP001  if( nStt > nEnd )
 //STRIP001  {

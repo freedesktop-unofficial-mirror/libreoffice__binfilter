@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pam.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:13 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -864,7 +864,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ void GoStartSection( SwPosition * pPos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // springe zum Anfang der Section
 //STRIP001  SwNodes& rNodes = pPos->nNode.GetNodes();
 //STRIP001  USHORT nLevel = rNodes.GetSectionLevel( pPos->nNode );
@@ -880,7 +880,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ void GoEndSection( SwPosition * pPos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // springe zum Anfang/Ende der Section
 //STRIP001  SwNodes& rNodes = pPos->nNode.GetNodes();
 //STRIP001  USHORT nLevel = rNodes.GetSectionLevel( pPos->nNode );
@@ -903,7 +903,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ FASTBOOL GoInSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  (*fnMove->fnSections)( (SwPosition*)rPam.GetPoint() );
 /*N*/   return TRUE;
 /*N*/ }
@@ -928,7 +928,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 /*N*/ FASTBOOL GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if( (*fnMove->fnNd)( &rPam.GetPoint()->nNode.GetNode(),
 //STRIP001                       &rPam.GetPoint()->nContent, CRSR_SKIP_CELLS ))
 //STRIP001      return TRUE;
@@ -939,7 +939,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ FASTBOOL GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( rPam.Move( fnMoveBackward, fnGoNode ) )
 //STRIP001  {
 //STRIP001      // steht immer auf einem ContentNode !
@@ -1019,7 +1019,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ FASTBOOL GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwPosition& rPos = *rPam.GetPoint();
 //STRIP001  SwPosition aSavePos( rPos );        // eine Vergleichsposition
 //STRIP001  SwNodes& rNds = aSavePos.nNode.GetNodes();
@@ -1040,7 +1040,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 /*N*/ FASTBOOL GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwPosition& rPos = *rPam.GetPoint();
 //STRIP001  SwPosition aSavePos( rPos );        // eine Vergleichsposition
 //STRIP001  SwNodes& rNds = aSavePos.nNode.GetNodes();

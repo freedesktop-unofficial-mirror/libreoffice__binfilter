@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmark.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -234,7 +234,7 @@ namespace binfilter {
 /*N*/   if (!bSorted) {
 /*N*/       bSorted=TRUE;
 /*N*/       ULONG nAnz=aList.Count();
-/*N*/       if (nAnz>1) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (nAnz>1) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            ImpSdrMarkListSorter aSort(aList);
 //STRIP001 /*?*/            aSort.DoSort();
 //STRIP001 /*?*/            // und nun doppelte rauswerfen
@@ -342,7 +342,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SdrMarkList::InsertEntry(const SdrMark& rMark, FASTBOOL bChkSort)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SetNameDirty();
 //STRIP001  ULONG nAnz=aList.Count();
 //STRIP001  if (!bChkSort || !bSorted || nAnz==0) {

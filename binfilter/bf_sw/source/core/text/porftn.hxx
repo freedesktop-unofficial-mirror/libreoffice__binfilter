@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porftn.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,7 +113,7 @@ class SwQuoVadisPortion : public SwFldPortion
 {
 //STRIP001  XubString   aErgo;
 public:
-    SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_ASSERT(0, "STRIP");} ;//STRIP001            SwQuoVadisPortion( const XubString &rExp, const XubString& rStr );
+    SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001             SwQuoVadisPortion( const XubString &rExp, const XubString& rStr );
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 //STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
@@ -138,7 +138,7 @@ public:
 class SwErgoSumPortion : public SwFldPortion
 {
 public:
-SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_ASSERT(0, "STRIP");} ;//STRIP001          SwErgoSumPortion( const XubString &rExp, const XubString& rStr );
+SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           SwErgoSumPortion( const XubString &rExp, const XubString& rStr );
 //STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:47 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1516,7 +1516,7 @@ static const String sDocumentTitle  = String::CreateFromAscii( "DocumentTitle" )
 
 /*?*/ ::com::sun::star::uno::Any SAL_CALL SfxMacroLoader::dispatchWithReturnValue( const ::com::sun::star::util::URL& aURL,
 /*?*/                                                                            const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lArgs ) throw (::com::sun::star::uno::RuntimeException)
-/*?*/ {{DBG_ASSERT(0, "STRIP");} ::com::sun::star::uno::Any aRet; return aRet;//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} ::com::sun::star::uno::Any aRet; return aRet;//STRIP001
 //STRIP001  ::com::sun::star::uno::Any aRet;
 //STRIP001     ErrCode nErr = loadMacro( aURL.Complete, aRet, GetObjectShell_Impl() );
 //STRIP001  return aRet;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fly.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -252,7 +252,7 @@ namespace binfilter {
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() || rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if ( rChain.GetNext() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rChain.GetNext() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            SwFlyFrm *pFollow = FindChainNeighbour( *rChain.GetNext(), pAnch );
 //STRIP001 /*?*/            if ( pFollow )
@@ -316,7 +316,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwRootFrm *pRootFrm = FindRootFrm();
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            ViewShell *pVSh = pRootFrm->GetCurrShell();
 //STRIP001 /*?*/            if( pVSh && pVSh->Imp() )
 //STRIP001 /*?*/            {
@@ -332,9 +332,9 @@ namespace binfilter {
 /*N*/   {
 /*N*/       //Aus der Verkettung loessen.
 /*N*/       if ( GetPrevLink() )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    UnchainFrames( GetPrevLink(), this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( GetPrevLink(), this );
 /*N*/       if ( GetNextLink() )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    UnchainFrames( this, GetNextLink() );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( this, GetNextLink() );
 /*N*/
 /*N*/       //Unterstruktur zerstoeren, wenn dies erst im LayFrm DTor passiert ist's
 /*N*/       //zu spaet, denn dort ist die Seite nicht mehr erreichbar (muss sie aber
@@ -808,7 +808,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            const SvxProtectItem *pP = (SvxProtectItem*)pNew;
 //STRIP001 /*?*/            GetVirtDrawObj()->SetMoveProtect( pP->IsPosProtected()  );
 //STRIP001 /*?*/            GetVirtDrawObj()->SetResizeProtect( pP->IsSizeProtected() );
@@ -831,7 +831,7 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_FRM_SIZE:
 /*M*/       case RES_FMT_CHG:
-/*M*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            const SwFmtFrmSize &rNew = GetFmt()->GetFrmSize();
 //STRIP001 /*?*/            if ( FrmSizeChg( rNew ) )
 //STRIP001 /*?*/                NotifyDrawObj();
@@ -956,7 +956,7 @@ namespace binfilter {
 /*M*/             break;
 /*M*/
 /*M*/         case RES_OPAQUE:
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            if ( pSh )
 //STRIP001 /*?*/                pSh->InvalidateWindows( Frm() );
 //STRIP001 /*?*/            const BYTE nId = ((SvxOpaqueItem*)pNew)->GetValue() ?
@@ -997,7 +997,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_CHAIN:
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                SwFmtChain *pChain = (SwFmtChain*)pNew;
 //STRIP001 /*?*/                if ( pChain->GetNext() )
 //STRIP001 /*?*/                {
@@ -1359,7 +1359,7 @@ namespace binfilter {
 /*N*/       pSect = (SwSectionFrm*)pLay;
 /*N*/       if( pSect->IsEndnAtEnd() && !bNoColl )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 bCollect = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bCollect = TRUE;
 //STRIP001 /*?*/            SwLayouter::CollectEndnotes( pLay->GetFmt()->GetDoc(), pSect );
 /*N*/       }
 /*N*/       pSect->CalcFtnCntnt();
@@ -1378,7 +1378,7 @@ namespace binfilter {
 /*?*/               if( pSect->IsEndnAtEnd() )
 /*?*/               {
 /*?*/                   if( bCollect )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001    pLay->GetFmt()->GetDoc()->GetLayouter()->
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pLay->GetFmt()->GetDoc()->GetLayouter()->
 //STRIP001 /*?*/                            InsertEndnotes( pSect );
 /*?*/                   BOOL bLock = pSect->IsFtnLock();
 /*?*/                   pSect->SetFtnLock( TRUE );
@@ -1529,7 +1529,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( bCollect )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pLay->GetFmt()->GetDoc()->GetLayouter()->InsertEndnotes(pSect);
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLay->GetFmt()->GetDoc()->GetLayouter()->InsertEndnotes(pSect);
 //STRIP001 /*?*/                pSect->CalcFtnCntnt();
 /*N*/           }
 /*N*/           if( pSect->HasFollow() )
@@ -2205,7 +2205,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   // Notify accessible layout.
 /*N*/     ViewShell* pSh = GetShell();
 /*N*/   if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    pSh->Imp()->DisposeAccessibleObj( pToRemove->GetMaster() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSh->Imp()->DisposeAccessibleObj( pToRemove->GetMaster() );
 /*N*/ #endif
 /*N*/   SwPageFrm *pPage = pToRemove->GetPage();
 /*N*/   if ( pPage && pPage->GetSortedObjs() )

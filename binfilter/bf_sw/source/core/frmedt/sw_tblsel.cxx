@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblsel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -281,11 +281,11 @@ namespace binfilter {
 /*N*/   if( rBoxes.Count() )
 /*?*/       rBoxes.Remove( USHORT(0), rBoxes.Count() );
 /*N*/   if( rShell.IsTableMode() && 1 ) //STRIP001 ((SwCrsrShell&)rShell).UpdateTblSelBoxes())
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    rBoxes.Insert( &rShell.GetTableCrsr()->GetBoxes() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     rBoxes.Insert( &rShell.GetTableCrsr()->GetBoxes() );
 /*N*/ }
 
 /*N*/ void GetTblSelCrs( const SwTableCursor& rTblCrsr, SwSelBoxes& rBoxes )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( rBoxes.Count() )
 //STRIP001      rBoxes.Remove( USHORT(0), rBoxes.Count() );
 //STRIP001
@@ -2211,7 +2211,7 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 //STRIP001 }
 
 /*N*/ BOOL _FndLineCopyCol( const SwTableLine*& rpLine, void* pPara )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  _FndPara* pFndPara = (_FndPara*)pPara;
 //STRIP001  _FndLine* pFndLine = new _FndLine( (SwTableLine*)rpLine, pFndPara->pFndBox );
 //STRIP001  _FndPara aPara( *pFndPara, pFndLine );

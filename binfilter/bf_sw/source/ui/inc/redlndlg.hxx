@@ -2,9 +2,9 @@
  *
  *  $RCSfile: redlndlg.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,7 +116,7 @@ class SwChildWinWrapper;
 class SwRedlineAcceptChild : public SwChildWinWrapper
 {
 public:
-    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_ASSERT(0, "STRIP");}; //STRIP001     SwRedlineAcceptChild(   Window* ,
+    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  SwRedlineAcceptChild(   Window* ,
 //STRIP001                          USHORT nId,
 //STRIP001                          SfxBindings*,
 //STRIP001                          SfxChildWinInfo*  );

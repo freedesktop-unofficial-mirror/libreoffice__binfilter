@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -336,7 +336,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL IsInProgress( const SwFlyFrm *pFly )
 /*N*/ {
-        DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  return SwOszControl::IsInProgress( pFly );
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   return SwOszControl::IsInProgress( pFly );
 /*N*/ }
 
 /*N*/ FASTBOOL SwOszControl::IsInProgress( const SwFlyFrm *pFly )
@@ -1562,7 +1562,7 @@ namespace binfilter {
 // Wer weicht wem aus bzw. welcher Bereich ist "linker"/"rechter" als welcher?
 /*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient eRelO, SwRelationOrient eRelO2,
 /*N*/   BOOL bLeft )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  // Die Ausweichreihenfolge der SwRelationOrient-Enums bei linker Ausrichtung
 //STRIP001  static USHORT __READONLY_DATA aLeft[ LAST_ENUM_DUMMY ] =
 //STRIP001      { 5, 6, 0, 1, 8, 4, 7, 2, 3 };

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -292,7 +292,7 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/ }
 
 /*?*/ void SfxPropertyHandler::Property( ApplicationProperty& rProp )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 #if SUPD<613//MUSTINI
 //STRIP001  SfxApplication* pApp = SFX_APP();
 //STRIP001     SfxIniManager* pIni = pApp->GetIniManager();
@@ -1624,7 +1624,7 @@ String GetURL_Impl( const String& rName )
 /*N*/ }
 
 /*?*/ void SfxApplication::Invalidate( USHORT nId )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst(); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame ) )
 //STRIP001         Invalidate_Impl( pFrame->GetBindings(), nId );
 /*?*/ }

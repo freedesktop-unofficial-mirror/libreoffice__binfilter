@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:36 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -269,7 +269,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/             sal_Char cChar = ByteString::ConvertFromUnicode( ch, nEnc, FALSE );
 /*N*/           if (cChar == 0)
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              aString += ConvertUnknownCharacter(ch);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               aString += ConvertUnknownCharacter(ch);
 /*N*/           else
 /*N*/               aString += cChar;
 /*N*/       }
@@ -325,7 +325,7 @@ static const struct
 /*N*/     while( STRING_NOTFOUND != ( nPreStart =
 /*N*/                                     aString.SearchAscii( PRE_TE, nPreStart )) )
 /*N*/     {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*N*/         //
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/         //
 //STRIP001 /*N*/         // convert 'unknown character' to unicode character
 //STRIP001 /*N*/         //
 //STRIP001 /*?*/         xub_StrLen nTeStart = nPreStart + nPreLen;
@@ -533,22 +533,22 @@ static const struct
 
 /*?*/ void * SmFontPickList::CreateItem(const String& rString)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new Font();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new Font();
 /*?*/ }
 
 /*?*/ void * SmFontPickList::CreateItem(const void *pItem)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new Font(*((Font *) pItem));
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new Font(*((Font *) pItem));
 /*?*/ }
 
 /*?*/ void SmFontPickList::DestroyItem(void *pItem)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    delete (Font *)pItem;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     delete (Font *)pItem;
 /*?*/ }
 
 /*?*/ BOOL SmFontPickList::CompareItem(const void *pFirstItem, const void *pSecondItem) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001   Font    *pFirstFont, *pSecondFont;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    Font    *pFirstFont, *pSecondFont;
 //STRIP001
 //STRIP001  pFirstFont  = (Font *)pFirstItem;
 //STRIP001  pSecondFont = (Font *)pSecondItem;
@@ -565,7 +565,7 @@ static const struct
 
 /*?*/ String SmFontPickList::GetStringItem(void *pItem)
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); String  aString; return aString;//STRIP001  Font   *pFont;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); String   aString; return aString;//STRIP001  Font   *pFont;
 //STRIP001  String  aString;
 //STRIP001     const sal_Char *pDelim = ", ";
 //STRIP001
@@ -589,12 +589,12 @@ static const struct
 
 /*?*/ void SmFontPickList::LoadItem(SvStream& rStream, void *pItem)
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  rStream >> *((Font *)pItem);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   rStream >> *((Font *)pItem);
 /*?*/ }
 
 /*?*/ void SmFontPickList::SaveItem(SvStream& rStream, const void *pItem) const
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  rStream << *(const Font *) pItem;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   rStream << *(const Font *) pItem;
 /*?*/ }
 
 //STRIP001 void SmFontPickList::Insert(const Font &rFont)

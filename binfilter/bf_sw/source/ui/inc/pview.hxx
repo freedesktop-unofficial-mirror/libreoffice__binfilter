@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pview.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -318,9 +318,9 @@ public:
 //STRIP001     void            SetNewPage(USHORT nSet)  {nNewPage = nSet;}
 
         // Handler
-    void            Execute(SfxRequest&){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void            Execute(SfxRequest&);
-    void            GetState(SfxItemSet&){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void            GetState(SfxItemSet&);
-    void            StateUndo(SfxItemSet&){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void            StateUndo(SfxItemSet&);
+    void            Execute(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void            Execute(SfxRequest&);
+    void            GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void            GetState(SfxItemSet&);
+    void            StateUndo(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void            StateUndo(SfxItemSet&);
 
     SwDocShell*     GetDocShell();
 

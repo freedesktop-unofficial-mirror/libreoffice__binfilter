@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flylay.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -622,7 +622,7 @@ namespace binfilter {
 /*N*/           static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/           static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
 //STRIP001 /*?*/                                      ->AddAccessibleFrm( pNew );
 /*N*/       }
 /*N*/ #endif
@@ -682,7 +682,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
 //STRIP001 /*?*/                                  ->DisposeAccessibleFrm( pToRemove, sal_True );
 /*N*/   }
 /*N*/ #endif
@@ -737,7 +737,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
 //STRIP001 /*?*/                                  ->DisposeAccessibleFrm( pToMove, sal_True );
 /*N*/   }
 /*N*/ #endif
@@ -772,7 +772,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
 //STRIP001 /*?*/                                  ->AddAccessibleFrm( pToMove );
 /*N*/   }
 /*N*/ #endif

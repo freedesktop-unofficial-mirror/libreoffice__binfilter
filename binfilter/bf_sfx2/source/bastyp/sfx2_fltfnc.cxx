@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 15:16:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -407,7 +407,7 @@ public:
 //----------------------------------------------------------------
 
 /*?*/ sal_uInt32 SfxFilterContainer::Execute( SfxMedium& rMedium, SfxFrame*& pFrame) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return ERRCODE_ABORT;
 /*?*/ }
 
@@ -818,7 +818,7 @@ public:
 //----------------------------------------------------------------
 
 /*?*/ SfxFilterContainer* SfxFilterMatcher::GetContainer( const String &rName ) const
-/*STRIP003*/{ // DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*STRIP003*/{ // DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 /*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
 /*STRIP003*/     sal_uInt16 nCount = (sal_uInt16) rList.Count();
 /*STRIP003*/     for( sal_uInt16 n = 0; n < nCount; n++ )
@@ -859,7 +859,7 @@ public:
 /*?*/                   // FilterDetection nur "uber den Content
 /*?*/                   return ERRCODE_NONE;
 /*?*/               else
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 pFilter = GetFilter4Mime( aMime, nMust, nDont );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pFilter = GetFilter4Mime( aMime, nMust, nDont );
 /*?*/
 /*?*/               if ( pFilter && aMime.EqualsAscii(CONTENT_TYPE_STR_APP_OCTSTREAM) )
 /*?*/               {
@@ -1075,7 +1075,7 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/
 /*N*/   // Jetzt einmal drueberiterieren und nur die perfekten Filter nehmen
 /*N*/   if( !pFilter )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        // Achtung: hier k"onnte auch asynchron detected werden!
 //STRIP001 /*?*/         rMedium.StartDownload();
 //STRIP001 /*?*/        if ( !rMedium.IsDownloadDone_Impl() )
@@ -1103,7 +1103,7 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*?*/
 /*?*/ //DV !!!! don't close InStream when using the new Medium
 /*?*/ //rMedium.CloseInStream();
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         rMedium.GetStorage();
 //STRIP001 /*?*/        nErr = GetFilter4Content( rMedium, &pFilter, nMust, nDont );
 //STRIP001 /*?*/        CHECKERROR();

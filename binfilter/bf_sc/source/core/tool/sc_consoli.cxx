@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_consoli.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -650,7 +650,7 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/       if (bColByName) nArrX = pDestCols[nArrX];
 /*N*/       if (nArrX != SC_CONS_NOTFOUND)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 for (nRow=nRow1; nRow<=nRow2; nRow++)
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (nRow=nRow1; nRow<=nRow2; nRow++)
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                USHORT nArrY = nRow-nRow1;
 //STRIP001 /*?*/                if (bRowByName) nArrY = pDestRows[nArrY];
@@ -792,7 +792,7 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/           if (nNeeded)
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pDestDoc->InsertRow( 0,nTab, MAXCOL,nTab, nRow+nArrY, nNeeded );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDestDoc->InsertRow( 0,nTab, MAXCOL,nTab, nRow+nArrY, nNeeded );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                for (nArrX=0; nArrX<nColCount; nArrX++)
 //STRIP001 /*?*/                    if (ppUsed[nArrX][nArrY])

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmpaint.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -538,7 +538,7 @@ sal_Bool bInitFont = sal_True;
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/         if ( IsRightToLeft() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/             SwitchLTRtoRTL( aRet );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             SwitchLTRtoRTL( aRet );
 /*N*/ #endif
 /*N*/         if ( IsVertical() )
 /*N*/             SwitchHorizontalToVertical( aRet );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtdrop.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -223,7 +223,7 @@ public:
 /*N*/ {
 /*N*/     delete pPart;
 /*N*/   if( pBlink )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pBlink->Delete( this );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/ }
 
 /*N*/ sal_Bool SwTxtSizeInfo::_HasHint( const SwTxtNode* pTxtNode, xub_StrLen nPos )

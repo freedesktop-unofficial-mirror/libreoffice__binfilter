@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_paraitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -386,14 +386,14 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetValueCount() const
 /*?*/ {
-/*?*/       DBG_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;//STRIP001 /*?*/   return SVX_LINESPACE_END;   // SVX_LINESPACE_TWO_LINES + 1
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;//STRIP001 /*?*/    return SVX_LINESPACE_END;   // SVX_LINESPACE_TWO_LINES + 1
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 nPos ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); XubString aText;//STRIP001 //STRIP001     //! Strings demnaechst aus Resource laden
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;//STRIP001 //STRIP001  //! Strings demnaechst aus Resource laden
 //STRIP001  XubString aText;
 //STRIP001  switch ( nPos )
 //STRIP001  {
@@ -409,7 +409,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001    sal_uInt16 nVal;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     sal_uInt16 nVal;
 //STRIP001  switch ( nPropLineSpace )
 //STRIP001  {
 //STRIP001      case 100:   nVal = SVX_LINESPACE_ONE_LINE;              break;
@@ -424,7 +424,7 @@ using namespace ::com::sun::star;
 
 /*?*/ void SvxLineSpacingItem::SetEnumValue( sal_uInt16 nVal )
 /*?*/ {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   switch ( nVal )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    switch ( nVal )
 //STRIP001  {
 //STRIP001      case SVX_LINESPACE_ONE_LINE:             nPropLineSpace = 100; break;
 //STRIP001      case SVX_LINESPACE_ONE_POINT_FIVE_LINES: nPropLineSpace = 150; break;
@@ -548,7 +548,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxAdjustItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_ADJUST_END;  // SVX_ADJUST_BLOCKLINE + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ADJUST_END;  // SVX_ADJUST_BLOCKLINE + 1
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -563,13 +563,13 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxAdjustItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return GetAdjust();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return GetAdjust();
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxAdjustItem::SetEnumValue( sal_uInt16 nVal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SetAdjust( (const SvxAdjust)nVal );
 /*N*/ }
 
@@ -1738,12 +1738,12 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ }
 
 /*N*/ SfxPoolItem* SvxParaGridItem::Clone( SfxItemPool *pPool ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001     return new SvxParaGridItem( GetValue(), Which() );
 /*N*/ }
 
 /*N*/ SfxPoolItem* SvxParaGridItem::Create(SvStream & rStrm, USHORT) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  sal_Bool bFlag;
 //STRIP001  rStrm >> bFlag;
 //STRIP001     return new SvxParaGridItem( bFlag, Which() );

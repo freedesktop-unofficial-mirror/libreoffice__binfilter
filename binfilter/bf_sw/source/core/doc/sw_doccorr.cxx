@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doccorr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -226,7 +226,7 @@ namespace binfilter {
 /*N*/       register SwBookmark* pBkmk;
 /*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
 //STRIP001 /*?*/            int bChgd = 0;
 //STRIP001 /*?*/            if( &( pBkmk = (SwBookmark*)rBkmks[ n ])->pPos1->nNode.GetNode() == pOldNode )
 //STRIP001 /*?*/            {
@@ -261,7 +261,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*?*/           // liegt auf der Position ??
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrAbs1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrAbs1( rTbl[ n ] )
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -451,7 +451,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
 //STRIP001 /*?*/                    _PaMCorrAbs3( PCURCRSR )
 //STRIP001 /*?*/                FOREACHPAM_END()
 /*N*/           }
@@ -535,7 +535,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
 //STRIP001 /*?*/                    _PaMCorrRel1( PCURCRSR )
 //STRIP001 /*?*/                FOREACHPAM_END()
 /*N*/           }
@@ -581,7 +581,7 @@ namespace binfilter {
 /*N*/               pBkmk->pPos2->nNode.GetNode().FindTableBoxStartNode() !=
 /*N*/               pBkmk->pPos1->nNode.GetNode().FindTableBoxStartNode() )
 /*N*/           {
-/*N*/               DBG_ASSERT(0, "STRIP"); //STRIP001 if( 1 == bChgd )
+/*N*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( 1 == bChgd )
 //STRIP001 /*?*/                    *pBkmk->pPos1 = *pBkmk->pPos2;
 //STRIP001 /*?*/                delete pBkmk->pPos2, pBkmk->pPos2 = 0;
 //STRIP001 /*?*/                if( pBkmk->IsServer() )
@@ -598,7 +598,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*N*/           // liegt auf der Position ??
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrRel1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrRel1( rTbl[ n ] )
 /*N*/       }
 /*N*/   }
 /*N*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -157,7 +157,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* pFld )
 /*N*/ {
-/*N*/           DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   ASSERT( pFld, "TakeNextOffset: Missing Source" );
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ASSERT( pFld, "TakeNextOffset: Missing Source" );
 //STRIP001  nNextOffset = pFld->GetNextOffset();
 //STRIP001  aExpand.Erase( 0, nNextOffset );
 //STRIP001  bFollow = sal_True;
@@ -191,7 +191,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   delete pFnt;
 /*N*/   if( pBlink )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pBlink->Delete( this );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pBlink->Delete( this );
 /*N*/ }
 
 /*************************************************************************
@@ -427,7 +427,7 @@ public:
 /*M*/             xub_StrLen nNextOfst = aExpand.Len() - nRest;
 /*M*/
 /*M*/             if ( IsQuoVadisPortion() )
-/*?*/                { DBG_ASSERT(0, "STRIP"); }//STRIP001 nNextOfst += ((SwQuoVadisPortion*)this)->GetContTxt().Len();
+/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nNextOfst += ((SwQuoVadisPortion*)this)->GetContTxt().Len();
 /*M*/
 /*M*/           XubString aNew( aExpand, nNextOfst, STRING_LEN );
 /*M*/           aExpand.Erase( nNextOfst, STRING_LEN );
@@ -1065,7 +1065,7 @@ public:
 /*N*/ SwCombinedPortion::SwCombinedPortion( const XubString &rTxt )
 /*N*/    : SwFldPortion( rTxt )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   SetLen(1);
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SetLen(1);
 //STRIP001  SetWhichPor( POR_COMBINED );
 //STRIP001  if( aExpand.Len() > 6 )
 //STRIP001      aExpand.Erase( 6 );

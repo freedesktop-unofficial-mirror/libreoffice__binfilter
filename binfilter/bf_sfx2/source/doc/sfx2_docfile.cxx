@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -313,7 +313,7 @@ namespace binfilter {
 
 /*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
 /*N*/         throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( !m_xInter.is() )
 //STRIP001      return;
 //STRIP001
@@ -463,7 +463,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SfxMedium::DataAvailable_Impl()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     pImp->aAvailableLink.ClearPendingCall();
 //STRIP001     pImp->aAvailableLink.Call( NULL );
 /*N*/ }
@@ -870,7 +870,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::TryStorage()
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     GetStorage();
 //STRIP001
 //STRIP001     if ( aStorage.Is() )
@@ -1404,7 +1404,7 @@ namespace binfilter {
 /*N*/
 /*N*/           return;
 /*N*/       }
-/*N*/ DBG_ASSERT(0, "STRIP"); return;//STRIP001
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;//STRIP001
 //STRIP001 /*?*/         GetContent();
 //STRIP001 /*?*/         if ( !pImp->aContent.get().is() )
 //STRIP001 /*?*/         {
@@ -1603,7 +1603,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*?*/ void SfxMedium::DoInternalBackup_Impl( const ::ucb::Content& aOriginalContent )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001  if ( pImp->m_aBackupURL.getLength() )
 //STRIP001      return; // the backup was done already
 //STRIP001
@@ -2225,7 +2225,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 //----------------------------------------------------------------
 
 /*N*/ void SfxMedium::SetPhysicalName_Impl( const String& rNameP )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( rNameP != aName )
 //STRIP001     {
 //STRIP001         if( pImp->pTempFile )
@@ -2625,7 +2625,7 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*N*/ }
 
 /*N*/ SvEaMgr* SfxMedium::GetEaMgr()
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     if ( !pImp->pEaMgr && pFilter )
 //STRIP001     {
 //STRIP001         /* the stream in the storage is probably not a filestream ( the stream is

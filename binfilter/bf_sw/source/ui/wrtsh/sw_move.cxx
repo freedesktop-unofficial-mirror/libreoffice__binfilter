@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_move.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -156,7 +156,7 @@ const long nReadOnlyScrollOfst = 10;
 /*N*/ FASTBOOL SwWrtShell::Left( USHORT nMode, FASTBOOL bSelect,
 /*N*/                             USHORT nCount, BOOL bBasicCall, BOOL bVisual )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        Point aTmp( VisArea().Pos() );
 //STRIP001 /*?*/        aTmp.X() -= VisArea().Width() * nReadOnlyScrollOfst / 100;
@@ -175,7 +175,7 @@ const long nReadOnlyScrollOfst = 10;
 /*N*/ FASTBOOL SwWrtShell::Right( USHORT nMode, FASTBOOL bSelect,
 /*N*/                             USHORT nCount, BOOL bBasicCall, BOOL bVisual )
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly() )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        Point aTmp( VisArea().Pos() );
 //STRIP001 /*?*/        aTmp.X() += VisArea().Width() * nReadOnlyScrollOfst / 100;
@@ -194,7 +194,7 @@ const long nReadOnlyScrollOfst = 10;
 
 /*N*/ FASTBOOL SwWrtShell::Up( FASTBOOL bSelect, USHORT nCount, BOOL bBasicCall )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( !bSelect && !bBasicCall && IsCrsrReadonly()  && !GetViewOptions()->IsSelectionInReadonly())
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        Point aTmp( VisArea().Pos() );
 //STRIP001 /*?*/        aTmp.Y() -= VisArea().Height() * nReadOnlyScrollOfst / 100;
@@ -212,7 +212,7 @@ const long nReadOnlyScrollOfst = 10;
 
 /*N*/ FASTBOOL SwWrtShell::Down( FASTBOOL bSelect, USHORT nCount, BOOL bBasicCall )
 /*N*/  {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly())
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001      if ( !bSelect && !bBasicCall && IsCrsrReadonly() && !GetViewOptions()->IsSelectionInReadonly())
 //STRIP001  {
 //STRIP001      Point aTmp( VisArea().Pos() );
 //STRIP001      aTmp.Y() += VisArea().Height() * nReadOnlyScrollOfst / 100;
@@ -231,7 +231,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::LeftMargin( FASTBOOL bSelect, FASTBOOL bBasicCall )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        Point aTmp( VisArea().Pos() );
 //STRIP001 /*?*/        aTmp.X() = DOCUMENTBORDER;
@@ -249,7 +249,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::RightMargin( FASTBOOL bSelect, FASTBOOL bBasicCall  )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 if ( !bSelect && !bBasicCall && IsCrsrReadonly() )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        Point aTmp( VisArea().Pos() );
 //STRIP001 /*?*/        aTmp.X() = GetDocSize().Width() - VisArea().Width() + DOCUMENTBORDER;
@@ -367,7 +367,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::SttDoc( FASTBOOL bSelect )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return GoStart(FALSE, 0, bSelect );
 /*N*/ }
 
@@ -375,14 +375,14 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::EndDoc( FASTBOOL bSelect)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return GoEnd();
 /*N*/ }
 
 
 /*N*/ FASTBOOL SwWrtShell::SttNxtPg( FASTBOOL bSelect )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return MovePage( fnPageNext, fnPageStart );
 /*N*/ }
 
@@ -406,7 +406,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::EndPrvPg( FASTBOOL bSelect )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return MovePage( fnPagePrev, fnPageEnd );
 /*N*/ }
 
@@ -414,7 +414,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::SttPg( FASTBOOL bSelect )
 /*N*/ {
-/*?*/DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001    ShellMoveCrsr aTmp( this, bSelect );
+/*?*/DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return MovePage( fnPageCurr, fnPageStart );
 /*N*/ }
 
@@ -422,7 +422,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ FASTBOOL SwWrtShell::EndPg( FASTBOOL bSelect )
 /*N*/ {
-/*?*/DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001    ShellMoveCrsr aTmp( this, bSelect );
+/*?*/DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001     ShellMoveCrsr aTmp( this, bSelect );
 //STRIP001 /*?*/    return MovePage( fnPageCurr, fnPageEnd );
 /*N*/ }
 
@@ -596,7 +596,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 /*?*/       aTmpArea.Pos().Y() -= pCrsrStack->lOffset;
 /*?*/       if( aTmpArea.IsInside( pCrsrStack->aDocPos ) )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if( bSelect )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bSelect )
 //STRIP001 /*?*/                SttSelect();
 //STRIP001 /*?*/            else
 //STRIP001 /*?*/                EndSelect();
@@ -614,7 +614,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 /*?*/           // alle gemerkten Positionen weggeschmissen
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 _ResetCursorStack();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _ResetCursorStack();
 /*?*/           return FALSE;
 /*?*/       }
 /*?*/   }
@@ -692,7 +692,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001         if ( !bSelect && !bBasic
 
 /*N*/ BOOL SwWrtShell::GotoPage(USHORT nPage, BOOL bRecord)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ShellMoveCrsr aTmp( this, FALSE);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ShellMoveCrsr aTmp( this, FALSE);
 //STRIP001 /*?*/    if( SwCrsrShell::GotoPage(nPage) && bRecord)
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        if(IsSelFrmMode())

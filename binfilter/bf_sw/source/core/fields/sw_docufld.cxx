@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-23 14:05:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1196,7 +1196,7 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/   if ( bName )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 String aStr(SwFieldType::GetTypeStr(GetTypeId()));
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aStr(SwFieldType::GetTypeStr(GetTypeId()));
 //STRIP001 /*?*/        aStr += ':';
 //STRIP001 /*?*/
 //STRIP001 /*?*/        sal_uInt16 nSub = nSubType & 0xff;
@@ -1481,7 +1481,7 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/       }
 /*N*/       else if(sTmpName.Search('\"') == STRING_NOTFOUND &&
 /*N*/           sTmpName.GetTokenCount('.') > 2)
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            ::ReplacePoint(sTmpName);
 //STRIP001 /*?*/            if(sTmpName.GetChar(0) == '[' && sTmpName.GetChar(sTmpName.Len()-1) == ']')
 //STRIP001 /*?*/            {   // Eckige Klammern entfernen
@@ -2202,7 +2202,7 @@ BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   if( !pNew && !pOld && GetDepends() )
 /*N*/   {
 /*?*/       // sammel erstmal alle SetPageRefFelder ein.
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 _SetGetExpFlds aTmpLst( 10, 5 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _SetGetExpFlds aTmpLst( 10, 5 );
 //STRIP001 /*?*/        if( MakeSetList( aTmpLst ) )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            SwClientIter aIter( *this );

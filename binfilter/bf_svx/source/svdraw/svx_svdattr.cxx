@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1779,7 +1779,7 @@ using namespace ::com::sun::star;
 /*N*/ USHORT __EXPORT SdrTextHorzAdjustItem::GetValueCount() const { return 5; }
 
 /*N*/ XubString __EXPORT SdrTextHorzAdjustItem::GetValueTextByPos(USHORT nPos) const
-/*N*/ {DBG_ASSERT(0, "STRIP");XubString a; return a; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");XubString a; return a; //STRIP001
 //STRIP001  return ImpGetResStr(STR_ItemValTEXTHADJLEFT+nPos);
 /*N*/ }
 
@@ -2021,7 +2021,7 @@ using namespace ::com::sun::star;
 /*N*/       sal_uInt32 i, nCount;
 /*N*/       rIn >> nCount;
 /*N*/       for ( i = 0; i < nCount; i++ )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            rIn >> aVal.nValue;
 //STRIP001 /*?*/            SetValue( i, aVal );
 /*N*/       }
@@ -2045,7 +2045,7 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           sal_uInt32 i;
 /*N*/           for ( i = 0; i < GetCount(); i++ )
-/*N*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                if ( ((SdrAutoShapeAdjustmentItem&)rCmp).GetValue( i ).nValue != GetValue( i ).nValue )
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    bRet = 0;
@@ -2091,7 +2091,7 @@ using namespace ::com::sun::star;
 /*N*/       sal_uInt32 i, nCount = GetCount();
 /*N*/       rOut << nCount;
 /*N*/       for ( i = 0; i < nCount; i++ )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001    rOut << GetValue( i ).nValue;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     rOut << GetValue( i ).nValue;
 /*N*/   }
 /*N*/   return rOut;
 /*N*/ }
@@ -2101,7 +2101,7 @@ using namespace ::com::sun::star;
 /*N*/   sal_uInt32 i;
 /*N*/   SdrAutoShapeAdjustmentItem* pItem = new SdrAutoShapeAdjustmentItem;
 /*N*/   for ( i = 0; i < GetCount(); i++ )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        const SdrAutoShapeAdjustmentValue& rVal = GetValue( i );
 //STRIP001 /*?*/        pItem->SetValue( i, rVal );
 /*N*/   }

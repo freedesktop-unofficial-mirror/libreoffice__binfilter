@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dptabsrc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:03 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -380,7 +380,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResults()
 /*?*/                                                           throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0); //STRIP001
 //STRIP001  CreateRes_Impl();       // create pColResRoot and pRowResRoot
 //STRIP001
 //STRIP001  if ( bResultOverflow )      // set in CreateRes_Impl
@@ -411,7 +411,7 @@ using namespace ::com::sun::star;
 /*?*/ }
 
 /*?*/ void SAL_CALL ScDPSource::refresh() throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    disposeData();
 /*?*/ }
 
@@ -871,7 +871,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPSource::getPropertySetInfo()
 /*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
 //STRIP001  ScUnoGuard aGuard;
 //STRIP001
 //STRIP001  static SfxItemPropertyMap aDPSourceMap_Impl[] =
@@ -924,7 +924,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_REPEATIF ) )
 /*N*/       lcl_SetBoolInAny( aRet, getRepeatIfEmpty() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_DATADESC ) )             // read-only
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    aRet <<= ::rtl::OUString( getDataDescription() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aRet <<= ::rtl::OUString( getDataDescription() );
 /*N*/   else
 /*N*/   {
 /*N*/       DBG_ERROR("unknown property");
@@ -1176,7 +1176,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*?*/ uno::Reference<util::XCloneable> SAL_CALL ScDPDimension::createClone() throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return uno::Reference<util::XCloneable>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<util::XCloneable>(0); //STRIP001
 //STRIP001 /*?*/    return CreateCloneObject();
 /*?*/ }
 
@@ -1189,7 +1189,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPDimension::getPropertySetInfo()
 /*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
 //STRIP001  ScUnoGuard aGuard;
 //STRIP001
 //STRIP001  static SfxItemPropertyMap aDPDimensionMap_Impl[] =
@@ -1216,7 +1216,7 @@ using namespace ::com::sun::star;
 /*N*/   String aNameStr = aPropertyName;
 /*N*/   if ( aNameStr.EqualsAscii( SC_UNO_POSITION ) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 INT32 nInt;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 INT32 nInt;
 //STRIP001 /*?*/        if (aValue >>= nInt)
 //STRIP001 /*?*/            setPosition( nInt );
 /*N*/   }
@@ -1224,7 +1224,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*?*/       INT32 nInt;
 /*?*/       if (aValue >>= nInt)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    setUsedHierarchy( nInt );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     setUsedHierarchy( nInt );
 /*N*/   }
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIENTAT ) )
 /*N*/   {
@@ -1268,7 +1268,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ISDATALA ) )                 // read-only properties
 /*N*/       lcl_SetBoolInAny( aRet, getIsDataLayoutDimension() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_NUMBERFO ) )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    aRet <<= (sal_Int32) pSource->GetData()->GetNumberFormat(
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aRet <<= (sal_Int32) pSource->GetData()->GetNumberFormat(
 //STRIP001 /*?*/                                            ( nSourceDim >= 0 ) ? nSourceDim : nDim );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIGINAL ) )
 /*N*/   {
@@ -1595,7 +1595,7 @@ using namespace ::com::sun::star;
 /*N*/   //! release pSource
 /*N*/
 /*N*/   if ( pMembers )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pMembers->release();    // ref-counted
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pMembers->release();    // ref-counted
 /*N*/ }
 
 //STRIP001 ScDPMembers* ScDPLevel::GetMembersObject()
@@ -1609,12 +1609,12 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*?*/ uno::Reference<container::XNameAccess> SAL_CALL ScDPLevel::getMembers() throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return uno::Reference<container::XNameAccess>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<container::XNameAccess>(0); //STRIP001
 //STRIP001 /*?*/    return GetMembersObject();
 /*?*/ }
 
 /*?*/ uno::Sequence<sheet::MemberResult> SAL_CALL ScDPLevel::getResults() throw(uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    const uno::Sequence<sheet::MemberResult>* pRes = pSource->GetMemberResults( this );
 //STRIP001 /*?*/    if (pRes)
 //STRIP001 /*?*/        return *pRes;
@@ -1731,7 +1731,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*?*/       uno::Sequence<sheet::GeneralFunction> aSeq;
 /*?*/       if ( aValue >>= aSeq )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    setSubTotals( aSeq );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     setSubTotals( aSeq );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1747,7 +1747,7 @@ using namespace ::com::sun::star;
 /*N*/   uno::Any aRet;
 /*N*/   String aNameStr = aPropertyName;
 /*N*/   if ( aNameStr.EqualsAscii( SC_UNO_SHOWEMPT ) )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    lcl_SetBoolInAny( aRet, getShowEmpty() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_SetBoolInAny( aRet, getShowEmpty() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_SUBTOTAL ) )
 /*N*/   {
 /*N*/       uno::Sequence<sheet::GeneralFunction> aSeq = getSubTotals();        //! avoid extra copy?

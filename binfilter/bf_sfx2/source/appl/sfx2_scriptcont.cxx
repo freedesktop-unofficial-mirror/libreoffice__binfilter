@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_scriptcont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,7 +152,7 @@ using namespace osl;
 // OldBasicPassword interface
 /*?*/ void SfxScriptLibraryContainer::setLibraryPassword
 /*?*/     ( const String& rLibraryName, const String& rPassword )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     try
 //STRIP001     {
 //STRIP001         SfxLibrary_Impl* pImplLib = getImplLib( rLibraryName );
@@ -176,7 +176,7 @@ using namespace osl;
 /*N*/ }
 
 /*?*/ void SfxScriptLibraryContainer::clearLibraryPassword( const String& rLibraryName )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     try
 //STRIP001     {
 //STRIP001         SfxLibrary_Impl* pImplLib = getImplLib( rLibraryName );
@@ -233,7 +233,7 @@ using namespace osl;
 /*N*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryElementValid( Any aElement )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  OUString aMod;
 //STRIP001  aElement >>= aMod;
 //STRIP001  sal_Bool bRet = (aMod.getLength() > 0);
@@ -247,7 +247,7 @@ using namespace osl;
 /*?*/   Reference< XOutputStream > xOutput
 /*?*/ )
 /*?*/   throw(Exception)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // Create sax writer
 //STRIP001  Reference< XExtendedDocumentHandler > xHandler(
 //STRIP001      mxMSF->createInstance(
@@ -341,7 +341,7 @@ using namespace osl;
 //STRIP001 }
 
 /*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SotStorageRef xStorage = new SotStorage( sal_False, aFile );
 //STRIP001  if( xStorage.Is() && xStorage->GetError() == ERRCODE_NONE )
 //STRIP001     {
@@ -368,7 +368,7 @@ using namespace osl;
 // Methods XLibraryContainerPassword
 /*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordProtected( const OUString& Name )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  sal_Bool bRet = pImplLib->mbPasswordProtected;
 //STRIP001  return bRet;
@@ -376,7 +376,7 @@ using namespace osl;
 
 /*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  if( !pImplLib->mbPasswordProtected )
 //STRIP001      throw IllegalArgumentException();
@@ -387,7 +387,7 @@ using namespace osl;
 /*?*/ sal_Bool SAL_CALL SfxScriptLibraryContainer::verifyLibraryPassword
 /*?*/     ( const OUString& Name, const OUString& Password )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  if( !pImplLib->mbPasswordProtected || pImplLib->mbPasswordVerified )
 //STRIP001      throw IllegalArgumentException();
@@ -423,7 +423,7 @@ using namespace osl;
 /*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& Name,
 /*?*/     const OUString& OldPassword, const OUString& NewPassword )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001     if( OldPassword == NewPassword )
 //STRIP001         return;
@@ -545,7 +545,7 @@ using namespace osl;
 // Impl methods
 /*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* pLib,
 /*?*/     const ::rtl::OUString& aName, SotStorageRef xStorage )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     BasicManager* pBasicMgr = getBasicManager();
 //STRIP001     StarBASIC* pBasicLib = pBasicMgr->GetLib( aName );
 //STRIP001     if( !pBasicLib )
@@ -732,7 +732,7 @@ using namespace osl;
 /*?*/ sal_Bool SfxScriptLibraryContainer::implLoadPasswordLibrary
 /*?*/     ( SfxLibrary_Impl* pLib, const OUString& Name, sal_Bool bVerifyPasswordOnly )
 /*?*/         throw(WrappedTargetException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  sal_Bool bLink = pLib->mbLink;
 //STRIP001  sal_Bool bStorage = mxStorage.Is() && !bLink;
 //STRIP001
@@ -972,7 +972,7 @@ using namespace osl;
 /*?*/ void SAL_CALL SfxScriptLibraryContainer::initialize( const Sequence< Any >& aArguments )
 /*?*/     throw (::com::sun::star::uno::Exception,
 /*?*/            ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  sal_Int32 nArgCount = aArguments.getLength();
 //STRIP001  OSL_ENSURE( nArgCount, "SfxDialogLibraryContainer::initialize() called with no arguments\n" );
 //STRIP001

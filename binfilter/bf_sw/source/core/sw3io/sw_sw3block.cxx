@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3block.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:52 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -709,7 +709,7 @@ sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
 /*N*/   // Haben wir schon einen Persist?
 /*N*/   if( pDoc->GetPersist() )
 /*N*/       return TRUE;
-        DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 /*?*/   pPersist = new Sw3Persist;
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 /*?*/    pPersist = new Sw3Persist;
 //STRIP001 /*?*/    if( pPersist->DoOwnerLoad( pRoot ) )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        pDoc->SetPersist( pPersist );

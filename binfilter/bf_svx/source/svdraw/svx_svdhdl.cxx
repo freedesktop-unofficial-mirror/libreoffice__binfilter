@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdhdl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -303,7 +303,7 @@ namespace binfilter {
 //STRIP001     nPPntNum(0),
 //STRIP001     bPlusHdl(FALSE),
 //STRIP001     nSourceHdlNum(0)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(!pSimpleSet)
 //STRIP001      pSimpleSet = new SdrHdlBitmapSet(SIP_SA_MARKERS);
 //STRIP001  DBG_ASSERT(pSimpleSet, "Could not construct SdrHdlBitmapSet()!");
@@ -332,7 +332,7 @@ namespace binfilter {
 //STRIP001     nPPntNum(0),
 //STRIP001     bPlusHdl(FALSE),
 //STRIP001     nSourceHdlNum(0)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(!pSimpleSet)
 //STRIP001      pSimpleSet = new SdrHdlBitmapSet(SIP_SA_MARKERS);
 //STRIP001  DBG_ASSERT(pSimpleSet, "Could not construct SdrHdlBitmapSet()!");
@@ -348,7 +348,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SdrHdl::~SdrHdl()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  GetRidOfIAObject();
 /*N*/ }
 
@@ -1474,7 +1474,7 @@ namespace binfilter {
 /*N*/ };
 
 /*N*/ int ImpSdrHdlListSorter::Compare(const void* pElem1, const void* pElem2) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     SdrHdlKind eKind1=((SdrHdl*)pElem1)->GetKind();
 //STRIP001     SdrHdlKind eKind2=((SdrHdl*)pElem2)->GetKind();
 //STRIP001     // Level 1: Erst normale Handles, dann Glue, dann User, dann Plushandles, dann Retpunkt-Handles
@@ -1805,7 +1805,7 @@ struct ImplHdlAndIndex
 /*N*/   pImpl->mnFocusIndex = CONTAINER_ENTRY_NOTFOUND;
 /*N*/
 /*N*/   if(pHdl)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        pHdl->Touch();
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if(pImpl->pView)
@@ -1886,7 +1886,7 @@ struct ImplHdlAndIndex
 /*N*/
 /*N*/       // propagate change to IAOs
 /*N*/       for(UINT32 i=0; i<GetHdlCount(); i++)
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SdrHdl* pHdl = GetHdl(i);
 //STRIP001 /*?*/            pHdl->Touch();
 /*N*/       }
@@ -1903,7 +1903,7 @@ struct ImplHdlAndIndex
 /*N*/ void SdrHdlList::Clear()
 /*N*/ {
 /*N*/   for (ULONG i=0; i<GetHdlCount(); i++)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrHdl* pHdl=GetHdl(i);
 //STRIP001 /*?*/        delete pHdl;
 /*N*/   }
@@ -1929,7 +1929,7 @@ struct ImplHdlAndIndex
 /*N*/   SdrHdl* pNow = GetFocusHdl();
 /*N*/
 /*N*/   if(pPrev != pNow)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        sal_Bool bRefresh(sal_False);
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if(pPrev)
@@ -1976,7 +1976,7 @@ struct ImplHdlAndIndex
 /*N*/    SdrHdl* pRet=NULL;
 /*N*/    ULONG nAnz=GetHdlCount();
 /*N*/    ULONG nNum=bBack ? 0 : nAnz;
-/*N*/    while ((bBack ? nNum<nAnz : nNum>0) && pRet==NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/    while ((bBack ? nNum<nAnz : nNum>0) && pRet==NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if (!bBack) nNum--;
 //STRIP001 /*?*/        SdrHdl* pHdl=GetHdl(nNum);
 //STRIP001 /*?*/        if (bNext) {

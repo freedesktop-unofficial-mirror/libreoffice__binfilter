@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: mba $ $Date: 2004-04-02 14:16:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -885,7 +885,7 @@ using namespace sfx2;
 /*N*/         if (pFrameItem)
 /*N*/             pFrame = pFrameItem->GetFrame();
 /*N*/         else
-/*?*/             {DBG_ASSERT(0, "STRIP");}//STRIP001 pFrame = (SfxFrame*)SfxTopFrame::Create(xDoc, nViewId, bHidden, pInternalArgs);
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pFrame = (SfxFrame*)SfxTopFrame::Create(xDoc, nViewId, bHidden, pInternalArgs);
 /*N*/         if ( pFrame )
 /*N*/         {
 /*N*/             if ( pFrame->GetCurrentDocument() == xDoc || pFrame->PrepareClose_Impl( TRUE, TRUE ) == TRUE )
@@ -918,7 +918,7 @@ using namespace sfx2;
 //--------------------------------------------------------------------
 
 /*?*/ void SfxApplication::NewDocExec_Impl( SfxRequest& rReq )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     DBG_MEMTEST();
 //STRIP001
 //STRIP001     // keine Parameter vom BASIC nur Factory angegeben?
@@ -1030,7 +1030,7 @@ using namespace sfx2;
 //---------------------------------------------------------------------------
 
 /*?*/ void SfxApplication::OpenDocExec_Impl( SfxRequest& rReq )
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/     DBG_MEMTEST();
 //STRIP001 /*?*/
 //STRIP001 /*?*/    USHORT nSID = rReq.GetSlot();

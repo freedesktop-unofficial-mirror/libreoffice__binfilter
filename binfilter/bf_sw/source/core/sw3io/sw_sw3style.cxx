@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -903,7 +903,7 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/                   }
 /*N*/                   else if( p->pCondColls )
 /*N*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 SwTxtFmtColl* pDer = (*rDoc.GetTxtFmtColls())[ 0 ];
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTxtFmtColl* pDer = (*rDoc.GetTxtFmtColls())[ 0 ];
 //STRIP001 /*?*/                        pFmt = rDoc.MakeCondTxtFmtColl( p->GetName(), pDer );
 /*N*/                   }
 /*N*/                   else
@@ -916,7 +916,7 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/                   // im Doc gesetzt.
 /*N*/                   pFmt->SetPoolFmtId( p->nId );
 /*N*/                   if( p->aHelpFile.Len() )
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/                         pFmt->SetPoolHlpFileId
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/                      pFmt->SetPoolHlpFileId
 //STRIP001 /*?*/                            ( (BYTE) rDoc.SetDocPattern( p->aHelpFile ) );
 /*N*/                   pFmt->SetPoolHelpId( (USHORT)p->nHelpId );
 /*N*/               }
@@ -1066,7 +1066,7 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*?*/               SwTxtFmtColl* pDColl = rDoc.FindTxtFmtCollByName( pCColl->sColl );
 /*?*/               if( pDColl )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
 //STRIP001 /*?*/                            SwCollCondition( pDColl,
 //STRIP001 /*?*/                                pCColl->nCondition, pCColl->nSubCondition ));
 /*?*/               }
@@ -1153,7 +1153,7 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gelesen. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );
@@ -1309,7 +1309,7 @@ sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gespeichert. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );

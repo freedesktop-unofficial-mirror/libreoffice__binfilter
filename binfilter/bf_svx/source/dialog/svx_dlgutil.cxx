@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_dlgutil.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:42:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -215,7 +215,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*N*/ FieldUnit GetModuleFieldUnit( const SfxItemSet* pSet )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   FieldUnit eUnit = FUNIT_INCH;
 //STRIP001  const SfxPoolItem* pItem = NULL;
 //STRIP001  if ( pSet && SFX_ITEM_SET == pSet->GetItemState( SID_ATTR_METRIC, FALSE, &pItem ) )
@@ -392,7 +392,7 @@ namespace binfilter {
 
 /*?*/ long ItemToControl( long nIn, SfxMapUnit eItem, SfxFieldUnit eCtrl )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001    long nOut = 0;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     long nOut = 0;
 //STRIP001
 //STRIP001  switch ( eItem )
 //STRIP001  {

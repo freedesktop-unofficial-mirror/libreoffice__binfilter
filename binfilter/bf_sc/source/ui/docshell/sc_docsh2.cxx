@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -210,7 +210,7 @@ using namespace ::com::sun::star;
 /*?*/               const lang::Locale* pLocales = aLocales.getConstArray();
 /*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;
 //STRIP001 /*?*/                    aAsian.GetStartEndChars( pLocales[i], aForbidden.beginLine, aForbidden.endLine );
 //STRIP001 /*?*/                    LanguageType eLang = SvxLocaleToLanguage(pLocales[i]);
 //STRIP001 /*?*/                    //pDoc->SetForbiddenCharacters( eLang, aForbidden );

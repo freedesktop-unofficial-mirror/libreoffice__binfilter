@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,7 +168,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 /*N*/ SdrModel* ChartModel::AllocModel() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001
 //STRIP001 #ifdef DBG_UTIL
 //STRIP001  ByteString aBStr( aMainTitle, RTL_TEXTENCODING_ASCII_US );
 //STRIP001  CHART_TRACE1( "ChartModel::AllocModel (%s)", aBStr.GetBuffer() );

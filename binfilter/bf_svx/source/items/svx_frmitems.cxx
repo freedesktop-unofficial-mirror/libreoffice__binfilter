@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1629,7 +1629,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxShadowItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_SHADOW_END;  // SVX_SHADOW_BOTTOMRIGHT + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_SHADOW_END;  // SVX_SHADOW_BOTTOMRIGHT + 1
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -1644,14 +1644,14 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxShadowItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return GetLocation();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return GetLocation();
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*?*/ void SvxShadowItem::SetEnumValue( sal_uInt16 nVal )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    SetLocation( (const SvxShadowLocation)nVal );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     SetLocation( (const SvxShadowLocation)nVal );
 /*?*/ }
 
 // class SvxBorderLine  --------------------------------------------------
@@ -1826,7 +1826,7 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------------
 
 /*N*/ SvxBoxItem& SvxBoxItem::operator=( const SvxBoxItem& rBox )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return *this;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return *this;//STRIP001
 //STRIP001  nTopDist = rBox.nTopDist;
 //STRIP001  nBottomDist = rBox.nBottomDist;
 //STRIP001  nLeftDist = rBox.nLeftDist;
@@ -3048,7 +3048,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxFmtBreakItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_BREAK_END;   // SVX_BREAK_PAGE_BOTH + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_BREAK_END;   // SVX_BREAK_PAGE_BOTH + 1
 /*?*/ }
 
 // class SvxFmtKeepItem -------------------------------------------------
@@ -3147,7 +3147,7 @@ using namespace ::com::sun::star;
 
 /*?*/ int SvxLineItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
 /*?*/
 //STRIP001  return CmpBrdLn( pLine, ((SvxLineItem&)rAttr).GetLine() );
 /*?*/ }
@@ -3156,7 +3156,7 @@ using namespace ::com::sun::star;
 
 /*?*/ SfxPoolItem* SvxLineItem::Clone( SfxItemPool* ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new SvxLineItem( *this );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxLineItem( *this );
 /*?*/ }
 
 //STRIP001 sal_Bool SvxLineItem::QueryValue( uno::Any& rVal, BYTE nMemId ) const
@@ -3286,7 +3286,7 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxLineItem::SetLine( const SvxBorderLine* pNew )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  delete pLine;
 //STRIP001  pLine = pNew ? new SvxBorderLine( *pNew ) : 0;
 /*N*/ }
@@ -3330,7 +3330,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 /*?*/ Graphic SvxBrushItemLink_Impl::GetGraphic( const String& rLink, const String& rFilter)
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); Graphic aResult; return aResult;//STRIP001 Graphic aResult;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); Graphic aResult; return aResult;//STRIP001 Graphic aResult;
 //STRIP001  SvxBrushItem aItem( rLink, rFilter, GPOS_TILED );
 //STRIP001  const Graphic* pGraph = aItem.GetGraphic();
 //STRIP001  if( pGraph )
@@ -3342,7 +3342,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 /*?*/ CreateSvxBrushTabPage SvxBrushItemLink_Impl::GetBackgroundTabpageCreateFunc()
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
 //STRIP001  return (CreateSvxBrushTabPage)SvxBackgroundTabPage::Create;
 //STRIP001 #else
 //STRIP001  return CreateSvxBrushTabPage();
@@ -3353,7 +3353,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 /*?*/ GetSvxBrushTabPageRanges SvxBrushItemLink_Impl::GetBackgroundTabpageRanges()
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
 //STRIP001  return (GetSvxBrushTabPageRanges)SvxBackgroundTabPage::GetRanges;
 //STRIP001 #else
 //STRIP001  return GetSvxBrushTabPageRanges();
@@ -4060,7 +4060,7 @@ GraphicFilter* GetGrfFilter();
 /*?*/               // asynchrone Fall was die Benachrichtigung angeht unterschiedlich
 /*?*/               // behandelt. Der Callback erfolgt nur bei asynchronem Eintreffen
 /*?*/               // der Daten
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/
 //STRIP001 /*?*/                Link aTmp = pImpl->aDoneLink;
 //STRIP001 /*?*/                pImpl->aDoneLink = Link();
 //STRIP001 /*?*/                pImpl->xMedium->DownLoad(
@@ -4069,7 +4069,7 @@ GraphicFilter* GetGrfFilter();
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                pImpl->xMedium->DownLoad( );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pImpl->xMedium->DownLoad( );
 //STRIP001 /*?*/                DoneHdl_Impl( (SvxBrushItem*)this, 0 );
 /*?*/           }
 /*N*/       }
@@ -4110,7 +4110,7 @@ GraphicFilter* GetGrfFilter();
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxBrushItem::SetGraphic( const Graphic& rNew )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( !pStrLink )
 //STRIP001  {
 //STRIP001      if ( pImpl->pGraphicObject )
@@ -4233,7 +4233,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/   bLoadAgain( sal_True ),
 /*N*/   pStrLink(0),
 /*N*/   pStrFilter(0)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aColor = rItem.GetColor();
 //STRIP001
 //STRIP001  if( rItem.GetBitmapURL().Len() )

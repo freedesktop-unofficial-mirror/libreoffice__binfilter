@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrfld.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -153,7 +153,7 @@ namespace binfilter {
 
 int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 {
-        DBG_ASSERT(0, "STRIP"); return 0; //STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+        DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 //STRIP001  return pField->GetTyp() == ((SwFmtFld&)rAttr).GetFld()->GetTyp() &&
 //STRIP001         pField->GetFormat() == ((SwFmtFld&)rAttr).GetFld()->GetFormat();
 }
@@ -214,7 +214,7 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 /*?*/       SwUserFieldType* pType = (SwUserFieldType*)GetFld()->GetTyp();
 /*?*/       if(!pType->IsValid())
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *pTxtNd->GetDoc() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *pTxtNd->GetDoc() );
 //STRIP001 /*?*/            pType->GetValue( aCalc );
 /*?*/       }
 /*N*/   }

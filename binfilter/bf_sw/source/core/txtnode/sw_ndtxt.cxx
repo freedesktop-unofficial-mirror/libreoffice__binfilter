@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -275,11 +275,11 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       switch( ( pNd = (*this)[aTmp] )->GetNodeType() )
 /*N*/       {
 /*?*/       case ND_TABLENODE:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ((SwTableNode*)pNd)->MakeFrms( aIdx );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwTableNode*)pNd)->MakeFrms( aIdx );
 /*?*/           return pNode;
 /*?*/
 /*?*/       case ND_SECTIONNODE:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if( ((SwSectionNode*)pNd)->GetSection().IsHidden() ||
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwSectionNode*)pNd)->GetSection().IsHidden() ||
 //STRIP001 /*?*/                ((SwSectionNode*)pNd)->IsCntntHidden() )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                SwNodeIndex aTmpIdx( *pNode );
@@ -512,7 +512,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       Cut( pNode, aIdx, nSplitPos );
 /*?*/
 /*?*/       if( GetWrong() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pNode->SetWrong( GetWrong()->SplitList( nSplitPos ) );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pNode->SetWrong( GetWrong()->SplitList( nSplitPos ) );
 /*?*/
 /*?*/       SetWrongDirty( TRUE );
 /*?*/
@@ -597,7 +597,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/           }
 /*?*/       }
 /*?*/       if( pSwpHints )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          MoveTxtAttr_To_AttrSet();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           MoveTxtAttr_To_AttrSet();
 /*?*/       pNode->MakeFrms( *this );       // neue Frames anlegen.
 /*?*/       lcl_ChangeFtnRef( *this );
 /*N*/   }
@@ -615,7 +615,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       //              Attribute loeschen
 /*N*/       if( pSwpHints )
 /*N*/       {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SwTxtAttr* pHt;
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwTxtAttr* pHt;
 //STRIP001 /*?*/            xub_StrLen* pEnd;
 //STRIP001 /*?*/            for( register USHORT j = pSwpHints->Count(); j; )
 //STRIP001 /*?*/                if( ( pHt = pSwpHints->GetHt( --j ) )->DontExpand() &&
@@ -630,7 +630,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/
 /*N*/         if( pList )
 /*N*/         {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pNode->SetWrong( pList->SplitList( nSplitPos ) );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pNode->SetWrong( pList->SplitList( nSplitPos ) );
 //STRIP001 /*?*/             pWrong = pList;
 /*N*/         }
 /*N*/
@@ -697,7 +697,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( pTxtNode->GetWrong(), nOldLen );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( pTxtNode->GetWrong(), nOldLen );
 //STRIP001 /*?*/             SetWrongDirty( TRUE );
 //STRIP001 /*?*/             pWrong = NULL;
 /*N*/         }
@@ -706,7 +706,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/             pList = pTxtNode->GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_ASSERT(0, "STRIP");//STRIP001 /*?*/                 pList->Move( 0, nOldLen );
+                    DBG_BF_ASSERT(0, "STRIP");//STRIP001 /*?*/                 pList->Move( 0, nOldLen );
 //STRIP001 /*?*/                 SetWrongDirty( TRUE );
 //STRIP001 /*?*/                 pTxtNode->pWrong = NULL;
 /*N*/             }
@@ -747,7 +747,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = pTxtNode->GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( GetWrong(), Len() );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( GetWrong(), Len() );
 //STRIP001 /*?*/             SetWrongDirty( TRUE );
 //STRIP001 /*?*/             pTxtNode->pWrong = NULL;
 //STRIP001 /*?*/             SetWrong( NULL );
@@ -757,7 +757,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/             pList = GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pList->Move( 0, nLen );
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pList->Move( 0, nLen );
 //STRIP001 /*?*/                 SetWrongDirty( TRUE );
 //STRIP001 /*?*/                 pWrong = NULL;
 /*N*/             }
@@ -1230,7 +1230,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       // Wenn wir es mit einem Fussnoten-Attribut zu tun haben,
 /*N*/       // muessen wir natuerlich auch den Fussnotenbereich kopieren.
 /*N*/       case RES_TXTATR_FTN :
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          ((SwTxtFtn*)pHt)->CopyFtn( (SwTxtFtn*)pNewHt );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           ((SwTxtFtn*)pHt)->CopyFtn( (SwTxtFtn*)pNewHt );
 /*?*/           break;
 /*N*/
 /*N*/       // Beim Kopieren von Feldern in andere Dokumente
@@ -1241,7 +1241,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           {
 /*N*/               const SwFmtFld& rFld = pHt->GetFld();
 /*N*/               if( pOtherDoc )
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  ((SwTxtFld*)pHt)->CopyFld( (SwTxtFld*)pNewHt );
+                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   ((SwTxtFld*)pHt)->CopyFld( (SwTxtFld*)pNewHt );
 /*N*/
 /*N*/               // Tabellenformel ??
 /*N*/               if( RES_TABLEFLD == rFld.GetFld()->GetTyp()->Which()
@@ -1290,7 +1290,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/               const SwDoc* pDoc;
 /*?*/               if( 0!=( pDoc = ((SwTxtINetFmt*)pHt)->GetTxtNode().GetDoc() ) )
 /*?*/               {
-                        DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                    const SwCharFmts* pCharFmts = pDoc->GetCharFmts();
+                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     const SwCharFmts* pCharFmts = pDoc->GetCharFmts();
 //STRIP001 /*?*/                    const SwFmtINetFmt& rFmt = pHt->GetINetFmt();
 //STRIP001 /*?*/                    SwCharFmt* pFmt;
 //STRIP001 /*?*/                    pFmt = lcl_FindCharFmt( pCharFmts, rFmt.GetINetFmt() );
@@ -2555,7 +2555,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                       ++rTxtStt;
 /*N*/                       break;
 /*N*/                   case RES_TXTATR_HARDBLANK:
-                            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                      rTxt.SetChar( nPos, ((SwTxtHardBlank*)pAttr)->GetChar() );
+                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       rTxt.SetChar( nPos, ((SwTxtHardBlank*)pAttr)->GetChar() );
 //STRIP001 /*?*/                        ++nPos;
 //STRIP001 /*?*/                        ++nEndPos;
 /*?*/                       break;

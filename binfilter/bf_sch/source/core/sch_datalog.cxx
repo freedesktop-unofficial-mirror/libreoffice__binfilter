@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_datalog.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,7 +84,7 @@ namespace binfilter {
 //STRIP001  return mbColChanged;
 //STRIP001 }
 /*N*/ SchDataLogBook::SchDataLogBook(const SchMemChart& aMemChart)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  mnColsAdded=0;
 //STRIP001  mnRowsAdded=0;
 //STRIP001  mbGetCol=TRUE; //Achtung, nur damit es ueberhaupt definiert ist!
@@ -119,7 +119,7 @@ namespace binfilter {
 //STRIP001  }
 /*N*/ }
 /*N*/ SchDataLogBook::~SchDataLogBook()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(mpColCoordinates)
 //STRIP001      delete [] mpColCoordinates;
 //STRIP001

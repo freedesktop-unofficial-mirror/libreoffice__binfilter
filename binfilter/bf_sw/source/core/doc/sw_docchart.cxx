@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docchart.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -430,7 +430,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::SetTableName( SwFrmFmt& rTblFmt, const String &rNewName )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  const String aOldName( rTblFmt.GetName() );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const String aOldName( rTblFmt.GetName() );
 //STRIP001
 //STRIP001  BOOL bNameFound = 0 == rNewName.Len();
 //STRIP001  if( !bNameFound )

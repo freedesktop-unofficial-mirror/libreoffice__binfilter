@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfilt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -233,7 +233,7 @@ namespace binfilter {
 /*N*/ }
 
 /*?*/ const ::com::sun::star::plugin::PluginDescription* SfxFilter::GetPlugData()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  if( !bPlugDataSearched )
 //STRIP001  {
 //STRIP001      bPlugDataSearched = sal_True;
@@ -271,7 +271,7 @@ namespace binfilter {
 /*?*/ }
 
 /*?*/ sal_Bool SfxFilter::IsFirstPlugin() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const ::com::sun::star::plugin::PluginDescription* pData = GetPlugData();
 //STRIP001  if( pData )
 //STRIP001  {

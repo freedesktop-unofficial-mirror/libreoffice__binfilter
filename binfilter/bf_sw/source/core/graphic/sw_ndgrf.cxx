@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndgrf.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -300,7 +300,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // MIB 27.02.2001: Old stream must be deleted before the new one is set.
 /*N*/       if( HasStreamName() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          DelStreamName();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           DelStreamName();
 /*N*/
 /*N*/       aGrfObj.SetGraphic( *pGraphic );
 /*N*/       bReadGrf = TRUE;
@@ -309,7 +309,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // MIB 27.02.2001: Old stream must be deleted before the new one is set.
 /*?*/       if( HasStreamName() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          DelStreamName();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           DelStreamName();
 /*?*/
 /*?*/       aGrfObj = *pGrfObj;
 /*?*/       if( pGrfObj->HasUserData() && pGrfObj->IsSwappedOut() )
@@ -324,7 +324,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       if( HasStreamName() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          DelStreamName();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           DelStreamName();
 /*N*/
 /*N*/       // einen neuen Grafik-Link anlegen
 /*N*/       InsertLink( rGrfName, rFltName );
@@ -386,7 +386,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       if( !pDoc->IsInDtor() && HasStreamName() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          DelStreamName();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           DelStreamName();
 /*N*/   }
 /*N*/   //#39289# Die Frames muessen hier bereits geloescht weil der DTor der
 /*N*/   //Frms die Grafik noch fuer StopAnimation braucht.
@@ -677,7 +677,7 @@ namespace binfilter {
 /*N*/                   // its storage has to be removed.
 /*N*/                   if( pRoot == pDocStg )
 /*N*/                   {
-                            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                      refStrm.Clear();
+                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       refStrm.Clear();
 //STRIP001 /*?*/                        DelStreamName();
 /*N*/                   }
 /*N*/                   aDstStrmName.Erase();
@@ -906,7 +906,7 @@ namespace binfilter {
 /*N*/   if( IsScaleImageMap() && nGrfSize.Width() && nGrfSize.Height() )
 /*N*/   {
 /*N*/       // Image-Map an Grafik-Groesse anpassen
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        ScaleImageMap();
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScaleImageMap();
 //STRIP001 /*?*/
 //STRIP001 /*?*/        // Image-Map nicht noch einmal skalieren
 //STRIP001 /*?*/        SetScaleImageMap( FALSE );
@@ -1087,7 +1087,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       if( aGrfObj.IsSwappedOut() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          pThis->SwapIn();
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           pThis->SwapIn();
 /*N*/       aTmpGrf = aGrfObj.GetGraphic();
 /*N*/   }
 /*N*/
@@ -1121,7 +1121,7 @@ namespace binfilter {
 /*M*/   if( pGrfObj->IsInSwapOut() && (IsSelected() || bInSwapIn) )
 /*M*/       pRet = GRFMGR_AUTOSWAPSTREAM_NONE;
 /*M*/   else if( refLink.Is() )
-/*M*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if( pGrfObj->IsInSwapIn() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            // then make it by your self

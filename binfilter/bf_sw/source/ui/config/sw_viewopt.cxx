@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:13 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -623,7 +623,7 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/ {
 /*N*/   USHORT nRet = 0;
 /*N*/   if(!pShell || PTR_CAST(SwWebDocShell, pShell))
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        nRet = HTMLMODE_ON;
 //STRIP001 /*?*/        OfaHtmlOptions* pHtmlOpt = OFF_APP()->GetHtmlOptions();
 //STRIP001 /*?*/        switch ( pHtmlOpt->GetExportMode() )
@@ -839,7 +839,7 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 
  ---------------------------------------------------------------------------*/
 /*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 nFlag, BOOL bSet, BOOL bSaveInConfig )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/     if(bSet)
 //STRIP001 /*?*/         nAppearanceFlags |= nFlag;
 //STRIP001 /*?*/     else

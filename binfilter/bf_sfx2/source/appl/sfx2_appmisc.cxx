@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appmisc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -244,7 +244,7 @@ public:
 
 /*?*/ SfxViewFrame* SfxApplication::CreateViewFrame(
 /*?*/     SfxObjectShell& rDoc, sal_uInt16 nViewId, sal_Bool bHidden )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  SfxItemSet *pSet = rDoc.GetMedium()->GetItemSet();
 //STRIP001  if ( nViewId )
 //STRIP001      pSet->Put( SfxUInt16Item( SID_VIEW_ID, nViewId ) );
@@ -623,7 +623,7 @@ extern String GetUserID();
 /*N*/       // Wenn ein Sloteintrag vorhanden ist, aber keine oder eine fehlerhafte
 /*N*/       // SlotDatei, oder aber eine Slotdatei, aber kein Sloteintrag, dann
 /*N*/       // gilt dies als fehlerhafte Konfiguration
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 new SfxSpecialConfigError_Impl( String( SfxResId( RID_SPECIALCONFIG_ERROR ) ) );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 new SfxSpecialConfigError_Impl( String( SfxResId( RID_SPECIALCONFIG_ERROR ) ) );
 /*N*/   }
 /*N*/
 /*N*/       return pList;

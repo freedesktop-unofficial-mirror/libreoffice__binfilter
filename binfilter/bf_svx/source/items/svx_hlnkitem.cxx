@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_hlnkitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -299,7 +299,7 @@ namespace binfilter {
 
 /*?*/ SfxPoolItem* SvxHyperlinkItem::Clone( SfxItemPool* ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new SvxHyperlinkItem( *this );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxHyperlinkItem( *this );
 /*?*/ }
 
 /*--------------------------------------------------------------------
@@ -308,7 +308,7 @@ namespace binfilter {
 
 /*?*/ int SvxHyperlinkItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
 //STRIP001
 //STRIP001  const SvxHyperlinkItem& rItem = (const SvxHyperlinkItem&) rAttr;
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -275,7 +275,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*M*/                     bDo = TRUE;
 /*M*/                 else
 /*M*/                 {
-/*M*/                     DBG_ASSERT(0, "STRIP"); //STRIP001 bDo = pArr->IsReplacedSharedFormula();
+/*M*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDo = pArr->IsReplacedSharedFormula();
 //STRIP001 /*M*/                     if ( nOnlyNames & SC_LISTENING_NAMES_REL )
 //STRIP001 /*M*/                         bDo |= (rRef1.IsRelName() || rRef2.IsRelName());
 //STRIP001 /*M*/                     if ( nOnlyNames & SC_LISTENING_NAMES_ABS )
@@ -383,7 +383,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_REL )
 /*?*/                         bDo |= (rRef1.IsRelName() || rRef2.IsRelName());
 /*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_ABS )
-/*?*/                    {  DBG_ASSERT(0, "STRIP");} //STRIP001    bDo |= t->IsRPNReferenceAbsName();
+/*?*/                    {  DBG_BF_ASSERT(0, "STRIP");} //STRIP001    bDo |= t->IsRPNReferenceAbsName();
 /*?*/                     if ( nOnlyNames & SC_LISTENING_EXCEPT )
 /*?*/                         bDo = !bDo;
 /*N*/                 }
@@ -715,7 +715,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/   pCode = rScFormulaCell.pCode->Clone();
 /*N*/
 /*N*/     if ( nCopyFlags & 0x0001 )
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 pCode->ReadjustRelative3DReferences( rScFormulaCell.aPos, aPos );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pCode->ReadjustRelative3DReferences( rScFormulaCell.aPos, aPos );
 /*N*/
 /*N*/   // evtl. Fehler zuruecksetzen und neu kompilieren
 /*N*/   //  nicht im Clipboard - da muss das Fehlerflag erhalten bleiben
@@ -756,7 +756,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/   {
 /*N*/         if ( !bCompileLater && bClipMode )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pCode->Reset();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pCode->Reset();
 //STRIP001 /*?*/            bCompileLater = (pCode->GetNextColRowName() != NULL);
 /*N*/       }
 /*N*/         if ( !bCompileLater )
@@ -1049,7 +1049,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/   {
 /*N*/       if ( !pCode->GetLen() && aErgString.Len() && rFormula == aErgString )
 /*N*/       {   // #65994# nicht rekursiv CompileTokenArray/Compile/CompileTokenArray
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  if ( rFormula.GetChar(0) == '=' )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( rFormula.GetChar(0) == '=' )
 //STRIP001 /*?*/                pCode->AddBad( rFormula.GetBuffer() + 1 );
 //STRIP001 /*?*/            else
 //STRIP001 /*?*/                pCode->AddBad( rFormula.GetBuffer() );
@@ -1131,7 +1131,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/   {
 /*N*/       if ( !pCode->GetLen() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  if ( aFormula.GetChar(0) == '=' )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( aFormula.GetChar(0) == '=' )
 //STRIP001 /*?*/                pCode->AddBad( aFormula.GetBuffer() + 1 );
 //STRIP001 /*?*/            else
 //STRIP001 /*?*/                pCode->AddBad( aFormula.GetBuffer() );
@@ -1486,7 +1486,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/
 /*N*/       if ( pCode->IsRecalcModeForced() )
 /*N*/       {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            ULONG nValidation = ((const SfxUInt32Item*) pDocument->GetAttr(
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((const SfxUInt32Item*) pDocument->GetAttr(
 //STRIP001 /*?*/                    aPos.Col(), aPos.Row(), aPos.Tab(), ATTR_VALIDDATA ))->GetValue();
 //STRIP001 /*?*/            if ( nValidation )
 //STRIP001 /*?*/            {
@@ -1535,7 +1535,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            ULONG nValidation = ((const 
 /*?*/                 bForceTrack = !bTableOpDirty;
 /*?*/                 if ( !bTableOpDirty )
 /*?*/                 {
-/*?*/                     DBG_ASSERT(0, "STRIP"); //STRIP001 pDocument->AddTableOpFormulaCell( this );
+/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDocument->AddTableOpFormulaCell( this );
 //STRIP001 /*?*/                     bTableOpDirty = TRUE;
 /*?*/                 }
 /*N*/             }

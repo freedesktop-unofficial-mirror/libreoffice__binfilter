@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -488,7 +488,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ULONG nAnz=aMark.GetMarkCount();
 /*N*/   if (nAnz==0) return;
-/*?*/   if (nAnz==1) { DBG_ASSERT(0, "STRIP"); //STRIP001 // Sonderbehandlung fuer Einzelmarkierung
+/*?*/   if (nAnz==1) { DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Sonderbehandlung fuer Einzelmarkierung
 //STRIP001 /*?*/        SdrObject* pObj=aMark.GetMark(0)->GetObj();
 //STRIP001 /*?*/        SdrObjList* pOL=pObj->GetObjList();
 //STRIP001 /*?*/        ULONG nMax=pOL->GetObjCount();
@@ -506,7 +506,7 @@ namespace binfilter {
 //STRIP001 /*?*/        }
 //STRIP001 /*?*/        bToTopPossible=nObjNum<ULONG(nMax-1);
 //STRIP001 /*?*/        bToBtmPossible=nObjNum>nMin;
-/*N*/ } else {DBG_ASSERT(0, "STRIP"); //STRIP001  // Mehrfachselektion
+/*N*/ } else {DBG_BF_ASSERT(0, "STRIP"); //STRIP001  // Mehrfachselektion
 //STRIP001 /*?*/        ULONG nm=0;
 //STRIP001 /*?*/        SdrObjList* pOL0=NULL;
 //STRIP001 /*?*/        long nPos0=-1;
@@ -1109,7 +1109,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SdrEditView::CombineMarkedObjects(BOOL bNoPolyPoly)
-/*N*/ {{DBG_ASSERT(0, "STRIP"); } return false;//STRIP001
+/*N*/ {{DBG_BF_ASSERT(0, "STRIP"); } return false;//STRIP001
 //STRIP001  // #105899# Start of Combine-Undo put to front, else ConvertMarkedToPolyObj would
 //STRIP001  // create a 2nd Undo-action and Undo-Comment.
 //STRIP001
@@ -1357,7 +1357,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ void SdrEditView::DismantleMarkedObjects(BOOL bMakeLines)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  UINT32 nCnt(0);
 //STRIP001  // Temporaere Marklist
 //STRIP001  SdrMarkList aRemoveMerker;
@@ -1412,7 +1412,7 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrEditView::GroupMarked(const SdrObject* pUserGrp)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (HasMarkedObj()) {
 //STRIP001      BegUndo(ImpGetResStr(STR_EditGroup),aMark.GetMarkDescription(),SDRREPFUNC_OBJ_GROUP);
 //STRIP001      aMark.ForceSort();
@@ -1503,7 +1503,7 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrEditView::UnGroupMarked()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SdrMarkList aNewMark;
 //STRIP001
 //STRIP001  BegUndo(String(), String(), SDRREPFUNC_OBJ_UNGROUP);

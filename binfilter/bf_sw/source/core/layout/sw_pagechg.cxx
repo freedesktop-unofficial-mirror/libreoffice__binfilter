@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pagechg.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -728,7 +728,7 @@ namespace binfilter {
 /*N*/             break;
 /*N*/
 /*N*/       case RES_PAGEDESC_FTNINFO:
-/*N*/           DBG_ASSERT(0, "STRIP"); //STRIP001 //Die derzeit einzig sichere Methode:
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //Die derzeit einzig sichere Methode:
 //STRIP001 /*?*/            ((SwRootFrm*)GetUpper())->SetSuperfluous();
 //STRIP001 /*?*/            SetMaxFtnHeight( pDesc->GetFtnInfo().GetHeight() );
 //STRIP001 /*?*/            if ( !GetMaxFtnHeight() )
@@ -1939,7 +1939,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                   ((const SwTabFrm *)pFrm)->GetTable()
 /*N*/                                           ->GetHTMLTableLayout();
 /*N*/               if ( pLayoutInfo )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    nWidth = Min( nWidth, pLayoutInfo->GetBrowseWidthMin() );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nWidth = Min( nWidth, pLayoutInfo->GetBrowseWidthMin() );
 /*N*/
 /*N*/               switch ( rHori.GetHoriOrient() )
 /*N*/               {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_asciiopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -487,7 +487,7 @@ static const sal_Char __FAR_DATA pStrMrg[] = "MRG";
 
 void lcl_FillCombo( ComboBox& rCombo, const String& rList, sal_Unicode cSelect )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen i;
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen i;
 //STRIP001  xub_StrLen nCount = rList.GetTokenCount('\t');
 //STRIP001  for ( i=0; i<nCount; i+=2 )
 //STRIP001      rCombo.InsertEntry( rList.GetToken(i,'\t') );
@@ -508,7 +508,7 @@ void lcl_FillCombo( ComboBox& rCombo, const String& rList, sal_Unicode cSelect )
 sal_Unicode lcl_CharFromCombo( ComboBox& rCombo, const String& rList )
 {
     sal_Unicode c = 0;
-    DBG_ASSERT(0, "STRIP"); //STRIP001 String aStr = rCombo.GetText();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aStr = rCombo.GetText();
 //STRIP001  if ( aStr.Len() )
 //STRIP001  {
 //STRIP001      xub_StrLen nCount = rList.GetTokenCount('\t');

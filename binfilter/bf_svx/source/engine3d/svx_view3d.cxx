@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_view3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -770,7 +770,7 @@ long DistPoint2Line (Point u,
 /*?*/       SdrObject *pObj = aMark.GetMark(a)->GetObj();
 /*?*/       if(pObj)
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ImpIsConvertTo3DPossible(pObj, bAny3D, bGroupSelected);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpIsConvertTo3DPossible(pObj, bAny3D, bGroupSelected);
 /*?*/       }
 /*N*/   }
 /*N*/

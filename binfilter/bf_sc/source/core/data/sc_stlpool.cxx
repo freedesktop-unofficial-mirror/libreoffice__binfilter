@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_stlpool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -181,7 +181,7 @@ namespace binfilter {
 
 /*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
 //STRIP001  return new ScStyleSheet( (const ScStyleSheet&) rStyle );
 /*N*/ }
 

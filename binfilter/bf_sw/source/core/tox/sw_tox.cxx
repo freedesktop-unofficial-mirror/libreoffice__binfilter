@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tox.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -425,7 +425,7 @@ namespace binfilter {
 /*N*/       for( USHORT i = 1; i < GetFormMax(); ++i, ++nPoolId )    // Nr 0 ist der Titel
 /*N*/       {
 /*N*/           if(TOX_AUTHORITIES == nType)
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001    SetPattern(i, lcl_GetAuthPattern(i));
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetPattern(i, lcl_GetAuthPattern(i));
 /*N*/           else
 /*N*/               SetPattern( i, sStr );
 /*N*/
@@ -782,7 +782,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   xub_StrLen nOpenPos = sRet.Search('<', nOpenStart);
 /*N*/   if(nOpenPos != STRING_NOTFOUND && nOpenPos > 0)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern( sRet, 0, nOpenPos);
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern( sRet, 0, nOpenPos);
 //STRIP001 /*?*/        nCloseStart += nOffset;
 //STRIP001 /*?*/        nClosePos += nOffset;
 //STRIP001 /*?*/        nOpenStart = nClosePos;
@@ -794,7 +794,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   {
 /*N*/       if(nClosePos < nOpenPos - 1)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, nOpenPos);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, nOpenPos);
 //STRIP001 /*?*/            nOpenStart += nOffset;
 //STRIP001 /*?*/            nCloseStart = nOpenStart;
 /*N*/       }
@@ -808,7 +808,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   }
 /*N*/   //is there any text at the end?
 /*N*/   if(nClosePos != STRING_NOTFOUND && nClosePos < sRet.Len() - 1)
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, sRet.Len());
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, sRet.Len());
 /*N*/   if(eType != TOX_INDEX)
 /*N*/   {
 /*N*/       // set most left tab stop to right alignment and FillChar == '.'

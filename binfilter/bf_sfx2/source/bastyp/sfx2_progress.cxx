@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_progress.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -245,7 +245,7 @@ extern ULONG Get10ThSec();
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->LockDispatcher( !bEnable );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->LockDispatcher( !bEnable );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -326,7 +326,7 @@ extern ULONG Get10ThSec();
 /*N*/   if ( pObjSh )
 /*N*/       pObjSh->SetProgress_Impl(this);
 /*N*/   else if( !pImp->pActiveProgress )
-/*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->SetProgress_Impl(this);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->SetProgress_Impl(this);
 /*N*/   Resume();
 /*N*/ }
 
@@ -385,7 +385,7 @@ extern ULONG Get10ThSec();
 /*N*/   if ( pImp->xObjSh.Is() )
 /*N*/       pImp->xObjSh->SetProgress_Impl(0);
 /*N*/   else
-/*?*/         {DBG_ASSERT(0, "STRIP"); }//STRIP001 SFX_APP()->SetProgress_Impl(0);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SFX_APP()->SetProgress_Impl(0);
 /*N*/   if ( pImp->bLocked )
 /*N*/         pImp->Enable_Impl(TRUE);
 /*N*/ }
@@ -403,7 +403,7 @@ extern ULONG Get10ThSec();
     angezeigt wird.
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( pImp->pActiveProgress ) return;
 //STRIP001  if ( pImp->pMgr && pImp->pMgr->IsProgressMode() )
 //STRIP001  {
@@ -467,7 +467,7 @@ static ULONG nLastTime = 0;
 // -----------------------------------------------------------------------
 
 /*N*/ IMPL_STATIC_LINK( SfxProgress, DefaultBindingProgress, SvProgressArg*, pArg )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( !nLastTime )
 //STRIP001  {
 //STRIP001      Timer *pTimer = new Timer();

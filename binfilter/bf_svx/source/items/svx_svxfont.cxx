@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxfont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -616,14 +616,14 @@ public:
 /*?*/
 /*?*/   if( IsCapital() )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        DBG_ASSERT( !pDXArray, "DrawCapital nicht fuer TextArray!" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         DBG_ASSERT( !pDXArray, "DrawCapital nicht fuer TextArray!" );
 //STRIP001 /*?*/        DrawCapital( pOut, aPos, rTxt, nIdx, nLen );
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       if ( IsKern() && !pDXArray )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            Size aSize = GetPhysTxtSize( pOut, rTxt, nIdx, nLen );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             Size aSize = GetPhysTxtSize( pOut, rTxt, nIdx, nLen );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            if ( !IsCaseMap() )
 //STRIP001 /*?*/                pOut->DrawStretchText( aPos, aSize.Width(), rTxt, nIdx, nLen );

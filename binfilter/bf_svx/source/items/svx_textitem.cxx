@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -321,7 +321,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 /*?*/ int SvxFontListItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
 //STRIP001
 //STRIP001  return( pFontList == ((SvxFontListItem&)rAttr).pFontList );
 /*?*/ }
@@ -583,7 +583,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 /*?*/ USHORT SvxPostureItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 /*?*/     return ITALIC_NORMAL + 1;   // auch ITALIC_NONE geh"ort dazu
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 /*?*/  return ITALIC_NORMAL + 1;   // auch ITALIC_NONE geh"ort dazu
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -750,7 +750,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 /*?*/ USHORT SvxWeightItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return WEIGHT_BLACK;    // WEIGHT_DONTKNOW geh"ort nicht dazu
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return WEIGHT_BLACK;    // WEIGHT_DONTKNOW geh"ort nicht dazu
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -2241,7 +2241,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxCaseMapItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_CASEMAP_END; // SVX_CASEMAP_KAPITAELCHEN + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_CASEMAP_END; // SVX_CASEMAP_KAPITAELCHEN + 1
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -2418,7 +2418,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxEscapementItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_ESCAPEMENT_END;  // SVX_ESCAPEMENT_SUBSCRIPT + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ESCAPEMENT_END;  // SVX_ESCAPEMENT_SUBSCRIPT + 1
 /*?*/ }
 
 //------------------------------------------------------------------------
@@ -2466,7 +2466,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxEscapementItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001    if ( nEsc < 0 )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     if ( nEsc < 0 )
 //STRIP001      return SVX_ESCAPEMENT_SUBSCRIPT;
 //STRIP001  else if ( nEsc > 0 )
 //STRIP001      return SVX_ESCAPEMENT_SUPERSCRIPT;
@@ -2477,7 +2477,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ void SvxEscapementItem::SetEnumValue( USHORT nVal )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    SetEscapement( (const SvxEscapement)nVal );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     SetEscapement( (const SvxEscapement)nVal );
 /*?*/ }
 
 /*-----------------13.03.98 17:05-------------------
@@ -2560,7 +2560,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxLanguageItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return LANGUAGE_COUNT;  // aus tlintl.hxx
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return LANGUAGE_COUNT;  // aus tlintl.hxx
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -3042,7 +3042,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ int SvxTwoLinesItem::operator==( const SfxPoolItem& rAttr ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rAttr ), "not equal attribute types" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rAttr ), "not equal attribute types" );
 //STRIP001  return bOn == ((SvxTwoLinesItem&)rAttr).bOn &&
 //STRIP001         cStartBracket == ((SvxTwoLinesItem&)rAttr).cStartBracket &&
 //STRIP001         cEndBracket == ((SvxTwoLinesItem&)rAttr).cEndBracket;
@@ -3050,7 +3050,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ SfxPoolItem* SvxTwoLinesItem::Clone( SfxItemPool* ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new SvxTwoLinesItem( *this );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxTwoLinesItem( *this );
 /*?*/ }
 
 //STRIP001 sal_Bool SvxTwoLinesItem::QueryValue( ::com::sun::star::uno::Any& rVal,
@@ -3554,7 +3554,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ }
 
 /*N*/ SfxPoolItem* SvxScriptSetItem::Clone( SfxItemPool *pPool ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001 /*N*/    SvxScriptSetItem* p = new SvxScriptSetItem( Which(), *GetItemSet().GetPool() );
 //STRIP001 /*N*/    p->GetItemSet().Put( GetItemSet(), FALSE );
 //STRIP001 /*N*/    return p;

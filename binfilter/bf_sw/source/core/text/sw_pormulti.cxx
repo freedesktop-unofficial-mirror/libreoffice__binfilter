@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pormulti.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -320,7 +320,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwBidiPortion::SwBidiPortion( xub_StrLen nEnd, BYTE nLv )
 /*N*/     : SwMultiPortion( nEnd ), nLevel( nLv )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/     SetBidi();
 //STRIP001 /*?*/
 //STRIP001 /*?*/     if ( nLevel % 2 )
@@ -1025,7 +1025,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     BYTE nCurrLevel;
 /*N*/     if ( pMulti )
 /*N*/     {
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         ASSERT( pMulti->IsBidi(), "Nested MultiPortion is not BidiPortion" )
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         ASSERT( pMulti->IsBidi(), "Nested MultiPortion is not BidiPortion" )
 //STRIP001 /*?*/         // level associated with bidi-portion;
 //STRIP001 /*?*/         nCurrLevel = ((SwBidiPortion*)pMulti)->GetLevel();
 /*N*/     }
@@ -2427,7 +2427,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // If we are already in a multiportion, we could change to the
 /*N*/       // next line
 /*N*/       if( !pPor && pTmpMulti )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/      {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
 //STRIP001 /*?*/            if( pMulti )
 //STRIP001 /*?*/            {   // We're already inside the multiportion, let's take the second
 //STRIP001 /*?*/                // line, if we are in a double line portion
@@ -2469,7 +2469,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   }
 /*N*/   if( !pMulti )
 /*N*/       return pRest;
-/*N*/ {DBG_ASSERT(0, "STRIP");}
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");}
 //STRIP001 /*?*/    nPos = nMultiPos + pMulti->GetLen();
 //STRIP001 /*?*/ #ifdef BIDI
 //STRIP001 /*?*/     SwMultiCreator* pCreate = GetInfo().GetMultiCreator( nMultiPos, 0 );

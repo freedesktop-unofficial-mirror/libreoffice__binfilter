@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 10:58:43 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1200,7 +1200,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/       }
 /*N*/
 /*N*/   if (pEngine)
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pEngine->SetStatusEventHdl( LINK( this, ScViewData, EmptyEditHdl ) );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pEngine->SetStatusEventHdl( LINK( this, ScViewData, EmptyEditHdl ) );
 /*N*/ }
 
 /*N*/ void ScViewData::KillEditView()
@@ -1583,7 +1583,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/   {
 /*?*/       //! public Methode um Position anzupassen
 /*?*/
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bHOver = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHOver = FALSE;
 //STRIP001 /*?*/        while (pDoc->IsHorOverlapped( rPosX, rPosY, nTabNo ))
 //STRIP001 /*?*/            { --rPosX; bHOver=TRUE; }
 //STRIP001 /*?*/        BOOL bVOver = FALSE;
@@ -1895,7 +1895,7 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 /*N*/
 /*N*/   if ( pDoc && pDoc->HasDetectiveObjects(nTabNo) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nEndCol = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nEndCol = 0;
 //STRIP001 /*?*/        USHORT nDummy = 0;
 //STRIP001 /*?*/        pDoc->GetTableArea( nTabNo, nEndCol, nDummy );
 //STRIP001 /*?*/        if (nEndCol<20)

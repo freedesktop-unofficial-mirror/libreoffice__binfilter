@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chartarr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,7 +122,7 @@ namespace binfilter {
 /*N*/       bDummyUpperLeft( FALSE ),
 /*N*/       bValid( TRUE )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 SetRangeList( ScRange( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab ) );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRangeList( ScRange( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab ) );
 //STRIP001 /*?*/    CheckColRowHeaders();
 /*N*/ }
 /*N*/
@@ -140,7 +140,7 @@ namespace binfilter {
 /*N*/       bDummyUpperLeft( FALSE ),
 /*N*/       bValid( TRUE )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( aRangeListRef.Is() )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aRangeListRef.Is() )
 //STRIP001 /*?*/        CheckColRowHeaders();
 /*N*/ }
 /*N*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appcfg.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -290,7 +290,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 //--------------------------------------------------------------------
 
 /*?*/ BOOL SfxApplication::GetOptions( SfxItemSet& rSet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     BOOL bRet = FALSE;
 //STRIP001     SfxItemPool &rPool = GetPool();
 //STRIP001  String aTRUEStr = 0x0031; // ^= '1'
@@ -1155,7 +1155,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 //--------------------------------------------------------------------
 
 /*?*/ void SfxApplication::SetOptions(const SfxItemSet &rSet)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SvtPathOptions aPathOptions;
 //STRIP001
 //STRIP001  // Daten werden in DocInfo und IniManager gespeichert
@@ -1325,7 +1325,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 /*N*/     }
 /*N*/
 /*N*/     if ( bAutoSave )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         SaveAll_Impl( aSaveOptions.IsAutoSavePrompt(), TRUE );
 //STRIP001 /*?*/        pImp->bAutoSaveNow = FALSE;
 //STRIP001 /*?*/        pImp->pAutoSaveTimer->SetTimeout( aSaveOptions.GetAutoSaveTime() * 60000 );
@@ -1402,7 +1402,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 
 /*N*/ SfxMacroConfig* SfxApplication::GetMacroConfig() const
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001   return SfxMacroConfig::GetOrCreate();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001   return SfxMacroConfig::GetOrCreate();
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -1435,7 +1435,7 @@ const USHORT* SfxApplication::GetOptionsRanges() const
 /*N*/ //(mba/task): Implementierung fehlt
 /*N*/
 /*N*/     if ( !pCfgMgr->StoreConfiguration() )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         HandleConfigError_Impl( (sal_uInt16)pCfgMgr->GetErrorCode() );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         HandleConfigError_Impl( (sal_uInt16)pCfgMgr->GetErrorCode() );
 /*N*/
 /*N*/     ::utl::ConfigManager::GetConfigManager()->StoreConfigItems();
 /*N*/ }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -822,7 +822,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*N*/ void SdrModel::AddUndo(SdrUndoAction* pUndo)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (pAktUndoGroup!=NULL) {
 //STRIP001      pAktUndoGroup->AddAction(pUndo);
 //STRIP001  } else {
@@ -872,7 +872,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SdrModel* SdrModel::AllocModel() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   SdrModel* pModel=new SdrModel;
 //STRIP001  pModel->SetScaleUnit(eObjUnit,aObjUnit);
 /*N*/   return pModel;
@@ -1635,7 +1635,7 @@ using namespace ::com::sun::star;
 /*N*/   pPage->SetInserted(TRUE);
 /*N*/   pPage->SetPageNum(nPos);
 /*N*/   pPage->SetModel(this);
-/*N*/   if (nPos<nAnz) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        bMPgNumsDirty=TRUE;
 //STRIP001 /*?*/        // Anpassen der MasterPageDescriptoren
 //STRIP001 /*?*/        USHORT nPageAnz=GetPageCount();

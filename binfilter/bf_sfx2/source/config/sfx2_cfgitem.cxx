@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,7 +129,7 @@ namespace binfilter {
 /*N*/ }
 
 /*?*/ void SfxConfigItem::ReConnect( SfxConfigManager* pMgr )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( m_pCfgMgr )
 //STRIP001     {
 //STRIP001         if ( m_bModified )
@@ -146,7 +146,7 @@ namespace binfilter {
 /*?*/ }
 
 /*?*/ BOOL SfxConfigItem::ReInitialize()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 //STRIP001     m_bInitialized = FALSE;
 //STRIP001     return Initialize();
 /*?*/ }

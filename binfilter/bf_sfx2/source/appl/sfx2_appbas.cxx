@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appbas.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -746,7 +746,7 @@ SbxVariable* SfxConstants_Impl::Find
 //--------------------------------------------------------------------
 
 /*?*/ Reference< XLibraryContainer > SfxApplication::GetBasicContainer()
-/*?*/ {DBG_ASSERT(0, "STRIP");  Reference< XLibraryContainer > xRet; return xRet;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");   Reference< XLibraryContainer > xRet; return xRet;//STRIP001
 //STRIP001  Reference< XLibraryContainer > xRet
 //STRIP001      = static_cast< XLibraryContainer* >( pImp->pBasicLibContainer );
 //STRIP001  return xRet;
@@ -988,7 +988,7 @@ SbxVariable* SfxConstants_Impl::Find
 
 //-------------------------------------------------------------------------
 /*?*/ void SfxApplication::PropState_Impl( SfxItemSet &rSet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SfxViewFrame *pFrame = SfxViewFrame::Current();
 //STRIP001  SfxWhichIter aIter(rSet);
 //STRIP001  for ( sal_uInt16 nSID = aIter.FirstWhich(); nSID; nSID = aIter.NextWhich() )
@@ -1151,7 +1151,7 @@ SbxVariable* SfxConstants_Impl::Find
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::MacroExec_Impl( SfxRequest& rReq )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001  if ( SfxMacroConfig::IsMacroSlot( rReq.GetSlot() ) )
 //STRIP001  {
@@ -1170,7 +1170,7 @@ SbxVariable* SfxConstants_Impl::Find
 
 //--------------------------------------------------------------------
 /*N*/ void SfxApplication::MacroState_Impl( SfxItemSet& rSet )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001
 //STRIP001    // Gestrichen, da zu teuer! Ausserdem waere ein EnterBasicCall noetig

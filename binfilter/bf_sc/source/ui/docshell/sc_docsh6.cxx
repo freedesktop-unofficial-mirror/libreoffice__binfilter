@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh6.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -283,7 +283,7 @@ namespace binfilter {
 /*?*/       if (pViewSh)
 /*?*/       {
 /*?*/           if (pViewSh->GetViewData()->GetDocShell() == this)
-/*?*/           {   DBG_ASSERT(0, "STRIP"); }//STRIP001 pViewSh->UpdateOleZoom();
+/*?*/           {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pViewSh->UpdateOleZoom();
 /*?*/       }
 /*?*/       //else
 /*?*/       //  DataChanged( SvDataType() );            // fuer Zuppeln wenn nicht IP-aktiv
@@ -291,7 +291,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if (aDocument.IsEmbedded())
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScTripel aOldStart,aOldEnd;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTripel aOldStart,aOldEnd;
 //STRIP001 /*?*/        aDocument.GetEmbedded(aOldStart,aOldEnd);
 //STRIP001 /*?*/        aDocument.SetEmbedded( aArea );
 //STRIP001 /*?*/        ScTripel aNewStart,aNewEnd;
@@ -367,7 +367,7 @@ namespace binfilter {
 
 /*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* pStylePool )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 pStylePool->SetSearchMask(SFX_STYLE_FAMILY_PAGE, 0xffff);
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pStylePool->SetSearchMask(SFX_STYLE_FAMILY_PAGE, 0xffff);
 //STRIP001 /*N*/    SfxStyleSheetBase *pStyle = pStylePool->First();
 //STRIP001 /*N*/    while ( pStyle )
 //STRIP001 /*N*/    {
@@ -504,7 +504,7 @@ namespace binfilter {
 /*?*/       ::so3::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
 /*?*/       if (pBase->ISA(ScTableLink))
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScTableLink* pTabLink = (ScTableLink*)pBase;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTableLink* pTabLink = (ScTableLink*)pBase;
 //STRIP001 /*?*/            if (pTabLink->IsUsed())
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                StrData* pData = new StrData(pTabLink->GetFileName());

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdocapt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -673,10 +673,10 @@ namespace binfilter {
 /*N*/ void SdrCaptionObj::ImpCalcTail(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const
 /*N*/ {
 /*N*/   switch (rPara.eType) {
-/*?*/       case SDRCAPT_TYPE1: DBG_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail1(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE2: DBG_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail2(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail1(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail2(rPara,rPoly,rRect); break;
 /*N*/       case SDRCAPT_TYPE3: ImpCalcTail3(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE4: DBG_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail4(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail4(rPara,rPoly,rRect); break;
 /*N*/   }
 /*N*/ }
 

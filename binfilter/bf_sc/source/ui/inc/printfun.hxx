@@ -2,9 +2,9 @@
  *
  *  $RCSfile: printfun.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:03 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -328,7 +328,7 @@ public:
     void            ResetBreaks( USHORT nTab );
 
 //STRIP001  void            GetPrintState( ScPrintState& rState );
-    BOOL            GetLastSourceRange( ScRange& rRange ) const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 BOOL          GetLastSourceRange( ScRange& rRange ) const;
+    BOOL            GetLastSourceRange( ScRange& rRange ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 BOOL           GetLastSourceRange( ScRange& rRange ) const;
 
 #ifdef _PRINTFUN_CXX
 private:

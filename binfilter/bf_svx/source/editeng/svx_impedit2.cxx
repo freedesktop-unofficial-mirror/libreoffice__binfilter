@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: cl $ $Date: 2004-04-02 07:48:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -833,7 +833,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   // Leere Attribute loeschen, aber nur, wenn Absatz nicht leer!
 /*N*/   if ( pPrevNode->GetCharAttribs().HasEmptyAttribs() && pPrevNode->Len() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pPrevNode->GetCharAttribs().DeleteEmptyAttribs( aEditDoc.GetItemPool() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pPrevNode->GetCharAttribs().DeleteEmptyAttribs( aEditDoc.GetItemPool() );
 /*N*/ }
 
 /*N*/ void ImpEditEngine::TextModified()
@@ -842,7 +842,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTMODIFIED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTMODIFIED );
 //STRIP001 /*?*/         aNotify.pEditEngine = GetEditEnginePtr();
 //STRIP001 /*?*/         CallNotify( aNotify );
 /*N*/     }
@@ -2059,7 +2059,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new EditUndoConnectParas( this,
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new EditUndoConnectParas( this,
 //STRIP001 /*?*/            aEditDoc.GetPos( pLeft ), pLeft->Len(),
 //STRIP001 /*?*/            pLeft->GetContentAttribs().GetItems(), pRight->GetContentAttribs().GetItems(),
 //STRIP001 /*?*/            pLeft->GetStyleSheet(), pRight->GetStyleSheet(), bBackward ) );
@@ -2085,7 +2085,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( GetStatus().DoOnlineSpelling() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = pLeft->Len();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = pLeft->Len();
 //STRIP001 /*?*/        xub_StrLen nInv = nEnd ? nEnd-1 : nEnd;
 //STRIP001 /*?*/        pLeft->GetWrongList()->ClearWrongs( nInv, 0xFFFF, pLeft );  // Evtl. einen wegnehmen
 //STRIP001 /*?*/        pLeft->GetWrongList()->MarkInvalid( nInv, nEnd+1 );
@@ -2231,7 +2231,7 @@ using namespace ::com::sun::star;
 /*N*/   for ( ULONG z = nStartNode+1; z < nEndNode; z++ )
 /*N*/   {
 /*?*/       // Immer nStartNode+1, wegen Remove()!
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ImpRemoveParagraph( nStartNode+1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpRemoveParagraph( nStartNode+1 );
 /*N*/   }
 /*N*/
 /*N*/   if ( aStartPaM.GetNode() != aEndPaM.GetNode() )
@@ -2530,7 +2530,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( GetStatus().DoOnlineSpelling() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = rPaM.GetNode()->Len();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xub_StrLen nEnd = rPaM.GetNode()->Len();
 //STRIP001 /*?*/        aPaM.GetNode()->CreateWrongList();
 //STRIP001 /*?*/        WrongList* pLWrongs = rPaM.GetNode()->GetWrongList();
 //STRIP001 /*?*/        WrongList* pRWrongs = aPaM.GetNode()->GetWrongList();
@@ -2584,7 +2584,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if ( nPara )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nPara )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            DBG_ASSERT( aEditDoc.SaveGetObject( nPara-1 ), "FastInsertParagraph: Prev existiert nicht" );
 //STRIP001 /*?*/            InsertUndo( new EditUndoSplitPara( this, nPara-1, aEditDoc.GetObject( nPara-1 )->Len() ) );
@@ -3469,7 +3469,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nCurIndex && ( nCurIndex == pLine->GetEnd() ) &&
 /*N*/        ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) ) )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 aPaM = CursorLeft( aPaM, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aPaM = CursorLeft( aPaM, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
 /*N*/     }
 /*N*/
 /*N*/   return aPaM;

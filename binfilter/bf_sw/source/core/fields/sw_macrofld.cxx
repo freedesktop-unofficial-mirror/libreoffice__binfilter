@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_macrofld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,7 +93,7 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwMacroFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001   SwMacroFieldType* pType = new SwMacroFieldType(pDoc);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType* pType = new SwMacroFieldType(pDoc);
 //STRIP001  return pType;
 /*N*/ }
 

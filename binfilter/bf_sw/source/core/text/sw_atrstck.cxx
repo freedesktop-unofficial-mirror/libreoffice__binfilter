@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrstck.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -486,7 +486,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 {
 /*M*/                     // we let pItem change rFnt
 /*M*/                     if ( lcl_ChgHyperLinkColor( rAttr, *pItem, pShell ) )
-/*M*/                     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*M*/                         // for hyperlinks we still have to evaluate
 /*M*/                         // the appearence settings
 //STRIP001 /*?*/                         Color aColor;
@@ -641,7 +641,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             {
 /*M*/                 // for hyperlinks we still have to evaluate
 /*M*/                 // the appearence settings
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 Color aColor;
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Color aColor;
 //STRIP001 /*?*/                 if ( ((SwTxtINetFmt*)pTopAt)->IsVisited() )
 //STRIP001 /*?*/                     aColor = SwViewOption::GetVisitedLinksColor();
 //STRIP001 /*?*/                 else
@@ -669,7 +669,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     {
 /*M*/         // ruby stack has no more attributes
 /*M*/         // check, if an rotation attribute has to be applied
-/*?*/        DBG_ASSERT(0, "STRIP"); //STRIP001  USHORT nTwoLineStack = StackPos[ RES_CHRATR_TWO_LINES ];
+/*?*/        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  USHORT nTwoLineStack = StackPos[ RES_CHRATR_TWO_LINES ];
 //STRIP001 /*?*/         sal_Bool bTwoLineAct = sal_False;
 //STRIP001 /*?*/         const SfxPoolItem* pTwoLineItem = 0;
 //STRIP001 /*?*/         const SwTxtAttr* pTwoLineAttr = aAttrStack[ nTwoLineStack ].Top();
@@ -847,7 +847,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/
 /*M*/             if ( pTwoLineAttr )
 /*M*/             {
-/*?*/                DBG_ASSERT(0, "STRIP"); //STRIP001  pTwoLineItem = lcl_GetItem( *pTwoLineAttr, RES_CHRATR_TWO_LINES );
+/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pTwoLineItem = lcl_GetItem( *pTwoLineAttr, RES_CHRATR_TWO_LINES );
 /*?*/                 bTwoLineAct = ((SvxTwoLinesItem*)pTwoLineItem)->GetValue();
 /*M*/             }
 /*M*/             else
@@ -888,7 +888,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/
 /*M*/             if ( pRotateAttr )
 /*M*/             {
-/*?*/                DBG_ASSERT(0, "STRIP"); //STRIP001  pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
+/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
 //STRIP001 /*?*/                 rFnt.SetVertical( ((SvxCharRotateItem*)pRotateItem)->GetValue(),
 //STRIP001 /*M*/                                    bVertLayout );
 /*M*/             }

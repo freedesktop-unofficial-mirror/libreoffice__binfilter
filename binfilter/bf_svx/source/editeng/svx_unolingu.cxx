@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -466,7 +466,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/         ThesDummy_Impl::getLocales()
 /*N*/             throw(uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa; //STRIP001
 //STRIP001     if (SvxLinguConfigUpdate::IsUpdated())
 //STRIP001         GetThes_Impl();
 //STRIP001     if (xThes.is())
@@ -508,7 +508,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/                 const beans::PropertyValues& rProperties )
 /*N*/             throw(lang::IllegalArgumentException,
 /*N*/                   uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
 //STRIP001 /*?*/     GetThes_Impl();
 //STRIP001 /*?*/     uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;
 //STRIP001 /*?*/     DBG_ASSERT( xThes.is(), "Thesaurus missing" );
@@ -557,7 +557,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ void SpellDummy_Impl::GetSpell_Impl()
-/*N*/ { DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     // update configuration before accessing the service
 //STRIP001     if (!SvxLinguConfigUpdate::IsUpdated())
 //STRIP001         SvxLinguConfigUpdate::UpdateAll();
@@ -574,7 +574,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< sal_Int16 > SAL_CALL
 /*N*/     SpellDummy_Impl::getLanguages()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >(); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >(); //STRIP001
 //STRIP001     GetSpell_Impl();
 //STRIP001     if (xSpell.is())
 //STRIP001         return xSpell->getLanguages();
@@ -586,7 +586,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ sal_Bool SAL_CALL
 /*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 nLanguage )
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 //STRIP001     GetSpell_Impl();
 //STRIP001     BOOL bRes = FALSE;
 //STRIP001     if (xSpell.is())
@@ -614,7 +614,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/             const beans::PropertyValues& rProperties )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001
 //STRIP001     GetSpell_Impl();
 //STRIP001     uno::Reference< linguistic2::XSpellAlternatives > xRes;
 //STRIP001     if (xSpell.is())
@@ -693,7 +693,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/     HyphDummy_Impl::getLocales()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();//STRIP001
 //STRIP001     GetHyph_Impl();
 //STRIP001     if (xHyph.is())
 //STRIP001         return xHyph->getLocales();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbg_lay.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -116,7 +116,7 @@ public:
     static ULONG Record() { return nRecord; }
     static void SetRecord( ULONG nNew ) { nRecord = nNew; }
     static BOOL Record( ULONG nFunc ) { return 0 != (( nFunc | PROT_INIT ) & nRecord); }
-    static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_ASSERT(0, "STRIP");} //STRIP001 static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam );
+    static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam );
     static void Init();
     static void Stop();
 //STRIP001     static void SnapShot( const SwFrm* pFrm, ULONG nFlags );
@@ -126,8 +126,8 @@ public:
 class SwEnterLeave
 {
     SwImplEnterLeave* pImpl;
-    void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar ){DBG_ASSERT(0, "STRIP");} //STRIP001 void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar );
-    void Dtor(){DBG_ASSERT(0, "STRIP");} //STRIP001 void Dtor();
+    void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar );
+    void Dtor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void Dtor();
 public:
      SwEnterLeave( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar )
     { if( SwProtocol::Record( nFunc ) ) Ctor( pFrm, nFunc, nAct, pPar ); else pImpl = NULL; }

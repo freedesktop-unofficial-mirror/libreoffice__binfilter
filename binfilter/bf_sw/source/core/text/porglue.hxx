@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porglue.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,7 +91,7 @@ public:
     inline void MoveAllGlue( SwGluePortion *pTarget );
     inline void MoveHalfGlue( SwGluePortion *pTarget );
     inline void AdjFixWidth();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");};//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");};//STRIP001   virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 //STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
 //STRIP001  virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
 //STRIP001  virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;

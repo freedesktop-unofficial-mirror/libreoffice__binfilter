@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_widorp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,7 +187,7 @@ namespace binfilter {
 /*N*/
 /*N*/     SwTwips nTmpY;
 /*N*/     if ( pFrm->IsVertical() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( rLine.Y() + rLine.GetLineHeight() );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( rLine.Y() + rLine.GetLineHeight() );
 /*N*/     else
 /*N*/         nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
@@ -440,7 +440,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/
 /*N*/     if ( bVert )
 /*N*/     {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( nTmpY );
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( nTmpY );
 //STRIP001 /*?*/         nOldHeight = -(pFrm->Prt().*fnRect->fnGetHeight)();
 /*N*/     }
 /*N*/     else

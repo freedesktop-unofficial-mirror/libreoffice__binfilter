@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itradj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -201,7 +201,7 @@ namespace binfilter {
 /*N*/       if ( pPos->InTxtGrp() )
 /*N*/           nGluePortion += ((SwTxtPortion*)pPos)->GetSpaceCnt( GetInfo(), nCharCnt );
 /*N*/       else if( pPos->IsMultiPortion() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/      {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
 //STRIP001 /*?*/            SwMultiPortion* pMulti = (SwMultiPortion*)pPos;
 //STRIP001 /*?*/            // a multiportion with a tabulator inside breaks the text adjustment
 //STRIP001 /*?*/            // a ruby portion will not be stretched by text adjustment
@@ -629,7 +629,7 @@ namespace binfilter {
 /*N*/
 /*N*/     SwRect aLineVert( rCurrRect );
 /*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchLTRtoRTL( aLineVert );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchLTRtoRTL( aLineVert );
 /*N*/     if ( GetTxtFrm()->IsVertical() )
 /*?*/         GetTxtFrm()->SwitchHorizontalToVertical( aLineVert );
 /*N*/
@@ -637,9 +637,9 @@ namespace binfilter {
 /*N*/     SwRect aFlyRect( aTxtFly.GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchRTLtoLTR( aFlyRect );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchRTLtoLTR( aFlyRect );
 /*N*/     if ( GetTxtFrm()->IsVertical() )
-/*?*/         {DBG_ASSERT(0, "STRIP"); }//STRIP001 GetTxtFrm()->SwitchVerticalToHorizontal( aFlyRect );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 GetTxtFrm()->SwitchVerticalToHorizontal( aFlyRect );
 /*N*/
 /*N*/   // Wenn ein Frame ueberlappt, wird eine Portion eroeffnet.
 /*N*/   if( aFlyRect.HasArea() )

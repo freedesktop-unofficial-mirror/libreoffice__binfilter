@@ -2,9 +2,9 @@
  *
  *  $RCSfile: notemark.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -104,7 +104,7 @@ public:
         Window* pRight, Window* pBottom, Window* pDiagonal,//STRIP001                               Window* pRight, Window* pBottom, Window* pDiagonal,
         ScDocument* pD, ScAddress aPos,                     //STRIP001                              ScDocument* pD, ScAddress aPos,
         const String& rUser, const MapMode& rMap,           //STRIP001                              const String& rUser, const MapMode& rMap,
-        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_ASSERT(0, "STRIP");} //STRIP001                               BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard );
+        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                                BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard );
 //STRIP001              ~ScNoteMarker();
 //STRIP001
 //STRIP001  void        Draw();

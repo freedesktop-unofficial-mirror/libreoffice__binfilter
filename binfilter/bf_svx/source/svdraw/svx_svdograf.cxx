@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -319,7 +319,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ Graphic SdrGrafObj::GetTransformedGraphic( ULONG nTransformFlags ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); Graphic          aTransGraphic( GetGraphic() );return aTransGraphic;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); Graphic           aTransGraphic( GetGraphic() );return aTransGraphic;//STRIP001
 //STRIP001     // #107947# Refactored most of the code to GraphicObject, where
 //STRIP001     // everybody can use e.g. the cropping functionality
 //STRIP001
@@ -423,7 +423,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ String SdrGrafObj::GetGrafStreamURL() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); String aString; return aString;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;//STRIP001
 //STRIP001  return pGraphic->GetUserData();
 /*N*/ }
 
@@ -912,7 +912,7 @@ namespace binfilter {
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if( !ImpUpdateGraphicLink() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            if( ( OUTDEV_WINDOW == pOutDev->GetOutDevType() ) && !bMtfRecording && pView && pView->IsSwapAsynchron() )
@@ -966,7 +966,7 @@ namespace binfilter {
 /*?*/                   bEnable = ( eAnimMode != SDR_ANIMATION_DISABLE );
 /*?*/
 /*?*/                   if( bEnable )
-/*?*/                   {{DBG_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
 //STRIP001 /*?*/                        const SvtAccessibilityOptions& rOpt = const_cast< SdrView* >( pView )->getAccessibilityOptions();
 //STRIP001 /*?*/                        sal_Bool bIsAllowedAnimatedGraphics = rOpt.GetIsAllowAnimatedGraphics();
 //STRIP001 /*?*/
@@ -983,7 +983,7 @@ namespace binfilter {
 /*?*/               if( bEnable )
 /*?*/               {
 /*?*/                   if( eAnimMode == SDR_ANIMATION_ANIMATE )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                        pGraphic->SetAnimationNotifyHdl( LINK( this, SdrGrafObj, ImpAnimationHdl ) );
 //STRIP001 /*?*/                        pGraphic->StartAnimation( pOutDev, aLogPos, aLogSize, 0, &aAttr );
 /*?*/                   }
@@ -1040,7 +1040,7 @@ namespace binfilter {
 /*N*/       FASTBOOL    bFill = FALSE;
 /*N*/
 /*N*/       if( bEmptyPresObj )
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 bFill = !ImpPaintEmptyPres( pOutDev );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 bFill = !ImpPaintEmptyPres( pOutDev );
 /*N*/
 /*N*/       // und nun noch einen grauen Rahmen drum herum, Text rein, ...
 /*N*/       if( !bEmptyPresObj )
@@ -1177,7 +1177,7 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   if( rGraf.aFileName.Len() )
 /*N*/ #endif
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 SetGraphicLink( aFileName, aFilterName );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SetGraphicLink( aFileName, aFilterName );
 /*N*/
 /*N*/   ImpSetAttrToGrafInfo();
 /*N*/ }
@@ -1303,7 +1303,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetPage( pNewPage );
 /*N*/
 /*N*/   if(aFileName.Len() && bInsert)
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1329,7 +1329,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetModel(pNewModel);
 /*N*/
 /*N*/   if( bChg && aFileName.Len() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
 /*N*/ }
 
 // -----------------------------------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmobjfac.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -305,7 +305,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 //STRIP001 /*?*/                pObjFactory->pNewObj = new FmFormObj(FM_COMPONENT_FORMATTEDFIELD,pObjFactory->nIdentifier);
 //STRIP001 /*?*/            }   break;
 /*?*/           default:
-/*?*/               {DBG_ASSERT(0, "STRIP");}//STRIP001 return 0;
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 return 0;
 /*?*/       }
 /*?*/   }
 /*N*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drwbassh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,7 +81,7 @@ class SwDrawBaseShell: public SwBaseShell
 
 //STRIP001     DECL_LINK( CheckGroupShapeNameHdl, SvxNameDialog* );
 public:
-    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_ASSERT(0, "STRIP");} //STRIP001 SwDrawBaseShell(SwView &rShell);
+    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDrawBaseShell(SwView &rShell);
 //STRIP001  virtual     ~SwDrawBaseShell();
 
     SFX_DECL_INTERFACE(SW_DRAWBASESHELL);
@@ -89,7 +89,7 @@ public:
 
 //STRIP001  void        Execute(SfxRequest &);
 //STRIP001  void        GetState(SfxItemSet &);
-    void        DisableState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        DisableState(SfxItemSet &rSet)               { Disable(rSet);}
+    void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     DisableState(SfxItemSet &rSet)               { Disable(rSet);}
 //STRIP001  BOOL        Disable(SfxItemSet& rSet, USHORT nWhich = 0);
 
 //STRIP001  void        StateStatusline(SfxItemSet &rSet);

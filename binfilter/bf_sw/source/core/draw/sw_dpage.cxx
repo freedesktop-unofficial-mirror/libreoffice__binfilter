@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dpage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,7 +189,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   SdrObjUserCall* pContact;
 /*N*/   if ( 0 != ( pContact = GetUserCall(pOld) ) &&
 /*N*/        RES_DRAWFRMFMT == ((SwContact*)pContact)->GetFmt()->Which())
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      ((SwDrawContact*)pContact)->ChangeMasterObject( pNewObj );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       ((SwDrawContact*)pContact)->ChangeMasterObject( pNewObj );
 /*N*/   return FmFormPage::ReplaceObject( pNewObj, nObjNum );
 /*N*/ }
 

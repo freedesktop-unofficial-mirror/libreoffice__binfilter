@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viewsh.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -277,7 +277,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*?*/               // to give it a chance to react with proper IAO updates
 /*?*/               if (HasDrawView())
 /*?*/               {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  GetDrawView()->ForceInvalidateMarkHandles();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   GetDrawView()->ForceInvalidateMarkHandles();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    // #94195# set remark
 //STRIP001 /*?*/                    bRefreshMarker = sal_True;
@@ -299,14 +299,14 @@ FASTBOOL bInSizeNotify = FALSE;
 /*?*/           BOOL bShowCrsr = (pRegion || Imp()->GetScrollRects()) &&
 /*?*/                               IsA( TYPE(SwCrsrShell) );
 /*?*/           if( bShowCrsr )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 ((SwCrsrShell*)this)->HideCrsrs();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ((SwCrsrShell*)this)->HideCrsrs();
 /*?*/
 /*?*/           Scroll();
 /*?*/           if ( bPaintsFromSystem && Imp()->pScrolledArea )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              Imp()->FlushScrolledArea();
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               Imp()->FlushScrolledArea();
 /*?*/
 /*?*/           if ( pRegion )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          {
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           {
 //STRIP001 /*?*/                SwRootFrm* pLayout = GetLayout();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                 Imp()->pRegion = NULL;
@@ -1685,7 +1685,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*N*/       aBrowseBorder = rNew;
 /*N*/       if ( aVisArea.HasArea() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/          CheckBrowseView( FALSE );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           CheckBrowseView( FALSE );
 /*N*/   }
 /*N*/ }
 
@@ -1700,7 +1700,7 @@ FASTBOOL bInSizeNotify = FALSE;
 
 /*N*/ void ViewShell::CheckBrowseView( FASTBOOL bBrowseChgd )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( !bBrowseChgd && !GetDoc()->IsBrowseMode() )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( !bBrowseChgd && !GetDoc()->IsBrowseMode() )
 //STRIP001      return;
 //STRIP001
 //STRIP001  SET_CURR_SHELL( this );
@@ -1878,7 +1878,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( !bBrowseChgd && !GetDoc()->
 /*N*/ }
 /*N*/ void            ViewShell::SetPrintData(SwPrintData& rPrtData)
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 GetDoc()->SetPrintData(rPrtData);
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetDoc()->SetPrintData(rPrtData);
 /*N*/ }
 
 /*N*/ const SwNodes& ViewShell::GetNodes() const

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_interno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 05:58:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -317,7 +317,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // bei InPlace die View skalieren
 /*N*/         if ( GetIPEnv() && GetIPEnv()->GetEditWin() && !bDisableViewScaling && pIPF )
-/*?*/           {DBG_ASSERT(0, "STRIP");}//STRIP001 pIPF->GetEnv_Impl()->MakeScale( rRect.GetSize(), GetMapUnit(),
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pIPF->GetEnv_Impl()->MakeScale( rRect.GetSize(), GetMapUnit(),
 //STRIP001 /*?*/                        pIPF->GetViewShell()->GetWindow()->GetOutputSizePixel() );
 /*N*/   }
 /*N*/ }
@@ -390,7 +390,7 @@ namespace binfilter {
 //-------------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL bActivate )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( bActivate )
 //STRIP001  {
 //STRIP001      DBG_ASSERT( pObjShell,
@@ -429,7 +429,7 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::Embed( BOOL bEmbed )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*
 //STRIP001  SvInPlaceObject::Embed( bEmbed );
 //STRIP001
@@ -579,7 +579,7 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & rDocName )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( !pFrame->IsA( TYPE(SfxInPlaceFrame) ) )
 //STRIP001  {
 //STRIP001      // Name f"ur Window zusammenbauen

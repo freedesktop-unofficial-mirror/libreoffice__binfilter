@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -894,7 +894,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/       {
 /*?*/           sal_Bool bEmb;
 /*?*/           if ( ( rArgs[0].Value >>= bEmb ) && bEmb )
-/*?*/               {DBG_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_pObjectShell->SetCreateMode_Impl( SFX_CREATE_MODE_EMBEDDED );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_pObjectShell->SetCreateMode_Impl( SFX_CREATE_MODE_EMBEDDED );
 /*?*/       }
 /*N*/
 /*N*/       return sal_True;
@@ -1275,7 +1275,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         {
 /*N*/             try
 /*N*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP");//STRIP001 ((util::XCloseListener*)pCloseIterator.next())->notifyClosing( aSource );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");//STRIP001 ((util::XCloseListener*)pCloseIterator.next())->notifyClosing( aSource );
 /*?*/             }
 /*?*/             catch( uno::RuntimeException& )
 /*?*/             {
@@ -1607,7 +1607,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //________________________________________________________________________________________________________
 /*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& rOptions)
 /*?*/         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    // object already disposed?
 //STRIP001 /*?*/    // object already disposed?
 //STRIP001 /*?*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
@@ -2023,7 +2023,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/       throw (::com::sun::star::datatransfer::UnsupportedFlavorException,
 /*?*/              ::com::sun::star::io::IOException,
 /*?*/              ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); ANY aAny; return aAny;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ANY aAny; return aAny;//STRIP001
 //STRIP001  // object already disposed?
 //STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
 //STRIP001  if ( impl_isDisposed() )
@@ -2135,7 +2135,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*?*/ SEQUENCE< DATAFLAVOR > SAL_CALL SfxBaseModel::getTransferDataFlavors()
 /*?*/       throw (::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;//STRIP001
 //STRIP001  // object already disposed?
 //STRIP001     ::vos::OGuard aGuard( Application::GetSolarMutex() );
 //STRIP001  if ( impl_isDisposed() )
@@ -2338,7 +2338,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/           if ( pPrintHint->GetWhich() == -1 )
 /*?*/           {
 /*?*/               if ( !m_pData->m_xPrintJob.is() )
-/*?*/                   {DBG_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_xPrintJob = new SfxPrintJob_Impl( m_pData );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_xPrintJob = new SfxPrintJob_Impl( m_pData );
 /*?*/
 /*?*/               PrintDialog* pDlg = pPrintHint->GetPrintDialog();
 /*?*/               Printer* pPrinter = pPrintHint->GetPrinter();
@@ -2386,7 +2386,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/                         m_pData->m_aPrintOptions[ nOld+n ] = pPrintHint->GetAdditionalOptions()[n];
 /*?*/           }
 /*?*/           else if ( pPrintHint->GetWhich() != -2 )
-/*?*/           {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/                view::PrintJobEvent aEvent;
 //STRIP001 /*?*/                aEvent.Source = m_pData->m_xPrintJob;
 //STRIP001 /*?*/                aEvent.State = (::com::sun::star::view::PrintableState) pPrintHint->GetWhich();

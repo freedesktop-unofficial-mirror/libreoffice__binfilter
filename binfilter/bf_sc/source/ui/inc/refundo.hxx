@@ -2,9 +2,9 @@
  *
  *  $RCSfile: refundo.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:05 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,7 +93,7 @@ private:
 //STRIP001  ScAreaLinkSaveCollection*   pAreaLinks;
 
 public:
-                ScRefUndoData( const ScDocument* pDoc ){DBG_ASSERT(0, "STRIP");} //STRIP001 ScRefUndoData( const ScDocument* pDoc );
+                ScRefUndoData( const ScDocument* pDoc ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScRefUndoData( const ScDocument* pDoc );
 //STRIP001              ~ScRefUndoData();
 
 //STRIP001  void        DeleteUnchanged( const ScDocument* pDoc );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,7 +151,7 @@ namespace binfilter {
     String zur"uck. Z.B.: SfxApplication[StarWriter]
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); return String();//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return String();//STRIP001
 //STRIP001  String aIdent( pSh->ISA(SfxApplication) ? DEFINE_CONST_UNICODE("SfxApplication") :
 //STRIP001                 pSh->ISA(SfxViewFrame) ? DEFINE_CONST_UNICODE("SfxViewFrame") :
 //STRIP001                 pSh->ISA(SfxViewShell) ? DEFINE_CONST_UNICODE("SfxViewShell") :
@@ -1128,7 +1128,7 @@ ULONG SfxShell::ExecuteSlot
 
 /*?*/ long ShellCall_Impl( void* pObj, void* pArg )
 /*?*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxRequest*)pArg, (SfxInterface*)0L );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SfxShell* )pObj)->ExecuteSlot( *(SfxRequest*)pArg, (SfxInterface*)0L );
 /*?*/   return 0;
 /*N*/ }
 
@@ -1138,7 +1138,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 
 //--------------------------------------------------------------------
 /*?*/ const SfxPoolItem* SfxShell::ExecuteSlot( SfxRequest& rReq, BOOL bAsync )
-/*?*/ {DBG_ASSERT(0, "STRIP");return 0; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return 0; //STRIP001
 //STRIP001  if( !bAsync )
 //STRIP001      return ExecuteSlot( rReq, (SfxInterface*)0L );
 //STRIP001  else
@@ -1368,7 +1368,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 /*?*/       pImp->pVerbs = new SfxVerbList();
 /*N*/
 /*N*/   if (pVerbs)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        USHORT nr=0;
 //STRIP001 /*?*/        for (USHORT n=0; n<pVerbs->Count(); n++)
 //STRIP001 /*?*/        {
@@ -1423,13 +1423,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 
 /*?*/ const SvVerbList* SfxShell::GetVerbs() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return pImp->pVerbs ? &pImp->pVerbs->aVerbList : 0;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return pImp->pVerbs ? &pImp->pVerbs->aVerbList : 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*N*/ void SfxShell::VerbExec(SfxRequest& rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  USHORT nId = rReq.GetSlot();
 //STRIP001  SfxViewShell *pViewShell = GetViewShell();
 //STRIP001  if ( pViewShell )
@@ -1457,7 +1457,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 //--------------------------------------------------------------------
 
 /*?*/ const SfxSlot* SfxShell::GetVerbSlot_Impl(USHORT nId) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 //    DBG_ASSERT(pImp->pVerbs, "Keine Verben bekannt!");
 //STRIP001  if (!pImp->pVerbs)
 //STRIP001      return 0;
@@ -1491,7 +1491,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  ((SfxShell* )pObj)->ExecuteSlot( *(SfxReques
 //--------------------------------------------------------------------
 
 /*?*/ SfxObjectShell* SfxShell::GetObjectShell()
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    if ( GetViewShell() )
 //STRIP001 /*?*/        return GetViewShell()->GetViewFrame()->GetObjectShell();
 //STRIP001 /*?*/    else

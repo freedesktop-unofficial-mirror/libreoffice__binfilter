@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -182,7 +182,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------------
 /*?*/ void SdrUnoControlRec::adjustControlVisibility( bool _bForce )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     uno::Reference< awt::XWindow > xControlWindow( xControl, uno::UNO_QUERY );
 //STRIP001     if ( xControlWindow.is() && !xControl->isDesignMode() )
 //STRIP001     {
@@ -201,7 +201,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------------
 /*?*/ void SdrUnoControlRec::switchControlListening( bool _bStart )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001  uno::Reference< awt::XWindow> xWindow( xControl, uno::UNO_QUERY );
 //STRIP001  if ( xWindow.is() )
 //STRIP001  {
@@ -229,7 +229,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------------
 /*?*/ void SdrUnoControlRec::switchPropertyListening( bool _bStart, bool _bListenForAll )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     DBG_ASSERT( xControl.is(), "SdrUnoControlRec::switchPropertyListening: no control!" );
 //STRIP001     if ( xControl.is() )
 //STRIP001  {
@@ -261,7 +261,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   uno::Reference< awt::XControl > xSource( Source.Source, uno::UNO_QUERY);
 /*N*/   if (xSource.is())
-/*?*/   {  {DBG_ASSERT(0, "STRIP");}//STRIP001  // it's the control we're responsible for
+/*?*/   {  {DBG_BF_ASSERT(0, "STRIP");}//STRIP001  // it's the control we're responsible for
 //STRIP001 /*?*/         switchControlListening( false );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if (pParent)
@@ -294,7 +294,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SAL_CALL SdrUnoControlRec::windowShown( const ::com::sun::star::lang::EventObject& e )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( !mnPaintLevel )
 //STRIP001     {
 //STRIP001      if (!IsVisible())
@@ -307,7 +307,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------------
 /*N*/ void SAL_CALL SdrUnoControlRec::windowHidden( const ::com::sun::star::lang::EventObject& e )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bVisible = FALSE;
 //STRIP001
 //STRIP001  // Im Designmodus ist das Control nicht sichtbar und der drawing layer ist
@@ -325,7 +325,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------------
 /*N*/ void SAL_CALL SdrUnoControlRec::propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& evt )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (!xControl.is())
 //STRIP001      return;
 //STRIP001
@@ -380,7 +380,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------------
 /*?*/ void SAL_CALL SdrUnoControlRec::modeChanged( const util::ModeChangeEvent& _rSource ) throw (uno::RuntimeException)
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     // if the control is part of a invisible layer, we need to explicitly hide it in alive mode
 //STRIP001     // 2003-06-03 - #110592# - fs@openoffice.org
 //STRIP001     adjustControlVisibility( false );
@@ -452,7 +452,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------------
 
 /*?*/ void SdrUnoControlRec::switchDesignModeListening( bool _bStart )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001  if ( (bool)IsListening() != _bStart )
 //STRIP001  {
 //STRIP001      bIsListening = _bStart;
@@ -810,7 +810,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > SdrPageView::GetControlContainer( const OutputDevice* _pDevice )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 /*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xReturn;
 //STRIP001 /*?*/     USHORT nWinPos = pWinList->Find( const_cast< OutputDevice* >( _pDevice ) );
 //STRIP001 /*?*/     if ( SDRPAGEVIEWWIN_NOTFOUND != nWinPos )
@@ -942,7 +942,7 @@ using namespace ::com::sun::star;
 /*N*/                            eKind == HINT_CONTROLREMOVED)
 /*N*/
 /*N*/                   {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001  ImpUnoRemoved(pObj);
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ImpUnoRemoved(pObj);
 /*N*/                   }
 /*N*/               }
 /*N*/               else if (pObj->GetObjIdentifier() == OBJ_GRUP &&
@@ -969,7 +969,7 @@ using namespace ::com::sun::star;
 /*?*/                                    eKind == HINT_CONTROLREMOVED)
 /*?*/
 /*?*/                           {
-/*?*/                               DBG_ASSERT(0, "STRIP"); //STRIP001 ImpUnoRemoved(pObj);
+/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpUnoRemoved(pObj);
 /*?*/                           }
 /*N*/                       }
 /*N*/                   }
@@ -1986,7 +1986,7 @@ using namespace ::com::sun::star;
 
 
 /*?*/ void SdrPageView::LayerVisibilityChanged( const SdrLayerID _nLayerId, bool _bNewVisibility )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     // adjust the visibility of UNO controls, if necessary
 //STRIP001     const SdrPageViewWinList& rWinList = GetWinList();
 //STRIP001     const USHORT nWinCount = rWinList.GetCount();
@@ -2251,7 +2251,7 @@ using namespace ::com::sun::star;
 /*?*/       BOOL bGlueInvalidate = (!bDisInvalidate && rView.ImpIsGlueVisible());
 /*?*/
 /*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
 /*?*/
 /*?*/       SdrObject* pLastGroup = GetAktGroup();
 /*?*/
@@ -2278,7 +2278,7 @@ using namespace ::com::sun::star;
 /*?*/           InvalidateAllWin();
 /*?*/
 /*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
 /*N*/   }
 /*N*/ }
 
@@ -2354,7 +2354,7 @@ using namespace ::com::sun::star;
 /*N*/       pGrp=pGrp->GetUpGroup();
 /*N*/   }
 /*N*/   if (pGrp!=GetAktGroup()) {
-/*?*/       if (pGrp!=NULL) {DBG_ASSERT(0, "STRIP"); }//STRIP001 EnterGroup(pGrp);
+/*?*/       if (pGrp!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EnterGroup(pGrp);
 /*N*/       else LeaveAllGroup();
 /*N*/   }
 /*N*/ }

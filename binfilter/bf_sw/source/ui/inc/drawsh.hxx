@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -74,16 +74,16 @@ public:
     SFX_DECL_INTERFACE(SW_DRAWSHELL);
 //STRIP001  TYPEINFO();
 
-    SwDrawShell(SwView &rView):SwDrawBaseShell(rView){DBG_ASSERT(0, "STRIP");} ;//STRIP001 SwDrawShell(SwView &rView);
+    SwDrawShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001 SwDrawShell(SwView &rView);
 
-    void        Execute(SfxRequest &){DBG_ASSERT(0, "STRIP");}; //STRIP001 void     Execute(SfxRequest &);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      Execute(SfxRequest &);
 //STRIP001  void        GetState(SfxItemSet &);
-    void        ExecDrawDlg(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDrawDlg(SfxRequest& rReq);
-    void        ExecDrawAttrArgs(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        ExecDrawAttrArgs(SfxRequest& rReq);
-    void        GetDrawAttrState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        GetDrawAttrState(SfxItemSet &rSet);
+    void        ExecDrawDlg(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      ExecDrawDlg(SfxRequest& rReq);
+    void        ExecDrawAttrArgs(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDrawAttrArgs(SfxRequest& rReq);
+    void        GetDrawAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     GetDrawAttrState(SfxItemSet &rSet);
 
-    void        ExecFormText(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        ExecFormText(SfxRequest& rReq);
-    void        GetFormTextState(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        GetFormTextState(SfxItemSet& rSet);
+    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecFormText(SfxRequest& rReq);
+    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     GetFormTextState(SfxItemSet& rSet);
 };
 
 } //namespace binfilter

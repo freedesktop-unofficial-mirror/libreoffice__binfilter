@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porrst.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:13 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,7 +109,7 @@ public:
             SwBreakPortion( const SwLinePortion &rPortion );
     // liefert 0 zurueck, wenn keine Nutzdaten enthalten sind.
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");} ;//STRIP001     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
     USHORT GetRestWidth() const { return nRestWidth; }

@@ -2,7 +2,7 @@
 // class SfxRequest
 //
 // (C) 1996 - 2000 StarDivision GmbH, Hamburg, Germany
-// $Author: mwu $ $Date: 2003-11-06 07:38:44 $ $Revision: 1.2 $
+// $Author: rt $ $Date: 2004-05-05 16:40:11 $ $Revision: 1.3 $
 // $Logfile:   T:/bf_sfx2/source/control/request.cxv  $ $Workfile:   REQUEST.CXX  $
 //------------------------------------------------------------------*/
 
@@ -210,7 +210,7 @@ namespace binfilter {
 /*?*/   pImp->bUseTarget = FALSE;
 /*?*/     pImp->pViewFrame = pViewFrame;
 /*?*/     if( pImp->pViewFrame->GetDispatcher()->GetShellAndSlot_Impl( nSlotId, &pImp->pShell, &pImp->pSlot, TRUE, TRUE ) )
-/*?*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         pImp->SetPool( &pImp->pShell->GetPool() );
 //STRIP001 /*?*/         pImp->xRecorder = SfxRequest::GetMacroRecorder( pViewFrame );
 //STRIP001 /*?*/         pImp->aTarget = pImp->pShell->GetName();
@@ -331,7 +331,7 @@ namespace binfilter {
     geht in das Eigentum des Aufrufers "uber.
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     String aCommand = String::CreateFromAscii(".uno:");
 //STRIP001     aCommand.AppendAscii( pSlot->GetUnoName() );
 //STRIP001  ::rtl::OUString aCmd( aCommand );
@@ -398,7 +398,7 @@ namespace binfilter {
     dann also noch leben.
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001  pImp->pShell = &rSh;
 //STRIP001  pImp->pSlot = &rSlot;
@@ -410,7 +410,7 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 /*?*/ void SfxRequest::SetArgs( const SfxAllItemSet& rArgs )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  delete pArgs;
 //STRIP001  pArgs = new SfxAllItemSet(rArgs);
 //STRIP001  pImp->SetPool( pArgs->GetPool() );
@@ -428,7 +428,7 @@ namespace binfilter {
 //--------------------------------------------------------------------
 
 /*?*/ void SfxRequest::RemoveItem( USHORT nID )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (pArgs)
 //STRIP001  {
 //STRIP001      pArgs->ClearItem(nID);
@@ -577,7 +577,7 @@ namespace binfilter {
     f"uhrte (z.B. Datei konnte nicht ge"offnet werden).
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  Done_Impl( &rSet );
 //STRIP001
 //STRIP001  // ggf. Items merken, damit StarDraw sie abfragen kann
@@ -630,7 +630,7 @@ namespace binfilter {
     wenn das Ziel (genauer dessen Pool) stirbt.
 */
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  pImp->bCancelled = TRUE;
 //STRIP001  pImp->SetPool( 0 );
 //STRIP001  DELETEZ( pArgs );
@@ -916,7 +916,7 @@ namespace binfilter {
         Documents.Open( ... )
 */
 
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  pImp->aTarget = rTarget;
 //STRIP001  pImp->bUseTarget = TRUE;
 /*N*/ }

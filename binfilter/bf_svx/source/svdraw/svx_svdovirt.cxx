@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdovirt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -540,17 +540,17 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrObjGeoData* SdrVirtObj::NewGeoData() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  return rRefObj.NewGeoData();
 /*N*/ }
 
 /*N*/ void SdrVirtObj::SaveGeoData(SdrObjGeoData& rGeo) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  rRefObj.SaveGeoData(rGeo);
 /*N*/ }
 
 /*N*/ void SdrVirtObj::RestGeoData(const SdrObjGeoData& rGeo)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  rRefObj.RestGeoData(rGeo);
 //STRIP001  SetRectsDirty();
 /*N*/ }
@@ -644,7 +644,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  rRefObj.SetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/ }
 

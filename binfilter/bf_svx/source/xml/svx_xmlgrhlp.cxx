@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlgrhlp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $
+ *  last change: $Author: rt $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -193,7 +193,7 @@ public:
 /*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::readSomeBytes( Sequence< sal_Int8 >& rData, sal_Int32 nMaxBytesToRead )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
 //STRIP001         throw NotConnectedException() ;
 //STRIP001
 //STRIP001     return mxStmWrapper->readSomeBytes( rData, nMaxBytesToRead );
@@ -204,7 +204,7 @@ public:
 /*?*/ void SAL_CALL SvXMLGraphicInputStream::skipBytes( sal_Int32 nBytesToSkip )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
 //STRIP001         throw NotConnectedException() ;
 //STRIP001
 //STRIP001     mxStmWrapper->skipBytes( nBytesToSkip );
@@ -214,7 +214,7 @@ public:
 
 /*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::available() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
 //STRIP001         throw NotConnectedException() ;
 //STRIP001
 //STRIP001     return mxStmWrapper->available();
@@ -224,7 +224,7 @@ public:
 
 /*?*/ void SAL_CALL SvXMLGraphicInputStream::closeInput() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
 //STRIP001         throw NotConnectedException() ;
 //STRIP001
 //STRIP001     mxStmWrapper->closeInput();
@@ -302,7 +302,7 @@ public:
 /*?*/ void SAL_CALL SvXMLGraphicOutputStream::flush()
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, IOException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001     if( !mxStmWrapper.is() )
 //STRIP001         throw NotConnectedException() ;
 //STRIP001
 //STRIP001     mxStmWrapper->flush();

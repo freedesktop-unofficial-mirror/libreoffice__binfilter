@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:34:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -297,10 +297,10 @@ using namespace ::com::sun::star::i18n;
 /*?*/           ((SwTxtFtn*)pNew)->SetSeqNo( ((SwFmtFtn&)rAttr).GetTxtFtn()->GetSeqRefNo() );
 /*N*/       break;
 /*?*/   case RES_TXTATR_HARDBLANK:
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pNew = new SwTxtHardBlank( (SwFmtHardBlank&)rNew, nStt );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtHardBlank( (SwFmtHardBlank&)rNew, nStt );
 /*?*/       break;
 /*?*/     case RES_CHRATR_TWO_LINES:
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pNew = new SwTxt2Lines( (SvxTwoLinesItem&)rNew, nStt, nEnd );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxt2Lines( (SvxTwoLinesItem&)rNew, nStt, nEnd );
 /*?*/       break;
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/       pNew = nStt == nEnd
@@ -312,7 +312,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/   case RES_UNKNOWNATR_CONTAINER:
 /*?*/   case RES_TXTATR_UNKNOWN_CONTAINER:
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      pNew = new SwTxtXMLAttrContainer( (SvXMLAttrContainerItem&)rNew,
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtXMLAttrContainer( (SvXMLAttrContainerItem&)rNew,
 //STRIP001 /*?*/                                        nStt, nEnd );
 /*?*/       break;
 /*N*/   case RES_TXTATR_CJK_RUBY:
@@ -803,7 +803,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/           if( RES_TXTATR_CHARFMT == pItem->Which() &&
 /*N*/               GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt())
 /*N*/           {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                SwIndex aIndex( this, nStt );
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SwIndex aIndex( this, nStt );
 //STRIP001 /*?*/                RstAttr( aIndex, nEnd - nStt, RES_TXTATR_CHARFMT, 0 );
 //STRIP001 /*?*/                DontExpandFmt( aIndex );
 /*N*/           }
@@ -1132,7 +1132,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
 /*?*/           while( TRUE )
 /*?*/           {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                if( lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    pSwpHints->SwpHintsArr::Insert(
 //STRIP001 /*?*/                            MakeTxtAttr( *pItem, 0, GetTxt().Len() ) );
@@ -1157,7 +1157,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/       if( aThisSet.Count() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
 //STRIP001 /*?*/            const SfxPoolItem* pItem = aIter.GetCurItem(), *pNdItem;
 //STRIP001 /*?*/            while( TRUE )
 //STRIP001 /*?*/            {
@@ -1183,7 +1183,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
 /*?*/           while( TRUE )
 /*?*/           {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                if( lcl_IsNewAttrInSet( *pNd->pSwpHints, *pItem, pNd->GetTxt().Len() ) )
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pNd->pSwpHints, *pItem, pNd->GetTxt().Len() ) )
 //STRIP001 /*?*/                    pNd->pSwpHints->SwpHintsArr::Insert(
 //STRIP001 /*?*/                            pNd->MakeTxtAttr( *pItem, 0, pNd->GetTxt().Len() ) );
 //STRIP001 /*?*/                pNd->GetpSwAttrSet()->ClearItem( pItem->Which() );
@@ -1734,7 +1734,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   pDoc->InsertFldType( *pFld->GetTyp() );
 /*N*/                       if( pFldType != pFld->GetTyp() )
 /*N*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 SwFmtFld* pFmtFld = (SwFmtFld*)&((SwTxtFld*)pHint)
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtFld* pFmtFld = (SwFmtFld*)&((SwTxtFld*)pHint)
 //STRIP001 /*?*/                                                                ->GetFld();
 //STRIP001 /*?*/                            pFldType->Add( pFmtFld );          // ummelden
 //STRIP001 /*?*/                            pFmtFld->GetFld()->ChgTyp( pFldType );
@@ -1753,7 +1753,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   break;
 /*N*/               }
 /*N*/               if( bInsFldType )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 pDoc->InsDeletedFldType( *pFld->GetTyp() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->InsDeletedFldType( *pFld->GetTyp() );
 /*N*/           }
 /*N*/       }
 /*N*/       break;
@@ -1773,7 +1773,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   0 != ( pHtEnd = pHt->GetEnd() ) &&
 /*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 SwComparePosition eCmp = ::ComparePosition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwComparePosition eCmp = ::ComparePosition(
 //STRIP001 /*?*/                            *pHt->GetStart(), *pHtEnd,
 //STRIP001 /*?*/                            *pHint->GetStart(), *pHintEnd );
 //STRIP001 /*?*/                    BOOL bDelOld = TRUE, bChgStart = FALSE, bChgEnd = FALSE;
@@ -1811,7 +1811,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            ((SwTxtRuby*)pHint)->ChgTxtNode( &rNode );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ((SwTxtRuby*)pHint)->ChgTxtNode( &rNode );
 //STRIP001 /*?*/            SwCharFmt* pFmt = rNode.GetDoc()->GetCharFmtFromPool(
 //STRIP001 /*?*/                                                    RES_POOLCHR_RUBYTEXT );
 //STRIP001 /*?*/            pFmt->Add( (SwTxtRuby*)pHint );
@@ -1921,7 +1921,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       {
 /*?*/                           if( !bOtherFmt )
 /*?*/                           {
-                                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                                bOtherFmt = !lcl_Included( pOther->Which(),
+                                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                                 bOtherFmt = !lcl_Included( pOther->Which(),
 //STRIP001 /*?*/                                                           pHint );
 //STRIP001 /*?*/                                bCheckInclude = TRUE;
 /*?*/                           }

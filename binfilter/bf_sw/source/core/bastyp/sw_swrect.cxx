@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swrect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -357,7 +357,7 @@ namespace binfilter {
 
 /*N*/ SvStream &operator<<( SvStream &rStream, const SwRect &rRect )
 /*N*/ {
-/*N*/           DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   rStream << '[' << rRect.Top()   << '/' << rRect.Left()
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    rStream << '[' << rRect.Top()   << '/' << rRect.Left()
 //STRIP001          << ',' << rRect.Width() << 'x' << rRect.Height() << "] ";
 /*N*/   return rStream;
 /*N*/ }

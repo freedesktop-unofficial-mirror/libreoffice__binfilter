@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrong.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:04 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ public:
 //STRIP001  sal_Bool InWrongWord( xub_StrLen &rChk, xub_StrLen &rLn ) const;
 //STRIP001  xub_StrLen NextWrong( xub_StrLen nChk ) const;
 //STRIP001  xub_StrLen LastWrong( xub_StrLen nChk ) const;
-    void Move( xub_StrLen nPos, long nDiff ){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void Move( xub_StrLen nPos, long nDiff );
+    void Move( xub_StrLen nPos, long nDiff ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void Move( xub_StrLen nPos, long nDiff );
 //STRIP001  void Clear();
 //STRIP001  void Clear( xub_StrLen nBegin, xub_StrLen nEnd );
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_envimg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -164,7 +164,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SwEnvItem::SwEnvItem() :
 /*N*/   SfxPoolItem(FN_ENVELOP)
 /*N*/ {
-/*N*/ DBG_ASSERT(0, "STRIP"); //STRIP001    aAddrText       = aEmptyStr;
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     aAddrText       = aEmptyStr;
 //STRIP001  bSend           = TRUE;
 //STRIP001  aSendText       = MakeSender();
 //STRIP001  lSendFromLeft   = 566; // 1 cm
@@ -195,7 +195,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   bPrintFromAbove(rItem.bPrintFromAbove),
 /*N*/   lShiftRight    (rItem.lShiftRight),
 /*N*/   lShiftDown     (rItem.lShiftDown)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 // --------------------------------------------------------------------------
@@ -219,7 +219,7 @@ using namespace ::com::sun::star::uno;
 // --------------------------------------------------------------------------
 /*N*/ int SwEnvItem::operator ==(const SfxPoolItem& rItem) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     const SwEnvItem& rEnv = (const SwEnvItem&) rItem;
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  const SwEnvItem& rEnv = (const SwEnvItem&) rItem;
 //STRIP001
 //STRIP001  return aAddrText       == rEnv.aAddrText       &&
 //STRIP001         bSend           == rEnv.bSend           &&

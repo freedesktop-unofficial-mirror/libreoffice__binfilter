@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -413,7 +413,7 @@ namespace binfilter {
 /*?*/               ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
 /*?*/               if (pViewSh && bValid && aChartName.Len() != 0 )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 Window*  pParent = pViewSh->GetDialogParent();
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Window*   pParent = pViewSh->GetDialogParent();
 //STRIP001 /*?*/                    Window* pDataWin = pViewSh->GetActiveWin();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    USHORT nCol1 = aSingleRange.aStart.Col();
@@ -515,7 +515,7 @@ namespace binfilter {
 /*?*/           rReq.Done();
 /*?*/           break;
 /*?*/       case FID_HARD_RECALC:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 DoHardRecalc( rReq.IsAPI() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DoHardRecalc( rReq.IsAPI() );
 //STRIP001 /*?*/            rReq.Done();
 /*?*/           break;
 /*N*/       case SID_UPDATETABLINKS:
@@ -587,7 +587,7 @@ namespace binfilter {
 /*?*/                               if ( pDBData->IsStripData() &&
 /*?*/                                       pDBData->HasImportParam() && !pDBData->HasImportSelection() )
 /*?*/                               {
-/*?*/                                   DBG_ASSERT(0, "STRIP"); //STRIP001 pDBData->GetArea(aRange);
+/*?*/                                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDBData->GetArea(aRange);
 //STRIP001 /*?*/                                    pViewSh->MarkRange(aRange);
 //STRIP001 /*?*/
 //STRIP001 /*?*/                                    //  Import und interne Operationen wie SID_REFRESH_DBAREA
@@ -644,7 +644,7 @@ namespace binfilter {
 /*?*/
 /*?*/       case SID_GET_COLORTABLE:
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 //   passende ColorTable ist per PutItem gesetzt worden
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //    passende ColorTable ist per PutItem gesetzt worden
 //STRIP001 /*?*/                SvxColorTableItem* pColItem = (SvxColorTableItem*)GetItem(SID_COLOR_TABLE);
 //STRIP001 /*?*/                XColorTable* pTable = pColItem->GetColorTable();
 //STRIP001 /*?*/                rReq.SetReturnValue(OfaPtrItem(SID_GET_COLORTABLE, pTable));
@@ -679,7 +679,7 @@ namespace binfilter {
 /*?*/
 /*?*/                         if ( bDo )
 /*?*/                         {
-/*?*/                             DBG_ASSERT(0, "STRIP"); //STRIP001 if ( pChangeTrack->IsProtected() )
+/*?*/                             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pChangeTrack->IsProtected() )
 //STRIP001 /*?*/                                 bDo = ExecuteChangeProtectionDialog();
 //STRIP001 /*?*/                             if ( bDo )
 //STRIP001 /*?*/                             {
@@ -706,7 +706,7 @@ namespace binfilter {
 /*?*/                             SfxChildWindow* pChild = pViewFrm->GetChildWindow(FID_CHG_ACCEPT);
 /*?*/                             if (pChild)
 /*?*/                             {
-/*?*/                                 DBG_ASSERT(0, "STRIP"); //STRIP001 ((ScAcceptChgDlgWrapper*)pChild)->ReInitDlg();
+/*?*/                                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScAcceptChgDlgWrapper*)pChild)->ReInitDlg();
 /*?*/                             }
 /*?*/                         }
 /*?*/
@@ -725,7 +725,7 @@ namespace binfilter {
 /*?*/
 /*?*/         case SID_CHG_PROTECT :
 /*?*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 if ( ExecuteChangeProtectionDialog() )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( ExecuteChangeProtectionDialog() )
 //STRIP001 /*?*/                 {
 //STRIP001 /*?*/                    rReq.Done();
 //STRIP001 /*?*/                    SetDocumentModified();
@@ -742,7 +742,7 @@ namespace binfilter {
 /*?*/                 ScChangeTrack* pChangeTrack = aDocument.GetChangeTrack();
 /*?*/                 if ( pChangeTrack )
 /*?*/                 {
-/*?*/                     DBG_ASSERT(0, "STRIP"); //STRIP001 if ( nSlot == SID_DOCUMENT_COMPARE )
+/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nSlot == SID_DOCUMENT_COMPARE )
 //STRIP001 /*?*/                     {   //! old changes trace will be lost
 //STRIP001 /*?*/                         WarningBox aBox( GetDialogParent(),
 //STRIP001 /*?*/                             WinBits(WB_YES_NO | WB_DEF_NO),
@@ -805,7 +805,7 @@ namespace binfilter {
 /*?*/                   pMed = new SfxMedium( aFileName, STREAM_STD_READ, FALSE, pFilter, pSet );
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    pMed = pApp->InsertDocumentDialog( 0, ScDocShell::Factory() );
 //STRIP001 /*?*/                    if ( pMed )
 //STRIP001 /*?*/                    {
@@ -844,7 +844,7 @@ namespace binfilter {
 /*?*/
 /*?*/                   if ( !pOtherDocSh->GetError() )                 // nur Errors
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bHadTrack = ( aDocument.GetChangeTrack() != NULL );
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHadTrack = ( aDocument.GetChangeTrack() != NULL );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                        if ( nSlot == SID_DOCUMENT_COMPARE )
 //STRIP001 /*?*/                            CompareDocument( *pOtherDocSh->GetDocument() );
@@ -898,7 +898,7 @@ namespace binfilter {
 /*?*/                           if ( pSh )
 /*?*/                           {
 /*?*/                               //! SetTabNo in DeleteTable weglassen?
-/*?*/                               DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nDispTab = pSh->GetViewData()->GetTabNo();
+/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nDispTab = pSh->GetViewData()->GetTabNo();
 //STRIP001 /*?*/                                pSh->DeleteTable( nTab );
 //STRIP001 /*?*/                                pSh->SetTabNo(nDispTab);
 //STRIP001 /*?*/                                rReq.Done();
@@ -922,7 +922,7 @@ namespace binfilter {
 /*?*/                       {
 /*?*/                           if (aDocument.IsScenario(nTab))
 /*?*/                           {
-/*?*/                               DBG_ASSERT(0, "STRIP"); //STRIP001 String aComment;
+/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aComment;
 //STRIP001 /*?*/                                Color aColor;
 //STRIP001 /*?*/                                USHORT nFlags;
 //STRIP001 /*?*/                                aDocument.GetScenarioData( nTab, aComment, aColor, nFlags );
@@ -965,7 +965,7 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       FmFormShell* pFSh = pSh->GetFormShell();
 /*?*/                       if ( pFSh )
-/*?*/                           {DBG_ASSERT(0, "STRIP"); }//STRIP001 pFSh->SetY2KState( nY2k );
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFSh->SetY2KState( nY2k );
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -1067,7 +1067,7 @@ namespace binfilter {
 /*N*/   ScTabViewShell* pSh = GetBestViewShell();
 /*N*/   if ( pSh )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScInputHandler* pHdl = SC_MOD()->GetInputHdl(pSh);
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScInputHandler* pHdl = SC_MOD()->GetInputHdl(pSh);
 //STRIP001 /*?*/        if ( pHdl && pHdl->IsInputMode() && pHdl->IsFormulaMode() && !bApi )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            pHdl->FormulaPreview();     // Teilergebnis als QuickHelp
@@ -1081,7 +1081,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (!bDone)                         // sonst Dokument neu berechnen
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 WaitObject aWaitObj( GetDialogParent() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 WaitObject aWaitObj( GetDialogParent() );
 //STRIP001 /*?*/        aDocument.CalcFormulaTree();
 //STRIP001 /*?*/        if ( pSh )
 //STRIP001 /*?*/            pSh->UpdateCharts(TRUE);
@@ -1152,7 +1152,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( nId == SFX_STYLESHEET_MODIFIED )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            String aNewName = pStyle->GetName();
 //STRIP001 /*?*/            String aOldName = aNewName;
@@ -1328,7 +1328,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if (bWarn && !bApi)
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScWaitCursorOff aWaitOff( GetDialogParent() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScWaitCursorOff aWaitOff( GetDialogParent() );
 //STRIP001 /*?*/            InfoBox aInfoBox(GetDialogParent(),
 //STRIP001 /*?*/                             ScGlobal::GetRscString(STR_PRINT_INVALID_AREA));
 //STRIP001 /*?*/            aInfoBox.Execute();
@@ -1583,7 +1583,7 @@ namespace binfilter {
 /*?*/
 /*?*/                   if ( pStyleSheet )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet& rStyleSet = pStyleSheet->GetItemSet();
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet& rStyleSet = pStyleSheet->GetItemSet();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                        GetPageOnFromPageStyleSet( &rStyleSet, nCurTab, bHeaderOn, bFooterOn );
 //STRIP001 /*?*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_appoptio.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:05 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -707,7 +707,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-            DBG_ASSERT(0, "STRIP"); //STRIP001  Sequence<OUString> aNames = GetLayoutPropertyNames();
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Sequence<OUString> aNames = GetLayoutPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -738,7 +738,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, InputCommitHdl, void *, EMPTYARG )
 /*N*/ {
-         DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetInputPropertyNames();
+         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetInputPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -766,7 +766,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, RevisionCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetRevisionPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetRevisionPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -797,7 +797,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, ContentCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetContentPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetContentPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -819,7 +819,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, SortListCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetSortListPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetSortListPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -841,7 +841,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, MiscCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetMiscPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetMiscPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();

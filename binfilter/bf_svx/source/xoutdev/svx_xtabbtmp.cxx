@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xtabbtmp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -393,7 +393,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /************************************************************************/
 
 /*N*/ BOOL XBitmapList::Save()
-/*N*/ {DBG_ASSERT(0, "STRIP"); return false;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;//STRIP001
 //STRIP001 #ifndef SVX_LIGHT
 //STRIP001
 //STRIP001  INetURLObject aURL( aPath );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porfld.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -214,13 +214,13 @@ class SwGrfNumPortion : public SwNumberPortion
 public:
 SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,//STRIP001  SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,
 const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,//STRIP001      const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,
-const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft, bCenter, nMinDst ){DBG_ASSERT(0, "STRIP");} ;//STRIP001       const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst );
+const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft, bCenter, nMinDst ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst );
 //STRIP001  ~SwGrfNumPortion();
 //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001
 void SetBase( long nLnAscent, long nLnDescent,//STRIP001    void SetBase( long nLnAscent, long nLnDescent,
-long nFlyAscent, long nFlyDescent ){DBG_ASSERT(0, "STRIP");} ;//STRIP001        long nFlyAscent, long nFlyDescent );
+long nFlyAscent, long nFlyDescent ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         long nFlyAscent, long nFlyDescent );
 //STRIP001
 //STRIP001  void StopAnimation( OutputDevice *pOut );
 //STRIP001

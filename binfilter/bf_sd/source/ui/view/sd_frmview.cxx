@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -779,10 +779,10 @@ using namespace ::std;
 /*N*/       aUserData.addValue( sUNO_View_SnapLinesDrawing, makeAny( createHelpLinesString( GetStandardHelpLines() ) ) );
 /*N*/
 /*N*/   if( GetNotesHelpLines().GetCount() )
-/*N*/       DBG_ASSERT(0, "STRIP"); //STRIP001 aUserData.addValue( sUNO_View_SnapLinesNotes, makeAny( createHelpLinesString( GetNotesHelpLines() ) ) );
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aUserData.addValue( sUNO_View_SnapLinesNotes, makeAny( createHelpLinesString( GetNotesHelpLines() ) ) );
 /*N*/
 /*N*/   if( GetHandoutHelpLines().GetCount() )
-/*N*/       DBG_ASSERT(0, "STRIP"); //STRIP001 aUserData.addValue( sUNO_View_SnapLinesHandout, makeAny( createHelpLinesString( GetHandoutHelpLines() ) ) );
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aUserData.addValue( sUNO_View_SnapLinesHandout, makeAny( createHelpLinesString( GetHandoutHelpLines() ) ) );
 /*N*/
 /*N*/   aUserData.addValue( sUNO_View_RulerIsVisible, makeAny( (sal_Bool)HasRuler() ) );
 /*N*/   aUserData.addValue( sUNO_View_PageKind, makeAny( (sal_Int16)GetPageKind() ) );

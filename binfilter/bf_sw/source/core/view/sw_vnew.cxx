@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_vnew.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -238,7 +238,7 @@ namespace binfilter {
 /*N*/     if ( bPreView )
 /*N*/     {
 /*N*/         // OD 12.12.2002 #103492# - init page preview layout
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 pImp->InitPagePreviewLayout();
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->InitPagePreviewLayout();
 /*N*/     }
 /*N*/
 /*N*/   SET_CURR_SHELL( this );
@@ -289,7 +289,7 @@ namespace binfilter {
 /*N*/   bPreView = 0 !=( VSHELLFLAG_ISPREVIEW & nFlags );
 /*N*/     // OD 12.12.2002 #103492#
 /*N*/     if ( bPreView )
-/*?*/        {DBG_ASSERT(0, "STRIP"); }//STRIP001  pImp->InitPagePreviewLayout();
+/*?*/        {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pImp->InitPagePreviewLayout();
 /*N*/
 /*N*/   SET_CURR_SHELL( this );
 /*N*/

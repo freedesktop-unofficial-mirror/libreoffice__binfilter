@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:32 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -197,7 +197,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*?*/   const String&       rMimeType,
 /*?*/   const String&       rUserData       // zum Wiedererkennen oder (frei verwendbar)
 /*?*/ )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(SfxObjectFactory, 0);
 //STRIP001  sal_uInt16 nDemo = SFX_APP()->GetDemoKind();
 //STRIP001
@@ -533,7 +533,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 //STRIP001 }
 
 /*?*/ void SfxObjectFactory::SetStandardTemplate( const String& rFactoryURL, const String& rTemplate )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SfxObjectFactory* pFactory = SfxObjectFactory::GetFactory( rFactoryURL );
 //STRIP001  if ( pFactory )
 //STRIP001  {
@@ -560,7 +560,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/ }
 
 /*?*/ const SfxObjectFactory* SfxObjectFactory::GetFactory( const String& rFactoryURL )
-/*?*/ { // #dochnoetig# DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*N*/   const SfxObjectFactory* pFactory = 0;
 /*N*/   String aFact( rFactoryURL );
 /*N*/   String aPrefix( DEFINE_CONST_UNICODE( "private:factory/" ) );
@@ -589,7 +589,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*?*/ }
 
 /*?*/ const SfxFilter* SfxObjectFactory::GetTemplateFilter() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  USHORT nFilterCount = pImpl->pFilterContainer->GetFilterCount();
 //STRIP001  USHORT nVersion = 0;
 //STRIP001  const SfxFilter *pFilter = NULL;
@@ -679,7 +679,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/ }
 
 /*?*/ String SfxObjectFactory::GetModuleName() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SvtModuleOptions::EFactory eFac = SvtModuleOptions::E_WRITER;
 //STRIP001     if ( SvtModuleOptions::ClassifyFactoryByName( GetDocumentServiceName(), eFac ) )
 //STRIP001         return SvtModuleOptions().GetModuleName( eFac );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wrtsh1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -885,7 +885,7 @@ namespace binfilter {
 
 /*N*/ void SwWrtShell::ConnectObj( SvInPlaceObjectRef xIPObj, const SwRect &rPrt,
 /*N*/                           const SwRect &rFrm )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SfxInPlaceClientRef xCli = GetView().FindIPClient( xIPObj,
 //STRIP001                                                         &GetView().GetEditWin());
 //STRIP001     if ( !xCli.Is() )
@@ -1220,7 +1220,7 @@ namespace binfilter {
 /*?*/           nCnt = SEL_DRW_TXT;
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if (GetView().IsFormMode())  // Nur Forms selektiert
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (GetView().IsFormMode())   // Nur Forms selektiert
 //STRIP001 /*?*/                nCnt = SEL_DRW_FORM;
 //STRIP001 /*?*/            else
 //STRIP001 /*?*/                nCnt = SEL_DRW;         // Irgendein Draw-Objekt
@@ -1479,7 +1479,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SET_CURR_SHELL( this );
 /*N*/   while(IsModePushed())
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    PopMode();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     PopMode();
 /*N*/   while(PopCrsr(FALSE))
 /*N*/       ;
 /*N*/   SwTransferable::ClearSelection( *this );
@@ -1565,7 +1565,7 @@ namespace binfilter {
 
 // --------------
 /*N*/ void SwWrtShell::ChgDBData(const SwDBData& aDBData)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SwEditShell::ChgDBData(aDBData);
 //STRIP001     //notify the db-beamer if available
 //STRIP001     GetView().NotifyDBChanged();

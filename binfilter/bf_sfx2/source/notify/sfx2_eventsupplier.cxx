@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:40:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -216,7 +216,7 @@ namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& aName ) throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  ::osl::MutexGuard aGuard( maMutex );
 //STRIP001
 //STRIP001  // find the event in the list and return the data
@@ -236,14 +236,14 @@ namespace binfilter {
 //  --- XElementAccess ( parent of XNameAccess ) ---
 //--------------------------------------------------------------------------------------------------------
 /*?*/ UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE; //STRIP001
 //STRIP001  UNOTYPE aElementType = ::getCppuType( (const SEQUENCE < PROPERTYVALUE > *)0 );
 //STRIP001  return aElementType;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasElements() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_ASSERT(0, "STRIP");  return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001
 //STRIP001  ::osl::MutexGuard aGuard( maMutex );
 //STRIP001
 //STRIP001  if ( maEventNames.getLength() )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editsel.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,7 +77,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void __EXPORT EditSelFunctionSet::CreateAnchor()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( pCurView )
 //STRIP001      pCurView->pImpEditView->CreateAnchor();
 /*N*/ }
@@ -88,7 +88,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL __EXPORT EditSelFunctionSet::SetCursorAtPoint( const Point& rPointPixel, BOOL )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( pCurView )
 //STRIP001      return pCurView->pImpEditView->SetCursorAtPoint( rPointPixel );
 //STRIP001
@@ -96,7 +96,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL __EXPORT EditSelFunctionSet::IsSelectionAtPoint( const Point& rPointPixel )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( pCurView )
 //STRIP001      return pCurView->pImpEditView->IsSelectionAtPoint( rPointPixel );
 //STRIP001
@@ -117,7 +117,7 @@ namespace binfilter {
 
 
 /*N*/ void __EXPORT EditSelFunctionSet::DeselectAll()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( pCurView )
 //STRIP001      pCurView->pImpEditView->DeselectAll();
 /*N*/ }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: mathtype.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,13 +120,13 @@ public:
     MathType(String &rIn) : bSilent(sal_False),nDefaultSize(12),nLSize(0),
         nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(0),rRet(rIn)
     {
-        DBG_ASSERT(0, "STRIP"); //STRIP001      Init();
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001       Init();
     }
     MathType(String &rIn,SmNode *pIn) : bSilent(sal_False),nDefaultSize(12),
         nLSize(0),nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(2),
         pTree(pIn),rRet(rIn),nInsertion(0),nSpec(0)
     {
-        DBG_ASSERT(0, "STRIP"); //STRIP001Init();
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001Init();
     }
 //STRIP001  int Parse(SvStorage *pS);
 //STRIP001  int ConvertFromStarMath(SvStorage *pStor);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: scriptcont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,7 +98,7 @@ class SfxScriptLibraryContainer : public SfxLibraryContainer_Impl, public OldBas
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream );
     virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile );
 
-    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_ASSERT(0, "STRIP");return NULL;}//STRIP001 virtual SfxLibraryContainer_Impl* createInstanceImpl( void );
+    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}//STRIP001 virtual SfxLibraryContainer_Impl* createInstanceImpl( void );
 
 
     // Password encryption

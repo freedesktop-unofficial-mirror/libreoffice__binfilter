@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_viscrs.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -574,7 +574,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/     }
 /*N*/
 /*N*/     if( aRect.Height() )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         ::SwCalcPixStatics( pCrsrShell->GetOut() );
 //STRIP001 /*?*/         ::SwAlignRect( aRect, (ViewShell*)pCrsrShell );
 /*N*/     }
@@ -619,7 +619,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ void SwSelPaintRects::Hide()
 /*N*/ {
 /*N*/   for( USHORT n = 0; n < Count(); ++n )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    Paint( (*this)[n] );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     Paint( (*this)[n] );
 /*N*/   SwRects::Remove( 0, Count() );
 /*N*/ }
 
@@ -639,7 +639,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/
 /*N*/   if( Count() || aTmp.Count() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SwRegionRects aReg( pCShell->VisArea() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRegionRects aReg( pCShell->VisArea() );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        // suche die neu selektierten Rechtecke heraus
 //STRIP001 /*?*/        aReg.Remove( 0, aReg.Count() );
@@ -836,7 +836,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/       (GetMark()->nNode == GetPoint()->nNode ||
 /*N*/       (GetMark()->nNode.GetNode().IsCntntNode() &&
 /*N*/        GetMark()->nNode.GetNode().GetCntntNode()->GetFrm() )  ))
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    GetDoc()->GetRootFrm()->CalcFrmRects( *this, GetShell()->IsTableMode() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetDoc()->GetRootFrm()->CalcFrmRects( *this, GetShell()->IsTableMode() );
 /*N*/ }
 
 

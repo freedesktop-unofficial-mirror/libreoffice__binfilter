@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xoutbmp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -531,7 +531,7 @@ GraphicFilter* XOutBitmap::pGrfFilter = NULL;
 /*N*/                                 GraphicFilter& rFilter, const USHORT nFormat,
 /*N*/                                 BOOL bIgnoreOptions,
 /*N*/                                 const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001 #ifndef SVX_LIGHT
 //STRIP001  DBG_ASSERT( rURL.GetProtocol() != INET_PROT_NOT_VALID, "XOutBitmap::ExportGraphic(...): invalid URL" );
 //STRIP001

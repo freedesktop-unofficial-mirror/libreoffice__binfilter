@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -423,7 +423,7 @@ namespace
  --------------------------------------------------------------------*/
 /*N*/ BOOL SwNewDBMgr::MergeNew(USHORT nOpt, SwWrtShell& rSh,
 /*N*/                         const ODataAccessDescriptor& _rDescriptor)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 /*?*/     SetMergeType( nOpt );
 //STRIP001 /*?*/
 //STRIP001 /*?*/     DBG_ASSERT(!bInMerge && !pImpl->pMergeData, "merge already activated!")
@@ -1950,7 +1950,7 @@ namespace
 
  ---------------------------------------------------------------------------*/
 /*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32 nSet)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 /*?*/     DBG_ASSERT(pImpl->pMergeData && pImpl->pMergeData->xResultSet.is(), "no data source in merge")
 //STRIP001 /*?*/     if(!pImpl->pMergeData || !pImpl->pMergeData->xResultSet.is()|| nSet < 0)
 //STRIP001 /*?*/        return FALSE;
@@ -2269,7 +2269,7 @@ namespace
 /*N*/ void SwNewDBMgr::ExecuteFormLetter(   SwWrtShell& rSh,
 /*N*/                         const Sequence<PropertyValue>& rProperties,
 /*N*/                         BOOL bWithDataSourceBrowser)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  //prevent second call
 //STRIP001     if(pImpl->pMergeDialog)
 //STRIP001      return ;
@@ -2329,7 +2329,7 @@ namespace
 /*N*/ void SwNewDBMgr::InsertText(SwWrtShell& rSh,
 /*N*/                       const Sequence< PropertyValue>& rProperties)
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 ::rtl::OUString sDataSource, sDataTableOrQuery;
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::rtl::OUString sDataSource, sDataTableOrQuery;
 //STRIP001 /*?*/    Reference<XResultSet>  xResSet;
 //STRIP001 /*?*/     Sequence<Any> aSelection;
 //STRIP001 /*?*/    BOOL bHasSelectionProperty = FALSE;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: hdftctrl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,7 +89,7 @@ public:
     SFX_DECL_MENU_CONTROL();
 
     SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,    //STRIP001  SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,
-        SfxBindings& rBindings ){DBG_ASSERT(0, "STRIP");};  //STRIP001                              SfxBindings& rBindings );
+        SfxBindings& rBindings ){DBG_BF_ASSERT(0, "STRIP");};   //STRIP001                              SfxBindings& rBindings );
 //STRIP001  virtual ~SwHeadFootMenuControl();
 //STRIP001  virtual PopupMenu* GetPopup() const;
 //STRIP001

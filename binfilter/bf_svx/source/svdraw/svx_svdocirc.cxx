@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdocirc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -413,7 +413,7 @@ namespace binfilter {
 /*?*/
 /*?*/       // new shadow line drawing
 /*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/           // draw the line geometry
 //STRIP001 /*?*/            ImpDrawShadowLineGeometry(rXOut, rSet, *pLineGeometry);
 /*?*/       }
@@ -461,10 +461,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   FASTBOOL bOk=TRUE;
-/*N*/   if (HasText()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        bOk=PaintGluePoints(rXOut,rInfoRec);
 /*N*/   }
 /*N*/

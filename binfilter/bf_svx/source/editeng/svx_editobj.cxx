@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,7 +114,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pFmt->GetBrush() && pFmt->GetBrush()->GetGraphic() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 Bitmap aBmp( pFmt->GetBrush()->GetGraphic()->GetBitmap() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Bitmap aBmp( pFmt->GetBrush()->GetGraphic()->GetBitmap() );
 //STRIP001 /*?*/            aBmp.SetPrefSize( pFmt->GetGraphicSize() );
 //STRIP001 /*?*/            aBmp.SetPrefMapMode( MAP_100TH_MM );
 //STRIP001 /*?*/            rBullet.SetBitmap( aBmp );
@@ -233,7 +233,7 @@ namespace binfilter {
 /*N*/     pTempLoadStoreInfos = NULL;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( rCopyFrom.GetWrongList() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pWrongs = rCopyFrom.GetWrongList()->Clone();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pWrongs = rCopyFrom.GetWrongList()->Clone();
 /*N*/ #endif // !SVX_LIGHT
 /*N*/   // So sollten die Items im richtigen Pool landen!
 /*N*/   aParaAttribs.Set( rCopyFrom.GetParaAttribs() );
@@ -253,7 +253,7 @@ namespace binfilter {
 /*N*/   pWrongs = NULL;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( rCopyFrom.GetWrongList() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pWrongs = rCopyFrom.GetWrongList()->Clone();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pWrongs = rCopyFrom.GetWrongList()->Clone();
 /*N*/ #endif // !SVX_LIGHT
 /*N*/ }
 
@@ -308,7 +308,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ XubString EditTextObject::GetText( USHORT nParagraph ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return XubString();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString();//STRIP001
 //STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 //STRIP001  return XubString();
 /*N*/ }
@@ -461,7 +461,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void EditTextObject::SetVertical( BOOL bVertical )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 //STRIP001  ((BinTextObject*)this)->SetVertical( bVertical );
 /*N*/ }
@@ -1047,7 +1047,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void BinTextObject::SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& rFamily )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( nPara < aContents.Count() )
 //STRIP001  {
 //STRIP001      ContentInfo* pC = aContents[ nPara ];

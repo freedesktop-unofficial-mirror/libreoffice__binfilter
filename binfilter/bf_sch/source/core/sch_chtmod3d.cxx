@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmod3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1225,7 +1225,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if( pScene && bShowDataDescrLocal )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                CreateDataDescr( aDescription, nCol, nRow, NULL, FALSE, TRUE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 CreateDataDescr( aDescription, nCol, nRow, NULL, FALSE, TRUE );
 //STRIP001 /*?*/                aDescription.pLabelObj->SetMarkProtect( TRUE );
 //STRIP001 /*?*/                E3dLabelObj* pLabel = new E3dLabelObj( aDescription.aTextPos3D,
 //STRIP001 /*?*/                                                       aDescription.pLabelObj );
@@ -1414,7 +1414,7 @@ namespace binfilter {
 /*?*/                       if (!pDescription)
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 pDescription = new DataDescription [nColCnt];
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDescription = new DataDescription [nColCnt];
 /*?*/                       //STRIP001  ClearDataDescription(pDescription,nColCnt);
 /*?*/                       }
 /*?*/
@@ -1473,7 +1473,7 @@ namespace binfilter {
 /*?*/
 /*?*/                       if( eDescr != CHDESCR_NONE && bValidData )
 /*?*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 CreateDataDescr( pDescription[ nCol ], nCol, nRow, NULL, FALSE, TRUE );
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 CreateDataDescr( pDescription[ nCol ], nCol, nRow, NULL, FALSE, TRUE );
 //STRIP001 /*?*/                            pDescription[ nCol ].pLabelObj->SetMarkProtect( TRUE );
 //STRIP001 /*?*/                            E3dLabelObj* pLabel=new E3dLabelObj( pDescription[nCol].aTextPos3D,
 //STRIP001 /*?*/                                                                 pDescription[nCol].pLabelObj );
@@ -1605,7 +1605,7 @@ namespace binfilter {
 /*?*/                       if (!pDescription)
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001  pDescription = new DataDescription [nRowCnt];
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt];
 //STRIP001 /*?*/                            ClearDataDescription(pDescription,nRowCnt);
 /*?*/                       }
 /*?*/
@@ -1863,7 +1863,7 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       if (pScene && pDescription[nRow].fValue != DBL_MIN)
 /*?*/                       {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001  CreateDataDescr(pDescription[nRow], nCol, nRow, NULL, TRUE, TRUE);
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   CreateDataDescr(pDescription[nRow], nCol, nRow, NULL, TRUE, TRUE);
 //STRIP001 /*?*/                            pDescription[nRow].pLabelObj->SetMarkProtect(TRUE);
 //STRIP001 /*?*/                            E3dLabelObj* pLabel=new E3dLabelObj( pDescription[nRow].aTextPos3D,
 //STRIP001 /*?*/                                                                 pDescription[nRow].pLabelObj );
@@ -2175,7 +2175,7 @@ namespace binfilter {
 /*N*/               double fZPos = (double)nZExtrude / 2.0;
 /*N*/               DataDescription* pDescr=aDescr.Insert(nCol,nRow,aDataPointAttr,Point(0,0),FALSE,CHADJUST_BOTTOM_CENTER,pChartYAxis);
 /*N*/               if(pDescr)
-/*?*/               {DBG_ASSERT(0, "STRIP"); }//STRIP001    Segment3DDescr(*pDescr,aPieRect,nStartAngle,nEndAngle,0,aPieRect.GetWidth()/2,aPieRect.GetWidth()/2,fZPos);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     Segment3DDescr(*pDescr,aPieRect,nStartAngle,nEndAngle,0,aPieRect.GetWidth()/2,aPieRect.GetWidth()/2,fZPos);
 /*N*/           }
 /*N*/       }
 /*N*/   }

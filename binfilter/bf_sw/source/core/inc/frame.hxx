@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frame.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -583,7 +583,7 @@ public:
     BOOL IsFtnAllowed() const;
 
     virtual void  Modify( SfxPoolItem*, SfxPoolItem* );
-    virtual void  Format( const SwBorderAttrs *pAttrs = 0 ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void  Format( const SwBorderAttrs *pAttrs = 0 );
+    virtual void  Format( const SwBorderAttrs *pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  Format( const SwBorderAttrs *pAttrs = 0 );
 
     virtual void  CheckDirection( BOOL bVert );
 
@@ -718,7 +718,7 @@ public:
     void InvalidatePage( const SwPageFrm *pPage = 0 ) const;
 
     virtual BOOL    GetCrsrOfst( SwPosition *, Point&,
-                                 const SwCrsrMoveState* = 0 ) const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const SwCrsrMoveState* = 0 ) const;
+                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const SwCrsrMoveState* = 0 ) const;
     virtual BOOL    GetCharRect( SwRect &, const SwPosition&,
                                  SwCrsrMoveState* = 0 ) const;
 //STRIP001  virtual void    Paint( const SwRect& ) const;

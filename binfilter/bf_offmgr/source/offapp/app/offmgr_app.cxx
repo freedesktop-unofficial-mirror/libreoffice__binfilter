@@ -2,9 +2,9 @@
  *
  *  $RCSfile: offmgr_app.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -484,7 +484,7 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 /*N*/     sal_Int32 nCount = aFontConfig.IsEnabled() ? aFontConfig.SubstitutionCount() : 0;
 /*N*/
 /*N*/   for (sal_Int32  i = 0; i < nCount; i++)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        sal_uInt16 nFlags = 0;
 //STRIP001 /*?*/        const SubstitutionStruct* pSubs = aFontConfig.GetSubstitution(i);
 //STRIP001 /*?*/        if(pSubs->bReplaceAlways)
@@ -530,7 +530,7 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 // ------------------------------------------------------------------------
 
 /*N*/void OfficeApplication::DrawExec_Impl( SfxRequest &rReq )
-/*N*/{DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*
 //STRIP001 Slots with the following id's are executed in this function
 //STRIP001 SID_AUTOPILOT
@@ -569,7 +569,7 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 // ------------------------------------------------------------------------
 
 /*N*/void OfficeApplication::ModuleState_Impl( SfxItemSet &rSet )
-/*N*/{DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // f"ur die Statusabfrage darf das Modul NICHT geladen werden
 //STRIP001
 //STRIP001 #if OSL_DEBUG_LEVEL > 1
@@ -612,7 +612,7 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 // ------------------------------------------------------------------------
 
 /*N*/void OfficeApplication::WriterExec_Impl( SfxRequest &rReq )
-/*N*/{DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/{DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*
 //STRIP001 Hier werden Executes fuer folgende Slots weitergeleitet
 //STRIP001 SID_SW_AGENDA_WIZZARD
@@ -702,7 +702,7 @@ typedef long (SAL_CALL *basicide_handle_basic_error)(void*);
 // ------------------------------------------------------------------------
 
 /*N*/ IMPL_LINK( OfficeApplication, GlobalBasicErrorHdl, StarBASIC*, pBasic )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     // get basctl dllname
 //STRIP001     String sLibName = String::CreateFromAscii( STRING( DLL_NAME ) );
 //STRIP001  sLibName.SearchAndReplace( String( RTL_CONSTASCII_USTRINGPARAM( "ofa" ) ), String( RTL_CONSTASCII_USTRINGPARAM( "basctl" ) ) );

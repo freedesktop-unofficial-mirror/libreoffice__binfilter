@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -236,7 +236,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   Collection::Clone() const
 /*N*/ {
-        DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001     return new Collection(*this);
+        DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001  return new Collection(*this);
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -348,7 +348,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   StrData::Clone() const
 /*N*/ {
-        DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new StrData(*this);
+        DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new StrData(*this);
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -368,7 +368,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   StrCollection::Clone() const
 /*N*/ {
-            DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  return new StrCollection(*this);
+            DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new StrCollection(*this);
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -439,7 +439,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   short nResult = 0;
 //STRIP001
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( pKey1 && pKey2 )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( pKey1 && pKey2 )
 //STRIP001  {
 //STRIP001      TypedStrData& rData1 = (TypedStrData&)*pKey1;
 //STRIP001      TypedStrData& rData2 = (TypedStrData&)*pKey2;

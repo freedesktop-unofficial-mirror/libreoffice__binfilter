@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docredln.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-23 14:05:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,7 +158,7 @@ namespace binfilter {
 /*N*/
 /*N*/         // verify valid redline positions
 /*N*/       for( USHORT i = 0; i < rTbl.Count(); ++i )
-/*?*/             {DBG_ASSERT(0, "STRIP");} //STRIP001 lcl_CheckPam( rTbl[ i ] );
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 lcl_CheckPam( rTbl[ i ] );
 /*N*/
 /*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
 /*N*/         {
@@ -209,7 +209,7 @@ namespace binfilter {
 /*N*/               pFnc = &SwRedline::Hide;
 /*N*/               break;
 /*N*/           case REDLINE_SHOW_DELETE:
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pFnc = &SwRedline::ShowOriginal;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFnc = &SwRedline::ShowOriginal;
 /*?*/               break;
 /*N*/
 /*N*/           default:
@@ -269,7 +269,7 @@ Verhalten von Delete-Redline:
 
 /*N*/ BOOL SwDoc::AppendRedline( SwRedline* pNewRedl, BOOL bCallDelete )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this )
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( this )
 //STRIP001
 //STRIP001  if( IsRedlineOn() && !IsShowOriginal( eRedlineMode ) &&
 //STRIP001       pNewRedl->GetAuthorString().Len() )
@@ -1178,7 +1178,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this
 /*N*/
 /*N*/   if( bSaveInUndo && DoesUndo() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwUndoRedline* pUndo = new SwUndoRedline( UNDO_REDLINE, rRange );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwUndoRedline* pUndo = new SwUndoRedline( UNDO_REDLINE, rRange );
 //STRIP001 /*?*/        if( pUndo->GetRedlSaveCount() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            ClearRedo();
@@ -1195,7 +1195,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this
 /*N*/   GetRedline( *pStt, &n );
 /*N*/   for( ; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SwRedline* pRedl = (*pRedlineTbl)[ n ];
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRedline* pRedl = (*pRedlineTbl)[ n ];
 //STRIP001 /*?*/        if( USHRT_MAX != nDelType && nDelType != pRedl->GetType() )
 //STRIP001 /*?*/            continue;
 //STRIP001 /*?*/
@@ -1316,7 +1316,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this
 /*N*/   const ULONG nNdIdx = rNd.GetIndex();
 /*N*/   for( USHORT n = 0; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  const SwRedline* pTmp = (*pRedlineTbl)[ n ];
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwRedline* pTmp = (*pRedlineTbl)[ n ];
 //STRIP001 /*?*/        ULONG nPt = pTmp->GetPoint()->nNode.GetIndex(),
 //STRIP001 /*?*/              nMk = pTmp->GetMark()->nNode.GetIndex();
 //STRIP001 /*?*/        if( nPt < nMk ) { long nTmp = nMk; nMk = nPt; nPt = nTmp; }
@@ -1337,7 +1337,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  _CHECK_REDLINE( this
 /*N*/   register USHORT nO = pRedlineTbl->Count(), nM, nU = 0;
 /*N*/   if( nO > 0 )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  nO--;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nO--;
 //STRIP001 /*?*/        while( nU <= nO )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            nM = nU + ( nO - nU ) / 2;
@@ -2894,7 +2894,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 //STRIP001 }
 
 /*N*/ void SwRedline::Show( USHORT nLoop )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( 1 <= nLoop )
 //STRIP001  {
 //STRIP001      SwDoc* pDoc = GetDoc();
@@ -2926,7 +2926,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/ }
 
 /*N*/ void SwRedline::Hide( USHORT nLoop )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwDoc* pDoc = GetDoc();
 //STRIP001  SwRedlineMode eOld = pDoc->GetRedlineMode();
 //STRIP001  pDoc->SetRedlineMode_intern( eOld | REDLINE_IGNORE );
@@ -3421,7 +3421,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // fuers Undo
 /*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* pIdx )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if( pIdx && !pCntntSect )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( pIdx && !pCntntSect )
 //STRIP001  {
 //STRIP001      pCntntSect = new SwNodeIndex( *pIdx );
 //STRIP001      bIsVisible = FALSE;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -309,7 +309,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
     @return true, if <this> is positioned before the layout frame <p>
 */
 /*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* _pCheckRefLayFrm ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     ASSERT( !IsRootFrm() , "<IsBefore> called at a <SwRootFrm>.");
 //STRIP001     ASSERT( !_pCheckRefLayFrm->IsRootFrm() , "<IsBefore> called with a <SwRootFrm>.");
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drawsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,24 +96,24 @@ public:
     TYPEINFO();
     SFX_DECL_INTERFACE(SCID_DRAW_SHELL);
 
-    ScDrawShell(ScViewData* pData){DBG_ASSERT(0, "STRIP");} //STRIP001 ScDrawShell(ScViewData* pData);
+    ScDrawShell(ScViewData* pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDrawShell(ScViewData* pData);
 //STRIP001                  ~ScDrawShell();
 
-    void    StateDisableItems( SfxItemSet &rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    StateDisableItems( SfxItemSet &rSet );
+    void    StateDisableItems( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    StateDisableItems( SfxItemSet &rSet );
 
-    void    ExecDrawAttr(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecDrawAttr(SfxRequest& rReq);
-    void    GetDrawAttrState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetDrawAttrState(SfxItemSet &rSet);
-    void    GetAttrFuncState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetAttrFuncState(SfxItemSet &rSet);
+    void    ExecDrawAttr(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecDrawAttr(SfxRequest& rReq);
+    void    GetDrawAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetDrawAttrState(SfxItemSet &rSet);
+    void    GetAttrFuncState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrFuncState(SfxItemSet &rSet);
 
-    void    ExecDrawFunc(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecDrawFunc(SfxRequest& rReq);
-    void    GetDrawFuncState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetDrawFuncState(SfxItemSet &rSet);
-    void    GetState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetState(SfxItemSet &rSet);
+    void    ExecDrawFunc(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecDrawFunc(SfxRequest& rReq);
+    void    GetDrawFuncState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetDrawFuncState(SfxItemSet &rSet);
+    void    GetState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetState(SfxItemSet &rSet);
 
-    void    ExecFormText(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecFormText(SfxRequest& rReq);     // StarFontWork
-    void    GetFormTextState(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetFormTextState(SfxItemSet& rSet);
+    void    ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecFormText(SfxRequest& rReq);     // StarFontWork
+    void    GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetFormTextState(SfxItemSet& rSet);
 
-    void    ExecuteHLink(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecuteHLink(SfxRequest& rReq);     // Hyperlink
-    void    GetHLinkState(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void    GetHLinkState(SfxItemSet& rSet);
+    void    ExecuteHLink(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecuteHLink(SfxRequest& rReq);     // Hyperlink
+    void    GetHLinkState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    GetHLinkState(SfxItemSet& rSet);
 
 //STRIP001  void    ExecuteLineDlg( SfxRequest& rReq, USHORT nTabPage = 0xffff );
 //STRIP001  void    ExecuteAreaDlg( SfxRequest& rReq, USHORT nTabPage = 0xffff );

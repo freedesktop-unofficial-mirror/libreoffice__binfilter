@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_wsfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:36 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -869,7 +869,7 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 ViewShell* pShell = pRootFrm->GetCurrShell();
 /*N*/                 if( pShell != NULL )
-/*?*/                    {DBG_ASSERT(0, "STRIP"); }//STRIP001  pShell->Imp()->DisposeAccessibleFrm( pTableFrm, sal_True );
+/*?*/                    {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pShell->Imp()->DisposeAccessibleFrm( pTableFrm, sal_True );
 /*N*/             }
 /*N*/         }
 /*N*/     }
@@ -2385,7 +2385,7 @@ namespace binfilter {
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/           pRootFrm->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
 /*N*/       }
 /*N*/   }
 /*N*/   return nReal;
@@ -2494,7 +2494,7 @@ namespace binfilter {
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/           pRootFrm->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
 /*N*/       }
 /*N*/   }
 /*N*/   if ( !bTst && (IsCellFrm() || IsColumnFrm() ? nReal : nRealDist) )
@@ -3624,7 +3624,7 @@ namespace binfilter {
 /*?*/           {
 /*?*/               // Siehe oben bei Tabellen
 /*?*/               if( !pLastSctCnt )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    pLastSctCnt = lcl_InvalidateSection( pCnt, nInv );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pLastSctCnt = lcl_InvalidateSection( pCnt, nInv );
 /*?*/               if( pLastSctCnt == pCnt )
 /*?*/                   pLastSctCnt = NULL;
 /*?*/           }
@@ -3647,7 +3647,7 @@ namespace binfilter {
 /*?*/               // diesem die Invalidierung bis zu dreimal durchgefuehrt, das ist vertretbar.
 /*?*/               if( !pLastTabCnt )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pLastTabCnt = lcl_InvalidateTable( pCnt->FindTabFrm(), nInv );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLastTabCnt = lcl_InvalidateTable( pCnt->FindTabFrm(), nInv );
 //STRIP001 /*?*/                    pLastSctCnt = NULL;
 /*?*/               }
 /*?*/               if( pLastTabCnt == pCnt )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txmsrt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,7 +114,7 @@ class SwTOXInternational
 
 public:
     SwTOXInternational( LanguageType nLang, USHORT nOptions,
-                        const String& rSortAlgorithm ){DBG_ASSERT(0, "STRIP");} //STRIP001 const String& rSortAlgorithm );
+                        const String& rSortAlgorithm ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const String& rSortAlgorithm );
 //STRIP001  SwTOXInternational( const SwTOXInternational& );
 //STRIP001  ~SwTOXInternational();
 //STRIP001
@@ -170,7 +170,7 @@ struct SwTOXSortTabBase
                       const SwCntntNode* pTOXSrc,
                       const SwTxtTOXMark* pTxtMark,
                       const SwTOXInternational* pIntl,
-                      const ::com::sun::star::lang::Locale* pLocale = NULL ){DBG_ASSERT(0, "STRIP");} //STRIP001 const ::com::sun::star::lang::Locale* pLocale = NULL );
+                      const ::com::sun::star::lang::Locale* pLocale = NULL ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const ::com::sun::star::lang::Locale* pLocale = NULL );
 
 //STRIP001  USHORT  GetType() const         { return nType; }
 //STRIP001  USHORT  GetOptions() const      { return nOpt; }

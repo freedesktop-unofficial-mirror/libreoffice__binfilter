@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_e3ditem.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,7 +85,7 @@ using namespace ::com::sun::star;
 
 /*?*/ SvxVector3DItem::SvxVector3DItem()
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/  DBG_CTOR(SvxVector3DItem, 0);
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/   DBG_CTOR(SvxVector3DItem, 0);
 /*?*/ }
 
 // -----------------------------------------------------------------------

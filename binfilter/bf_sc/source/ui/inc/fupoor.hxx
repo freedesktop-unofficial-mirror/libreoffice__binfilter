@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fupoor.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -154,7 +154,7 @@ private:
 //STRIP001
 //STRIP001  void SetWindow(Window* pWin) { pWindow = pWin; }
 //STRIP001
-    USHORT GetSlotID() const { DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 USHORT GetSlotID() const { return( aSfxRequest.GetSlot() );}
+    USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 USHORT GetSlotID() const { return( aSfxRequest.GetSlot() );}
 //STRIP001
 //STRIP001  BOOL    IsDetectiveHit( const Point& rLogicPos );
 //STRIP001

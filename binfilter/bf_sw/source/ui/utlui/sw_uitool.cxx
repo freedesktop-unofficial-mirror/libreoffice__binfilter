@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_uitool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -466,7 +466,7 @@ namespace binfilter {
 /*N*/   const SfxPoolItem *pBoxInfo;
 /*N*/   if ( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_BORDER_INNER,
 /*N*/                                           TRUE, &pBoxInfo) )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 aBoxInfo = *(SvxBoxInfoItem*)pBoxInfo;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aBoxInfo = *(SvxBoxInfoItem*)pBoxInfo;
 /*N*/
 /*N*/   aBoxInfo.SetTable( FALSE );
 /*N*/       // Abstandsfeld immer anzeigen

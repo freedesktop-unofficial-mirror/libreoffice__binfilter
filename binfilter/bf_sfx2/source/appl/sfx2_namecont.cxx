@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_namecont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -149,7 +149,7 @@ namespace SfxContainer_Impl
 // Methods XElementAccess
 /*?*/ Type NameContainer_Impl::getElementType()
 /*?*/   throw(RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP");  return mType;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");   return mType;//STRIP001
 //STRIP001  return mType;
 /*?*/ }
 
@@ -279,7 +279,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void NameContainer_Impl::removeByName( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  NameContainerNameMap::iterator aIt = mHashMap.find( Name );
 //STRIP001  if( aIt == mHashMap.end() )
 //STRIP001  {
@@ -338,7 +338,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SAL_CALL NameContainer_Impl::removeContainerListener( const Reference< XContainerListener >& xListener )
 /*?*/   throw (RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( !xListener.is() )
 //STRIP001      throw RuntimeException();
 //STRIP001  Reference< XInterface > xIface( xListener, UNO_QUERY );
@@ -386,7 +386,7 @@ namespace SfxContainer_Impl
 /*?*/                                 const OUString& rCheckFileName,
 /*?*/                                 const OUString& rCheckExtension,
 /*?*/                                 Reference< XSimpleFileAccess > xSFI )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001  INetURLObject aTargetFolderInetObj( rTargetFolderInetObj );
 //STRIP001  aTargetFolderInetObj.insertName( rCheckFileName, sal_True, INetURLObject::LAST_SEGMENT,
 //STRIP001                                   sal_True, INetURLObject::ENCODE_ALL );
@@ -697,7 +697,7 @@ namespace SfxContainer_Impl
 /*N*/                   }
 /*N*/               }
 /*N*/               else if( !bStorage )
-/*N*/               {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 /*N*/                   // Write new index file immediately because otherwise
 /*N*/                   // the library elements will be lost when storing into
 /*N*/                   // the new info format
@@ -794,7 +794,7 @@ namespace SfxContainer_Impl
 /*?*/           aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
-/*?*/         {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/             SfxLibraryContainer_Impl* pCont60 = createInstanceImpl();
 //STRIP001 /*?*/             Reference< XInterface > xRef = static_cast< XInterface* >( static_cast< OWeakObject* >(pCont60) );
 //STRIP001 /*?*/
@@ -1376,7 +1376,7 @@ namespace SfxContainer_Impl
 /*?*/                     ( rLib.aName, xLibrariesStor, rLib.aName );
 /*?*/             }
 /*?*/             else
-/*?*/             {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                SotStorageRef xLibraryStor;
 //STRIP001 /*?*/                if( bStorage )
 //STRIP001 /*?*/                {
@@ -1501,13 +1501,13 @@ namespace SfxContainer_Impl
 // Methods XElementAccess
 /*?*/ Type SfxLibraryContainer_Impl::getElementType()
 /*?*/   throw(RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001
 //STRIP001  return maNameContainer.getElementType();
 /*?*/ }
 
 /*?*/ sal_Bool SfxLibraryContainer_Impl::hasElements()
 /*?*/   throw(RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  sal_Bool bRet = maNameContainer.hasElements();
 //STRIP001  return bRet;
 /*?*/ }
@@ -1583,7 +1583,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::removeLibrary( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     // Get and hold library before removing
 //STRIP001  Any aLibAny = maNameContainer.getByName( Name ) ;
 //STRIP001  Reference< XNameAccess > xNameAccess;
@@ -1753,7 +1753,7 @@ namespace SfxContainer_Impl
 // Methods XLibraryContainer2
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  sal_Bool bRet = pImplLib->mbLink;
 //STRIP001  return bRet;
@@ -1761,7 +1761,7 @@ namespace SfxContainer_Impl
 
 /*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); OUString aRetStr;return aRetStr;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); OUString aRetStr;return aRetStr;//STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  sal_Bool bLink = pImplLib->mbLink;
 //STRIP001  if( !bLink )
@@ -1772,7 +1772,7 @@ namespace SfxContainer_Impl
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001  sal_Bool bRet = pImplLib->mbReadOnly || (pImplLib->mbLink && pImplLib->mbReadOnlyLink);
 //STRIP001  return bRet;
@@ -1780,7 +1780,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& Name, sal_Bool bReadOnly )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001     SfxLibrary_Impl* pImplLib = getImplLib( Name );
 //STRIP001     if( pImplLib->mbLink )
 //STRIP001     {
@@ -1803,7 +1803,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::renameLibrary( const OUString& Name, const OUString& NewName )
 /*?*/     throw (NoSuchElementException, ElementExistException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001  if( maNameContainer.hasByName( NewName ) )
 //STRIP001      throw ElementExistException();
 //STRIP001
@@ -1914,28 +1914,28 @@ namespace SfxContainer_Impl
 // Methods XLibraryContainerPassword
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordProtected( const OUString& Name )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  sal_Bool bRet = sal_False;
 //STRIP001  return bRet;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordVerified( const OUString& Name )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 //STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::verifyLibraryPassword
 /*?*/     ( const OUString& Name, const OUString& Password )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 //STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& Name,
 /*?*/     const OUString& OldPassword, const OUString& NewPassword )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP");
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 //STRIP001  throw IllegalArgumentException();
 /*?*/ }
 
@@ -2085,7 +2085,7 @@ namespace SfxContainer_Impl
 // Methods XElementAccess
 /*?*/ Type SfxLibrary_Impl::getElementType()
 /*?*/   throw(RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); Type aType; return aType;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;
 //STRIP001  return maNameContainer.getElementType();
 /*?*/ }
 
@@ -2120,7 +2120,7 @@ namespace SfxContainer_Impl
 // Methods XNameReplace
 /*?*/ void SfxLibrary_Impl::replaceByName( const OUString& aName, const Any& aElement )
 /*?*/   throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( mbReadOnly || (mbLink && mbReadOnlyLink) )
 //STRIP001         throw RuntimeException();
 //STRIP001
@@ -2142,7 +2142,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SfxLibrary_Impl::removeByName( const OUString& Name )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( mbReadOnly || (mbLink && mbReadOnlyLink) )
 //STRIP001         throw RuntimeException();
 //STRIP001
@@ -2173,7 +2173,7 @@ namespace SfxContainer_Impl
 // XTypeProvider
 /*?*/ Sequence< Type > SfxLibrary_Impl::getTypes()
 /*?*/   throw( RuntimeException )
-/*?*/ {DBG_ASSERT(0, "STRIP"); Sequence< Type > aSequence; return aSequence;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Sequence< Type > aSequence; return aSequence;//STRIP001
 //STRIP001  static OTypeCollection * s_pTypes_NameContainer = 0;
 //STRIP001  static OTypeCollection * s_pTypes_NameAccess = 0;
 //STRIP001     /*
@@ -2215,7 +2215,7 @@ namespace SfxContainer_Impl
 
 /*?*/ Sequence< sal_Int8 > SfxLibrary_Impl::getImplementationId()
 /*?*/   throw( RuntimeException )
-/*?*/ {DBG_ASSERT(0, "STRIP"); Sequence< sal_Int8 > aSequence;return aSequence;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Sequence< sal_Int8 > aSequence;return aSequence;//STRIP001
 //STRIP001  static OImplementationId * s_pId_NameContainer = 0;
 //STRIP001  static OImplementationId * s_pId_NameAccess = 0;
 //STRIP001     /*
@@ -2261,7 +2261,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void SAL_CALL SfxLibrary_Impl::removeContainerListener( const Reference< XContainerListener >& xListener )
 /*?*/   throw (RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  maNameContainer.removeContainerListener( xListener );
 /*?*/ }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_progress.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,7 +120,7 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 /*N*/
 /*N*/   if ( pGlobalProgress || SfxProgress::GetActiveProgress( NULL ) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if ( lcl_IsHiddenDocument(pObjSh) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( lcl_IsHiddenDocument(pObjSh) )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            // loading a hidden document while a progress is active is possible - no error
 //STRIP001 /*?*/            pProgress = NULL;

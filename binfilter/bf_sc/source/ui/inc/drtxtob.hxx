@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drtxtob.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,26 +96,26 @@ public:
 //STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_DRAW_TEXT_SHELL);
 
-    ScDrawTextObjectBar(ScViewData* pData){DBG_ASSERT(0, "STRIP"); }
+    ScDrawTextObjectBar(ScViewData* pData){DBG_BF_ASSERT(0, "STRIP"); }
 //STRIP001      ~ScDrawTextObjectBar();
 
-    void StateDisableItems( SfxItemSet &rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void StateDisableItems( SfxItemSet &rSet );
+    void StateDisableItems( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void StateDisableItems( SfxItemSet &rSet );
 
-    void Execute( SfxRequest &rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void Execute( SfxRequest &rReq );
-    void ExecuteTrans( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void ExecuteTrans( SfxRequest& rReq );
-    void GetState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void GetState( SfxItemSet& rSet );
-    void GetClipState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void GetClipState( SfxItemSet& rSet );
+    void Execute( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void Execute( SfxRequest &rReq );
+    void ExecuteTrans( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void ExecuteTrans( SfxRequest& rReq );
+    void GetState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void GetState( SfxItemSet& rSet );
+    void GetClipState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void GetClipState( SfxItemSet& rSet );
 
-    void ExecuteAttr( SfxRequest &rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001 //STRIP001  void ExecuteAttr( SfxRequest &rReq );
-    void GetAttrState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void GetAttrState( SfxItemSet& rSet );
-    void ExecuteToggle( SfxRequest &rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void ExecuteToggle( SfxRequest &rReq );
+    void ExecuteAttr( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001 //STRIP001   void ExecuteAttr( SfxRequest &rReq );
+    void GetAttrState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void GetAttrState( SfxItemSet& rSet );
+    void ExecuteToggle( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void ExecuteToggle( SfxRequest &rReq );
 //STRIP001
 //STRIP001  BOOL ExecuteCharDlg( const SfxItemSet& rArgs, SfxItemSet& rOutSet );
 //STRIP001  BOOL ExecuteParaDlg( const SfxItemSet& rArgs, SfxItemSet& rOutSet );
 //STRIP001
-    void ExecuteExtra( SfxRequest &rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void ExecuteExtra( SfxRequest &rReq );
-    void ExecFormText(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void ExecFormText(SfxRequest& rReq);        // StarFontWork
-    void GetFormTextState(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void GetFormTextState(SfxItemSet& rSet);
+    void ExecuteExtra( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void ExecuteExtra( SfxRequest &rReq );
+    void ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void ExecFormText(SfxRequest& rReq);        // StarFontWork
+    void GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void GetFormTextState(SfxItemSet& rSet);
 //STRIP001
 //STRIP001 private:
 //STRIP001  void ExecuteGlobal( SfxRequest &rReq );         // von Execute gerufen fuer ganze Objekte

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -371,7 +371,7 @@ using namespace ::com::sun::star;
 
 /*?*/ void SchChartDocShell::Execute(SfxRequest& rReq) throw()
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  switch (rReq.GetSlot())
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   switch (rReq.GetSlot())
 //STRIP001  {
 //STRIP001      case SID_CLOSEDOC:
 //STRIP001          SfxObjectShell::DoClose();
@@ -392,7 +392,7 @@ using namespace ::com::sun::star;
 
 /*?*/ void SchChartDocShell::GetState(SfxItemSet &rSet) throw()
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SfxWhichIter aIter(rSet);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
 //STRIP001  USHORT nWhich = aIter.FirstWhich();
 //STRIP001
 //STRIP001  while (nWhich)
@@ -1116,7 +1116,7 @@ using namespace ::com::sun::star;
 /*N*/                 if( pParent )
 /*N*/                 {
 /*?*/                     // determine which is parent application
-/*?*/                      DBG_ASSERT(0, "STRIP"); //STRIP001 SvGlobalName aGlobalName;
+/*?*/                      DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvGlobalName aGlobalName;
 //STRIP001 /*?*/                     ULONG nFileFormat;
 //STRIP001 /*?*/                     String aAppName, aFullName, aShortName;
 //STRIP001 /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,

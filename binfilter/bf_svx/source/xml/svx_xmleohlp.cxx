@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $
+ *  last change: $Author: rt $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -173,28 +173,28 @@ public:
 /*?*/       sal_Int32 nMaxBytesToRead)
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    MutexGuard          aGuard( maMutex );
 //STRIP001  return xIn->readSomeBytes( aData, nMaxBytesToRead );
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 nBytesToSkip )
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
 //STRIP001  xIn->skipBytes( nBytesToSkip );
 /*?*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::available()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     MutexGuard          aGuard( maMutex );
 //STRIP001  return xIn->available();
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::closeInput()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
 //STRIP001  xIn->closeInput();
 //STRIP001  xIn = 0;
 //STRIP001  xStor = 0;
@@ -267,7 +267,7 @@ public:
 /*?*/ void SAL_CALL OutputStorageWrapper_Impl::flush()
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
 //STRIP001  xOut->flush();
 /*?*/ }
 
@@ -762,14 +762,14 @@ struct OUStringLess
 /*?*/ Sequence< OUString > SAL_CALL SvXMLEmbeddedObjectHelper::getElementNames()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;//STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;//STRIP001  MutexGuard          aGuard( maMutex );
 //STRIP001  return Sequence< OUString >(0);
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& rURLStr )
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001   MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
 //STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
 //STRIP001  {
 //STRIP001      return sal_True;
@@ -791,7 +791,7 @@ struct OUStringLess
 /*?*/ Type SAL_CALL SvXMLEmbeddedObjectHelper::getElementType()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001   MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001    MutexGuard          aGuard( maMutex );
 //STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
 //STRIP001      return ::getCppuType((const Reference<XOutputStream>*)0);
 //STRIP001  else
@@ -801,7 +801,7 @@ struct OUStringLess
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasElements()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001   MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
 //STRIP001  if( EMBEDDEDOBJECTHELPER_MODE_READ == meCreateMode )
 //STRIP001  {
 //STRIP001      return sal_True;

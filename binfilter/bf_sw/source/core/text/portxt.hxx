@@ -2,9 +2,9 @@
  *
  *  $RCSfile: portxt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:14 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -88,7 +88,7 @@ class SwTxtPortion : public SwLinePortion
 public:
     inline SwTxtPortion(){ SetWhichPor( POR_TXT ); }
     SwTxtPortion( const SwLinePortion &rPortion );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");}; //STRIP001     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
 //STRIP001  virtual xub_StrLen GetCrsrOfst( const KSHORT nOfst ) const;
@@ -122,7 +122,7 @@ public:
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
     virtual SwLinePortion *Compress();
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");} ;//STRIP001     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
 //STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;

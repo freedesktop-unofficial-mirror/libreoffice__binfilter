@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__ximp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:47 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -230,7 +230,7 @@ namespace binfilter {
 /*?*/               if( pMtf && !bPrinter )
 /*?*/               {
 /*?*/                   if( !pOut->GetPDFWriter() && XIMP_bDrawRasterOps )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                        pOut->SetRasterOp( ROP_XOR );
 //STRIP001 /*?*/                        ImpDrawBitmapFill( aPolyRect, bPrinter );
 //STRIP001 /*?*/
@@ -244,18 +244,18 @@ namespace binfilter {
 //STRIP001 /*?*/                        ImpDrawBitmapFill( aPolyRect, bPrinter );
 /*?*/                   }
 /*?*/                   else
-/*?*/                   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                        pOut->IntersectClipRegion( rPolyPoly );
 //STRIP001 /*?*/                        ImpDrawBitmapFill( aPolyRect, bPrinter );
 /*?*/                   }
 /*?*/               }
 /*?*/               else if( bRect || bPrinter )
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    pOut->IntersectClipRegion( rPolyPoly );
 //STRIP001 /*?*/                    ImpDrawBitmapFill( aPolyRect, bPrinter );
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    VirtualDevice   aMemDev;
 //STRIP001 /*?*/                    PolyPolygon     aPolyPoly( pOut->LogicToPixel( rPolyPoly ) );
 //STRIP001 /*?*/                     Rectangle      aPolyRectPix( pOut->LogicToPixel( aPolyRect ) );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_laycache.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -241,7 +241,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/         }
 /*N*/       default:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 aIo.SkipRec();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aIo.SkipRec();
 /*N*/           break;
 /*N*/       }
 /*N*/   }

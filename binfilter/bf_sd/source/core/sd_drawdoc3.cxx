@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1519,7 +1519,7 @@ using namespace ::com::sun::star;
 /*N*/               }
 /*N*/
 /*N*/               if( bUndo )
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    BegUndo();
 //STRIP001 /*?*/                    AddUndo( new SdrUndoDelPage( *pNotesMaster ) );
 /*N*/               }
@@ -1527,12 +1527,12 @@ using namespace ::com::sun::star;
 /*N*/               RemoveMasterPage( pNotesMaster->GetPageNum() );
 /*N*/
 /*N*/               if( bUndo )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); }//STRIP001 AddUndo(new SdrUndoDelPage(*pMaster));
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 AddUndo(new SdrUndoDelPage(*pMaster));
 /*N*/
 /*N*/               RemoveMasterPage( pMaster->GetPageNum() );
 /*N*/
 /*N*/               if( bUndo )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); }//STRIP001 EndUndo(); // schon hier, damit sich Joes Actions ZWISCHEN unsere eigenen schieben
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EndUndo();  // schon hier, damit sich Joes Actions ZWISCHEN unsere eigenen schieben
 /*N*/
 /*N*/               // alte Layoutvorlagen loeschen, wenn sie nicht mehr benoetigt werden
 /*N*/               BOOL bDeleteOldStyleSheets = TRUE;
@@ -1548,7 +1548,7 @@ using namespace ::com::sun::star;
 /*N*/               }
 /*N*/
 /*N*/               if (bDeleteOldStyleSheets)
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    List* pRemove = ((SdStyleSheetPool*) pStyleSheetPool)->CreateLayoutSheetList( aLayoutName );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    if( bUndo )
@@ -1557,7 +1557,7 @@ using namespace ::com::sun::star;
 //STRIP001 /*?*/                        SdMoveStyleSheetsUndoAction* pMovStyles = new SdMoveStyleSheetsUndoAction( this, pRemove, FALSE );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                        if (pUndoMgr)
-//STRIP001 /*?*/                            {DBG_ASSERT(0, "STRIP"); }//STRIP001 pUndoMgr->AddUndoAction(pMovStyles);
+//STRIP001 /*?*/                            {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pUndoMgr->AddUndoAction(pMovStyles);
 //STRIP001 /*?*/                    }
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    for ( SfxStyleSheet* pSheet = (SfxStyleSheet*)pRemove->First();

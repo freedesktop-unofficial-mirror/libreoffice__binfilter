@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:14 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -358,11 +358,11 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // verschiebe noch alle Bookmarks/TOXMarks/FlyAtCnt
 /*N*/       if( aBkmkArr.Count() )
-/*?*/   {   DBG_ASSERT(0, "STRIP"); }//STRIP001     _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  _RestoreCntntIdx( this, aBkmkArr, rPos.nNode.GetIndex()-1, 0, TRUE );
 /*N*/
 /*N*/       if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
 //STRIP001 /*?*/            aPam.SetMark();
 //STRIP001 /*?*/            aPam.Move( fnMoveBackward );
 //STRIP001 /*?*/            if( IsRedlineOn() )
@@ -403,7 +403,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
 //STRIP001 /*?*/        aPam.SetMark();
 //STRIP001 /*?*/        aPam.Move( fnMoveBackward );
 //STRIP001 /*?*/        if( IsRedlineOn() )
@@ -426,7 +426,7 @@ namespace binfilter {
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
 /*N*/   {
 /*?*/       if( 1 == rStr.Len() && pACEWord->IsDeleted() )
-/*?*/        {DBG_ASSERT(0, "STRIP");} //STRIP001   pACEWord->CheckChar( *pPos, rStr.GetChar( 0 ) );
+/*?*/        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    pACEWord->CheckChar( *pPos, rStr.GetChar( 0 ) );
 /*?*/       delete pACEWord, pACEWord = 0;
 /*N*/   }
 /*N*/
@@ -478,7 +478,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pPos->nNode, aTmp.GetCntnt(),
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pPos->nNode, aTmp.GetCntnt(),
 //STRIP001 /*?*/                    pPos->nNode, pPos->nContent.GetIndex());
 //STRIP001 /*?*/        if( IsRedlineOn() )
 //STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
@@ -776,7 +776,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
     // OS 25.06.96: ab jetzt wird immer die Anzahl der Referenzen returnt
 /*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* pNames ) const
 /*N*/ {
-/*N*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   const SfxPoolItem* pItem;
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    const SfxPoolItem* pItem;
 //STRIP001  const SwTxtRefMark* pTxtRef;
 //STRIP001
 //STRIP001  USHORT nMaxItems = GetAttrPool().GetItemCount( RES_TXTATR_REFMARK );
@@ -837,7 +837,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/                   const String& rFltName, const Graphic* pGraphic,
 /*N*/                   const GraphicObject* pGrafObj )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  SwGrfNode *pGrfNd;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 //STRIP001  if( ( !rPam.HasMark()
 //STRIP001       || rPam.GetPoint()->nNode.GetIndex() == rPam.GetMark()->nNode.GetIndex() )
 //STRIP001       && 0 != ( pGrfNd = rPam.GetPoint()->nNode.GetNode().GetGrfNode() ) )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -601,7 +601,7 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
 /*N*/   if ( nDelFlag & IDF_EDITATTR )
 /*N*/   {
 /*?*/       DBG_ASSERT( nContFlag == 0, "DeleteArea: falsche Flags" );
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        RemoveEditAttribs( nStartRow, nEndRow );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         RemoveEditAttribs( nStartRow, nEndRow );
 /*N*/   }
 /*N*/
 /*N*/   //  Attribute erst hier
@@ -841,7 +841,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        RemoveEditAttribs( nStartRow, nE
 /*?*/               ScFormulaCell* pForm = (ScFormulaCell*)pSource;
 /*?*/               if (nFlags & IDF_FORMULA)
 /*?*/               {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                    pNew = pForm->Clone( pDestDoc, rDestPos, TRUE );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = pForm->Clone( pDestDoc, rDestPos, TRUE );
 /*?*/               }
 /*?*/               else if ( (nFlags & (IDF_VALUE | IDF_DATETIME | IDF_STRING)) &&
 /*?*/                           !pDestDoc->IsUndo() )
@@ -857,7 +857,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                    pNew = pForm->Clone(
 /*?*/
 /*?*/                       if ( nFlags & IDF_VALUE )
 /*?*/                       {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                            ScFormulaCell* pErrCell = new ScFormulaCell( pDestDoc, rDestPos );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormulaCell* pErrCell = new ScFormulaCell( pDestDoc, rDestPos );
 //STRIP001 /*?*/                            pErrCell->SetErrCode( nErr );
 //STRIP001 /*?*/                            pNew = pErrCell;
 /*?*/                       }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objxtor.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -524,7 +524,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*?*/       if ( pFrame )
 /*?*/       {
 /*?*/           // minimierte restoren
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
 //STRIP001 /*?*/             pSfxApp->SetViewFrame( pTop->GetCurrentViewFrame() );
 //STRIP001 /*?*/             pFrame->GetFrame()->Appear();
 //STRIP001 /*?*/
@@ -604,7 +604,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   if ( bUI && !bClose && IsInformationLost() )
 /*N*/   {
 /*N*/       // minimierte restoren
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
 //STRIP001 /*?*/         pSfxApp->SetViewFrame( pTop->GetCurrentViewFrame() );
 //STRIP001 /*?*/         pFrame->GetFrame()->Appear();
 //STRIP001 /*?*/        QueryBox aBox( &pFrame->GetWindow(), SfxResId(MSG_CONFIRM_FILTER));
@@ -647,7 +647,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 //--------------------------------------------------------------------
 
 /*?*/ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     if( !pImp->pBasicLibContainer )
 //STRIP001         GetBasicManager();
 //STRIP001  Reference< XLibraryContainer > xRet

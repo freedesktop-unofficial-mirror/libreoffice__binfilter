@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -358,7 +358,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/
 /*N*/       // der SdrPage (und damit den VCControls) sagen, das sich was getan hat
 /*N*/       if( GetDoc()->GetDrawModel() && GetDepends() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001    ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
 //STRIP001 /*?*/                    UpdateLinkData( aName, aContent );
 /*N*/
 /*N*/       sal_Bool bModified = GetDoc()->IsModified();

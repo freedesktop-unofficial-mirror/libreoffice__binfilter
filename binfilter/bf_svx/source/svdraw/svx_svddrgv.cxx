@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svddrgv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-03 10:42:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -229,7 +229,7 @@ namespace binfilter {
 /*N*/   SdrExchangeView::ToggleShownXor(pOut,pRegion);
     if (pDragBla!=NULL && aDragStat.IsShown() &&
     1 )//STRIP001 //STRIP001        (!IS_TYPE(SdrDragMovHdl,pDragBla)) { // das ist ein Hack !!!!!!!!!!
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 DrawDragObj(pOut,TRUE);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawDragObj(pOut,TRUE);
 //STRIP001 /*?*/    }
 /*N*/ }
 
@@ -881,7 +881,7 @@ namespace binfilter {
 
 /*N*/ void SdrDragView::BrkDragObj()
 /*N*/ {
-/*N*/   if (pDragBla!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        pDragBla->Brk();
 //STRIP001 /*?*/        delete pDragBla;
 //STRIP001 /*?*/        pDragBla=NULL;
@@ -1050,19 +1050,19 @@ namespace binfilter {
 /*N*/   if (IsNoDragXorPolys()!=bOn) {
 /*N*/       BOOL bDragging=pDragBla!=NULL;
 /*N*/       BOOL bShown=bDragging && aDragStat.IsShown();
-/*N*/       if (bShown) {DBG_ASSERT(0, "STRIP");} //STRIP001 HideDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 HideDragObj(pDragWin);
 /*N*/       bNoDragXorPolys=bOn;
-/*N*/       if (bDragging) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SetDragPolys(FALSE,IS_TYPE(SdrDragCrook,pDragBla));
 //STRIP001 /*?*/            pDragBla->MovAllPoints(); // die gedraggten Polys neu berechnen
 /*N*/       }
-/*N*/       if (bShown) {DBG_ASSERT(0, "STRIP"); }//STRIP001 ShowDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ShowDragObj(pDragWin);
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SdrDragView::SetDragStripes(BOOL bOn)
 /*N*/ {
-/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        HideDragObj(pDragWin);
 //STRIP001 /*?*/        bDragStripes=bOn;
 //STRIP001 /*?*/        ShowDragObj(pDragWin);

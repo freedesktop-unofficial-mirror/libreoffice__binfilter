@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_lathe3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -520,7 +520,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       // call parent
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
 /*N*/   }
 /*N*/ }
 

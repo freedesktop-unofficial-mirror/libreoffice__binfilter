@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_targuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -293,7 +293,7 @@ void ScLinkTargetTypeObj::SetLinkTargetBitmap( uno::Any& rRet, sal_uInt16 nType 
     }
     if (nImgId)
     {
-        DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bHighContrast = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHighContrast = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
 //STRIP001         ImageList aEntryImages( ScResId( bHighContrast ? RID_IMAGELIST_H_NAVCONT : RID_IMAGELIST_NAVCONT ) );
 //STRIP001      const Image& rImage = aEntryImages.GetImage( nImgId );
 //STRIP001         BitmapEx aBitmapEx( rImage.GetBitmap() );

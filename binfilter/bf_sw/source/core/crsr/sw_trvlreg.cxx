@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvlreg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,7 +95,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoPrevRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
 //STRIP001  SwSectionNode* pNd = aIdx.GetNode().FindSectionNode();
 //STRIP001  if( pNd )
@@ -150,7 +150,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoNextRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
 //STRIP001  SwSectionNode* pNd = aIdx.GetNode().FindSectionNode();
 //STRIP001  if( pNd )
@@ -206,7 +206,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoCurrRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 //STRIP001  SwSectionNode* pNd = rCurCrsr.GetNode()->FindSectionNode();
 //STRIP001  if( !pNd )
 //STRIP001      return FALSE;
@@ -238,7 +238,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoCurrRegionAndSkip( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
 /*N*/                               FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwNode* pCurrNd = rCurCrsr.GetNode();
 //STRIP001  SwSectionNode* pNd = pCurrNd->FindSectionNode();
 //STRIP001  if( !pNd )
@@ -286,7 +286,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL SwCursor::MoveRegion( SwWhichRegion fnWhichRegion, SwPosRegion fnPosRegion )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP");  return FALSE;//STRIP001 SwCrsrSaveState aSaveState( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001 SwCrsrSaveState aSaveState( *this );
 //STRIP001  return !(SwTableCursor*)*this &&
 //STRIP001          (*fnWhichRegion)( *this, fnPosRegion, IsReadOnlyAvailable()  ) &&
 //STRIP001          !IsSelOvr() &&

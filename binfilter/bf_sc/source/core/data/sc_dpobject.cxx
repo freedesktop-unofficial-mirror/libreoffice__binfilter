@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dpobject.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -213,7 +213,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScDPObject::Clone() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  return new ScDPObject(*this);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this);
 /*N*/ }
 
 /*N*/ void ScDPObject::SetAlive(BOOL bSet)
@@ -262,7 +262,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  return new ScDPObject(*this);
 
 /*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc& rDesc)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pImpDesc && rDesc == *pImpDesc )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pImpDesc && rDesc == *pImpDesc )
 //STRIP001      return;             // nothing to do
 //STRIP001
 //STRIP001  DELETEZ( pSheetDesc );
@@ -276,7 +276,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pImpDesc && rDesc == *pImpDesc )
 
 /*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc& rDesc)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pServDesc && rDesc == *pServDesc )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 //STRIP001      return;             // nothing to do
 //STRIP001
 //STRIP001  DELETEZ( pSheetDesc );
@@ -343,12 +343,12 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pServDesc && rDesc == *pServDesc )
 /*N*/
 /*N*/       if ( pImpDesc )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScDatabaseDPData* pData = new ScDatabaseDPData( pDoc->GetServiceManager(), *pImpDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDatabaseDPData* pData = new ScDatabaseDPData( pDoc->GetServiceManager(), *pImpDesc );
 //STRIP001 /*?*/            xSource = new ScDPSource( pData );
 /*N*/       }
 /*N*/       else if ( pServDesc )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 xSource = CreateSource( *pServDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xSource = CreateSource( *pServDesc );
 /*N*/       }
 /*N*/
 /*N*/       if ( !xSource.is() )    // sheet data or error in above cases
@@ -431,7 +431,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pServDesc && rDesc == *pServDesc )
 /*N*/ void ScDPObject::UpdateReference( UpdateRefMode eUpdateRefMode,
 /*N*/                                    const ScRange& rRange, short nDx, short nDy, short nDz )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 // Output area
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
 //STRIP001
 //STRIP001  USHORT nCol1 = aOutRange.aStart.Col();
 //STRIP001  USHORT nRow1 = aOutRange.aStart.Row();
@@ -488,7 +488,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if ( pServDesc && rDesc == *pServDesc )
 
 /*N*/ BOOL ScDPObject::RefsEqual( const ScDPObject& r ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( aOutRange != r.aOutRange )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( aOutRange != r.aOutRange )
 //STRIP001      return FALSE;
 //STRIP001
 //STRIP001  if ( pSheetDesc && r.pSheetDesc )
@@ -507,7 +507,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( aOutRange != r.aOutRange )
 
 /*N*/ void ScDPObject::WriteRefsTo( ScDPObject& r ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   r.SetOutRange( aOutRange );
 //STRIP001  if ( pSheetDesc )
 //STRIP001      r.SetSheetDesc( *pSheetDesc );
 /*N*/ }
@@ -826,7 +826,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/           {
 /*?*/               uno::Reference<container::XNamed> xNameOrig( xIntOrig, uno::UNO_QUERY );
 /*?*/               if ( xNameOrig.is() )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    nDupSource = lcl_FindName( xNameOrig->getName(), xDimsName );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nDupSource = lcl_FindName( xNameOrig->getName(), xDimsName );
 /*N*/           }
 /*N*/
 /*N*/           BOOL bDupUsed = FALSE;
@@ -1311,7 +1311,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 /*N*/           if ( pDoc )
 /*N*/               pDoc->GetString( nCol, nRow, nTab, aDocStr );
 /*N*/           else
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001    aDocStr = lcl_GetDimName( xSource, nCol );  // cols must start at 0
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aDocStr = lcl_GetDimName( xSource, nCol );  // cols must start at 0
 /*N*/
 /*N*/           if ( aDocStr.Len() )
 /*N*/               pDim = rSaveData.GetDimensionByName(aDocStr);
@@ -1567,7 +1567,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  r.SetOutRange( aOutRange );
 
 /*N*/ DataObject* ScDPCollection::Clone() const
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return new ScDPCollection(*this);
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new ScDPCollection(*this);
 /*N*/ }
 
 /*N*/ BOOL ScDPCollection::StoreOld( SvStream& rStream ) const

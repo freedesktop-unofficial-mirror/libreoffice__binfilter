@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_misccfg.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 
 /*?*/ void SfxMiscCfg::SetNotFoundWarning( BOOL bSet)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(bNotFound != bSet)
 //STRIP001      SetModified();
 //STRIP001  bNotFound = bSet;
@@ -114,7 +114,7 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 
 /*?*/ void SfxMiscCfg::SetPaperSizeWarning( BOOL bSet)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(bPaperSize != bSet)
 //STRIP001      SetModified();
 //STRIP001  bPaperSize = bSet;
@@ -124,7 +124,7 @@ using namespace ::com::sun::star::uno;
      Beschreibung:
  --------------------------------------------------------------------*/
 /*?*/ void SfxMiscCfg::SetPaperOrientationWarning( BOOL bSet)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(bPaperOrientation != bSet)
 //STRIP001      SetModified();
 //STRIP001  bPaperOrientation = bSet;
@@ -134,7 +134,7 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 
 /*?*/ void SfxMiscCfg::SetYear2000( sal_Int32 nSet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(nYear2000 != nSet)
 //STRIP001      SetModified();
 //STRIP001  nYear2000 = nSet;
@@ -200,7 +200,7 @@ using namespace ::com::sun::star::uno;
 
  ---------------------------------------------------------------------------*/
 /*?*/ void SfxMiscCfg::Commit()
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
 //STRIP001     const OUString* pNames = aNames.getConstArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());

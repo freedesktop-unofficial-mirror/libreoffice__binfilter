@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 // -------------------------------------------------------------------------
 
 /*N*/ ExtraPortionInfo::ExtraPortionInfo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     nOrgWidth = 0;
 //STRIP001     nWidthFullCompression = 0;
 //STRIP001     nMaxCompression100thPercent = 0;
@@ -197,7 +197,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/ }
 
 /*N*/ ExtraPortionInfo::~ExtraPortionInfo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     delete[] pOrgDXArray;
 /*N*/ }
 
@@ -426,7 +426,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   switch ( rPoolItem.Which() )
 /*N*/   {
 /*N*/       case EE_PARA_LRSPACE:
-/*N*/       {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxLRSpaceItem ) ), "ConvertItem: Ungueltiges Item!" );
 //STRIP001          SvxLRSpaceItem& rItem = (SvxLRSpaceItem&)rPoolItem;
 //STRIP001          rItem.SetTxtFirstLineOfst( OutputDevice::LogicToLogic( rItem.GetTxtFirstLineOfst(), eSourceUnit, eDestUnit ) );
@@ -436,7 +436,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_ULSPACE:
-/*N*/       {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxULSpaceItem ) ), "ConvertItem: Ungueltiges Item!" );
 //STRIP001          SvxULSpaceItem& rItem = (SvxULSpaceItem&)rPoolItem;
 //STRIP001          rItem.SetUpper( OutputDevice::LogicToLogic( rItem.GetUpper(), eSourceUnit, eDestUnit ) );
@@ -444,7 +444,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_SBL:
-/*N*/       {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxLineSpacingItem ) ), "ConvertItem: Ungueltiges Item!" );
 //STRIP001          SvxLineSpacingItem& rItem = (SvxLineSpacingItem&)rPoolItem;
 //STRIP001             // #96298# SetLineHeight changes also eLineSpace!
@@ -453,7 +453,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_TABS:
-/*N*/       {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxTabStopItem ) ), "ConvertItem: Ungueltiges Item!" );
 //STRIP001          SvxTabStopItem& rItem = (SvxTabStopItem&)rPoolItem;
 //STRIP001          SvxTabStopItem aNewItem( EE_PARA_TABS );
@@ -469,7 +469,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/       case EE_CHAR_FONTHEIGHT:
 /*N*/       case EE_CHAR_FONTHEIGHT_CJK:
 /*N*/       case EE_CHAR_FONTHEIGHT_CTL:
-/*N*/       {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001          DBG_ASSERT( rPoolItem.IsA( TYPE( SvxFontHeightItem ) ), "ConvertItem: Ungueltiges Item!" );
 //STRIP001          SvxFontHeightItem& rItem = (SvxFontHeightItem&)rPoolItem;
 //STRIP001          rItem.SetHeight( OutputDevice::LogicToLogic( rItem.GetHeight(), eSourceUnit, eDestUnit ) );

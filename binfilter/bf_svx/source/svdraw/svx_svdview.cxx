@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdview.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:30 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -394,7 +394,7 @@ namespace binfilter {
 /*?*/           }
 /*N*/       }
 /*N*/
-/*N*/       if (bDeep || bMid || bRoot) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (bDeep || bMid || bRoot) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            Point aP(aPnt);
 //STRIP001 /*?*/            aP-=pPV->GetOffset();
 //STRIP001 /*?*/            SdrObjMacroHitRec aHitRec;
@@ -560,7 +560,7 @@ namespace binfilter {
 /*N*/       } else if (eHit==SDRHIT_GLUEPOINT) {
 /*N*/           eEvent=SDREVENT_MARKGLUEPOINT; // AddMark+Drag
 /*N*/           rVEvt.bAddMark=MODKEY_MultiMark || MODKEY_DeepMark; // falls bei Deep nicht getroffen
-/*N*/       } else if (eHit==SDRHIT_HANDLE) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       } else if (eHit==SDRHIT_HANDLE) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            eEvent=SDREVENT_BEGDRAGOBJ;    // Mark+Drag,AddMark+Drag,DeepMark+Drag,Unmark
 //STRIP001 /*?*/            BOOL bGlue=pHdl->GetKind()==HDL_GLUE;
 //STRIP001 /*?*/            BOOL bPoly=!bGlue && IsPointMarkable(*pHdl);
@@ -846,13 +846,13 @@ namespace binfilter {//STRIP009
 /*?*/           return pAktCreate->GetCreatePointer();
 /*?*/       }
 /*N*/   }
-/*N*/   if (pDragBla!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if ((IsDraggingPoints() || IsDraggingGluePoints()) && IsMouseHideWhileDraggingPoints()) return Pointer(POINTER_NULL);
 //STRIP001 /*?*/        return pDragBla->GetPointer();
 /*N*/   }
 /*N*/   if (IsMarkObj() || IsMarkPoints() || IsMarkGluePoints() || IsEncirclement() || IsSetPageOrg()) return Pointer(POINTER_ARROW);
-/*N*/   if (IsDragHelpLine()) {DBG_ASSERT(0, "STRIP"); }//STRIP001 return GetDraggedHelpLine().GetPointer();
-/*N*/   if (IsMacroObj()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsDragHelpLine()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 return GetDraggedHelpLine().GetPointer();
+/*N*/   if (IsMacroObj()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrObjMacroHitRec aHitRec;
 //STRIP001 /*?*/        aHitRec.aPos=pOut->LogicToPixel(rMousePos);
 //STRIP001 /*?*/        aHitRec.aDownPos=aMacroDownPos;
@@ -867,7 +867,7 @@ namespace binfilter {//STRIP009
 /*N*/   // TextEdit, ObjEdit, Macro
 /*N*/   if (IsTextEdit() && (IsTextEditInSelectionMode() || IsTextEditHit(rMousePos,0/*nTol*/)))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if(!pOut || IsTextEditInSelectionMode())
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(!pOut || IsTextEditInSelectionMode())
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            if(pTextEditOutliner->IsVertical())
 //STRIP001 /*?*/                return Pointer(POINTER_TEXT_VERTICAL);
@@ -900,7 +900,7 @@ namespace binfilter {//STRIP009
 /*N*/       case SDREVENT_MARKPOINT: case SDREVENT_MARKGLUEPOINT: return Pointer(POINTER_MOVEPOINT);
 /*N*/       case SDREVENT_BEGINSOBJPOINT: case SDREVENT_BEGINSGLUEPOINT: return Pointer(POINTER_CROSS);
 /*N*/       case SDREVENT_EXECUTEURL: return Pointer(POINTER_REFHAND);
-/*N*/       case SDREVENT_BEGMACROOBJ: {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       case SDREVENT_BEGMACROOBJ: {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SdrObjMacroHitRec aHitRec;
 //STRIP001 /*?*/            aHitRec.aPos=aVEvt.aLogicPos;
 //STRIP001 /*?*/            aHitRec.aDownPos=aHitRec.aPos;
@@ -915,7 +915,7 @@ namespace binfilter {//STRIP009
 /*N*/   switch(eHit)
 /*N*/   {
 /*N*/       case SDRHIT_HELPLINE :
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 return aVEvt.pPV->GetHelpLines()[aVEvt.nHlplIdx].GetPointer();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 return aVEvt.pPV->GetHelpLines()[aVEvt.nHlplIdx].GetPointer();
 /*N*/       case SDRHIT_GLUEPOINT:
 /*N*/           return Pointer(POINTER_MOVEPOINT);
 /*N*/       case SDRHIT_TEXTEDIT :
@@ -938,7 +938,7 @@ namespace binfilter {//STRIP009
 /*?*/   BOOL bMarkHit=eHit==SDRHIT_MARKEDOBJECT;
 /*?*/   SdrHdl* pHdl=aVEvt.pHdl;
 /*?*/   // Nun die Pointer fuer Dragging checken
-/*?*/   if (pHdl!=NULL || bMarkHit) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   if (pHdl!=NULL || bMarkHit) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrHdlKind eHdl= pHdl!=NULL ? pHdl->GetKind() : HDL_MOVE;
 //STRIP001 /*?*/        BOOL bCorner=pHdl!=NULL && pHdl->IsCornerHdl();
 //STRIP001 /*?*/        BOOL bVertex=pHdl!=NULL && pHdl->IsVertexHdl();
@@ -1049,7 +1049,7 @@ namespace binfilter {//STRIP009
 /*N*/
 /*N*/   aStr.AppendAscii("nix");
 /*N*/
-/*N*/   if (pAktCreate!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        aStr=pAktCreate->GetDragComment(aDragStat,FALSE,TRUE);
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if(!aStr.Len())
@@ -1060,19 +1060,19 @@ namespace binfilter {//STRIP009
 /*N*/   } else if (pDragBla!=NULL) {
 /*?*/       if (bInsPolyPoint || IsInsertGluePoint()) {
 /*?*/           aStr=aInsPointUndoStr;
-/*N*/       } else {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       } else {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            if (aDragStat.IsMinMoved()) {
 //STRIP001 /*?*/                pDragBla->TakeComment(aStr);
 //STRIP001 /*?*/            }
 /*N*/       }
 /*N*/   } else if (bMarking) {
-/*?*/       if (HasMarkedObj()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       if (HasMarkedObj()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            aStr=ImpGetResStr(STR_ViewMarkMoreObjs);
-/*?*/       } else {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       } else {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            aStr=ImpGetResStr(STR_ViewMarkObjs);
 /*N*/       }
 /*N*/   } else if (bMarkingPoints) {
-/*?*/       if (HasMarkedPoints()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       if (HasMarkedPoints()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            aStr=ImpGetResStr(STR_ViewMarkMorePoints);
 /*N*/       } else {
 /*N*/           aStr=ImpGetResStr(STR_ViewMarkPoints);
@@ -1118,7 +1118,7 @@ namespace binfilter {//STRIP009
 /*N*/   if(aStr.EqualsAscii("nix"))
 /*N*/   {
 /*?*/       if (HasMarkedObj()) {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ImpTakeDescriptionStr(STR_ViewMarked,aStr);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpTakeDescriptionStr(STR_ViewMarked,aStr);
 //STRIP001 /*?*/            if (IsGluePointEditMode()) {
 //STRIP001 /*?*/                if (HasMarkedGluePoints()) {
 //STRIP001 /*?*/                    ImpTakeDescriptionStr(STR_ViewMarked,aStr,0,IMPSDR_GLUEPOINTSDESCRIPTION);
@@ -1206,10 +1206,10 @@ namespace binfilter {//STRIP009
 /*?*/       eSel.nStartPos=eSel.nEndPos;
 /*?*/       GetTextEditOutlinerView()->SetSelection(eSel);
 /*?*/ #ifndef SVX_LIGHT
-/*?*/       if (pItemBrowser!=NULL) {DBG_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->SetDirty();
+/*?*/       if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->SetDirty();
 /*?*/ #endif
 /*N*/   } else if (HasMarkedGluePoints()) UnmarkAllGluePoints();
-/*N*/   else if (HasMarkedPoints()) {DBG_ASSERT(0, "STRIP"); }//STRIP001 UnmarkAllPoints(); // ! Marked statt Markable !
+/*N*/   else if (HasMarkedPoints()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 UnmarkAllPoints(); // ! Marked statt Markable !
 /*N*/   else UnmarkAllObj();
 /*N*/ }
 
@@ -1317,7 +1317,7 @@ namespace binfilter {//STRIP009
 //STRIP001 }
 
 /*N*/ void SdrView::DeleteMarked()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (IsTextEdit()) {
 //STRIP001      SdrObjEditView::KeyInput(KeyEvent(0,KeyCode(KEYFUNC_DELETE)),pTextEditWin);
 //STRIP001  } else {

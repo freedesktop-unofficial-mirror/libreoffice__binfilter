@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_scrrect.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -161,7 +161,7 @@ namespace binfilter {
 ******************************************************************************/
 
 /*N*/ void ViewShell::Scroll()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwScrollAreas *pScrollRects = Imp()->GetScrollRects();
 //STRIP001  if ( pScrollRects )
 //STRIP001  {
@@ -286,7 +286,7 @@ namespace binfilter {
 /*N*/   aRect.Pos().Y() -= nOffs;
 /*N*/   if( aRect.IsOver( pSh->VisArea() ) )
 /*N*/   {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        ASSERT( pSh->GetWin(), "Scrolling without outputdevice" );
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ASSERT( pSh->GetWin(), "Scrolling without outputdevice" );
 //STRIP001 /*?*/        aRect._Intersection( pSh->VisArea() );
 //STRIP001 /*?*/         SwStripes *pStr;
 //STRIP001 /*?*/         if ( !pScrollRects )
@@ -505,7 +505,7 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( SwViewImp, RefreshScrolledHdl, Timer *, EMPTYARG )
 /*N*/ {
-        {DBG_ASSERT(0, "STRIP");} return 0;//STRIP001   DBG_PROFSTART( RefreshTimer );
+        {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    DBG_PROFSTART( RefreshTimer );
 //STRIP001
 //STRIP001  if ( !IsScrolled() )
 //STRIP001  {   DBG_PROFSTOP( RefreshTimer );

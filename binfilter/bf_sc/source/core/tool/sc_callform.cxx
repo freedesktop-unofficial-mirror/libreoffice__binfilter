@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_callform.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -200,7 +200,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 /*N*/ short FuncCollection::Compare(DataObject* pKey1, DataObject* pKey2) const
 /*N*/ {
-            DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 return (short) ScGlobal::pTransliteration->compareString(
+            DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 return (short) ScGlobal::pTransliteration->compareString(
 //STRIP001      ((FuncData*)pKey1)->aInternalName, ((FuncData*)pKey2)->aInternalName );
 /*N*/ }
 
@@ -238,7 +238,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/
 /*N*/   virtual DataObject*     Clone() const { return new ModuleCollection(*this); }
 /*N*/           ModuleData*     operator[]( const USHORT nIndex) const {return (ModuleData*)At(nIndex);}
-    virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short         Compare(DataObject* pKey1, DataObject* pKey2) const;
+    virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short          Compare(DataObject* pKey1, DataObject* pKey2) const;
 //STRIP001          BOOL            SearchModule( const String& rName,
 //STRIP001                                        const ModuleData*& rpModule ) const;
 /*N*/ };

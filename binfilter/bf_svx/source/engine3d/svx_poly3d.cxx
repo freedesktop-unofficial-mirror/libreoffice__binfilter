@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_poly3d.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2448,7 +2448,7 @@ namespace binfilter {
 /*N*/       if ( !bTruncated )
 /*N*/       {
 /*N*/           if ( nAllPointCount > POLY3D_MAXPOINTS )
-/*N*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                UINT16 nDel = (UINT16)(nAllPointCount - POLY3D_MAXPOINTS);
 //STRIP001 /*?*/                UINT16 nPos = pPoly3D->GetPointCount() - nDel;
 //STRIP001 /*?*/                pPoly3D->Remove(nPos, nDel);

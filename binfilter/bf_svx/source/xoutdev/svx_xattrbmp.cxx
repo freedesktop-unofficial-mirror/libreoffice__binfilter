@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattrbmp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -528,7 +528,7 @@ namespace binfilter {
 /*?*/
 /*?*/           if( aBmp.GetSizePixel().Width() == 8 &&
 /*?*/               aBmp.GetSizePixel().Height() == 8 )
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                aXOBitmap.SetBitmapType( XBITMAP_8X8 );
 //STRIP001 /*?*/                aXOBitmap.Bitmap2Array();
 /*?*/           }
@@ -820,7 +820,7 @@ namespace binfilter {
 /*?*/           if(aInput.GetSizePixel().Width() == 8
 /*?*/               && aInput.GetSizePixel().Height() == 8
 /*?*/               && aInput.GetColorCount() == 2)
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                aXOBitmap.Bitmap2Array();
 //STRIP001 /*?*/                aXOBitmap.SetBitmapType(XBITMAP_8X8);
 //STRIP001 /*?*/                aXOBitmap.SetPixelSize(aInput.GetSizePixel());

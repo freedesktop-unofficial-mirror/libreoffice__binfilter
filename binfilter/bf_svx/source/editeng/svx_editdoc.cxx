@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -858,7 +858,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( pWrongList )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bSep = ( GetChar( nIndex ) == ' ' ) || IsFeature( nIndex );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bSep = ( GetChar( nIndex ) == ' ' ) || IsFeature( nIndex );
 //STRIP001 /*?*/        pWrongList->TextInserted( nIndex, nNew, bSep );
 /*N*/   }
 /*N*/ #endif // !SVX_LIGHT
@@ -950,7 +950,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( pWrongList )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pWrongList->TextDeleted( nIndex, nDeleted );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pWrongList->TextDeleted( nIndex, nDeleted );
 /*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/ #ifdef EDITDEBUG
@@ -1080,7 +1080,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ void ContentNode::SetStyleSheet( SfxStyleSheet* pS, const SvxFont& rFontFromStyle )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aContentAttribs.SetStyleSheet( pS );
 //STRIP001
 //STRIP001  // Erst alle Informationen aus dem Style verwenden...

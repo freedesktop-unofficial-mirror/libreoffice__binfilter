@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_trvltbl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -436,7 +436,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
 //STRIP001  SwTableNode* pTblNd = aIdx.GetNode().FindTableNode();
 //STRIP001  if( pTblNd )
@@ -481,7 +481,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwNodeIndex aIdx( rCurCrsr.GetPoint()->nNode );
 //STRIP001  SwTableNode* pTblNd = aIdx.GetNode().FindTableNode();
 //STRIP001  if( pTblNd )
@@ -526,7 +526,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
 /*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwTableNode* pTblNd = rCurCrsr.GetPoint()->nNode.GetNode().FindTableNode();
 //STRIP001  if( !pTblNd )
 //STRIP001      return FALSE;
@@ -552,7 +552,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 //STRIP001
 //STRIP001  if( pTblCrsr || !HasMark() )    // nur wenn kein Mark oder ein TblCrsr
@@ -683,7 +683,7 @@ namespace binfilter {
 
 /*N*/ FASTBOOL SwCrsrShell::GotoTable( const String& rName )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SwCallLink aLk( *this );       // Crsr-Moves ueberwachen,
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SwCallLink aLk( *this );        // Crsr-Moves ueberwachen,
 //STRIP001 /*?*/    FASTBOOL bRet = !pTblCrsr && pCurCrsr->GotoTable( rName );
 //STRIP001 /*?*/    if( bRet )
 //STRIP001 /*?*/    {
@@ -754,7 +754,7 @@ namespace binfilter {
 /*?*/   {
 /*?*/       // jetzt sollten wir mal die Pointer zerstoeren, bevor ein weiterer
 /*?*/       // aufruf kommt.
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ClearTblBoxCntnt();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearTblBoxCntnt();
 //STRIP001 /*?*/        StartAction();
 //STRIP001 /*?*/        GetDoc()->ChkBoxNumFmt( *pChkBox, TRUE );
 //STRIP001 /*?*/        EndAction();
@@ -766,7 +766,7 @@ namespace binfilter {
 
 /*N*/ void SwCrsrShell::SaveTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if( IsSelTblCells() || !IsAutoUpdateCells() )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( IsSelTblCells() || !IsAutoUpdateCells() )
 //STRIP001      return ;
 //STRIP001
 //STRIP001  if( !pPos )

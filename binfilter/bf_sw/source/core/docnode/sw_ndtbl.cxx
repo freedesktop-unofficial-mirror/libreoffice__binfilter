@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:34:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -651,7 +651,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/           SwTableBoxFmt *pBoxF;
 /*N*/           if( pTAFmt )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 BYTE nId = !n ? 0 : (( n+1 == nRows )
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BYTE nId = !n ? 0 : (( n+1 == nRows )
 //STRIP001 /*?*/                                        ? 12 : (4 * (1 + ((n-1) & 1 ))));
 //STRIP001 /*?*/                nId += !i ? 0 : ( i+1 == nCols ? 3 : (1 + ((i-1) & 1)));
 //STRIP001 /*?*/                pBoxF = ::lcl_CreateAFmtBoxFmt( *this, aBoxFmtArr, *pTAFmt,
@@ -705,7 +705,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pTblNd->EndOfSectionNode(), *pTblNd, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pTblNd->EndOfSectionNode(), *pTblNd, 1 );
 //STRIP001 /*?*/        if( IsRedlineOn() )
 //STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
 //STRIP001 /*?*/        else
@@ -1913,7 +1913,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 
 /*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert, USHORT nCnt,
 /*N*/                       sal_Bool bSameHeight )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  // uebers SwDoc fuer Undo !!
 //STRIP001  ASSERT( rBoxes.Count() && nCnt, "keine gueltige Box-Liste" );
 //STRIP001  SwTableNode* pTblNd = (SwTableNode*)rBoxes[0]->GetSttNd()->FindTableNode();
@@ -2178,7 +2178,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/           if ( !pFrm->IsFollow() )
 /*N*/           {
 /*N*/               while ( pFrm->HasFollow() )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    pFrm->JoinAndDelFollows();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrm->JoinAndDelFollows();
 /*N*/               pFrm->Cut();
 /*N*/               delete pFrm;
 /*N*/               bAgain = TRUE;
@@ -2191,7 +2191,7 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 
 /*N*/ void SwTableNode::SetNewTable( SwTable* pNewTable, BOOL bNewFrames )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   DelFrms();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
 //STRIP001  delete pTable;
 //STRIP001  pTable = pNewTable;
 //STRIP001  if( bNewFrames )
@@ -3572,7 +3572,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   DelFrms();
 /*N*/       {
 /*?*/           if( DoesUndo() )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
 //STRIP001 /*?*/                AppendUndo( new SwUndoTblNumFmt( *pBox ) );
 /*?*/           }
 /*?*/

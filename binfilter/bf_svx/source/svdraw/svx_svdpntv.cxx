@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpntv.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-03 10:42:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -261,7 +261,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,pTim)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (rView.aDragStat.IsShown()) {
 //STRIP001      USHORT i=0;
 //STRIP001      do {
@@ -614,7 +614,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if (pItemBrowser!=NULL) {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  delete pItemBrowser;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   delete pItemBrowser;
 /*N*/   }
 /*N*/ #endif
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
@@ -705,7 +705,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* pObj )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     // #110290# Remove the given object from the
 //STRIP001     // maSwappedInGraphicsStack list, as the object
 //STRIP001     // itself caters for swapout again.
@@ -713,7 +713,7 @@ using namespace ::com::sun::star;
 /*?*/ }
 
 /*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,pTimer)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  while( aAsyncPaintList.Count() )
 //STRIP001  {
 //STRIP001      Rectangle           aInvRect;
@@ -790,7 +790,7 @@ using namespace ::com::sun::star;
 /*?*/       pPV->ModelHasChanged();
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
 /*N*/ #endif
 /*N*/ }
 
@@ -801,7 +801,7 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_ASSERT(0, "STRIP");} //STRIP001 pUM->DoAnimateOneStep();
+/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->DoAnimateOneStep();
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
@@ -870,13 +870,13 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
-/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        DrawEncirclement(pOut);
 /*N*/   }
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsVisible()) {DBG_ASSERT(0, "STRIP");} //STRIP001 pUM->Draw(pOut,FALSE,!bRestoreColors); // den 3. Parameter hier noch richtig setzen !!!!!
+/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->Draw(pOut,FALSE,!bRestoreColors); // den 3. Parameter hier noch richtig setzen !!!!!
 /*N*/   }
 /*N*/ }
 
@@ -957,7 +957,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::BrkEncirclement()
 /*N*/ {
-/*N*/   if (IsEncirclement()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        HideEncirclement(pDragWin);
 //STRIP001 /*?*/        bEncircle=FALSE;
 /*N*/   }
@@ -1053,7 +1053,7 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::ClearAll()
 /*N*/ {
 /*N*/   for( void* p = aAsyncPaintList.First(); p; p = aAsyncPaintList.Next() )
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 delete (ImpAsyncStruct*) p;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete (ImpAsyncStruct*) p;
 /*N*/
 /*N*/   aAsyncPaintList.Clear();
 /*N*/   ClearPageViews();
@@ -1069,7 +1069,7 @@ using namespace ::com::sun::star;
 /*N*/       if (!bPageTwice) pTmpPV=GetPageView(pPage); // Evtl. jede Seite nur einmal!
 /*N*/       if (pTmpPV==NULL) {
 /*N*/           USHORT nPos=GetHiddenPV(pPage);   // War die schon mal da?
-/*N*/           if (nPos<GetPageHideCount()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                pPV=GetPageHidePvNum(nPos);
 //STRIP001 /*?*/                aPagHide.Remove(nPos);
 //STRIP001 /*?*/                pPV->SetOffset(rOffs);
@@ -1233,7 +1233,7 @@ using namespace ::com::sun::star;
 /*?*/       GetPageViewPvNum(i)->AddWin(pWin1);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->ForceParent();
 /*N*/ #endif
 /*N*/ }
 
@@ -1247,12 +1247,12 @@ using namespace ::com::sun::star;
 /*N*/       aWinList.Delete(nPos);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->ForceParent();
 /*N*/ #endif
 /*N*/ }
 
 /*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT nNum )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
 //STRIP001     OutputDevice* pWin = GetWin(nNum);
 //STRIP001
 //STRIP001     if( pWin )
@@ -1411,7 +1411,7 @@ using namespace ::com::sun::star;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPaintView::InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  for (USHORT i=0; i<GetPageViewCount(); i++) {
 //STRIP001      SdrPageView* pPV=GetPageViewPvNum(i);
 //STRIP001      pPV->InitRedraw(pOut,rReg,nPaintMode,NULL);
@@ -1641,7 +1641,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*N*/ void SdrPaintView::GlueInvalidate() const
-/*N*/ {DBG_ASSERT(0, "STRIP");
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 //STRIP001  USHORT nPvAnz=GetPageViewCount();
 //STRIP001  USHORT nWinAnz=GetWinCount();
 //STRIP001  for (USHORT nWinNum=0; nWinNum<nWinAnz; nWinNum++) {
@@ -1840,7 +1840,7 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*N*/   }
 #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
 #endif
 /*N*/ }
 
@@ -1874,7 +1874,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*N*/ BOOL SdrPaintView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  SetDefaultStyleSheet(pStyleSheet,bDontRemoveHardAttr);
 //STRIP001  return TRUE;
 /*N*/ }

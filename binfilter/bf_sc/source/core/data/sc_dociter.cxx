@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -244,7 +244,7 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
         USHORT& nAttrEndRow, const ScAttrArray* pNewArr, USHORT nRow,
         ScDocument* pDoc )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 if ( rpArr != pNewArr || nAttrEndRow < nRow )
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rpArr != pNewArr || nAttrEndRow < nRow )
 //STRIP001  {
 //STRIP001      short nPos;
 //STRIP001      pNewArr->Search( nRow, nPos );  // nPos 0 gueltig wenn nicht gefunden

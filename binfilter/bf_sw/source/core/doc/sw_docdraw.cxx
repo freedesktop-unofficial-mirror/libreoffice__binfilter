@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdraw.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,7 +208,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
     // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
-DBG_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
+DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
 //STRIP001
 //STRIP001  const SdrMarkList &rMrkList = rDrawView.GetMarkList();
 //STRIP001  SwDrawFrmFmt *pFmt;
@@ -279,7 +279,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDraw
 
 /*N*/ void SwDoc::UnGroupSelection( SdrView& rDrawView )
 /*N*/ {
-/*N*/ DBG_ASSERT(0, "STRIP"); //STRIP001    int bUndo = DoesUndo();
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     int bUndo = DoesUndo();
 //STRIP001  if( bUndo )
 //STRIP001      ClearRedo();
 //STRIP001
@@ -804,7 +804,7 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 \************************************************************************/
 
 /*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, pInfo)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (pInfo)
 //STRIP001  {
 //STRIP001      const SvxFieldItem& rField = pInfo->GetField();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -235,7 +235,7 @@ struct ScSortInfo
 /*N*/ {
 /*N*/   if ( pSortCollator )
 /*N*/   {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if ( !IsSortCollatorGlobal() )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal() )
 //STRIP001 /*?*/            delete pSortCollator;
 //STRIP001 /*?*/        pSortCollator = NULL;
 /*N*/   }
@@ -1607,7 +1607,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if ( !IsSortCollatorGlobal() )
 
 /*N*/ BOOL ScTable::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   USHORT i, nCount;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    USHORT i, nCount;
 //STRIP001  PutInOrder(nCol1, nCol2);
 //STRIP001  PutInOrder(nRow1, nRow2);
 //STRIP001

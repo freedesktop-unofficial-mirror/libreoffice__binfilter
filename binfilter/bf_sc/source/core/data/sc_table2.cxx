@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -113,7 +113,7 @@ void lcl_SaveRange( SvStream& rStream, ScRange* pRange );
 /*N*/
 /*N*/   if (pOutlineTable)
 /*N*/   {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetColArray()->GetDepth();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->GetColArray()->GetDepth();
 //STRIP001 /*?*/        nOldSizeY = pOutlineTable->GetRowArray()->GetDepth();
 //STRIP001 /*?*/        delete pOutlineTable;
 /*N*/   }
@@ -671,7 +671,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetCo
 /*N*/                   pDestTab->pColFlags[i] = pColFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( i, 0, nTab, i, MAXROW, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( i, 0, nTab, i, MAXROW, nTab ));
 /*N*/               }
 /*N*/
 /*N*/           if (nCol1==0 && nCol2==MAXCOL && pRowHeight && pDestTab->pRowHeight)
@@ -683,7 +683,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetCo
 /*N*/                   pDestTab->pRowFlags[i]  = pRowFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, i, nTab, MAXCOL, i, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, i, nTab, MAXCOL, i, nTab ));
 /*N*/               }
 /*N*/
 /*N*/           pDestTab->SetOutlineTable( pOutlineTable );     // auch nur wenn bColRowFlags
@@ -830,7 +830,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetCo
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, pCell );
 /*N*/       else
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
 /*N*/   }
 /*N*/ }
 
@@ -842,7 +842,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            aCol[nCol].Delete( nRow );
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, nFormatIndex, pCell );
 /*N*/       else
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
 /*N*/   }
 /*N*/ }
 
@@ -852,7 +852,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            aCol[nCol].Delete( nRow );
 /*N*/   if (pCell)
 /*N*/       aCol[rPos.Col()].Insert( rPos.Row(), pCell );
 /*N*/   else
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Row() );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPos.Row() );
 /*N*/ }
 
 
@@ -908,7 +908,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Ro
 
 /*N*/ double ScTable::GetValue( USHORT nCol, USHORT nRow )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0.0;//STRIP001 if (ValidColRow( nCol, nRow ))
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;//STRIP001 if (ValidColRow( nCol, nRow ))
 //STRIP001      return aCol[nCol].GetValue( nRow );
 //STRIP001  return 0.0;
 /*N*/ }
@@ -1036,7 +1036,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Ro
 
 /*N*/ void ScTable::SetDirty( const ScRange& rRange )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOldAutoCalc = pDocument->GetAutoCalc();
 //STRIP001  pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
 //STRIP001  USHORT nCol2 = rRange.aEnd.Col();
 //STRIP001  for (USHORT i=rRange.aStart.Col(); i<=nCol2; i++)
@@ -1462,7 +1462,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Ro
 /*N*/   if ( nLockCount )
 /*N*/       bIsEditable = FALSE;
 /*N*/   else if ( bProtected )
-{DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/       bIsEditable = !HasAttribSelection( rMark, HASATTR_PROTECTED );
+{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/        bIsEditable = !HasAttribSelection( rMark, HASATTR_PROTECTED );
 /*N*/   else
 /*N*/       bIsEditable = TRUE;
 /*N*/   if ( bIsEditable )
@@ -1516,7 +1516,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Ro
 /*N*/ void ScTable::MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner, ScLineFlags& rFlags,
 /*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
 //STRIP001  {
 //STRIP001      PutInOrder(nStartCol, nEndCol);
 //STRIP001      PutInOrder(nStartRow, nEndRow);
@@ -1530,7 +1530,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStar
 /*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
 /*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
 //STRIP001  {
 //STRIP001      PutInOrder(nStartCol, nEndCol);
 //STRIP001      PutInOrder(nStartRow, nEndRow);
@@ -1680,7 +1680,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStar
 /*N*/
 /*N*/   for ( USHORT i=0; i<=MAXCOL; i++ )
 /*N*/     {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if ( aCol[i].IsStyleSheetUsed( rStyle, bGatherAllStyles ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aCol[i].IsStyleSheetUsed( rStyle, bGatherAllStyles ) )
 //STRIP001         {
 //STRIP001             if ( !bGatherAllStyles )
 //STRIP001                 return TRUE;
@@ -2080,7 +2080,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStar
 /*N*/
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    pCharts->SetRangeDirty(ScRange( nCol, 0, nTab, nCol, MAXROW, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pCharts->SetRangeDirty(ScRange( nCol, 0, nTab, nCol, MAXROW, nTab ));
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -2090,7 +2090,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (ValidColRow(nStartCol, nStar
 
 /*N*/ void ScTable::ShowRow(USHORT nRow, BOOL bShow)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (VALIDROW(nRow) && pRowFlags)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (VALIDROW(nRow) && pRowFlags)
 //STRIP001  {
 //STRIP001      BOOL bWasVis = ( pRowFlags[nRow] & CR_HIDDEN ) == 0;
 //STRIP001      if (bWasVis != bShow)
@@ -2262,7 +2262,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (VALIDROW(nRow) && pRowFlags)
 /*N*/       {
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, nStartRow, nTab, MAXCOL, nEndRow, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, nStartRow, nTab, MAXCOL, nEndRow, nTab ));
 /*N*/       }
 /*N*/
 /*N*/       nStartRow = nEndRow + 1;
@@ -2377,7 +2377,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (VALIDROW(nRow) && pRowFlags)
 /*N*/ BOOL ScTable::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, BOOL bShow )
 /*N*/ {
 /*N*/   if (pOutlineTable && pColFlags)
-/*?*/       {DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return pOutlineTable->GetColArray()->ManualAction( nStartCol, nEndCol, bShow, pColFlags );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return pOutlineTable->GetColArray()->ManualAction( nStartCol, nEndCol, bShow, pColFlags );
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findtxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:30 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -459,7 +459,7 @@ using namespace ::com::sun::star::util;
 /*M*/                       SwDocPositions nStart, SwDocPositions nEnde,
 /*M*/                         BOOL& bCancel,
 /*M*/                       FindRanges eFndRngs, int bReplace )
-/*M*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001 /*?*/    // OLE-Benachrichtigung abschalten !!
 //STRIP001 /*?*/    SwDoc* pDoc = GetDoc();
 //STRIP001 /*?*/    Link aLnk( pDoc->GetOle2Link() );

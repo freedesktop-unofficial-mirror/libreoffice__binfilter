@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -204,7 +204,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/     if ( pEditEngine->pImpEditEngine->GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTVIEWSELECTIONCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTVIEWSELECTIONCHANGED );
 //STRIP001 /*?*/         aNotify.pEditEngine = pEditEngine;
 //STRIP001 /*?*/         aNotify.pEditView = GetEditViewPtr();
 //STRIP001 /*?*/         pEditEngine->pImpEditEngine->CallNotify( aNotify );
@@ -276,14 +276,14 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/       sal_uInt16 nStartLine = 0;
 /*?*/       sal_uInt16 nEndLine = pTmpPortion->GetLines().Count() -1;
 /*?*/       if ( nPara == nStartPara )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    nStartLine = pTmpPortion->GetLines().FindLine( aTmpSel.Min().GetIndex(), sal_False );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nStartLine = pTmpPortion->GetLines().FindLine( aTmpSel.Min().GetIndex(), sal_False );
 /*?*/       if ( nPara == nEndPara )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    nEndLine = pTmpPortion->GetLines().FindLine( aTmpSel.Max().GetIndex(), sal_True );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nEndLine = pTmpPortion->GetLines().FindLine( aTmpSel.Max().GetIndex(), sal_True );
 /*?*/
 /*?*/       // ueber die Zeilen iterieren....
 /*?*/       for ( sal_uInt16 nLine = nStartLine; nLine <= nEndLine; nLine++ )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pTmpPortion->GetLines().GetObject( nLine );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pTmpPortion->GetLines().GetObject( nLine );
 //STRIP001 /*?*/            DBG_ASSERT( pLine, "Zeile nicht gefunden: DrawSelection()" );
 //STRIP001 /*?*/
 //STRIP001 /*?*/             BOOL bPartOfLine = FALSE;
@@ -1063,7 +1063,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           {
 /*?*/               if ( !bReadOnly )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                    CutCopy( aClipBoard, sal_True );
 //STRIP001 /*?*/                    bDone = sal_True;
 /*?*/               }
@@ -1071,7 +1071,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           break;
 /*?*/           case KEYFUNC_COPY:
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001   Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                CutCopy( aClipBoard, sal_False );
 //STRIP001 /*?*/                 bDone = TRUE;
 /*?*/           }
@@ -1080,7 +1080,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           {
 /*?*/               if ( !bReadOnly && IsPasteEnabled() )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pEditEngine->pImpEditEngine->UndoActionStart( EDITUNDO_PASTE );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEditEngine->pImpEditEngine->UndoActionStart( EDITUNDO_PASTE );
 //STRIP001 /*?*/                     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001 /*?*/                    Paste( aClipBoard, pEditEngine->pImpEditEngine->GetStatus().AllowPasteSpecial() );
 //STRIP001 /*?*/                    pEditEngine->pImpEditEngine->UndoActionEnd( EDITUNDO_PASTE );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdde.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -341,7 +341,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung f"uhrt nichts aus und liefert 0 zur"uck.
 //STRIP001 */
 //STRIP001
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  StarBASIC* pBasic = GetBasic();
 //STRIP001  DBG_ASSERT( pBasic, "Wo ist mein Basic???" ) ;
 //STRIP001  SbxVariable* pRet = pBasic->Execute( rCmd );
@@ -372,7 +372,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung liefert keine Daten und gibt 0 zur"uck.
 //STRIP001 */
 //STRIP001
-{DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -394,7 +394,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
     Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
 */
 /*?*/
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -413,7 +413,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung erzeugt keinen und liefert 0 zur"uck.
 //STRIP001 */
 //STRIP001
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -436,7 +436,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  R"uckgabewerte k"onnen dabei leider nicht "ubertragen werden.
 //STRIP001 */
 //STRIP001
-{DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  if ( GetObjectShell() )
 //STRIP001      return GetObjectShell()->DdeExecute( rCmd );
 //STRIP001
@@ -461,7 +461,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung liefert keine Daten und gibt 0 zur"uck.
 //STRIP001 */
 //STRIP001
-{DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -483,7 +483,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
 //STRIP001 */
 //STRIP001
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -502,7 +502,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //STRIP001  Die Basisimplementierung erzeugt keinen und liefert 0 zur"uck.
 //STRIP001 */
 //STRIP001
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return 0;
 /*?*/ }
 
@@ -607,7 +607,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 //--------------------------------------------------------------------
 
 /*?*/ BOOL ImplDdeService::MakeTopic( const String& rNm )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  // Workaround gegen Event nach unserem Main() unter OS/2
 //STRIP001  // passierte wenn man beim Beenden aus dem OffMgr die App neu startet
 //STRIP001  if ( !Application::IsInExecute() )
@@ -673,7 +673,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 /*?*/ String ImplDdeService::Topics()
-/*?*/ {DBG_ASSERT(0, "STRIP"); String aRet; return aRet;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String aRet; return aRet;//STRIP001
 //STRIP001  String sRet;
 //STRIP001  if( GetSysTopic() )
 //STRIP001      sRet += GetSysTopic()->GetName();
@@ -696,21 +696,21 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 /*?*/ BOOL ImplDdeService::SysTopicExecute( const String* pStr )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  return (BOOL)SFX_APP()->DdeExecute( *pStr );
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ BOOL SfxDdeTriggerTopic_Impl::Execute( const String* pStr )
-{DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 //    Application::GetAppWindow()->ToTop(TOTOP_RESTOREWHENMIN);
 //STRIP001  return TRUE;
 /*?*/ }
 
 //--------------------------------------------------------------------
 /*?*/ DdeData* SfxDdeDocTopic_Impl::Get( ULONG nFormat )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  String sMimeType( SotExchange::GetFormatMimeType( nFormat ));
 //STRIP001  ::com::sun::star::uno::Any aValue;
 //STRIP001  long nRet = pSh->DdeGetData( GetCurItem(), sMimeType, aValue );
@@ -724,7 +724,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::Put( const DdeData* pData )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  aSeq = ::com::sun::star::uno::Sequence< sal_Int8 >(
 //STRIP001                          (sal_Int8*)(const void*)*pData, (long)*pData );
 //STRIP001  BOOL bRet;
@@ -741,19 +741,19 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::Execute( const String* pStr )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  long nRet = pStr ? pSh->DdeExecute( *pStr ) : 0;
 //STRIP001  return 0 != nRet;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::MakeItem( const String& rItem )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  AddItem( DdeItem( rItem ) );
 //STRIP001  return TRUE;
 /*?*/ }
 
 /*?*/ BOOL SfxDdeDocTopic_Impl::StartAdviseLoop()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  BOOL bRet = FALSE;
 //STRIP001  ::so3::SvLinkSource* pNewObj = pSh->DdeCreateLinkSource( GetCurItem() );
 //STRIP001  if( pNewObj )

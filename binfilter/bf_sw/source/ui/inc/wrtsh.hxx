@@ -2,9 +2,9 @@
  *
  *  $RCSfile: wrtsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:52 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -592,7 +592,7 @@ private:
  inline void SwWrtShell::ResetCursorStack()
  {
      if ( HasCrsrStack() )
-    {DBG_ASSERT(0, "STRIP"); }//STRIP001 _ResetCursorStack();
+    {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _ResetCursorStack();
  }
 
 inline void SwWrtShell::SelTblCells(const Link &rLink, BOOL bMark )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_gctable.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:04 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -476,7 +476,7 @@ struct _GCLinePara
 /*N*/           const SfxPoolItem* pItem;
 /*N*/           if( SFX_ITEM_SET == pLn->GetFrmFmt()->GetItemState(
 /*N*/                                   RES_BACKGROUND, TRUE, &pItem ))
-/*N*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                SwTableLines& rBoxLns = pBox->GetTabLines();
 //STRIP001 /*?*/                for( USHORT nLns = 0; nLns < nLen; ++nLns )
 //STRIP001 /*?*/                    if( SFX_ITEM_SET != rBoxLns[ nLns ]->GetFrmFmt()->

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: glosdoc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -117,7 +117,7 @@ class SwGlossaries
     SvStrings               *pGlosArr;
     BOOL                    bError;
 //STRIP001
-    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 //STRIP001     SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const;
+    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 //STRIP001  SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const;
     SvStrings       *GetNameList();
 //STRIP001  // implementation in unoatxt.cxx
     void RemoveFileFromList( const String& rGroup );

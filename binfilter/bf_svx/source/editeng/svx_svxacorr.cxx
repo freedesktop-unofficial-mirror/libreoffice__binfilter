@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxacorr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1964,14 +1964,14 @@ void DecryptBlockName_Imp( String& rName );
 //STRIP001  pCplStt_ExcptLst( 0 ),
 //STRIP001  pWrdStt_ExcptLst( 0 ),
 //STRIP001  pAutocorr_List( 0 )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /* -----------------18.11.98 11:16-------------------
  *
  * --------------------------------------------------*/
 /*N*/ SvxAutoCorrectLanguageLists::~SvxAutoCorrectLanguageLists()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  delete pCplStt_ExcptLst;
 //STRIP001  delete pWrdStt_ExcptLst;
 //STRIP001  delete pAutocorr_List;

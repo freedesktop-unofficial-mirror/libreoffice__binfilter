@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_nodes.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -258,7 +258,7 @@ namespace binfilter {
 /*?*/
 /*?*/       for( ULONG n = rDelPos.GetIndex(); nSize; n += nDiff, --nSize )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aDelIdx( *this, n );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aDelIdx( *this, n );
 //STRIP001 /*?*/            SwNode& rNd = aDelIdx.GetNode();
 //STRIP001 /*?*/            if( rNd.IsTxtNode() && NO_NUMBERING !=
 //STRIP001 /*?*/                ((SwTxtNode&)rNd).GetTxtColl()->GetOutlineLevel() )
@@ -307,7 +307,7 @@ namespace binfilter {
 /*N*/           if( pNd->IsNoTxtNode() )
 /*N*/           {
 /*?*/               if( bSavePersData )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    ((SwNoTxtNode*)pNd)->SavePersistentData();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ((SwNoTxtNode*)pNd)->SavePersistentData();
 /*N*/           }
 /*N*/           else if( pNd->IsTxtNode() )
 /*N*/           {
@@ -413,7 +413,7 @@ namespace binfilter {
 /*?*/                   // in unterschiedliche Docs gemoved ?
 /*?*/                   // dann die Daten wieder persistent machen
 /*?*/                   if( pCNd->IsNoTxtNode() && bRestPersData )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001    ((SwNoTxtNode*)pCNd)->RestorePersistentData();
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ((SwNoTxtNode*)pCNd)->RestorePersistentData();
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -453,7 +453,7 @@ namespace binfilter {
 /*?*/       if( pFrmNd )
 /*?*/           while( aIdx != rInsPos )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SwCntntNode* pCNd = aIdx.GetNode().GetCntntNode();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCntntNode* pCNd = aIdx.GetNode().GetCntntNode();
 //STRIP001 /*?*/                if( pCNd )
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    if( pFrmNd->IsTableNode() )
@@ -593,7 +593,7 @@ namespace binfilter {
 /*?*/                       pTblNd->pStartOfSection = aIdx.GetNode().pStartOfSection;
 /*?*/                       for( ULONG n = 0; n < nInsPos; ++n )
 /*?*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aMvIdx( aRg.aEnd, 1 );
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aMvIdx( aRg.aEnd, 1 );
 //STRIP001 /*?*/                            SwCntntNode* pCNd = 0;
 //STRIP001 /*?*/                            SwNode* pTmpNd = &aMvIdx.GetNode();
 //STRIP001 /*?*/                            if( pTmpNd->IsCntntNode() )
@@ -663,14 +663,14 @@ namespace binfilter {
 /*?*/                           {
 /*?*/                               pSttNode->pEndOfSection = (SwEndNode*)pNd;
 /*?*/                               if( pSttNode->IsSectionNode() )
-/*?*/                               {DBG_ASSERT(0, "STRIP");} //STRIP001    ((SwSectionNode*)pSttNode)->NodesArrChgd();
+/*?*/                               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ((SwSectionNode*)pSttNode)->NodesArrChgd();
 /*?*/                               pSttNode = pSttNode->pStartOfSection;
 /*?*/                           }
 /*?*/                       }
 /*?*/
 /*?*/                       if( pTblNd->GetTable().IsA( TYPE( SwDDETable ) ))
 /*?*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 SwDDEFieldType* pTyp = ((SwDDETable&)pTblNd->
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwDDEFieldType* pTyp = ((SwDDETable&)pTblNd->
 //STRIP001 /*?*/                                                GetTable()).GetDDEFldType();
 //STRIP001 /*?*/                            if( pTyp )
 //STRIP001 /*?*/                            {
@@ -773,7 +773,7 @@ namespace binfilter {
 /*?*/                   // SectionNode muss noch ein paar Indizies ummelden
 /*?*/                   if( pSctNd )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 pSctNd->NodesArrChgd();
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSctNd->NodesArrChgd();
 //STRIP001 /*?*/                        ++nSectNdCnt;
 //STRIP001 /*?*/                        bNewFrms = FALSE;
 /*?*/                   }
@@ -982,7 +982,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef JP_DEBUG
 /*N*/   {
-/*N*/           DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/ extern Writer* GetDebugWriter(const String&);
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/ extern Writer* GetDebugWriter(const String&);
 //STRIP001 /*?*/
 //STRIP001 /*?*/        Writer* pWriter = GetDebugWriter(aEmptyStr);
 //STRIP001 /*?*/        if( pWriter )
@@ -1486,7 +1486,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ void SwNodes::GoStartOfSection(SwNodeIndex *pIdx) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // hinter den naechsten Startnode
 //STRIP001  SwNodeIndex aTmp( *pIdx->GetNode().StartOfSectionNode(), +1 );
 //STRIP001
@@ -2142,7 +2142,7 @@ namespace binfilter {
 /*?*/           if( pAktNode->EndOfSectionIndex() < aRg.aEnd.GetIndex() )
 /*?*/           {
 /*?*/               // also der gesamte, lege einen neuen SectionNode an
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex nStt( aInsPos, -1 );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex nStt( aInsPos, -1 );
 //STRIP001 /*?*/                SwSectionNode* pSectNd = ((SwSectionNode*)pAktNode)->
 //STRIP001 /*?*/                                    MakeCopy( pDoc, aInsPos );
 //STRIP001 /*?*/

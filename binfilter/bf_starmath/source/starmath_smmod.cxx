@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -347,7 +347,7 @@ namespace binfilter {
 /*N*/             pSmView->GetGraphicWindow().ApplyColorConfigValues( rColorCfg );
 /*N*/             SmEditWindow *pEditWin = pSmView->GetEditWindow();
 /*N*/             if (pEditWin)
-/*?*/                 {DBG_ASSERT(0, "STRIP"); }//STRIP001 pEditWin->ApplyColorConfigValues( rColorCfg );
+/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pEditWin->ApplyColorConfigValues( rColorCfg );
 /*N*/         }
 /*N*/         pViewShell = SfxViewShell::GetNext( *pViewShell );
 /*N*/     }

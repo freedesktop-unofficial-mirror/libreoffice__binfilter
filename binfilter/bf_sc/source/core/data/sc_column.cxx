@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -640,7 +640,7 @@ namespace binfilter {
 
 void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPutToPool )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 pAttrArray->SetPattern( nRow, &rPatAttr, bPutToPool );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pAttrArray->SetPattern( nRow, &rPatAttr, bPutToPool );
 }
 
 
@@ -1416,7 +1416,7 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/               ScBaseCell* pNew;
 /*N*/               if (bAsLink)
 /*N*/               {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                    pNew = CreateRefCell( rColumn.pDocument, aAdr, i, nFlags );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = CreateRefCell( rColumn.pDocument, aAdr, i, nFlags );
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -1669,7 +1669,7 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/                       ScAddress( nCol2, nRow2, nTab2 ) );
 /*N*/       if ( eUpdateRefMode == URM_COPY && nRow1 == nRow2 )
 /*N*/       {   // z.B. eine einzelne Zelle aus dem Clipboard eingefuegt
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nIndex;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 //STRIP001 /*?*/            if ( Search( nRow1, nIndex ) )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                ScFormulaCell* pCell = (ScFormulaCell*) pItems[nIndex].pCell;
@@ -1695,7 +1695,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_ASSERT(0, "STRIP"); //STRIP001 ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
+/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
 //STRIP001 /*?*/                         if ( nRow != pItems[i].nRow )
 //STRIP001 /*?*/                             Search( nRow, i );  // Listener removed/inserted?
 /*?*/                     }
@@ -1709,7 +1709,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nRow = pItems[i].nRow;
+/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nRow = pItems[i].nRow;
 //STRIP001 /*?*/                         ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
 //STRIP001 /*?*/                         if ( nRow != pItems[i].nRow )
 //STRIP001 /*?*/                             Search( nRow, i );  // Listener removed/inserted?

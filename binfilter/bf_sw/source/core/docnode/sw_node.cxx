@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_node.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1036,7 +1036,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/   case RES_CONDCOLL_CONDCHG:
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( ((SwCondCollCondChg*)pNewValue)->pChangedFmt == GetRegisteredIn() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwCondCollCondChg*)pNewValue)->pChangedFmt == GetRegisteredIn() &&
 //STRIP001 /*?*/            &GetNodes() == &GetDoc()->GetNodes() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            ChkCondColl();
@@ -1403,7 +1403,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_GETLOWERNUMLEVEL:
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( IsTxtNode() && ((SwTxtNode*)this)->GetNum() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( IsTxtNode() && ((SwTxtNode*)this)->GetNum() &&
 //STRIP001 /*?*/            0 != ( pItem = (SwNumRuleItem*)GetNoCondAttr(
 //STRIP001 /*?*/            RES_PARATR_NUMRULE, TRUE )) && pItem->GetValue().Len() &&
 //STRIP001 /*?*/            pItem->GetValue() == ((SwNRuleLowerLevel&)rInfo).GetName() &&
@@ -1415,7 +1415,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/       break;
 /*?*/
 /*?*/   case RES_FINDNEARESTNODE:
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
 //STRIP001 /*?*/            ((SwFindNearestNode&)rInfo).CheckNode( *this );
 /*?*/       return TRUE;
 /*?*/

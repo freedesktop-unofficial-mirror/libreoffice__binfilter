@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_select.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -366,7 +366,7 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
         * eine gfs.  bestehende Selektion an der Position des
         * Mausklicks aufheben
         */
-/*?*/           DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001  if(!IsInSelect() && ChgCurrPam(*pPt)) {
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   if(!IsInSelect() && ChgCurrPam(*pPt)) {
 //STRIP001      ClearMark();
 //STRIP001  }
 //STRIP001  return SwCrsrShell::SetCrsr(*pPt, bTextOnly);
@@ -593,7 +593,7 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
 
 /*N*/ void SwWrtShell::EnterStdMode()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if(bAddMode)
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(bAddMode)
 //STRIP001 /*?*/        LeaveAddMode();
 //STRIP001 /*?*/    bExtMode = FALSE;
 //STRIP001 /*?*/    bInSelect = FALSE;
@@ -649,7 +649,7 @@ BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
 
 /*N*/ long SwWrtShell::SttLeaveSelect(const Point *, BOOL )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001      if(SwCrsrShell::HasSelection() && !IsSelTblCells() && bClearMark) {
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if(SwCrsrShell::HasSelection() && !IsSelTblCells() && bClearMark) {
 //STRIP001      return 0;
 //STRIP001  }
 //STRIP001 //   if( IsSelTblCells() ) aSelTblLink.Call(this);
@@ -733,7 +733,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      if(SwCrsrShell::HasSelection() && !IsSel
 
 /*N*/ void SwWrtShell::EnterSelFrmMode(const Point *pPos)
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    if(pPos)
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if(pPos)
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        nStartDragX = pPos->X();
 //STRIP001 /*?*/        nStartDragY = pPos->Y();
@@ -752,7 +752,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      if(SwCrsrShell::HasSelection() && !IsSel
 
 /*N*/ void SwWrtShell::LeaveSelFrmMode()
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    fnDrag          = &SwWrtShell::BeginDrag;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     fnDrag          = &SwWrtShell::BeginDrag;
 //STRIP001 /*?*/    fnEndDrag       = &SwWrtShell::EndDrag;
 //STRIP001 /*?*/    bLayoutMode = FALSE;
 //STRIP001 /*?*/    bStartDrag = FALSE;
@@ -767,7 +767,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      if(SwCrsrShell::HasSelection() && !IsSel
 
 /*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, pFlyFmt )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)pFlyFmt : GetFlyFrmFmt();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)pFlyFmt : GetFlyFrmFmt();
 //STRIP001  ASSERT(pFmt, kein FrameFormat.);
 //STRIP001  const SvxMacroItem &rFmtMac = pFmt->GetMacro();
 //STRIP001
@@ -819,7 +819,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)
 
 /*N*/ long SwWrtShell::BeginDrag(const Point *pPt, BOOL )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001  if(bSelWrd)
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   if(bSelWrd)
 //STRIP001  {
 //STRIP001      bInSelect = TRUE;
 //STRIP001      if( !IsCrsrPtAtEnd() )
@@ -857,7 +857,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001  if(bSelWrd)
 
 /*N*/ long SwWrtShell::EndDrag(const Point *pPt, BOOL )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001  fnDrag = &SwWrtShell::BeginDrag;
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   fnDrag = &SwWrtShell::BeginDrag;
 //STRIP001  if( IsExtSel() )
 //STRIP001      LeaveExtSel();
 //STRIP001

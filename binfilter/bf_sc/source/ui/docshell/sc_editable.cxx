@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_editable.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,14 +105,14 @@ namespace binfilter {
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 TestRange( pDoc, rRange );
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 TestRange( pDoc, rRange );
 /*N*/ }
 
 /*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScMarkData& rMark ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 TestSelection( pDoc, rMark );
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 TestSelection( pDoc, rMark );
 /*N*/ }
 
 //STRIP001 ScEditableTester::ScEditableTester( ScViewFunc* pView ) :

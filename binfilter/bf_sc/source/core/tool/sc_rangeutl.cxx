@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangeutl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -324,7 +324,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 CutPosString( aStrArea, aStrArea );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 CutPosString( aStrArea, aStrArea );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                if ( IsAbsPos( aStrArea, pDoc, nCurTab,
 //STRIP001 /*?*/                                          NULL, &aStartPos ) )

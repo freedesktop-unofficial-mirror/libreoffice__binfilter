@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chldwrap.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -81,7 +81,7 @@ class SwChildWinWrapper : public SfxChildWindow
 
     // Implementation in fldtdlg.cxx
 protected:
-    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_ASSERT(0, "STRIP");} //STRIP001 SwChildWinWrapper(Window *pParentWindow, USHORT nId);
+    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwChildWinWrapper(Window *pParentWindow, USHORT nId);
 
 //STRIP001 public:
 //STRIP001  virtual BOOL    ReInitDlg(SwDocShell *pDocSh);

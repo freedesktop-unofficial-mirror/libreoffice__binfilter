@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_section.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -373,7 +373,7 @@ namespace binfilter {
 /*N*/   if( bHidden == bFlag )
 /*N*/       return;
 /*N*/
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 bHidden = bFlag;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bHidden = bFlag;
 //STRIP001 /*?*/    _SetHiddenFlag( bHidden, bCondHiddenFlag );
 /*N*/ }
 
@@ -469,7 +469,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bRemake )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 GetFmt()->DelFrms();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetFmt()->DelFrms();
 //STRIP001 /*?*/        GetFmt()->MakeFrms();
 /*N*/   }
 /*N*/
@@ -599,11 +599,11 @@ namespace binfilter {
 /*N*/       if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
 /*N*/           0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwSection& rSect = pSectNd->GetSection();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSection& rSect = pSectNd->GetSection();
 //STRIP001 /*?*/            // falls es ein gelinkter Bereich war, dann muessen alle
 //STRIP001 /*?*/            // Child-Verknuepfungen sichtbar bemacht werden.
 //STRIP001 /*?*/            if( rSect.IsConnected() )
-//STRIP001 /*?*/            {DBG_ASSERT(0, "STRIP");} //STRIP001    rSect.MakeChildLinksVisible( *pSectNd );
+//STRIP001 /*?*/            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     rSect.MakeChildLinksVisible( *pSectNd );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            // vorm loeschen der Nodes pruefe, ob wir uns nicht
 //STRIP001 /*?*/            // noch anzeigen muessen!
@@ -807,7 +807,7 @@ namespace binfilter {
 /*?*/       {
 /*?*/           // mein Parent wird vernichtet, dann an den Parent vom Parent
 /*?*/           // umhaengen und wieder aktualisieren
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );  //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
 //STRIP001 /*?*/            UpdateParent();
 //STRIP001 /*?*/            return;
 /*?*/       }
@@ -819,7 +819,7 @@ namespace binfilter {
 /*N*/           ((SwFmtChg*)pNew)->pChangedFmt->IsA( TYPE( SwSectionFmt )) )
 /*N*/       {
 /*?*/           // mein Parent wird veraendert, muss mich aktualisieren
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );  //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
 //STRIP001 /*?*/            UpdateParent();
 //STRIP001 /*?*/            return;
 /*N*/       }
@@ -928,7 +928,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // noch eine Sortierung erwuenscht ?
 /*N*/       if( 1 < rArr.Count() )
-/*N*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    switch( eSort )
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     switch( eSort )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/            case SORTSECT_NAME:
 //STRIP001 /*?*/                qsort( (void*)rArr.GetData(),
@@ -1067,7 +1067,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           // liegt in dem Bereich: also updaten. Aber nur wenns nicht
 /*?*/           // im gleichen File liegt
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 String sFName;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sFName;
 //STRIP001 /*?*/            pDoc->GetLinkManager().GetDisplayNames( pBLink, 0, &sFName, 0, 0 );
 //STRIP001 /*?*/            if( sFName != sName )
 //STRIP001 /*?*/            {
@@ -1394,7 +1394,7 @@ namespace binfilter {
 /*N*/   ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
 /*N*/   if( pRead && rValue.hasValue() && ( rValue >>= aSeq ) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( pESh )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pESh )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            pESh->Push();
 //STRIP001 /*?*/            SwPaM* pCrsr = pESh->GetCrsr();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swserv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -394,7 +394,7 @@ namespace binfilter {
 /*N*/           // noch jemand am Object interessiert ?
 /*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  SwServerObject& rObj = *(SwServerObject*)&refObj;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwServerObject& rObj = *(SwServerObject*)&refObj;
 //STRIP001 /*?*/                if( pPos )
 //STRIP001 /*?*/                    rObj.SendDataChanged( *pPos );
 //STRIP001 /*?*/                else

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdtrans.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:30 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -871,7 +871,7 @@ namespace binfilter {
 /*?*/ FrPair GetMapFactor(FieldUnit eS, FieldUnit eD)
 /*?*/ {
 /*?*/   if (eS==eD) return FrPair(1,1,1,1);
-/*?*/ {DBG_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);//STRIP001 //STRIP001 /*?*/   FrPair aS(GetInchOrMM(eS));
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);//STRIP001 //STRIP001 /*?*/    FrPair aS(GetInchOrMM(eS));
 //STRIP001 /*?*/    FrPair aD(GetInchOrMM(eD));
 //STRIP001 /*?*/    FASTBOOL bSInch=IsInch(eS);
 //STRIP001 /*?*/    FASTBOOL bDInch=IsInch(eD);

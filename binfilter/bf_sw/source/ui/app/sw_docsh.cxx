@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -344,7 +344,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/                                   SwCrsrShell *pCrsrShell,
 /*N*/                                   SwPaM* pPaM )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); return NULL; //STRIP001 BOOL bAPICall = FALSE;
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001 BOOL bAPICall = FALSE;
 //STRIP001  const SfxPoolItem* pApiItem;
 //STRIP001  const SfxItemSet* pMedSet;
 //STRIP001  if( 0 != ( pMedSet = rMedium.GetItemSet() ) && SFX_ITEM_SET ==
@@ -561,7 +561,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
  /*?*/      default:
  /*?*/          {
  /*?*/              if( pDoc->ContainsMSVBasic() )
- /*?*/              {DBG_ASSERT(0, "STRIP");//STRIP001
+ /*?*/              {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001  /*?*/                   SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
 //STRIP001  /*?*/                   aTmp.SaveOrDelMSVBAStorage( FALSE, aEmptyStr );
 //STRIP001  /*?*/                   if( OFF_APP()->GetFilterOptions()->IsLoadWordBasicStorage() )
@@ -644,7 +644,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/             pOldFilter->GetUserData().EqualsAscii( "WW6" ) ||
 /*N*/             pOldFilter->GetUserData().EqualsAscii( "WW1" ) ))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 // when saving it in our own fileformat, then remove the template
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // when saving it in our own fileformat, then remove the template
 /*?*/           // name from the docinfo.
 //STRIP001 /*?*/            SfxDocumentInfo aInfo = GetDocInfo();
 //STRIP001 /*?*/            if( aInfo.GetTemplateName().Len() ||
@@ -682,7 +682,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 /*N*/       if( pDoc->ContainsMSVBasic() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
 //STRIP001 /*?*/            aTmp.SaveOrDelMSVBAStorage( FALSE, aEmptyStr );
 //STRIP001 /*?*/                    if( OFF_APP()->GetFilterOptions()->IsLoadWordBasicStorage() )
 //STRIP001 /*?*/                        nVBWarning = SvxImportMSVBasic::
@@ -1272,7 +1272,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*?*/
 /*?*/       case SID_ATTR_YEAR2000:
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  const SvNumberFormatter* pFmtr = pDoc->GetNumberFormatter(FALSE);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SvNumberFormatter* pFmtr = pDoc->GetNumberFormatter(FALSE);
 //STRIP001 /*?*/                rSet.Put( SfxUInt16Item( nWhich,
 //STRIP001 /*?*/                        pFmtr ? pFmtr->GetYear2000()
 //STRIP001 /*?*/                              : SFX_APP()->GetMiscConfig()->GetYear2000() ));
@@ -1422,7 +1422,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   SfxViewFrame* pVFrame = SfxViewFrame::GetFirst(this);
 /*N*/   if(pVFrame)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SfxViewShell* pShell = pVFrame->GetViewShell();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxViewShell* pShell = pVFrame->GetViewShell();
 //STRIP001 /*?*/        if(PTR_CAST(SwSrcView, pShell))
 //STRIP001 /*?*/            ((SwSrcView*)pShell)->Load(this);
 /*N*/   }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxtr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,7 +111,7 @@ namespace binfilter {
 /*N*/       if (bTextFrame && (pModel==NULL || !pModel->IsPasteResize())) { // #51139#
 /*N*/           if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/           if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
 /*N*/           }
 /*N*/           NbcAdjustTextFrameWidthAndHeight();
@@ -139,7 +139,7 @@ namespace binfilter {
 /*N*/   if (bTextFrame) {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
 /*N*/       }
 /*N*/       NbcAdjustTextFrameWidthAndHeight();
@@ -256,7 +256,7 @@ namespace binfilter {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
 /*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
 /*N*/       }
 /*?*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -426,7 +426,7 @@ namespace binfilter {
 /*N*/           if (nAnz>0) {
 /*N*/               USHORT nMax=USHORT(nAnz-1);
 /*N*/               Point aPnt(rXP[0]);
-/*N*/               if (aPnt!=rXP[nMax]) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    aXPP[i].SetPointCount(nAnz+1);
 //STRIP001 /*?*/                    aXPP[i][nAnz]=aPnt;
 /*N*/               }
@@ -450,7 +450,7 @@ namespace binfilter {
 /*N*/       ePathKind=bClosed?OBJ_POLY:OBJ_PLIN;
 /*N*/   }
 /*N*/   SdrPathObj* pPathObj=new SdrPathObj(ePathKind,aXPP);
-/*N*/   if (bBezier) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        pPathObj->ConvertAllSegments(SDRPATH_CURVE);
 /*N*/   }
 /*N*/   ImpConvertSetAttrAndLayer(pPathObj,bNoSetAttr);
@@ -460,7 +460,7 @@ namespace binfilter {
 /*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, FASTBOOL bBezier) const
 /*N*/ {
 /*N*/   if (!ImpCanConvTextToCurve()) return pObj;
-/*?*/   DBG_ASSERT(0, "STRIP"); return pObj;//STRIP001 SdrObject* pText=ImpConvertObj(!bBezier);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;//STRIP001 SdrObject* pText=ImpConvertObj(!bBezier);
 //STRIP001 /*?*/    if (pText==NULL) return pObj;
 //STRIP001 /*?*/    if (pObj==NULL) return pText;
 //STRIP001 /*?*/    if (pText->IsGroupObject()) {

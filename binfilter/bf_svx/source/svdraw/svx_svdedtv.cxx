@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdedtv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -250,7 +250,7 @@ namespace binfilter {//STRIP009
 //STRIP001 }
 
 /*N*/ void SdrEditView::DeleteLayer(const XubString& rName)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SdrLayerAdmin& rLA = pMod->GetLayerAdmin();
 //STRIP001  SdrLayer* pLayer = rLA.GetLayer(rName, TRUE);
 //STRIP001  sal_uInt16 nLayerNum(rLA.GetLayerPos(pLayer));
@@ -517,7 +517,7 @@ namespace binfilter {//STRIP009
 /*N*/       ImpResetPossibilityFlags();
 /*N*/       aMark.ForceSort();
 /*N*/       ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/       if (nMarkAnz!=0) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (nMarkAnz!=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            bReverseOrderPossible=nMarkAnz>=2;
 //STRIP001 /*?*/
 //STRIP001 /*?*/            ULONG nMovableCount=0;
@@ -578,7 +578,7 @@ namespace binfilter {//STRIP009
 //STRIP001 /*?*/                const SdrMark* pM=aMark.GetMark(nm);
 //STRIP001 /*?*/                const SdrObject* pObj=pM->GetObj();
 //STRIP001 /*?*/                const SdrPageView* pPV=pM->GetPageView();
-//STRIP001 /*?*/                if (pPV!=pPV0) {DBG_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001 /*?*/                if (pPV!=pPV0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 //STRIP001 /*?*/                     if (pPV->IsReadOnly()) bReadOnly=TRUE;
 //STRIP001 //STRIP001 /*?*/                     pPV0=pPV;
 //STRIP001 /*?*/                }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtfly.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:53 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -329,7 +329,7 @@ namespace binfilter {
 /*N*/   KSHORT nAscent = pCurr->GetAscent() + nTmpHeight - pCurr->Height();
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
 /*N*/   if( GetMulti() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/  {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/   {
 //STRIP001 /*?*/        aTmpInf.SetDirection( GetMulti()->GetDirection() );
 //STRIP001 /*?*/        if( GetMulti()->HasRotation() )
 //STRIP001 /*?*/        {
@@ -364,7 +364,7 @@ namespace binfilter {
 /*N*/                              nFlyAsc, nFlyDesc, pPos );
 /*N*/           if( pPos->IsGrfNumPortion() )
 /*N*/           {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                if( !nFlyAsc && !nFlyDesc )
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( !nFlyAsc && !nFlyDesc )
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    nTmpAscent = nAscent;
 //STRIP001 /*?*/                    nFlyAsc = nAscent;
@@ -386,7 +386,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       if( pPos->IsMultiPortion() && ((SwMultiPortion*)pPos)->HasFlyInCntnt() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/      {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
 //STRIP001 /*?*/            ASSERT( !GetMulti(), "Too much multi" );
 //STRIP001 /*?*/            ((SwTxtFormatter*)this)->pMulti = (SwMultiPortion*)pPos;
 //STRIP001 /*?*/            SwLineLayout *pLay = &GetMulti()->GetRoot();
@@ -441,7 +441,7 @@ namespace binfilter {
 /*N*/   sal_uInt8 nFlags = SETBASE_NOFLAG;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nFlags |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nFlags |= SETBASE_ROTATE;
 //STRIP001 /*?*/        if( GetMulti()->IsRevers() )
 //STRIP001 /*?*/            nFlags |= SETBASE_REVERSE;
 /*N*/   }
@@ -462,7 +462,7 @@ namespace binfilter {
 /*N*/                 Point aBase;
 /*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
 /*N*/                 {
-                        DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nBaseLine = GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( nBaseLine );
+                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nBaseLine = GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( nBaseLine );
 //STRIP001 /*?*/                     aBase = Point( nBaseLine, ((SwFlyCntPortion*)pPos)->GetRefPoint().Y() );
 /*N*/                 }
 /*N*/                 else
@@ -520,7 +520,7 @@ namespace binfilter {
 /*?*/                 pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/             aInter = rInf.GetTxtFly()->GetFrm( aLineVert );
 /*N*/             if ( pFrm->IsVertical() )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchVerticalToHorizontal( aInter );
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchVerticalToHorizontal( aInter );
 /*N*/
 /*N*/             // new flys from below?
 /*N*/           if( !pPos->IsFlyPortion() )
@@ -629,17 +629,17 @@ namespace binfilter {
 /*N*/
 /*N*/     SwRect aLineVert( aLine );
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchLTRtoRTL( aLineVert );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchLTRtoRTL( aLineVert );
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
 /*N*/         pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/     SwRect aInter( pTxtFly->GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchRTLtoLTR( aInter );
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchRTLtoLTR( aInter );
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchVerticalToHorizontal( aInter );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchVerticalToHorizontal( aInter );
 /*N*/
 /*N*/     if( aInter.IsOver( aLine ) )
 /*N*/   {
@@ -709,7 +709,7 @@ namespace binfilter {
 /*N*/             SWRECTFN( pFrm )
 /*N*/             long nNextTop = pTxtFly->GetNextTop();
 /*N*/             if ( bVert )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 nNextTop = pFrm->SwitchVerticalToHorizontal( nNextTop );
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 nNextTop = pFrm->SwitchVerticalToHorizontal( nNextTop );
 /*N*/             if( nNextTop > aInter.Bottom() )
 /*N*/           {
 /*N*/                 SwTwips nH = nNextTop - aInter.Top();
@@ -828,7 +828,7 @@ namespace binfilter {
 /*N*/   sal_uInt8 nMode = IsQuick() ? SETBASE_QUICK : 0;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nMode |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nMode |= SETBASE_ROTATE;
 //STRIP001 /*?*/        if( GetMulti()->IsRevers() )
 //STRIP001 /*?*/            nMode |= SETBASE_REVERSE;
 /*N*/   }
@@ -1633,7 +1633,7 @@ namespace binfilter {
 /*N*/           // Vorsicht #37347: Das GetContour() fuehrt zum Laden der Grafik,
 /*N*/           // diese aendert dadurch ggf. ihre Groesse, ruft deshalb ein
 /*N*/           // ClrObject() auf.
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 PolyPolygon aPoly;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PolyPolygon aPoly;
 //STRIP001 /*?*/            if( !((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->GetContour( aPoly ) )
 //STRIP001 /*?*/                aPoly = PolyPolygon( ((SwVirtFlyDrawObj*)pObj)->
 //STRIP001 /*?*/                                     GetFlyFrm()->Frm().SVRect() );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -431,7 +431,7 @@ using namespace sfx2;
 
 /*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& rInfo )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 //STRIP001      pDocShell->SetDocumentInfo( rInfo );
 //STRIP001
 //STRIP001  // sollte nur beim "Konvertieren" von Dokumenten hier ankommen!
@@ -737,7 +737,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 
 /*N*/ void SwDocShell::Execute(SfxRequest& rReq)
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    const SfxItemSet* pArgs = rReq.GetArgs();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     const SfxItemSet* pArgs = rReq.GetArgs();
 //STRIP001 /*?*/    const SfxPoolItem* pItem;
 //STRIP001 /*?*/    USHORT nWhich = rReq.GetSlot();
 //STRIP001 /*?*/    BOOL bDone = FALSE;
@@ -1610,13 +1610,13 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 /*N*/   SwFldDlgWrapper *pWrp = (SwFldDlgWrapper*)pVFrame->
 /*N*/           GetChildWindow( SwFldDlgWrapper::GetChildWindowId() );
 /*N*/   if( pWrp )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pWrp->ReInitDlg( this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pWrp->ReInitDlg( this );
 
     // RedlineDlg ggf neu initialisieren
 /*N*/   SwRedlineAcceptChild *pRed = (SwRedlineAcceptChild*)pVFrame->
 /*N*/           GetChildWindow( SwRedlineAcceptChild::GetChildWindowId() );
 /*N*/   if( pRed )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pRed->ReInitDlg( this );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pRed->ReInitDlg( this );
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -1734,7 +1734,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 
  ---------------------------------------------------------------------------*/
 /*?*/ void  SwDocShell::ToggleBrowserMode(BOOL bSet, SwView* pView )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  GetDoc()->SetBrowseMode( bSet );
 //STRIP001  UpdateFontList();
 //STRIP001  SwView* pTempView = pView ? pView : (SwView*)GetView();
@@ -1777,7 +1777,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if( pDocShell )
 /*N*/ULONG SwDocShell::LoadStylesFromFile( const String& rURL,
 /*N*/                   SwgReaderOption& rOpt, BOOL bUnoCall )
 /*N*/{
-/*N*/   ULONG nErr = 0;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   ULONG nErr = 0;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001
 //STRIP001  // Create a URL from filename
 //STRIP001  INetURLObject aURLObj( rURL );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdmrkv1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-03 10:42:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -271,7 +271,7 @@ namespace binfilter {
 /*N*/   aHdl.Sort();
 /*N*/   BOOL bHideHdl=IsMarkHdlShown() && IsSolidMarkHdl() && !bPlusHdlAlways;
 /*N*/   ULONG nHdlAnz=aHdl.GetHdlCount();
-/*N*/   for (ULONG nHdlNum=nHdlAnz; nHdlNum>0;) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nHdlNum=nHdlAnz; nHdlNum>0;) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        nHdlNum--;
 //STRIP001 /*?*/        SdrHdl* pHdl=aHdl.GetHdl(nHdlNum);
 //STRIP001 /*?*/        if (IsPointMarkable(*pHdl) && pHdl->IsSelected()==bUnmark) {
@@ -309,7 +309,7 @@ namespace binfilter {
 //STRIP001 /*?*/            }
 //STRIP001 /*?*/        }
 /*N*/   }
-/*N*/   if (pM!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001  // Den zuletzt geaenderten MarkEntry ggf. noch aufraeumen
+/*N*/   if (pM!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001  // Den zuletzt geaenderten MarkEntry ggf. noch aufraeumen
 //STRIP001 /*?*/        SdrUShortCont* pPts=pM->GetMarkedPoints();
 //STRIP001 /*?*/        if (pPts!=NULL) pPts->ForceSort();
 /*N*/   }
@@ -410,7 +410,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bChg=FALSE;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrMark* pM=aMark.GetMark(nMarkNum);
 //STRIP001 /*?*/        const SdrObject* pObj=pM->GetObj();
 //STRIP001 /*?*/        // PolyPoints
@@ -532,7 +532,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* pRect, BOOL bUnmark)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if (!IsGluePointEditMode() && !bUnmark) return FALSE;
 //STRIP001  ForceUndirtyMrkPnt();
 //STRIP001  BOOL bChgd=FALSE;
@@ -606,7 +606,7 @@ namespace binfilter {
 /*N*/       SdrObject* pObj=pM->GetObj();
 /*N*/       SdrPageView* pPV=pM->GetPageView();
 /*N*/       const SdrGluePointList* pGPL=pObj->GetGluePointList();
-/*N*/       if (pGPL!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (pGPL!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            Point aPnt(rPnt);
 //STRIP001 /*?*/            aPnt-=pPV->GetOffset();
 //STRIP001 /*?*/            USHORT nNum=pGPL->HitTest(aPnt,*pOut,pObj,bBack,bNext,nId0);

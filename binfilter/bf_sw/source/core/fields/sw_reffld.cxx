@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_reffld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -692,7 +692,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR1:
 /*?*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 OUString sTmp;
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 OUString sTmp;
 //STRIP001 /*?*/         rAny >>= sTmp;
 //STRIP001 /*?*/         SetPar1(sTmp);
 //STRIP001 /*?*/         ConvertProgrammaticToUIName();
@@ -744,7 +744,7 @@ String SwGetRefField::GetPar2() const
 /*?*/                 break;
 /*N*/             }
 /*N*/             if( nResId != USHRT_MAX )
-/*?*/             {DBG_ASSERT(0, "STRIP");} //STRIP001     SetPar1(SW_RESSTR( nResId ));
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetPar1(SW_RESSTR( nResId ));
 /*N*/         }
 /*N*/     }
 /*N*/ }
@@ -760,7 +760,7 @@ String SwGetRefField::GetPar2() const
 
 /*N*/ SwFieldType* SwGetRefFieldType::Copy() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwGetRefFieldType( pDoc );
+DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGetRefFieldType( pDoc );
 /*N*/ }
 
 
@@ -1024,7 +1024,7 @@ DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001   return new SwGetRefF
 /*?*/       // dann gibt es im DestDoc RefFelder, also muessen im SourceDoc
 /*?*/       // alle RefFelder auf einduetige Ids in beiden Docs umgestellt
 /*?*/       // werden.
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 _RefIdsMap aFntMap( aEmptyStr );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _RefIdsMap aFntMap( aEmptyStr );
 //STRIP001 /*?*/        _RefIdsMaps aFldMap;
 //STRIP001 /*?*/
 //STRIP001 /*?*/        SwClientIter aIter( *this );

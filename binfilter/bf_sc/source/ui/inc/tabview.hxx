@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tabview.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -361,7 +361,7 @@ public:
 
     SvxZoomType     GetZoomType() const             { return eZoomType; }
     void            SetZoomType( SvxZoomType eNew ) { eZoomType = eNew; }
-    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_ASSERT(0, "STRIP"); return 0; } //STRIP001 USHORT            CalcZoom( SvxZoomType eType, USHORT nOldZoom );
+    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_BF_ASSERT(0, "STRIP"); return 0; } //STRIP001 USHORT         CalcZoom( SvxZoomType eType, USHORT nOldZoom );
 
 //  void            CalcZoom( SvxZoomType eType, USHORT& rZoom, USHORT& rCol, USHORT& rRow );
 

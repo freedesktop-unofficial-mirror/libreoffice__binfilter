@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:12:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -342,7 +342,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/   case RND_DRAW_OBJECT:
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pFmt = MakeDrawFrmFmt( aEmptyStr, GetDfltFrmFmt() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFmt = MakeDrawFrmFmt( aEmptyStr, GetDfltFrmFmt() );
 //STRIP001 /*?*/            if( pSet )      // noch ein paar Attribute setzen ?
 //STRIP001 /*?*/                pFmt->SetAttr( *pSet );
 //STRIP001 /*?*/
@@ -391,13 +391,13 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SwFmtChain aChain( rChain.GetPrev()->GetChain() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rChain.GetPrev()->GetChain() );
 //STRIP001 /*?*/        aChain.SetNext( rChain.GetNext() );
 //STRIP001 /*?*/        SetAttr( aChain, *rChain.GetPrev() );
 /*N*/   }
 /*N*/   if ( rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( rChain.GetNext()->GetChain() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( rChain.GetNext()->GetChain() );
 //STRIP001 /*?*/        aChain.SetPrev( rChain.GetPrev() );
 //STRIP001 /*?*/        SetAttr( aChain, *rChain.GetNext() );
 /*N*/   }
@@ -433,7 +433,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   const sal_uInt16 nWh = pFmt->Which();
 /*N*/   if( DoesUndo() && (RES_FLYFRMFMT == nWh || RES_DRAWFRMFMT == nWh) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 // erstmal werden alle Undo - Objecte geloescht.
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // erstmal werden alle Undo - Objecte geloescht.
 //STRIP001 /*?*/        ClearRedo();
 //STRIP001 /*?*/        AppendUndo( new SwUndoDelLayFmt( pFmt ));
 /*N*/   }
@@ -596,7 +596,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       }
 /*N*/
 /*N*/       if( DoesUndo() )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            ClearRedo();
 //STRIP001 /*?*/            AppendUndo( new SwUndoInsLayFmt( pDest ));
 /*N*/       }
@@ -627,7 +627,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           pDest->SetAttr( rNewAnchor );
 /*N*/
 /*N*/       if( DoesUndo() )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            ClearRedo();
 //STRIP001 /*?*/            AppendUndo( new SwUndoInsLayFmt( pDest ));
 /*N*/       }
@@ -1141,7 +1141,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& rPosFlyFmts,
 /*N*/                          const SwPaM* pCmpRange, sal_Bool bDrawAlso ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 //STRIP001  const SwPosition* pAPos;
 //STRIP001  SwFrmFmt *pFly;
 //STRIP001
@@ -2163,7 +2163,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SwPosFlyFrm *pFPos = 0;
 /*?*/
 /*?*/           if( !pItem )
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  const SwPageDesc* pPgDsc = pNd->FindPageDesc( FALSE );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwPageDesc* pPgDsc = pNd->FindPageDesc( FALSE );
 //STRIP001 /*?*/                if( pPgDsc )
 //STRIP001 /*?*/                    pItem = &pPgDsc->GetMaster().GetFrmDir();
 /*?*/           }

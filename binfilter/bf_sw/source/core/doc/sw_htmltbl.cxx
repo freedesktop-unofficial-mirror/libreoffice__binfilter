@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_htmltbl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:05 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -273,13 +273,13 @@ namespace binfilter {
 //STRIP001  bPrcWidthOption( bPrcWdth ), bUseRelWidth( FALSE ),
 //STRIP001  bMustResize( TRUE ), bExportable( TRUE ), bBordersChanged( FALSE ),
 //STRIP001  bMustNotResize( FALSE ), bMustNotRecalc( FALSE )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aResizeTimer.SetTimeoutHdl( STATIC_LINK( this, SwHTMLTableLayout,
 //STRIP001                                           DelayedResize_Impl ) );
 /*N*/ }
 
 /*N*/ SwHTMLTableLayout::~SwHTMLTableLayout()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  for( USHORT i=0; i<nCols; i++ )
 //STRIP001      delete aColumns[i];
 //STRIP001  delete[] aColumns;

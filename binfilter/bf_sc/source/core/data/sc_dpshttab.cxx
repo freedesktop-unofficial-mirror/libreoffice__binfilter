@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dpshttab.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,7 +151,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void ScSheetDPData::DisposeData()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  for (long i=0; i<pImpl->nColCount; i++)
 //STRIP001  {
 //STRIP001      delete pImpl->ppStrings[i];
@@ -171,7 +171,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ const TypedStrCollection& ScSheetDPData::GetColumnEntries(long nColumn)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  DBG_ASSERT(nColumn>=0 && nColumn<pImpl->nColCount, "ScSheetDPData: wrong column");
 //STRIP001
 //STRIP001  if (!pImpl->ppStrings[nColumn])
@@ -291,7 +291,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ UINT32 ScSheetDPData::GetNumberFormat(long nDim)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001  if (getIsDataLayoutDimension(nDim))
 //STRIP001  {
 //STRIP001      return 0;
@@ -351,7 +351,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& rParam )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 //STRIP001  if ( pImpl->nNextRow > pImpl->aRange.aEnd.Row() )
 //STRIP001      return FALSE;
 //STRIP001

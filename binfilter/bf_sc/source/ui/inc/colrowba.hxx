@@ -2,9 +2,9 @@
  *
  *  $RCSfile: colrowba.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:36 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -91,19 +91,19 @@ public:
 
     virtual USHORT      GetPos();
     virtual USHORT      GetEntrySize( USHORT nEntryNo );
-    virtual String      GetEntryText( USHORT nEntryNo ){DBG_ASSERT(0, "STRIP");String aStr; return aStr;} //STRIP001 virtual String         GetEntryText( USHORT nEntryNo );
+    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP");String aStr; return aStr;} //STRIP001 virtual String      GetEntryText( USHORT nEntryNo );
 
-    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void       SetEntrySize( USHORT nPos, USHORT nNewSize );
-    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void      HideEntries( USHORT nStart, USHORT nEnd );
+    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize );
+    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void       HideEntries( USHORT nStart, USHORT nEnd );
 
     virtual void        SetMarking( BOOL bSet );
-    virtual void        SelectWindow(){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void     SelectWindow();
-    virtual BOOL        IsDisabled(){DBG_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL      IsDisabled();
-    virtual BOOL        ResizeAllowed(){DBG_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL       ResizeAllowed();
+    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void      SelectWindow();
+    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL       IsDisabled();
+    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL        ResizeAllowed();
 
-    virtual void        DrawInvert( long nDragPos ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void        DrawInvert( long nDragPos );
+    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void     DrawInvert( long nDragPos );
 
-    virtual String      GetDragHelp( long nVal ){DBG_ASSERT(0, "STRIP"); String aStr; return aStr;}//STRIP001 virtual String        GetDragHelp( long nVal );
+    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String aStr; return aStr;}//STRIP001 virtual String     GetDragHelp( long nVal );
 };
 
 
@@ -121,21 +121,21 @@ public:
 
     virtual USHORT      GetPos();
     virtual USHORT      GetEntrySize( USHORT nEntryNo );
-    virtual String      GetEntryText( USHORT nEntryNo ){DBG_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String       GetEntryText( USHORT nEntryNo );
+    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String        GetEntryText( USHORT nEntryNo );
 
-    virtual USHORT      GetHiddenCount( USHORT nEntryNo ){DBG_ASSERT(0, "STRIP"); return 0;}//STRIP001 virtual USHORT       GetHiddenCount( USHORT nEntryNo );  // nur fuer Zeilen
+    virtual USHORT      GetHiddenCount( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); return 0;}//STRIP001 virtual USHORT        GetHiddenCount( USHORT nEntryNo );  // nur fuer Zeilen
 
-    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void       SetEntrySize( USHORT nPos, USHORT nNewSize );
-    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void      HideEntries( USHORT nStart, USHORT nEnd );
+    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize );
+    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void       HideEntries( USHORT nStart, USHORT nEnd );
 
     virtual void        SetMarking( BOOL bSet );
-    virtual void        SelectWindow(){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void     SelectWindow();
-    virtual BOOL        IsDisabled(){DBG_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL      IsDisabled();
-    virtual BOOL        ResizeAllowed(){DBG_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL       ResizeAllowed();
+    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void      SelectWindow();
+    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL       IsDisabled();
+    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL        ResizeAllowed();
 
-    virtual void        DrawInvert( long nDragPos ){DBG_ASSERT(0, "STRIP");} //STRIP001 virtual void        DrawInvert( long nDragPos );
+    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void     DrawInvert( long nDragPos );
 
-    virtual String      GetDragHelp( long nVal ){DBG_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String      GetDragHelp( long nVal );
+    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String       GetDragHelp( long nVal );
 };
 
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -212,7 +212,7 @@ SO2_DECL_REF(SvInPlaceObject)
 // -----------------------------------------------------------------------------
 
 /*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, FASTBOOL bFrame_)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bInDestruction = FALSE;
 //STRIP001  Init();
 //STRIP001
@@ -238,7 +238,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_):
 /*N*/   SdrRectObj(rNewRect)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bInDestruction = FALSE;
 //STRIP001  Init();
 //STRIP001
@@ -485,7 +485,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/
 /*?*/       if( pDestPers && pSrcPers && ( pDestPers != pSrcPers ) )
 /*?*/       {
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 ImpCopyObject( *pSrcPers, *pDestPers, mpImpl->aPersistName );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ImpCopyObject( *pSrcPers, *pDestPers, mpImpl->aPersistName );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -966,7 +966,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       SetRectsDirty();
 /*N*/   }
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -984,7 +984,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetSnapRect(rRect);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    ImpSetVisAreaSize();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -993,13 +993,13 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetLogicRect(rRect);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ FASTBOOL SdrOle2Obj::HasGDIMetaFile() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  GetObjRef();    // try to load inplace object
 //STRIP001  SvInPlaceObjectRef& rIPRef=*ppObjRef;
 //STRIP001  BOOL bOK = FALSE;
@@ -1012,7 +1012,7 @@ SO2_DECL_REF(SvInPlaceObject)
 // -----------------------------------------------------------------------------
 
 /*N*/ const GDIMetaFile* SdrOle2Obj::GetGDIMetaFile() const
-/*N*/ {DBG_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
 //STRIP001  if( mpImpl->pMetaFile )
 //STRIP001  {
 //STRIP001      delete ((SdrOle2Obj*)this)->mpImpl->pMetaFile;
@@ -1064,7 +1064,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/       bPreview = TRUE;
 /*N*/
 /*N*/   if( bPreview )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        // set preview graphic (not for empty presentation objects)
 //STRIP001 /*?*/        GetGDIMetaFile();
 //STRIP001 /*?*/        if( mpImpl->pMetaFile )
@@ -1142,7 +1142,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcMove(rSize);
 /*N*/   if( (NULL == pModel) || !pModel->isLocked() )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    ImpSetVisAreaSize();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ImpSetVisAreaSize();
 /*N*/ }
 
 // -----------------------------------------------------------------------------

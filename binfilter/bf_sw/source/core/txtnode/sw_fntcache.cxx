@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fntcache.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-11 15:30:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -345,7 +345,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *************************************************************************/
 
 /*N*/ void SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 static sal_Char __READONLY_DATA sStandardString[] = "Dies ist der Teststring";
 //STRIP001
 //STRIP001     if ( pScrFont )
@@ -762,7 +762,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 //STRIP001 }
 
 /*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* pOut )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return sal_False; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
 //STRIP001 /*?*/     if ( ! pOut )
 //STRIP001 /*?*/         return sal_False;
 //STRIP001 /*?*/
@@ -1863,7 +1863,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/     // This is the part used e.g., for cursor travelling
 /*N*/     // See condition for DrawText or DrawTextArray (bDirectPrint)
 /*N*/     if ( pPrinter && pPrinter != rInf.GetpOut() )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if( !pPrtFont->IsSameInstance( pPrinter->GetFont() ) )
 //STRIP001 /*?*/            pPrinter->SetFont(*pPrtFont);
 //STRIP001 /*?*/        aTxtSize.Width() = pPrinter->GetTextWidth( rInf.GetText(),
@@ -1937,7 +1937,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/         if( !pPrtFont->IsSameInstance( rInf.GetpOut()->GetFont() ) )
 /*N*/             rInf.GetpOut()->SetFont( *pPrtFont );
 /*N*/       if( bCompress )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            long *pKernArray = new long[nLn];
 //STRIP001 /*?*/             rInf.GetpOut()->GetTextArray( rInf.GetText(), pKernArray,
 //STRIP001 /*?*/                                           rInf.GetIdx(), nLn );
@@ -2317,7 +2317,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/     }
 /*N*/
 /*N*/     if( aSub[nActual].IsCapital() && nLn )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 nTxtBreak = GetCapitalBreak( rInf.GetShell(), rInf.GetpOut(),
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nTxtBreak = GetCapitalBreak( rInf.GetShell(), rInf.GetpOut(),
 //STRIP001 /*?*/        rInf.GetScriptInfo(), rInf.GetText(), nTextWidth,0, rInf.GetIdx(),nLn );
 /*N*/   else
 /*N*/   {

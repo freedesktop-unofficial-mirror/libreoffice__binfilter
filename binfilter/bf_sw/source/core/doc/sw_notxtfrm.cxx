@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_notxtfrm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -476,7 +476,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 *************************************************************************/
 
 /*N*/ void SwNoTxtFrm::Paint( const SwRect &rRect ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( Frm().IsEmpty() )
 //STRIP001      return;
 //STRIP001
@@ -833,7 +833,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect &rRect, const SwPosition& rPos,
 /*N*/                             SwCrsrMoveState *pCMS ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( &rPos.nNode.GetNode() != (SwNode*)GetNode() )
 //STRIP001      return FALSE;
 //STRIP001
@@ -870,7 +870,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* pPos, Point& aPoint,
 /*N*/                           const SwCrsrMoveState* ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwCntntNode* pCNd = (SwCntntNode*)GetNode();
 //STRIP001  pPos->nNode = *pCNd;
 //STRIP001  pPos->nContent.Assign( pCNd, 0 );
@@ -906,7 +906,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/   case RES_GRF_REREAD_AND_INCACHE:
 /*?*/       if( ND_GRFNODE == GetNode()->GetNodeType() )
 /*?*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  bCompletePaint = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bCompletePaint = FALSE;
 //STRIP001 /*?*/            SwGrfNode* pNd = (SwGrfNode*) GetNode();
 //STRIP001 /*?*/
 //STRIP001 /*?*/            ViewShell *pVSh = 0;

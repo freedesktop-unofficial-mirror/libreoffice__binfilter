@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docruby.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -177,7 +177,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ USHORT SwDoc::SetRubyList( const SwPaM& rPam, const SwRubyList& rList,
 /*N*/                           USHORT nMode )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 StartUndo( UNDO_SETRUBYATTR );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 StartUndo( UNDO_SETRUBYATTR );
 //STRIP001 /*?*/    SvUShortsSort aDelArr;
 //STRIP001 /*?*/    aDelArr.Insert( RES_TXTATR_CJK_RUBY );
 //STRIP001 /*?*/
@@ -261,7 +261,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ BOOL SwDoc::_SelectNextRubyChars( SwPaM& rPam, SwRubyListEntry& rEntry,
 /*N*/                                   USHORT nMode )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 // Point must be the startposition, Mark is optional the end position
+    DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 // Point must be the startposition, Mark is optional the end position
 //STRIP001  SwPosition* pPos = rPam.GetPoint();
 //STRIP001      const SwTxtNode* pTNd = pPos->nNode.GetNode().GetTxtNode();
 //STRIP001  const String* pTxt = &pTNd->GetTxt();

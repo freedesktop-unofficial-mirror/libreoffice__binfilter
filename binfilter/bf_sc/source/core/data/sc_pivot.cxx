@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_pivot.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1303,7 +1303,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
 //STRIP001 /*?*/            bValidLine = !lcl_IsEmptyLine( pDoc, aSrcAdr, nSrcCol2 );
 /*N*/       }
 /*N*/       if (bValidLine)
@@ -1369,7 +1369,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
 //STRIP001 /*?*/            bValidLine = !lcl_IsEmptyLine( pDoc, aSrcAdr, nSrcCol2 );
 /*N*/       }
 /*N*/       if (bValidLine)
@@ -1453,7 +1453,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                           ppDataArr[nRIndex][nCIndex].Update(nVal);
 /*N*/                       }
 /*N*/                       else
-/*?*/                       {DBG_ASSERT(0, "STRIP");} //STRIP001    ppDataArr[nRIndex][nCIndex].UpdateNoVal();      // nur nCount
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ppDataArr[nRIndex][nCIndex].UpdateNoVal();      // nur nCount
 /*N*/                   }
 /*N*/               }
 /*N*/           }

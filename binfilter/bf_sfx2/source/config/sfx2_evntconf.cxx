@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:30 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -166,7 +166,7 @@ public:
 
 /*?*/ SfxMacroQueryDlg_Impl::SfxMacroQueryDlg_Impl( const String& rMacName, BOOL bDefault ) :
 /*?*/     QueryBox( NULL, SfxResId( DLG_MACROQUERY ) )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SetButtonText( GetButtonId(0), String( SfxResId(BTN_OK) ) );
 //STRIP001     SetButtonText( GetButtonId(1), String( SfxResId(BTN_CANCEL) ) );
 //STRIP001
@@ -208,7 +208,7 @@ public:
 // -----------------------------------------------------------------------
 
 /*?*/ void SfxAsyncEvent_Impl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SfxSimpleHint* pHint = PTR_CAST( SfxSimpleHint, &rHint );
 //STRIP001     if( pHint && pHint->GetId() == SFX_HINT_DYING && pTimer->IsActive() )
 //STRIP001     {
@@ -223,7 +223,7 @@ public:
 /*?*/  : aArgs( rArgs )
 /*?*/  , pSh( pDoc )
 /*?*/  , pMacro( pMac )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if( pSh ) StartListening( *pSh );
 //STRIP001     pTimer = new Timer;
 //STRIP001     pTimer->SetTimeoutHdl( LINK(this, SfxAsyncEvent_Impl, TimerHdl) );
@@ -241,7 +241,7 @@ public:
 // -----------------------------------------------------------------------
 
 /*?*/ IMPL_LINK(SfxAsyncEvent_Impl, TimerHdl, Timer*, pTimer)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     pTimer->Stop();
 //STRIP001     ScriptType eSType = pMacro->GetScriptType();
 //STRIP001     BOOL bIsBasic = ( eSType == STARBASIC );
@@ -342,7 +342,7 @@ public:
 //==========================================================================
 
 /*?*/ String SfxEventConfiguration::GetEventName(USHORT nId) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return String();//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return String();//STRIP001
 //STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
 //STRIP001     USHORT nCount = pEventArr->Count();
 //STRIP001     for (USHORT n=1; n<nCount; n++)
@@ -360,7 +360,7 @@ public:
 //==========================================================================
 
 /*?*/ USHORT SfxEventConfiguration::GetEventId(const String& rName) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
 //STRIP001     USHORT nCount = pEventArr->Count();
 //STRIP001     for (USHORT n=1; n<nCount; n++)
@@ -404,7 +404,7 @@ public:
 /*?*/     USHORT          nId,
 /*?*/     SfxObjectShell* pDoc
 /*?*/ )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     pDocEventConfig = pDoc ? pDoc->GetEventConfig_Impl() : NULL;
 //STRIP001     const SvxMacro* pMacro=NULL;
 //STRIP001     if ( pDocEventConfig )
@@ -419,7 +419,7 @@ public:
 /*?*/     USHORT          nId,
 /*?*/     SfxObjectShell* pDoc
 /*?*/ ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
 //STRIP001
 //STRIP001     SfxEventConfigItem_Impl *pDocEventConfig = pDoc ? pDoc->GetEventConfig_Impl() : NULL;
@@ -516,7 +516,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ }
 
 /*?*/ BOOL SfxEventConfigItem_Impl::LoadXML( SvStream& rInStream )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     ::framework::EventsConfig aCfg;
 //STRIP001     if ( ::framework::EventsConfiguration::LoadEventsConfig( rInStream, aCfg ) )
 //STRIP001     {
@@ -540,7 +540,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 //==========================================================================
 
 /*?*/ BOOL SfxEventConfigItem_Impl::Store(SvStream& rStream)
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     USHORT nWarn=0;
 //STRIP001     if ( bWarning )
 //STRIP001         nWarn |= 0x01;
@@ -552,7 +552,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/ }
 
 /*?*/ BOOL SfxEventConfigItem_Impl::StoreXML( SvStream& rOutStream )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001     // get the event names
 //STRIP001     ResStringArray aEventNames( SfxResId( EVENT_NAMES_ARY ) );
 //STRIP001     long nNamesCount = aEventNames.Count();
@@ -630,7 +630,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ }
 
 /*?*/ int SfxEventConfigItem_Impl::Load( SotStorage& rStorage )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001     SotStorageStreamRef xStream = rStorage.OpenSotStream( SfxEventConfigItem_Impl::GetStreamName(), STREAM_STD_READ );
 //STRIP001     if ( xStream->GetError() )
 //STRIP001         return SfxConfigItem::ERR_READ;
@@ -650,7 +650,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/ }
 
 /*?*/ BOOL SfxEventConfigItem_Impl::Store( SotStorage& rStorage )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if ( pObjShell )
 //STRIP001      // DocEventConfig is stored with the document
 //STRIP001      return TRUE;
@@ -686,7 +686,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ }
 
 /*?*/ void SfxEventConfiguration::AddEvents( SfxMacroTabPage* pPage ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     DBG_ASSERT(pEventArr,"Keine Events angemeldet!");
 //STRIP001     USHORT nCount = pEventArr->Count();
 //STRIP001     for (USHORT n=1; n<nCount; n++)
@@ -708,7 +708,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ }
 
 /*?*/ void SfxEventConfiguration::SetAppEventTable( const SvxMacroTableDtor& rTable )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     //GetAppEventConfig_Impl()->aMacroTable = rTable;
 //STRIP001     //pAppEventConfig->SetDefault(FALSE);
 //STRIP001     PropagateEvents_Impl( NULL, rTable );
@@ -716,7 +716,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 
 /*?*/ void SfxEventConfiguration::SetDocEventTable( SfxObjectShell *pDoc,
 /*?*/     const SvxMacroTableDtor& rTable )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( pDoc )
 //STRIP001     {
 //STRIP001      // if CfgMgr does not exist, create it, otherwise ConfigItem will not have a ConfigManager!
@@ -814,7 +814,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/ void SfxEventConfiguration::PropagateEvent_Impl( SfxObjectShell *pDoc,
 /*?*/                                                  USHORT nId,
 /*?*/                                                  const SvxMacro* pMacro )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     REFERENCE< XEVENTSSUPPLIER > xSupplier;
 //STRIP001  if ( pDoc )
 //STRIP001  {

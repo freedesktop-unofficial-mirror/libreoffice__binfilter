@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfmt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -429,7 +429,7 @@ struct ParaRstFmt
 /*M*/           nPtPos = *pURLAttr->GetEnd();
 /*M*/       }
 /*M*/       else
-/*M*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            Boundary aBndry;
 //STRIP001 /*?*/            if( pBreakIt->xBreak.is() )
 //STRIP001 /*?*/                aBndry = pBreakIt->xBreak->getWordBoundary(
@@ -459,7 +459,7 @@ struct ParaRstFmt
 /*M*/   SwDataChanged aTmp( *pPam, 0 );
 /*M*/   SwHistory* pHst = 0;
 /*M*/   if( DoesUndo() )
-/*M*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        ClearRedo();
 //STRIP001 /*?*/        SwUndoRstAttr* pUndo = new SwUndoRstAttr( rRg,
 //STRIP001 /*?*/                    bTxtAttr ? RES_CONDTXTFMTCOLL : RES_TXTFMTCOLL );
@@ -498,7 +498,7 @@ struct ParaRstFmt
 /*M*/   SwNodeIndex aTmpStt( pStt->nNode );
 /*M*/   SwNodeIndex aTmpEnd( pEnd->nNode );
 /*M*/   if( pStt->nContent.GetIndex() )     // nur ein Teil
-/*M*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        // dann spaeter aufsetzen und alle CharFmtAttr -> TxtFmtAttr
 //STRIP001 /*?*/        SwTxtNode* pTNd = aTmpStt.GetNode().GetTxtNode();
 //STRIP001 /*?*/        if( pTNd && pTNd->GetpSwAttrSet() && pTNd->GetpSwAttrSet()->Count() )
@@ -646,7 +646,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                   pDoc->GetRedlineTbl().Count() ))
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pStt->nNode, pStt->nContent.GetIndex()-1,
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pStt->nNode, pStt->nContent.GetIndex()-1,
 //STRIP001 /*?*/                                pStt->nNode, pStt->nContent.GetIndex() );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    if( pUndo )
@@ -683,7 +683,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                    pDoc->GetRedlineTbl().Count() ) )
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 // wurde Text-Inhalt eingefuegt? (RefMark/TOXMarks ohne Ende)
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // wurde Text-Inhalt eingefuegt? (RefMark/TOXMarks ohne Ende)
 //STRIP001 /*?*/                    BOOL bTxtIns = nInsCnt != rSt.GetIndex();
 //STRIP001 /*?*/                    // wurde Inhalt eingefuegt oder ueber die Selektion gesetzt?
 //STRIP001 /*?*/                    SwPaM aPam( pStt->nNode, bTxtIns ? nInsCnt + 1 : nEnd,
@@ -780,7 +780,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/       if( pNode->IsTxtNode() && aCharSet.Count() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SwTxtNode* pTxtNd = (SwTxtNode*)pNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTxtNode* pTxtNd = (SwTxtNode*)pNode;
 //STRIP001 /*?*/            const SwIndex& rSt = pStt->nContent;
 //STRIP001 /*?*/            USHORT nMkPos, nPtPos = rSt.GetIndex();
 //STRIP001 /*?*/            const String& rStr = pTxtNd->GetTxt();
@@ -860,7 +860,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/   if( pDoc->IsRedlineOn() && aCharSet.Count() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  if( pUndo )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pUndo )
 //STRIP001 /*?*/            pUndo->SaveRedlineData( rRg, FALSE );
 //STRIP001 /*?*/        pDoc->AppendRedline( new SwRedline( REDLINE_FORMAT, rRg ));
 /*N*/   }
@@ -1363,7 +1363,7 @@ struct ParaRstFmt
 
 /*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL bUsed) const
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   USHORT nCount = pTblFrmFmtTbl->Count();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    USHORT nCount = pTblFrmFmtTbl->Count();
 //STRIP001  if(bUsed)
 //STRIP001  {
 //STRIP001      SwAutoFmtGetDocNode aGetHt( &aNodes );
@@ -1655,7 +1655,7 @@ struct ParaRstFmt
 //FEATURE::CONDCOLL
 /*?*/   if( RES_CONDTXTFMTCOLL == rColl.Which() )
 /*?*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  pNewColl = new SwConditionTxtFmtColl( GetAttrPool(), rColl.GetName(),
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pNewColl = new SwConditionTxtFmtColl( GetAttrPool(), rColl.GetName(),
 //STRIP001 /*?*/                                                pParent);
 //STRIP001 /*?*/        pTxtFmtCollTbl->Insert( pNewColl, pTxtFmtCollTbl->Count() );
 //STRIP001 /*?*/        pNewColl->SetAuto( FALSE );
@@ -1723,7 +1723,7 @@ struct ParaRstFmt
 /*?*/       pParent = CopyGrfColl( *(SwGrfFmtColl*)rColl.DerivedFrom() );
 /*?*/
 /*?*/   // falls nicht, so kopiere sie
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 pNewColl = MakeGrfFmtColl( rColl.GetName(), pParent );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewColl = MakeGrfFmtColl( rColl.GetName(), pParent );
 /*?*/
 /*?*/   // noch die Attribute kopieren
 /*?*/   pNewColl->CopyAttrs( rColl );
@@ -1898,7 +1898,7 @@ struct ParaRstFmt
 /*N*/ void SwDoc::CopyPageDesc( const SwPageDesc& rSrcDesc, SwPageDesc& rDstDesc,
 /*N*/                           BOOL bCopyPoolIds )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001      FASTBOOL bNotifyLayout = FALSE;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FASTBOOL bNotifyLayout = FALSE;
 //STRIP001
 //STRIP001  rDstDesc.SetLandscape( rSrcDesc.GetLandscape() );
 //STRIP001  rDstDesc.SetNumType( rSrcDesc.GetNumType() );

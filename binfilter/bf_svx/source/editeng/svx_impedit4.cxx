@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1188,7 +1188,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/       // ggf. Online-Spelling
 /*N*/       if ( bAllowBigObjects && bOnlyFullParagraphs && pNode->GetWrongList() )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    pC->SetWrongList( pNode->GetWrongList()->Clone() );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pC->SetWrongList( pNode->GetWrongList()->Clone() );
 /*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/   }
@@ -1222,7 +1222,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           nCount = pParaPortion->GetLines().Count();
 /*?*/           for ( n = 0; n < nCount; n++ )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pParaPortion->GetLines()[n];
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pParaPortion->GetLines()[n];
 //STRIP001 /*?*/                EditLine* pNew = pLine->Clone();
 //STRIP001 /*?*/                pX->aLines.Insert( pNew, pX->aLines.Count() );
 /*?*/           }
@@ -1390,7 +1390,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/               if ( !bConvertItems )
 /*N*/                   SetParaAttribs( aEditDoc.GetPos( aPaM.GetNode() ), pC->GetParaAttribs() );
 /*N*/               else
-/*N*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    SfxItemSet aAttribs( GetEmptyItemSet() );
 //STRIP001 /*?*/                    ConvertAndPutItems( aAttribs, pC->GetParaAttribs(), &eSourceUnit, &eDestUnit );
 //STRIP001 /*?*/                    SetParaAttribs( aEditDoc.GetPos( aPaM.GetNode() ), aAttribs );
@@ -1422,7 +1422,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               nCount = pXP->aLines.Count();
 /*?*/               for ( sal_uInt16 m = 0; m < nCount; m++ )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pXP->aLines[m];
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pXP->aLines[m];
 //STRIP001 /*?*/                    EditLine* pNew = pLine->Clone();
 //STRIP001 /*?*/                    pNew->SetInvalid(); // neu Painten!
 //STRIP001 /*?*/                    pParaPortion->GetLines().Insert( pNew, m );
@@ -1446,7 +1446,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
 /*N*/       if ( bNewContent && GetStatus().DoOnlineSpelling() && pC->GetWrongList() )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    aPaM.GetNode()->SetWrongList( pC->GetWrongList()->Clone() );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aPaM.GetNode()->SetWrongList( pC->GetWrongList()->Clone() );
 /*N*/ #endif // !SVX_LIGHT
 /*N*/
 /*N*/       // Zeilenumbruch, wenn weitere folgen...
@@ -2254,7 +2254,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/     if ( b != bKernAsianPunctuation )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 bKernAsianPunctuation = b;
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bKernAsianPunctuation = b;
 //STRIP001 /*?*/         if ( ImplHasText() )
 //STRIP001 /*?*/         {
 //STRIP001 /*?*/             FormatFullDoc();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_ParseContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,13 +102,13 @@ using namespace ::connectivity;
 
 //-----------------------------------------------------------------------------
 /*?*/ ::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;//STRIP001
 /*?*/ //STRIP001    return SvtSysLocale().GetLocaleData().getLocale();
 /*?*/ }
 
 //-----------------------------------------------------------------------------
 /*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode _eCode) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); String astring; return astring;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;//STRIP001
 //STRIP001  String aMsg;
 //STRIP001  vos::OGuard aGuard( Application::GetSolarMutex() );
 //STRIP001  switch (_eCode)
@@ -130,7 +130,7 @@ using namespace ::connectivity;
 
 //-----------------------------------------------------------------------------
 /*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode _eKey) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;//STRIP001
 //STRIP001  ByteString aKeyword;
 //STRIP001  switch (_eKey)
 //STRIP001  {
@@ -176,7 +176,7 @@ using namespace ::connectivity;
 //STRIP001 }
 // -----------------------------------------------------------------------------
 /*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString& rToken) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); IParseContext::InternationalKeyCode aInternationalKeyCode; return aInternationalKeyCode;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); IParseContext::InternationalKeyCode aInternationalKeyCode; return aInternationalKeyCode;//STRIP001
 //STRIP001  static IParseContext::InternationalKeyCode Intl_TokenID[] =
 //STRIP001  {
 //STRIP001      KEY_LIKE, KEY_NOT, KEY_NULL, KEY_TRUE,
@@ -244,7 +244,7 @@ namespace
 /*N*/ }
 // -----------------------------------------------------------------------------
 /*N*/ const OSystemParseContext* OParseContextClient::getParseContext() const
-/*N*/ { DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ { DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  return getSharedContext();
 /*N*/ }
 // -----------------------------------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: swblocks.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -239,7 +239,7 @@ class Sw3TextBlocks : public SwImpBlocks
 //STRIP001  BOOL         bAutocorrBlock;
 
 public:
-    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_ASSERT(0, "STRIP");} ;//STRIP001  Sw3TextBlocks( const String& );
+    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   Sw3TextBlocks( const String& );
 //STRIP001  Sw3TextBlocks( SvStorage& );
 //STRIP001  virtual ~Sw3TextBlocks();
 //STRIP001  virtual ULONG Delete( USHORT );

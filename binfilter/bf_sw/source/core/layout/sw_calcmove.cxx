@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calcmove.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1142,7 +1142,7 @@ namespace binfilter {
 /*N*/         SwFtnFrm* pFtn = FindFtnFrm();
 /*N*/         SwCntntFrm* pRefCnt = pFtn ? pFtn->GetRef() : 0;
 /*N*/         if ( pRefCnt && !pRefCnt->IsValid() )
-/*N*/         {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             SwFtnBossFrm* pFtnBossOfFtn = pFtn->FindFtnBossFrm();
 //STRIP001 /*?*/             SwFtnBossFrm* pFtnBossOfRef = pRefCnt->FindFtnBossFrm();
 //STRIP001 /*?*/             //<loop of movefwd until condition held or no move>
@@ -1638,7 +1638,7 @@ namespace binfilter {
 /*N*/   //Seite/Spalte liegt.
 /*N*/   SwFtnFrm* pFtnFrm = 0;
 /*N*/   if ( IsInFtn() )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if( !lcl_IsNextFtnBoss( pNewUpper, this ) )
 //STRIP001 /*?*/            return TRUE;
 //STRIP001 /*?*/        pFtnFrm = FindFtnFrm();

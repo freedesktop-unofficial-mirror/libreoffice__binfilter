@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -688,7 +688,7 @@ enum ChartStyleV0
 /*N*/               }
 /*N*/               else //i >= nCnt
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 if (pRegressNr [i - nCnt])
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pRegressNr [i - nCnt])
 //STRIP001 /*?*/                    {
 //STRIP001 /*?*/                        XPolygon aLine(2);
 //STRIP001 /*?*/

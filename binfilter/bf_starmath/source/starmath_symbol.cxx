@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_symbol.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -583,7 +583,7 @@ long                SF_Ident = SF_IDENT;
 
 
 /*N*/ void SmSymSetManager::AddReplaceSymbol( const SmSym &rSymbol )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     SmSym *pSym = GetSymbolByName( rSymbol.GetName() );
 //STRIP001     if (pSym)
 //STRIP001     {

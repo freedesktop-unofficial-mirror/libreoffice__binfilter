@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dbdocimp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:05 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -455,7 +455,7 @@ using namespace ::com::sun::star;
 /*M*/
 /*M*/                           ++nInserted;
 /*M*/                           if (!(nInserted & 15))
-/*M*/                           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*M*/                                String aPict = ScGlobal::GetRscString( STR_PROGRESS_IMPORT );
 //STRIP001 /*M*/                                String aText = aPict.GetToken(0,'#');
 //STRIP001 /*M*/                                aText += String::CreateFromInt32( nInserted );
@@ -690,7 +690,7 @@ using namespace ::com::sun::star;
 /*M*/
 /*M*/       if( !bAddrInsert )      // update database range
 /*M*/       {
-/*M*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pDBData->SetImportParam( rParam );
+/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDBData->SetImportParam( rParam );
 //STRIP001 /*M*/            pDBData->SetHeader( TRUE );
 //STRIP001 /*M*/            pDBData->SetByRow( TRUE );
 //STRIP001 /*M*/            pDBData->SetArea( nTab, rParam.nCol1,rParam.nRow1, nEndCol,nEndRow );
@@ -700,7 +700,7 @@ using namespace ::com::sun::star;
 /*M*/
 /*M*/       if (bRecord)
 /*M*/       {
-/*M*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = pImportDoc;
+/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = pImportDoc;
 //STRIP001 /*M*/            pImportDoc = NULL;
 //STRIP001 /*M*/
 //STRIP001 /*M*/            if (nFormulaCols)                       // include filled formulas for redo

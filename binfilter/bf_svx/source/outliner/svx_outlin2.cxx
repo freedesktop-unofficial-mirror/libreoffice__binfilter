@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlin2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,7 +187,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     pEditEngine->aOutlinerNotifyHdl = rLink;
 /*N*/
 /*N*/     if ( rLink.IsSet() )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pEditEngine->SetNotifyHdl( LINK( this, Outliner, EditEngineNotifyHdl ) );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pEditEngine->SetNotifyHdl( LINK( this, Outliner, EditEngineNotifyHdl ) );
 /*N*/     else
 /*N*/       pEditEngine->SetNotifyHdl( Link() );
 /*N*/
@@ -388,7 +388,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 /*N*/ BOOL Outliner::IsInSelectionMode() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001  return pEditEngine->IsInSelectionMode();
 /*N*/ }

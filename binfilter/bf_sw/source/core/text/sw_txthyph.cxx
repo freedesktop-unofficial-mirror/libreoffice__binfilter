@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txthyph.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -404,7 +404,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   // first case: hyphenated word has alternative spelling
 /*N*/   if ( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SvxAlternativeSpelling aAltSpell;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxAlternativeSpelling aAltSpell;
 //STRIP001 /*?*/        aAltSpell = SvxGetAltSpelling( xHyphWord );
 //STRIP001 /*?*/        ASSERT( aAltSpell.bIsAltSpelling, "no alternatve spelling" );
 //STRIP001 /*?*/
@@ -735,7 +735,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ void SwSoftHyphStrPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
-/*N*/           DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   // Bug oder feature?:
+/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    // Bug oder feature?:
 //STRIP001  // {Zu}{k-}{ker}, {k-} wird grau statt {-}
 //STRIP001  rInf.DrawViewOpt( *this, POR_SOFTHYPH );
 //STRIP001  SwHyphStrPortion::Paint( rInf );
@@ -744,7 +744,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ SwSoftHyphStrPortion::SwSoftHyphStrPortion( const XubString &rStr )
 /*N*/   : SwHyphStrPortion( rStr )
 /*N*/ {
-/*N*/       DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   SetLen( 1 );
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SetLen( 1 );
 //STRIP001  SetWhichPor( POR_SOFTHYPHSTR );
 /*N*/ }
 

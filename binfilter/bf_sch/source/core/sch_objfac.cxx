@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_objfac.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,7 +127,7 @@ namespace binfilter {
 /*N*/               break;
 /*N*/
 /*N*/           case SCH_LIGHTFACTOR_ID:
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 pObjFactory->pNewData = new SchLightFactor;
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pObjFactory->pNewData = new SchLightFactor;
 /*?*/               DBG_ERROR("SCH_LIGHTFACTOR_ID no longer available");
 /*?*/               break;
 /*N*/

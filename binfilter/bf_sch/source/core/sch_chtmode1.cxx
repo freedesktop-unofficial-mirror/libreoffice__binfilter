@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -882,7 +882,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(pLogBook)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if(pLogBook->IsValid())
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(pLogBook->IsValid())
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            pLogBook->SetColMode(bSwitchData);
 //STRIP001 /*?*/
@@ -1288,7 +1288,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           if ( nLines > MAXLEGENDLINES )
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  long nHeightOfRows = GetHeightOfnRows (rTextAttr, MAXLEGENDLINES);//war mal 2 statt MAX...#50395#
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   long nHeightOfRows = GetHeightOfnRows (rTextAttr, MAXLEGENDLINES);//war mal 2 statt MAX...#50395#
 //STRIP001 /*?*/                aSize.Height() = nHeightOfRows;
 //STRIP001 /*?*/
 //STRIP001 /*?*/                if(nDegrees)
@@ -1319,7 +1319,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/           if(nActLines>nLines)
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001  nActLines=Min((ULONG)MAXLEGENDLINES,nActLines);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nActLines=Min((ULONG)MAXLEGENDLINES,nActLines);
 //STRIP001 /*?*/                long nHeightOfRows = GetHeightOfnRows (rTextAttr,nActLines);
 //STRIP001 /*?*/                aSize.Height() = nHeightOfRows;
 //STRIP001 /*?*/

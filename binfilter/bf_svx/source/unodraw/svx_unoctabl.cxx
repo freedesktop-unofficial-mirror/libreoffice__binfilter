@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoctabl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:14 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,7 +179,7 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
 
 void SAL_CALL SvxUnoColorTable::removeByName( const OUString& Name )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
-{DBG_ASSERT(0, "STRIP");//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001  long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( Name ) : -1;
 //STRIP001  if( nIndex == -1 )
 //STRIP001      throw container::NoSuchElementException();
@@ -206,7 +206,7 @@ void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno:
 // XNameAccess
 uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& aName )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
-{DBG_ASSERT(0, "STRIP");    uno::Any aAny; return aAny;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;//STRIP001
 //STRIP001  long nIndex = pTable ? ((XPropertyTable*)pTable)->Get( aName ) : -1;
 //STRIP001  if( nIndex == -1 )
 //STRIP001      throw container::NoSuchElementException();
@@ -226,7 +226,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
     OUString* pStrings = aSeq.getArray();
 
     for( long nIndex = 0; nIndex < nCount; nIndex++ )
-    {DBG_ASSERT(0, "STRIP");//STRIP001
+    {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001      XColorEntry* pEntry = pTable->Get( nIndex );
 //STRIP001      pStrings[nIndex] = pEntry->GetName();
     }

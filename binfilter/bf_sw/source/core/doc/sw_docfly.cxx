@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfly.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -278,7 +278,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/       case FLY_IN_CNTNT:
 /*N*/           if( pFlyFmt && rAnch.GetCntntAnchor() )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 const SwFrm* pOld = ((SwFlyFrmFmt*)pFlyFmt)->GetFrm( &aRet, FALSE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFrm* pOld = ((SwFlyFrmFmt*)pFlyFmt)->GetFrm( &aRet, FALSE );
 //STRIP001 /*?*/                if( pOld )
 //STRIP001 /*?*/                    aRet = pOld->Frm().Pos();
 /*N*/           }
@@ -299,7 +299,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/       case FLY_AT_FLY: // LAYER_IMPL
 /*?*/           if( rAnch.GetCntntAnchor() )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 const SwFlyFrmFmt* pFmt = (SwFlyFrmFmt*)rAnch.GetCntntAnchor()->
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFlyFrmFmt* pFmt = (SwFlyFrmFmt*)rAnch.GetCntntAnchor()->
 //STRIP001 /*?*/                                                nNode.GetNode().GetFlyFmt();
 //STRIP001 /*?*/                const SwFrm* pOld = pFmt ? pFmt->GetFrm( &aRet, FALSE ) : 0;
 //STRIP001 /*?*/                if( pOld )
@@ -1066,7 +1066,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
  * --------------------------------------------------*/
 /*N*/ int SwDoc::Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest )
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
 //STRIP001  if ( !nErr )
 //STRIP001  {
 //STRIP001      StartUndo( UNDO_CHAINE );
@@ -1113,7 +1113,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
  * --------------------------------------------------*/
 /*N*/ void SwDoc::Unchain( SwFrmFmt &rFmt )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  SwFmtChain aChain( rFmt.GetChain() );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rFmt.GetChain() );
 //STRIP001  if ( aChain.GetNext() )
 //STRIP001  {
 //STRIP001      StartUndo( UNDO_UNCHAIN );

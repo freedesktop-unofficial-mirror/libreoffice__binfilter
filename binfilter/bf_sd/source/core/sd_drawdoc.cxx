@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -336,7 +336,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       (LANGUAGE_URDU == (eRealCTLLanguage & 0x00ff)) ||
 /*N*/       (LANGUAGE_HEBREW == eRealCTLLanguage) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
 //STRIP001 /*?*/        SetDefaultWritingMode( ::com::sun::star::text::WritingMode_RL_TB );
 /*N*/   }
 /*N*/

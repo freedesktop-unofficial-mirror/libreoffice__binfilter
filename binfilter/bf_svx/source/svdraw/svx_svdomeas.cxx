@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdomeas.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:19 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -520,7 +520,7 @@ namespace binfilter {
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURE_TEXTVAUTO) rPol.eUsedTextVPos=SDRMEASURE_ABOVE;
 /*N*/   FASTBOOL bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURETEXT_VERTICALCENTERED) {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if (pOutlinerParaObject!=NULL && pOutlinerParaObject->GetTextObject().GetParagraphCount()==1) {
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pOutlinerParaObject!=NULL && pOutlinerParaObject->GetTextObject().GetParagraphCount()==1) {
 //STRIP001 /*?*/            bBrkLine=TRUE; // Unterbrochene Linie, wenn nur 1 Absatz.
 //STRIP001 /*?*/        }
 /*N*/   }
@@ -1585,7 +1585,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ FASTBOOL SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
-/*N*/ {DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 //STRIP001  UndirtyText();
 //STRIP001  return SdrTextObj::BegTextEdit(rOutl);
 /*N*/ }

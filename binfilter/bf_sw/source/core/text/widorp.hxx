@@ -2,9 +2,9 @@
  *
  *  $RCSfile: widorp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -105,7 +105,7 @@ public:
     void SetRstHeight( const SwTxtMargin &rLine )
     {
         if ( pFrm->IsVertical() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001             nRstHeight = nOrigin - pFrm->SwitchHorizontalToVertical( rLine.Y() );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             nRstHeight = nOrigin - pFrm->SwitchHorizontalToVertical( rLine.Y() );
         else
             nRstHeight = rLine.Y() - nOrigin;
     }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmode3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -466,7 +466,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 PutAxisAttr(rAttr,bMerge);
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutAxisAttr(rAttr,bMerge);
 //STRIP001 /*?*/        return SetAllAxisAttributes ();
 /*N*/   }
 /*N*/ }
@@ -1668,7 +1668,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
 /*N*/   if (pItemSet != NULL)
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ClearDblItems(rAttr,*pItemSet);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ClearDblItems(rAttr,*pItemSet);
 /*N*/ }
 /*************************************************************************
 |*
@@ -2174,7 +2174,7 @@ namespace binfilter {
 /*N*/               pItemSet->GetItemState( SCHATTR_TEXT_ORIENT, FALSE, &pPoolItem ) == SFX_ITEM_SET &&
 /*N*/               SAL_STATIC_CAST( const SvxChartTextOrientItem*, pPoolItem )->GetValue() == CHTXTORIENT_STACKED )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 aTitle = UnstackString( aTitle );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTitle = UnstackString( aTitle );
 /*N*/           }
 /*N*/
 /*N*/           if( pStrToChange )
@@ -2217,7 +2217,7 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_SPECIAL_GROUP:
 /*N*/   case CHOBJID_DIAGRAM_ROWGROUP:
 /*N*/   case CHOBJID_LEGEND_SYMBOL_ROW:
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             SchDataRow* pDataRow =  GetDataRow(*pObj);
 //STRIP001 /*?*/             if(pDataRow)
 //STRIP001 /*?*/             {
@@ -2236,7 +2236,7 @@ namespace binfilter {
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_DATA:
 /*?*/   case CHOBJID_LEGEND_SYMBOL_COL:
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SchDataPoint* pDataPoint = GetDataPoint(*pObj);
 //STRIP001 /*?*/            if(pDataPoint)
 //STRIP001 /*?*/            {
@@ -2254,7 +2254,7 @@ namespace binfilter {
 /*?*/   case CHOBJID_DIAGRAM_STATISTICS_GROUP :
 /*?*/   case CHOBJID_DIAGRAM_AVERAGEVALUE :
 /*?*/   case CHOBJID_DIAGRAM_REGRESSION :
-/*?*/ {DBG_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
 //STRIP001 /*?*/        if(bReplaceAll)
 //STRIP001 /*?*/            GetAttr(pObj).ClearItem();
 //STRIP001 /*?*/        GetAttr(pObj).Put(rAttr,TRUE);
@@ -2789,7 +2789,7 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/           }
 /*N*/           break;
 /*N*/         case CHOBJID_AREA:
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 ChangeDiagramAreaAttr( rAttr );
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ChangeDiagramAreaAttr( rAttr );
 /*?*/             break;
 /*N*/       default:
 /*N*/           GetAttr(nId,nIndex1).Put(rAttr,TRUE);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_module.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -155,14 +155,14 @@ public:
 //====================================================================
 
 /*?*/ ModalDialog* SfxModule::CreateAboutDialog()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  return SFX_APP()->CreateAboutDialog();
 /*?*/ }
 
 //====================================================================
 
 /*?*/ BOOL SfxModule::QueryUnload()
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  return TRUE;
 /*?*/ }
 
@@ -472,7 +472,7 @@ SfxModule::SfxModule( ResMgr* pMgrP, BOOL bDummyP,
 /*N*/ };
 
 /*?*/ void SfxModule::Invalidate( USHORT nId )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     for( SfxViewFrame* pFrame = SfxViewFrame::GetFirst(); pFrame; pFrame = SfxViewFrame::GetNext( *pFrame ) )
 //STRIP001         if ( pFrame->GetObjectShell()->GetModule() == this )
 //STRIP001             Invalidate_Impl( pFrame->GetBindings(), nId );

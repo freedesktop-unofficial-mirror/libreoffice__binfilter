@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:21:51 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -458,7 +458,7 @@ namespace binfilter {
 
 /*N*/ void ScDocument::SetChangeTrack( ScChangeTrack* pTrack )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT( pTrack->GetDocument() == this, "SetChangeTrack: different documents" );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT( pTrack->GetDocument() == this, "SetChangeTrack: different documents" );
 //STRIP001  if ( !pTrack || pTrack == pChangeTrack || pTrack->GetDocument() != this )
 //STRIP001      return ;
 //STRIP001  EndChangeTracking();
@@ -468,7 +468,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT( pTrack->GetDocument() == this, "
 
 /*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, pTimer )
 /*N*/  {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( ScDdeLink::IsInUpdate() )       // nicht verschachteln
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( ScDdeLink::IsInUpdate() )        // nicht verschachteln
 //STRIP001  {
 //STRIP001      aTrackTimer.Start();            // spaeter nochmal versuchen
 //STRIP001  }
@@ -655,7 +655,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT( pTrack->GetDocument() == this, "
 
 /*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 //STRIP001  {
 //STRIP001      InitClipPtrs(pSourceDoc);
 //STRIP001
@@ -675,7 +675,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 
 /*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, USHORT nTab )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 //STRIP001  {
 //STRIP001      InitClipPtrs(pSourceDoc);
 //STRIP001
@@ -1710,12 +1710,12 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*?*/               for (USHORT j = 0; !bInUse && (j <= MAXTAB); j++)
 /*?*/               {
 /*?*/                   if (pSrcDoc->pTab[j])
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        bInUse = pSrcDoc->pTab[j]->IsRangeNameInUse(0, 0, MAXCOL, MAXROW,
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSrcDoc->pTab[j]->IsRangeNameInUse(0, 0, MAXCOL, MAXROW,
 //STRIP001 /*?*/                                                           nOldIndex);
 /*?*/               }
 /*?*/               if (bInUse)
 /*?*/               {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  ScRangeData* pData = new ScRangeData( *pSrcData );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScRangeData* pData = new ScRangeData( *pSrcData );
 //STRIP001 /*?*/                    pData->SetDocument(this);
 //STRIP001 /*?*/                    if ( pRangeName->FindIndex( pData->GetIndex() ) )
 //STRIP001 /*?*/                        pData->SetIndex(0);     // need new index, done in Insert
@@ -1748,7 +1748,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        bInUse = pSrcDoc
 /*N*/           {
 /*?*/               // first update all inserted named formulas if they contain other
 /*?*/               // range names and used indices changed
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    if ( pSrcRangeNames[i] )
 //STRIP001 /*?*/                        pSrcRangeNames[i]->ReplaceRangeNamesInUse( aSrcRangeMap );
@@ -1844,7 +1844,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                for (USHORT i = 0; i < n
 
 /*N*/ void ScDocument::SetChangeViewSettings(const ScChangeViewSettings& rNew)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if (pChangeViewSettings==NULL)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pChangeViewSettings==NULL)
 //STRIP001      pChangeViewSettings = new ScChangeViewSettings;
 //STRIP001
 //STRIP001  DBG_ASSERT( pChangeViewSettings, "Oops. No ChangeViewSettings :-( by!" );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dcontact.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1363,7 +1363,7 @@ const Point SwDrawVirtObj::GetOffset() const
 
 void SwDrawVirtObj::operator=( const SdrObject& rObj )
 {
-DBG_ASSERT(0, "STRIP");//STRIP001
+DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001  SdrVirtObj::operator=(rObj);
 //STRIP001
 //STRIP001  // copy local offset
@@ -1548,7 +1548,7 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
 }
 
 SdrHdl* SwDrawVirtObj::GetHdl(USHORT nHdlNum) const
-{DBG_ASSERT(0, "STRIP");return NULL;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
 //STRIP001  SdrHdl* pHdl = rRefObj.GetHdl(nHdlNum);
 //STRIP001  Point aP(pHdl->GetPos() + maOffset);
 //STRIP001  pHdl->SetPos(aP);
@@ -1557,7 +1557,7 @@ SdrHdl* SwDrawVirtObj::GetHdl(USHORT nHdlNum) const
 }
 
 SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const
-{DBG_ASSERT(0, "STRIP");return NULL;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
 //STRIP001  SdrHdl* pHdl = rRefObj.GetPlusHdl(rHdl, nPlNum);
 //STRIP001  pHdl->SetPos(pHdl->GetPos() + maOffset);
 //STRIP001
@@ -1625,7 +1625,7 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
 }
 
 void SwDrawVirtObj::Mirror(const Point& rRef1, const Point& rRef2)
-{DBG_ASSERT(0, "STRIP");//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001  Rectangle aBoundRect0; if(pUserCall) aBoundRect0 = GetBoundRect();
 //STRIP001  rRefObj.Mirror(rRef1 - maOffset, rRef2 - maOffset);
 //STRIP001  SetRectsDirty();
@@ -1702,7 +1702,7 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
 }
 
 Point SwDrawVirtObj::GetSnapPoint(USHORT i) const
-{DBG_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
 //STRIP001  Point aP(rRefObj.GetSnapPoint(i));
 //STRIP001  aP += maOffset;
 //STRIP001

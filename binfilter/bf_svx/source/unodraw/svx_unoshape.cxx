@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2318,7 +2318,7 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
                 break;
             }
             case OWN_ATTR_LDBITMAP:
-            { DBG_ASSERT(0, "STRIP"); // Discussed with DL, this is not needed. Thus the bitmaps may be removed again, too.
+            { DBG_BF_ASSERT(0, "STRIP"); // Discussed with DL, this is not needed. Thus the bitmaps may be removed again, too.
 //STRIP003              sal_uInt16 nId;
 //STRIP003              if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_OLE2 )
 //STRIP003              {

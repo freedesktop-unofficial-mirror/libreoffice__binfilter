@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:46 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -604,7 +604,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       rOutliner.SetText(*pOutlinerParaObject);
 /*?*/       delete pOutlinerParaObject;
 /*?*/       pOutlinerParaObject=NULL;
-/*?*/       if (bScaleUnitChanged) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       if (bScaleUnitChanged) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            Fraction aMetricFactor=GetMapFactor(aOldUnit,aNewUnit).X();
 //STRIP001 /*?*/
 //STRIP001 /*?*/            // Funktioniert nicht richtig:
@@ -896,7 +896,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/   rOutliner.SetPaperSize(aNullSize);
 /*N*/   if (bContourFrame)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 ImpSetContourPolygon( rOutliner, aAnkRect, bLineWidth );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ImpSetContourPolygon( rOutliner, aAnkRect, bLineWidth );
 /*N*/
 /*N*/   // Text in den Outliner stecken - ggf. den aus dem EditOutliner
 /*N*/   OutlinerParaObject* pPara=pOutlinerParaObject;
@@ -1967,7 +1967,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 //STRIP001 }
 
 /*N*/ void SdrTextObj::SetupOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     ImpInitDrawOutliner( rOutl );
 //STRIP001     UpdateOutlinerFormatting( rOutl, rPaintRect );
 //STRIP001 }
@@ -2084,7 +2084,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 ///*N*/     if (bAnimated) {
 ///*N*/         ImpSdrMtfAnimator* pAnimator=((SdrTextObj*)this)->ImpGetMtfAnimator();
 ///*N*/         if (pAnimator!=NULL) {
-///*?*/             if (pPageView==NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+///*?*/             if (pPageView==NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 ////STRIP001 /*?*/              pAnimator->Stop();
 ///*?*/             } else {
 ///*?*/                 for (ULONG nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -308,7 +308,7 @@ SV_IMPL_PTRARR( _SwTableAutoFmtTbl, SwTableAutoFmt* )
 
 /*?*/int SwBoxAutoFmt::operator==( const SwBoxAutoFmt& rCmp ) const
 /*?*/{
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     return  aFont == rCmp.aFont &&
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return  aFont == rCmp.aFont &&
 //STRIP001          aHeight == rCmp.aHeight &&
 //STRIP001          aWeight == rCmp.aWeight &&
 //STRIP001          aPosture == rCmp.aPosture &&
@@ -378,7 +378,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     return  aFont == rCmp.aFont &&
 
 /*?*/BOOL SwBoxAutoFmt::Load( SvStream& rStream, const SwAfVersions& rVersions, USHORT nVer )
 /*?*/{
-DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001     SfxPoolItem* pNew;
+DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001  SfxPoolItem* pNew;
 //STRIP001  READ( aFont,        SvxFontItem         , rVersions.nFontVersion)
 //STRIP001
 //STRIP001  if( rStream.GetStreamCharSet() == aFont.GetCharSet() )
@@ -449,7 +449,7 @@ DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001     SfxPoolItem* pNew;
 
 /*?*/BOOL SwBoxAutoFmt::LoadOld( SvStream& rStream, USHORT aLoadVer[] )
 /*?*/{
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SfxPoolItem* pNew;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 SfxPoolItem* pNew;
 //STRIP001  READ( aFont,        SvxFontItem         , 0)
 //STRIP001
 //STRIP001  if( rStream.GetStreamCharSet() == aFont.GetCharSet() )
@@ -479,7 +479,7 @@ DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001     SfxPoolItem* pNew;
 
 /*?*/BOOL SwBoxAutoFmt::Save( SvStream& rStream ) const
 /*?*/{
-/*?*/DBG_ASSERT(0, "STRIP");return FALSE;//STRIP001     aFont.Store( rStream, aFont.GetVersion(SOFFICE_FILEFORMAT_40)  );
+/*?*/DBG_BF_ASSERT(0, "STRIP");return FALSE;//STRIP001  aFont.Store( rStream, aFont.GetVersion(SOFFICE_FILEFORMAT_40)  );
 //STRIP001  aHeight.Store( rStream, aHeight.GetVersion(SOFFICE_FILEFORMAT_40) );
 //STRIP001  aWeight.Store( rStream, aWeight.GetVersion(SOFFICE_FILEFORMAT_40) );
 //STRIP001  aPosture.Store( rStream, aPosture.GetVersion(SOFFICE_FILEFORMAT_40) );
@@ -519,7 +519,7 @@ DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001     SfxPoolItem* pNew;
 
 /*?*/BOOL SwBoxAutoFmt::SaveVerionNo( SvStream& rStream ) const
 /*?*/{
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion( SOFFICE_FILEFORMAT_40 );
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001      rStream << aFont.GetVersion( SOFFICE_FILEFORMAT_40 );
 //STRIP001  rStream << aHeight.GetVersion( SOFFICE_FILEFORMAT_40 );
 //STRIP001  rStream << aWeight.GetVersion( SOFFICE_FILEFORMAT_40 );
 //STRIP001  rStream << aPosture.GetVersion( SOFFICE_FILEFORMAT_40 );
@@ -608,7 +608,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 
 /*N*/void SwTableAutoFmt::SetBoxFmt( const SwBoxAutoFmt& rNew, BYTE nPos )
 /*N*/{
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ASSERT( 0 <= nPos && nPos < 16, "falscher Bereich" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( 0 <= nPos && nPos < 16, "falscher Bereich" );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    SwBoxAutoFmt* pFmt = aBoxAutoFmt[ nPos ];
 //STRIP001 /*?*/    if( pFmt )      // ist gesetzt -> kopieren
@@ -796,7 +796,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 
 /*?*/BOOL SwTableAutoFmt::Load( SvStream& rStream, const SwAfVersions& rVersions )
 /*?*/{
-/*?*/   BOOL    bRet = TRUE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   BOOL    bRet = TRUE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  USHORT  nVal = 0;
 //STRIP001  rStream >> nVal;
 //STRIP001  bRet = 0 == rStream.GetError();
@@ -847,7 +847,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 
 /*?*/BOOL SwTableAutoFmt::LoadOld( SvStream& rStream, USHORT aLoadVer[] )
 /*?*/{
-/*?*/   BOOL    bRet = TRUE; DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   BOOL    bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  USHORT  nVal = 0;
 //STRIP001  rStream >> nVal;
 //STRIP001  bRet = 0 == rStream.GetError();
@@ -882,7 +882,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 
 /*N*/BOOL SwTableAutoFmt::Save( SvStream& rStream ) const
 /*N*/{
-/*N*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 USHORT nVal = AUTOFORMAT_DATA_ID;
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 USHORT nVal = AUTOFORMAT_DATA_ID;
 //STRIP001  BOOL b;
 //STRIP001  rStream << nVal;
 //STRIP001  rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
@@ -914,7 +914,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     rStream << aFont.GetVersion(
 
 /*N*/ SwTableAutoFmtTbl::SwTableAutoFmtTbl()
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001      String sNm;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   String sNm;
 //STRIP001  SwTableAutoFmt* pNew = new SwTableAutoFmt(
 //STRIP001                          SwStyleNameMapper::GetUIName( RES_POOLCOLL_STANDARD, sNm ) );
 //STRIP001
@@ -972,7 +972,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      String sNm;
 
 /*N*/ BOOL SwTableAutoFmtTbl::Load()
 /*N*/ {
-/*N*/   BOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   BOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  String sNm( String::CreateFromAscii(
 //STRIP001              RTL_CONSTASCII_STRINGPARAM( sAutoTblFmtName )));
 //STRIP001  SvtPathOptions aOpt;
@@ -988,7 +988,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      String sNm;
 
 /*N*/ BOOL SwTableAutoFmtTbl::Save() const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
 //STRIP001  String sNm( URIHelper::SmartRelToAbs( aPathOpt.GetUserConfigPath() ));
 //STRIP001  sNm += INET_PATH_TOKEN;
 //STRIP001  sNm.AppendAscii( RTL_CONSTASCII_STRINGPARAM( sAutoTblFmtName ));
@@ -998,7 +998,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
 
 /*N*/ BOOL SwTableAutoFmtTbl::Load( SvStream& rStream )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bRet = 0 == rStream.GetError();
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bRet = 0 == rStream.GetError();
 //STRIP001  if (bRet)
 //STRIP001  {
 //STRIP001      // Achtung hier muss ein allgemeiner Header gelesen werden
@@ -1093,7 +1093,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SvtPathOptions aPathOpt;
 
 /*N*/ BOOL SwTableAutoFmtTbl::Save( SvStream& rStream ) const
 /*N*/ {
-/*N*/ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001   BOOL bRet = 0 == rStream.GetError();
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    BOOL bRet = 0 == rStream.GetError();
 //STRIP001  if (bRet)
 //STRIP001  {
 //STRIP001      rStream.SetVersion( SOFFICE_FILEFORMAT_40 );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtpaint.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -106,7 +106,7 @@ public:
 //STRIP001     inline void ChgClip( const SwRect &rRect, sal_Bool bEnlargeRect = sal_False )
 //STRIP001              { if( pOut ) _ChgClip( rRect, bEnlargeRect ); }
 //STRIP001 #endif
-    void Reset(){DBG_ASSERT(0, "STRIP");} ;//STRIP001          void Reset();
+    void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           void Reset();
     inline sal_Bool IsOn()  const { return bOn; }
     inline sal_Bool IsChg() const { return bChg; }
     inline sal_Bool IsOut() const { return 0 != pOut; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 13:39:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1083,14 +1083,14 @@ const sal_Int32 coNumContFlags =
 /*?*/                   BufferString.Erase(BufferIndex, CurToken.aText.Len());
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    pSNode = new SmAlignNode(CurToken);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pSNode = new SmAlignNode(CurToken);
 /*?*/
 /*?*/               NextToken();
 /*?*/           }
 /*?*/       }
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmAlignNode(CurToken);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmAlignNode(CurToken);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            NextToken();
 //STRIP001 /*?*/
@@ -1236,7 +1236,7 @@ const sal_Int32 coNumContFlags =
 /*N*/
 /*N*/           case TOVERBRACE :
 /*N*/           case TUNDERBRACE :
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmVerticalBraceNode(CurToken);
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSNode = new SmVerticalBraceNode(CurToken);
 //STRIP001 /*?*/                pOper = new SmMathSymbolNode(CurToken);
 //STRIP001 /*?*/                NextToken();
 /*?*/               break;
@@ -1244,7 +1244,7 @@ const sal_Int32 coNumContFlags =
 /*?*/           case TWIDEBACKSLASH:
 /*?*/           case TWIDESLASH:
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SmBinDiagonalNode *pSTmp = new SmBinDiagonalNode(CurToken);
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmBinDiagonalNode *pSTmp = new SmBinDiagonalNode(CurToken);
 //STRIP001 /*?*/                pSTmp->SetAscending(eType == TWIDESLASH);
 //STRIP001 /*?*/                pSNode = pSTmp;
 //STRIP001 /*?*/

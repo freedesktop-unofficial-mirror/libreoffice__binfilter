@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unopage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:52 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -712,7 +712,7 @@ uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyN
     }
     case WID_PAGE_LDBITMAP:
         {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bHC = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bHC = Application::GetSettings().GetStyleSettings().GetWindowColor().IsDark();
 //STRIP001             uno::Reference< awt::XBitmap > xBitmap(
 //STRIP001                 VCLUnoHelper::CreateBitmap( BitmapEx( SdResId( bHC ? BMP_PAGE_H : BMP_PAGE ) ) ) );
 //STRIP001          aAny <<= xBitmap;

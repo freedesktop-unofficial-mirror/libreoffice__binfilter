@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_refreshtimer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,7 +92,7 @@ namespace binfilter {
 
 /*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG nSeconds )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bActive = IsActive();
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bActive = IsActive();
 //STRIP001  if ( bActive && !nSeconds )
 //STRIP001      Stop();
 //STRIP001  SetTimeout( nSeconds * 1000 );

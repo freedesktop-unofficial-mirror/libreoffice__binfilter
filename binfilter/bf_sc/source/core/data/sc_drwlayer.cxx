@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_drwlayer.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -548,7 +548,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/           SdrObject* pObj = pPage->GetObj( i );
 /*N*/           ScDrawObjData* pData = GetObjData( pObj );
 /*N*/           if( pData )
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                RecalcPos( pObj, pData );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pData );
 /*N*/       }
 /*N*/   }
 /*N*/ }

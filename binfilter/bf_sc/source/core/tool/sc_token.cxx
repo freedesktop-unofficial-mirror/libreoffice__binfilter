@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_token.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:37 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -720,7 +720,7 @@ namespace binfilter {
 /*N*/  ScToken* ScFAPToken::GetFAPOrigToken() const            { return pOrigToken; }
 /*N*/ BOOL ScFAPToken::operator==( const ScToken& r ) const
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); return FALSE;/*N*/  return ScToken::operator==( r ) && pOrigToken == r.GetFAPOrigToken();
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); return FALSE;/*N*/  return ScToken::operator==( r ) && pOrigToken == r.GetFAPOrigToken();
 /*N*/ }
 
 

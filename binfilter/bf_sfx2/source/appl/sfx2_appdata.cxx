@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appdata.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -208,7 +208,7 @@ namespace binfilter {
 /*N*/     if ( !pTemplates )
 /*N*/         pTemplates = new SfxDocumentTemplates;
 /*N*/     else
-/*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 pTemplates->ReInitFromComponent();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pTemplates->ReInitFromComponent();
 /*N*/     return pTemplates;
 /*N*/ }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndsect.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:32:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -216,7 +216,7 @@ namespace binfilter {
 /*N*/   // koennen wir zur Zeit nicht !!!!
 /*N*/   if( rNew.IsHidden() && rRange.HasMark() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
 //STRIP001 /*?*/        if( !pStt->nContent.GetIndex() &&
 //STRIP001 /*?*/            pEnd->nNode.GetNode().GetCntntNode()->Len() ==
 //STRIP001 /*?*/            pEnd->nContent.GetIndex() )
@@ -349,7 +349,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pNewSectNode->EndOfSectionNode(), *pNewSectNode, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pNewSectNode->EndOfSectionNode(), *pNewSectNode, 1 );
 //STRIP001 /*?*/        if( IsRedlineOn() )
 //STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
 //STRIP001 /*?*/        else
@@ -360,7 +360,7 @@ namespace binfilter {
 /*N*/   if( rNew.IsHidden() && rNew.GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
 //STRIP001 /*?*/         if( ! IsInReading() )
 //STRIP001 /*?*/             FldsToCalc( aCalc, pNewSectNode->GetIndex() );
 //STRIP001 /*?*/        SwSection& rNewSect = pNewSectNode->GetSection();
@@ -546,7 +546,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( DoesUndo() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
 //STRIP001 /*?*/            if( bDelNodes && pIdx && &GetNodes() == &pIdx->GetNodes() &&
 //STRIP001 /*?*/                0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 //STRIP001 /*?*/            {
@@ -663,7 +663,7 @@ namespace binfilter {
 /*N*/       if( rSect.IsHidden() && 0 != (pIdx = pFmt->GetCntnt().GetCntntIdx() )
 /*N*/           && 0 != (pSectNd = pIdx->GetNode().GetSectionNode() ) )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rSect,
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rSect,
 //STRIP001 /*?*/                                *pSectNd, *pSectNd->EndOfSectionNode() );
 /*N*/       }
 /*N*/   }
@@ -709,7 +709,7 @@ namespace binfilter {
 /*N*/   if( pSection->IsHidden() && pSection->GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
 //STRIP001 /*?*/        if( !pIdx )
 //STRIP001 /*?*/            pIdx = pFmt->GetCntnt().GetCntntIdx();
 //STRIP001 /*?*/        FldsToCalc( aCalc, pIdx->GetIndex() );
@@ -772,7 +772,7 @@ namespace binfilter {
 /*N*/   SwFtnIdxs& rFtnArr = pNd->GetDoc()->GetFtnIdxs();
 /*N*/   if( rFtnArr.Count() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nPos;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nPos;
 //STRIP001 /*?*/        rFtnArr.SeekEntry( SwNodeIndex( *pNd ), &nPos );
 //STRIP001 /*?*/        SwTxtFtn* pSrch;
 //STRIP001 /*?*/

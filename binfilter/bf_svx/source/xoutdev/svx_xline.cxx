@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xline.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1087,7 +1087,7 @@ namespace binfilter {
 /*N*/   if( nPntMax >= 1 )
 /*N*/   {
 /*N*/       if( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) )
-/*N*/       {{DBG_ASSERT(0, "STRIP"); }//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
 //STRIP001 /*?*/            // #107240#
 //STRIP001 /*?*/            // Since this method is also used for XOR drawing it's not allowed
 //STRIP001 /*?*/            // to optimize to line drawing here. DrawLine() does not draw the
@@ -1210,7 +1210,7 @@ namespace binfilter {
 /*?*/                   nPntMax--;
 /*?*/               aLParam.Init(aPoly[nPntMax], aPoly[i], nLineWidth);
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 CalcFatLineJoin(aPoly[i], aPoly[i+1], aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 CalcFatLineJoin(aPoly[i], aPoly[i+1], aLParam);
 /*?*/           }
 /*?*/           else
 /*?*/               aLParam.Init(aPoly[i], aPoly[i+1], nLineWidth);
@@ -1230,9 +1230,9 @@ namespace binfilter {
 /*?*/               else                        pNextPoint = NULL;
 /*?*/
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); }//STRIP001 DrawFatLine(aPoly[i], aPoly[i+1], pNextPoint, aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawFatLine(aPoly[i], aPoly[i+1], pNextPoint, aLParam);
 /*?*/               else
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    aLParam.nLineDx = aPoly[i+1].X() - aPoly[i].X();
 //STRIP001 /*?*/                    aLParam.nLineDy = aPoly[i+1].Y() - aPoly[i].Y();
 //STRIP001 /*?*/                    aLParam.fLength = sqrt((double) aLParam.nLineDx * aLParam.nLineDx +
@@ -1244,9 +1244,9 @@ namespace binfilter {
 /*?*/           if ( bClosePoly )
 /*?*/           {
 /*?*/               if ( nLineWidth > 0 )
-/*?*/               {DBG_ASSERT(0, "STRIP"); }//STRIP001    DrawFatLine(aPoly[i], aPoly[0], &aPoly[1], aLParam);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     DrawFatLine(aPoly[i], aPoly[0], &aPoly[1], aLParam);
 /*?*/               else
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    aLParam.nLineDx = aPoly[0].X() - aPoly[i].X();
 //STRIP001 /*?*/                    aLParam.nLineDy = aPoly[0].Y() - aPoly[i].Y();
 //STRIP001 /*?*/                    aLParam.fLength = sqrt((double) aLParam.nLineDx * aLParam.nLineDx +
@@ -1257,9 +1257,9 @@ namespace binfilter {
 /*?*/           else
 /*?*/           {
 /*?*/               if ( bLineStart )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); }//STRIP001 DrawStartEndPoly(aLineStartPos, aLineStartPoly, aStartParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawStartEndPoly(aLineStartPos, aLineStartPoly, aStartParam);
 /*?*/               if ( bLineEnd )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 DrawStartEndPoly(aLineEndPos, aLineEndPoly, aEndParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 DrawStartEndPoly(aLineEndPos, aLineEndPoly, aEndParam);
 /*?*/           }
 /*?*/
 /*?*/           if( nLineWidth == 0 )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editundo.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:49 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -369,14 +369,14 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSplitPara::Undo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM = GetImpEditEngine()->ConnectContents( nNode, FALSE );
 //STRIP001  GetImpEditEngine()->GetActiveView()->GetImpEditView()->SetEditSelection( EditSelection( aPaM, aPaM ) );
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSplitPara::Redo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM = GetImpEditEngine()->SplitContent( nNode, nSepPos );
 //STRIP001  GetImpEditEngine()->GetActiveView()->GetImpEditView()->SetEditSelection( EditSelection( aPaM, aPaM ) );
@@ -397,7 +397,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoInsertChars::Undo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM( GetImpEditEngine()->CreateEditPaM( aEPaM ) );
 //STRIP001  EditSelection aSel( aPaM, aPaM );
@@ -407,7 +407,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoInsertChars::Redo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM( GetImpEditEngine()->CreateEditPaM( aEPaM ) );
 //STRIP001  GetImpEditEngine()->ImpInsertText( EditSelection( aPaM, aPaM ), aText );
@@ -489,7 +489,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoInsertFeature::Undo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM( GetImpEditEngine()->CreateEditPaM( aEPaM ) );
 //STRIP001  EditSelection aSel( aPaM, aPaM );
@@ -501,7 +501,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoInsertFeature::Redo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  EditPaM aPaM( GetImpEditEngine()->CreateEditPaM( aEPaM ) );
 //STRIP001  EditSelection aSel( aPaM, aPaM );
@@ -587,7 +587,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSetStyleSheet::Undo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  GetImpEditEngine()->SetStyleSheet( nPara, (SfxStyleSheet*)GetImpEditEngine()->GetStyleSheetPool()->Find( aPrevName, ePrevFamily ) );
 //STRIP001  GetImpEditEngine()->SetParaAttribs( nPara, aPrevParaAttribs );
@@ -595,7 +595,7 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSetStyleSheet::Redo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  GetImpEditEngine()->SetStyleSheet( nPara, (SfxStyleSheet*)GetImpEditEngine()->GetStyleSheetPool()->Find( aNewName, eNewFamily ) );
 //STRIP001  lcl_DoSetSelection( GetImpEditEngine()->GetActiveView(), nPara );
@@ -622,14 +622,14 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSetParaAttribs::Undo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  GetImpEditEngine()->SetParaAttribs( nPara, aPrevItems );
 //STRIP001  lcl_DoSetSelection( GetImpEditEngine()->GetActiveView(), nPara );
 /*N*/ }
 
 /*N*/ void __EXPORT EditUndoSetParaAttribs::Redo()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( GetImpEditEngine()->GetActiveView(), "Undo/Redo: Keine Active View!" );
 //STRIP001  GetImpEditEngine()->SetParaAttribs( nPara, aNewItems );
 //STRIP001  lcl_DoSetSelection( GetImpEditEngine()->GetActiveView(), nPara );

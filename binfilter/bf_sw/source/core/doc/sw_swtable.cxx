@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtable.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -565,7 +565,7 @@ namespace binfilter {
 /*N*/ void SwTable::GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
 /*N*/                         FASTBOOL bRefreshHidden, BOOL bCurRowOnly ) const
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
 //STRIP001  //Array aktualisiert.
 //STRIP001  if ( bRefreshHidden )
 //STRIP001  {
@@ -1562,7 +1562,7 @@ namespace binfilter {
 /*N*/       break;
 /*N*/
 /*N*/   case RES_FINDNEARESTNODE:
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  if( GetFrmFmt() && ((SwFmtPageDesc&)GetFrmFmt()->GetAttr(
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( GetFrmFmt() && ((SwFmtPageDesc&)GetFrmFmt()->GetAttr(
 //STRIP001 /*?*/            RES_PAGEDESC )).GetPageDesc() &&
 //STRIP001 /*?*/            aSortCntBoxes.Count() &&
 //STRIP001 /*?*/            aSortCntBoxes[ 0 ]->GetSttNd()->GetNodes().IsDocNodes() )
@@ -1920,13 +1920,13 @@ namespace binfilter {
 /*?*/
 /*?*/                   if( !bNewIsTxtFmt && nOldFmt != nNewFmt || pNewFml )
 /*?*/                   {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bChgTxt = TRUE;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001       BOOL bChgTxt = TRUE;
 //STRIP001 /*?*/                        double fVal = 0;
 //STRIP001 /*?*/                        if( !pNewVal && SFX_ITEM_SET != GetItemState(
 //STRIP001 /*?*/                            RES_BOXATR_VALUE, FALSE, (const SfxPoolItem**)&pNewVal ))
 //STRIP001 /*?*/                        {
 //STRIP001 /*?*/                            // es wurde noch nie ein Wert gesetzt, dann versuche
-//STRIP001 /*?*/                            DBG_ASSERT(0, "STRIP"); //STRIP001 // doch mal den Inhalt auszuwerten
+//STRIP001 /*?*/                            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // doch mal den Inhalt auszuwerten
 //STRIP001 /*?*/                            ULONG nNdPos = pBox->IsValidNumTxtNd( TRUE );
 //STRIP001 /*?*/                            if( ULONG_MAX != nNdPos )
 //STRIP001 /*?*/                            {
@@ -2006,7 +2006,7 @@ namespace binfilter {
 /*?*/   //                  UnlockModify();
 /*?*/
 /*?*/
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001  ChgNumToText( *pBox, nNewFmt );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ChgNumToText( *pBox, nNewFmt );
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -2195,7 +2195,7 @@ namespace binfilter {
 /*N*/
 /*N*/           const String& rTxt = pSttNd->GetNodes()[ nNdPos ]->GetTxtNode()->GetTxt();
 /*N*/           if( rTxt != sNewTxt )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 ChgTextToNum( *this, sNewTxt, pCol, FALSE );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ChgTextToNum( *this, sNewTxt, pCol, FALSE );
 /*N*/       }
 /*N*/   }
 /*N*/ }

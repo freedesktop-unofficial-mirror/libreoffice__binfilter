@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbg_lay.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -199,7 +199,7 @@ namespace binfilter {
 //STRIP001  void CheckLine( ByteString& rLine );
 //STRIP001  void SectFunc( ByteString &rOut, const SwFrm* pFrm, ULONG nAct, void* pParam );
 /*N*/ public:
-    SwImplProtocol(){DBG_ASSERT(0, "STRIP");} //STRIP001 SwImplProtocol();
+    SwImplProtocol(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwImplProtocol();
 //STRIP001  ~SwImplProtocol();
 //STRIP001  // Aufzeichnen
 //STRIP001  void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAct, void* pParam )
@@ -301,7 +301,7 @@ namespace binfilter {
 /*N*/   SvFileStream aStream( aName, STREAM_READ );
 /*N*/   if( aStream.IsOpen() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pImpl = new SwImplProtocol();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImpl = new SwImplProtocol();
 //STRIP001 /*?*/        pImpl->FileInit();
 /*N*/   }
 /*N*/     aStream.Close();

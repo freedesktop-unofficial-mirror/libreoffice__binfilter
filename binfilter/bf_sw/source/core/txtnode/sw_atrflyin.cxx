@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrflyin.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,7 +93,7 @@ namespace binfilter {
 
 int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 {
-    DBG_ASSERT(0, "STRIP"); return 0; //STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 //STRIP001  return( pTxtAttr && ((SwFmtFlyCnt&)rAttr).pTxtAttr &&
 //STRIP001          *pTxtAttr->GetStart() == *((SwFmtFlyCnt&)rAttr).pTxtAttr->GetStart() &&
 //STRIP001          pFmt == ((SwFmtFlyCnt&)rAttr).GetFrmFmt() );

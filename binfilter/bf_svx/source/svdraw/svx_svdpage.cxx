@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpage.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -159,7 +159,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ void SdrObjList::operator=(const SdrObjList& rSrcList)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  Clear();
 //STRIP001  eListKind=rSrcList.eListKind;
 //STRIP001  CopyObjects(rSrcList);
@@ -414,7 +414,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG nObjNum)
-/*N*/ {DBG_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
 //STRIP001  ULONG nAnz=GetObjCount();
 //STRIP001  SdrObject* pObj=(SdrObject*)aList.Remove(nObjNum);
 //STRIP001  DBG_ASSERT(pObj!=NULL,"Object zum Removen nicht gefunden");
@@ -786,7 +786,7 @@ using namespace ::com::sun::star;
 /*N*/                       if( bPaintFlag )
 /*N*/                       {
 /*N*/                           if( pObj->IsNeedColorRestore() )
-/*?*/                           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                                if (bColorsDirty && bRestoreColors)
 //STRIP001 /*?*/                                    aHDCMerk.Restore(*pOut);
 //STRIP001 /*?*/
@@ -1310,7 +1310,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ void SdrObjList::FlattenGroups()
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001     sal_Int32 nObj = GetObjCount();
 //STRIP001     sal_Int32 i;
 //STRIP001     for( i=nObj-1; i>=0; --i)
@@ -1318,7 +1318,7 @@ using namespace ::com::sun::star;
 /*?*/ }
 
 /*?*/ void SdrObjList::UnGroupObj( ULONG nObjNum )
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001     // if the given object is no group, this method is a noop
 //STRIP001     SdrObject* pUngroupObj = GetObj( nObjNum );
 //STRIP001     if( pUngroupObj )
@@ -1424,7 +1424,7 @@ using namespace ::com::sun::star;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPageGridFrameList::Clear()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  USHORT nAnz=GetCount();
 //STRIP001  for (USHORT i=0; i<nAnz; i++) {
 //STRIP001      delete GetObject(i);
@@ -1533,7 +1533,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ void SdrPage::SetOrientation(Orientation eOri)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // Quadratisch ist und bleibt immer Portrait
 //STRIP001  Size aSiz(GetSize());
 //STRIP001  if (aSiz.Width()!=aSiz.Height()) {
@@ -2098,7 +2098,7 @@ using namespace ::com::sun::star;
 
 /** returns an averaged background color of this page */
 /*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* pView ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); Color aColor; return aColor;
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); Color aColor; return aColor;
 //STRIP001  Color aColor;
 //STRIP001
 //STRIP001  if( (NULL == pView) || (pView->GetApplicationDocumentColor() == COL_AUTO) )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_sphere3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -785,7 +785,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ void E3dSphereObj::SetCenter(const Vector3D& rNew)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(aCenter != rNew)
 //STRIP001  {
 //STRIP001      aCenter = rNew;
@@ -794,7 +794,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void E3dSphereObj::SetSize(const Vector3D& rNew)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(aSize != rNew)
 //STRIP001  {
 //STRIP001      aSize = rNew;

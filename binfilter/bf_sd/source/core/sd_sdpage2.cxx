@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -688,7 +688,7 @@ using namespace ::com::sun::star;
 /*?*/       if (!pDocSh || pDocSh->GetMedium()->GetOrigURL() != aFileName)
 /*?*/       {
 /*?*/           // Keine Links auf Dokument-eigene Seiten!
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pPageLink = new SdPageLink(this, aFileName, aBookmarkName);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPageLink = new SdPageLink(this, aFileName, aBookmarkName);
 //STRIP001 /*?*/            String aFilterName(SdResId(STR_IMPRESS));
 //STRIP001 /*?*/            pLinkManager->InsertFileLink(*pPageLink, OBJECT_CLIENT_FILE,
 //STRIP001 /*?*/                                         aFileName, &aFilterName, &aBookmarkName);
@@ -838,7 +838,7 @@ using namespace ::com::sun::star;
 
 /*N*/ sal_Bool SdPage::setAlienAttributes( const ::com::sun::star::uno::Any& rAttributes )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet* pSet = getOrCreateItems();
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemSet* pSet = getOrCreateItems();
 //STRIP001 /*N*/
 //STRIP001 /*N*/    SvXMLAttrContainerItem aAlienAttributes( SDRATTR_XMLATTRIBUTES );
 //STRIP001 /*N*/    if( aAlienAttributes.PutValue( rAttributes, 0 ) )

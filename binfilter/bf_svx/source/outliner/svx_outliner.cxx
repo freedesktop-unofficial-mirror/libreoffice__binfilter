@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outliner.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:44 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -180,7 +180,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ Paragraph* Outliner::Insert(const XubString& rText, ULONG nAbsPos, USHORT nDepth)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001  DBG_ASSERT(pParaList->GetParagraphCount(),"Insert:No Paras");
 //STRIP001
@@ -237,7 +237,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bPasting || pEditEngine->IsInUndo() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 Paragraph* pPara = new Paragraph( 0xffff );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Paragraph* pPara = new Paragraph( 0xffff );
 //STRIP001 /*?*/        pParaList->Insert( pPara, nPara );
 //STRIP001 /*?*/        if( pEditEngine->IsInUndo() )
 //STRIP001 /*?*/        {
@@ -876,7 +876,7 @@ namespace binfilter {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/       if ( bUndo )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new OutlinerUndoChangeDepth( this, nPara, nOldDepth, nDepth ) );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new OutlinerUndoChangeDepth( this, nPara, nOldDepth, nDepth ) );
 //STRIP001 /*?*/            if ( bUndoAction )
 //STRIP001 /*?*/                UndoActionEnd( OLUNDO_DEPTH );
 /*N*/       }
@@ -1008,7 +1008,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP");//STRIP001 aStdFont = pEditEngine->GetStandardFont( nPara );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");//STRIP001 aStdFont = pEditEngine->GetStandardFont( nPara );
 /*N*/     }
 /*N*/
 /*N*/   Font aBulletFont;
@@ -1057,7 +1057,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( ImplHasBullet( nPara ) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
 //STRIP001 /*?*/
 //STRIP001 /*?*/         BOOL bRightToLeftPara = pEditEngine->IsRightToLeft( nPara );
 //STRIP001 /*?*/
@@ -1291,7 +1291,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ ULONG Outliner::Read( SvStream& rInput, USHORT eFormat, SvKeyValueIterator* pHTTPHeaderAttrs )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001
 //STRIP001  BOOL bOldUndo = pEditEngine->IsUndoEnabled();
@@ -1877,13 +1877,13 @@ namespace binfilter {
 /*N*/           nBulletWidth = aBulletSize.Width();
 /*N*/
 /*N*/       if ( bAdjust && !bOutlineMode )
-/*N*/       {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001 /*?*/            // Bei zentriert/rechtsbuendig anpassen
 //STRIP001 /*?*/            const SvxAdjustItem& rItem = (const SvxAdjustItem&)pEditEngine->GetParaAttrib( nPara, EE_PARA_JUST );
 //STRIP001 /*?*/            if ( ( !pEditEngine->IsRightToLeft( nPara ) && ( rItem.GetAdjust() != SVX_ADJUST_LEFT ) ) ||
 //STRIP001 /*?*/                 ( pEditEngine->IsRightToLeft( nPara ) && ( rItem.GetAdjust() != SVX_ADJUST_RIGHT ) ) )
 //STRIP001 /*?*/            {
-//STRIP001 /*?*/                {DBG_ASSERT(0, "STRIP");}//STRIP001 aTopLeft.X() = pEditEngine->GetFirstLineStartX( nPara ) - nBulletWidth;
+//STRIP001 /*?*/                {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 aTopLeft.X() = pEditEngine->GetFirstLineStartX( nPara ) - nBulletWidth;
 //STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
@@ -1930,7 +1930,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/     if ( bReturnPaperPos )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 Size aBulletSize( aBulletArea.GetSize() );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aBulletSize( aBulletArea.GetSize() );
 //STRIP001 /*?*/         Point aBulletDocPos( aBulletArea.TopLeft() );
 //STRIP001 /*?*/         aBulletDocPos.Y() += pEditEngine->GetDocPosTopLeft( nPara ).Y();
 //STRIP001 /*?*/         Point aBulletPos( aBulletDocPos );
@@ -2072,7 +2072,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, pPara )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001
 //STRIP001  ULONG nPara = pParaList->GetAbsPos( pPara );
@@ -2082,7 +2082,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001
 //STRIP001  GetBeginMovingHdl().Call( this );
@@ -2091,7 +2091,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, pInfos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     BOOL bCheckStyles = ( ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEOBJECT ) || ( ImplGetOutlinerMode() == OUTLINERMODE_OUTLINEVIEW ) );
 //STRIP001     if ( bCheckStyles )
 //STRIP001     {
@@ -2112,7 +2112,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, pInfos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( pInfos->nAction == EE_ACTION_PASTE )
 //STRIP001     {
 //STRIP001         bPasting = FALSE;
@@ -2185,7 +2185,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(Outliner,0);
 //STRIP001
 //STRIP001  pParaList->MoveParagraphs( pInfos->nStartPara, pInfos->nDestPara, pInfos->nEndPara - pInfos->nStartPara + 1 );
@@ -2229,7 +2229,7 @@ namespace binfilter {
 /*N*/           else if( pFmt->GetNumberingType() != SVX_NUM_NUMBER_NONE )
 /*N*/           {
 /*?*/               if ( nRelPos == 0xFFFF )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 pParaList->GetParent( pPara, nRelPos );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pParaList->GetParent( pPara, nRelPos );
 /*?*/               USHORT nNumber = nRelPos + pFmt->GetStart();
 /*?*/               aBulletText += pFmt->GetNumStr( nNumber );
 /*N*/           }
@@ -2342,7 +2342,7 @@ namespace binfilter {
 
 
 /*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, pNotify )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( !bBlockInsCallback )
 //STRIP001     {
 //STRIP001         pEditEngine->aOutlinerNotifyHdl.Call( pNotify );

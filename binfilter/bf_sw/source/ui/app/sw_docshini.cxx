@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -316,7 +316,7 @@ using namespace ::rtl;
 /*N*/         Sequence<Locale> aLocales =  aAsian.GetStartEndCharLocales();
 /*N*/         if(aLocales.getLength())
 /*N*/         {
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 const Locale* pLocales = aLocales.getConstArray();
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const Locale* pLocales = aLocales.getConstArray();
 //STRIP001 /*?*/             for(sal_Int32 i = 0; i < aLocales.getLength(); i++)
 //STRIP001 /*?*/             {
 //STRIP001 /*?*/                 ForbiddenCharacters aForbidden;
@@ -367,7 +367,7 @@ using namespace ::rtl;
 /*N*/             USHORT nFontId = aFontIds[i];
 /*N*/             SvxFontItem* pFontItem = 0;
 /*N*/             if(!pStdFont->IsFontDefault(nFontId))
-/*N*/             {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                 sEntry = pStdFont->GetFontFor(nFontId);
 //STRIP001 /*?*/                 sal_Bool bDelete = sal_False;
 //STRIP001 /*?*/                 const SfxFont* pFnt = pPrt ? pPrt->GetFontByName(sEntry): 0;
@@ -578,7 +578,7 @@ using namespace ::rtl;
 /*N*/   if( !pIo )
 /*N*/       pIo = new Sw3Io( *pDoc );
 /*N*/   else
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pIo->SetDoc( *pDoc );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pIo->SetDoc( *pDoc );
 /*N*/
 /*N*/   SetPool(&pDoc->GetAttrPool());
 
@@ -697,13 +697,13 @@ using namespace ::rtl;
 /*?*/               }
 /*?*/           }
 /*?*/           else
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/           break;
 
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
 /*N*/           if ( bXML )
-/*N*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                // fuer MWERKS (Mac-Compiler): kann nicht selbststaendig casten
 //STRIP001 /*?*/                SvEmbeddedObject* pObj = this;
 //STRIP001 /*?*/                SwTransferable::InitOle( pObj, *pDoc );
@@ -871,7 +871,7 @@ using namespace ::rtl;
 /*?*/               }
 /*?*/           }
 /*?*/           else
-/*?*/               {DBG_ASSERT(0, "STRIP"); }//STRIP001 nErr = pIo->LoadStyles( pStor );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -886,7 +886,7 @@ using namespace ::rtl;
 /*?*/           SfxMedium aMed( rNm, STREAM_STD_READ, FALSE );
 /*?*/           if( 0 == ( nErr = aMed.GetInStream()->GetError() ) )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SwWait aWait( *this, sal_True );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwWait aWait( *this, sal_True );
 //STRIP001 /*?*/                SwReader aRead( aMed, rNm, pDoc );
 //STRIP001 /*?*/                nErr = aRead.Read( *ReadSwg );
 /*?*/           }

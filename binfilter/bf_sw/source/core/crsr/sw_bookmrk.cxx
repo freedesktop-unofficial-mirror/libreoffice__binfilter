@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_bookmrk.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -122,7 +122,7 @@ namespace binfilter {
 /*N*/   // Clipboard ausgetragen werden. Wird automatisch ueber DataChanged
 /*N*/   // ausgeloest.
 /*N*/   if( refObj.Is() )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if( DDE_BOOKMARK == eMarkType && refObj->HasDataLinks() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            ::so3::SvLinkSource* p = &refObj;

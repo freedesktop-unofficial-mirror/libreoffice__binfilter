@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndnotxt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -179,7 +179,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !bContourMapModeValid )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
 //STRIP001 /*?*/        BOOL bPixelGrf = aGrfMap.GetMapUnit() == MAP_PIXEL;
 //STRIP001 /*?*/        const MapMode aContourMap( bPixelGrf ? MAP_PIXEL : MAP_100TH_MM );
 //STRIP001 /*?*/        if( bPixelGrf ? !bPixelContour : aGrfMap != aContourMap )
@@ -240,7 +240,7 @@ namespace binfilter {
 /*?*/   rContour = *pContour;
 /*?*/   if( bContourMapModeValid )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
 //STRIP001 /*?*/        const MapMode aContourMap( MAP_100TH_MM );
 //STRIP001 /*?*/        ASSERT( aGrfMap.GetMapUnit() != MAP_PIXEL ||
 //STRIP001 /*?*/                aGrfMap == MapMode( MAP_PIXEL ),

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_addincol.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -951,7 +951,7 @@ public:
 /*N*/         if ( nParamCount >= nDescCount && nDescCount > 0 &&
 /*N*/              pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS )
 /*N*/         {
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001             long nVarCount = nParamCount - ( nDescCount - 1 );  // size of last argument
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             long nVarCount = nParamCount - ( nDescCount - 1 );  // size of last argument
 //STRIP001             aVarArg.realloc( nVarCount );
 //STRIP001             bValidCount = TRUE;
 /*N*/         }

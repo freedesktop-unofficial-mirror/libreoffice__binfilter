@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlobj.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,7 +151,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void OutlinerParaObject::SetStyleSheets( USHORT nLevel, const XubString rNewName, const SfxStyleFamily& rNewFamily )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  for ( USHORT n = Count(); n; )
 //STRIP001  {
 //STRIP001      if ( GetDepth( --n ) == nLevel )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2164,7 +2164,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Schatten beruecksichtigen
 /*N*/       if(DoDrawShadow())
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            // ObjectTrans setzen
 //STRIP001 /*?*/            Matrix4D mTransform = GetFullTransform();
 //STRIP001 /*?*/            pScene->GetCameraSet().SetObjectTrans(mTransform);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmdpage.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
 //STRIP001  return ::binfilter::form::OImplementationIds::getImplementationId(getTypes()); //STRIP008 return ::form::OImplementationIds::getImplementationId(getTypes());
 /*N*/ }
 

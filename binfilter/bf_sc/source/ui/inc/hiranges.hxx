@@ -2,9 +2,9 @@
  *
  *  $RCSfile: hiranges.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,7 +87,7 @@ class ScHighlightRanges
 //STRIP001  List        aEntries;
 
 public:
-            ScHighlightRanges(){DBG_ASSERT(0, "STRIP");} //STRIP001 ScHighlightRanges();
+            ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScHighlightRanges();
 //STRIP001          ~ScHighlightRanges();
 //STRIP001
 //STRIP001  ULONG   Count() const                       { return aEntries.Count(); }

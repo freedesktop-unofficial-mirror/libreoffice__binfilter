@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit5.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -96,7 +96,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void ImpEditEngine::SetStyleSheet( EditSelection aSel, SfxStyleSheet* pStyle )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aSel.Adjust( aEditDoc );
 //STRIP001
 //STRIP001  USHORT nStartPara = aEditDoc.GetPos( aSel.Min().GetNode() );
@@ -329,7 +329,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( !IsInUndo(), "InsertUndo im Undomodus!" );
 /*N*/   if ( pUndoMarkSelection )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 EditUndoMarkSelection* pU = new EditUndoMarkSelection( this, *pUndoMarkSelection );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoMarkSelection* pU = new EditUndoMarkSelection( this, *pUndoMarkSelection );
 //STRIP001 /*?*/        GetUndoManager().AddUndoAction( pU, FALSE );
 //STRIP001 /*?*/        delete pUndoMarkSelection;
 //STRIP001 /*?*/        pUndoMarkSelection = NULL;
@@ -621,7 +621,7 @@ namespace binfilter {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() && aStatus.DoUndoAttribs() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 EditUndoSetAttribs* pUndo = CreateAttribUndo( aSel, rSet );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoSetAttribs* pUndo = CreateAttribUndo( aSel, rSet );
 //STRIP001 /*?*/        pUndo->SetSpecial( nSpecial );
 //STRIP001 /*?*/        InsertUndo( pUndo );
 /*N*/   }
@@ -711,7 +711,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               pPortion->MarkSelectionInvalid( nStartPos, nEndPos-nStartPos );
 /*N*/               if ( bCheckLanguage )
-/*?*/               {DBG_ASSERT(0, "STRIP");} //STRIP001    pNode->GetWrongList()->MarkInvalid( nStartPos, nEndPos );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pNode->GetWrongList()->MarkInvalid( nStartPos, nEndPos );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -964,7 +964,7 @@ namespace binfilter {
 
 /*N*/ ImplIMEInfos::ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos )
 /*N*/  : aOldTextAfterStartPos( rOldTextAfterStartPos )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aPos = rPos;
 //STRIP001  nLen = 0;
 //STRIP001  bCursor = TRUE;
@@ -973,7 +973,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ImplIMEInfos::~ImplIMEInfos()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  delete[] pAttribs;
 /*N*/ }
 

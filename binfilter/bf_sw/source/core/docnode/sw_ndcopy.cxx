@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndcopy.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -399,7 +399,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // es wird eine DDE-Tabelle kopiert
 /*?*/       // ist im neuen Dokument ueberhaupt der FeldTyp vorhanden ?
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pDDEType = ((SwDDETable&)GetTable()).GetDDEFldType();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDDEType = ((SwDDETable&)GetTable()).GetDDEFldType();
 //STRIP001 /*?*/        if( pDDEType->IsDeleted() )
 //STRIP001 /*?*/            pDoc->InsDeletedFldType( *pDDEType );
 //STRIP001 /*?*/        else
@@ -670,7 +670,7 @@ namespace binfilter {
 /*N*/   // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
 /*N*/   if( pDoc == this )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 // Start-/EndNode noch korrigieren
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Start-/EndNode noch korrigieren
 //STRIP001 /*?*/        ULONG nStt = pStt->nNode.GetIndex(),
 //STRIP001 /*?*/                nEnd = pEnd->nNode.GetIndex(),
 //STRIP001 /*?*/                nDiff = nEnd - nStt +1;
@@ -695,17 +695,17 @@ namespace binfilter {
 /*N*/   BOOL bRet = FALSE;
 /*N*/
 /*N*/   if( pDoc && pDoc != this )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
 /*N*/   // Copy in sich selbst (ueber mehrere Nodes wird hier gesondert
 /*N*/   // behandelt; in einem TextNode wird normal behandelt)
 /*N*/   else if( ! ( *pStt <= rPos && rPos < *pEnd &&
 /*N*/           ( pStt->nNode != pEnd->nNode ||
 /*N*/             !pStt->nNode.GetNode().IsTxtNode() )) )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
 /*N*/
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ASSERT( this == pDoc, " falscher Copy-Zweig!" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( this == pDoc, " falscher Copy-Zweig!" );
 //STRIP001 /*?*/        pDoc->SetRedlineMode_intern( eOld | REDLINE_IGNORE );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        BOOL bDoUndo = pDoc->DoesUndo();
@@ -765,7 +765,7 @@ namespace binfilter {
 /*N*/   pDoc->SetRedlineMode_intern( eOld );
 /*N*/   if( pRedlineRange )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( pDoc->IsRedlineOn() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pDoc->IsRedlineOn() )
 //STRIP001 /*?*/            pDoc->AppendRedline( new SwRedline( REDLINE_INSERT, *pRedlineRange ));
 //STRIP001 /*?*/        else
 //STRIP001 /*?*/            pDoc->SplitRedline( *pRedlineRange );
@@ -1171,14 +1171,14 @@ namespace binfilter {
 /*N*/   // dann kopiere noch alle Bookmarks
 /*N*/   if( GetBookmarks().Count() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwPaM aRgTmp( rRg.aStart, rRg.aEnd );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aRgTmp( rRg.aStart, rRg.aEnd );
 //STRIP001 /*?*/        SwPaM aCpyTmp( aCpyRange.aStart, aCpyRange.aEnd );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        lcl_CopyBookmarks( aRgTmp, aCpyTmp );
 /*N*/   }
 /*N*/
 /*N*/   if( bDelRedlines && ( REDLINE_DELETE_REDLINES & pDest->GetRedlineMode() ))
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    lcl_DeleteRedlines( rRg, aCpyRange );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_DeleteRedlines( rRg, aCpyRange );
 /*N*/
 /*N*/   pDest->GetNodes()._DelDummyNodes( aCpyRange );
 /*N*/ }
@@ -1290,7 +1290,7 @@ namespace binfilter {
 /*N*/           nCnt += rChain.GetNext() ? 1: 0;
 /*N*/           for ( USHORT k = 0; nCnt && k < aArr.Count(); ++k )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 const _ZSortFly &rTmp = aArr[k];
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const _ZSortFly &rTmp = aArr[k];
 //STRIP001 /*?*/                const SwFrmFmt *pTmp = rTmp.GetFmt();
 //STRIP001 /*?*/                if ( rChain.GetPrev() == pTmp )
 //STRIP001 /*?*/                {

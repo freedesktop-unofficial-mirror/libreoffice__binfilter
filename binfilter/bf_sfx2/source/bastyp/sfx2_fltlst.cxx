@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltlst.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,7 +189,7 @@ using namespace ::com::sun::star;
 //STRIP001     @last_change    16.10.2001 14:26
 //STRIP001 *//*-*************************************************************************************************************/
 /*?*/ SfxFilterListener::~SfxFilterListener()
-/*?*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001     if( m_xTypeCache.is() )
 //STRIP001     {
 //STRIP001         m_xTypeCache->removeFlushListener( this );
@@ -225,7 +225,7 @@ using namespace ::com::sun::star;
 //STRIP001     @last_change    17.10.2001 10:28
 //STRIP001 *//*-*************************************************************************************************************/
 /*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
 //STRIP001     /* SAFE AREA ----------------------------------------------------------------------------------------------- */
 //STRIP001     ::osl::ResettableMutexGuard aGuard( m_aMutex );
 //STRIP001
@@ -259,7 +259,7 @@ using namespace ::com::sun::star;
 //STRIP001     @last_change    16.10.2001 14:30
 //STRIP001 *//*-*************************************************************************************************************/
 /*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
 //STRIP001     /* SAFE AREA ----------------------------------------------------------------------------------------------- */
 //STRIP001     ::osl::ResettableMutexGuard aGuard( m_aMutex );
 //STRIP001

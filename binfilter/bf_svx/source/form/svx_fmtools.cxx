@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_fmtools.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1185,7 +1185,7 @@ using namespace ::connectivity::simple;
 
 //------------------------------------------------------------------------------
 /*N*/ Sequence< sal_Int8 > SAL_CALL FmXDispatchInterceptorImpl::getImplementationId() throw(RuntimeException)
-/*N*/ {DBG_ASSERT(0, "STRIP"); Sequence< sal_Int8 > a; return a;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); Sequence< sal_Int8 > a; return a;//STRIP001
 //STRIP001  return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());//STRIP008 return ::form::OImplementationIds::getImplementationId(getTypes());
 /*N*/ }
 //------------------------------------------------------------------------------
@@ -1208,7 +1208,7 @@ using namespace ::connectivity::simple;
 /*?*/ Sequence< Reference< ::com::sun::star::frame::XDispatch > > SAL_CALL
 /*?*/ FmXDispatchInterceptorImpl::queryDispatches( const Sequence< ::com::sun::star::frame::DispatchDescriptor >& aDescripts ) throw(RuntimeException)
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); Sequence< Reference< ::com::sun::star::frame::XDispatch> > aReturn(aDescripts.getLength()); return aReturn;//STRIP001     ::osl::MutexGuard aGuard(getAccessSafety());
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< Reference< ::com::sun::star::frame::XDispatch> > aReturn(aDescripts.getLength()); return aReturn;//STRIP001  ::osl::MutexGuard aGuard(getAccessSafety());
 //STRIP001  Sequence< Reference< ::com::sun::star::frame::XDispatch> > aReturn(aDescripts.getLength());
 //STRIP001  Reference< ::com::sun::star::frame::XDispatch>* pReturn = aReturn.getArray();
 //STRIP001  const ::com::sun::star::frame::DispatchDescriptor* pDescripts = aDescripts.getConstArray();
@@ -1256,7 +1256,7 @@ using namespace ::connectivity::simple;
 //------------------------------------------------------------------------------
 /*?*/ void SAL_CALL FmXDispatchInterceptorImpl::disposing(const ::com::sun::star::lang::EventObject& Source) throw( ::com::sun::star::uno::RuntimeException )
 /*?*/ {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  if (m_bListening)
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (m_bListening)
 //STRIP001  {
 //STRIP001      Reference< XDispatchProviderInterception > xIntercepted(m_xIntercepted.get(), UNO_QUERY);
 //STRIP001      if (Source.Source == xIntercepted)

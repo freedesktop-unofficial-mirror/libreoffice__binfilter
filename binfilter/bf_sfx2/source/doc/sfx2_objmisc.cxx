@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objmisc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -325,7 +325,7 @@ namespace binfilter {
 //-------------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::SetTemplate(sal_Bool bIs)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  pImp->bIsTemplate=bIs;
 //STRIP001  SfxFilterMatcher aMatcher( GetFactory().GetFilterContainer() );
 //STRIP001  SfxFilterMatcherIter aIter( &aMatcher, SFX_FILTER_TEMPLATEPATH );
@@ -472,7 +472,7 @@ namespace binfilter {
 //-------------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::SetMacroMode_Impl( sal_Bool bModal )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     if ( !pImp->bRunningMacro != !bModal )
 //STRIP001  {
 //STRIP001         pImp->bRunningMacro = bModal;
@@ -894,7 +894,7 @@ namespace binfilter {
 /* Stampit #111050# allow writer to set this event id here hardly!
    Please replace ith by a better solution! */
 /*?*/ void SfxObjectShell::Stamp_SetActivateEvent(sal_uInt16 nId )
-/*?*/ {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001     if ( GetFactory().GetFlags() & SFXOBJECTSHELL_HASOPENDOC )
 //STRIP001         pImp->nEventId = nId;
 /*?*/ }
@@ -969,7 +969,7 @@ namespace binfilter {
 /*?*/
 /*?*/   // seine Childs gelockt?
 /*?*/   for ( sal_uInt16 n = GetChildFrameCount(); n--; )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 if ( !GetChildFrame(n)->IsAutoLoadLocked_Impl() )
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 if ( !GetChildFrame(n)->IsAutoLoadLocked_Impl() )
 /*?*/           return sal_False;
 /*?*/
 /*?*/   // sonst ist AutoLoad erlaubt
@@ -1427,14 +1427,14 @@ namespace binfilter {//STRIP009
 /*?*/   {
 /*?*/       DateTime aDateTime;
 /*?*/       if( INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime ) )
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            aDateTime.ConvertToLocalTime();
 //STRIP001 /*?*/            pDoc->GetMedium()->SetExpired_Impl( aDateTime );
 /*?*/       }
 /*?*/       else
 /*?*/       {
 /*?*/ //            DBG_ERROR( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetMedium()->SetExpired_Impl( Date( 1, 1, 1970 ) );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetMedium()->SetExpired_Impl( Date( 1, 1, 1970 ) );
 /*?*/       }
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "content-type" ) == COMPARE_EQUAL )
@@ -1447,7 +1447,7 @@ namespace binfilter {//STRIP009
 /*?*/       {
 /*?*/           const INetContentTypeParameter * pCharset = aParameters.find("charset");
 /*?*/           if (pCharset != 0)
-/*?*/               {DBG_ASSERT(0, "STRIP");}//STRIP001 pDoc->GetMedium()->SetCharset( pCharset->m_sValue );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pDoc->GetMedium()->SetCharset( pCharset->m_sValue );
 /*?*/       }
 /*?*/   }
 /*?*/ }
@@ -1662,7 +1662,7 @@ namespace binfilter {//STRIP009
 /*?*/           if ( bSecure && bWarn || !bSecure && bConfirm )
 /*?*/           {
 /*?*/               if ( !nAutoConformation )
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    QueryBox aBox( GetDialogParent(), SfxResId( DLG_MACROQUERY ) );
 //STRIP001 /*?*/                    aBox.SetButtonText( aBox.GetButtonId(0), String( SfxResId(BTN_OK) ) );
 //STRIP001 /*?*/                    aBox.SetButtonText( aBox.GetButtonId(1), String( SfxResId(BTN_CANCEL) ) );

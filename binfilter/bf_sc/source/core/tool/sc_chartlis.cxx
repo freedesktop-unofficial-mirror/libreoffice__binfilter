@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chartlis.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:26 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,7 +147,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScChartListener::Clone() const
 /*N*/ {
-        DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 return new ScChartListener( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 return new ScChartListener( *this );
 /*N*/ }
 
 /*N*/ void ScChartListener::SetUno(
@@ -321,7 +321,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject*   ScChartListenerCollection::Clone() const
 /*N*/ {
-        DBG_ASSERT(0, "STRIP");return NULL;//STRIP001   return new ScChartListenerCollection( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new ScChartListenerCollection( *this );
 /*N*/ }
 
 //STRIP001 void ScChartListenerCollection::StartAllListeners()
@@ -335,7 +335,7 @@ using namespace ::com::sun::star;
 /*N*/ void ScChartListenerCollection::ChangeListening( const String& rName,
 /*N*/       const ScRangeListRef& rRangeListRef, BOOL bDirty )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
 //STRIP001  ScChartListener* pCL;
 //STRIP001  USHORT nIndex;
 //STRIP001  if ( Search( &aCLSearcher, nIndex ) )
@@ -487,7 +487,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
 //STRIP001 /*?*/        pCL->UpdateScheduledSeriesRanges();
 /*N*/   }
 /*N*/ }
@@ -498,7 +498,7 @@ using namespace ::com::sun::star;
 /*N*/   ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
 //STRIP001 /*?*/        pCL->UpdateSeriesRangesIntersecting( aRange );
 /*N*/   }
 /*N*/ }

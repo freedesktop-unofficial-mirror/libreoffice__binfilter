@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrcrsr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:02 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -533,7 +533,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       {
 /*N*/           nX += pPor->Width();
 /*N*/           if ( pPor->InSpaceGrp() && nSpaceAdd )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              nX += pPor->CalcSpacing( nSpaceAdd, aInf );
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               nX += pPor->CalcSpacing( nSpaceAdd, aInf );
 /*N*/           if( bNoTxt )
 /*N*/               nFirst = nX;
 /*N*/           // 8670: EndPortions zaehlen hier einmal als TxtPortions.
@@ -616,7 +616,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                 if ( aInf.GetIdx() + pPor->GetLen() < nOfst + nExtra )
 /*N*/               {
 /*N*/                   if ( pPor->InSpaceGrp() && nSpaceAdd )
-                            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/                      nX += pPor->PrtWidth() +
+                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/                       nX += pPor->PrtWidth() +
 //STRIP001 /*?*/                              pPor->CalcSpacing( nSpaceAdd, aInf );
 /*N*/                   else
 /*N*/                   {
@@ -672,7 +672,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/               {
 /*N*/                   if( pPor->IsMultiPortion() )
 /*N*/                   {
-                            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/ #ifdef VERTICAL_LAYOUT
+                            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/ #ifdef VERTICAL_LAYOUT
 //STRIP001 /*?*/                         nTmpAscent = AdjustBaseLine( *pCurr, pPor );
 //STRIP001 /*?*/                         GetInfo().SetMulti( sal_True );
 //STRIP001 /*?*/ #else
@@ -784,7 +784,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 //STRIP001 /*?*/                         SwLayoutModeModifier aLayoutModeModifier( *GetInfo().GetOut() );
 //STRIP001 /*?*/                         if ( ((SwMultiPortion*)pPor)->IsBidi() )
 //STRIP001 /*?*/                         {
-//STRIP001                              {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                             aLayoutModeModifier.Modify(
+//STRIP001                              {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                             aLayoutModeModifier.Modify(
 //STRIP001 //STRIP001 /*?*/                                 ((SwBidiPortion*)pPor)->GetLevel() % 2 );
 //STRIP001 /*?*/                         }
 //STRIP001 /*?*/ #endif
@@ -1096,7 +1096,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                 if ( pCMS->pSpecialPos )
 /*N*/                 {
 /*N*/                     // apply attributes to font
-                        DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     Seek( nOfst );
+                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     Seek( nOfst );
 //STRIP001 /*?*/                     lcl_GetPositionInsideField( aInf, *pOrig, *pCMS, *pPor );
 /*N*/                 }
 /*N*/             }
@@ -1359,7 +1359,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/
 /*N*/     KSHORT nWidth30;
 /*N*/     if ( pPor->IsPostItsPortion() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
 /*N*/     else
 /*N*/         nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*N*/                      30 :
@@ -1404,7 +1404,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/       }
 /*?*/
 /*?*/         if ( pPor->IsPostItsPortion() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/             nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
 /*?*/         else
 /*?*/             nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*?*/                          30 :
@@ -1533,7 +1533,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/   {
 /*N*/       if( pPor->IsMultiPortion() )
 /*N*/       {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // In a multi-portion we use GetCrsrOfst()-function recursively
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // In a multi-portion we use GetCrsrOfst()-function recursively
 //STRIP001 /*?*/            SwTwips nTmpY = rPoint.Y() - pCurr->GetAscent() + pPor->GetAscent();
 //STRIP001 /*?*/             // if we are in the first line of a double line portion, we have
 //STRIP001 /*?*/             // to add a value to nTmpY for not staying in this line
@@ -1644,7 +1644,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       {
 /*N*/           if( nChgNode && pPos && pPor->IsFlyCntPortion()
 /*N*/               && !( (SwFlyCntPortion*)pPor )->IsDraw() )
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*N*/          {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/           {
 //STRIP001 /*?*/                // JP 24.11.94: liegt die Pos nicht im Fly, dann
 //STRIP001 /*?*/                //              darf nicht mit STRING_LEN returnt werden!
 //STRIP001 /*?*/                //              (BugId: 9692 + Aenderung in feshview)

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -931,7 +931,7 @@ namespace binfilter {
 /*N*/   while(nLines)       //nLines ist 0 wenn kein CHSTYLE_2D_LINE_STACKEDCOLUMN
 /*N*/   {
 /*?*/       if( IsDataOnAxis( nIndex ))
-/*?*/           {DBG_ASSERT(0, "STRIP");}//STRIP001 UpdateRowMinMax( nIndex, nColCnt, mbPercent, fMin, fMax );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 UpdateRowMinMax( nIndex, nColCnt, mbPercent, fMin, fMax );
 /*?*/       nLines--;
 /*?*/       nIndex++;
 /*N*/   }
@@ -1206,7 +1206,7 @@ namespace binfilter {
 /*N*/       mpAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/     //    Determine the size of the texts bounding box.
 /*N*/   if (meTextOrient == CHTXTORIENT_STACKED)
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 pOutliner->SetText (StackString(aString), pOutliner->GetParagraph (0));
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOutliner->SetText (StackString(aString), pOutliner->GetParagraph (0));
 /*N*/   else
 /*N*/       pOutliner->SetText(aString, pOutliner->GetParagraph (0));
 /*N*/   pOutliner->SetUpdateMode (TRUE);
@@ -2791,14 +2791,14 @@ namespace binfilter {
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SetNumFormat( mbPercent, nMrgFmt );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetNumFormat( mbPercent, nMrgFmt );
 //STRIP001 /*?*/        bRet = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   nFmt = GetNumFormat( ! mbPercent );
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    SetNumFormat( ! mbPercent, nMrgFmt );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetNumFormat( ! mbPercent, nMrgFmt );
 /*N*/
 /*N*/   return bRet;
 /*N*/ }

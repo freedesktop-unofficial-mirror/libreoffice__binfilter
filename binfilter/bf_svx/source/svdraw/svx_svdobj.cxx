@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:54 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1509,7 +1509,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 //STRIP001 }
 
 /*N*/ void SdrObject::SetName(const XubString& rStr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if(rStr.Len())
 //STRIP001  {
 //STRIP001      ImpForcePlusData();
@@ -2455,7 +2455,7 @@ class ImpSkeleton;
 //STRIP001 }
 
 /*N*/ SdrObject* SdrObject::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-/*N*/ {DBG_ASSERT(0, "STRIP");  return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");  return NULL;//STRIP001
 //STRIP001  if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
 //STRIP001  Rectangle aO(GetBoundRect());
 //STRIP001  aO.Left()-=nTol; aO.Top()-=nTol; aO.Right()+=nTol; aO.Bottom()+=nTol;
@@ -2505,10 +2505,10 @@ class ImpSkeleton;
 /*N*/   bSnapRectDirty=TRUE; //rObj.bSnapRectDirty;
 /*N*/   bNotMasterCachable=rObj.bNotMasterCachable;
 /*N*/   if (pPlusData!=NULL) { delete pPlusData; pPlusData=NULL; }
-/*N*/   if (rObj.pPlusData!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (rObj.pPlusData!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        pPlusData=rObj.pPlusData->Clone(this);
 /*N*/   }
-/*N*/   if (pPlusData!=NULL && pPlusData->pBroadcast!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pPlusData!=NULL && pPlusData->pBroadcast!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        delete pPlusData->pBroadcast; // der Broadcaster wird nicht mitkopiert
 //STRIP001 /*?*/        pPlusData->pBroadcast=NULL;
 /*N*/   }
@@ -2670,7 +2670,7 @@ class ImpSkeleton;
 /*N*/           break;
 /*N*/
 /*?*/           case META_POLYPOLYGON_ACTION:
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                const PolyPolygon& rPolyPoly = ( (const MetaPolyPolygonAction&) rAct ).GetPolyPolygon();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                if( rPolyPoly.Count() && ( rPolyPoly[ 0 ].GetSize() > 2 ) )
@@ -3446,7 +3446,7 @@ class ImpSkeleton;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrObjGeoData* SdrObject::NewGeoData() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  return new SdrObjGeoData;
 /*N*/ }
 
@@ -3476,7 +3476,7 @@ class ImpSkeleton;
 /*N*/ }
 /*N*/
 /*N*/ void SdrObject::RestGeoData(const SdrObjGeoData& rGeo)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SetRectsDirty();
 //STRIP001  aOutRect      =rGeo.aBoundRect    ;
 //STRIP001  aAnchor       =rGeo.aAnchor       ;
@@ -3694,7 +3694,7 @@ class ImpSkeleton;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrObject::ApplyNotPersistAttr(const SfxItemSet& rAttr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
 //STRIP001  SendRepaintBroadcast();
 //STRIP001  NbcApplyNotPersistAttr(rAttr);
@@ -3863,7 +3863,7 @@ class ImpSkeleton;
 //STRIP001 }
 
 /*N*/ void SdrObject::TakeNotPersistAttr(SfxItemSet& rAttr, FASTBOOL bMerge) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const Rectangle& rSnap=GetSnapRect();
 //STRIP001  const Rectangle& rLogic=GetLogicRect();
 //STRIP001  lcl_SetItem(rAttr,bMerge,SdrObjMoveProtectItem(IsMoveProtect()));
@@ -3986,7 +3986,7 @@ class ImpSkeleton;
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
 /*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrGluePointList* pGPL=ForceGluePointList();
 //STRIP001 /*?*/        pGPL->SetReallyAbsolute(bOn,*this);
 /*N*/   }
@@ -3997,7 +3997,7 @@ class ImpSkeleton;
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
 /*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrGluePointList* pGPL=ForceGluePointList();
 //STRIP001 /*?*/        pGPL->Rotate(rRef,nWink,sn,cs,this);
 /*N*/   }
@@ -4008,7 +4008,7 @@ class ImpSkeleton;
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
 /*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrGluePointList* pGPL=ForceGluePointList();
 //STRIP001 /*?*/        pGPL->Mirror(rRef1,rRef2,this);
 /*N*/   }
@@ -4019,7 +4019,7 @@ class ImpSkeleton;
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
 /*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrGluePointList* pGPL=ForceGluePointList();
 //STRIP001 /*?*/        pGPL->Shear(rRef,nWink,tn,bVShear,this);
 /*N*/   }
@@ -4255,7 +4255,7 @@ class ImpSkeleton;
 /*N*/   SdrObject* pRet = DoConvertToPolyObj(bBezier);
 /*N*/
 /*N*/   if(pRet && bLineToArea)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SdrObject* pNewRet = ConvertToContourObj(pRet);
 //STRIP001 /*?*/        delete pRet;
 //STRIP001 /*?*/        pRet = pNewRet;
@@ -4527,7 +4527,7 @@ class ImpSkeleton;
 /*N*/ }
 
 /*N*/ void SdrObject::SetPrintable(FASTBOOL bPrn)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bNoPrint=!bPrn;
 //STRIP001  SetChanged();
 //STRIP001  if (bInserted && pModel!=NULL) {

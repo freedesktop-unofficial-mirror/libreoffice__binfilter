@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_crsrsh.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -216,7 +216,7 @@ using namespace ::com::sun::star::util;
 
 /*N*/SwPaM * SwCrsrShell::CreateCrsr()
 /*N*/{
-DBG_ASSERT(0, "STRIP");  return NULL;//STRIP001     // Innerhalb der Tabellen-SSelection keinen neuen Crsr anlegen
+DBG_BF_ASSERT(0, "STRIP");  return NULL;//STRIP001  // Innerhalb der Tabellen-SSelection keinen neuen Crsr anlegen
 //STRIP001  ASSERT( !IsTableMode(), "in Tabellen SSelection" );
 //STRIP001
 //STRIP001  // neuen Cursor als Kopie vom akt. und in den Ring aufnehmen
@@ -262,7 +262,7 @@ DBG_ASSERT(0, "STRIP");  return NULL;//STRIP001     // Innerhalb der Tabellen-SS
 /*N*/ {
 /*N*/   if( pTblCrsr )
 /*N*/   {
-DBG_ASSERT(0, "STRIP"); //STRIP001  /*?*/       if( bMakeTblCrsr && pTblCrsr->IsCrsrMovedUpdt() )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr->IsCrsrMovedUpdt() )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            // geparkte Cursor werden nicht wieder erzeugt
 //STRIP001 /*?*/            const SwCntntNode* pCNd;
@@ -369,7 +369,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  /*?*/       if( bMakeTblCrsr && pTblCrsr->Is
 /*?*/           //              der Cursor geupdatet werden; um z.B. den
 /*?*/           //              TabellenCursor zu erzeugen. Im UpdateCrsr wird
 /*?*/           //              das jetzt beruecksichtigt!
-DBG_ASSERT(0, "STRIP"); //STRIP001  /*?*/           UpdateCrsr( SwCrsrShell::CHKRANGE, bIdleEnd );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell::CHKRANGE, bIdleEnd );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                // Crsr-Moves ueberwachen, evt. Link callen
@@ -495,7 +495,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  /*?*/           UpdateCrsr( SwCrsrShell::CHK
 
 /*N*/ FASTBOOL SwCrsrShell::SttEndDoc( BOOL bStt )
 /*N*/ {
-/*?*/       DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  SwCallLink aLk( *this );        // Crsr-Moves ueberwachen, evt. Link callen
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   SwCallLink aLk( *this );        // Crsr-Moves ueberwachen, evt. Link callen
 //STRIP001
 //STRIP001  FASTBOOL bRet = pCurCrsr->SttEndDoc( bStt );
 //STRIP001  if( bRet )
@@ -586,7 +586,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  /*?*/           UpdateCrsr( SwCrsrShell::CHK
 
 /*N*/ int SwCrsrShell::SetCrsr( const Point &rLPt, BOOL bOnlyText )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      SET_CURR_SHELL( this );
 //STRIP001
 //STRIP001  SwNodes& rNds = GetDoc()->GetNodes();
 //STRIP001  SwShellCrsr* pCrsr = IsTableMode() ? pTblCrsr : pCurCrsr;
@@ -1162,7 +1162,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/           pTstCrsr->GetNode( TRUE )->FindStartNode() !=
 /*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() ))
 /*M*/       /*|| ( !pTblCrsr && lcl_IsInValueBox( *pTstCrsr, *this ) )*/ )
-/*M*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SwShellCrsr* pITmpCrsr = pTblCrsr ? pTblCrsr : pCurCrsr;
 //STRIP001 /*?*/        Point aTmpPt( pITmpCrsr->GetPtPos() );
 //STRIP001 /*?*/        Point aTmpMk( pITmpCrsr->GetMkPos() );
@@ -1296,7 +1296,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/             pSectNd->GetSection().IsProtectFlag() &&
 /*M*/            ( !pDoc->GetDocShell() ||
 /*M*/              !pDoc->GetDocShell()->IsReadOnly() || bAllProtect )) ) )
-/*M*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            if( !FindValidCntntNode( !HasDrawView() ||
 //STRIP001 /*?*/                    0 == Imp()->GetDrawView()->GetMarkList().GetMarkCount()))
 //STRIP001 /*?*/            {
@@ -1323,7 +1323,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/           bAllProtect = FALSE;
 /*M*/           if( bWasAllProtect && GetDoc()->GetDocShell() &&
 /*M*/               GetDoc()->GetDocShell()->IsReadOnlyUI() )
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                GetDoc()->GetDocShell()->SetReadOnlyUI( FALSE );
 //STRIP001 /*?*/                CallChgLnk();       // UI bescheid sagen!
 /*M*/           }
@@ -1391,7 +1391,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/           }
 /*M*/           else if ( Imp()->IsIdleAction() )
 /*M*/               //Wir stellen sicher, dass anstaendig Formatiert wurde #42224#
-/*?*/               {DBG_ASSERT(0, "STRIP"); }//STRIP001 pFrm->PrepareCrsr();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFrm->PrepareCrsr();
 /*M*/
 /*M*/           // im geschuetzten Fly? aber bei Rahmenselektion ignorieren
 /*M*/           if( !IsReadOnlyAvailable() && pFrm->IsProtected() &&
@@ -1399,7 +1399,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/                 !Imp()->GetDrawView()->GetMarkList().GetMarkCount() ) &&
 /*M*/               (!pDoc->GetDocShell() ||
 /*M*/                !pDoc->GetDocShell()->IsReadOnly() || bAllProtect ) )
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                // dann suche eine gueltige Position
 //STRIP001 /*?*/                BOOL bChgState = TRUE;
 //STRIP001 /*?*/                if( !FindValidCntntNode(!HasDrawView() ||
@@ -1523,7 +1523,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*M*/   //Nur wenn gescrollt wurde, und wenn keine Selektion existiert.
 /*M*/   if( pFrm && Imp()->IsScrolled() &&
 /*M*/           pCurCrsr->GetNext() == pCurCrsr && !pCurCrsr->HasMark() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 Imp()->RefreshScrolledArea( aCharRect );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 Imp()->RefreshScrolledArea( aCharRect );
 /*M*/
 /*M*/
 /*M*/   eMvState = MV_NONE;     // Status fuers Crsr-Travelling - GetCrsrOfst
@@ -2741,7 +2741,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     SET_CURR_SHELL( this );
 /*?*/       // wenn das Flag ausgeschaltet wird, dann muessen erstmal alle
 /*?*/       // Selektionen aufgehoben werden. Denn sonst wird sich darauf
 /*?*/       // verlassen, das nichts geschuetztes selektiert ist!
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if( !bFlag )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if( !bFlag )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            ClearMark();
 //STRIP001 /*?*/        }
@@ -2756,7 +2756,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if( !bFlag )
 /*N*/   if( IsReadOnlyAvailable() )
 /*N*/   {
 /*N*/       if( pTblCrsr )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001        bRet = pTblCrsr->HasReadOnlyBoxSel() ||
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001         bRet = pTblCrsr->HasReadOnlyBoxSel() ||
 //STRIP001 /*?*/                    pTblCrsr->HasReadonlySel();
 /*N*/       else
 /*N*/       {
@@ -3005,7 +3005,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if( !bFlag )
 /*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(
 /*?*/                           USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    return pCurCrsr->MakeFindRange( (SwDocPositions)nStt,
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return pCurCrsr->MakeFindRange( (SwDocPositions)nStt,
 //STRIP001 /*?*/                                    (SwDocPositions)nEnd, pPam );
 /*?*/ }
 #endif
@@ -3097,7 +3097,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        if( !bFlag )
       replaced, remove the table cursor.
     */
 /*N*/     if (pTblCrsr != NULL && bChanged)
-/*?*/         {DBG_ASSERT(0, "STRIP"); }//STRIP001 TblCrsrToCursor();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 TblCrsrToCursor();
 /*N*/ }
 
 }

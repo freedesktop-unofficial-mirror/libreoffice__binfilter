@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porfly.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:11 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,7 +82,7 @@ public:
         : SwFixPortion(rFlyRect), nBlankWidth( 0 ) { SetWhichPor( POR_FLY ); }
     inline const KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");} //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001   virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     OUTPUT_OPERATOR
 };
@@ -136,7 +136,7 @@ public:
 //STRIP001  xub_StrLen GetFlyCrsrOfst( const KSHORT nOfst, const Point &rPoint,
 //STRIP001                      SwPosition *pPos, const SwCrsrMoveState* pCMS ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_ASSERT(0, "STRIP");} ;//STRIP001     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     OUTPUT_OPERATOR
 };
 

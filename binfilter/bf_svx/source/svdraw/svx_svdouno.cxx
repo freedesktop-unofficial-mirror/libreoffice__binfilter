@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdouno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -260,7 +260,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // nur ein owner darf eigenstaendig erzeugen
 /*N*/   if (rModelName.Len())
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    CreateUnoControlModel(rModelName);
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     CreateUnoControlModel(rModelName);
 /*N*/ }
 
 /*?*/ SdrUnoObj::SdrUnoObj(const String& rModelName,
@@ -275,7 +275,7 @@ namespace binfilter {
 /*?*/
 /*?*/   // nur ein owner darf eigenstaendig erzeugen
 /*?*/   if (rModelName.Len())
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 CreateUnoControlModel(rModelName,rxSFac);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 CreateUnoControlModel(rModelName,rxSFac);
 /*?*/ }
 
 /*N*/ SdrUnoObj::~SdrUnoObj()
@@ -639,7 +639,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   if (pOut)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
         // Nur dieses eine OutDev beruecksichtigen
 //STRIP001 /*?*/        uno::Reference< awt::XWindow > xWindow(GetUnoControl(pOut), uno::UNO_QUERY);
 //STRIP001 /*?*/        if (xWindow.is())
@@ -879,7 +879,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/
 /*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch lesen
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        // UNICODE: rIn >> aUnoControlModelTypeName;
 //STRIP001 /*?*/        rIn.ReadByteString(aUnoControlModelTypeName);
 //STRIP001 /*?*/
@@ -931,7 +931,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ uno::Reference< awt::XControl > SdrUnoObj::GetUnoControl(const OutputDevice* pOut) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return uno::Reference< awt::XControl >();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference< awt::XControl >();//STRIP001
 //STRIP001  uno::Reference< awt::XControl > xUnoControl;
 //STRIP001
 //STRIP001  if (pModel && xUnoControlModel.is())

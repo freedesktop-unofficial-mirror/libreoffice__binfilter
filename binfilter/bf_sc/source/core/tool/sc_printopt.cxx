@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_printopt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -187,7 +187,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ ScPrintCfg::ScPrintCfg() :
 /*N*/   ConfigItem( OUString::createFromAscii( CFGPATH_PRINT ) )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetPropertyNames();
 //STRIP001  Sequence<Any> aValues = GetProperties(aNames);
 //STRIP001 //   EnableNotification(aNames);
 //STRIP001  const Any* pValues = aValues.getConstArray();

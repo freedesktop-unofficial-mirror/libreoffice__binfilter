@@ -2,9 +2,9 @@
  *
  *  $RCSfile: frmsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:14 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,14 +70,14 @@ class SwFrameShell: public SwBaseShell
 public:
     SFX_DECL_INTERFACE(SW_FRAMESHELL);
 
-    SwFrameShell(SwView &rView):SwBaseShell( rView ){DBG_ASSERT(0, "STRIP");} ;//STRIP001           SwFrameShell(SwView &rView);
+    SwFrameShell(SwView &rView):SwBaseShell( rView ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001            SwFrameShell(SwView &rView);
 //STRIP001  virtual ~SwFrameShell();
 
 //STRIP001  void    Execute(SfxRequest &);
 //STRIP001  void    GetState(SfxItemSet &);
-    void    ExecFrameStyle(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecFrameStyle(SfxRequest& rReq);
-    void    GetLineStyleState(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} ;//STRIP001    void    GetLineStyleState(SfxItemSet &rSet);
-    void    StateInsert(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void    StateInsert(SfxItemSet &rSet);
+    void    ExecFrameStyle(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecFrameStyle(SfxRequest& rReq);
+    void    GetLineStyleState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    GetLineStyleState(SfxItemSet &rSet);
+    void    StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    StateInsert(SfxItemSet &rSet);
 //STRIP001
 //STRIP001  void    StateStatusline(SfxItemSet &rSet);
 //STRIP001

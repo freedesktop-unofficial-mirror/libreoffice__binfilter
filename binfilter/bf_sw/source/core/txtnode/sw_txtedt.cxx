@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:44 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -343,7 +343,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/
 /*M*/       if( nStart <= nAttrStart )          // Faelle: 1,3,5
-/*M*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            if( nEnd > nAttrStart
 //STRIP001 /*?*/                || ( nEnd == *pAttrEnd && nEnd==nAttrStart ) )
 //STRIP001 /*?*/            {
@@ -386,7 +386,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/       }
 /*M*/       else                                // Faelle: 2,4,5
 /*M*/           if( *pAttrEnd > nStart )        // Faelle: 2,4
-/*M*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                if( *pAttrEnd < nEnd )      // Fall: 2
 //STRIP001 /*?*/                {
 //STRIP001 /*?*/                    if ( nMin > nAttrStart )
@@ -635,7 +635,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/       return FALSE;
 /*M*/
 /*M*/     if( pWrong )
-/*M*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         xub_StrLen nOldBegin = nBegin;
 //STRIP001 /*?*/        nBegin = bReverse ? pWrong->LastWrong( nBegin )
 //STRIP001 /*?*/                          : pWrong->NextWrong( nBegin );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fmtcol.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -352,7 +352,7 @@ namespace binfilter {
 
 /*N*/  int SwCollCondition::operator==( const SwCollCondition& rCmp ) const
 /*N*/  {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     int nRet = 0;
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 //STRIP001  if( nCondition == rCmp.nCondition )
 //STRIP001  {
 //STRIP001      if( USRFLD_EXPRESSION & nCondition )
@@ -419,7 +419,7 @@ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     int nRet = 0;
 
 /*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& rCond )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   for( USHORT n = 0; n < aCondColls.Count(); ++n )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for( USHORT n = 0; n < aCondColls.Count(); ++n )
 //STRIP001      if( *aCondColls[ n ] == rCond )
 //STRIP001      {
 //STRIP001          aCondColls.DeleteAndDestroy( n );

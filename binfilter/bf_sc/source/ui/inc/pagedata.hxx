@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pagedata.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,7 +114,7 @@ class ScPageBreakData
 //STRIP001  ScPrintRangeData*   pData;          // Array
 
 public:
-                ScPageBreakData(USHORT nMax){DBG_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakData(USHORT nMax);
+                ScPageBreakData(USHORT nMax){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakData(USHORT nMax);
 //STRIP001              ~ScPageBreakData();
 //STRIP001
 //STRIP001  USHORT              GetCount() const            { return nUsed; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -526,7 +526,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   {
 /*N*/       for ( sal_uInt16 nView = 0; nView < pImpEditEngine->aEditViews.Count(); nView++ )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = pImpEditEngine->aEditViews[nView];
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = pImpEditEngine->aEditViews[nView];
 //STRIP001 /*?*/            DBG_CHKOBJ( pView, EditView, 0 );
 //STRIP001 /*?*/            if ( bAutoPageSize )
 //STRIP001 /*?*/                pView->pImpEditView->RecalcOutputArea();
@@ -730,13 +730,13 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 /*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16 nParagraph, sal_uInt16 nLine ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001 /*?*/    DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001 /*?*/    return pImpEditEngine->GetLineLen( nParagraph, nLine );
 /*N*/ }
 
 /*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16 nParagraph, sal_uInt16 nLine )
-/*?*/ {{DBG_ASSERT(0, "STRIP");} return 0;//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  // Falls jemand mit einer leeren Engine ein GetLineHeight() macht.
 //STRIP001  if ( !pImpEditEngine->IsFormatted() )
@@ -754,7 +754,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 /*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 nParagraph ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001 /*?*/    DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if ( !pImpEditEngine->IsFormatted() )
@@ -823,7 +823,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 //STRIP001 }
 
 /*?*/ sal_Bool EditEngine::PostKeyEvent( const KeyEvent& rKeyEvent, EditView* pEditView )
-/*?*/ {{DBG_ASSERT(0, "STRIP"); } return sal_False;//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); } return sal_False;//STRIP001
 //STRIP001 /*?*/    DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001 /*?*/    DBG_CHKOBJ( pEditView, EditView, 0 );
 //STRIP001 /*?*/    DBG_ASSERT( pEditView, "Keine View - keine Kekse !" );
@@ -845,7 +845,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    String aAutoText( pImpEditEngine->GetAutoCompleteText() );
 //STRIP001 /*?*/    if ( pImpEditEngine->GetAutoCompleteText().Len() )
-//STRIP001 /*?*/    {DBG_ASSERT(0, "STRIP");} //STRIP001    pImpEditEngine->SetAutoCompleteText( String(), sal_True );
+//STRIP001 /*?*/    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pImpEditEngine->SetAutoCompleteText( String(), sal_True );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    sal_uInt16 nCode = rKeyEvent.GetKeyCode().GetCode();
 //STRIP001 /*?*/    KeyFuncType eFunc = rKeyEvent.GetKeyCode().GetFunction();
@@ -856,14 +856,14 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 //STRIP001 /*?*/            case KEYFUNC_UNDO:
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                if ( !bReadOnly )
-//STRIP001 /*?*/                {DBG_ASSERT(0, "STRIP");} //STRIP001    pEditView->Undo();
+//STRIP001 /*?*/                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pEditView->Undo();
 //STRIP001 /*?*/                return sal_True;
 //STRIP001 /*?*/            }
 //STRIP001 /*?*/            // break;
 //STRIP001 /*?*/            case KEYFUNC_REDO:
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                if ( !bReadOnly )
-//STRIP001 /*?*/                {DBG_ASSERT(0, "STRIP");} //STRIP001    pEditView->Redo();
+//STRIP001 /*?*/                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pEditView->Redo();
 //STRIP001 /*?*/                return sal_True;
 //STRIP001 /*?*/            }
 //STRIP001 /*?*/            // break;
@@ -1253,7 +1253,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 /*N*/ sal_uInt32 EditEngine::Read( SvStream& rInput, EETextFormat eFormat, SvKeyValueIterator* pHTTPHeaderAttrs /* = NULL */ )
-/*N*/ {DBG_ASSERT(0, "STRIP");return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return 0; //STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  sal_Bool bUndoEnabled = pImpEditEngine->IsUndoEnabled();
 //STRIP001  pImpEditEngine->EnableUndo( sal_False );
@@ -1266,7 +1266,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 
 #ifndef SVX_LIGHT
 /*N*/ sal_uInt32 EditEngine::Write( SvStream& rOutput, EETextFormat eFormat )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  EditPaM aStartPaM( pImpEditEngine->GetEditDoc().GetStartPaM() );
 //STRIP001  EditPaM aEndPaM( pImpEditEngine->GetEditDoc().GetEndPaM() );
@@ -1570,7 +1570,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 /*N*/ void EditEngine::GetCharAttribs( sal_uInt16 nPara, EECharAttribArray& rLst ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  pImpEditEngine->GetCharAttribs( nPara, rLst );
 /*N*/ }
@@ -2249,7 +2249,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   if ( pImpEditEngine->GetStatus().DoOnlineSpelling() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pImpEditEngine->StopOnlineSpellTimer();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImpEditEngine->StopOnlineSpellTimer();
 //STRIP001 /*?*/        pImpEditEngine->DoOnlineSpelling( 0, sal_True, sal_False );
 /*N*/   }
 /*N*/ #endif SVX_LIGHT
@@ -2280,7 +2280,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/   // #109151# Check against index, not paragraph
 /*N*/     if ( pNode && ( rPos.nIndex < pNode->Len() ) )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        aBounds = pImpEditEngine->PaMtoEditCursor( EditPaM( pNode, rPos.nIndex ), GETCRSR_TXTONLY );
 //STRIP001 /*?*/        Rectangle aR2 = pImpEditEngine->PaMtoEditCursor( EditPaM( pNode, rPos.nIndex+1 ), GETCRSR_TXTONLY|GETCRSR_ENDOFLINE );
 //STRIP001 /*?*/         if ( aR2.Right() > aBounds.Right() )
@@ -2345,7 +2345,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHINSERTED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHINSERTED );
 //STRIP001 /*?*/         aNotify.pEditEngine = this;
 //STRIP001 /*?*/         aNotify.nParagraph = nPara;
 //STRIP001 /*?*/         pImpEditEngine->CallNotify( aNotify );
@@ -2358,7 +2358,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHREMOVED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHREMOVED );
 //STRIP001 /*?*/         aNotify.pEditEngine = this;
 //STRIP001 /*?*/         aNotify.nParagraph = nPara;
 //STRIP001 /*?*/         pImpEditEngine->CallNotify( aNotify );
@@ -2388,7 +2388,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTHEIGHTCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTHEIGHTCHANGED );
 //STRIP001 /*?*/         aNotify.pEditEngine = this;
 //STRIP001 /*?*/         aNotify.nParagraph = nPara;
 //STRIP001 /*?*/         pImpEditEngine->CallNotify( aNotify );
@@ -2702,7 +2702,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           }
 /*N*/           else if( eNumType == SVX_NUM_BITMAP )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 SvxBrushItem aBItem( Graphic( pOldBullet->GetBitmap() ), GPOS_NONE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxBrushItem aBItem( Graphic( pOldBullet->GetBitmap() ), GPOS_NONE );
 //STRIP001 /*?*/                pNumberFormat->SetGraphicBrush( &aBItem );
 /*N*/           }
 /*N*/       }

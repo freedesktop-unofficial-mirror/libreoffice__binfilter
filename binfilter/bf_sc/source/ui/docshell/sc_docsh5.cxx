@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh5.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:07 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -225,7 +225,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   //! StopMarking an der (aktiven) View?
 /*N*/
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 Window* pParent = GetDialogParent();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Window* pParent = GetDialogParent();
 //STRIP001 /*?*/    ScWaitCursorOff aWaitOff( pParent );
 //STRIP001 /*?*/    BOOL bFocus = pParent && pParent->HasFocus();
 //STRIP001 /*?*/
@@ -252,7 +252,7 @@ namespace binfilter {
 
 /*N*/ void ScDocShell::DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
 //STRIP001 /*?*/    aDocument.RemoveFlagsTab( nX1, nY1, nX2, nY1, nTab, SC_MF_AUTO );
 //STRIP001 /*?*/    PostPaint( nX1, nY1, nTab, nX2, nY1, nTab, PAINT_GRID );
 //STRIP001 /*?*/    aModificator.SetDocumentModified();
@@ -312,7 +312,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ScDBData* pData = aDocument.GetDBAtArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/   if (!pData)
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pData = lcl_GetDBNearCursor( aDocument.GetDBCollection(), nCol, nRow, nTab );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pData = lcl_GetDBNearCursor( aDocument.GetDBCollection(), nCol, nRow, nTab );
 /*N*/
 /*N*/   BOOL bSelected = ( bForceMark || rMarked.aStart != rMarked.aEnd );
 /*N*/
@@ -449,7 +449,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if ( pUndoColl )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 aDocument.CompileDBFormula( FALSE );     // CompileFormulaString
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aDocument.CompileDBFormula( FALSE );      // CompileFormulaString
 //STRIP001 /*?*/
 //STRIP001 /*?*/                ScDBCollection* pRedoColl = new ScDBCollection( *pColl );
 //STRIP001 /*?*/                GetUndoManager()->AddUndoAction( new ScUndoDBData( this, pUndoColl, pRedoColl ) );
@@ -620,7 +620,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if (rParam.bReferenceData)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nTabCount = aDocument.GetTableCount();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTabCount = aDocument.GetTableCount();
 //STRIP001 /*?*/            USHORT nInsertCount = aData.GetInsertCount();
 //STRIP001 /*?*/
 //STRIP001 /*?*/            // alte Outlines
@@ -653,7 +653,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 //STRIP001 /*?*/            pUndoDoc->InitUndo( &aDocument, aDestArea.nTab, aDestArea.nTab );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            aDocument.CopyToDocument( aDestArea.nColStart, aDestArea.nRowStart, aDestArea.nTab,
@@ -728,7 +728,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if (nSrcTab <= MAXTAB)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if ( aDocument.TestCopyScenario( nSrcTab, nTab ) )           // Zellschutz testen
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aDocument.TestCopyScenario( nSrcTab, nTab ) )            // Zellschutz testen
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                ScDocShellModificator aModificator( *this );
 //STRIP001 /*?*/                ScMarkData aScenMark;
@@ -801,7 +801,7 @@ namespace binfilter {
 /*N*/                                   const Color& rColor, USHORT nFlags )
 /*N*/ {
 /*?*/   //  Undo
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 String aOldName;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aOldName;
 //STRIP001 /*?*/    aDocument.GetName( nTab, aOldName );
 //STRIP001 /*?*/    String aOldComment;
 //STRIP001 /*?*/    Color aOldColor;
@@ -831,7 +831,7 @@ namespace binfilter {
 /*N*/                                   const Color& rColor, USHORT nFlags,
 /*N*/                                   ScMarkData& rMark, BOOL bRecord )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 rMark.MarkToMulti();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 rMark.MarkToMulti();
 //STRIP001 /*?*/    if (rMark.IsMultiMarked())
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        USHORT nNewTab = nTab + 1;
@@ -895,7 +895,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScDocShell::MoveTable( USHORT nSrcTab, USHORT nDestTab, BOOL bCopy, BOOL bRecord )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if (bCopy)
 //STRIP001 /*?*/    {
@@ -969,7 +969,7 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, pDBData )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
+    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
 //STRIP001
 //STRIP001  BOOL bContinue = TRUE;
 //STRIP001  ScImportParam aImportParam;

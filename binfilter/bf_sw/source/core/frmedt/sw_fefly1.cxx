@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fefly1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1459,7 +1459,7 @@ using namespace ::com::sun::star;
 /*N*/           0 != ( pHts = pTNd->GetpSwpHints() ))
 /*N*/       {
 /*?*/           // search for a sequence field:
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 const SfxPoolItem* pItem;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SfxPoolItem* pItem;
 //STRIP001 /*?*/            for( USHORT n = 0, nEnd = pHts->Count(); n < nEnd; ++n )
 //STRIP001 /*?*/                if( RES_TXTATR_FIELD == ( pItem =
 //STRIP001 /*?*/                            &(*pHts)[ n ]->GetAttr())->Which() &&
@@ -1510,7 +1510,7 @@ using namespace ::com::sun::star;
 /*N*/   aPt += pFly->Frm().Pos();
 /*N*/   if ( rRect.Top() != LONG_MIN && rRect.Pos() != aPt )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 aPt = rRect.Pos();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aPt = rRect.Pos();
 //STRIP001 /*?*/        aPt.X() -= pFly->Prt().Left();
 //STRIP001 /*?*/        aPt.Y() -= pFly->Prt().Top();
 //STRIP001 /*?*/        //Bei Absatzgebundenen Flys muss ausgehend von der neuen Position ein
@@ -1889,7 +1889,7 @@ using namespace ::com::sun::star;
 /*N*/       const SdrMarkList &rMrkList = Imp()->GetDrawView()->GetMarkList();
 /*N*/       for( sal_uInt32 i = 0, nE = rMrkList.GetMarkCount(); i < nE; ++i )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SdrObject* pObj = rMrkList.GetMark( i )->GetObj();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrObject* pObj = rMrkList.GetMark( i )->GetObj();
 //STRIP001 /*?*/            ObjCntType eTmp = GetObjCntType( *pObj );
 //STRIP001 /*?*/            if( !i )
 //STRIP001 /*?*/            {
@@ -1970,7 +1970,7 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 /*M*/ static USHORT SwFmtGetPageNum(const SwFlyFrmFmt * pFmt)
-/*M*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001 /*?*/     ASSERT(pFmt != NULL, "invalid argument");
 //STRIP001 /*?*/
 //STRIP001 /*?*/     SwFlyFrm * pFrm = pFmt->GetFrm();
@@ -2119,9 +2119,9 @@ namespace binfilter {//STRIP009
 /*M*/         int nChainState;
 /*M*/
 /*M*/         if (bSuccessors)
-/*?*/             {DBG_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt, rFmt1);
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt, rFmt1);
 /*M*/         else
-/*?*/             {DBG_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt1, rFmt);
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");nChainState=0; }//STRIP001 nChainState = pDoc->Chainable(rFmt1, rFmt);
 /*M*/
 /*M*/ #if 0
 /*M*/             ::std::clog << lcl_GetChainableString(nChainState) << ::std::endl;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:52 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -358,7 +358,7 @@ struct TabInfo
 /*N*/ }
 
 /*N*/ IMPL_LINK( ImpEditEngine, OnlineSpellHdl, Timer *, EMPTYARG )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( !Application::AnyInput( INPUT_KEYBOARD ) && GetUpdateMode() && IsFormatted() )
 //STRIP001      DoOnlineSpelling();
 //STRIP001  else
@@ -503,7 +503,7 @@ struct TabInfo
 /*N*/               ImpEditView* pImpView = pView->pImpEditView;
 /*N*/               if ( pImpView->DoAutoHeight() )
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 Size aSz( pImpView->GetOutputArea().GetWidth(), nCurTextHeight );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz( pImpView->GetOutputArea().GetWidth(), nCurTextHeight );
 //STRIP001 /*?*/                    if ( aSz.Height() > aMaxAutoPaperSize.Height() )
 //STRIP001 /*?*/                        aSz.Height() = aMaxAutoPaperSize.Height();
 //STRIP001 /*?*/                    else if ( aSz.Height() < aMinAutoPaperSize.Height() )
@@ -603,7 +603,7 @@ struct TabInfo
 /*N*/
 /*N*/       for ( sal_uInt16 nView = 0; nView < aEditViews.Count(); nView++ )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = aEditViews[nView];
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = aEditViews[nView];
 //STRIP001 /*?*/            pView->pImpEditView->RecalcOutputArea();
 /*N*/       }
 /*N*/   }
@@ -839,7 +839,7 @@ struct TabInfo
 /*N*/       long nTextLineHeight = 0;
 /*N*/       if ( GetTextRanger() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 GetTextRanger()->SetVertical( IsVertical() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetTextRanger()->SetVertical( IsVertical() );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            long nTextY = nStartPosY + GetEditCursor( pParaPortion, pLine->GetStart() ).Top();
 //STRIP001 /*?*/            if ( !bSameLineAgain )
@@ -1069,7 +1069,7 @@ struct TabInfo
 /*N*/
 /*N*/                 // And now check for Compression:
 /*N*/                 if ( pPortion->GetLen() && GetAsianCompressionMode() )
-/*?*/                 {DBG_ASSERT(0, "STRIP");} //STRIP001     bCompressedChars |= ImplCalcAsianCompression( pNode, pPortion, nTmpPos, (long*)pLine->GetCharPosArray().GetData() + (nTmpPos-pLine->GetStart()), 10000, FALSE );
+/*?*/                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bCompressedChars |= ImplCalcAsianCompression( pNode, pPortion, nTmpPos, (long*)pLine->GetCharPosArray().GetData() + (nTmpPos-pLine->GetStart()), 10000, FALSE );
 /*N*/
 /*N*/               nTmpWidth += pPortion->GetSize().Width();
 /*N*/
@@ -1242,7 +1242,7 @@ struct TabInfo
 /*N*/             if ( bCompressedChars && ( pPortion->GetLen() > 1 ) && pPortion->GetExtraInfos() && pPortion->GetExtraInfos()->bCompressed )
 /*N*/             {
 /*?*/                 // I need the manipulated DXArray for determining the break postion...
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 ImplCalcAsianCompression( pNode, pPortion, nPortionStart, (long*)pLine->GetCharPosArray().GetData() + (nPortionStart-pLine->GetStart()), 10000, TRUE );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImplCalcAsianCompression( pNode, pPortion, nPortionStart, (long*)pLine->GetCharPosArray().GetData() + (nPortionStart-pLine->GetStart()), 10000, TRUE );
 /*N*/             }
 /*N*/           ImpBreakLine( pParaPortion, pLine, pPortion, nPortionStart,
 /*N*/                                           nRemainingWidth, bCanHyphenate && bHyphenatePara );
@@ -1364,7 +1364,7 @@ struct TabInfo
 /*?*/             long nRemainingWidth = nMaxLineWidth - aTextSize.Width();
 /*?*/             if ( nRemainingWidth > 0 )
 /*?*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 ImplExpandCompressedPortions( pLine, pParaPortion, nRemainingWidth );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImplExpandCompressedPortions( pLine, pParaPortion, nRemainingWidth );
 //STRIP001 /*?*/                 aTextSize = pLine->CalcTextSize( *pParaPortion );
 /*?*/             }
 /*N*/         }
@@ -2114,7 +2114,7 @@ struct TabInfo
 /*N*/                  ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
 /*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
 /*N*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
 //STRIP001 /*?*/
 //STRIP001 /*?*/                 // check if character is connectable to previous character,
 //STRIP001 /*?*/                 if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
@@ -2136,7 +2136,7 @@ struct TabInfo
 /*?*/                 if ( 0x631 == cNextCh || 0x64A == cNextCh ||
 /*?*/                      0x649 == cNextCh )
 /*?*/                 {
-/*?*/                     DBG_ASSERT(0, "STRIP"); //STRIP001 // check if character is connectable to previous character,
+/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // check if character is connectable to previous character,
 //STRIP001 /*?*/                     if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
 //STRIP001 /*?*/                         nKashidaPos = aWordSel.Min().GetIndex() + nIdx - 1;
 /*?*/                 }
@@ -2147,7 +2147,7 @@ struct TabInfo
 /*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
 /*N*/                  0x60C <= cCh && 0x6FE >= cCh )
 /*N*/             {
-/*?*/                 DBG_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
 //STRIP001 /*?*/
 //STRIP001 /*?*/                 // check if character is connectable to previous character,
 //STRIP001 /*?*/                 if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
@@ -2226,7 +2226,7 @@ struct TabInfo
 /*N*/         if ( pTextPortion->GetExtraInfos() && pTextPortion->GetExtraInfos()->bCompressed )
 /*N*/         {
 /*?*/             // We need the original size from the portion
-/*?*/             DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nTxtPortionStart = pPortion->GetTextPortions().GetStartPos( nSplitPortion );
+/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTxtPortionStart = pPortion->GetTextPortions().GetStartPos( nSplitPortion );
 //STRIP001 /*?*/                SvxFont aTmpFont( pPortion->GetNode()->GetCharAttribs().GetDefFont() );
 //STRIP001 /*?*/            SeekCursor( pPortion->GetNode(), nTxtPortionStart+1, aTmpFont );
 //STRIP001 /*?*/            aTmpFont.SetPhysFont( GetRefDevice() );
@@ -2959,7 +2959,7 @@ struct TabInfo
 /*?*/                                       {
 /*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
 /*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createBeginComment() );
+/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createBeginComment() );
 /*?*/                                       }
 /*?*/                                   }
 /*?*/
@@ -3005,7 +3005,7 @@ struct TabInfo
 /*N*/                                   short nEsc = aTmpFont.GetEscapement();
 /*N*/                                   if ( nOrientation )
 /*N*/                                   {
-/*?*/                                       DBG_ASSERT(0, "STRIP"); //STRIP001 // Bei Hoch/Tief selbst Hand anlegen:
+/*?*/                                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Bei Hoch/Tief selbst Hand anlegen:
 //STRIP001 /*?*/                                        if ( aTmpFont.GetEscapement() )
 //STRIP001 /*?*/                                        {
 //STRIP001 /*?*/                                             long nDiff = aTmpFont.GetSize().Height() * aTmpFont.GetEscapement() / 100L;
@@ -3054,7 +3054,7 @@ struct TabInfo
 /*?*/                                           }
 /*?*/                                           if ( bSpecialUnderline )
 /*?*/                                           {
-/*?*/                                               DBG_ASSERT(0, "STRIP"); //STRIP001 Size aSz = aTmpFont.GetPhysTxtSize( pOutDev, aText, nTextStart, nTextLen );
+/*?*/                                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz = aTmpFont.GetPhysTxtSize( pOutDev, aText, nTextStart, nTextLen );
 //STRIP001 /*?*/                                                BYTE nProp = aTmpFont.GetPropr();
 //STRIP001 /*?*/                                                aTmpFont.SetEscapement( 0 );
 //STRIP001 /*?*/                                                aTmpFont.SetPropr( 100 );
@@ -3063,7 +3063,7 @@ struct TabInfo
 //STRIP001 /*?*/                                                aBlanks.Fill( nTextLen, ' ' );
 //STRIP001 /*?*/                                                Point aUnderlinePos( aOutPos );
 //STRIP001 /*?*/                                                if ( nOrientation )
-//STRIP001 /*?*/                                                {DBG_ASSERT(0, "STRIP");} //STRIP001    aUnderlinePos = lcl_ImplCalcRotatedPos( aTmpPos, aOrigin, nSin, nCos );
+//STRIP001 /*?*/                                                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aUnderlinePos = lcl_ImplCalcRotatedPos( aTmpPos, aOrigin, nSin, nCos );
 //STRIP001 /*?*/                                                pOutDev->DrawStretchText( aUnderlinePos, aSz.Width(), aBlanks, 0, nTextLen );
 //STRIP001 /*?*/
 //STRIP001 /*?*/                                                aTmpFont.SetUnderline( UNDERLINE_NONE );
@@ -3087,7 +3087,7 @@ struct TabInfo
 /*?*/                                             Point aTopLeft( aTmpPos );
 /*?*/                                             aTopLeft.Y() -= pLine->GetMaxAscent();
 /*?*/                                           if ( nOrientation )
-/*?*/                                           {DBG_ASSERT(0, "STRIP");} //STRIP001       aTopLeft = lcl_ImplCalcRotatedPos( aTopLeft, aOrigin, nSin, nCos );
+/*?*/                                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001       aTopLeft = lcl_ImplCalcRotatedPos( aTopLeft, aOrigin, nSin, nCos );
 /*?*/                                             Rectangle aRect( aTopLeft, pTextPortion->GetSize() );
 /*?*/                                             pOutDev->DrawRect( aRect );
 /*N*/                                         }
@@ -3096,7 +3096,7 @@ struct TabInfo
 /*N*/ #ifndef SVX_LIGHT
 /*N*/                                   if ( GetStatus().DoOnlineSpelling() && GetStatus().DoDrawRedLines() && pPortion->GetNode()->GetWrongList()->HasWrongs() && pTextPortion->GetLen() )
 /*N*/                                   {
-/*?*/ {DBG_ASSERT(0, "STRIP"); }//STRIP001 /*?*/                                         {//#105750# adjust LinePos for superscript or subscript text
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 /*?*/                                         {//#105750# adjust LinePos for superscript or subscript text
 //STRIP001 /*?*/                                             short nEsc = aTmpFont.GetEscapement();
 //STRIP001 /*?*/                                             if( nEsc )
 //STRIP001 /*?*/                                             {
@@ -3148,7 +3148,7 @@ struct TabInfo
 /*?*/                                       {
 /*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
 /*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createEndComment() );
+/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createEndComment() );
 /*?*/                                       }
 /*?*/                                   }
 /*?*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_scmod.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -257,7 +257,7 @@ static USHORT nIdleCount = 0;
 /*N*/       {
 //STRIP001 /*?*/            //  Test if detective objects have to be updated with new colors
 //STRIP001 /*?*/            //  (if the detective colors haven't been used yet, there's nothing to update)
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  if ( ScDetectiveFunc::IsColorsInitialized() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( ScDetectiveFunc::IsColorsInitialized() )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                 const svtools::ColorConfig& rColors = GetColorConfig();
 //STRIP001 /*?*/                BOOL bArrows =
@@ -314,7 +314,7 @@ static USHORT nIdleCount = 0;
 //STRIP001 /*?*/             }
 /*N*/       }
 /*N*/         else if ( nHintId == SFX_HINT_CTL_SETTINGS_CHANGED )
-/*N*/         {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001          //  for all documents: set digit language for printer, recalc output factor, update row heights
 //STRIP001          SfxObjectShell* pObjSh = SfxObjectShell::GetFirst();
 //STRIP001          while ( pObjSh )
@@ -822,7 +822,7 @@ static USHORT nIdleCount = 0;
 
 /*N*/ ScDocument* ScModule::GetClipDoc()
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  called from document
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  called from document
 //STRIP001
 //STRIP001  ScTransferObj* pObj = ScTransferObj::GetOwnClipboard( NULL );
 //STRIP001  if (pObj)
@@ -931,7 +931,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  called from document
 /*N*/   SfxViewFrame* pViewFrm = SfxViewFrame::Current();
 /*N*/   if ( pViewFrm && pViewFrm->HasChildWindow(nFuncListID) )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScFunctionChildWindow* pWnd =(ScFunctionChildWindow*)pViewFrm->GetChildWindow( nFuncListID );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFunctionChildWindow* pWnd =(ScFunctionChildWindow*)pViewFrm->GetChildWindow( nFuncListID );
 /*?*/
 //STRIP001 /*?*/        ScFunctionDockWin* pFuncList=(ScFunctionDockWin*)pWnd->GetWindow();
 //STRIP001 /*?*/
@@ -1818,7 +1818,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  called from document
 /*N*/
 /*N*/   if ( nCurRefDlgId )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SfxChildWindow* pChildWnd = lcl_GetChildWinFromAnyView( nCurRefDlgId );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxChildWindow* pChildWnd = lcl_GetChildWinFromAnyView( nCurRefDlgId );
 //STRIP001 /*?*/        if ( pChildWnd )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            ScAnyRefDlg* pRefDlg = (ScAnyRefDlg*)pChildWnd->GetWindow();
@@ -1960,7 +1960,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  called from document
 
 void lcl_CheckNeedsRepaint( ScDocShell* pDocShell )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 SfxViewFrame* pFrame = SfxViewFrame::GetFirst( pDocShell );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxViewFrame* pFrame = SfxViewFrame::GetFirst( pDocShell );
 //STRIP001  while ( pFrame )
 //STRIP001  {
 //STRIP001      SfxViewShell* p = pFrame->GetViewShell();
@@ -1986,7 +1986,7 @@ void lcl_CheckNeedsRepaint( ScDocShell* pDocShell )
 /*?*/       ScDocument* pDoc = pDocSh->GetDocument();
 /*?*/       if ( pDoc->IsLoadingDone() )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bLinks = pDoc->IdleCheckLinks();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bLinks = pDoc->IdleCheckLinks();
 //STRIP001 /*?*/            BOOL bWidth = pDoc->IdleCalcTextWidth();
 //STRIP001 /*?*/            BOOL bSpell = pDoc->ContinueOnlineSpelling();
 //STRIP001 /*?*/            if ( bSpell )
@@ -2030,7 +2030,7 @@ void lcl_CheckNeedsRepaint( ScDocShell* pDocShell )
 
 IMPL_LINK( ScModule, SpellTimerHdl, Timer*, pTimer )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if ( Application::AnyInput( INPUT_KEYBOARD ) )
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( Application::AnyInput( INPUT_KEYBOARD ) )
 //STRIP001  {
 //STRIP001      aSpellTimer.Start();
 //STRIP001      return 0;                   // dann spaeter wieder...
@@ -2172,7 +2172,7 @@ IMPL_LINK( ScModule, SpellTimerHdl, Timer*, pTimer )
 /*N*/ {
 //STRIP001  //! mit ScFieldEditEngine zusammenfassen !!!
 //STRIP001
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (pInfo)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (pInfo)
 //STRIP001  {
 //STRIP001      const SvxFieldItem& rField = pInfo->GetField();
 //STRIP001      const SvxFieldData* pField = rField.GetField();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: uiitems.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:16 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -199,8 +199,8 @@ public:
                             ~ScSortItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     ScViewData*         GetViewData () const { return pViewData; }
 //STRIP001  const ScSortParam&  GetSortData () const { return theSortData; }
@@ -226,8 +226,8 @@ public:
                             ~ScQueryItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
      ScViewData*            GetViewData () const { return pViewData; }
 //STRIP001  const ScQueryParam& GetQueryData() const { return theQueryData; }
@@ -258,8 +258,8 @@ public:
                 ~ScSubTotalItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     ScViewData*             GetViewData () const { return pViewData; }
     const ScSubTotalParam&  GetSubTotalData() const { return theSubTotalData; }
@@ -281,8 +281,8 @@ public:
                 ~ScUserListItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
 //STRIP001  void        SetUserList ( const ScUserList& rUserList );
 //STRIP001  ScUserList* GetUserList () const { return pUserList; }
@@ -304,8 +304,8 @@ public:
                 ~ScConsolidateItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
 //STRIP001  const ScConsolidateParam& GetData() const { return theConsData; }
 
@@ -326,8 +326,8 @@ public:
                 ~ScPivotItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
 //STRIP001  const ScDPSaveData& GetData() const         { return *pSaveData; }
 //STRIP001  const ScRange&      GetDestRange() const    { return aDestRange; }
@@ -352,8 +352,8 @@ public:
                 ~ScSolveItem();
 
 //STRIP001  virtual String          GetValueText() const;
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
 //STRIP001  const ScSolveParam& GetData() const { return theSolveData; }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itratr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -186,7 +186,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ {
 /*N*/     ASSERT( pHt && pFnt, "No attribute of font available for change");
 /*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_True );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_True );
 /*N*/   else
 /*N*/         aAttrHandler.PushAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt++;
@@ -201,7 +201,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     ASSERT( pHt && pFnt, "No attribute of font available for reset");
 /*N*/     // get top from stack after removing pHt
 /*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_False );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_False );
 /*N*/   else
 /*N*/         aAttrHandler.PopAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt--;
@@ -290,7 +290,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ sal_Bool SwAttrIter::SeekStartAndChg( OutputDevice *pOut, const sal_Bool bParaFont )
 /*N*/ {
 /*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, 0 );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, 0 );
 /*N*/
 /*N*/     // reset font to its original state
 /*N*/     aAttrHandler.Reset();
@@ -301,7 +301,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/       pFnt->SetProportion( nPropFont );
 /*N*/     if( pRedln )
 /*N*/   {
-            DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        pRedln->Clear( pFnt );
+            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pRedln->Clear( pFnt );
 //STRIP001 /*?*/        if( !bParaFont )
 //STRIP001 /*?*/            nChgCnt += pRedln->Seek( *pFnt, 0, STRING_LEN );
 //STRIP001 /*?*/        else
@@ -393,14 +393,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ sal_Bool SwAttrIter::Seek( const xub_StrLen nNewPos )
 /*N*/ {
 /*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, nNewPos );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, nNewPos );
 /*N*/
 /*N*/   if( pHints )
 /*N*/   {
 /*N*/       if( !nNewPos || nNewPos < nPos )
 /*N*/       {
 /*N*/             if( pRedln )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              pRedln->Clear( NULL );
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               pRedln->Clear( NULL );
 /*N*/
 /*N*/             // reset font to its original state
 /*N*/             aAttrHandler.Reset();
@@ -416,7 +416,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/             // changes for extended input directly to the font
 /*N*/             if ( pRedln && pRedln->ExtOn() )
 /*N*/             {
-                    DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pRedln->UpdateExtFont( *pFnt );
+                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pRedln->UpdateExtFont( *pFnt );
 //STRIP001 /*?*/                 ++nChgCnt;
 /*N*/             }
 /*N*/       }
@@ -426,7 +426,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     pFnt->SetActual( WhichFont( nNewPos, 0, pScriptInfo ) );
 /*N*/
 /*N*/     if( pRedln )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      nChgCnt += pRedln->Seek( *pFnt, nNewPos, nPos );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       nChgCnt += pRedln->Seek( *pFnt, nNewPos, nPos );
 /*N*/   nPos = nNewPos;
 /*N*/
 /*N*/   if( nPropFont )
@@ -453,7 +453,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       }
 /*N*/   }
 /*N*/     if( pRedln )
-            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      return pRedln->GetNextRedln( nNext );
+            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       return pRedln->GetNextRedln( nNext );
 /*N*/   return nNext;
 /*N*/ }
 

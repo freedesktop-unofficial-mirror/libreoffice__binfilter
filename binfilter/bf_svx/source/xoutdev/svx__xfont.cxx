@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:47 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -587,7 +587,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       aFont.SetOrientation(nAngle);
 /*?*/                       pOut->SetFont(aFont);
 /*?*/                       if(bDraw)
-/*?*/                       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                            ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
 /*?*/                       }
 /*N*/                   }
@@ -600,7 +600,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       pOut->SetFont(aFont);
 /*N*/                       if(bDraw)
 /*N*/                       {
-/*?*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
+/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -649,7 +649,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           PolyPolygon aPolyPoly(aPolyPolyVector[a]);
 /*?*/
 /*?*/                           if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
-/*?*/                           {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/                                // #103163# Create in-between XPolxPolygon
 //STRIP001 /*?*/                                XPolyPolygon aNextChar(aPolyPoly);
 //STRIP001 /*?*/
@@ -670,7 +670,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   }
 /*?*/
 /*?*/                   if ( eFormTextStyle == XFT_SLANTY )
-/*?*/                   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                        aPolyPos.Y() -= nAscent;
 //STRIP001 /*?*/                        aChar.SlantY(0, fSin, fCos);
 /*?*/                   }
@@ -699,7 +699,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           DrawXPolyPolygon(aChar);
 /*?*/                       else
 /*?*/                       {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001  ImpDrawTextArray(pOut, aPolyPos, pInfo, (long*)pDXArray, nChar + i, nNextGlyphLen);
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ImpDrawTextArray(pOut, aPolyPos, pInfo, (long*)pDXArray, nChar + i, nNextGlyphLen);
 /*?*/                       }
 /*?*/                   }
 /*?*/

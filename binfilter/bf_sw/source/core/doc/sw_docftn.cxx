@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docftn.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -214,7 +214,7 @@ namespace binfilter {
 
 /*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& rFmt)
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rFmt.Add(this);
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rFmt.Add(this);
 /*N*/ }
 
 /*N*/ SwCharFmt* SwEndNoteInfo::GetCharFmt(SwDoc &rDoc) const
@@ -329,7 +329,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( DoesUndo() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  ClearRedo();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
 //STRIP001 /*?*/            AppendUndo( new SwUndoFtnInfo( rOld ) );
 /*N*/       }
 /*N*/
@@ -355,7 +355,7 @@ namespace binfilter {
 /*?*/               GetRootFrm()->RemoveFtns();
 /*?*/           else
 /*?*/           {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetRootFrm()->UpdateFtnNums();
 //STRIP001  if ( bFtnDesc )
 //STRIP001 /*?*/                    GetRootFrm()->CheckFtnPageDescs( FALSE );
 //STRIP001 /*?*/                if ( bExtra )
@@ -394,7 +394,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if( DoesUndo() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  ClearRedo();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
 //STRIP001 /*?*/            AppendUndo( new SwUndoEndNoteInfo( GetEndNoteInfo() ) );
 /*N*/       }
 /*N*/
@@ -414,7 +414,7 @@ namespace binfilter {
 /*N*/       if ( GetRootFrm() )
 /*N*/       {
 /*?*/           if ( bFtnDesc )
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001    GetRootFrm()->CheckFtnPageDescs( TRUE );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetRootFrm()->CheckFtnPageDescs( TRUE );
 /*?*/           if ( bExtra )
 /*?*/           {
 /*?*/               //Fuer die Benachrichtung bezueglich ErgoSum usw. sparen wir uns
@@ -489,7 +489,7 @@ namespace binfilter {
 /*N*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*N*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*N*/               {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
 //STRIP001 /*?*/                    bTypeChgd = TRUE;
 //STRIP001 /*?*/                    pTxtFtn->CheckCondColl();
 /*N*/               }
@@ -516,7 +516,7 @@ namespace binfilter {
 /*?*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*?*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*?*/               {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
 //STRIP001 /*?*/                    bTypeChgd = TRUE;
 //STRIP001 /*?*/                    pTxtFtn->CheckCondColl();
 /*?*/               }
@@ -540,7 +540,7 @@ namespace binfilter {
 /*N*/               rFtnArr.UpdateAllFtn();
 /*N*/       }
 /*N*/       else if( GetRootFrm() )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetRootFrm()->UpdateFtnNums();
 /*N*/   }
 /*N*/   else
 /*?*/       delete pUndo;

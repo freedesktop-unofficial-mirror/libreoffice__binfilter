@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fetab.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:42 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -787,7 +787,7 @@ namespace binfilter {
 /*?*/       StartAllAction();
 /*N*/   BOOL bRet = GetDoc()->BalanceRowHeight( GetShellCursor( *this ), bTstOnly );
 /*N*/   if( !bTstOnly )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    EndAllActionAndCall();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     EndAllActionAndCall();
 /*N*/   return bRet;
 /*N*/ }
 
@@ -1930,7 +1930,7 @@ namespace binfilter {
 
  ---------------------------------------------------------------------------*/
 /*M*/ BOOL SwFEShell::IsMouseTableRightToLeft(const Point &rPt) const
-/*M*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001 /*?*/     SwFrm *pFrm = (SwFrm *)GetBox( rPt );
 //STRIP001 /*?*/     const SwTabFrm*  pTabFrm = pFrm ? pFrm->ImplFindTabFrm() : 0;
 //STRIP001 /*?*/     ASSERT( pTabFrm, "Table not found" );

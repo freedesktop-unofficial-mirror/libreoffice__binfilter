@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:28:45 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -375,7 +375,7 @@ USHORT ScModuleDummy::HasID(const SvGlobalName& rName)
 
 BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
         return FALSE;
 //STRIP001
 //STRIP001  //  TRUE for XML file or template

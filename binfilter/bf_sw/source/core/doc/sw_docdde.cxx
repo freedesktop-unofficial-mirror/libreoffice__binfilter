@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docdde.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,7 +142,7 @@ struct _FindItem
 
 /*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& rpBkmk, void* pArgs )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE; DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  String sNm( GetAppCharClass().lower( rpBkmk->GetName() ));
 //STRIP001  if( sNm.Equals( ((_FindItem*)pArgs)->rItem ) )
 //STRIP001  {
@@ -284,7 +284,7 @@ struct _FindItem
 /*N*/                                               lcl_FindBookmark, &aPara );
 /*N*/       if( aPara.pBkmk && aPara.pBkmk->GetOtherPos() )
 /*N*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  // gefunden, also Hotlink einrichten
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // gefunden, also Hotlink einrichten
 /*?*/           // sollten wir schon einer sein?
 //STRIP001 /*?*/            if( 0 == (pObj = aPara.pBkmk->GetObject()) )
 //STRIP001 /*?*/            {
@@ -316,7 +316,7 @@ struct _FindItem
 /*N*/                                               lcl_FindTable, &aPara );
 /*N*/       if( aPara.pTblNd )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 // gefunden, also Hotlink einrichten
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // gefunden, also Hotlink einrichten
 /*?*/           // sollten wir schon einer sein?
 //STRIP001 /*?*/            if( 0 == (pObj = aPara.pTblNd->GetTable().GetObject()) )
 //STRIP001 /*?*/            {
@@ -357,7 +357,7 @@ struct _FindItem
 /*N*/   // sondern auch Rahmen(Text!), Tabellen, Gliederungen:
 /*N*/   if( STRING_NOTFOUND != nPos )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 BOOL bWeiter = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bWeiter = FALSE;
 //STRIP001 /*?*/        String sName( sItem.Copy( 0, nPos ) );
 //STRIP001 /*?*/        String sCmp( sItem.Copy( nPos + 1 ));
 //STRIP001 /*?*/        rCC.toLower( sItem );

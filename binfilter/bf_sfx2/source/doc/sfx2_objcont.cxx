@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:33 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,7 +147,7 @@ using namespace ::com::sun::star::uno;
 //====================================================================
 
 /*?*/ GDIMetaFile* SfxObjectShell::GetPreviewMetaFile( sal_Bool bFullContent ) const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  // Nur wenn gerade nicht gedruckt wird, darf DoDraw aufgerufen
 //STRIP001  // werden, sonst wird u.U. der Printer abgeschossen !
 //STRIP001  SfxViewFrame *pFrame = SfxViewFrame::GetFirst( this );
@@ -442,7 +442,7 @@ using namespace ::com::sun::star::uno;
 /*?*/           else
 /*?*/           {
 /*?*/               // create new view
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pFrame->CreateView_Impl( nViewId );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFrame->CreateView_Impl( nViewId );
 /*?*/           }
 /*?*/       }
 /*?*/       else
@@ -465,7 +465,7 @@ using namespace ::com::sun::star::uno;
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pFrame = SfxTopFrame::Create( this, nViewId, FALSE, pSet )->GetCurrentViewFrame();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFrame = SfxTopFrame::Create( this, nViewId, FALSE, pSet )->GetCurrentViewFrame();
 /*?*/           }
 /*?*/
 /*?*/           // only temporary data, don't hold it in the itemset
@@ -571,7 +571,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ #endif
 /*N*/   if( nMaxSize && !GetDocInfo().IsPasswd() &&
 /*N*/       SFX_CREATE_MODE_STANDARD == eCreateMode )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        GDIMetaFile* pFile = GetPreviewMetaFile();
 //STRIP001 /*?*/        if ( pFile )
 //STRIP001 /*?*/        {
@@ -882,7 +882,7 @@ using namespace ::com::sun::star::uno;
 /*?*/   const String&       rName
 /*?*/ )
 
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001  // Objekt erzeugen ist fehlgeschlagen?
 //STRIP001  if ( !pObj )
 //STRIP001      HACK(Fehlermeldung fehlt)
@@ -1002,7 +1002,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 
 /*N*/ USHORT SfxObjectShell::GetContentCount(USHORT nIdx1,
 /*N*/                                        USHORT nIdx2)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  switch(nIdx1)
 //STRIP001  {
 //STRIP001      case INDEX_IGNORE:
@@ -1078,7 +1078,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                               USHORT i,
 /*N*/                               USHORT nIdx1,
 /*N*/                               USHORT nIdx2 )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ERRORFILE( "Non high contrast method called. Please update calling code!" );
 //STRIP001  SfxObjectShell::GetContent( rText, rClosedBitmap, rOpenedBitmap, BMP_COLOR_NORMAL, bCanDel, i, nIdx1, nIdx2 );
 /*N*/ }
@@ -1093,7 +1093,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                                 USHORT i,
 /*N*/                                 USHORT nIdx1,
 /*N*/                                 USHORT nIdx2 )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bCanDel=TRUE;
 //STRIP001
 //STRIP001  switch(nIdx1)
@@ -1596,7 +1596,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
     rufen.
 */
 
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  struct Styles_Impl
 //STRIP001  {
 //STRIP001      SfxStyleSheetBase *pSource;
@@ -1654,7 +1654,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
     StyleSheets updated.
 */
 
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // Storage-medium?
 //STRIP001  SfxMedium *pFile = GetMedium();
 //STRIP001  DBG_ASSERT( pFile, "cannot UpdateFromTemplate without medium" );
@@ -1825,7 +1825,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/ }
 
 /*N*/ SvStorageRef SfxObjectShell::GetConfigurationStorage( SotStorage* pStor )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return SvStorageRef();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SvStorageRef();//STRIP001
 //STRIP001  // configuration storage shall be opened in own storage or a new storage, if the
 //STRIP001  // document is getting stored into this storage
 //STRIP001  if ( !pStor )
@@ -1843,7 +1843,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/ }
 
 /*N*/ SotStorageStreamRef SfxObjectShell::GetConfigurationStream( const String& rName, BOOL bCreate )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return SotStorageStreamRef();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SotStorageStreamRef();//STRIP001
 //STRIP001  SotStorageStreamRef xStream;
 //STRIP001  SvStorageRef xStorage = GetConfigurationStorage();
 //STRIP001  if ( xStorage.Is() )
@@ -1906,7 +1906,7 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/ }
 
 /*N*/ SfxObjectShellRef MakeObjectShellForOrganizer_Impl( const String& aTargetURL, BOOL bForWriting )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return SfxObjectShellRef();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SfxObjectShellRef();//STRIP001
 //STRIP001  // check for own format
 //STRIP001  SfxObjectShellRef xDoc;
 //STRIP001  SfxMedium *pMed = new SfxMedium( aTargetURL, STREAM_STD_READ, FALSE, 0 );

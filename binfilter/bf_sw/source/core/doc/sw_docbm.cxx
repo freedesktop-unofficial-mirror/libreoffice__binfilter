@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -152,7 +152,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwBookmark *pBM;
 /*N*/   if( MARK == eMark )
-/*?*/    {DBG_ASSERT(0, "STRIP");} //STRIP001   pBM = new SwMark( *rPaM.GetPoint(), rCode, rName, rShortName );
+/*?*/    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    pBM = new SwMark( *rPaM.GetPoint(), rCode, rName, rShortName );
 /*N*/   else if( BOOKMARK == eMark )
 /*N*/   {
 /*N*/       pBM = new SwBookmark(*rPaM.GetPoint(), rCode, rName, rShortName);
@@ -186,7 +186,7 @@ namespace binfilter {
 /*N*/   SwBookmark *pBM = (*pBookmarkTbl)[nPos];
 /*N*/   if( DoesUndo() && !pBM->IsUNOMark())
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  ClearRedo();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
 //STRIP001 /*?*/        AppendUndo( new SwUndoDelBookmark( *pBM ));
 /*N*/   }
 /*N*/
@@ -199,7 +199,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwServerObject* pServObj = pBM->GetObject();
 /*N*/   if( pServObj )          // dann aus der Liste entfernen
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    GetLinkManager().RemoveServer( pServObj );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     GetLinkManager().RemoveServer( pServObj );
 /*N*/
 /*N*/   delete pBM;
 /*N*/ }
@@ -260,7 +260,7 @@ namespace binfilter {
     // werden, es wird dann bei gleichen Namen nur durchnumeriert.
 /*N*/ void SwDoc::MakeUniqueBookmarkName( String& rNm )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
 //STRIP001
 //STRIP001  // wir erzeugen uns eine temp. Bookmark
 //STRIP001  String sTmp;
@@ -285,7 +285,7 @@ namespace binfilter {
 /*N*/   aCode( rBkmk.GetKeyCode() ), eBkmkType( (SaveBookmarkType)eType ),
 /*N*/   eOrigBkmType(rBkmk.GetType())
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 nNode1 = rBkmk.GetPos().nNode.GetIndex();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nNode1 = rBkmk.GetPos().nNode.GetIndex();
 //STRIP001  nCntnt1 = rBkmk.GetPos().nContent.GetIndex();
 //STRIP001
 //STRIP001  if( BKMK_POS & eBkmkType )
@@ -976,7 +976,7 @@ namespace binfilter {
 /*N*/ void _RestoreCntntIdx( SvULongs& rSaveArr, const SwNode& rNd,
 /*N*/                       xub_StrLen nLen, xub_StrLen nChkLen )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   const SwDoc* pDoc = rNd.GetDoc();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    const SwDoc* pDoc = rNd.GetDoc();
 //STRIP001  const SwBookmarks& rBkmks = pDoc->GetBookmarks();
 //STRIP001  const SwRedlineTbl& rRedlTbl = pDoc->GetRedlineTbl();
 //STRIP001  const SwSpzFrmFmts* pSpz = pDoc->GetSpzFrmFmts();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_detfunc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 14:30:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -491,7 +491,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   BOOL bArea = ( nRefStartCol != nRefEndCol || nRefStartRow != nRefEndRow );
 /*N*/   if (bArea && !bFromOtherTab)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*N*/        // insert the rectangle before the arrow - this is relied on in FindFrameForObject
 //STRIP001 /*N*/
 //STRIP001 /*N*/        Point aStartCorner = GetDrawPos( nRefStartCol, nRefStartRow, FALSE );
@@ -1602,7 +1602,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   BOOL bFound = pDoc->GetNote( nCol, nRow, nTab, aNote );
 /*N*/   if ( bFound || bForce || rUserText.Len() )
 /*N*/   {
-        DBG_ASSERT(0, "STRIP"); //STRIP001 SdrModel* pDestModel = pModel;
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrModel* pDestModel = pModel;
 //STRIP001      if ( pDestPage )
 //STRIP001          pDestModel = pDestPage->GetModel();
 //STRIP001      ScCommentData aData( pDoc, pDestModel );    // richtigen Pool benutzen
@@ -1875,7 +1875,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/                           const ScAddress& rPosition, const ScRange& rSource,
 /*N*/                           BOOL bRedLine )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  ScDrawLayer* pModel = pDoc->GetDrawLayer();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 //STRIP001  if (!pModel) return;
 //STRIP001  ScDetectiveData aData( pModel );
 //STRIP001

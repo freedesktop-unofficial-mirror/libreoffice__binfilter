@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_tablink.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:10 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -497,7 +497,7 @@ namespace binfilter {
 /*M*/   ScDocument* pDoc = pDocShell->GetDocument();
 /*M*/   if( pDoc )
 /*M*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScExtDocOptions* pExtDocOpt = pDoc->GetExtDocOptions();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScExtDocOptions*  pExtDocOpt = pDoc->GetExtDocOptions();
 //STRIP001 /*?*/        if( !pExtDocOpt )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            pExtDocOpt = new ScExtDocOptions;

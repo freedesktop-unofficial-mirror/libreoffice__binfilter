@@ -2,9 +2,9 @@
  *
  *  $RCSfile: uivwimp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -133,7 +133,7 @@ class SwClipboardChangeListener : public ::cppu::WeakImplHelper1<
     SwView* pView;
 
     // XEventListener
-    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( ::com::sun::star::uno::RuntimeException ){DBG_ASSERT(0, "STRIP");} ;//STRIP001  virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
+    virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )throw ( ::com::sun::star::uno::RuntimeException ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   virtual void SAL_CALL disposing( const STAR_NMSPC::lang::EventObject& rEventObject )
 //STRIP001      throw ( ::com::sun::star::uno::RuntimeException );
 
     // XClipboardListener

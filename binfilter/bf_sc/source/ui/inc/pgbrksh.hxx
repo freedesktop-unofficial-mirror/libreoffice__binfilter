@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pgbrksh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -80,7 +80,7 @@ public:
 //STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_PAGEBREAK_SHELL);
 
-    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakShell( ScTabViewShell* pView );
+    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakShell( ScTabViewShell* pView );
 //STRIP001                  ~ScPageBreakShell();
 
 };

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_txtrange.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -314,13 +314,13 @@ namespace binfilter {
 /*N*/       long nYps;
 /*N*/       if( nLowDiff && ( ( nCut & 1 ) || nLast == 1 || nNext == 1 ) )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nBottom, nLower );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nBottom, nLower );
 //STRIP001 /*?*/            if( nYps )
 //STRIP001 /*?*/                _NoteFarPoint( Cut( nYps, rLst, rNxt ), nLower-nYps, nLowDiff );
 /*N*/       }
 /*N*/       if( nUpDiff && ( ( nCut & 2 ) || nLast == 2 || nNext == 2 ) )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nTop, nUpper );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nTop, nUpper );
 //STRIP001 /*?*/            if( nYps )
 //STRIP001 /*?*/                _NoteFarPoint( Cut( nYps, rLst, rNxt ), nYps-nUpper, nUpDiff );
 /*N*/       }
@@ -420,7 +420,7 @@ namespace binfilter {
 /*N*/               // Der erste Punkt des Polygons liegt innerhalb der Zeile.
 /*N*/               if( nLast )
 /*N*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 if( bMultiple || !nAct )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bMultiple || !nAct )
 //STRIP001 /*?*/                    {
 //STRIP001 /*?*/                        nMin = USHRT_MAX;
 //STRIP001 /*?*/                        nMax = 0;
@@ -484,9 +484,9 @@ namespace binfilter {
 /*N*/                       if( !nNext )
 /*N*/                           NotePoint( A(rNext) );
 /*N*/                       else if( nNext & 1 )
-/*?*/                       {DBG_ASSERT(0, "STRIP");} //STRIP001    NoteFarPoint( A(rNext), nLower-B(rNext), nLowDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), nLower-B(rNext), nLowDiff );
 /*N*/                       else
-/*?*/                       {DBG_ASSERT(0, "STRIP");} //STRIP001    NoteFarPoint( A(rNext), B(rNext)-nUpper, nUpDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), B(rNext)-nUpper, nUpDiff );
 /*N*/                   }
 /*N*/                   nLast = nNext;
 /*N*/                   if( ++nIdx == nCount && !IsClosed() )

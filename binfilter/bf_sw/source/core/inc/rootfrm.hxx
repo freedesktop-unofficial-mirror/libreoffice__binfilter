@@ -2,9 +2,9 @@
  *
  *  $RCSfile: rootfrm.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -211,8 +211,8 @@ public:
     // fuer bestimmte UNO-Aktionen (Tabellencursor) ist es notwendig, dass alle Actions
     // kurzfristig zurueckgesetzt werden. Dazu muss sich jede ViewShell ihren alten Action-zaehler
     // merken
-    void UnoRemoveAllActions(){DBG_ASSERT(0, "STRIP");} //STRIP001 void UnoRemoveAllActions();
-    void UnoRestoreAllActions(){DBG_ASSERT(0, "STRIP");} //STRIP001 void UnoRestoreAllActions();
+    void UnoRemoveAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRemoveAllActions();
+    void UnoRestoreAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRestoreAllActions();
 
     const SdrPage* GetDrawPage() const { return pDrawPage; }
           SdrPage* GetDrawPage()       { return pDrawPage; }

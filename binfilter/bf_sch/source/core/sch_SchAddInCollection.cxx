@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_SchAddInCollection.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:19 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -153,7 +153,7 @@ using namespace ::com::sun::star;
 /*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const ::rtl::OUString& rName )
 /*N*/ {
 /*N*/     if( ! mbInitialized )
-/*?*/         {DBG_ASSERT(0, "STRIP");} //STRIP001 Initialize();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 Initialize();
 /*N*/
 /*N*/     const sal_Int32 nSize = maServiceNames.getLength();
 /*N*/     for( sal_Int32 i = 0; i < nSize; i++ )

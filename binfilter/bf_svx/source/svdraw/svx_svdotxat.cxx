@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxat.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -348,7 +348,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if(nParaCount)
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ESelection aSelection( 0, 0, EE_PARA_ALL, EE_PARA_ALL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ESelection aSelection( 0, 0, EE_PARA_ALL, EE_PARA_ALL);
 //STRIP001 /*?*/            rOutliner.RemoveAttribs(aSelection, TRUE, 0);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            OutlinerParaObject* pTemp = rOutliner.CreateParaObject(0, nParaCount);

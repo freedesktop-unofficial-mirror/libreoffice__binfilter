@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_attrdesc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,7 +175,7 @@ namespace binfilter {
 /*N*/       SfxMapUnit ePresMetric,
 /*N*/       String &rText ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] = ", ";
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] = ", ";
 //STRIP001
 //STRIP001  rText.Erase();
 //STRIP001  String aStr;
@@ -221,7 +221,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] = ",
 /*N*/   String&             rText,
 /*N*/     const IntlWrapper*        pIntl
 /*N*/ ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  switch ( ePres )
 //STRIP001  {
 //STRIP001      case SFX_ITEM_PRESENTATION_NONE:

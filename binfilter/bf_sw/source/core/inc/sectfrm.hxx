@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sectfrm.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,7 +99,7 @@ class SwSectionFrm: public SwLayoutFrm, public SwFlowFrm
 //STRIP001  BOOL IsEndnoteAtMyEnd() const;
 protected:
     virtual void MakeAll();
-    virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat );
+    virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat );
     virtual void Format( const SwBorderAttrs *pAttrs = 0 );
 public:
     SwSectionFrm( SwSection & );                 //Inhalt wird nicht erzeugt!

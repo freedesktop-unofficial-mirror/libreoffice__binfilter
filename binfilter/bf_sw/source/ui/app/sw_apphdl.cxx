@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_apphdl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:51 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -391,7 +391,7 @@ namespace binfilter {
 /*M*/   while(nWhich)
 /*M*/   {
 /*M*/       if(pActView)
-/*M*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            sal_Bool bReadonly = pActView->GetDocShell()->IsReadOnly();
 //STRIP001 /*?*/            sal_Bool bBrowse = pDoc ? pDoc->IsBrowseMode() : sal_False;
 //STRIP001 /*?*/            if ( bReadonly && nWhich != FN_VIEW_GRAPHIC )
@@ -488,7 +488,7 @@ namespace binfilter {
 
 /*N*/void SwModule::StateOther(SfxItemSet &rSet)
 /*N*/{
-DBG_ASSERT(0, "STRIP"); //STRIP001  SfxWhichIter aIter(rSet);
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SfxWhichIter aIter(rSet);
 //STRIP001  sal_uInt16 nWhich = aIter.FirstWhich();
 //STRIP001
 //STRIP001  SwView* pActView = ::GetActiveView();
@@ -559,7 +559,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SfxWhichIter aIter(rSet);
 
 /*N*/void SwModule::ExecWizzard(SfxRequest & rReq)
 /*N*/{
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 Wizzard( rReq.GetSlot() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Wizzard( rReq.GetSlot() );
 /*N*/}
 
 /*--------------------------------------------------------------------
@@ -568,7 +568,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SfxWhichIter aIter(rSet);
 
 
 /*N*/ void SwModule::ExecViewOptions(SfxRequest &rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SwViewOption* pOpt = 0;
 //STRIP001  OfficeApplication* pOffApp = OFF_APP();
 //STRIP001  sal_Bool bModified = sal_True;
@@ -833,7 +833,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  SfxWhichIter aIter(rSet);
 
 /*N*/void SwModule::ExecOther(SfxRequest& rReq)
 /*N*/{
-DBG_ASSERT(0, "STRIP"); //STRIP001  const SfxItemSet *pArgs = rReq.GetArgs();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SfxItemSet *pArgs = rReq.GetArgs();
 //STRIP001  const SfxPoolItem* pItem = 0;
 //STRIP001
 //STRIP001  sal_uInt16 nWhich = rReq.GetSlot();
@@ -1000,7 +1000,7 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/               // alle FIX-Date/Time Felder auf akt. setzen
 /*M*/               if( pWrtSh )
 /*M*/               {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  pWrtSh->SetFixFields();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pWrtSh->SetFixFields();
 //STRIP001 /*?*/                    pWrtSh->UpdateInputFlds();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    // Sind Datenbankfelder enthalten?
@@ -1022,7 +1022,7 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/   {
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().GetItemState(SID_ATTR_PATHNAME))
 /*M*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ::GetGlossaries()->UpdateGlosPath( sal_False );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::GetGlossaries()->UpdateGlosPath( sal_False );
 //STRIP001 /*?*/            SwGlossaryList* pList = ::GetGlossaryList();
 //STRIP001 /*?*/            if(pList->IsActive())
 //STRIP001 /*?*/                pList->Update();
@@ -1037,7 +1037,7 @@ SfxMacro *SwWriterApp::CreateMacro() const
 /*M*/         ULONG nHintId = ((SfxSimpleHint&)rHint).GetId();
 /*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
-/*M*/         {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             sal_Bool bAccessibility = sal_False;
 //STRIP001 /*?*/             if(SFX_HINT_COLORS_CHANGED == nHintId)
 //STRIP001 /*?*/                 SwViewOption::ApplyColorConfigValues(*pColorConfig);

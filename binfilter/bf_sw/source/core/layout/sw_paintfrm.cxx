@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paintfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:51 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -4551,7 +4551,7 @@ void lcl_CompPxPosAndAdjustPos( const OutputDevice&  _rOut,
 /*N*/                                 const SwRect& _rPageRect,
 /*N*/                                 ViewShell*    _pViewShell,
 /*N*/                                 SwRect& _orBorderAndShadowBoundRect ) const
-/*N*/ {DBG_ASSERT(0, "STRIP");//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001     SwRect aTmpRect;
 //STRIP001     GetBorderRect( _rPageRect, _pViewShell, _orBorderAndShadowBoundRect );
 //STRIP001     GetRightShadowRect( _rPageRect, _pViewShell, aTmpRect );

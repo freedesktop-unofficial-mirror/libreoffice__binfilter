@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -270,7 +270,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       pUpdtFlds->InsertFldType( *pNew );
 /*N*/       break;
 /*N*/   case RES_AUTHORITY :
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 ((SwAuthorityFieldType*)pNew)->SetDoc( this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ((SwAuthorityFieldType*)pNew)->SetDoc( this );
 /*?*/       break;
 /*N*/   }
 /*N*/
@@ -360,7 +360,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       {
 /*N*/       case RES_SETEXPFLD:
 /*N*/       case RES_USERFLD:
-/*?*/           {DBG_ASSERT(0, "STRIP"); }//STRIP001 pUpdtFlds->RemoveFldType( *pTmp );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pUpdtFlds->RemoveFldType( *pTmp );
 /*?*/           // kein break;
 /*N*/       case RES_DDEFLD:
 /*?*/           if( pTmp->GetDepends() && !IsUsed( *pTmp ) )
@@ -440,7 +440,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::UpdateFlds( SfxPoolItem *pNewHt, BOOL bCloseDB )
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 // Modify() fuer jeden Feldtypen rufen,
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Modify() fuer jeden Feldtypen rufen,
 //STRIP001  // abhaengige SwTxtFld werden benachrichtigt ...
 //STRIP001
 //STRIP001  for( USHORT i=0; i < pFldTypes->Count(); ++i)
@@ -588,7 +588,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                           // ist es die gesuchte Tabelle ??
 /*?*/                           if( &pTblNd->GetTable() == pUpdtFld->pTbl )
 /*?*/                               // zur relativen Darstellung
-/*?*/                               {DBG_ASSERT(0, "STRIP"); }//STRIP001 pFld->ToRelBoxNm( pUpdtFld->pTbl );
+/*?*/                               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFld->ToRelBoxNm( pUpdtFld->pTbl );
 /*?*/                           break;
 /*?*/                       }
 /*N*/                   }
@@ -609,7 +609,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
 /*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() )
 /*?*/       {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001  ((SwTblBoxFormula*)pItem)->ChangeState( pHt );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTblBoxFormula*)pItem)->ChangeState( pHt );
 /*?*/       }
 /*?*/
 /*?*/
@@ -662,7 +662,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   SwFrm* pFrm = 0;
 /*N*/                   if( pTblNd->GetIndex() < GetNodes().GetEndOfExtras().GetIndex() )
 /*N*/                   {
-/*N*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 // steht im Sonderbereich, wird teuer !!
+/*N*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // steht im Sonderbereich, wird teuer !!
 //STRIP001 /*?*/                        Point aPt;      // den im Layout 1. Frame returnen - Tab.Kopfzeile !!
 //STRIP001 /*?*/                        pFrm = rTxtNd.GetFrm( &aPt );
 //STRIP001 /*?*/                        if( pFrm )
@@ -688,7 +688,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   pFld->CalcField( aPara );
 /*N*/                   if( aPara.IsStackOverFlow() )
 /*N*/                   {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001  if( aPara.CalcWithStackOverflow() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( aPara.CalcWithStackOverflow() )
 //STRIP001 /*?*/                            pFld->CalcField( aPara );
 //STRIP001 /*?*/ #ifndef PRODUCT
 //STRIP001 /*?*/                        else
@@ -709,7 +709,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
 /*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() &&
 /*N*/           !((SwTblBoxFormula*)pItem)->IsValid() )
-/*?*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SwTblBoxFormula* pFml = (SwTblBoxFormula*)pItem;
 //STRIP001 /*?*/            SwTableBox* pBox = pFml->GetTableBox();
 //STRIP001 /*?*/            if( pBox && pBox->GetSttNd() &&
@@ -1010,7 +1010,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/           if( pFirst->IsTxtNode() && pNext->IsTxtNode() &&
 /*N*/               ( pFirst->FindFlyStartNode() || pNext->FindFlyStartNode() ))
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 return ::IsFrameBehind( *(SwTxtNode*)pNext, nCntnt,
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 return ::IsFrameBehind( *(SwTxtNode*)pNext, nCntnt,
 //STRIP001 /*?*/                                        *(SwTxtNode*)pFirst, nCntnt );
 /*N*/           }
 /*N*/           return pFirstStt->GetIndex() < pNextStt->GetIndex();
@@ -1146,7 +1146,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/   if( RES_SETEXPFLD == nFldWhich )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SwSbxValue aValue;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSbxValue aValue;
 //STRIP001 /*?*/        if( GSE_EXPR & pFld->GetSubType() )
 //STRIP001 /*?*/            aValue.PutDouble( ((SwSetExpField*)pFld)->GetValue() );
 //STRIP001 /*?*/        else
@@ -1453,7 +1453,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/               SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
 /*N*/
 /*N*/             if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
-/*?*/                 {DBG_ASSERT(0, "STRIP"); }//STRIP001 aCalc.VarChange( sDBNumNm, pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType));
+/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 aCalc.VarChange( sDBNumNm, pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType));
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
 /*N*/
@@ -1488,7 +1488,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                   if( (!pUpdtFld || pUpdtFld == pTxtFld )
 /*?*/                       && pGFld->IsInBodyTxt() )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 LookString( pHashStrTbl, nStrFmtCnt,
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 LookString( pHashStrTbl, nStrFmtCnt,
 //STRIP001 /*?*/                                    pGFld->GetFormula(), aNew );
 //STRIP001 /*?*/                        pGFld->ChgExpStr( aNew );
 /*?*/                   }
@@ -1553,7 +1553,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                       BYTE nLvl = pSFldTyp->GetOutlineLvl();
 /*N*/                       if( MAXLEVEL > nLvl )
 /*N*/                       {
-/*N*/                           DBG_ASSERT(0, "STRIP"); //STRIP001 // dann teste, ob die Nummer neu aufsetzen muss
+/*N*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // dann teste, ob die Nummer neu aufsetzen muss
 //STRIP001 /*?*/                            pSeqNd = GetNodes()[ (*ppSortLst)->GetNode() ];
 //STRIP001 /*?*/
 //STRIP001 /*?*/                            const SwTxtNode* pOutlNd = pSeqNd->
@@ -1576,7 +1576,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                       pSFld->SetValue( nErg );
 /*N*/
 /*N*/                       if( pSeqNd )
-/*?*/                       {DBG_ASSERT(0, "STRIP"); }//STRIP001    pSFldTyp->SetChapter( *pSFld, *pSeqNd );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSFldTyp->SetChapter( *pSFld, *pSeqNd );
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -2250,7 +2250,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::SetFixFields( BOOL bOnlyTimeDate, const DateTime* pNewDateTime )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bIsModified = IsModified();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   BOOL bIsModified = IsModified();
 //STRIP001
 //STRIP001  ULONG nDate, nTime;
 //STRIP001  if( pNewDateTime )
@@ -2453,7 +2453,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bIsModified = IsModified();
 /*N*/       GetBodyNode( rFld, nWhich );
 /*N*/   else
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  // ueber den pTxtFld Pointer suchen. Ist zwar eine Sortierte
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // ueber den pTxtFld Pointer suchen. Ist zwar eine Sortierte
 /*?*/       // Liste, aber nach Node-Positionen sortiert. Bis dieser
 /*?*/       // bestimmt ist, ist das Suchen nach dem Pointer schon fertig
 //STRIP001 /*?*/        for( USHORT n = 0; n < pFldSortLst->Count(); ++n )
@@ -2531,7 +2531,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001      BOOL bIsModified = IsModified();
 /*M*/
 /*M*/         // so, erst jetzt alle sortiert in die Liste eintragen
 /*M*/         for( n = 0; n < aTmpArr.Count(); ++n )
-/*?*/             {DBG_ASSERT(0, "STRIP");} //STRIP001 GetBodyNode( *rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode() );
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetBodyNode( *rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode() );
 /*M*/     }
 /*M*/
 /*M*/   String sTrue( String::CreateFromAscii(

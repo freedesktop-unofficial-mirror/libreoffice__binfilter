@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pivotsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,8 +84,8 @@ public:
     ScPivotShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScPivotShell( ScTabViewShell* pView );
 //STRIP001                  ~ScPivotShell();
 //STRIP001
-    void    Execute ( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 void   Execute ( SfxRequest& rReq );
-    void    GetState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001    void    GetState( SfxItemSet& rSet );
+    void    Execute ( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void    Execute ( SfxRequest& rReq );
+    void    GetState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void    GetState( SfxItemSet& rSet );
 //STRIP001
 //STRIP001 private:
 //STRIP001  ScTabViewShell* pViewShell;

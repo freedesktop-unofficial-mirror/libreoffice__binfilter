@@ -2,9 +2,9 @@
  *
  *  $RCSfile: grfsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:55:16 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,10 +70,10 @@ public:
     SFX_DECL_INTERFACE(SW_GRFSHELL);
 
 //STRIP001  void    Execute(SfxRequest &);
-    void    ExecAttr(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecAttr(SfxRequest &);
-    void    GetAttrState(SfxItemSet &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void    GetAttrState(SfxItemSet &);
+    void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecAttr(SfxRequest &);
+    void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    GetAttrState(SfxItemSet &);
 
-    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_ASSERT(0, "STRIP");} ;//STRIP001   SwGrfShell(SwView &rView);
+    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    SwGrfShell(SwView &rView);
 };
 
 } //namespace binfilter

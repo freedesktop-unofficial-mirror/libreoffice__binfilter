@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_schdll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -185,7 +185,7 @@ namespace binfilter {
 
 
 /*N*/ extern_c void __LOADONCALLAPI SchSetTransparent( SvInPlaceObjectRef aIPObj, BOOL bTransp )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
 //STRIP001
 //STRIP001  if (aSchChartDocShellRef.Is())
@@ -279,7 +279,7 @@ namespace binfilter {
 /*N*/       rDoc.PutAttr(rAttr);
 /*N*/
 /*N*/       if( pOut )
-/*N*/       {DBG_ASSERT(0, "STRIP");} //STRIP001    aSchChartDocShellRef->UpdateChart(pOut);
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aSchChartDocShellRef->UpdateChart(pOut);
 /*N*/       else
 /*N*/           rDoc.BuildChart(TRUE);
 /*N*/   }
@@ -300,7 +300,7 @@ namespace binfilter {
 /*N*/                                                SfxItemSet& rOutAttrs,
 /*N*/                                                BOOL bPrePage)
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
 //STRIP001
 //STRIP001  if(!pData)return NULL;
 //STRIP001  return new SchDiagramAutoPilotDlg( pParent, *new SchMemChart(*pData), rInAttrs,
@@ -316,7 +316,7 @@ namespace binfilter {
 /*N*/ extern_c void __LOADONCALLAPI SchChangeChartData(ModalDialog* pDlg,
 /*N*/                                                SchMemChart* pData)
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT(pData, "Kein Chart-Datenobjekt angegeben!");
 //STRIP001
 //STRIP001  ((SchDiagramAutoPilotDlg*)pDlg)->ChangeChartData(*new SchMemChart(*pData));
 /*N*/ }
@@ -372,7 +372,7 @@ namespace binfilter {
 
 /*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartNone ()
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP");return NULL; //STRIP001 return new SchMemChart;
+/*N*/   DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 return new SchMemChart;
 /*N*/ }
 
 /*************************************************************************
@@ -394,7 +394,7 @@ namespace binfilter {
 
 /*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartCopy (const SchMemChart &rMemChart)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchMemChart (rMemChart);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchMemChart (rMemChart);
 /*N*/ }
 
 /*************************************************************************
@@ -404,7 +404,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ extern_c ChartModel* __LOADONCALLAPI SchGetModel (SvInPlaceObjectRef aIPObj)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001  SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
 //STRIP001
 //STRIP001  if (aSchChartDocShellRef.Is()) return &aSchChartDocShellRef->GetDoc();
@@ -432,19 +432,19 @@ namespace binfilter {
 /*N*/ extern_c void __LOADONCALLAPI SchConvertChartRangeForCalc(
 /*N*/                           SchMemChart& rMemChart, BOOL bOldToNew )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ConvertChartRangeForCalc( bOldToNew );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ConvertChartRangeForCalc( bOldToNew );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartResetTranslation(
 /*N*/                           SchMemChart& rMemChart, long *pTable,long nCnt )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ResetTranslation( pTable, nCnt );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ResetTranslation( pTable, nCnt );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartUpdateTranslation(
 /*N*/                           SchMemChart& rMemChart, long *pTable, long nCnt )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.UpdateTranslation( pTable, nCnt );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.UpdateTranslation( pTable, nCnt );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartInsertCols( SchMemChart& rMemChart,
@@ -456,7 +456,7 @@ namespace binfilter {
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveCols( SchMemChart& rMemChart,
 /*N*/                                               short nAtCol, short nCount)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveCols( nAtCol, nCount );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveCols( nAtCol, nCount );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartInsertRows( SchMemChart& rMemChart,
@@ -468,19 +468,19 @@ namespace binfilter {
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveRows( SchMemChart& rMemChart,
 /*N*/                                               short nAtRow, short nCount)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveRows( nAtRow, nCount );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveRows( nAtRow, nCount );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapCols( SchMemChart& rMemChart,
 /*N*/                                               int nAtCol1, int nAtCol2)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapCols( nAtCol1, nAtCol2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapCols( nAtCol1, nAtCol2 );
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapRows( SchMemChart& rMemChart,
 /*N*/                                               int nAtRow1,int nAtRow2)
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapRows( nAtRow1, nAtRow2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapRows( nAtRow1, nAtRow2 );
 /*N*/ }
 
 

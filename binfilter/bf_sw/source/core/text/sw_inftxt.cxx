@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_inftxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1502,7 +1502,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/
 /*N*/   uno::Reference< XHyphenator > xHyph = ::binfilter::GetHyphenator();
 /*N*/   if (bInterHyph && xHyph.is())
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 SvxSpellWrapper::CheckHyphLang( xHyph, eTmp );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxSpellWrapper::CheckHyphLang( xHyph, eTmp );
 /*N*/
 /*N*/   if( !xHyph.is() || !xHyph->hasLocale( pBreakIt->GetLocale(eTmp) ) )
 /*N*/       return sal_False;

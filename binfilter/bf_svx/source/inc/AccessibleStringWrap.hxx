@@ -2,9 +2,9 @@
  *
  *  $RCSfile: AccessibleStringWrap.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,10 +87,10 @@ class AccessibleStringWrap
 {
 public:
 
-    AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText ){DBG_ASSERT(0, "STRIP");}//STRIP001 AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText );
+    AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText ){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText );
 
-    sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect ){DBG_ASSERT(0, "STRIP"); return false;}//STRIP001 sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect );
-    sal_Int32 GetIndexAtPoint( const Point& rPoint ){DBG_ASSERT(0, "STRIP"); return 0;}//STRIP001 sal_Int32 GetIndexAtPoint( const Point& rPoint );
+    sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect ){DBG_BF_ASSERT(0, "STRIP"); return false;}//STRIP001 sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect );
+    sal_Int32 GetIndexAtPoint( const Point& rPoint ){DBG_BF_ASSERT(0, "STRIP"); return 0;}//STRIP001 sal_Int32 GetIndexAtPoint( const Point& rPoint );
 
 private:
 

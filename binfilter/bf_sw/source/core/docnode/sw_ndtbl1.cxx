@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndtbl1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:19 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -314,7 +314,7 @@ extern void ClearFEShellTabCols();
 /*N*/       {
 /*N*/           if ( k != i && 1) //STRIP001 ::lcl_IsAnLower( pUpLine, (SwTableLine*)rArr[k] ) )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 rArr.Remove( k );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rArr.Remove( k );
 //STRIP001 /*?*/                if ( k <= i )
 //STRIP001 /*?*/                    --i;
 //STRIP001 /*?*/                --k;
@@ -428,7 +428,7 @@ extern void ClearFEShellTabCols();
 /*N*/
 /*N*/       if( 1 < aRowArr.Count() )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if( !bTstOnly )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bTstOnly )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                long nHeight = 0;
 //STRIP001 /*?*/                for ( USHORT i = 0; i < aRowArr.Count(); ++i )

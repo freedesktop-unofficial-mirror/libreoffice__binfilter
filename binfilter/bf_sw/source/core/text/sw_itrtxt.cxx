@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrtxt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:20 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -387,7 +387,7 @@ namespace binfilter {
 /*?*/             // we center the portion in its surrounding line
 /*?*/             nOfst = ( pCurr->Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/         else
-                {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/         {
+                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         {
 //STRIP001 /*?*/             // We have to take care for ruby portions.
 //STRIP001 /*?*/             // The ruby portion is NOT centered
 //STRIP001 /*?*/             nOfst += nPorAscent;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frameobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:18 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -301,7 +301,7 @@ namespace binfilter {
     nach einem. Dies muss asynchron geschehen, da in den H„ndlern
     des IP-Protocol eine modale Dialogbox verboten ist.
 */
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/     sfx2::FileDialogHelper aDlg( WB_OPEN );
 //STRIP001 /*?*/
 //STRIP001 /*?*/     if( ERRCODE_NONE == aDlg.Execute() )
@@ -324,7 +324,7 @@ namespace binfilter {
     Die Methode erzeugt den Frame. Es ist notwendig, da\s das Objekt
     InPlace-Active ist.
 */
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  // Nur in SfxApps kann ein Frame aufgebaut werden
 //STRIP001  SfxInPlaceClientRef aClient = GetIPClient();
 //STRIP001  if ( !aClient.Is() )
@@ -731,7 +731,7 @@ namespace binfilter {
 
     <SvPersist::Load>
 */
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( SvInPlaceObject::Load( pStor ) )
 //STRIP001  {
 //STRIP001      SvStorageStreamRef xStm;
@@ -772,7 +772,7 @@ namespace binfilter {
 
     <SvPersist::Save>
 */
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( SvInPlaceObject::Save() )
 //STRIP001  {
 //STRIP001      SvStorageStreamRef xStm;
@@ -812,7 +812,7 @@ namespace binfilter {
 
     <SvPersist::SaveAs>
 */
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if( SvInPlaceObject::SaveAs( pStor ) )
 //STRIP001  {
 //STRIP001      SvStorageStreamRef xStm;
@@ -916,7 +916,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor *pD )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_ASSERT( pD, "Kein Descriptor!" );
 //STRIP001  if ( pD )
 //STRIP001  {
@@ -936,7 +936,7 @@ namespace binfilter {
 /*?*/ }
 
 /*?*/ const SfxFrameDescriptor* SfxFrameObject::GetFrameDescriptor() const
-/*?*/ {DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 //STRIP001 /*?*/    return pImpl->pFrmDescr;
 /*?*/ }
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_drawitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,7 +129,7 @@ namespace binfilter {
 
 /*?*/ int SvxColorTableItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 //STRIP001  return ( ( SvxColorTableItem& ) rItem).pColorTable == pColorTable;
 /*?*/ }
 
@@ -184,7 +184,7 @@ namespace binfilter {
 
 /*?*/ int SvxGradientListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 //STRIP001  return ( ( SvxGradientListItem& ) rItem).pGradientList == pGradientList;
 /*?*/ }
 
@@ -239,7 +239,7 @@ namespace binfilter {
 
 /*?*/ int SvxHatchListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 //STRIP001  return ( ( SvxHatchListItem& ) rItem).pHatchList == pHatchList;
 /*?*/ }
 
@@ -294,7 +294,7 @@ namespace binfilter {
 
 /*?*/ int SvxBitmapListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 //STRIP001  return ( ( SvxBitmapListItem& ) rItem).pBitmapList == pBitmapList;
 /*?*/ }
 
@@ -350,7 +350,7 @@ namespace binfilter {
 
 /*?*/ int SvxDashListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
 //STRIP001  return ( ( SvxDashListItem& ) rItem).pDashList == pDashList;
 /*?*/ }
 

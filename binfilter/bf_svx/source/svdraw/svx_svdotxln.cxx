@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotxln.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:24 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,7 +143,7 @@ namespace binfilter {
 /*?*/ void ImpSdrObjTextLink::Closed()
 /*?*/ {
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        // pLink des Objekts auf NULL setzen, da die Link-Instanz ja gerade destruiert wird.
 //STRIP001 /*?*/        ImpSdrObjTextLinkUserData* pData=pSdrObj->GetLinkUserData();
 //STRIP001 /*?*/        if (pData!=NULL) pData->pLink=NULL;
@@ -179,7 +179,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/   }
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    pSdrObj->ReloadLinkedText( bForceReload );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSdrObj->ReloadLinkedText( bForceReload );
 /*?*/ }
 #endif // SVX_LIGHT
 
@@ -206,7 +206,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjTextLinkUserData::~ImpSdrObjTextLinkUserData()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001    delete pLink;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     delete pLink;
 /*N*/ #endif
 /*N*/ }
 
@@ -478,7 +478,7 @@ namespace binfilter {
 /*N*/   SvxLinkManager* pLinkManager=pModel!=NULL ? pModel->GetLinkManager() : NULL;
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  pLinkManager->Remove( pData->pLink );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pLinkManager->Remove( pData->pLink );
 //STRIP001 /*?*/        pData->pLink=NULL;
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT

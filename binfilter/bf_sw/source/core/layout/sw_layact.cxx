@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_layact.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:23:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -278,7 +278,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pFly == pSelfFly || !rRect.IsOver( pFly->Frm() ) )
 /*N*/           continue;
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if ( pSelfFly && pSelfFly->IsLowerOf( pFly ) )
 //STRIP001 /*?*/            continue;
 //STRIP001 /*?*/
@@ -1804,7 +1804,7 @@ namespace binfilter {
 /*N*/                   pRootFrm = pPage->FindRootFrm();
 /*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/                   pRootFrm->GetCurrShell() )
-/*N*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pLow, aOldFrm );
 /*N*/               }
 /*N*/           }
@@ -1901,7 +1901,7 @@ namespace binfilter {
 // OD 31.10.2002 #104100#
 // NOTE: no adjustments for vertical layout support necessary
 /*N*/ BOOL CheckPos( SwFrm *pFrm )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if ( !pFrm->GetValidPosFlag() )
 //STRIP001  {
 //STRIP001      Point aOld( pFrm->Frm().Pos() );
@@ -2257,7 +2257,7 @@ namespace binfilter {
 /*N*/           if ( bBrowse && !IsIdle() && !IsCalcLayout() && !IsComplete() &&
 /*N*/                pCntnt->Frm().Top() > pImp->GetShell()->VisArea().Bottom())
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 const long nBottom = pImp->GetShell()->VisArea().Bottom();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const long nBottom = pImp->GetShell()->VisArea().Bottom();
 //STRIP001 /*?*/                const SwFrm *pTmp = lcl_FindFirstInvaCntnt( pPage,
 //STRIP001 /*?*/                                                    nBottom, pCntnt );
 //STRIP001 /*?*/                if ( !pTmp )
@@ -2642,7 +2642,7 @@ namespace binfilter {
 /*?*/       const SwCntntFrm *pCnt = pPage->ContainsCntnt();
 /*?*/       while( pCnt && pPage->IsAnLower( pCnt ) )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 if ( _FormatSpelling( pCnt ) )
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( _FormatSpelling( pCnt ) )
 //STRIP001 /*?*/                return TRUE;
 //STRIP001 /*?*/            pCnt = pCnt->GetNextCntntFrm();
 /*?*/       }
@@ -2658,7 +2658,7 @@ namespace binfilter {
 /*?*/                   const SwCntntFrm *pC = pFly->ContainsCntnt();
 /*?*/                   while( pC )
 /*?*/                   {
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 if ( pC->IsTxtFrm() && _FormatSpelling( pC ) )
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pC->IsTxtFrm() && _FormatSpelling( pC ) )
 //STRIP001 /*?*/                            return TRUE;
 //STRIP001 /*?*/                        pC = pC->GetNextCntntFrm();
 /*?*/                   }
@@ -2929,7 +2929,7 @@ namespace binfilter {
 /*?*/               FASTBOOL bUnlock = FALSE;
 /*?*/               if ( pImp->GetRegion() || pImp->GetScrollRects() )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pImp->DelRegions();
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->DelRegions();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                    //Fuer Repaint mit virtuellem Device sorgen.
 //STRIP001 /*?*/                    pSh->LockPaint();
@@ -2944,7 +2944,7 @@ namespace binfilter {
 /*?*/ //                    pSh->EndAction();
 /*?*/               if( bUnlock )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 if( bCrsrShell )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bCrsrShell )
 //STRIP001 /*?*/                    {
 //STRIP001 /*?*/                        // UnlockPaint overwrite the selection from the
 //STRIP001 /*?*/                        // CrsrShell and calls the virtual method paint

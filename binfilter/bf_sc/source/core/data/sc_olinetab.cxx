@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_olinetab.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -718,7 +718,7 @@ namespace binfilter {
 /*?*/               BOOL bToggle = ( bShow != bAllHidden );
 /*?*/               if ( bToggle )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 pEntry->SetHidden( !bShow );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEntry->SetHidden( !bShow );
 //STRIP001 /*?*/                    SetVisibleBelow( aIter.LastLevel(), aIter.LastEntry(), bShow, bShow );
 //STRIP001 /*?*/                    bModified = TRUE;
 /*?*/               }

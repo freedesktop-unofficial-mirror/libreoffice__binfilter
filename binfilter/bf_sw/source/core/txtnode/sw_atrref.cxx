@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrref.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ namespace binfilter {
 
 int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
 {
-    {DBG_ASSERT(0, "STRIP");} return 0;//STRIP001   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 //STRIP001  return aRefName == ((SwFmtRefMark&)rAttr).aRefName;
 }
 

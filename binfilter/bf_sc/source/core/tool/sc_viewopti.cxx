@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewopti.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:38 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -743,7 +743,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScViewCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -796,7 +796,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScViewCfg, DisplayCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetDisplayPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetDisplayPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();
 //STRIP001  Sequence<Any> aValues(aNames.getLength());
 //STRIP001  Any* pValues = aValues.getArray();
@@ -842,7 +842,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScViewCfg, GridCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 const ScGridOptions& rGrid = GetGridOptions();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScGridOptions& rGrid = GetGridOptions();
 //STRIP001
 //STRIP001  Sequence<OUString> aNames = GetGridPropertyNames();
 //STRIP001  OUString* pNames = aNames.getArray();

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdpage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:23 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -333,7 +333,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else if (eObjKind == PRESOBJ_GRAPHIC)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 Graphic aGraphic ( SdResId(BMP_PRESOBJ_GRAPHIC) );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Graphic aGraphic ( SdResId(BMP_PRESOBJ_GRAPHIC) );
 //STRIP001 /*?*/        OutputDevice &aOutDev = *Application::GetDefaultDevice();
 //STRIP001 /*?*/        aOutDev.Push();
 //STRIP001 /*?*/
@@ -349,27 +349,27 @@ using namespace ::com::sun::star;
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_OBJECT)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
 //STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_OBJECT) );
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_CHART)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarChart" )));
 //STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_CHART) );
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_ORGCHART)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarOrg" )));
 //STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_ORGCHART) );
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
 /*?*/   }
 /*N*/   else if (eObjKind == PRESOBJ_TABLE)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarCalc" )));
 //STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_TABLE) );
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
@@ -377,7 +377,7 @@ using namespace ::com::sun::star;
 /*?*/ #ifdef STARIMAGE_AVAILABLE
 /*?*/   else if (eObjKind == PRESOBJ_IMAGE)
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSdrObj = new SdrOle2Obj();
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetProgName( String( RTL_CONSTASCII_USTRINGPARAM( "StarImage" )));
 //STRIP001 /*?*/        Graphic aGraphic( SdResId(BMP_PRESOBJ_IMAGE) );
 //STRIP001 /*?*/        ( (SdrOle2Obj*) pSdrObj)->SetGraphic(&aGraphic);
@@ -648,7 +648,7 @@ using namespace ::com::sun::star;
 /*N*/           {
 /*N*/               if (!bMaster &&
 /*N*/                   aPresObjList.GetPos((void*) &rObj) != LIST_ENTRY_NOTFOUND)
-/*N*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001                  // #107844#
 //STRIP001                  // Handling of non-empty and empty PresObjs was moved to UndoActionHdl
 //STRIP001                  // to allow adding the correct SdrUndoUserCallObj. This may be done here, too,

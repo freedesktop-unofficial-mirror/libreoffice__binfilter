@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -236,7 +236,7 @@ extern BOOL bIsOlk, bOderSo;
 /*?*/
 /*?*/       ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
 /*?*/       if (pDrawLayer)
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            pDrawLayer->ScRemovePage( nTab );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage( nTab );
 /*N*/   }
 /*N*/
 /*N*/   delete[] pColWidth;
@@ -262,7 +262,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            pDrawLayer->ScRemovePage( nT
 /*N*/ {
 /*N*/   String aMd( "D\344umling", RTL_TEXTENCODING_MS_1252 );  // ANSI
 /*N*/   if( rNewName == aMd )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 bIsOlk = bOderSo = TRUE;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 bIsOlk = bOderSo = TRUE;
 /*N*/   aName = rNewName;
 /*N*/ }
 
@@ -624,7 +624,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            pDrawLayer->ScRemovePage( nT
 /*N*/ void ScTable::GetDataArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow,
 /*N*/                           BOOL bIncludeOld )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   BOOL bLeft       = FALSE;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    BOOL bLeft       = FALSE;
 //STRIP001  BOOL bRight  = FALSE;
 //STRIP001  BOOL bTop        = FALSE;
 //STRIP001  BOOL bBottom = FALSE;
@@ -847,7 +847,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   BOOL bLeft       = FALSE;
 /*N*/ void ScTable::GetNextPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY,
 /*N*/                               BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bUnprotected && !IsProtected())     // Tabelle ueberhaupt geschuetzt?
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bUnprotected && !IsProtected())     // Tabelle ueberhaupt geschuetzt?
 //STRIP001      bUnprotected = FALSE;
 //STRIP001
 //STRIP001  USHORT nWrap = 0;
@@ -1053,7 +1053,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bUnprotected && !IsProtected
 /*N*/ {
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // only within the table
 /*N*/   {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
 //STRIP001 /*?*/        if ( eUpdateRefMode != URM_COPY && pDrawLayer )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            if ( eUpdateRefMode == URM_MOVE )
@@ -1243,7 +1243,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        ScDrawLayer* pDrawLayer = pDocum
 /*N*/                               USHORT nCol2, USHORT nRow2,
 /*N*/                                   const ScIndexMap& rMap )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   for (USHORT i = nCol1; i <= nCol2 && (i <= MAXCOL); i++)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= nCol2 && (i <= MAXCOL); i++)
 //STRIP001  {
 //STRIP001      aCol[i].ReplaceRangeNamesInUse( nRow1, nRow2, rMap );
 //STRIP001  }

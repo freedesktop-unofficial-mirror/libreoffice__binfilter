@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_olinefun.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -134,7 +134,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
 //STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
 //STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
 //STRIP001 /*?*/    USHORT nEndCol = rRange.aEnd.Col();
@@ -195,7 +195,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
 //STRIP001 /*?*/
 //STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
 //STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
@@ -260,7 +260,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT nTab, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
 //STRIP001 /*?*/    ScDocument* pDoc = rDocShell.GetDocument();
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
@@ -313,7 +313,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& rRange, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartCol = rRange.aStart.Col();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartCol = rRange.aStart.Col();
 //STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
 //STRIP001 /*?*/    USHORT nEndCol = rRange.aEnd.Col();
 //STRIP001 /*?*/    USHORT nEndRow = rRange.aEnd.Row();
@@ -376,7 +376,7 @@ namespace binfilter {
 /*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT nTab, BOOL bColumns, USHORT nLevel,
 /*N*/                                   BOOL bRecord, BOOL bPaint, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
 //STRIP001 /*?*/        bRecord = FALSE;
@@ -449,7 +449,7 @@ namespace binfilter {
 //STRIP001 /*?*/    pDoc->UpdatePageBreaks( nTab );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if (bPaint)
-//STRIP001 /*?*/        DBG_ASSERT(0, "STRIP"); //STRIP001 lcl_PaintWidthHeight( rDocShell, nTab, bColumns, nStart, nEnd );
+//STRIP001 /*?*/        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 lcl_PaintWidthHeight( rDocShell, nTab, bColumns, nStart, nEnd );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    rDocShell.SetDocumentModified();
 //STRIP001 /*?*/    lcl_InvalidateOutliner( rDocShell.GetViewBindings() );
@@ -461,7 +461,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bDone = FALSE;
 //STRIP001 /*?*/
 //STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
 //STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
@@ -560,7 +560,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
 //STRIP001 /*?*/
 //STRIP001 /*?*/    USHORT nStartCol = rRange.aStart.Col();
 //STRIP001 /*?*/    USHORT nStartRow = rRange.aStart.Row();
@@ -737,7 +737,7 @@ namespace binfilter {
 /*N*/ BOOL ScOutlineDocFunc::HideOutline( USHORT nTab, BOOL bColumns, USHORT nLevel, USHORT nEntry,
 /*N*/                                   BOOL bRecord, BOOL bPaint, BOOL bApi )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
 //STRIP001 /*?*/    if (bRecord && !pDoc->IsUndoEnabled())
 //STRIP001 /*?*/        bRecord = FALSE;
 //STRIP001 /*?*/

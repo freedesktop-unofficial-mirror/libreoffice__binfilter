@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 15:17:44 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -479,7 +479,7 @@ namespace binfilter {
 
 /*N*/ BOOL ScDocument::IdleCalcTextWidth()          // TRUE = demnaechst wieder versuchen
 {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( bIdleDisabled || IsInLinkUpdate() )
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001  if ( bIdleDisabled || IsInLinkUpdate() )
 //STRIP001      return FALSE;
 //STRIP001  bIdleDisabled = TRUE;
 //STRIP001
@@ -856,7 +856,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( bIdleDisabled || IsInLi
 
 /*N*/ BOOL ScDocument::ContinueOnlineSpelling()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( bIdleDisabled || !pDocOptions->IsAutoSpell() || (pShell && pShell->IsReadOnly()) )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( bIdleDisabled || !pDocOptions->IsAutoSpell() || (pShell && pShell->IsReadOnly()) )
 /*?*/       return FALSE;
 //STRIP001
 //STRIP001  //! use one EditEngine for both calls
@@ -930,7 +930,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001     if ( bIdleDisabled || IsInLi
 
 BOOL ScDocument::IdleCheckLinks()           // TRUE = demnaechst wieder versuchen
 {
-DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    BOOL bAnyLeft = FALSE;
+DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     BOOL bAnyLeft = FALSE;
 //STRIP001
 //STRIP001     if (pLinkManager)
 //STRIP001     {
@@ -1037,7 +1037,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    BOOL bAnyLeft = FALSE;
 
 /*N*/ void ScDocument::UpdateDdeLinks()
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
 //STRIP001     {
 //STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 //STRIP001         USHORT nCount = rLinks.Count();
@@ -1085,7 +1085,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    BOOL bAnyLeft = FALSE;
 /*N*/   BOOL bFound = FALSE;
 /*N*/     if (pLinkManager)
 /*N*/     {
-/*?*/         DBG_ASSERT(0, "STRIP"); //STRIP001 const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 //STRIP001         USHORT nCount = rLinks.Count();
 //STRIP001         for (USHORT i=0; i<nCount; i++)
 //STRIP001         {
@@ -1246,7 +1246,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    BOOL bAnyLeft = FALSE;
 
 /*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix* pMatrix, USHORT nCol, USHORT nRow, String& rStrValue, double& rDoubValue, BOOL& bIsString)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  if (pMatrix)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pMatrix)
 //STRIP001  {
 //STRIP001      BOOL bIsEmpty = pMatrix->IsEmpty(nCol, nRow);
 //STRIP001         if (bIsEmpty)
@@ -1270,7 +1270,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  if (pMatrix)
 /*N*/ void ScDocument::CreateDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode )
 /*N*/ {
     //  DDE-Link anlegen und nicht updaten (z.B. fuer Excel-Import,
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  damit nicht ohne Nachfrage Verbindungen aufgebaut werden)
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  damit nicht ohne Nachfrage Verbindungen aufgebaut werden)
 //STRIP001  //  zuerst suchen, ob schon vorhanden
 //STRIP001  //! Dde-Links (zusaetzlich) effizienter am Dokument speichern?
 //STRIP001     if (pLinkManager)
@@ -1299,7 +1299,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  damit nicht ohne Nachfrage V
 
 /*N*/ BOOL ScDocument::FindDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode, USHORT& nPos )
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
 //STRIP001     {
 //STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 //STRIP001         USHORT nCount = rLinks.Count();
@@ -1327,7 +1327,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   //  damit nicht ohne Nachfrage V
 
 /*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT nPos, USHORT nCols, USHORT nRows, ScMatrix*& pMatrix)
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  USHORT nDdeCount = 0;
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   USHORT nDdeCount = 0;
 //STRIP001  if (pLinkManager)
 //STRIP001  {
 //STRIP001      const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
@@ -1356,7 +1356,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  USHORT nDdeCount = 0;
 
 void ScDocument::SetDdeLinkResult(ScMatrix* pMatrix, const USHORT nCol, const USHORT nRow, const String& rStrValue, const double& rDoubValue, BOOL bString, BOOL bEmpty)
 {
-DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix");
 //STRIP001  if (pMatrix)
 //STRIP001  {
 //STRIP001      if(bEmpty)
@@ -1389,7 +1389,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
 
 /*N*/ void ScDocument::UpdateAreaLinks()
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
 //STRIP001     {
 //STRIP001         const ::so3::SvBaseLinks& rLinks = pLinkManager->GetLinks();
 //STRIP001         USHORT nCount = rLinks.Count();
@@ -1494,7 +1494,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  DBG_ASSERT(pMatrix, "there is no matrix");
 /*N*/   rStream >> nCount;
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 aHdr.StartEntry();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aHdr.StartEntry();
 /*?*/
 //STRIP001 /*?*/        rStream.ReadByteString( aFile,   rStream.GetStreamCharSet() );
 //STRIP001 /*?*/        rStream.ReadByteString( aFilter, rStream.GetStreamCharSet() );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -273,7 +273,7 @@ namespace binfilter {
 
 BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTab )
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pDBColl = pDocument->GetDBCollection();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pDBColl = pDocument->GetDBCollection();
 //STRIP001  if ( pDBColl )
 //STRIP001  {
 //STRIP001      USHORT nCount = pDBColl->GetCount();
@@ -845,7 +845,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*?*/                       bAddMargin = FALSE;
 /*?*/                       //  nur nach rechts:
 /*?*/                       //! unterscheiden nach Ausrichtung oben/unten (nur Text/ganze Hoehe)
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
 //STRIP001 /*?*/                            nWidth += (long)( pDocument->GetRowHeight( nRow,nTab ) *
 //STRIP001 /*?*/                                                nPPT * nCosAbs / nSinAbs );
 /*?*/                   }
@@ -1006,7 +1006,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        if ( pPattern->G
 /*?*/                   nWidth  = (long)( aSize.Width() * nCosAbs + aSize.Height() * nSinAbs );
 /*?*/               else if ( rOptions.bTotalSize )
 /*?*/               {
-DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                    nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
 //STRIP001 /*?*/                    bAddMargin = FALSE;
 //STRIP001 /*?*/                    if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
 //STRIP001 /*?*/                        nWidth += (long)( pDocument->GetRowHeight( nRow,nTab ) *

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_drawdoc2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -250,7 +250,7 @@ namespace binfilter {
 
 USHORT SdDrawDocument::GetPageByName(const String& rPgName, BOOL& rbIsMasterPage) const
 {
-/*?*/ {DBG_ASSERT(0, "STRIP");} return 0;//STRIP001     SdPage* pPage = NULL;
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001  SdPage* pPage = NULL;
 //STRIP001  SdPage* pPageFound = NULL;
 //STRIP001  USHORT nPage = 0;
 //STRIP001  const USHORT nMaxPages = GetPageCount();
@@ -597,7 +597,7 @@ USHORT SdDrawDocument::GetPageByName(const String& rPgName, BOOL& rbIsMasterPage
 // Inline has no advantages at such big code.
 IMPL_LINK( SdDrawDocument, NotifyUndoActionHdl, SfxUndoAction *, pUndoAction )
 {
-        DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 #ifndef SVX_LIGHT
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 #ifndef SVX_LIGHT
 //STRIP001  if (pUndoAction)
 //STRIP001  {
 //STRIP001      if ( pDeletedPresObjList )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ednumber.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:29 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -603,7 +603,7 @@ namespace binfilter {
 /*?*/
 /*?*/               if( !*pHasChilds )
 /*?*/               {
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 SwNRuleLowerLevel aHnt( rRule, nLvl );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNRuleLowerLevel aHnt( rRule, nLvl );
 //STRIP001 /*?*/                    for( i = 0; i < nMaxItems; ++i )
 //STRIP001 /*?*/                        if( 0 != (pItem = GetDoc()->GetAttrPool().GetItem( RES_PARATR_NUMRULE, i ) ) &&
 //STRIP001 /*?*/                            0 != ( pMod = (SwModify*)((SwNumRuleItem*)pItem)->GetDefinedIn()) &&

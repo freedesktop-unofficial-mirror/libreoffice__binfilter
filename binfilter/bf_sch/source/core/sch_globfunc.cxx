@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_globfunc.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1126,7 +1126,7 @@ namespace binfilter {
 /*N*/                  long            nHeight,
 /*N*/                  double          a,
 /*N*/                  double          b)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  long nAngleDiff;
 //STRIP001  long nAngleHook;
 //STRIP001
@@ -1183,7 +1183,7 @@ namespace binfilter {
 /*N*/                  long            nStartAng,
 /*N*/                  long            nEndAng,
 /*N*/                  double          fRadius)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  //  Calculate the radial line on which the desctiption will be positioned.
 //STRIP001  long nAngleHook;
 //STRIP001  if (nStartAng > nEndAng)

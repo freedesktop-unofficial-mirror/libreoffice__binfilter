@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen9.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 14:30:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -151,7 +151,7 @@ BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHOR
 
     BOOL bChanged = FALSE;
 
-    DBG_ASSERT(0, "STRIP"); //STRIP001 ULONG nCount = rRanges.Count();
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ULONG nCount = rRanges.Count();
 //STRIP001  for (ULONG i=0; i<nCount; i++)
 //STRIP001  {
 //STRIP001      ScRange* pRange = rRanges.GetObject(i);
@@ -188,7 +188,7 @@ BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHOR
 /*?*/           SdrObjListIter aIter( *pOldPage, IM_FLAT );
 /*?*/           SdrObject* pOldObject = aIter.Next();
 /*?*/           while (pOldObject)
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                SdrObject* pNewObject = pOldObject->Clone( pNewPage, pDrawLayer );
 //STRIP001 /*?*/                pNewObject->NbcMove(Size(0,0));
 //STRIP001 /*?*/                pNewPage->InsertObject( pNewObject );
@@ -751,7 +751,7 @@ BOOL lcl_AdjustRanges( ScRangeList& rRanges, USHORT nSource, USHORT nDest, USHOR
 /*N*/                               USHORT nEndCol, USHORT nEndRow, BOOL bLeftIsEmpty,
 /*N*/                               ScRange* pLastRange, Rectangle* pLastMM ) const
 /*N*/ {
-    DBG_ASSERT(0, "STRIP"); //STRIP001  if (!IsBlockEmpty( nTab, nStartCol, nStartRow, nEndCol, nEndRow ))
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (!IsBlockEmpty( nTab, nStartCol, nStartRow, nEndCol, nEndRow ))
 //STRIP001      return FALSE;
 //STRIP001
 //STRIP001  ScDocument* pThis = (ScDocument*)this;  //! GetMMRect / HasAnyDraw etc. const !!!

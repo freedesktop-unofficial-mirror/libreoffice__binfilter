@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_dlgcont.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:04 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -169,7 +169,7 @@ using namespace osl;
 /*N*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxDialogLibraryContainer::isLibraryElementValid( Any aElement )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  Reference< XInputStreamProvider > xISP;
 //STRIP001  aElement >>= xISP;
 //STRIP001  sal_Bool bRet = xISP.is();
@@ -183,7 +183,7 @@ using namespace osl;
 /*?*/   Reference< XOutputStream > xOutput
 /*?*/ )
 /*?*/   throw(Exception)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  Reference< XInputStreamProvider > xISP;
 //STRIP001  aElement >>= xISP;
 //STRIP001  if( !xISP.is() )
@@ -207,7 +207,7 @@ using namespace osl;
 
 /*?*/ Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
 /*?*/   ( const OUString& aFile, SotStorageStreamRef xElementStream )
-/*?*/ {DBG_ASSERT(0, "STRIP"); Any aAny; return aAny;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;//STRIP001
 //STRIP001  Any aRetAny;
 //STRIP001
 //STRIP001  // TODO: Member because later it will be a component
@@ -294,7 +294,7 @@ using namespace osl;
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::initialize( const Sequence< Any >& aArguments )
 /*?*/     throw (::com::sun::star::uno::Exception,
 /*?*/            ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  sal_Int32 nArgCount = aArguments.getLength();
 //STRIP001  OSL_ENSURE( nArgCount, "SfxDialogLibraryContainer::initialize() called with no arguments\n" );
 //STRIP001
@@ -316,7 +316,7 @@ using namespace osl;
 /*N*/ SFX_IMPL_SINGLEFACTORY( SfxDialogLibraryContainer )
 
 /*?*/ Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNames()
-/*?*/ {DBG_ASSERT(0, "STRIP");Sequence< OUString > seqServiceNames;return seqServiceNames; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");Sequence< OUString > seqServiceNames;return seqServiceNames; //STRIP001
 //STRIP001     static Sequence< OUString > seqServiceNames( 1 );
 //STRIP001     static sal_Bool bNeedsInit = sal_True;
 //STRIP001
@@ -347,7 +347,7 @@ using namespace osl;
 /*N*/ Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
 /*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
 /*N*/         throw( Exception )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001     Reference< XInterface > xRet =
 //STRIP001         static_cast< XInterface* >( static_cast< OWeakObject* >(new SfxDialogLibraryContainer()) );
 //STRIP001     return xRet;
@@ -359,7 +359,7 @@ using namespace osl;
 /*N*/ SFX_IMPL_ONEINSTANCEFACTORY( SfxApplicationDialogLibraryContainer )
 
 /*N*/ Sequence< OUString > SfxApplicationDialogLibraryContainer::impl_getStaticSupportedServiceNames()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/     static Sequence< OUString > seqServiceNames( 1 );
 //STRIP001     static sal_Bool bNeedsInit = sal_True;
 //STRIP001
@@ -390,7 +390,7 @@ using namespace osl;
 /*N*/ Reference< XInterface > SAL_CALL SfxApplicationDialogLibraryContainer::impl_createInstance
 /*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
 /*N*/         throw( Exception )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
 //STRIP001  SFX_APP()->GetBasicManager();
 //STRIP001     Reference< XInterface > xRet =
 //STRIP001         Reference< XInterface >( SFX_APP()->GetDialogContainer(), UNO_QUERY );

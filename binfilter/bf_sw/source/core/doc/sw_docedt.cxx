@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docedt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:56 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -728,7 +728,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  if( pACEWord->IsDeleted() )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pACEWord->IsDeleted() )
 //STRIP001 /*?*/            pACEWord->CheckChar( rPos, c );
 //STRIP001 /*?*/        delete pACEWord, pACEWord = 0;
 /*N*/   }
@@ -759,7 +759,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  SwPaM aPam( rPos.nNode, rPos.nContent.GetIndex() - 1,
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPaM aPam( rPos.nNode, rPos.nContent.GetIndex() - 1,
 //STRIP001 /*?*/                    rPos.nNode, rPos.nContent.GetIndex() );
 //STRIP001 /*?*/        if( IsRedlineOn() )
 //STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
@@ -1410,7 +1410,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/               // verschiebe noch alle Bookmarks/TOXMarks
 /*N*/               if( aBkmkArr.Count() )
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 ::_RestoreCntntIdx( pDoc, aBkmkArr, aIdx.GetIndex() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ::_RestoreCntntIdx( pDoc, aBkmkArr, aIdx.GetIndex() );
 /*N*/
 /*N*/               pDoc->DoUndo( bDoUndo );
 /*N*/
@@ -1425,7 +1425,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/           pDoc->GetNodes().Delete( aOldIdx, 1 );
 /*N*/       }
 /*N*/       else
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            SwTxtNode* pDelNd = aIdx.GetNode().GetTxtNode();
 //STRIP001 /*?*/            if( pTxtNd->Len() )
 //STRIP001 /*?*/                pDelNd->FmtToTxtAttr( pTxtNd );
@@ -1466,7 +1466,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/ {
 /*N*/   if( IsRedlineOn() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  sal_uInt16 nUndoSize = 0;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   sal_uInt16 nUndoSize = 0;
 //STRIP001 /*?*/        SwUndoRedlineDelete* pUndo = 0;
 //STRIP001 /*?*/        SwRedlineMode eOld = GetRedlineMode();
 //STRIP001      checkRedlining(eOld);
@@ -1536,7 +1536,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  // ggfs. das gesicherte Word fuer die Ausnahme
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // ggfs. das gesicherte Word fuer die Ausnahme
 //STRIP001 /*?*/        if( pACEWord->IsDeleted() ||  pStt->nNode != pEnd->nNode ||
 //STRIP001 /*?*/            pStt->nContent.GetIndex() + 1 != pEnd->nContent.GetIndex() ||
 //STRIP001 /*?*/            !pACEWord->CheckDelChar( *pStt ))
@@ -1674,7 +1674,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   } while( sal_False );
 /*?*/
 /*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    ::com::pressRedlines();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ::com::pressRedlines();
 /*?*/   SetModified();
 /*?*/
 /*?*/   return sal_True;
@@ -1995,7 +1995,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 
 /*N*/ sal_Bool SwDoc::Replace( SwPaM& rPam, const String& rStr, sal_Bool bRegExpRplc )
 /*N*/ {
-DBG_ASSERT(0, "STRIP");  //STRIP001     if( !rPam.HasMark() || *rPam.GetPoint() == *rPam.GetMark() )
+DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() == *rPam.GetMark() )
 //STRIP001      return sal_False;
 //STRIP001
 //STRIP001  sal_Bool bJoinTxt, bJoinPrev;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:34 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -191,7 +191,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           if( !((SwTblBoxFormula*)pItem)->IsValid() )
 /*?*/           {
 /*?*/               // dann berechnen
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pTmp = rCalcPara.pTbl;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pTmp = rCalcPara.pTbl;
 //STRIP001 /*?*/                rCalcPara.pTbl = &pBox->GetSttNd()->FindTableNode()->GetTable();
 //STRIP001 /*?*/                ((SwTblBoxFormula*)pItem)->Calc( rCalcPara, nRet );
 //STRIP001 /*?*/
@@ -613,7 +613,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelNmsToBoxNms;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelNmsToBoxNms;
 //STRIP001 /*?*/            pNd = GetNodeOfFormula();
 /*?*/       }
 /*?*/       break;
@@ -638,7 +638,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelBoxNmsToPtr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelBoxNmsToPtr;
 //STRIP001 /*?*/            pNd = GetNodeOfFormula();
 /*?*/       }
 /*?*/       break;
@@ -731,7 +731,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/                   if( sTblNm != rTbl.GetFrmFmt()->GetName() )
 /*?*/                   {
 /*?*/                       // dann suchen wir uns mal unsere Tabelle:
-/*?*/                       DBG_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pFnd = FindTable(
+/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pFnd = FindTable(
 //STRIP001 /*?*/                                                *rTbl.GetFrmFmt()->GetDoc(),
 //STRIP001 /*?*/                                                sTblNm );
 //STRIP001 /*?*/                        if( pFnd )

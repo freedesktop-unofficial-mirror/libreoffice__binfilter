@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -266,11 +266,11 @@ public:
 
 //STRIP001  void            AsciiSave( SvStream& rStream, const ScImportOptions& rOpt );
 
-    void            GetSbxState( SfxItemSet &rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void            GetSbxState( SfxItemSet &rSet );
-    void            GetDrawObjState( SfxItemSet &rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void            GetDrawObjState( SfxItemSet &rSet );
+    void            GetSbxState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetSbxState( SfxItemSet &rSet );
+    void            GetDrawObjState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void         GetDrawObjState( SfxItemSet &rSet );
 
     void            Execute( SfxRequest& rReq );
-    void            GetState( SfxItemSet &rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 void            GetState( SfxItemSet &rSet );
+    void            GetState( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            GetState( SfxItemSet &rSet );
 //STRIP001  void            ExecutePageStyle ( SfxViewShell& rCaller, SfxRequest& rReq, USHORT nCurTab );
     void            GetStatePageStyle( SfxViewShell& rCaller, SfxItemSet& rSet, USHORT nCurTab );
 

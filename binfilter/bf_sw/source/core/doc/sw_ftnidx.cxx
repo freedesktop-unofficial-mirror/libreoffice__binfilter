@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ftnidx.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:57 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -346,7 +346,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   if( pDoc->GetRootFrm() && FTNNUM_PAGE == rFtnInfo.eNum )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 pDoc->GetRootFrm()->UpdateFtnNums();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pDoc->GetRootFrm()->UpdateFtnNums();
 /*N*/ }
 
 //STRIP001 void SwFtnIdxs::UpdateFtnInSections()
@@ -433,7 +433,7 @@ namespace binfilter {
 /*N*/ USHORT SwUpdFtnEndNtAtEnd::GetNumber( const SwTxtFtn& rTxtFtn,
 /*N*/                                   const SwSectionNode& rNd )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     USHORT nRet = 0, nWh;
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  USHORT nRet = 0, nWh;
 //STRIP001  SvPtrarr* pArr;
 //STRIP001  SvUShorts* pNum;
 //STRIP001  if( rTxtFtn.GetFtn().IsEndNote() )

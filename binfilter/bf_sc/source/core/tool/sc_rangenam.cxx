@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangenam.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:41 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -652,7 +652,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( p->GetOpCode() == ocName )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nIndex = p->GetIndex();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nIndex = p->GetIndex();
 //STRIP001 /*?*/            USHORT nNewIndex = rMap.Find( nIndex );
 //STRIP001 /*?*/            if ( nIndex != nNewIndex )
 //STRIP001 /*?*/            {
@@ -928,7 +928,7 @@ namespace binfilter {
 /*N*/ void ScRangeName::UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable)
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ((ScRangeData*)pItems[i])->UpdateTabRef(nOldTable, nFlag, nNewTable);
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScRangeData*)pItems[i])->UpdateTabRef(nOldTable, nFlag, nNewTable);
 /*N*/ }
 
 

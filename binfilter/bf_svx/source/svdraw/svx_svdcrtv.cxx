@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdcrtv.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:08 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -148,7 +148,7 @@ namespace binfilter {
 
 /*N*/ void ImpSdrConnectMarker::SetTargetObject(const SdrObject* pObj)
 /*N*/ {
-/*N*/   if (pAktObj!=pObj) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktObj!=pObj) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        BOOL bVisible=IsVisible();
 //STRIP001 /*?*/        if (bVisible) Hide();
 //STRIP001 /*?*/        pAktObj=pObj;
@@ -272,7 +272,7 @@ namespace binfilter {
 /*N*/ void SdrCreateView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrDragView::ToggleShownXor(pOut,pRegion);
-/*N*/   if (pAktCreate!=NULL && aDragStat.IsShown()) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktCreate!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        DrawCreateObj(pOut,TRUE);
 /*N*/   }
 /*N*/ }
@@ -288,7 +288,7 @@ namespace binfilter {
 /*?*/       if (nAktInvent==SdrInventor && nAktIdent==OBJ_EDGE) return FALSE;
 /*N*/   }
 /*N*/   if (!IsCreateMode() || nAktInvent!=SdrInventor || nAktIdent!=OBJ_EDGE || pCurrentLibObj!=NULL) {
-/*?*/       if (pConnectMarker->IsVisible()) {DBG_ASSERT(0, "STRIP"); }//STRIP001 pConnectMarker->Hide();
+/*?*/       if (pConnectMarker->IsVisible()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pConnectMarker->Hide();
 /*N*/       pConnectMarker->SetTargetObject(NULL);
 /*N*/       return FALSE;
 /*N*/   } else {
@@ -865,7 +865,7 @@ namespace binfilter {
 
 /*N*/ void SdrCreateView::BrkCreateObj()
 /*N*/ {
-/*N*/   if (pAktCreate!=NULL) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        if (pLibObjDragMeth==NULL) {
 //STRIP001 /*?*/            if (!IsSolidDraggingNow()) {
 //STRIP001 /*?*/                HideCreateObj(pDragWin,TRUE);
@@ -1111,7 +1111,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SdrCreateView::SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr)
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  if (pAktCreate!=NULL) {
 //STRIP001      pAktCreate->SetStyleSheet(pStyleSheet,bDontRemoveHardAttr);
 //STRIP001      return TRUE;

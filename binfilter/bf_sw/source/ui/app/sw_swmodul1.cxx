@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-25 09:54:01 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -411,7 +411,7 @@ using namespace ::com::sun::star::lang;
 
 /*M*/ void SwModule::ApplyUsrPref(const SwViewOption &rUsrPref, SwView* pActView,
 /*M*/                           sal_uInt16 nDest )
-/*M*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    SwView* pView = pActView;
 //STRIP001 /*?*/     ViewShell* pSh = pView ? &pView->GetWrtShell() : 0;
 //STRIP001 /*?*/
@@ -601,7 +601,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ sal_uInt16 SwModule::GetRedlineAuthor()
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return 0;//STRIP001     if (!bAuthorInitialised)
+DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
 //STRIP001  {
 //STRIP001      SvtUserOptions aOpt;
 //STRIP001      if( !(sActAuthor = aOpt.GetFullName()).Len() )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:45:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -381,7 +381,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
     BOOL bEqual = FALSE;
 
     // Anzahl der Queries gleich?
-     DBG_ASSERT(0, "STRIP"); //STRIP001 USHORT nUsed      = 0;
+     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nUsed       = 0;
 //STRIP001  USHORT nOtherUsed = 0;
 //STRIP001  while ( nUsed<nEntryCount && pEntries[nUsed].bDoQuery ) ++nUsed;
 //STRIP001  while ( nOtherUsed<rOther.nEntryCount && rOther.pEntries[nOtherUsed].bDoQuery )
@@ -908,7 +908,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 /*N*/ void ScConsolidateParam::Load( SvStream& rStream )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ClearDataAreas();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearDataAreas();
 //STRIP001
 //STRIP001  ScReadHeader aHdr( rStream );
 //STRIP001
@@ -931,7 +931,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 /*N*/ void ScConsolidateParam::Store( SvStream& rStream ) const
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
 //STRIP001
 //STRIP001  rStream << nCol << nRow << nTab
 //STRIP001          << bByCol << bByRow << bReferenceData << (BYTE) eFunction;
@@ -1036,7 +1036,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 /*N*/                                             USHORT            nRowCnt,
 /*N*/                                             USHORT            nDataCnt )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001      ClearPivotArrays();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 //STRIP001
 //STRIP001  if ( pColArr && pRowArr && pDataArr )
 //STRIP001  {

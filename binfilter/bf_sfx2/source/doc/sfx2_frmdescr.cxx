@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_frmdescr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:21 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,7 +109,7 @@ namespace binfilter {
 /*N*/   bRowSet( FALSE ),
 /*N*/   nMaxId( 0 ),
 /*N*/   nHasBorder( BORDER_YES )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CTOR(SfxFrameSetDescriptor, 0);
 //STRIP001
 //STRIP001  pImp = new SfxFrameSetDescriptor_Impl;
@@ -196,7 +196,7 @@ namespace binfilter {
 //STRIP001 }
 //STRIP001
 /*N*/ BOOL SfxFrameSetDescriptor::HasFrameBorder() const
-/*N*/ {DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 //STRIP001  if ( pImp->bNetscapeCompat && !GetFrameSpacing() )
 //STRIP001      return FALSE;
 //STRIP001
@@ -416,7 +416,7 @@ namespace binfilter {
 /*N*/
 /*N*/   pImp = new SfxFrameDescriptor_Impl;
 /*N*/   if ( pParentFrameSet )
-/*?*/   {DBG_ASSERT(0, "STRIP"); }//STRIP001    pParentFrameSet->InsertFrame( this );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pParentFrameSet->InsertFrame( this );
 /*N*/ }
 
 /*N*/ SfxFrameDescriptor::~SfxFrameDescriptor()
@@ -426,7 +426,7 @@ namespace binfilter {
 /*N*/   if ( pFrameSet )
 /*N*/       delete pFrameSet;
 /*N*/   if ( pParentFrameSet )
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pParentFrameSet->RemoveFrame( this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pParentFrameSet->RemoveFrame( this );
 /*N*/   delete pImp;
 /*N*/ }
 
@@ -438,7 +438,7 @@ namespace binfilter {
 /*N*/ }
 
 /*?*/ void SfxFrameDescriptor::SetURL( const String& rURL )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  aURL = rURL;
 //STRIP001  SetActualURL( aURL );
 //STRIP001 }
@@ -508,7 +508,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SfxFrameDescriptor::Store( SvStream& rStream ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  long lPos = rStream.Tell();
 //STRIP001  long lLength = 0L;
 //STRIP001  rStream << lLength << VERSION;
@@ -557,7 +557,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL SfxFrameDescriptor::Load( SvStream& rStream, USHORT nVersion )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  String aURLName;
 //STRIP001  USHORT nFlags1, nFlags2, nScroll, nSet, nSelector;
 //STRIP001
@@ -601,7 +601,7 @@ namespace binfilter {
 
 /*N*/ SfxFrameDescriptor* SfxFrameDescriptor::Clone(
 /*N*/   SfxFrameSetDescriptor *pSet, BOOL bWithIds ) const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  SfxFrameDescriptor *pFrame =
 //STRIP001      new SfxFrameDescriptor( pSet );
 //STRIP001
@@ -887,7 +887,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ BOOL SfxFrameDescriptor::HasFrameBorder() const
-/*N*/ {DBG_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 //STRIP001  if ( pParentFrameSet )
 //STRIP001  {
 //STRIP001      if ( pParentFrameSet->pImp->bNetscapeCompat && !pParentFrameSet->GetFrameSpacing() )
@@ -981,7 +981,7 @@ namespace binfilter {
 /*N*/   , bSetResizable( FALSE )
 /*N*/   , bIsRootSet( FALSE )
 /*N*/   , pFrame( pD->Clone() )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SfxFrameSetDescriptor *pSet = pD->GetParent();
 //STRIP001  if ( pSet )
 //STRIP001  {

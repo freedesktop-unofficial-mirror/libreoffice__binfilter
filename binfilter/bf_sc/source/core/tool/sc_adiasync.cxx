@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_adiasync.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -133,7 +133,7 @@ static ScAddInAsync aSeekObj;
 /*N*/   if ( nHandle )
 /*N*/   {
 /*?*/       // im dTor wg. theAddInAsyncTbl.DeleteAndDestroy in ScGlobal::Clear
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pFuncData->Unadvice( (double)nHandle );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFuncData->Unadvice( (double)nHandle );
 //STRIP001 /*?*/        if ( eType == PTR_STRING && pStr )      // mit Typvergleich wg. Union!
 //STRIP001 /*?*/            delete pStr;
 //STRIP001 /*?*/        delete pDocs;

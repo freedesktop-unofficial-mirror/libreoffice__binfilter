@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editview.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:50 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -229,14 +229,14 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   ParaPortion* pPortion = PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() );
 /*N*/   if ( !pPortion->IsVisible() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
 //STRIP001 /*?*/        ContentNode* pNode = pPortion ? pPortion->GetNode() : PIMPEE->GetEditDoc().GetObject( 0 );
 //STRIP001 /*?*/        aNewSelection.Min() = EditPaM( pNode, pNode->Len() );
 /*N*/   }
 /*N*/   pPortion = PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() );
 /*N*/   if ( !pPortion->IsVisible() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
 //STRIP001 /*?*/        ContentNode* pNode = pPortion ? pPortion->GetNode() : PIMPEE->GetEditDoc().GetObject( 0 );
 //STRIP001 /*?*/        aNewSelection.Max() = EditPaM( pNode, pNode->Len() );
 /*N*/   }
@@ -315,7 +315,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 /*N*/ void EditView::SetVisArea( const Rectangle& rRec )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
 //STRIP001  pImpEditView->SetVisDocStartPos( rRec.TopLeft() );
 /*N*/ }
@@ -337,7 +337,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   // Rest nur hier, wenn API-Aufruf:
 /*N*/   pImpEditView->CalcAnchorPoint();
 /*N*/   if ( PIMPEE->GetStatus().AutoPageSize() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    pImpEditView->RecalcOutputArea();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pImpEditView->RecalcOutputArea();
 /*N*/   pImpEditView->ShowCursor( sal_False, sal_False );
 /*N*/ }
 
@@ -577,21 +577,21 @@ using namespace ::com::sun::star::linguistic2;
 #endif
 
 /*N*/ void EditView::Cut()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
 //STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->CutCopy( aClipBoard, sal_True );
 /*N*/ }
 
 /*N*/ void EditView::Copy()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
 //STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->CutCopy( aClipBoard, sal_False );
 /*N*/ }
 
 /*N*/ void EditView::Paste()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
 //STRIP001     Reference< ::com::sun::star::datatransfer::clipboard::XClipboard> aClipBoard(GetWindow()->GetClipboard());
 //STRIP001  pImpEditView->Paste( aClipBoard, sal_False );
@@ -787,7 +787,7 @@ using namespace ::com::sun::star::linguistic2;
 //STRIP001 }
 
 /*N*/ void EditView::SetStyleSheet( SfxStyleSheet* pStyle )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS( EditView, 0 );
 //STRIP001  DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
 //STRIP001

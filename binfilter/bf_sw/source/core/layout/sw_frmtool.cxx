@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -320,7 +320,7 @@ namespace binfilter {
 /*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/               pRootFrm->GetCurrShell() )
 /*N*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pFrm, aFrm );
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pFrm, aFrm );
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -947,7 +947,7 @@ namespace binfilter {
 /*?*/                           aAnch.SetPageNum( pPage->GetPhyPageNum() );
 /*?*/                           pFmt->SetAttr( aAnch );
 /*?*/                           if ( RES_DRAWFRMFMT != pFmt->Which() )
-/*?*/                           {DBG_ASSERT(0, "STRIP");} //STRIP001    pFmt->MakeFrms();
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFmt->MakeFrms();
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -1522,7 +1522,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/         {
 /*N*/ #ifndef PRODUCT
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/             DBG_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetLayoutCache()->CompareLayout( *pDoc );
+/*N*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetLayoutCache()->CompareLayout( *pDoc );
 /*N*/ #endif
 /*N*/ #endif
 /*N*/             pDoc->GetLayoutCache()->ClearImpl();
@@ -1694,7 +1694,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 // Wenn in einen SectionFrm ein anderer eingefuegt wird,
                 // muss dieser aufgebrochen werden
                 if( pSct && rSttIdx.GetNode().IsSectionNode() )
-                {DBG_ASSERT(0, "STRIP"); //STRIP001
+                {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001                  bSplit = pSct->SplitSect( pFrm, bApres );
 //STRIP001                  // Wenn pSct nicht aufgespalten werden konnte
 //STRIP001                  if( !bSplit && !bApres )

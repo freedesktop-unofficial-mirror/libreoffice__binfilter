@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_shellio.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -188,7 +188,7 @@ using namespace ::com::sun::star;
 /*N*/   if( 0 != (po->pMedium = pMedium ) &&
 /*?*/       1 ) //STRIP001 !po->SetStrmStgPtr() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
 //STRIP001 /*?*/        po->SetBlockMode( FALSE );
 //STRIP001 /*?*/        po->SetOrganizerMode( FALSE );
 //STRIP001 /*?*/         po->SetIgnoreHTMLComments( FALSE );
@@ -271,7 +271,7 @@ using namespace ::com::sun::star;
 /*N*/       if( bDocUndo || pCrsr )
 /*N*/       {
 /*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
 //STRIP001 /*?*/            pUndoPam = new SwPaM( rTmp, rTmp, 0, -1 );
 /*N*/       }
 /*N*/
@@ -363,7 +363,7 @@ using namespace ::com::sun::star;
 /*?*/                           if( FLY_PAGE == rAnchor.GetAnchorId() )
 /*?*/                           {
 /*?*/                               if( !rAnchor.GetCntntAnchor() )
-/*?*/                               {DBG_ASSERT(0, "STRIP");} //STRIP001    pFrmFmt->MakeFrms();
+/*?*/                               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrmFmt->MakeFrms();
 /*?*/                               else if( pCrsr )
 /*?*/                                   // seitengebundene Flys eingefuegt, dann schalte
 /*?*/                                   // die Optimierungs-Flags vom SwDoc ab. Sonst
@@ -371,7 +371,7 @@ using namespace ::com::sun::star;
 /*?*/                                   pDoc->SetLoaded( FALSE );
 /*?*/                           }
 /*?*/                           else
-/*?*/                           {DBG_ASSERT(0, "STRIP");} //STRIP001    pFrmFmt->MakeFrms();
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrmFmt->MakeFrms();
 /*?*/                       }
 /*?*/                   }
 /*?*/               }
@@ -381,14 +381,14 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/           pDoc->SetRedlineMode_intern( eOld );
 /*?*/           if( pDoc->IsRedlineOn() )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001    pDoc->AppendRedline( new SwRedline( REDLINE_INSERT, *pUndoPam ));
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pDoc->AppendRedline( new SwRedline( REDLINE_INSERT, *pUndoPam ));
 /*?*/           else
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001    pDoc->SplitRedline( *pUndoPam );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pDoc->SplitRedline( *pUndoPam );
 /*?*/           pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
 /*N*/       }
 /*N*/       if( bSaveUndo )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 pDoc->SetRedlineMode_intern( eOld );
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->SetRedlineMode_intern( eOld );
 //STRIP001 /*?*/            pUndo->SetInsertRange( *pUndoPam, FALSE );
 //STRIP001 /*?*/            pDoc->AppendUndo( pUndo );
 //STRIP001 /*?*/            pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
@@ -690,7 +690,7 @@ using namespace ::com::sun::star;
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pTemplate = new SwDoc;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTemplate = new SwDoc;
 //STRIP001 /*?*/                pTemplate->AddLink();
 //STRIP001 /*?*/
 //STRIP001 /*?*/                // sicher ist sicher
@@ -721,7 +721,7 @@ using namespace ::com::sun::star;
 /*N*/   if( pTemplate )
 /*N*/   {
 /*?*/       rDoc.RemoveAllFmtLanguageDependencies();
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 rDoc.ReplaceStyles( *pTemplate );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDoc.ReplaceStyles( *pTemplate );
 //STRIP001 /*?*/        rDoc.SetFixFields();
 //STRIP001 /*?*/        bRet = TRUE;
 /*N*/   }
@@ -1039,7 +1039,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/
 /*N*/   if ( pShell && !bWriteAll && pShell->IsTableMode() )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 bWriteAll = TRUE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bWriteAll = TRUE;
 //STRIP001 /*?*/        pDoc = new SwDoc;
 //STRIP001 /*?*/        pDoc->AddLink();
 //STRIP001 /*?*/         pRefForDocSh = new SvEmbeddedObjectRef();
@@ -1083,7 +1083,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/       {
 /*?*/           if( pShell )
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 pShell->Push();
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pShell->Push();
 //STRIP001 /*?*/                pShell->SttDoc();
 //STRIP001 /*?*/                pShell->SetMark();
 //STRIP001 /*?*/                pShell->EndDoc();
@@ -1140,7 +1140,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/
 /*N*/   ULONG nError = 0;
 /*N*/   if( pMedium )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    nError = rxWriter->Write( *pPam, *pMedium, pRealFileName );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nError = rxWriter->Write( *pPam, *pMedium, pRealFileName );
 /*N*/   else if( pStg )
 /*N*/       nError = rxWriter->Write( *pPam, *pStg, pRealFileName );
 /*N*/   else if( pStrm )
@@ -1157,7 +1157,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 /*N*/       if(!bHasMark)
 /*N*/       {
 /*?*/           if( pShell )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001    pShell->Pop( FALSE );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pShell->Pop( FALSE );
 /*?*/           else
 /*?*/               delete pPam;
 /*N*/       }
@@ -1189,7 +1189,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 
 /*N*/ BOOL SetHTMLTemplate( SwDoc & rDoc )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001  // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
 //STRIP001  if( !ReadHTML->GetTemplateDoc() )
 //STRIP001      ReadHTML->MakeHTMLDummyTemplateDoc();
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_poolfmt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:58 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -359,7 +359,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/   if( pDoc->IsHTMLMode() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  ::lcl_SetDfltFont( DEFAULTFONT_LATIN_TEXT, DEFAULTFONT_CJK_TEXT,
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ::lcl_SetDfltFont( DEFAULTFONT_LATIN_TEXT, DEFAULTFONT_CJK_TEXT,
 //STRIP001 /*?*/                            DEFAULTFONT_CTL_TEXT, rSet );
 /*N*/   }
 /*N*/

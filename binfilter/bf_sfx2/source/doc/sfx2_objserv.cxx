@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objserv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -239,7 +239,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //=========================================================================
 
 /*N*/ void SfxObjectShell::PrintExec_Impl(SfxRequest &rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SfxViewFrame *pFrame = SfxViewFrame::GetFirst(this);
 //STRIP001  if ( pFrame )
 //STRIP001  {
@@ -251,7 +251,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::PrintState_Impl(SfxItemSet &rSet)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  FASTBOOL bPrinting = FALSE;
 //STRIP001  SfxViewFrame *pFrame = SfxViewFrame::GetFirst(this, TYPE(SfxTopViewFrame));
 //STRIP001  if ( pFrame )
@@ -863,7 +863,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::ExecFile_Impl(SfxRequest &rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  {DBG_CHKTHIS(SfxObjectShell, 0);}
 //STRIP001
 //STRIP001  pImp->bSetStandardName=FALSE;
@@ -1737,7 +1737,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::ExecProps_Impl(SfxRequest &rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  switch ( rReq.GetSlot() )
 //STRIP001  {
 //STRIP001      case SID_MODIFIED:
@@ -1801,7 +1801,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::StateProps_Impl(SfxItemSet &rSet)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  SfxWhichIter aIter(rSet);
 //STRIP001  for ( USHORT nSID = aIter.FirstWhich(); nSID; nSID = aIter.NextWhich() )
 //STRIP001  {
@@ -1894,7 +1894,7 @@ svtools::AsynchronLink* pPendingCloser = 0;
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::ExecView_Impl(SfxRequest &rReq)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  switch ( rReq.GetSlot() )
 //STRIP001  {
 //STRIP001      case SID_ACTIVATE:

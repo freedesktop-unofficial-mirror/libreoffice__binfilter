@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_outlvw.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:24:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1037,14 +1037,14 @@ namespace binfilter {
 
 
 /*N*/ void OutlinerView::Cut()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  if ( !ImpCalcSelectedPages( FALSE ) || pOwner->ImpCanDeleteSelectedPages( this ) )
 //STRIP001      pEditView->Cut();
 /*N*/ }
 
 /*N*/ void OutlinerView::Paste()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  PasteSpecial(); // HACK(SD ruft nicht PasteSpecial auf)
 /*N*/ }
@@ -1090,7 +1090,7 @@ namespace binfilter {
 //STRIP001 }
 
 /*N*/ void OutlinerView::SetStyleSheet( SfxStyleSheet* pStyle )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  pEditView->SetStyleSheet( pStyle );
 //STRIP001
@@ -1348,7 +1348,7 @@ namespace binfilter {
 
 
 /*N*/ XubString OutlinerView::GetSelected() const
-/*N*/ {DBG_ASSERT(0, "STRIP"); return XubString(); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString(); //STRIP001
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  return pEditView->GetSelected();
 /*N*/ }
@@ -1472,7 +1472,7 @@ namespace binfilter {
 
 
 /*N*/ void OutlinerView::Copy()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_CHKTHIS(OutlinerView,0);
 //STRIP001  pEditView->Copy();
 /*N*/ }

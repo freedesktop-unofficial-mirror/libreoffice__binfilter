@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:06 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -542,7 +542,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/ }
 
 /*N*/ void ScDocShell::AfterXMLLoading(sal_Bool bRet)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
 //STRIP001  {
 //STRIP001      UpdateLinks();
@@ -743,7 +743,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*?*/       //  modifying the document must be asynchronous
 /*?*/       //  (handled by AddInitial)
 /*?*/
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 ScAutoStyleHint& rStlHint = (ScAutoStyleHint&)rHint;
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScAutoStyleHint& rStlHint = (ScAutoStyleHint&)rHint;
 //STRIP001 /*?*/        ScRange aRange = rStlHint.GetRange();
 //STRIP001 /*?*/        String aName1 = rStlHint.GetStyle1();
 //STRIP001 /*?*/        String aName2 = rStlHint.GetStyle2();
@@ -886,10 +886,10 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*?*/               DBG_ERROR("Calc3/4: kein Storage");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterXML))
-/*?*/       {   DBG_ASSERT(0, "STRIP"); }//STRIP001 bRet = LoadXML( &rMedium, NULL );
+/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 bRet = LoadXML( &rMedium, NULL );
 /*N*/       else if (aFltName.EqualsAscii(pFilterSc10))
 /*N*/       {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001      SvStream* pStream = rMedium.GetInStream();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       SvStream* pStream = rMedium.GetInStream();
 //STRIP001 /*?*/            if (pStream)
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                FltError eError = ScImportStarCalc10( *pStream, &aDocument );
@@ -904,7 +904,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterLotus))
 /*N*/       {
-DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStream = rMedium.GetInStream();
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pStream = rMedium.GetInStream();
 //STRIP001 /*N*/ //         if (pStream)
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                String sItStr;
@@ -947,7 +947,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/                  aFltName.EqualsAscii(pFilterEx4Temp) || aFltName.EqualsAscii(pFilterEx5Temp) ||
 /*N*/                  aFltName.EqualsAscii(pFilterEx95Temp) || aFltName.EqualsAscii(pFilterEx97Temp) )
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 EXCIMPFORMAT eFormat = EIF_AUTO;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EXCIMPFORMAT eFormat = EIF_AUTO;
 //STRIP001 /*?*/            if ( aFltName.EqualsAscii(pFilterExcel4) || aFltName.EqualsAscii(pFilterEx4Temp) )
 //STRIP001 /*?*/                eFormat = EIF_BIFF_LE4;
 //STRIP001 /*?*/            else if ( aFltName.EqualsAscii(pFilterExcel5) || aFltName.EqualsAscii(pFilterExcel95) ||
@@ -1047,7 +1047,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterDBase))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 String sItStr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sItStr;
 //STRIP001 /*?*/            SfxItemSet*  pSet = rMedium.GetItemSet();
 //STRIP001 /*?*/            const SfxPoolItem* pItem;
 //STRIP001 /*?*/            if ( pSet && SFX_ITEM_SET ==
@@ -1091,7 +1091,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*?*/           SvStream* pStream = rMedium.GetInStream();
 /*?*/           if (pStream)
 /*?*/           {
-/*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001 FltError eError;
+/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError;
 //STRIP001 /*?*/                String sItStr;
 //STRIP001 /*?*/                SfxItemSet*  pSet = rMedium.GetItemSet();
 //STRIP001 /*?*/                const SfxPoolItem* pItem;
@@ -1154,7 +1154,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterRtf))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
 //STRIP001 /*?*/            if( !rMedium.IsStorage() )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                SvStream* pInStream = rMedium.GetInStream();
@@ -1187,7 +1187,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterHtml) || aFltName.EqualsAscii(pFilterHtmlWebQ))
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
 //STRIP001 /*?*/            BOOL bWebQuery = aFltName.EqualsAscii(pFilterHtmlWebQ);
 //STRIP001 /*?*/            if( !rMedium.IsStorage() )
 //STRIP001 /*?*/            {
@@ -1272,7 +1272,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/ //            }
 /*N*/       }
 /*N*/       if ( bSetRowHeights )
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 UpdateAllRowHeights();       // with vdev or printer, depending on configuration
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 UpdateAllRowHeights();        // with vdev or printer, depending on configuration
 /*N*/   }
 /*N*/   FinishedLoading( SFX_LOADED_MAINDOCUMENT | SFX_LOADED_IMAGES );
 /*N*/
@@ -1313,7 +1313,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/   if (pCharts)
 /*N*/       pCharts->UpdateDirtyCharts();                   // Charts, die noch upgedated werden muessen
 /*N*/   if (pAutoStyleList)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();               // Vorlagen-Timeouts jetzt ausfuehren
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();                // Vorlagen-Timeouts jetzt ausfuehren
 /*N*/   if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
 /*N*/       SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
 /*N*/
@@ -1349,7 +1349,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/   if (pCharts)
 /*N*/       pCharts->UpdateDirtyCharts();                   // Charts, die noch upgedated werden muessen
 /*N*/   if (pAutoStyleList)
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();               // Vorlagen-Timeouts jetzt ausfuehren
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();                // Vorlagen-Timeouts jetzt ausfuehren
 /*N*/   if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
 /*N*/       SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
 /*N*/
@@ -2187,7 +2187,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/       bNoInformLost( TRUE ),
 /*N*/       __SCDOCSHELL_INIT
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
 //STRIP001 /*?*/
 //STRIP001 /*?*/    SetPool( &SC_MOD()->GetPool() );
 //STRIP001 /*?*/
@@ -2322,7 +2322,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/             aDocument.InvalidateLastTableOpParams();
 /*N*/           aDocument.Broadcast( SC_HINT_DATACHANGED, BCA_BRDCST_ALWAYS, NULL );
 /*N*/           if ( aDocument.IsForcedFormulaPending() && aDocument.GetAutoCalc() )
-/*?*/           {   DBG_ASSERT(0, "STRIP");} //STRIP001 aDocument.CalcFormulaTree( TRUE );
+/*?*/           {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aDocument.CalcFormulaTree( TRUE );
 /*N*/           PostDataChanged();
 /*N*/
 /*N*/           //  Detective AutoUpdate:
@@ -2414,7 +2414,7 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //          SvStream* pStrea
 /*N*/ {
 /*N*/   ScTabViewShell* pViewSh = ScTabViewShell::GetActiveViewShell();
 /*N*/   if ( pViewSh )
-/*?*/       {DBG_ASSERT(0, "STRIP"); return NULL; }//STRIP001 return pViewSh->GetDialogParent();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return NULL; }//STRIP001 return pViewSh->GetDialogParent();
 /*N*/   else
 /*N*/       return Application::GetDefDialogParent();
 /*N*/ }

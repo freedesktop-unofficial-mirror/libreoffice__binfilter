@@ -2,9 +2,9 @@
  *
  *  $RCSfile: porref.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:13 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,7 +85,7 @@ class SwIsoRefPortion : public SwRefPortion
 //STRIP001  KSHORT nViewWidth;
 //STRIP001
 public:
-    SwIsoRefPortion(){DBG_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001           SwIsoRefPortion();
+    SwIsoRefPortion(){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001            SwIsoRefPortion();
 //STRIP001  virtual sal_Bool Format( SwTxtFormatInfo &rInf );
 //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
 //STRIP001  virtual SwLinePortion *Compress();

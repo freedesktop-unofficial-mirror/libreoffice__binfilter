@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -752,7 +752,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 
 
 /*N*/ void SmDocShell::SetPrinter( SfxPrinter *pNew )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  delete pPrinter;
 //STRIP001  pPrinter = pNew;    //Eigentumsuebergang!
 //STRIP001  pPrinter->SetMapMode( MapMode(MAP_100TH_MM) );
@@ -987,7 +987,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       if( pStor->IsStream( aTmpStr ))
 /*N*/       {
 /*N*/           // is this a MathType Storage?
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            MathType aEquation(aText);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             MathType aEquation(aText);
 //STRIP001 /*?*/            if (bRet = (1 == aEquation.Parse(pStor)))
 //STRIP001 /*?*/                Parse();
 /*N*/       }
@@ -1009,7 +1009,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/           if( !bRet )
 /*N*/           {
 /*?*/               pStor->Remove(String::CreateFromAscii(pStarMathDoc));
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  bRet = Try2x(pStor, STREAM_READWRITE);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  bRet = Try2x(pStor, STREAM_READWRITE);
 /*?*/               pStor->Remove(C2S("\1Ole10Native"));
 /*N*/           }
 /*N*/           else
@@ -1348,7 +1348,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/
 /*?*/   case SID_AUTO_REDRAW :
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 SmModule *pp = SM_MOD1();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmModule *pp = SM_MOD1();
 //STRIP001 /*?*/            BOOL bRedraw = pp->GetConfig()->IsAutoRedraw();
 //STRIP001 /*?*/            pp->GetConfig()->SetAutoRedraw(!bRedraw);
 /*?*/       }
@@ -1356,7 +1356,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/
 /*?*/   case SID_SYMBOLS_CATALOGUE:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SmSymbolDialog(NULL, GetSymSetManager()).Execute();
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmSymbolDialog(NULL, GetSymSetManager()).Execute();
 //STRIP001 /*?*/            RestartFocusTimer();
 /*?*/       }
 /*?*/       break;
@@ -1365,7 +1365,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/       {
 /*?*/           SmViewShell *pView = SmGetActiveView();
 /*?*/           if (pView)
-/*?*/           {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                pView->GetViewFrame()->ToggleChildWindow(
 //STRIP001 /*?*/                        SmToolBoxWrapper::GetChildWindowId() );
 /*?*/           }
@@ -1374,7 +1374,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/
 /*?*/   case SID_INSERT_FORMULA:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SfxMedium *pMedium = SFX_APP()->
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SfxMedium *pMedium = SFX_APP()->
 //STRIP001 /*?*/                     InsertDocumentDialog( 0, SmDocShell::Factory() );
 //STRIP001 /*?*/
 //STRIP001 /*?*/            if (pMedium != NULL)
@@ -1398,16 +1398,16 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/       break;
 /*?*/
 /*?*/   case SID_LOADSYMBOLS:
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      LoadSymbols();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       LoadSymbols();
 /*?*/       break;
 /*?*/
 /*?*/   case SID_SAVESYMBOLS:
-/*?*/       {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/      SaveSymbols();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       SaveSymbols();
 /*?*/       break;
 /*?*/
 /*?*/   case SID_FONT:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SmFontTypeDialog *pFontTypeDialog = new SmFontTypeDialog(NULL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontTypeDialog *pFontTypeDialog = new SmFontTypeDialog(NULL);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            pFontTypeDialog->ReadFrom(GetFormat());
 //STRIP001 /*?*/            if (pFontTypeDialog->Execute() == RET_OK)
@@ -1435,7 +1435,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/
 /*?*/   case SID_FONTSIZE:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SmFontSizeDialog *pFontSizeDialog = new SmFontSizeDialog(NULL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmFontSizeDialog *pFontSizeDialog = new SmFontSizeDialog(NULL);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            pFontSizeDialog->ReadFrom(GetFormat());
 //STRIP001 /*?*/            if (pFontSizeDialog->Execute() == RET_OK)
@@ -1464,7 +1464,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/
 /*?*/   case SID_DISTANCE:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SmDistanceDialog *pDistanceDialog = new SmDistanceDialog(NULL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmDistanceDialog *pDistanceDialog = new SmDistanceDialog(NULL);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            pDistanceDialog->ReadFrom(GetFormat());
 //STRIP001 /*?*/            if (pDistanceDialog->Execute() == RET_OK)
@@ -1494,7 +1494,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/
 /*?*/   case SID_ALIGN:
 /*?*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            SmAlignDialog *pAlignDialog = new SmAlignDialog(NULL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SmAlignDialog *pAlignDialog = new SmAlignDialog(NULL);
 //STRIP001 /*?*/
 //STRIP001 /*?*/            pAlignDialog->ReadFrom(GetFormat());
 //STRIP001 /*?*/            if (pAlignDialog->Execute() == RET_OK)
@@ -1579,7 +1579,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/               case SOT_FORMATSTR_ID_STARMATH_50:
 /*?*/               case SOT_FORMATSTR_ID_STARMATH_40:
 /*?*/ //??          case SOT_FORMATSTR_ID_STARMATH:
-/*?*/                   {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  Insert( xStore );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   Insert( xStore );
 /*?*/                   break;
 /*?*/                 default:
 /*?*/                     DBG_ERROR( "unexpected format ID" );
@@ -1654,7 +1654,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*?*/               BOOL bState = FALSE;
 /*?*/               SmViewShell *pView = SmGetActiveView();
 /*?*/               if (pView)
-/*?*/               {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                    SfxChildWindow *pChildWnd = pView->GetViewFrame()->
 //STRIP001 /*?*/                            GetChildWindow( SmToolBoxWrapper::GetChildWindowId() );
 //STRIP001 /*?*/

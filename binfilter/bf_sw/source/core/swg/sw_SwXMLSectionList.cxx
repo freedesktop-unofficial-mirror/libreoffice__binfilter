@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXMLSectionList.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,7 +94,7 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 /*N*/ : SvXMLImport( xServiceFactory ),
 /*N*/   rSectionList ( rNewSectionList )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 GetNamespaceMap().Add( OUString ( RTL_CONSTASCII_USTRINGPARAM ( sXML_np__block_list ) ),
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetNamespaceMap().Add( OUString ( RTL_CONSTASCII_USTRINGPARAM ( sXML_np__block_list ) ),
 //STRIP001                         GetXMLToken ( XML_N_BLOCK_LIST),
 //STRIP001                         XML_NAMESPACE_BLOCKLIST );
 /*N*/ }

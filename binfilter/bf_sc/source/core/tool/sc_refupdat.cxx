@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_refupdat.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:36 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -372,7 +372,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if (eUpdateRefMode == URM_MOVE)
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if ((theCol1 >= nCol1-nDx) && (theRow1 >= nRow1-nDy) && (theTab1 >= nTab1-nDz) &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ((theCol1 >= nCol1-nDx) && (theRow1 >= nRow1-nDy) && (theTab1 >= nTab1-nDz) &&
 //STRIP001 /*?*/            (theCol2 <= nCol2-nDx) && (theRow2 <= nRow2-nDy) && (theTab2 <= nTab2-nDz))
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            if ( nDx )
@@ -402,7 +402,7 @@ namespace binfilter {
 /*N*/   else if (eUpdateRefMode == URM_REORDER)
 /*N*/   {
 /*?*/       //  bisher nur fuer nDz (MoveTab)
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT ( !nDx && !nDy, "URM_REORDER fuer x und y noch nicht implementiert" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT ( !nDx && !nDy, "URM_REORDER fuer x und y noch nicht implementiert" );
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if ( nDz && (theCol1 >= nCol1) && (theCol2 <= nCol2) &&
 //STRIP001 /*?*/                    (theRow1 >= nRow1) && (theRow2 <= nRow2) )

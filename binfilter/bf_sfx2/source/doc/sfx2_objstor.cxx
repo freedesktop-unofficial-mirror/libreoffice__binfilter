@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:48 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -422,7 +422,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 /*?*/ sal_Bool SfxObjectShell::DoLoad(
 /*?*/   const String& rFileName, StreamMode nStreamMode, StorageMode nStorageMode)
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    // Es wird nur die IPersistStorage-Schnittstelle angeboten
 //STRIP001 /*?*/    ModifyBlocker_Impl aBlock( this );
 //STRIP001 /*?*/    SvStorageRef xStor = new SvStorage( rFileName, nStreamMode | STREAM_WRITE, nStorageMode );
@@ -1033,7 +1033,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/             SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
 /*N*/
 /*N*/       if ( pVersionItem )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             // store a version also
 //STRIP001 /*?*/             const SfxStringItem *pAuthorItem = pSet ? (const SfxStringItem*)
 //STRIP001 /*?*/                 SfxRequest::GetItem( pSet, SID_DOCINFO_AUTHOR, sal_False, TYPE(SfxStringItem) ) : NULL;
@@ -1124,7 +1124,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //STRIP001 /*?*/            xVersion->Commit();
 /*N*/       }
 /*N*/       else if ( pImp->bIsSaving )
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/             // it's a "Save", not a "SaveAs"
 //STRIP001 /*?*/             // so all preliminary saved versions must be copied from the object storage to the the target storage
 //STRIP001 /*?*/            sal_Bool bUseXML = SOFFICE_FILEFORMAT_60 <= pFilter->GetVersion();
@@ -1227,7 +1227,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/             // before we overwrite the original file, we will make a backup if there is a demand for that
 /*N*/             const sal_Bool bDoBackup = SvtSaveOptions().IsBackup();
 /*N*/             if ( bDoBackup )
-/*N*/           {{DBG_ASSERT(0, "STRIP");}//STRIP001
+/*N*/           {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 //STRIP001 /*N*/                 pMedium->DoBackup_Impl();
 //STRIP001 /*N*/                bOk = ( pMedium->GetError() == ERRCODE_NONE );
 //STRIP001 /*N*/                if ( !bOk )
@@ -1264,7 +1264,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/               OUString aOrigName = pMedium ? OUString(pMedium->GetName()) : OUString();
 /*?*/               if ( aOrigName.getLength() && aOrigName.compareToAscii( "private:", 8 ) != COMPARE_EQUAL
 /*?*/                   && !::utl::UCBContentHelper::Exists( aOrigName ) )
-/*?*/               {DBG_ASSERT(0, "STRIP");//STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 //STRIP001 /*?*/                    if ( !IsHandsOff() )
 //STRIP001 /*?*/                        DoHandsOff();
 //STRIP001 /*?*/
@@ -1562,7 +1562,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/ }
 
 /*?*/ sal_Bool SfxObjectShell::ImportFrom( SfxMedium& rMedium )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/     ::rtl::OUString aTypeName( rMedium.GetFilter()->GetTypeName() );
 //STRIP001 /*?*/     ::rtl::OUString aFilterName( rMedium.GetFilter()->GetFilterName() );
 //STRIP001 /*?*/
@@ -1633,7 +1633,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/ }
 
 /*?*/ sal_Bool SfxObjectShell::ExportTo( SfxMedium& rMedium )
-/*?*/ { // #dochnoetig# DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/     ::rtl::OUString aTypeName( rMedium.GetFilter()->GetTypeName() );
 /*N*/     ::rtl::OUString aFilterName( rMedium.GetFilter()->GetFilterName() );
 /*N*/     ::com::sun::star::uno::Reference< ::com::sun::star::document::XExporter > xExporter;
@@ -1770,7 +1770,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //-------------------------------------------------------------------------
 
 /*?*/ void SfxObjectShell::SetEAs_Impl( SfxMedium &rMedium )
-/*?*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  //!! wenn OV eine entsprechende Funktionalitaet zur Verfuegung stellt,
 //STRIP001  // besser auf der geoeffneten Datei arbeiten
 //STRIP001 /*?*/    SvEaMgr *pMgr = rMedium.GetEaMgr();
@@ -1795,7 +1795,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //-------------------------------------------------------------------------
 
 /*?*/ sal_Bool SfxObjectShell::DoSave_Impl( const SfxItemSet* pArgs )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return sal_False; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
 //STRIP001 /*?*/    SfxMedium *pMedium = GetMedium();
 //STRIP001 /*?*/     const SfxFilter* pFilter = pMedium->GetFilter();
 //STRIP001 /*?*/
@@ -1884,7 +1884,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //-------------------------------------------------------------------------
 
 /*?*/ sal_Bool SfxObjectShell::Save_Impl( const SfxItemSet* pSet )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return sal_False;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;//STRIP001
 //STRIP001 /*?*/    DBG_CHKTHIS(SfxObjectShell, 0);
 //STRIP001 /*?*/    SfxApplication *pSfxApp = SFX_APP();
 //STRIP001 /*?*/
@@ -2124,7 +2124,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   }
 /*N*/
 /*N*/   if ( GetMedium()->GetFilter() && ( GetMedium()->GetFilter()->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        SfxMedium *pMed = bCopyTo ? pMedium : pNewFile;
 //STRIP001 /*?*/         pNewFile->SetError( GetMedium()->Unpack_Impl( pMed->GetPhysicalName() ) );
 /*N*/   }

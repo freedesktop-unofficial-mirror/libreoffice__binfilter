@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -237,7 +237,7 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 
 /*N*/ Locale CreateLocale( LanguageType eLanguage )
 /*N*/ {
-/*?*/           DBG_ASSERT(0, "STRIP"); Locale temp; return temp;//STRIP001     String aLangStr, aCtryStr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); Locale temp; return temp;//STRIP001  String aLangStr, aCtryStr;
 //STRIP001  if (LANGUAGE_NONE != eLanguage)
 //STRIP001      ConvertLanguageToIsoNames( eLanguage, aLangStr, aCtryStr );
 //STRIP001

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_blink.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:15 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -92,7 +92,7 @@ namespace binfilter {
 //STRIP001 SV_IMPL_OP_PTRARR_SORT( SwBlinkList, SwBlinkPortionPtr )
 
 /*N*/ SwBlink::SwBlink()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  bVisible = sal_True;
 //STRIP001  // Den Timer vorbereiten
 //STRIP001  aTimer.SetTimeout( BLINK_ON_TIME );

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_float3d.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:43:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -3641,7 +3641,7 @@ namespace binfilter {
 /*N*/                                                        SfxChildWinInfo* pInfo ) :
 /*N*/   SfxChildWindow( pParent, nId )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); //STRIP001  Svx3DWin* pWin = new Svx3DWin( pBindings, this, pParent );
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Svx3DWin* pWin = new Svx3DWin( pBindings, this, pParent );
 //STRIP001 /*?*/    pWindow = pWin;
 //STRIP001 /*?*/
 //STRIP001 /*?*/    eChildAlignment = SFX_ALIGN_NOALIGNMENT;

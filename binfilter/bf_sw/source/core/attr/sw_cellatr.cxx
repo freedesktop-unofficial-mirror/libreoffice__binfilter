@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:12 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -138,7 +138,7 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxFormula::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 //STRIP001 /*?*/    return GetFormula() == ((SwTblBoxFormula&)rAttr).GetFormula() &&
 //STRIP001 /*?*/            pDefinedIn == ((SwTblBoxFormula&)rAttr).pDefinedIn;
 /*N*/ }
@@ -146,7 +146,7 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwTblBoxFormula::Clone( SfxItemPool* ) const
 /*N*/ {
-/*?*/  DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001 // auf externe Darstellung umschalten!!
+/*?*/  DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 // auf externe Darstellung umschalten!!
 //STRIP001  SwTblBoxFormula* pNew = new SwTblBoxFormula( GetFormula() );
 //STRIP001  pNew->SwTableFormula::operator=( *this );
 //STRIP001  return pNew;
@@ -160,7 +160,7 @@ namespace binfilter {
     // !!! MUSS VON JEDER ABLEITUNG UEBERLADEN WERDEN !!!
 /*N*/ const SwNode* SwTblBoxFormula::GetNodeOfFormula() const
 /*N*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001    const SwNode* pRet = 0;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     const SwNode* pRet = 0;
 //STRIP001  if( pDefinedIn )
 //STRIP001  {
 //STRIP001      SwClient* pBox = SwClientIter( *pDefinedIn ).First( TYPE( SwTableBox ));

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: inftxt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:09 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -898,19 +898,19 @@ inline void SwTxtPaintInfo::DrawText( const XubString &rText,
                             const xub_StrLen nStart, const xub_StrLen nLen,
                             const sal_Bool bKern ) const
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001  ((SwTxtPaintInfo*)this)->_DrawText( rText, rPor, nStart, nLen, bKern );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTxtPaintInfo*)this)->_DrawText( rText, rPor, nStart, nLen, bKern );
 }
 
 inline void SwTxtPaintInfo::DrawText( const SwLinePortion &rPor,
         const xub_StrLen nLen, const sal_Bool bKern ) const
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern );
 }
 
 inline void SwTxtPaintInfo::DrawWrongText( const SwLinePortion &rPor,
                                 const xub_StrLen nLen, const sal_Bool bKern ) const
 {
-    DBG_ASSERT(0, "STRIP"); //STRIP001  ((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern, sal_True );
+    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern, sal_True );
 }
 
 /*************************************************************************

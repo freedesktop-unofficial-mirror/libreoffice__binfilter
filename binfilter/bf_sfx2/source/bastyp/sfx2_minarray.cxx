@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_minarray.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 10:01:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -232,7 +232,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*?*/ BOOL SfxPtrArr::Replace( void* aOldElem, void* aNewElem )
-/*?*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001  // einfache Aufgaben ...
 //STRIP001  if ( nUsed == 0 )
@@ -625,7 +625,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*N*/ USHORT WordArr::Remove( USHORT nPos, USHORT nLen )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001  // nLen adjustieren, damit nicht ueber das Ende hinaus geloescht wird
 //STRIP001  nLen = Min( (USHORT)(nUsed-nPos), nLen );
@@ -679,7 +679,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 /*N*/ BOOL WordArr::Remove( short aElem )
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  DBG_MEMTEST();
 //STRIP001  // einfache Aufgaben ...
 //STRIP001  if ( nUsed == 0 )

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_printfun.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:55 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -710,9 +710,9 @@ namespace binfilter {
 /*N*/       if ( bChangeCol && bChangeRow )
 /*?*/           bFound = pDoc->GetPrintArea( nPrintTab, nEndCol, nEndRow, bNotes );
 /*N*/       else if ( bChangeCol )
-/*?*/           {DBG_ASSERT(0, "STRIP");} //STRIP001 bFound = pDoc->GetPrintAreaHor( nPrintTab, nStartRow, nEndRow, nEndCol, bNotes );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 bFound = pDoc->GetPrintAreaHor( nPrintTab, nStartRow, nEndRow, nEndCol, bNotes );
 /*N*/       else if ( bChangeRow )
-/*?*/           {DBG_ASSERT(0, "STRIP");}//STRIP001 bFound = pDoc->GetPrintAreaVer( nPrintTab, nStartCol, nEndCol, nEndRow, bNotes );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 bFound = pDoc->GetPrintAreaVer( nPrintTab, nStartCol, nEndCol, nEndRow, bNotes );
 /*N*/
 /*N*/       if (!bFound)
 /*N*/           return FALSE;   // leer
@@ -2430,11 +2430,11 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*?*/               CalcZoom(i);
 /*?*/               if ( aTableParam.bSkipEmpty )
 /*?*/                   for (nY=0; nY<nPagesY; nY++)
-                            {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                      nPages += pPageRows[nY].CountVisible();
+                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       nPages += pPageRows[nY].CountVisible();
 /*?*/               else
 /*?*/                   nPages += ((long) nPagesX) * nPagesY;
 /*?*/               if ( pPageData )
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  FillPageData();
+                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   FillPageData();
 /*?*/           }
 /*N*/       }
 /*N*/       else
@@ -2442,11 +2442,11 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*N*/           CalcZoom(RANGENO_NORANGE);                      // Zoom berechnen
 /*N*/           if ( aTableParam.bSkipEmpty )
 /*?*/               for (nY=0; nY<nPagesY; nY++)
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  nPages += pPageRows[nY].CountVisible();
+                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   nPages += pPageRows[nY].CountVisible();
 /*N*/           else
 /*N*/               nPages += ((long) nPagesX) * nPagesY;
 /*N*/           if ( pPageData )
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              FillPageData();
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               FillPageData();
 /*N*/       }
 /*N*/       return nPages;
 /*N*/   }
@@ -2514,7 +2514,7 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*?*/   long nNoteNr = 0;
 /*?*/   long nNoteAdd;
 /*?*/   do
-/*?*/   {DBG_ASSERT(0, "STRIP"); nNoteAdd=0;//STRIP001
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); nNoteAdd=0;//STRIP001
 //STRIP001 /*?*/        nNoteAdd = PrintNotes( nPages, nNoteNr, FALSE, NULL );
 //STRIP001 /*?*/        if (nNoteAdd)
 //STRIP001 /*?*/        {
@@ -2590,7 +2590,7 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*N*/                               long nStartPage, long nDisplayStart, BOOL bDoPrint,
 /*N*/                               SfxProgress* pProgress, ScPreviewLocationData* pLocationData )
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); return 0; //STRIP001 DBG_ASSERT(pDev,"Device == NULL");
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 DBG_ASSERT(pDev,"Device == NULL");
 //STRIP001  if (!pParamSet)
 //STRIP001      return 0;
 //STRIP001
@@ -2926,7 +2926,7 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*N*/               pPageRows[nPagesY].SetEndRow( i-1 );
 /*N*/               pPageRows[nPagesY].SetPagesX( nPagesX );
 /*N*/               if (aTableParam.bSkipEmpty)
-                        {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/                  lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
+                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
 /*N*/               ++nPagesY;
 /*N*/           }
 /*N*/
@@ -2948,7 +2948,7 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 /*N*/           pPageRows[nPagesY].SetEndRow( nEndRow );
 /*N*/           pPageRows[nPagesY].SetPagesX( nPagesX );
 /*N*/           if (aTableParam.bSkipEmpty)
-                    {DBG_ASSERT(0, "STRIP");} //STRIP001 /*?*/              lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
+                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
 /*N*/           ++nPagesY;
 /*N*/       }
 /*N*/   }
@@ -2960,7 +2960,7 @@ BOOL ScPrintFunc::IsMirror( long nPageNo )          // Raender spiegeln ?
 
 /*N*/ ScJobSetup::ScJobSetup( SfxPrinter* pPrinter )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 eOrientation = pPrinter->GetOrientation();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 eOrientation = pPrinter->GetOrientation();
 //STRIP001 /*?*/    nPaperBin    = pPrinter->GetPaperBin();
 //STRIP001 /*?*/    ePaper       = pPrinter->GetPaper();
 //STRIP001 /*?*/

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_flowfrm.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -778,7 +778,7 @@ namespace binfilter {
 /*N*/ SwLayoutFrm *SwFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
 /*N*/ {
 /*N*/   if ( IsInFtn() )
-/*?*/   {   DBG_ASSERT(0, "STRIP");} //STRIP001 return bFwd ? GetNextFtnLeaf( eMakePage ) : GetPrevFtnLeaf( eMakePage );
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 return bFwd ? GetNextFtnLeaf( eMakePage ) : GetPrevFtnLeaf( eMakePage );
 /*N*/   if ( IsInSct() )
 /*N*/       return bFwd ? GetNextSctLeaf( eMakePage ) : GetPrevSctLeaf( eMakePage );
 /*N*/   return bFwd ? GetNextLeaf( eMakePage ) : GetPrevLeaf( eMakePage );
@@ -1370,7 +1370,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( rThis.GetAttrSet()->GetDoc()->IsParaSpaceMaxAtPages() &&
 /*N*/            1) //STRIP001 CastFlowFrm( pOwn )->HasParaSpaceAtPages( rThis.IsSctFrm() ) )
-/*?*/   {   DBG_ASSERT(0, "STRIP");} //STRIP001 nUpper = pAttrs->GetULSpace().GetUpper();
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nUpper = pAttrs->GetULSpace().GetUpper();
 /*N*/
 /*N*/   nUpper += pAttrs->GetTopLine( &rThis );
 /*N*/
@@ -1523,7 +1523,7 @@ namespace binfilter {
 /*N*/ //!!!!MoveFtnCntFwd muss ggf. mitgepflegt werden.
 /*N*/   SwFtnBossFrm *pOldBoss = rThis.FindFtnBossFrm();
 /*N*/   if ( rThis.IsInFtn() )
-/*?*/   {DBG_ASSERT(0, "STRIP");} //STRIP001    return ((SwCntntFrm&)rThis).MoveFtnCntFwd( bMakePage, pOldBoss );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     return ((SwCntntFrm&)rThis).MoveFtnCntFwd( bMakePage, pOldBoss );
 /*N*/
 /*N*/   if( !IsFwdMoveAllowed() && !bMoveAlways )
 /*N*/   {
@@ -1894,7 +1894,7 @@ namespace binfilter {
 /*?*/                   pNewUpper = (SwSectionFrm*)pTmp;
 /*?*/               else
 /*?*/               {
-/*?*/                     DBG_ASSERT(0, "STRIP"); //STRIP001 pSct = new SwSectionFrm( *pSct, TRUE );
+/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSct = new SwSectionFrm( *pSct, TRUE );
 //STRIP001 /*?*/                    pSct->Paste( pNewUpper );
 //STRIP001 /*?*/                     pSct->Init();
 //STRIP001 /*?*/                    pNewUpper = pSct;

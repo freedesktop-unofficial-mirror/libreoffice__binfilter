@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unocrsr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -230,12 +230,12 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 /*N*/   : SwTableCursor( rPos ), SwUnoCrsr( rPos ), SwCursor( rPos ),
 /*N*/   aTblSel( rPos )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 SetRemainInSection( FALSE );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRemainInSection( FALSE );
 /*N*/ }
 
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 while( aTblSel.GetNext() != &aTblSel )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 while( aTblSel.GetNext() != &aTblSel )
 //STRIP001 /*?*/        delete aTblSel.GetNext();           // und loeschen
 /*N*/ }
 
@@ -252,7 +252,7 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 
 /*N*/ FASTBOOL SwUnoTableCrsr::IsSelOvr( int eFlags )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = SwUnoCrsr::IsSelOvr( eFlags );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = SwUnoCrsr::IsSelOvr( eFlags );
 //STRIP001 /*?*/    if( !bRet )
 //STRIP001 /*?*/    {
 //STRIP001 /*?*/        const SwTableNode* pTNd = GetPoint()->nNode.GetNode().FindTableNode();
@@ -264,7 +264,7 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwCntntNode* pCNd;
 //STRIP001     bool bMakeTblCrsrs = true;
 //STRIP001  if( GetPoint()->nNode.GetIndex() && GetMark()->nNode.GetIndex() &&
@@ -300,7 +300,7 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 /*N*/ {
 /*N*/   SwUnoCrsr* pNew;
 /*N*/   if( bTblCrsr )
-/*?*/       {DBG_ASSERT(0, "STRIP"); }//STRIP001 pNew = new SwUnoTableCrsr( rPos );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pNew = new SwUnoTableCrsr( rPos );
 /*N*/   else
 /*N*/       pNew = new SwUnoCrsr( rPos );
 /*N*/

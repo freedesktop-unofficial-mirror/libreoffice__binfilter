@@ -2,9 +2,9 @@
  *
  *  $RCSfile: formatsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:44 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -93,27 +93,27 @@ public:
                 ScFormatShell(ScViewData* pData);
     virtual     ~ScFormatShell();
 
-    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteNumFormat( SfxRequest& rReq );
-    void        GetNumFormatState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void        GetNumFormatState( SfxItemSet& rSet );
+    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteNumFormat( SfxRequest& rReq );
+    void        GetNumFormatState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetNumFormatState( SfxItemSet& rSet );
 
-    void        ExecuteAttr( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteAttr( SfxRequest& rReq );
+    void        ExecuteAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteAttr( SfxRequest& rReq );
     void        GetAttrState( SfxItemSet& rSet );
 
-    void        ExecuteAlignment( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteAlignment( SfxRequest& rReq );
+    void        ExecuteAlignment( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteAlignment( SfxRequest& rReq );
 
-    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteTextAttr( SfxRequest& rReq );
+    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteTextAttr( SfxRequest& rReq );
     void        GetTextAttrState( SfxItemSet& rSet );
 
-    void        GetAlignState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void        GetAlignState( SfxItemSet& rSet );
-    void        GetBorderState( SfxItemSet& rSet ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        GetBorderState( SfxItemSet& rSet );
+    void        GetAlignState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetAlignState( SfxItemSet& rSet );
+    void        GetBorderState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void        GetBorderState( SfxItemSet& rSet );
 
-    void        ExecuteStyle( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteStyle( SfxRequest& rReq );
+    void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteStyle( SfxRequest& rReq );
     void        GetStyleState( SfxItemSet& rSet );
 
 //STRIP001  void        ExecBckCol( SfxRequest& rReq );
 //STRIP001  void        GetBckColState( SfxItemSet& rSet );
 
-    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteTextDirection( SfxRequest& rReq );
+    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteTextDirection( SfxRequest& rReq );
     void        GetTextDirectionState( SfxItemSet& rSet );
 };
 

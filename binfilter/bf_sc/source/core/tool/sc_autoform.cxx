@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_autoform.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -297,7 +297,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 
 /*N*/ void ScAutoFormatDataField::SetAdjust( const SvxAdjustItem& rAdjust )
 /*N*/ {
-/*?*/     DBG_ASSERT(0, "STRIP"); //STRIP001 aAdjust.SetAdjust( rAdjust.GetAdjust() );
+/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aAdjust.SetAdjust( rAdjust.GetAdjust() );
 //STRIP001     aAdjust.SetOneWord( rAdjust.GetOneWord() );
 //STRIP001     aAdjust.SetLastBlock( rAdjust.GetLastBlock() );
 /*N*/ }

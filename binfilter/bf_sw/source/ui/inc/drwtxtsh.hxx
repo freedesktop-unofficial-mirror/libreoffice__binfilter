@@ -2,9 +2,9 @@
  *
  *  $RCSfile: drwtxtsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 15:02:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,24 +99,24 @@ public:
                  SwDrawTextShell(SwView &rView);
 //STRIP001  virtual     ~SwDrawTextShell();
 
-    void        StateDisableItems(SfxItemSet &){DBG_ASSERT(0, "STRIP");}; //STRIP001 void       StateDisableItems(SfxItemSet &);
+    void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        StateDisableItems(SfxItemSet &);
 
-    void        Execute(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void        Execute(SfxRequest &);
-    void        ExecDraw(SfxRequest &){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        ExecDraw(SfxRequest &);
-    void        GetState(SfxItemSet &){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void        GetState(SfxItemSet &);
-    void        GetDrawTxtCtrlState(SfxItemSet&){DBG_ASSERT(0, "STRIP");} ;//STRIP001   void        GetDrawTxtCtrlState(SfxItemSet&);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        Execute(SfxRequest &);
+    void        ExecDraw(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDraw(SfxRequest &);
+    void        GetState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        GetState(SfxItemSet &);
+    void        GetDrawTxtCtrlState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void        GetDrawTxtCtrlState(SfxItemSet&);
 
-    void        ExecFontWork(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void        ExecFontWork(SfxRequest& rReq);
-    void        StateFontWork(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");} ;//STRIP001    void        StateFontWork(SfxItemSet& rSet);
-    void        ExecFormText(SfxRequest& rReq){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void        ExecFormText(SfxRequest& rReq);
-    void        GetFormTextState(SfxItemSet& rSet){DBG_ASSERT(0, "STRIP");} ;//STRIP001     void        GetFormTextState(SfxItemSet& rSet);
-    void        ExecDrawLingu(SfxRequest &rReq){DBG_ASSERT(0, "STRIP");} ;//STRIP001    void        ExecDrawLingu(SfxRequest &rReq);
-    void        ExecUndo(SfxRequest &rReq){DBG_ASSERT(0, "STRIP");}; //STRIP001 void        ExecUndo(SfxRequest &rReq);
-    void        StateUndo(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");}; //STRIP001 void       StateUndo(SfxItemSet &rSet);
-    void        ExecClpbrd(SfxRequest &rReq){DBG_ASSERT(0, "STRIP");}; //STRIP001 void      ExecClpbrd(SfxRequest &rReq);
-    void        StateClpbrd(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");}; //STRIP001 void     StateClpbrd(SfxItemSet &rSet);
-    void        StateInsert(SfxItemSet &rSet){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void        StateInsert(SfxItemSet &rSet);
-    void        ExecTransliteration(SfxRequest &){DBG_ASSERT(0, "STRIP");} ;//STRIP001  void        ExecTransliteration(SfxRequest &);
+    void        ExecFontWork(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        ExecFontWork(SfxRequest& rReq);
+    void        StateFontWork(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void        StateFontWork(SfxItemSet& rSet);
+    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        ExecFormText(SfxRequest& rReq);
+    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        GetFormTextState(SfxItemSet& rSet);
+    void        ExecDrawLingu(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void        ExecDrawLingu(SfxRequest &rReq);
+    void        ExecUndo(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecUndo(SfxRequest &rReq);
+    void        StateUndo(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        StateUndo(SfxItemSet &rSet);
+    void        ExecClpbrd(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void       ExecClpbrd(SfxRequest &rReq);
+    void        StateClpbrd(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      StateClpbrd(SfxItemSet &rSet);
+    void        StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        StateInsert(SfxItemSet &rSet);
+    void        ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        ExecTransliteration(SfxRequest &);
 
 //STRIP001  void        Init();
 //STRIP001  void        StateStatusline(SfxItemSet &rSet);

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: pormulti.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:13 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,14 +175,14 @@ public:
 //STRIP001  SwFldPortion* GetFldRest() { return pFldRest; }
 //STRIP001  void SetFldRest( SwFldPortion* pNew ) { pFldRest = pNew; }
 //STRIP001
-    inline sal_Bool HasTabulator() const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  inline sal_Bool HasTabulator() const { return bTab1 || bTab2; }
+    inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool HasTabulator() const { return bTab1 || bTab2; }
 //STRIP001  inline sal_Bool IsFormatted() const { return bFormatted; }
 //STRIP001  inline void SetFormatted() { bFormatted = sal_True; }
     inline sal_Bool IsFollowFld() const { return bFollowFld; }
 //STRIP001  inline void SetFollowFld() { bFollowFld = sal_True; }
     inline sal_Bool HasFlyInCntnt() const { return bFlyInCntnt; }
 //STRIP001  inline void SetFlyInCntnt( sal_Bool bNew ) { bFlyInCntnt = bNew; }
-    inline sal_Bool IsDouble() const{DBG_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  inline sal_Bool IsDouble() const { return bDouble; }
+    inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool IsDouble() const { return bDouble; }
 //STRIP001  inline sal_Bool IsRuby() const { return bRuby; }
 #ifdef BIDI
     inline sal_Bool IsBidi() const { return bBidi; }

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdoedge.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,7 +127,7 @@ namespace binfilter {
 /*N*/       if (bAutoVertex) {
 /*N*/           rGP=pObj->GetVertexGluePoint(nConId);
 /*N*/           bRet=TRUE;
-/*N*/       } else if (bAutoCorner) {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            rGP=pObj->GetCornerGluePoint(nConId);
 //STRIP001 /*?*/            bRet=TRUE;
 /*?*/       } else {
@@ -2413,7 +2413,7 @@ je Objekt variiert von 0-3:
 //STRIP001 }
 
 /*N*/ void SdrEdgeObj::NbcSetPoint(const Point& rPnt, USHORT i)
-/*N*/ {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   // ToDo: Umconnekten fehlt noch
 //STRIP001 /*?*/    ImpUndirtyEdgeTrack();
 //STRIP001 /*?*/    USHORT nAnz=pEdgeTrack->GetPointCount();

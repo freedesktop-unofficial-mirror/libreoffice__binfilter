@@ -2,9 +2,9 @@
  *
  *  $RCSfile: chartsh.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:29:36 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -86,7 +86,7 @@ public:
 //STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_CHART_SHELL);
 
-    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_ASSERT(0, "STRIP");}//STRIP001   ScChartShell(ScViewData* pData);
+    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}//STRIP001    ScChartShell(ScViewData* pData);
 //STRIP001  virtual     ~ScChartShell();
 
 };

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unomodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-10 14:08:59 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1550,7 +1550,7 @@ void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& r
 
             if( pOut )
             {
-                DBG_ASSERT(0, "STRIP"); //STRIP001 SdClientView*            pView = new SdClientView( pDocShell, pOut, NULL );
+                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdClientView*         pView = new SdClientView( pDocShell, pOut, NULL );
 //STRIP001                 Rectangle                aVisArea( pDocShell->GetVisArea( ASPECT_DOCPRINT ) );
 //STRIP001              Region                  aRegion( aVisArea );
 //STRIP001                 Point                    aOrigin;

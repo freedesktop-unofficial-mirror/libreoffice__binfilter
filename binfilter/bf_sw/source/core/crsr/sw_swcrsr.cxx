@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swcrsr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:35 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:49 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -326,7 +326,7 @@ struct _PercentHdl
 /*N*/           ((bSkipOverHiddenSections && pSectNd->GetSection().IsHiddenFlag() ) ||
 /*N*/            (bSkipOverProtectSections && pSectNd->GetSection().IsProtectFlag() )))
 /*N*/       {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001      if( 0 == ( SELOVER_CHANGEPOS & eFlags ) )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       if( 0 == ( SELOVER_CHANGEPOS & eFlags ) )
 //STRIP001 /*?*/            {
 //STRIP001 /*?*/                // dann wars das schon
 //STRIP001 /*?*/                RestoreSavePos();
@@ -379,7 +379,7 @@ struct _PercentHdl
         // oder sollte eine geschuetzte Section innerhalb der Selektion liegen?
 /*N*/       if( HasMark() && bSkipOverProtectSections)
 /*N*/       {
-/*?*/           DBG_ASSERT(0, "STRIP"); //STRIP001 ULONG nSttIdx = GetMark()->nNode.GetIndex(),
+/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ULONG nSttIdx = GetMark()->nNode.GetIndex(),
 //STRIP001 /*?*/                  nEndIdx = GetPoint()->nNode.GetIndex();
 //STRIP001 /*?*/            if( nEndIdx <= nSttIdx )
 //STRIP001 /*?*/            {
@@ -420,7 +420,7 @@ struct _PercentHdl
 /*N*/   const SwNode* pNd = &GetPoint()->nNode.GetNode();
 /*N*/   if( pNd->IsCntntNode() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 const SwCntntFrm* pFrm = ((SwCntntNode*)pNd)->GetFrm();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwCntntFrm* pFrm = ((SwCntntNode*)pNd)->GetFrm();
 //STRIP001 /*?*/        if( pFrm && pFrm->IsValid() && 0 == pFrm->Frm().Height() &&
 //STRIP001 /*?*/            0 != ( SELOVER_CHANGEPOS & eFlags ) )
 //STRIP001 /*?*/        {
@@ -460,7 +460,7 @@ struct _PercentHdl
     // darf der Cursor in geschuetzen "Nodes" stehen?
 /*N*/   if( 0 == ( SELOVER_CHANGEPOS & eFlags ) && !IsAtValidPos() )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
 //STRIP001 /*?*/        RestoreSavePos();
 //STRIP001 /*?*/        return TRUE;
 /*N*/   }
@@ -472,7 +472,7 @@ struct _PercentHdl
 /*N*/   //              GrundSections:
 /*N*/   if( !::binfilter::CheckNodesRange( GetMark()->nNode, GetPoint()->nNode, TRUE ))
 /*N*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 DeleteMark();
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DeleteMark();
 //STRIP001 /*?*/        RestoreSavePos();
 //STRIP001 /*?*/        return TRUE;        // ohne Frames geht gar nichts!
 /*N*/   }
@@ -482,7 +482,7 @@ struct _PercentHdl
 /*N*/   if( (pNd = &GetMark()->nNode.GetNode())->IsCntntNode() &&
 /*N*/       !((SwCntntNode*)pNd)->GetFrm() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
 //STRIP001 /*?*/        RestoreSavePos();
 //STRIP001 /*?*/        return TRUE;        // ohne Frames geht gar nichts!
 /*N*/   }
@@ -496,7 +496,7 @@ struct _PercentHdl
     // in unterschiedlichen Tabellen oder nur Mark in der Tabelle
 /*?*/   if( ( pPtNd && pMrkNd ) || pMrkNd )
 /*?*/   {                       // dann lasse das nicht zu, alte Pos zurueck
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  RestoreSavePos();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   RestoreSavePos();
 //STRIP001 /*?*/        // Crsr bleibt an der alten Position
 //STRIP001 /*?*/        return TRUE;
 /*?*/   }
@@ -504,7 +504,7 @@ struct _PercentHdl
     // ACHTUNG: dieses kann nicht im TableMode geschehen !!
 /*?*/   if( pPtNd )     // nur Point in Tabelle, dann gehe hinter/vor diese
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( SELOVER_CHANGEPOS & eFlags )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( SELOVER_CHANGEPOS & eFlags )
 //STRIP001 /*?*/        {
 //STRIP001 /*?*/            FASTBOOL bSelTop = GetPoint()->nNode.GetIndex() <
 //STRIP001 /*?*/                    (( SELOVER_TOGGLE & eFlags ) ? pSavePos->nNode
@@ -580,7 +580,7 @@ struct _PercentHdl
 
 /*?*/   if( !bMove )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 if( bChgCrsr )
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bChgCrsr )
 //STRIP001 /*?*/            // dann verbleibe auf der alten Position
 //STRIP001 /*?*/            RestoreSavePos();
 //STRIP001 /*?*/        return TRUE;        // Crsr bleibt an der alten Position
@@ -590,7 +590,7 @@ struct _PercentHdl
 /*?*/   // von Oben nach Unten Traveln ?
 /*?*/   if( pSavePos->nNode < GetPoint()->nNode.GetIndex() )
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 // suche die naechste "gueltige" Box
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // suche die naechste "gueltige" Box
 /*?*/
 //STRIP001 /*?*/        // folgt nach dem EndNode der Zelle ein weiterer StartNode, dann
 //STRIP001 /*?*/        // gibt es auch eine naechste Zelle
@@ -651,7 +651,7 @@ struct _PercentHdl
 /*?*/
 /*?*/   // suche die vorherige "gueltige" Box
 /*?*/   {
-/*?*/       DBG_ASSERT(0, "STRIP"); //STRIP001 // liegt vor dem StartNode der Zelle ein weiterer EndNode, dann
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt vor dem StartNode der Zelle ein weiterer EndNode, dann
 /*?*/       // gibt es auch eine vorherige Zelle
 //STRIP001 /*?*/ #if defined( UNX ) || defined( MAC )
 //STRIP001 /*?*/        SwNodeIndex* pCellStt = new SwNodeIndex(
@@ -715,7 +715,7 @@ struct _PercentHdl
 // TRUE: an die Position kann der Cursor gesetzt werden
 /*N*/ FASTBOOL SwCursor::IsAtValidPos( BOOL bPoint ) const
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc();
+DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetDoc();
 //STRIP001  const SwPosition* pPos = bPoint ? GetPoint() : GetMark();
 //STRIP001  const SwNode* pNd = &pPos->nNode.GetNode();
 //STRIP001
@@ -948,7 +948,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 /*M*/ ULONG SwCursor::FindAll( SwFindParas& rParas,
 /*M*/                           SwDocPositions nStart, SwDocPositions nEnde,
 /*M*/                             FindRanges eFndRngs, BOOL& bCancel )
-/*M*/ {DBG_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001 /*?*/     bCancel = FALSE;
 //STRIP001 /*?*/     SwCrsrSaveState aSaveState( *this );
 //STRIP001 /*?*/
@@ -1157,7 +1157,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::IsStartWord() const
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1172,7 +1172,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::IsEndWord() const
 /*N*/ {
-     FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+     FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1213,7 +1213,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::GoStartWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1237,7 +1237,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::GoEndWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1262,7 +1262,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::GoNextWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1286,7 +1286,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 
 /*N*/ FASTBOOL SwCursor::GoPrevWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1360,7 +1360,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 //-----------------------------------------------------------------------------
 /*N*/ FASTBOOL SwCursor::GoSentence( SentenceMoveType eMoveType )
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  const SwTxtNode* pTxtNd = GetNode()->GetTxtNode();
 //STRIP001  if( pTxtNd && pBreakIt->xBreak.is() )
 //STRIP001  {
@@ -1409,7 +1409,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 /*N*/     const BOOL bDoNotSetBidiLevel = 0 != (SwUnoCrsr*)*this;
 /*N*/
 /*N*/     if ( ! bDoNotSetBidiLevel )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         if( rNode.IsTxtNode() )
 //STRIP001 /*?*/         {
 //STRIP001 /*?*/             const SwTxtNode& rTNd = *rNode.GetTxtNode();
@@ -1459,7 +1459,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 /*N*/
 /*N*/     // here come some special rules for visual cursor travelling
 /*N*/     if ( pSttFrm )
-/*N*/     {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/         SwNode& rTmpNode = GetPoint()->nNode.GetNode();
 //STRIP001 /*?*/         if ( &rTmpNode != &rNode && rTmpNode.IsTxtNode() )
 //STRIP001 /*?*/         {
@@ -1485,7 +1485,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE; //STRIP001    const SwDoc* pDoc = GetDoc()
 /*N*/ FASTBOOL SwCursor::UpDown( BOOL bUp, USHORT nCnt,
 /*N*/                           Point* pPt, long nUpDownX )
 /*N*/ {
-DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 //STRIP001     sal_Bool bAdjustTableCrsr = sal_False;
 //STRIP001
 //STRIP001  // vom Tabellen Crsr Point/Mark in der gleichen Box ??
@@ -1637,7 +1637,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTab
 
 /*N*/ FASTBOOL SwCursor::IsAtLeftRightMargin( BOOL bLeft, BOOL bAPI ) const
 /*N*/ {
-/*N*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = FALSE;
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = FALSE;
 //STRIP001  Point aPt;
 //STRIP001  SwCntntFrm * pFrm = GetCntntNode()->GetFrm( &aPt, GetPoint() );
 //STRIP001  if( pFrm )
@@ -1732,7 +1732,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTab
 
 /*N*/ FASTBOOL SwCursor::GotoTblBox( const String& rName )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 //STRIP001  const SwTableNode* pTblNd = GetPoint()->nNode.GetNode().FindTableNode();
 //STRIP001  if( pTblNd )
 //STRIP001  {
@@ -1841,7 +1841,7 @@ DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTab
 
 /*N*/  SwCursor* SwTableCursor::MakeBoxSels( SwCursor* pAktCrsr )
 /*N*/  {
-DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  if( bChg )      // ???
+DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   if( bChg )      // ???
 //STRIP001  {
 //STRIP001      if( bParked )
 //STRIP001      {
@@ -1961,7 +1961,7 @@ DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  if( bChg )      // ???
 
 /*N*/ void SwTableCursor::InsertBox( const SwTableBox& rTblBox )
 /*N*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001 SwTableBox* pBox = (SwTableBox*)&rTblBox;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTableBox* pBox = (SwTableBox*)&rTblBox;
 //STRIP001  aSelBoxes.Insert( pBox );
 //STRIP001  bChg = TRUE;
 /*N*/ }

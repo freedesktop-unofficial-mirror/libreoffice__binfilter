@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findcoll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:48:27 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,7 +126,7 @@ namespace binfilter {
 /*M*/ ULONG SwCursor::Find( const SwTxtFmtColl& rFmtColl,
 /*M*/                     SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
 /*M*/                   FindRanges eFndRngs, const SwTxtFmtColl* pReplFmtColl )
-/*M*/ {DBG_ASSERT(0, "STRIP");return 0;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP");return 0;//STRIP001
 /*M*/   // OLE-Benachrichtigung abschalten !!
 //STRIP001 /*?*/    SwDoc* pDoc = GetDoc();
 //STRIP001 /*?*/    Link aLnk( pDoc->GetOle2Link() );

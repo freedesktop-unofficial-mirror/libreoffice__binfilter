@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_calc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-04 14:32:28 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -671,7 +671,7 @@ static int
 /*N*/       String sTableName(sDBName.GetToken(0).GetToken(1, DB_DELIM));
 /*N*/       if( pMgr && sSourceName.Len() && sTableName.Len() &&
 /*N*/           pMgr->OpenDataSource(sSourceName, sTableName))
-/*N*/       {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/            String sColumnName( GetColumnName( sTmpName ));
 //STRIP001 /*?*/            ASSERT (sColumnName.Len(), "DB-Spaltenname fehlt!");
 //STRIP001 /*?*/
@@ -1088,7 +1088,7 @@ static int
 /*M*/       case '0':   case '1':   case '2':   case '3':   case '4':
 /*M*/       case '5':   case '6':   case '7':   case '8':   case '9':
 /*M*/       case ',':
-/*M*/       case '.':   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/                        double nVal;
 //STRIP001 /*?*/                        --nCommandPos;      //  auf das 1. Zeichen zurueck
 //STRIP001 /*?*/                        if( Str2Double( sCommand, nCommandPos, nVal, pLclData ))

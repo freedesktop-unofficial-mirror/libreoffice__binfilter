@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_algitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:03 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -292,7 +292,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxHorJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return 0;//STRIP001 return SVX_HOR_JUSTIFY_REPEAT + 1;  // letzter Enum-Wert + 1
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 return SVX_HOR_JUSTIFY_REPEAT + 1;   // letzter Enum-Wert + 1
 /*?*/ }
 
 // class SvxVerJustifyItem -----------------------------------------------
@@ -394,7 +394,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxVerJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_VER_JUSTIFY_BOTTOM + 1;  // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_VER_JUSTIFY_BOTTOM + 1;  // letzter Enum-Wert + 1
 /*?*/ }
 
 // class SvxOrientationItem ----------------------------------------------
@@ -494,7 +494,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxOrientationItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_ASSERT(0, "STRIP"); return 0;//STRIP001   return SVX_ORIENTATION_STACKED + 1; // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ORIENTATION_STACKED + 1; // letzter Enum-Wert + 1
 /*?*/ }
 
 // class SvxMarginItem ---------------------------------------------------

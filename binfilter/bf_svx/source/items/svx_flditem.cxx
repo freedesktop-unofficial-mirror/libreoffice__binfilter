@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: cl $ $Date: 2004-04-02 07:48:39 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,12 +143,12 @@ namespace binfilter {
 
 /*?*/ MetaAction* SvxFieldData::createBeginComment() const
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return NULL;//STRIP001  return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
 /*?*/ }
 
 /*?*/ MetaAction* SvxFieldData::createEndComment() const
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP");return NULL;//STRIP001   return new MetaCommentAction( "FIELD_SEQ_END" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new MetaCommentAction( "FIELD_SEQ_END" );
 /*?*/ }
 
 // -----------------------------------------------------------------------

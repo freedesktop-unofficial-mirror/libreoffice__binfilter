@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dview.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:25 $
+ *  last change: $Author: rt $ $Date: 2004-05-05 16:40:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -202,7 +202,7 @@ public:
 /*?*/
 /*?*/   if(FLY_IN_CNTNT == rAnchor.GetAnchorId())
 /*?*/       return;
-/*?*/ DBG_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/    const SwFrm* pAnch;
 //STRIP001 /*?*/    if(0 == (pAnch = CalcAnchor()))
 //STRIP001 /*?*/        return;
@@ -689,7 +689,7 @@ public:
 /*N*/   sal_Bool bColorWasSaved(sal_False);
 /*N*/
 /*N*/   if(pView)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        aBackColor = pView->GetBackgroundColor();
 //STRIP001 /*?*/        bColorWasSaved = sal_True;
 /*N*/   }
@@ -698,7 +698,7 @@ public:
 /*N*/   FmFormView::ModelHasChanged();
 /*N*/
 /*N*/   if(bColorWasSaved)
-/*N*/   {DBG_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001 /*?*/        pView = GetTextEditOutlinerView();
 //STRIP001 /*?*/
 //STRIP001 /*?*/        if(pView)
