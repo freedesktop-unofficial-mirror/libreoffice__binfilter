@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_callform.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:13:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,28 +60,28 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SV_SVAPP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _VOS_MODULE_HXX_
 #include <vos/module.hxx>
 #endif
-#ifndef _OSL_FILE_HXX_
-#include <osl/file.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _OSL_FILE_HXX_
+// auto strip #include <osl/file.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#include "callform.hxx"
-#include "global.hxx"
+// auto strip #include "callform.hxx"
+// auto strip #include "global.hxx"
 #include "adiasync.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_cellform.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:13:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,12 +68,12 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <bf_sfx2/objsh.hxx>
-#include <svtools/smplhint.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 #include <svtools/zforlist.hxx>
 
 #include "cellform.hxx"
 #include "cell.hxx"
-#include "compiler.hxx"
+// auto strip #include "compiler.hxx"
 #include "document.hxx"
 #include "bf_sc.hrc"
 namespace binfilter {
