@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyle.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:34:08 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:49:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -234,10 +234,11 @@ void ScXMLCellExportPropertyMapper::ContextFilter(
     XMLPropertyState* pTopBorderWidthState = NULL;
     XMLPropertyState* pBottomBorderWidthState = NULL;
 
-    for( ::std::vector< XMLPropertyState >::iterator propertie = rProperties.begin();
-         propertie != rProperties.end();
-         propertie++ )
+    for( ::std::vector< XMLPropertyState >::iterator aIter = rProperties.begin();
+         aIter != rProperties.end();
+         ++aIter )
     {
+        XMLPropertyState *propertie = &(*aIter);
         switch( getPropertySetMapper()->GetEntryContextId( propertie->mnIndex ) )
         {
             case CTF_SC_ALLPADDING:         pPadding = propertie; break;
