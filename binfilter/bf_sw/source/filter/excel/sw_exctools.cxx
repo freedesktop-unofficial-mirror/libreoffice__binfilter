@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_exctools.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:24 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:42:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -200,8 +200,8 @@ void SpString::MakeScName()
         if( ( cAkt < 'a' || cAkt > 'z' ) &&
             ( cAkt < 'A' || cAkt > 'Z' ) &&
             ( cAkt < '0' || cAkt > '9' ) &&
-            cAkt != 'ä' && cAkt != 'Ä' && cAkt != 'ö' && cAkt != 'Ö' &&
-            cAkt != 'ü' && cAkt != 'Ü' && cAkt != 'ß' )
+            cAkt != '\xE4' && cAkt != '\xC4' && cAkt != '\xF6' && cAkt != '\xD6' &&
+            cAkt != '\xFC' && cAkt != '\xDC' && cAkt != '\xDF' )
             {
             *pAkt = '_';
             }
