@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_FormattedField.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:49:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,6 +59,22 @@
  *
  ************************************************************************/
 
+#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+#include <comphelper/proparrhlp.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
+#include <com/sun/star/util/XNumberFormatsSupplier.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
+#include <com/sun/star/awt/XKeyListener.hpp>
+#endif
+
+#ifndef _LINK_HXX
+#include <tools/link.hxx>
+#endif
+
 #ifndef _FORMS_FORMATTEDFIELD_HXX_
 #include "FormattedField.hxx"
 #endif
@@ -68,25 +84,25 @@
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
-#ifndef _FRM_PROPERTY_HXX_
-#include "property.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
-#include "frm_resource.hxx"
-#endif
+// auto strip #ifndef _FRM_PROPERTY_HXX_
+// auto strip #include "property.hxx"
+// auto strip #endif
+// auto strip #ifndef _FRM_RESOURCE_HXX_
+// auto strip #include "frm_resource.hxx"
+// auto strip #endif
 #ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
 #endif
 
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-#ifndef _COMPHELPER_DATETIME_HXX_
-#include <comphelper/datetime.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
+// auto strip #include <comphelper/datetime.hxx>
+// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
@@ -104,12 +120,12 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WINTYPES_HXX
+// auto strip #include <vcl/wintypes.hxx>
+// auto strip #endif
 #ifndef _ISOLANG_HXX
 #include <tools/isolang.hxx>
 #endif
@@ -117,15 +133,15 @@
 #include <rtl/textenc.h>
 #endif
 
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_MOUSEEVENT_HPP_
-#include <com/sun/star/awt/MouseEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_MOUSEEVENT_HPP_
+// auto strip #include <com/sun/star/awt/MouseEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XSUBMIT_HPP_
 #include <com/sun/star/form/XSubmit.hpp>
 #endif
@@ -157,6 +173,15 @@
 #ifndef _COMPHELPER_STREAMSECTION_HXX_
 #include <comphelper/streamsection.hxx>
 #endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#endif
+
 namespace binfilter {
 
 using namespace dbtools;
