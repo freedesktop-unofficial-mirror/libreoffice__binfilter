@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_initui.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:58:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:33:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,24 +62,24 @@
 
 #pragma hdrstop
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
-#ifndef _INITUI_HXX
-#include <initui.hxx>
-#endif
+// auto strip #ifndef _INITUI_HXX
+// auto strip #include <initui.hxx>
+// auto strip #endif
 #ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _GLOSDOC_HXX
 #include <glosdoc.hxx>
 #endif
@@ -101,6 +101,9 @@
 #endif
 #ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
+#endif
+#ifndef _SWTYPES_HXX
+#include "swtypes.hxx"
 #endif
 namespace binfilter {
 
