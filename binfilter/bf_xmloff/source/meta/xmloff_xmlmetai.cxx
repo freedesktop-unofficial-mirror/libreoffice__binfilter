@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlmetai.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:35:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:02:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,18 +64,18 @@
 #include <tools/time.hxx>
 
 #include <com/sun/star/util/DateTime.hpp>
-#include <com/sun/star/lang/Locale.hpp>
+// auto strip #include <com/sun/star/lang/Locale.hpp>
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
 
 #include "xmlmetai.hxx"
-#include "xmltkmap.hxx"
+// auto strip #include "xmltkmap.hxx"
 #include "xmlnmspe.hxx"
 #include "xmlimp.hxx"
 #include "nmspmap.hxx"
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

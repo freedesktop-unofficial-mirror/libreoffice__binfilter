@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlmetae.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:35:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:01:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,21 +59,21 @@
  *
  ************************************************************************/
 
-#include <tools/debug.hxx>
+// auto strip #include <tools/debug.hxx>
 #include <tools/inetdef.hxx>
-#include <tools/isolang.hxx>
+// auto strip #include <tools/isolang.hxx>
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif
 #include <unotools/configmgr.hxx>
 
 #include "xmlmetae.hxx"
-#include "attrlist.hxx"
-#include "nmspmap.hxx"
+// auto strip #include "attrlist.hxx"
+// auto strip #include "nmspmap.hxx"
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
 #ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
