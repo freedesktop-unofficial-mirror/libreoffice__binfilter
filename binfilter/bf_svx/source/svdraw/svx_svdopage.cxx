@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdopage.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:27:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,20 +60,20 @@
  ************************************************************************/
 
 #include "svdopage.hxx"
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
-#include "svdtrans.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdtrans.hxx"
+// auto strip #include "svdetc.hxx"
 #include "svdio.hxx"
-#include "svdxout.hxx"
+// auto strip #include "svdxout.hxx"
 #include "svdmodel.hxx"
 #include "svdpage.hxx"
-#include "svdpagv.hxx"
-#include "svdoutl.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdoutl.hxx"
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
