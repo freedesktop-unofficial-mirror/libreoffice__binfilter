@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:30:10 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:43:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1428,7 +1428,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   }
 /*N*/   FinishedLoading( SFX_LOADED_MAINDOCUMENT |
 /*N*/                   ( bSttTimer ? 0 : SFX_LOADED_IMAGES ));
-    // jetzt noch testen, ob die SourceView noch geladen werden muá
+    // jetzt noch testen, ob die SourceView noch geladen werden muss
 /*N*/   SfxViewFrame* pVFrame = SfxViewFrame::GetFirst(this);
 /*N*/   if(pVFrame)
 /*N*/   {
