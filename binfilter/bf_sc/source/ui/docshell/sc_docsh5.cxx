@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh5.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:47:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -175,43 +175,43 @@
 
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 
-#include "scitems.hxx"
-#include <vcl/svapp.hxx>
+// auto strip #include "scitems.hxx"
+// auto strip #include <vcl/svapp.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
-#include <bf_sfx2/app.hxx>
+// auto strip #include <bf_sfx2/app.hxx>
 #include <bf_sfx2/bindings.hxx>
-#include <svtools/smplhint.hxx>
+// auto strip #include <svtools/smplhint.hxx>
 
-#include <com/sun/star/sdbc/XResultSet.hpp>
+// auto strip #include <com/sun/star/sdbc/XResultSet.hpp>
 
 // INCLUDE ---------------------------------------------------------------
 
 #include "docsh.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "globstr.hrc"
 #include "undodat.hxx"
-#include "undotab.hxx"
-#include "undoblk.hxx"
+// auto strip #include "undotab.hxx"
+// auto strip #include "undoblk.hxx"
 //#include "pivot.hxx"
-#include "dpobject.hxx"
-#include "dpshttab.hxx"
-#include "dbdocfun.hxx"
+// auto strip #include "dpobject.hxx"
+// auto strip #include "dpshttab.hxx"
+// auto strip #include "dbdocfun.hxx"
 #include "consoli.hxx"
 #include "dbcolect.hxx"
-#include "olinetab.hxx"
-#include "patattr.hxx"
-#include "attrib.hxx"
-#include "docpool.hxx"
-#include "uiitems.hxx"
+// auto strip #include "olinetab.hxx"
+// auto strip #include "patattr.hxx"
+// auto strip #include "attrib.hxx"
+// auto strip #include "docpool.hxx"
+// auto strip #include "uiitems.hxx"
 #include "bf_sc.hrc"
-#include "waitoff.hxx"
+// auto strip #include "waitoff.hxx"
 #include "sizedev.hxx"
 namespace binfilter {
 
