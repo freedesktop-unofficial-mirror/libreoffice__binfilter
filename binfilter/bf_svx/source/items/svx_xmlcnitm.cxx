@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xmlcnitm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:33:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,90 +142,90 @@ using namespace ::com::sun::star::xml;
 /*N*/   return TRUE;
 /*N*/ }
 /*N*/ BOOL SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  Reference<XInterface> xRef;
-//STRIP001  SvUnoAttributeContainer* pContainer = NULL;
-//STRIP001
-//STRIP001  if( rVal.getValue() != NULL && rVal.getValueType().getTypeClass() == TypeClass_INTERFACE )
-//STRIP001  {
-//STRIP001      xRef = *(Reference<XInterface>*)rVal.getValue();
-//STRIP001      Reference<XUnoTunnel> xTunnel(xRef, UNO_QUERY);
-//STRIP001      if( xTunnel.is() )
-//STRIP001          pContainer = (SvUnoAttributeContainer*)xTunnel->getSomething(SvUnoAttributeContainer::getUnoTunnelId());
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pContainer )
-//STRIP001  {
-//STRIP001      delete pImpl;
-//STRIP001      pImpl = new SvXMLAttrContainerData( * pContainer->GetContainerImpl() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SvXMLAttrContainerData* pNewImpl = new SvXMLAttrContainerData;
-//STRIP001
-//STRIP001      try
-//STRIP001      {
-//STRIP001          Reference<XNameContainer> xContainer( xRef, UNO_QUERY );
-//STRIP001          if( !xContainer.is() )
-//STRIP001              return FALSE;
-//STRIP001
-//STRIP001          const Sequence< OUString > aNameSequence( xContainer->getElementNames() );
-//STRIP001          const OUString* pNames = aNameSequence.getConstArray();
-//STRIP001          const INT32 nCount = aNameSequence.getLength();
-//STRIP001          Any aAny;
-//STRIP001          AttributeData* pData;
-//STRIP001
-//STRIP001          for( INT32 nAttr = 0; nAttr < nCount; nAttr++ )
-//STRIP001          {
-//STRIP001              const OUString aName( *pNames++ );
-//STRIP001
-//STRIP001              aAny = xContainer->getByName( aName );
-//STRIP001              if( aAny.getValue() == NULL || aAny.getValueType() != ::getCppuType((AttributeData*)0) )
-//STRIP001                  return FALSE;
-//STRIP001
-//STRIP001              pData = (AttributeData*)aAny.getValue();
-//STRIP001              USHORT pos = aName.indexOf( sal_Unicode(':') );
-//STRIP001              if( pos != -1 )
-//STRIP001              {
-//STRIP001                  const OUString aPrefix( aName.copy( 0, pos ));
-//STRIP001                  const OUString aLName( aName.copy( pos+1 ));
-//STRIP001
-//STRIP001                  if( pData->Namespace.getLength() == 0 )
-//STRIP001                  {
-//STRIP001                      if( !pNewImpl->AddAttr( aPrefix, aLName, pData->Value ) )
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      if( !pNewImpl->AddAttr( aPrefix, pData->Namespace, aLName, pData->Value ) )
-//STRIP001                          break;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  if( !pNewImpl->AddAttr( aName, pData->Value ) )
-//STRIP001                      break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if( nAttr == nCount )
-//STRIP001          {
-//STRIP001              delete pImpl;
-//STRIP001              pImpl = pNewImpl;
-//STRIP001              return FALSE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              delete pNewImpl;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      catch(...)
-//STRIP001      {
-//STRIP001          delete pNewImpl;
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return TRUE;
+/*NBFF*/{
+/*NBFF*/    Reference<XInterface> xRef;
+/*NBFF*/    SvUnoAttributeContainer* pContainer = NULL;
+/*NBFF*/
+/*NBFF*/    if( rVal.getValue() != NULL && rVal.getValueType().getTypeClass() == TypeClass_INTERFACE )
+/*NBFF*/    {
+/*NBFF*/        xRef = *(Reference<XInterface>*)rVal.getValue();
+/*NBFF*/        Reference<XUnoTunnel> xTunnel(xRef, UNO_QUERY);
+/*NBFF*/        if( xTunnel.is() )
+/*NBFF*/            pContainer = (SvUnoAttributeContainer*)xTunnel->getSomething(SvUnoAttributeContainer::getUnoTunnelId());
+/*NBFF*/    }
+/*NBFF*/
+/*NBFF*/    if( pContainer )
+/*NBFF*/    {
+/*NBFF*/        delete pImpl;
+/*NBFF*/        pImpl = new SvXMLAttrContainerData( * pContainer->GetContainerImpl() );
+/*NBFF*/    }
+/*NBFF*/    else
+/*NBFF*/    {
+/*NBFF*/        SvXMLAttrContainerData* pNewImpl = new SvXMLAttrContainerData;
+/*NBFF*/
+/*NBFF*/        try
+/*NBFF*/        {
+/*NBFF*/            Reference<XNameContainer> xContainer( xRef, UNO_QUERY );
+/*NBFF*/            if( !xContainer.is() )
+/*NBFF*/                return FALSE;
+/*NBFF*/
+/*NBFF*/            const Sequence< OUString > aNameSequence( xContainer->getElementNames() );
+/*NBFF*/            const OUString* pNames = aNameSequence.getConstArray();
+/*NBFF*/            const INT32 nCount = aNameSequence.getLength();
+/*NBFF*/            Any aAny;
+/*NBFF*/            AttributeData* pData;
+/*NBFF*/
+/*NBFF*/            INT32 nAttr; for( nAttr = 0; nAttr < nCount; nAttr++ )
+/*NBFF*/            {
+/*NBFF*/                const OUString aName( *pNames++ );
+/*NBFF*/
+/*NBFF*/                aAny = xContainer->getByName( aName );
+/*NBFF*/                if( aAny.getValue() == NULL || aAny.getValueType() != ::getCppuType((AttributeData*)0) )
+/*NBFF*/                    return FALSE;
+/*NBFF*/
+/*NBFF*/                pData = (AttributeData*)aAny.getValue();
+/*NBFF*/                USHORT pos = aName.indexOf( sal_Unicode(':') );
+/*NBFF*/                if( pos != -1 )
+/*NBFF*/                {
+/*NBFF*/                    const OUString aPrefix( aName.copy( 0, pos ));
+/*NBFF*/                    const OUString aLName( aName.copy( pos+1 ));
+/*NBFF*/
+/*NBFF*/                    if( pData->Namespace.getLength() == 0 )
+/*NBFF*/                    {
+/*NBFF*/                        if( !pNewImpl->AddAttr( aPrefix, aLName, pData->Value ) )
+/*NBFF*/                            break;
+/*NBFF*/                    }
+/*NBFF*/                    else
+/*NBFF*/                    {
+/*NBFF*/                        if( !pNewImpl->AddAttr( aPrefix, pData->Namespace, aLName, pData->Value ) )
+/*NBFF*/                            break;
+/*NBFF*/                    }
+/*NBFF*/                }
+/*NBFF*/                else
+/*NBFF*/                {
+/*NBFF*/                    if( !pNewImpl->AddAttr( aName, pData->Value ) )
+/*NBFF*/                        break;
+/*NBFF*/                }
+/*NBFF*/            }
+/*NBFF*/
+/*NBFF*/            if( nAttr == nCount )
+/*NBFF*/            {
+/*NBFF*/                delete pImpl;
+/*NBFF*/                pImpl = pNewImpl;
+/*NBFF*/                return FALSE;
+/*NBFF*/            }
+/*NBFF*/            else
+/*NBFF*/            {
+/*NBFF*/                delete pNewImpl;
+/*NBFF*/            }
+/*NBFF*/        }
+/*NBFF*/        catch(...)
+/*NBFF*/        {
+/*NBFF*/            delete pNewImpl;
+/*NBFF*/            return FALSE;
+/*NBFF*/        }
+/*NBFF*/    }
+/*NBFF*/    return TRUE;
 /*N*/ }
 
 
