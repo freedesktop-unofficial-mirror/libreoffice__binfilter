@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw6par.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:50:06 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:42:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -536,7 +536,7 @@ static const sal_Char* aFontNames[ SW6_MATCH_FONTNAMES_CNT ] = {
         /* 283 */ "Zapf Calligraphic",
         /* 284 */ "ITC Zapf Chancery",
         /* 285 */ "Sans Serif LQ",
-        /* 286 */ "Orator gro·",
+        /* 286 */ "Orator gro\xE1",
         /* 287 */ "Orator klein",
         /* 288 */ "Courier LQ",
         /* 289 */ "Sans Serif NLQ PS",
@@ -675,8 +675,8 @@ static const sal_Char* aFontNames[ SW6_MATCH_FONTNAMES_CNT ] = {
         /* 422 */ "Proportional LQ",
         /* 423 */ "Letter Gothic  6",
         /* 424 */ "Letter Gothic  12",
-        /* 425 */ "Letter Gothic  4¨",
-        /* 426 */ "Letter Gothic  9´",
+        /* 425 */ "Letter Gothic  4\xAC",
+        /* 426 */ "Letter Gothic  9\xAB",
         /* 427 */ "Times Nordic        Cart E",
         /* 428 */ "Courier        Cart 1",
         /* 429 */ "Prestige Elite Cart 1",
@@ -738,7 +738,7 @@ static const sal_Char* aFontNames[ SW6_MATCH_FONTNAMES_CNT ] = {
         /* 485 */ "San Serif PS",
         /* 486 */ "TW-Light PS",
         /* 487 */ "Cinema PS",
-        /* 488 */ "Orator_gro·",
+        /* 488 */ "Orator_gro\xE1",
         /* 489 */ "Orator_klein",
         /* 490 */ "Orator_LQ",
         /* 491 */ "Script_LQ",
@@ -3228,25 +3228,25 @@ sal_Char Sw6Layout::UpCaseOEM(sal_Char c) const
         switch (c)
         {
 #ifdef IRIX
-            case '':
-                c='';
+            case '\x04':
+                c='\x0E';
                 break;
-            case '':
-                c='';
+            case '\x14':
+                c='\x19';
                 break;
-            case '':
+            case '\x01':
                 c=0x01;
                 break;
 
 #else
-            case 'Ñ':
-                c='é';
+            case '\x84':
+                c='\x8E';
                 break;
-            case 'î':
-                c='ô';
+            case '\x94':
+                c='\x99';
                 break;
-            case 'Å':
-                c='ö';
+            case '\x81':
+                c='\x9A';
                 break;
 #endif
         } // switch
@@ -3451,7 +3451,7 @@ BOOL Sw6Layout::ScanKreuz(const sal_Char *pPatt,const sal_Char *pOrig,size_t &rI
                 }
                 else return FALSE;
                 break;
-            case '®':
+            case '\xA8':
                 if (*pOrig>='0' && *pOrig<='9')
                 {
                     if (pPara) *pPara=*pOrig;
@@ -3513,7 +3513,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
 {
     size_t nRet=1;
 
-    aSta.cFrst|='\x80';                // Merker fÅr Zeile nicht leer
+    aSta.cFrst|='\x80';                // Merker fuer Zeile nicht leer
     switch (pCtrl[0])
     {
         case SoftSp:
@@ -3690,9 +3690,9 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                              AddHForm("N",rStr.Len(),1,1);
                     else if (ScanKreuz("_KATEGORIE",pCtrl,nRet))
                              AddHForm("iK",rStr.Len(),2,1);
-                    else if (ScanKreuz("_THEMA®",pCtrl,nRet))
+                    else if (ScanKreuz("_THEMA\xA8",pCtrl,nRet))
                              AddHForm("iT",rStr.Len(),2,1);
-                    else if (ScanKreuz("_SCHLöSSELWORT®",pCtrl,nRet))
+                    else if (ScanKreuz("_SCHL\x9A" "SSELWORT\xA8",pCtrl,nRet))
                              AddHForm("iS",rStr.Len(),2,1);
                     else if (ScanKreuz("_N",pCtrl,nRet)){}
                     else if (ScanKreuz("_FN",pCtrl,nRet)){}
@@ -3713,7 +3713,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
             }
             break;
         case ParaGraf:                           // Achtung: mit IBM_PC geht
-            rStr+=ByteString::ConvertToUnicode( 'ß',  RTL_TEXTENCODING_MS_1252 );// nix: Zchn>=128 dann Conv
+            rStr+=ByteString::ConvertToUnicode( '\xA7',  RTL_TEXTENCODING_MS_1252 );// nix: Zchn>=128 dann Conv
         break;
         case TabZch:                             // Tab erst spaeter einfg.
         case InhKenn:                            // Dies Steuerzeichen werden
@@ -4355,7 +4355,7 @@ void Sw6Layout::InsertExtra(SwDoc &rDoc,SwPaM &rPaM,
     rPaM.GetPoint()->nNode=rWohin;               // Setze den PaM auf den in
     rPaM.GetPoint()->nContent.                   // rWohin angegebenen Node
         Assign(rPaM.GetCntntNode(),0);
-    aSta.nBlay=0;                                // Kein BLay gÅltig
+    aSta.nBlay=0;                                // Kein BLay gueltig
 
     do {
         SetAlayTrans();                          // Setze Translate je nach
@@ -4643,7 +4643,7 @@ JP 29.09.94: zur Zeit keine Zeichen-Vorlage an der Format-Vorlage
         }
 
         SvxTabStopItem aTabs(0,0);                  // Erzeuge Tab-Tabelle
-        for (short n=0; n<pAly->MaxTabs; n++)    // mu· sein, falls LRand &
+        for (short n=0; n<pAly->MaxTabs; n++)    // muss sein, falls LRand &
         {                                        // und Einzug ungleich sind
             InsertTab(n,pAly->Tabs[n],
                 aTabs,pAly->LRand);
@@ -4931,7 +4931,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
     if (pTmp->cDat[0]<' ')                       // Kein Textbefehl?
     {                                            // Suche das Ende
         HFORM *pScd=pTmp->pNxt;                  // der Markierung
-        USHORT nKor=0;                           // Korrektur fÅr Felder
+        USHORT nKor=0;                           // Korrektur fuer Felder
 
         while (pScd && !nMzAnz)                  // oder evt. auch
         {                                        // {INDEX-Befehle}
