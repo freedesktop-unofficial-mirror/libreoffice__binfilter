@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdovirt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:30:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,11 +60,11 @@
  ************************************************************************/
 
 #include "svdovirt.hxx"
-#include "xpool.hxx"
-#include "svdxout.hxx"
-#include "svdtrans.hxx"
+// auto strip #include "xpool.hxx"
+// auto strip #include "svdxout.hxx"
+// auto strip #include "svdtrans.hxx"
 #include "svdio.hxx"
-#include "svdetc.hxx"
+// auto strip #include "svdetc.hxx"
 #include "svdhdl.hxx"
 namespace binfilter {
 
