@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ComboBox.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:43:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,37 +65,37 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
-#include <cppuhelper/interfacecontainer.hxx>
-#endif
-#ifndef _DATE_HXX
-#include <tools/date.hxx>
-#endif
-#ifndef _SV_TIMER_HXX
-#include <vcl/timer.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
+// auto strip #include <cppuhelper/interfacecontainer.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATE_HXX
+// auto strip #include <tools/date.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_TIMER_HXX
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
-#include <com/sun/star/util/XRefreshable.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
+// auto strip #include <com/sun/star/util/XRefreshable.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
-#include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
+// auto strip #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
-#include <com/sun/star/awt/XItemListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
-#include <com/sun/star/awt/XFocusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
-#include <com/sun/star/form/XChangeBroadcaster.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XItemListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
+// auto strip #include <com/sun/star/awt/XFocusListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
+// auto strip #include <com/sun/star/form/XChangeBroadcaster.hpp>
+// auto strip #endif
 #ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
 #endif
