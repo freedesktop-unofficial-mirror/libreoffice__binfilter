@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrstck.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:49:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>   // ASSERT
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>   // ASSERT
+// auto strip #endif
 #ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
 #endif
@@ -134,9 +134,9 @@
 #ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
 #endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
@@ -146,12 +146,17 @@
 #ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
 #endif
-#ifndef _FMTINFMT_HXX
-#include <fmtinfmt.hxx>
-#endif
+// auto strip #ifndef _FMTINFMT_HXX
+// auto strip #include <fmtinfmt.hxx>
+// auto strip #endif
 #ifndef _TXTINET_HXX
 #include <txtinet.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -161,9 +166,9 @@
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
 namespace binfilter {
 
 #define STACK_INCREMENT 4

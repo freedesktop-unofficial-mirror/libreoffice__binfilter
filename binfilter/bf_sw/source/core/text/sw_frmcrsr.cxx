@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmcrsr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:49:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,50 +62,59 @@
 
 #pragma hdrstop
 
-#include "ndtxt.hxx"        // GetNode()
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
+// auto strip #include "ndtxt.hxx"      // GetNode()
 #include "pam.hxx"          // SwPosition
-#include "frmtool.hxx"
-#include "doc.hxx"
-#include "viewopt.hxx"
-#include "paratr.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+// auto strip #include "frmtool.hxx"
+// auto strip #include "doc.hxx"
+// auto strip #include "viewopt.hxx"
+// auto strip #include "paratr.hxx"
 #include "pagefrm.hxx"
-#include "colfrm.hxx"
-#include "txttypes.hxx"
+// auto strip #include "colfrm.hxx"
+// auto strip #include "txttypes.hxx"
 
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
 
-#ifndef _SVX_TSPTITEM_HXX //autogen
-#include <bf_svx/tstpitem.hxx>
-#endif
+// auto strip #ifndef _SVX_TSPTITEM_HXX //autogen
+// auto strip #include <bf_svx/tstpitem.hxx>
+// auto strip #endif
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
 
-#ifndef _PORMULTI_HXX
-#include <pormulti.hxx>     // SwMultiPortion
-#endif
+// auto strip #ifndef _PORMULTI_HXX
+// auto strip #include <pormulti.hxx>     // SwMultiPortion
+// auto strip #endif
 
 #include <unicode/ubidi.h>
 
-#include "frmsh.hxx"
+// auto strip #include "frmsh.hxx"
 #include "txtcfg.hxx"
-#include "txtfrm.hxx"       // SwTxtFrm
-#include "inftxt.hxx"       // SwTxtSizeInfo
+// auto strip #include "txtfrm.hxx"     // SwTxtFrm
+// auto strip #include "inftxt.hxx"     // SwTxtSizeInfo
 #include "itrtxt.hxx"       // SwTxtCursor
 #include "crstate.hxx"      // SwTxtCursor
-#include "viewsh.hxx"       // InvalidateWindows
-#include "swfntcch.hxx"     // SwFontAccess
-#include "flyfrm.hxx"
+// auto strip #include "viewsh.hxx"     // InvalidateWindows
+// auto strip #include "swfntcch.hxx"       // SwFontAccess
+// auto strip #include "flyfrm.hxx"
 
 #if OSL_DEBUG_LEVEL > 1
-#include "txtpaint.hxx"
+// auto strip #include "txtpaint.hxx"
 #endif
 namespace binfilter {
 
