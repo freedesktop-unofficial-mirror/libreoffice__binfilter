@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_cusshow.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:27:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #pragma hdrstop
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-#include <com/sun/star/lang/XComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
 
 #include "sdiocmpt.hxx"
 #include "cusshow.hxx"

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_anminfo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:20 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:27:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,12 +59,12 @@
  *
  ************************************************************************/
 
-#ifndef _URLOBJ_HXX
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
-#endif
+// auto strip #ifndef _URLOBJ_HXX
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
 #include "bf_svx/xtable.hxx"
 #ifndef _SVDSURO_HXX //autogen
 #include <bf_svx/svdsuro.hxx>
