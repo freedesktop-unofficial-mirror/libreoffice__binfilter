@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dbg_lay.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:31:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,7 +100,7 @@
 
 #ifndef PRODUCT
 
-#include "swtypes.hxx"
+// auto strip #include "swtypes.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {
 class SwImplProtocol;
