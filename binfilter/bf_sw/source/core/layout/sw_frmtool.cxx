@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:35:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -102,18 +102,22 @@
 #endif
 
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
 #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#ifndef _FMTHDFT_HXX //autogen
-#include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _FMTHDFT_HXX //autogen
+// auto strip #include <fmthdft.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
@@ -150,7 +154,7 @@
 #include "node2lay.hxx"
 #include "ndole.hxx"
 #include "ndtxt.hxx"
-#include "swtable.hxx"
+// auto strip #include "swtable.hxx"
 #include "hints.hxx"
 #ifndef _LAYHELP_HXX
 #include <layhelp.hxx>
