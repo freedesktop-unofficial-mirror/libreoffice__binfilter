@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fntcap.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:01:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,13 +66,13 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SVX_CMAPITEM_HXX //autogen
-#include <bf_svx/cmapitem.hxx>
-#endif
+// auto strip #ifndef _SVX_CMAPITEM_HXX //autogen
+// auto strip #include <bf_svx/cmapitem.hxx>
+// auto strip #endif
 
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_CHARTYPE_HDL
 #include <com/sun/star/i18n/CharType.hdl>
 #endif
@@ -84,24 +84,24 @@
 #include <vcl/print.hxx>
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
 #ifndef _SWFONT_HXX
 #include <swfont.hxx>
 #endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>
-#endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // SwTxtFrm
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>       // SwTxtFrm
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
