@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_pview.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:52:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:25:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,23 +90,23 @@
 //STRIP001      TEXT[ spanish ] = "Distribución";
 //STRIP001      TEXT[ english_us ] = "Distribution";
 //STRIP001  TEXT[ chinese_simplified ] = "åˆ†å¸ƒ";
-//STRIP001      TEXT[ russian ] = "Ğàñïğåäåëåíè?;
+//STRIP001      TEXT[ russian ] = "Ğàñïğåäåëåíè?";
 //STRIP001      TEXT[ polish ] = "Rozmieszczenie";
 //STRIP001      TEXT[ japanese ] = "åˆ†å‰²";
 //STRIP001      TEXT[ chinese_traditional ] = "åˆ†å¸ƒ";
-//STRIP001      TEXT[ arabic ] = "ÇáÊŞÓí?;
+//STRIP001      TEXT[ arabic ] = "ÇáÊŞÓí?";
 //STRIP001      TEXT[ dutch ] = "Verdeling";
 //STRIP001      TEXT[ chinese_simplified ] = "åˆ†å¸ƒ";
 //STRIP001      TEXT[ greek ] = "ÊáôáíïìŞ";
 //STRIP001      TEXT[ korean ] = "ë°°ë¶„";
 //STRIP001      TEXT[ turkish ] = "Dağıtım";
 //STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "Distribuci?;
+//STRIP001      TEXT[ catalan ] = "Distribuci?";
 //STRIP001      TEXT[ finnish ] = "Jakauma";
-//STRIP001      TEXT[ thai ] = "à¸à¸²à¸£à¹à¸ˆà¸à¹à¸ˆà¸?;
+//STRIP001      TEXT[ thai ] = "à¸à¸²à¸£à¹à¸ˆà¸à¹à¸ˆà¸?";
 //STRIP001      TEXT[ czech ] = "RozdÄ›lenÃ­";
 //STRIP001      TEXT[ hebrew ] = "Aufteilung";
-//STRIP001      TEXT[ hindi ] = "à¤µà¤¿à¤¤à¤°à¤?;
+//STRIP001      TEXT[ hindi ] = "à¤µà¤¿à¤¤à¤°à¤?";
 //STRIP001      TEXT[ slovak ] = "DistribÃºcia";
 //STRIP001  };
 //STRIP001  FixedText FT_ROWS
@@ -133,16 +133,16 @@
 //STRIP001      TEXT[ arabic ] = "Õİæİ";
 //STRIP001      TEXT[ dutch ] = "~Rijen";
 //STRIP001      TEXT[ chinese_simplified ] = "è¡?~W)";
-//STRIP001      TEXT[ greek ] = "Ãñáììİ?;
+//STRIP001      TEXT[ greek ] = "Ãñáììİ?";
 //STRIP001      TEXT[ korean ] = "í–?~W)";
 //STRIP001      TEXT[ turkish ] = "Sa~tır";
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "Fi~les";
 //STRIP001      TEXT[ finnish ] = "~Rivit";
-//STRIP001      TEXT[ thai ] = "à¹à¸–~à¸?;
+//STRIP001      TEXT[ thai ] = "à¹à¸–~à¸?";
 //STRIP001      TEXT[ czech ] = "Å˜Ã¡dky";
 //STRIP001      TEXT[ hebrew ] = "~Zeilen";
-//STRIP001      TEXT[ hindi ] = "à¤ªà¤‚~à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤?;
+//STRIP001      TEXT[ hindi ] = "à¤ªà¤‚~à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤?";
 //STRIP001      TEXT[ slovak ] = "~Riadky";
 //STRIP001  };
 //STRIP001  NumericField NF_ROWS
@@ -177,11 +177,11 @@
 //STRIP001      TEXT[ spanish ] = "~Columnas";
 //STRIP001      TEXT[ english_us ] = "~Columns";
 //STRIP001  TEXT[ chinese_simplified ] = "æ ?~C)";
-//STRIP001      TEXT[ russian ] = "Ñòîëáö?;
+//STRIP001      TEXT[ russian ] = "Ñòîëáö?";
 //STRIP001      TEXT[ polish ] = "~Kolumny";
 //STRIP001      TEXT[ japanese ] = "æ¨?~C)";
 //STRIP001      TEXT[ chinese_traditional ] = "æ¬?~C)";
-//STRIP001      TEXT[ arabic ] = "ÃÚãÏ?;
+//STRIP001      TEXT[ arabic ] = "ÃÚãÏ?";
 //STRIP001      TEXT[ dutch ] = "~Kolommen";
 //STRIP001      TEXT[ chinese_simplified ] = "æ ?~C)";
 //STRIP001      TEXT[ greek ] = "ÓôŞëåò";
@@ -190,9 +190,9 @@
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "~Columnes";
 //STRIP001      TEXT[ finnish ] = "Pal~stat";
-//STRIP001      TEXT[ thai ] = "~à¸„à¸­à¸¥à¸±à¸¡à¸™à¹?;
+//STRIP001      TEXT[ thai ] = "~à¸„à¸­à¸¥à¸±à¸¡à¸™à¹?";
 //STRIP001      TEXT[ czech ] = "Sloupce";
-//STRIP001      TEXT[ hebrew ] = "â€®×˜×•×¨×™×â€?;
+//STRIP001      TEXT[ hebrew ] = "â€®×˜×•×¨×™×â€?";
 //STRIP001      TEXT[ hindi ] = "~à¤¸à¥à¤¤à¤‚à¤­à¥‡à¤?";
 //STRIP001      TEXT[ slovak ] = "~StÄºpce";
 //STRIP001  };
@@ -232,19 +232,19 @@
 //STRIP001      TEXT[ polish ] = "Marginesy";
 //STRIP001      TEXT[ japanese ] = "ä½™ç™½";
 //STRIP001      TEXT[ chinese_traditional ] = "é‚Šè·";
-//STRIP001      TEXT[ arabic ] = "ÇáåæÇã?;
+//STRIP001      TEXT[ arabic ] = "ÇáåæÇã?";
 //STRIP001      TEXT[ dutch ] = "Marges";
 //STRIP001      TEXT[ chinese_simplified ] = "è¾¹è·";
-//STRIP001      TEXT[ greek ] = "Ğåñéèşñé?;
-//STRIP001      TEXT[ korean ] = "ì™¸ê³½ì„?;
-//STRIP001      TEXT[ turkish ] = "Kenar boşluklar?;
+//STRIP001      TEXT[ greek ] = "Ğåñéèşñé?";
+//STRIP001      TEXT[ korean ] = "ì™¸ê³½ì„?";
+//STRIP001      TEXT[ turkish ] = "Kenar boşluklar?";
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "Marges";
 //STRIP001      TEXT[ finnish ] = "Marginaalit";
-//STRIP001      TEXT[ thai ] = "à¸£à¸°à¸¢à¸°à¸‚à¸­à¸?;
+//STRIP001      TEXT[ thai ] = "à¸£à¸°à¸¢à¸°à¸‚à¸­à¸?";
 //STRIP001      TEXT[ czech ] = "Okraje";
 //STRIP001      TEXT[ hebrew ] = "RÃ¤nder";
-//STRIP001      TEXT[ hindi ] = "à¤ªà¥ƒà¤·à¥à¤?à¤ªà¥à¤°à¤¾à¤¨à¥à¤?;
+//STRIP001      TEXT[ hindi ] = "à¤ªà¥ƒà¤·à¥à¤?à¤ªà¥à¤°à¤¾à¤¨à¥à¤?";
 //STRIP001      TEXT[ slovak ] = "Okraje";
 //STRIP001  };
 //STRIP001  FixedText FT_LMARGIN
@@ -264,7 +264,7 @@
 //STRIP001      TEXT[ spanish ] = "~Izquierda";
 //STRIP001      TEXT[ english_us ] = "L~eft";
 //STRIP001  TEXT[ chinese_simplified ] = "å·?~E)";
-//STRIP001      TEXT[ russian ] = "Ñëåâ?;
+//STRIP001      TEXT[ russian ] = "Ñëåâ?";
 //STRIP001      TEXT[ polish ] = "Z l~ewej";
 //STRIP001      TEXT[ japanese ] = "å·?~E)";
 //STRIP001      TEXT[ chinese_traditional ] = "å·?~E)";
@@ -277,10 +277,10 @@
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "E~squerra";
 //STRIP001      TEXT[ finnish ] = "~Vasen";
-//STRIP001      TEXT[ thai ] = "à¸‹à¹‰à¸²~à¸?;
+//STRIP001      TEXT[ thai ] = "à¸‹à¹‰à¸²~à¸?";
 //STRIP001      TEXT[ czech ] = "Vlevo";
 //STRIP001      TEXT[ hebrew ] = "~Links";
-//STRIP001      TEXT[ hindi ] = "à¤¬à¤¾~à¤¯à¤¾à¤?;
+//STRIP001      TEXT[ hindi ] = "à¤¬à¤¾~à¤¯à¤¾à¤?";
 //STRIP001      TEXT[ slovak ] = "VÄ¾a~vo";
 //STRIP001  };
 //STRIP001  MetricField MF_LMARGIN
@@ -323,13 +323,13 @@
 //STRIP001      TEXT[ arabic ] = "íãíä";
 //STRIP001      TEXT[ dutch ] = "R~echts";
 //STRIP001      TEXT[ chinese_simplified ] = "å?~R)";
-//STRIP001      TEXT[ greek ] = "Äåîé?;
+//STRIP001      TEXT[ greek ] = "Äåîé?";
 //STRIP001      TEXT[ korean ] = "ì˜¤ë¥¸ìª?~R)";
-//STRIP001      TEXT[ turkish ] = "~Sa?;
+//STRIP001      TEXT[ turkish ] = "~Sa?";
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "~Dreta";
 //STRIP001      TEXT[ finnish ] = "~Oikea";
-//STRIP001      TEXT[ thai ] = "~à¸‚à¸§à¸?;
+//STRIP001      TEXT[ thai ] = "~à¸‚à¸§à¸?";
 //STRIP001      TEXT[ czech ] = "Vpravo";
 //STRIP001      TEXT[ hebrew ] = "~Rechts";
 //STRIP001      TEXT[ hindi ] = "~à¤¦à¤¾à¤¹à¤¿à¤¨à¤¾";
@@ -384,7 +384,7 @@
 //STRIP001      TEXT[ thai ] = "~à¸šà¸™";
 //STRIP001      TEXT[ czech ] = "NahoÅ™e";
 //STRIP001      TEXT[ hebrew ] = "~Oben";
-//STRIP001      TEXT[ hindi ] = "~à¤Šà¤ªà¤?;
+//STRIP001      TEXT[ hindi ] = "~à¤Šà¤ªà¤?";
 //STRIP001      TEXT[ slovak ] = "~Hore";
 //STRIP001  };
 //STRIP001  MetricField MF_TMARGIN
@@ -420,7 +420,7 @@
 //STRIP001      TEXT[ spanish ] = "A~bajo";
 //STRIP001      TEXT[ english_us ] = "~Bottom";
 //STRIP001  TEXT[ chinese_simplified ] = "ä¸?~B)";
-//STRIP001      TEXT[ russian ] = "Ñíèç?;
+//STRIP001      TEXT[ russian ] = "Ñíèç?";
 //STRIP001      TEXT[ polish ] = "~U do³u";
 //STRIP001      TEXT[ japanese ] = "ä¸?~B)";
 //STRIP001      TEXT[ chinese_traditional ] = "ä¸?~B)";
@@ -476,7 +476,7 @@
 //STRIP001      TEXT[ polish ] = "Odstêp";
 //STRIP001      TEXT[ japanese ] = "é–“éš”";
 //STRIP001      TEXT[ chinese_traditional ] = "é–“éš”";
-//STRIP001      TEXT[ arabic ] = "ÇáÊÈÇÚ?;
+//STRIP001      TEXT[ arabic ] = "ÇáÊÈÇÚ?";
 //STRIP001      TEXT[ dutch ] = "Afstand";
 //STRIP001      TEXT[ chinese_simplified ] = "é—´éš”";
 //STRIP001      TEXT[ greek ] = "Áğüóôáóç";
@@ -487,7 +487,7 @@
 //STRIP001      TEXT[ finnish ] = "Välit";
 //STRIP001      TEXT[ thai ] = "à¸£à¸°à¸¢à¸°à¸«à¹ˆà¸²à¸‡";
 //STRIP001      TEXT[ czech ] = "VzdÃ¡lenost";
-//STRIP001      TEXT[ hebrew ] = "â€®×¨×™×•×•×—â€?;
+//STRIP001      TEXT[ hebrew ] = "â€®×¨×™×•×•×—â€?";
 //STRIP001      TEXT[ hindi ] = "à¤…à¤‚à¤¤à¤° à¤¦à¥‡à¤¨à¤¾";
 //STRIP001      TEXT[ slovak ] = "VzdialenosÅ¥";
 //STRIP001  };
@@ -508,14 +508,14 @@
 //STRIP001      TEXT[ spanish ] = "~Horizontal";
 //STRIP001      TEXT[ english_us ] = "Hori~zontal";
 //STRIP001         TEXT[ chinese_simplified ] = "æ¨ªå‘(~Z)";
-//STRIP001      TEXT[ russian ] = "Ãîğèçîíòàëüí?;
+//STRIP001      TEXT[ russian ] = "Ãîğèçîíòàëüí?";
 //STRIP001      TEXT[ polish ] = "Po~ziomo";
 //STRIP001      TEXT[ japanese ] = "æ¨?~Z)";
 //STRIP001      TEXT[ chinese_traditional ] = "æ°´å¹³(~Z)";
 //STRIP001      TEXT[ arabic ] = "ÃİŞí";
 //STRIP001      TEXT[ dutch ] = "~Horizontaal";
 //STRIP001      TEXT[ chinese_simplified ] = "æ¨ªå‘(~Z)";
-//STRIP001      TEXT[ greek ] = "Ïñéæüíôé?;
+//STRIP001      TEXT[ greek ] = "Ïñéæüíôé?";
 //STRIP001      TEXT[ korean ] = "ìˆ˜í‰(~Z)";
 //STRIP001      TEXT[ turkish ] = "Ya~tay";
 //STRIP001      TEXT[ language_user1 ] = " ";
@@ -561,7 +561,7 @@
 //STRIP001      TEXT[ spanish ] = "~Verticalmente";
 //STRIP001      TEXT[ english_us ] = "~Vertically";
 //STRIP001         TEXT[ chinese_simplified ] = "çºµå‘(~V)";
-//STRIP001      TEXT[ russian ] = "Âåğòèêàëüí?;
+//STRIP001      TEXT[ russian ] = "Âåğòèêàëüí?";
 //STRIP001      TEXT[ polish ] = "Pio~nowo";
 //STRIP001      TEXT[ japanese ] = "ç¸?~V)";
 //STRIP001      TEXT[ chinese_traditional ] = "å‚ç›´(~V)";
@@ -617,10 +617,10 @@
 //STRIP001      TEXT[ polish ] = "Format";
 //STRIP001      TEXT[ japanese ] = "æ›¸å¼";
 //STRIP001      TEXT[ chinese_traditional ] = "æ ¼å¼";
-//STRIP001      TEXT[ arabic ] = "ÇáÊäÓí?;
+//STRIP001      TEXT[ arabic ] = "ÇáÊäÓí?";
 //STRIP001      TEXT[ dutch ] = "Formaat";
 //STRIP001      TEXT[ chinese_simplified ] = "æ ¼å¼";
-//STRIP001      TEXT[ greek ] = "Ìïñö?;
+//STRIP001      TEXT[ greek ] = "Ìïñö?";
 //STRIP001      TEXT[ korean ] = "ì„œì‹";
 //STRIP001      TEXT[ turkish ] = "Format";
 //STRIP001      TEXT[ language_user1 ] = " ";
@@ -628,7 +628,7 @@
 //STRIP001      TEXT[ finnish ] = "Muotoilu";
 //STRIP001      TEXT[ thai ] = "à¸£à¸¹à¸›à¹à¸šà¸š";
 //STRIP001      TEXT[ czech ] = "FormÃ¡t";
-//STRIP001      TEXT[ hebrew ] = "â€®×¢×™×¦×•×‘â€?;
+//STRIP001      TEXT[ hebrew ] = "â€®×¢×™×¦×•×‘â€?";
 //STRIP001      TEXT[ hindi ] = "à¤°à¤šà¤¨à¤¾";
 //STRIP001      TEXT[ slovak ] = "FormÃ¡t";
 //STRIP001  };
@@ -665,7 +665,7 @@
 //STRIP001      TEXT[ finnish ] = "~Vaaka";
 //STRIP001      TEXT[ thai ] = "~à¹à¸™à¸§à¸™à¸­à¸™";
 //STRIP001      TEXT[ czech ] = "Na Å¡Ã­Å™ku";
-//STRIP001      TEXT[ hebrew ] = "â€®×œ×¨×•×—×?×”×“×£â€?;
+//STRIP001      TEXT[ hebrew ] = "â€®×œ×¨×•×—×?×”×“×£â€?";
 //STRIP001      TEXT[ hindi ] = "à¤²à¤¾à¤¨à¥à¤¡à¤¸à¥à¤•à¥‡~à¤ªà¥";
 //STRIP001      TEXT[ slovak ] = "~Na Å¡Ã­rku";
 //STRIP001  };
@@ -698,10 +698,10 @@
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ catalan ] = "V~ertical";
 //STRIP001      TEXT[ finnish ] = "~Pysty";
-//STRIP001      TEXT[ thai ] = "à¹à¸™à¸§à¸•à¸±à¹‰~à¸?;
+//STRIP001      TEXT[ thai ] = "à¹à¸™à¸§à¸•à¸±à¹‰~à¸?";
 //STRIP001      TEXT[ czech ] = "Na vÃ½Å¡ku";
-//STRIP001      TEXT[ hebrew ] = "â€®×œ××•×¨×?×”×“×£â€?;
-//STRIP001      TEXT[ hindi ] = "à¤ªà¥‹~à¤°à¥à¤Ÿà¤°à¥ˆà¤Ÿà¥?;
+//STRIP001      TEXT[ hebrew ] = "â€®×œ××•×¨×?×”×“×£â€?";
+//STRIP001      TEXT[ hindi ] = "à¤ªà¥‹~à¤°à¥à¤Ÿà¤°à¥ˆà¤Ÿà¥?";
 //STRIP001      TEXT[ slovak ] = "Na ~vÃ½Å¡ku";
 //STRIP001  };
 //STRIP001  Window WIN_PREVIEW
@@ -751,7 +751,7 @@
 //STRIP001      TEXT[ japanese ] = "æ¨™æº–(~D)";
 //STRIP001      TEXT[ language_user1 ] = " ";
 //STRIP001      TEXT[ chinese_traditional ] = "é»˜èª(~D)";
-//STRIP001      TEXT[ arabic ] = "ÇİÊÑÇÖ?;
+//STRIP001      TEXT[ arabic ] = "ÇİÊÑÇÖ?";
 //STRIP001      TEXT[ dutch ] = "Standaar~d";
 //STRIP001      TEXT[ chinese_simplified ] = "é»˜è®¤(~D)";
 //STRIP001      TEXT[ greek ] = "ĞñïåğéëïãŞ";
@@ -759,9 +759,9 @@
 //STRIP001      TEXT[ turkish ] = "~Öndeğer";
 //STRIP001      TEXT[ catalan ] = "~Per defecte";
 //STRIP001      TEXT[ finnish ] = "~Oletus";
-//STRIP001      TEXT[ thai ] = "~à¸„à¹ˆà¸²à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸?;
+//STRIP001      TEXT[ thai ] = "~à¸„à¹ˆà¸²à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸?";
 //STRIP001      TEXT[ czech ] = "VÃ½chozÃ­";
-//STRIP001      TEXT[ hebrew ] = "â€®×‘×¨×™×¨×?××—×“×œâ€?;
+//STRIP001      TEXT[ hebrew ] = "â€®×‘×¨×™×¨×?××—×“×œâ€?";
 //STRIP001      TEXT[ hindi ] = "~à¤…à¤¨à¥à¤ªà¤¸à¥à¤¥à¤¿à¤¤à¤¿";
 //STRIP001      TEXT[ slovak ] = "VÃ½cho~dzie";
 //STRIP001  };
@@ -779,14 +779,14 @@
 //STRIP001  TEXT[ polish ] = "Opcje wydruku";
 //STRIP001  TEXT[ japanese ] = "ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼å°åˆ·ã‚ªãƒ—ã‚·ãƒ§ãƒ³";
 //STRIP001  TEXT[ chinese_traditional ] = "åˆ—å°é¸é …";
-//STRIP001  TEXT[ arabic ] = "ÎíÇÑÇÊ ÇáØÈÇÚ?;
+//STRIP001  TEXT[ arabic ] = "ÎíÇÑÇÊ ÇáØÈÇÚ?";
 //STRIP001  TEXT[ dutch ] = "Afdrukopties";
 //STRIP001  TEXT[ chinese_simplified ] = "æ‰“å°é€‰é¡¹";
-//STRIP001  TEXT[ greek ] = "Åğéëïãİò åêôığùóç?;
+//STRIP001  TEXT[ greek ] = "Åğéëïãİò åêôığùóç?";
 //STRIP001  TEXT[ korean ] = "ì¸ì‡„ ì˜µì…˜";
 //STRIP001  TEXT[ turkish ] = "Yazdırma seçenekleri";
 //STRIP001  TEXT[ language_user1 ] = " ";
-//STRIP001  TEXT[ catalan ] = "Opcions d'impressi?;
+//STRIP001  TEXT[ catalan ] = "Opcions d'impressi?";
 //STRIP001  TEXT[ finnish ] = "Tulostusasetukset";
 //STRIP001  TEXT[ thai ] = "à¸•à¸±à¸§à¹€à¸¥à¸·à¸­à¸à¸à¸²à¸£à¸à¸´à¸¡à¸à¹Œ";
 //STRIP001  TEXT[ czech ] = "Volby tisku";
@@ -822,11 +822,11 @@
 //STRIP001      Text [ english_us ] = "~Columns" ;
 //STRIP001      Left = TRUE ;
 //STRIP001      Text[ chinese_simplified ] = "æ ?~C)";
-//STRIP001      Text[ russian ] = "Ñòîëáö?;
+//STRIP001      Text[ russian ] = "Ñòîëáö?";
 //STRIP001      Text[ polish ] = "~Kolumny";
 //STRIP001      Text[ japanese ] = "æ¨?~C)";
 //STRIP001      Text[ chinese_traditional ] = "æ¬?~C)";
-//STRIP001      Text[ arabic ] = "ÃÚãÏ?;
+//STRIP001      Text[ arabic ] = "ÃÚãÏ?";
 //STRIP001      Text[ dutch ] = "~Kolommen";
 //STRIP001      Text[ chinese_simplified ] = "æ ?~C)";
 //STRIP001      Text[ greek ] = "ÓôŞëåò";
@@ -834,10 +834,10 @@
 //STRIP001      Text[ turkish ] = "~Sütun";
 //STRIP001      Text[ language_user1 ] = " ";
 //STRIP001      Text[ catalan ] = "~Columnes";
-//STRIP001      Text[ thai ] = "~à¸„à¸­à¸¥à¸±à¸¡à¸™à¹?;
+//STRIP001      Text[ thai ] = "~à¸„à¸­à¸¥à¸±à¸¡à¸™à¹?";
 //STRIP001      Text[ czech ] = "Sloupce";
-//STRIP001      Text[ hebrew ] = "â€®×˜×•×¨×™×â€?;
-//STRIP001      Text[ hindi ] = "~à¤¸à¥à¤¤à¤‚à¤­à¥‡à¤?;
+//STRIP001      Text[ hebrew ] = "â€®×˜×•×¨×™×â€?";
+//STRIP001      Text[ hindi ] = "~à¤¸à¥à¤¤à¤‚à¤­à¥‡à¤?";
 //STRIP001      Text[ slovak ] = "~StÄºpce";
 //STRIP001  };
 //STRIP001  FixedText FT_ROW
@@ -866,7 +866,7 @@
 //STRIP001      Text[ arabic ] = "Õİæİ";
 //STRIP001      Text[ dutch ] = "~Rijen";
 //STRIP001      Text[ chinese_simplified ] = "è¡?~R)";
-//STRIP001      Text[ greek ] = "Ãñáììİ?;
+//STRIP001      Text[ greek ] = "Ãñáììİ?";
 //STRIP001      Text[ korean ] = "í–?~R)";
 //STRIP001      Text[ turkish ] = "~Satır";
 //STRIP001      Text[ language_user1 ] = " ";
@@ -874,7 +874,7 @@
 //STRIP001      Text[ thai ] = "à¹~à¸–à¸§";
 //STRIP001      Text[ czech ] = "Å˜Ã¡dky";
 //STRIP001      Text[ hebrew ] = "~Zeilen";
-//STRIP001      Text[ hindi ] = "~à¤ªà¤‚à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤?;
+//STRIP001      Text[ hindi ] = "~à¤ªà¤‚à¤•à¥à¤¤à¤¿à¤¯à¤¾à¤?";
 //STRIP001      Text[ slovak ] = "~Riadky";
 //STRIP001  };
 //STRIP001  NumericField ED_COL
@@ -927,14 +927,14 @@
 //STRIP001      TabStop = TRUE ;
 //STRIP001  };
 //STRIP001  Text[ chinese_simplified ] = "å¤šé¡µ";
-//STRIP001  Text[ russian ] = "Ìàñøòà?;
+//STRIP001  Text[ russian ] = "Ìàñøòà?";
 //STRIP001  Text[ polish ] = "Skala";
-//STRIP001  Text[ japanese ] = "è¤‡æ•°ãƒšãƒ¼ã‚?;
+//STRIP001  Text[ japanese ] = "è¤‡æ•°ãƒšãƒ¼ã‚?";
 //STRIP001  Text[ chinese_traditional ] = "å››é ";
 //STRIP001  Text[ arabic ] = "ÊßÈí?æÊÕÛíÑ";
 //STRIP001  Text[ dutch ] = "Maatstaf";
 //STRIP001  Text[ chinese_simplified ] = "å¤šé¡µ";
-//STRIP001  Text[ greek ] = "Êëßìáê?;
+//STRIP001  Text[ greek ] = "Êëßìáê?";
 //STRIP001  Text[ korean ] = "ë‹¤ì¤‘ í˜ì´ì§€";
 //STRIP001  Text[ turkish ] = "Çoklu Sayfa";
 //STRIP001  Text[ language_user1 ] = " ";
@@ -948,9 +948,9 @@
 //STRIP001  Text[ danish ] = "Målestok";
 //STRIP001  Text[ swedish ] = "Flera sidor";
 //STRIP001  Text[ czech ] = "Lupa";
-//STRIP001  Text[ hebrew ] = "â€®×–×•×â€?;
+//STRIP001  Text[ hebrew ] = "â€®×–×•×â€?";
 //STRIP001  Text[ portuguese_brazilian ] = "Zoom";
-//STRIP001  Text[ hindi ] = "à¤à¥‚à¤?;
+//STRIP001  Text[ hindi ] = "à¤à¥‚à¤?";
 //STRIP001  Text[ slovak ] = "Lupa";
 //STRIP001 };
 String RID_PVIEW_TOOLBOX
