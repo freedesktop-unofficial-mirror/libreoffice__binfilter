@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-06-24 11:44:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:48:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 class StarBASIC;
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -80,52 +80,52 @@ class StarBASIC;
 #include <ctype.h>
 #include <stdlib.h>
 
-#include <tools/list.hxx>
-#include <tools/string.hxx>
-#include <rtl/math.hxx>
-#include <svtools/htmlout.hxx>
+// auto strip #include <tools/list.hxx>
+// auto strip #include <tools/string.hxx>
+// auto strip #include <rtl/math.hxx>
+// auto strip #include <svtools/htmlout.hxx>
 #include <svtools/zforlist.hxx>
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #include <sot/formats.hxx>
-#include <bf_sfx2/mieclip.hxx>
-#include <unotools/charclass.hxx>
-#include <unotools/collatorwrapper.hxx>
-#include <unotools/calendarwrapper.hxx>
+// auto strip #include <bf_sfx2/mieclip.hxx>
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #include <unotools/calendarwrapper.hxx>
 #ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
 #endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-#include <unotools/transliterationwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
+// auto strip #include <unotools/transliterationwrapper.hxx>
+// auto strip #endif
 
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "docsh.hxx"
-#include "undoblk.hxx"
-#include "rangenam.hxx"
-#include "viewdata.hxx"
-#include "tabvwsh.hxx"
-#include "filter.hxx"
+// auto strip #include "undoblk.hxx"
+// auto strip #include "rangenam.hxx"
+// auto strip #include "viewdata.hxx"
+// auto strip #include "tabvwsh.hxx"
+// auto strip #include "filter.hxx"
 #include "asciiopt.hxx"
 #include "cell.hxx"
-#include "rtfimp.hxx"
-#include "htmlimp.hxx"
-#include "docoptio.hxx"
+// auto strip #include "rtfimp.hxx"
+// auto strip #include "htmlimp.hxx"
+// auto strip #include "docoptio.hxx"
 #include "progress.hxx"
-#include "scitems.hxx"
-#include "editable.hxx"
+// auto strip #include "scitems.hxx"
+// auto strip #include "editable.hxx"
 
 #include "impex.hxx"
 
 #include "globstr.hrc"
 
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 #ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
 #endif
