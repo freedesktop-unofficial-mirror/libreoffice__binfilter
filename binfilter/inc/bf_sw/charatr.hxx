@@ -2,9 +2,9 @@
  *
  *  $RCSfile: charatr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:37:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,9 +64,9 @@
 #ifndef _FORMAT_HXX
 #include <format.hxx>
 #endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>      // fuer die WhichIds
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>        // fuer die WhichIds
+// auto strip #endif
 namespace binfilter {
 
 
