@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlexp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-11-09 12:21:05 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:01:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -220,6 +220,7 @@
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -1555,7 +1556,7 @@ OUString SvXMLExport::AddEmbeddedGraphicObject( const OUString& rGraphicObjectUR
             sRet = OUString();
     }
     else
-        sRet = INetURLObject::AbsToRel( sRet );
+        sRet = so3::StaticBaseUrl::AbsToRel( sRet );
 
     return sRet;
 }
@@ -1795,7 +1796,7 @@ sal_Bool SvXMLExport::ExportEmbeddedOwnObject( Reference< XComponent >& rComp )
 
 OUString SvXMLExport::GetRelativeReference(const OUString& rValue)
 {
-    return INetURLObject::AbsToRel( rValue );
+    return so3::StaticBaseUrl::AbsToRel( rValue );
 }
 
 void SvXMLExport::StartElement(sal_uInt16 nPrefix,
