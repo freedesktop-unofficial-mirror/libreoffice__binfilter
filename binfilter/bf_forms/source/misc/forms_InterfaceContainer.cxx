@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_InterfaceContainer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:53:26 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,15 +63,15 @@
 #include "InterfaceContainer.hxx"
 #endif
 
-#ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-#include <cppuhelper/queryinterface.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
+// auto strip #include <cppuhelper/queryinterface.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_EVENTATTACHERMGR_HXX_
 #include <comphelper/eventattachermgr.hxx>
 #endif
-#ifndef _COMPHELPER_TYPES_HXX_
-#include <comphelper/types.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_TYPES_HXX_
+// auto strip #include <comphelper/types.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_ENUMHELPER_HXX_
 #include <comphelper/enumhelper.hxx>
 #endif
@@ -81,9 +81,9 @@
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
 
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
@@ -98,21 +98,21 @@
 #include "frm_resource.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-#include <com/sun/star/lang/XComponent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
 #endif
 #ifndef _COM_SUN_STAR_IO_WRONGFORMATEXCEPTION_HPP_
 #include <com/sun/star/io/WrongFormatException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_services.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:53:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -236,18 +236,18 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 }
 //... namespace frm .......................................................
 }//namespace bifilter
-#ifndef _CPPUHELPER_FACTORY_HXX_
-#include <cppuhelper/factory.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_FACTORY_HXX_
+// auto strip #include <cppuhelper/factory.hxx>
+// auto strip #endif
 #ifndef _UNO_LBNAMES_H_
 #include <uno/lbnames.h>
 #endif
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
 #endif
-#ifndef _UNO_MAPPING_HXX_
-#include <uno/mapping.hxx>
-#endif
+// auto strip #ifndef _UNO_MAPPING_HXX_
+// auto strip #include <uno/mapping.hxx>
+// auto strip #endif
 
 namespace binfilter {//STRIP009
 
