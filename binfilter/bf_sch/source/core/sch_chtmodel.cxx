@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:46:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -114,6 +114,11 @@ class SbxArray;
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_LANGUAGE           EE_CHAR_LANGUAGE
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
+
 #include <bf_svx/chrtitem.hxx>
 #endif
 
