@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ruler.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:26:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 #ifndef _SVX_RULER_HXX
 #define _SVX_RULER_HXX
 
-#ifndef _SV_MENU_HXX //autogen
-#include <vcl/menu.hxx>
-#endif
+// auto strip #ifndef _SV_MENU_HXX //autogen
+// auto strip #include <vcl/menu.hxx>
+// auto strip #endif
 
 #ifndef _RULER_HXX //autogen
 #include <svtools/ruler.hxx>
