@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionSourceDDEImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:30:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,25 +63,25 @@
 #include "XMLSectionSourceDDEImportContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLSECTIONIMPORTCONTEXT_HXX_
-#include "XMLSectionImportContext.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLSECTIONIMPORTCONTEXT_HXX_
+// auto strip #include "XMLSectionImportContext.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
-#include <com/sun/star/text/SectionFileLink.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
+// auto strip #include <com/sun/star/text/SectionFileLink.hpp>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -91,9 +91,9 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -103,13 +103,13 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
-#include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XMultiPropertySet.hpp>
+// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>

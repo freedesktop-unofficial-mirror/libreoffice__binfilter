@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLSectionImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:30:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,17 +71,17 @@
 #include "XMLSectionSourceDDEImportContext.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLICTXT_HXX
+// auto strip #include "xmlictxt.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -91,9 +91,9 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -103,9 +103,9 @@
 #include "prstylei.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-#include <com/sun/star/container/XNamed.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
+// auto strip #include <com/sun/star/container/XNamed.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
@@ -115,13 +115,13 @@
 #include <com/sun/star/text/XTextContent.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
