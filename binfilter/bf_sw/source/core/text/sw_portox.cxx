@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_portox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:23 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:54:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,14 +62,14 @@
 
 #pragma hdrstop
 
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
-#include "viewopt.hxx"  // SwViewOptions
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
+// auto strip #include "viewopt.hxx"    // SwViewOptions
 
-#include "txtcfg.hxx"
+// auto strip #include "txtcfg.hxx"
 #include "portox.hxx"
-#include "inftxt.hxx"       // GetTxtSize()
+// auto strip #include "inftxt.hxx"       // GetTxtSize()
 namespace binfilter {
 
 /*************************************************************************
