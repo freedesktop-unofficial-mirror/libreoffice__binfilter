@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 13:03:47 $
+ *  last change: $Author: obo $ $Date: 2005-01-12 09:47:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2428,7 +2428,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/           {
 /*N*/               pGrf = 0;
 /*N*/               if( aGrfName.Len() )
-/*N*/                   aGrfName = INetURLObject::RelToAbs(aGrfName );
+/*N*/           aGrfName = so3::StaticBaseUrl::RelToAbs( aGrfName );
 /*N*/           }
 /*N*/           else
 /*N*/           {
