@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLConverter.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:26:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "filt_pch.hxx"
+// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -72,9 +72,9 @@
 #include "XMLConverter.hxx"
 #endif
 
-#ifndef SC_RANGELST_HXX
-#include "rangelst.hxx"
-#endif
+// auto strip #ifndef SC_RANGELST_HXX
+// auto strip #include "rangelst.hxx"
+// auto strip #endif
 #ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"
 #endif
@@ -92,16 +92,16 @@
 #include <tools/datetime.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-#include <com/sun/star/util/DateTime.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
+// auto strip #include <com/sun/star/util/DateTime.hpp>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
