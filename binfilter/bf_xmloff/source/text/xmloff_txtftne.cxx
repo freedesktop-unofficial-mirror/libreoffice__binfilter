@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_txtftne.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:35:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,32 +73,32 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
-#include <rtl/ustrbuf.hxx>
-#endif
+// auto strip #ifndef _RTL_USTRBUF_HXX_
+// auto strip #include <rtl/ustrbuf.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
-#include <com/sun/star/text/XTextDocument.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/text/XTextDocument.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
-#include <com/sun/star/text/XText.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
+// auto strip #include <com/sun/star/text/XText.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-#include <com/sun/star/text/XTextContent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
+// auto strip #include <com/sun/star/text/XTextContent.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
 #include <com/sun/star/text/XFootnote.hpp>
@@ -119,39 +119,39 @@
 #include <com/sun/star/container/XNameReplace.hpp>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLNUMFE_HXX
-#include "xmlnumfe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUMFE_HXX
+// auto strip #include "xmlnumfe.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
 #endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include "families.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUME_HXX
-#include "xmlnume.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include "families.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLNUME_HXX
+// auto strip #include "xmlnume.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #include "XMLTextCharStyleNamesElementExport.hxx"
 #endif
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
 #endif
-#ifndef _XMLOFF_TXTPARAE_HXX
-#include "txtparae.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TXTPARAE_HXX
+// auto strip #include "txtparae.hxx"
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
