@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dochdl.hrc,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:20:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:40:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,14 +64,14 @@
 
 #include "rcid.hrc"
 
-#define STR_NOGLOS1                 (RC_DOCHDL_BEGIN + 1)
-#define STR_NOGLOS2                 (RC_DOCHDL_BEGIN + 2)
+//STRIP001 #define STR_NOGLOS1                 (RC_DOCHDL_BEGIN + 1)
+//STRIP001 #define STR_NOGLOS2                 (RC_DOCHDL_BEGIN + 2)
 //STRIP001 #define MSG_ERR_INSERT_GLOS         (RC_DOCHDL_BEGIN + 3)
 //STRIP001 #define MSG_CLPBRD_FORMAT_ERROR     (RC_DOCHDL_BEGIN + 4)
 //STRIP001 #define MSG_UPDATE_NEW_GLOS_FMT     (RC_DOCHDL_BEGIN + 5)
 
 //STRIP001 #define DLG_SEL_GLOS                (RC_DOCHDL_BEGIN + 6)
-#define STR_NO_TABLE                (RC_DOCHDL_BEGIN + 7)
+//STRIP001 #define STR_NO_TABLE                (RC_DOCHDL_BEGIN + 7)
 
 #define STR_PRIVATETEXT             (RC_DOCHDL_BEGIN + 8)
 #define STR_PRIVATEGRAPHIC          (RC_DOCHDL_BEGIN + 9)
