@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_XMLChangeTrackingExportHelper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 15:10:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:25:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
 #endif
-#ifndef SC_DOCUMENT_HXX
-#include "document.hxx"
-#endif
+// auto strip #ifndef SC_DOCUMENT_HXX
+// auto strip #include "document.hxx"
+// auto strip #endif
 #ifndef SC_CHGTRACK_HXX
 #include "chgtrack.hxx"
 #endif
@@ -88,22 +88,22 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include <bf_xmloff/nmspmap.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include <bf_xmloff/nmspmap.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
-#include <com/sun/star/util/DateTime.hpp>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
-#ifndef _DATETIME_HXX
-#include <tools/datetime.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
+// auto strip #include <com/sun/star/util/DateTime.hpp>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _DATETIME_HXX
+// auto strip #include <tools/datetime.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX
 #include <svtools/zforlist.hxx>
 #endif
