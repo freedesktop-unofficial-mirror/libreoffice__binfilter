@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbgloop.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:24:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #error Wer fummelt denn an den makefiles rum?
 #endif
 
-#ifndef _STREAM_HXX //autogen
-#include <tools/stream.hxx>
-#endif
+// auto strip #ifndef _STREAM_HXX //autogen
+// auto strip #include <tools/stream.hxx>
+// auto strip #endif
 #include "dbgloop.hxx"
 #include "errhdl.hxx"
 namespace binfilter {
