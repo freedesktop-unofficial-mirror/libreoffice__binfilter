@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svxerr.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:24:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-10 11:42:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -549,36 +549,6 @@ Resource RID_SVXERRCODE
 //STRIP001          Text[ hindi ] = "à¤¸à¥à¤šà¤¿à¤¤à¥à¤?$(ARG1) à¤¨à¤¹à¥€à¤?à¤®à¤¿à¤²à¤¾ à¥?";
 //STRIP001          Text[ slovak ] = "ObrÃ¡zok $(ARG1). nebol nÃ¡jdenÃ½.";
 //STRIP001      };
-String ERRCODE_SVX_GRAPHIC_WRONG_FILEFORMAT&ERRCODE_RES_MASK
-{
-    TEXT = "Eine unverknüpfte Grafik konnte nicht geladen werden" ;
-    TEXT [ English ] = "An embedded graphic could not be read" ;
-    TEXT[ english_us ] = "An unlinked graphic could not be loaded";
-    TEXT[ portuguese ] = "Foi impossível carregar uma imagem não ligada.";
-    TEXT[ greek ] = "Äå?Şôáí äõíáôü?íá öïñôùèåß êÜğïéï ãñáöéê?÷ùñß?óıíäåó?";
-    TEXT[ dutch ] = "Niet-gekoppelde afbeelding kan niet worden geladen";
-    TEXT[ french ] = "Une image (non liée) n'a pas pu être chargée.";
-    TEXT[ spanish ] = "No se pudo cargar una imagen no vinculada";
-    TEXT[ swedish ] = "Ett grafikobjekt utan länk kunde inte laddas";
-    TEXT[ russian ] = "Íåâîçìîæíî çàãğóçèò?íåñâÿçàííûå ãğàôè÷åñêè?îáúåêò?";
-    TEXT[ italian ] = "Non ?stato possibile caricare un'immagine non collegata";
-    TEXT[ danish ] = "Det var ikke muligt at indlæse en ikke-kædet grafik";
-    TEXT[ polish ] = "Nie mo¿na za³adowa?niepo³¹czonej grafiki";
-    TEXT[ portuguese_brazilian ] = "Não foi possível carregar uma figura não vinculada.";
-    TEXT[ japanese ] = "ãƒªãƒ³ã‚¯ã•ã‚Œã¦ã„ãªã„å›³ã¯èª­ã¿è¾¼ã¿ã§ãã¾ã›ã‚“";
-    TEXT[ korean ] = "ì—°ê²°ë˜ì§€ ì•Šì€ ê·¸ë˜í”½ì€ ë¡œë“œí•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
-    TEXT[ chinese_simplified ] = "æ— æ³•è£…å…¥ä¸€ä¸ªå°šæœªé“¾æ¥çš„å›¾å½¢";
-    TEXT[ chinese_traditional ] = "ç„¡æ³•è¼‰å…¥ä¸€å€‹å°šæœªé€£çµçš„åœ–å½?";
-    TEXT[ arabic ] = "ÊÚĞÑ ÊÍãí?ÅÍÏì ÇáÕæ?ÇáÛí?ãÑÊÈØÉ";
-    TEXT[ turkish ] = "Bağlant?oluşturulmamış bir grafik yüklenemedi";
-    TEXT[ catalan ] = "No s'ha pogut carregar la imatge no enllaçada";
-    TEXT[ finnish ] = "Linkittämätönt?kuvaa ei voitu ladata";
-    TEXT[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¹‚à¸«à¸¥à¸”à¸à¸£à¸²à¸Ÿà¸´à¸„à¸—à¸µà¹ˆà¹„à¸¡à¹ˆà¹€à¸Šà¸·à¹ˆà¸­à¸¡à¹‚à¸¢à¸‡à¹„à¸”à¹?";
-    TEXT[ czech ] = "Nelze naÄÃ­st nepÅ™ipojenÃ½ obrÃ¡zek";
-    TEXT[ hebrew ] = "â€®×œ×?× ×™×ª×Ÿ ×œ×˜×¢×•×Ÿ ×¢×¦× ×’×¨×¤×™ ×©×§×™×©×•×¨×• × ×•×ª×§â€?";
-    TEXT[ hindi ] = "à¤²à¤¿à¤‚à¤• à¤¹à¤Ÿà¤¾à¤¯à¤?à¤¹à¥à¤?à¤¸à¥à¤šà¤¿à¤¤à¥à¤?à¤•à¥‹ à¤²à¥‹à¤?à¤¨à¤¹à¥€à¤?à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ";
-    TEXT[ slovak ] = "Nie je moÅ¾nÃ© naÄÃ­taÅ¥ nepripojenÃ½ obrÃ¡zok";
-};
 //STRIP001  String ERRCODE_SVX_LINGU_NOLANGUAGE&ERRCODE_RES_MASK
 //STRIP001      {
 //STRIP001          TEXT = "Am ausgewählten Begriff ist keine Sprache eingestellt." ;
