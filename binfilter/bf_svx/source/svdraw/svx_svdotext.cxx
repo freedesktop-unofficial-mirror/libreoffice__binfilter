@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdotext.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:41 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:28:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,30 +59,30 @@
  *
  ************************************************************************/
 
-#include "svdotext.hxx"
+// auto strip #include "svdotext.hxx"
 #include "svditext.hxx"
-#include "svdpagv.hxx"  // fuer Abfrage im Paint, ob das
+// auto strip #include "svdpagv.hxx"  // fuer Abfrage im Paint, ob das
 #include "svdview.hxx"  // Objekt gerade editiert wird
-#include "svdpage.hxx"  // und fuer AnimationHandler (Laufschrift)
-#include "svdxout.hxx"
+// auto strip #include "svdpage.hxx"  // und fuer AnimationHandler (Laufschrift)
+// auto strip #include "svdxout.hxx"
 #include "svdtouch.hxx"
 #include "svdio.hxx"
 #include "svdetc.hxx"
 #include "svdoutl.hxx"
-#include "svdscrol.hxx"  // fuer Laufschrift
-#include "svdmodel.hxx"  // OutlinerDefaults
-#include "svdglob.hxx"  // Stringcache
+// auto strip #include "svdscrol.hxx"  // fuer Laufschrift
+// auto strip #include "svdmodel.hxx"  // OutlinerDefaults
+// auto strip #include "svdglob.hxx"  // Stringcache
 #include "svdstr.hrc"   // Objektname
 #include "svdtxhdl.hxx"  // DrawTextToPath
 #include "writingmodeitem.hxx"
 
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-#include <svtools/colorcfg.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
+// auto strip #include <svtools/colorcfg.hxx>
+// auto strip #endif
 
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
 
 #ifndef _EDITSTAT_HXX //autogen
 #include <editstat.hxx>
@@ -96,9 +96,9 @@
 #include <editobj.hxx>
 #endif
 
-#ifndef _OUTLINER_HXX //autogen
-#include "outliner.hxx"
-#endif
+// auto strip #ifndef _OUTLINER_HXX //autogen
+// auto strip #include "outliner.hxx"
+// auto strip #endif
 
 #ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
@@ -111,11 +111,20 @@
 #ifndef _SVX_ADJITEM_HXX //autogen
 #include "adjitem.hxx"
 #endif
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
 #include "flditem.hxx"
 
-#ifndef _SVX_XFTOUIT_HXX
-#include "xftouit.hxx"
-#endif
+// auto strip #ifndef _SVX_XFTOUIT_HXX
+// auto strip #include "xftouit.hxx"
+// auto strip #endif
 
 #ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
@@ -124,6 +133,11 @@
 #ifndef _SVX_XFLGRIT_HXX
 #include "xflgrit.hxx"
 #endif
+
+#ifndef _XOUTX_HXX
+#include "xoutx.hxx"
+#endif
+
 namespace binfilter {
 
 // #104018# replace macros above with type-safe methods
