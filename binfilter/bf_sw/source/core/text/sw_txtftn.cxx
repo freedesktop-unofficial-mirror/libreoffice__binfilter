@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txtftn.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:56:43 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:11:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1724,7 +1724,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   SwLineLayout *pLay = this;
 /*N*/   while( pLay->GetNext() )
 /*N*/   {
-/*?*/       DBG_LOOP;
+///*?*/         DBG_LOOP;
 /*?*/       pLay = pLay->GetNext();
 /*N*/   }
 /*N*/   SwLinePortion     *pPor = pLay;
