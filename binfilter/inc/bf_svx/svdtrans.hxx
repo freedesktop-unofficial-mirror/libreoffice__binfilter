@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdtrans.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:08 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:37:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -292,7 +292,7 @@ long BigMulDiv(long nVal, long nMul, long nDiv);
 // Fehlerbehaftetes Kuerzen einer Fraction.
 // nDigits gibt an, wieviele signifikante Stellen in
 // Zaehler/Nenner mindestens erhalten bleiben sollen.
-//STRIP001 void Kuerzen(Fraction& rF, unsigned nDigits);
+void Kuerzen(Fraction& rF, unsigned nDigits);
 
 class FrPair {
     Fraction aX;
