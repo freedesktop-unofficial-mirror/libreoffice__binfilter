@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_bookmrk.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:58:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,22 @@
 
 #pragma hdrstop
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
+
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
