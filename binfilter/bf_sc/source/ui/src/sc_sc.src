@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_sc.src,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:18:35 $
+ *  last change: $Author: hjs $ $Date: 2004-06-25 13:14:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -58,11 +58,12 @@
  *
  *
  ************************************************************************/
+#define NO_LOCALIZE_EXPORT
  //==================================================================
  // StarCalc Applikations Resource
  //
  // (C) 1994 StarDivision GmbH, Hamburg, Germany
- // $Author: hjs $ $Date: 2003-10-01 12:18:35 $ $Revision: 1.1.1.1 $
+ // $Author: hjs $ $Date: 2004-06-25 13:14:27 $ $Revision: 1.2 $
  // $Logfile:   T:/sc/source/ui/src/sc.srv  $ $Workfile:   sc.src  $
  //==================================================================
 
@@ -81,34 +82,31 @@ String RID_BUILDVERSION
 String RID_APPTITLE
 {
     /* ### ACHTUNG: Neuer Text in Resource? StarCalc 4.0 : StarCalc 3.1 */
-    Text = "%PRODUCTNAME Calc" ;
-    Text [ ENGLISH ] = "StarCalc 4.0" ;
-    Text [ norwegian ] = "StarCalc 4.0" ;
-    Text [ italian ] = "%PRODUCTNAME Calc" ;
-    Text [ portuguese_brazilian ] = "%PRODUCTNAME Calc" ;
-    Text [ portuguese ] = "%PRODUCTNAME Calc" ;
-    Text [ finnish ] = "%PRODUCTNAME Calc" ;
-    Text [ danish ] = "%PRODUCTNAME Calc" ;
-    Text [ french ] = "%PRODUCTNAME Calc" ;
-    Text [ swedish ] = "%PRODUCTNAME Calc" ;
-    Text [ dutch ] = "%PRODUCTNAME Calc" ;
-    Text [ spanish ] = "%PRODUCTNAME Calc" ;
-    Text [ english_us ] = "%PRODUCTNAME Calc" ;
-    Text[ chinese_simplified ] = "%PRODUCTNAME Calc";
-    Text[ russian ] = "%PRODUCTNAME Calc";
-    Text[ polish ] = "%PRODUCTNAME Calc";
-    Text[ japanese ] = "%PRODUCTNAME Calc";
-    Text[ chinese_traditional ] = "%PRODUCTNAME Calc";
-    Text[ arabic ] = "%PRODUCTNAME Calc";
-    Text[ greek ] = "%PRODUCTNAME Calc";
-    Text[ korean ] = "%PRODUCTNAME Calc";
-    Text[ turkish ] = "%PRODUCTNAME Calc";
-    Text[ language_user1 ] = " ";
-    Text[ catalan ] = "%PRODUCTNAME Calc";
-    Text[ thai ] = "%PRODUCTNAME Calc";
-    Text[ czech ] = "%PRODUCTNAME Calc";
-    Text[ hebrew ] = "%PRODUCTNAME Calc";
-    Text[ hindi ] = "%PRODUCTNAME गणना";
+    Text [ de ] = "%PRODUCTNAME Calc" ;
+    Text [ en-US ] = "%PRODUCTNAME Calc" ;
+    Text [ x-comment ] = " ";
+    Text[ pt ] = "%PRODUCTNAME Calc";
+    Text[ ru ] = "%PRODUCTNAME Calc";
+    Text[ el ] = "%PRODUCTNAME Calc";
+    Text[ nl ] = "%PRODUCTNAME Calc";
+    Text[ fr ] = "%PRODUCTNAME Calc";
+    Text[ es ] = "%PRODUCTNAME Calc";
+    Text[ fi ] = "%PRODUCTNAME Calc";
+    Text[ ca ] = "%PRODUCTNAME Calc";
+    Text[ it ] = "%PRODUCTNAME Calc";
+    Text[ da ] = "%PRODUCTNAME Calc";
+    Text[ sv ] = "%PRODUCTNAME Calc";
+    Text[ pl ] = "%PRODUCTNAME Calc";
+    Text[ pt-BR ] = "%PRODUCTNAME Calc";
+    Text[ th ] = "%PRODUCTNAME Calc";
+    Text[ ja ] = "%PRODUCTNAME Calc";
+    Text[ ko ] = "%PRODUCTNAME Calc";
+    Text[ zh-CN ] = "%PRODUCTNAME Calc";
+    Text[ zh-TW ] = "%PRODUCTNAME Calc";
+    Text[ tr ] = "%PRODUCTNAME Calc";
+    Text[ hi-IN ] = "%PRODUCTNAME गणना";
+    Text[ ar ] = "%PRODUCTNAME Calc";
+    Text[ he ] = "%PRODUCTNAME Calc";
 };
 
  // About-Dialog --------------------------------------------------------------
