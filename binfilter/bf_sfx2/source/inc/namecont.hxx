@@ -2,9 +2,9 @@
  *
  *  $RCSfile: namecont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:57:47 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:50:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,6 @@
 #define _SFX_NAMECONT_HXX
 
 #include <hash_map>
-
 
 #ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
