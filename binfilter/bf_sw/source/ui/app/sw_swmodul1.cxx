@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:16 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:32:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -165,6 +165,11 @@
 #ifndef _WVIEW_HXX
 #include <wview.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
