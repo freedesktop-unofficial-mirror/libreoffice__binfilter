@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoedprx.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:46:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,25 +71,25 @@
 #include <vector>
 #include <algorithm>
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 
-#ifndef _SV_WINDOW_HXX
-#include <vcl/window.hxx>
-#endif
+// auto strip #ifndef _SV_WINDOW_HXX
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
 
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
+// auto strip #ifndef _SV_SVAPP_HXX
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-#include <com/sun/star/uno/Any.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 //------------------------------------------------------------------------
 //
@@ -105,12 +105,12 @@
 #include "unotext.hxx"
 #endif
 
-#include "unoedhlp.hxx"
-#include "svdmodel.hxx"
-#include "svdpntv.hxx"
-#include "editdata.hxx"
+// auto strip #include "unoedhlp.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "svdpntv.hxx"
+// auto strip #include "editdata.hxx"
 #include "editeng.hxx"
-#include "editview.hxx"
+// auto strip #include "editview.hxx"
 #include "AccessibleStringWrap.hxx"
 namespace binfilter {
 
