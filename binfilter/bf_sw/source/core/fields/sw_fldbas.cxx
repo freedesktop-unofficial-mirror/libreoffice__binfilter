@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:26:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 15:40:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,12 @@
 // auto strip #ifndef _DOC_HXX
 // auto strip #include <doc.hxx>
 // auto strip #endif
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
+#endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
