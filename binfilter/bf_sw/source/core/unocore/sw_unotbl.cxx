@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unotbl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:52:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:15:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,11 @@
 #ifndef _CMDID_H
 #include <cmdid.h>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOTBL_HXX
 #include <unotbl.hxx>
 #endif
@@ -97,6 +102,11 @@
 #ifndef _SWTBLFMT_HXX //autogen
 #include <swtblfmt.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
