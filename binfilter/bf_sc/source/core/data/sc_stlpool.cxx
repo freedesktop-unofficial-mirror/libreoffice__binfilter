@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_stlpool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:32 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:10:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,35 +68,56 @@
 //------------------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/brshitem.hxx>
-#include <bf_svx/editdata.hxx>
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/editdata.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/fhgtitem.hxx>
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SFXPOOLITEM_HXX
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include <bf_svx/itemdata.hxx>
+#endif
+
+#ifndef _DATE_HXX
+#include <tools/date.hxx>
+#endif
+
+#ifndef _TOOLS_TIME_HXX
+#include <tools/time.hxx>
+#endif
+
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/fontitem.hxx>
-#include <bf_svx/pageitem.hxx>
+// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/postitem.hxx>
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
-#include <svtools/itemset.hxx>
+// auto strip #include <svtools/itemset.hxx>
 #include <svtools/zforlist.hxx>
-#include <unotools/charclass.hxx>
-#include <vcl/fontcvt.hxx>
+// auto strip #include <unotools/charclass.hxx>
+// auto strip #include <vcl/fontcvt.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/svapp.hxx>
 
 #include "bf_sc.hrc"
 #include "attrib.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "globstr.hrc"
 #include "document.hxx"
-#include "docpool.hxx"
+// auto strip #include "docpool.hxx"
 #include "stlpool.hxx"
 #include "stlsheet.hxx"
 #include "rechead.hxx"
