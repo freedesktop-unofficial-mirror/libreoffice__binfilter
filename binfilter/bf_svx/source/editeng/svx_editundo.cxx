@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editundo.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:34:48 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,13 +59,21 @@
  *
  ************************************************************************/
 
-#include <eeng_pch.hxx>
+// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
+// auto strip #ifndef _SV_OUTDEV_HXX
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+
+#ifndef _SV_WINDOW_HXX
+#include <vcl/window.hxx>
+#endif
+
 #include <impedit.hxx>
-#include <editundo.hxx>
-#include <editview.hxx>
+// auto strip #include <editundo.hxx>
+// auto strip #include <editview.hxx>
 #include <editeng.hxx>
 namespace binfilter {
 
