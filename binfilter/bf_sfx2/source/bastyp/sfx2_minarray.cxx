@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_minarray.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:38:22 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 10:01:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/ SfxPtrArr::~SfxPtrArr()
 /*N*/ {
 /*N*/   DBG_MEMTEST();
-/*N*/   __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
+/*N*/   delete [] pData;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -143,7 +143,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           DBG_ASSERT( nUsed <= nNewSize, "" );
 /*N*/           memmove( pNewData, pData, sizeof(void*)*nUsed );
-/*N*/           __DELETE (DEL_ARRAY (nUsed)) pData;
+/*N*/           delete [] pData;
 /*N*/       }
 /*N*/       nUnused = nNewSize-nUsed;
 /*N*/       pData = pNewData;
@@ -170,7 +170,7 @@ namespace binfilter {
 /*N*/   // bleibt vielleicht keiner uebrig
 /*N*/   if ( (nUsed-nLen) == 0 )
 /*N*/   {
-/*N*/       __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
+/*N*/       delete [] pData;
 /*N*/       pData = 0;
 /*N*/       nUsed = 0;
 /*N*/       nUnused = 0;
@@ -194,7 +194,7 @@ namespace binfilter {
 /*N*/       if ( nNewUsed != nPos )
 /*N*/           memmove( pNewData+nPos, pData+nPos+nLen,
 /*N*/                    sizeof(void*)*(nNewUsed-nPos) );
-/*N*/       __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
+/*N*/       delete [] pData;
 /*N*/       pData = pNewData;
 /*N*/       nUsed = nNewUsed;
 /*N*/       nUnused = nNewSize - nNewUsed;
@@ -284,7 +284,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           DBG_ASSERT( nUsed < nNewSize, "" );
 /*N*/           memmove( pNewData, pData, sizeof(void*)*nUsed );
-/*N*/           __DELETE (DEL_ARRAY (nUsed)) pData;
+/*N*/           delete [] pData;
 /*N*/       }
 /*N*/       nUnused = nNewSize-nUsed;
 /*N*/       pData = pNewData;
@@ -571,7 +571,7 @@ namespace binfilter {
 /*N*/ WordArr::~WordArr()
 /*N*/ {
 /*N*/   DBG_MEMTEST();
-/*N*/   __DELETE (DEL_ARRAY (nUsed+nUnused)) pData;
+/*N*/   delete [] pData;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -610,7 +610,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           DBG_ASSERT( nUsed <= nNewSize, " " );
 /*N*/           memmove( pNewData, pData, sizeof(short)*nUsed );
-/*N*/           __DELETE (DEL_ARRAY (nUsed)) pData;
+/*N*/           delete [] pData;
 /*N*/       }
 /*N*/       nUnused = nNewSize-nUsed;
 /*N*/       pData = pNewData;
@@ -730,7 +730,7 @@ namespace binfilter {
 /*?*/       {
 /*?*/           DBG_ASSERT( nUsed < nNewSize, "" );
 /*?*/           memmove( pNewData, pData, sizeof(short)*nUsed );
-/*?*/           __DELETE (DEL_ARRAY (nUsed)) pData;
+/*?*/           delete [] pData;
 /*?*/       }
 /*?*/       nUnused = nNewSize-nUsed;
 /*?*/       pData = pNewData;
