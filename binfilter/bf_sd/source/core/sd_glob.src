@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_glob.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 13:26:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:43:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1253,34 +1253,38 @@ String STR_LAYOUT_DEFAULT_NAME
     Text[ ar ] = "قياسي";
     Text[ he ] = "‮ברירת מחדל‬";
 };
-String STR_LAYOUT_DEFAULT_TITLE_NAME
-{
-    Text [ de ] = "Titel" ;
-    Text [ en-US ] = "Title" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Título";
-    Text[ ru ] = "Заголовок";
-    Text[ el ] = "Τίτλος";
-    Text[ nl ] = "Titel";
-    Text[ fr ] = "Titre";
-    Text[ es ] = "Título";
-    Text[ fi ] = "Tehtävä";
-    Text[ ca ] = "Títol";
-    Text[ it ] = "Titolo";
-    Text[ da ] = "Titel";
-    Text[ sv ] = "Titel";
-    Text[ pl ] = "Tytuł";
-    Text[ pt-BR ] = "Título";
-    Text[ th ] = "ชื่อเรื่อง";
-    Text[ ja ] = "タイトル";
-    Text[ ko ] = "제목";
-    Text[ zh-CN ] = "标题";
-    Text[ zh-TW ] = "標題";
-    Text[ tr ] = "Başlık";
-    Text[ hi-IN ] = "शीर्षक";
-    Text[ ar ] = "العنوان";
-    Text[ he ] = "‮כותרת‬";
-};
+//STRIP001 String STR_LAYOUT_DEFAULT_TITLE_NAME
+//STRIP001 {
+//STRIP001      Text = "Titel" ;
+//STRIP001      Text [ ENGLISH ] = "Title" ;
+//STRIP001      Text [ english_us ] = "Title" ;
+//STRIP001      Text [ italian ] = "Titolo" ;
+//STRIP001      Text [ spanish ] = "T�tulo" ;
+//STRIP001      Text [ french ] = "Titre" ;
+//STRIP001      Text [ dutch ] = "Titel" ;
+//STRIP001      Text [ swedish ] = "Titel" ;
+//STRIP001      Text [ danish ] = "Titel" ;
+//STRIP001      Text [ portuguese_brazilian ] = "T�tulo" ;
+//STRIP001      Text [ portuguese ] = "T�tulo" ;
+//STRIP001      Text[ chinese_simplified ] = "标题";
+//STRIP001      Text[ russian ] = "��������?";
+//STRIP001      Text[ polish ] = "Tytu?";
+//STRIP001      Text[ japanese ] = "タイトル";
+//STRIP001      Text[ chinese_traditional ] = "標題";
+//STRIP001      Text[ arabic ] = "������?";
+//STRIP001      Text[ dutch ] = "Titel";
+//STRIP001      Text[ chinese_simplified ] = "标题";
+//STRIP001      Text[ greek ] = "������";
+//STRIP001      Text[ korean ] = "제목";
+//STRIP001      Text[ turkish ] = "Ba�l�k";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ finnish ] = "Teht�v?";
+//STRIP001      Text[ catalan ] = "T�tol";
+//STRIP001      Text[ thai ] = "ชื่อเรื่อ�?";
+//STRIP001      Text[ czech ] = "Titul";
+//STRIP001      Text[ hebrew ] = "‮כותרת�?";
+//STRIP001      Text[ hindi ] = "शीर्षक";
+//STRIP001 };
 String STR_STANDARD_STYLESHEET_NAME
 {
     Text [ de ] = "Standard" ;
@@ -1309,91 +1313,105 @@ String STR_STANDARD_STYLESHEET_NAME
     Text[ ar ] = "قياسي";
     Text[ he ] = "‮ברירת מחדל‬";
 };
-String STR_BAD_PASSWORD_OR_FILE_CORRUPTED
-{
-    /* ### ACHTUNG: Neuer Text in Resource? Das Pa�wort ist falsch oder die Datei besch�digt. : Das Pa�wort ist falsch oder die Datei besch�digt. */
-    Text [ de ] = "Das Kennwort ist falsch oder die Datei besch�digt." ;
-    Text [ en-US ] = "The password is incorrect or the file is damaged." ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Ou a senha está incorrecta ou o ficheiro danificado.";
-    Text[ ru ] = "Неправильный пароль или поврежден файл.";
-    Text[ el ] = "Ο κωδικός πρόσβασης είναι εσφαλμένος ή το αρχείο ελαττωματικό.";
-    Text[ nl ] = "Het wachtwoord is niet correct of het bestand is beschadigd";
-    Text[ fr ] = "Le mot de passe est incorrect ou le fichier est défectueux.";
-    Text[ es ] = "La contraseña no es válida o el archivo está dañado.";
-    Text[ fi ] = "Salasana on virheellinen tai tiedosto on vahingoittunut.";
-    Text[ ca ] = "La contrasenya no és vàlida o el fitxer està corrupte.";
-    Text[ it ] = "La password è errata o il file è danneggiato.";
-    Text[ da ] = "Adgangskoden er forkert eller filen er beskadiget.";
-    Text[ sv ] = "Lösenordet är felaktigt eller filen skadad.";
-    Text[ pl ] = "Nieprawidłowe hasło lub uszkodzony plik.";
-    Text[ pt-BR ] = "A senha está incorreta ou o arquivo está danificado.";
-    Text[ th ] = "รหัสผ่านไม่ถูกต้องหรือแฟ้มเสียหาย";
-    Text[ ja ] = "パスワードが間違っているか、またはファイルに問題があります。";
-    Text[ ko ] = "암호가 틀리거나 파일이 손상되었습니다.";
-    Text[ zh-CN ] = "密码无效或者文件已经损坏。";
-    Text[ zh-TW ] = "密碼無效或者檔案已經損壞。";
-    Text[ tr ] = "Şifre yanlış veya dosya zarar görmüş.";
-    Text[ hi-IN ] = "कूटशब्द गलत है अथवा फाइल को हानी पहुँचा है ।";
-    Text[ ar ] = "كلمة السر غير صحيحة أو الملف معطوب.";
-    Text[ he ] = "Das Kennwort ist falsch oder die Datei beschädigt.";
-};
-String STR_UNDO_MOVEPAGES
-{
-    Text [ de ] = "Seiten verschieben" ;
-    Text [ en-US ] = "Move slides" ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Mover páginas";
-    Text[ ru ] = "Переместить слайды";
-    Text[ el ] = "Μετακίνηση διαφανειών";
-    Text[ nl ] = "Pagina's verplaatsen";
-    Text[ fr ] = "Déplacer des pages";
-    Text[ es ] = "Desplazar diapositivas";
-    Text[ fi ] = "Siirrä dioja";
-    Text[ ca ] = "Mou les diapositives";
-    Text[ it ] = "Sposta pagine";
-    Text[ da ] = "Flyt sider";
-    Text[ sv ] = "Flytta sidor";
-    Text[ pl ] = "Przenieś slajdy";
-    Text[ pt-BR ] = "Mover slides";
-    Text[ th ] = "ย้ายภาพนิ่ง";
-    Text[ ja ] = "ページの移動";
-    Text[ ko ] = "슬라이드 이동";
-    Text[ zh-CN ] = "移动页面";
-    Text[ zh-TW ] = "移動頁面";
-    Text[ tr ] = "Slaytları taşı";
-    Text[ hi-IN ] = "स्लइडों का स्थान परिवर्तन करो";
-    Text[ ar ] = "إزاحة الصفحات";
-    Text[ he ] = "Seiten verschieben";
-};
-String STR_NOT_ENOUGH_MEMORY
-{
-    Text [ de ] = "Nicht genug Speicher!\nDie Aktion wird abgebrochen." ;
-    Text [ en-US ] = "Not enough memory!\nThe action will be aborted." ;
-    Text [ x-comment ] = " ";
-    Text[ pt ] = "Memória insuficiente!\nA acção será cancelada.";
-    Text[ ru ] = "Недостаточно памяти!\nДействие будет прервано.";
-    Text[ el ] = "Δεν υπάρχει αρκετή μνήμη!\nΗ ενέργεια θα διακοπεί.";
-    Text[ nl ] = "Niet genoeg geheugen!\nDe activiteit wordt gestopt.";
-    Text[ fr ] = "Mémoire insuffisante !\nL'opération va être interrompue.";
-    Text[ es ] = "¡Insuficiente espacio de memoria!\nSe cancela la acción.";
-    Text[ fi ] = "Muisti ei riitä.\nToiminto keskeytetään.";
-    Text[ ca ] = "No hi ha prou memòria!\nL'acció no es pot executar.";
-    Text[ it ] = "Memoria insufficiente!\nL'operazione verrà interrotta.";
-    Text[ da ] = "Ikke tilstrækkelig hukommelse!\nHandlingen bliver afbrudt.";
-    Text[ sv ] = "Inte tillräckligt med minne!\nÅtgärden avbryts.";
-    Text[ pl ] = "Za mało pamięci!\nAkcja zostanie przerwana.";
-    Text[ pt-BR ] = "Não há memória suficiente!\nA ação será cancelada.";
-    Text[ th ] = "หน่วยความจำไม่พอ!\nการกระทำจะถูกยกเลิก";
-    Text[ ja ] = "ディスク空き容量が足りません。\nアクションを中止します。";
-    Text[ ko ] = "저장 공간이 충분하지 않습니다\n작업을 중단합니다.";
-    Text[ zh-CN ] = "内存不足！\n中断执行操作。";
-    Text[ zh-TW ] = "記憶體不足！\n中斷執行指令。";
-    Text[ tr ] = "Yetersiz bellek!\nİşlem iptal edilecek.";
-    Text[ hi-IN ] = "मेमरी पर्याप्त नहीं है !\nकार्य को अदूरा रखा जायेगा ।";
-    Text[ ar ] = "لا توجد ذاكرة كافية!\nسوف يتم قطع الإجراء.";
-    Text[ he ] = "Nicht genug Speicher!\nDie Aktion wird abgebrochen.";
-};
+//STRIP001 String STR_BAD_PASSWORD_OR_FILE_CORRUPTED
+//STRIP001 {
+//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? Das Pa�wort ist falsch oder die Datei besch�digt. : Das Pa�wort ist falsch oder die Datei besch�digt. */
+//STRIP001      Text = "Das Kennwort ist falsch oder die Datei besch�digt." ;
+//STRIP001      Text [ ENGLISH ] = "The password is wrong or the file is corrupted." ;
+//STRIP001      Text [ norwegian ] = "The password is wrong or the file is corrupted." ;
+//STRIP001      Text [ italian ] = "La password ?errata o il file ?danneggiato." ;
+//STRIP001      Text [ portuguese_brazilian ] = "A senha est?incorreta ou o arquivo est?danificado." ;
+//STRIP001      Text [ portuguese ] = "Ou a senha est?incorrecta ou o ficheiro danificado." ;
+//STRIP001      Text [ french ] = "Le mot de passe est incorrect ou le fichier est d�fectueux." ;
+//STRIP001      Text [ dutch ] = "Het wachtwoord is niet correct of het bestand is beschadigd" ;
+//STRIP001      Text [ spanish ] = "La contrase�a no es v�lida o el archivo est?da�ado." ;
+//STRIP001      Text [ danish ] = "Adgangskoden er forkert eller filen er beskadiget." ;
+//STRIP001      Text [ swedish ] = "L�senordet �r felaktigt eller filen skadad." ;
+//STRIP001      Text [ finnish ] = "Salasana on virheellinen tai tiedosto on vahingoittunut." ;
+//STRIP001      Text [ english_us ] = "The password is incorrect or the file is damaged." ;
+//STRIP001      Text[ chinese_simplified ] = "密码无效或者文件已经损坏�?";
+//STRIP001      Text[ russian ] = "������������ ������ ��?��������?����.";
+//STRIP001      Text[ polish ] = "Nieprawid�owe has�o lub uszkodzony plik.";
+//STRIP001      Text[ japanese ] = "パスワードが間違っているか、またはファイルに問題があります�?";
+//STRIP001      Text[ chinese_traditional ] = "密碼無效或者檔案已經損壞�?";
+//STRIP001      Text[ arabic ] = "���� ���� ��?����?�� ����?����?";
+//STRIP001      Text[ dutch ] = "Het wachtwoord is niet correct of het bestand is beschadigd";
+//STRIP001      Text[ chinese_simplified ] = "密码无效或者文件已经损坏�?";
+//STRIP001      Text[ greek ] = "?������?��������?����?���������� ?�� ������ ������������.";
+//STRIP001      Text[ korean ] = "암호가 틀리거�?파일�?손상되었습니�?";
+//STRIP001      Text[ turkish ] = "�ifre yanl�� veya dosya zarar g�rm��.";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "La contrasenya no �s v�lida o el fitxer est?corrupte.";
+//STRIP001      Text[ thai ] = "รหัสผ่านไม่ถูกต้องหรือแฟ้มเสียหาย";
+//STRIP001      Text[ czech ] = "Heslo je nesprávné nebo je soubor poškozen.";
+//STRIP001      Text[ hebrew ] = "Das Kennwort ist falsch oder die Datei beschädigt.";
+//STRIP001      Text[ hindi ] = "कूटशब्�?गल�?है अथवा फाइल को हानी पहुँचा है �?";
+//STRIP001 };
+//STRIP001 String STR_UNDO_MOVEPAGES
+//STRIP001 {
+//STRIP001      Text = "Seiten verschieben" ;
+//STRIP001      Text [ ENGLISH ] = "Move pages" ;
+//STRIP001      Text [ norwegian ] = "Move pages" ;
+//STRIP001      Text [ italian ] = "Sposta pagine" ;
+//STRIP001      Text [ portuguese_brazilian ] = "Mover slides" ;
+//STRIP001      Text [ portuguese ] = "Mover p�ginas" ;
+//STRIP001      Text [ finnish ] = "Siirr?dioja" ;
+//STRIP001      Text [ danish ] = "Flyt sider" ;
+//STRIP001      Text [ french ] = "D�placer des pages" ;
+//STRIP001      Text [ swedish ] = "Flytta sidor" ;
+//STRIP001      Text [ dutch ] = "Pagina's verplaatsen" ;
+//STRIP001      Text [ spanish ] = "Desplazar diapositivas" ;
+//STRIP001      Text [ english_us ] = "Move slides" ;
+//STRIP001      Text[ chinese_simplified ] = "移动页面";
+//STRIP001      Text[ russian ] = "����������?������";
+//STRIP001      Text[ polish ] = "Przenie?slajdy";
+//STRIP001      Text[ japanese ] = "ページの移動";
+//STRIP001      Text[ chinese_traditional ] = "移動頁面";
+//STRIP001      Text[ arabic ] = "����?������?";
+//STRIP001      Text[ dutch ] = "Pagina's verplaatsen";
+//STRIP001      Text[ chinese_simplified ] = "移动页面";
+//STRIP001      Text[ greek ] = "���������� ����������";
+//STRIP001      Text[ korean ] = "슬라이드 이동";
+//STRIP001      Text[ turkish ] = "Slaytlar?ta��";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ catalan ] = "Mou les diapositives";
+//STRIP001      Text[ thai ] = "ย้ายภาพนิ่�?";
+//STRIP001      Text[ czech ] = "Přesunout snímky";
+//STRIP001      Text[ hebrew ] = "Seiten verschieben";
+//STRIP001      Text[ hindi ] = "स्लइडो�?का स्था�?परिवर्तन कर�?";
+//STRIP001 };
+//STRIP001 String STR_NOT_ENOUGH_MEMORY
+//STRIP001 {
+//STRIP001      Text = "Nicht genug Speicher!\nDie Aktion wird abgebrochen." ;
+//STRIP001      Text [ ENGLISH ] = "Not enough memory!\nThe action is canceled." ;
+//STRIP001      Text [ dutch ] = "Niet genoeg geheugen!\nDe activiteit wordt gestopt." ;
+//STRIP001      Text [ english_us ] = "Not enough memory!\nThe action will be aborted." ;
+//STRIP001      Text [ italian ] = "Memoria insufficiente!\nL'operazione verr?interrotta." ;
+//STRIP001      Text [ spanish ] = "�Insuficiente espacio de memoria!\nSe cancela la acci�n." ;
+//STRIP001      Text [ french ] = "M�moire insuffisante !\nL'op�ration va �tre interrompue." ;
+//STRIP001      Text [ swedish ] = "Inte tillr�ckligt med minne!\n�tg�rden avbryts." ;
+//STRIP001      Text [ danish ] = "Ikke tilstr�kkelig hukommelse!\nHandlingen bliver afbrudt." ;
+//STRIP001      Text [ portuguese_brazilian ] = "N�o h?mem�ria suficiente!\nA a��o ser?cancelada." ;
+//STRIP001      Text [ portuguese ] = "Mem�ria insuficiente!\nA ac��o ser?cancelada." ;
+//STRIP001      Text[ chinese_simplified ] = "内存不足！\n中断执行操作�?";
+//STRIP001      Text[ russian ] = "������������ ��?��!\n�������� ����?��������.";
+//STRIP001      Text[ polish ] = "Za ma�o pami�ci!\nAkcja zostanie przerwana.";
+//STRIP001      Text[ japanese ] = "ディスク空き容量が足りません。\nアクションを中止します�?";
+//STRIP001      Text[ chinese_traditional ] = "記憶體不足！\n中斷執行指令�?";
+//STRIP001      Text[ arabic ] = "�� ���� ����?����?\n��?��?��?������?";
+//STRIP001      Text[ dutch ] = "Niet genoeg geheugen!\nDe activiteit wordt gestopt.";
+//STRIP001      Text[ chinese_simplified ] = "内存不足！\n中断执行操作�?";
+//STRIP001      Text[ greek ] = "��?������?������ ����?\n?�������� �� ��������.";
+//STRIP001      Text[ korean ] = "저�?공간�?충분하지 않습니다\n작업�?중단합니�?";
+//STRIP001      Text[ turkish ] = "Yetersiz bellek!\n��lem iptal edilecek.";
+//STRIP001      Text[ language_user1 ] = " ";
+//STRIP001      Text[ finnish ] = "Muisti ei riit?\nToiminto keskeytet��n.";
+//STRIP001      Text[ catalan ] = "No hi ha prou mem�ria!\nL'acci?no es pot executar.";
+//STRIP001      Text[ thai ] = "หน่วยความจำไม่พอ!\nการกระทำจะถูกยกเลิ�?";
+//STRIP001      Text[ czech ] = "Nedostatek paměti!\nAkce bude zrušena.";
+//STRIP001      Text[ hebrew ] = "Nicht genug Speicher!\nDie Aktion wird abgebrochen.";
+//STRIP001      Text[ hindi ] = "मेमरी पर्याप्त नही�?है !\nकार्�?को अदूर�?रख�?जायेगा �?";
+//STRIP001 };
 /* nicht uebersetzen */
 String STR_LAYOUT_SUBTITLE
 {
@@ -2056,33 +2074,35 @@ String STR_GRAFOBJECTBARSHELL
     Text[ he ] = "Grafikmodus";
 };
 
-String STR_POWERPOINT_IMPORT
-{
-    Text [ de ] = "PowerPoint Import" ;
-    Text [ en-US ] = "PowerPoint Import";
-    Text[ pt ] = "Importação PowerPoint";
-    Text[ ru ] = "Импорт PowerPoint";
-    Text[ el ] = "Εισαγωγή του PowerPoint";
-    Text[ nl ] = "PowerPoint import";
-    Text[ fr ] = "Import PowerPoint";
-    Text[ es ] = "Importación PowerPoint";
-    Text[ fi ] = "PowerPoint-tuonti";
-    Text[ ca ] = "Importació de PowerPoint";
-    Text[ it ] = "Importazione PowerPoint";
-    Text[ da ] = "PowerPoint-import";
-    Text[ sv ] = "PowerPoint-import";
-    Text[ pl ] = "Import formatu PowerPoint";
-    Text[ pt-BR ] = "Importar PowerPoint";
-    Text[ th ] = "นำเข้า PowerPoint";
-    Text[ ja ] = "PowerPoint インポート";
-    Text[ ko ] = "PowerPoint 가져오기";
-    Text[ zh-CN ] = "PowerPoint 输入";
-    Text[ zh-TW ] = "PowerPoint 匯入";
-    Text[ tr ] = "PowerPoint import";
-    Text[ hi-IN ] = "पवरपोइन्ट आयात";
-    Text[ ar ] = "PowerPoint استيراد";
-    Text[ he ] = "PowerPoint Import";
-};
+//STRIP001 String STR_POWERPOINT_IMPORT
+//STRIP001 {
+//STRIP001      Text = "PowerPoint Import" ;
+//STRIP001      Text [ ENGLISH ] = "PowerPoint import" ;
+//STRIP001      Text[ english_us ] = "PowerPoint Import";
+//STRIP001      Text[ portuguese ] = "Importa��o PowerPoint";
+//STRIP001      Text[ russian ] = "������ PowerPoint";
+//STRIP001      Text[ greek ] = "�������� ��?PowerPoint";
+//STRIP001      Text[ dutch ] = "PowerPoint import";
+//STRIP001      Text[ french ] = "Import PowerPoint";
+//STRIP001      Text[ spanish ] = "Importaci�n PowerPoint";
+//STRIP001      Text[ italian ] = "Importazione PowerPoint";
+//STRIP001      Text[ danish ] = "PowerPoint-import";
+//STRIP001      Text[ swedish ] = "PowerPoint-import";
+//STRIP001      Text[ polish ] = "Import formatu PowerPoint";
+//STRIP001      Text[ portuguese_brazilian ] = "Importar PowerPoint";
+//STRIP001      Text[ japanese ] = "PowerPoint インポー�?";
+//STRIP001      Text[ korean ] = "PowerPoint 가져오�?";
+//STRIP001      Text[ chinese_simplified ] = "PowerPoint 输入";
+//STRIP001      Text[ chinese_traditional ] = "PowerPoint 匯入";
+//STRIP001      Text[ turkish ] = "PowerPoint import";
+//STRIP001      Text[ arabic ] = "PowerPoint ������?";
+//STRIP001      Text[ finnish ] = "PowerPoint-tuonti";
+//STRIP001      Text[ catalan ] = "Importaci?de PowerPoint";
+//STRIP001      Text[ thai ] = "นำเข้�?PowerPoint";
+//STRIP001      Text[ czech ] = "Import z PowerPointu";
+//STRIP001      Text[ hebrew ] = "PowerPoint Import";
+//STRIP001      Text[ hindi ] = "पवरपोइन्�?आयात";
+//STRIP001 };
 
 #ifdef STARIMAGE_AVAILABLE
 String STR_PRESOBJ_IMAGE
