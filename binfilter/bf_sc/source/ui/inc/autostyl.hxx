@@ -2,9 +2,9 @@
  *
  *  $RCSfile: autostyl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:58:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #ifndef SC_AUTOSTYL_HXX
 #define SC_AUTOSTYL_HXX
 
-#ifndef _TIMER_HXX //autogen
-#include <vcl/timer.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
+// auto strip #ifndef _TIMER_HXX //autogen
+// auto strip #include <vcl/timer.hxx>
+// auto strip #endif
+// auto strip #ifndef _LIST_HXX //autogen
+// auto strip #include <tools/list.hxx>
+// auto strip #endif
+// auto strip #ifndef _STRING_HXX //autogen
+// auto strip #include <tools/string.hxx>
+// auto strip #endif
 #include <tools/debug.hxx> //STRIP001
 namespace binfilter {
 class ScDocShell;
