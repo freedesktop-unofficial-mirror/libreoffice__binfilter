@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_migratefilter.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mba $ $Date: 2004-04-02 14:14:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:37:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,13 +67,13 @@
 #include <com/sun/star/util/XCloseable.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-#include <com/sun/star/io/XOutputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XOutputStream.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-#include <com/sun/star/io/XInputStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
+// auto strip #include <com/sun/star/io/XInputStream.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
@@ -91,9 +91,9 @@
 #include <com/sun/star/io/XSeekable.hpp>
 #endif
 
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
-#include <unotools/ucbstreamhelper.hxx>
-#endif
+// auto strip #ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
+// auto strip #include <unotools/ucbstreamhelper.hxx>
+// auto strip #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
