@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:44:36 $
+ *  last change: $Author: rt $ $Date: 2005-01-27 11:08:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -129,6 +129,9 @@
 #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
+#endif
+#ifndef _FMTFSIZE_HXX //autogen
+#include <fmtfsize.hxx>
 #endif
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
@@ -373,6 +376,18 @@ namespace binfilter {
 /*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
 /*N*/       if( pFmt )
 /*N*/       {
+/*N*/           // --> FME 2005-01-18 #b6218408#
+/*N*/           // Emulate 5.2 footer size bug:
+/*N*/           if ( pIo->IsVersion( SWG_MAJORVERSION_50 ) )
+/*N*/           {
+/*N*/               SwFmtFrmSize aSize = pFmt->GetFrmSize( FALSE );
+/*N*/               if ( ATT_MIN_SIZE == aSize.GetSizeType() )
+/*N*/               {
+/*N*/                   aSize.SetHeight( 0 );
+/*N*/                   pFmt->SetAttr( aSize );
+/*N*/               }
+/*N*/           }
+/*N*/           // <--
 /*N*/           pAttr = new SwFmtFooter( pFmt );
 /*N*/           pAttr->SetActive( BOOL( bActive ) );
 /*N*/       }
