@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_evntconf.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:36:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,29 +62,29 @@
 #ifndef _SV_MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
 #endif
-#ifndef _SV_RESARY_HXX
-#include <tools/resary.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
-#ifndef _BASMGR_HXX //autogen
-#include <basic/basmgr.hxx>
-#endif
-#ifndef _SB_SBMOD_HXX //autogen
-#include <basic/sbmod.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
-#include <tools/urlobj.hxx>
-#endif
-#ifndef _SBXCLASS_HXX //autogen
-#include <svtools/sbx.hxx>
-#endif
+// auto strip #ifndef _SV_RESARY_HXX
+// auto strip #include <tools/resary.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
+// auto strip #ifndef _BASMGR_HXX //autogen
+// auto strip #include <basic/basmgr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SB_SBMOD_HXX //autogen
+// auto strip #include <basic/sbmod.hxx>
+// auto strip #endif
+// auto strip #ifndef _URLOBJ_HXX //autogen
+// auto strip #include <tools/urlobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SBXCLASS_HXX //autogen
+// auto strip #include <svtools/sbx.hxx>
+// auto strip #endif
 
-#include <svtools/securityoptions.hxx>
+// auto strip #include <svtools/securityoptions.hxx>
 
 #pragma hdrstop
 
@@ -92,42 +92,42 @@
 #include <rtl/ustring.h>
 #endif
 
-#include <com/sun/star/uno/Any.hxx>
-#include <framework/eventsconfiguration.hxx>
-#include <comphelper/processfactory.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
+// auto strip #include <framework/eventsconfiguration.hxx>
+// auto strip #include <comphelper/processfactory.hxx>
 
-#include "evntconf.hxx"
+// auto strip #include "evntconf.hxx"
 
 #include "macrconf.hxx"
-#include "docfile.hxx"
-#include "app.hxx"
+// auto strip #include "docfile.hxx"
+// auto strip #include "app.hxx"
 #include "objsh.hxx"
 #include "dispatch.hxx"
 #include "config.hrc"
 #include "sfxresid.hxx"
-#include "cfgmgr.hxx"
-#include "macropg.hxx"
-#include "docinf.hxx"
+// auto strip #include "cfgmgr.hxx"
+// auto strip #include "macropg.hxx"
+// auto strip #include "docinf.hxx"
 #include "eventsupplier.hxx"
 
 #include "sfxsids.hrc"
 #include "sfxlocal.hrc"
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-#include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-#include <com/sun/star/container/XNameReplace.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
-#include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
-#include <com/sun/star/uno/Reference.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
+// auto strip #endif
+// auto strip #ifndef  _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XNameReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef  _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
+// auto strip #include <com/sun/star/document/XEventsSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #endif
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002

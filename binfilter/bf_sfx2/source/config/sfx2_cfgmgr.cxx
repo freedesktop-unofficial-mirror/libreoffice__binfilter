@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_cfgmgr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:35:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,36 +63,36 @@
 
 #include <stdio.h>
 
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
-#include <com/sun/star/ucb/XCommandEnvironment.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETEXCEPTION_HPP_
-#include <com/sun/star/lang/WrappedTargetException.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
+// auto strip #include <com/sun/star/ucb/XCommandEnvironment.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_WRAPPEDTARGETEXCEPTION_HPP_
+// auto strip #include <com/sun/star/lang/WrappedTargetException.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UCB_INTERACTIVEAUGMENTEDIOEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveAugmentedIOException.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UCB_IOERRORCODE_HPP_
-#include <com/sun/star/ucb/IOErrorCode.hpp>
-#endif
-#include <com/sun/star/uno/Reference.hxx>
-#include <com/sun/star/uno/Any.hxx>
+// auto strip #ifndef _COM_SUN_STAR_UCB_IOERRORCODE_HPP_
+// auto strip #include <com/sun/star/ucb/IOErrorCode.hpp>
+// auto strip #endif
+// auto strip #include <com/sun/star/uno/Reference.hxx>
+// auto strip #include <com/sun/star/uno/Any.hxx>
 
 #include <ucbhelper/content.hxx>
 #include <tools/urlobj.hxx>
 #include <svtools/pathoptions.hxx>
-#include <so3/svstor.hxx>
+// auto strip #include <so3/svstor.hxx>
 #include <sot/storinfo.hxx>
 
 #ifndef _SVSTDARR_ULONGS_DECL
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
 
 #pragma hdrstop
 
 #include "cfgmgr.hxx"
-#include "cfgitem.hxx"
+// auto strip #include "cfgitem.hxx"
 #include "objsh.hxx"
 #include "cfgimpl.hxx"
 #include "docfile.hxx"
