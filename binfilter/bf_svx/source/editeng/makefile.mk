@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:47 $
+#   last change: $Author: hr $ $Date: 2004-08-03 15:32:49 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -127,7 +127,6 @@ SLOFILES =	\
             $(SLO)$/svx_txtrange.obj \
             $(SLO)$/svx_svxacorr.obj \
             $(SLO)$/svx_SvXMLAutoCorrectImport.obj \
-            $(SLO)$/svx_SvXMLAutoCorrectExport.obj \
             $(SLO)$/svx_forbiddencharacterstable.obj \
             $(SLO)$/svx_swafopt.obj \
             $(SLO)$/svx_editattr.obj \
