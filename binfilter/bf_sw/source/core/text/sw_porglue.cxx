@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porglue.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:53:33 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:10:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -260,7 +260,7 @@ namespace binfilter {
 /*N*/       SwGluePortion *pLeft = 0;
 /*N*/       while( pPos )
 /*N*/       {
-/*N*/           DBG_LOOP;
+///*N*/             DBG_LOOP;
 /*N*/           if( pPos->InFixMargGrp() )
 /*N*/               pLeft = (SwGluePortion*)pPos;
 /*N*/           pPos = pPos->GetPortion();
@@ -304,7 +304,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/           while( pPrev != pLeft )
 /*?*/           {
-/*?*/               DBG_LOOP;
+///*?*/                 DBG_LOOP;
 /*?*/
 /*?*/               if( bNoMove || pPrev->PrtWidth() >= nRightGlue ||
 /*?*/                   pPrev->InHyphGrp() || pPrev->IsKernPortion() )
