@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chtmod2a.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:43:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 #include <bf_svx/eeitem.hxx>
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -75,23 +75,28 @@
 #ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
 #endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 
 #ifndef _SCHATTR_HXX
 #include "schattr.hxx"
 #endif
-#ifndef _SCH_MEMCHRT_HXX
-#include "memchrt.hxx"
-#endif
+// auto strip #ifndef _SCH_MEMCHRT_HXX
+// auto strip #include "memchrt.hxx"
+// auto strip #endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-#include <bf_svx/chrtitem.hxx>
+
+// auto strip #ifndef _SFXENUMITEM_HXX
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/chrtitem.hxx>
 #endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
@@ -101,24 +106,24 @@
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#include "globfunc.hxx"
+// auto strip #include "chtmodel.hxx"
+// auto strip #include "globfunc.hxx"
 #endif
-#ifndef _SCH_SCHGROUP_HXX
-#include "schgroup.hxx"
-#endif
-#ifndef _SCH_DATAROW_HXX
-#include "datarow.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
-#include "objid.hxx"
-#endif
-#ifndef _SCH_SCHRESID_HXX
-#include "schresid.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
-#include "datapoin.hxx"
-#endif
+// auto strip #ifndef _SCH_SCHGROUP_HXX
+// auto strip #include "schgroup.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAROW_HXX
+// auto strip #include "datarow.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_OBJID_HXX
+// auto strip #include "objid.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_SCHRESID_HXX
+// auto strip #include "schresid.hxx"
+// auto strip #endif
+// auto strip #ifndef _SCH_DATAPOIN_HXX
+// auto strip #include "datapoin.hxx"
+// auto strip #endif
 
 #include "strings.hrc"
 #include "glob.hrc"
@@ -127,22 +132,22 @@
 
 
 #include "pairs.hxx"
-#ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#endif
+// auto strip #ifndef _CHTMODEL_HXX
+// auto strip #include "chtmodel.hxx"
+// auto strip #endif
 #include "globfunc.hxx"
 
-#ifndef _SVX_FILLITEM_HXX //autogen
-#include <bf_svx/xfillit.hxx>
-#endif
+// auto strip #ifndef _SVX_FILLITEM_HXX //autogen
+// auto strip #include <bf_svx/xfillit.hxx>
+// auto strip #endif
 
 #ifndef _SVX_XLINIIT_HXX //autogen
 #include <bf_svx/xlineit.hxx>
 #endif
 // header for Line
-#ifndef _SV_LINE_HXX
-#include <tools/line.hxx>
-#endif
+// auto strip #ifndef _SV_LINE_HXX
+// auto strip #include <tools/line.hxx>
+// auto strip #endif
 
 #include "chaxis.hxx"
 #include "chdescr.hxx"
