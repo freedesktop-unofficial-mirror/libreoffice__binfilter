@@ -2,9 +2,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:37:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,46 +64,46 @@
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif
-#ifndef _LINK_HXX //autogen
-#include <tools/link.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
-#include <tools/rtti.hxx>
-#endif
+// auto strip #ifndef _LINK_HXX //autogen
+// auto strip #include <tools/link.hxx>
+// auto strip #endif
+// auto strip #ifndef _RTTI_HXX //autogen
+// auto strip #include <tools/rtti.hxx>
+// auto strip #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>          // fuer SWPOSDOC
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>            // fuer SWPOSDOC
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer ViewShell
 #endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>           // fuer SwClient
-#endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>         // fuer SwClient
+// auto strip #endif
 #ifndef _CSHTYP_HXX
 #include <cshtyp.hxx>           // fuer die CursorShell Typen
 #endif
 #ifndef _CRSTATE_HXX
 #include <crstate.hxx>          // fuer die CursorMove-Staties
 #endif
-#ifndef _BKMRKE_HXX //autogen
-#include <bkmrke.hxx>
-#endif
-#ifndef _TOXE_HXX
-#include <toxe.hxx>             // SwTOXSearchDir
-#endif
+// auto strip #ifndef _BKMRKE_HXX //autogen
+// auto strip #include <bkmrke.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOXE_HXX
+// auto strip #include <toxe.hxx>               // SwTOXSearchDir
+// auto strip #endif
 #ifndef _TBLSEL_HXX
 #include <tblsel.hxx>               //SwTblSearchType
 #endif
 
 #if defined(PRODUCT) && !defined(WIN)
 // fuer die Inline-Methoden
-#ifndef _VISCRS_HXX
-#include <viscrs.hxx>
-#endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
+// auto strip #ifndef _VISCRS_HXX
+// auto strip #include <viscrs.hxx>
+// auto strip #endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
 #define CRSR_INLINE inline
 #else
 #define CRSR_INLINE
