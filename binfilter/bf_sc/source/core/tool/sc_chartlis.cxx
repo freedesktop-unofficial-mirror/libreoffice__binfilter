@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chartlis.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:34 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:14:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,7 +68,7 @@
 #include <vcl/svapp.hxx>
 
 #include "chartlis.hxx"
-#include "brdcst.hxx"
+// auto strip #include "brdcst.hxx"
 #include "document.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {

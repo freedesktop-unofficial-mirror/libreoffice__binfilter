@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chgviset.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: er $ $Date: 2004-03-30 13:22:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:14:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -69,8 +69,8 @@
 
 #include "chgviset.hxx"
 #include "rechead.hxx"
-#include "chgtrack.hxx"
-#include <tools/debug.hxx>//STRIP001
+// auto strip #include "chgtrack.hxx"
+// auto strip #include <tools/debug.hxx>//STRIP001
 namespace binfilter {
 // -----------------------------------------------------------------------
 /*N*/ ScChangeViewSettings::~ScChangeViewSettings()
