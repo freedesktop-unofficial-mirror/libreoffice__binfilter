@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:31:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:21:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -70,26 +70,26 @@
 #include <bf_svx/svdpage.hxx>
 
 #include <svtools/numuno.hxx>
-#include <svtools/smplhint.hxx>
-#include <bf_sfx2/printer.hxx>
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/bindings.hxx>
 #include <vcl/waitobj.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <tools/multisel.hxx>
 #include <toolkit/awt/vclxdevice.hxx>
 #include <ctype.h>
 #include <float.h>  // DBL_MAX
 
 #include <com/sun/star/util/Date.hpp>
-#include <com/sun/star/sheet/XNamedRanges.hpp>
-#include <com/sun/star/sheet/XLabelRanges.hpp>
-#include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#include <com/sun/star/script/XLibraryContainer.hpp>
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #include <com/sun/star/sheet/XNamedRanges.hpp>
+// auto strip #include <com/sun/star/sheet/XLabelRanges.hpp>
+// auto strip #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
+// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 
-#include "docuno.hxx"
+// auto strip #include "docuno.hxx"
 #include "cellsuno.hxx"
 #include "nameuno.hxx"
 #include "datauno.hxx"
@@ -108,10 +108,10 @@
 #include "dociter.hxx"
 #include "cell.hxx"
 #include "drwlayer.hxx"
-#include "rangeutl.hxx"
-#include "markdata.hxx"
+// auto strip #include "rangeutl.hxx"
+// auto strip #include "markdata.hxx"
 #include "viewfunc.hxx"     // TABLEID_DOC - verschieben!!!
-#include "docoptio.hxx"
+// auto strip #include "docoptio.hxx"
 #include "unoguard.hxx"
 #include "unonames.hxx"
 #include "shapeuno.hxx"
