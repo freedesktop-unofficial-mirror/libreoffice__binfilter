@@ -2,9 +2,9 @@
  *
  *  $RCSfile: newhdl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:45:22 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,7 +65,7 @@
 #include <tools/link.hxx>
 #endif
 
-#include "errhdl.hxx"       // hier kommt auch swtypes rein, was ich brauche
+// auto strip #include "errhdl.hxx"     // hier kommt auch swtypes rein, was ich brauche
 namespace binfilter {
 
 // ----------------------------------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: paratr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:45:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,15 +67,15 @@
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
-#ifndef _SWATRSET_HXX
-#include <swatrset.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWATRSET_HXX
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
 #ifndef _FORMAT_HXX
 #include <format.hxx>
 #endif
