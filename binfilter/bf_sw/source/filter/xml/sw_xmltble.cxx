@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmltble.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:27:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 15:54:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -112,6 +112,9 @@
 #include <hash_map>
 #endif
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
 #ifndef _SWTABLE_HXX
 #include "swtable.hxx"
 #endif
