@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmundo.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:44:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:58:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,37 +61,37 @@
 #ifndef _SVX_FMUNDO_HXX
 #define _SVX_FMUNDO_HXX
 
-#ifndef _SVDUNDO_HXX
-#include "svdundo.hxx"
-#endif
+// auto strip #ifndef _SVDUNDO_HXX
+// auto strip #include "svdundo.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertyChangeListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
-#include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENT_HPP_
-#include <com/sun/star/script/ScriptEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/beans/PropertyChangeEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENT_HPP_
+// auto strip #include <com/sun/star/script/ScriptEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SCRIPT_XSCRIPTLISTENER_HPP_
 #include <com/sun/star/script/XScriptListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
-#include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
+// auto strip #include <com/sun/star/script/ScriptEventDescriptor.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
 #endif
@@ -102,9 +102,9 @@
 
 
 
-#ifndef _SFXLSTNER_HXX //autogen
-#include <svtools/lstner.hxx>
-#endif
+// auto strip #ifndef _SFXLSTNER_HXX //autogen
+// auto strip #include <svtools/lstner.hxx>
+// auto strip #endif
 
 #ifndef _SVDOUNO_HXX //autogen wg. SdrUnoObj
 #include "svdouno.hxx"
