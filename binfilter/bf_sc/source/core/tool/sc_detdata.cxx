@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_detdata.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:29 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -89,29 +89,29 @@ namespace binfilter {
 /*N*/       Append( new ScDetOpData(*rList[i]) );
 /*N*/ }
 
-//STRIP001 void ScDetOpList::UpdateReference( ScDocument* pDoc, UpdateRefMode eUpdateRefMode,
-//STRIP001                              const ScRange& rRange, short nDx, short nDy, short nDz )
-//STRIP001 {
-//STRIP001  USHORT nCount = Count();
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001  {
-//STRIP001      ScAddress aPos = (*this)[i]->GetPos();
-//STRIP001      USHORT nCol1 = aPos.Col();
-//STRIP001      USHORT nRow1 = aPos.Row();
-//STRIP001      USHORT nTab1 = aPos.Tab();
-//STRIP001      USHORT nCol2 = nCol1;
-//STRIP001      USHORT nRow2 = nRow1;
-//STRIP001      USHORT nTab2 = nTab1;
-//STRIP001
-//STRIP001      ScRefUpdateRes eRes =
-//STRIP001          ScRefUpdate::Update( pDoc, eUpdateRefMode,
-//STRIP001              rRange.aStart.Col(), rRange.aStart.Row(), rRange.aStart.Tab(),
-//STRIP001              rRange.aEnd.Col(), rRange.aEnd.Row(), rRange.aEnd.Tab(), nDx, nDy, nDz,
-//STRIP001              nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001      if ( eRes != UR_NOTHING )
-//STRIP001          (*this)[i]->SetPos( ScAddress( nCol1, nRow1, nTab1 ) );
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScDetOpList::UpdateReference( ScDocument* pDoc, UpdateRefMode eUpdateRefMode,
+/*N*/                               const ScRange& rRange, short nDx, short nDy, short nDz )
+/*N*/ {
+/*N*/   USHORT nCount = Count();
+/*N*/   for (USHORT i=0; i<nCount; i++)
+/*N*/   {
+/*N*/       ScAddress aPos = (*this)[i]->GetPos();
+/*N*/       USHORT nCol1 = aPos.Col();
+/*N*/       USHORT nRow1 = aPos.Row();
+/*N*/       USHORT nTab1 = aPos.Tab();
+/*N*/       USHORT nCol2 = nCol1;
+/*N*/       USHORT nRow2 = nRow1;
+/*N*/       USHORT nTab2 = nTab1;
+/*N*/
+/*N*/       ScRefUpdateRes eRes =
+/*N*/           ScRefUpdate::Update( pDoc, eUpdateRefMode,
+/*N*/               rRange.aStart.Col(), rRange.aStart.Row(), rRange.aStart.Tab(),
+/*N*/               rRange.aEnd.Col(), rRange.aEnd.Row(), rRange.aEnd.Tab(), nDx, nDy, nDz,
+/*N*/               nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
+/*N*/       if ( eRes != UR_NOTHING )
+/*N*/           (*this)[i]->SetPos( ScAddress( nCol1, nRow1, nTab1 ) );
+/*N*/   }
+/*N*/ }
 
 /*N*/ void ScDetOpList::Append( ScDetOpData* pData )
 /*N*/ {

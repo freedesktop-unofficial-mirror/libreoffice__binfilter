@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -444,17 +444,17 @@ namespace binfilter {
 //STRIP001 }
 
 
-//STRIP001 void ScDocument::StartChangeTracking()
-//STRIP001 {
-//STRIP001  if (!pChangeTrack)
-//STRIP001      pChangeTrack = new ScChangeTrack( this );
-//STRIP001 }
+/*N*/ void ScDocument::StartChangeTracking() // Changetracking.sdc
+/*N*/ {
+/*N*/   if (!pChangeTrack)
+/*N*/       pChangeTrack = new ScChangeTrack( this );
+/*N*/ }
 
-//STRIP001 void ScDocument::EndChangeTracking()
-//STRIP001 {
-//STRIP001  delete pChangeTrack;
-//STRIP001  pChangeTrack = NULL;
-//STRIP001 }
+/*N*/ void ScDocument::EndChangeTracking() // Changetracking.sdc
+/*N*/ {
+/*N*/   delete pChangeTrack;
+/*N*/   pChangeTrack = NULL;
+/*N*/ }
 
 /*N*/ void ScDocument::SetChangeTrack( ScChangeTrack* pTrack )
 /*N*/ {
@@ -893,11 +893,11 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 //STRIP001   if (bIsClip)
 /*?*/                   pConsolidateDlgData->Load( rStream );
 /*?*/                   break;
 /*?*/               case SCID_CHANGETRACK:
-/*?*/                   DBG_ASSERT(0, "STRIP"); //STRIP001 if ( pChangeTrack )
-//STRIP001 /*?*/                        pChangeTrack->Clear();  // es kann nur einen geben
-//STRIP001 /*?*/                    else
-//STRIP001 /*?*/                        StartChangeTracking();
-//STRIP001 /*?*/                    pChangeTrack->Load( rStream, nVersion );
+/*N*/                   if ( pChangeTrack ) // Changetracking.sdc
+/*N*/ /*?*/                         pChangeTrack->Clear();  // es kann nur einen geben
+/*N*/ /*?*/                     else
+/*N*/ /*?*/                         StartChangeTracking();
+/*N*/ /*?*/                     pChangeTrack->Load( rStream, nVersion );
 /*?*/                   break;
 /*?*/               case SCID_CHGVIEWSET:
 /*?*/               DBG_ASSERT(0, "STRIP"); //STRIP001  if (!pChangeViewSettings)

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bcaslot.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:56 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -286,34 +286,34 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 /*N*/ }
 
 
-//STRIP001 BOOL ScBroadcastAreaSlot::AreaBroadcastInRange( const ScRange& rRange,
-//STRIP001         const ScHint& rHint) const
-//STRIP001 {
-//STRIP001  USHORT nCount = pBroadcastAreaTbl->Count();
-//STRIP001  if ( nCount == 0 )
-//STRIP001      return FALSE;
-//STRIP001  const ScBroadcastArea** ppArea =
-//STRIP001      (const ScBroadcastArea**) pBroadcastAreaTbl->GetData();
-//STRIP001  BOOL bIsBroadcasted = FALSE;
-//STRIP001  // unfortunately we can't search for the first matching entry
-//STRIP001  USHORT nPos = 0;
-//STRIP001     // search the last matching entry, Seek_Entry returns the next being
-//STRIP001     // greater, or a free position if not found
-//STRIP001  USHORT nPosEnd;
-//STRIP001  pTmpSeekBroadcastArea->UpdateRange( rRange );
-//STRIP001     if ( !pBroadcastAreaTbl->Seek_Entry( pTmpSeekBroadcastArea, &nPosEnd ) &&
-//STRIP001             nPosEnd > 0 )
-//STRIP001         --nPosEnd;
-//STRIP001  for ( ; nPos <= nPosEnd; ++nPos, ppArea++ )
-//STRIP001  {
-//STRIP001      if ( ((ScBroadcastArea*)*ppArea)->Intersects( rRange ) )
-//STRIP001      {
-//STRIP001          ((ScBroadcastArea*)*ppArea)->Broadcast( rHint );
-//STRIP001          bIsBroadcasted = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bIsBroadcasted;
-//STRIP001 }
+/*N*/ BOOL ScBroadcastAreaSlot::AreaBroadcastInRange( const ScRange& rRange,
+/*N*/         const ScHint& rHint) const
+/*N*/ {
+/*N*/   USHORT nCount = pBroadcastAreaTbl->Count();
+/*N*/   if ( nCount == 0 )
+/*N*/       return FALSE;
+/*N*/   const ScBroadcastArea** ppArea =
+/*N*/       (const ScBroadcastArea**) pBroadcastAreaTbl->GetData();
+/*N*/   BOOL bIsBroadcasted = FALSE;
+/*N*/   // unfortunately we can't search for the first matching entry
+/*N*/   USHORT nPos = 0;
+/*N*/     // search the last matching entry, Seek_Entry returns the next being
+/*N*/     // greater, or a free position if not found
+/*N*/   USHORT nPosEnd;
+/*N*/   pTmpSeekBroadcastArea->UpdateRange( rRange );
+/*N*/     if ( !pBroadcastAreaTbl->Seek_Entry( pTmpSeekBroadcastArea, &nPosEnd ) &&
+/*N*/             nPosEnd > 0 )
+/*N*/         --nPosEnd;
+/*N*/   for ( ; nPos <= nPosEnd; ++nPos, ppArea++ )
+/*N*/   {
+/*N*/       if ( ((ScBroadcastArea*)*ppArea)->Intersects( rRange ) )
+/*N*/       {
+/*N*/           ((ScBroadcastArea*)*ppArea)->Broadcast( rHint );
+/*N*/           bIsBroadcasted = TRUE;
+/*N*/       }
+/*N*/   }
+/*N*/   return bIsBroadcasted;
+/*N*/ }
 
 
 //  DelBroadcastAreasInRange wird unter Windows (16 Bit) kaputtoptimiert
@@ -322,29 +322,29 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 #pragma optimize("",off)
 #endif
 
-//STRIP001 void ScBroadcastAreaSlot::DelBroadcastAreasInRange( const ScRange& rRange )
-//STRIP001 {
-//STRIP001  ScBroadcastArea* pArea;
-//STRIP001  ScAddress aStart( rRange.aStart );
-//STRIP001  USHORT nPos = pBroadcastAreaTbl->Count();
-//STRIP001  const ScBroadcastArea** ppArea =
-//STRIP001      (const ScBroadcastArea**) pBroadcastAreaTbl->GetData() + nPos - 1;
-//STRIP001  for ( ; nPos-- >0; ppArea-- )
-//STRIP001  {   // rueckwaerts wg. Pointer-Aufrueckerei im Array
-//STRIP001      pArea = (ScBroadcastArea*)*ppArea;
-//STRIP001      if ( pArea->aStart < aStart )
-//STRIP001          return;     // davor nur noch niedrigere
-//STRIP001          // gesuchte muessen komplett innerhalb von rRange liegen
-//STRIP001      if ( rRange.In( pArea->aStart ) && rRange.In( pArea->aEnd ) )
-//STRIP001      {
-//STRIP001          pBroadcastAreaTbl->Remove( nPos );
-//STRIP001          ppArea = (const ScBroadcastArea**) pBroadcastAreaTbl->GetData()
-//STRIP001              + nPos;
-//STRIP001          if ( !pArea->DecRef() )
-//STRIP001              delete pArea;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScBroadcastAreaSlot::DelBroadcastAreasInRange( const ScRange& rRange )
+/*N*/ {
+/*N*/   ScBroadcastArea* pArea;
+/*N*/   ScAddress aStart( rRange.aStart );
+/*N*/   USHORT nPos = pBroadcastAreaTbl->Count();
+/*N*/   const ScBroadcastArea** ppArea =
+/*N*/       (const ScBroadcastArea**) pBroadcastAreaTbl->GetData() + nPos - 1;
+/*N*/   for ( ; nPos-- >0; ppArea-- )
+/*N*/   {   // rueckwaerts wg. Pointer-Aufrueckerei im Array
+/*N*/       pArea = (ScBroadcastArea*)*ppArea;
+/*N*/       if ( pArea->aStart < aStart )
+/*N*/           return;     // davor nur noch niedrigere
+/*N*/           // gesuchte muessen komplett innerhalb von rRange liegen
+/*N*/       if ( rRange.In( pArea->aStart ) && rRange.In( pArea->aEnd ) )
+/*N*/       {
+/*N*/           pBroadcastAreaTbl->Remove( nPos );
+/*N*/           ppArea = (const ScBroadcastArea**) pBroadcastAreaTbl->GetData()
+/*N*/               + nPos;
+/*N*/           if ( !pArea->DecRef() )
+/*N*/               delete pArea;
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
 #ifdef WIN
 #pragma optimize("",on)
@@ -622,63 +622,63 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 /*N*/ }
 
 
-//STRIP001 BOOL ScBroadcastAreaSlotMachine::AreaBroadcastInRange( const ScRange& rRange,
-//STRIP001         const ScHint& rHint ) const
-//STRIP001 {
-//STRIP001     BOOL bBroadcasted = FALSE;
-//STRIP001  USHORT nStart, nEnd, nRowBreak;
-//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
-//STRIP001  USHORT nOff = nStart;
-//STRIP001  USHORT nBreak = nOff + nRowBreak;
-//STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
-//STRIP001  while ( nOff <= nEnd )
-//STRIP001  {
-//STRIP001      if ( *pp )
-//STRIP001          bBroadcasted |= (*pp)->AreaBroadcastInRange( rRange, rHint );
-//STRIP001      if ( nOff < nBreak )
-//STRIP001      {
-//STRIP001          ++nOff;
-//STRIP001          ++pp;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nStart += BCA_SLOTS_ROW;
-//STRIP001          nOff = nStart;
-//STRIP001          pp = ppSlots + nOff;
-//STRIP001          nBreak = nOff + nRowBreak;
-//STRIP001      }
-//STRIP001  }
-//STRIP001     return bBroadcasted;
-//STRIP001 }
+/*N*/ BOOL ScBroadcastAreaSlotMachine::AreaBroadcastInRange( const ScRange& rRange,
+/*N*/         const ScHint& rHint ) const
+/*N*/ {
+/*N*/     BOOL bBroadcasted = FALSE;
+/*N*/   USHORT nStart, nEnd, nRowBreak;
+/*N*/   ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
+/*N*/   USHORT nOff = nStart;
+/*N*/   USHORT nBreak = nOff + nRowBreak;
+/*N*/   ScBroadcastAreaSlot** pp = ppSlots + nOff;
+/*N*/   while ( nOff <= nEnd )
+/*N*/   {
+/*N*/       if ( *pp )
+/*N*/           bBroadcasted |= (*pp)->AreaBroadcastInRange( rRange, rHint );
+/*N*/       if ( nOff < nBreak )
+/*N*/       {
+/*N*/           ++nOff;
+/*N*/           ++pp;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           nStart += BCA_SLOTS_ROW;
+/*N*/           nOff = nStart;
+/*N*/           pp = ppSlots + nOff;
+/*N*/           nBreak = nOff + nRowBreak;
+/*N*/       }
+/*N*/   }
+/*N*/     return bBroadcasted;
+/*N*/ }
 
 
-//STRIP001 void ScBroadcastAreaSlotMachine::DelBroadcastAreasInRange(
-//STRIP001      const ScRange& rRange
-//STRIP001  )
-//STRIP001 {
-//STRIP001  USHORT nStart, nEnd, nRowBreak;
-//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
-//STRIP001  USHORT nOff = nStart;
-//STRIP001  USHORT nBreak = nOff + nRowBreak;
-//STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
-//STRIP001  while ( nOff <= nEnd )
-//STRIP001  {
-//STRIP001      if ( *pp )
-//STRIP001          (*pp)->DelBroadcastAreasInRange( rRange );
-//STRIP001      if ( nOff < nBreak )
-//STRIP001      {
-//STRIP001          ++nOff;
-//STRIP001          ++pp;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nStart += BCA_SLOTS_ROW;
-//STRIP001          nOff = nStart;
-//STRIP001          pp = ppSlots + nOff;
-//STRIP001          nBreak = nOff + nRowBreak;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScBroadcastAreaSlotMachine::DelBroadcastAreasInRange(
+/*N*/       const ScRange& rRange
+/*N*/   )
+/*N*/ {
+/*N*/   USHORT nStart, nEnd, nRowBreak;
+/*N*/   ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
+/*N*/   USHORT nOff = nStart;
+/*N*/   USHORT nBreak = nOff + nRowBreak;
+/*N*/   ScBroadcastAreaSlot** pp = ppSlots + nOff;
+/*N*/   while ( nOff <= nEnd )
+/*N*/   {
+/*N*/       if ( *pp )
+/*N*/           (*pp)->DelBroadcastAreasInRange( rRange );
+/*N*/       if ( nOff < nBreak )
+/*N*/       {
+/*N*/           ++nOff;
+/*N*/           ++pp;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           nStart += BCA_SLOTS_ROW;
+/*N*/           nOff = nStart;
+/*N*/           pp = ppSlots + nOff;
+/*N*/           nBreak = nOff + nRowBreak;
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
 
 //STRIP001 // alle Betroffenen austragen, verketten, Range anpassen, neu eintragen
@@ -689,7 +689,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001 {
 //STRIP001  USHORT nStart, nEnd, nRowBreak;
 //STRIP001  // Betroffene austragen und verketten
-//STRIP001  ::com::puteAreaPoints( rRange, nStart, nEnd, nRowBreak );
+//STRIP001  ComputeAreaPoints( rRange, nStart, nEnd, nRowBreak );
 //STRIP001  USHORT nOff = nStart;
 //STRIP001  USHORT nBreak = nOff + nRowBreak;
 //STRIP001  ScBroadcastAreaSlot** pp = ppSlots + nOff;
@@ -747,7 +747,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 //STRIP001      }
 //STRIP001
 //STRIP001      // in die Slots eintragen
-//STRIP001      ::com::puteAreaPoints( aRange, nStart, nEnd, nRowBreak );
+//STRIP001      ComputeAreaPoints( aRange, nStart, nEnd, nRowBreak );
 //STRIP001      nOff = nStart;
 //STRIP001      nBreak = nOff + nRowBreak;
 //STRIP001      pp = ppSlots + nOff;

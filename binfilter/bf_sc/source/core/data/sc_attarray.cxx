@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_attarray.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:56 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1558,73 +1558,73 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScAttrArray::RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
-//STRIP001 {
-//STRIP001  const ScPatternAttr* pOldPattern;
-//STRIP001
-//STRIP001  INT16   nOldValue;
-//STRIP001  short   nIndex;
-//STRIP001  USHORT  nRow;
-//STRIP001  USHORT  nThisRow;
-//STRIP001  BOOL    bChanged = FALSE;
-//STRIP001
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001  if (nThisRow < nStartRow) nThisRow = nStartRow;
-//STRIP001
-//STRIP001  while ( nThisRow <= nEndRow )
-//STRIP001  {
-//STRIP001      pOldPattern = pData[nIndex].pPattern;
-//STRIP001      nOldValue = ((const ScMergeFlagAttr*) &pOldPattern->GetItem( ATTR_MERGE_FLAG ))->GetValue();
-//STRIP001      if ( (nOldValue & ~nFlags) != nOldValue )
-//STRIP001      {
-//STRIP001          nRow = pData[nIndex].nRow;
-//STRIP001          USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
-//STRIP001          ScPatternAttr aNewPattern(*pOldPattern);
-//STRIP001          aNewPattern.GetItemSet().Put( ScMergeFlagAttr( nOldValue & ~nFlags ) );
-//STRIP001          SetPatternArea( nThisRow, nAttrRow, &aNewPattern, TRUE );
-//STRIP001          Search( nThisRow, nIndex );                                 // Daten wurden veraendert !!!
-//STRIP001          bChanged = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      ++nIndex;
-//STRIP001      nThisRow = pData[nIndex-1].nRow+1;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bChanged;
-//STRIP001 }
+/*N*/ BOOL ScAttrArray::RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
+/*N*/ {
+/*N*/   const ScPatternAttr* pOldPattern;
+/*N*/
+/*N*/   INT16   nOldValue;
+/*N*/   short   nIndex;
+/*N*/   USHORT  nRow;
+/*N*/   USHORT  nThisRow;
+/*N*/   BOOL    bChanged = FALSE;
+/*N*/
+/*N*/   Search( nStartRow, nIndex );
+/*N*/   nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
+/*N*/   if (nThisRow < nStartRow) nThisRow = nStartRow;
+/*N*/
+/*N*/   while ( nThisRow <= nEndRow )
+/*N*/   {
+/*N*/       pOldPattern = pData[nIndex].pPattern;
+/*N*/       nOldValue = ((const ScMergeFlagAttr*) &pOldPattern->GetItem( ATTR_MERGE_FLAG ))->GetValue();
+/*N*/       if ( (nOldValue & ~nFlags) != nOldValue )
+/*N*/       {
+/*N*/           nRow = pData[nIndex].nRow;
+/*N*/           USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
+/*N*/           ScPatternAttr aNewPattern(*pOldPattern);
+/*N*/           aNewPattern.GetItemSet().Put( ScMergeFlagAttr( nOldValue & ~nFlags ) );
+/*N*/           SetPatternArea( nThisRow, nAttrRow, &aNewPattern, TRUE );
+/*N*/           Search( nThisRow, nIndex );                                 // Daten wurden veraendert !!!
+/*N*/           bChanged = TRUE;
+/*N*/       }
+/*N*/
+/*N*/       ++nIndex;
+/*N*/       nThisRow = pData[nIndex-1].nRow+1;
+/*N*/   }
+/*N*/
+/*N*/   return bChanged;
+/*N*/ }
 
 
-//STRIP001 void ScAttrArray::ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich )
-//STRIP001 {
-//STRIP001  const ScPatternAttr* pOldPattern;
-//STRIP001
-//STRIP001  short   nIndex;
-//STRIP001  USHORT  nRow;
-//STRIP001  USHORT  nThisRow;
-//STRIP001
-//STRIP001  Search( nStartRow, nIndex );
-//STRIP001  nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
-//STRIP001  if (nThisRow < nStartRow) nThisRow = nStartRow;
-//STRIP001
-//STRIP001  while ( nThisRow <= nEndRow )
-//STRIP001  {
-//STRIP001      pOldPattern = pData[nIndex].pPattern;
-//STRIP001      if ( pOldPattern->HasItemsSet( pWhich ) )
-//STRIP001      {
-//STRIP001          ScPatternAttr aNewPattern(*pOldPattern);
-//STRIP001          aNewPattern.ClearItems( pWhich );
-//STRIP001
-//STRIP001          nRow = pData[nIndex].nRow;
-//STRIP001          USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
-//STRIP001          SetPatternArea( nThisRow, nAttrRow, &aNewPattern, TRUE );
-//STRIP001          Search( nThisRow, nIndex );                                 // Daten wurden veraendert !!!
-//STRIP001      }
-//STRIP001
-//STRIP001      ++nIndex;
-//STRIP001      nThisRow = pData[nIndex-1].nRow+1;
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScAttrArray::ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich )
+/*N*/ {
+/*N*/   const ScPatternAttr* pOldPattern;
+/*N*/
+/*N*/   short   nIndex;
+/*N*/   USHORT  nRow;
+/*N*/   USHORT  nThisRow;
+/*N*/
+/*N*/   Search( nStartRow, nIndex );
+/*N*/   nThisRow = (nIndex>0) ? pData[nIndex-1].nRow+1 : 0;
+/*N*/   if (nThisRow < nStartRow) nThisRow = nStartRow;
+/*N*/
+/*N*/   while ( nThisRow <= nEndRow )
+/*N*/   {
+/*N*/       pOldPattern = pData[nIndex].pPattern;
+/*N*/       if ( pOldPattern->HasItemsSet( pWhich ) )
+/*N*/       {
+/*N*/           ScPatternAttr aNewPattern(*pOldPattern);
+/*N*/           aNewPattern.ClearItems( pWhich );
+/*N*/
+/*N*/           nRow = pData[nIndex].nRow;
+/*N*/           USHORT nAttrRow = Min( (USHORT)nRow, (USHORT)nEndRow );
+/*N*/           SetPatternArea( nThisRow, nAttrRow, &aNewPattern, TRUE );
+/*N*/           Search( nThisRow, nIndex );                                 // Daten wurden veraendert !!!
+/*N*/       }
+/*N*/
+/*N*/       ++nIndex;
+/*N*/       nThisRow = pData[nIndex-1].nRow+1;
+/*N*/   }
+/*N*/ }
 
 
 //STRIP001 void ScAttrArray::ChangeIndent( USHORT nStartRow, USHORT nEndRow, BOOL bIncrement )
@@ -1977,165 +1977,165 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScAttrArray::TestInsertCol( USHORT nStartRow, USHORT nEndRow) const
-//STRIP001 {
-//STRIP001  //  horizontal zusammengefasste duerfen nicht herausgeschoben werden
-//STRIP001  //  (ob die ganze Zusammenfassung betroffen ist, ist hier nicht zu erkennen)
-//STRIP001
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001  if (!IsEmpty())
-//STRIP001  {
-//STRIP001      short nIndex = 0;
-//STRIP001      if ( nStartRow )
-//STRIP001          Search( nStartRow, nIndex );
-//STRIP001
-//STRIP001      for ( ; nIndex < nCount; nIndex++ )
-//STRIP001      {
-//STRIP001          if ( ((const ScMergeFlagAttr&)pData[nIndex].pPattern->
-//STRIP001                      GetItem(ATTR_MERGE_FLAG)).IsHorOverlapped() )
-//STRIP001          {
-//STRIP001              bTest = FALSE;                      // darf nicht herausgeschoben werden
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          if ( pData[nIndex].nRow >= nEndRow )    // Ende des Bereichs
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bTest;
-//STRIP001 }
+/*N*/ BOOL ScAttrArray::TestInsertCol( USHORT nStartRow, USHORT nEndRow) const
+/*N*/ {
+/*N*/   //  horizontal zusammengefasste duerfen nicht herausgeschoben werden
+/*N*/   //  (ob die ganze Zusammenfassung betroffen ist, ist hier nicht zu erkennen)
+/*N*/
+/*N*/   BOOL bTest = TRUE;
+/*N*/   if (!IsEmpty())
+/*N*/   {
+/*N*/       short nIndex = 0;
+/*N*/       if ( nStartRow )
+/*N*/           Search( nStartRow, nIndex );
+/*N*/
+/*N*/       for ( ; nIndex < nCount; nIndex++ )
+/*N*/       {
+/*N*/           if ( ((const ScMergeFlagAttr&)pData[nIndex].pPattern->
+/*N*/                       GetItem(ATTR_MERGE_FLAG)).IsHorOverlapped() )
+/*N*/           {
+/*N*/               bTest = FALSE;                      // darf nicht herausgeschoben werden
+/*N*/               break;
+/*N*/           }
+/*N*/           if ( pData[nIndex].nRow >= nEndRow )    // Ende des Bereichs
+/*N*/               break;
+/*N*/       }
+/*N*/   }
+/*N*/   return bTest;
+/*N*/ }
 
 
-//STRIP001 BOOL ScAttrArray::TestInsertRow( USHORT nSize ) const
-//STRIP001 {
-//STRIP001  //  wenn die erste herausgeschobene Zeile vertikal ueberlappt ist,
-//STRIP001  //  wuerde eine kaputte Zusammenfassung uebrigbleiben
-//STRIP001
-//STRIP001  if (pData)
-//STRIP001  {
-//STRIP001      //  MAXROW + 1 - nSize  = erste herausgeschobene Zeile
-//STRIP001
-//STRIP001      USHORT nFirstLost = nCount-1;
-//STRIP001      while ( nFirstLost && pData[nFirstLost-1].nRow >= MAXROW + 1 - nSize )
-//STRIP001          --nFirstLost;
-//STRIP001
-//STRIP001      if ( ((const ScMergeFlagAttr&)pData[nFirstLost].pPattern->
-//STRIP001                          GetItem(ATTR_MERGE_FLAG)).IsVerOverlapped() )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
+/*N*/ BOOL ScAttrArray::TestInsertRow( USHORT nSize ) const
+/*N*/ {
+/*N*/   //  wenn die erste herausgeschobene Zeile vertikal ueberlappt ist,
+/*N*/   //  wuerde eine kaputte Zusammenfassung uebrigbleiben
+/*N*/
+/*N*/   if (pData)
+/*N*/   {
+/*N*/       //  MAXROW + 1 - nSize  = erste herausgeschobene Zeile
+/*N*/
+/*N*/       USHORT nFirstLost = nCount-1;
+/*N*/       while ( nFirstLost && pData[nFirstLost-1].nRow >= MAXROW + 1 - nSize )
+/*N*/           --nFirstLost;
+/*N*/
+/*N*/       if ( ((const ScMergeFlagAttr&)pData[nFirstLost].pPattern->
+/*N*/                           GetItem(ATTR_MERGE_FLAG)).IsVerOverlapped() )
+/*N*/           return FALSE;
+/*N*/   }
+/*N*/
+/*N*/   return TRUE;
+/*N*/ }
 
 
-//STRIP001 void ScAttrArray::InsertRow( USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  if (!pData)
-//STRIP001      return;
-//STRIP001
-//STRIP001  USHORT nSearch = nStartRow ? nStartRow - 1 : 0;     // Vorgaenger erweitern
-//STRIP001  short nIndex;
-//STRIP001  Search( nSearch, nIndex );
-//STRIP001
-//STRIP001  //  ein gesetztes ScMergeAttr darf nicht ausgedehnt werden
-//STRIP001  //  (darum hinterher wieder loeschen)
-//STRIP001
-//STRIP001  BOOL bDoMerge = ((const ScMergeAttr&) pData[nIndex].pPattern->GetItem(ATTR_MERGE)).IsMerged();
-//STRIP001
-//STRIP001  USHORT nRemove = 0;
-//STRIP001  USHORT i;
-//STRIP001  for (i = nIndex; i < nCount-1; i++)
-//STRIP001  {
-//STRIP001      USHORT nNew = pData[i].nRow + nSize;
-//STRIP001      if ( nNew >= MAXROW )                   // Ende erreicht ?
-//STRIP001      {
-//STRIP001          nNew = MAXROW;
-//STRIP001          if (!nRemove)
-//STRIP001              nRemove = i+1;                  // folgende loeschen
-//STRIP001      }
-//STRIP001      pData[i].nRow = nNew;
-//STRIP001  }
-//STRIP001
-//STRIP001  //  muessen Eintraege am Ende geloescht werden?
-//STRIP001
-//STRIP001  if (nRemove && nRemove < nCount)
-//STRIP001      DeleteRange( nRemove, nCount-1 );
-//STRIP001
-//STRIP001  if (bDoMerge)           // ausgedehntes ScMergeAttr wieder reparieren
-//STRIP001  {
-//STRIP001          //! ApplyAttr fuer Bereiche !!!
-//STRIP001
-//STRIP001      const SfxPoolItem& rDef = pDocument->GetPool()->GetDefaultItem( ATTR_MERGE );
-//STRIP001      for (i=0; i<nSize; i++)
-//STRIP001          pDocument->ApplyAttr( nCol, nStartRow+i, nTab, rDef );
-//STRIP001
-//STRIP001      //  im eingefuegten Bereich ist nichts zusammengefasst
-//STRIP001  }
-//STRIP001
-//STRIP001  //  Flags nicht duplizieren
-//STRIP001  //! direkt am Pattern testen ??
-//STRIP001  RemoveFlags( nStartRow, nStartRow+nSize-1, SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
-//STRIP001 }
+/*N*/ void ScAttrArray::InsertRow( USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   if (!pData)
+/*N*/       return;
+/*N*/
+/*N*/   USHORT nSearch = nStartRow ? nStartRow - 1 : 0;     // Vorgaenger erweitern
+/*N*/   short nIndex;
+/*N*/   Search( nSearch, nIndex );
+/*N*/
+/*N*/   //  ein gesetztes ScMergeAttr darf nicht ausgedehnt werden
+/*N*/   //  (darum hinterher wieder loeschen)
+/*N*/
+/*N*/   BOOL bDoMerge = ((const ScMergeAttr&) pData[nIndex].pPattern->GetItem(ATTR_MERGE)).IsMerged();
+/*N*/
+/*N*/   USHORT nRemove = 0;
+/*N*/   USHORT i;
+/*N*/   for (i = nIndex; i < nCount-1; i++)
+/*N*/   {
+/*N*/       USHORT nNew = pData[i].nRow + nSize;
+/*N*/       if ( nNew >= MAXROW )                   // Ende erreicht ?
+/*N*/       {
+/*N*/           nNew = MAXROW;
+/*N*/           if (!nRemove)
+/*N*/               nRemove = i+1;                  // folgende loeschen
+/*N*/       }
+/*N*/       pData[i].nRow = nNew;
+/*N*/   }
+/*N*/
+/*N*/   //  muessen Eintraege am Ende geloescht werden?
+/*N*/
+/*N*/   if (nRemove && nRemove < nCount)
+/*N*/       DeleteRange( nRemove, nCount-1 );
+/*N*/
+/*N*/   if (bDoMerge)           // ausgedehntes ScMergeAttr wieder reparieren
+/*N*/   {
+/*N*/           //! ApplyAttr fuer Bereiche !!!
+/*N*/
+/*N*/       const SfxPoolItem& rDef = pDocument->GetPool()->GetDefaultItem( ATTR_MERGE );
+/*N*/       for (i=0; i<nSize; i++)
+/*N*/           pDocument->ApplyAttr( nCol, nStartRow+i, nTab, rDef );
+/*N*/
+/*N*/       //  im eingefuegten Bereich ist nichts zusammengefasst
+/*N*/   }
+/*N*/
+/*N*/   //  Flags nicht duplizieren
+/*N*/   //! direkt am Pattern testen ??
+/*N*/   RemoveFlags( nStartRow, nStartRow+nSize-1, SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
+/*N*/ }
 
 
-//STRIP001 void ScAttrArray::DeleteRow( USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  if (pData)
-//STRIP001  {
-//STRIP001      BOOL bFirst=TRUE;
-//STRIP001      USHORT nStartIndex;
-//STRIP001      USHORT nEndIndex;
-//STRIP001      for (USHORT i = 0; i < nCount-1; i++)
-//STRIP001          if (pData[i].nRow >= nStartRow && pData[i].nRow <= nStartRow+nSize-1)
-//STRIP001          {
-//STRIP001              if (bFirst)
-//STRIP001              {
-//STRIP001                  nStartIndex = i;
-//STRIP001                  bFirst = FALSE;
-//STRIP001              }
-//STRIP001              nEndIndex = i;
-//STRIP001          }
-//STRIP001      if (!bFirst)
-//STRIP001      {
-//STRIP001          USHORT nStart;
-//STRIP001          if (nStartIndex==0)
-//STRIP001              nStart = 0;
-//STRIP001          else
-//STRIP001              nStart = pData[nStartIndex-1].nRow + 1;
-//STRIP001
-//STRIP001          if (nStart < nStartRow)
-//STRIP001          {
-//STRIP001              pData[nStartIndex].nRow = nStartRow - 1;
-//STRIP001              ++nStartIndex;
-//STRIP001          }
-//STRIP001          if (nEndIndex >= nStartIndex)
-//STRIP001          {
-//STRIP001              DeleteRange( nStartIndex, nEndIndex );
-//STRIP001              if (nStartIndex > 0)
-//STRIP001                  if ( pData[nStartIndex-1].pPattern == pData[nStartIndex].pPattern )
-//STRIP001                      DeleteRange( nStartIndex-1, nStartIndex-1 );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      for (i = 0; i < nCount-1; i++)
-//STRIP001          if (pData[i].nRow >= nStartRow)
-//STRIP001              pData[i].nRow -= nSize;
-//STRIP001
-//STRIP001 //       unten nicht Default-Pattern nachschieben, um Druckbereiche erkennen zu koennen
-//STRIP001 //       stattdessen nur Merge-Flags loeschen
-//STRIP001
-//STRIP001      RemoveFlags( MAXROW-nSize+1, MAXROW, SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScAttrArray::DeleteRow( USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   if (pData)
+/*N*/   {
+/*N*/       BOOL bFirst=TRUE;
+/*N*/       USHORT nStartIndex;
+/*N*/       USHORT nEndIndex;
+/*N*/       for (USHORT i = 0; i < nCount-1; i++)
+/*N*/           if (pData[i].nRow >= nStartRow && pData[i].nRow <= nStartRow+nSize-1)
+/*N*/           {
+/*N*/               if (bFirst)
+/*N*/               {
+/*N*/                   nStartIndex = i;
+/*N*/                   bFirst = FALSE;
+/*N*/               }
+/*N*/               nEndIndex = i;
+/*N*/           }
+/*N*/       if (!bFirst)
+/*N*/       {
+/*N*/           USHORT nStart;
+/*N*/           if (nStartIndex==0)
+/*N*/               nStart = 0;
+/*N*/           else
+/*N*/               nStart = pData[nStartIndex-1].nRow + 1;
+/*N*/
+/*N*/           if (nStart < nStartRow)
+/*N*/           {
+/*N*/               pData[nStartIndex].nRow = nStartRow - 1;
+/*N*/               ++nStartIndex;
+/*N*/           }
+/*N*/           if (nEndIndex >= nStartIndex)
+/*N*/           {
+/*N*/               DeleteRange( nStartIndex, nEndIndex );
+/*N*/               if (nStartIndex > 0)
+/*N*/                   if ( pData[nStartIndex-1].pPattern == pData[nStartIndex].pPattern )
+/*N*/                       DeleteRange( nStartIndex-1, nStartIndex-1 );
+/*N*/           }
+/*N*/       }
+/*N*/       for (i = 0; i < nCount-1; i++)
+/*N*/           if (pData[i].nRow >= nStartRow)
+/*N*/               pData[i].nRow -= nSize;
+/*N*/
+/*N*/ //        unten nicht Default-Pattern nachschieben, um Druckbereiche erkennen zu koennen
+/*N*/ //        stattdessen nur Merge-Flags loeschen
+/*N*/
+/*N*/       RemoveFlags( MAXROW-nSize+1, MAXROW, SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
+/*N*/   }
+/*N*/ }
 
 
-//STRIP001 void ScAttrArray::DeleteRange( USHORT nStartIndex, USHORT nEndIndex )
-//STRIP001 {
-//STRIP001  ScDocumentPool* pDocPool = pDocument->GetPool();
-//STRIP001  for (USHORT i = nStartIndex; i <= nEndIndex; i++)
-//STRIP001      pDocPool->Remove(*pData[i].pPattern);
-//STRIP001
-//STRIP001  memmove( &pData[nStartIndex], &pData[nEndIndex + 1], (nCount - nEndIndex - 1) * sizeof(ScAttrEntry) );
-//STRIP001  nCount -= nEndIndex-nStartIndex+1;
-//STRIP001 }
+/*N*/ void ScAttrArray::DeleteRange( USHORT nStartIndex, USHORT nEndIndex )
+/*N*/ {
+/*N*/   ScDocumentPool* pDocPool = pDocument->GetPool();
+/*N*/   for (USHORT i = nStartIndex; i <= nEndIndex; i++)
+/*N*/       pDocPool->Remove(*pData[i].pPattern);
+/*N*/
+/*N*/   memmove( &pData[nStartIndex], &pData[nEndIndex + 1], (nCount - nEndIndex - 1) * sizeof(ScAttrEntry) );
+/*N*/   nCount -= nEndIndex-nStartIndex+1;
+/*N*/ }
 
 
 /*N*/ void ScAttrArray::DeleteArea(USHORT nStartRow, USHORT nEndRow)
@@ -2192,21 +2192,21 @@ DBG_ASSERT(0, "STRIP"); //STRIP001  const ScPatternAttr* pDefPattern = pDocument
 
         // Verschieben innerhalb eines Dokuments
 
-//STRIP001 void ScAttrArray::MoveTo(USHORT nStartRow, USHORT nEndRow, ScAttrArray& rAttrArray)
-//STRIP001 {
-//STRIP001  USHORT nStart = nStartRow;
-//STRIP001  for (USHORT i = 0; i < nCount; i++)
-//STRIP001  {
-//STRIP001      if ((pData[i].nRow >= nStartRow) && ((i==0) ? TRUE : pData[i-1].nRow < nEndRow))
-//STRIP001      {
-//STRIP001          //  Kopieren (bPutToPool=TRUE)
-//STRIP001          rAttrArray.SetPatternArea( nStart, Min( (USHORT)pData[i].nRow, (USHORT)nEndRow ),
-//STRIP001                                      pData[i].pPattern, TRUE );
-//STRIP001      }
-//STRIP001      nStart = Max( (USHORT)nStart, (USHORT)(pData[i].nRow + 1) );
-//STRIP001  }
-//STRIP001  DeleteArea(nStartRow, nEndRow);
-//STRIP001 }
+/*N*/ void ScAttrArray::MoveTo(USHORT nStartRow, USHORT nEndRow, ScAttrArray& rAttrArray)
+/*N*/ {
+/*N*/   USHORT nStart = nStartRow;
+/*N*/   for (USHORT i = 0; i < nCount; i++)
+/*N*/   {
+/*N*/       if ((pData[i].nRow >= nStartRow) && ((i==0) ? TRUE : pData[i-1].nRow < nEndRow))
+/*N*/       {
+/*N*/           //  Kopieren (bPutToPool=TRUE)
+/*N*/           rAttrArray.SetPatternArea( nStart, Min( (USHORT)pData[i].nRow, (USHORT)nEndRow ),
+/*N*/                                       pData[i].pPattern, TRUE );
+/*N*/       }
+/*N*/       nStart = Max( (USHORT)nStart, (USHORT)(pData[i].nRow + 1) );
+/*N*/   }
+/*N*/   DeleteArea(nStartRow, nEndRow);
+/*N*/ }
 
 
         // Kopieren zwischen Dokumenten (Clipboard)

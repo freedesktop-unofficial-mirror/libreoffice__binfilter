@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:58 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -84,158 +84,158 @@ namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
-//STRIP001 ScDocumentIterator::ScDocumentIterator( ScDocument* pDocument,
-//STRIP001                          USHORT nStartTable, USHORT nEndTable ) :
-//STRIP001  pDoc( pDocument ),
-//STRIP001  nStartTab( nStartTable ),
-//STRIP001  nEndTab( nEndTable )
-//STRIP001 {
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001  if (nStartTab > MAXTAB) nStartTab = MAXTAB;
-//STRIP001  if (nEndTab > MAXTAB) nEndTab = MAXTAB;
-//STRIP001
-//STRIP001  pDefPattern = pDoc->GetDefPattern();
-//STRIP001
-//STRIP001  nCol = 0;
-//STRIP001  nRow = 0;
-//STRIP001  nTab = nStartTab;
-//STRIP001
-//STRIP001  nColPos = 0;
-//STRIP001  nAttrPos = 0;
-//STRIP001 }
-//STRIP001
-//STRIP001 ScDocumentIterator::~ScDocumentIterator()
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 BOOL ScDocumentIterator::GetThisCol()
-//STRIP001 {
-//STRIP001  ScTable*        pTab;
-//STRIP001  while ( (pTab = pDoc->pTab[nTab]) == NULL )
-//STRIP001  {
-//STRIP001      if ( nTab == nEndTab )
-//STRIP001      {
-//STRIP001          nCol = MAXCOL;
-//STRIP001          nRow = MAXROW;
-//STRIP001          return FALSE;
-//STRIP001      }
-//STRIP001      ++nTab;
-//STRIP001  }
-//STRIP001  ScColumn*       pCol = &pTab->aCol[nCol];
-//STRIP001  ScAttrArray*    pAtt = pCol->pAttrArray;
-//STRIP001
-//STRIP001  BOOL bFound = FALSE;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      USHORT nColRow;
-//STRIP001      USHORT nAttrEnd;
-//STRIP001
-//STRIP001      do
-//STRIP001      {
-//STRIP001          nAttrEnd = pAtt->pData[nAttrPos].nRow;
-//STRIP001          if (nAttrEnd < nRow)
-//STRIP001              ++nAttrPos;
-//STRIP001      }
-//STRIP001      while (nAttrEnd < nRow);
-//STRIP001
-//STRIP001      do
-//STRIP001      {
-//STRIP001          nColRow = (nColPos < pCol->nCount) ? pCol->pItems[nColPos].nRow : MAXROW+1;
-//STRIP001          if (nColRow < nRow)
-//STRIP001              ++nColPos;
-//STRIP001      }
-//STRIP001      while (nColRow < nRow);
-//STRIP001
-//STRIP001      if (nColRow == nRow)
-//STRIP001      {
-//STRIP001          bFound   = TRUE;
-//STRIP001          pCell    = pCol->pItems[nColPos].pCell;
-//STRIP001          pPattern = pAtt->pData[nAttrPos].pPattern;
-//STRIP001      }
-//STRIP001      else if ( pAtt->pData[nAttrPos].pPattern != pDefPattern )
-//STRIP001      {
-//STRIP001          bFound = TRUE;
-//STRIP001          pCell = NULL;
-//STRIP001          pPattern = pAtt->pData[nAttrPos].pPattern;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nRow = Min( (USHORT)nColRow, (USHORT)(nAttrEnd+1) );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  while (!bFound && nRow <= MAXROW);
-//STRIP001
-//STRIP001  return bFound;
-//STRIP001 }
-//STRIP001
-//STRIP001 BOOL ScDocumentIterator::GetThis()
-//STRIP001 {
-//STRIP001  BOOL bEnd = FALSE;
-//STRIP001  BOOL bSuccess = FALSE;
-//STRIP001
-//STRIP001  while ( !bSuccess && !bEnd )
-//STRIP001  {
-//STRIP001      if ( nRow > MAXROW )
-//STRIP001          bSuccess = FALSE;
-//STRIP001      else
-//STRIP001          bSuccess = GetThisCol();
-//STRIP001
-//STRIP001      if ( !bSuccess )
-//STRIP001      {
-//STRIP001          ++nCol;
-//STRIP001          if (nCol > MAXCOL)
-//STRIP001          {
-//STRIP001              nCol = 0;
-//STRIP001              ++nTab;
-//STRIP001              if (nTab > nEndTab)
-//STRIP001                  bEnd = TRUE;
-//STRIP001          }
-//STRIP001          nRow = 0;
-//STRIP001          nColPos = 0;
-//STRIP001          nAttrPos = 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return !bEnd;
-//STRIP001 }
-//STRIP001
-//STRIP001 BOOL ScDocumentIterator::GetFirst()
-//STRIP001 {
-//STRIP001  nCol = 0;
-//STRIP001  nTab = nStartTab;
-//STRIP001
-//STRIP001  nRow = 0;
-//STRIP001  nColPos = 0;
-//STRIP001  nAttrPos = 0;
-//STRIP001
-//STRIP001  return GetThis();
-//STRIP001 }
-//STRIP001
-//STRIP001 BOOL ScDocumentIterator::GetNext()
-//STRIP001 {
-//STRIP001  ++nRow;
-//STRIP001
-//STRIP001  return GetThis();
-//STRIP001 }
+/*N*/ ScDocumentIterator::ScDocumentIterator( ScDocument* pDocument,
+/*N*/                           USHORT nStartTable, USHORT nEndTable ) :
+/*N*/   pDoc( pDocument ),
+/*N*/   nStartTab( nStartTable ),
+/*N*/   nEndTab( nEndTable )
+/*N*/ {
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/   if (nStartTab > MAXTAB) nStartTab = MAXTAB;
+/*N*/   if (nEndTab > MAXTAB) nEndTab = MAXTAB;
+/*N*/
+/*N*/   pDefPattern = pDoc->GetDefPattern();
+/*N*/
+/*N*/   nCol = 0;
+/*N*/   nRow = 0;
+/*N*/   nTab = nStartTab;
+/*N*/
+/*N*/   nColPos = 0;
+/*N*/   nAttrPos = 0;
+/*N*/ }
+
+/*N*/ ScDocumentIterator::~ScDocumentIterator()
+/*N*/ {
+/*N*/ }
+
+/*N*/ BOOL ScDocumentIterator::GetThisCol()
+/*N*/ {
+/*N*/   ScTable*        pTab;
+/*N*/   while ( (pTab = pDoc->pTab[nTab]) == NULL )
+/*N*/   {
+/*N*/       if ( nTab == nEndTab )
+/*N*/       {
+/*N*/           nCol = MAXCOL;
+/*N*/           nRow = MAXROW;
+/*N*/           return FALSE;
+/*N*/       }
+/*N*/       ++nTab;
+/*N*/   }
+/*N*/   ScColumn*       pCol = &pTab->aCol[nCol];
+/*N*/   ScAttrArray*    pAtt = pCol->pAttrArray;
+/*N*/
+/*N*/   BOOL bFound = FALSE;
+/*N*/   do
+/*N*/   {
+/*N*/       USHORT nColRow;
+/*N*/       USHORT nAttrEnd;
+/*N*/
+/*N*/       do
+/*N*/       {
+/*N*/           nAttrEnd = pAtt->pData[nAttrPos].nRow;
+/*N*/           if (nAttrEnd < nRow)
+/*N*/               ++nAttrPos;
+/*N*/       }
+/*N*/       while (nAttrEnd < nRow);
+/*N*/
+/*N*/       do
+/*N*/       {
+/*N*/           nColRow = (nColPos < pCol->nCount) ? pCol->pItems[nColPos].nRow : MAXROW+1;
+/*N*/           if (nColRow < nRow)
+/*N*/               ++nColPos;
+/*N*/       }
+/*N*/       while (nColRow < nRow);
+/*N*/
+/*N*/       if (nColRow == nRow)
+/*N*/       {
+/*N*/           bFound   = TRUE;
+/*N*/           pCell    = pCol->pItems[nColPos].pCell;
+/*N*/           pPattern = pAtt->pData[nAttrPos].pPattern;
+/*N*/       }
+/*N*/       else if ( pAtt->pData[nAttrPos].pPattern != pDefPattern )
+/*N*/       {
+/*N*/           bFound = TRUE;
+/*N*/           pCell = NULL;
+/*N*/           pPattern = pAtt->pData[nAttrPos].pPattern;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           nRow = Min( (USHORT)nColRow, (USHORT)(nAttrEnd+1) );
+/*N*/       }
+/*N*/   }
+/*N*/   while (!bFound && nRow <= MAXROW);
+/*N*/
+/*N*/   return bFound;
+/*N*/ }
+
+/*N*/ BOOL ScDocumentIterator::GetThis()
+/*N*/ {
+/*N*/   BOOL bEnd = FALSE;
+/*N*/   BOOL bSuccess = FALSE;
+/*N*/
+/*N*/   while ( !bSuccess && !bEnd )
+/*N*/   {
+/*N*/       if ( nRow > MAXROW )
+/*N*/           bSuccess = FALSE;
+/*N*/       else
+/*N*/           bSuccess = GetThisCol();
+/*N*/
+/*N*/       if ( !bSuccess )
+/*N*/       {
+/*N*/           ++nCol;
+/*N*/           if (nCol > MAXCOL)
+/*N*/           {
+/*N*/               nCol = 0;
+/*N*/               ++nTab;
+/*N*/               if (nTab > nEndTab)
+/*N*/                   bEnd = TRUE;
+/*N*/           }
+/*N*/           nRow = 0;
+/*N*/           nColPos = 0;
+/*N*/           nAttrPos = 0;
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   return !bEnd;
+/*N*/ }
+
+/*N*/ BOOL ScDocumentIterator::GetFirst()
+/*N*/ {
+/*N*/   nCol = 0;
+/*N*/   nTab = nStartTab;
+/*N*/
+/*N*/   nRow = 0;
+/*N*/   nColPos = 0;
+/*N*/   nAttrPos = 0;
+/*N*/
+/*N*/   return GetThis();
+/*N*/ }
+
+/*N*/ BOOL ScDocumentIterator::GetNext()
+/*N*/ {
+/*N*/   ++nRow;
+/*N*/
+/*N*/   return GetThis();
+/*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScBaseCell* ScDocumentIterator::GetCell()
-//STRIP001 {
-//STRIP001  return pCell;
-//STRIP001 }
-//STRIP001
-//STRIP001 const ScPatternAttr* ScDocumentIterator::GetPattern()
-//STRIP001 {
-//STRIP001  return pPattern;
-//STRIP001 }
-//STRIP001
-//STRIP001 void ScDocumentIterator::GetPos( USHORT& rCol, USHORT& rRow, USHORT& rTab )
-//STRIP001 {
-//STRIP001  rCol = nCol;
-//STRIP001  rRow = nRow;
-//STRIP001  rTab = nTab;
-//STRIP001 }
+/*N*/ ScBaseCell* ScDocumentIterator::GetCell()
+/*N*/ {
+/*N*/   return pCell;
+/*N*/ }
+
+/*N*/ const ScPatternAttr* ScDocumentIterator::GetPattern()
+/*N*/ {
+/*N*/   return pPattern;
+/*N*/ }
+
+/*N*/ void ScDocumentIterator::GetPos( USHORT& rCol, USHORT& rRow, USHORT& rTab )
+/*N*/ {
+/*N*/   rCol = nCol;
+/*N*/   rRow = nRow;
+/*N*/   rTab = nTab;
+/*N*/ }
 
 
 //------------------------------------------------------------------------

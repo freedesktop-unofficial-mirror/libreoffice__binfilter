@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -360,72 +360,72 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScDocument::DeleteTab( USHORT nTab, ScDocument* pRefUndoDoc )
-//STRIP001 {
-//STRIP001  BOOL bValid = FALSE;
-//STRIP001  if (VALIDTAB(nTab))
-//STRIP001  {
-//STRIP001      if (pTab[nTab])
-//STRIP001      {
-//STRIP001          USHORT nTabCount = GetTableCount();
-//STRIP001          if (nTabCount > 1)
-//STRIP001          {
-//STRIP001              BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001              SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001              ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
-//STRIP001              DelBroadcastAreasInRange( aRange );
-//STRIP001
-//STRIP001              aRange.aEnd.SetTab( MAXTAB );
-//STRIP001              xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
-//STRIP001              xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
-//STRIP001              pRangeName->UpdateTabRef( nTab, 2 );
-//STRIP001              pDBCollection->UpdateReference(
-//STRIP001                                  URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
-//STRIP001              if (pPivotCollection)
-//STRIP001                  pPivotCollection->UpdateReference(
-//STRIP001                                  URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
-//STRIP001              if (pDPCollection)
-//STRIP001                  pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,-1 );
-//STRIP001              if (pDetOpList)
-//STRIP001                  pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,-1 );
-//STRIP001              UpdateChartRef( URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
-//STRIP001              UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,-1 );
-//STRIP001              if ( pCondFormList )
-//STRIP001                  pCondFormList->UpdateReference( URM_INSDEL, aRange, 0,0,-1 );
-//STRIP001              if ( pUnoBroadcaster )
-//STRIP001                  pUnoBroadcaster->Broadcast( ScUpdateRefHint( URM_INSDEL, aRange, 0,0,-1 ) );
-//STRIP001
-//STRIP001              USHORT i;
-//STRIP001              for (i=0; i<=MAXTAB; i++)
-//STRIP001                  if (pTab[i])
-//STRIP001                      pTab[i]->UpdateDeleteTab(nTab,FALSE,
-//STRIP001                                  pRefUndoDoc ? pRefUndoDoc->pTab[i] : 0);
-//STRIP001              delete pTab[nTab];
-//STRIP001              for (i=nTab + 1; i < nTabCount; i++)
-//STRIP001                  pTab[i - 1] = pTab[i];
-//STRIP001              pTab[nTabCount - 1] = NULL;
-//STRIP001              --nMaxTableNumber;
-//STRIP001              for (i = 0; i <= MAXTAB; i++)
-//STRIP001                  if (pTab[i])
-//STRIP001                      pTab[i]->UpdateCompile();
-//STRIP001              // Excel-Filter loescht einige Tables waehrend des Ladens,
-//STRIP001              // Listener werden erst nach dem Laden aufgesetzt
-//STRIP001              if ( !bInsertingFromOtherDoc )
-//STRIP001              {
-//STRIP001                  for (i = 0; i <= MAXTAB; i++)
-//STRIP001                      if (pTab[i])
-//STRIP001                          pTab[i]->StartAllListeners();
-//STRIP001                  SetDirty();
-//STRIP001              }
-//STRIP001              // #81844# sheet names of references are not valid until sheet is deleted
-//STRIP001              pChartListenerCollection->UpdateScheduledSeriesRanges();
-//STRIP001              SetAutoCalc( bOldAutoCalc );
-//STRIP001              bValid = TRUE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bValid;
-//STRIP001 }
+/*N*/ BOOL ScDocument::DeleteTab( USHORT nTab, ScDocument* pRefUndoDoc )
+/*N*/ {
+/*N*/   BOOL bValid = FALSE;
+/*N*/   if (VALIDTAB(nTab))
+/*N*/   {
+/*N*/       if (pTab[nTab])
+/*N*/       {
+/*N*/           USHORT nTabCount = GetTableCount();
+/*N*/           if (nTabCount > 1)
+/*N*/           {
+/*N*/               BOOL bOldAutoCalc = GetAutoCalc();
+/*N*/               SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
+/*N*/               ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
+/*N*/               DelBroadcastAreasInRange( aRange );
+/*N*/
+/*N*/               aRange.aEnd.SetTab( MAXTAB );
+/*N*/               xColNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
+/*N*/               xRowNameRanges->UpdateReference( URM_INSDEL, this, aRange, 0,0,-1 );
+/*N*/               pRangeName->UpdateTabRef( nTab, 2 );
+/*N*/               pDBCollection->UpdateReference(
+/*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
+/*N*/               if (pPivotCollection)
+/*N*/                   pPivotCollection->UpdateReference(
+/*N*/                                   URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
+/*N*/               if (pDPCollection)
+/*N*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,-1 );
+/*N*/               if (pDetOpList)
+/*N*/                   pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,-1 );
+/*N*/               UpdateChartRef( URM_INSDEL, 0,0,nTab, MAXCOL,MAXROW,MAXTAB, 0,0,-1 );
+/*N*/               UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,-1 );
+/*N*/               if ( pCondFormList )
+/*N*/                   pCondFormList->UpdateReference( URM_INSDEL, aRange, 0,0,-1 );
+/*N*/               if ( pUnoBroadcaster )
+/*N*/                   pUnoBroadcaster->Broadcast( ScUpdateRefHint( URM_INSDEL, aRange, 0,0,-1 ) );
+/*N*/
+/*N*/               USHORT i;
+/*N*/               for (i=0; i<=MAXTAB; i++)
+/*N*/                   if (pTab[i])
+/*N*/                       pTab[i]->UpdateDeleteTab(nTab,FALSE,
+/*N*/                                   pRefUndoDoc ? pRefUndoDoc->pTab[i] : 0);
+/*N*/               delete pTab[nTab];
+/*N*/               for (i=nTab + 1; i < nTabCount; i++)
+/*N*/                   pTab[i - 1] = pTab[i];
+/*N*/               pTab[nTabCount - 1] = NULL;
+/*N*/               --nMaxTableNumber;
+/*N*/               for (i = 0; i <= MAXTAB; i++)
+/*N*/                   if (pTab[i])
+/*N*/                       pTab[i]->UpdateCompile();
+/*N*/               // Excel-Filter loescht einige Tables waehrend des Ladens,
+/*N*/               // Listener werden erst nach dem Laden aufgesetzt
+/*N*/               if ( !bInsertingFromOtherDoc )
+/*N*/               {
+/*N*/                   for (i = 0; i <= MAXTAB; i++)
+/*N*/                       if (pTab[i])
+/*N*/                           pTab[i]->StartAllListeners();
+/*N*/                   SetDirty();
+/*N*/               }
+/*N*/               // #81844# sheet names of references are not valid until sheet is deleted
+/*N*/               pChartListenerCollection->UpdateScheduledSeriesRanges();
+/*N*/               SetAutoCalc( bOldAutoCalc );
+/*N*/               bValid = TRUE;
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/   return bValid;
+/*N*/ }
 
 
 /*N*/ BOOL ScDocument::RenameTab( USHORT nTab, const String& rName, BOOL bUpdateRef,
@@ -562,310 +562,310 @@ namespace binfilter {
 //STRIP001 }
 
 
-//STRIP001 BOOL ScDocument::CanInsertRow( const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001  PutInOrder( nStartCol, nEndCol );
-//STRIP001  PutInOrder( nStartRow, nEndRow );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001  USHORT nSize = nEndRow - nStartRow + 1;
-//STRIP001
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          bTest &= pTab[i]->TestInsertRow( nStartCol, nEndCol, nSize );
-//STRIP001
-//STRIP001  return bTest;
-//STRIP001 }
+/*N*/ BOOL ScDocument::CanInsertRow( const ScRange& rRange ) const
+/*N*/ {
+/*N*/   USHORT nStartCol = rRange.aStart.Col();
+/*N*/   USHORT nStartRow = rRange.aStart.Row();
+/*N*/   USHORT nStartTab = rRange.aStart.Tab();
+/*N*/   USHORT nEndCol = rRange.aEnd.Col();
+/*N*/   USHORT nEndRow = rRange.aEnd.Row();
+/*N*/   USHORT nEndTab = rRange.aEnd.Tab();
+/*N*/   PutInOrder( nStartCol, nEndCol );
+/*N*/   PutInOrder( nStartRow, nEndRow );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/   USHORT nSize = nEndRow - nStartRow + 1;
+/*N*/
+/*N*/   BOOL bTest = TRUE;
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/       if (pTab[i])
+/*N*/           bTest &= pTab[i]->TestInsertRow( nStartCol, nEndCol, nSize );
+/*N*/
+/*N*/   return bTest;
+/*N*/ }
 
 
-//STRIP001 BOOL ScDocument::InsertRow( USHORT nStartCol, USHORT nStartTab,
-//STRIP001                          USHORT nEndCol,   USHORT nEndTab,
-//STRIP001                          USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc )
-//STRIP001 {
-//STRIP001  PutInOrder( nStartCol, nEndCol );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          bTest &= pTab[i]->TestInsertRow( nStartCol, nEndCol, nSize );
-//STRIP001  if (bTest)
-//STRIP001  {
-//STRIP001      // UpdateBroadcastAreas muss vor UpdateReference gerufen werden, damit nicht
-//STRIP001      // Eintraege verschoben werden, die erst bei UpdateReference neu erzeugt werden
-//STRIP001
-//STRIP001      UpdateBroadcastAreas( URM_INSDEL, ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( nEndCol, MAXROW, nEndTab )), 0, nSize, 0 );
-//STRIP001      UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
-//STRIP001                       nEndCol, MAXROW, nEndTab,
-//STRIP001                       0, nSize, 0, pRefUndoDoc, FALSE );     // without drawing objects
-//STRIP001      for (i=nStartTab; i<=nEndTab; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->InsertRow( nStartCol, nEndCol, nStartRow, nSize );
-//STRIP001
-//STRIP001      //  #82991# UpdateRef for drawing layer must be after inserting,
-//STRIP001      //  when the new row heights are known.
-//STRIP001      for (i=nStartTab; i<=nEndTab; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->UpdateDrawRef( URM_INSDEL,
-//STRIP001                          nStartCol, nStartRow, nStartTab, nEndCol, MAXROW, nEndTab,
-//STRIP001                          0, nSize, 0 );
-//STRIP001
-//STRIP001      if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
-//STRIP001      {   // durch Restaurierung von Referenzen auf geloeschte Bereiche ist
-//STRIP001          // ein neues Listening faellig, bisherige Listener wurden in
-//STRIP001          // FormulaCell UpdateReference abgehaengt
-//STRIP001          StartAllListeners();
-//STRIP001      }
-//STRIP001      else
-//STRIP001         {   // RelName listeners have been removed in UpdateReference
-//STRIP001          for (i=0; i<=MAXTAB; i++)
-//STRIP001              if (pTab[i])
-//STRIP001                     pTab[i]->StartNameListeners( TRUE );
-//STRIP001             // #69592# at least all cells using range names pointing relative
-//STRIP001             // to the moved range must recalculate
-//STRIP001          for (i=0; i<=MAXTAB; i++)
-//STRIP001              if (pTab[i])
-//STRIP001                  pTab[i]->SetRelNameDirty();
-//STRIP001      }
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  SetAutoCalc( bOldAutoCalc );
-//STRIP001  if ( bRet )
-//STRIP001      pChartListenerCollection->UpdateDirtyCharts();
-//STRIP001  return bRet;
-//STRIP001 }
+/*N*/ BOOL ScDocument::InsertRow( USHORT nStartCol, USHORT nStartTab,
+/*N*/                           USHORT nEndCol,   USHORT nEndTab,
+/*N*/                           USHORT nStartRow, USHORT nSize, ScDocument* pRefUndoDoc )
+/*N*/ {
+/*N*/   PutInOrder( nStartCol, nEndCol );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/
+/*N*/   BOOL bTest = TRUE;
+/*N*/   BOOL bRet = FALSE;
+/*N*/   BOOL bOldAutoCalc = GetAutoCalc();
+/*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/       if (pTab[i])
+/*N*/           bTest &= pTab[i]->TestInsertRow( nStartCol, nEndCol, nSize );
+/*N*/   if (bTest)
+/*N*/   {
+/*N*/       // UpdateBroadcastAreas muss vor UpdateReference gerufen werden, damit nicht
+/*N*/       // Eintraege verschoben werden, die erst bei UpdateReference neu erzeugt werden
+/*N*/
+/*N*/       UpdateBroadcastAreas( URM_INSDEL, ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( nEndCol, MAXROW, nEndTab )), 0, nSize, 0 );
+/*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
+/*N*/                        nEndCol, MAXROW, nEndTab,
+/*N*/                        0, nSize, 0, pRefUndoDoc, FALSE );     // without drawing objects
+/*N*/       for (i=nStartTab; i<=nEndTab; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->InsertRow( nStartCol, nEndCol, nStartRow, nSize );
+/*N*/
+/*N*/       //  #82991# UpdateRef for drawing layer must be after inserting,
+/*N*/       //  when the new row heights are known.
+/*N*/       for (i=nStartTab; i<=nEndTab; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->UpdateDrawRef( URM_INSDEL,
+/*N*/                           nStartCol, nStartRow, nStartTab, nEndCol, MAXROW, nEndTab,
+/*N*/                           0, nSize, 0 );
+/*N*/
+/*N*/       if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
+/*N*/       {   // durch Restaurierung von Referenzen auf geloeschte Bereiche ist
+/*N*/           // ein neues Listening faellig, bisherige Listener wurden in
+/*N*/           // FormulaCell UpdateReference abgehaengt
+/*N*/           StartAllListeners();
+/*N*/       }
+/*N*/       else
+/*N*/         {   // RelName listeners have been removed in UpdateReference
+/*N*/           for (i=0; i<=MAXTAB; i++)
+/*N*/               if (pTab[i])
+/*N*/                     pTab[i]->StartNameListeners( TRUE );
+/*N*/             // #69592# at least all cells using range names pointing relative
+/*N*/             // to the moved range must recalculate
+/*N*/           for (i=0; i<=MAXTAB; i++)
+/*N*/               if (pTab[i])
+/*N*/                   pTab[i]->SetRelNameDirty();
+/*N*/       }
+/*N*/       bRet = TRUE;
+/*N*/   }
+/*N*/   SetAutoCalc( bOldAutoCalc );
+/*N*/   if ( bRet )
+/*N*/       pChartListenerCollection->UpdateDirtyCharts();
+/*N*/   return bRet;
+/*N*/ }
 
 
-//STRIP001 BOOL ScDocument::InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc )
-//STRIP001 {
-//STRIP001  return InsertRow( rRange.aStart.Col(), rRange.aStart.Tab(),
-//STRIP001                    rRange.aEnd.Col(),   rRange.aEnd.Tab(),
-//STRIP001                    rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
-//STRIP001                    pRefUndoDoc );
-//STRIP001 }
+/*N*/ BOOL ScDocument::InsertRow( const ScRange& rRange, ScDocument* pRefUndoDoc )
+/*N*/ {
+/*N*/   return InsertRow( rRange.aStart.Col(), rRange.aStart.Tab(),
+/*N*/                     rRange.aEnd.Col(),   rRange.aEnd.Tab(),
+/*N*/                     rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
+/*N*/                     pRefUndoDoc );
+/*N*/ }
 
 
-//STRIP001 void ScDocument::DeleteRow( USHORT nStartCol, USHORT nStartTab,
-//STRIP001                          USHORT nEndCol,   USHORT nEndTab,
-//STRIP001                          USHORT nStartRow, USHORT nSize,
-//STRIP001                          ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  PutInOrder( nStartCol, nEndCol );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001
-//STRIP001  if ( nStartRow+nSize <= MAXROW )
-//STRIP001  {
-//STRIP001      DelBroadcastAreasInRange( ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( nEndCol, nStartRow+nSize-1, nEndTab ) ) );
-//STRIP001      UpdateBroadcastAreas( URM_INSDEL, ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow+nSize, nStartTab ),
-//STRIP001          ScAddress( nEndCol, MAXROW, nEndTab )), 0, -(short) nSize, 0 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DelBroadcastAreasInRange( ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( nEndCol, MAXROW, nEndTab ) ) );
-//STRIP001
-//STRIP001  if ( nStartRow+nSize <= MAXROW )
-//STRIP001  {
-//STRIP001      UpdateReference( URM_INSDEL, nStartCol, nStartRow+nSize, nStartTab,
-//STRIP001                       nEndCol, MAXROW, nEndTab,
-//STRIP001                       0, -(short) nSize, 0, pRefUndoDoc );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pUndoOutline)
-//STRIP001      *pUndoOutline = FALSE;
-//STRIP001
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          pTab[i]->DeleteRow( nStartCol, nEndCol, nStartRow, nSize, pUndoOutline );
-//STRIP001
-//STRIP001  if ( nStartRow+nSize <= MAXROW )
-//STRIP001     {   // Name listeners have been removed in UpdateReference
-//STRIP001      for (i=0; i<=MAXTAB; i++)
-//STRIP001          if (pTab[i])
-//STRIP001                 pTab[i]->StartNameListeners( FALSE );
-//STRIP001         // #69592# at least all cells using range names pointing relative to
-//STRIP001         // the moved range must recalculate
-//STRIP001      for (i=0; i<=MAXTAB; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->SetRelNameDirty();
-//STRIP001  }
-//STRIP001
-//STRIP001  SetAutoCalc( bOldAutoCalc );
-//STRIP001  pChartListenerCollection->UpdateDirtyCharts();
-//STRIP001 }
+/*N*/ void ScDocument::DeleteRow( USHORT nStartCol, USHORT nStartTab,
+/*N*/                           USHORT nEndCol,   USHORT nEndTab,
+/*N*/                           USHORT nStartRow, USHORT nSize,
+/*N*/                           ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   PutInOrder( nStartCol, nEndCol );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/
+/*N*/   BOOL bOldAutoCalc = GetAutoCalc();
+/*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
+/*N*/
+/*N*/   if ( nStartRow+nSize <= MAXROW )
+/*N*/   {
+/*N*/       DelBroadcastAreasInRange( ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( nEndCol, nStartRow+nSize-1, nEndTab ) ) );
+/*N*/       UpdateBroadcastAreas( URM_INSDEL, ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow+nSize, nStartTab ),
+/*N*/           ScAddress( nEndCol, MAXROW, nEndTab )), 0, -(short) nSize, 0 );
+/*N*/   }
+/*N*/   else
+/*N*/       DelBroadcastAreasInRange( ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( nEndCol, MAXROW, nEndTab ) ) );
+/*N*/
+/*N*/   if ( nStartRow+nSize <= MAXROW )
+/*N*/   {
+/*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow+nSize, nStartTab,
+/*N*/                        nEndCol, MAXROW, nEndTab,
+/*N*/                        0, -(short) nSize, 0, pRefUndoDoc );
+/*N*/   }
+/*N*/
+/*N*/   if (pUndoOutline)
+/*N*/       *pUndoOutline = FALSE;
+/*N*/
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab; i++)
+/*N*/       if (pTab[i])
+/*N*/           pTab[i]->DeleteRow( nStartCol, nEndCol, nStartRow, nSize, pUndoOutline );
+/*N*/
+/*N*/   if ( nStartRow+nSize <= MAXROW )
+/*N*/     {   // Name listeners have been removed in UpdateReference
+/*N*/       for (i=0; i<=MAXTAB; i++)
+/*N*/           if (pTab[i])
+/*N*/                 pTab[i]->StartNameListeners( FALSE );
+/*N*/         // #69592# at least all cells using range names pointing relative to
+/*N*/         // the moved range must recalculate
+/*N*/       for (i=0; i<=MAXTAB; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->SetRelNameDirty();
+/*N*/   }
+/*N*/
+/*N*/   SetAutoCalc( bOldAutoCalc );
+/*N*/   pChartListenerCollection->UpdateDirtyCharts();
+/*N*/ }
 
 
-//STRIP001 void ScDocument::DeleteRow( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  DeleteRow( rRange.aStart.Col(), rRange.aStart.Tab(),
-//STRIP001             rRange.aEnd.Col(),   rRange.aEnd.Tab(),
-//STRIP001             rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
-//STRIP001             pRefUndoDoc, pUndoOutline );
-//STRIP001 }
+/*N*/ void ScDocument::DeleteRow( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   DeleteRow( rRange.aStart.Col(), rRange.aStart.Tab(),
+/*N*/              rRange.aEnd.Col(),   rRange.aEnd.Tab(),
+/*N*/              rRange.aStart.Row(), rRange.aEnd.Row()-rRange.aStart.Row()+1,
+/*N*/              pRefUndoDoc, pUndoOutline );
+/*N*/ }
 
 
-//STRIP001 BOOL ScDocument::CanInsertCol( const ScRange& rRange ) const
-//STRIP001 {
-//STRIP001  USHORT nStartCol = rRange.aStart.Col();
-//STRIP001  USHORT nStartRow = rRange.aStart.Row();
-//STRIP001  USHORT nStartTab = rRange.aStart.Tab();
-//STRIP001  USHORT nEndCol = rRange.aEnd.Col();
-//STRIP001  USHORT nEndRow = rRange.aEnd.Row();
-//STRIP001  USHORT nEndTab = rRange.aEnd.Tab();
-//STRIP001  PutInOrder( nStartCol, nEndCol );
-//STRIP001  PutInOrder( nStartRow, nEndRow );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001  USHORT nSize = nEndCol - nStartCol + 1;
-//STRIP001
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          bTest &= pTab[i]->TestInsertCol( nStartRow, nEndRow, nSize );
-//STRIP001
-//STRIP001  return bTest;
-//STRIP001 }
+/*N*/ BOOL ScDocument::CanInsertCol( const ScRange& rRange ) const
+/*N*/ {
+/*N*/   USHORT nStartCol = rRange.aStart.Col();
+/*N*/   USHORT nStartRow = rRange.aStart.Row();
+/*N*/   USHORT nStartTab = rRange.aStart.Tab();
+/*N*/   USHORT nEndCol = rRange.aEnd.Col();
+/*N*/   USHORT nEndRow = rRange.aEnd.Row();
+/*N*/   USHORT nEndTab = rRange.aEnd.Tab();
+/*N*/   PutInOrder( nStartCol, nEndCol );
+/*N*/   PutInOrder( nStartRow, nEndRow );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/   USHORT nSize = nEndCol - nStartCol + 1;
+/*N*/
+/*N*/   BOOL bTest = TRUE;
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/       if (pTab[i])
+/*N*/           bTest &= pTab[i]->TestInsertCol( nStartRow, nEndRow, nSize );
+/*N*/
+/*N*/   return bTest;
+/*N*/ }
 
 
-//STRIP001 BOOL ScDocument::InsertCol( USHORT nStartRow, USHORT nStartTab,
-//STRIP001                          USHORT nEndRow,   USHORT nEndTab,
-//STRIP001                          USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc )
-//STRIP001 {
-//STRIP001  PutInOrder( nStartRow, nEndRow );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          bTest &= pTab[i]->TestInsertCol( nStartRow, nEndRow, nSize );
-//STRIP001  if (bTest)
-//STRIP001  {
-//STRIP001      UpdateBroadcastAreas( URM_INSDEL, ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( MAXCOL, nEndRow, nEndTab )), nSize, 0, 0 );
-//STRIP001      UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
-//STRIP001                       MAXCOL, nEndRow, nEndTab,
-//STRIP001                       nSize, 0, 0, pRefUndoDoc );
-//STRIP001      for (i=nStartTab; i<=nEndTab; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->InsertCol( nStartCol, nStartRow, nEndRow, nSize );
-//STRIP001
-//STRIP001      if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
-//STRIP001      {   // durch Restaurierung von Referenzen auf geloeschte Bereiche ist
-//STRIP001          // ein neues Listening faellig, bisherige Listener wurden in
-//STRIP001          // FormulaCell UpdateReference abgehaengt
-//STRIP001          StartAllListeners();
-//STRIP001      }
-//STRIP001      else
-//STRIP001         {   // RelName listeners have been removed in UpdateReference
-//STRIP001          for (i=0; i<=MAXTAB; i++)
-//STRIP001              if (pTab[i])
-//STRIP001                     pTab[i]->StartNameListeners( TRUE );
-//STRIP001             // #69592# at least all cells using range names pointing relative
-//STRIP001             // to the moved range must recalculate
-//STRIP001          for (i=0; i<=MAXTAB; i++)
-//STRIP001              if (pTab[i])
-//STRIP001                  pTab[i]->SetRelNameDirty();
-//STRIP001      }
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  SetAutoCalc( bOldAutoCalc );
-//STRIP001  if ( bRet )
-//STRIP001      pChartListenerCollection->UpdateDirtyCharts();
-//STRIP001  return bRet;
-//STRIP001 }
+/*N*/ BOOL ScDocument::InsertCol( USHORT nStartRow, USHORT nStartTab,
+/*N*/                           USHORT nEndRow,   USHORT nEndTab,
+/*N*/                           USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc )
+/*N*/ {
+/*N*/   PutInOrder( nStartRow, nEndRow );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/
+/*N*/   BOOL bTest = TRUE;
+/*N*/   BOOL bRet = FALSE;
+/*N*/   BOOL bOldAutoCalc = GetAutoCalc();
+/*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab && bTest; i++)
+/*N*/       if (pTab[i])
+/*N*/           bTest &= pTab[i]->TestInsertCol( nStartRow, nEndRow, nSize );
+/*N*/   if (bTest)
+/*N*/   {
+/*N*/       UpdateBroadcastAreas( URM_INSDEL, ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( MAXCOL, nEndRow, nEndTab )), nSize, 0, 0 );
+/*N*/       UpdateReference( URM_INSDEL, nStartCol, nStartRow, nStartTab,
+/*N*/                        MAXCOL, nEndRow, nEndTab,
+/*N*/                        nSize, 0, 0, pRefUndoDoc );
+/*N*/       for (i=nStartTab; i<=nEndTab; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->InsertCol( nStartCol, nStartRow, nEndRow, nSize );
+/*N*/
+/*N*/       if ( pChangeTrack && pChangeTrack->IsInDeleteUndo() )
+/*N*/       {   // durch Restaurierung von Referenzen auf geloeschte Bereiche ist
+/*N*/           // ein neues Listening faellig, bisherige Listener wurden in
+/*N*/           // FormulaCell UpdateReference abgehaengt
+/*N*/           StartAllListeners();
+/*N*/       }
+/*N*/       else
+/*N*/         {   // RelName listeners have been removed in UpdateReference
+/*N*/           for (i=0; i<=MAXTAB; i++)
+/*N*/               if (pTab[i])
+/*N*/                     pTab[i]->StartNameListeners( TRUE );
+/*N*/             // #69592# at least all cells using range names pointing relative
+/*N*/             // to the moved range must recalculate
+/*N*/           for (i=0; i<=MAXTAB; i++)
+/*N*/               if (pTab[i])
+/*N*/                   pTab[i]->SetRelNameDirty();
+/*N*/       }
+/*N*/       bRet = TRUE;
+/*N*/   }
+/*N*/   SetAutoCalc( bOldAutoCalc );
+/*N*/   if ( bRet )
+/*N*/       pChartListenerCollection->UpdateDirtyCharts();
+/*N*/   return bRet;
+/*N*/ }
 
 
-//STRIP001 BOOL ScDocument::InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc )
-//STRIP001 {
-//STRIP001  return InsertCol( rRange.aStart.Row(), rRange.aStart.Tab(),
-//STRIP001                    rRange.aEnd.Row(),   rRange.aEnd.Tab(),
-//STRIP001                    rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
-//STRIP001                    pRefUndoDoc );
-//STRIP001 }
+/*N*/ BOOL ScDocument::InsertCol( const ScRange& rRange, ScDocument* pRefUndoDoc )
+/*N*/ {
+/*N*/   return InsertCol( rRange.aStart.Row(), rRange.aStart.Tab(),
+/*N*/                     rRange.aEnd.Row(),   rRange.aEnd.Tab(),
+/*N*/                     rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
+/*N*/                     pRefUndoDoc );
+/*N*/ }
 
 
-//STRIP001 void ScDocument::DeleteCol(USHORT nStartRow, USHORT nStartTab, USHORT nEndRow, USHORT nEndTab,
-//STRIP001                              USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc,
-//STRIP001                              BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  PutInOrder( nStartRow, nEndRow );
-//STRIP001  PutInOrder( nStartTab, nEndTab );
-//STRIP001
-//STRIP001  BOOL bOldAutoCalc = GetAutoCalc();
-//STRIP001  SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
-//STRIP001
-//STRIP001  if ( nStartCol+nSize <= MAXCOL )
-//STRIP001  {
-//STRIP001      DelBroadcastAreasInRange( ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( nStartCol+nSize-1, nEndRow, nEndTab ) ) );
-//STRIP001      UpdateBroadcastAreas( URM_INSDEL, ScRange(
-//STRIP001          ScAddress( nStartCol+nSize, nStartRow, nStartTab ),
-//STRIP001          ScAddress( MAXCOL, nEndRow, nEndTab )), -(short) nSize, 0, 0 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DelBroadcastAreasInRange( ScRange(
-//STRIP001          ScAddress( nStartCol, nStartRow, nStartTab ),
-//STRIP001          ScAddress( MAXCOL, nEndRow, nEndTab ) ) );
-//STRIP001
-//STRIP001  if ( nStartCol+nSize <= MAXCOL )
-//STRIP001  {
-//STRIP001      UpdateReference( URM_INSDEL, nStartCol+nSize, nStartRow, nStartTab,
-//STRIP001                       MAXCOL, nEndRow, nEndTab,
-//STRIP001                       -(short) nSize, 0, 0, pRefUndoDoc );
-//STRIP001  }
-//STRIP001
-//STRIP001  if (pUndoOutline)
-//STRIP001      *pUndoOutline = FALSE;
-//STRIP001
-//STRIP001  for (USHORT i=nStartTab; i<=nEndTab; i++)
-//STRIP001      if (pTab[i])
-//STRIP001          pTab[i]->DeleteCol( nStartCol, nStartRow, nEndRow, nSize, pUndoOutline );
-//STRIP001
-//STRIP001  if ( nStartCol+nSize <= MAXCOL )
-//STRIP001     {   // Name listeners have been removed in UpdateReference
-//STRIP001      for (i=0; i<=MAXTAB; i++)
-//STRIP001          if (pTab[i])
-//STRIP001                 pTab[i]->StartNameListeners( FALSE );
-//STRIP001         // #69592# at least all cells using range names pointing relative to
-//STRIP001         // the moved range must recalculate
-//STRIP001      for (i=0; i<=MAXTAB; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->SetRelNameDirty();
-//STRIP001  }
-//STRIP001
-//STRIP001  SetAutoCalc( bOldAutoCalc );
-//STRIP001  pChartListenerCollection->UpdateDirtyCharts();
-//STRIP001 }
+/*N*/ void ScDocument::DeleteCol(USHORT nStartRow, USHORT nStartTab, USHORT nEndRow, USHORT nEndTab,
+/*N*/                               USHORT nStartCol, USHORT nSize, ScDocument* pRefUndoDoc,
+/*N*/                               BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   PutInOrder( nStartRow, nEndRow );
+/*N*/   PutInOrder( nStartTab, nEndTab );
+/*N*/
+/*N*/   BOOL bOldAutoCalc = GetAutoCalc();
+/*N*/   SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
+/*N*/
+/*N*/   if ( nStartCol+nSize <= MAXCOL )
+/*N*/   {
+/*N*/       DelBroadcastAreasInRange( ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( nStartCol+nSize-1, nEndRow, nEndTab ) ) );
+/*N*/       UpdateBroadcastAreas( URM_INSDEL, ScRange(
+/*N*/           ScAddress( nStartCol+nSize, nStartRow, nStartTab ),
+/*N*/           ScAddress( MAXCOL, nEndRow, nEndTab )), -(short) nSize, 0, 0 );
+/*N*/   }
+/*N*/   else
+/*N*/       DelBroadcastAreasInRange( ScRange(
+/*N*/           ScAddress( nStartCol, nStartRow, nStartTab ),
+/*N*/           ScAddress( MAXCOL, nEndRow, nEndTab ) ) );
+/*N*/
+/*N*/   if ( nStartCol+nSize <= MAXCOL )
+/*N*/   {
+/*N*/       UpdateReference( URM_INSDEL, nStartCol+nSize, nStartRow, nStartTab,
+/*N*/                        MAXCOL, nEndRow, nEndTab,
+/*N*/                        -(short) nSize, 0, 0, pRefUndoDoc );
+/*N*/   }
+/*N*/
+/*N*/   if (pUndoOutline)
+/*N*/       *pUndoOutline = FALSE;
+/*N*/
+/*N*/   for (USHORT i=nStartTab; i<=nEndTab; i++)
+/*N*/       if (pTab[i])
+/*N*/           pTab[i]->DeleteCol( nStartCol, nStartRow, nEndRow, nSize, pUndoOutline );
+/*N*/
+/*N*/   if ( nStartCol+nSize <= MAXCOL )
+/*N*/     {   // Name listeners have been removed in UpdateReference
+/*N*/       for (i=0; i<=MAXTAB; i++)
+/*N*/           if (pTab[i])
+/*N*/                 pTab[i]->StartNameListeners( FALSE );
+/*N*/         // #69592# at least all cells using range names pointing relative to
+/*N*/         // the moved range must recalculate
+/*N*/       for (i=0; i<=MAXTAB; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->SetRelNameDirty();
+/*N*/   }
+/*N*/
+/*N*/   SetAutoCalc( bOldAutoCalc );
+/*N*/   pChartListenerCollection->UpdateDirtyCharts();
+/*N*/ }
 
 
-//STRIP001 void ScDocument::DeleteCol( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  DeleteCol( rRange.aStart.Row(), rRange.aStart.Tab(),
-//STRIP001             rRange.aEnd.Row(),   rRange.aEnd.Tab(),
-//STRIP001             rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
-//STRIP001             pRefUndoDoc, pUndoOutline );
-//STRIP001 }
+/*N*/ void ScDocument::DeleteCol( const ScRange& rRange, ScDocument* pRefUndoDoc, BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   DeleteCol( rRange.aStart.Row(), rRange.aStart.Tab(),
+/*N*/              rRange.aEnd.Row(),   rRange.aEnd.Tab(),
+/*N*/              rRange.aStart.Col(), rRange.aEnd.Col()-rRange.aStart.Col()+1,
+/*N*/              pRefUndoDoc, pUndoOutline );
+/*N*/ }
 
 
 //  fuer Area-Links: Zellen einuegen/loeschen, wenn sich der Bereich veraendert
@@ -1371,12 +1371,12 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/                        Rectangle aObjRe
 //STRIP001 }
 
 
-//STRIP001 BOOL ScDocument::IsClipboardSource() const
-//STRIP001 {
-//STRIP001  ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
-//STRIP001  return pClipDoc && pClipDoc->xPoolHelper.isValid() &&
-//STRIP001          xPoolHelper->GetDocPool() == pClipDoc->xPoolHelper->GetDocPool();
-//STRIP001 }
+/*N*/ BOOL ScDocument::IsClipboardSource() const
+/*N*/ {
+/*N*/   ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
+/*N*/   return pClipDoc && pClipDoc->xPoolHelper.isValid() &&
+/*N*/           xPoolHelper->GetDocPool() == pClipDoc->xPoolHelper->GetDocPool();
+/*N*/ }
 
 
 /*N*/ void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1,

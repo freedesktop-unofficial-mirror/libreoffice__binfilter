@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_rangenam.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:34 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -354,30 +354,30 @@ namespace binfilter {
 /*N*/   delete pTemp;
 /*N*/ }
 
-//STRIP001 void ScRangeData::UpdateReference(   UpdateRefMode eUpdateRefMode,
-//STRIP001                                  const ScRange& r,
-//STRIP001                                  short nDx, short nDy, short nDz )
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001
-//STRIP001  pCode->Reset();
-//STRIP001  if( pCode->GetNextReference() )
-//STRIP001  {
-//STRIP001      ScCompiler aComp( pDoc, aPos, *pCode );
-//STRIP001      BOOL bRelRef = aComp.UpdateNameReference( eUpdateRefMode, r,
-//STRIP001                                                  nDx, nDy, nDz,
-//STRIP001                                                  bChanged);
-//STRIP001      if (eType&RT_SHARED)
-//STRIP001      {
-//STRIP001          if (bRelRef)
-//STRIP001              eType = eType | RT_SHAREDMOD;
-//STRIP001          else
-//STRIP001              eType = eType & ~RT_SHAREDMOD;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  bModified = bChanged;
-//STRIP001 }
+/*N*/ void ScRangeData::UpdateReference(    UpdateRefMode eUpdateRefMode,
+/*N*/                                   const ScRange& r,
+/*N*/                                   short nDx, short nDy, short nDz )
+/*N*/ {
+/*N*/   BOOL bChanged = FALSE;
+/*N*/
+/*N*/   pCode->Reset();
+/*N*/   if( pCode->GetNextReference() )
+/*N*/   {
+/*N*/       ScCompiler aComp( pDoc, aPos, *pCode );
+/*N*/       BOOL bRelRef = aComp.UpdateNameReference( eUpdateRefMode, r,
+/*N*/                                                   nDx, nDy, nDz,
+/*N*/                                                   bChanged);
+/*N*/       if (eType&RT_SHARED)
+/*N*/       {
+/*N*/           if (bRelRef)
+/*N*/               eType = eType | RT_SHAREDMOD;
+/*N*/           else
+/*N*/               eType = eType & ~RT_SHAREDMOD;
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   bModified = bChanged;
+/*N*/ }
 
 
 //STRIP001 void ScRangeData::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest )
@@ -841,14 +841,14 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-//STRIP001 void ScRangeName::UpdateReference(   UpdateRefMode eUpdateRefMode,
-//STRIP001                                  const ScRange& rRange,
-//STRIP001                                  short nDx, short nDy, short nDz )
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001      ((ScRangeData*)pItems[i])->UpdateReference(eUpdateRefMode, rRange,
-//STRIP001                                                 nDx, nDy, nDz);
-//STRIP001 }
+/*N*/ void ScRangeName::UpdateReference(    UpdateRefMode eUpdateRefMode,
+/*N*/                                   const ScRange& rRange,
+/*N*/                                   short nDx, short nDy, short nDz )
+/*N*/ {
+/*N*/   for (USHORT i=0; i<nCount; i++)
+/*N*/       ((ScRangeData*)pItems[i])->UpdateReference(eUpdateRefMode, rRange,
+/*N*/                                                  nDx, nDy, nDz);
+/*N*/ }
 
 //STRIP001 void ScRangeName::UpdateTranspose( const ScRange& rSource, const ScAddress& rDest )
 //STRIP001 {

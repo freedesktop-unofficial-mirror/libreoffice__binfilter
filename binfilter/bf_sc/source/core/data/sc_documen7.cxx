@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen7.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:12 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -166,61 +166,61 @@ ULONG erCountBCAFinds = 0;
 /*N*/ }
 
 
-//STRIP001 void ScDocument::AreaBroadcast( const ScHint& rHint )
-//STRIP001 {
-//STRIP001  if ( !pBASM )
-//STRIP001      return ;    // Clipboard or Undo
-//STRIP001  if ( !nHardRecalcState )
-//STRIP001  {
-//STRIP001      if ( pBASM->AreaBroadcast( rHint ) )
-//STRIP001          TrackFormulas( rHint.GetId() );
-//STRIP001  }
-//STRIP001
-//STRIP001  //  Repaint fuer bedingte Formate mit relativen Referenzen:
-//STRIP001  if ( pCondFormList && rHint.GetAddress() != BCA_BRDCST_ALWAYS )
-//STRIP001      pCondFormList->SourceChanged( rHint.GetAddress() );
-//STRIP001 }
+/*N*/ void ScDocument::AreaBroadcast( const ScHint& rHint )
+/*N*/ {
+/*N*/   if ( !pBASM )
+/*N*/       return ;    // Clipboard or Undo
+/*N*/   if ( !nHardRecalcState )
+/*N*/   {
+/*N*/       if ( pBASM->AreaBroadcast( rHint ) )
+/*N*/           TrackFormulas( rHint.GetId() );
+/*N*/   }
+/*N*/
+/*N*/   //  Repaint fuer bedingte Formate mit relativen Referenzen:
+/*N*/   if ( pCondFormList && rHint.GetAddress() != BCA_BRDCST_ALWAYS )
+/*N*/       pCondFormList->SourceChanged( rHint.GetAddress() );
+/*N*/ }
 
 
-//STRIP001 void ScDocument::AreaBroadcastInRange( const ScRange& rRange, const ScHint& rHint )
-//STRIP001 {
-//STRIP001     if ( !pBASM )
-//STRIP001         return ;    // Clipboard or Undo
-//STRIP001     if ( !nHardRecalcState )
-//STRIP001     {
-//STRIP001         if ( pBASM->AreaBroadcastInRange( rRange, rHint ) )
-//STRIP001             TrackFormulas( rHint.GetId() );
-//STRIP001     }
-//STRIP001
-//STRIP001     // Repaint for conditional formats containing relative references.
-//STRIP001     //! This is _THE_ bottle neck!
-//STRIP001     if ( pCondFormList )
-//STRIP001     {
-//STRIP001         USHORT nCol, nRow, nTab, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-//STRIP001         rRange.GetVars( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001         ScAddress aAddress( rRange.aStart );
-//STRIP001         for ( nTab = nTab1; nTab <= nTab2; ++nTab )
-//STRIP001         {
-//STRIP001             aAddress.SetTab( nTab );
-//STRIP001             for ( nCol = nCol1; nCol <= nCol2; ++nCol )
-//STRIP001             {
-//STRIP001                 aAddress.SetCol( nCol );
-//STRIP001                 for ( nRow = nRow1; nRow <= nRow2; ++nRow )
-//STRIP001                 {
-//STRIP001                     aAddress.SetRow( nRow );
-//STRIP001                     pCondFormList->SourceChanged( aAddress );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
+/*N*/ void ScDocument::AreaBroadcastInRange( const ScRange& rRange, const ScHint& rHint )
+/*N*/ {
+/*N*/     if ( !pBASM )
+/*N*/         return ;    // Clipboard or Undo
+/*N*/     if ( !nHardRecalcState )
+/*N*/     {
+/*N*/         if ( pBASM->AreaBroadcastInRange( rRange, rHint ) )
+/*N*/             TrackFormulas( rHint.GetId() );
+/*N*/     }
+/*N*/
+/*N*/     // Repaint for conditional formats containing relative references.
+/*N*/     //! This is _THE_ bottle neck!
+/*N*/     if ( pCondFormList )
+/*N*/     {
+/*N*/         USHORT nCol, nRow, nTab, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
+/*N*/         rRange.GetVars( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
+/*N*/         ScAddress aAddress( rRange.aStart );
+/*N*/         for ( nTab = nTab1; nTab <= nTab2; ++nTab )
+/*N*/         {
+/*N*/             aAddress.SetTab( nTab );
+/*N*/             for ( nCol = nCol1; nCol <= nCol2; ++nCol )
+/*N*/             {
+/*N*/                 aAddress.SetCol( nCol );
+/*N*/                 for ( nRow = nRow1; nRow <= nRow2; ++nRow )
+/*N*/                 {
+/*N*/                     aAddress.SetRow( nRow );
+/*N*/                     pCondFormList->SourceChanged( aAddress );
+/*N*/                 }
+/*N*/             }
+/*N*/         }
+/*N*/     }
+/*N*/ }
 
 
-//STRIP001 void ScDocument::DelBroadcastAreasInRange( const ScRange& rRange )
-//STRIP001 {
-//STRIP001  if ( pBASM )
-//STRIP001      pBASM->DelBroadcastAreasInRange( rRange );
-//STRIP001 }
+/*N*/ void ScDocument::DelBroadcastAreasInRange( const ScRange& rRange )
+/*N*/ {
+/*N*/   if ( pBASM )
+/*N*/       pBASM->DelBroadcastAreasInRange( rRange );
+/*N*/ }
 
 /*N*/ void ScDocument::StartListeningCell( const ScAddress& rAddress,
 /*N*/                                           SfxListener* pListener )
@@ -548,17 +548,17 @@ ULONG erCountBCAFinds = 0;
 /*N*/           pTab[i]->StartAllListeners();
 /*N*/ }
 
-//STRIP001 void ScDocument::UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
-//STRIP001      const ScRange& rRange, short nDx, short nDy, short nDz
-//STRIP001  )
-//STRIP001 {
-//STRIP001  BOOL bExpandRefsOld = IsExpandRefs();
-//STRIP001  if ( eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0 || nDz > 0) )
-//STRIP001      SetExpandRefs( SC_MOD()->GetInputOptions().GetExpandRefs() );
+/*N*/ void ScDocument::UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
+/*N*/       const ScRange& rRange, short nDx, short nDy, short nDz
+/*N*/   )
+/*N*/ {
+/*N*/   BOOL bExpandRefsOld = IsExpandRefs();
+/*N*/   if ( eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0 || nDz > 0) )
+/*N*/       SetExpandRefs( SC_MOD()->GetInputOptions().GetExpandRefs() );
 //STRIP001  if ( pBASM )
 //STRIP001      pBASM->UpdateBroadcastAreas( eUpdateRefMode, rRange, nDx, nDy, nDz );
-//STRIP001  SetExpandRefs( bExpandRefsOld );
-//STRIP001 }
+/*N*/   SetExpandRefs( bExpandRefsOld );
+/*N*/ }
 
 /*N*/ void ScDocument::SetAutoCalc( BOOL bNewAutoCalc )
 /*N*/ {

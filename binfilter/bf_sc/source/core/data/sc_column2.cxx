@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1801,10 +1801,10 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/       return TRUE;
 /*N*/ }
 
-//STRIP001 BOOL ScColumn::IsEmpty() const
-//STRIP001 {
-//STRIP001  return (IsEmptyData() && IsEmptyAttr());
-//STRIP001 }
+/*N*/ BOOL ScColumn::IsEmpty() const
+/*N*/ {
+/*N*/   return (IsEmptyData() && IsEmptyAttr());
+/*N*/ }
 
 //STRIP001 BOOL ScColumn::IsEmptyBlock(USHORT nStartRow, USHORT nEndRow) const
 //STRIP001 {
@@ -2096,29 +2096,29 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 /*N*/   pBC->StartBroadcasting( rLst, TRUE );
 /*N*/ }
 
-//STRIP001 void ScColumn::MoveListeners( ScBroadcasterList& rSource, USHORT nDestRow )
-//STRIP001 {
-//STRIP001  ScBroadcasterList* pBC = NULL;
-//STRIP001  ScBaseCell* pCell;
-//STRIP001
-//STRIP001  USHORT nIndex;
-//STRIP001  if (Search(nDestRow,nIndex))
-//STRIP001  {
-//STRIP001      pCell = pItems[nIndex].pCell;
-//STRIP001      pBC = pCell->GetBroadcaster();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pCell = new ScNoteCell;
-//STRIP001      Insert(nDestRow, pCell);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (!pBC)
-//STRIP001  {
-//STRIP001      pBC = new ScBroadcasterList;
-//STRIP001      pCell->SetBroadcaster(pBC);
-//STRIP001  }
-//STRIP001
+/*N*/ void ScColumn::MoveListeners( ScBroadcasterList& rSource, USHORT nDestRow )
+/*N*/ {
+/*N*/   ScBroadcasterList* pBC = NULL;
+/*N*/   ScBaseCell* pCell;
+/*N*/
+/*N*/   USHORT nIndex;
+/*N*/   if (Search(nDestRow,nIndex))
+/*N*/   {
+/*N*/       pCell = pItems[nIndex].pCell;
+/*N*/       pBC = pCell->GetBroadcaster();
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       pCell = new ScNoteCell;
+/*N*/       Insert(nDestRow, pCell);
+/*N*/   }
+/*N*/
+/*N*/   if (!pBC)
+/*N*/   {
+/*N*/       pBC = new ScBroadcasterList;
+/*N*/       pCell->SetBroadcaster(pBC);
+/*N*/   }
+/*N*/
 //STRIP001 #if 0
 //STRIP001  USHORT nCount = rSource.GetListenerCount();
 //STRIP001  for (USHORT i=nCount; i>0;)
@@ -2129,8 +2129,8 @@ USHORT ScColumnIterator::GetIndex() const           // Index zur letzen abgefrag
 //STRIP001      pLst->EndListening(rSource);
 //STRIP001  }
 //STRIP001 #endif
-//STRIP001  rSource.MoveListenersTo( *pBC );
-//STRIP001 }
+/*N*/   rSource.MoveListenersTo( *pBC );
+/*N*/ }
 
 /*N*/ void ScColumn::EndListening( SfxListener& rLst, USHORT nRow )
 /*N*/ {

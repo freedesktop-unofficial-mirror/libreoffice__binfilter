@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen3.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:59 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -799,82 +799,82 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScDocument::UpdateReference( UpdateRefMode eUpdateRefMode,
-//STRIP001                                  USHORT nCol1, USHORT nRow1, USHORT nTab1,
-//STRIP001                                  USHORT nCol2, USHORT nRow2, USHORT nTab2,
-//STRIP001                                  short nDx, short nDy, short nDz,
-//STRIP001                                  ScDocument* pUndoDoc, BOOL bIncludeDraw )
-//STRIP001 {
-//STRIP001  PutInOrder( nCol1, nCol2 );
-//STRIP001  PutInOrder( nRow1, nRow2 );
-//STRIP001  PutInOrder( nTab1, nTab2 );
-//STRIP001  if (VALIDTAB(nTab1) && VALIDTAB(nTab2))
-//STRIP001  {
-//STRIP001      BOOL bExpandRefsOld = IsExpandRefs();
-//STRIP001      if ( eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0 || nDz > 0) )
-//STRIP001          SetExpandRefs( SC_MOD()->GetInputOptions().GetExpandRefs() );
-//STRIP001      USHORT i;
-//STRIP001      USHORT iMax;
-//STRIP001      if ( eUpdateRefMode == URM_COPY )
-//STRIP001      {
-//STRIP001          i = nTab1;
-//STRIP001          iMax = nTab2;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          ScRange aRange( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-//STRIP001          xColNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
-//STRIP001          xRowNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
-//STRIP001          pDBCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
-//STRIP001          pRangeName->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
-//STRIP001          if (pPivotCollection)
-//STRIP001              pPivotCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
-//STRIP001          if ( pDPCollection )
-//STRIP001              pDPCollection->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
-//STRIP001          UpdateChartRef( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
-//STRIP001          UpdateRefAreaLinks( eUpdateRefMode, aRange, nDx, nDy, nDz );
-//STRIP001          if ( pCondFormList )
-//STRIP001              pCondFormList->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
-//STRIP001          if ( pDetOpList )
-//STRIP001              pDetOpList->UpdateReference( this, eUpdateRefMode, aRange, nDx, nDy, nDz );
-//STRIP001          if ( pUnoBroadcaster )
-//STRIP001              pUnoBroadcaster->Broadcast( ScUpdateRefHint(
-//STRIP001                                  eUpdateRefMode, aRange, nDx, nDy, nDz ) );
-//STRIP001          i = 0;
-//STRIP001          iMax = MAXTAB;
-//STRIP001      }
-//STRIP001      for ( ; i<=iMax; i++)
-//STRIP001          if (pTab[i])
-//STRIP001              pTab[i]->UpdateReference(
-//STRIP001                  eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2,
-//STRIP001                  nDx, nDy, nDz, pUndoDoc, bIncludeDraw );
-//STRIP001
-//STRIP001      if ( bIsEmbedded )
-//STRIP001      {
-//STRIP001          USHORT theCol1, theRow1, theTab1, theCol2, theRow2, theTab2;
-//STRIP001          theCol1 = aEmbedRange.aStart.Col();
-//STRIP001          theRow1 = aEmbedRange.aStart.Row();
-//STRIP001          theTab1 = aEmbedRange.aStart.Tab();
-//STRIP001          theCol2 = aEmbedRange.aEnd.Col();
-//STRIP001          theRow2 = aEmbedRange.aEnd.Row();
-//STRIP001          theTab2 = aEmbedRange.aEnd.Tab();
-//STRIP001          if ( ScRefUpdate::Update( this, eUpdateRefMode, nCol1,nRow1,nTab1, nCol2,nRow2,nTab2,
-//STRIP001                                      nDx,nDy,nDz, theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 ) )
-//STRIP001          {
-//STRIP001              aEmbedRange = ScRange( theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 );
-//STRIP001          }
-//STRIP001      }
-//STRIP001      SetExpandRefs( bExpandRefsOld );
-//STRIP001
-//STRIP001      // #30428# after moving, no clipboard move ref-updates are possible
-//STRIP001      if ( eUpdateRefMode != URM_COPY && IsClipboardSource() )
-//STRIP001      {
-//STRIP001          ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
-//STRIP001          if (pClipDoc)
-//STRIP001              pClipDoc->bCutMode = FALSE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScDocument::UpdateReference( UpdateRefMode eUpdateRefMode,
+/*N*/                                   USHORT nCol1, USHORT nRow1, USHORT nTab1,
+/*N*/                                   USHORT nCol2, USHORT nRow2, USHORT nTab2,
+/*N*/                                   short nDx, short nDy, short nDz,
+/*N*/                                   ScDocument* pUndoDoc, BOOL bIncludeDraw )
+/*N*/ {
+/*N*/   PutInOrder( nCol1, nCol2 );
+/*N*/   PutInOrder( nRow1, nRow2 );
+/*N*/   PutInOrder( nTab1, nTab2 );
+/*N*/   if (VALIDTAB(nTab1) && VALIDTAB(nTab2))
+/*N*/   {
+/*N*/       BOOL bExpandRefsOld = IsExpandRefs();
+/*N*/       if ( eUpdateRefMode == URM_INSDEL && (nDx > 0 || nDy > 0 || nDz > 0) )
+/*N*/           SetExpandRefs( SC_MOD()->GetInputOptions().GetExpandRefs() );
+/*N*/       USHORT i;
+/*N*/       USHORT iMax;
+/*N*/       if ( eUpdateRefMode == URM_COPY )
+/*N*/       {
+/*N*/           i = nTab1;
+/*N*/           iMax = nTab2;
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/           ScRange aRange( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
+/*N*/           xColNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
+/*N*/           xRowNameRanges->UpdateReference( eUpdateRefMode, this, aRange, nDx, nDy, nDz );
+/*N*/           pDBCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
+/*N*/           pRangeName->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
+/*N*/           if (pPivotCollection)
+/*N*/               pPivotCollection->UpdateReference( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
+/*N*/           if ( pDPCollection )
+/*N*/               pDPCollection->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
+/*N*/           UpdateChartRef( eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2, nDx, nDy, nDz );
+/*N*/           UpdateRefAreaLinks( eUpdateRefMode, aRange, nDx, nDy, nDz );
+/*N*/           if ( pCondFormList )
+/*N*/               pCondFormList->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz );
+/*N*/           if ( pDetOpList )
+/*N*/               pDetOpList->UpdateReference( this, eUpdateRefMode, aRange, nDx, nDy, nDz );
+/*N*/           if ( pUnoBroadcaster )
+/*N*/               pUnoBroadcaster->Broadcast( ScUpdateRefHint(
+/*N*/                                   eUpdateRefMode, aRange, nDx, nDy, nDz ) );
+/*N*/           i = 0;
+/*N*/           iMax = MAXTAB;
+/*N*/       }
+/*N*/       for ( ; i<=iMax; i++)
+/*N*/           if (pTab[i])
+/*N*/               pTab[i]->UpdateReference(
+/*N*/                   eUpdateRefMode, nCol1, nRow1, nTab1, nCol2, nRow2, nTab2,
+/*N*/                   nDx, nDy, nDz, pUndoDoc, bIncludeDraw );
+/*N*/
+/*N*/       if ( bIsEmbedded )
+/*N*/       {
+/*N*/           USHORT theCol1, theRow1, theTab1, theCol2, theRow2, theTab2;
+/*N*/           theCol1 = aEmbedRange.aStart.Col();
+/*N*/           theRow1 = aEmbedRange.aStart.Row();
+/*N*/           theTab1 = aEmbedRange.aStart.Tab();
+/*N*/           theCol2 = aEmbedRange.aEnd.Col();
+/*N*/           theRow2 = aEmbedRange.aEnd.Row();
+/*N*/           theTab2 = aEmbedRange.aEnd.Tab();
+/*N*/           if ( ScRefUpdate::Update( this, eUpdateRefMode, nCol1,nRow1,nTab1, nCol2,nRow2,nTab2,
+/*N*/                                       nDx,nDy,nDz, theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 ) )
+/*N*/           {
+/*N*/               aEmbedRange = ScRange( theCol1,theRow1,theTab1, theCol2,theRow2,theTab2 );
+/*N*/           }
+/*N*/       }
+/*N*/       SetExpandRefs( bExpandRefsOld );
+/*N*/
+/*N*/       // #30428# after moving, no clipboard move ref-updates are possible
+/*N*/       if ( eUpdateRefMode != URM_COPY && IsClipboardSource() )
+/*N*/       {
+/*N*/           ScDocument* pClipDoc = SC_MOD()->GetClipDoc();
+/*N*/           if (pClipDoc)
+/*N*/               pClipDoc->bCutMode = FALSE;
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
 //STRIP001 void ScDocument::UpdateTranspose( const ScAddress& rDestPos, ScDocument* pClipDoc,
 //STRIP001                                      const ScMarkData& rMark, ScDocument* pUndoDoc )

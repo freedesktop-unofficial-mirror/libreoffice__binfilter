@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:27 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -373,35 +373,35 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 void StrCollection::Load( SvStream& rStream )
-//STRIP001 {
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001  lcl_DeleteDataObjects( pItems, nCount );
-//STRIP001  BOOL bDups;
-//STRIP001  rStream >> bDups;
-//STRIP001  SetDups( bDups );
-//STRIP001  rStream >> nCount >> nLimit >> nDelta;
-//STRIP001  pItems = new DataObject*[nLimit];
-//STRIP001  String aStr;
-//STRIP001  rtl_TextEncoding eSet = rStream.GetStreamCharSet();
-//STRIP001  for ( USHORT i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      rStream.ReadByteString( aStr, eSet );
-//STRIP001      pItems[i] = new StrData( aStr );
-//STRIP001  }
-//STRIP001 }
+/*N*/ void StrCollection::Load( SvStream& rStream ) // Changetracking.sdc
+/*N*/ {
+/*N*/   ScReadHeader aHdr( rStream );
+/*N*/   lcl_DeleteDataObjects( pItems, nCount );
+/*N*/   BOOL bDups;
+/*N*/   rStream >> bDups;
+/*N*/   SetDups( bDups );
+/*N*/   rStream >> nCount >> nLimit >> nDelta;
+/*N*/   pItems = new DataObject*[nLimit];
+/*N*/   String aStr;
+/*N*/   rtl_TextEncoding eSet = rStream.GetStreamCharSet();
+/*N*/   for ( USHORT i=0; i<nCount; i++ )
+/*N*/   {
+/*N*/       rStream.ReadByteString( aStr, eSet );
+/*N*/       pItems[i] = new StrData( aStr );
+/*N*/   }
+/*N*/ }
 
-//STRIP001 void StrCollection::Store( SvStream& rStream ) const
-//STRIP001 {
-//STRIP001  ScWriteHeader aHdr( rStream );
-//STRIP001  BOOL bDups = IsDups();
-//STRIP001  rStream << bDups << nCount << nLimit << nDelta;
-//STRIP001  rtl_TextEncoding eSet = rStream.GetStreamCharSet();
-//STRIP001  for ( USHORT i=0; i<nCount; i++ )
-//STRIP001  {
-//STRIP001      rStream.WriteByteString( ((StrData*)pItems[i])->GetString(), eSet );
-//STRIP001  }
-//STRIP001 }
+/*N*/ void StrCollection::Store( SvStream& rStream ) const
+/*N*/ {
+/*N*/   ScWriteHeader aHdr( rStream );
+/*N*/   BOOL bDups = IsDups();
+/*N*/   rStream << bDups << nCount << nLimit << nDelta;
+/*N*/   rtl_TextEncoding eSet = rStream.GetStreamCharSet();
+/*N*/   for ( USHORT i=0; i<nCount; i++ )
+/*N*/   {
+/*N*/       rStream.WriteByteString( ((StrData*)pItems[i])->GetString(), eSet );
+/*N*/   }
+/*N*/ }
 
 //------------------------------------------------------------------------
 // TypedStrCollection

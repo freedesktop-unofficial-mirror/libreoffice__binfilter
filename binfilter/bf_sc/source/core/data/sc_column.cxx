@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_column.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -626,16 +626,16 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL ScColumn::RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
-//STRIP001 {
-//STRIP001  return pAttrArray->RemoveFlags( nStartRow, nEndRow, nFlags );
-//STRIP001 }
+/*N*/ BOOL ScColumn::RemoveFlags( USHORT nStartRow, USHORT nEndRow, INT16 nFlags )
+/*N*/ {
+/*N*/   return pAttrArray->RemoveFlags( nStartRow, nEndRow, nFlags );
+/*N*/ }
 
 
-//STRIP001 void ScColumn::ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich )
-//STRIP001 {
-//STRIP001  pAttrArray->ClearItems( nStartRow, nEndRow, pWhich );
-//STRIP001 }
+/*N*/ void ScColumn::ClearItems( USHORT nStartRow, USHORT nEndRow, const USHORT* pWhich )
+/*N*/ {
+/*N*/   pAttrArray->ClearItems( nStartRow, nEndRow, pWhich );
+/*N*/ }
 
 
 void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPutToPool )
@@ -1156,160 +1156,160 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 //STRIP001 }
 
 
-//STRIP001 BOOL ScColumn::TestInsertCol( USHORT nStartRow, USHORT nEndRow) const
-//STRIP001 {
-//STRIP001  if (!IsEmpty())
-//STRIP001  {
-//STRIP001      BOOL bTest = TRUE;
-//STRIP001      if (pItems)
-//STRIP001          for (USHORT i=0; (i<nCount) && bTest; i++)
-//STRIP001              bTest = ((pItems[i].nRow < nStartRow) && (pItems[i].nRow > nEndRow))
-//STRIP001                      || !CellVisible(pItems[i].pCell);
-//STRIP001
-//STRIP001      //  AttrArray testet nur zusammengefasste
-//STRIP001
-//STRIP001      if ((bTest) && (pAttrArray))
-//STRIP001          bTest = pAttrArray->TestInsertCol(nStartRow, nEndRow);
-//STRIP001
-//STRIP001      //!     rausgeschobene Attribute bei Undo beruecksichtigen
-//STRIP001
-//STRIP001      return bTest;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return TRUE;
-//STRIP001 }
+/*N*/ BOOL ScColumn::TestInsertCol( USHORT nStartRow, USHORT nEndRow) const
+/*N*/ {
+/*N*/   if (!IsEmpty())
+/*N*/   {
+/*N*/       BOOL bTest = TRUE;
+/*N*/       if (pItems)
+/*N*/           for (USHORT i=0; (i<nCount) && bTest; i++)
+/*N*/               bTest = ((pItems[i].nRow < nStartRow) && (pItems[i].nRow > nEndRow))
+/*N*/                       || !CellVisible(pItems[i].pCell);
+/*N*/
+/*N*/       //  AttrArray testet nur zusammengefasste
+/*N*/
+/*N*/       if ((bTest) && (pAttrArray))
+/*N*/           bTest = pAttrArray->TestInsertCol(nStartRow, nEndRow);
+/*N*/
+/*N*/       //!     rausgeschobene Attribute bei Undo beruecksichtigen
+/*N*/
+/*N*/       return bTest;
+/*N*/   }
+/*N*/   else
+/*N*/       return TRUE;
+/*N*/ }
 
 
-//STRIP001 BOOL ScColumn::TestInsertRow( USHORT nSize ) const
-//STRIP001 {
-//STRIP001  //  AttrArray testet nur zusammengefasste
-//STRIP001
-//STRIP001  if ( pItems && nCount )
-//STRIP001      return ( pItems[nCount-1].nRow <= MAXROW-nSize && pAttrArray->TestInsertRow( nSize ) );
-//STRIP001  else
-//STRIP001      return pAttrArray->TestInsertRow( nSize );
-//STRIP001
-//STRIP001  //!     rausgeschobene Attribute bei Undo beruecksichtigen
-//STRIP001
-//STRIP001  if ( nSize > MAXROW )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  USHORT nVis = nCount;
-//STRIP001  while ( nVis && !CellVisible(pItems[nVis-1].pCell) )
-//STRIP001      --nVis;
-//STRIP001
-//STRIP001  if ( nVis )
-//STRIP001      return ( pItems[nVis-1].nRow <= MAXROW-nSize );
-//STRIP001  else
-//STRIP001      return TRUE;
-//STRIP001 }
+/*N*/ BOOL ScColumn::TestInsertRow( USHORT nSize ) const
+/*N*/ {
+/*N*/   //  AttrArray testet nur zusammengefasste
+/*N*/
+/*N*/   if ( pItems && nCount )
+/*N*/       return ( pItems[nCount-1].nRow <= MAXROW-nSize && pAttrArray->TestInsertRow( nSize ) );
+/*N*/   else
+/*N*/       return pAttrArray->TestInsertRow( nSize );
+/*N*/
+/*N*/   //!     rausgeschobene Attribute bei Undo beruecksichtigen
+/*N*/
+/*N*/   if ( nSize > MAXROW )
+/*N*/       return FALSE;
+/*N*/
+/*N*/   USHORT nVis = nCount;
+/*N*/   while ( nVis && !CellVisible(pItems[nVis-1].pCell) )
+/*N*/       --nVis;
+/*N*/
+/*N*/   if ( nVis )
+/*N*/       return ( pItems[nVis-1].nRow <= MAXROW-nSize );
+/*N*/   else
+/*N*/       return TRUE;
+/*N*/ }
 
 
-//STRIP001 void ScColumn::InsertRow( USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  pAttrArray->InsertRow( nStartRow, nSize );
-//STRIP001
-//STRIP001  //! Search
-//STRIP001
-//STRIP001  if ( !pItems || !nCount )
-//STRIP001      return;
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  Search( nStartRow, i );
-//STRIP001  if ( i >= nCount )
-//STRIP001      return ;
-//STRIP001
-//STRIP001  BOOL bOldAutoCalc = pDocument->GetAutoCalc();
-//STRIP001  pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
-//STRIP001
-//STRIP001  USHORT nNewCount = nCount;
-//STRIP001  BOOL bCountChanged = FALSE;
-//STRIP001  ScAddress aAdr( nCol, 0, nTab );
-//STRIP001     ScHint aHint( SC_HINT_DATACHANGED, aAdr, NULL );    // only areas (ScBaseCell* == NULL)
-//STRIP001     ScAddress& rAddress = aHint.GetAddress();
-//STRIP001     // for sparse occupation use single broadcasts, not ranges
-//STRIP001     BOOL bSingleBroadcasts = (((pItems[nCount-1].nRow - pItems[i].nRow) /
-//STRIP001                 (nCount - i)) > 1);
-//STRIP001     if ( bSingleBroadcasts )
-//STRIP001     {
-//STRIP001         USHORT nLastBroadcast = MAXROW+1;
-//STRIP001         for ( ; i < nCount; i++)
-//STRIP001         {
-//STRIP001             USHORT nOldRow = pItems[i].nRow;
-//STRIP001             // #43940# Aenderung Quelle broadcasten
-//STRIP001             if ( nLastBroadcast != nOldRow )
-//STRIP001             {   // direkt aufeinanderfolgende nicht doppelt broadcasten
-//STRIP001                 rAddress.SetRow( nOldRow );
-//STRIP001                 pDocument->AreaBroadcast( aHint );
-//STRIP001             }
-//STRIP001             USHORT nNewRow = (pItems[i].nRow += nSize);
-//STRIP001             // #43940# Aenderung Ziel broadcasten
-//STRIP001             rAddress.SetRow( nNewRow );
-//STRIP001             pDocument->AreaBroadcast( aHint );
-//STRIP001             nLastBroadcast = nNewRow;
-//STRIP001             ScBaseCell* pCell = pItems[i].pCell;
-//STRIP001             if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001                 ((ScFormulaCell*)pCell)->aPos.SetRow( nNewRow );
-//STRIP001             if ( nNewRow > MAXROW && !bCountChanged )
-//STRIP001             {
-//STRIP001                 nNewCount = i;
-//STRIP001                 bCountChanged = TRUE;
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         rAddress.SetRow( pItems[i].nRow );
-//STRIP001         ScRange aRange( rAddress );
-//STRIP001         for ( ; i < nCount; i++)
-//STRIP001         {
-//STRIP001             USHORT nNewRow = (pItems[i].nRow += nSize);
-//STRIP001             ScBaseCell* pCell = pItems[i].pCell;
-//STRIP001             if ( pCell->GetCellType() == CELLTYPE_FORMULA )
-//STRIP001                 ((ScFormulaCell*)pCell)->aPos.SetRow( nNewRow );
-//STRIP001             if ( nNewRow > MAXROW && !bCountChanged )
-//STRIP001             {
-//STRIP001                 nNewCount = i;
-//STRIP001                 bCountChanged = TRUE;
-//STRIP001                 aRange.aEnd.SetRow( MAXROW );
-//STRIP001             }
-//STRIP001         }
-//STRIP001         if ( !bCountChanged )
-//STRIP001             aRange.aEnd.SetRow( pItems[nCount-1].nRow );
-//STRIP001         pDocument->AreaBroadcastInRange( aRange, aHint );
-//STRIP001     }
-//STRIP001
-//STRIP001  if (bCountChanged)
-//STRIP001  {
-//STRIP001      USHORT nDelCount = nCount - nNewCount;
-//STRIP001      ScBaseCell** ppDelCells = new ScBaseCell*[nDelCount];
-//STRIP001      USHORT* pDelRows = new USHORT[nDelCount];
-//STRIP001      for (i = 0; i < nDelCount; i++)
-//STRIP001      {
-//STRIP001          ppDelCells[i] = pItems[nNewCount+i].pCell;
-//STRIP001          pDelRows[i] = pItems[nNewCount+i].nRow;
-//STRIP001      }
-//STRIP001      nCount = nNewCount;
-//STRIP001
-//STRIP001      for (i = 0; i < nDelCount; i++)
-//STRIP001      {
-//STRIP001          ScBaseCell* pCell = ppDelCells[i];
-//STRIP001          DBG_ASSERT( !CellVisible(pCell), "sichtbare Zelle weggeschoben" );
-//STRIP001          ScBroadcasterList* pBC = pCell->GetBroadcaster();
-//STRIP001          if (pBC)
-//STRIP001          {
-//STRIP001              MoveListeners( *pBC, pDelRows[i] - nSize );
-//STRIP001              pCell->SetBroadcaster(NULL);
-//STRIP001              pCell->Delete();
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      delete pDelRows;
-//STRIP001      delete ppDelCells;
-//STRIP001  }
-//STRIP001
-//STRIP001  pDocument->SetAutoCalc( bOldAutoCalc );
-//STRIP001 }
+/*N*/ void ScColumn::InsertRow( USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   pAttrArray->InsertRow( nStartRow, nSize );
+/*N*/
+/*N*/   //! Search
+/*N*/
+/*N*/   if ( !pItems || !nCount )
+/*N*/       return;
+/*N*/
+/*N*/   USHORT i;
+/*N*/   Search( nStartRow, i );
+/*N*/   if ( i >= nCount )
+/*N*/       return ;
+/*N*/
+/*N*/   BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*N*/   pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
+/*N*/
+/*N*/   USHORT nNewCount = nCount;
+/*N*/   BOOL bCountChanged = FALSE;
+/*N*/   ScAddress aAdr( nCol, 0, nTab );
+/*N*/     ScHint aHint( SC_HINT_DATACHANGED, aAdr, NULL );    // only areas (ScBaseCell* == NULL)
+/*N*/     ScAddress& rAddress = aHint.GetAddress();
+/*N*/     // for sparse occupation use single broadcasts, not ranges
+/*N*/     BOOL bSingleBroadcasts = (((pItems[nCount-1].nRow - pItems[i].nRow) /
+/*N*/                 (nCount - i)) > 1);
+/*N*/     if ( bSingleBroadcasts )
+/*N*/     {
+/*N*/         USHORT nLastBroadcast = MAXROW+1;
+/*N*/         for ( ; i < nCount; i++)
+/*N*/         {
+/*N*/             USHORT nOldRow = pItems[i].nRow;
+/*N*/             // #43940# Aenderung Quelle broadcasten
+/*N*/             if ( nLastBroadcast != nOldRow )
+/*N*/             {   // direkt aufeinanderfolgende nicht doppelt broadcasten
+/*N*/                 rAddress.SetRow( nOldRow );
+/*N*/                 pDocument->AreaBroadcast( aHint );
+/*N*/             }
+/*N*/             USHORT nNewRow = (pItems[i].nRow += nSize);
+/*N*/             // #43940# Aenderung Ziel broadcasten
+/*N*/             rAddress.SetRow( nNewRow );
+/*N*/             pDocument->AreaBroadcast( aHint );
+/*N*/             nLastBroadcast = nNewRow;
+/*N*/             ScBaseCell* pCell = pItems[i].pCell;
+/*N*/             if ( pCell->GetCellType() == CELLTYPE_FORMULA )
+/*N*/                 ((ScFormulaCell*)pCell)->aPos.SetRow( nNewRow );
+/*N*/             if ( nNewRow > MAXROW && !bCountChanged )
+/*N*/             {
+/*N*/                 nNewCount = i;
+/*N*/                 bCountChanged = TRUE;
+/*N*/             }
+/*N*/         }
+/*N*/     }
+/*N*/     else
+/*N*/     {
+/*N*/         rAddress.SetRow( pItems[i].nRow );
+/*N*/         ScRange aRange( rAddress );
+/*N*/         for ( ; i < nCount; i++)
+/*N*/         {
+/*N*/             USHORT nNewRow = (pItems[i].nRow += nSize);
+/*N*/             ScBaseCell* pCell = pItems[i].pCell;
+/*N*/             if ( pCell->GetCellType() == CELLTYPE_FORMULA )
+/*N*/                 ((ScFormulaCell*)pCell)->aPos.SetRow( nNewRow );
+/*N*/             if ( nNewRow > MAXROW && !bCountChanged )
+/*N*/             {
+/*N*/                 nNewCount = i;
+/*N*/                 bCountChanged = TRUE;
+/*N*/                 aRange.aEnd.SetRow( MAXROW );
+/*N*/             }
+/*N*/         }
+/*N*/         if ( !bCountChanged )
+/*N*/             aRange.aEnd.SetRow( pItems[nCount-1].nRow );
+/*N*/         pDocument->AreaBroadcastInRange( aRange, aHint );
+/*N*/     }
+/*N*/
+/*N*/   if (bCountChanged)
+/*N*/   {
+/*N*/       USHORT nDelCount = nCount - nNewCount;
+/*N*/       ScBaseCell** ppDelCells = new ScBaseCell*[nDelCount];
+/*N*/       USHORT* pDelRows = new USHORT[nDelCount];
+/*N*/       for (i = 0; i < nDelCount; i++)
+/*N*/       {
+/*N*/           ppDelCells[i] = pItems[nNewCount+i].pCell;
+/*N*/           pDelRows[i] = pItems[nNewCount+i].nRow;
+/*N*/       }
+/*N*/       nCount = nNewCount;
+/*N*/
+/*N*/       for (i = 0; i < nDelCount; i++)
+/*N*/       {
+/*N*/           ScBaseCell* pCell = ppDelCells[i];
+/*N*/           DBG_ASSERT( !CellVisible(pCell), "sichtbare Zelle weggeschoben" );
+/*N*/           ScBroadcasterList* pBC = pCell->GetBroadcaster();
+/*N*/           if (pBC)
+/*N*/           {
+/*N*/               MoveListeners( *pBC, pDelRows[i] - nSize );
+/*N*/               pCell->SetBroadcaster(NULL);
+/*N*/               pCell->Delete();
+/*N*/           }
+/*N*/       }
+/*N*/
+/*N*/       delete pDelRows;
+/*N*/       delete ppDelCells;
+/*N*/   }
+/*N*/
+/*N*/   pDocument->SetAutoCalc( bOldAutoCalc );
+/*N*/ }
 
 
 //STRIP001 void ScColumn::CopyToClip(USHORT nRow1, USHORT nRow2, ScColumn& rColumn, BOOL bKeepScenarioFlags)
@@ -1569,94 +1569,94 @@ void ScColumn::SetPattern( USHORT nRow, const ScPatternAttr& rPatAttr, BOOL bPut
 /*N*/ }
 
 
-//STRIP001 void ScColumn::SwapCol(ScColumn& rCol)
-//STRIP001 {
-//STRIP001  USHORT nTemp;
-//STRIP001
-//STRIP001  nTemp = rCol.nCount;
-//STRIP001  rCol.nCount  = nCount;
-//STRIP001  nCount = nTemp;
-//STRIP001
-//STRIP001  nTemp = rCol.nLimit;
-//STRIP001  rCol.nLimit = nLimit;
-//STRIP001  nLimit = nTemp;
-//STRIP001
-//STRIP001  ColEntry* pTempItems = rCol.pItems;
-//STRIP001  rCol.pItems = pItems;
-//STRIP001  pItems = pTempItems;
-//STRIP001
-//STRIP001  ScAttrArray* pTempAttr = rCol.pAttrArray;
-//STRIP001  rCol.pAttrArray = pAttrArray;
-//STRIP001  pAttrArray = pTempAttr;
-//STRIP001
-//STRIP001  // #38415# AttrArray muss richtige Spaltennummer haben
-//STRIP001  pAttrArray->SetCol(nCol);
-//STRIP001  rCol.pAttrArray->SetCol(rCol.nCol);
-//STRIP001
-//STRIP001  USHORT i;
-//STRIP001  if (pItems)
-//STRIP001      for (i = 0; i < nCount; i++)
-//STRIP001      {
-//STRIP001          ScFormulaCell* pCell = (ScFormulaCell*) pItems[i].pCell;
-//STRIP001          if( pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001              pCell->aPos.SetCol(nCol);
-//STRIP001      }
-//STRIP001  if (rCol.pItems)
-//STRIP001      for (i = 0; i < rCol.nCount; i++)
-//STRIP001      {
-//STRIP001          ScFormulaCell* pCell = (ScFormulaCell*) rCol.pItems[i].pCell;
-//STRIP001          if( pCell->GetCellType() == CELLTYPE_FORMULA)
-//STRIP001              pCell->aPos.SetCol(rCol.nCol);
-//STRIP001      }
-//STRIP001 }
+/*N*/ void ScColumn::SwapCol(ScColumn& rCol)
+/*N*/ {
+/*N*/   USHORT nTemp;
+/*N*/
+/*N*/   nTemp = rCol.nCount;
+/*N*/   rCol.nCount  = nCount;
+/*N*/   nCount = nTemp;
+/*N*/
+/*N*/   nTemp = rCol.nLimit;
+/*N*/   rCol.nLimit = nLimit;
+/*N*/   nLimit = nTemp;
+/*N*/
+/*N*/   ColEntry* pTempItems = rCol.pItems;
+/*N*/   rCol.pItems = pItems;
+/*N*/   pItems = pTempItems;
+/*N*/
+/*N*/   ScAttrArray* pTempAttr = rCol.pAttrArray;
+/*N*/   rCol.pAttrArray = pAttrArray;
+/*N*/   pAttrArray = pTempAttr;
+/*N*/
+/*N*/   // #38415# AttrArray muss richtige Spaltennummer haben
+/*N*/   pAttrArray->SetCol(nCol);
+/*N*/   rCol.pAttrArray->SetCol(rCol.nCol);
+/*N*/
+/*N*/   USHORT i;
+/*N*/   if (pItems)
+/*N*/       for (i = 0; i < nCount; i++)
+/*N*/       {
+/*N*/           ScFormulaCell* pCell = (ScFormulaCell*) pItems[i].pCell;
+/*N*/           if( pCell->GetCellType() == CELLTYPE_FORMULA)
+/*N*/               pCell->aPos.SetCol(nCol);
+/*N*/       }
+/*N*/   if (rCol.pItems)
+/*N*/       for (i = 0; i < rCol.nCount; i++)
+/*N*/       {
+/*N*/           ScFormulaCell* pCell = (ScFormulaCell*) rCol.pItems[i].pCell;
+/*N*/           if( pCell->GetCellType() == CELLTYPE_FORMULA)
+/*N*/               pCell->aPos.SetCol(rCol.nCol);
+/*N*/       }
+/*N*/ }
 
 
-//STRIP001 void ScColumn::MoveTo(USHORT nStartRow, USHORT nEndRow, ScColumn& rCol)
-//STRIP001 {
-//STRIP001  pAttrArray->MoveTo(nStartRow, nEndRow, *rCol.pAttrArray);
-//STRIP001
-//STRIP001  if (pItems)
-//STRIP001  {
-//STRIP001      USHORT nStartPos;
-//STRIP001      USHORT nMoveCount=0;
-//STRIP001      USHORT i;
-//STRIP001      for (i=0; i < nCount; i++)
-//STRIP001      {
-//STRIP001          if ((pItems[i].nRow >= nStartRow) && (pItems[i].nRow <= nEndRow))
-//STRIP001          {
-//STRIP001              if (nMoveCount==0)
-//STRIP001                  nStartPos=i;
-//STRIP001              ++nMoveCount;
-//STRIP001
-//STRIP001              rCol.Insert(pItems[i].nRow, pItems[i].pCell);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if (nMoveCount > 0)
-//STRIP001      {
-//STRIP001          //  Formeln benachrichtigen, dass sich etwas aendert
-//STRIP001
-//STRIP001          ScNoteCell* pNoteCell = new ScNoteCell;     // Dummy wie in DeleteRange
-//STRIP001          USHORT nEndPos = nStartPos+nMoveCount-1;
-//STRIP001          for (i=nStartPos; i<=nEndPos; i++)
-//STRIP001              pItems[i].pCell = pNoteCell;            // nicht auf die verschobenen zugreifen
-//STRIP001             ScAddress aAdr( nCol, 0, nTab );
-//STRIP001             ScHint aHint( SC_HINT_DYING, aAdr, NULL );  // areas only
-//STRIP001             ScAddress& rAddress = aHint.GetAddress();
-//STRIP001          for (i=nStartPos; i<=nEndPos; i++)
-//STRIP001             {
-//STRIP001                 rAddress.SetRow( pItems[i].nRow );
-//STRIP001              pDocument->AreaBroadcast( aHint );
-//STRIP001             }
-//STRIP001          delete pNoteCell;
-//STRIP001
-//STRIP001          nCount -= nMoveCount;
-//STRIP001          memmove( &pItems[nStartPos], &pItems[nStartPos+nMoveCount],
-//STRIP001                      (nCount - nStartPos) * sizeof(ColEntry) );
-//STRIP001          pItems[nCount].nRow = 0;
-//STRIP001          pItems[nCount].pCell = NULL;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScColumn::MoveTo(USHORT nStartRow, USHORT nEndRow, ScColumn& rCol)
+/*N*/ {
+/*N*/   pAttrArray->MoveTo(nStartRow, nEndRow, *rCol.pAttrArray);
+/*N*/
+/*N*/   if (pItems)
+/*N*/   {
+/*N*/       USHORT nStartPos;
+/*N*/       USHORT nMoveCount=0;
+/*N*/       USHORT i;
+/*N*/       for (i=0; i < nCount; i++)
+/*N*/       {
+/*N*/           if ((pItems[i].nRow >= nStartRow) && (pItems[i].nRow <= nEndRow))
+/*N*/           {
+/*N*/               if (nMoveCount==0)
+/*N*/                   nStartPos=i;
+/*N*/               ++nMoveCount;
+/*N*/
+/*N*/               rCol.Insert(pItems[i].nRow, pItems[i].pCell);
+/*N*/           }
+/*N*/       }
+/*N*/       if (nMoveCount > 0)
+/*N*/       {
+/*N*/           //  Formeln benachrichtigen, dass sich etwas aendert
+/*N*/
+/*N*/           ScNoteCell* pNoteCell = new ScNoteCell;     // Dummy wie in DeleteRange
+/*N*/           USHORT nEndPos = nStartPos+nMoveCount-1;
+/*N*/           for (i=nStartPos; i<=nEndPos; i++)
+/*N*/               pItems[i].pCell = pNoteCell;            // nicht auf die verschobenen zugreifen
+/*N*/             ScAddress aAdr( nCol, 0, nTab );
+/*N*/             ScHint aHint( SC_HINT_DYING, aAdr, NULL );  // areas only
+/*N*/             ScAddress& rAddress = aHint.GetAddress();
+/*N*/           for (i=nStartPos; i<=nEndPos; i++)
+/*N*/             {
+/*N*/                 rAddress.SetRow( pItems[i].nRow );
+/*N*/               pDocument->AreaBroadcast( aHint );
+/*N*/             }
+/*N*/           delete pNoteCell;
+/*N*/
+/*N*/           nCount -= nMoveCount;
+/*N*/           memmove( &pItems[nStartPos], &pItems[nStartPos+nMoveCount],
+/*N*/                       (nCount - nStartPos) * sizeof(ColEntry) );
+/*N*/           pItems[nCount].nRow = 0;
+/*N*/           pItems[nCount].pCell = NULL;
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
 
 /*N*/ void ScColumn::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
@@ -2015,18 +2015,18 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/            USHORT nIndex;
 /*N*/ }
 
 
-//STRIP001 void ScColumn::SetRelNameDirty()
-//STRIP001 {
-//STRIP001  BOOL bOldAutoCalc = pDocument->GetAutoCalc();
-//STRIP001  pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001  {
-//STRIP001      ScFormulaCell* p = (ScFormulaCell*) pItems[i].pCell;
-//STRIP001      if( p->GetCellType() == CELLTYPE_FORMULA && p->HasRelNameReference() )
-//STRIP001          p->SetDirty();
-//STRIP001  }
-//STRIP001  pDocument->SetAutoCalc( bOldAutoCalc );
-//STRIP001 }
+/*N*/ void ScColumn::SetRelNameDirty()
+/*N*/ {
+/*N*/   BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*N*/   pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
+/*N*/   for (USHORT i=0; i<nCount; i++)
+/*N*/   {
+/*N*/       ScFormulaCell* p = (ScFormulaCell*) pItems[i].pCell;
+/*N*/       if( p->GetCellType() == CELLTYPE_FORMULA && p->HasRelNameReference() )
+/*N*/           p->SetDirty();
+/*N*/   }
+/*N*/   pDocument->SetAutoCalc( bOldAutoCalc );
+/*N*/ }
 
 
 /*N*/ void ScColumn::CalcAll()

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bcaslot.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:20 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -142,7 +142,7 @@ public:
         // return: mindestens ein Broadcast gewesen
     BOOL                AreaBroadcastInRange( const ScRange& rRange,
                                               const ScHint& rHint ) const;
-//STRIP001  void                DelBroadcastAreasInRange( const ScRange& rRange );
+/*N*/   void                DelBroadcastAreasInRange( const ScRange& rRange );
 //STRIP001  void                UpdateRemove( UpdateRefMode eUpdateRefMode,
 //STRIP001                                      const ScRange& rRange,
 //STRIP001                                      short nDx, short nDy, short nDz );
@@ -184,7 +184,7 @@ public:
     BOOL                AreaBroadcast( const ScHint& rHint ) const;
         // return: mindestens ein Broadcast gewesen
     BOOL                AreaBroadcastInRange( const ScRange& rRange, const ScHint& rHint ) const;
-//STRIP001  void                DelBroadcastAreasInRange( const ScRange& rRange );
+/*N*/   void                DelBroadcastAreasInRange( const ScRange& rRange );
 //STRIP001  void                UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
 //STRIP001                                          const ScRange& rRange,
 //STRIP001                                          short nDx, short nDy, short nDz );

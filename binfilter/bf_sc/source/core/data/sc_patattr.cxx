@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_patattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:07 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -880,21 +880,21 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   }
 /*N*/ }
 
-//STRIP001 BOOL ScPatternAttr::HasItemsSet( const USHORT* pWhich ) const
-//STRIP001 {
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  for (USHORT i=0; pWhich[i]; i++)
-//STRIP001      if ( rSet.GetItemState( pWhich[i], FALSE ) == SFX_ITEM_SET )
-//STRIP001          return TRUE;
-//STRIP001  return FALSE;
-//STRIP001 }
+/*N*/ BOOL ScPatternAttr::HasItemsSet( const USHORT* pWhich ) const
+/*N*/ {
+/*N*/   const SfxItemSet& rSet = GetItemSet();
+/*N*/   for (USHORT i=0; pWhich[i]; i++)
+/*N*/       if ( rSet.GetItemState( pWhich[i], FALSE ) == SFX_ITEM_SET )
+/*N*/           return TRUE;
+/*N*/   return FALSE;
+/*N*/ }
 
-//STRIP001 void ScPatternAttr::ClearItems( const USHORT* pWhich )
-//STRIP001 {
-//STRIP001  SfxItemSet& rSet = GetItemSet();
-//STRIP001  for (USHORT i=0; pWhich[i]; i++)
-//STRIP001      rSet.ClearItem(pWhich[i]);
-//STRIP001 }
+/*N*/ void ScPatternAttr::ClearItems( const USHORT* pWhich )
+/*N*/ {
+/*N*/   SfxItemSet& rSet = GetItemSet();
+/*N*/   for (USHORT i=0; pWhich[i]; i++)
+/*N*/       rSet.ClearItem(pWhich[i]);
+/*N*/ }
 
 /*N*/ SfxStyleSheetBase* lcl_CopyStyleToPool
 /*N*/   (

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_olinetab.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:06 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -124,36 +124,36 @@ namespace binfilter {
 /*N*/   return new ScOutlineEntry( *this );
 /*N*/ }
 
-//STRIP001 void ScOutlineEntry::Move( short nDelta )
-//STRIP001 {
-//STRIP001  short nNewPos = ((short) nStart) + nDelta;
-//STRIP001  if (nNewPos<0)
-//STRIP001  {
-//STRIP001      DBG_ERROR("OutlineEntry < 0");
-//STRIP001      nNewPos = 0;
-//STRIP001  }
-//STRIP001  nStart = (USHORT) nNewPos;
-//STRIP001 }
+/*N*/ void ScOutlineEntry::Move( short nDelta )
+/*N*/ {
+/*N*/   short nNewPos = ((short) nStart) + nDelta;
+/*N*/   if (nNewPos<0)
+/*N*/   {
+/*N*/       DBG_ERROR("OutlineEntry < 0");
+/*N*/       nNewPos = 0;
+/*N*/   }
+/*N*/   nStart = (USHORT) nNewPos;
+/*N*/ }
 
-//STRIP001 void ScOutlineEntry::SetSize( USHORT nNewSize )
-//STRIP001 {
-//STRIP001  if (nNewSize)
-//STRIP001      nSize = nNewSize;
-//STRIP001  else
-//STRIP001      DBG_ERROR("ScOutlineEntry Size == 0");
-//STRIP001 }
+/*N*/ void ScOutlineEntry::SetSize( USHORT nNewSize )
+/*N*/ {
+/*N*/   if (nNewSize)
+/*N*/       nSize = nNewSize;
+/*N*/   else
+/*N*/       DBG_ERROR("ScOutlineEntry Size == 0");
+/*N*/ }
 
-//STRIP001 void ScOutlineEntry::SetPosSize( USHORT nNewPos, USHORT nNewSize )
-//STRIP001 {
-//STRIP001  nStart = nNewPos;
-//STRIP001  SetSize( nNewSize );
-//STRIP001 }
-//STRIP001
-//STRIP001 void ScOutlineEntry::SetHidden( BOOL bNewHidden )
-//STRIP001 {
-//STRIP001  bHidden = bNewHidden;
-//STRIP001 }
-//STRIP001
+/*N*/ void ScOutlineEntry::SetPosSize( USHORT nNewPos, USHORT nNewSize )
+/*N*/ {
+/*N*/   nStart = nNewPos;
+/*N*/   SetSize( nNewSize );
+/*N*/ }
+/*N*/
+/*N*/ void ScOutlineEntry::SetHidden( BOOL bNewHidden )
+/*N*/ {
+/*N*/   bHidden = bNewHidden;
+/*N*/ }
+
 /*N*/ void ScOutlineEntry::SetVisible( BOOL bNewVisible )
 /*N*/ {
 /*N*/   bVisible = bNewVisible;
@@ -443,24 +443,24 @@ namespace binfilter {
 //STRIP001  }
 //STRIP001 }
 
-//STRIP001 BOOL ScOutlineArray::DecDepth()                          // nDepth auf leere Levels anpassen
-//STRIP001 {
-//STRIP001  BOOL bChanged = FALSE;
-//STRIP001  BOOL bCont;
-//STRIP001  do
-//STRIP001  {
-//STRIP001      bCont = FALSE;
-//STRIP001      if (nDepth)
-//STRIP001          if (aCollections[nDepth-1].GetCount() == 0)
-//STRIP001          {
-//STRIP001              --nDepth;
-//STRIP001              bChanged = TRUE;
-//STRIP001              bCont = TRUE;
-//STRIP001          }
-//STRIP001  }
-//STRIP001  while (bCont);
-//STRIP001  return bChanged;
-//STRIP001 }
+/*N*/ BOOL ScOutlineArray::DecDepth()                           // nDepth auf leere Levels anpassen
+/*N*/ {
+/*N*/   BOOL bChanged = FALSE;
+/*N*/   BOOL bCont;
+/*N*/   do
+/*N*/   {
+/*N*/       bCont = FALSE;
+/*N*/       if (nDepth)
+/*N*/           if (aCollections[nDepth-1].GetCount() == 0)
+/*N*/           {
+/*N*/               --nDepth;
+/*N*/               bChanged = TRUE;
+/*N*/               bCont = TRUE;
+/*N*/           }
+/*N*/   }
+/*N*/   while (bCont);
+/*N*/   return bChanged;
+/*N*/ }
 
 //STRIP001 BOOL ScOutlineArray::Remove( USHORT nBlockStart, USHORT nBlockEnd, BOOL& rSizeChanged )
 //STRIP001 {
@@ -616,82 +616,82 @@ namespace binfilter {
 //STRIP001  }
 //STRIP001 }
 
-//STRIP001 BOOL ScOutlineArray::TestInsertSpace( USHORT nSize, USHORT nMaxVal ) const
-//STRIP001 {
-//STRIP001  USHORT nCount = aCollections[0].GetCount();
-//STRIP001  if (nCount)
-//STRIP001  {
-//STRIP001      USHORT nEnd = ((ScOutlineEntry*) aCollections[0].At(nCount-1))->GetEnd();
-//STRIP001      return ( nEnd+nSize <= nMaxVal );
-//STRIP001  }
-//STRIP001
-//STRIP001  return TRUE;
-//STRIP001 }
+/*N*/ BOOL ScOutlineArray::TestInsertSpace( USHORT nSize, USHORT nMaxVal ) const
+/*N*/ {
+/*N*/   USHORT nCount = aCollections[0].GetCount();
+/*N*/   if (nCount)
+/*N*/   {
+/*N*/       USHORT nEnd = ((ScOutlineEntry*) aCollections[0].At(nCount-1))->GetEnd();
+/*N*/       return ( nEnd+nSize <= nMaxVal );
+/*N*/   }
+/*N*/
+/*N*/   return TRUE;
+/*N*/ }
 
-//STRIP001 void ScOutlineArray::InsertSpace( USHORT nStartPos, USHORT nSize )
-//STRIP001 {
-//STRIP001  ScSubOutlineIterator aIter( this );
-//STRIP001  ScOutlineEntry* pEntry;
-//STRIP001  while((pEntry=aIter.GetNext())!=NULL)
-//STRIP001  {
-//STRIP001      if ( pEntry->GetStart() >= nStartPos )
-//STRIP001          pEntry->Move(nSize);
-//STRIP001      else
-//STRIP001      {
-//STRIP001          USHORT nEnd = pEntry->GetEnd();
-//STRIP001          //  immer erweitern, wenn innerhalb der Gruppe eingefuegt
-//STRIP001          //  beim Einfuegen am Ende nur, wenn die Gruppe nicht ausgeblendet ist
-//STRIP001          if ( nEnd >= nStartPos || ( nEnd+1 >= nStartPos && !pEntry->IsHidden() ) )
-//STRIP001          {
-//STRIP001              USHORT nEntrySize = pEntry->GetSize();
-//STRIP001              nEntrySize += nSize;
-//STRIP001              pEntry->SetSize( nEntrySize );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScOutlineArray::InsertSpace( USHORT nStartPos, USHORT nSize )
+/*N*/ {
+/*N*/   ScSubOutlineIterator aIter( this );
+/*N*/   ScOutlineEntry* pEntry;
+/*N*/   while((pEntry=aIter.GetNext())!=NULL)
+/*N*/   {
+/*N*/       if ( pEntry->GetStart() >= nStartPos )
+/*N*/           pEntry->Move(nSize);
+/*N*/       else
+/*N*/       {
+/*N*/           USHORT nEnd = pEntry->GetEnd();
+/*N*/           //  immer erweitern, wenn innerhalb der Gruppe eingefuegt
+/*N*/           //  beim Einfuegen am Ende nur, wenn die Gruppe nicht ausgeblendet ist
+/*N*/           if ( nEnd >= nStartPos || ( nEnd+1 >= nStartPos && !pEntry->IsHidden() ) )
+/*N*/           {
+/*N*/               USHORT nEntrySize = pEntry->GetSize();
+/*N*/               nEntrySize += nSize;
+/*N*/               pEntry->SetSize( nEntrySize );
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
-//STRIP001 BOOL ScOutlineArray::DeleteSpace( USHORT nStartPos, USHORT nSize )
-//STRIP001 {
-//STRIP001  USHORT nEndPos = nStartPos + nSize - 1;
-//STRIP001  BOOL bNeedSave = FALSE;                         // Original fuer Undo benoetigt?
-//STRIP001  BOOL bChanged = FALSE;                          // fuer Test auf Level
-//STRIP001
-//STRIP001  ScSubOutlineIterator aIter( this );
-//STRIP001  ScOutlineEntry* pEntry;
-//STRIP001  while((pEntry=aIter.GetNext())!=NULL)
-//STRIP001  {
-//STRIP001      USHORT nEntryStart = pEntry->GetStart();
-//STRIP001      USHORT nEntryEnd   = pEntry->GetEnd();
-//STRIP001      USHORT nEntrySize  = pEntry->GetSize();
-//STRIP001
-//STRIP001      if ( nEntryEnd >= nStartPos )
-//STRIP001      {
-//STRIP001          if ( nEntryStart > nEndPos )                                        // rechts
-//STRIP001              pEntry->Move(-(short)nSize);
-//STRIP001          else if ( nEntryStart < nStartPos && nEntryEnd >= nEndPos )         // aussen
-//STRIP001              pEntry->SetSize( nEntrySize-nSize );
-//STRIP001          else
-//STRIP001          {
-//STRIP001              bNeedSave = TRUE;
-//STRIP001              if ( nEntryStart >= nStartPos && nEntryEnd <= nEndPos )             // innen
-//STRIP001              {
-//STRIP001                  aIter.DeleteLast();
-//STRIP001                  bChanged = TRUE;
-//STRIP001              }
-//STRIP001              else if ( nEntryStart >= nStartPos )                                // rechts ueber
-//STRIP001                  pEntry->SetPosSize( nStartPos, nEntryEnd-nEndPos );
-//STRIP001              else                                                                // links ueber
-//STRIP001                  pEntry->SetSize( nStartPos-nEntryStart );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if (bChanged)
-//STRIP001      DecDepth();
-//STRIP001
-//STRIP001  return bNeedSave;
-//STRIP001 }
+/*N*/ BOOL ScOutlineArray::DeleteSpace( USHORT nStartPos, USHORT nSize )
+/*N*/ {
+/*N*/   USHORT nEndPos = nStartPos + nSize - 1;
+/*N*/   BOOL bNeedSave = FALSE;                         // Original fuer Undo benoetigt?
+/*N*/   BOOL bChanged = FALSE;                          // fuer Test auf Level
+/*N*/
+/*N*/   ScSubOutlineIterator aIter( this );
+/*N*/   ScOutlineEntry* pEntry;
+/*N*/   while((pEntry=aIter.GetNext())!=NULL)
+/*N*/   {
+/*N*/       USHORT nEntryStart = pEntry->GetStart();
+/*N*/       USHORT nEntryEnd   = pEntry->GetEnd();
+/*N*/       USHORT nEntrySize  = pEntry->GetSize();
+/*N*/
+/*N*/       if ( nEntryEnd >= nStartPos )
+/*N*/       {
+/*N*/           if ( nEntryStart > nEndPos )                                        // rechts
+/*N*/               pEntry->Move(-(short)nSize);
+/*N*/           else if ( nEntryStart < nStartPos && nEntryEnd >= nEndPos )         // aussen
+/*N*/               pEntry->SetSize( nEntrySize-nSize );
+/*N*/           else
+/*N*/           {
+/*N*/               bNeedSave = TRUE;
+/*N*/               if ( nEntryStart >= nStartPos && nEntryEnd <= nEndPos )             // innen
+/*N*/               {
+/*N*/                   aIter.DeleteLast();
+/*N*/                   bChanged = TRUE;
+/*N*/               }
+/*N*/               else if ( nEntryStart >= nStartPos )                                // rechts ueber
+/*N*/                   pEntry->SetPosSize( nStartPos, nEntryEnd-nEndPos );
+/*N*/               else                                                                // links ueber
+/*N*/                   pEntry->SetSize( nStartPos-nEntryStart );
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/
+/*N*/   if (bChanged)
+/*N*/       DecDepth();
+/*N*/
+/*N*/   return bNeedSave;
+/*N*/ }
 
 /*N*/ BOOL ScOutlineArray::ManualAction( USHORT nStartPos, USHORT nEndPos, BOOL bShow, BYTE* pHiddenFlags )
 /*N*/ {
@@ -779,35 +779,35 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//STRIP001 BOOL ScOutlineTable::TestInsertCol( USHORT nSize )
-//STRIP001 {
-//STRIP001  return aColOutline.TestInsertSpace( nSize, MAXCOL );
-//STRIP001 }
+/*N*/ BOOL ScOutlineTable::TestInsertCol( USHORT nSize )
+/*N*/ {
+/*N*/   return aColOutline.TestInsertSpace( nSize, MAXCOL );
+/*N*/ }
 
-//STRIP001 void ScOutlineTable::InsertCol( USHORT nStartCol, USHORT nSize )
-//STRIP001 {
-//STRIP001  aColOutline.InsertSpace( nStartCol, nSize );
-//STRIP001 }
+/*N*/ void ScOutlineTable::InsertCol( USHORT nStartCol, USHORT nSize )
+/*N*/ {
+/*N*/   aColOutline.InsertSpace( nStartCol, nSize );
+/*N*/ }
 
-//STRIP001 BOOL ScOutlineTable::DeleteCol( USHORT nStartCol, USHORT nSize )
-//STRIP001 {
-//STRIP001  return aColOutline.DeleteSpace( nStartCol, nSize );
-//STRIP001 }
+/*N*/ BOOL ScOutlineTable::DeleteCol( USHORT nStartCol, USHORT nSize )
+/*N*/ {
+/*N*/   return aColOutline.DeleteSpace( nStartCol, nSize );
+/*N*/ }
 
-//STRIP001 BOOL ScOutlineTable::TestInsertRow( USHORT nSize )
-//STRIP001 {
-//STRIP001  return aRowOutline.TestInsertSpace( nSize, MAXROW );
-//STRIP001 }
+/*N*/ BOOL ScOutlineTable::TestInsertRow( USHORT nSize )
+/*N*/ {
+/*N*/   return aRowOutline.TestInsertSpace( nSize, MAXROW );
+/*N*/ }
 
-//STRIP001 void ScOutlineTable::InsertRow( USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  aRowOutline.InsertSpace( nStartRow, nSize );
-//STRIP001 }
+/*N*/ void ScOutlineTable::InsertRow( USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   aRowOutline.InsertSpace( nStartRow, nSize );
+/*N*/ }
 
-//STRIP001 BOOL ScOutlineTable::DeleteRow( USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  return aRowOutline.DeleteSpace( nStartRow, nSize );
-//STRIP001 }
+/*N*/ BOOL ScOutlineTable::DeleteRow( USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   return aRowOutline.DeleteSpace( nStartRow, nSize );
+/*N*/ }
 
 /*N*/ void ScOutlineTable::Load( SvStream& rStream )
 /*N*/ {
@@ -888,22 +888,22 @@ namespace binfilter {
 //STRIP001  return nSubEntry-1;
 //STRIP001 }
 //STRIP001
-//STRIP001 void ScSubOutlineIterator::DeleteLast()
-//STRIP001 {
-//STRIP001  if (nSubLevel >= nDepth)
-//STRIP001  {
-//STRIP001      DBG_ERROR("ScSubOutlineIterator::DeleteLast nach Ende");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001  if (nSubEntry == 0)
-//STRIP001  {
-//STRIP001      DBG_ERROR("ScSubOutlineIterator::DeleteLast vor GetNext");
-//STRIP001      return;
-//STRIP001  }
-//STRIP001
-//STRIP001  --nSubEntry;
-//STRIP001  pArray->aCollections[nSubLevel].AtFree(nSubEntry);
-//STRIP001 }
+/*N*/ void ScSubOutlineIterator::DeleteLast()
+/*N*/ {
+/*N*/   if (nSubLevel >= nDepth)
+/*N*/   {
+/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast nach Ende");
+/*N*/       return;
+/*N*/   }
+/*N*/   if (nSubEntry == 0)
+/*N*/   {
+/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast vor GetNext");
+/*N*/       return;
+/*N*/   }
+/*N*/
+/*N*/   --nSubEntry;
+/*N*/   pArray->aCollections[nSubLevel].AtFree(nSubEntry);
+/*N*/ }
 
 
 }

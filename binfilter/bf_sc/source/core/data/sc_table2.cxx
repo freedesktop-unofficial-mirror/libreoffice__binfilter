@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:09 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -138,186 +138,186 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetCo
 /*N*/ }
 
 
-//STRIP001 BOOL ScTable::TestInsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nSize )
-//STRIP001 {
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001
-//STRIP001  if ( nStartCol==0 && nEndCol==MAXCOL && pOutlineTable )
-//STRIP001      bTest = pOutlineTable->TestInsertRow(nSize);
-//STRIP001
-//STRIP001  for (USHORT i=nStartCol; (i<=nEndCol) && bTest; i++)
-//STRIP001      bTest = aCol[i].TestInsertRow( nSize );
-//STRIP001
-//STRIP001  return bTest;
-//STRIP001 }
+/*N*/ BOOL ScTable::TestInsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nSize )
+/*N*/ {
+/*N*/   BOOL bTest = TRUE;
+/*N*/
+/*N*/   if ( nStartCol==0 && nEndCol==MAXCOL && pOutlineTable )
+/*N*/       bTest = pOutlineTable->TestInsertRow(nSize);
+/*N*/
+/*N*/   for (USHORT i=nStartCol; (i<=nEndCol) && bTest; i++)
+/*N*/       bTest = aCol[i].TestInsertRow( nSize );
+/*N*/
+/*N*/   return bTest;
+/*N*/ }
 
 
-//STRIP001 void ScTable::InsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  nRecalcLvl++;
-//STRIP001  if (nStartCol==0 && nEndCol==MAXCOL)
-//STRIP001  {
-//STRIP001      if (pRowHeight && pRowFlags)
-//STRIP001      {
-//STRIP001             memmove( &pRowHeight[nStartRow+nSize], &pRowHeight[nStartRow],
-//STRIP001                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowHeight[0]) );
-//STRIP001             memmove( &pRowFlags[nStartRow+nSize], &pRowFlags[nStartRow],
-//STRIP001                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowFlags[0]) );
-//STRIP001
-//STRIP001          //  #67451# copy row height from row above
-//STRIP001          USHORT nSourceRow = ( nStartRow > 0 ) ? ( nStartRow - 1 ) : 0;
-//STRIP001          BYTE nNewFlags = pRowFlags[nSourceRow] & CR_MANUALSIZE;
-//STRIP001          USHORT nNewHeight = pRowHeight[nSourceRow];
-//STRIP001          for (i=nStartRow; i<nStartRow+nSize; i++)
-//STRIP001          {
-//STRIP001              pRowHeight[i] = nNewHeight;
-//STRIP001              pRowFlags[i] = nNewFlags;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      if (pOutlineTable)
-//STRIP001          pOutlineTable->InsertRow( nStartRow, nSize );
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=nStartCol; i<=nEndCol; i++)
-//STRIP001      aCol[i].InsertRow( nStartRow, nSize );
-//STRIP001  if( !--nRecalcLvl )
-//STRIP001      SetDrawPageSize();
-//STRIP001 }
+/*N*/ void ScTable::InsertRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize )
+/*N*/ {
+/*N*/   USHORT i;
+/*N*/   nRecalcLvl++;
+/*N*/   if (nStartCol==0 && nEndCol==MAXCOL)
+/*N*/   {
+/*N*/       if (pRowHeight && pRowFlags)
+/*N*/       {
+/*N*/             memmove( &pRowHeight[nStartRow+nSize], &pRowHeight[nStartRow],
+/*N*/                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowHeight[0]) );
+/*N*/             memmove( &pRowFlags[nStartRow+nSize], &pRowFlags[nStartRow],
+/*N*/                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowFlags[0]) );
+/*N*/
+/*N*/           //  #67451# copy row height from row above
+/*N*/           USHORT nSourceRow = ( nStartRow > 0 ) ? ( nStartRow - 1 ) : 0;
+/*N*/           BYTE nNewFlags = pRowFlags[nSourceRow] & CR_MANUALSIZE;
+/*N*/           USHORT nNewHeight = pRowHeight[nSourceRow];
+/*N*/           for (i=nStartRow; i<nStartRow+nSize; i++)
+/*N*/           {
+/*N*/               pRowHeight[i] = nNewHeight;
+/*N*/               pRowFlags[i] = nNewFlags;
+/*N*/           }
+/*N*/       }
+/*N*/       if (pOutlineTable)
+/*N*/           pOutlineTable->InsertRow( nStartRow, nSize );
+/*N*/   }
+/*N*/
+/*N*/   for (i=nStartCol; i<=nEndCol; i++)
+/*N*/       aCol[i].InsertRow( nStartRow, nSize );
+/*N*/   if( !--nRecalcLvl )
+/*N*/       SetDrawPageSize();
+/*N*/ }
 
 
-//STRIP001 void ScTable::DeleteRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize,
-//STRIP001                          BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  nRecalcLvl++;
-//STRIP001  if (nStartCol==0 && nEndCol==MAXCOL)
-//STRIP001  {
-//STRIP001      if (pRowHeight && pRowFlags)
-//STRIP001         {
-//STRIP001             memmove( &pRowHeight[nStartRow], &pRowHeight[nStartRow+nSize],
-//STRIP001                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowHeight[0]) );
-//STRIP001             memmove( &pRowFlags[nStartRow], &pRowFlags[nStartRow+nSize],
-//STRIP001                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowFlags[0]) );
-//STRIP001         }
-//STRIP001      if (pOutlineTable)
-//STRIP001          if (pOutlineTable->DeleteRow( nStartRow, nSize ))
-//STRIP001              if (pUndoOutline)
-//STRIP001                  *pUndoOutline = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  for (i=nStartCol; i<=nEndCol; i++)
-//STRIP001      aCol[i].DeleteRow( nStartRow, nSize );
-//STRIP001  if( !--nRecalcLvl )
-//STRIP001      SetDrawPageSize();
-//STRIP001 }
+/*N*/ void ScTable::DeleteRow( USHORT nStartCol, USHORT nEndCol, USHORT nStartRow, USHORT nSize,
+/*N*/                           BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   USHORT i;
+/*N*/   nRecalcLvl++;
+/*N*/   if (nStartCol==0 && nEndCol==MAXCOL)
+/*N*/   {
+/*N*/       if (pRowHeight && pRowFlags)
+/*N*/         {
+/*N*/             memmove( &pRowHeight[nStartRow], &pRowHeight[nStartRow+nSize],
+/*N*/                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowHeight[0]) );
+/*N*/             memmove( &pRowFlags[nStartRow], &pRowFlags[nStartRow+nSize],
+/*N*/                     (MAXROW - nStartRow + 1 - nSize) * sizeof(pRowFlags[0]) );
+/*N*/         }
+/*N*/       if (pOutlineTable)
+/*N*/           if (pOutlineTable->DeleteRow( nStartRow, nSize ))
+/*N*/               if (pUndoOutline)
+/*N*/                   *pUndoOutline = TRUE;
+/*N*/   }
+/*N*/
+/*N*/   for (i=nStartCol; i<=nEndCol; i++)
+/*N*/       aCol[i].DeleteRow( nStartRow, nSize );
+/*N*/   if( !--nRecalcLvl )
+/*N*/       SetDrawPageSize();
+/*N*/ }
 
 
-//STRIP001 BOOL ScTable::TestInsertCol( USHORT nStartRow, USHORT nEndRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  BOOL bTest = TRUE;
-//STRIP001
-//STRIP001  if ( nStartRow==0 && nEndRow==MAXROW && pOutlineTable )
-//STRIP001      bTest = pOutlineTable->TestInsertCol(nSize);
-//STRIP001
-//STRIP001  if ( nSize > MAXCOL )
-//STRIP001      bTest = FALSE;
-//STRIP001
-//STRIP001  for (USHORT i=MAXCOL; (i+nSize>MAXCOL) && bTest; i--)
-//STRIP001      bTest = aCol[i].TestInsertCol(nStartRow, nEndRow);
-//STRIP001
-//STRIP001  return bTest;
-//STRIP001 }
+/*N*/ BOOL ScTable::TestInsertCol( USHORT nStartRow, USHORT nEndRow, USHORT nSize )
+/*N*/ {
+/*N*/   BOOL bTest = TRUE;
+/*N*/
+/*N*/   if ( nStartRow==0 && nEndRow==MAXROW && pOutlineTable )
+/*N*/       bTest = pOutlineTable->TestInsertCol(nSize);
+/*N*/
+/*N*/   if ( nSize > MAXCOL )
+/*N*/       bTest = FALSE;
+/*N*/
+/*N*/   for (USHORT i=MAXCOL; (i+nSize>MAXCOL) && bTest; i--)
+/*N*/       bTest = aCol[i].TestInsertCol(nStartRow, nEndRow);
+/*N*/
+/*N*/   return bTest;
+/*N*/ }
 
 
-//STRIP001 void ScTable::InsertCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize )
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  nRecalcLvl++;
-//STRIP001  if (nStartRow==0 && nEndRow==MAXROW)
-//STRIP001  {
-//STRIP001      if (pColWidth && pColFlags)
-//STRIP001         {
-//STRIP001             memmove( &pColWidth[nStartCol+nSize], &pColWidth[nStartCol],
-//STRIP001                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColWidth[0]) );
-//STRIP001             memmove( &pColFlags[nStartCol+nSize], &pColFlags[nStartCol],
-//STRIP001                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColFlags[0]) );
-//STRIP001         }
-//STRIP001      if (pOutlineTable)
-//STRIP001          pOutlineTable->InsertCol( nStartCol, nSize );
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  if ((nStartRow == 0) && (nEndRow == MAXROW))
-//STRIP001  {
-//STRIP001      for (i=0; i < nSize; i++)
-//STRIP001          for (USHORT nCol = MAXCOL; nCol > nStartCol; nCol--)
-//STRIP001              aCol[nCol].SwapCol(aCol[nCol-1]);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      for (i=0; i+nSize+nStartCol <= MAXCOL; i++)
-//STRIP001          aCol[MAXCOL - nSize - i].MoveTo(nStartRow, nEndRow, aCol[MAXCOL - i]);
-//STRIP001  }
-//STRIP001
-//STRIP001  if (nStartCol>0)                        // copy old attributes
-//STRIP001  {
-//STRIP001      USHORT nWhichArray[2];
-//STRIP001      nWhichArray[0] = ATTR_MERGE;
-//STRIP001      nWhichArray[1] = 0;
-//STRIP001
-//STRIP001      for (i=0; i<nSize; i++)
-//STRIP001      {
-//STRIP001          aCol[nStartCol-1].CopyToColumn( nStartRow, nEndRow, IDF_ATTRIB,
-//STRIP001                                              FALSE, aCol[nStartCol+i] );
-//STRIP001          aCol[nStartCol+i].RemoveFlags( nStartRow, nEndRow,
-//STRIP001                                              SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
-//STRIP001          aCol[nStartCol+i].ClearItems( nStartRow, nEndRow, nWhichArray );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( !--nRecalcLvl )
-//STRIP001      SetDrawPageSize();
-//STRIP001 }
+/*N*/ void ScTable::InsertCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize )
+/*N*/ {
+/*N*/   USHORT i;
+/*N*/   nRecalcLvl++;
+/*N*/   if (nStartRow==0 && nEndRow==MAXROW)
+/*N*/   {
+/*N*/       if (pColWidth && pColFlags)
+/*N*/         {
+/*N*/             memmove( &pColWidth[nStartCol+nSize], &pColWidth[nStartCol],
+/*N*/                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColWidth[0]) );
+/*N*/             memmove( &pColFlags[nStartCol+nSize], &pColFlags[nStartCol],
+/*N*/                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColFlags[0]) );
+/*N*/         }
+/*N*/       if (pOutlineTable)
+/*N*/           pOutlineTable->InsertCol( nStartCol, nSize );
+/*N*/   }
+/*N*/
+/*N*/
+/*N*/   if ((nStartRow == 0) && (nEndRow == MAXROW))
+/*N*/   {
+/*N*/       for (i=0; i < nSize; i++)
+/*N*/           for (USHORT nCol = MAXCOL; nCol > nStartCol; nCol--)
+/*N*/               aCol[nCol].SwapCol(aCol[nCol-1]);
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       for (i=0; i+nSize+nStartCol <= MAXCOL; i++)
+/*N*/           aCol[MAXCOL - nSize - i].MoveTo(nStartRow, nEndRow, aCol[MAXCOL - i]);
+/*N*/   }
+/*N*/
+/*N*/   if (nStartCol>0)                        // copy old attributes
+/*N*/   {
+/*N*/       USHORT nWhichArray[2];
+/*N*/       nWhichArray[0] = ATTR_MERGE;
+/*N*/       nWhichArray[1] = 0;
+/*N*/
+/*N*/       for (i=0; i<nSize; i++)
+/*N*/       {
+/*N*/           aCol[nStartCol-1].CopyToColumn( nStartRow, nEndRow, IDF_ATTRIB,
+/*N*/                                               FALSE, aCol[nStartCol+i] );
+/*N*/           aCol[nStartCol+i].RemoveFlags( nStartRow, nEndRow,
+/*N*/                                               SC_MF_HOR | SC_MF_VER | SC_MF_AUTO );
+/*N*/           aCol[nStartCol+i].ClearItems( nStartRow, nEndRow, nWhichArray );
+/*N*/       }
+/*N*/   }
+/*N*/   if( !--nRecalcLvl )
+/*N*/       SetDrawPageSize();
+/*N*/ }
 
 
-//STRIP001 void ScTable::DeleteCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize,
-//STRIP001                          BOOL* pUndoOutline )
-//STRIP001 {
-//STRIP001  USHORT i;
-//STRIP001  nRecalcLvl++;
-//STRIP001  if (nStartRow==0 && nEndRow==MAXROW)
-//STRIP001  {
-//STRIP001      if (pColWidth && pColFlags)
-//STRIP001         {
-//STRIP001             memmove( &pColWidth[nStartCol], &pColWidth[nStartCol+nSize],
-//STRIP001                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColWidth[0]) );
-//STRIP001             memmove( &pColFlags[nStartCol], &pColFlags[nStartCol+nSize],
-//STRIP001                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColFlags[0]) );
-//STRIP001         }
-//STRIP001      if (pOutlineTable)
-//STRIP001          if (pOutlineTable->DeleteCol( nStartCol, nSize ))
-//STRIP001              if (pUndoOutline)
-//STRIP001                  *pUndoOutline = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001
-//STRIP001  for (i = 0; i < nSize; i++)
-//STRIP001      aCol[nStartCol + i].DeleteArea(nStartRow, nEndRow, IDF_ALL);
-//STRIP001
-//STRIP001  if ((nStartRow == 0) && (nEndRow == MAXROW))
-//STRIP001  {
-//STRIP001      for (i=0; i < nSize; i++)
-//STRIP001          for (USHORT nCol = nStartCol; nCol < MAXCOL; nCol++)
-//STRIP001              aCol[nCol].SwapCol(aCol[nCol+1]);
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      for (i=0; i+nSize+nStartCol <= MAXCOL; i++)
-//STRIP001          aCol[nStartCol + nSize + i].MoveTo(nStartRow, nEndRow, aCol[nStartCol + i]);
-//STRIP001  }
-//STRIP001  if( !--nRecalcLvl )
-//STRIP001      SetDrawPageSize();
-//STRIP001 }
+/*N*/ void ScTable::DeleteCol( USHORT nStartCol, USHORT nStartRow, USHORT nEndRow, USHORT nSize,
+/*N*/                           BOOL* pUndoOutline )
+/*N*/ {
+/*N*/   USHORT i;
+/*N*/   nRecalcLvl++;
+/*N*/   if (nStartRow==0 && nEndRow==MAXROW)
+/*N*/   {
+/*N*/       if (pColWidth && pColFlags)
+/*N*/         {
+/*N*/             memmove( &pColWidth[nStartCol], &pColWidth[nStartCol+nSize],
+/*N*/                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColWidth[0]) );
+/*N*/             memmove( &pColFlags[nStartCol], &pColFlags[nStartCol+nSize],
+/*N*/                     (MAXCOL - nStartCol + 1 - nSize) * sizeof(pColFlags[0]) );
+/*N*/         }
+/*N*/       if (pOutlineTable)
+/*N*/           if (pOutlineTable->DeleteCol( nStartCol, nSize ))
+/*N*/               if (pUndoOutline)
+/*N*/                   *pUndoOutline = TRUE;
+/*N*/   }
+/*N*/
+/*N*/
+/*N*/   for (i = 0; i < nSize; i++)
+/*N*/       aCol[nStartCol + i].DeleteArea(nStartRow, nEndRow, IDF_ALL);
+/*N*/
+/*N*/   if ((nStartRow == 0) && (nEndRow == MAXROW))
+/*N*/   {
+/*N*/       for (i=0; i < nSize; i++)
+/*N*/           for (USHORT nCol = nStartCol; nCol < MAXCOL; nCol++)
+/*N*/               aCol[nCol].SwapCol(aCol[nCol+1]);
+/*N*/   }
+/*N*/   else
+/*N*/   {
+/*N*/       for (i=0; i+nSize+nStartCol <= MAXCOL; i++)
+/*N*/           aCol[nStartCol + nSize + i].MoveTo(nStartRow, nEndRow, aCol[nStartCol + i]);
+/*N*/   }
+/*N*/   if( !--nRecalcLvl )
+/*N*/       SetDrawPageSize();
+/*N*/ }
 
 
 /*N*/ void ScTable::DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nDelFlag)
@@ -612,11 +612,11 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        nOldSizeX = pOutlineTable->GetCo
 /*N*/ }
 
 
-//STRIP001 void ScTable::StartNameListeners( BOOL bOnlyRelNames )
-//STRIP001 {
-//STRIP001  for (USHORT i=0; i<=MAXCOL; i++)
-//STRIP001         aCol[i].StartNameListeners( bOnlyRelNames );
-//STRIP001 }
+/*N*/ void ScTable::StartNameListeners( BOOL bOnlyRelNames )
+/*N*/ {
+/*N*/   for (USHORT i=0; i<=MAXCOL; i++)
+/*N*/         aCol[i].StartNameListeners( bOnlyRelNames );
+/*N*/ }
 
 
 //STRIP001 void ScTable::BroadcastInArea( USHORT nCol1, USHORT nRow1,
@@ -1066,14 +1066,14 @@ DBG_ASSERT(0, "STRIP"); //STRIP001 /*?*/        aCol[rPos.Col()].Delete( rPos.Ro
 /*N*/ }
 
 
-//STRIP001 void ScTable::SetRelNameDirty()
-//STRIP001 {
-//STRIP001  BOOL bOldAutoCalc = pDocument->GetAutoCalc();
-//STRIP001  pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
-//STRIP001  for (USHORT i=0; i<=MAXCOL; i++)
-//STRIP001      aCol[i].SetRelNameDirty();
-//STRIP001  pDocument->SetAutoCalc( bOldAutoCalc );
-//STRIP001 }
+/*N*/ void ScTable::SetRelNameDirty()
+/*N*/ {
+/*N*/   BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*N*/   pDocument->SetAutoCalc( FALSE );    // Mehrfachberechnungen vermeiden
+/*N*/   for (USHORT i=0; i<=MAXCOL; i++)
+/*N*/       aCol[i].SetRelNameDirty();
+/*N*/   pDocument->SetAutoCalc( bOldAutoCalc );
+/*N*/ }
 
 
 /*N*/ void ScTable::CalcAll()

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_bclist.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:57 $
+ *  last change: $Author: aw $ $Date: 2004-02-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,36 +189,36 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScBroadcasterList::MoveListenersTo( ScBroadcasterList& rNew )
-//STRIP001 {
-//STRIP001  SfxBroadcaster* pNewBC = &rNew.aFirstBC;
-//STRIP001
-//STRIP001  USHORT nLstCount, nLstPos;
-//STRIP001  nLstCount = aFirstBC.GetListenerCount();
-//STRIP001  for (nLstPos=nLstCount; nLstPos>0;)
-//STRIP001  {
-//STRIP001      --nLstPos;
-//STRIP001      SfxListener* pLst = aFirstBC.GetListener(nLstPos);
-//STRIP001      rNew.StartBroadcasting(*pLst, TRUE);
-//STRIP001      pLst->EndListening(aFirstBC);
-//STRIP001  }
-//STRIP001  if (pMoreBCs)
-//STRIP001  {
-//STRIP001      ULONG nBCCount = pMoreBCs->Count();
-//STRIP001      for (ULONG i=0; i<nBCCount; i++)
-//STRIP001      {
-//STRIP001          SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
-//STRIP001          nLstCount = pBC->GetListenerCount();
-//STRIP001          for (nLstPos=nLstCount; nLstPos>0;)
-//STRIP001          {
-//STRIP001              --nLstPos;
-//STRIP001              SfxListener* pLst = pBC->GetListener(nLstPos);
-//STRIP001              rNew.StartBroadcasting(*pLst, TRUE);
-//STRIP001              pLst->EndListening(*pBC);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/ void ScBroadcasterList::MoveListenersTo( ScBroadcasterList& rNew )
+/*N*/ {
+/*N*/   SfxBroadcaster* pNewBC = &rNew.aFirstBC;
+/*N*/
+/*N*/   USHORT nLstCount, nLstPos;
+/*N*/   nLstCount = aFirstBC.GetListenerCount();
+/*N*/   for (nLstPos=nLstCount; nLstPos>0;)
+/*N*/   {
+/*N*/       --nLstPos;
+/*N*/       SfxListener* pLst = aFirstBC.GetListener(nLstPos);
+/*N*/       rNew.StartBroadcasting(*pLst, TRUE);
+/*N*/       pLst->EndListening(aFirstBC);
+/*N*/   }
+/*N*/   if (pMoreBCs)
+/*N*/   {
+/*N*/       ULONG nBCCount = pMoreBCs->Count();
+/*N*/       for (ULONG i=0; i<nBCCount; i++)
+/*N*/       {
+/*N*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*N*/           nLstCount = pBC->GetListenerCount();
+/*N*/           for (nLstPos=nLstCount; nLstPos>0;)
+/*N*/           {
+/*N*/               --nLstPos;
+/*N*/               SfxListener* pLst = pBC->GetListener(nLstPos);
+/*N*/               rNew.StartBroadcasting(*pLst, TRUE);
+/*N*/               pLst->EndListening(*pBC);
+/*N*/           }
+/*N*/       }
+/*N*/   }
+/*N*/ }
 
 
 
