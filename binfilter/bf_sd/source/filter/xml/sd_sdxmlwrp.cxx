@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdxmlwrp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-10 14:08:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:31:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,9 +66,9 @@
 #ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HDL_
 #include <com/sun/star/xml/sax/SAXParseException.hdl>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
@@ -87,9 +87,9 @@
 #include "../../ui/inc/docshell.hxx"
 #endif //!SVX_LIGHT
 #else  //MAC
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#endif //!SVX_LIGHT
+// auto strip #ifndef SVX_LIGHT
+// auto strip #include "docshell.hxx"
+// auto strip #endif //!SVX_LIGHT
 #endif //!MAC
 #include "sdxmlwrp.hxx"
 #include "strmname.h"
@@ -98,9 +98,9 @@
 #include <bf_svx/xmleohlp.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
-#include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
+// auto strip #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DOCUMENT_XFILTER_HPP_
 #include <com/sun/star/document/XFilter.hpp>
 #endif
@@ -110,36 +110,36 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XExporter_HPP_
 #include <com/sun/star/document/XExporter.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XGRAPHICOBJECTRESOLVER_HXX_
-#include <com/sun/star/document/XGraphicObjectResolver.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XGRAPHICOBJECTRESOLVER_HXX_
+// auto strip #include <com/sun/star/document/XGraphicObjectResolver.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HXX_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
 #endif
 
-#include <com/sun/star/xml/sax/XErrorHandler.hpp>
-#include <com/sun/star/xml/sax/XEntityResolver.hpp>
-#include <com/sun/star/xml/sax/InputSource.hpp>
-#include <com/sun/star/xml/sax/XDTDHandler.hpp>
+// auto strip #include <com/sun/star/xml/sax/XErrorHandler.hpp>
+// auto strip #include <com/sun/star/xml/sax/XEntityResolver.hpp>
+// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
+// auto strip #include <com/sun/star/xml/sax/XDTDHandler.hpp>
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#include <com/sun/star/io/XActiveDataControl.hpp>
+// auto strip #include <com/sun/star/io/XActiveDataControl.hpp>
 
 #ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
 #endif
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
-#include <comphelper/propertysetinfo.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTSETINFO_HXX_
+// auto strip #include <comphelper/propertysetinfo.hxx>
+// auto strip #endif
 
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
