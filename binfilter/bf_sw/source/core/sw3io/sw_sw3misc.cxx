@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:43:21 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:44:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -228,6 +228,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -2824,7 +2825,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   pDoc->SetByteDummy1( n3 );
 /*N*/   pDoc->SetByteDummy2( n4 );
 /*N*/   if( sAutoMarkURL.Len() )
-/*?*/       sAutoMarkURL = URIHelper::SmartRelToAbs( sAutoMarkURL );
+/*?*/       sAutoMarkURL = so3::StaticBaseUrl::SmartRelToAbs( sAutoMarkURL );
 /*N*/   pDoc->SetTOIAutoMarkURL( sAutoMarkURL );
 /*N*/   pDoc->SetStringDummy2( s2 );
 /*N*/
@@ -2870,7 +2871,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/
 /*N*/   String sAutoMarkURL( pDoc->GetTOIAutoMarkURL() );
 /*N*/   if( sAutoMarkURL.Len() )
-/*?*/       sAutoMarkURL = INetURLObject::AbsToRel( sAutoMarkURL URL_DECODE );
+/*?*/       sAutoMarkURL = so3::StaticBaseUrl::AbsToRel( sAutoMarkURL URL_DECODE );
 /*N*/   *pStrm  << (sal_uInt32)pDoc->GetULongDummy1()
 /*N*/           << (sal_uInt32)pDoc->GetULongDummy2()
 /*N*/           << n3
