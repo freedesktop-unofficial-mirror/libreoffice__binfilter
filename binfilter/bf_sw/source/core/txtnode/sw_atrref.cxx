@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrref.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:00:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,18 +62,18 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 #ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
 #endif
 #ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
