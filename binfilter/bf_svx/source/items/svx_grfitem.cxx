@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_grfitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:03:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,9 +69,9 @@
 #ifndef _SVX_GRFCROP_HXX
 #include <grfcrop.hxx>
 #endif
-#ifndef _SVX_ITEMTYPE_HXX //autogen
-#include <itemtype.hxx>
-#endif
+// auto strip #ifndef _SVX_ITEMTYPE_HXX //autogen
+// auto strip #include <itemtype.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
 #endif
