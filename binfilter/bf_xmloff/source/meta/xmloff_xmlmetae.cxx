@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlmetae.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:01:47 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:01:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -94,6 +94,7 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -465,7 +466,7 @@ void SfxXMLMetaExport::Export()
         if ( sReloadURL.getLength() )
         {
             rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_HREF,
-                                  INetURLObject::AbsToRel( sReloadURL) );
+                                  so3::StaticBaseUrl::AbsToRel( sReloadURL) );
         }
 
         aPropVal = xInfoProp->getPropertyValue(
@@ -498,7 +499,7 @@ void SfxXMLMetaExport::Export()
 
         //  template URL
         rExport.AddAttribute( XML_NAMESPACE_XLINK, XML_HREF,
-                              INetURLObject::AbsToRel(sTplPath) );
+                              so3::StaticBaseUrl::AbsToRel(sTplPath) );
 
         //  template name
         aPropVal = xInfoProp->getPropertyValue(

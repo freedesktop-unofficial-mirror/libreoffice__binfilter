@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_xmlnume.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:18:32 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 12:01:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -140,6 +140,7 @@
 #ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -367,7 +368,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         if( sImageURL.getLength() )
         {
 //          String sURL( sImageURL );
-//          INetURLObject::AbsToRel( sURL );
+//          so3::StaticBaseUrl::AbsToRel( sURL );
 //          sImageURL = sURL;
             OUString sURL( GetExport().AddEmbeddedGraphicObject( sImageURL ) );
             if( sURL.getLength() )
