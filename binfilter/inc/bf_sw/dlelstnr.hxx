@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dlelstnr.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:38:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,7 +62,7 @@
 #ifndef _DLELSTNR_HXX_
 #define _DLELSTNR_HXX_
 
-#include <cppuhelper/weak.hxx>
+// auto strip #include <cppuhelper/weak.hxx>
 
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYLISTEVENTLISTENER_HPP_
 #include <com/sun/star/linguistic2/XDictionaryListEventListener.hpp>
@@ -70,9 +70,9 @@
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEEVENTLISTENER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceEventListener.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FRAME_XTERMINATELISTENER_HPP_
-#include <com/sun/star/frame/XTerminateListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XTERMINATELISTENER_HPP_
+// auto strip #include <com/sun/star/frame/XTerminateListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
 #endif
