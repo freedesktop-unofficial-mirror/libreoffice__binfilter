@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:47:37 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:51:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,17 +77,17 @@
 #include <com/sun/star/drawing/LineDash.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_DASHSTYLE_HPP_
-#include <com/sun/star/drawing/DashStyle.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_DASHSTYLE_HPP_
+// auto strip #include <com/sun/star/drawing/DashStyle.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
-#include <com/sun/star/awt/Point.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_POINT_HPP_
+// auto strip #include <com/sun/star/awt/Point.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
-#include <com/sun/star/drawing/PointSequence.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
+// auto strip #include <com/sun/star/drawing/PointSequence.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
@@ -101,7 +101,11 @@
 #include <svtools/itempool.hxx>
 #endif
 
-#include <tools/stream.hxx>
+// auto strip #include <tools/stream.hxx>
+
+#ifndef _XDEF_HXX
+#include <bf_svx/xdef.hxx>
+#endif
 
 #include "unoapi.hxx"
 
@@ -113,17 +117,17 @@
 #include "unopolyhelper.hxx"
 #endif
 
-#include <tools/bigint.hxx>
+// auto strip #include <tools/bigint.hxx>
 #include <svtools/itemset.hxx>
 #include "dialogs.hrc"
 #include "svdstr.hrc"
 #include "xattr.hxx"
 #include "xtable.hxx"
-#include "xoutx.hxx"
-#include "dialmgr.hxx"
+// auto strip #include "xoutx.hxx"
+// auto strip #include "dialmgr.hxx"
 #include "itemtype.hxx"
-#include "xdef.hxx"
-#include "unomid.hxx"
+// auto strip #include "xdef.hxx"
+// auto strip #include "unomid.hxx"
 
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
