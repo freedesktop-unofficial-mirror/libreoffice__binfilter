@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmform.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:50:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,27 +77,32 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      // ChangeFtnRef
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>        // MakeFrm()
-#endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>     // SwDrawContact
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>      // MakeFrm()
+// auto strip #endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>       // SwDrawContact
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>      // SwVirtFlyDrawObj
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // SwFtnFrm
 #endif
-#ifndef _TXTFTN_HXX
-#include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX
-#include <fmtftn.hxx>
-#endif
+// auto strip #ifndef _TXTFTN_HXX
+// auto strip #include <txtftn.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFTN_HXX
+// auto strip #include <fmtftn.hxx>
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -110,55 +115,55 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
-#ifndef _FMTANCHR_HXX //autogen
-#include <fmtanchr.hxx>
-#endif
+// auto strip #ifndef _FMTANCHR_HXX //autogen
+// auto strip #include <fmtanchr.hxx>
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
-#ifndef _TXATBASE_HXX
-#include <txatbase.hxx>
-#endif
+// auto strip #ifndef _TXATBASE_HXX
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
 #ifndef _TXTCFG_HXX
 #include <txtcfg.hxx>
 #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // SwTxtFrm
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>     // SwTxtFrm
+// auto strip #endif
 #ifndef _WIDORP_HXX
 #include <widorp.hxx>       // Widows and Orphans
 #endif
 #ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
 #endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>       // SwEmptyPortion
-#endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx>     // SwEmptyPortion
+// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>        // pBlink
 #endif
-#ifndef _PORFLD_HXX
-#include <porfld.hxx>       // SwFldPortion
-#endif
+// auto strip #ifndef _PORFLD_HXX
+// auto strip #include <porfld.hxx>     // SwFldPortion
+// auto strip #endif
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectionFrm
 #endif
-#ifndef _PORMULTI_HXX
-#include <pormulti.hxx>     // SwMultiPortion
-#endif
+// auto strip #ifndef _PORMULTI_HXX
+// auto strip #include <pormulti.hxx>   // SwMultiPortion
+// auto strip #endif
 
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>       // SwFrmFmt
-#endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>     // SwFrmFmt
+// auto strip #endif
 namespace binfilter {
 
 extern FASTBOOL IsInProgress( const SwFlyFrm *pFly );
