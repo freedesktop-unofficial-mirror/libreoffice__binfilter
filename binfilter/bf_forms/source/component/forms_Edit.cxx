@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Edit.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:09 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:48:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,17 +59,53 @@
  *
  ************************************************************************/
 
+#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+#include <comphelper/proparrhlp.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
+#include <com/sun/star/util/XNumberFormatter.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
+#include <com/sun/star/awt/XFocusListener.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
+#include <com/sun/star/awt/XKeyListener.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
+#include <com/sun/star/form/XChangeBroadcaster.hpp>
+#endif
+
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
+
+// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
+// auto strip #include <com/sun/star/lang/XComponent.hpp>
+// auto strip #endif
+
+#ifndef _LINK_HXX
+#include <tools/link.hxx>
+#endif
+
 #ifndef _FORMS_EDIT_HXX_
 #include "Edit.hxx"
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_UNO_TYPE_HXX_
-#include <com/sun/star/uno/Type.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_TYPE_HXX_
+// auto strip #include <com/sun/star/uno/Type.hxx>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
 #endif
@@ -82,23 +118,23 @@
 #ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>
-#endif
+// auto strip #ifndef _SV_WINTYPES_HXX
+// auto strip #include <vcl/wintypes.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
-#ifndef _COMPHELPER_DATETIME_HXX_
-#include <comphelper/datetime.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
+// auto strip #include <comphelper/datetime.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
@@ -109,6 +145,23 @@
 #ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
 #endif
+
+#ifndef _FRM_SERVICES_HXX_
+#include "services.hxx"
+#endif
+
+#ifndef _COMPHELPER_PROPERTY_HXX_
+#include <comphelper/property.hxx>
+#endif
+
+#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
+#include <com/sun/star/form/FormComponentType.hpp>
+#endif
+
+#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+#include <com/sun/star/beans/PropertyAttribute.hpp>
+#endif
+
 namespace binfilter {
 
     using namespace ::dbtools;
