@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_sclib.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:38 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:37:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,7 @@
 #include <svtools/inettype.hxx>
 #include <svtools/parhtml.hxx>
 #include <so3/clsids.hxx>
-#include <bf_sfx2/docfilt.hxx>
+// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/app.hxx>
@@ -82,7 +82,7 @@
 
 #include <signal.h>
 
-#include "scdll.hxx"
+// auto strip #include "scdll.hxx"
 
 #include "docsh.hxx"
 #include "bf_sc.hrc"
