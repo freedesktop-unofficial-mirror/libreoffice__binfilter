@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_formevents.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:14 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:59:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
-#include "formevents.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
+// auto strip #include "formevents.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
 #endif
@@ -121,6 +121,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/13 08:48:49  aw
+ *  #117295# minimize_includes step2
+ *
+ *  Revision 1.1  2003/12/05 09:34:14  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.1  2001/01/02 15:56:27  fs
  *  initial checkin - code common to event ex- and import
  *

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_formenums.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:34:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:58:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,9 +90,9 @@
 #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-#include <com/sun/star/awt/FontWidth.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
+// auto strip #include <com/sun/star/awt/FontWidth.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
 #endif
@@ -102,9 +102,9 @@
 #ifndef _SV_WINTYPES_HXX
 #include <vcl/wintypes.hxx>     // for check states
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 namespace binfilter {
 
 //.........................................................................
@@ -337,6 +337,12 @@ namespace xmloff
 /*************************************************************************
  * history:
  *  $Log: not supported by cvs2svn $
+ *  Revision 1.1.20.1  2004/07/13 08:48:49  aw
+ *  #117295# minimize_includes step2
+ *
+ *  Revision 1.1  2003/12/05 09:34:13  aw
+ *  Added bf_xmloff files
+ *
  *  Revision 1.9  2003/10/21 08:39:38  obo
  *  INTEGRATION: CWS formcelllinkage (1.8.188); FILE MERGED
  *  2003/10/01 09:55:21 fs 1.8.188.1: #i18994# merging the changes from the CWS fs002
