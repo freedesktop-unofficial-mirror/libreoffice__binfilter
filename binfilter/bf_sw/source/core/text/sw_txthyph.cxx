@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_txthyph.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:08 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:56:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,53 +62,53 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
-#ifndef _UNO_LINGU_HXX
-#include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
-#include <com/sun/star/i18n/WordType.hpp>
-#endif
+// auto strip #ifndef _UNO_LINGU_HXX
+// auto strip #include <bf_svx/unolingu.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
+// auto strip #include <com/sun/star/i18n/WordType.hpp>
+// auto strip #endif
 
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
 #endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _TXTCFG_HXX
-#include <txtcfg.hxx>
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTCFG_HXX
+// auto strip #include <txtcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 #ifndef _PORHYPH_HXX
 #include <porhyph.hxx>  //
 #endif
-#ifndef _INFTXT_HXX
-#include <inftxt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
+// auto strip #ifndef _INFTXT_HXX
+// auto strip #include <inftxt.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx> //
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>    //
 #endif
-#ifndef _SPLARGS_HXX
-#include <splargs.hxx>  // SwInterHyphInfo
-#endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>   // SwKernPortion
-#endif
+// auto strip #ifndef _SPLARGS_HXX
+// auto strip #include <splargs.hxx>    // SwInterHyphInfo
+// auto strip #endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx> // SwKernPortion
+// auto strip #endif
 namespace binfilter {
 
 #ifndef PRODUCT
