@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txtftn.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:22 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:41:40 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,7 +100,7 @@ public:
     void MakeNewTextSection( SwNodes& rNodes );
 
         // loesche die FtnFrame aus der Seite
-//STRIP001  void DelFrms();
+    void DelFrms();
         // bedingten Absatzvorlagen checken
 //STRIP001  void CheckCondColl();
 
