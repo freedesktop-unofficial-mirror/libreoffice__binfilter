@@ -2,9 +2,9 @@
  *
  *  $RCSfile: dialogs.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:10:56 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:39:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1004,7 +1004,7 @@
 #define RID_SVXSTR_DASH8_DEF                (RID_SVX_START + 748)
 #define RID_SVXSTR_DASH9_DEF                (RID_SVX_START + 749)
 #define RID_SVXSTR_DASH10_DEF               (RID_SVX_START + 750)
-//STRIP001 #define RID_SVXSTR_DASH11_DEF                (RID_SVX_START + 751)
+#define RID_SVXSTR_DASH11_DEF               (RID_SVX_START + 751)
 #define RID_SVXSTR_DASH0                    (RID_SVX_START + 752)
 #define RID_SVXSTR_DASH1                    (RID_SVX_START + 753)
 #define RID_SVXSTR_DASH2                    (RID_SVX_START + 754)
@@ -1018,10 +1018,7 @@
 #define RID_SVXSTR_DASH10                   (RID_SVX_START + 762)
 #define RID_SVXSTR_DASH11                   (RID_SVX_START + 763)
 #define RID_SVXSTR_DASH_DEF_START           RID_SVXSTR_DASH0_DEF
-//STRIP001 #define RID_SVXSTR_DASH_DEF_END              RID_SVXSTR_DASH11_DEF
-//changed by jmeng begin
-#define RID_SVXSTR_DASH_DEF_END             (RID_SVX_START + 751)
-//changed by jmeng end
+#define RID_SVXSTR_DASH_DEF_END             RID_SVXSTR_DASH11_DEF
 #define RID_SVXSTR_DASH_START               RID_SVXSTR_DASH0
 #define RID_SVXSTR_DASH_END                 RID_SVXSTR_DASH11
 
@@ -1098,14 +1095,10 @@
 //STRIP001 #define RID_SVXSTR_NUM_REDO_ACTIONS         (RID_SVX_START +  847)
 
 // Default-transparence-gradient-names
-//STRIP001 #define RID_SVXSTR_TRASNGR0_DEF              (RID_SVX_START + 850)
+#define RID_SVXSTR_TRASNGR0_DEF             (RID_SVX_START + 850)
 #define RID_SVXSTR_TRASNGR0                 (RID_SVX_START + 851)
-//STRIP001 #define RID_SVXSTR_TRASNGR_DEF_START     RID_SVXSTR_TRASNGR0_DEF
-//STRIP001 #define RID_SVXSTR_TRASNGR_DEF_END           RID_SVXSTR_TRASNGR0_DEF
-//changed by jmeng begin
-#define RID_SVXSTR_TRASNGR_DEF_START        (RID_SVX_START + 850)
-#define RID_SVXSTR_TRASNGR_DEF_END          (RID_SVX_START + 850)
-//changed by jmeng end
+#define RID_SVXSTR_TRASNGR_DEF_START        RID_SVXSTR_TRASNGR0_DEF
+#define RID_SVXSTR_TRASNGR_DEF_END          RID_SVXSTR_TRASNGR0_DEF
 #define RID_SVXSTR_TRASNGR_START            RID_SVXSTR_TRASNGR0
 #define RID_SVXSTR_TRASNGR_END              RID_SVXSTR_TRASNGR0
 
