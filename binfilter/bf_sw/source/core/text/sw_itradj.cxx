@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itradj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:51:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,23 +62,28 @@
 
 #pragma hdrstop
 
-#include "frame.hxx"       // CalcFlyAdjust()
-#include "paratr.hxx"
+// auto strip #include "frame.hxx"       // CalcFlyAdjust()
+// auto strip #include "paratr.hxx"
 #if OSL_DEBUG_LEVEL > 1
 # include "ndtxt.hxx"        // pSwpHints, Ausgabeoperator
 #endif
 
-#include "txtcfg.hxx"
+// auto strip #include "txtcfg.hxx"
 #include "itrtxt.hxx"
-#include "porglue.hxx"
-#include "porlay.hxx"
+// auto strip #include "porglue.hxx"
+// auto strip #include "porlay.hxx"
 #include "porfly.hxx"       // CalcFlyAdjust()
-#include "pordrop.hxx"       // CalcFlyAdjust()
+// auto strip #include "pordrop.hxx"       // CalcFlyAdjust()
 #include "pormulti.hxx"
 
-#ifndef _PORTAB_HXX
-#include <portab.hxx>
+// auto strip #ifndef _PORTAB_HXX
+// auto strip #include <portab.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
