@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_contexts.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:31:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:44:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include <tools/debug.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
@@ -75,26 +75,26 @@
 #ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
 #endif
-#ifndef SCH_XMLIMPORT_HXX_
-#include "SchXMLImport.hxx"
-#endif
+// auto strip #ifndef SCH_XMLIMPORT_HXX_
+// auto strip #include "SchXMLImport.hxx"
+// auto strip #endif
 
 //  #ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 //  #include "XMLChartStyleContext.hxx"
 //  #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
-#include <com/sun/star/chart/XChartDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
-#include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
-#include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
+// auto strip #include <com/sun/star/chart/XChartDocument.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
+// auto strip #include <com/sun/star/chart/XChartDataArray.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
+// auto strip #include <com/sun/star/chart/ChartDataRowSource.hpp>
+// auto strip #endif
 
 #include "contexts.hxx"
-#include "SchXMLChartContext.hxx"
+// auto strip #include "SchXMLChartContext.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
