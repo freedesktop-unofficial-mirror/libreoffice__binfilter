@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_xmlstyli.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:34:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,28 +70,28 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
-#include <bf_xmloff/xmlimppr.hxx>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
-#include <bf_xmloff/families.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLIMPPR_HXX
+// auto strip #include <bf_xmloff/xmlimppr.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX_
+// auto strip #include <bf_xmloff/families.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #include <bf_xmloff/xmlnumfi.hxx>
 #endif
 #ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include <bf_xmloff/XMLGraphicsDefaultStyle.hxx>
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include <bf_xmloff/xmltoken.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include <bf_xmloff/xmltoken.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
-#include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
+// auto strip #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XSHEETCONDITIONALENTRIES_HPP_
 #include <com/sun/star/sheet/XSheetConditionalEntries.hpp>
 #endif
@@ -101,15 +101,15 @@
 #ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
 #endif
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
-#include <bf_xmloff/xmlprcon.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
-#include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
+// auto strip #include <bf_xmloff/xmlprcon.hxx>
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLUCONV_HXX
+// auto strip #include <bf_xmloff/xmluconv.hxx>
+// auto strip #endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 #ifndef _SC_XMLTABLEHEADERFOOTERCONTEXT_HXX_
 #include "XMLTableHeaderFooterContext.hxx"
 #endif
