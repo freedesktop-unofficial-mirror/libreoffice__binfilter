@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_toxmgr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:56:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:10:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,27 +62,31 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
 #endif
 #ifndef _SHELLRES_HXX
 #include <shellres.hxx>
 #endif
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
-#ifndef _SWVIEW_HXX
-#include <view.hxx>
-#endif
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWVIEW_HXX
+// auto strip #include <view.hxx>
+// auto strip #endif
 #ifndef _TOXMGR_HXX
 #include <toxmgr.hxx>
 #endif
-#ifndef _AUTHFLD_HXX
-#include <authfld.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
-#include <crsskip.hxx>
-#endif
+// auto strip #ifndef _AUTHFLD_HXX
+// auto strip #include <authfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _CRSSKIP_HXX
+// auto strip #include <crsskip.hxx>
+// auto strip #endif
 
 #ifndef _GLOBALS_HRC
 #include <globals.hrc>
