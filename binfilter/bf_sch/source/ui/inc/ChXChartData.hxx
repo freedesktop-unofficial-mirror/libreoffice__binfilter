@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ChXChartData.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:06:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -69,25 +69,25 @@
 #ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.hxx>
 #endif
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
-#include <com/sun/star/chart/XChartData.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
+// auto strip #include <com/sun/star/chart/XChartData.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
-#include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
+// auto strip #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CHART_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
