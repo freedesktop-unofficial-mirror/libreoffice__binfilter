@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_patattr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-27 18:54:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:08:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -91,19 +91,19 @@
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
 #include <bf_svx/wrlmitem.hxx>
-#include <svtools/intitem.hxx>
+// auto strip #include <svtools/intitem.hxx>
 #include <svtools/zforlist.hxx>
 #include <vcl/outdev.hxx>
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 
 #include "patattr.hxx"
 #include "docpool.hxx"
 #include "stlsheet.hxx"
 #include "stlpool.hxx"
 #include "document.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "globstr.hrc"
-#include "conditio.hxx"
+// auto strip #include "conditio.hxx"
 #include "validat.hxx"
 #include "scmod.hxx"
 namespace binfilter {
