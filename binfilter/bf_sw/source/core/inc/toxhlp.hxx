@@ -2,9 +2,9 @@
  *
  *  $RCSfile: toxhlp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:32:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,9 +72,9 @@
 #include <com/sun/star/uno/Reference.hxx>
 #endif
 
-#ifndef _SWUNODEF_HXX
-#include <swunodef.hxx>
-#endif
+// auto strip #ifndef _SWUNODEF_HXX
+// auto strip #include <swunodef.hxx>
+// auto strip #endif
 
 namespace drafts { namespace com { namespace sun { namespace star {
 namespace i18n {

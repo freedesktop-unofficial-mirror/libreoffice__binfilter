@@ -2,9 +2,9 @@
  *
  *  $RCSfile: splargs.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:32:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,9 +76,9 @@ class SwTxtNode;
 class SwIndex;
 class SpellCheck;
 
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLALTERNATIVES_HPP_
-#include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLALTERNATIVES_HPP_
+// auto strip #include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
 #endif

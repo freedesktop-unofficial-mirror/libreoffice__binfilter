@@ -2,9 +2,9 @@
  *
  *  $RCSfile: txttypes.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:33:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,7 @@
 #ifndef _TXTTYPES_HXX
 #define _TXTTYPES_HXX
 
-#include "swtypes.hxx"
+// auto strip #include "swtypes.hxx"
 namespace binfilter {
 
 // Ueberpruefte USHORTs, z.B. Indizes auf Arrays oder garantiert kleine
