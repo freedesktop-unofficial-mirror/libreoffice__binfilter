@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLChangedRegionImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:54 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:22:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,9 +75,9 @@
 #include <com/sun/star/util/DateTime.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
-#include <com/sun/star/text/XTextCursor.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
+// auto strip #include <com/sun/star/text/XTextCursor.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
@@ -91,9 +91,9 @@
 #include "nmspmap.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"

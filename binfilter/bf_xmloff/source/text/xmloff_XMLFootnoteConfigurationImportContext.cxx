@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLFootnoteConfigurationImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:23:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #include <rtl/ustrbuf.hxx>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
@@ -83,13 +83,13 @@
 #include "xmlnmspe.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_FAMILIES_HXX
-#include "families.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_FAMILIES_HXX
+// auto strip #include "families.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
@@ -99,21 +99,21 @@
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLNUMI_HXX
-#include "xmlnumi.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNUMI_HXX
+// auto strip #include "xmlnumi.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
-#include <com/sun/star/text/XFootnote.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
+// auto strip #include <com/sun/star/text/XFootnote.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_TEXT_XFOOTNOTESSUPPLIER_HPP_
 #include <com/sun/star/text/XFootnotesSupplier.hpp>

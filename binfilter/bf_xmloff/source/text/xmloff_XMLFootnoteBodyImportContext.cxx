@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLFootnoteBodyImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:37:55 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:23:05 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,29 +68,29 @@
 #include <rtl/ustring>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
-#include <tools/debug.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
 #endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLNMSPE_HXX
+// auto strip #include "xmlnmspe.hxx"
+// auto strip #endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
-#include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
+// auto strip #include <com/sun/star/xml/sax/XAttributeList.hpp>
+// auto strip #endif
 namespace binfilter {
 
 using ::rtl::OUString;
