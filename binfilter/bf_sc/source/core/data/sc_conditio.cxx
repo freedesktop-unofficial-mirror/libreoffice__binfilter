@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_conditio.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:03:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,17 +73,17 @@
 #include <svtools/zforlist.hxx>
 #include <rtl/math.hxx>
 
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-#include <unotools/collatorwrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
+// auto strip #include <unotools/collatorwrapper.hxx>
+// auto strip #endif
 
 #include "conditio.hxx"
 #include "cell.hxx"
 #include "document.hxx"
 #include "hints.hxx"
-#include "compiler.hxx"
+// auto strip #include "compiler.hxx"
 #include "rechead.hxx"
-#include "rangelst.hxx"
+// auto strip #include "rangelst.hxx"
 #include "stlpool.hxx"
 #include "rangenam.hxx"
 namespace binfilter {
