@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_elementimport.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:58:02 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:52:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1509,7 +1509,8 @@ namespace xmloff
             }
             while (nElementStart < nLength);
 
-            aList = Sequence< ::rtl::OUString >(aElements.begin(), aElements.size());
+            ::rtl::OUString *pElements = aElements.empty() ? 0 : &aElements[0];
+            aList = Sequence< ::rtl::OUString >(pElements, aElements.size());
         }
         else
         {
