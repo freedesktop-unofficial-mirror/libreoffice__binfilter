@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLTextShapeStyleContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:34:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,15 +68,15 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
-#include "XMLTextPropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
-#include "xmlimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
+// auto strip #include "XMLTextPropertySetContext.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_XMLIMP_HXX
+// auto strip #include "xmlimp.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
 #endif

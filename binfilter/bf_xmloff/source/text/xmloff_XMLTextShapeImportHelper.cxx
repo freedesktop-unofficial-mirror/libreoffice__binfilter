@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_XMLTextShapeImportHelper.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:38:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:33:38 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,16 +62,16 @@
 #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
-#include <com/sun/star/text/TextContentAnchorType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
+// auto strip #include <com/sun/star/text/TextContentAnchorType.hpp>
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLTIMP_HXX_
 #include "xmlimp.hxx"
 #endif
-#ifndef _XMLOFF_TEXTIMP_HXX_
-#include "txtimp.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_TEXTIMP_HXX_
+// auto strip #include "txtimp.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
@@ -84,9 +84,9 @@
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
-#include <com/sun/star/drawing/XShapes.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
+// auto strip #include <com/sun/star/drawing/XShapes.hpp>
+// auto strip #endif
 
 #ifndef _XMLTEXTSHAPEIMPORTHELPER_HXX
 #include "XMLTextShapeImportHelper.hxx"
