@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_gctable.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:10:58 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,9 @@
 // auto strip #include <bf_svx/boxitem.hxx>
 // auto strip #endif
 
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
 #ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
 #endif

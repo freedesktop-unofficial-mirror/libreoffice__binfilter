@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doccorr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:05:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,11 +78,11 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _EDITSH_HXX
-#include <editsh.hxx>
-#endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
+#endif
+#ifndef _EDITSH_HXX
+#include <editsh.hxx>
 #endif
 // auto strip #ifndef _PAM_HXX
 // auto strip #include <pam.hxx>

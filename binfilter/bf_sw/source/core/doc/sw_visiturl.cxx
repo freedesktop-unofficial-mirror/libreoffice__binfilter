@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_visiturl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:14:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,6 +97,9 @@
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
+#endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
 #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docedt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:06:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -189,6 +189,9 @@
 // auto strip #include <vcl/msgbox.hxx>
 // auto strip #endif
 #include "comcore.hrc"
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
+#endif
 #include "editsh.hxx"
 namespace binfilter {
 

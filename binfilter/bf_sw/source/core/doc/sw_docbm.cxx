@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docbm.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 14:18:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -127,9 +127,6 @@
 #endif
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _VISCRS_HXX
-#include <viscrs.hxx>
 #endif
 namespace binfilter {
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:08:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 14:44:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -168,6 +168,9 @@
 // auto strip #endif
 #ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
+#endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
 #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer Expression-Felder
