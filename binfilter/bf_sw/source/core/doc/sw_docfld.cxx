@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:06:17 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:33:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -177,9 +177,9 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _AUTHFLD_HXX
-// auto strip #include <authfld.hxx>
-// auto strip #endif
+#ifndef _AUTHFLD_HXX
+#include <authfld.hxx>
+#endif
 // auto strip #ifndef _FMTCNTNT_HXX
 // auto strip #include <fmtcntnt.hxx>
 // auto strip #endif
@@ -277,7 +277,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       pUpdtFlds->InsertFldType( *pNew );
 /*N*/       break;
 /*N*/   case RES_AUTHORITY :
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ((SwAuthorityFieldType*)pNew)->SetDoc( this );
+/*?*/       ((SwAuthorityFieldType*)pNew)->SetDoc( this );
 /*?*/       break;
 /*N*/   }
 /*N*/
@@ -1495,9 +1495,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                   if( (!pUpdtFld || pUpdtFld == pTxtFld )
 /*?*/                       && pGFld->IsInBodyTxt() )
 /*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 LookString( pHashStrTbl, nStrFmtCnt,
-//STRIP001 /*?*/                                    pGFld->GetFormula(), aNew );
-//STRIP001 /*?*/                        pGFld->ChgExpStr( aNew );
+/*?*/                       LookString( pHashStrTbl, nStrFmtCnt,
+/*?*/                                   pGFld->GetFormula(), aNew );
+/*?*/                       pGFld->ChgExpStr( aNew );
 /*?*/                   }
 /*?*/               }
 /*?*/               else
@@ -2460,13 +2460,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   BOOL bIsModified = IsModified();
 /*N*/       GetBodyNode( rFld, nWhich );
 /*N*/   else
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // ueber den pTxtFld Pointer suchen. Ist zwar eine Sortierte
+/*?*/       // ueber den pTxtFld Pointer suchen. Ist zwar eine Sortierte
 /*?*/       // Liste, aber nach Node-Positionen sortiert. Bis dieser
 /*?*/       // bestimmt ist, ist das Suchen nach dem Pointer schon fertig
-//STRIP001 /*?*/        for( USHORT n = 0; n < pFldSortLst->Count(); ++n )
-//STRIP001 /*?*/            if( &rFld == (*pFldSortLst)[ n ]->GetPointer() )
-//STRIP001 /*?*/                pFldSortLst->DeleteAndDestroy( n--, 1 );
-//STRIP001 /*?*/                // ein Feld kann mehrfach vorhanden sein!
+/*?*/       for( USHORT n = 0; n < pFldSortLst->Count(); ++n )
+/*?*/           if( &rFld == (*pFldSortLst)[ n ]->GetPointer() )
+/*?*/               pFldSortLst->DeleteAndDestroy( n--, 1 );
+/*?*/               // ein Feld kann mehrfach vorhanden sein!
 /*N*/   }
 /*N*/ }
 
@@ -2538,7 +2538,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   BOOL bIsModified = IsModified();
 /*M*/
 /*M*/         // so, erst jetzt alle sortiert in die Liste eintragen
 /*M*/         for( n = 0; n < aTmpArr.Count(); ++n )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetBodyNode( *rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode() );
+/*?*/             GetBodyNode( *rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode() );
 /*M*/     }
 /*M*/
 /*M*/   String sTrue( String::CreateFromAscii(
@@ -2750,45 +2750,45 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   BOOL bIsModified = IsModified();
 /*?*/           delete pNew;
 /*N*/ }
 
-//STRIP001 void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
-//STRIP001 {
-//STRIP001  const SwDoc& rDoc = *rSectNd.GetDoc();
-//STRIP001  _SetGetExpFld* pNew = 0;
-//STRIP001
-//STRIP001  if( rSectNd.GetIndex() < rDoc.GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001  {
-//STRIP001      do {            // middle check loop
-//STRIP001
-//STRIP001          // dann muessen wir uns mal den Anker besorgen!
-//STRIP001          // einen Index fuers bestimmen vom TextNode anlegen
-//STRIP001          SwPosition aPos( rSectNd );
-//STRIP001          SwCntntNode* pCNd = rDoc.GetNodes().GoNext( &aPos.nNode ); // zum naechsten ContentNode
-//STRIP001
-//STRIP001          if( !pCNd || !pCNd->IsTxtNode() )
-//STRIP001              break;
-//STRIP001
-//STRIP001          // immer den ersten !! (in Tab-Headline, Kopf-/Fuss )
-//STRIP001          Point aPt;
-//STRIP001          const SwCntntFrm* pFrm = pCNd->GetFrm( &aPt, 0, FALSE );
-//STRIP001          if( !pFrm )
-//STRIP001              break;
-//STRIP001
-//STRIP001 #ifndef PRODUCT
-//STRIP001          ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
-//STRIP001 #else
-//STRIP001          GetBodyTxtNode( rDoc, aPos, *pFrm );
-//STRIP001 #endif
-//STRIP001          pNew = new _SetGetExpFld( rSectNd, &aPos );
-//STRIP001
-//STRIP001      } while( FALSE );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !pNew )
-//STRIP001      pNew = new _SetGetExpFld( rSectNd );
-//STRIP001
-//STRIP001  if( !pFldSortLst->Insert( pNew ))
-//STRIP001      delete pNew;
-//STRIP001 }
+void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
+{
+    const SwDoc& rDoc = *rSectNd.GetDoc();
+    _SetGetExpFld* pNew = 0;
+
+    if( rSectNd.GetIndex() < rDoc.GetNodes().GetEndOfExtras().GetIndex() )
+    {
+        do {            // middle check loop
+
+            // dann muessen wir uns mal den Anker besorgen!
+            // einen Index fuers bestimmen vom TextNode anlegen
+            SwPosition aPos( rSectNd );
+            SwCntntNode* pCNd = rDoc.GetNodes().GoNext( &aPos.nNode ); // zum naechsten ContentNode
+
+            if( !pCNd || !pCNd->IsTxtNode() )
+                break;
+
+            // immer den ersten !! (in Tab-Headline, Kopf-/Fuss )
+            Point aPt;
+            const SwCntntFrm* pFrm = pCNd->GetFrm( &aPt, 0, FALSE );
+            if( !pFrm )
+                break;
+
+#ifndef PRODUCT
+            ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
+#else
+            GetBodyTxtNode( rDoc, aPos, *pFrm );
+#endif
+            pNew = new _SetGetExpFld( rSectNd, &aPos );
+
+        } while( FALSE );
+    }
+
+    if( !pNew )
+        pNew = new _SetGetExpFld( rSectNd );
+
+    if( !pFldSortLst->Insert( pNew ))
+        delete pNew;
+}
 
 /*N*/ void SwDocUpdtFld::InsertFldType( const SwFieldType& rType )
 /*N*/ {
