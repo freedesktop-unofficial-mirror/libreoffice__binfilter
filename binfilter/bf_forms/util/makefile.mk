@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:22:29 $
+#   last change: $Author: rt $ $Date: 2005-01-11 11:29:04 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -107,7 +107,7 @@ SHL1STDLIBS= \
         $(COMPHELPERLIB) \
         $(DBTOOLSLIB) \
         $(TKLIB) \
-        
+        $(SO2LIB)
 
 SHL1LIBS=$(LIB1TARGET)
 SHL1DEPN=	$(LIB1TARGET)	\
