@@ -2,9 +2,9 @@
  *
  *  $RCSfile: outl_pch.hxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:12:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,12 +65,12 @@
 #define ITEMID_BRUSH            0
 #define ITEMID_FIELD            0
 
-#include <svtools/intitem.hxx>
+// auto strip #include <svtools/intitem.hxx>
 
-#include <editeng.hxx>
-#include <editview.hxx>
-#include <editdata.hxx>
-#include <eerdll.hxx>
+// auto strip #include <editeng.hxx>
+// auto strip #include <editview.hxx>
+// auto strip #include <editdata.hxx>
+// auto strip #include <eerdll.hxx>
 
-#include <lrspitem.hxx>
-#include <fhgtitem.hxx>
+// auto strip #include <lrspitem.hxx>
+// auto strip #include <fhgtitem.hxx>
