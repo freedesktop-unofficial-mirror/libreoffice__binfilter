@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_attrlist.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:32:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:46:25 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #include <vector>
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
 #endif
