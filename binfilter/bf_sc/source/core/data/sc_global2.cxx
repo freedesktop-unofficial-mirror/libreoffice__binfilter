@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:31 $
+ *  last change: $Author: hjs $ $Date: 2004-06-28 12:31:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -908,37 +908,37 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 /*N*/ void ScConsolidateParam::Load( SvStream& rStream )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearDataAreas();
-//STRIP001
-//STRIP001  ScReadHeader aHdr( rStream );
-//STRIP001
-//STRIP001  BYTE nByte;
-//STRIP001  rStream >> nCol >> nRow >> nTab
-//STRIP001          >> bByCol >> bByRow >> bReferenceData >> nByte;
-//STRIP001  eFunction = (ScSubTotalFunc) nByte;
-//STRIP001
-//STRIP001  rStream >> nDataAreaCount;
-//STRIP001  if ( nDataAreaCount )
-//STRIP001  {
-//STRIP001      ppDataAreas = new ScArea*[nDataAreaCount];
-//STRIP001      for ( USHORT i=0; i<nDataAreaCount; i++ )
-//STRIP001      {
-//STRIP001          ppDataAreas[i] = new ScArea();
-//STRIP001          rStream >> *ppDataAreas[i];
-//STRIP001      }
-//STRIP001  }
+/*N#116571#*/   ClearDataAreas();
+/*N#116571#*/
+/*N#116571#*/   ScReadHeader aHdr( rStream );
+/*N#116571#*/
+/*N#116571#*/   BYTE nByte;
+/*N#116571#*/   rStream >> nCol >> nRow >> nTab
+/*N#116571#*/           >> bByCol >> bByRow >> bReferenceData >> nByte;
+/*N#116571#*/   eFunction = (ScSubTotalFunc) nByte;
+/*N#116571#*/
+/*N#116571#*/   rStream >> nDataAreaCount;
+/*N#116571#*/   if ( nDataAreaCount )
+/*N#116571#*/   {
+/*N#116571#*/       ppDataAreas = new ScArea*[nDataAreaCount];
+/*N#116571#*/       for ( USHORT i=0; i<nDataAreaCount; i++ )
+/*N#116571#*/       {
+/*N#116571#*/           ppDataAreas[i] = new ScArea();
+/*N#116571#*/           rStream >> *ppDataAreas[i];
+/*N#116571#*/       }
+/*N#116571#*/   }
 /*N*/ }
 
 /*N*/ void ScConsolidateParam::Store( SvStream& rStream ) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
-//STRIP001
-//STRIP001  rStream << nCol << nRow << nTab
-//STRIP001          << bByCol << bByRow << bReferenceData << (BYTE) eFunction;
-//STRIP001
-//STRIP001  rStream << nDataAreaCount;
-//STRIP001  for (USHORT i=0; i<nDataAreaCount; i++)
-//STRIP001      rStream << *ppDataAreas[i];
+/*N#116571#*/   ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
+/*N#116571#*/
+/*N#116571#*/   rStream << nCol << nRow << nTab
+/*N#116571#*/           << bByCol << bByRow << bReferenceData << (BYTE) eFunction;
+/*N#116571#*/
+/*N#116571#*/   rStream << nDataAreaCount;
+/*N#116571#*/   for (USHORT i=0; i<nDataAreaCount; i++)
+/*N#116571#*/       rStream << *ppDataAreas[i];
 /*N*/ }
 
 //------------------------------------------------------------------------
