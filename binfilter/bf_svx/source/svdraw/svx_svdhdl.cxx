@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdhdl.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:22:51 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,52 +59,52 @@
  *
  ************************************************************************/
 
-#include "svdhdl.hxx"
-#include "svdtouch.hxx"
-#include "svdpagv.hxx"
+// auto strip #include "svdhdl.hxx"
+// auto strip #include "svdtouch.hxx"
+// auto strip #include "svdpagv.hxx"
 #include "svdetc.hxx"
 #include "svdmrkv.hxx"
 
-#ifndef _WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
+// auto strip #ifndef _WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
 
-#ifndef _VIRDEV_HXX //autogen
-#include <vcl/virdev.hxx>
-#endif
+// auto strip #ifndef _VIRDEV_HXX //autogen
+// auto strip #include <vcl/virdev.hxx>
+// auto strip #endif
 
-#ifndef _TL_POLY_HXX
-#include <tools/poly.hxx>
-#endif
+// auto strip #ifndef _TL_POLY_HXX
+// auto strip #include <tools/poly.hxx>
+// auto strip #endif
 
-#ifndef _SV_BMPACC_HXX
-#include <vcl/bmpacc.hxx>
-#endif
+// auto strip #ifndef _SV_BMPACC_HXX
+// auto strip #include <vcl/bmpacc.hxx>
+// auto strip #endif
 
-#ifndef _B2D_MTRI_HXX
-#include <goodies/b2dmtri.hxx>
-#endif
+// auto strip #ifndef _B2D_MTRI_HXX
+// auto strip #include <goodies/b2dmtri.hxx>
+// auto strip #endif
 
-#ifndef _B3D_B3DCOLOR_HXX
-#include <goodies/b3dcolor.hxx>
-#endif
+// auto strip #ifndef _B3D_B3DCOLOR_HXX
+// auto strip #include <goodies/b3dcolor.hxx>
+// auto strip #endif
 
-#include "sxekitm.hxx"
-#include "sxesitm.hxx"
+// auto strip #include "sxekitm.hxx"
+// auto strip #include "sxesitm.hxx"
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
-#include "svdmodel.hxx"
-#include "gradtrns.hxx"
-#include "xflgrit.hxx"
-#include "svdundo.hxx"
-#include "dialmgr.hxx"
-#include "xflftrit.hxx"
+// auto strip #include "svdmodel.hxx"
+// auto strip #include "gradtrns.hxx"
+// auto strip #include "xflgrit.hxx"
+// auto strip #include "svdundo.hxx"
+// auto strip #include "dialmgr.hxx"
+// auto strip #include "xflftrit.hxx"
 
 // #105678#
-#ifndef _SVDOPATH_HXX
-#include "svdopath.hxx"
-#endif
+// auto strip #ifndef _SVDOPATH_HXX
+// auto strip #include "svdopath.hxx"
+// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
