@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen8.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:26:00 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 15:17:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -402,7 +402,7 @@ namespace binfilter {
 /*N*/       if ( pTab[i]->GetPageStyle() == rStyle )
 /*N*/       {
 /*N*/           bWasInUse = TRUE;
-/*N*/           pTab[i]->SetPageStyle( STR_STANDARD );
+/*N*/           pTab[i]->SetPageStyle( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) );
 /*N*/       }
 /*N*/
 /*N*/   return bWasInUse;

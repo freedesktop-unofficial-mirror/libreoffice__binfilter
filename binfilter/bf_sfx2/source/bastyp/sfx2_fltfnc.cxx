@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-18 09:25:17 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 15:16:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -525,7 +525,7 @@ public:
  */
 /*N*/ IMPL_CONTAINER_LOOP(
 /*N*/     GetFilter4Extension, const String&,
-/*N*/     pFilter->GetWildcard() != String() && pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != 0x002A &&
+/*N*/     pFilter->GetWildcard() != String() && pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != '*' &&
 /*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard()() ), ';' ) == ToUpper_Impl( aArg ))
 
 //STRIP001 IMPL_CONTAINER_LOOP(

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
+ *  last change: $Author: rt $ $Date: 2004-05-04 15:17:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -400,7 +400,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       if (nCol < 26)
-/*N*/           return String( 'A' + (sal_uChar) nCol ) ;
+/*N*/           return String( static_cast< sal_Unicode >('A' + (sal_uChar) nCol) ) ;
 /*N*/       else
 /*N*/       {
 /*N*/           String aString;
