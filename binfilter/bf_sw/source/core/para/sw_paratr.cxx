@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_paratr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:40:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,54 +62,59 @@
 
 #pragma hdrstop
 
-#include "hintids.hxx"
-#include <swtypes.hxx>
+// auto strip #include "hintids.hxx"
+// auto strip #include <swtypes.hxx>
 #include "unomid.h"
-#ifndef _COM_SUN_STAR_STYLE_LINESPACINGMODE_HPP_
-#include <com/sun/star/style/LineSpacingMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
-#include <com/sun/star/style/ParagraphAdjust.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACINGMODE_HPP_
+// auto strip #include <com/sun/star/style/LineSpacingMode.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
+// auto strip #include <com/sun/star/style/ParagraphAdjust.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_STYLE_DROPCAPFORMAT_HPP_
 #include <com/sun/star/style/DropCapFormat.hpp>
 #endif
-#ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
-#include <com/sun/star/style/LineSpacing.hpp>
+// auto strip #ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
+// auto strip #include <com/sun/star/style/LineSpacing.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_RELORIENTATION_HPP_
+// auto strip #include <com/sun/star/text/RelOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
+// auto strip #include <com/sun/star/text/VertOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
+// auto strip #include <com/sun/star/text/HorizontalAdjust.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
+// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
+// auto strip #include <com/sun/star/text/HoriOrientation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
+// auto strip #include <com/sun/star/text/HoriOrientationFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
+// auto strip #include <com/sun/star/text/NotePrintMode.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
+// auto strip #include <com/sun/star/text/SizeType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
+// auto strip #include <com/sun/star/text/VertOrientationFormat.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
+// auto strip #include <com/sun/star/text/WrapTextMode.hpp>
+// auto strip #endif
+
+#ifndef _CPPUHELPER_IMPLBASE4_HXX_
+#include <cppuhelper/implbase4.hxx>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_RELORIENTATION_HPP_
-#include <com/sun/star/text/RelOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
-#include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
-#include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-#include <com/sun/star/text/DocumentStatistic.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
-#include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
-#include <com/sun/star/text/HoriOrientationFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
-#include <com/sun/star/text/NotePrintMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
-#include <com/sun/star/text/SizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
-#include <com/sun/star/text/VertOrientationFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
-#include <com/sun/star/text/WrapTextMode.hpp>
-#endif
-#ifndef _UNOSTYLE_HXX
-#include <unostyle.hxx>
-#endif
+
+// auto strip #ifndef _UNOSTYLE_HXX
+// auto strip #include <unostyle.hxx>
+// auto strip #endif
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
 #endif
