@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbfld.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:17 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:25:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,18 +64,18 @@
 
 #include <float.h>
 
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
-#include <svtools/zforlist.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _ZFORLIST_HXX
+// auto strip #include <svtools/zforlist.hxx>
+// auto strip #endif
 #ifndef _SVX_PAGEITEM_HXX
 #include <bf_svx/pageitem.hxx>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
 #endif
@@ -86,21 +86,26 @@
 #ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _FRAME_HXX
-#include <frame.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _FRAME_HXX
+// auto strip #include <frame.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -113,12 +118,12 @@
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
-#ifndef _TXTATR_HXX
-#include <txtatr.hxx>
-#endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _TXTATR_HXX
+// auto strip #include <txtatr.hxx>
+// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
