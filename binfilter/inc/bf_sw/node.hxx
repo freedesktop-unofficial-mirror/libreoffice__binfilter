@@ -2,9 +2,9 @@
  *
  *  $RCSfile: node.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:01 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:41:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -497,7 +497,7 @@ public:
     //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
     //Dokument. Die erzeugten Contentframes werden in das entsprechende
     //Layout gehaengt.
-//STRIP001  void MakeFrms( const SwNodeIndex & rIdx );
+    void MakeFrms( const SwNodeIndex & rIdx );
 
     SwTableNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
      void SetNewTable( SwTable* , BOOL bNewFrames=TRUE );
@@ -544,7 +544,7 @@ public:
     //Methode erzeugt fuer den vorhergehenden Node alle Ansichten vom
     //Dokument. Die erzeugten Contentframes werden in das entsprechende
     //Layout gehaengt.
-//STRIP001  void MakeFrms( const SwNodeIndex & rIdx );
+    void MakeFrms( const SwNodeIndex & rIdx );
 
 //STRIP001  SwSectionNode* MakeCopy( SwDoc*, const SwNodeIndex& ) const;
 
@@ -553,7 +553,7 @@ public:
 
     // ueberprueft bei _nicht_ versteckten Bereichen, ob es Inhalt gibt, der
     // _nicht_ in einem versteckten (Unter-)Bereich liegt
-//STRIP001  BOOL IsCntntHidden() const;
+    BOOL IsCntntHidden() const;
 
 private:
     // privater Constructor, weil nie kopiert werden darf !!
