@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdlayer.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:39 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:23:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,14 +59,14 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-#include <com/sun/star/uno/Sequence.hxx>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
+// auto strip #include <com/sun/star/uno/Sequence.hxx>
+// auto strip #endif
 
 #include "svdlayer.hxx"
 #include "svdio.hxx"
 #include "svdmodel.hxx" // fuer Broadcasting
-#include "svdglob.hxx"  // StringCache
+// auto strip #include "svdglob.hxx"  // StringCache
 #include "svdstr.hrc"   // Namen aus der Resource
 namespace binfilter {
 
