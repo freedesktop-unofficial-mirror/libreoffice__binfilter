@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_documen5.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:05:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -77,7 +77,7 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/memchrt.hxx>
 #include <bf_sch/schdll0.hxx>
-#include <so3/ipobj.hxx>
+// auto strip #include <so3/ipobj.hxx>
 
 #ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
 #define SO2_DECL_SVINPLACEOBJECT_DEFINED
@@ -89,9 +89,9 @@ SO2_DECL_REF(SvInPlaceObject)
 #include "chartarr.hxx"
 #include "chartlis.hxx"
 #include "refupdat.hxx"
-#ifndef _GLOBNAME_HXX
-#include <tools/globname.hxx>
-#endif
+// auto strip #ifndef _GLOBNAME_HXX
+// auto strip #include <tools/globname.hxx>
+// auto strip #endif
 namespace binfilter {
 
 // -----------------------------------------------------------------------
