@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fntcache.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:00:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,12 +62,12 @@
 
 #pragma hdrstop
 
-#ifndef _OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _PRINT_HXX //autogen
-#include <vcl/print.hxx>
-#endif
+// auto strip #ifndef _OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _PRINT_HXX //autogen
+// auto strip #include <vcl/print.hxx>
+// auto strip #endif
 #ifndef _METRIC_HXX //autogen
 #include <vcl/metric.hxx>
 #endif
@@ -95,19 +95,24 @@
 #ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _SWFONT_HXX
 #include <swfont.hxx>       // CH_BLANK + CH_BULLET
 #endif
-#ifndef _WRONG_HXX
-#include <wrong.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
-#include <drawfont.hxx>     // SwDrawTextInfo
-#endif
-#include "dbg_lay.hxx"
+// auto strip #ifndef _WRONG_HXX
+// auto strip #include <wrong.hxx>
+// auto strip #endif
+// auto strip #ifndef _DRAWFONT_HXX
+// auto strip #include <drawfont.hxx>       // SwDrawTextInfo
+// auto strip #endif
+// auto strip #include "dbg_lay.hxx"
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
 #endif
@@ -120,27 +125,27 @@
 #ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
 #endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
-#ifndef _SWMODULE_HXX
-#include <swmodule.hxx>
-#endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
-#include <accessibilityoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
-#include <svtools/accessibilityoptions.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWMODULE_HXX
+// auto strip #include <swmodule.hxx>
+// auto strip #endif
+// auto strip #ifndef _ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <accessibilityoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef INCLUDED_SVTOOLS_ACCESSIBILITYOPTIONS_HXX
+// auto strip #include <svtools/accessibilityoptions.hxx>
+// auto strip #endif
 
 // Enable this to use the helpclass SwRVPMark
 #if OSL_DEBUG_LEVEL > 1
-#ifndef _RVP_MARK_HXX
-#include <rvp_mark.hxx>
-#endif
+// auto strip #ifndef _RVP_MARK_HXX
+// auto strip #include <rvp_mark.hxx>
+// auto strip #endif
 #endif
 namespace binfilter {
 
