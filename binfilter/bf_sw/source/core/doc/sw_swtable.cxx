@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtable.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:53 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:13:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -76,59 +76,67 @@
 #include <hints.hxx>    // fuer SwAttrSetChg
 #endif
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
-#include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
-#include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SHADITEM_HXX //autogen
+// auto strip #include <bf_svx/shaditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ADJITEM_HXX //autogen
+// auto strip #include <bf_svx/adjitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
 
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTPDSC_HXX //autogen
-#include <fmtpdsc.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTPDSC_HXX //autogen
+// auto strip #include <fmtpdsc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>   // fuer RedlineTbl()
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>     // fuer RedlineTbl()
+// auto strip #endif
 #ifndef _FRAME_HXX
 #include <frame.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _TABCOL_HXX
-#include <tabcol.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
+// auto strip #ifndef _TABCOL_HXX
+// auto strip #include <tabcol.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
 #ifndef _CELLFRM_HXX
 #include <cellfrm.hxx>
 #endif
@@ -138,9 +146,9 @@
 #ifndef _SWSERV_HXX
 #include <swserv.hxx>
 #endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>
-#endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>
+// auto strip #endif
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
@@ -156,18 +164,18 @@
 #ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
 #endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
 #ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
 #endif
-#ifndef _SHELLRES_HXX
-#include <shellres.hxx>
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
+// auto strip #ifndef _SHELLRES_HXX
+// auto strip #include <shellres.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
