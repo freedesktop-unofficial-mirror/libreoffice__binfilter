@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw3io.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:34:08 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -100,12 +100,12 @@ public:
     void  SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite=TRUE );
 //STRIP001  void  SetSw31Export( BOOL b31 );
 
-//STRIP001  SvStorage* GetStorage();
+     SvStorage* GetStorage();
     void  HandsOff();
     BOOL  SaveCompleted( SvStorage* );
 
 //STRIP001  ULONG LoadStyles( SvStorage* );
-//STRIP001  ULONG SaveStyles();
+     ULONG SaveStyles();
     // Erzeugen eines eindeutigen Streamnamens im gegebenen Storage
     static UniString UniqueName( SvStorage*, const sal_Char* pPrefix );
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdsob.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:28:59 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -107,7 +107,7 @@ public:
     friend inline SvStream& operator<<(SvStream& rOut, const SetOfByte& rSet);
     friend inline SvStream& operator>>(SvStream& rIn, SetOfByte& rSet);
 
-//STRIP001  void    PutValue( const ::com::sun::star::uno::Any & rAny );        // initialize this set with a uno sequence of sal_Int8
+     void   PutValue( const ::com::sun::star::uno::Any & rAny );        // initialize this set with a uno sequence of sal_Int8
     void    QueryValue( ::com::sun::star::uno::Any & rAny ) const;  // returns a uno sequence of sal_Int8
 };
 

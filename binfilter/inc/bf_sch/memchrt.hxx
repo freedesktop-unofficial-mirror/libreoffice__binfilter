@@ -2,9 +2,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:29 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -240,13 +240,13 @@ protected :
     SchChartRange maChartRange;
 
     ::rtl::OUStringBuffer getXMLStringForCellAddress( const SchCellAddress& rCell );
-//STRIP001     void getSingleCellAddressFromXMLString( const ::rtl::OUString& rXMLString,
-//STRIP001                                             sal_Int32 nStartPos, sal_Int32 nEndPos,
-//STRIP001                                             SchSingleCell& rSingleCell );
-//STRIP001     bool getCellAddressFromXMLString( const ::rtl::OUString& rXMLString,
-//STRIP001                                       sal_Int32 nStartPos, sal_Int32 nEndPos,
-//STRIP001                                       SchCellAddress& rOutCell,
-//STRIP001                                       ::rtl::OUString& rOutTableName );
+     void getSingleCellAddressFromXMLString( const ::rtl::OUString& rXMLString,
+                                             sal_Int32 nStartPos, sal_Int32 nEndPos,
+                                             SchSingleCell& rSingleCell );
+     bool getCellAddressFromXMLString( const ::rtl::OUString& rXMLString,
+                                      sal_Int32 nStartPos, sal_Int32 nEndPos,
+                                      SchCellAddress& rOutCell,
+                                      ::rtl::OUString& rOutTableName );
     bool getCellRangeAddressFromXMLString( const ::rtl::OUString& rXMLString,
                                            sal_Int32 nStartPos, sal_Int32 nEndPos,
                                            SchCellRangeAddress& rOutRange );
@@ -486,7 +486,7 @@ public:
     void ConvertChartRangeForWriter( BOOL bOldToNew = TRUE );
 
     /// convert SomeData string(s) to SchChartRange and vice versa for Calc
-//STRIP001     void ConvertChartRangeForCalc( BOOL bOldToNew = FALSE );
+    void ConvertChartRangeForCalc( BOOL bOldToNew = FALSE );
 
     ::rtl::OUString getXMLStringForChartRange();
     void getChartRangeForXMLString( const ::rtl::OUString& rXMLString );

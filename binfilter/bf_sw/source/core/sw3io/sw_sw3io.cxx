@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:50:52 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -331,12 +331,12 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 SvStorage* Sw3Io::GetStorage()
-//STRIP001 {
-//STRIP001  if( !pImp->pRoot.Is() )
-//STRIP001      pImp->pRoot = pImp->pDoc->GetPersist()->GetStorage();
-//STRIP001  return &pImp->pRoot;
-//STRIP001 }
+/*N*/  SvStorage* Sw3Io::GetStorage()
+/*N*/  {
+/*N*/   if( !pImp->pRoot.Is() )
+/*N*/       pImp->pRoot = pImp->pDoc->GetPersist()->GetStorage();
+/*N*/   return &pImp->pRoot;
+/*N*/  }
 
 
 //STRIP001 void Sw3Io::SetDoc( SwDoc& r )
@@ -394,40 +394,40 @@ namespace binfilter {
 //STRIP001 }
 
 
-//STRIP001 ULONG Sw3Io::SaveStyles()
-//STRIP001 {
-//STRIP001  BOOL bGood = pImp->OpenStreams( TRUE, FALSE );
-//STRIP001  ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
-//STRIP001  if( !bGood )
-//STRIP001      return pImp->nRes = ERR_SWG_WRITE_ERROR;
-//STRIP001
-//STRIP001  pImp->bOrganizer = TRUE;
-//STRIP001
-//STRIP001  // Nur Bookmarks aus Seiten-Vorlagen sammeln
-//STRIP001  pImp->CollectMarks( NULL, TRUE );
-//STRIP001  if( !pImp->IsSw31Or40Export() )
-//STRIP001      pImp->CollectRedlines( NULL, TRUE );
-//STRIP001  else
-//STRIP001      pImp->CollectTblLineBoxFmts40();
-//STRIP001
-//STRIP001  // Stringpool fuellen, Namen im Doc erweitern
-//STRIP001  pImp->aStringPool.Setup( *pImp->pDoc, pImp->pRoot->GetVersion(),
-//STRIP001                           pImp->pExportInfo );
-//STRIP001  pImp->SaveStyleSheets( FALSE );
-//STRIP001  // Temporaere Namenserweiterungen entfernen
-//STRIP001  pImp->aStringPool.RemoveExtensions( *pImp->pDoc );
-//STRIP001  pImp->SaveNumRules( FALSE );
-//STRIP001  pImp->SavePageStyles();
-//STRIP001  pImp->CloseStreams();
-//STRIP001
-//STRIP001  pImp->bOrganizer = FALSE;
-//STRIP001
-//STRIP001  if( pImp->nRes )
-//STRIP001      pImp->nRes |= ERRCODE_CLASS_WRITE;
-//STRIP001  else if( pImp->nWarn )
-//STRIP001      pImp->nRes = pImp->nWarn | ERRCODE_CLASS_WRITE;
-//STRIP001  return pImp->nRes;
-//STRIP001 }
+/*N*/  ULONG Sw3Io::SaveStyles()
+/*N*/  {
+/*N*/   BOOL bGood = pImp->OpenStreams( TRUE, FALSE );
+/*N*/   ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
+/*N*/   if( !bGood )
+/*N*/       return pImp->nRes = ERR_SWG_WRITE_ERROR;
+/*N*/
+/*N*/   pImp->bOrganizer = TRUE;
+/*N*/
+/*N*/   // Nur Bookmarks aus Seiten-Vorlagen sammeln
+/*N*/   pImp->CollectMarks( NULL, TRUE );
+/*N*/   if( !pImp->IsSw31Or40Export() )
+/*N*/       pImp->CollectRedlines( NULL, TRUE );
+/*N*/   else
+/*N*/       pImp->CollectTblLineBoxFmts40();
+/*N*/
+/*N*/   // Stringpool fuellen, Namen im Doc erweitern
+/*N*/   pImp->aStringPool.Setup( *pImp->pDoc, pImp->pRoot->GetVersion(),
+/*N*/                            pImp->pExportInfo );
+/*N*/   pImp->SaveStyleSheets( FALSE );
+/*N*/   // Temporaere Namenserweiterungen entfernen
+/*N*/   pImp->aStringPool.RemoveExtensions( *pImp->pDoc );
+/*N*/   pImp->SaveNumRules( FALSE );
+/*N*/   pImp->SavePageStyles();
+/*N*/   pImp->CloseStreams();
+/*N*/
+/*N*/   pImp->bOrganizer = FALSE;
+/*N*/
+/*N*/   if( pImp->nRes )
+/*N*/       pImp->nRes |= ERRCODE_CLASS_WRITE;
+/*N*/   else if( pImp->nWarn )
+/*N*/       pImp->nRes = pImp->nWarn | ERRCODE_CLASS_WRITE;
+/*N*/   return pImp->nRes;
+/*N*/  }
 
 // Erzeugen eines eindeutigen Stream-Namens in einem Storage
 

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swdtflvr.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:54:20 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -518,15 +518,15 @@ using namespace ::com::sun::star::datatransfer;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 void SwTransferable::InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc )
-//STRIP001 {
-//STRIP001  //OleVisArea einstellen. Linke obere Ecke der Seite und Groesse
-//STRIP001  //der RealSize in Twips.
-//STRIP001  const Size aSz( OLESIZE );
-//STRIP001  SwRect aVis( Point( DOCUMENTBORDER, DOCUMENTBORDER ), aSz );
-//STRIP001  rRef->SetVisArea( aVis.SVRect() );
-//STRIP001  rDoc.SetBrowseMode( TRUE );
-//STRIP001 }
+/*N*/  void SwTransferable::InitOle( SvEmbeddedObjectRef rRef, SwDoc& rDoc )
+/*N*/  {
+/*N*/   //OleVisArea einstellen. Linke obere Ecke der Seite und Groesse
+/*N*/   //der RealSize in Twips.
+/*N*/   const Size aSz( OLESIZE );
+/*N*/   SwRect aVis( Point( DOCUMENTBORDER, DOCUMENTBORDER ), aSz );
+/*N*/   rRef->SetVisArea( aVis.SVRect() );
+/*N*/   rDoc.SetBrowseMode( TRUE );
+/*N*/  }
 
 // -----------------------------------------------------------------------
 

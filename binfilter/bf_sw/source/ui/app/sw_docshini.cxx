@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshini.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:56 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -307,9 +307,9 @@ using namespace ::rtl;
 */
 /*N*/       if ( GetCreateMode() ==  SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-DBG_ASSERT(0, "STRIP"); //STRIP001          // fuer MWERKS (Mac-Compiler): kann nicht selbststaendig casten
-//STRIP001 /*?*/            SvEmbeddedObject* pObj = this;
-//STRIP001 /*?*/            SwTransferable::InitOle( pObj, *pDoc );
+            // fuer MWERKS (Mac-Compiler): kann nicht selbststaendig casten
+/*?*/           SvEmbeddedObject* pObj = this;
+/*?*/           SwTransferable::InitOle( pObj, *pDoc );
 /*N*/       }
         // set forbidden characters if necessary
 /*N*/         SvxAsianConfig aAsian;

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docsh.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:53 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:56 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -519,102 +519,102 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 /*?*/ BOOL SwDocShell::Save()
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::Save" );
-//STRIP001 /*?*/    sal_Bool bXML = pIo->GetStorage()->GetVersion() >= SOFFICE_FILEFORMAT_60;
+/*?*/    RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::Save" );
+ /*?*/  sal_Bool bXML = pIo->GetStorage()->GetVersion() >= SOFFICE_FILEFORMAT_60;
     //#i3370# remove quick help to prevent saving of autocorrection suggestions
-//STRIP001 /*?*/     if(pView)
-//STRIP001 /*?*/         pView->GetEditWin().StopQuickHelp();
-//STRIP001 /*?*/     SwWait aWait( *this, TRUE );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    CalcLayoutForOLEObjects();  // format for OLE objets
-//STRIP001
-//STRIP001 /*?*/    ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
-//STRIP001 /*?*/    if( SfxInPlaceObject::Save() )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        switch( GetCreateMode() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/        case SFX_CREATE_MODE_INTERNAL:
-//STRIP001 /*?*/            nErr = 0;
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        case SFX_CREATE_MODE_ORGANIZER:
-//STRIP001 /*?*/            if( bXML )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                WriterRef xWrt;
-//STRIP001 /*?*/                ::GetXMLWriter( aEmptyStr, xWrt );
-//STRIP001 /*?*/                xWrt->SetOrganizerMode( TRUE );
-//STRIP001 /*?*/                SwWriter aWrt( *pIo->GetStorage(), *pDoc );
-//STRIP001 /*?*/                nErr = aWrt.Write( xWrt );
-//STRIP001 /*?*/                xWrt->SetOrganizerMode( FALSE );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                nErr = pIo->SaveStyles();
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        case SFX_CREATE_MODE_EMBEDDED:
-//STRIP001 /*?*/            // SfxProgress unterdruecken, wenn man Embedded ist
-//STRIP001 /*?*/            SW_MOD()->SetEmbeddedLoadSave( TRUE );
-//STRIP001 /*?*/            // kein break;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        case SFX_CREATE_MODE_STANDARD:
-//STRIP001 /*?*/        case SFX_CREATE_MODE_PREVIEW:
-//STRIP001 /*?*/        default:
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                if( pDoc->ContainsMSVBasic() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
-//STRIP001 /*?*/                    aTmp.SaveOrDelMSVBAStorage( FALSE, aEmptyStr );
-//STRIP001 /*?*/                    if( OFF_APP()->GetFilterOptions()->IsLoadWordBasicStorage() )
-//STRIP001 /*?*/                        nVBWarning = SvxImportMSVBasic::
-//STRIP001 /*?*/                                        GetSaveWarningOfMSVBAStorage( *this );
-//STRIP001 /*?*/                    pDoc->SetContainsMSVBasic( FALSE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                if( !bXML &&
-//STRIP001 /*?*/                    !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&
-//STRIP001 /*?*/                    SFX_CREATE_MODE_EMBEDDED != GetCreateMode() )
-//STRIP001 /*?*/                    AddXMLAsZipToTheStorage( *pIo->GetStorage() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                // TabellenBox Edit beenden!
-//STRIP001 /*?*/                if( pWrtShell )
-//STRIP001 /*?*/                    pWrtShell->EndAllTblBoxEdit();
-//STRIP001 /*?*/
-//STRIP001 /*?*/                WriterRef xWrt;
-//STRIP001 /*?*/                if( bXML )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ::GetXMLWriter( aEmptyStr, xWrt );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    ::GetSw3Writer( aEmptyStr, xWrt );
-//STRIP001 /*?*/                    ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, FALSE );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 BOOL bLockedView;
-//STRIP001 /*?*/                 if ( pWrtShell )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     bLockedView = pWrtShell->IsViewLocked();
-//STRIP001 /*?*/                     pWrtShell->LockView( TRUE );    //lock visible section
-//STRIP001 /*?*/                 }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                SwWriter aWrt( *pIo->GetStorage(), *pDoc );
-//STRIP001 /*?*/                nErr = aWrt.Write( xWrt );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 if ( pWrtShell )
-//STRIP001 /*?*/                     pWrtShell->LockView( bLockedView );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            break;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        SW_MOD()->SetEmbeddedLoadSave( FALSE );
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    SetError( nErr ? nErr : nVBWarning );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SfxViewFrame* pFrm = pWrtShell ? pWrtShell->GetView().GetViewFrame() : 0;
-//STRIP001 /*?*/    if( pFrm )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pFrm->GetBindings().SetState( SfxStringItem( SID_DOC_MODIFIED, ' ' ));
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    return !IsError( nErr );
+ /*?*/     if(pView)
+ /*?*/         pView->GetEditWin().StopQuickHelp();
+ /*?*/     SwWait aWait( *this, TRUE );
+ /*?*/
+ /*?*/  CalcLayoutForOLEObjects();  // format for OLE objets
+
+ /*?*/  ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
+ /*?*/  if( SfxInPlaceObject::Save() )
+ /*?*/  {
+ /*?*/      switch( GetCreateMode() )
+ /*?*/      {
+ /*?*/      case SFX_CREATE_MODE_INTERNAL:
+ /*?*/          nErr = 0;
+ /*?*/          break;
+ /*?*/
+ /*?*/      case SFX_CREATE_MODE_ORGANIZER:
+ /*?*/          if( bXML )
+ /*?*/          {
+ /*?*/              WriterRef xWrt;
+/*?*/               ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
+ /*?*/              xWrt->SetOrganizerMode( TRUE );
+ /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
+ /*?*/              nErr = aWrt.Write( xWrt );
+ /*?*/              xWrt->SetOrganizerMode( FALSE );
+ /*?*/          }
+ /*?*/          else
+ /*?*/              nErr = pIo->SaveStyles();
+ /*?*/          break;
+ /*?*/
+ /*?*/      case SFX_CREATE_MODE_EMBEDDED:
+ /*?*/          // SfxProgress unterdruecken, wenn man Embedded ist
+ /*?*/          SW_MOD()->SetEmbeddedLoadSave( TRUE );
+ /*?*/          // kein break;
+ /*?*/
+ /*?*/      case SFX_CREATE_MODE_STANDARD:
+ /*?*/      case SFX_CREATE_MODE_PREVIEW:
+ /*?*/      default:
+ /*?*/          {
+ /*?*/              if( pDoc->ContainsMSVBasic() )
+ /*?*/              {DBG_ASSERT(0, "STRIP");//STRIP001
+//STRIP001  /*?*/                   SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
+//STRIP001  /*?*/                   aTmp.SaveOrDelMSVBAStorage( FALSE, aEmptyStr );
+//STRIP001  /*?*/                   if( OFF_APP()->GetFilterOptions()->IsLoadWordBasicStorage() )
+//STRIP001  /*?*/                       nVBWarning = SvxImportMSVBasic::
+//STRIP001  /*?*/                                       GetSaveWarningOfMSVBAStorage( *this );
+//STRIP001  /*?*/                   pDoc->SetContainsMSVBasic( FALSE );
+ /*?*/              }
+ /*?*/
+ /*?*/              if( !bXML &&
+ /*?*/                  !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&
+ /*?*/                  SFX_CREATE_MODE_EMBEDDED != GetCreateMode() )
+ /*?*/                  AddXMLAsZipToTheStorage( *pIo->GetStorage() );
+ /*?*/
+ /*?*/              // TabellenBox Edit beenden!
+ /*?*/              if( pWrtShell )
+ /*?*/                  pWrtShell->EndAllTblBoxEdit();
+ /*?*/
+ /*?*/              WriterRef xWrt;
+ /*?*/              if( bXML )
+ /*?*/              {
+/*?*/                   ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
+ /*?*/              }
+ /*?*/              else
+ /*?*/              {
+/*?*/                   ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
+ /*?*/                  ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, FALSE );
+ /*?*/              }
+ /*?*/
+ /*?*/                 BOOL bLockedView;
+ /*?*/                 if ( pWrtShell )
+ /*?*/                 {
+ /*?*/                     bLockedView = pWrtShell->IsViewLocked();
+ /*?*/                     pWrtShell->LockView( TRUE );    //lock visible section
+ /*?*/                 }
+ /*?*/
+ /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
+ /*?*/              nErr = aWrt.Write( xWrt );
+ /*?*/
+ /*?*/                 if ( pWrtShell )
+ /*?*/                     pWrtShell->LockView( bLockedView );
+ /*?*/          }
+ /*?*/          break;
+ /*?*/      }
+ /*?*/      SW_MOD()->SetEmbeddedLoadSave( FALSE );
+ /*?*/  }
+ /*?*/  SetError( nErr ? nErr : nVBWarning );
+ /*?*/
+ /*?*/  SfxViewFrame* pFrm = pWrtShell ? pWrtShell->GetView().GetViewFrame() : 0;
+ /*?*/  if( pFrm )
+ /*?*/  {
+ /*?*/      pFrm->GetBindings().SetState( SfxStringItem( SID_DOC_MODIFIED, ' ' ));
+ /*?*/  }
+ /*?*/  return !IsError( nErr );
 /*?*/ }
 
 /*--------------------------------------------------------------------

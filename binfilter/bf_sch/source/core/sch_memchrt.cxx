@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:32:27 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -101,44 +101,44 @@ namespace binfilter {
     array (which you can get from an OUString with getStr()) and puts the result
     into the OUStringBuffer given in the CTOR
  */
-//STRIP001 class lcl_Escape : public ::std::unary_function< sal_Unicode, void >
-//STRIP001 {
-//STRIP001 public:
-//STRIP001     lcl_Escape( ::rtl::OUStringBuffer & aResultBuffer ) : m_aResultBuffer( aResultBuffer ) {}
-//STRIP001     void operator() ( sal_Unicode aChar )
-//STRIP001     {
-//STRIP001         static const sal_Unicode m_aQuote( '\'' );
-//STRIP001         static const sal_Unicode m_aBackslash( '\\' );
-//STRIP001
-//STRIP001         if( aChar == m_aQuote ||
-//STRIP001             aChar == m_aBackslash )
-//STRIP001             m_aResultBuffer.append( m_aBackslash );
-//STRIP001         m_aResultBuffer.append( aChar );
-//STRIP001     }
-//STRIP001
-//STRIP001 private:
-//STRIP001     ::rtl::OUStringBuffer & m_aResultBuffer;
-//STRIP001 };
+/*N*/  class lcl_Escape : public ::std::unary_function< sal_Unicode, void >
+/*N*/  {
+/*N*/  public:
+/*N*/      lcl_Escape( ::rtl::OUStringBuffer & aResultBuffer ) : m_aResultBuffer( aResultBuffer ) {}
+/*N*/      void operator() ( sal_Unicode aChar )
+/*N*/      {
+/*N*/          static const sal_Unicode m_aQuote( '\'' );
+/*N*/          static const sal_Unicode m_aBackslash( '\\' );
+/*N*/
+/*N*/          if( aChar == m_aQuote ||
+/*N*/              aChar == m_aBackslash )
+/*N*/              m_aResultBuffer.append( m_aBackslash );
+/*N*/          m_aResultBuffer.append( aChar );
+/*N*/      }
+/*N*/
+/*N*/  private:
+/*N*/      ::rtl::OUStringBuffer & m_aResultBuffer;
+/*N*/  };
 
 /** unary function that removes backslash escapes in a sal_Unicode array (which
     you can get from an OUString with getStr()) and puts the result into the
     OUStringBuffer given in the CTOR
  */
-//STRIP001 class lcl_UnEscape : public ::std::unary_function< sal_Unicode, void >
-//STRIP001 {
-//STRIP001 public:
-//STRIP001     lcl_UnEscape( ::rtl::OUStringBuffer & aResultBuffer ) : m_aResultBuffer( aResultBuffer ) {}
-//STRIP001     void operator() ( sal_Unicode aChar )
-//STRIP001     {
-//STRIP001         static const sal_Unicode m_aBackslash( '\\' );
-//STRIP001
-//STRIP001         if( aChar != m_aBackslash )
-//STRIP001             m_aResultBuffer.append( aChar );
-//STRIP001     }
-//STRIP001
-//STRIP001 private:
-//STRIP001     ::rtl::OUStringBuffer & m_aResultBuffer;
-//STRIP001 };
+/*N*/  class lcl_UnEscape : public ::std::unary_function< sal_Unicode, void >
+/*N*/  {
+/*N*/  public:
+/*N*/      lcl_UnEscape( ::rtl::OUStringBuffer & aResultBuffer ) : m_aResultBuffer( aResultBuffer ) {}
+/*N*/      void operator() ( sal_Unicode aChar )
+/*N*/      {
+/*N*/          static const sal_Unicode m_aBackslash( '\\' );
+/*N*/
+/*N*/          if( aChar != m_aBackslash )
+/*N*/              m_aResultBuffer.append( aChar );
+/*N*/      }
+/*N*/
+/*N*/  private:
+/*N*/      ::rtl::OUStringBuffer & m_aResultBuffer;
+/*N*/  };
 
 
 
@@ -1057,179 +1057,179 @@ using namespace ::com::sun::star;
 /*N*/     return aBuffer;
 /*N*/ }
 
-//STRIP001 void SchMemChart::getSingleCellAddressFromXMLString(
-//STRIP001     const ::rtl::OUString& rXMLString,
-//STRIP001     sal_Int32 nStartPos, sal_Int32 nEndPos,
-//STRIP001     SchSingleCell& rSingleCell )
-//STRIP001 {
-//STRIP001     // expect "\$?[a-zA-Z]+\$?[1-9][0-9]*"
-//STRIP001     static const sal_Unicode aDollar( '$' );
-//STRIP001     static const sal_Unicode aLetterA( 'A' );
-//STRIP001
-//STRIP001     ::rtl::OUString aCellStr = rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ).toAsciiUpperCase();
-//STRIP001     const sal_Unicode* pStrArray = aCellStr.getStr();
-//STRIP001     sal_Int32 nLength = aCellStr.getLength();
-//STRIP001     sal_Int32 i = nLength - 1, nColumn = 0;
-//STRIP001
-//STRIP001     // parse number for row
-//STRIP001     while( CharClass::isAsciiDigit( pStrArray[ i ] ) && i >= 0 )
-//STRIP001         i--;
-//STRIP001     rSingleCell.mnRow = (aCellStr.copy( i + 1 )).toInt32() - 1;
-//STRIP001     // a dollar in XML means absolute (whereas in UI it means relative)
-//STRIP001     if( pStrArray[ i ] == aDollar )
-//STRIP001     {
-//STRIP001         i--;
-//STRIP001         rSingleCell.mbRelativeRow = sal_False;
-//STRIP001     }
-//STRIP001     else
-//STRIP001         rSingleCell.mbRelativeRow = sal_True;
-//STRIP001
-//STRIP001     // parse rest for column
-//STRIP001     sal_Int32 nPower = 1;
-//STRIP001     while( CharClass::isAsciiAlpha( pStrArray[ i ] ))
-//STRIP001     {
-//STRIP001         nColumn += (pStrArray[ i ] - aLetterA + 1) * nPower;
-//STRIP001         i--;
-//STRIP001         nPower *= 26;
-//STRIP001     }
-//STRIP001     rSingleCell.mnColumn = nColumn - 1;
-//STRIP001
-//STRIP001     rSingleCell.mbRelativeColumn = sal_True;
-//STRIP001     if( i >= 0 &&
-//STRIP001         pStrArray[ i ] == aDollar )
-//STRIP001         rSingleCell.mbRelativeColumn = sal_False;
-//STRIP001 }
+/*N*/  void SchMemChart::getSingleCellAddressFromXMLString(
+/*N*/      const ::rtl::OUString& rXMLString,
+/*N*/      sal_Int32 nStartPos, sal_Int32 nEndPos,
+/*N*/      SchSingleCell& rSingleCell )
+/*N*/  {
+/*N*/      // expect "\$?[a-zA-Z]+\$?[1-9][0-9]*"
+/*N*/      static const sal_Unicode aDollar( '$' );
+/*N*/      static const sal_Unicode aLetterA( 'A' );
+/*N*/
+/*N*/      ::rtl::OUString aCellStr = rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ).toAsciiUpperCase();
+/*N*/      const sal_Unicode* pStrArray = aCellStr.getStr();
+/*N*/      sal_Int32 nLength = aCellStr.getLength();
+/*N*/      sal_Int32 i = nLength - 1, nColumn = 0;
+/*N*/
+/*N*/      // parse number for row
+/*N*/      while( CharClass::isAsciiDigit( pStrArray[ i ] ) && i >= 0 )
+/*N*/          i--;
+/*N*/      rSingleCell.mnRow = (aCellStr.copy( i + 1 )).toInt32() - 1;
+/*N*/      // a dollar in XML means absolute (whereas in UI it means relative)
+/*N*/      if( pStrArray[ i ] == aDollar )
+/*N*/      {
+/*N*/          i--;
+/*N*/          rSingleCell.mbRelativeRow = sal_False;
+/*N*/      }
+/*N*/      else
+/*N*/          rSingleCell.mbRelativeRow = sal_True;
+/*N*/
+/*N*/      // parse rest for column
+/*N*/      sal_Int32 nPower = 1;
+/*N*/      while( CharClass::isAsciiAlpha( pStrArray[ i ] ))
+/*N*/      {
+/*N*/          nColumn += (pStrArray[ i ] - aLetterA + 1) * nPower;
+/*N*/          i--;
+/*N*/          nPower *= 26;
+/*N*/      }
+/*N*/      rSingleCell.mnColumn = nColumn - 1;
+/*N*/
+/*N*/      rSingleCell.mbRelativeColumn = sal_True;
+/*N*/      if( i >= 0 &&
+/*N*/          pStrArray[ i ] == aDollar )
+/*N*/          rSingleCell.mbRelativeColumn = sal_False;
+/*N*/  }
 
-//STRIP001 bool SchMemChart::getCellAddressFromXMLString(
-//STRIP001     const ::rtl::OUString& rXMLString,
-//STRIP001     sal_Int32 nStartPos, sal_Int32 nEndPos,
-//STRIP001     SchCellAddress& rOutCell,
-//STRIP001     ::rtl::OUString& rOutTableName )
-//STRIP001 {
-//STRIP001     static const sal_Unicode aDot( '.' );
-//STRIP001     static const sal_Unicode aQuote( '\'' );
-//STRIP001     static const sal_Unicode aBackslash( '\\' );
-//STRIP001
-//STRIP001     sal_Int32 nNextDelimiterPos = nStartPos;
-//STRIP001
-//STRIP001     sal_Int32 nDelimiterPos = nStartPos;
-//STRIP001     bool bInQuotation = false;
-//STRIP001     // parse table name
-//STRIP001     while( nDelimiterPos < nEndPos &&
-//STRIP001            ( bInQuotation || rXMLString[ nDelimiterPos ] != aDot ))
-//STRIP001     {
-//STRIP001         // skip escaped characters (with backslash)
-//STRIP001         if( rXMLString[ nDelimiterPos ] == aBackslash )
-//STRIP001             ++nDelimiterPos;
-//STRIP001         // toggle quotation mode when finding single quotes
-//STRIP001         else if( rXMLString[ nDelimiterPos ] == aQuote )
-//STRIP001             bInQuotation = ! bInQuotation;
-//STRIP001
-//STRIP001         ++nDelimiterPos;
-//STRIP001     }
-//STRIP001
-//STRIP001     if( nDelimiterPos == -1 ||
-//STRIP001         nDelimiterPos >= nEndPos )
-//STRIP001     {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001         String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
-//STRIP001         ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
-//STRIP001         DBG_ERROR1( "Invalid Cell Address <%s> found in XML file", aBstr.GetBuffer());
-//STRIP001 #endif
-//STRIP001         return false;
-//STRIP001     }
-//STRIP001     if( nDelimiterPos > nStartPos )
-//STRIP001     {
-//STRIP001         // there is a table name before the address
-//STRIP001
-//STRIP001         ::rtl::OUStringBuffer aTableNameBuffer;
-//STRIP001         const sal_Unicode * pTableName = rXMLString.getStr();
-//STRIP001
-//STRIP001         // remove escapes from table name
-//STRIP001         ::std::for_each( pTableName + nStartPos,
-//STRIP001                          pTableName + nDelimiterPos,
-//STRIP001                          lcl_UnEscape( aTableNameBuffer ));
-//STRIP001
-//STRIP001         // unquote quoted table name
-//STRIP001         const sal_Unicode * pBuf = aTableNameBuffer.getStr();
-//STRIP001         if( pBuf[ 0 ] == aQuote &&
-//STRIP001             pBuf[ aTableNameBuffer.getLength() - 1 ] == aQuote )
-//STRIP001         {
-//STRIP001             ::rtl::OUString aName = aTableNameBuffer.makeStringAndClear();
-//STRIP001             rOutTableName = aName.copy( 1, aName.getLength() - 2 );
-//STRIP001         }
-//STRIP001         else
-//STRIP001             rOutTableName = aTableNameBuffer.makeStringAndClear();
-//STRIP001     }
-//STRIP001
-//STRIP001     for( sal_Int32 i = 0;
-//STRIP001          nNextDelimiterPos < nEndPos;
-//STRIP001          nDelimiterPos = nNextDelimiterPos, i++ )
-//STRIP001     {
-//STRIP001         nNextDelimiterPos = rXMLString.indexOf( aDot, nDelimiterPos + 1 );
-//STRIP001         if( nNextDelimiterPos == -1 ||
-//STRIP001             nNextDelimiterPos > nEndPos )
-//STRIP001             nNextDelimiterPos = nEndPos + 1;
-//STRIP001
-//STRIP001         rOutCell.maCells.resize( i + 1 );
-//STRIP001         getSingleCellAddressFromXMLString( rXMLString,
-//STRIP001                                            nDelimiterPos + 1, nNextDelimiterPos - 1,
-//STRIP001                                            rOutCell.maCells[ i ] );
-//STRIP001     }
-//STRIP001
-//STRIP001     return true;
-//STRIP001 }
+/*N*/  bool SchMemChart::getCellAddressFromXMLString(
+/*N*/      const ::rtl::OUString& rXMLString,
+/*N*/      sal_Int32 nStartPos, sal_Int32 nEndPos,
+/*N*/      SchCellAddress& rOutCell,
+/*N*/      ::rtl::OUString& rOutTableName )
+/*N*/  {
+/*N*/      static const sal_Unicode aDot( '.' );
+/*N*/      static const sal_Unicode aQuote( '\'' );
+/*N*/      static const sal_Unicode aBackslash( '\\' );
+/*N*/
+/*N*/      sal_Int32 nNextDelimiterPos = nStartPos;
+/*N*/
+/*N*/      sal_Int32 nDelimiterPos = nStartPos;
+/*N*/      bool bInQuotation = false;
+/*N*/      // parse table name
+/*N*/      while( nDelimiterPos < nEndPos &&
+/*N*/             ( bInQuotation || rXMLString[ nDelimiterPos ] != aDot ))
+/*N*/      {
+/*N*/          // skip escaped characters (with backslash)
+/*N*/          if( rXMLString[ nDelimiterPos ] == aBackslash )
+/*N*/              ++nDelimiterPos;
+/*N*/          // toggle quotation mode when finding single quotes
+/*N*/          else if( rXMLString[ nDelimiterPos ] == aQuote )
+/*N*/              bInQuotation = ! bInQuotation;
+/*N*/
+/*N*/          ++nDelimiterPos;
+/*N*/      }
+/*N*/
+/*N*/      if( nDelimiterPos == -1 ||
+/*N*/          nDelimiterPos >= nEndPos )
+/*N*/      {
+/*N*/  #ifdef DBG_UTIL
+/*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
+/*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
+/*N*/          DBG_ERROR1( "Invalid Cell Address <%s> found in XML file", aBstr.GetBuffer());
+/*N*/  #endif
+/*N*/          return false;
+/*N*/      }
+/*N*/      if( nDelimiterPos > nStartPos )
+/*N*/      {
+/*N*/          // there is a table name before the address
+/*N*/
+/*N*/          ::rtl::OUStringBuffer aTableNameBuffer;
+/*N*/          const sal_Unicode * pTableName = rXMLString.getStr();
+/*N*/
+/*N*/          // remove escapes from table name
+/*N*/          ::std::for_each( pTableName + nStartPos,
+/*N*/                           pTableName + nDelimiterPos,
+/*N*/                           lcl_UnEscape( aTableNameBuffer ));
+/*N*/
+/*N*/          // unquote quoted table name
+/*N*/          const sal_Unicode * pBuf = aTableNameBuffer.getStr();
+/*N*/          if( pBuf[ 0 ] == aQuote &&
+/*N*/              pBuf[ aTableNameBuffer.getLength() - 1 ] == aQuote )
+/*N*/          {
+/*N*/              ::rtl::OUString aName = aTableNameBuffer.makeStringAndClear();
+/*N*/              rOutTableName = aName.copy( 1, aName.getLength() - 2 );
+/*N*/          }
+/*N*/          else
+/*N*/              rOutTableName = aTableNameBuffer.makeStringAndClear();
+/*N*/      }
+/*N*/
+/*N*/      for( sal_Int32 i = 0;
+/*N*/           nNextDelimiterPos < nEndPos;
+/*N*/           nDelimiterPos = nNextDelimiterPos, i++ )
+/*N*/      {
+/*N*/          nNextDelimiterPos = rXMLString.indexOf( aDot, nDelimiterPos + 1 );
+/*N*/          if( nNextDelimiterPos == -1 ||
+/*N*/              nNextDelimiterPos > nEndPos )
+/*N*/              nNextDelimiterPos = nEndPos + 1;
+/*N*/
+/*N*/          rOutCell.maCells.resize( i + 1 );
+/*N*/          getSingleCellAddressFromXMLString( rXMLString,
+/*N*/                                             nDelimiterPos + 1, nNextDelimiterPos - 1,
+/*N*/                                             rOutCell.maCells[ i ] );
+/*N*/      }
+/*N*/
+/*N*/      return true;
+/*N*/  }
 
 /*N*/ bool SchMemChart::getCellRangeAddressFromXMLString(
 /*N*/     const ::rtl::OUString& rXMLString,
 /*N*/     sal_Int32 nStartPos, sal_Int32 nEndPos,
 /*N*/     SchCellRangeAddress& rOutRange )
-/*N*/ {DBG_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001     bool bResult = true;
-//STRIP001     static const sal_Unicode aColon( ':' );
-//STRIP001     static const sal_Unicode aQuote( '\'' );
-//STRIP001     static const sal_Unicode aBackslash( '\\' );
-//STRIP001
-//STRIP001     sal_Int32 nDelimiterPos = nStartPos;
-//STRIP001     bool bInQuotation = false;
-//STRIP001     // parse table name
-//STRIP001     while( nDelimiterPos < nEndPos &&
-//STRIP001            ( bInQuotation || rXMLString[ nDelimiterPos ] != aColon ))
-//STRIP001     {
-//STRIP001         // skip escaped characters (with backslash)
-//STRIP001         if( rXMLString[ nDelimiterPos ] == aBackslash )
-//STRIP001             ++nDelimiterPos;
-//STRIP001         // toggle quotation mode when finding single quotes
-//STRIP001         else if( rXMLString[ nDelimiterPos ] == aQuote )
-//STRIP001             bInQuotation = ! bInQuotation;
-//STRIP001
-//STRIP001         ++nDelimiterPos;
-//STRIP001     }
-//STRIP001
-//STRIP001     if( nDelimiterPos <= nStartPos ||              // includes == and 'not found' (==-1)
-//STRIP001         nDelimiterPos >= nEndPos )
-//STRIP001     {
-//STRIP001 #if OSL_DEBUG_LEVEL > 0
-//STRIP001         String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
-//STRIP001         ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
-//STRIP001         DBG_ERROR1( "Invalid Cell Range <%s> found in XML file", aBstr.GetBuffer());
-//STRIP001 #endif
-//STRIP001         return false;
-//STRIP001     }
-//STRIP001     bResult = getCellAddressFromXMLString( rXMLString, nStartPos, nDelimiterPos - 1,
-//STRIP001                                            rOutRange.maUpperLeft,
-//STRIP001                                            rOutRange.msTableName );
-//STRIP001     ::rtl::OUString sTableSecondName;
-//STRIP001     if( bResult )
-//STRIP001     {
-//STRIP001         bResult = getCellAddressFromXMLString( rXMLString, nDelimiterPos + 1, nEndPos,
-//STRIP001                                                rOutRange.maLowerRight,
-//STRIP001                                                sTableSecondName );
-//STRIP001     }
-//STRIP001     DBG_ASSERT( sTableSecondName.getLength() == 0 ||
-//STRIP001                 sTableSecondName.equals( rOutRange.msTableName ),
-//STRIP001                 "Cell Range must be inside the same sheet" );
-//STRIP001     return bResult;
+/*N*/ {
+/*N*/      bool bResult = true;
+/*N*/      static const sal_Unicode aColon( ':' );
+/*N*/      static const sal_Unicode aQuote( '\'' );
+/*N*/      static const sal_Unicode aBackslash( '\\' );
+/*N*/
+/*N*/      sal_Int32 nDelimiterPos = nStartPos;
+/*N*/      bool bInQuotation = false;
+/*N*/      // parse table name
+/*N*/      while( nDelimiterPos < nEndPos &&
+/*N*/             ( bInQuotation || rXMLString[ nDelimiterPos ] != aColon ))
+/*N*/      {
+/*N*/          // skip escaped characters (with backslash)
+/*N*/          if( rXMLString[ nDelimiterPos ] == aBackslash )
+/*N*/              ++nDelimiterPos;
+/*N*/          // toggle quotation mode when finding single quotes
+/*N*/          else if( rXMLString[ nDelimiterPos ] == aQuote )
+/*N*/              bInQuotation = ! bInQuotation;
+/*N*/
+/*N*/          ++nDelimiterPos;
+/*N*/      }
+/*N*/
+/*N*/      if( nDelimiterPos <= nStartPos ||              // includes == and 'not found' (==-1)
+/*N*/          nDelimiterPos >= nEndPos )
+/*N*/      {
+/*N*/  #if OSL_DEBUG_LEVEL > 0
+/*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
+/*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
+/*N*/          DBG_ERROR1( "Invalid Cell Range <%s> found in XML file", aBstr.GetBuffer());
+/*N*/  #endif
+/*N*/          return false;
+/*N*/      }
+/*N*/      bResult = getCellAddressFromXMLString( rXMLString, nStartPos, nDelimiterPos - 1,
+/*N*/                                             rOutRange.maUpperLeft,
+/*N*/                                             rOutRange.msTableName );
+/*N*/      ::rtl::OUString sTableSecondName;
+/*N*/      if( bResult )
+/*N*/      {
+/*N*/          bResult = getCellAddressFromXMLString( rXMLString, nDelimiterPos + 1, nEndPos,
+/*N*/                                                 rOutRange.maLowerRight,
+/*N*/                                                 sTableSecondName );
+/*N*/      }
+/*N*/      DBG_ASSERT( sTableSecondName.getLength() == 0 ||
+/*N*/                  sTableSecondName.equals( rOutRange.msTableName ),
+/*N*/                  "Cell Range must be inside the same sheet" );
+/*N*/      return bResult;
 /*N*/ }
 
 /// interpret maChartRange and fill XML string with that
@@ -1599,138 +1599,138 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /// convert SomeData string(s) to SchChartRange and vice versa for Calc
-//STRIP001 void SchMemChart::ConvertChartRangeForCalc( BOOL bOldToNew )
-//STRIP001 {
-//STRIP001     if( bOldToNew )
-//STRIP001     {   // convert SomeData1/2/3 to SchChartRange
-//STRIP001         DBG_ASSERT( SomeData1().Len() && SomeData2().Len() && SomeData3().Len(),
-//STRIP001             "ConvertChartRangeForCalc: can't convert old to new" );
-//STRIP001         SchChartRange aChartRange;
-//STRIP001      const sal_Unicode cTok = ';';
-//STRIP001      xub_StrLen nToken;
-//STRIP001         String aPos = SomeData1();
-//STRIP001      if ( (nToken = aPos.GetTokenCount( cTok )) >= 5)
-//STRIP001      {
-//STRIP001             aChartRange.mbKeepCopyOfData = sal_False;
-//STRIP001             String aOpt = SomeData2();
-//STRIP001          xub_StrLen nOptToken = aOpt.GetTokenCount( cTok );
-//STRIP001             BOOL bNewChart = (nOptToken >= 4);      // as of 341/342
-//STRIP001             DBG_ASSERT( SomeData3().Len(), "ConvertChartRangeForCalc: no sheet names" );
-//STRIP001             String aSheetNames = SomeData3();       // as of 638m
-//STRIP001          USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-//STRIP001          xub_StrLen nInd = 0;
-//STRIP001             xub_StrLen nSheetInd = 0;
-//STRIP001          for ( xub_StrLen j=0; j < nToken; j+=5 )
-//STRIP001          {
-//STRIP001              xub_StrLen nInd2 = nInd;
-//STRIP001              nTab1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001                 // To make old versions (<341/342) skip it, the token separator
-//STRIP001                 // is a ','
-//STRIP001              if ( bNewChart )
-//STRIP001                  nTab2 = (USHORT) aPos.GetToken( 1, ',', nInd2 ).ToInt32();
-//STRIP001              else
-//STRIP001                  nTab2 = nTab1;
-//STRIP001              nCol1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001              nRow1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001              nCol2 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001              nRow2 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001                 for ( USHORT nTab = nTab1; nTab <= nTab2; ++nTab )
-//STRIP001                 {
-//STRIP001                     SchCellRangeAddress aCellRangeAddress;
-//STRIP001                     SchSingleCell aCell;
-//STRIP001                     aCell.mnColumn = nCol1;
-//STRIP001                     aCell.mnRow = nRow1;
-//STRIP001                     aCellRangeAddress.maUpperLeft.maCells.push_back( aCell );
-//STRIP001                     aCell.mnColumn = nCol2;
-//STRIP001                     aCell.mnRow = nRow2;
-//STRIP001                     aCellRangeAddress.maLowerRight.maCells.push_back( aCell );
-//STRIP001                     aCellRangeAddress.mnTableNumber = nTab;
-//STRIP001                     String aName( aSheetNames.GetToken( 0, cTok, nSheetInd ) );
-//STRIP001                     aCellRangeAddress.msTableName = aName;
-//STRIP001                     aChartRange.maRanges.push_back( aCellRangeAddress );
-//STRIP001                 }
-//STRIP001          }
-//STRIP001
-//STRIP001             if ( aOpt.Len() >= 2 )
-//STRIP001          {
-//STRIP001                 aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(0) != '0' );
-//STRIP001                 aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(1) != '0' );
-//STRIP001 #if 0
-//STRIP001 /*  Calc internal data
-//STRIP001              if ( aOpt.Len() >= 3 )
-//STRIP001              {
-//STRIP001                  if ( bNewChart )
-//STRIP001                  {
-//STRIP001                      bDummyUpperLeft = ( aOpt.GetChar(2) != '0' );
-//STRIP001                      xub_StrLen nInd = 4;    // 111;
-//STRIP001                      eGlue = (ScChartGlue) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001                      nStartCol = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001                      nStartRow = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-//STRIP001                      bInitOk = TRUE;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001  */
-//STRIP001 #endif
-//STRIP001          }
-//STRIP001          else
-//STRIP001             {
-//STRIP001                 aChartRange.mbFirstColumnContainsLabels = sal_False;
-//STRIP001                 aChartRange.mbFirstRowContainsLabels = sal_False;
-//STRIP001             }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001             aChartRange.mbFirstColumnContainsLabels = sal_False;
-//STRIP001             aChartRange.mbFirstRowContainsLabels = sal_False;
-//STRIP001             aChartRange.mbKeepCopyOfData = sal_True;
-//STRIP001      }
-//STRIP001         SetChartRange( aChartRange );
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {   // convert SchChartRange to SomeData1/2/3
-//STRIP001         const sal_Unicode cTok = ';';
-//STRIP001         String aRef, aSheetNames;
-//STRIP001         const SchChartRange& rChartRange = GetChartRange();
-//STRIP001         ::std::vector< SchCellRangeAddress >::const_iterator iRange =
-//STRIP001             rChartRange.maRanges.begin();
-//STRIP001         DBG_ASSERT( iRange != rChartRange.maRanges.end(),
-//STRIP001             "ConvertChartRangeForCalc: no SchCellRangeAddress vector" );
-//STRIP001         for ( ; iRange != rChartRange.maRanges.end(); ++iRange )
-//STRIP001         {
-//STRIP001             const SchSingleCell& rAddr1 = iRange->maUpperLeft.maCells[0];
-//STRIP001             const SchSingleCell& rAddr2 = iRange->maLowerRight.maCells[0];
-//STRIP001             sal_Int32 nTab = iRange->mnTableNumber;
-//STRIP001             if ( aRef.Len() )
-//STRIP001                 aRef += cTok;
-//STRIP001             aRef += String::CreateFromInt32( nTab );
-//STRIP001             // here ',' as TokenSep so old versions (<341/342) will ignore it
-//STRIP001             aRef += ',';  aRef += String::CreateFromInt32( nTab );
-//STRIP001             aRef += cTok; aRef += String::CreateFromInt32( rAddr1.mnColumn );
-//STRIP001             aRef += cTok; aRef += String::CreateFromInt32( rAddr1.mnRow );
-//STRIP001             aRef += cTok; aRef += String::CreateFromInt32( rAddr2.mnColumn );
-//STRIP001             aRef += cTok; aRef += String::CreateFromInt32( rAddr2.mnRow );
-//STRIP001             if ( aSheetNames.Len() )
-//STRIP001                 aSheetNames += cTok;
-//STRIP001             aSheetNames += String( iRange->msTableName );
-//STRIP001         }
-//STRIP001
-//STRIP001         String aFlags = rChartRange.mbFirstRowContainsLabels ? '1' : '0';
-//STRIP001         aFlags += rChartRange.mbFirstColumnContainsLabels ? '1' : '0';
-//STRIP001 #if 0
-//STRIP001 /* these can't be stored, automatically recalculated after load by old versions
-//STRIP001         aFlags += bDummyUpperLeft ? '1' : '0';
-//STRIP001         aFlags += cTok;
-//STRIP001         aFlags += String::CreateFromInt32( eGlue );
-//STRIP001         aFlags += cTok;
-//STRIP001         aFlags += String::CreateFromInt32( nStartCol );
-//STRIP001         aFlags += cTok;
-//STRIP001         aFlags += String::CreateFromInt32( nStartRow );
-//STRIP001 */
-//STRIP001 #endif
-//STRIP001
-//STRIP001         SomeData1() = aRef;
-//STRIP001         SomeData2() = aFlags;
-//STRIP001         SomeData3() = aSheetNames;
-//STRIP001     }
-//STRIP001 }
+/*N*/  void SchMemChart::ConvertChartRangeForCalc( BOOL bOldToNew )
+/*N*/  {
+/*N*/      if( bOldToNew )
+/*N*/      {   // convert SomeData1/2/3 to SchChartRange
+/*N*/          DBG_ASSERT( SomeData1().Len() && SomeData2().Len() && SomeData3().Len(),
+/*N*/              "ConvertChartRangeForCalc: can't convert old to new" );
+/*N*/          SchChartRange aChartRange;
+/*N*/       const sal_Unicode cTok = ';';
+/*N*/       xub_StrLen nToken;
+/*N*/          String aPos = SomeData1();
+/*N*/       if ( (nToken = aPos.GetTokenCount( cTok )) >= 5)
+/*N*/       {
+/*N*/              aChartRange.mbKeepCopyOfData = sal_False;
+/*N*/              String aOpt = SomeData2();
+/*N*/           xub_StrLen nOptToken = aOpt.GetTokenCount( cTok );
+/*N*/              BOOL bNewChart = (nOptToken >= 4);      // as of 341/342
+/*N*/              DBG_ASSERT( SomeData3().Len(), "ConvertChartRangeForCalc: no sheet names" );
+/*N*/              String aSheetNames = SomeData3();       // as of 638m
+/*N*/           USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
+/*N*/           xub_StrLen nInd = 0;
+/*N*/              xub_StrLen nSheetInd = 0;
+/*N*/           for ( xub_StrLen j=0; j < nToken; j+=5 )
+/*N*/           {
+/*N*/               xub_StrLen nInd2 = nInd;
+/*N*/               nTab1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/                  // To make old versions (<341/342) skip it, the token separator
+/*N*/                  // is a ','
+/*N*/               if ( bNewChart )
+/*N*/                   nTab2 = (USHORT) aPos.GetToken( 1, ',', nInd2 ).ToInt32();
+/*N*/               else
+/*N*/                   nTab2 = nTab1;
+/*N*/               nCol1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/               nRow1 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/               nCol2 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/               nRow2 = (USHORT) aPos.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/                  for ( USHORT nTab = nTab1; nTab <= nTab2; ++nTab )
+/*N*/                  {
+/*N*/                      SchCellRangeAddress aCellRangeAddress;
+/*N*/                      SchSingleCell aCell;
+/*N*/                      aCell.mnColumn = nCol1;
+/*N*/                      aCell.mnRow = nRow1;
+/*N*/                      aCellRangeAddress.maUpperLeft.maCells.push_back( aCell );
+/*N*/                      aCell.mnColumn = nCol2;
+/*N*/                      aCell.mnRow = nRow2;
+/*N*/                      aCellRangeAddress.maLowerRight.maCells.push_back( aCell );
+/*N*/                      aCellRangeAddress.mnTableNumber = nTab;
+/*N*/                      String aName( aSheetNames.GetToken( 0, cTok, nSheetInd ) );
+/*N*/                      aCellRangeAddress.msTableName = aName;
+/*N*/                      aChartRange.maRanges.push_back( aCellRangeAddress );
+/*N*/                  }
+/*N*/           }
+/*N*/
+/*N*/              if ( aOpt.Len() >= 2 )
+/*N*/           {
+/*N*/                  aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(0) != '0' );
+/*N*/                  aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(1) != '0' );
+  #if 0
+  /*  Calc internal data
+                 if ( aOpt.Len() >= 3 )
+                 {
+                     if ( bNewChart )
+                     {
+                         bDummyUpperLeft = ( aOpt.GetChar(2) != '0' );
+                         xub_StrLen nInd = 4;   // 111;
+                         eGlue = (ScChartGlue) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
+                         nStartCol = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
+                         nStartRow = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
+                         bInitOk = TRUE;
+                     }
+                 }
+  */
+ #endif
+/*N*/           }
+/*N*/           else
+/*N*/              {
+/*N*/                  aChartRange.mbFirstColumnContainsLabels = sal_False;
+/*N*/                  aChartRange.mbFirstRowContainsLabels = sal_False;
+/*N*/              }
+/*N*/       }
+/*N*/       else
+/*N*/       {
+/*N*/              aChartRange.mbFirstColumnContainsLabels = sal_False;
+/*N*/              aChartRange.mbFirstRowContainsLabels = sal_False;
+/*N*/              aChartRange.mbKeepCopyOfData = sal_True;
+/*N*/       }
+/*N*/          SetChartRange( aChartRange );
+/*N*/      }
+/*N*/      else
+/*N*/      {   // convert SchChartRange to SomeData1/2/3
+/*N*/          const sal_Unicode cTok = ';';
+/*N*/          String aRef, aSheetNames;
+/*N*/          const SchChartRange& rChartRange = GetChartRange();
+/*N*/          ::std::vector< SchCellRangeAddress >::const_iterator iRange =
+/*N*/              rChartRange.maRanges.begin();
+/*N*/          DBG_ASSERT( iRange != rChartRange.maRanges.end(),
+/*N*/              "ConvertChartRangeForCalc: no SchCellRangeAddress vector" );
+/*N*/          for ( ; iRange != rChartRange.maRanges.end(); ++iRange )
+/*N*/          {
+/*N*/              const SchSingleCell& rAddr1 = iRange->maUpperLeft.maCells[0];
+/*N*/              const SchSingleCell& rAddr2 = iRange->maLowerRight.maCells[0];
+/*N*/              sal_Int32 nTab = iRange->mnTableNumber;
+/*N*/              if ( aRef.Len() )
+/*N*/                  aRef += cTok;
+/*N*/              aRef += String::CreateFromInt32( nTab );
+/*N*/              // here ',' as TokenSep so old versions (<341/342) will ignore it
+/*N*/              aRef += ',';  aRef += String::CreateFromInt32( nTab );
+/*N*/              aRef += cTok; aRef += String::CreateFromInt32( rAddr1.mnColumn );
+/*N*/              aRef += cTok; aRef += String::CreateFromInt32( rAddr1.mnRow );
+/*N*/              aRef += cTok; aRef += String::CreateFromInt32( rAddr2.mnColumn );
+/*N*/              aRef += cTok; aRef += String::CreateFromInt32( rAddr2.mnRow );
+/*N*/              if ( aSheetNames.Len() )
+/*N*/                  aSheetNames += cTok;
+/*N*/              aSheetNames += String( iRange->msTableName );
+/*N*/          }
+/*N*/
+/*N*/          String aFlags = rChartRange.mbFirstRowContainsLabels ? '1' : '0';
+/*N*/          aFlags += rChartRange.mbFirstColumnContainsLabels ? '1' : '0';
+ #if 0
+ /* these can't be stored, automatically recalculated after load by old versions
+         aFlags += bDummyUpperLeft ? '1' : '0';
+         aFlags += cTok;
+         aFlags += String::CreateFromInt32( eGlue );
+         aFlags += cTok;
+         aFlags += String::CreateFromInt32( nStartCol );
+         aFlags += cTok;
+         aFlags += String::CreateFromInt32( nStartRow );
+ */
+ #endif
+/*N*/
+/*N*/          SomeData1() = aRef;
+/*N*/          SomeData2() = aFlags;
+/*N*/          SomeData3() = aSheetNames;
+/*N*/      }
+/*N*/  }
 }

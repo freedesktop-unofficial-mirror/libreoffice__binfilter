@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:01 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1231,7 +1231,7 @@ using namespace ::com::sun::star;
 /*N*/                                             SOFFICE_FILEFORMAT_60 );
 /*N*/
 /*N*/                         if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
-/*?*/                         {DBG_ASSERT(0, "STRIP");} //STRIP001     pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
+/*?*/                          pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
 /*N*/                         else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
 /*N*/                             pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
 /*N*/                     }

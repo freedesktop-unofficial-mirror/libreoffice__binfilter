@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:19 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -849,548 +849,548 @@ using namespace ::std;
 /*N*/ }
 /*N*/ #undef addValue
 
-//STRIP001 static void createHelpLinesFromString( const ::rtl::OUString& rLines, SdrHelpLineList& rHelpLines )
-//STRIP001 {
-//STRIP001  const sal_Unicode * pStr = rLines.getStr();
-//STRIP001  SdrHelpLine aNewHelpLine;
-//STRIP001  ::rtl::OUStringBuffer sBuffer;
-//STRIP001
-//STRIP001  while( *pStr )
-//STRIP001  {
-//STRIP001      Point aPoint;
-//STRIP001
-//STRIP001      switch( *pStr )
-//STRIP001      {
-//STRIP001      case (sal_Unicode)'P':
-//STRIP001          aNewHelpLine.SetKind( SDRHELPLINE_POINT );
-//STRIP001          break;
-//STRIP001      case (sal_Unicode)'V':
-//STRIP001          aNewHelpLine.SetKind( SDRHELPLINE_VERTICAL );
-//STRIP001          break;
-//STRIP001      case (sal_Unicode)'H':
-//STRIP001          aNewHelpLine.SetKind( SDRHELPLINE_HORIZONTAL );
-//STRIP001          break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR( "syntax error in snap lines settings string" );
-//STRIP001          return;
-//STRIP001      }
-//STRIP001
-//STRIP001      pStr++;
-//STRIP001
-//STRIP001      while( (*pStr >= sal_Unicode('0') && *pStr <= sal_Unicode('9')) || (*pStr == '+') || (*pStr == '-') )
-//STRIP001      {
-//STRIP001          sBuffer.append( *pStr++ );
-//STRIP001      }
-//STRIP001
-//STRIP001      sal_Int32 nValue = sBuffer.makeStringAndClear().toInt32();
-//STRIP001
-//STRIP001      if( aNewHelpLine.GetKind() == SDRHELPLINE_HORIZONTAL )
-//STRIP001      {
-//STRIP001          aPoint.Y() = nValue;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          aPoint.X() = nValue;
-//STRIP001
-//STRIP001          if( aNewHelpLine.GetKind() == SDRHELPLINE_POINT )
-//STRIP001          {
-//STRIP001              if( *pStr++ != ',' )
-//STRIP001                  return;
-//STRIP001
-//STRIP001              while( (*pStr >= sal_Unicode('0') && *pStr <= sal_Unicode('9')) || (*pStr == '+') || (*pStr == '-')  )
-//STRIP001              {
-//STRIP001                  sBuffer.append( *pStr++ );
-//STRIP001              }
-//STRIP001
-//STRIP001              aPoint.Y() = sBuffer.makeStringAndClear().toInt32();
-//STRIP001
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      aNewHelpLine.SetPos( aPoint );
-//STRIP001      rHelpLines.Insert( aNewHelpLine );
-//STRIP001  }
-//STRIP001 }
+ static void createHelpLinesFromString( const ::rtl::OUString& rLines, SdrHelpLineList& rHelpLines )
+ {
+     const sal_Unicode * pStr = rLines.getStr();
+     SdrHelpLine aNewHelpLine;
+     ::rtl::OUStringBuffer sBuffer;
+
+     while( *pStr )
+     {
+         Point aPoint;
+
+         switch( *pStr )
+         {
+         case (sal_Unicode)'P':
+             aNewHelpLine.SetKind( SDRHELPLINE_POINT );
+             break;
+         case (sal_Unicode)'V':
+             aNewHelpLine.SetKind( SDRHELPLINE_VERTICAL );
+             break;
+         case (sal_Unicode)'H':
+             aNewHelpLine.SetKind( SDRHELPLINE_HORIZONTAL );
+             break;
+         default:
+             DBG_ERROR( "syntax error in snap lines settings string" );
+             return;
+         }
+
+         pStr++;
+
+         while( (*pStr >= sal_Unicode('0') && *pStr <= sal_Unicode('9')) || (*pStr == '+') || (*pStr == '-') )
+         {
+             sBuffer.append( *pStr++ );
+         }
+
+         sal_Int32 nValue = sBuffer.makeStringAndClear().toInt32();
+
+         if( aNewHelpLine.GetKind() == SDRHELPLINE_HORIZONTAL )
+         {
+             aPoint.Y() = nValue;
+         }
+         else
+         {
+             aPoint.X() = nValue;
+
+             if( aNewHelpLine.GetKind() == SDRHELPLINE_POINT )
+             {
+                 if( *pStr++ != ',' )
+                     return;
+
+                 while( (*pStr >= sal_Unicode('0') && *pStr <= sal_Unicode('9')) || (*pStr == '+') || (*pStr == '-')  )
+                 {
+                     sBuffer.append( *pStr++ );
+                 }
+
+                 aPoint.Y() = sBuffer.makeStringAndClear().toInt32();
+
+             }
+         }
+
+         aNewHelpLine.SetPos( aPoint );
+         rHelpLines.Insert( aNewHelpLine );
+     }
+ }
 
 /*?*/ void FrameView::ReadUserDataSequence ( const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rSequence, sal_Bool bBrowse )
 /*?*/ {
-/*?*/   DBG_ASSERT(0, "STRIP"); //STRIP001  const sal_Int32 nLength = rSequence.getLength();
-//STRIP001     if (nLength)
-//STRIP001     {
-//STRIP001      sal_Bool bBool;
-//STRIP001      sal_Int32 nInt32;
-//STRIP001      sal_Int16 nInt16;
-//STRIP001      ::rtl::OUString aString;
-//STRIP001
-//STRIP001      sal_Int32 aSnapGridWidthXNum = GetSnapGridWidthX().GetNumerator();
-//STRIP001      sal_Int32 aSnapGridWidthXDom = GetSnapGridWidthX().GetDenominator();
-//STRIP001
-//STRIP001      sal_Int32 aSnapGridWidthYNum = GetSnapGridWidthY().GetNumerator();
-//STRIP001      sal_Int32 aSnapGridWidthYDom = GetSnapGridWidthY().GetDenominator();
-//STRIP001
-//STRIP001         const ::com::sun::star::beans::PropertyValue *pValue = rSequence.getConstArray();
-//STRIP001         for (sal_Int16 i = 0 ; i < nLength; i++, pValue++ )
-//STRIP001         {
-//STRIP001             if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_ViewId ) ) )
-//STRIP001             {
-//STRIP001             }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesDrawing ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= aString )
-//STRIP001              {
-//STRIP001                  SdrHelpLineList aHelpLines;
-//STRIP001                  createHelpLinesFromString( aString, aHelpLines );
-//STRIP001                  SetStandardHelpLines( aHelpLines );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesNotes ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= aString )
-//STRIP001              {
-//STRIP001                  SdrHelpLineList aHelpLines;
-//STRIP001                  createHelpLinesFromString( aString, aHelpLines );
-//STRIP001                  SetNotesHelpLines( aHelpLines );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesHandout ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= aString )
-//STRIP001              {
-//STRIP001                  SdrHelpLineList aHelpLines;
-//STRIP001                  createHelpLinesFromString( aString, aHelpLines );
-//STRIP001                  SetHandoutHelpLines( aHelpLines );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_RulerIsVisible ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetRuler( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PageKind ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt16 )
-//STRIP001              {
-//STRIP001                  SetPageKind( (PageKind)nInt16 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SelectedPage ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt16 )
-//STRIP001              {
-//STRIP001                  SetSelectedPage( (USHORT)nInt16 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsLayerMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetLayerMode( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /*           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsQuickEdit ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetQuickEdit( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsBigHandles ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetBigHandles( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDoubleClickTextEdit ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetDoubleClickTextEdit( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsClickChangeRotation ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetClickChangeRotation( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /*           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDragWithCopy ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetDragWithCopy( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SlidesPerRow ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt16 )
-//STRIP001              {
-//STRIP001                  SetSlidesPerRow( (USHORT)nInt16 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /* #107128# Product managment decided to not make this persistent
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_DrawMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
-//STRIP001                  if( rStyleSettings.GetHighContrastMode() )
-//STRIP001                      continue;
-//STRIP001                  SetDrawMode( (ULONG)nInt32 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PreviewDrawMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
-//STRIP001                  SvtAccessibilityOptions aAccOptions;
-//STRIP001                  if( rStyleSettings.GetHighContrastMode() && aAccOptions.GetIsForPagePreviews() )
-//STRIP001                      continue;
-//STRIP001                  SetPreviewDrawMode( (ULONG)nInt32 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsShowPreviewInPageMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetShowPreviewInPageMode( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsShowPreviewInMasterPageMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetShowPreviewInMasterPageMode( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SetShowPreviewInOutlineMode ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetShowPreviewInOutlineMode( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeStandard ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  SetViewShEditMode( (EditMode)nInt32, PK_STANDARD );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeNotes ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  SetViewShEditMode( (EditMode)nInt32, PK_NOTES );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeHandout ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  SetViewShEditMode( (EditMode)nInt32, PK_HANDOUT );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaTop ) ) )
-//STRIP001          {
-//STRIP001              sal_Int32 nTop;
-//STRIP001              if( pValue->Value >>= nTop )
-//STRIP001              {
-//STRIP001                  Rectangle aVisArea( GetVisArea() );
-//STRIP001                  aVisArea.nBottom += nTop - aVisArea.nTop;
-//STRIP001                  aVisArea.nTop = nTop;
-//STRIP001                  SetVisArea( aVisArea );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaLeft ) ) )
-//STRIP001          {
-//STRIP001              sal_Int32 nLeft;
-//STRIP001              if( pValue->Value >>= nLeft )
-//STRIP001              {
-//STRIP001                  Rectangle aVisArea( GetVisArea() );
-//STRIP001                  aVisArea.nRight += nLeft - aVisArea.nLeft;
-//STRIP001                  aVisArea.nLeft = nLeft;
-//STRIP001                  SetVisArea( aVisArea );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaWidth ) ) )
-//STRIP001          {
-//STRIP001              sal_Int32 nWidth;
-//STRIP001              if( pValue->Value >>= nWidth )
-//STRIP001              {
-//STRIP001                  Rectangle aVisArea( GetVisArea() );
-//STRIP001                  aVisArea.nRight = aVisArea.nLeft + nWidth - 1;
-//STRIP001                  SetVisArea( aVisArea );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaHeight ) ) )
-//STRIP001          {
-//STRIP001              sal_Int32 nHeight;
-//STRIP001              if( pValue->Value >>= nHeight )
-//STRIP001              {
-//STRIP001                  Rectangle aVisArea( GetVisArea() );
-//STRIP001                  aVisArea.nBottom = nHeight + aVisArea.nTop - 1;
-//STRIP001                  SetVisArea( aVisArea );
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridIsVisible ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetGridVisible( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToGrid ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetGridSnap( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridIsFront ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetGridFront( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToPageMargins ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetBordSnap( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToSnapLines ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetHlplSnap( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToObjectFrame ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetOFrmSnap( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToObjectPoints ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetOPntSnap( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /*           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapLinesVisible ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetHlplVisible( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDragStripes ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetDragStripes( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsPlusHandlesAlwaysVisible ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetPlusHandlesAlwaysVisible( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsFrameDragSingles ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetFrameDragSingles( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /*           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsMarkedHitMovesAlways ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetMarkedHitMovesAlways( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */           else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EliminatePolyPointLimitAngle ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  SetEliminatePolyPointLimitAngle( nInt32 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsEliminatePolyPoints ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetEliminatePolyPoints( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 /*
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsLineDraft ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetLineDraft( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsFillDraft ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetFillDraft( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsTextDraft ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetTextDraft( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsGrafDraft ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetGrafDraft( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001 */
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_ActiveLayer ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= aString )
-//STRIP001              {
-//STRIP001                  SetActiveLayer( aString );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_NoAttribs ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetNoAttribs( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_NoColors ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetNoColors( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridCoarseWidth ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( nInt32, GetGridCoarse().Height() );
-//STRIP001                  SetGridCoarse( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridCoarseHeight ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( GetGridCoarse().Width(), nInt32 );
-//STRIP001                  SetGridCoarse( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridFineWidth ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( nInt32, GetGridFine().Height() );
-//STRIP001                  SetGridFine( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridFineHeight ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( GetGridFine().Width(), nInt32 );
-//STRIP001                  SetGridFine( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidth ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( nInt32, GetSnapGrid().Height() );
-//STRIP001                  SetSnapGrid( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapHeight ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  const Size aCoarse( GetSnapGrid().Width(), nInt32 );
-//STRIP001                  SetSnapGrid( aCoarse );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsAngleSnapEnabled ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= bBool )
-//STRIP001              {
-//STRIP001                  SetAngleSnapEnabled( bBool );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapAngle ) ) )
-//STRIP001          {
-//STRIP001              if( pValue->Value >>= nInt32 )
-//STRIP001              {
-//STRIP001                  SetSnapAngle( nInt32 );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthXNumerator ) ) )
-//STRIP001          {
-//STRIP001              pValue->Value >>= aSnapGridWidthXNum;
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthXDenominator ) ) )
-//STRIP001          {
-//STRIP001              pValue->Value >>= aSnapGridWidthXDom;
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthYNumerator ) ) )
-//STRIP001          {
-//STRIP001              pValue->Value >>= aSnapGridWidthYNum;
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthYDenominator ) ) )
-//STRIP001          {
-//STRIP001              pValue->Value >>= aSnapGridWidthYDom;
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleLayers ) ) )
-//STRIP001          {
-//STRIP001              SetOfByte aSetOfBytes;
-//STRIP001              aSetOfBytes.PutValue( pValue->Value );
-//STRIP001              SetVisibleLayers( aSetOfBytes );
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PrintableLayers ) ) )
-//STRIP001          {
-//STRIP001              SetOfByte aSetOfBytes;
-//STRIP001              aSetOfBytes.PutValue( pValue->Value );
-//STRIP001              SetPrintableLayers( aSetOfBytes );
-//STRIP001          }
-//STRIP001          else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_LockedLayers ) ) )
-//STRIP001          {
-//STRIP001              SetOfByte aSetOfBytes;
-//STRIP001              aSetOfBytes.PutValue( pValue->Value );
-//STRIP001              SetLockedLayers( aSetOfBytes );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      const Fraction aSnapGridWidthX( aSnapGridWidthXNum, aSnapGridWidthXDom );
-//STRIP001      const Fraction aSnapGridWidthY( aSnapGridWidthYNum, aSnapGridWidthYDom );
-//STRIP001
-//STRIP001      SetSnapGridWidth( aSnapGridWidthX, aSnapGridWidthY );
-//STRIP001  }
+/*?*/       const sal_Int32 nLength = rSequence.getLength();
+     if (nLength)
+     {
+         sal_Bool bBool;
+         sal_Int32 nInt32;
+         sal_Int16 nInt16;
+         ::rtl::OUString aString;
+
+         sal_Int32 aSnapGridWidthXNum = GetSnapGridWidthX().GetNumerator();
+         sal_Int32 aSnapGridWidthXDom = GetSnapGridWidthX().GetDenominator();
+
+         sal_Int32 aSnapGridWidthYNum = GetSnapGridWidthY().GetNumerator();
+         sal_Int32 aSnapGridWidthYDom = GetSnapGridWidthY().GetDenominator();
+
+         const ::com::sun::star::beans::PropertyValue *pValue = rSequence.getConstArray();
+         for (sal_Int16 i = 0 ; i < nLength; i++, pValue++ )
+         {
+             if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_ViewId ) ) )
+             {
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesDrawing ) ) )
+             {
+                 if( pValue->Value >>= aString )
+                 {
+                     SdrHelpLineList aHelpLines;
+                     createHelpLinesFromString( aString, aHelpLines );
+                     SetStandardHelpLines( aHelpLines );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesNotes ) ) )
+             {
+                 if( pValue->Value >>= aString )
+                 {
+                     SdrHelpLineList aHelpLines;
+                     createHelpLinesFromString( aString, aHelpLines );
+                     SetNotesHelpLines( aHelpLines );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapLinesHandout ) ) )
+             {
+                 if( pValue->Value >>= aString )
+                 {
+                     SdrHelpLineList aHelpLines;
+                     createHelpLinesFromString( aString, aHelpLines );
+                     SetHandoutHelpLines( aHelpLines );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_RulerIsVisible ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetRuler( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PageKind ) ) )
+             {
+                 if( pValue->Value >>= nInt16 )
+                 {
+                     SetPageKind( (PageKind)nInt16 );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SelectedPage ) ) )
+             {
+                 if( pValue->Value >>= nInt16 )
+                 {
+                     SetSelectedPage( (USHORT)nInt16 );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsLayerMode ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetLayerMode( bBool );
+                 }
+             }
+ /*         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsQuickEdit ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetQuickEdit( bBool );
+                 }
+             }
+ */         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsBigHandles ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetBigHandles( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDoubleClickTextEdit ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetDoubleClickTextEdit( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsClickChangeRotation ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetClickChangeRotation( bBool );
+                 }
+             }
+ /*         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDragWithCopy ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetDragWithCopy( bBool );
+                 }
+             }
+ */         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SlidesPerRow ) ) )
+             {
+                 if( pValue->Value >>= nInt16 )
+                 {
+                     SetSlidesPerRow( (USHORT)nInt16 );
+                 }
+             }
+ /* #107128# Product managment decided to not make this persistent
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_DrawMode ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
+                     if( rStyleSettings.GetHighContrastMode() )
+                         continue;
+                     SetDrawMode( (ULONG)nInt32 );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PreviewDrawMode ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
+                     SvtAccessibilityOptions aAccOptions;
+                     if( rStyleSettings.GetHighContrastMode() && aAccOptions.GetIsForPagePreviews() )
+                         continue;
+                     SetPreviewDrawMode( (ULONG)nInt32 );
+                 }
+             }
+ */
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsShowPreviewInPageMode ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetShowPreviewInPageMode( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsShowPreviewInMasterPageMode ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetShowPreviewInMasterPageMode( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SetShowPreviewInOutlineMode ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetShowPreviewInOutlineMode( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeStandard ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     SetViewShEditMode( (EditMode)nInt32, PK_STANDARD );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeNotes ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     SetViewShEditMode( (EditMode)nInt32, PK_NOTES );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EditModeHandout ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     SetViewShEditMode( (EditMode)nInt32, PK_HANDOUT );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaTop ) ) )
+             {
+                 sal_Int32 nTop;
+                 if( pValue->Value >>= nTop )
+                 {
+                     Rectangle aVisArea( GetVisArea() );
+                     aVisArea.nBottom += nTop - aVisArea.nTop;
+                     aVisArea.nTop = nTop;
+                     SetVisArea( aVisArea );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaLeft ) ) )
+             {
+                 sal_Int32 nLeft;
+                 if( pValue->Value >>= nLeft )
+                 {
+                     Rectangle aVisArea( GetVisArea() );
+                     aVisArea.nRight += nLeft - aVisArea.nLeft;
+                     aVisArea.nLeft = nLeft;
+                     SetVisArea( aVisArea );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaWidth ) ) )
+             {
+                 sal_Int32 nWidth;
+                 if( pValue->Value >>= nWidth )
+                 {
+                     Rectangle aVisArea( GetVisArea() );
+                     aVisArea.nRight = aVisArea.nLeft + nWidth - 1;
+                     SetVisArea( aVisArea );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaHeight ) ) )
+             {
+                 sal_Int32 nHeight;
+                 if( pValue->Value >>= nHeight )
+                 {
+                     Rectangle aVisArea( GetVisArea() );
+                     aVisArea.nBottom = nHeight + aVisArea.nTop - 1;
+                     SetVisArea( aVisArea );
+                 }
+             }
+
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridIsVisible ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetGridVisible( bBool );
+                 }
+             }
+
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToGrid ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetGridSnap( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridIsFront ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetGridFront( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToPageMargins ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetBordSnap( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToSnapLines ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetHlplSnap( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToObjectFrame ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetOFrmSnap( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapToObjectPoints ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetOPntSnap( bBool );
+                 }
+             }
+ /*         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsSnapLinesVisible ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetHlplVisible( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsDragStripes ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetDragStripes( bBool );
+                 }
+             }
+ */         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsPlusHandlesAlwaysVisible ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetPlusHandlesAlwaysVisible( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsFrameDragSingles ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetFrameDragSingles( bBool );
+                 }
+             }
+ /*         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsMarkedHitMovesAlways ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetMarkedHitMovesAlways( bBool );
+                 }
+             }
+ */         else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_EliminatePolyPointLimitAngle ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     SetEliminatePolyPointLimitAngle( nInt32 );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsEliminatePolyPoints ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetEliminatePolyPoints( bBool );
+                 }
+             }
+ /*
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsLineDraft ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetLineDraft( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsFillDraft ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetFillDraft( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsTextDraft ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetTextDraft( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsGrafDraft ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetGrafDraft( bBool );
+                 }
+             }
+ */
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_ActiveLayer ) ) )
+             {
+                 if( pValue->Value >>= aString )
+                 {
+                     SetActiveLayer( aString );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_NoAttribs ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetNoAttribs( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_NoColors ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetNoColors( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridCoarseWidth ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( nInt32, GetGridCoarse().Height() );
+                     SetGridCoarse( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridCoarseHeight ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( GetGridCoarse().Width(), nInt32 );
+                     SetGridCoarse( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridFineWidth ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( nInt32, GetGridFine().Height() );
+                     SetGridFine( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridFineHeight ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( GetGridFine().Width(), nInt32 );
+                     SetGridFine( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidth ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( nInt32, GetSnapGrid().Height() );
+                     SetSnapGrid( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapHeight ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     const Size aCoarse( GetSnapGrid().Width(), nInt32 );
+                     SetSnapGrid( aCoarse );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_IsAngleSnapEnabled ) ) )
+             {
+                 if( pValue->Value >>= bBool )
+                 {
+                     SetAngleSnapEnabled( bBool );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_SnapAngle ) ) )
+             {
+                 if( pValue->Value >>= nInt32 )
+                 {
+                     SetSnapAngle( nInt32 );
+                 }
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthXNumerator ) ) )
+             {
+                 pValue->Value >>= aSnapGridWidthXNum;
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthXDenominator ) ) )
+             {
+                 pValue->Value >>= aSnapGridWidthXDom;
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthYNumerator ) ) )
+             {
+                 pValue->Value >>= aSnapGridWidthYNum;
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_GridSnapWidthYDenominator ) ) )
+             {
+                 pValue->Value >>= aSnapGridWidthYDom;
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleLayers ) ) )
+             {
+                 SetOfByte aSetOfBytes;
+                 aSetOfBytes.PutValue( pValue->Value );
+                 SetVisibleLayers( aSetOfBytes );
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_PrintableLayers ) ) )
+             {
+                 SetOfByte aSetOfBytes;
+                 aSetOfBytes.PutValue( pValue->Value );
+                 SetPrintableLayers( aSetOfBytes );
+             }
+             else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_LockedLayers ) ) )
+             {
+                 SetOfByte aSetOfBytes;
+                 aSetOfBytes.PutValue( pValue->Value );
+                 SetLockedLayers( aSetOfBytes );
+             }
+         }
+
+         const Fraction aSnapGridWidthX( aSnapGridWidthXNum, aSnapGridWidthXDom );
+         const Fraction aSnapGridWidthY( aSnapGridWidthYNum, aSnapGridWidthYDom );
+
+         SetSnapGridWidth( aSnapGridWidthX, aSnapGridWidthY );
+     }
 /*?*/ }
-}
+} //namespace binfilter

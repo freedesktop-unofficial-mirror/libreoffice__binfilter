@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdlayer.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:14 $
+ *  last change: $Author: mwu $ $Date: 2003-11-20 04:58:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -157,27 +157,27 @@ namespace binfilter {
 
 /** initialize this set with a uno sequence of sal_Int8
 */
-//STRIP001 void SetOfByte::PutValue( const ::com::sun::star::uno::Any & rAny )
-//STRIP001 {
-//STRIP001  ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
-//STRIP001  if( rAny >>= aSeq )
-//STRIP001  {
-//STRIP001      sal_Int16 nCount = (sal_Int16)aSeq.getLength();
-//STRIP001      if( nCount > 32 )
-//STRIP001          nCount = 32;
-//STRIP001
-//STRIP001      sal_Int16 nIndex;
-//STRIP001      for( nIndex = 0; nIndex < nCount; nIndex++ )
-//STRIP001      {
-//STRIP001          aData[nIndex] = static_cast<BYTE>(aSeq[nIndex]);
-//STRIP001      }
-//STRIP001
-//STRIP001      for( ; nIndex < 32; nIndex++ )
-//STRIP001      {
-//STRIP001          aData[nIndex] = 0;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
+/*N*/  void SetOfByte::PutValue( const ::com::sun::star::uno::Any & rAny )
+/*N*/  {
+/*N*/   ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
+/*N*/   if( rAny >>= aSeq )
+/*N*/   {
+/*N*/       sal_Int16 nCount = (sal_Int16)aSeq.getLength();
+/*N*/       if( nCount > 32 )
+/*N*/           nCount = 32;
+/*N*/
+/*N*/       sal_Int16 nIndex;
+/*N*/       for( nIndex = 0; nIndex < nCount; nIndex++ )
+/*N*/       {
+/*N*/           aData[nIndex] = static_cast<BYTE>(aSeq[nIndex]);
+/*N*/       }
+/*N*/
+/*N*/       for( ; nIndex < 32; nIndex++ )
+/*N*/       {
+/*N*/           aData[nIndex] = 0;
+/*N*/       }
+/*N*/   }
+/*N*/  }
 
 /** returns a uno sequence of sal_Int8
 */
