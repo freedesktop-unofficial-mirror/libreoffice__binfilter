@@ -2,9 +2,9 @@
  *
  *  $RCSfile: bf_wrapper.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:37:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-09 16:54:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,6 +90,10 @@
 #ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
 #include <svtools/helpopt.hxx>
 #endif
+
+// #i30187#
+#include <vos/mutex.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -141,6 +145,9 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
 
         if ( 0L == pOfficeWrapper )
         {
+            // #i30187#
+            ::vos::OGuard aGuard( Application::GetSolarMutex() );
+
             return (XComponent*) ( new bf_OfficeWrapper( rSMgr ) );
         }
     }
