@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_SwXDocumentSettings.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:57:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:29:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,6 +82,15 @@
 #ifndef _COM_SUN_STAR_DOCUMENT_PRINTERINDEPENDENTLAYOUT_HPP_
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
+#ifndef _RTL_UUID_H_
+#include <rtl/uuid.h>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
