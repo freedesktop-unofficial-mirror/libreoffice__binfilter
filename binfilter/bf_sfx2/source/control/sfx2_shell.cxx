@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_shell.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:37:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,9 +59,9 @@
  *
  ************************************************************************/
 
-#ifndef _SB_SBSTAR_HXX //autogen
-#include <basic/sbstar.hxx>
-#endif
+// auto strip #ifndef _SB_SBSTAR_HXX //autogen
+// auto strip #include <basic/sbstar.hxx>
+// auto strip #endif
 #ifndef _PSEUDO_HXX //autogen
 #include <so3/pseudo.hxx>
 #endif
@@ -86,19 +86,24 @@
 
 #pragma hdrstop
 
-#include "shell.hxx"
-#include "bindings.hxx"
-#include "dispatch.hxx"
+// auto strip #include "shell.hxx"
+// auto strip #include "bindings.hxx"
+// auto strip #include "dispatch.hxx"
 #include "viewfrm.hxx"
-#include "sfxbasic.hxx"
+// auto strip #include "sfxbasic.hxx"
 #include "objface.hxx"
-#include "objsh.hxx"
+// auto strip #include "objsh.hxx"
 #include "viewsh.hxx"
 #include "dispatch.hxx"
-#include "sfxtypes.hxx"
+// auto strip #include "sfxtypes.hxx"
 #include "request.hxx"
-#include "mnumgr.hxx"
-#include "statcach.hxx"
+// auto strip #include "mnumgr.hxx"
+
+#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
+#include <com/sun/star/lang/XTypeProvider.hpp>
+#endif
+
+// auto strip #include "statcach.hxx"
 #include "macrconf.hxx"
 namespace binfilter {
 
