@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdlib.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:46 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:33:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,33 +60,33 @@
  ************************************************************************/
 
 #if SUPD <= 611
-#include <svtools/libcall.hxx>
+// auto strip #include <svtools/libcall.hxx>
 #endif
 
-#include <tools/urlobj.hxx>
+// auto strip #include <tools/urlobj.hxx>
 #include <so3/clsids.hxx>
 #include <bf_svx/svxids.hrc>
 #include <bf_svx/impgrf.hxx>
-#include <svtools/inettype.hxx>
+// auto strip #include <svtools/inettype.hxx>
 
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
 #endif
@@ -96,20 +96,20 @@
 #ifndef _SOT_FORMATS_HXX //autogen
 #include <sot/formats.hxx>
 #endif
-#ifndef _SV_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_UTIL_XARCHIVER_HPP_
 #include <com/sun/star/util/XArchiver.hpp>
 #endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 using namespace ::rtl;
 using namespace ::com::sun::star;
 
@@ -124,16 +124,16 @@ using namespace ::com::sun::star;
 #include "sddll0.hxx"         // wird durchs Makefile generiert
 //STRIP009 #endif
 
-#include "docshell.hxx"
+// auto strip #include "docshell.hxx"
 #include "grdocsh.hxx"
 #include "res_bmp.hrc"
 #include "strings.hrc"
 #include "app.hrc"
 #include "strmname.h"
 
-#ifndef _OFF_RESID_HXX
-#include <bf_offmgr/resid.hxx>
-#endif
+// auto strip #ifndef _OFF_RESID_HXX
+// auto strip #include <bf_offmgr/resid.hxx>
+// auto strip #endif
 
 #ifndef _OFF_OFAIDS_HRC
 #include <bf_offmgr/ofaids.hrc>
