@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_widorp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:57:54 $
+ *  last change: $Author: obo $ $Date: 2004-11-17 09:11:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -552,7 +552,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/
 /*N*/   while( nMinLines > rLine.GetLineNr() )
 /*N*/   {
-/*N*/       DBG_LOOP;
+///*N*/         DBG_LOOP;
 /*N*/       if( !rLine.NextLine() )
 /*N*/           return sal_False;
 /*N*/       nLineSum += rLine.GetLineHeight();
