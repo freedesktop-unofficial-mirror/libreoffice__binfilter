@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ssfrm.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:02 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:39:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,28 +62,33 @@
 
 #pragma hdrstop
 
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
-#include <rootfrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROOTFRM_HXX
+// auto strip #include <rootfrm.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 
-#ifndef _DVIEW_HXX
-#include <dview.hxx>
-#endif
+// auto strip #ifndef _DVIEW_HXX
+// auto strip #include <dview.hxx>
+// auto strip #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
@@ -125,15 +130,15 @@
 #ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
 #endif
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
-#endif
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
 #ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
 #endif
-#ifndef _VIEWIMP_HXX
-#include <viewimp.hxx>
-#endif
+// auto strip #ifndef _VIEWIMP_HXX
+// auto strip #include <viewimp.hxx>
+// auto strip #endif
 #ifndef _FRMSH_HXX
 #include <frmsh.hxx>
 #endif
