@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wflt.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:15 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:19:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,18 +61,18 @@
 
 #pragma hdrstop
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <svtools/pathoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
-#include <unotools/localfilehelper.hxx>
-#endif
-#ifndef _OSL_MODULE_HXX_
-#include <osl/module.hxx>
-#endif
-#ifndef _OSL_FILE_HXX_
-#include <osl/file.hxx>
-#endif
+// auto strip #ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
+// auto strip #include <svtools/pathoptions.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
+// auto strip #include <unotools/localfilehelper.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSL_MODULE_HXX_
+// auto strip #include <osl/module.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSL_FILE_HXX_
+// auto strip #include <osl/file.hxx>
+// auto strip #endif
 
 // -------------------------------------------------------------------
 
@@ -109,22 +109,22 @@ typedef int(**CHand)( void*, void*, void*, void*, void* );
 #ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
 #endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
-#include <unotools/tempfile.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_TEMPFILE_HXX
+// auto strip #include <unotools/tempfile.hxx>
+// auto strip #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
-#ifndef _MDIEXP_HXX
-#include <mdiexp.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _W4WFLT_HXX
-#include <w4wflt.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
+// auto strip #ifndef _MDIEXP_HXX
+// auto strip #include <mdiexp.hxx>
+// auto strip #endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _W4WFLT_HXX
+// auto strip #include <w4wflt.hxx>
+// auto strip #endif
 
 #ifndef _SWERROR_H
 #include <swerror.h>
