@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_chgtrack.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hjs $ $Date: 2004-04-15 13:42:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:14:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,24 +61,24 @@
 
 #pragma hdrstop
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
-#include <tools/debug.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
-#include <tools/shl.hxx>        // SHL_CALC
-#endif
-#ifndef _STACK_HXX //autogen
-#include <tools/stack.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
-#include <tools/rtti.hxx>
-#endif
+// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
+// auto strip #include <tools/debug.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX //autogen
+// auto strip #include <tools/shl.hxx>      // SHL_CALC
+// auto strip #endif
+// auto strip #ifndef _STACK_HXX //autogen
+// auto strip #include <tools/stack.hxx>
+// auto strip #endif
+// auto strip #ifndef _RTTI_HXX //autogen
+// auto strip #include <tools/rtti.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
-#ifndef _SFXITEMSET_HXX //autogen
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX //autogen
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 #ifndef _SFXISETHINT_HXX //autogen
 #include <svtools/isethint.hxx>
 #endif
@@ -99,9 +99,9 @@
 #endif
 
 #include "cell.hxx"
-#include "document.hxx"
+// auto strip #include "document.hxx"
 #include "dociter.hxx"
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "rechead.hxx"
 #include "scerrors.hxx"
 #include "scmod.hxx"        // SC_MOD
@@ -113,6 +113,11 @@
 
 #define SC_CHGTRACK_CXX
 #include "chgtrack.hxx"
+
+#ifndef SC_REFUPDAT_HXX
+#include "refupdat.hxx"
+#endif
+
 namespace binfilter {
 
 /*N*/ DECLARE_STACK( ScChangeActionStack, ScChangeAction* )
