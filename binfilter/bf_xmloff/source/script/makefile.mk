@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: aw $ $Date: 2003-12-05 09:35:33 $
+#   last change: $Author: hr $ $Date: 2004-11-09 12:21:32 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -83,7 +83,8 @@ SLOFILES =	\
         $(SLO)$/xmloff_XMLStarBasicContextFactory.obj \
         $(SLO)$/xmloff_XMLStarBasicExportHandler.obj \
         $(SLO)$/xmloff_xmlscripte.obj \
-        $(SLO)$/xmloff_xmlscripti.obj 
+        $(SLO)$/xmloff_xmlscripti.obj \
+        $(SLO)$/xmloff_xmlbasici.obj
 
 SVXLIGHTOBJFILES =	\
         $(OBJ)$/xmloff_xmlscripti.obj \
