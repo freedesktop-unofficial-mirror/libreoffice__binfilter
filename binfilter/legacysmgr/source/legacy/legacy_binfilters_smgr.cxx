@@ -2,9 +2,9 @@
  *
  *  $RCSfile: legacy_binfilters_smgr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2004-08-16 17:24:45 $
+ *  last change: $Author: rt $ $Date: 2004-08-20 10:58:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2103,9 +2103,6 @@ using namespace ::legacy_binfilters;
 
 extern "C"
 {
-#if defined(SOLARIS) && defined(INTEL)
-#pragma optimize ( "", off )
-#endif
 sal_Bool SAL_CALL legacysmgr_component_writeInfo(
     lang::XMultiServiceFactory * smgr, registry::XRegistryKey * key )
 {
@@ -2260,4 +2257,10 @@ void * SAL_CALL legacysmgr_component_getFactory(
     }
     return 0;
 }
+
+// added by jmeng for i31251 begin
+static sal_Bool  IsBinfilterInit =  sal_False;
+sal_Bool legcy_getBinfilterInitState(void){return IsBinfilterInit;}
+void legcy_setBinfilterInitState(void){IsBinfilterInit =  sal_True;}
+//added by jmeng for i31251 end
 }
