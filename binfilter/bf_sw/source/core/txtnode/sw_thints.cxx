@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_thints.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2004-05-13 12:56:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:02:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -66,33 +66,33 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SOT_FACTORY_HXX
-#include <sot/factory.hxx>
-#endif
-#ifndef _SVX_XMLCNITM_HXX
-#include <bf_svx/xmlcnitm.hxx>
-#endif
+// auto strip #ifndef _SOT_FACTORY_HXX
+// auto strip #include <sot/factory.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_XMLCNITM_HXX
+// auto strip #include <bf_svx/xmlcnitm.hxx>
+// auto strip #endif
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
 #ifndef _SFXITEMITER_HXX //autogen
 #include <svtools/itemiter.hxx>
 #endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
-#endif
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
 #ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
 #endif
 #ifndef _SVX_EMPHITEM_HXX //autogen
 #include <bf_svx/emphitem.hxx>
 #endif
-#ifndef _SVX_CHARSCALEITEM_HXX
-#include <bf_svx/charscaleitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
-#include <bf_svx/charrotateitem.hxx>
-#endif
+// auto strip #ifndef _SVX_CHARSCALEITEM_HXX
+// auto strip #include <bf_svx/charscaleitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_CHARROTATEITEM_HXX
+// auto strip #include <bf_svx/charrotateitem.hxx>
+// auto strip #endif
 
 #ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
@@ -100,9 +100,9 @@
 #ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
 #endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
@@ -136,9 +136,9 @@
 #ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
 #endif
-#ifndef _CHARATR_HXX
-#include <charatr.hxx>
-#endif
+// auto strip #ifndef _CHARATR_HXX
+// auto strip #include <charatr.hxx>
+// auto strip #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
 #endif
@@ -148,33 +148,38 @@
 #ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
 #endif
-#ifndef _FMTRUBY_HXX
-#include <fmtruby.hxx>
-#endif
+// auto strip #ifndef _FMTRUBY_HXX
+// auto strip #include <fmtruby.hxx>
+// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>
-#endif
-#ifndef _CALBCK_HXX
-#include <calbck.hxx>
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CALBCK_HXX
+// auto strip #include <calbck.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
 #endif
@@ -196,9 +201,9 @@
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
 // OD 26.06.2003 #108784#
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
