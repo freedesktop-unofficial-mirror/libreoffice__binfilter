@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:27:58 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:08:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1752,7 +1752,7 @@ namespace binfilter {//STRIP009
 /*N*/     {
 /*N*/         // direct API call on a specified object
 /*N*/         String aCall( '[' );
-/*N*/         aCall += INetURLObject::decode(aMacro.Copy(6), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET);
+/*N*/         aCall += String(INetURLObject::decode(aMacro.Copy(6), INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET));
 /*N*/         aCall += ']';
 /*N*/         pAppMgr->GetLib(0)->Execute( aCall );
 /*N*/         nErr = SbxBase::GetError();
