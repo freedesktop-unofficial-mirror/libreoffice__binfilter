@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_eventsupplier.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:18 $
+ *  last change: $Author: kz $ $Date: 2005-01-13 17:41:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -544,13 +544,15 @@ namespace binfilter {
 /*N*/           // wrong properties
 /*N*/           return;
 /*N*/
-/*N*/       if ( aLibrary.compareToAscii("document") != 0 )
-/*N*/       {
-/*N*/           if ( !aLibrary.getLength() || pDoc && String(aLibrary) == pDoc->GetTitle( SFX_TITLE_APINAME ) )
-/*N*/               aLibrary = String::CreateFromAscii("document");
-/*N*/           else
-/*N*/               aLibrary = String::CreateFromAscii("application");
-/*N*/       }
+            OUSTRING sApplication( OUSTRING::createFromAscii( "application" ) );
+            OUSTRING sDocument( OUSTRING::createFromAscii( "document" ) );
+            if ( aLibrary != sApplication && aLibrary != sDocument )
+            {
+                if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAscii( "StarDesktop" ) )
+                    aLibrary = sApplication;
+                else
+                    aLibrary = sDocument;
+            }
 /*N*/
 /*N*/       aOutProps[1].Name = OUSTRING::createFromAscii( PROP_SCRIPT );
 /*N*/       aOutProps[1].Value <<= aScript;
