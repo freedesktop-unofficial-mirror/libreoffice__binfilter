@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdview.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:42 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:33:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,20 +67,29 @@
 #include "svdstr.hrc"   // Namen aus der Resource
 #include "svdglob.hxx"  // StringCache
 #include "svdpagv.hxx"
-#include "svdmrkv.hxx"
-#include "svdedxv.hxx"
-#include "svdobj.hxx"
+// auto strip #include "svdmrkv.hxx"
+// auto strip #include "svdedxv.hxx"
+// auto strip #include "svdobj.hxx"
 #include "svdopath.hxx" // fuer GetContext
 #include "svdograf.hxx" // fuer GetContext
-#include "svdetc.hxx"   // Fuer SdrEngineDefaults
-#include "svdibrow.hxx"
-#include "svdoutl.hxx"
+// auto strip #include "svdetc.hxx"   // Fuer SdrEngineDefaults
+// auto strip #include "svdibrow.hxx"
+// auto strip #include "svdoutl.hxx"
 #include "svdview.hxx"
 #include "editview.hxx" // fuer GetField
 #define ITEMID_FIELD EE_FEATURE_FIELD  /* wird fuer #include <flditem.hxx> benoetigt */
+
+// auto strip #ifndef _PSTM_HXX
+// auto strip #include <tools/pstm.hxx>
+// auto strip #endif
+
+#ifndef _SVX_ITEMDATA_HXX
+#include "itemdata.hxx"
+#endif
+
 #include "flditem.hxx"  // fuer URLField
-#include "obj3d.hxx"
-#include "svddrgmt.hxx"
+// auto strip #include "obj3d.hxx"
+// auto strip #include "svddrgmt.hxx"
 #include "svdoutl.hxx"
 
 // #90477#
