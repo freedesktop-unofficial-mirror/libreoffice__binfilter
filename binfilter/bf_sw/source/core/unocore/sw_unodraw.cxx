@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_unodraw.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:09:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -72,6 +72,11 @@
 #ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
 #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
 #endif
@@ -84,6 +89,11 @@
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX //autogen
 #include <doc.hxx>
 #endif
@@ -159,6 +169,9 @@
 #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
+#endif
+#ifndef _SFX_SFXUNO_HXX
+#include <bf_sfx2/sfxuno.hxx>
 #endif
 namespace binfilter {
 
