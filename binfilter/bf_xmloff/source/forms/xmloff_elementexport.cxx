@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_elementexport.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 19:57:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 16:22:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,21 +61,18 @@
 
 #include <stdio.h>
 
+#ifndef _XMLOFF_XMLEXP_HXX
+#include <xmlexp.hxx>
+#endif
 #ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #include "elementexport.hxx"
 #endif
 // auto strip #ifndef _XMLOFF_FORMS_STRINGS_HXX_
 // auto strip #include "strings.hxx"
 // auto strip #endif
-#ifndef _XMLOFF_XMLEXP_HXX
-#include "xmlexp.hxx"
-#endif
 // auto strip #ifndef _XMLOFF_NMSPMAP_HXX
 // auto strip #include "nmspmap.hxx"
 // auto strip #endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include "xmlnmspe.hxx"
-#endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
@@ -126,6 +123,9 @@
 #endif
 #ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
+#endif
+#ifndef _XMLOFF_XMLNMSPE_HXX
+#include <xmlnmspe.hxx>
 #endif
 #ifndef XMLOFF_FORMS_FORMCELLBINDING
 #include "formcellbinding.hxx"

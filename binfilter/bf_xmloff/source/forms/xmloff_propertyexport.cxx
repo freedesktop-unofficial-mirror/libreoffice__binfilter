@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_propertyexport.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:00:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-04 16:23:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,9 @@
 
 #include <stdio.h>
 
+#ifndef _XMLOFF_XMLEXP_HXX
+#include <xmlexp.hxx>
+#endif
 #ifndef _XMLOFF_FORMS_PROPERTYEXPORT_HXX_
 #include "propertyexport.hxx"
 #endif
