@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_stlsheet.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:24 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:29:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,25 +61,30 @@
 
 #pragma hdrstop
 
-#include "eetext.hxx"       // definiert ITEMID_... fuer frmitems und textitem
+// auto strip #include "eetext.hxx"       // definiert ITEMID_... fuer frmitems und textitem
 #ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
 #endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVDOATTR_HXX //autogen
-#include <bf_svx/svdoattr.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX //autogen
-#include <svtools/smplhint.hxx>
+
+#ifndef _EEITEM_HXX
+#include <bf_svx/eeitem.hxx>
 #endif
 
-#include <bf_svx/bulitem.hxx>
-#include <bf_svx/lrspitem.hxx>
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOATTR_HXX //autogen
+// auto strip #include <bf_svx/svdoattr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSMPLHINT_HXX //autogen
+// auto strip #include <svtools/smplhint.hxx>
+// auto strip #endif
+
+// auto strip #include <bf_svx/bulitem.hxx>
+// auto strip #include <bf_svx/lrspitem.hxx>
 
 #include "stlsheet.hxx"
 #include "sdresid.hxx"
@@ -88,23 +93,23 @@
 #include "stlpool.hxx"
 #include "glob.hrc"
 #include "app.hrc"
-#include "glob.hxx"
+// auto strip #include "glob.hxx"
 
 #ifndef SVX_LIGHT
 #ifndef MAC
-#include "../ui/inc/viewshel.hxx"
-#include "../ui/inc/sdview.hxx"
-#include "../ui/inc/tabcontr.hxx"
-#include "../ui/inc/layertab.hxx"
-#include "../ui/inc/viewshel.hxx"
+// auto strip #include "../ui/inc/viewshel.hxx"
+// auto strip #include "../ui/inc/sdview.hxx"
+// auto strip #include "../ui/inc/tabcontr.hxx"
+// auto strip #include "../ui/inc/layertab.hxx"
+// auto strip #include "../ui/inc/viewshel.hxx"
 #include "../ui/inc/drawview.hxx"
 #include "../ui/inc/drviewsh.hxx"
-#include "../ui/inc/docshell.hxx"
-#include "../ui/inc/outlview.hxx"
-#include "../ui/inc/outlnvsh.hxx"
+// auto strip #include "../ui/inc/docshell.hxx"
+// auto strip #include "../ui/inc/outlview.hxx"
+// auto strip #include "../ui/inc/outlnvsh.hxx"
 #else
-#include "drviewsh.hxx"
-#include "outlnvsh.hxx"
+// auto strip #include "drviewsh.hxx"
+// auto strip #include "outlnvsh.hxx"
 #endif
 #endif // !SVX_LIGHT
 namespace binfilter {
