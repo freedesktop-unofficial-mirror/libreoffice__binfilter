@@ -2,9 +2,9 @@
  *
  *  $RCSfile: afmtuno.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:59:27 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:40:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,24 +73,24 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-#include <com/sun/star/container/XNameReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-#include <com/sun/star/container/XContainerListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XNameReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
+// auto strip #include <com/sun/star/container/XContainerListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
 #include <com/sun/star/container/XSet.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
 #endif
@@ -106,9 +106,9 @@
 #ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
