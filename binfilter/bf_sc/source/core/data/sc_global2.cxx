@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_global2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-28 12:31:06 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:07:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -73,7 +73,7 @@
 #include <svtools/pathoptions.hxx>
 #include <svtools/useroptions.hxx>
 #include <tools/urlobj.hxx>
-#include <unotools/charclass.hxx>
+// auto strip #include <unotools/charclass.hxx>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -81,7 +81,7 @@
 #include <svtools/syslocale.hxx>
 #endif
 
-#include "global.hxx"
+// auto strip #include "global.hxx"
 #include "document.hxx"
 #include "rangeutl.hxx"
 #include "pivot.hxx"
