@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_stlpool.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:30:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:29:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -97,9 +97,9 @@
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
-#ifndef _SFXPOOLITEM_HXX //autogen
-#include <svtools/poolitem.hxx>
-#endif
+// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
+// auto strip #include <svtools/poolitem.hxx>
+// auto strip #endif
 #ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
 #endif
@@ -113,18 +113,18 @@
 #include <bf_svx/numitem.hxx>
 #endif
 #define ITEMID_BRUSH    0
-#ifndef _SVX_BRSHITEM_HXX //autogen
-#include <bf_svx/brshitem.hxx>
-#endif
+// auto strip #ifndef _SVX_BRSHITEM_HXX //autogen
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #endif
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
 #endif
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <svtools/smplhint.hxx>
 #endif
-#ifndef _SVX_LANGITEM_HXX
-#include <bf_svx/langitem.hxx>
-#endif
+// auto strip #ifndef _SVX_LANGITEM_HXX
+// auto strip #include <bf_svx/langitem.hxx>
+// auto strip #endif
 #define ITEMID_EMPHASISMARK       EE_CHAR_EMPHASISMARK
 #define ITEMID_CHARRELIEF         EE_CHAR_RELIEF
 #ifndef _SVX_CHARRELIEFITEM_HXX
@@ -136,8 +136,8 @@
 
 
 #include <bf_svx/svdattr.hxx>
-#include "eetext.hxx"
-#include <bf_svx/xtable.hxx>            // fuer RGB_Color
+// auto strip #include "eetext.hxx"
+// auto strip #include <bf_svx/xtable.hxx>          // fuer RGB_Color
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/adjitem.hxx>
@@ -152,7 +152,7 @@
 #include "sdresid.hxx"
 #include "stlsheet.hxx"
 #include "glob.hrc"
-#include "glob.hxx"
+// auto strip #include "glob.hxx"
 #include "drawdoc.hxx"
 #include "sdmod.hxx"
 #include "sdpage.hxx"
