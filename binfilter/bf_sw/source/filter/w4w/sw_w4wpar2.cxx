@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_w4wpar2.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:06 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:50:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -212,6 +212,7 @@
 #ifndef _SHELLRES_HXX   // for the pagedescname from the ShellRes
 #include <shellres.hxx>
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
@@ -932,7 +933,7 @@ void SwW4WParser::Read_IncludeGraphic()         // (IGR)
         case 3: eParser = INetURLObject::FSYS_UNX;   break;
         }
         INetURLObject aEntry( aPath, eParser );
-        aPath = INetURLObject::RelToAbs( aEntry.GetFull() );
+        aPath = so3::StaticBaseUrl::RelToAbs( aEntry.GetFull() );
 
         SfxItemSet aFlySet( pDoc->GetAttrPool(),
                             RES_FRMATR_BEGIN, RES_FRMATR_END-1);
