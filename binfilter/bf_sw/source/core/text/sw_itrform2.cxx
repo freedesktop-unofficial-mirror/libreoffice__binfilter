@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_itrform2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:07 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:52:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -87,18 +87,18 @@
 #ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
 #endif
-#ifndef _TXATBASE_HXX //autogen
-#include <txatbase.hxx>
-#endif
-#ifndef _LAYFRM_HXX
-#include <layfrm.hxx>       // GetFrmRstHeight, etc
-#endif
-#ifndef _VIEWSH_HXX
-#include <viewsh.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>      // SwViewOptions
-#endif
+// auto strip #ifndef _TXATBASE_HXX //autogen
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _LAYFRM_HXX
+// auto strip #include <layfrm.hxx>     // GetFrmRstHeight, etc
+// auto strip #endif
+// auto strip #ifndef _VIEWSH_HXX
+// auto strip #include <viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>        // SwViewOptions
+// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>       // SwFmtDrop
 #endif
@@ -111,12 +111,12 @@
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>       // IsTox, IsRef, SetLingu
-#endif
-#ifndef _PORRST_HXX
-#include <porrst.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>     // IsTox, IsRef, SetLingu
+// auto strip #endif
+// auto strip #ifndef _PORRST_HXX
+// auto strip #include <porrst.hxx>
+// auto strip #endif
 #ifndef _PORTAB_HXX
 #include <portab.hxx>       // pLastTab->
 #endif
@@ -129,33 +129,38 @@
 #ifndef _PORREF_HXX
 #include <porref.hxx>       // WhichTxtPortion
 #endif
-#ifndef _PORFLD_HXX
-#include <porfld.hxx>       // SwNumberPortion fuer CalcAscent()
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
+
+// auto strip #ifndef _PORFLD_HXX
+// auto strip #include <porfld.hxx>     // SwNumberPortion fuer CalcAscent()
+// auto strip #endif
 #ifndef _PORFTN_HXX
 #include <porftn.hxx>       // SwFtnPortion
 #endif
-#ifndef _POREXP_HXX
-#include <porexp.hxx>
-#endif
+// auto strip #ifndef _POREXP_HXX
+// auto strip #include <porexp.hxx>
+// auto strip #endif
 #ifndef _PORHYPH_HXX
 #include <porhyph.hxx>
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>
 #endif
-#ifndef _TXTFRM_HXX
-#include <txtfrm.hxx>       // GetFrmRstHeight, etc
-#endif
+// auto strip #ifndef _TXTFRM_HXX
+// auto strip #include <txtfrm.hxx>     // GetFrmRstHeight, etc
+// auto strip #endif
 #ifndef _BLINK_HXX
 #include <blink.hxx>        // pBlink
 #endif
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // WhichFirstPortion() -> mal Verlagern.
 #endif
-#ifndef _REDLNITR_HXX
-#include <redlnitr.hxx>     // SwRedlineItr
-#endif
+// auto strip #ifndef _REDLNITR_HXX
+// auto strip #include <redlnitr.hxx>       // SwRedlineItr
+// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
@@ -180,9 +185,9 @@
 #endif
 
 #if OSL_DEBUG_LEVEL > 1
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>        // pSwpHints, Ausgabeoperator
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>      // pSwpHints, Ausgabeoperator
+// auto strip #endif
 #endif
 namespace binfilter {
 
