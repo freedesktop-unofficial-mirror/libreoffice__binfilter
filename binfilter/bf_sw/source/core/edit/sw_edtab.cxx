@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_edtab.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:22:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,81 +68,86 @@
 #endif
 
 #define _SVSTDARR_ULONGS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 
-#ifndef _APP_HXX //autogen
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
-#include <vcl/window.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
+// auto strip #ifndef _APP_HXX //autogen
+// auto strip #include <vcl/svapp.hxx>
+// auto strip #endif
+// auto strip #ifndef _WINDOW_HXX //autogen
+// auto strip #include <vcl/window.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _SWWAIT_HXX
+// auto strip #include <swwait.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFSIZE_HXX //autogen
+// auto strip #include <fmtfsize.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMATR_HXX
+// auto strip #include <frmatr.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
 
-#ifndef _SWWAIT_HXX
-#include <swwait.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
-#include <fmtfsize.hxx>
-#endif
-#ifndef _FRMATR_HXX
-#include <frmatr.hxx>
-#endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
-#ifndef _LAYFRM_HXX
-#include <layfrm.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _LAYFRM_HXX
+// auto strip #include <layfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _NODE_HXX
 #include <node.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
-#ifndef _TABFRM_HXX
-#include <tabfrm.hxx>
-#endif
-#ifndef _CELLFRM_HXX
-#include <cellfrm.hxx>
-#endif
-#ifndef _CELLATR_HXX
-#include <cellatr.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
-#include <swtblfmt.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
-#include <swddetbl.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _TABFRM_HXX
+// auto strip #include <tabfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLFRM_HXX
+// auto strip #include <cellfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _CELLATR_HXX
+// auto strip #include <cellatr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTBLFMT_HXX
+// auto strip #include <swtblfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWDDETBL_HXX
+// auto strip #include <swddetbl.hxx>
+// auto strip #endif
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
