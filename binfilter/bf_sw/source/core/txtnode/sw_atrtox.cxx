@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_atrtox.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:40 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:00:17 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,21 +62,25 @@
 
 #pragma hdrstop
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
 #ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
 #endif
-#ifndef _SWFONT_HXX
-#include <swfont.hxx>
-#endif
+// auto strip #ifndef _SWFONT_HXX
+// auto strip #include <swfont.hxx>
+// auto strip #endif
 #ifndef _TOX_HXX
 #include <tox.hxx>
 #endif
-#ifndef _NDTXT_HXX
-#include <ndtxt.hxx>
-#endif
+// auto strip #ifndef _NDTXT_HXX
+// auto strip #include <ndtxt.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ SwTxtTOXMark::SwTxtTOXMark( const SwTOXMark& rAttr,
