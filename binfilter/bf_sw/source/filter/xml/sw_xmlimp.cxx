@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_xmlimp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-04 15:54:50 $
+ *  last change: $Author: rt $ $Date: 2004-09-08 13:51:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -182,7 +182,6 @@
 #ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <svtools/saveopt.hxx>
 #endif
-#include <hash_set>
 
 // for locking SolarMutex: svapp + mutex
 #ifndef _SV_SVAPP_HXX
