@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_doclay.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:08:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,33 +73,33 @@
 #ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
 #endif
-#ifndef _SVDPAGE_HXX //autogen
-#include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
-#include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
-#include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
-#include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
-#include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
-#include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
-#include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_PRNTITEM_HXX //autogen
-#include <bf_svx/prntitem.hxx>
-#endif
+// auto strip #ifndef _SVDPAGE_HXX //autogen
+// auto strip #include <bf_svx/svdpage.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
+// auto strip #include <bf_svx/keepitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_ULSPITEM_HXX //autogen
+// auto strip #include <bf_svx/ulspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_LRSPITEM_HXX //autogen
+// auto strip #include <bf_svx/lrspitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_BOXITEM_HXX //autogen
+// auto strip #include <bf_svx/boxitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_SHADITEM_HXX //autogen
+// auto strip #include <bf_svx/shaditem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_OPAQITEM_HXX //autogen
+// auto strip #include <bf_svx/opaqitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PRNTITEM_HXX //autogen
+// auto strip #include <bf_svx/prntitem.hxx>
+// auto strip #endif
 #ifndef _SVX_FMGLOB_HXX
 #include <bf_svx/fmglob.hxx>
 #endif
@@ -112,79 +112,87 @@
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 #ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-#ifndef _TXATBASE_HXX //autogen
-#include <txatbase.hxx>
+// auto strip #ifndef _TXATBASE_HXX //autogen
+// auto strip #include <txatbase.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX //autogen
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTFLD_HXX //autogen
-#include <fmtfld.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
-#include <fmtcntnt.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCNTNT_HXX //autogen
+// auto strip #include <fmtcntnt.hxx>
+// auto strip #endif
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _FMTSRND_HXX //autogen
-#include <fmtsrnd.hxx>
-#endif
+// auto strip #ifndef _FMTSRND_HXX //autogen
+// auto strip #include <fmtsrnd.hxx>
+// auto strip #endif
 #ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
 #endif
 #ifndef _FRMCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
-#endif
-#ifndef _DCONTACT_HXX //autogen
-#include <dcontact.hxx>
-#endif
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+// auto strip #ifndef _DCONTACT_HXX //autogen
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
 #ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
 #endif
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer Expression-Felder
 #endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _NDNOTXT_HXX
-#include <ndnotxt.hxx>
-#endif
+// auto strip #ifndef _NDNOTXT_HXX
+// auto strip #include <ndnotxt.hxx>
+// auto strip #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _PAGEFRM_HXX
-#include <pagefrm.hxx>
-#endif
+// auto strip #ifndef _PAGEFRM_HXX
+// auto strip #include <pagefrm.hxx>
+// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -203,33 +211,33 @@
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _EXPFLD_HXX
-#include <expfld.hxx>       // InsertLabel
-#endif
+// auto strip #ifndef _EXPFLD_HXX
+// auto strip #include <expfld.hxx>     // InsertLabel
+// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // PoolVorlagen-Id's
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>
+// auto strip #endif
 #ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
 #endif
@@ -239,9 +247,9 @@
 #ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
 #endif
-#ifndef _PAGEDESC_HXX
-#include <pagedesc.hxx>
-#endif
+// auto strip #ifndef _PAGEDESC_HXX
+// auto strip #include <pagedesc.hxx>
+// auto strip #endif
 
 #ifndef _COMCORE_HRC
 #include <comcore.hrc>      // STR-ResId's
