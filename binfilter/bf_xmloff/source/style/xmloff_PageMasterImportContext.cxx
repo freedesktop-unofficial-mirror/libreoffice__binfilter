@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_PageMasterImportContext.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:36:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 20:07:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,9 +68,9 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
 #endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_PAGEMASTERPROPHDL_HXX_
 #include "PageMasterPropHdl.hxx"
 #endif
@@ -80,12 +80,12 @@
 #ifndef _XMLOFF_PAGEPHEADERFOOTERCONTEXT_HXX
 #include "PageHeaderFooterContext.hxx"
 #endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
-#include "PageMasterPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
-#include "PageMasterImportPropMapper.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
+// auto strip #include "PageMasterPropMapper.hxx"
+// auto strip #endif
+// auto strip #ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
+// auto strip #include "PageMasterImportPropMapper.hxx"
+// auto strip #endif
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
 #endif
