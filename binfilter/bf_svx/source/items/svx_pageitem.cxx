@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_pageitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:11 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:04:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,10 @@
 #define  ITEMID_PAGE        0
 #define  ITEMID_SETITEM     0
 
+#ifndef _SFXPOOLITEM_HXX
+#include <svtools/poolitem.hxx>
+#endif
+
 #include "pageitem.hxx"
 #include "itemtype.hxx"
 #include <unomid.hxx>
@@ -77,9 +81,9 @@
 #ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
 #endif
-#ifndef _COM_SUN_STAR_STYLE_BREAKTYPE_HPP_
-#include <com/sun/star/style/BreakType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_STYLE_BREAKTYPE_HPP_
+// auto strip #include <com/sun/star/style/BreakType.hpp>
+// auto strip #endif
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <svtools/itemset.hxx>
