@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_swtypes.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:48 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:58:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,50 +71,50 @@
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
-#ifndef _OFA_OSPLCFG_HXX //autogen
-#include <bf_offmgr/osplcfg.hxx>
-#endif
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
-#endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
+// auto strip #ifndef _OFA_OSPLCFG_HXX //autogen
+// auto strip #include <bf_offmgr/osplcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _LANG_HXX
+// auto strip #include <tools/lang.hxx>
+// auto strip #endif
+// auto strip #ifndef _ISOLANG_HXX
+// auto strip #include <tools/isolang.hxx>
+// auto strip #endif
 
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
-#include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
-#include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-#include <com/sun/star/linguistic2/XHyphenator.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+// auto strip #include <com/sun/star/lang/Locale.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
+// auto strip #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
+// auto strip #include <com/sun/star/linguistic2/XHyphenator.hpp>
+// auto strip #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
-#include <com/sun/star/linguistic2/XThesaurus.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XTHESAURUS_HPP_
+// auto strip #include <com/sun/star/linguistic2/XThesaurus.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _SWATRSET_HXX
-#include <swatrset.hxx>
-#endif
-#ifndef _FRMFMT_HXX
-#include <frmfmt.hxx>
-#endif
+// auto strip #ifndef _SWATRSET_HXX
+// auto strip #include <swatrset.hxx>
+// auto strip #endif
+// auto strip #ifndef _FRMFMT_HXX
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
@@ -124,9 +124,9 @@
 #ifndef _UNDOBJ_HXX
 #include <undobj.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
 #endif
