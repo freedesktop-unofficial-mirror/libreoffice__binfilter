@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdpoev.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:46:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:31:18 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,13 +61,13 @@
 
 #include "svdpoev.hxx"
 #include <math.h>
-#include "svdpagv.hxx"
-#include "svdpage.hxx"
+// auto strip #include "svdpagv.hxx"
+// auto strip #include "svdpage.hxx"
 #include "svdopath.hxx"
-#include "svdundo.hxx"
+// auto strip #include "svdundo.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
-#include "svdglob.hxx"  // StringCache
-#include "svdtrans.hxx"
+// auto strip #include "svdglob.hxx"  // StringCache
+// auto strip #include "svdtrans.hxx"
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
