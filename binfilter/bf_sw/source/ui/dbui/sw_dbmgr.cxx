@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:37:42 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:54:33 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -309,6 +309,7 @@
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 using namespace svx;
 using namespace ::com::sun::star;
@@ -1128,7 +1129,7 @@ namespace
 //STRIP001                 pSfxFlt = SwIoSystem::GetFileFilter( sMainURL, ::aEmptyStr );
 //STRIP001
 //STRIP001              sTmpName = utl::TempFile::CreateTempName(0);
-//STRIP001              sTmpName = URIHelper::SmartRelToAbs(sTmpName);
+//STRIP001              sTmpName = so3::StaticBaseUrl::SmartRelToAbs(sTmpName);
 //STRIP001              SWUnoHelper::UCB_CopyFile( sMainURL, sTmpName );
 //STRIP001          }
 //STRIP001          String sAddress;
