@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdbinfilter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:30 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:30:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,14 +63,14 @@
 #include <rtl/logfile.hxx>
 #endif
 
-#include <tools/urlobj.hxx>
+// auto strip #include <tools/urlobj.hxx>
 #include <sot/formats.hxx>
 #include <svtools/itempool.hxx>
 #include <svtools/style.hxx>
 #include <svtools/sfxecode.hxx>
 #include <svtools/saveopt.hxx>
 #include <bf_sfx2/docfile.hxx>
-#include <bf_sfx2/docfilt.hxx>
+// auto strip #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/progress.hxx>
 
 #ifndef MAC
@@ -78,14 +78,14 @@
 #include "../../ui/inc/docshell.hxx"
 #endif //!SVX_LIGHT
 #else  //MAC
-#ifndef SVX_LIGHT
-#include "docshell.hxx"
-#endif //!SVX_LIGHT
+// auto strip #ifndef SVX_LIGHT
+// auto strip #include "docshell.hxx"
+// auto strip #endif //!SVX_LIGHT
 #endif //!MAC
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
