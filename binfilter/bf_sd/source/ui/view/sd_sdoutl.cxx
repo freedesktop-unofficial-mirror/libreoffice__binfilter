@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdoutl.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:37:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:18:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,18 +59,23 @@
  *
  ************************************************************************/
 
-#ifndef _SV_WRKWIN_HXX
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SV_WRKWIN_HXX
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
 #endif
-#ifndef _SVX_FONTITEM_HXX //autogen
-#include <bf_svx/fontitem.hxx>
+
+#ifndef _EEITEM_HXX //autogen
+#include <bf_svx/eeitem.hxx>
 #endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
-#include <bf_svx/fhgtitem.hxx>
-#endif
+
+// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
+// auto strip #include <bf_svx/fontitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FHGTITEM_HXX //autogen
+// auto strip #include <bf_svx/fhgtitem.hxx>
+// auto strip #endif
 #ifdef ITEMID_SEARCH
 #undef ITEMID_SEARCH
 #endif
@@ -78,97 +83,97 @@
 #ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SRCHITEM_HXX
-#include <bf_svx/srchitem.hxx>
-#endif
-#ifndef _OSPLCFG_HXX
-#include <bf_offmgr/osplcfg.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
-#include <bf_svx/colritem.hxx>
-#endif
+// auto strip #ifndef _SRCHITEM_HXX
+// auto strip #include <bf_svx/srchitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _OSPLCFG_HXX
+// auto strip #include <bf_offmgr/osplcfg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_COLRITEM_HXX //autogen
+// auto strip #include <bf_svx/colritem.hxx>
+// auto strip #endif
 #ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
 #endif
 #ifndef _EDITSTAT_HXX //autogen
 #include <bf_svx/editstat.hxx>
 #endif
-#ifndef _SV_OUTDEV_HXX //autogen
-#include <vcl/outdev.hxx>
-#endif
-#ifndef _DLGUTIL_HXX
-#include <bf_svx/dlgutil.hxx>
-#endif
-#ifndef _XTABLE_HXX
-#include <bf_svx/xtable.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
-#ifndef _SFXDISPATCH_HXX //autogen
-#include <bf_sfx2/dispatch.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
-#include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVXERR_HXX //autogen
-#include <bf_svx/svxerr.hxx>
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
-#include <bf_svx/svdotext.hxx>
-#endif
+// auto strip #ifndef _SV_OUTDEV_HXX //autogen
+// auto strip #include <vcl/outdev.hxx>
+// auto strip #endif
+// auto strip #ifndef _DLGUTIL_HXX
+// auto strip #include <bf_svx/dlgutil.hxx>
+// auto strip #endif
+// auto strip #ifndef _XTABLE_HXX
+// auto strip #include <bf_svx/xtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXDISPATCH_HXX //autogen
+// auto strip #include <bf_sfx2/dispatch.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_PRINTER_HXX //autogen
+// auto strip #include <bf_sfx2/printer.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVXERR_HXX //autogen
+// auto strip #include <bf_svx/svxerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOTEXT_HXX //autogen
+// auto strip #include <bf_svx/svdotext.hxx>
+// auto strip #endif
 #ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
 #endif
-#ifndef _OFFAPP_HXX //autogen
-#include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SVDITER_HXX //autogen
-#include <bf_svx/svditer.hxx>
-#endif
-#include <comphelper/extract.hxx>
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
-#include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
+// auto strip #ifndef _OFFAPP_HXX //autogen
+// auto strip #include <bf_offmgr/app.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDITER_HXX //autogen
+// auto strip #include <bf_svx/svditer.hxx>
+// auto strip #endif
+// auto strip #include <comphelper/extract.hxx>
+// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
+// auto strip #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
 #ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
 #endif
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
 #endif
-#ifndef _SVX_SRCHDLG_HXX
-#include <bf_svx/srchdlg.hxx>
-#endif
+// auto strip #ifndef _SVX_SRCHDLG_HXX
+// auto strip #include <bf_svx/srchdlg.hxx>
+// auto strip #endif
 #ifndef _SVTOOLS_LINGUPROPS_HXX_
 #include <svtools/linguprops.hxx>
 #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
-#ifndef _MyEDITENG_HXX
-#include <bf_svx/editeng.hxx>
-#endif
+// auto strip #ifndef _MyEDITENG_HXX
+// auto strip #include <bf_svx/editeng.hxx>
+// auto strip #endif
 
 #include "strings.hrc"
 #include "sdstring.hrc"
-#include "eetext.hxx"
-#include "sdpage.hxx"
-#include "app.hxx"
+// auto strip #include "eetext.hxx"
+// auto strip #include "sdpage.hxx"
+// auto strip #include "app.hxx"
 #include "sdoutl.hxx"
-#include "sdwindow.hxx"
-#include "sdresid.hxx"
-#include "drviewsh.hxx"
-#include "outlnvsh.hxx"
+// auto strip #include "sdwindow.hxx"
+// auto strip #include "sdresid.hxx"
+// auto strip #include "drviewsh.hxx"
+// auto strip #include "outlnvsh.hxx"
 #include "drawdoc.hxx"
 #include "docshell.hxx"
-#include "frmview.hxx"
-#include "optsitem.hxx"
+// auto strip #include "frmview.hxx"
+// auto strip #include "optsitem.hxx"
 #include "drawview.hxx"
 namespace binfilter {
 
