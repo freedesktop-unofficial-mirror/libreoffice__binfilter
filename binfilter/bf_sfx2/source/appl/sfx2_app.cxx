@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_app.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2004-08-20 12:22:38 $
+ *  last change: $Author: hr $ $Date: 2004-11-09 12:18:53 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -530,7 +530,6 @@ static SfxPropertyHandler*  pPropertyHandler = 0;
 /*N*/   pImp->pObjShells = 0;
 /*N*/   pImp->bAutoSaveNow = sal_False;
 /*N*/   pImp->pTemplateDlg = 0;
-/*N*/   pImp->pBasicMgr = 0;
 /*N*/   pImp->pBasicLibContainer = 0;
 /*N*/   pImp->pDialogLibContainer = 0;
 /*N*/   pImp->pBasicTestWin = 0;
