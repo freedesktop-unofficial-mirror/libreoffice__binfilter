@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_porexp.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:51:21 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:52:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,21 +62,21 @@
 
 #pragma hdrstop
 
-#ifndef _VIEWOPT_HXX
-#include <viewopt.hxx>  // SwViewOptions
-#endif
-#ifndef _SW_PORTIONHANDLER_HXX
-#include <SwPortionHandler.hxx>
-#endif
+// auto strip #ifndef _VIEWOPT_HXX
+// auto strip #include <viewopt.hxx>    // SwViewOptions
+// auto strip #endif
+// auto strip #ifndef _SW_PORTIONHANDLER_HXX
+// auto strip #include <SwPortionHandler.hxx>
+// auto strip #endif
 #ifndef _INFTXT_HXX
 #include <inftxt.hxx>
 #endif
 #ifndef _POREXP_HXX
 #include <porexp.hxx>
 #endif
-#ifndef _PORLAY_HXX
-#include <porlay.hxx>
-#endif
+// auto strip #ifndef _PORLAY_HXX
+// auto strip #include <porlay.hxx>
+// auto strip #endif
 namespace binfilter {
 
 /*************************************************************************
