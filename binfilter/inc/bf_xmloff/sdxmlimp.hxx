@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sdxmlimp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:54:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,9 +70,9 @@
 #include <com/sun/star/container/XIndexContainer.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-#include <com/sun/star/container/XNameAccess.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
+// auto strip #include <com/sun/star/container/XNameAccess.hpp>
+// auto strip #endif
 
 #ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
