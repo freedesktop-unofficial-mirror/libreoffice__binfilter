@@ -2,9 +2,9 @@
  *
  *  $RCSfile: FormComponent.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:24:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:45:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,57 +62,57 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #define _FORMS_FORMCOMPONENT_HXX_
 
-#ifndef _OSL_MUTEX_HXX_
-#include <osl/mutex.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
-#include <rtl/ustring.hxx>
-#endif
+// auto strip #ifndef _OSL_MUTEX_HXX_
+// auto strip #include <osl/mutex.hxx>
+// auto strip #endif
+// auto strip #ifndef _RTL_USTRING_HXX_
+// auto strip #include <rtl/ustring.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
 #endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
-#include <cppuhelper/implbase1.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE1_HXX_
+// auto strip #include <cppuhelper/implbase1.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
 #endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
-#include <cppuhelper/implbase4.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_IMPLBASE4_HXX_
+// auto strip #include <cppuhelper/implbase4.hxx>
+// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
 #endif
 #ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
 #endif
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
-#include <com/sun/star/uno/XAggregation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
-#include <com/sun/star/lang/XEventListener.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
+// auto strip #include <com/sun/star/uno/XAggregation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
+// auto strip #include <com/sun/star/lang/XEventListener.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-#include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
+// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XBOUNDCONTROL_HPP_
 #include <com/sun/star/form/XBoundControl.hpp>
 #endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
-#include <com/sun/star/io/XPersistObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
-#include <com/sun/star/io/XMarkableStream.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
+// auto strip #include <com/sun/star/io/XPersistObject.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
+// auto strip #include <com/sun/star/io/XMarkableStream.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
-#include <com/sun/star/container/XChild.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
+// auto strip #include <com/sun/star/container/XChild.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
 #endif
@@ -134,38 +134,38 @@
 #ifndef _COM_SUN_STAR_SDB_XCOLUMNUPDATE_HPP_
 #include <com/sun/star/sdb/XColumnUpdate.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
-#include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
-#include <com/sun/star/form/FormComponentType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
+// auto strip #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
+// auto strip #include <com/sun/star/form/FormComponentType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
 #endif
 
-#ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
-#include <comphelper/propagg.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
-#include <comphelper/proparrhlp.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
+// auto strip #include <comphelper/propagg.hxx>
+// auto strip #endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
+// auto strip #include <comphelper/proparrhlp.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
 #endif
 #ifndef _COMPHELPER_GUARDING_HXX_
 #include <comphelper/guarding.hxx>
 #endif
-#ifndef _COMPHELPER_SEQUENCE_HXX_
-#include <comphelper/sequence.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
+// auto strip #include <comphelper/sequence.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_BASIC_IO_HXX_
 #include <comphelper/basicio.hxx>
 #endif
 
-#ifndef _FRM_SERVICES_HXX_
-#include "services.hxx"
-#endif
+// auto strip #ifndef _FRM_SERVICES_HXX_
+// auto strip #include "services.hxx"
+// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
