@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_lineinfo.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:49:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:11:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,6 +61,13 @@
 
 
 #pragma hdrstop
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 
 #include "doc.hxx"
 #include "lineinfo.hxx"
