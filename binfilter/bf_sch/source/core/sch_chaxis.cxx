@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
+ *  last change: $Author: rt $ $Date: 2004-05-12 08:16:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1316,7 +1316,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               //  Find smallest power of 10 lower than or equal to fRange,
 /*N*/               //  that scales fFactor into the interval [1,10].
-/*N*/               double  fFactor = pow (10, floor (log10 (fRange)));
+/*N*/               double  fFactor = pow ((double)10, floor (log10 (fRange)));
 /*N*/               fRange /= fFactor;
 /*N*/
 /*N*/               //  Calculate mfStep so that the number of divisions (nSteps)
