@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_unopback.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:36:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 14:08:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,22 +59,22 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_BITMAPMODE_HPP_
-#include <com/sun/star/drawing/BitmapMode.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_DRAWING_BITMAPMODE_HPP_
+// auto strip #include <com/sun/star/drawing/BitmapMode.hpp>
+// auto strip #endif
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+// auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
+// auto strip #include <vos/mutex.hxx>
+// auto strip #endif
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
 
-#ifndef _SFXITEMSET_HXX
-#include <svtools/itemset.hxx>
-#endif
+// auto strip #ifndef _SFXITEMSET_HXX
+// auto strip #include <svtools/itemset.hxx>
+// auto strip #endif
 
-#include <comphelper/extract.hxx>
+// auto strip #include <comphelper/extract.hxx>
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -88,13 +88,13 @@
 #ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
 #endif
-#include <bf_svx/unoprov.hxx>
+// auto strip #include <bf_svx/unoprov.hxx>
 #ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
 #endif
 
 #include "unopback.hxx"
-#include "unohelp.hxx"
+// auto strip #include "unohelp.hxx"
 #include "drawdoc.hxx"
 #include "unokywds.hxx"
 namespace binfilter {
