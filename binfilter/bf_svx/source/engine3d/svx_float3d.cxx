@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_float3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:39:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,87 +64,87 @@
 #ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFXMODULE_HXX //autogen
-#include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFXVIEWFRM_HXX //autogen
-#include <bf_sfx2/viewfrm.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <svtools/eitem.hxx>
-#endif
-#ifndef _SV_COLRDLG_HXX //autogen
-#include <svtools/colrdlg.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SFXMODULE_HXX //autogen
+// auto strip #include <bf_sfx2/module.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXVIEWFRM_HXX //autogen
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXENUMITEM_HXX //autogen
+// auto strip #include <svtools/eitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_COLRDLG_HXX //autogen
+// auto strip #include <svtools/colrdlg.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 
-#ifndef _SFXVIEWSH_HXX //autogen
-#include <bf_sfx2/viewsh.hxx>
-#endif
-#ifndef _SHL_HXX
-#include <tools/shl.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWSH_HXX //autogen
+// auto strip #include <bf_sfx2/viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _SHL_HXX
+// auto strip #include <tools/shl.hxx>
+// auto strip #endif
 
-#ifndef _SVX_XFLCLIT_HXX
-#include <xflclit.hxx>
-#endif
-#ifndef _SVDMODEL_HXX
-#include <svdmodel.hxx>
-#endif
-#ifndef _E3D_GLOBL3D_HXX
-#include <globl3d.hxx>
-#endif
-#ifndef _E3D_VIEW3D_HXX
-#include <view3d.hxx>
-#endif
-#ifndef _E3D_OBJ3D_HXX
-#include <obj3d.hxx>
-#endif
-#ifndef _E3D_SPHERE3D_HXX
-#include <sphere3d.hxx>
-#endif
-#ifndef _E3D_SCENE3D_HXX
-#include <scene3d.hxx>
-#endif
-#ifndef _CAMERA3D_HXX
-#include <camera3d.hxx>
-#endif
-#ifndef _SVX_FMMODEL_HXX
-#include <fmmodel.hxx>
-#endif
-#ifndef _SVX_FMPAGE_HXX
-#include <fmpage.hxx>
-#endif
-#ifndef _E3D_POLYSC3D_HXX
-#include <polysc3d.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen
-#include <eeitem.hxx>
-#endif
-#ifndef _SFXSTYLE_HXX
-#include <svtools/style.hxx>
-#endif
+// auto strip #ifndef _SVX_XFLCLIT_HXX
+// auto strip #include <xflclit.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include <svdmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_GLOBL3D_HXX
+// auto strip #include <globl3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_VIEW3D_HXX
+// auto strip #include <view3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_OBJ3D_HXX
+// auto strip #include <obj3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_SPHERE3D_HXX
+// auto strip #include <sphere3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_SCENE3D_HXX
+// auto strip #include <scene3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _CAMERA3D_HXX
+// auto strip #include <camera3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FMMODEL_HXX
+// auto strip #include <fmmodel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FMPAGE_HXX
+// auto strip #include <fmpage.hxx>
+// auto strip #endif
+// auto strip #ifndef _E3D_POLYSC3D_HXX
+// auto strip #include <polysc3d.hxx>
+// auto strip #endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <eeitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFXSTYLE_HXX
+// auto strip #include <svtools/style.hxx>
+// auto strip #endif
 
 
-#include <dlgutil.hxx>
-#include <dialmgr.hxx>
-#include <viewpt3d.hxx> // ProjectionType
+// auto strip #include <dlgutil.hxx>
+// auto strip #include <dialmgr.hxx>
+// auto strip #include <viewpt3d.hxx> // ProjectionType
 
 #include <svxids.hrc>
 #include <dialogs.hrc>
 
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
-#include <colritem.hxx>
-#include <e3ditem.hxx>
+// auto strip #include <colritem.hxx>
+// auto strip #include <e3ditem.hxx>
 
-#include <gallery.hxx>
+// auto strip #include <gallery.hxx>
 #define GALLERY_THEME "3D"
 
-#ifndef _SFX_WHITER_HXX
-#include <svtools/whiter.hxx>
-#endif
+// auto strip #ifndef _SFX_WHITER_HXX
+// auto strip #include <svtools/whiter.hxx>
+// auto strip #endif
 
 #include "float3d.hxx"
 #include "float3d.hrc"

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_extrud3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:39:06 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,11 +60,11 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-#include "svdglob.hxx"
+// auto strip #include "svdglob.hxx"
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
@@ -82,33 +82,33 @@
 #include "e3dcmpt.hxx"
 #endif
 
-#ifndef _POLY3D_HXX
-#include "poly3d.hxx"
-#endif
+// auto strip #ifndef _POLY3D_HXX
+// auto strip #include "poly3d.hxx"
+// auto strip #endif
 
-#ifndef _E3D_SCENE3D_HXX
-#include "scene3d.hxx"
-#endif
+// auto strip #ifndef _E3D_SCENE3D_HXX
+// auto strip #include "scene3d.hxx"
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-#ifndef _XPOLY_HXX
-#include "xpoly.hxx"
-#endif
+// auto strip #ifndef _XPOLY_HXX
+// auto strip #include "xpoly.hxx"
+// auto strip #endif
 
-#ifndef _SVDOPATH_HXX
-#include "svdopath.hxx"
-#endif
+// auto strip #ifndef _SVDOPATH_HXX
+// auto strip #include "svdopath.hxx"
+// auto strip #endif
 
-#ifndef _SVDMODEL_HXX
-#include "svdmodel.hxx"
-#endif
+// auto strip #ifndef _SVDMODEL_HXX
+// auto strip #include "svdmodel.hxx"
+// auto strip #endif
 
-#ifndef _SVX3DITEMS_HXX
-#include "svx3ditems.hxx"
-#endif
+// auto strip #ifndef _SVX3DITEMS_HXX
+// auto strip #include "svx3ditems.hxx"
+// auto strip #endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dExtrudeObj, E3dCompoundObject);
