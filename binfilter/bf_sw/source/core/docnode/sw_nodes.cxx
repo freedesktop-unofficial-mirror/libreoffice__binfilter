@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_nodes.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:16:40 $
+ *  last change: $Author: rt $ $Date: 2005-01-07 09:41:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2652,4 +2652,9 @@ namespace binfilter {
 /*N*/   BigPtrArray::Insert( pIns, nPos );
 /*N*/ }
 
+    // #i31620#
+    SwNode * SwNodes::operator[](int n) const
+    {
+        return operator[]((ULONG) n);
+    }
 }
