@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_consoli.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:35 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 11:15:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "core_pch.hxx"
+// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -72,10 +72,10 @@
 #include <string.h>
 #include "consoli.hxx"
 #include "document.hxx"
-#include "olinetab.hxx"
+// auto strip #include "olinetab.hxx"
 #include "globstr.hrc"
 #include "subtotal.hxx"
-#include "compiler.hxx"                 // fuer errNoValue
+// auto strip #include "compiler.hxx"                   // fuer errNoValue
 #include "cell.hxx"
 namespace binfilter {
 
