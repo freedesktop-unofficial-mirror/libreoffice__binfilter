@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3nodes.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:43:33 $
+ *  last change: $Author: hr $ $Date: 2004-12-13 12:12:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2852,7 +2852,7 @@ void Sw3IoImp::InTxtNodeText( String& rText )
 /*N*/           COMPARE_EQUAL == sCmp.CompareToAscii( pMarkToOutline ) )
 /*N*/       {
 /*N*/           rURL = '#';
-/*N*/           rURL += INetURLObject::createFragment( sMark.Copy( 1, nPos-1 ) );
+/*N*/           rURL += String(INetURLObject::createFragment( sMark.Copy( 1, nPos-1 ) ));
 /*N*/           rURL += cMarkSeperator;
 /*N*/           rURL.AppendAscii( pMarkToOutline );
 /*N*/       }
