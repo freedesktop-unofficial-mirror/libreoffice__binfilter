@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_rect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:32:14 $
+ *  last change: $Author: vg $ $Date: 2005-02-16 17:41:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -111,7 +111,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/   if (rText.Len() == 0)
 /*N*/       return FALSE;
 /*N*/
-/*N*/   DBG_ASSERT(rText.Len() == 1, "Sm : String enthält nicht genau ein Zeichen");
+/*N*/   DBG_ASSERT(rText.Len() == 1, "Sm : String enthaelt nicht genau ein Zeichen");
 /*N*/   xub_Unicode cChar = rText.GetChar(0);
 /*N*/
 /*N*/   // ist es ein griechisches Zeichen ?
@@ -225,7 +225,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*?*/       long  nDelta = pWindow->GetFontMetric().GetIntLeading();
 /*?*/       if (nDelta == 0)
 /*?*/       {   // dieser Wert entspricht etwa einem Leading von 80 bei einer
-/*?*/           // Fonthöhe von 422 (12pt)
+/*?*/           // Fonthoehe von 422 (12pt)
 /*?*/           nDelta = nFontHeight * 8L / 43;
 /*?*/       }
 /*?*/       SetTop(GetTop() - nDelta);
@@ -258,7 +258,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/
 /*N*/   if (bAllowSmaller)
 /*N*/   {
-/*N*/       // für Symbole und Operatoren aus dem StarMath Font passen wir den
+/*N*/       // fuer Symbole und Operatoren aus dem StarMath Font passen wir den
 /*N*/       // oberen und unteren Rand dem Zeichen an.
 /*N*/       SetTop(nGlyphTop);
 /*N*/       SetBottom(nGlyphBottom);
