@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:35 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:41:07 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -223,6 +223,7 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
 
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -3559,7 +3560,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/           // UNICODE: rStream >> aRel;
 /*N*/           rStream.ReadByteString(aRel);
 /*N*/
-/*N*/           String aAbs = INetURLObject::RelToAbs( aRel );
+/*N*/           String aAbs = so3::StaticBaseUrl::RelToAbs( aRel );
 /*N*/           pStrLink = new String( aAbs );
 /*N*/       }
 /*N*/
@@ -3946,7 +3947,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/       rStream << pImpl->pGraphicObject->GetGraphic();
 /*N*/   if ( pStrLink )
 /*N*/   {
-/*N*/       String aRel = INetURLObject::AbsToRel( *pStrLink );
+/*N*/       String aRel = so3::StaticBaseUrl::AbsToRel( *pStrLink );
 /*N*/       // UNICODE: rStream << aRel;
 /*N*/       rStream.WriteByteString(aRel);
 /*N*/   }
