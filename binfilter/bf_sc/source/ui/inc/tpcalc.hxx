@@ -2,9 +2,9 @@
  *
  *  $RCSfile: tpcalc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:30:13 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:05:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,25 +63,25 @@
 #define SC_TPCALC_HXX
 
 
-#ifndef _SFXTABDLG_HXX //autogen
-#include <bf_sfx2/tabdlg.hxx>
-#endif
+// auto strip #ifndef _SFXTABDLG_HXX //autogen
+// auto strip #include <bf_sfx2/tabdlg.hxx>
+// auto strip #endif
 
-#ifndef _SV_FIXED_HXX //autogen
-#include <vcl/fixed.hxx>
-#endif
+// auto strip #ifndef _SV_FIXED_HXX //autogen
+// auto strip #include <vcl/fixed.hxx>
+// auto strip #endif
 
-#ifndef _SV_FIELD_HXX //autogen
-#include <vcl/field.hxx>
-#endif
+// auto strip #ifndef _SV_FIELD_HXX //autogen
+// auto strip #include <vcl/field.hxx>
+// auto strip #endif
 
-#ifndef _SV_GROUP_HXX //autogen
-#include <vcl/group.hxx>
-#endif
+// auto strip #ifndef _SV_GROUP_HXX //autogen
+// auto strip #include <vcl/group.hxx>
+// auto strip #endif
 
-#ifndef _STDCTRL_HXX //autogen
-#include <svtools/stdctrl.hxx>
-#endif
+// auto strip #ifndef _STDCTRL_HXX //autogen
+// auto strip #include <svtools/stdctrl.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
