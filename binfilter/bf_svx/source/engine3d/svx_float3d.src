@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_float3d.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:12:33 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:20:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -120,15 +120,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Favoritos" ;
 //STRIP001      QuickHelpText [ french ] = "Favoris" ;
 //STRIP001      QuickHelpText [ dutch ] = "Favorieten" ;
-//STRIP001  QuickHelpText[ russian ] = "Θηαπΰννϋ?;
+//STRIP001  QuickHelpText[ russian ] = "Θηαπΰννϋ?";
 //STRIP001      QuickHelpText[ polish ] = "Ulubione";
-//STRIP001      QuickHelpText[ japanese ] = "γζ°—γ«ε…¥γ‚?;
+//STRIP001      QuickHelpText[ japanese ] = "γζ°—γ«ε…¥γ‚?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ”¶θ—";
-//STRIP001      QuickHelpText[ chinese_traditional ] = "ζ‘η„ζ€ζ„?;
+//STRIP001      QuickHelpText[ chinese_traditional ] = "ζ‘η„ζ€ζ„?";
 //STRIP001      QuickHelpText[ arabic ] = "ΗαγέΦα";
 //STRIP001      QuickHelpText[ dutch ] = "Favorieten";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ”¶θ—";
-//STRIP001      QuickHelpText[ greek ] = "Αγαπημέν?;
+//STRIP001      QuickHelpText[ greek ] = "Αγαπημέν?";
 //STRIP001      QuickHelpText[ korean ] = "μ¦κ²¨μ°ΎκΈ°";
 //STRIP001      QuickHelpText[ turkish ] = "Favoriten";
 //STRIP001      QuickHelpText[ catalan ] = "Preferits";
@@ -136,7 +136,7 @@
 //STRIP001      QuickHelpText[ czech ] = "OblΓ­benΓ©";
 //STRIP001      QuickHelpText[ hebrew ] = "Favoriten";
 //STRIP001      QuickHelpText[ thai ] = "Favorites";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "ObΔΎΓΊbenΓ©";
 //STRIP001  };
 //STRIP001  ImageButton BTN_GEO
@@ -165,10 +165,10 @@
 //STRIP001      QuickHelpText[ japanese ] = "εΉΎδ½•γƒ‡γ‚¶γ‚¤γƒ³";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε‡ δ½•";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ε‡ δ½•";
-//STRIP001      QuickHelpText[ arabic ] = "ΗαεδΟΣ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗαεδΟΣ?";
 //STRIP001      QuickHelpText[ dutch ] = "Geometrie";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε‡ δ½•";
-//STRIP001      QuickHelpText[ greek ] = "Γεωμετρί?;
+//STRIP001      QuickHelpText[ greek ] = "Γεωμετρί?";
 //STRIP001      QuickHelpText[ korean ] = "μ§€μ¤λ©”νΈλ¦¬";
 //STRIP001      QuickHelpText[ turkish ] = "Geometrie";
 //STRIP001      QuickHelpText[ catalan ] = "Geometria";
@@ -200,18 +200,18 @@
 //STRIP001      QuickHelpText [ spanish ] = "Representaciσn" ;
 //STRIP001      QuickHelpText [ french ] = "Reprιsentation" ;
 //STRIP001      QuickHelpText [ dutch ] = "Weergave" ;
-//STRIP001  QuickHelpText[ russian ] = "Οπεδρςΰβλενθ?;
+//STRIP001  QuickHelpText[ russian ] = "Οπεδρςΰβλενθ?";
 //STRIP001      QuickHelpText[ polish ] = "Przedstawienie";
 //STRIP001      QuickHelpText[ japanese ] = "θ΅¨η¤Ί";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι΅―η¤Ί";
-//STRIP001      QuickHelpText[ arabic ] = "ΗαΪΡ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗαΪΡ?";
 //STRIP001      QuickHelpText[ dutch ] = "Weergave";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί";
 //STRIP001      QuickHelpText[ greek ] = "Εμφάνιση";
 //STRIP001      QuickHelpText[ korean ] = "ν‘μ‹";
 //STRIP001      QuickHelpText[ turkish ] = "Darstellung";
-//STRIP001      QuickHelpText[ catalan ] = "Representaci?;
+//STRIP001      QuickHelpText[ catalan ] = "Representaci?";
 //STRIP001      QuickHelpText[ finnish ] = "Varjostus";
 //STRIP001      QuickHelpText[ czech ] = "StΓ­novΓ΅nΓ­";
 //STRIP001      QuickHelpText[ hebrew ] = "Darstellung";
@@ -240,23 +240,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Iluminaciσn" ;
 //STRIP001      QuickHelpText [ french ] = "Eclairage" ;
 //STRIP001      QuickHelpText [ dutch ] = "Belichting" ;
-//STRIP001  QuickHelpText[ russian ] = "Ξρβεωενθ?;
+//STRIP001  QuickHelpText[ russian ] = "Ξρβεωενθ?";
 //STRIP001      QuickHelpText[ polish ] = "Owietlenie";
 //STRIP001      QuickHelpText[ japanese ] = "η…§ζ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η…§ζ";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "η…§ζ";
-//STRIP001      QuickHelpText[ arabic ] = "ΗαΕΦΗΑ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗαΕΦΗΑ?";
 //STRIP001      QuickHelpText[ dutch ] = "Belichting";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η…§ζ";
 //STRIP001      QuickHelpText[ greek ] = "Φωτισμός";
 //STRIP001      QuickHelpText[ korean ] = "μ΅°λª…";
 //STRIP001      QuickHelpText[ turkish ] = "Beleuchtung";
-//STRIP001      QuickHelpText[ catalan ] = "Il.luminaci?;
+//STRIP001      QuickHelpText[ catalan ] = "Il.luminaci?";
 //STRIP001      QuickHelpText[ finnish ] = "Valaistus";
 //STRIP001      QuickHelpText[ czech ] = "OsvΔ›tlenΓ­";
 //STRIP001      QuickHelpText[ hebrew ] = "Beleuchtung";
 //STRIP001      QuickHelpText[ thai ] = "Illumination";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤ΰ¤®ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤ΰ¤®ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Osvetlenie";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEXTURE
@@ -285,10 +285,10 @@
 //STRIP001      QuickHelpText[ japanese ] = "γƒ†γ‚―γ‚Ήγƒγƒ£γƒΌ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ζ–‡η†";
-//STRIP001      QuickHelpText[ arabic ] = "ΓδΣΜ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΓδΣΜ?";
 //STRIP001      QuickHelpText[ dutch ] = "Texturen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†";
-//STRIP001      QuickHelpText[ greek ] = "Υφ?;
+//STRIP001      QuickHelpText[ greek ] = "Υφ?";
 //STRIP001      QuickHelpText[ korean ] = "μ§κ°";
 //STRIP001      QuickHelpText[ turkish ] = "Texturen";
 //STRIP001      QuickHelpText[ catalan ] = "Textures";
@@ -296,7 +296,7 @@
 //STRIP001      QuickHelpText[ czech ] = "Textury";
 //STRIP001      QuickHelpText[ hebrew ] = "Texturen";
 //STRIP001      QuickHelpText[ thai ] = "Textures";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "TextΓΊry";
 //STRIP001  };
 //STRIP001  ImageButton BTN_MATERIAL
@@ -321,14 +321,14 @@
 //STRIP001      QuickHelpText [ french ] = "Matιriau" ;
 //STRIP001      QuickHelpText [ dutch ] = "Materiaal" ;
 //STRIP001  QuickHelpText[ russian ] = "Μΰςεπθΰλ";
-//STRIP001      QuickHelpText[ polish ] = "Materia?;
+//STRIP001      QuickHelpText[ polish ] = "Materia?";
 //STRIP001      QuickHelpText[ japanese ] = "η΄ ζ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζζ–™";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ζζ–™";
 //STRIP001      QuickHelpText[ arabic ] = "ΗαγΗΟΙ";
 //STRIP001      QuickHelpText[ dutch ] = "Materiaal";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζζ–™";
-//STRIP001      QuickHelpText[ greek ] = "Υλικ?;
+//STRIP001      QuickHelpText[ greek ] = "Υλικ?";
 //STRIP001      QuickHelpText[ korean ] = "μ¬λ£";
 //STRIP001      QuickHelpText[ turkish ] = "Material";
 //STRIP001      QuickHelpText[ catalan ] = "Material";
@@ -366,18 +366,18 @@
 //STRIP001      QuickHelpText[ japanese ] = "ζ›΄ζ–°";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ›΄ζ–°";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ζ›΄ζ–°";
-//STRIP001      QuickHelpText[ arabic ] = "ΚΝΟν?;
+//STRIP001      QuickHelpText[ arabic ] = "ΚΝΟν?";
 //STRIP001      QuickHelpText[ dutch ] = "Actualiseren";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ›΄ζ–°";
-//STRIP001      QuickHelpText[ greek ] = "Ενημέρωσ?;
+//STRIP001      QuickHelpText[ greek ] = "Ενημέρωσ?";
 //STRIP001      QuickHelpText[ korean ] = "μ—…λ°μ΄νΈ";
 //STRIP001      QuickHelpText[ turkish ] = "Aktualisieren";
 //STRIP001      QuickHelpText[ catalan ] = "Actualtiza";
-//STRIP001      QuickHelpText[ finnish ] = "Pδivit?;
+//STRIP001      QuickHelpText[ finnish ] = "Pδivit?";
 //STRIP001      QuickHelpText[ czech ] = "Aktualizovat";
 //STRIP001      QuickHelpText[ hebrew ] = "Aktualisieren";
 //STRIP001      QuickHelpText[ thai ] = "Update";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤…ΰ¤ªΰ¤΅ΰ¥‡ΰ¤ΰ¥ ΰ¤•ΰ¤°ΰ¥?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤…ΰ¤ªΰ¤΅ΰ¥‡ΰ¤ΰ¥ ΰ¤•ΰ¤°ΰ¥?";
 //STRIP001      QuickHelpText[ slovak ] = "AktualizΓ΅cia";
 //STRIP001  };
 //STRIP001  ImageButton BTN_ASSIGN
@@ -401,23 +401,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Asignar" ;
 //STRIP001      QuickHelpText [ french ] = "Assigner" ;
 //STRIP001      QuickHelpText [ dutch ] = "Toewijzen" ;
-//STRIP001  QuickHelpText[ russian ] = "Οπθρβξθς?;
+//STRIP001  QuickHelpText[ russian ] = "Οπθρβξθς?";
 //STRIP001      QuickHelpText[ polish ] = "Przypisz";
 //STRIP001      QuickHelpText[ japanese ] = "ι©η”¨";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ‡ε®";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ζ‡ε®";
-//STRIP001      QuickHelpText[ arabic ] = "ΚΪνν?;
+//STRIP001      QuickHelpText[ arabic ] = "ΚΪνν?";
 //STRIP001      QuickHelpText[ dutch ] = "Toewijzen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζ‡ε®";
 //STRIP001      QuickHelpText[ greek ] = "Αντιστοίχιση";
-//STRIP001      QuickHelpText[ korean ] = "μ§€μ ?;
+//STRIP001      QuickHelpText[ korean ] = "μ§€μ ?";
 //STRIP001      QuickHelpText[ turkish ] = "Zuweisen";
 //STRIP001      QuickHelpText[ catalan ] = "Assigna";
-//STRIP001      QuickHelpText[ finnish ] = "Liit?;
+//STRIP001      QuickHelpText[ finnish ] = "Liit?";
 //STRIP001      QuickHelpText[ czech ] = "PΕ™iΕ™adit";
 //STRIP001      QuickHelpText[ hebrew ] = "Zuweisen";
 //STRIP001      QuickHelpText[ thai ] = "Assign";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¨ΰ¤Ώΰ¤°ΰ¥ΰ¤¦ΰ¤Ώΰ¤·ΰ¥ΰ¤?ΰ¤•ΰ¤°ΰ¥?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¨ΰ¤Ώΰ¤°ΰ¥ΰ¤¦ΰ¤Ώΰ¤·ΰ¥ΰ¤?ΰ¤•ΰ¤°ΰ¥?";
 //STRIP001      QuickHelpText[ slovak ] = "PriradiΕ¥";
 //STRIP001  };
 //STRIP001   // Unterer Teil
@@ -443,16 +443,16 @@
 //STRIP001      QuickHelpText [ spanish ] = "Convertir en 3D" ;
 //STRIP001      QuickHelpText [ french ] = "Convertir en 3 D" ;
 //STRIP001      QuickHelpText [ dutch ] = "Converteren naar 3D" ;
-//STRIP001  QuickHelpText[ russian ] = "Οπεξαπΰηξβΰς??3-?;
+//STRIP001  QuickHelpText[ russian ] = "Οπεξαπΰηξβΰς??3-?";
 //STRIP001      QuickHelpText[ polish ] = "Konwertuj na 3-W";
-//STRIP001      QuickHelpText[ japanese ] = "3Dγ«ε¤‰ζ?;
-//STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζ?3 η»?;
-//STRIP001      QuickHelpText[ chinese_traditional ] = "θ½‰θ®ζ?3 η¶?;
-//STRIP001      QuickHelpText[ arabic ] = "ΚΝζν?Εα?ΛαΗΛ?ΗαΓΘΪΗ?;
+//STRIP001      QuickHelpText[ japanese ] = "3Dγ«ε¤‰ζ?";
+//STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζ?3 η»?";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "θ½‰θ®ζ?3 η¶?";
+//STRIP001      QuickHelpText[ arabic ] = "ΚΝζν?Εα?ΛαΗΛ?ΗαΓΘΪΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Converteren naar 3D";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζ?3 η»?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζ?3 η»?";
 //STRIP001      QuickHelpText[ greek ] = "Μετατροπ?σε 3 D";
-//STRIP001      QuickHelpText[ korean ] = "3Dλ΅?λ³€ν™?;
+//STRIP001      QuickHelpText[ korean ] = "3Dλ΅?λ³€ν™?";
 //STRIP001      QuickHelpText[ turkish ] = "Umwandeln in 3D";
 //STRIP001      QuickHelpText[ catalan ] = "Converteix a 3D";
 //STRIP001      QuickHelpText[ finnish ] = "Muunna kolmiulotteiseksi";
@@ -489,13 +489,13 @@
 //STRIP001      QuickHelpText[ japanese ] = "ε›θ»Άδ½“γ«ε¤‰ζ›";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζζ—‹θ½¬δ½“";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "θ½‰θ®ζζ—‹θ½‰ι«”";
-//STRIP001      QuickHelpText[ arabic ] = "ΚΝζν?Εα?ίΗΖδ ΗΣΚΟΗΡ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΚΝζν?Εα?ίΗΖδ ΗΣΚΟΗΡ?";
 //STRIP001      QuickHelpText[ dutch ] = "Veranderen in rotatieobjecten";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "θ½¬ζΆζζ—‹θ½¬δ½“";
-//STRIP001      QuickHelpText[ greek ] = "Μετατροπ?σε αντικείμεν?περιστροφή?;
-//STRIP001      QuickHelpText[ korean ] = "νμ „μ²΄λ΅ λ³€ν™?;
+//STRIP001      QuickHelpText[ greek ] = "Μετατροπ?σε αντικείμεν?περιστροφή?";
+//STRIP001      QuickHelpText[ korean ] = "νμ „μ²΄λ΅ λ³€ν™?";
 //STRIP001      QuickHelpText[ turkish ] = "Umwandeln in Rotationskφrper";
-//STRIP001      QuickHelpText[ catalan ] = "Converteix en cos de rotaci?;
+//STRIP001      QuickHelpText[ catalan ] = "Converteix en cos de rotaci?";
 //STRIP001      QuickHelpText[ finnish ] = "Muunna sorviobjektiksi";
 //STRIP001      QuickHelpText[ czech ] = "PΕ™evΓ©st na kruhovΓ½ objekt";
 //STRIP001      QuickHelpText[ hebrew ] = "Umwandeln in RotationskΓ¶rper";
@@ -525,15 +525,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Activar/desactivar perspectiva" ;
 //STRIP001      QuickHelpText [ french ] = "Activer/dιsactiver la perspective" ;
 //STRIP001      QuickHelpText [ dutch ] = "Perspectief in-/uitschakelen" ;
-//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. οεπροεκςθβ?;
-//STRIP001      QuickHelpText[ polish ] = "W³Ήcz/Wy³Ήcz perspektyw?;
+//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. οεπροεκςθβ?";
+//STRIP001      QuickHelpText[ polish ] = "W³Ήcz/Wy³Ήcz perspektyw?";
 //STRIP001      QuickHelpText[ japanese ] = "ι θΏ‘ζ³?γ‚ªγƒ³/γ‚ªγƒ•";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ι€θ§†";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι΅―η¤Ί/ι±ε…¥ι€θ¦–";
-//STRIP001      QuickHelpText[ arabic ] = "ΚΤΫν?ΕνήΗ?ΗαγδΩζ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΚΤΫν?ΕνήΗ?ΗαγδΩζ?";
 //STRIP001      QuickHelpText[ dutch ] = "Perspectief in-/uitschakelen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ι€θ§†";
-//STRIP001      QuickHelpText[ greek ] = "Προοπτικ?Να?Όχ?;
+//STRIP001      QuickHelpText[ greek ] = "Προοπτικ?Να?Όχ?";
 //STRIP001      QuickHelpText[ korean ] = "μ›κ·Όλ²?μ μ©/ν•΄μ ";
 //STRIP001      QuickHelpText[ turkish ] = "Perspektive ein-/ausschalten";
 //STRIP001      QuickHelpText[ catalan ] = "Activa/desactiva perspectiva";
@@ -541,7 +541,7 @@
 //STRIP001      QuickHelpText[ czech ] = "Perspektiva zap/vyp";
 //STRIP001      QuickHelpText[ hebrew ] = "Perspektive ein-/ausschalten";
 //STRIP001      QuickHelpText[ thai ] = "Perspective On/Off";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¦ΰ¥ƒΰ¤¶ΰ¥ΰ¤?ΰ¤¶ΰ¥ΰ¤°ΰ¥/ΰ¤¬ΰ¤‚ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¦ΰ¥ƒΰ¤¶ΰ¥ΰ¤?ΰ¤¶ΰ¥ΰ¤°ΰ¥/ΰ¤¬ΰ¤‚ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "PerspektΓ­va zap/vyp";
 //STRIP001  };
 //STRIP001  Control CTL_PREVIEW
@@ -584,22 +584,22 @@
 //STRIP001      Text [ dutch ] = "Favorieten" ;
 //STRIP001      Text [ portuguese ] = "Favoritos" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ”¶θ—";
-//STRIP001      Text[ russian ] = "Θηαπΰννϋ?;
+//STRIP001      Text[ russian ] = "Θηαπΰννϋ?";
 //STRIP001      Text[ polish ] = "Ulubione";
-//STRIP001      Text[ japanese ] = "γζ°—γ«ε…¥γ‚?;
-//STRIP001      Text[ chinese_traditional ] = "ζ‘η„ζ€ζ„?;
-//STRIP001      Text[ arabic ] = "ΗαγέΦα?;
+//STRIP001      Text[ japanese ] = "γζ°—γ«ε…¥γ‚?";
+//STRIP001      Text[ chinese_traditional ] = "ζ‘η„ζ€ζ„?";
+//STRIP001      Text[ arabic ] = "ΗαγέΦα?";
 //STRIP001      Text[ dutch ] = "Favorieten";
 //STRIP001      Text[ chinese_simplified ] = "ζ”¶θ—";
-//STRIP001      Text[ greek ] = "Προτιμήσει?;
+//STRIP001      Text[ greek ] = "Προτιμήσει?";
 //STRIP001      Text[ korean ] = "μ¦κ²¨μ°ΎκΈ°";
 //STRIP001      Text[ turkish ] = "Favoriler";
 //STRIP001      Text[ catalan ] = "Predilectes";
 //STRIP001      Text[ finnish ] = "Suosikit";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ?";
 //STRIP001      Text[ czech ] = "OblΓ­benΓ©";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ•ΧΆΧ“Χ¤Χ™Χβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ•ΧΆΧ“Χ¤Χ™Χβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?";
 //STRIP001      Text[ slovak ] = "ObΔΎΓΊbenΓ©";
 //STRIP001  };
 //STRIP001  ImageButton BTN_ONLY_3D
@@ -623,16 +623,16 @@
 //STRIP001      QuickHelpText [ spanish ] = "Asignar sσlo atributos 3D" ;
 //STRIP001      QuickHelpText [ french ] = "Assigner uniquement les attributs 3 D" ;
 //STRIP001      QuickHelpText [ dutch ] = "Alleen 3D-attributen toewijzen" ;
-//STRIP001  QuickHelpText[ russian ] = "Οπθμενθς?ςξλόκξ ΰςπθασςϋ 3-?;
+//STRIP001  QuickHelpText[ russian ] = "Οπθμενθς?ςξλόκξ ΰςπθασςϋ 3-?";
 //STRIP001      QuickHelpText[ polish ] = "Przypisz tylko atrybuty 3-W";
-//STRIP001      QuickHelpText[ japanese ] = "3D ε±ζ€§γ®γΏι©η”?;
-//STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ‡ε®?3 η»΄ε±ζ€?;
-//STRIP001      QuickHelpText[ chinese_traditional ] = "εªζ‡ε®?3 η¶­ε±¬ζ€?;
-//STRIP001      QuickHelpText[ arabic ] = "ΚΪνν?ΣγΗΚ ΛαΗΛνΙ ΗαΓΘΪΗ?έή?;
+//STRIP001      QuickHelpText[ japanese ] = "3D ε±ζ€§γ®γΏι©η”?";
+//STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ‡ε®?3 η»΄ε±ζ€?";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "εªζ‡ε®?3 η¶­ε±¬ζ€?";
+//STRIP001      QuickHelpText[ arabic ] = "ΚΪνν?ΣγΗΚ ΛαΗΛνΙ ΗαΓΘΪΗ?έή?";
 //STRIP001      QuickHelpText[ dutch ] = "Alleen 3D-attributen toewijzen";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ‡ε®?3 η»΄ε±ζ€?;
-//STRIP001      QuickHelpText[ greek ] = "Μόνο ιδιότητε?3?;
-//STRIP001      QuickHelpText[ korean ] = "3D μ†μ„±λ§?μ§€μ ?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ‡ε®?3 η»΄ε±ζ€?";
+//STRIP001      QuickHelpText[ greek ] = "Μόνο ιδιότητε?3?";
+//STRIP001      QuickHelpText[ korean ] = "3D μ†μ„±λ§?μ§€μ ?";
 //STRIP001      QuickHelpText[ turkish ] = "Nur 3D-Attribute zuweisen";
 //STRIP001      QuickHelpText[ catalan ] = "Assigna nomιs atributs 3D";
 //STRIP001      QuickHelpText[ finnish ] = "Vain kolmiulotteiset mδδritteet";
@@ -666,12 +666,12 @@
 //STRIP001  QuickHelpText[ russian ] = "Οπθρβξθς?βρ?ΰςπθασςϋ";
 //STRIP001      QuickHelpText[ polish ] = "Przypisz wszystkie atrybuty";
 //STRIP001      QuickHelpText[ japanese ] = "γ™γΉγ¦γ®ε±ζ€§γ‚’ι©η”¨";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ι…ζ‰€ζ‰ε±ζ€?;
-//STRIP001      QuickHelpText[ chinese_traditional ] = "ζ‡ε®ζ‰€ζ‰η„ε±¬ζ€?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ι…ζ‰€ζ‰ε±ζ€?";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "ζ‡ε®ζ‰€ζ‰η„ε±¬ζ€?";
 //STRIP001      QuickHelpText[ arabic ] = "ΚΪνν?ία ΗαΣγΗΚ";
 //STRIP001      QuickHelpText[ dutch ] = "Alle attributen toewijzen";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ι…ζ‰€ζ‰ε±ζ€?;
-//STRIP001      QuickHelpText[ greek ] = "Αντιστοίχιση όλων τω?ιδιοτήτω?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ι…ζ‰€ζ‰ε±ζ€?";
+//STRIP001      QuickHelpText[ greek ] = "Αντιστοίχιση όλων τω?ιδιοτήτω?";
 //STRIP001      QuickHelpText[ korean ] = "λª¨λ“  μ†μ„± ν• λ‹Ή";
 //STRIP001      QuickHelpText[ turkish ] = "Alle Attribute zuweisen";
 //STRIP001      QuickHelpText[ catalan ] = "Assigna tots els atributs";
@@ -679,7 +679,7 @@
 //STRIP001      QuickHelpText[ czech ] = "PΕ™iΕ™adit vΕ΅echny atributy";
 //STRIP001      QuickHelpText[ hebrew ] = "Alle Attribute zuweisen";
 //STRIP001      QuickHelpText[ thai ] = "Assign All Attributes";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤¬ ΰ¤ΰ¤ΰ¥ΰ¤°ΰ¤Ώΰ¤¬ΰ¥ΰ¤―ΰ¥‚ΰ¤ΰ¥ΰ¤Έ ΰ¤²ΰ¤Ύΰ¤—ΰ¥‚ ΰ¤•ΰ¤°ΰ¥?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤¬ ΰ¤ΰ¤ΰ¥ΰ¤°ΰ¤Ώΰ¤¬ΰ¥ΰ¤―ΰ¥‚ΰ¤ΰ¥ΰ¤Έ ΰ¤²ΰ¤Ύΰ¤—ΰ¥‚ ΰ¤•ΰ¤°ΰ¥?";
 //STRIP001      QuickHelpText[ slovak ] = "PriradiΕ¥ vΕ΅etky atribΓΊty";
 //STRIP001  };
 //STRIP001   // Geometrie
@@ -699,21 +699,21 @@
 //STRIP001      Text [ dutch ] = "Horizontaal" ;
 //STRIP001      Text [ portuguese ] = "Horizontal" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ°΄εΉ³(~H)";
-//STRIP001      Text[ russian ] = "Γξπθηξνςΰλόν?;
+//STRIP001      Text[ russian ] = "Γξπθηξνςΰλόν?";
 //STRIP001      Text[ polish ] = "Poziomo";
 //STRIP001      Text[ japanese ] = "ζ°΄εΉ³γ?~H)";
 //STRIP001      Text[ chinese_traditional ] = "ζ°΄εΉ³(~H)";
 //STRIP001      Text[ arabic ] = "Γέήν";
 //STRIP001      Text[ dutch ] = "Horizontaal";
 //STRIP001      Text[ chinese_simplified ] = "ζ°΄εΉ³(~H)";
-//STRIP001      Text[ greek ] = "Οριζόντι?;
+//STRIP001      Text[ greek ] = "Οριζόντι?";
 //STRIP001      Text[ korean ] = "μν‰(~H)";
 //STRIP001      Text[ turkish ] = "~Yatay";
 //STRIP001      Text[ catalan ] = "Horitzontal";
 //STRIP001      Text[ finnish ] = "Vaakatasossa";
 //STRIP001      Text[ thai ] = "ΰΉΰΈ™ΰΈ§ΰΈ™ΰΈ­ΰΈ™";
 //STRIP001      Text[ czech ] = "VodorovnΔ›";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ•Χ¤Χ§Χ™β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ•Χ¤Χ§Χ™β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤Έΰ¤®ΰ¤¤ΰ¤²";
 //STRIP001      Text[ slovak ] = "VodorovnΓ©";
 //STRIP001  };
@@ -746,7 +746,7 @@
 //STRIP001      Text [ dutch ] = "Verticaal" ;
 //STRIP001      Text [ portuguese ] = "Vertical" ;
 //STRIP001      Text[ chinese_simplified ] = "ε‚η›΄(~V)";
-//STRIP001      Text[ russian ] = "Βεπςθκΰλόν?;
+//STRIP001      Text[ russian ] = "Βεπςθκΰλόν?";
 //STRIP001      Text[ polish ] = "Pionowo";
 //STRIP001      Text[ japanese ] = "ε‚η›΄γ?~V)";
 //STRIP001      Text[ chinese_traditional ] = "ε‚η›΄(~V)";
@@ -758,9 +758,9 @@
 //STRIP001      Text[ turkish ] = "~Dikey";
 //STRIP001      Text[ catalan ] = "Vertical";
 //STRIP001      Text[ finnish ] = "Pystytasossa";
-//STRIP001      Text[ thai ] = "ΰΉΰΈ™ΰΈ§ΰΈ•ΰΈ±ΰΉ‰ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΉΰΈ™ΰΈ§ΰΈ•ΰΈ±ΰΉ‰ΰΈ?";
 //STRIP001      Text[ czech ] = "Svisle";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ Χ›Χ™β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ Χ›Χ™β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤²ΰ¤®ΰ¥ΰ¤¬";
 //STRIP001      Text[ slovak ] = "ZvislΓ©";
 //STRIP001  };
@@ -797,17 +797,17 @@
 //STRIP001      Text[ polish ] = "Segmenty";
 //STRIP001      Text[ japanese ] = "ε‡η‰‡";
 //STRIP001      Text[ chinese_traditional ] = "ε†ζ®µ";
-//STRIP001      Text[ arabic ] = "ήΨ?;
+//STRIP001      Text[ arabic ] = "ήΨ?";
 //STRIP001      Text[ dutch ] = "Segmenten";
 //STRIP001      Text[ chinese_simplified ] = "ε†ζ®µ";
-//STRIP001      Text[ greek ] = "Τμήματ?;
+//STRIP001      Text[ greek ] = "Τμήματ?";
 //STRIP001      Text[ korean ] = "μ„Έκ·Έλ¨ΌνΈ";
 //STRIP001      Text[ turkish ] = "Kesimler";
 //STRIP001      Text[ catalan ] = "Segments";
 //STRIP001      Text[ finnish ] = "Tahkoja";
 //STRIP001      Text[ thai ] = "ΰΈªΰΉΰΈ§ΰΈ™";
 //STRIP001      Text[ czech ] = "ΔΓ΅sti";
-//STRIP001      Text[ hebrew ] = "β€®Χ§ΧΧΆΧ™Χβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ§ΧΧΆΧ™Χβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤–ΰ¤£ΰ¥ΰ¤΅";
 //STRIP001      Text[ slovak ] = "Δasti";
 //STRIP001  };
@@ -839,10 +839,10 @@
 //STRIP001      Text[ turkish ] = "~Yuvarlanmύώ kφώeler";
 //STRIP001      Text[ catalan ] = "Vores arrodonides";
 //STRIP001      Text[ finnish ] = "Pyφristetyt kulmat";
-//STRIP001      Text[ thai ] = "ΰΈ‚ΰΈ­ΰΈΰΈ΅ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ‚ΰΈ­ΰΈΰΈ΅ΰΈ?";
 //STRIP001      Text[ czech ] = "ZaoblenΓ© rohy";
-//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ™Χ’Χ•Χ?Χ§Χ¦Χ•Χ•Χªβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤—ΰ¥‹ΰ¤?ΰ¤†ΰ¤•ΰ¤Ύΰ¤° ΰ¤•ΰ¤Ύ ΰ¤•ΰ¤Ώΰ¤¨ΰ¤Ύΰ¤°ΰ¥‡ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ™Χ’Χ•Χ?Χ§Χ¦Χ•Χ•Χªβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤—ΰ¥‹ΰ¤?ΰ¤†ΰ¤•ΰ¤Ύΰ¤° ΰ¤•ΰ¤Ύ ΰ¤•ΰ¤Ώΰ¤¨ΰ¤Ύΰ¤°ΰ¥‡ΰ¤?";
 //STRIP001      Text[ slovak ] = "ZaoblenΓ© rohy";
 //STRIP001  };
 //STRIP001  MetricField MTR_PERCENT_DIAGONAL
@@ -870,16 +870,16 @@
 //STRIP001      Text [ portuguese_brazilian ] = "Profundidade escalonada" ;
 //STRIP001      Text [ swedish ] = "Djupskalning" ;
 //STRIP001      Text [ danish ] = "~Dybdeskalering" ;
-//STRIP001      Text [ italian ] = "Scala profondit? ;
+//STRIP001      Text [ italian ] = "Scala profondit?" ;
 //STRIP001      Text [ spanish ] = "~Escala de profundidad" ;
 //STRIP001      Text [ french ] = "Ιchelle de profondeur" ;
 //STRIP001      Text [ dutch ] = "Diepte op schaal brengen" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ·±εΊ¦ζ―”δΎ‹(~S)";
-//STRIP001      Text[ russian ] = "Μΰρψςΰ?γλσαθν?;
+//STRIP001      Text[ russian ] = "Μΰρψςΰ?γλσαθν?";
 //STRIP001      Text[ polish ] = "Skalowanie g³κbi";
 //STRIP001      Text[ japanese ] = "ε¥¥θ΅γγ®ζ·±γ•(~S)";
 //STRIP001      Text[ chinese_traditional ] = "ζ·±εΊ¦ζ―”δΎ‹(~S)";
-//STRIP001      Text[ arabic ] = "ΚΝΜν?ΗαΪγ?;
+//STRIP001      Text[ arabic ] = "ΚΝΜν?ΗαΪγ?";
 //STRIP001      Text[ dutch ] = "Diepte op schaal brengen";
 //STRIP001      Text[ chinese_simplified ] = "ζ·±εΊ¦ζ―”δΎ‹(~S)";
 //STRIP001      Text[ greek ] = "Κλίμακ?βάθους";
@@ -887,10 +887,10 @@
 //STRIP001      Text[ turkish ] = "~Φlηeklenmi?derinlik";
 //STRIP001      Text[ catalan ] = "Profunditat redimensionada";
 //STRIP001      Text[ finnish ] = "Skaalattu syvyys";
-//STRIP001      Text[ thai ] = "ΰΈªΰΉ€ΰΈΰΈ¥ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈ¥ΰΈ¶ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈªΰΉ€ΰΈΰΈ¥ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈ¥ΰΈ¶ΰΈ?";
 //STRIP001      Text[ czech ] = "Ε kΓ΅lovanΓ΅ hloubka";
-//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•ΧΧ?ΧΧ•ΧªΧΧβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤Έΰ¥ΰ¤•ΰ¥‡ΰ¤?ΰ¤•ΰ¤Ώΰ¤―ΰ¤Ύ ΰ¤Ήΰ¥ΰ¤?ΰ¤—ΰ¤Ήΰ¤°ΰ¤Ύΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•ΧΧ?ΧΧ•ΧªΧΧβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤Έΰ¥ΰ¤•ΰ¥‡ΰ¤?ΰ¤•ΰ¤Ώΰ¤―ΰ¤Ύ ΰ¤Ήΰ¥ΰ¤?ΰ¤—ΰ¤Ήΰ¤°ΰ¤Ύΰ¤?";
 //STRIP001      Text[ slovak ] = "Ε kΓ΅la";
 //STRIP001  };
 //STRIP001  MetricField MTR_BACKSCALE
@@ -927,18 +927,18 @@
 //STRIP001      Text[ polish ] = "KΉt obrotu";
 //STRIP001      Text[ japanese ] = "ε›θ»Άθ§’εΊ¦(~R)";
 //STRIP001      Text[ chinese_traditional ] = "ζ—‹θ½‰θ§’εΊ¦(~R)";
-//STRIP001      Text[ arabic ] = "ÒΗζν?ΗαδεΗν?;
+//STRIP001      Text[ arabic ] = "ÒΗζν?ΗαδεΗν?";
 //STRIP001      Text[ dutch ] = "Eindhoek";
 //STRIP001      Text[ chinese_simplified ] = "ζ€η»θ§’εΊ?~R)";
-//STRIP001      Text[ greek ] = "Τελική γωνί?;
+//STRIP001      Text[ greek ] = "Τελική γωνί?";
 //STRIP001      Text[ korean ] = "νμ „κ°λ„(~R)";
-//STRIP001      Text[ turkish ] = "~Dφnόώ aηύs?;
+//STRIP001      Text[ turkish ] = "~Dφnόώ aηύs?";
 //STRIP001      Text[ catalan ] = "Angle de gir";
 //STRIP001      Text[ finnish ] = "Kiertokulma";
-//STRIP001      Text[ thai ] = "ΰΈ΅ΰΈΈΰΈ΅ΰΈ«ΰΈ΅ΰΈΈΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ΅ΰΈΈΰΈ΅ΰΈ«ΰΈ΅ΰΈΈΰΈ?";
 //STRIP001      Text[ czech ] = "Γhel rotace";
-//STRIP001      Text[ hebrew ] = "β€®Χ–Χ•Χ•Χ™Χ?Χ΅Χ™Χ‘Χ•Χ‘β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ΰ¥ΰ¤®ΰ¤Ύΰ¤?ΰ¤•ΰ¥‹ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ–Χ•Χ•Χ™Χ?Χ΅Χ™Χ‘Χ•Χ‘β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ΰ¥ΰ¤®ΰ¤Ύΰ¤?ΰ¤•ΰ¥‹ΰ¤?";
 //STRIP001      Text[ slovak ] = "Uhol rotΓ΅cie";
 //STRIP001  };
 //STRIP001  MetricField MTR_END_ANGLE
@@ -969,17 +969,17 @@
 //STRIP001      CustomUnitText[ swedish ] = " grader";
 //STRIP001      CustomUnitText[ polish ] = " st.";
 //STRIP001      CustomUnitText[ portuguese_brazilian ] = " graus";
-//STRIP001      CustomUnitText[ japanese ] = " εΊ?;
-//STRIP001      CustomUnitText[ korean ] = " λ?;
-//STRIP001      CustomUnitText[ chinese_simplified ] = " εΊ?;
-//STRIP001      CustomUnitText[ chinese_traditional ] = " εΊ?;
+//STRIP001      CustomUnitText[ japanese ] = " εΊ?";
+//STRIP001      CustomUnitText[ korean ] = " λ?";
+//STRIP001      CustomUnitText[ chinese_simplified ] = " εΊ?";
+//STRIP001      CustomUnitText[ chinese_traditional ] = " εΊ?";
 //STRIP001      CustomUnitText[ turkish ] = " derece(ler)";
 //STRIP001      CustomUnitText[ arabic ] = " degree";
 //STRIP001      CustomUnitText[ catalan ] = " grau(s)";
 //STRIP001      CustomUnitText[ thai ] = " ΰΈ­ΰΈ‡ΰΈ¨ΰΈ²";
 //STRIP001      CustomUnitText[ czech ] = " stupΕΕ―";
-//STRIP001      CustomUnitText[ hebrew ] = "β€®ΧΧΆΧΧ•Χªβ€?;
-//STRIP001      CustomUnitText[ hindi ] = " ΰ¤΅ΰ¤Ώΰ¤—ΰ¥ΰ¤°ΰ¤Ώΰ¤―ΰ¤Ύΰ¤?;
+//STRIP001      CustomUnitText[ hebrew ] = "β€®ΧΧΆΧΧ•Χªβ€?";
+//STRIP001      CustomUnitText[ hindi ] = " ΰ¤΅ΰ¤Ώΰ¤—ΰ¥ΰ¤°ΰ¤Ώΰ¤―ΰ¤Ύΰ¤?";
 //STRIP001      CustomUnitText[ slovak ] = " stupΕov";
 //STRIP001  };
 //STRIP001  FixedText FT_DEPTH
@@ -992,28 +992,28 @@
 //STRIP001      Text [ portuguese_brazilian ] = "Profundidade" ;
 //STRIP001      Text [ swedish ] = "Djup" ;
 //STRIP001      Text [ danish ] = "D~ybde" ;
-//STRIP001      Text [ italian ] = "Profondit? ;
+//STRIP001      Text [ italian ] = "Profondit?" ;
 //STRIP001      Text [ spanish ] = "~Profundidad" ;
 //STRIP001      Text [ french ] = "Profondeur" ;
 //STRIP001      Text [ dutch ] = "Diepte" ;
 //STRIP001      Text [ portuguese ] = "Profundidade" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ·±εΊ¦(~D)";
-//STRIP001      Text[ russian ] = "Γλσαθν?;
+//STRIP001      Text[ russian ] = "Γλσαθν?";
 //STRIP001      Text[ polish ] = "G³κbia";
 //STRIP001      Text[ japanese ] = "ε¥¥θ΅γ?~D)";
 //STRIP001      Text[ chinese_traditional ] = "ζ·±εΊ¦(~D)";
-//STRIP001      Text[ arabic ] = "ΗαΪγ?;
+//STRIP001      Text[ arabic ] = "ΗαΪγ?";
 //STRIP001      Text[ dutch ] = "Diepte";
 //STRIP001      Text[ chinese_simplified ] = "ζ·±εΊ¦(~D)";
-//STRIP001      Text[ greek ] = "Βάθο?;
+//STRIP001      Text[ greek ] = "Βάθο?";
 //STRIP001      Text[ korean ] = "κΉμ΄(~D)";
 //STRIP001      Text[ turkish ] = "~Derinlik";
 //STRIP001      Text[ catalan ] = "Profunditat";
 //STRIP001      Text[ finnish ] = "Syvyys";
-//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈ¥ΰΈ¶ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈ¥ΰΈ¶ΰΈ?";
 //STRIP001      Text[ czech ] = "Hloubka";
-//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•ΧΧ§β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤—ΰ¤Ήΰ¤°ΰ¤Ύΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•ΧΧ§β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤—ΰ¤Ήΰ¤°ΰ¤Ύΰ¤?";
 //STRIP001      Text[ slovak ] = "HΔΊbka";
 //STRIP001  };
 //STRIP001  MetricField MTR_DEPTH
@@ -1053,17 +1053,17 @@
 //STRIP001      Text[ polish ] = "Geometria";
 //STRIP001      Text[ japanese ] = "εΉΎδ½•γƒ‡γ‚¶γ‚¤γƒ³";
 //STRIP001      Text[ chinese_traditional ] = "εΉΎδ½•";
-//STRIP001      Text[ arabic ] = "ΗαεδΟΣ?;
+//STRIP001      Text[ arabic ] = "ΗαεδΟΣ?";
 //STRIP001      Text[ dutch ] = "Geometrie";
 //STRIP001      Text[ chinese_simplified ] = "ε‡ δ½•";
-//STRIP001      Text[ greek ] = "Γεωμετρί?;
-//STRIP001      Text[ korean ] = "κΈ°ν•ν•?;
+//STRIP001      Text[ greek ] = "Γεωμετρί?";
+//STRIP001      Text[ korean ] = "κΈ°ν•ν•?";
 //STRIP001      Text[ turkish ] = "Geometri";
 //STRIP001      Text[ catalan ] = "Geometria";
 //STRIP001      Text[ finnish ] = "Geometria";
-//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ£ΰΈ‚ΰΈ²ΰΈ„ΰΈ“ΰΈ΄ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΉ€ΰΈ£ΰΈ‚ΰΈ²ΰΈ„ΰΈ“ΰΈ΄ΰΈ?";
 //STRIP001      Text[ czech ] = "Geometrie";
-//STRIP001      Text[ hebrew ] = "β€®Χ’ΧΧ•ΧΧΧ¨Χ™Χ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ’ΧΧ•ΧΧΧ¨Χ™Χ”β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤°ΰ¥‡ΰ¤–ΰ¤Ύΰ¤—ΰ¤£ΰ¤Ώΰ¤¤";
 //STRIP001      Text[ slovak ] = "Geometria";
 //STRIP001  };
@@ -1088,15 +1088,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Especνfico del objeto" ;
 //STRIP001      QuickHelpText [ french ] = "Spιcifique ?l'objet" ;
 //STRIP001      QuickHelpText [ dutch ] = "Objectspezifiek" ;
-//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?;
+//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?";
 //STRIP001      QuickHelpText[ polish ] = "Specyficzny dla obiektu";
-//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?;
+//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "η‰Ήζ®η‰©δ»¶";
-//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?";
 //STRIP001      QuickHelpText[ dutch ] = "Objectspezifiek";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
-//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?;
+//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?";
 //STRIP001      QuickHelpText[ korean ] = "κ°μ²΄ νΉμ ";
 //STRIP001      QuickHelpText[ turkish ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ catalan ] = "Especνfic de l'objecte";
@@ -1104,7 +1104,7 @@
 //STRIP001      QuickHelpText[ czech ] = "Specificky pro objekt";
 //STRIP001      QuickHelpText[ hebrew ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ thai ] = "Object-Specific";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Ε pecificky pre objekt";
 //STRIP001  };
 //STRIP001  ImageButton BTN_NORMALS_FLAT
@@ -1128,7 +1128,7 @@
 //STRIP001      QuickHelpText [ spanish ] = "Plano" ;
 //STRIP001      QuickHelpText [ french ] = "Plat" ;
 //STRIP001      QuickHelpText [ dutch ] = "Vlak" ;
-//STRIP001  QuickHelpText[ russian ] = "Ολξρκθ?;
+//STRIP001  QuickHelpText[ russian ] = "Ολξρκθ?";
 //STRIP001      QuickHelpText[ polish ] = "P³aski";
 //STRIP001      QuickHelpText[ japanese ] = "εΉ³ιΆ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³ε¦";
@@ -1136,11 +1136,11 @@
 //STRIP001      QuickHelpText[ arabic ] = "γΣΨΝ";
 //STRIP001      QuickHelpText[ dutch ] = "Vlak";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³ε¦";
-//STRIP001      QuickHelpText[ greek ] = "Επίπεδ?;
+//STRIP001      QuickHelpText[ greek ] = "Επίπεδ?";
 //STRIP001      QuickHelpText[ korean ] = "ν‰λ©΄";
 //STRIP001      QuickHelpText[ turkish ] = "Flach";
 //STRIP001      QuickHelpText[ catalan ] = "Pla";
-//STRIP001      QuickHelpText[ finnish ] = "Litte?;
+//STRIP001      QuickHelpText[ finnish ] = "Litte?";
 //STRIP001      QuickHelpText[ czech ] = "PlochΓ©";
 //STRIP001      QuickHelpText[ hebrew ] = "Flach";
 //STRIP001      QuickHelpText[ thai ] = "Flat";
@@ -1210,21 +1210,21 @@
 //STRIP001      QuickHelpText [ dutch ] = "Normalen omkeren" ;
 //STRIP001  QuickHelpText[ russian ] = "Οξβξπξ?ξςνξ? ξρβεωενθÿ";
 //STRIP001      QuickHelpText[ polish ] = "Odwrσζ normalne";
-//STRIP001      QuickHelpText[ japanese ] = "ζ³•η·γ‚’ι€†θ»Άγ•γ›γ‚?;
+//STRIP001      QuickHelpText[ japanese ] = "ζ³•η·γ‚’ι€†θ»Άγ•γ›γ‚?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εη½®ζ³•ηΊΏ";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "εη½®ζ³•η·";
-//STRIP001      QuickHelpText[ arabic ] = "Ϊί?ΗαΞΨζΨ ΗαγΚΪΗγΟ?;
+//STRIP001      QuickHelpText[ arabic ] = "Ϊί?ΗαΞΨζΨ ΗαγΚΪΗγΟ?";
 //STRIP001      QuickHelpText[ dutch ] = "Normalen omkeren";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εη½®ζ³•ηΊΏ";
 //STRIP001      QuickHelpText[ greek ] = "Αντιστροφή κατακορύφω?επιφάνειας";
-//STRIP001      QuickHelpText[ korean ] = "λ³΄ν†µμΌλ΅ λ³€ν™?;
+//STRIP001      QuickHelpText[ korean ] = "λ³΄ν†µμΌλ΅ λ³€ν™?";
 //STRIP001      QuickHelpText[ turkish ] = "Normalen umkehren";
 //STRIP001      QuickHelpText[ catalan ] = "Inverteix els normals";
 //STRIP001      QuickHelpText[ finnish ] = "Kδδnn?normaalit";
 //STRIP001      QuickHelpText[ czech ] = "PΕ™evrΓ΅tit normΓ΅ly";
 //STRIP001      QuickHelpText[ hebrew ] = "Normalen umkehren";
 //STRIP001      QuickHelpText[ thai ] = "Invert Normals";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¨ΰ¥‹ΰ¤°ΰ¥ΰ¤®ΰ¤²ΰ¥‹ΰ¤‚ ΰ¤•ΰ¥‹ ΰ¤‰ΰ¤²ΰ¤ΰ¤¨ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¨ΰ¥‹ΰ¤°ΰ¥ΰ¤®ΰ¤²ΰ¥‹ΰ¤‚ ΰ¤•ΰ¥‹ ΰ¤‰ΰ¤²ΰ¤ΰ¤¨ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "PrevrΓ΅tiΕ¥ normΓ΅ly";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TWO_SIDED_LIGHTING
@@ -1248,12 +1248,12 @@
 //STRIP001      QuickHelpText [ spanish ] = "Iluminaciσn en dos lados" ;
 //STRIP001      QuickHelpText [ french ] = "Eclairage des deux cτtιs" ;
 //STRIP001      QuickHelpText [ dutch ] = "Dubbelzijdige belichting" ;
-//STRIP001  QuickHelpText[ russian ] = "Δβσρςξπξννεε ξρβεωενθ?;
+//STRIP001  QuickHelpText[ russian ] = "Δβσρςξπξννεε ξρβεωενθ?";
 //STRIP001      QuickHelpText[ polish ] = "Owietlenie obustronne";
 //STRIP001      QuickHelpText[ japanese ] = "δΈ΅ιΆη…§ζ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "δΈ¤ιΆη…§ζ";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι›™ιΆη…§ζ";
-//STRIP001      QuickHelpText[ arabic ] = "ΕΦΗΑ?γÒΟζΜΙ ΗαΜζΗδ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΕΦΗΑ?γÒΟζΜΙ ΗαΜζΗδ?";
 //STRIP001      QuickHelpText[ dutch ] = "Dubbelzijdige belichting";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "δΈ¤ιΆη…§ζ";
 //STRIP001      QuickHelpText[ greek ] = "Δίπλευρο?φωτισμός";
@@ -1264,7 +1264,7 @@
 //STRIP001      QuickHelpText[ czech ] = "DvoustrannΓ© osvΔ›tlenΓ­";
 //STRIP001      QuickHelpText[ hebrew ] = "2-seitige Beleuchtung";
 //STRIP001      QuickHelpText[ thai ] = "Double-Sided Illumination";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¦ΰ¥‹ΰ¤¨ΰ¥‹ΰ¤?ΰ¤“ΰ¤° ΰ¤ΰ¤®ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¦ΰ¥‹ΰ¤¨ΰ¥‹ΰ¤?ΰ¤“ΰ¤° ΰ¤ΰ¤®ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DvojstrannΓ© osvetlenie";
 //STRIP001  };
 //STRIP001     FixedLine FL_NORMALS
@@ -1283,7 +1283,7 @@
 //STRIP001      Text [ dutch ] = "Normale" ;
 //STRIP001      Text [ portuguese ] = "Verticais" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ³•ηΊΏ";
-//STRIP001      Text[ russian ] = "Ξαϋχνϋ?;
+//STRIP001      Text[ russian ] = "Ξαϋχνϋ?";
 //STRIP001      Text[ polish ] = "Normalne";
 //STRIP001      Text[ japanese ] = "ζ³•η·";
 //STRIP001      Text[ chinese_traditional ] = "ζ³•η·";
@@ -1297,7 +1297,7 @@
 //STRIP001      Text[ finnish ] = "Normaalit";
 //STRIP001      Text[ thai ] = "ΰΈ›ΰΈΰΈ•ΰΈ΄";
 //STRIP001      Text[ czech ] = "NormΓ΅ly";
-//STRIP001      Text[ hebrew ] = "β€®Χ Χ•Χ¨ΧΧΧ™Χβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ Χ•Χ¨ΧΧΧ™Χβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤¨ΰ¥‹ΰ¤°ΰ¥ΰ¤®ΰ¤²";
 //STRIP001      Text[ slovak ] = "NormΓ΅lne";
 //STRIP001  };
@@ -1327,10 +1327,10 @@
 //STRIP001      QuickHelpText[ japanese ] = "δΈ΅ιΆ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ειΆ";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι›™ιΆ";
-//STRIP001      QuickHelpText[ arabic ] = "ία?ΗαζΜεν?;
+//STRIP001      QuickHelpText[ arabic ] = "ία?ΗαζΜεν?";
 //STRIP001      QuickHelpText[ dutch ] = "Dubbelzijdig";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ειΆ";
-//STRIP001      QuickHelpText[ greek ] = "Διπλοσέλιδ?;
+//STRIP001      QuickHelpText[ greek ] = "Διπλοσέλιδ?";
 //STRIP001      QuickHelpText[ korean ] = "μ–‘λ©΄";
 //STRIP001      QuickHelpText[ turkish ] = "Doppelseitig";
 //STRIP001      QuickHelpText[ catalan ] = "Pΰgina doble";
@@ -1358,21 +1358,21 @@
 //STRIP001      Text [ dutch ] = "Modus" ;
 //STRIP001      Text [ portuguese ] = "Modo" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ russian ] = "Πεζθ?;
+//STRIP001      Text[ russian ] = "Πεζθ?";
 //STRIP001      Text[ polish ] = "Tryb";
 //STRIP001      Text[ japanese ] = "γƒΆγƒΌγƒ?~M)";
 //STRIP001      Text[ chinese_traditional ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ arabic ] = "ΗαζΦ?;
+//STRIP001      Text[ arabic ] = "ΗαζΦ?";
 //STRIP001      Text[ dutch ] = "Modus";
 //STRIP001      Text[ chinese_simplified ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ greek ] = "Κατάστασ?;
+//STRIP001      Text[ greek ] = "Κατάστασ?";
 //STRIP001      Text[ korean ] = "λª¨λ“(~M)";
 //STRIP001      Text[ turkish ] = "~Kip";
 //STRIP001      Text[ catalan ] = "Mode";
 //STRIP001      Text[ finnish ] = "Tila";
 //STRIP001      Text[ thai ] = "ΰΉ‚ΰΈ«ΰΈ΅ΰΈ”";
 //STRIP001      Text[ czech ] = "ReΕΎim";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦Χ?Χ¤ΧΆΧ•ΧΧ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦Χ?Χ¤ΧΆΧ•ΧΧ”β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¤Ύΰ¤°";
 //STRIP001      Text[ slovak ] = "ReΕΎim";
 //STRIP001  };
@@ -1451,7 +1451,7 @@
 //STRIP001  };
 //STRIP001  StringList [ russian ] =
 //STRIP001  {
-//STRIP001          < "Ολξρκξρςνξ? ; > ;
+//STRIP001          < "Ολξρκξρςνξ?" ; > ;
 //STRIP001      < "Τξνγ" ; > ;
 //STRIP001      < "Γσπξ" ; > ;
 //STRIP001  };
@@ -1493,14 +1493,14 @@
 //STRIP001  };
 //STRIP001  StringList [ greek ] =
 //STRIP001  {
-//STRIP001          < "Επίπεδ? ; > ;
+//STRIP001          < "Επίπεδ?" ; > ;
 //STRIP001      < "Phong" ; > ;
 //STRIP001      < "Gouraud" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ korean ] =
 //STRIP001  {
 //STRIP001          < "ν‰λ©΄" ; > ;
-//STRIP001      < "ν? ; > ;
+//STRIP001      < "ν?" ; > ;
 //STRIP001      < "κ³ μ°λ¬λ“(Gouraud)" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ language_user1 ] =
@@ -1523,13 +1523,13 @@
 //STRIP001  };
 //STRIP001  StringList [ finnish ] =
 //STRIP001  {
-//STRIP001          < "Litte? ; > ;
+//STRIP001          < "Litte?" ; > ;
 //STRIP001      < "Phong" ; > ;
 //STRIP001      < "Gouraud" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ thai ] =
 //STRIP001  {
-//STRIP001       < "ΰΉΰΈΰΈ? ; > ;
+//STRIP001       < "ΰΉΰΈΰΈ?" ; > ;
 //STRIP001      < "Phong" ; > ;
 //STRIP001          < "Gouraud" ; > ;
 //STRIP001      };
@@ -1541,15 +1541,15 @@
 //STRIP001  };
 //STRIP001  StringList [ hebrew ] =
 //STRIP001  {
-//STRIP001       < "β€®Χ©ΧΧ•Χ—β€? ; > ;
-//STRIP001      < "β€®Χ¤Χ•Χ Χ’β€? ; > ;
-//STRIP001      < "β€®Χ?Χ•Χ¨ΧΧ“β€? ; > ;
+//STRIP001       < "β€®Χ©ΧΧ•Χ—β€?" ; > ;
+//STRIP001      < "β€®Χ¤Χ•Χ Χ’β€?" ; > ;
+//STRIP001      < "β€®Χ?Χ•Χ¨ΧΧ“β€?" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ hindi ] =
 //STRIP001  {
 //STRIP001       < "ΰ¤Έΰ¤®ΰ¤¤ΰ¤²" ; > ;
-//STRIP001      < "ΰ¤«ΰ¥‹ΰ¤¨ΰ¥ΰ¤? ; > ;
-//STRIP001      < "ΰ¤—ΰ¥ΰ¤°ΰ¥ΰ¤? ; > ;
+//STRIP001      < "ΰ¤«ΰ¥‹ΰ¤¨ΰ¥ΰ¤?" ; > ;
+//STRIP001      < "ΰ¤—ΰ¥ΰ¤°ΰ¥ΰ¤?" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ slovak ] =
 //STRIP001  {
@@ -1580,15 +1580,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Activar/desactivar sombra 3D" ;
 //STRIP001      QuickHelpText [ french ] = "Activer/dιsactiver l'ombre 3 D" ;
 //STRIP001      QuickHelpText [ dutch ] = "3D-schaduw in/-uitschakelen" ;
-//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. ςενό 3-?;
+//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. ςενό 3-?";
 //STRIP001      QuickHelpText[ polish ] = "W³Ήcz/Wy³Ήcz cie?3-W";
 //STRIP001      QuickHelpText[ japanese ] = "3Dγ®ε½±γ€€γ‚ªγƒ³/γ‚ªγƒ•";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ 3 η»΄ι΄ε½?;
-//STRIP001      QuickHelpText[ chinese_traditional ] = "ι΅―η¤Ί/ι±ε…¥ 3 η¶­ι™°ε½?;
-//STRIP001      QuickHelpText[ arabic ] = "ΕΩεΗ?ΕΞέΗ?ΗαΩα ΛαΗΛ?ΗαΓΘΪΗ?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ 3 η»΄ι΄ε½?";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "ι΅―η¤Ί/ι±ε…¥ 3 η¶­ι™°ε½?";
+//STRIP001      QuickHelpText[ arabic ] = "ΕΩεΗ?ΕΞέΗ?ΗαΩα ΛαΗΛ?ΗαΓΘΪΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "3D-schaduw in/-uitschakelen";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ 3 η»΄ι΄ε½?;
-//STRIP001      QuickHelpText[ greek ] = "Σκια 3?Να?Όχ?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ζΎη¤Ί/ιε…¥ 3 η»΄ι΄ε½?";
+//STRIP001      QuickHelpText[ greek ] = "Σκια 3?Να?Όχ?";
 //STRIP001      QuickHelpText[ korean ] = "3D κ·Έλ¦Όμ?μ μ©/ν•΄μ ";
 //STRIP001      QuickHelpText[ turkish ] = "3D-Schatten ein/-ausschalten";
 //STRIP001      QuickHelpText[ catalan ] = "Activa/desactiva ombra 3D";
@@ -1596,7 +1596,7 @@
 //STRIP001      QuickHelpText[ czech ] = "3D stΓ­n zap/vyp";
 //STRIP001      QuickHelpText[ hebrew ] = "3D-Schatten ein/-ausschalten";
 //STRIP001      QuickHelpText[ thai ] = "3D Shadowing On/Off";
-//STRIP001      QuickHelpText[ hindi ] = "3D ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ ΰ¤¶ΰ¥ΰ¤°ΰ¥/ΰ¤¬ΰ¤‚ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "3D ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ ΰ¤¶ΰ¥ΰ¤°ΰ¥/ΰ¤¬ΰ¤‚ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "3D tieΕ zap/vyp";
 //STRIP001  };
 //STRIP001  FixedText FT_SLANT
@@ -1618,22 +1618,22 @@
 //STRIP001      Text [ dutch ] = "Helling" ;
 //STRIP001      Text [ portuguese ] = "Βngulo do papel" ;
 //STRIP001      Text[ chinese_simplified ] = "εΉ³ιΆε€Ύζ–(~U)";
-//STRIP001      Text[ russian ] = "Νΰκλξν οξβεπυνξρς?;
+//STRIP001      Text[ russian ] = "Νΰκλξν οξβεπυνξρς?";
 //STRIP001      Text[ polish ] = "Pochylenie powierzchni";
 //STRIP001      Text[ japanese ] = "η”¨η΄™γ®ε‚Ύγ?~U)";
 //STRIP001      Text[ chinese_traditional ] = "εΉ³ιΆε‚Ύζ–(~U)";
-//STRIP001      Text[ arabic ] = "γν?ΗαζΡ?;
+//STRIP001      Text[ arabic ] = "γν?ΗαζΡ?";
 //STRIP001      Text[ dutch ] = "Helling";
 //STRIP001      Text[ chinese_simplified ] = "εΉ³ιΆε€Ύζ–(~U)";
-//STRIP001      Text[ greek ] = "Κλίσ?χαρτιο?;
+//STRIP001      Text[ greek ] = "Κλίσ?χαρτιο?";
 //STRIP001      Text[ korean ] = "μ©μ§€μ?κΈ°μΈκΈ?~U)";
-//STRIP001      Text[ turkish ] = "~Yόzey aηύs?;
+//STRIP001      Text[ turkish ] = "~Yόzey aηύs?";
 //STRIP001      Text[ catalan ] = "Angle superficie";
 //STRIP001      Text[ finnish ] = "Pintakulma";
 //STRIP001      Text[ thai ] = "ΰΈ΅ΰΈΈΰΈ΅ΰΈΰΈ·ΰΉ‰ΰΈ™ΰΈΰΈ΄ΰΈ§";
 //STRIP001      Text[ czech ] = "Sklon povrchu";
-//STRIP001      Text[ hebrew ] = "β€®Χ–Χ•Χ•Χ™Χ?Χ©ΧΧ—β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤¤ΰ¤² ΰ¤•ΰ¥‹ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ–Χ•Χ•Χ™Χ?Χ©ΧΧ—β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤¤ΰ¤² ΰ¤•ΰ¥‹ΰ¤?";
 //STRIP001      Text[ slovak ] = "Sklon povrchu";
 //STRIP001  };
 //STRIP001  MetricField MTR_SLANT
@@ -1663,17 +1663,17 @@
 //STRIP001      CustomUnitText[ swedish ] = " grader";
 //STRIP001      CustomUnitText[ polish ] = " st.";
 //STRIP001      CustomUnitText[ portuguese_brazilian ] = " graus";
-//STRIP001      CustomUnitText[ japanese ] = " εΊ?;
-//STRIP001      CustomUnitText[ korean ] = " λ?;
-//STRIP001      CustomUnitText[ chinese_simplified ] = " εΊ?;
-//STRIP001      CustomUnitText[ chinese_traditional ] = " εΊ?;
+//STRIP001      CustomUnitText[ japanese ] = " εΊ?";
+//STRIP001      CustomUnitText[ korean ] = " λ?";
+//STRIP001      CustomUnitText[ chinese_simplified ] = " εΊ?";
+//STRIP001      CustomUnitText[ chinese_traditional ] = " εΊ?";
 //STRIP001      CustomUnitText[ turkish ] = " derece(ler)";
 //STRIP001      CustomUnitText[ arabic ] = " degree";
 //STRIP001      CustomUnitText[ catalan ] = " grau(s)";
 //STRIP001      CustomUnitText[ thai ] = " ΰΈ­ΰΈ‡ΰΈ¨ΰΈ²";
 //STRIP001      CustomUnitText[ czech ] = " stupΕΕ―";
-//STRIP001      CustomUnitText[ hebrew ] = "β€®ΧΧΆΧΧ•Χªβ€?;
-//STRIP001      CustomUnitText[ hindi ] = " ΰ¤΅ΰ¤Ώΰ¤—ΰ¥ΰ¤°ΰ¤Ώΰ¤―ΰ¤Ύΰ¤?;
+//STRIP001      CustomUnitText[ hebrew ] = "β€®ΧΧΆΧΧ•Χªβ€?";
+//STRIP001      CustomUnitText[ hindi ] = " ΰ¤΅ΰ¤Ώΰ¤—ΰ¥ΰ¤°ΰ¤Ώΰ¤―ΰ¤Ύΰ¤?";
 //STRIP001      CustomUnitText[ slovak ] = " stupΕov";
 //STRIP001  };
 //STRIP001     FixedLine FL_SHADOW
@@ -1693,20 +1693,20 @@
 //STRIP001      Text [ portuguese ] = "Sombras" ;
 //STRIP001      Text[ chinese_simplified ] = "ι΄ε½±";
 //STRIP001      Text[ russian ] = "Òενό";
-//STRIP001      Text[ polish ] = "Cie?;
-//STRIP001      Text[ japanese ] = "ε½?;
+//STRIP001      Text[ polish ] = "Cie?";
+//STRIP001      Text[ japanese ] = "ε½?";
 //STRIP001      Text[ chinese_traditional ] = "ι™°ε½±";
 //STRIP001      Text[ arabic ] = "ΗαΩα";
 //STRIP001      Text[ dutch ] = "Schaduw";
 //STRIP001      Text[ chinese_simplified ] = "ι΄ε½±";
 //STRIP001      Text[ greek ] = "Σκιά";
-//STRIP001      Text[ korean ] = "κ·Έλ¦Όμ?;
+//STRIP001      Text[ korean ] = "κ·Έλ¦Όμ?";
 //STRIP001      Text[ turkish ] = "Gφlge";
 //STRIP001      Text[ catalan ] = "Ombra";
 //STRIP001      Text[ finnish ] = "Varjo";
 //STRIP001      Text[ thai ] = "ΰΉΰΈ£ΰΉ€ΰΈ‡ΰΈ²";
 //STRIP001      Text[ czech ] = "StΓ­n";
-//STRIP001      Text[ hebrew ] = "β€®Χ¦Χβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ¦Χβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ";
 //STRIP001      Text[ slovak ] = "TieΕ";
 //STRIP001  };
@@ -1726,11 +1726,11 @@
 //STRIP001      Text [ dutch ] = "Afstand" ;
 //STRIP001      Text [ portuguese ] = "Distβncia" ;
 //STRIP001      Text[ chinese_simplified ] = "ι—΄ι”(~D)";
-//STRIP001      Text[ russian ] = "Πΰρρςξÿνθ?;
+//STRIP001      Text[ russian ] = "Πΰρρςξÿνθ?";
 //STRIP001      Text[ polish ] = "Odleg³oζ";
 //STRIP001      Text[ japanese ] = "ι–“ι”(~D)";
 //STRIP001      Text[ chinese_traditional ] = "ι–“ι”(~D)";
-//STRIP001      Text[ arabic ] = "ΗαΚΘΗΪ?;
+//STRIP001      Text[ arabic ] = "ΗαΚΘΗΪ?";
 //STRIP001      Text[ dutch ] = "Afstand";
 //STRIP001      Text[ chinese_simplified ] = "ι—΄ι”(~D)";
 //STRIP001      Text[ greek ] = "Απόσταση";
@@ -1740,7 +1740,7 @@
 //STRIP001      Text[ finnish ] = "Etδisyys";
 //STRIP001      Text[ thai ] = "ΰΈ£ΰΈ°ΰΈΆΰΈ°";
 //STRIP001      Text[ czech ] = "VzdΓ΅lenost";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ—Χ§β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ—Χ§β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤¦ΰ¥‚ΰ¤°ΰ¥€";
 //STRIP001      Text[ slovak ] = "VzdialenosΕ¥";
 //STRIP001  };
@@ -1777,7 +1777,7 @@
 //STRIP001      Text [ dutch ] = "Focus" ;
 //STRIP001      Text [ portuguese ] = "Distβncia focal" ;
 //STRIP001      Text[ chinese_simplified ] = "η„¦θ·(~F)";
-//STRIP001      Text[ russian ] = "Τξκσ?;
+//STRIP001      Text[ russian ] = "Τξκσ?";
 //STRIP001      Text[ polish ] = "Ogniskowa";
 //STRIP001      Text[ japanese ] = "η„¦η‚Ήθ·ι›Ά(~F)";
 //STRIP001      Text[ chinese_traditional ] = "η„¦θ·(~F)";
@@ -1786,12 +1786,12 @@
 //STRIP001      Text[ chinese_simplified ] = "η„¦θ·(~F)";
 //STRIP001      Text[ greek ] = "Εστιακ?απόσ?";
 //STRIP001      Text[ korean ] = "μ΄μ  κ±°λ¦¬(~F)";
-//STRIP001      Text[ turkish ] = "~Odak uzaklύπ?;
+//STRIP001      Text[ turkish ] = "~Odak uzaklύπ?";
 //STRIP001      Text[ catalan ] = "Longitud focal";
 //STRIP001      Text[ finnish ] = "Polttovδli";
-//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈΆΰΈ²ΰΈ§ΰΈΰΈΈΰΈ”ΰΈ£ΰΈ§ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΈΆΰΈ²ΰΈ§ΰΈΰΈΈΰΈ”ΰΈ£ΰΈ§ΰΈ?";
 //STRIP001      Text[ czech ] = "OhniskovΓ΅ vzdΓ΅lenost";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ—Χ?ΧΧ™Χ§Χ•Χ“β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ—Χ?ΧΧ™Χ§Χ•Χ“β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤¤ΰ¤Ύΰ¤?ΰ¤•ΰ¥‡ ΰ¤®ΰ¤§ΰ¥ΰ¤― ΰ¤Έΰ¥‡ ΰ¤‰ΰ¤Έΰ¤•ΰ¥‡ ΰ¤•ΰ¥‡ΰ¤¨ΰ¥ΰ¤¦ΰ¥ΰ¤?ΰ¤¤ΰ¤• ΰ¤•ΰ¥€ ΰ¤¦ΰ¥‚ΰ¤°ΰ¥€";
 //STRIP001      Text[ slovak ] = "OhniskovΓ΅ vzdialenosΕ¥";
 //STRIP001  };
@@ -1827,23 +1827,23 @@
 //STRIP001      Text [ french ] = "Camιra" ;
 //STRIP001      Text [ dutch ] = "Camera" ;
 //STRIP001      Text [ portuguese ] = "Cβmera" ;
-//STRIP001      Text[ chinese_simplified ] = "η…§η›Έζ?;
+//STRIP001      Text[ chinese_simplified ] = "η…§η›Έζ?";
 //STRIP001      Text[ russian ] = "Κΰμεπΰ";
 //STRIP001      Text[ polish ] = "Kamera";
-//STRIP001      Text[ japanese ] = "γ‚«γƒ΅γƒ?;
-//STRIP001      Text[ chinese_traditional ] = "η…§η›Έζ©?;
+//STRIP001      Text[ japanese ] = "γ‚«γƒ΅γƒ?";
+//STRIP001      Text[ chinese_traditional ] = "η…§η›Έζ©?";
 //STRIP001      Text[ arabic ] = "ΗαίΗγνΡΗ";
 //STRIP001      Text[ dutch ] = "Camera";
-//STRIP001      Text[ chinese_simplified ] = "η…§η›Έζ?;
+//STRIP001      Text[ chinese_simplified ] = "η…§η›Έζ?";
 //STRIP001      Text[ greek ] = "Κάμερα";
-//STRIP001      Text[ korean ] = "μΉ΄λ©”λ?;
+//STRIP001      Text[ korean ] = "μΉ΄λ©”λ?";
 //STRIP001      Text[ turkish ] = "Kamera";
 //STRIP001      Text[ catalan ] = "Cΰmara";
 //STRIP001      Text[ finnish ] = "Kamera";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΉ‰ΰΈ­ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ¥ΰΉ‰ΰΈ­ΰΈ?";
 //STRIP001      Text[ czech ] = "Kamera";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦ΧΧΧ”β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤•ΰ¥‡ΰ¤®ΰ¤°ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦ΧΧΧ”β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤•ΰ¥‡ΰ¤®ΰ¤°ΰ¤?";
 //STRIP001      Text[ slovak ] = "Kamera";
 //STRIP001  };
 //STRIP001     FixedLine FL_REPRESENTATION
@@ -1862,21 +1862,21 @@
 //STRIP001      Text [ dutch ] = "Weergave" ;
 //STRIP001      Text [ portuguese ] = "Destacar" ;
 //STRIP001      Text[ chinese_simplified ] = "ζΎη¤Ί";
-//STRIP001      Text[ russian ] = "Ηΰςενενθ?;
+//STRIP001      Text[ russian ] = "Ηΰςενενθ?";
 //STRIP001      Text[ polish ] = "Cieniowanie";
 //STRIP001      Text[ japanese ] = "θ΅¨η¤Ί";
 //STRIP001      Text[ chinese_traditional ] = "ι΅―η¤Ί";
-//STRIP001      Text[ arabic ] = "ΗαΪΡ?;
+//STRIP001      Text[ arabic ] = "ΗαΪΡ?";
 //STRIP001      Text[ dutch ] = "Weergave";
 //STRIP001      Text[ chinese_simplified ] = "ζΎη¤Ί";
 //STRIP001      Text[ greek ] = "Σκίαση";
 //STRIP001      Text[ korean ] = "ν‘μ‹";
 //STRIP001      Text[ turkish ] = "Gφlgeleme";
-//STRIP001      Text[ catalan ] = "Representaci?;
+//STRIP001      Text[ catalan ] = "Representaci?";
 //STRIP001      Text[ finnish ] = "Varjostus";
 //STRIP001      Text[ thai ] = "ΰΉΰΈªΰΈ‡ΰΉ€ΰΈ‡ΰΈ²";
 //STRIP001      Text[ czech ] = "StΓ­n";
-//STRIP001      Text[ hebrew ] = "β€®Χ”Χ¦ΧΧΧ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ”Χ¦ΧΧΧ”β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ ΰ¤•ΰ¤°ΰ¤¨ΰ¤Ύ";
 //STRIP001      Text[ slovak ] = "TieΕovanie";
 //STRIP001  };
@@ -2286,23 +2286,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Seleccionar colores en diαlogo de colores" ;
 //STRIP001      QuickHelpText [ french ] = "Sιlectionner la couleur ?partir de la boξte de dialogue de couleurs" ;
 //STRIP001      QuickHelpText [ dutch ] = "Kleur via kleurdialoog kiezen" ;
-//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?;
+//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?";
 //STRIP001      QuickHelpText[ polish ] = "Wybierz kolor przez dialog kolorσw";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ‚’ιΈζγ™γ‚?;
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ‚’ιΈζγ™γ‚?";
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι€ιι΅θ‰²ζ–Ήε΅ιΈζ“‡ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?γΡΘΪ ΝζΗΡ ΗαΓαζΗ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?γΡΘΪ ΝζΗΡ ΗαΓαζΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur via kleurdialoog kiezen";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?";
 //STRIP001      QuickHelpText[ greek ] = "Επιλογ?χρώματος μέσω διαλόγου χρώματος";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ λ€ν™?μƒμμ—μ„ μƒ‰μƒ μ„ νƒ";
-//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?;
+//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?";
 //STRIP001      QuickHelpText[ catalan ] = "Quadre de diΰleg de colors";
 //STRIP001      QuickHelpText[ finnish ] = "Vδrien valintaikkuna";
 //STRIP001      QuickHelpText[ czech ] = "Dialog barev";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe ΓΌber Farbdialog wΓ¤hlen";
 //STRIP001      QuickHelpText[ thai ] = "Colors Dialog";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DialΓ³g farieb";
 //STRIP001  };
 //STRIP001     FixedText FT_LIGHTSOURCE
@@ -2321,22 +2321,22 @@
 //STRIP001      Text [ french ] = "Source de lumiθre" ;
 //STRIP001      Text [ dutch ] = "Lichtbron" ;
 //STRIP001      Text[ chinese_simplified ] = "ε…‰ζΊ(~L)";
-//STRIP001      Text[ russian ] = "Θρςξχνθκ ρβες?;
+//STRIP001      Text[ russian ] = "Θρςξχνθκ ρβες?";
 //STRIP001      Text[ polish ] = "rσd³o wiat³a";
 //STRIP001      Text[ japanese ] = "ε…‰ζΊ(~L)";
 //STRIP001      Text[ chinese_traditional ] = "ε…‰ζΊ(~L)";
-//STRIP001      Text[ arabic ] = "γΥΟΡ ΗαΦζ?;
+//STRIP001      Text[ arabic ] = "γΥΟΡ ΗαΦζ?";
 //STRIP001      Text[ dutch ] = "Lichtbron";
 //STRIP001      Text[ chinese_simplified ] = "ε…‰ζΊ(~L)";
-//STRIP001      Text[ greek ] = "Προέλευσ?φωτό?;
+//STRIP001      Text[ greek ] = "Προέλευσ?φωτό?";
 //STRIP001      Text[ korean ] = "κ΄‘μ›(~L)";
 //STRIP001      Text[ turkish ] = "~Iώύk kaynaπύ";
 //STRIP001      Text[ catalan ] = "Font de llum";
 //STRIP001      Text[ finnish ] = "Valonlδhde";
-//STRIP001      Text[ thai ] = "ΰΉΰΈ«ΰΈ¥ΰΉΰΈ‡ΰΉΰΈªΰΈ‡ΰΈªΰΈ§ΰΉΰΈ²ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΉΰΈ«ΰΈ¥ΰΉΰΈ‡ΰΉΰΈªΰΈ‡ΰΈªΰΈ§ΰΉΰΈ²ΰΈ?";
 //STRIP001      Text[ czech ] = "SvΔ›telnΓ½ zdroj";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ§Χ•Χ?ΧΧ•Χ¨β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¤Ύΰ¤¶ ΰ¤®ΰ¥‚ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ§Χ•Χ?ΧΧ•Χ¨β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¤Ύΰ¤¶ ΰ¤®ΰ¥‚ΰ¤?";
 //STRIP001      Text[ slovak ] = "SvetelnΓ½ zdroj";
 //STRIP001  };
 //STRIP001  ListBox LB_AMBIENTLIGHT
@@ -2370,21 +2370,21 @@
 //STRIP001      QuickHelpText [ dutch ] = "Kleur uit catalogus kiezen" ;
 //STRIP001  QuickHelpText[ russian ] = "Δθΰλξγξβξε ξκνξ φβεςξβ";
 //STRIP001      QuickHelpText[ polish ] = "Wybierz kolor przez dialog kolorσw";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ§θ‰²γ‚’ιΈζγ™γ‚?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ§θ‰²γ‚’ιΈζγ™γ‚?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι€ιι΅θ‰²ε°θ©±ζ–Ήε΅ιΈζ“‡ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur uit catalogus kiezen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ greek ] = "Επιλογ?χρώματος μέσω το?διαλόγου χρωμάτων";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ λ€ν™?μƒμμ—μ„ μƒ‰μƒ μ„ νƒ";
-//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?;
+//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?";
 //STRIP001      QuickHelpText[ catalan ] = "Quadre de diΰleg de colors";
 //STRIP001      QuickHelpText[ finnish ] = "Vδrien valintaikkuna";
 //STRIP001      QuickHelpText[ czech ] = "Dialog barev";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe ΓΌber Farbdialog wΓ¤hlen";
 //STRIP001      QuickHelpText[ thai ] = "Colors Dialog";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DialΓ³g farieb";
 //STRIP001  };
 //STRIP001     FixedText FT_AMBIENTLIGHT
@@ -2407,17 +2407,17 @@
 //STRIP001      Text[ polish ] = "wiat³o otaczajΉce";
 //STRIP001      Text[ japanese ] = "ε‘¨θΎΊε…?~A)";
 //STRIP001      Text[ chinese_traditional ] = "ι€±εε…‰η·(~A)";
-//STRIP001      Text[ arabic ] = "αζ?ΕΦΗΑ?ΗαΘνΖΙ ΗαγΝνΨ?;
+//STRIP001      Text[ arabic ] = "αζ?ΕΦΗΑ?ΗαΘνΖΙ ΗαγΝνΨ?";
 //STRIP001      Text[ dutch ] = "Omgevingslicht";
 //STRIP001      Text[ chinese_simplified ] = "ε‘¨ε›΄ε…‰ηΊΏ(~A)";
-//STRIP001      Text[ greek ] = "Φωτι? περιβάλλοντο?;
+//STRIP001      Text[ greek ] = "Φωτι? περιβάλλοντο?";
 //STRIP001      Text[ korean ] = "μ£Όλ³€κ΄?~A)";
-//STRIP001      Text[ turkish ] = "~Ηevre ύώύπ?;
+//STRIP001      Text[ turkish ] = "~Ηevre ύώύπ?";
 //STRIP001      Text[ catalan ] = "Llum ambiental";
 //STRIP001      Text[ finnish ] = "Taustavalo";
 //STRIP001      Text[ thai ] = "ΰΉΰΈªΰΈ‡ΰΈªΰΈ§ΰΉΰΈ²ΰΈ‡ΰΈ—ΰΈµΰΉΰΈ¥ΰΉ‰ΰΈ­ΰΈ΅ΰΈ£ΰΈ­ΰΈ";
 //STRIP001      Text[ czech ] = "AmbientnΓ­ osvΔ›tlenΓ­";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ•Χ?Χ¨Χ§ΧΆβ€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ•Χ?Χ¨Χ§ΧΆβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤µΰ¥ΰ¤―ΰ¤Ύΰ¤ªΰ¤• ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¤Ύΰ¤¶";
 //STRIP001      Text[ slovak ] = "AmbientnΓ© osvetlenie";
 //STRIP001  };
@@ -2437,22 +2437,22 @@
 //STRIP001      Text [ dutch ] = "Belichting" ;
 //STRIP001      Text [ portuguese ] = "Iluminaηγo" ;
 //STRIP001      Text[ chinese_simplified ] = "η…§ζ";
-//STRIP001      Text[ russian ] = "Ξρβεωενθ?;
+//STRIP001      Text[ russian ] = "Ξρβεωενθ?";
 //STRIP001      Text[ polish ] = "Owietlenie";
 //STRIP001      Text[ japanese ] = "η…§ζ";
 //STRIP001      Text[ chinese_traditional ] = "η…§ζ";
-//STRIP001      Text[ arabic ] = "ΗαΕΦΗΑ?;
+//STRIP001      Text[ arabic ] = "ΗαΕΦΗΑ?";
 //STRIP001      Text[ dutch ] = "Belichting";
 //STRIP001      Text[ chinese_simplified ] = "η…§ζ";
 //STRIP001      Text[ greek ] = "Φωτισμός";
 //STRIP001      Text[ korean ] = "μ΅°λª…";
 //STRIP001      Text[ turkish ] = "Aydύnlatma";
-//STRIP001      Text[ catalan ] = "Il.luminaci?;
+//STRIP001      Text[ catalan ] = "Il.luminaci?";
 //STRIP001      Text[ finnish ] = "Valaistus";
-//STRIP001      Text[ thai ] = "ΰΈªΰΉΰΈ­ΰΈ‡ΰΉΰΈªΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈªΰΉΰΈ­ΰΈ‡ΰΉΰΈªΰΈ?";
 //STRIP001      Text[ czech ] = "OsvΔ›tlenΓ­";
-//STRIP001      Text[ hebrew ] = "β€®ΧªΧΧ•Χ¨Χ”β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ΰ¤®ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧªΧΧ•Χ¨Χ”β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ΰ¤®ΰ¤?";
 //STRIP001      Text[ slovak ] = "Osvetlenie";
 //STRIP001  };
 //STRIP001   // Texturen
@@ -2472,21 +2472,21 @@
 //STRIP001      Text [ dutch ] = "Type" ;
 //STRIP001      Text [ portuguese ] = "Tipo" ;
 //STRIP001      Text[ chinese_simplified ] = "η±»ε‹(~T)";
-//STRIP001      Text[ russian ] = "Òθ?;
+//STRIP001      Text[ russian ] = "Òθ?";
 //STRIP001      Text[ polish ] = "Typ";
 //STRIP001      Text[ japanese ] = "η¨®ι΅(~T)";
 //STRIP001      Text[ chinese_traditional ] = "ι΅ε‹(~T)";
-//STRIP001      Text[ arabic ] = "Ηαδζ?;
+//STRIP001      Text[ arabic ] = "Ηαδζ?";
 //STRIP001      Text[ dutch ] = "Type";
 //STRIP001      Text[ chinese_simplified ] = "η±»ε‹(~T)";
-//STRIP001      Text[ greek ] = "Τύπο?;
+//STRIP001      Text[ greek ] = "Τύπο?";
 //STRIP001      Text[ korean ] = "μΆ…λ¥(~T)";
 //STRIP001      Text[ turkish ] = "~Tόr";
 //STRIP001      Text[ catalan ] = "Tipus";
 //STRIP001      Text[ finnish ] = "Tyyppi";
 //STRIP001      Text[ thai ] = "ΰΈΰΈ™ΰΈ΄ΰΈ”";
 //STRIP001      Text[ czech ] = "Typ";
-//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ•Χ’β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ•Χ’β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤µΰ¤°ΰ¥ΰ¤—";
 //STRIP001      Text[ slovak ] = "Typ";
 //STRIP001  };
@@ -2494,7 +2494,7 @@
 //STRIP001  {
 //STRIP001      Pos = MAP_APPFONT ( 70 , 29 ) ;
 //STRIP001      Size = BUTTON_SIZE
-//STRIP001      QuickHelpText = "Schwarzwei? ;
+//STRIP001      QuickHelpText = "Schwarzwei?" ;
 //STRIP001      QuickHelpText [ ENGLISH ] = "Black & white" ;
 //STRIP001      ButtonImage = Image
 //STRIP001      {
@@ -2511,17 +2511,17 @@
 //STRIP001      QuickHelpText [ spanish ] = "Blanco y negro" ;
 //STRIP001      QuickHelpText [ french ] = "Noir et blanc" ;
 //STRIP001      QuickHelpText [ dutch ] = "Zwart-wit" ;
-//STRIP001  QuickHelpText[ russian ] = "Χεπν?αελξ?;
+//STRIP001  QuickHelpText[ russian ] = "Χεπν?αελξ?";
 //STRIP001      QuickHelpText[ polish ] = "Czarno-bia³y";
 //STRIP001      QuickHelpText[ japanese ] = "η™½ι»’";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ι»‘η™½";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι»‘η™½";
-//STRIP001      QuickHelpText[ arabic ] = "ΓΘνΦ ζΓΣζ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΓΘνΦ ζΓΣζ?";
 //STRIP001      QuickHelpText[ dutch ] = "Zwart-wit";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ι»‘η™½";
 //STRIP001      QuickHelpText[ greek ] = "Ασπρόμαυρο";
 //STRIP001      QuickHelpText[ korean ] = "ν‘λ°±";
-//STRIP001      QuickHelpText[ turkish ] = "Schwarzwei?;
+//STRIP001      QuickHelpText[ turkish ] = "Schwarzwei?";
 //STRIP001      QuickHelpText[ catalan ] = "Blanc i negre";
 //STRIP001      QuickHelpText[ finnish ] = "Mustavalkoinen";
 //STRIP001      QuickHelpText[ czech ] = "ΔernobΓ­lΓ©";
@@ -2553,13 +2553,13 @@
 //STRIP001      QuickHelpText [ dutch ] = "Kleur" ;
 //STRIP001  QuickHelpText[ russian ] = "Φβες";
 //STRIP001      QuickHelpText[ polish ] = "Kolor";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "Ηααζ?;
+//STRIP001      QuickHelpText[ arabic ] = "Ηααζ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²";
-//STRIP001      QuickHelpText[ greek ] = "Χρώμ?;
+//STRIP001      QuickHelpText[ greek ] = "Χρώμ?";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ";
 //STRIP001      QuickHelpText[ turkish ] = "Farbe";
 //STRIP001      QuickHelpText[ catalan ] = "Color";
@@ -2567,7 +2567,7 @@
 //STRIP001      QuickHelpText[ czech ] = "Barva";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe";
 //STRIP001      QuickHelpText[ thai ] = "Color";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Farba";
 //STRIP001  };
 //STRIP001  FixedText FT_TEX_MODE
@@ -2586,21 +2586,21 @@
 //STRIP001      Text [ dutch ] = "Modus" ;
 //STRIP001      Text [ portuguese ] = "Modo" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ russian ] = "Πεζθ?;
+//STRIP001      Text[ russian ] = "Πεζθ?";
 //STRIP001      Text[ polish ] = "Tryb";
 //STRIP001      Text[ japanese ] = "γƒΆγƒΌγƒ?~M)";
 //STRIP001      Text[ chinese_traditional ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ arabic ] = "ΗαζΦ?;
+//STRIP001      Text[ arabic ] = "ΗαζΦ?";
 //STRIP001      Text[ dutch ] = "Modus";
 //STRIP001      Text[ chinese_simplified ] = "ζ¨΅εΌ(~M)";
-//STRIP001      Text[ greek ] = "Κατάστασ?;
+//STRIP001      Text[ greek ] = "Κατάστασ?";
 //STRIP001      Text[ korean ] = "λª¨λ“(~M)";
 //STRIP001      Text[ turkish ] = "~Kip";
 //STRIP001      Text[ catalan ] = "Mode";
 //STRIP001      Text[ finnish ] = "Tila";
 //STRIP001      Text[ thai ] = "ΰΉ‚ΰΈ«ΰΈ΅ΰΈ”";
 //STRIP001      Text[ czech ] = "ReΕΎim";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦Χ?ΧΆΧ‘Χ•Χ“Χ”β€?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¦Χ?ΧΆΧ‘Χ•Χ“Χ”β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¤Ύΰ¤°";
 //STRIP001      Text[ slovak ] = "ReΕΎim";
 //STRIP001  };
@@ -2630,18 +2630,18 @@
 //STRIP001      QuickHelpText[ japanese ] = "γƒ†γ‚―γ‚Ήγƒγƒ£γƒΌγ®γΏ";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ―ηΊΉη†";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "εªζ―η΄‹η†";
-//STRIP001      QuickHelpText[ arabic ] = "δΣνΜ έή?;
+//STRIP001      QuickHelpText[ arabic ] = "δΣνΜ έή?";
 //STRIP001      QuickHelpText[ dutch ] = "Alleen textuur";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εªζ―ηΊΉη†";
-//STRIP001      QuickHelpText[ greek ] = "Μόνο υφ?;
-//STRIP001      QuickHelpText[ korean ] = "μ§κ°λ§?;
+//STRIP001      QuickHelpText[ greek ] = "Μόνο υφ?";
+//STRIP001      QuickHelpText[ korean ] = "μ§κ°λ§?";
 //STRIP001      QuickHelpText[ turkish ] = "Nur Textur";
 //STRIP001      QuickHelpText[ catalan ] = "Nomιs textura";
 //STRIP001      QuickHelpText[ finnish ] = "Vain pintakuvio";
 //STRIP001      QuickHelpText[ czech ] = "Pouze textura";
 //STRIP001      QuickHelpText[ hebrew ] = "Nur Textur";
 //STRIP001      QuickHelpText[ thai ] = "Only Texture";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤•ΰ¥‡ΰ¤µΰ¤² ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤•ΰ¥‡ΰ¤µΰ¤² ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Iba textΓΊra";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEX_MODULATE
@@ -2668,11 +2668,11 @@
 //STRIP001  QuickHelpText[ russian ] = "Òεκρςσπΰ ?ςενό";
 //STRIP001      QuickHelpText[ polish ] = "Tekstura i cieniowanie";
 //STRIP001      QuickHelpText[ japanese ] = "γƒ†γ‚―γ‚Ήγƒγƒ£γƒΌγ¨ε½±";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†ε’ι΄ε½?;
-//STRIP001      QuickHelpText[ chinese_traditional ] = "η΄‹η†ε’ι™°ε½?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†ε’ι΄ε½?";
+//STRIP001      QuickHelpText[ chinese_traditional ] = "η΄‹η†ε’ι™°ε½?";
 //STRIP001      QuickHelpText[ arabic ] = "δΣνΜ ζΚΩανα";
 //STRIP001      QuickHelpText[ dutch ] = "Textuur en schaduw";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†ε’ι΄ε½?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ηΊΉη†ε’ι΄ε½?";
 //STRIP001      QuickHelpText[ greek ] = "Υφ?κα?σκίαση";
 //STRIP001      QuickHelpText[ korean ] = "μ§κ°κ³?μμ";
 //STRIP001      QuickHelpText[ turkish ] = "Textur und Schattierung";
@@ -2721,7 +2721,7 @@
 //STRIP001      QuickHelpText[ czech ] = "Textura , stΓ­novΓ΅nΓ­ a barva";
 //STRIP001      QuickHelpText[ hebrew ] = "Textur, Schattierung und Farbe";
 //STRIP001      QuickHelpText[ thai ] = "Texture, Shadow and Color";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤? ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ ΰ¤”ΰ¤° ΰ¤°ΰ¤‚ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤? ΰ¤›ΰ¤Ύΰ¤―ΰ¤Ύ ΰ¤”ΰ¤° ΰ¤°ΰ¤‚ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "TextΓΊra, tieΕovanie a farba";
 //STRIP001  };
 //STRIP001  FixedText FT_TEX_PROJECTION_X
@@ -2744,17 +2744,17 @@
 //STRIP001      Text[ polish ] = "Projekcja X";
 //STRIP001      Text[ japanese ] = "Xθ»Έζ•ε½?~P)";
 //STRIP001      Text[ chinese_traditional ] = "ζ•ε½± X(~P)";
-//STRIP001      Text[ arabic ] = "ΗαγΣήΨ ?;
+//STRIP001      Text[ arabic ] = "ΗαγΣήΨ ?";
 //STRIP001      Text[ dutch ] = "Projectie X";
 //STRIP001      Text[ chinese_simplified ] = "ζ•ε½± X(~P)";
 //STRIP001      Text[ greek ] = "Προβολ?X";
 //STRIP001      Text[ korean ] = "ν¬μμƒ?X(~P)";
-//STRIP001      Text[ turkish ] = "X έ~zdόώόm?;
+//STRIP001      Text[ turkish ] = "X έ~zdόώόm?";
 //STRIP001      Text[ catalan ] = "Projecci?X";
 //STRIP001      Text[ finnish ] = "X-projektio";
 //STRIP001      Text[ thai ] = "ΰΈΰΈ²ΰΈ£ΰΈ‰ΰΈ²ΰΈΆ X";
 //STRIP001      Text[ czech ] = "Projekce X";
-//STRIP001      Text[ hebrew ] = "β€®Χ”Χ™ΧΧ?Xβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ”Χ™ΧΧ?Xβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¥ΰ¤·ΰ¥‡ΰ¤ª X";
 //STRIP001      Text[ slovak ] = "Projekcia X";
 //STRIP001  };
@@ -2779,23 +2779,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Especνfico del objeto" ;
 //STRIP001      QuickHelpText [ french ] = "Spιcifique ?l'objet" ;
 //STRIP001      QuickHelpText [ dutch ] = "Passend bij object" ;
-//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?;
+//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?";
 //STRIP001      QuickHelpText[ polish ] = "Specyficzny dla obiektu";
-//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?;
+//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "η‰Ήζ®η‰©δ»¶";
-//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?";
 //STRIP001      QuickHelpText[ dutch ] = "Passend bij object";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
-//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?;
-//STRIP001      QuickHelpText[ korean ] = "κ°μ²΄ νΉμ μ?;
+//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?";
+//STRIP001      QuickHelpText[ korean ] = "κ°μ²΄ νΉμ μ?";
 //STRIP001      QuickHelpText[ turkish ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ catalan ] = "Especνfic de l'objecte";
 //STRIP001      QuickHelpText[ finnish ] = "Objektikohtainen";
 //STRIP001      QuickHelpText[ czech ] = "Specificky pro objekt";
 //STRIP001      QuickHelpText[ hebrew ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ thai ] = "Object-Specific";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Ε pecifickΓ½ pre objekt";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEX_PARALLEL_X
@@ -2819,15 +2819,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Paralelo" ;
 //STRIP001      QuickHelpText [ french ] = "Parallθle" ;
 //STRIP001      QuickHelpText [ dutch ] = "Parallel" ;
-//STRIP001  QuickHelpText[ russian ] = "Οΰπΰλλελόν?;
+//STRIP001  QuickHelpText[ russian ] = "Οΰπΰλλελόν?";
 //STRIP001      QuickHelpText[ polish ] = "Rσwnolegle";
 //STRIP001      QuickHelpText[ japanese ] = "εΉ³θ΅";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³θ΅";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "εΉ³θ΅";
-//STRIP001      QuickHelpText[ arabic ] = "γζΗÒ?;
+//STRIP001      QuickHelpText[ arabic ] = "γζΗÒ?";
 //STRIP001      QuickHelpText[ dutch ] = "Parallel";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³θ΅";
-//STRIP001      QuickHelpText[ greek ] = "Παράλληλ?;
+//STRIP001      QuickHelpText[ greek ] = "Παράλληλ?";
 //STRIP001      QuickHelpText[ korean ] = "ν‰ν–‰";
 //STRIP001      QuickHelpText[ turkish ] = "Parallel";
 //STRIP001      QuickHelpText[ catalan ] = "Paral.lel";
@@ -2835,7 +2835,7 @@
 //STRIP001      QuickHelpText[ czech ] = "RovnobΔ›ΕΎnΔ›";
 //STRIP001      QuickHelpText[ hebrew ] = "Parallel";
 //STRIP001      QuickHelpText[ thai ] = "Parallel";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤®ΰ¤Ύΰ¤¨ΰ¤Ύΰ¤¨ΰ¥ΰ¤¤ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤®ΰ¤Ύΰ¤¨ΰ¤Ύΰ¤¨ΰ¥ΰ¤¤ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "RovnobeΕΎne";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEX_CIRCLE_X
@@ -2859,15 +2859,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Circular" ;
 //STRIP001      QuickHelpText [ french ] = "Circulaire" ;
 //STRIP001      QuickHelpText [ dutch ] = "Cirkelvormig" ;
-//STRIP001  QuickHelpText[ russian ] = "Κπσγξξαπΰηνϋ?;
+//STRIP001  QuickHelpText[ russian ] = "Κπσγξξαπΰηνϋ?";
 //STRIP001      QuickHelpText[ polish ] = "W kszta³cie ko³a";
-//STRIP001      QuickHelpText[ japanese ] = "ε††ε½Άη?;
+//STRIP001      QuickHelpText[ japanese ] = "ε††ε½Άη?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ε½Ά";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ε“ε½Ά";
-//STRIP001      QuickHelpText[ arabic ] = "ΟΗΖΡ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΟΗΖΡ?";
 //STRIP001      QuickHelpText[ dutch ] = "Cirkelvormig";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ε½Ά";
-//STRIP001      QuickHelpText[ greek ] = "Κυκλικ?;
+//STRIP001      QuickHelpText[ greek ] = "Κυκλικ?";
 //STRIP001      QuickHelpText[ korean ] = "μ›ν•";
 //STRIP001      QuickHelpText[ turkish ] = "Kreisfφrmig";
 //STRIP001      QuickHelpText[ catalan ] = "Circular";
@@ -2898,17 +2898,17 @@
 //STRIP001      Text[ polish ] = "Projekcja Y";
 //STRIP001      Text[ japanese ] = "Yθ»Έζ•ε½?~R)";
 //STRIP001      Text[ chinese_traditional ] = "ζ•ε½± Y(~R)";
-//STRIP001      Text[ arabic ] = "ΗαγΣήΨ ?;
+//STRIP001      Text[ arabic ] = "ΗαγΣήΨ ?";
 //STRIP001      Text[ dutch ] = "Projectie Y";
 //STRIP001      Text[ chinese_simplified ] = "ζ•ε½± Y(~R)";
 //STRIP001      Text[ greek ] = "Προβολ?Y";
 //STRIP001      Text[ korean ] = "ν¬μμƒ?Y(~R)";
-//STRIP001      Text[ turkish ] = "Y έ~zdόώόm?;
+//STRIP001      Text[ turkish ] = "Y έ~zdόώόm?";
 //STRIP001      Text[ catalan ] = "Projecci?Y";
 //STRIP001      Text[ finnish ] = "Y-projektio";
 //STRIP001      Text[ thai ] = "ΰΈΰΈ²ΰΈ£ΰΈ‰ΰΈ²ΰΈΆ Y";
 //STRIP001      Text[ czech ] = "Projekce Y";
-//STRIP001      Text[ hebrew ] = "β€®Χ”Χ™ΧΧ?Yβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ”Χ™ΧΧ?Yβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤•ΰ¥ΰ¤·ΰ¥‡ΰ¤ª Y";
 //STRIP001      Text[ slovak ] = "Projekcia Y";
 //STRIP001  };
@@ -2933,23 +2933,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Especνfico del objeto" ;
 //STRIP001      QuickHelpText [ french ] = "Spιcifique ?l'objet" ;
 //STRIP001      QuickHelpText [ dutch ] = "Passend bij object" ;
-//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?;
+//STRIP001  QuickHelpText[ russian ] = "?ηΰβθρθμξρς?ξς ξαϊεκς?";
 //STRIP001      QuickHelpText[ polish ] = "Specyficzny dla obiektu";
-//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?;
+//STRIP001      QuickHelpText[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒη‰Ήζ€?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "η‰Ήζ®η‰©δ»¶";
-//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΞΗ?ΘΗαίΗΖ?";
 //STRIP001      QuickHelpText[ dutch ] = "Passend bij object";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "η‰Ήζ®ε―Ήθ±΅";
-//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?;
-//STRIP001      QuickHelpText[ korean ] = "κ°μ²΄ νΉμ μ?;
+//STRIP001      QuickHelpText[ greek ] = "Σχετικ?με το αντικείμεν?";
+//STRIP001      QuickHelpText[ korean ] = "κ°μ²΄ νΉμ μ?";
 //STRIP001      QuickHelpText[ turkish ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ catalan ] = "Especνfic de l'objecte";
 //STRIP001      QuickHelpText[ finnish ] = "Objektikohtainen";
 //STRIP001      QuickHelpText[ czech ] = "SpecifickΓ½ pro objekt";
 //STRIP001      QuickHelpText[ hebrew ] = "Objektspezifisch";
 //STRIP001      QuickHelpText[ thai ] = "Object-Specific";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤µΰ¤Ώΰ¤¶ΰ¤Ώΰ¤·ΰ¥ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "Ε pecifickΓ½ pre objekt";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEX_PARALLEL_Y
@@ -2973,15 +2973,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Paralelo" ;
 //STRIP001      QuickHelpText [ french ] = "Parallθle" ;
 //STRIP001      QuickHelpText [ dutch ] = "Parallel" ;
-//STRIP001  QuickHelpText[ russian ] = "Οΰπΰλλελόν?;
+//STRIP001  QuickHelpText[ russian ] = "Οΰπΰλλελόν?";
 //STRIP001      QuickHelpText[ polish ] = "Rσwnolegle";
 //STRIP001      QuickHelpText[ japanese ] = "εΉ³θ΅";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³θ΅";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "εΉ³θ΅";
-//STRIP001      QuickHelpText[ arabic ] = "γζΗÒ?;
+//STRIP001      QuickHelpText[ arabic ] = "γζΗÒ?";
 //STRIP001      QuickHelpText[ dutch ] = "Parallel";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "εΉ³θ΅";
-//STRIP001      QuickHelpText[ greek ] = "Παράλληλ?;
+//STRIP001      QuickHelpText[ greek ] = "Παράλληλ?";
 //STRIP001      QuickHelpText[ korean ] = "ν‰ν–‰";
 //STRIP001      QuickHelpText[ turkish ] = "Parallel";
 //STRIP001      QuickHelpText[ catalan ] = "Paral.lel";
@@ -2989,7 +2989,7 @@
 //STRIP001      QuickHelpText[ czech ] = "RovnobΔ›ΕΎnΔ›";
 //STRIP001      QuickHelpText[ hebrew ] = "Parallel";
 //STRIP001      QuickHelpText[ thai ] = "Parallel";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤®ΰ¤Ύΰ¤¨ΰ¤Ύΰ¤¨ΰ¥ΰ¤¤ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤Έΰ¤®ΰ¤Ύΰ¤¨ΰ¤Ύΰ¤¨ΰ¥ΰ¤¤ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "RovnobeΕΎne";
 //STRIP001  };
 //STRIP001  ImageButton BTN_TEX_CIRCLE_Y
@@ -3013,15 +3013,15 @@
 //STRIP001      QuickHelpText [ spanish ] = "Circular" ;
 //STRIP001      QuickHelpText [ french ] = "Circulaire" ;
 //STRIP001      QuickHelpText [ dutch ] = "Cirkelvormig" ;
-//STRIP001  QuickHelpText[ russian ] = "Κπσγξξαπΰηνϋ?;
+//STRIP001  QuickHelpText[ russian ] = "Κπσγξξαπΰηνϋ?";
 //STRIP001      QuickHelpText[ polish ] = "W kszta³cie ko³a";
-//STRIP001      QuickHelpText[ japanese ] = "ε††ε½Άη?;
+//STRIP001      QuickHelpText[ japanese ] = "ε††ε½Άη?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ε½Ά";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ε“ε½Ά";
-//STRIP001      QuickHelpText[ arabic ] = "ΟΗΖΡ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΟΗΖΡ?";
 //STRIP001      QuickHelpText[ dutch ] = "Cirkelvormig";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε†ε½Ά";
-//STRIP001      QuickHelpText[ greek ] = "Κυκλικ?;
+//STRIP001      QuickHelpText[ greek ] = "Κυκλικ?";
 //STRIP001      QuickHelpText[ korean ] = "μ›ν•";
 //STRIP001      QuickHelpText[ turkish ] = "Kreisfφrmig";
 //STRIP001      QuickHelpText[ catalan ] = "Circular";
@@ -3052,17 +3052,17 @@
 //STRIP001      Text[ polish ] = "Filtrowanie";
 //STRIP001      Text[ japanese ] = "γƒ•γ‚£γƒ«γ‚Ώ(~F)";
 //STRIP001      Text[ chinese_traditional ] = "ιζΏΎ(~F)";
-//STRIP001      Text[ arabic ] = "ΚΥέν?;
+//STRIP001      Text[ arabic ] = "ΚΥέν?";
 //STRIP001      Text[ dutch ] = "Filteren";
 //STRIP001      Text[ chinese_simplified ] = "θΏ‡ζ»¤(~F)";
-//STRIP001      Text[ greek ] = "Φιλτράρισμ?;
+//STRIP001      Text[ greek ] = "Φιλτράρισμ?";
 //STRIP001      Text[ korean ] = "ν•„ν„°λ§?~F)";
 //STRIP001      Text[ turkish ] = "~Sόzgeηleme";
 //STRIP001      Text[ catalan ] = "Filtratge";
 //STRIP001      Text[ finnish ] = "Suodatus";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ²ΰΈ£ΰΈΰΈ£ΰΈ­ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ²ΰΈ£ΰΈΰΈ£ΰΈ­ΰΈ?";
 //STRIP001      Text[ czech ] = "FiltrovΓ΅nΓ­";
-//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ™Χ Χ•Χβ€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ΅Χ™Χ Χ•Χβ€?";
 //STRIP001      Text[ hindi ] = "ΰ¤«ΰ¤Ώΰ¤²ΰ¥ΰ¤ΰ¤° ΰ¤•ΰ¤°ΰ¤¨ΰ¤Ύ";
 //STRIP001      Text[ slovak ] = "Filtrovanie";
 //STRIP001  };
@@ -3087,18 +3087,18 @@
 //STRIP001      QuickHelpText [ spanish ] = "Activar/desactivar filtraciσn" ;
 //STRIP001      QuickHelpText [ french ] = "Activer/dιsactiver le filtre" ;
 //STRIP001      QuickHelpText [ dutch ] = "Filteren aan/uit" ;
-//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. τθλόςπ?;
+//STRIP001  QuickHelpText[ russian ] = "Βκ?/βϋκλ. τθλόςπ?";
 //STRIP001      QuickHelpText[ polish ] = "W³Ήcz/Wy³Ήcz filtrowanie";
 //STRIP001      QuickHelpText[ japanese ] = "γƒ•γ‚£γƒ«γ‚Ώ γ‚ªγƒ³/γ‚ªγƒ•";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΏ€ζ΄?ε¤±ζ΄»θΏ‡ζ»¤";
-//STRIP001      QuickHelpText[ chinese_traditional ] = "ζΏ€ζ΄?ε¤±ζ΄»ιζΏΎε™?;
-//STRIP001      QuickHelpText[ arabic ] = "ΚΤΫν?ΕνήΗ?ΗαΚΥέν?;
+//STRIP001      QuickHelpText[ chinese_traditional ] = "ζΏ€ζ΄?ε¤±ζ΄»ιζΏΎε™?";
+//STRIP001      QuickHelpText[ arabic ] = "ΚΤΫν?ΕνήΗ?ΗαΚΥέν?";
 //STRIP001      QuickHelpText[ dutch ] = "Filteren aan/uit";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ζΏ€ζ΄?ε¤±ζ΄»θΏ‡ζ»¤";
-//STRIP001      QuickHelpText[ greek ] = "Φίλτρο Να?Όχ?;
+//STRIP001      QuickHelpText[ greek ] = "Φίλτρο Να?Όχ?";
 //STRIP001      QuickHelpText[ korean ] = "ν•„ν„° μ μ©/ν•΄μ ";
 //STRIP001      QuickHelpText[ turkish ] = "Filtern ein/aus";
-//STRIP001      QuickHelpText[ catalan ] = "Activa/desactiva filtraci?;
+//STRIP001      QuickHelpText[ catalan ] = "Activa/desactiva filtraci?";
 //STRIP001      QuickHelpText[ finnish ] = "Suodatus on/off";
 //STRIP001      QuickHelpText[ czech ] = "FiltrovΓ΅nΓ­ zap/vyp";
 //STRIP001      QuickHelpText[ hebrew ] = "Filtern ein/aus";
@@ -3126,7 +3126,7 @@
 //STRIP001      Text[ polish ] = "Tekstury";
 //STRIP001      Text[ japanese ] = "γƒ†γ‚―γ‚Ήγƒγƒ£γƒΌ";
 //STRIP001      Text[ chinese_traditional ] = "η΄‹η†";
-//STRIP001      Text[ arabic ] = "ΗαΓδΣΜ?;
+//STRIP001      Text[ arabic ] = "ΗαΓδΣΜ?";
 //STRIP001      Text[ dutch ] = "Texturen";
 //STRIP001      Text[ chinese_simplified ] = "ηΊΉη†";
 //STRIP001      Text[ greek ] = "Υφές";
@@ -3134,10 +3134,10 @@
 //STRIP001      Text[ turkish ] = "Doku";
 //STRIP001      Text[ catalan ] = "Textures";
 //STRIP001      Text[ finnish ] = "Pintakuviot";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉ‰ΰΈ™ΰΈΰΈ΄ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉ‰ΰΈ™ΰΈΰΈ΄ΰΈ?";
 //STRIP001      Text[ czech ] = "Textury";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ§Χβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ¨Χ§Χβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤¬ΰ¤¨ΰ¤Ύΰ¤µΰ¤?";
 //STRIP001      Text[ slovak ] = "TextΓΊry";
 //STRIP001  };
 //STRIP001   // Material
@@ -3168,22 +3168,22 @@
 //STRIP001      Text [ dutch ] = "Favorieten" ;
 //STRIP001      Text [ portuguese ] = "Favoritos" ;
 //STRIP001      Text[ chinese_simplified ] = "ζ”¶θ—(~F)";
-//STRIP001      Text[ russian ] = "Θηαπΰννϋ?;
+//STRIP001      Text[ russian ] = "Θηαπΰννϋ?";
 //STRIP001      Text[ polish ] = "Ulubione";
 //STRIP001      Text[ japanese ] = "γζ°—γ«ε…¥γ‚?~F)";
 //STRIP001      Text[ chinese_traditional ] = "ζ‘η„ζ€ζ„?~F)";
-//STRIP001      Text[ arabic ] = "ΗαγέΦα?;
+//STRIP001      Text[ arabic ] = "ΗαγέΦα?";
 //STRIP001      Text[ dutch ] = "Favorieten";
 //STRIP001      Text[ chinese_simplified ] = "ζ”¶θ—(~F)";
-//STRIP001      Text[ greek ] = "Προτιμήσει?;
+//STRIP001      Text[ greek ] = "Προτιμήσει?";
 //STRIP001      Text[ korean ] = "μ¦κ²¨μ°ΎκΈ°(~F)";
 //STRIP001      Text[ turkish ] = "~Favoriler";
 //STRIP001      Text[ catalan ] = "Predilectes";
 //STRIP001      Text[ finnish ] = "Suosikit";
-//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ?";
 //STRIP001      Text[ czech ] = "OblΓ­benΓ©";
-//STRIP001      Text[ hebrew ] = "β€®ΧΧ•ΧΆΧ“Χ¤Χ™Χβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ•ΧΆΧ“Χ¤Χ™Χβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?";
 //STRIP001      Text[ slovak ] = "ObΔΎΓΊbenΓ©";
 //STRIP001  };
 //STRIP001  ListBox LB_MAT_FAVORITES
@@ -3245,7 +3245,7 @@
 //STRIP001          < "Guld" ; > ;
 //STRIP001          < "Krom" ; > ;
 //STRIP001          < "Plast" ; > ;
-//STRIP001          < "Tr? ; > ;
+//STRIP001          < "Tr?" ; > ;
 //STRIP001      };
 //STRIP001      stringlist [ danish ] =
 //STRIP001      {
@@ -3254,7 +3254,7 @@
 //STRIP001          < "Guld" ; > ;
 //STRIP001          < "Krom" ; > ;
 //STRIP001          < "Plastik" ; > ;
-//STRIP001          < "Tr? ; > ;
+//STRIP001          < "Tr?" ; > ;
 //STRIP001      };
 //STRIP001      stringlist [ italian ] =
 //STRIP001      {
@@ -3294,20 +3294,20 @@
 //STRIP001      };
 //STRIP001  StringList [ chinese_simplified ] =
 //STRIP001  {
-//STRIP001          < "δ½Ώη”¨θ€…θ‡ªε®? ; > ;
+//STRIP001          < "δ½Ώη”¨θ€…θ‡ªε®?" ; > ;
 //STRIP001      < "ι‡‘ε±" ; > ;
-//STRIP001      < "ι‡? ; > ;
-//STRIP001      < "ι“? ; > ;
+//STRIP001      < "ι‡?" ; > ;
+//STRIP001      < "ι“?" ; > ;
 //STRIP001      < "ε΅‘ζ–™" ; > ;
 //STRIP001      < "ζ¨ε¤΄" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ russian ] =
 //STRIP001  {
-//STRIP001          < "Ξοπεδε?εμϋι οξλόηξβΰςελε? ; > ;
+//STRIP001          < "Ξοπεδε?εμϋι οξλόηξβΰςελε?" ; > ;
 //STRIP001      < "Μεςΰλλ" ; > ;
 //STRIP001      < "Ηξλξςξ" ; > ;
 //STRIP001      < "Υπξμ" ; > ;
-//STRIP001      < "Ολΰρςθ? ; > ;
+//STRIP001      < "Ολΰρςθ?" ; > ;
 //STRIP001      < "Δεπεβξ" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ polish ] =
@@ -3322,18 +3322,18 @@
 //STRIP001  StringList [ japanese ] =
 //STRIP001  {
 //STRIP001          < "γƒ¦γƒΌγ‚¶γƒΌε®ηΎ©" ; > ;
-//STRIP001      < "γƒ΅γ‚Ώγƒ? ; > ;
+//STRIP001      < "γƒ΅γ‚Ώγƒ?" ; > ;
 //STRIP001      < "γ‚΄γƒΌγƒ«γƒ‰" ; > ;
-//STRIP001      < "γ‚―γƒ­γƒ? ; > ;
+//STRIP001      < "γ‚―γƒ­γƒ?" ; > ;
 //STRIP001      < "γƒ—γƒ©γ‚Ήγƒγƒƒγ‚―" ; > ;
 //STRIP001      < "ζ¨ζ" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ chinese_traditional ] =
 //STRIP001  {
-//STRIP001          < "δ½Ώη”¨θ€…θ‡ªθ¨? ; > ;
+//STRIP001          < "δ½Ώη”¨θ€…θ‡ªθ¨?" ; > ;
 //STRIP001      < "ι‡‘ε±¬" ; > ;
-//STRIP001      < "ι‡? ; > ;
-//STRIP001      < "ι‰? ; > ;
+//STRIP001      < "ι‡?" ; > ;
+//STRIP001      < "ι‰?" ; > ;
 //STRIP001      < "ε΅‘θ† " ; > ;
 //STRIP001      < "ζ¨ι ­" ; > ;
 //STRIP001  };
@@ -3341,10 +3341,10 @@
 //STRIP001  {
 //STRIP001          < "γΪΡέ γδ ήΘ?ΗαγΣΚΞΟγ" ; > ;
 //STRIP001      < "γΪΟδ" ; > ;
-//STRIP001      < "Πε? ; > ;
+//STRIP001      < "Πε?" ; > ;
 //STRIP001      < "ίΡζγ" ; > ;
-//STRIP001      < "ΘαΗΣΚν? ; > ;
-//STRIP001      < "ΞΤ? ; > ;
+//STRIP001      < "ΘαΗΣΚν?" ; > ;
+//STRIP001      < "ΞΤ?" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ dutch ] =
 //STRIP001  {
@@ -3357,17 +3357,17 @@
 //STRIP001  };
 //STRIP001  StringList [ chinese_simplified ] =
 //STRIP001  {
-//STRIP001          < "δ½Ώη”¨θ€…θ‡ªε®? ; > ;
+//STRIP001          < "δ½Ώη”¨θ€…θ‡ªε®?" ; > ;
 //STRIP001      < "ι‡‘ε±" ; > ;
-//STRIP001      < "ι‡? ; > ;
-//STRIP001      < "ι“? ; > ;
+//STRIP001      < "ι‡?" ; > ;
+//STRIP001      < "ι“?" ; > ;
 //STRIP001      < "ε΅‘ζ–™" ; > ;
 //STRIP001      < "ζ¨ε¤΄" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ greek ] =
 //STRIP001  {
 //STRIP001          < "Οριζόμεν?απ?το?χρήστη" ; > ;
-//STRIP001      < "Μέταλλ? ; > ;
+//STRIP001      < "Μέταλλ?" ; > ;
 //STRIP001      < "Χρυσός" ; > ;
 //STRIP001      < "Χρώμιο" ; > ;
 //STRIP001      < "Πλαστικό" ; > ;
@@ -3377,7 +3377,7 @@
 //STRIP001  {
 //STRIP001          < "μ‚¬μ©μ?μ •μ" ; > ;
 //STRIP001      < "κΈμ†" ; > ;
-//STRIP001      < "κΈ? ; > ;
+//STRIP001      < "κΈ?" ; > ;
 //STRIP001      < "ν¬λ΅¬" ; > ;
 //STRIP001      < "ν”λΌμ¤ν‹±" ; > ;
 //STRIP001      < "λª©μ¬" ; > ;
@@ -3393,7 +3393,7 @@
 //STRIP001  };
 //STRIP001  StringList [ turkish ] =
 //STRIP001  {
-//STRIP001          < "Kullanύc?tanύml? ; > ;
+//STRIP001          < "Kullanύc?tanύml?" ; > ;
 //STRIP001      < "Metal" ; > ;
 //STRIP001      < "Altύn" ; > ;
 //STRIP001      < "Krom" ; > ;
@@ -3411,7 +3411,7 @@
 //STRIP001  };
 //STRIP001  StringList [ finnish ] =
 //STRIP001  {
-//STRIP001          < "Kδyttδjδn mδδrittδm? ; > ;
+//STRIP001          < "Kδyttδjδn mδδrittδm?" ; > ;
 //STRIP001      < "Metalli" ; > ;
 //STRIP001      < "Kulta" ; > ;
 //STRIP001      < "Kromi" ; > ;
@@ -3422,10 +3422,10 @@
 //STRIP001  {
 //STRIP001       < "ΰΈ£ΰΈ°ΰΈΰΈΈΰΈΰΈΉΰΉ‰ΰΉƒΰΈΰΉ‰" ; > ;
 //STRIP001      < "ΰΉ‚ΰΈ¥ΰΈ«ΰΈ°" ; > ;
-//STRIP001      < "ΰΈ—ΰΈ­ΰΈ? ; > ;
-//STRIP001      < "ΰΉ‚ΰΈ„ΰΈ£ΰΉ€ΰΈ΅ΰΈµΰΉΰΈΆΰΈ? ; > ;
-//STRIP001      < "ΰΈΰΈ¥ΰΈ²ΰΈªΰΈ•ΰΈ΄ΰΈ? ; > ;
-//STRIP001      < "ΰΉ„ΰΈ΅ΰΉ? ; > ;
+//STRIP001      < "ΰΈ—ΰΈ­ΰΈ?" ; > ;
+//STRIP001      < "ΰΉ‚ΰΈ„ΰΈ£ΰΉ€ΰΈ΅ΰΈµΰΉΰΈΆΰΈ?" ; > ;
+//STRIP001      < "ΰΈΰΈ¥ΰΈ²ΰΈªΰΈ•ΰΈ΄ΰΈ?" ; > ;
+//STRIP001      < "ΰΉ„ΰΈ΅ΰΉ?" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ czech ] =
 //STRIP001  {
@@ -3438,20 +3438,20 @@
 //STRIP001  };
 //STRIP001  StringList [ hebrew ] =
 //STRIP001  {
-//STRIP001       < "β€®ΧΧ•Χ’Χ“Χ?Χ‘Χ™Χ“Χ™ Χ”ΧΧ©ΧªΧΧ©β€? ; > ;
-//STRIP001      < "β€®ΧΧªΧ›ΧªΧ™β€? ; > ;
-//STRIP001      < "β€®Χ–Χ”Χ‘β€? ; > ;
-//STRIP001      < "β€®Χ›Χ¨Χ•Χβ€? ; > ;
-//STRIP001      < "β€®Χ¤ΧΧ΅ΧΧ™Χ§β€? ; > ;
-//STRIP001      < "β€®ΧΆΧ¥β€? ; > ;
+//STRIP001       < "β€®ΧΧ•Χ’Χ“Χ?Χ‘Χ™Χ“Χ™ Χ”ΧΧ©ΧªΧΧ©β€?" ; > ;
+//STRIP001      < "β€®ΧΧªΧ›ΧªΧ™β€?" ; > ;
+//STRIP001      < "β€®Χ–Χ”Χ‘β€?" ; > ;
+//STRIP001      < "β€®Χ›Χ¨Χ•Χβ€?" ; > ;
+//STRIP001      < "β€®Χ¤ΧΧ΅ΧΧ™Χ§β€?" ; > ;
+//STRIP001      < "β€®ΧΆΧ¥β€?" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ hindi ] =
 //STRIP001  {
 //STRIP001       < "ΰ¤‰ΰ¤ªΰ¤­ΰ¥‹ΰ¤•ΰ¥ΰ¤¤ΰ¤Ύ ΰ¤Έΰ¥‡ ΰ¤ªΰ¤°ΰ¤Ώΰ¤­ΰ¤Ύΰ¤·ΰ¤Ώΰ¤¤" ; > ;
 //STRIP001      < "ΰ¤²ΰ¥‹ΰ¤Ήΰ¤Ύ" ; > ;
 //STRIP001      < "ΰ¤Έΰ¥‹ΰ¤¨ΰ¤Ύ" ; > ;
-//STRIP001      < "ΰ¤ªΰ¥€ΰ¤²ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤? ; > ;
-//STRIP001      < "ΰ¤ªΰ¥ΰ¤²ΰ¤Ύΰ¤Έΰ¥ΰ¤ΰ¤Ώΰ¤? ; > ;
+//STRIP001      < "ΰ¤ªΰ¥€ΰ¤²ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤?" ; > ;
+//STRIP001      < "ΰ¤ªΰ¥ΰ¤²ΰ¤Ύΰ¤Έΰ¥ΰ¤ΰ¤Ώΰ¤?" ; > ;
 //STRIP001      < "ΰ¤²ΰ¤•ΰ¤΅ΰ¥€" ; > ;
 //STRIP001  };
 //STRIP001  StringList [ slovak ] =
@@ -3480,7 +3480,7 @@
 //STRIP001      Text [ dutch ] = "Objectkleur" ;
 //STRIP001      Text [ portuguese ] = "Cor do objecto" ;
 //STRIP001      Text[ chinese_simplified ] = "ε―Ήθ±΅ιΆθ‰²(~O)";
-//STRIP001      Text[ russian ] = "Φβες ξαϊεκς?;
+//STRIP001      Text[ russian ] = "Φβες ξαϊεκς?";
 //STRIP001      Text[ polish ] = "Kolor obiektu";
 //STRIP001      Text[ japanese ] = "γ‚ªγƒ–γ‚Έγ‚§γ‚―γƒγ®θ‰²(~O)";
 //STRIP001      Text[ chinese_traditional ] = "η‰©δ»¶ι΅θ‰²(~O)";
@@ -3492,10 +3492,10 @@
 //STRIP001      Text[ turkish ] = "~Nesne rengi";
 //STRIP001      Text[ catalan ] = "Color de l'objecte";
 //STRIP001      Text[ finnish ] = "Objektin vδri";
-//STRIP001      Text[ thai ] = "ΰΈªΰΈµΰΈ§ΰΈ±ΰΈ•ΰΈ–ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈªΰΈµΰΈ§ΰΈ±ΰΈ•ΰΈ–ΰΈ?";
 //STRIP001      Text[ czech ] = "Barva objektu";
-//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘Χ?ΧΆΧ¦Χβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤•ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘Χ?ΧΆΧ¦Χβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤µΰ¤Έΰ¥ΰ¤¤ΰ¥?ΰ¤•ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤?";
 //STRIP001      Text[ slovak ] = "Farba objektu";
 //STRIP001  };
 //STRIP001  ListBox LB_MAT_COLOR
@@ -3527,23 +3527,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Seleccionar colores en diαlogo de colores" ;
 //STRIP001      QuickHelpText [ french ] = "Sιlectionner la couleur ?partir de la boξte de dialogue de couleurs" ;
 //STRIP001      QuickHelpText [ dutch ] = "Kleur via kleurendialoog kiezen" ;
-//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?;
+//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?";
 //STRIP001      QuickHelpText[ polish ] = "Wybierz kolor przez dialog kolorσw";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?;
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?";
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι€ιι΅θ‰²ζ–Ήε΅ιΈζ“‡ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?γΡΘΪ ΝζΗΡ ΗαΓαζΗ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?γΡΘΪ ΝζΗΡ ΗαΓαζΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur via kleurendialoog kiezen";
-//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?;
+//STRIP001      QuickHelpText[ chinese_simplified ] = "ιΆθ‰²ε―Ήθ―ζ ?";
 //STRIP001      QuickHelpText[ greek ] = "Επιλογ?χρώματος μέσω διαλόγου χρώματος";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ λ€ν™?μƒμλ¥?ν†µν•΄ μƒ‰μƒ μ„ νƒ";
-//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?;
+//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?";
 //STRIP001      QuickHelpText[ catalan ] = "Quadre de diΰleg de colors";
 //STRIP001      QuickHelpText[ finnish ] = "Vδrien valintaikkuna";
 //STRIP001      QuickHelpText[ czech ] = "Dialog barev";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe ΓΌber Farbdialog wΓ¤hlen";
 //STRIP001      QuickHelpText[ thai ] = "Colors Dialog";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DialΓ³g farieb";
 //STRIP001  };
 //STRIP001  FixedText FT_MAT_EMISSION
@@ -3566,18 +3566,18 @@
 //STRIP001      Text[ polish ] = "Kolor owietlenia";
 //STRIP001      Text[ japanese ] = "η…§ζθ‰?~I)";
 //STRIP001      Text[ chinese_traditional ] = "η…§ζθ‰?~I)";
-//STRIP001      Text[ arabic ] = "αζ?ΗαΕΦΗΑ?;
+//STRIP001      Text[ arabic ] = "αζ?ΗαΕΦΗΑ?";
 //STRIP001      Text[ dutch ] = "Lichtgevende kleur";
 //STRIP001      Text[ chinese_simplified ] = "η…§ζθ‰?~I)";
 //STRIP001      Text[ greek ] = "Χρώμ?φωτισμού";
 //STRIP001      Text[ korean ] = "μ΅°λª…μƒ?~I)";
 //STRIP001      Text[ turkish ] = "~Aydύnlatma rengi";
-//STRIP001      Text[ catalan ] = "Il.luminaci?;
+//STRIP001      Text[ catalan ] = "Il.luminaci?";
 //STRIP001      Text[ finnish ] = "Valaistuksen vδri";
 //STRIP001      Text[ thai ] = "ΰΈªΰΈµΰΈ—ΰΈµΰΉΰΈªΰΈ§ΰΉΰΈ²ΰΈ‡";
 //STRIP001      Text[ czech ] = "Barva pro osvΔ›tlenΓ­";
-//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘Χ?Χ”ΧªΧΧ•Χ¨Χ”β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤ΰ¤®ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘Χ?Χ”ΧªΧΧ•Χ¨Χ”β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ΰ¤®ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤°ΰ¤‚ΰ¤?";
 //STRIP001      Text[ slovak ] = "Farba pre osvetlenie";
 //STRIP001  };
 //STRIP001  ListBox LB_MAT_EMISSION
@@ -3611,21 +3611,21 @@
 //STRIP001      QuickHelpText [ dutch ] = "Kleur via kleurdialoog kiezen" ;
 //STRIP001  QuickHelpText[ russian ] = "Δθΰλξγξβξε ξκνξ φβεςξβ";
 //STRIP001      QuickHelpText[ polish ] = "Wybierz kolor przez dialog kolorσw";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι€ιι΅θ‰²ζ–Ήε΅ιΈζ“‡ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur via kleurdialoog kiezen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ greek ] = "Επιλογ?χρώματος μέσω το?διαλόγου χρωμάτων";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ λ€ν™?μƒμμ—μ„ μƒ‰μƒ μ„ νƒ";
-//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?;
+//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?";
 //STRIP001      QuickHelpText[ catalan ] = "Quadre de diΰleg de colors";
 //STRIP001      QuickHelpText[ finnish ] = "Vδrien valintaikkuna";
 //STRIP001      QuickHelpText[ czech ] = "Dialog barev";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe ΓΌber Farbdialog wΓ¤hlen";
 //STRIP001      QuickHelpText[ thai ] = "Colors Dialog";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DialΓ³g farieb";
 //STRIP001  };
 //STRIP001  FixedText FT_MAT_SPECULAR
@@ -3648,18 +3648,18 @@
 //STRIP001      Text[ polish ] = "Kolor";
 //STRIP001      Text[ japanese ] = "θ‰?~C)";
 //STRIP001      Text[ chinese_traditional ] = "ι΅θ‰²(~C)";
-//STRIP001      Text[ arabic ] = "Ηααζ?;
+//STRIP001      Text[ arabic ] = "Ηααζ?";
 //STRIP001      Text[ dutch ] = "Kleur";
 //STRIP001      Text[ chinese_simplified ] = "ιΆθ‰²(~C)";
-//STRIP001      Text[ greek ] = "Χρώμ?;
+//STRIP001      Text[ greek ] = "Χρώμ?";
 //STRIP001      Text[ korean ] = "μƒ‰μƒ(~C)";
 //STRIP001      Text[ turkish ] = "~Renk";
 //STRIP001      Text[ catalan ] = "Color";
 //STRIP001      Text[ finnish ] = "Vδri";
 //STRIP001      Text[ thai ] = "ΰΈªΰΈµ";
 //STRIP001      Text[ czech ] = "Barva";
-//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘ΧΆβ€?;
-//STRIP001      Text[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ¦Χ‘ΧΆβ€?";
+//STRIP001      Text[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤?";
 //STRIP001      Text[ slovak ] = "Farba";
 //STRIP001  };
 //STRIP001  ListBox LB_MAT_SPECULAR
@@ -3691,23 +3691,23 @@
 //STRIP001      QuickHelpText [ spanish ] = "Seleccionar colores en diαlogo de colores" ;
 //STRIP001      QuickHelpText [ french ] = "Sιlectionner la couleur ?partir de la boξte de dialogue de couleurs" ;
 //STRIP001      QuickHelpText [ dutch ] = "Kleur via kleurendialoog kiezen" ;
-//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?;
+//STRIP001  QuickHelpText[ russian ] = "Βϋαπΰς?φβες ?δθΰλξγ?";
 //STRIP001      QuickHelpText[ polish ] = "Wybierz kolor przez dialog kolorσw";
-//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?;
+//STRIP001      QuickHelpText[ japanese ] = "θ‰²γ®γƒ€γ‚¤γ‚Άγƒ­γ‚°γ®θ‰²γ‚’ιΈζγ™γ‚?";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ chinese_traditional ] = "ι€ιι΅θ‰²ζ–Ήε΅ιΈζ“‡ι΅θ‰²";
-//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?;
+//STRIP001      QuickHelpText[ arabic ] = "ΗΞΚνΗΡ Ηααζ?ΪΘ?ΝζΗΡ ΗαΓαζΗ?";
 //STRIP001      QuickHelpText[ dutch ] = "Kleur via kleurendialoog kiezen";
 //STRIP001      QuickHelpText[ chinese_simplified ] = "ε€ε©ιΆθ‰²ε―Ήθ―ζ ι€‰ζ‹©ιΆθ‰²";
 //STRIP001      QuickHelpText[ greek ] = "Επιλογ?χρώματος μέσω το?διαλόγου χρωμάτων";
 //STRIP001      QuickHelpText[ korean ] = "μƒ‰μƒ λ€ν™?μƒμλ¥?ν†µν•΄ μƒ‰μƒ μ„ νƒ";
-//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?;
+//STRIP001      QuickHelpText[ turkish ] = "Rengi, renk penceresinde se?";
 //STRIP001      QuickHelpText[ catalan ] = "Quadre de diΰleg de colors";
 //STRIP001      QuickHelpText[ finnish ] = "Vδrien valintaikkuna";
 //STRIP001      QuickHelpText[ czech ] = "Dialog barev";
 //STRIP001      QuickHelpText[ hebrew ] = "Farbe ΓΌber Farbdialog wΓ¤hlen";
 //STRIP001      QuickHelpText[ thai ] = "Colors Dialog";
-//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?;
+//STRIP001      QuickHelpText[ hindi ] = "ΰ¤°ΰ¤‚ΰ¤—ΰ¥‹ΰ¤?ΰ¤•ΰ¤Ύ ΰ¤΅ΰ¤―ΰ¤²ΰ¥‰ΰ¤?";
 //STRIP001      QuickHelpText[ slovak ] = "DialΓ³g farieb";
 //STRIP001  };
 //STRIP001  FixedText FT_MAT_SPECULAR_INTENSITY
@@ -3720,17 +3720,17 @@
 //STRIP001      Text [ portuguese_brazilian ] = "Intensidade" ;
 //STRIP001      Text [ swedish ] = "Intensitet" ;
 //STRIP001      Text [ danish ] = "~Intensitet" ;
-//STRIP001      Text [ italian ] = "Intensit? ;
+//STRIP001      Text [ italian ] = "Intensit?" ;
 //STRIP001      Text [ spanish ] = "~Intensidad" ;
-//STRIP001      Text [ french ] = "Intensit? ;
+//STRIP001      Text [ french ] = "Intensit?" ;
 //STRIP001      Text [ dutch ] = "Intensiteit" ;
 //STRIP001      Text [ portuguese ] = "Intensidade" ;
 //STRIP001      Text[ chinese_simplified ] = "εΌΊεΊ¦(~N)";
-//STRIP001      Text[ russian ] = "Θνςενρθβνξρς?;
+//STRIP001      Text[ russian ] = "Θνςενρθβνξρς?";
 //STRIP001      Text[ polish ] = "Intensywnoζ";
 //STRIP001      Text[ japanese ] = "θΌεΊ¦(~N)";
 //STRIP001      Text[ chinese_traditional ] = "εΌ·εΊ¦(~N)";
-//STRIP001      Text[ arabic ] = "ΗαΤΟ?;
+//STRIP001      Text[ arabic ] = "ΗαΤΟ?";
 //STRIP001      Text[ dutch ] = "Intensiteit";
 //STRIP001      Text[ chinese_simplified ] = "εΌΊεΊ¦(~N)";
 //STRIP001      Text[ greek ] = "Ένταση";
@@ -3738,10 +3738,10 @@
 //STRIP001      Text[ turkish ] = "~Yoπunluk";
 //STRIP001      Text[ catalan ] = "Intensitat";
 //STRIP001      Text[ finnish ] = "Intensiteetti";
-//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΉ€ΰΈ‚ΰΉ‰ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ„ΰΈ§ΰΈ²ΰΈ΅ΰΉ€ΰΈ‚ΰΉ‰ΰΈ?";
 //STRIP001      Text[ czech ] = "Intenzita";
-//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•Χ¦ΧΧ?ΧΧ•Χ¨β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤¤ΰ¥€ΰ¤µΰ¥ΰ¤°ΰ¤¤ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®ΧΆΧ•Χ¦ΧΧ?ΧΧ•Χ¨β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤¤ΰ¥€ΰ¤µΰ¥ΰ¤°ΰ¤¤ΰ¤?";
 //STRIP001      Text[ slovak ] = "Jas";
 //STRIP001  };
 //STRIP001  MetricField MTR_MAT_SPECULAR_INTENSITY
@@ -3775,23 +3775,23 @@
 //STRIP001      Text [ french ] = "Point brillant" ;
 //STRIP001      Text [ dutch ] = "Glanspunt" ;
 //STRIP001      Text [ portuguese ] = "Ponto brilhante" ;
-//STRIP001      Text[ chinese_simplified ] = "ε‘ε…‰η‚?;
+//STRIP001      Text[ chinese_simplified ] = "ε‘ε…‰η‚?";
 //STRIP001      Text[ russian ] = "Αλθκ";
 //STRIP001      Text[ polish ] = "B³yszczΉcy punkt";
 //STRIP001      Text[ japanese ] = "εε°„";
-//STRIP001      Text[ chinese_traditional ] = "η™Όε…‰ι»?;
-//STRIP001      Text[ arabic ] = "δήΨΙ ΗααγΪΗ?;
+//STRIP001      Text[ chinese_traditional ] = "η™Όε…‰ι»?";
+//STRIP001      Text[ arabic ] = "δήΨΙ ΗααγΪΗ?";
 //STRIP001      Text[ dutch ] = "Glanspunt";
-//STRIP001      Text[ chinese_simplified ] = "ε‘ε…‰η‚?;
-//STRIP001      Text[ greek ] = "Σημείο ανάκλαση?;
+//STRIP001      Text[ chinese_simplified ] = "ε‘ε…‰η‚?";
+//STRIP001      Text[ greek ] = "Σημείο ανάκλαση?";
 //STRIP001      Text[ korean ] = "λ°μ‚¬";
 //STRIP001      Text[ turkish ] = "Specular";
 //STRIP001      Text[ catalan ] = "Punt de brillantor";
 //STRIP001      Text[ finnish ] = "Heijastus";
 //STRIP001      Text[ thai ] = "ΰΉΰΈªΰΈ‡ΰΈ§ΰΈ²ΰΈ§";
 //STRIP001      Text[ czech ] = "Specular";
-//STRIP001      Text[ hebrew ] = "β€®Χ”Χ‘ΧΧΧ”β€?;
-//STRIP001      Text[ hindi ] = "ΰ¤¦ΰ¤°ΰ¥ΰ¤ªΰ¤?ΰ¤•ΰ¥‡ ΰ¤—ΰ¥ΰ¤£ΰ¤µΰ¤Ύΰ¤²ΰ¤?;
+//STRIP001      Text[ hebrew ] = "β€®Χ”Χ‘ΧΧΧ”β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤¦ΰ¤°ΰ¥ΰ¤ªΰ¤?ΰ¤•ΰ¥‡ ΰ¤—ΰ¥ΰ¤£ΰ¤µΰ¤Ύΰ¤²ΰ¤?";
 //STRIP001      Text[ slovak ] = "ZrkadlovΓ½";
 //STRIP001  };
 //STRIP001  /*
@@ -3837,20 +3837,20 @@
 //STRIP001      Text [ dutch ] = "Materiaal" ;
 //STRIP001      Text[ chinese_simplified ] = "ζζ–™";
 //STRIP001      Text[ russian ] = "Μΰςεπθΰλ";
-//STRIP001      Text[ polish ] = "Materia?;
+//STRIP001      Text[ polish ] = "Materia?";
 //STRIP001      Text[ japanese ] = "η΄ ζ";
 //STRIP001      Text[ chinese_traditional ] = "ζζ–™";
 //STRIP001      Text[ arabic ] = "ΗαγΗΟΙ";
 //STRIP001      Text[ dutch ] = "Materiaal";
 //STRIP001      Text[ chinese_simplified ] = "ζζ–™";
-//STRIP001      Text[ greek ] = "Υλικ?;
+//STRIP001      Text[ greek ] = "Υλικ?";
 //STRIP001      Text[ korean ] = "μ¬μ§";
 //STRIP001      Text[ turkish ] = "Materyal";
 //STRIP001      Text[ catalan ] = "Material";
 //STRIP001      Text[ finnish ] = "Materiaali";
-//STRIP001      Text[ thai ] = "ΰΈ§ΰΈ±ΰΈªΰΈ”ΰΈ?;
+//STRIP001      Text[ thai ] = "ΰΈ§ΰΈ±ΰΈªΰΈ”ΰΈ?";
 //STRIP001      Text[ czech ] = "MateriΓ΅l";
-//STRIP001      Text[ hebrew ] = "β€®Χ—Χ•ΧΧ¨β€?;
+//STRIP001      Text[ hebrew ] = "β€®Χ—Χ•ΧΧ¨β€?";
 //STRIP001      Text[ hindi ] = "ΰ¤ªΰ¤¦ΰ¤Ύΰ¤°ΰ¥ΰ¤¥";
 //STRIP001      Text[ slovak ] = "MateriΓ΅l";
 //STRIP001  };
@@ -3862,15 +3862,15 @@
 //STRIP001  Text [ french ] = "Effets 3D" ;
 //STRIP001  Text [ dutch ] = "3D-effecten" ;
 //STRIP001  Text [ portuguese ] = "Efeitos 3D" ;
-//STRIP001  Text[ chinese_simplified ] = "3 η»΄ζ•ζ?;
-//STRIP001  Text[ russian ] = "Òπευμεπνϋε ύττεκς?;
+//STRIP001  Text[ chinese_simplified ] = "3 η»΄ζ•ζ?";
+//STRIP001  Text[ russian ] = "Òπευμεπνϋε ύττεκς?";
 //STRIP001  Text[ polish ] = "Efekty 3D";
 //STRIP001  Text[ japanese ] = "3D εΉζ";
 //STRIP001  Text[ chinese_traditional ] = "3D ζ•ζ";
-//STRIP001  Text[ arabic ] = "ΚΓΛνΡΗ?ΛαΗΛνΙ ΗαΓΘΪΗ?;
+//STRIP001  Text[ arabic ] = "ΚΓΛνΡΗ?ΛαΗΛνΙ ΗαΓΘΪΗ?";
 //STRIP001  Text[ dutch ] = "3D-effecten";
-//STRIP001  Text[ chinese_simplified ] = "3 η»΄ζ•ζ?;
-//STRIP001  Text[ greek ] = "Εφ?3?;
+//STRIP001  Text[ chinese_simplified ] = "3 η»΄ζ•ζ?";
+//STRIP001  Text[ greek ] = "Εφ?3?";
 //STRIP001  Text[ korean ] = "3D ν¨κ³Ό";
 //STRIP001  Text[ turkish ] = "3B efektler";
 //STRIP001  Text[ catalan ] = "Efectes 3D";
@@ -4042,7 +4042,7 @@
 //STRIP001  };
 //STRIP001  Text[ thai ] = "ΰΈ¥ΰΈ±ΰΈΰΈ©ΰΈ“ΰΈ°3ΰΈ΅ΰΈ΄ΰΈ•ΰΈ΄";
 //STRIP001  Text[ czech ] = "3D efekty";
-//STRIP001  Text[ hebrew ] = "β€®Χ¤ΧΆΧΧ•ΧΧ™Χ?ΧªΧΧª ΧΧ™ΧΧ“Χ™Χ™Χβ€?;
+//STRIP001  Text[ hebrew ] = "β€®Χ¤ΧΆΧΧ•ΧΧ™Χ?ΧªΧΧª ΧΧ™ΧΧ“Χ™Χ™Χβ€?";
 //STRIP001  Text[ hindi ] = "3D ΰ¤ªΰ¥ΰ¤°ΰ¤­ΰ¤Ύΰ¤µ";
 //STRIP001  Text[ slovak ] = "3D efekty";
 //STRIP001 };
@@ -4080,204 +4080,218 @@ Image RID_SVXIMAGE_LIGHT_OFF_SELECTED {
       MASKCOLOR
 };*/
 
-String RID_SVXFLOAT3D_FAVORITE
-{
-    Text [ de ] = "Favorit" ;
-    Text [ en-US ] = "Favorite";
-    Text[ pt ] = "Favorito";
-    Text[ ru ] = "ΠΆΠµΠΊΡΡ‚ΡƒΡ€Π°";
-    Text[ el ] = "Ξ ΟΞΏΟ„Ξ―ΞΌΞ·ΟƒΞ·";
-    Text[ nl ] = "Favoriet";
-    Text[ fr ] = "Favori";
-    Text[ es ] = "Favorito";
-    Text[ fi ] = "Suosikki";
-    Text[ ca ] = "Predilecte";
-    Text[ it ] = "Preferito";
-    Text[ sk ] = "ObΔΎΓΊbenΓ½";
-    Text[ da ] = "Favorit";
-    Text[ sv ] = "Favorit";
-    Text[ pl ] = "Ulubione";
-    Text[ pt-BR ] = "Favorito";
-    Text[ th ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ";
-    Text[ ja ] = "γζ°—γ«ε…¥γ‚";
-    Text[ ko ] = "μ¦κ²¨μ°ΎκΈ°";
-    Text[ zh-CN ] = "ζ”¶θ—";
-    Text[ zh-TW ] = "ζ‘η„ζ€ζ„›";
-    Text[ tr ] = "SΔ±k kullanΔ±lan";
-    Text[ hi-IN ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤―";
-    Text[ ar ] = "Ψ§Ω„Ω…ΩΨ¶Ω„";
-    Text[ he ] = "β€®ΧΧ•ΧΆΧ“Χ£β€¬";
-};
-String RID_SVXFLOAT3D_FIX_X
-{
-    Text [ de ] = "X" ;
-    Text [ en-US ] = "X";
-    Text[ pt ] = "X";
-    Text[ ru ] = "X";
-    Text[ el ] = "X";
-    Text[ nl ] = "X";
-    Text[ fr ] = "X";
-    Text[ es ] = "X";
-    Text[ fi ] = "X";
-    Text[ ca ] = "X";
-    Text[ it ] = "X";
-    Text[ sk ] = "X";
-    Text[ da ] = "X";
-    Text[ sv ] = "X";
-    Text[ pl ] = "X";
-    Text[ pt-BR ] = "X";
-    Text[ th ] = "X";
-    Text[ ja ] = "X";
-    Text[ ko ] = "X";
-    Text[ zh-CN ] = "X";
-    Text[ zh-TW ] = "X";
-    Text[ tr ] = "X";
-    Text[ hi-IN ] = "X";
-    Text[ ar ] = "X";
-    Text[ he ] = "X";
-};
-String RID_SVXFLOAT3D_FIX_Y
-{
-    Text [ de ] = "Y" ;
-    Text [ en-US ] = "Y";
-    Text[ pt ] = "Y";
-    Text[ ru ] = "Y";
-    Text[ el ] = "Y";
-    Text[ nl ] = "Y";
-    Text[ fr ] = "Y";
-    Text[ es ] = "Y";
-    Text[ fi ] = "Y";
-    Text[ ca ] = "Y";
-    Text[ it ] = "Y";
-    Text[ sk ] = "Y";
-    Text[ da ] = "Y";
-    Text[ sv ] = "Y";
-    Text[ pl ] = "Y";
-    Text[ pt-BR ] = "Y";
-    Text[ th ] = "Y";
-    Text[ ja ] = "Y";
-    Text[ ko ] = "Y";
-    Text[ zh-CN ] = "Y";
-    Text[ zh-TW ] = "Y";
-    Text[ tr ] = "Y";
-    Text[ hi-IN ] = "Y";
-    Text[ ar ] = "Y";
-    Text[ he ] = "Y";
-};
-String RID_SVXFLOAT3D_FIX_Z
-{
-    Text [ de ] = "Z" ;
-    Text [ en-US ] = "Z";
-    Text[ pt ] = "Z";
-    Text[ ru ] = "Z";
-    Text[ el ] = "Z";
-    Text[ nl ] = "Z";
-    Text[ fr ] = "Z";
-    Text[ es ] = "Z";
-    Text[ fi ] = "Z";
-    Text[ ca ] = "Z";
-    Text[ it ] = "Z";
-    Text[ sk ] = "Z";
-    Text[ da ] = "Z";
-    Text[ sv ] = "Z";
-    Text[ pl ] = "Z";
-    Text[ pt-BR ] = "Z";
-    Text[ th ] = "Z";
-    Text[ ja ] = "Z";
-    Text[ ko ] = "Z";
-    Text[ zh-CN ] = "Z";
-    Text[ zh-TW ] = "Z";
-    Text[ tr ] = "Z";
-    Text[ hi-IN ] = "Z";
-    Text[ ar ] = "Z";
-    Text[ he ] = "Z";
-};
-String RID_SVXFLOAT3D_FIX_R
-{
-    Text [ de ] = "R:" ;
-    Text [ en-US ] = "R:";
-    Text[ pt ] = "R:";
-    Text[ ru ] = "Π:";
-    Text[ el ] = "R:";
-    Text[ nl ] = "R:";
-    Text[ fr ] = "R :";
-    Text[ es ] = "R:";
-    Text[ fi ] = "R:";
-    Text[ ca ] = "R";
-    Text[ it ] = "R:";
-    Text[ sk ] = "R:";
-    Text[ da ] = "R:";
-    Text[ sv ] = "R:";
-    Text[ pl ] = "R:";
-    Text[ pt-BR ] = "Vermelho:";
-    Text[ th ] = "R:";
-    Text[ ja ] = "R:";
-    Text[ ko ] = "R:";
-    Text[ zh-CN ] = "R:";
-    Text[ zh-TW ] = "R:";
-    Text[ tr ] = "R:";
-    Text[ hi-IN ] = "R:";
-    Text[ ar ] = "R:";
-    Text[ he ] = "R:";
-};
-String RID_SVXFLOAT3D_FIX_G
-{
-    Text [ de ] = "G:" ;
-    Text [ en-US ] = "G:";
-    Text [ x-comment ] = "; BLG 27.07.00 : \"G\" vom RGB-Farbmodel";
-    Text[ pt ] = "G:";
-    Text[ ru ] = "Π—:";
-    Text[ el ] = "G:";
-    Text[ nl ] = "G:";
-    Text[ fr ] = "V :";
-    Text[ es ] = "V:";
-    Text[ fi ] = "G:";
-    Text[ ca ] = "G";
-    Text[ it ] = "G:";
-    Text[ sk ] = "G:";
-    Text[ da ] = "G:";
-    Text[ sv ] = "G:";
-    Text[ pl ] = "G:";
-    Text[ pt-BR ] = "Verde:";
-    Text[ th ] = "G:";
-    Text[ ja ] = "G:";
-    Text[ ko ] = "G:";
-    Text[ zh-CN ] = "G:";
-    Text[ zh-TW ] = "G:";
-    Text[ tr ] = "G:";
-    Text[ hi-IN ] = "G:";
-    Text[ ar ] = "G:";
-    Text[ he ] = "G:";
-};
-String RID_SVXFLOAT3D_FIX_B
-{
-    Text [ de ] = "B:" ;
-    Text [ en-US ] = "B:";
-
-    Text[ pt ] = "B:";
-    Text[ ru ] = "Π“:";
-    Text[ el ] = "B:";
-    Text[ nl ] = "B:";
-    Text[ fr ] = "B :";
-    Text[ es ] = "A:";
-    Text[ fi ] = "B:";
-    Text[ ca ] = "B";
-    Text[ it ] = "B:";
-    Text[ sk ] = "B:";
-    Text[ da ] = "B:";
-    Text[ sv ] = "B:";
-    Text[ pl ] = "B:";
-    Text[ pt-BR ] = "Azul:";
-    Text[ th ] = "B:";
-    Text[ ja ] = "B:";
-    Text[ ko ] = "B:";
-    Text[ zh-CN ] = "B:";
-    Text[ zh-TW ] = "B:";
-    Text[ tr ] = "B:";
-    Text[ hi-IN ] = "B:";
-    Text[ ar ] = "B:";
-    Text[ he ] = "B:";
-};
+//STRIP001 String RID_SVXFLOAT3D_FAVORITE
+//STRIP001 {
+//STRIP001      Text = "Favorit" ;
+//STRIP001      Text [ ENGLISH ] = "Favorite" ;
+//STRIP001      Text[ english_us ] = "Favorite";
+//STRIP001      Text[ portuguese ] = "Favorito";
+//STRIP001      Text[ russian ] = "Òεκρςσπΰ";
+//STRIP001      Text[ greek ] = "Προτίμησ?";
+//STRIP001      Text[ dutch ] = "Favoriet";
+//STRIP001      Text[ french ] = "Favori";
+//STRIP001      Text[ spanish ] = "Favorito";
+//STRIP001      Text[ italian ] = "Preferito";
+//STRIP001      Text[ danish ] = "Favorit";
+//STRIP001      Text[ swedish ] = "Favorit";
+//STRIP001      Text[ polish ] = "Ulubione";
+//STRIP001      Text[ portuguese_brazilian ] = "Favorito";
+//STRIP001      Text[ japanese ] = "γζ°—γ«ε…¥γ‚?";
+//STRIP001      Text[ korean ] = "μ¦κ²¨μ°ΎκΈ°";
+//STRIP001      Text[ chinese_simplified ] = "ζ”¶θ—";
+//STRIP001      Text[ chinese_traditional ] = "ζ‘η„ζ€ζ„?";
+//STRIP001      Text[ turkish ] = "Sύk kullanύlan";
+//STRIP001      Text[ arabic ] = "ΗαγέΦα";
+//STRIP001      Text[ catalan ] = "Predilecte";
+//STRIP001      Text[ finnish ] = "Suosikki";
+//STRIP001      Text[ thai ] = "ΰΈΰΈ·ΰΉΰΈ™ΰΈΰΈ­ΰΈ?";
+//STRIP001      Text[ czech ] = "OblΓ­benΓ½";
+//STRIP001      Text[ hebrew ] = "β€®ΧΧ•ΧΆΧ“Χ£β€?";
+//STRIP001      Text[ hindi ] = "ΰ¤ªΰ¥ΰ¤°ΰ¤Ώΰ¤?";
+//STRIP001      Text[ slovak ] = "ObΔΎΓΊbenΓ½";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_X
+//STRIP001 {
+//STRIP001      Text = "X" ;
+//STRIP001      Text [ ENGLISH ] = "X" ;
+//STRIP001      Text[ english_us ] = "X";
+//STRIP001      Text[ portuguese ] = "X";
+//STRIP001      Text[ russian ] = "X";
+//STRIP001      Text[ greek ] = "X";
+//STRIP001      Text[ dutch ] = "X";
+//STRIP001      Text[ french ] = "X";
+//STRIP001      Text[ spanish ] = "X";
+//STRIP001      Text[ italian ] = "X";
+//STRIP001      Text[ danish ] = "X";
+//STRIP001      Text[ swedish ] = "X";
+//STRIP001      Text[ polish ] = "X";
+//STRIP001      Text[ portuguese_brazilian ] = "X";
+//STRIP001      Text[ japanese ] = "X";
+//STRIP001      Text[ korean ] = "X";
+//STRIP001      Text[ chinese_simplified ] = "X";
+//STRIP001      Text[ chinese_traditional ] = "X";
+//STRIP001      Text[ turkish ] = "X";
+//STRIP001      Text[ arabic ] = "X";
+//STRIP001      Text[ catalan ] = "X";
+//STRIP001      Text[ finnish ] = "X";
+//STRIP001      Text[ thai ] = "X";
+//STRIP001      Text[ czech ] = "X";
+//STRIP001      Text[ hebrew ] = "X";
+//STRIP001      Text[ hindi ] = "X";
+//STRIP001      Text[ slovak ] = "X";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_Y
+//STRIP001 {
+//STRIP001      Text = "Y" ;
+//STRIP001      Text [ ENGLISH ] = "Y" ;
+//STRIP001      Text[ english_us ] = "Y";
+//STRIP001      Text[ portuguese ] = "Y";
+//STRIP001      Text[ russian ] = "Y";
+//STRIP001      Text[ greek ] = "Y";
+//STRIP001      Text[ dutch ] = "Y";
+//STRIP001      Text[ french ] = "Y";
+//STRIP001      Text[ spanish ] = "Y";
+//STRIP001      Text[ italian ] = "Y";
+//STRIP001      Text[ danish ] = "Y";
+//STRIP001      Text[ swedish ] = "Y";
+//STRIP001      Text[ polish ] = "Y";
+//STRIP001      Text[ portuguese_brazilian ] = "Y";
+//STRIP001      Text[ japanese ] = "Y";
+//STRIP001      Text[ korean ] = "Y";
+//STRIP001      Text[ chinese_simplified ] = "Y";
+//STRIP001      Text[ chinese_traditional ] = "Y";
+//STRIP001      Text[ turkish ] = "Y";
+//STRIP001      Text[ arabic ] = "Y";
+//STRIP001      Text[ catalan ] = "Y";
+//STRIP001      Text[ finnish ] = "Y";
+//STRIP001      Text[ czech ] = "Y";
+//STRIP001      Text[ hebrew ] = "Y";
+//STRIP001      Text[ thai ] = "Y";
+//STRIP001      Text[ hindi ] = "Y";
+//STRIP001      Text[ slovak ] = "Y";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_Z
+//STRIP001 {
+//STRIP001      Text = "Z" ;
+//STRIP001      Text [ ENGLISH ] = "Z" ;
+//STRIP001      Text[ english_us ] = "Z";
+//STRIP001      Text[ portuguese ] = "Z";
+//STRIP001      Text[ russian ] = "Z";
+//STRIP001      Text[ greek ] = "Z";
+//STRIP001      Text[ dutch ] = "Z";
+//STRIP001      Text[ french ] = "Z";
+//STRIP001      Text[ spanish ] = "Z";
+//STRIP001      Text[ italian ] = "Z";
+//STRIP001      Text[ danish ] = "Z";
+//STRIP001      Text[ swedish ] = "Z";
+//STRIP001      Text[ polish ] = "Z";
+//STRIP001      Text[ portuguese_brazilian ] = "Z";
+//STRIP001      Text[ japanese ] = "Z";
+//STRIP001      Text[ korean ] = "Z";
+//STRIP001      Text[ chinese_simplified ] = "Z";
+//STRIP001      Text[ chinese_traditional ] = "Z";
+//STRIP001      Text[ turkish ] = "Z";
+//STRIP001      Text[ arabic ] = "Z";
+//STRIP001      Text[ catalan ] = "Z";
+//STRIP001      Text[ finnish ] = "Z";
+//STRIP001      Text[ czech ] = "Z";
+//STRIP001      Text[ hebrew ] = "Z";
+//STRIP001      Text[ thai ] = "Z";
+//STRIP001      Text[ hindi ] = "Z";
+//STRIP001      Text[ slovak ] = "Z";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_R
+//STRIP001 {
+//STRIP001      Text = "R:" ;
+//STRIP001      Text [ ENGLISH ] = "R:" ;
+//STRIP001      Text[ english_us ] = "R:";
+//STRIP001      Text[ portuguese ] = "R:";
+//STRIP001      Text[ russian ] = "?";
+//STRIP001      Text[ greek ] = "R:";
+//STRIP001      Text[ dutch ] = "R:";
+//STRIP001      Text[ french ] = "R :";
+//STRIP001      Text[ spanish ] = "R:";
+//STRIP001      Text[ italian ] = "R:";
+//STRIP001      Text[ danish ] = "R:";
+//STRIP001      Text[ swedish ] = "R:";
+//STRIP001      Text[ polish ] = "R:";
+//STRIP001      Text[ portuguese_brazilian ] = "Vermelho:";
+//STRIP001      Text[ japanese ] = "R:";
+//STRIP001      Text[ korean ] = "R:";
+//STRIP001      Text[ chinese_simplified ] = "R:";
+//STRIP001      Text[ chinese_traditional ] = "R:";
+//STRIP001      Text[ turkish ] = "R:";
+//STRIP001      Text[ arabic ] = "R:";
+//STRIP001      Text[ catalan ] = "R";
+//STRIP001      Text[ finnish ] = "R:";
+//STRIP001      Text[ czech ] = "R:";
+//STRIP001      Text[ hebrew ] = "R:";
+//STRIP001      Text[ thai ] = "R:";
+//STRIP001      Text[ hindi ] = "R:";
+//STRIP001      Text[ slovak ] = "R:";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_G
+//STRIP001 {
+//STRIP001      Text = "G:" ;
+//STRIP001      Text [ ENGLISH ] = "G:" ;
+//STRIP001      Text[ english_us ] = "G:";
+//STRIP001      Text[ portuguese ] = "G:";
+//STRIP001      Text[ russian ] = "?";
+//STRIP001      Text[ greek ] = "G:";
+//STRIP001      Text[ dutch ] = "G:";
+//STRIP001      Text[ french ] = "V :";
+//STRIP001      Text[ spanish ] = "V:";
+//STRIP001      Text[ italian ] = "G:";
+//STRIP001      Text[ danish ] = "G:";
+//STRIP001      Text[ swedish ] = "G:";
+//STRIP001      Text[ polish ] = "G:";
+//STRIP001      Text[ portuguese_brazilian ] = "Verde:";
+//STRIP001      Text[ japanese ] = "G:";
+//STRIP001      Text[ korean ] = "G:";
+//STRIP001      Text[ chinese_simplified ] = "G:";
+//STRIP001      Text[ chinese_traditional ] = "G:";
+//STRIP001      Text[ turkish ] = "G:";
+//STRIP001      Text[ arabic ] = "G:";
+//STRIP001      Text[ catalan ] = "G";
+//STRIP001      Text[ finnish ] = "G:";
+//STRIP001      Text[ language_user1 ] = "; BLG 27.07.00 : \"G\" vom RGB-Farbmodel";
+//STRIP001      Text[ czech ] = "G:";
+//STRIP001      Text[ hebrew ] = "G:";
+//STRIP001      Text[ thai ] = "G:";
+//STRIP001      Text[ hindi ] = "G:";
+//STRIP001      Text[ slovak ] = "G:";
+//STRIP001 };
+//STRIP001 String RID_SVXFLOAT3D_FIX_B
+//STRIP001 {
+//STRIP001      Text = "B:" ;
+//STRIP001      Text [ ENGLISH ] = "B:" ;
+//STRIP001      Text[ english_us ] = "B:";
+//STRIP001      Text[ portuguese ] = "B:";
+//STRIP001      Text[ russian ] = "?";
+//STRIP001      Text[ greek ] = "B:";
+//STRIP001      Text[ dutch ] = "B:";
+//STRIP001      Text[ french ] = "B :";
+//STRIP001      Text[ spanish ] = "A:";
+//STRIP001      Text[ italian ] = "B:";
+//STRIP001      Text[ danish ] = "B:";
+//STRIP001      Text[ swedish ] = "B:";
+//STRIP001      Text[ polish ] = "B:";
+//STRIP001      Text[ portuguese_brazilian ] = "Azul:";
+//STRIP001      Text[ japanese ] = "B:";
+//STRIP001      Text[ korean ] = "B:";
+//STRIP001      Text[ chinese_simplified ] = "B:";
+//STRIP001      Text[ chinese_traditional ] = "B:";
+//STRIP001      Text[ turkish ] = "B:";
+//STRIP001      Text[ arabic ] = "B:";
+//STRIP001      Text[ catalan ] = "B";
+//STRIP001      Text[ finnish ] = "B:";
+//STRIP001
+//STRIP001      Text[ czech ] = "B:";
+//STRIP001      Text[ hebrew ] = "B:";
+//STRIP001      Text[ thai ] = "B:";
+//STRIP001      Text[ hindi ] = "B:";
+//STRIP001      Text[ slovak ] = "B:";
+//STRIP001 };
 
 
 

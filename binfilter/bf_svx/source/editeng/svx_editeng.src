@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_editeng.src,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: hjs $ $Date: 2004-06-25 14:11:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:20:01 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -461,63 +461,67 @@ Menu RID_MENU_SPELL
 };
 
 
-String RID_STR_WORD
-{
-    Text [ de ] = "Wort ist %x";
-    Text [ en-US ] = "Word is %x";
-    Text[ pt ] = "Word is %x";
-    Text[ ru ] = "Word is %x";
-    Text[ el ] = "Word is %x";
-    Text[ nl ] = "Word is %x";
-    Text[ fr ] = "Mot %x";
-    Text[ es ] = "La palabra es %x";
-    Text[ fi ] = "Word is %x";
-    Text[ ca ] = "Word is %x";
-    Text[ it ] = "Il termine è %x";
-    Text[ sk ] = "Slovo je %x";
-    Text[ da ] = "Word is %x";
-    Text[ sv ] = "Ordet är %x";
-    Text[ pl ] = "Word is %x";
-    Text[ pt-BR ] = "Palavra %x";
-    Text[ th ] = "Word is %x";
-    Text[ ja ] = "単語は %x";
-    Text[ ko ] = "단어는 %x";
-    Text[ zh-CN ] = "单词是 %x";
-    Text[ zh-TW ] = "字是 %x";
-    Text[ tr ] = "Kelime: %x";
-    Text[ hi-IN ] = "Word is %x";
-    Text[ ar ] = "Word is %x";
-    Text[ he ] = "‮מילה היא %x‬";
-};
+//STRIP001 String RID_STR_WORD
+//STRIP001 {
+//STRIP001     Text = "Wort ist %x";
+//STRIP001      Text [ ENGLISH ] = "Word is %x";
+//STRIP001      Text[ english_us ] = "Word is %x";
+//STRIP001      Text[ portuguese ] = "Word is %x";
+//STRIP001      Text[ russian ] = "Word is %x";
+//STRIP001      Text[ greek ] = "Word is %x";
+//STRIP001      Text[ dutch ] = "Word is %x";
+//STRIP001      Text[ french ] = "Mot %x";
+//STRIP001      Text[ spanish ] = "La palabra es %x";
+//STRIP001      Text[ finnish ] = "Word is %x";
+//STRIP001      Text[ italian ] = "Il termine ?%x";
+//STRIP001      Text[ danish ] = "Word is %x";
+//STRIP001      Text[ swedish ] = "Ordet �r %x";
+//STRIP001      Text[ polish ] = "Word is %x";
+//STRIP001      Text[ portuguese_brazilian ] = "Palavra %x";
+//STRIP001      Text[ japanese ] = "単語�?%x";
+//STRIP001      Text[ korean ] = "단어�?%x";
+//STRIP001      Text[ chinese_simplified ] = "单词�?%x";
+//STRIP001      Text[ chinese_traditional ] = "字是 %x";
+//STRIP001      Text[ turkish ] = "Kelime: %x";
+//STRIP001      Text[ arabic ] = "Word is %x";
+//STRIP001      Text[ catalan ] = "Word is %x";
+//STRIP001      Text[ thai ] = "Word is %x";
+//STRIP001      Text[ czech ] = "Slovo je %x";
+//STRIP001      Text[ hebrew ] = "‮מיל�?היא %x�?";
+//STRIP001      Text[ hindi ] = "Word is %x";
+//STRIP001      Text[ slovak ] = "Slovo je %x";
+//STRIP001 };
 
-String RID_STR_PARAGRAPH
-{
-    Text [ de ] = "Absatz ist %x";
-    Text [ en-US ] = "Paragraph is %x";
-    Text[ pt ] = "Paragraph is %x";
-    Text[ ru ] = "Paragraph is %x";
-    Text[ el ] = "Paragraph is %x";
-    Text[ nl ] = "Paragraph is %x";
-    Text[ fr ] = "Paragraphe %x";
-    Text[ es ] = "El párrafo es %x";
-    Text[ fi ] = "Paragraph is %x";
-    Text[ ca ] = "Paragraph is %x";
-    Text[ it ] = "Il paragrafo è %x";
-    Text[ sk ] = "Odstavec je %x";
-    Text[ da ] = "Paragraph is %x";
-    Text[ sv ] = "Stycket är %x";
-    Text[ pl ] = "Paragraph is %x";
-    Text[ pt-BR ] = "Parágrafo %x";
-    Text[ th ] = "Paragraph is %x";
-    Text[ ja ] = "段落は %x";
-    Text[ ko ] = "단락은 %x";
-    Text[ zh-CN ] = "段落是 %x";
-    Text[ zh-TW ] = "段落是 %x";
-    Text[ tr ] = "%x paragrafdır";
-    Text[ hi-IN ] = "Paragraph is %x";
-    Text[ ar ] = "Paragraph is %x";
-    Text[ he ] = "‮פסקה היא %x‬";
-};
+//STRIP001 String RID_STR_PARAGRAPH
+//STRIP001 {
+//STRIP001      Text = "Absatz ist %x";
+//STRIP001      Text [ ENGLISH ] = "Paragraph is %x";
+//STRIP001      Text[ english_us ] = "Paragraph is %x";
+//STRIP001      Text[ portuguese ] = "Paragraph is %x";
+//STRIP001      Text[ russian ] = "Paragraph is %x";
+//STRIP001      Text[ greek ] = "Paragraph is %x";
+//STRIP001      Text[ dutch ] = "Paragraph is %x";
+//STRIP001      Text[ french ] = "Paragraphe %x";
+//STRIP001      Text[ spanish ] = "El p�rrafo es %x";
+//STRIP001      Text[ finnish ] = "Paragraph is %x";
+//STRIP001      Text[ italian ] = "Il paragrafo ?%x";
+//STRIP001      Text[ danish ] = "Paragraph is %x";
+//STRIP001      Text[ swedish ] = "Stycket �r %x";
+//STRIP001      Text[ polish ] = "Paragraph is %x";
+//STRIP001      Text[ portuguese_brazilian ] = "Par�grafo %x";
+//STRIP001      Text[ japanese ] = "段落�?%x";
+//STRIP001      Text[ korean ] = "단락은 %x";
+//STRIP001      Text[ chinese_simplified ] = "段落�?%x";
+//STRIP001      Text[ chinese_traditional ] = "段落�?%x";
+//STRIP001      Text[ turkish ] = "%x paragrafd�r";
+//STRIP001      Text[ arabic ] = "Paragraph is %x";
+//STRIP001      Text[ catalan ] = "Paragraph is %x";
+//STRIP001      Text[ thai ] = "Paragraph is %x";
+//STRIP001      Text[ czech ] = "Odstavec je %x";
+//STRIP001      Text[ hebrew ] = "‮פסק�?היא %x�?";
+//STRIP001      Text[ hindi ] = "Paragraph is %x";
+//STRIP001      Text[ slovak ] = "Odstavec je %x";
+//STRIP001 };
 
 
 
