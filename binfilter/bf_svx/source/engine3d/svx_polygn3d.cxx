@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_polygn3d.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:29 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:41:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,9 +63,9 @@
 #include "polygn3d.hxx"
 #endif
 
-#ifndef _SVDPAGE_HXX
-#include "svdpage.hxx"
-#endif
+// auto strip #ifndef _SVDPAGE_HXX
+// auto strip #include "svdpage.hxx"
+// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
