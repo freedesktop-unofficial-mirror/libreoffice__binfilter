@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-02 15:17:35 $
+#   last change: $Author: aw $ $Date: 2003-10-09 14:14:38 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -63,7 +63,7 @@
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
-PRJNAME=bf_sw
+PRJNAME=binfilter
 TARGET=sw_except
 
 # --- Settings -----------------------------------------------------

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshape.cxx,v $
  *
- *  $Revision: 1.1.1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: hjs $ $Date: 2003-10-01 12:22:36 $
+ *  last change: $Author: aw $ $Date: 2003-10-09 14:14:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2316,25 +2316,25 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
                 break;
             }
             case OWN_ATTR_LDBITMAP:
-            {
-                sal_uInt16 nId;
-                if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_OLE2 )
-                {
-                    nId = RID_UNODRAW_OLE2;
-                }
-                else if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_GRAF )
-                {
-                    nId = RID_UNODRAW_GRAPHICS;
-                }
-                else
-                {
-                    nId = RID_UNODRAW_OBJECTS;
-                }
-
-                BitmapEx aBmp( SVX_RES(nId) );
-                Reference< awt::XBitmap > xBmp( VCLUnoHelper::CreateBitmap( aBmp ) );
-
-                aAny <<= xBmp;
+            { {DBG_ASSERT(0, "STRIP"); // Discussed with DL, this is not needed. Thus the bitmaps may be removed again, too.
+//STRIP003              sal_uInt16 nId;
+//STRIP003              if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_OLE2 )
+//STRIP003              {
+//STRIP003                  nId = RID_UNODRAW_OLE2;
+//STRIP003              }
+//STRIP003              else if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_GRAF )
+//STRIP003              {
+//STRIP003                  nId = RID_UNODRAW_GRAPHICS;
+//STRIP003              }
+//STRIP003              else
+//STRIP003              {
+//STRIP003                  nId = RID_UNODRAW_OBJECTS;
+//STRIP003              }
+//STRIP003
+//STRIP003              BitmapEx aBmp( SVX_RES(nId) );
+//STRIP003              Reference< awt::XBitmap > xBmp( VCLUnoHelper::CreateBitmap( aBmp ) );
+//STRIP003
+//STRIP003              aAny <<= xBmp;
                 break;
             }
             case OWN_ATTR_OLE_VISAREA:

@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1.1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: hjs $ $Date: 2003-10-01 12:22:36 $
+#   last change: $Author: aw $ $Date: 2003-10-09 14:14:24 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -63,7 +63,7 @@
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
-PRJNAME=bf_svx
+PRJNAME=binfilter
 TARGET=svx_unodraw
 ENABLE_EXCEPTIONS=TRUE
 
@@ -160,9 +160,9 @@ SLOFILES =	\
         $(SLO)$/svx_gluepts.obj
 
 #SRSNAME=unodraw
-SRS1NAME=$(TARGET)
-SRC1FILES =  \
-        svx_unodraw.src
+#SRS1NAME=$(TARGET)
+#SRC1FILES =  \
+#		svx_unodraw.src
 
 # --- Tagets -------------------------------------------------------
 

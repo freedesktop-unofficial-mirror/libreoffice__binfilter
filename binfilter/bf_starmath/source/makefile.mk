@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1.1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: hjs $ $Date: 2003-10-01 12:19:20 $
+#   last change: $Author: aw $ $Date: 2003-10-09 14:14:05 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -65,7 +65,7 @@ PROJECTPCH4DLL=TRUE
 
 PRJ=..$/..
 BFPRJ=..
-PRJNAME=bf_starmath
+PRJNAME=binfilter
 TARGET=bf_starmath
 
 PROJECTPCH=math_pch

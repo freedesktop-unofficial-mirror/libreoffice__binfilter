@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1.1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: hjs $ $Date: 2003-10-01 12:17:26 $
+#   last change: $Author: aw $ $Date: 2003-10-09 14:15:27 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -62,7 +62,7 @@
 
 PRJ=..$/..
 BFPRJ=..
-PRJNAME=binfilterdetect
+PRJNAME=binfilter
 TARGET=binfilterdetect
 ENABLE_EXCEPTIONS=TRUE
 #.INCLUDE :  $(PRJ)$/util$/makefile.pmk

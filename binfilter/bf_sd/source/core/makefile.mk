@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.1 $
+#   $Revision: 1.2 $
 #
-#   last change: $Author: aw $ $Date: 2003-10-02 14:57:57 $
+#   last change: $Author: aw $ $Date: 2003-10-09 14:13:36 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -64,7 +64,7 @@ BFPRJ=..$/..
 
 PROJECTPCH=sd
 PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
-PRJNAME=bf_sd
+PRJNAME=binfilter
 TARGET=sd_core
 
 AUTOSEG=true
