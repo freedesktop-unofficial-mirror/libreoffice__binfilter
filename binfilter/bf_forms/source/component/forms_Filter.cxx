@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_Filter.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:05 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:48:42 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -82,9 +82,9 @@
 #ifndef _COM_SUN_STAR_AWT_VCLWINDOWPEERATTRIBUTE_HPP_
 #include <com/sun/star/awt/VclWindowPeerAttribute.hpp>
 #endif
-#ifndef _COM_SUN_STAR_AWT_XVCLWINDOWPEER_HPP_
-#include <com/sun/star/awt/XVclWindowPeer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_AWT_XVCLWINDOWPEER_HPP_
+// auto strip #include <com/sun/star/awt/XVclWindowPeer.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
 #endif
@@ -109,9 +109,9 @@
 #ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
 #include <com/sun/star/sdb/XColumn.hpp>
 #endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-#include <com/sun/star/sdbc/DataType.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
+// auto strip #include <com/sun/star/sdbc/DataType.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_UI_DIALOGS_XEXECUTABLEDIALOG_HPP_
 #include <com/sun/star/ui/dialogs/XExecutableDialog.hpp>
 #endif
@@ -131,9 +131,9 @@
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
-#include <unotools/localedatawrapper.hxx>
-#endif
+// auto strip #ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
+// auto strip #include <unotools/localedatawrapper.hxx>
+// auto strip #endif
 #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
 #endif
@@ -150,9 +150,9 @@
 #include <rtl/ustrbuf.hxx>
 #endif
 
-#ifndef _FRM_PROPERTY_HXX_
-#include "property.hxx"
-#endif
+// auto strip #ifndef _FRM_PROPERTY_HXX_
+// auto strip #include "property.hxx"
+// auto strip #endif
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
 #endif
