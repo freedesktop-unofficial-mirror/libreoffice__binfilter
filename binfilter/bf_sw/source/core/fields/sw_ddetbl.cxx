@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ddetbl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:25:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,36 +62,46 @@
 
 #pragma hdrstop
 
-#ifndef _FRMFMT_HXX //autogen
-#include <frmfmt.hxx>
+// auto strip #ifndef _FRMFMT_HXX //autogen
+// auto strip #include <frmfmt.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
+// auto strip #ifndef _INDEX_HXX
+// auto strip #include <index.hxx>
+// auto strip #endif
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _INDEX_HXX
-#include <index.hxx>
-#endif
+
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
 #ifndef _SWDDETBL_HXX
 #include <swddetbl.hxx>
 #endif
-#ifndef _DDEFLD_HXX
-#include <ddefld.hxx>           // fuer den FieldType
-#endif
-#ifndef _NDINDEX_HXX
-#include <ndindex.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
-#include <fldupde.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
-#include <swtblfmt.hxx>
-#endif
+// auto strip #ifndef _DDEFLD_HXX
+// auto strip #include <ddefld.hxx>         // fuer den FieldType
+// auto strip #endif
+// auto strip #ifndef _NDINDEX_HXX
+// auto strip #include <ndindex.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDUPDE_HXX
+// auto strip #include <fldupde.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTBLFMT_HXX
+// auto strip #include <swtblfmt.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
