@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3io.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:42:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,18 +61,27 @@
 
 
 #pragma hdrstop
-#include <sot/object.hxx>
+// auto strip #include <sot/object.hxx>
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #include <svtools/svstdarr.hxx>
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
 
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
+#endif
+
 #include "pam.hxx"
 #include "rootfrm.hxx"
 #include "swerror.h"

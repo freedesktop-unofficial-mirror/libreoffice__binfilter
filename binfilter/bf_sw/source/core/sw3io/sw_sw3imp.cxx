@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:41:26 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:42:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,11 +70,11 @@
 #if !defined _SVSTDARR_USHORTS_DECL || !defined _SVSTDARR_STRINGSDTOR_DECL
 #define _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_USHORTS
-#include <svtools/svstdarr.hxx>
+// auto strip #include <svtools/svstdarr.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
-#include <so3/svstor.hxx>
-#endif
+// auto strip #ifndef _SVSTOR_HXX //autogen
+// auto strip #include <so3/svstor.hxx>
+// auto strip #endif
 #ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
 #endif
@@ -103,54 +103,54 @@
 #ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
-#include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
-#include <com/sun/star/form/XImageProducerSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
-#include <com/sun/star/form/XFormController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
-#include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
-#include <com/sun/star/form/XFormControllerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
-#include <com/sun/star/frame/XStorable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
-#include <com/sun/star/frame/XModel.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
+// auto strip #include <com/sun/star/form/XForm.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
+// auto strip #include <com/sun/star/form/XImageProducerSupplier.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
+// auto strip #include <com/sun/star/form/XFormController.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
+// auto strip #include <com/sun/star/form/XFormComponent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
+// auto strip #include <com/sun/star/form/XFormControllerListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
+// auto strip #include <com/sun/star/frame/XStorable.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
+// auto strip #include <com/sun/star/frame/XModel.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
-#include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
-#include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
-#include <com/sun/star/container/XNameReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
-#include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
-#include <com/sun/star/container/XSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
-#include <com/sun/star/container/ContainerEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
-#include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XIndexContainer.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XNameReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
+// auto strip #include <com/sun/star/container/XContainerListener.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
+// auto strip #include <com/sun/star/container/XSet.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_CONTAINEREVENT_HPP_
+// auto strip #include <com/sun/star/container/ContainerEvent.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
+// auto strip #include <com/sun/star/container/XIndexReplace.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
 #endif
@@ -169,18 +169,23 @@
 #ifndef _DCONTACT_HXX //autogen
 #include <dcontact.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
-#ifndef _PAM_HXX
-#include <pam.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
+// auto strip #ifndef _PAM_HXX
+// auto strip #include <pam.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
@@ -193,9 +198,9 @@
 #ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
 #endif
-#ifndef _SW3IDS_HXX
-#include <sw3ids.hxx>
-#endif
+// auto strip #ifndef _SW3IDS_HXX
+// auto strip #include <sw3ids.hxx>
+// auto strip #endif
 #ifndef _SW3MARKS_HXX
 #include <sw3marks.hxx>
 #endif
@@ -205,9 +210,9 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-#ifndef _SECTION_HXX
-#include <section.hxx>
-#endif
+// auto strip #ifndef _SECTION_HXX
+// auto strip #include <section.hxx>
+// auto strip #endif
 #ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
 #endif
