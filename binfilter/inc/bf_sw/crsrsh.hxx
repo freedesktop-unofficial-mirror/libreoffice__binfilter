@@ -2,9 +2,9 @@
  *
  *  $RCSfile: crsrsh.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:37:52 $
+ *  last change: $Author: hr $ $Date: 2004-08-05 15:27:50 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -98,9 +98,9 @@
 
 #if defined(PRODUCT) && !defined(WIN)
 // fuer die Inline-Methoden
-// auto strip #ifndef _VISCRS_HXX
-// auto strip #include <viscrs.hxx>
-// auto strip #endif
+#ifndef _VISCRS_HXX
+#include <viscrs.hxx>
+#endif
 // auto strip #ifndef _NODE_HXX
 // auto strip #include <node.hxx>
 // auto strip #endif
