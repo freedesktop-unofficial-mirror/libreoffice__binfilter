@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_findfrm.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:41:00 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:34:10 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,12 +63,17 @@
 #pragma hdrstop
 
 #include "pagefrm.hxx"
-#include "rootfrm.hxx"
+// auto strip #include "rootfrm.hxx"
 #include "cntfrm.hxx"
 #include "node.hxx"
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #include "doc.hxx"
 #include "frmtool.hxx"
-#include "flyfrm.hxx"
+// auto strip #include "flyfrm.hxx"
 
 #ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
