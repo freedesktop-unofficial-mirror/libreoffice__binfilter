@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmloff_animexp.cxx,v $
  *
- *  $Revision: 1.1 $
+ *  $Revision: 1.2 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:33:10 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 19:50:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
-#include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
+// auto strip #include <com/sun/star/lang/XServiceInfo.hpp>
+// auto strip #endif
 #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
 #endif
@@ -74,13 +74,13 @@
 #include <comphelper/extract.hxx>
 #endif
 
-#ifndef _TOOLS_COLOR_HXX
-#include <tools/color.hxx>
-#endif
+// auto strip #ifndef _TOOLS_COLOR_HXX
+// auto strip #include <tools/color.hxx>
+// auto strip #endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
-#include "xmltoken.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
+// auto strip #include "xmltoken.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
@@ -94,17 +94,17 @@
 #include "xmlexp.hxx"
 #endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
-#include "xmlement.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_XMLEMENT_HXX
+// auto strip #include "xmlement.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
-#include "nmspmap.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_NMSPMAP_HXX
+// auto strip #include "nmspmap.hxx"
+// auto strip #endif
 
-#ifndef _XMLOFF_SHAPEEXPORT_HXX_
-#include "shapeexport.hxx"
-#endif
+// auto strip #ifndef _XMLOFF_SHAPEEXPORT_HXX_
+// auto strip #include "shapeexport.hxx"
+// auto strip #endif
 
 #ifndef _XMLOFF_ANIM_HXX
 #include "anim.hxx"
