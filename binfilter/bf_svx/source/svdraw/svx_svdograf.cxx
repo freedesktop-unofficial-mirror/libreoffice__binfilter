@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_svdograf.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:26:06 $
+ *  last change: $Author: rt $ $Date: 2005-01-11 11:41:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -109,6 +109,7 @@
 #include "xoutx.hxx"
 #endif
 
+#include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
 // -----------
@@ -1459,7 +1460,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( aFileName.Len() )
 /*N*/   {
-/*?*/       aRelFileName = INetURLObject::AbsToRel( aFileName,
+/*?*/       aRelFileName = so3::StaticBaseUrl::AbsToRel( aFileName,
 /*?*/                                               INetURLObject::WAS_ENCODED,
 /*?*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/   }
@@ -1626,7 +1627,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( aFileNameRel.Len() )
 /*N*/       {
-/*N*/           aFileName = ::URIHelper::SmartRelToAbs( aFileNameRel, FALSE,
+/*N*/           aFileName = so3::StaticBaseUrl::SmartRelToAbs( aFileNameRel, FALSE,
 /*N*/                                                   INetURLObject::WAS_ENCODED,
 /*N*/                                                   INetURLObject::DECODE_UNAMBIGUOUS );
 /*N*/       }
