@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_chrtitem.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:45:04 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:02:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,18 +64,18 @@
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif
-#ifndef __SBX_SBXVARIABLE_HXX
-#include <svtools/sbxvar.hxx>
-#endif
+// auto strip #ifndef __SBX_SBXVARIABLE_HXX
+// auto strip #include <svtools/sbxvar.hxx>
+// auto strip #endif
 #if defined UNX && !defined LINUX
 #include <wchar.h>
 #endif
-#ifndef INCLUDED_RTL_MATH_HXX
-#include <rtl/math.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
-#include <unotools/intlwrapper.hxx>
-#endif
+// auto strip #ifndef INCLUDED_RTL_MATH_HXX
+// auto strip #include <rtl/math.hxx>
+// auto strip #endif
+// auto strip #ifndef _UNOTOOLS_INTLWRAPPER_HXX
+// auto strip #include <unotools/intlwrapper.hxx>
+// auto strip #endif
 
 #ifdef MAC
 #include <stdlib.h>
@@ -83,7 +83,7 @@
 
 #include <stdio.h>
 #include <float.h>
-#include <rtl/math.hxx>
+// auto strip #include <rtl/math.hxx>
 
 #define ITEMID_CHARTSTYLE       0
 #define ITEMID_CHARTDATADESCR   0
@@ -94,6 +94,10 @@
 #define ITEMID_CHARTINDICATE    0
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTREGRESS     0
+
+#ifndef _SFXENUMITEM_HXX
+#include <svtools/eitem.hxx>
+#endif
 
 #include "chrtitem.hxx"
 
