@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_smlib.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-04-19 10:22:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:13:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,22 +61,22 @@
 
 #pragma hdrstop
 
-#include <sot/formats.hxx>
+// auto strip #include <sot/formats.hxx>
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-#ifndef _GLOBNAME_HXX //autogen
-#include <tools/globname.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX //autogen
-#include <bf_sfx2/docfac.hxx>
-#endif
+// auto strip #ifndef _GLOBNAME_HXX //autogen
+// auto strip #include <tools/globname.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_OBJFAC_HXX //autogen
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
 #endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
-#include <bf_sfx2/docfilt.hxx>
-#endif
+// auto strip #ifndef _SFX_DOCFILT_HACK_HXX //autogen
+// auto strip #include <bf_sfx2/docfilt.hxx>
+// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -91,9 +91,9 @@
 #ifndef _STARMATH_HRC
 #include "starmath.hrc"
 #endif
-#ifndef _SMMOD_HXX
-#include "smmod.hxx"
-#endif
+// auto strip #ifndef _SMMOD_HXX
+// auto strip #include "smmod.hxx"
+// auto strip #endif
 
 #include "dllname.hxx"
 namespace binfilter {

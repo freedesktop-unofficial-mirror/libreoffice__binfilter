@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_smmod.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:22 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:13:46 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,15 +62,15 @@
 #pragma hdrstop
 
 
-#ifndef _GLOBNAME_HXX //autogen
-#include <tools/globname.hxx>
-#endif
+// auto strip #ifndef _GLOBNAME_HXX //autogen
+// auto strip #include <tools/globname.hxx>
+// auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
 #endif
-#ifndef _SFXMSG_HXX //autogen
-#include <bf_sfx2/msg.hxx>
-#endif
+// auto strip #ifndef _SFXMSG_HXX //autogen
+// auto strip #include <bf_sfx2/msg.hxx>
+// auto strip #endif
 #ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
 #endif
@@ -80,49 +80,49 @@
 #ifndef _SFX_WHITER_HXX //autogen
 #include <svtools/whiter.hxx>
 #endif
-#ifndef _SFXREQUEST_HXX //autogen
-#include <bf_sfx2/request.hxx>
-#endif
+// auto strip #ifndef _SFXREQUEST_HXX //autogen
+// auto strip #include <bf_sfx2/request.hxx>
+// auto strip #endif
 #ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
 #endif
-#ifndef _SFXVIEWSH_HXX
-#include <bf_sfx2/viewsh.hxx>
-#endif
-#ifndef _FACTORY_HXX //autogen
-#include <so3/factory.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX //autogen
-#include <vcl/wrkwin.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWSH_HXX
+// auto strip #include <bf_sfx2/viewsh.hxx>
+// auto strip #endif
+// auto strip #ifndef _FACTORY_HXX //autogen
+// auto strip #include <so3/factory.hxx>
+// auto strip #endif
+// auto strip #ifndef _SV_WRKWIN_HXX //autogen
+// auto strip #include <vcl/wrkwin.hxx>
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _SV_MSGBOX_HXX //autogen
-#include <vcl/msgbox.hxx>
-#endif
+// auto strip #ifndef _SV_MSGBOX_HXX //autogen
+// auto strip #include <vcl/msgbox.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <svtools/syslocale.hxx>
 #endif
-#ifndef _RTTI_HXX
-#include <tools/rtti.hxx>
-#endif
+// auto strip #ifndef _RTTI_HXX
+// auto strip #include <tools/rtti.hxx>
+// auto strip #endif
 
-#ifndef _SMMOD_HXX
-#include "smmod.hxx"
-#endif
-#ifndef SYMBOL_HXX
-#include "symbol.hxx"
-#endif
+// auto strip #ifndef _SMMOD_HXX
+// auto strip #include "smmod.hxx"
+// auto strip #endif
+// auto strip #ifndef SYMBOL_HXX
+// auto strip #include "symbol.hxx"
+// auto strip #endif
 #ifndef _CONFIG_HXX
 #include "config.hxx"
 #endif
 #ifndef _DIALOG_HXX
 #include "dialog.hxx"
 #endif
-#ifndef EDIT_HXX
-#include "edit.hxx"
-#endif
+// auto strip #ifndef EDIT_HXX
+// auto strip #include "edit.hxx"
+// auto strip #endif
 #ifndef VIEW_HXX
 #include "view.hxx"
 #endif
