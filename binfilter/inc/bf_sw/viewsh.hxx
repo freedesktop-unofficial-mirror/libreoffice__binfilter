@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewsh.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:30:03 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:51:14 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,22 +64,22 @@
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif
-#ifndef _SVARRAY_HXX //autogen
-#include <svtools/svarray.hxx>
-#endif
+// auto strip #ifndef _SVARRAY_HXX //autogen
+// auto strip #include <svtools/svarray.hxx>
+// auto strip #endif
 
-#ifndef _SWTYPES_HXX
-#include <swtypes.hxx>
-#endif
+// auto strip #ifndef _SWTYPES_HXX
+// auto strip #include <swtypes.hxx>
+// auto strip #endif
 #ifndef _RING_HXX
 #include <ring.hxx>
 #endif
 #ifndef _SWRECT_HXX
 #include <swrect.hxx>
 #endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+// auto strip #ifndef _ERRHDL_HXX
+// auto strip #include <errhdl.hxx>
+// auto strip #endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 #ifdef ACCESSIBLE_LAYOUT
 namespace com { namespace sun { namespace star { namespace accessibility {

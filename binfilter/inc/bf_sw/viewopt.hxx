@@ -2,9 +2,9 @@
  *
  *  $RCSfile: viewopt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2004-02-13 14:31:12 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 21:51:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,7 +70,7 @@
 #ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
 #endif
-#include "authratr.hxx"
+// auto strip #include "authratr.hxx"
 namespace svtools{ class ColorConfig;}
 class Window;
 class OutputDevice;
