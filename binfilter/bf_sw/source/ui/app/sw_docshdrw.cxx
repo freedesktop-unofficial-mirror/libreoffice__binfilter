@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_docshdrw.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:53:56 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 18:30:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,9 +62,9 @@
 
 #pragma hdrstop
 
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>
+// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
@@ -78,9 +78,9 @@
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
 
-#ifndef _SFXSTRITEM_HXX //autogen
-#include <svtools/stritem.hxx>
-#endif
+// auto strip #ifndef _SFXSTRITEM_HXX //autogen
+// auto strip #include <svtools/stritem.hxx>
+// auto strip #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
@@ -97,6 +97,11 @@
 #ifndef _DOCSH_HXX
 #include <docsh.hxx>
 #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
+#endif
+
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
