@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_viewdata.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:39:51 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:39:43 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -60,7 +60,7 @@
  ************************************************************************/
 
 #ifdef PCH
-#include "ui_pch.hxx"
+// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -68,38 +68,38 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <bf_svx/eeitem.hxx>
+// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <bf_svx/adjitem.hxx>
-#include <bf_svx/algitem.hxx>
-#include <bf_svx/brshitem.hxx>
-#include <svtools/colorcfg.hxx>
+// auto strip #include <bf_svx/adjitem.hxx>
+// auto strip #include <bf_svx/algitem.hxx>
+// auto strip #include <bf_svx/brshitem.hxx>
+// auto strip #include <svtools/colorcfg.hxx>
 #include <bf_svx/editview.hxx>
-#include <bf_svx/editstat.hxx>
+// auto strip #include <bf_svx/editstat.hxx>
 #include <bf_svx/outliner.hxx>
-#include <bf_svx/unolingu.hxx>
+// auto strip #include <bf_svx/unolingu.hxx>
 
-#include <vcl/svapp.hxx>
+// auto strip #include <vcl/svapp.hxx>
 //#include <vcl/system.hxx>
-#include <rtl/math.hxx>
+// auto strip #include <rtl/math.hxx>
 
-#include "viewdata.hxx"
-#include "docoptio.hxx"
-#include "scmod.hxx"
-#include "global.hxx"
-#include "document.hxx"
+// auto strip #include "viewdata.hxx"
+// auto strip #include "docoptio.hxx"
+// auto strip #include "scmod.hxx"
+// auto strip #include "global.hxx"
+// auto strip #include "document.hxx"
 #include "attrib.hxx"
-#include "tabview.hxx"
+// auto strip #include "tabview.hxx"
 #include "tabvwsh.hxx"
 #include "docsh.hxx"
 #include "bf_sc.hrc"
-#include "patattr.hxx"
+// auto strip #include "patattr.hxx"
 #include "editutil.hxx"
-#include "scextopt.hxx"
+// auto strip #include "scextopt.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
-#include "inputopt.hxx"
+// auto strip #include "inputopt.hxx"
 
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
@@ -112,12 +112,12 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-#include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-#include <com/sun/star/container/XNameContainer.hpp>
-#endif
+// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
+// auto strip #include <comphelper/processfactory.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
+// auto strip #include <com/sun/star/container/XNameContainer.hpp>
+// auto strip #endif
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 #endif
