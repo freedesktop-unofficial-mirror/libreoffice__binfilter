@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sddll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:34:45 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 13:32:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -59,32 +59,36 @@
  *
  ************************************************************************/
 
-#ifndef _EEITEM_HXX //autogen
-#include <bf_svx/eeitem.hxx>
-#endif
+// auto strip #ifndef _EEITEM_HXX //autogen
+// auto strip #include <bf_svx/eeitem.hxx>
+// auto strip #endif
 
-#include <bf_svx/editeng.hxx>
+// auto strip #include <bf_svx/editeng.hxx>
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif
-#ifndef _SFXAPP_HXX //autogen
-#include <bf_sfx2/app.hxx>
-#endif
+// auto strip #ifndef _SFXAPP_HXX //autogen
+// auto strip #include <bf_sfx2/app.hxx>
+// auto strip #endif
 #ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <svtools/moduleoptions.hxx>
 #endif
 
 #pragma hdrstop
 
-#include "sddll.hxx"
-#include "docshell.hxx"
+// auto strip #include "sddll.hxx"
+// auto strip #include "docshell.hxx"
 #include "grdocsh.hxx"
 #include "sdresid.hxx"
 #include "sdobjfac.hxx"
 #include "cfgids.hxx"
 
-#include "SdShapeTypes.hxx"
-#include <bf_svx/SvxShapeTypes.hxx>
+#ifndef _SVX_ACCESSIBILITY_CHILDREN_MANAGER_HXX
+#include <bf_svx/ChildrenManager.hxx>
+#endif
+
+// auto strip #include "SdShapeTypes.hxx"
+// auto strip #include <bf_svx/SvxShapeTypes.hxx>
 namespace binfilter {
 
 /*************************************************************************
