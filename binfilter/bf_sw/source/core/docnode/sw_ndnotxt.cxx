@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_ndnotxt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:15:04 $
+ *  last change: $Author: pjunck $ $Date: 2004-10-27 13:34:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,7 +61,15 @@
 
 
 #pragma hdrstop
-
+#ifndef _SV_GRAPH_HXX
+#include <vcl/graph.hxx>
+#endif
+#ifndef _SV_GDIMTF_HXX
+#include <vcl/gdimtf.hxx>
+#endif
+#ifndef _IPOBJ_HXX
+#include <so3/ipobj.hxx>
+#endif
 // auto strip #ifndef _HINTIDS_HXX
 // auto strip #include <hintids.hxx>
 // auto strip #endif
@@ -101,9 +109,9 @@
 // auto strip #ifndef _NDNOTXT_HXX
 // auto strip #include <ndnotxt.hxx>
 // auto strip #endif
-// auto strip #ifndef _NDGRF_HXX
-// auto strip #include <ndgrf.hxx>
-// auto strip #endif
+#ifndef _NDGRF_HXX
+#include <ndgrf.hxx>
+#endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
@@ -250,66 +258,66 @@ namespace binfilter {
 /*?*/   rContour = *pContour;
 /*?*/   if( bContourMapModeValid )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
-//STRIP001 /*?*/        const MapMode aContourMap( MAP_100TH_MM );
-//STRIP001 /*?*/        ASSERT( aGrfMap.GetMapUnit() != MAP_PIXEL ||
-//STRIP001 /*?*/                aGrfMap == MapMode( MAP_PIXEL ),
-//STRIP001 /*?*/                    "scale factor for pixel unsupported" );
-//STRIP001 /*?*/        if( aGrfMap.GetMapUnit() != MAP_PIXEL &&
-//STRIP001 /*?*/            aGrfMap != aContourMap )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            USHORT nPolyCount = rContour.Count();
-//STRIP001 /*?*/            for( USHORT j=0; j<nPolyCount; j++ )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                Polygon& rPoly = (*pContour)[j];
-//STRIP001 /*?*/
-//STRIP001 /*?*/                USHORT nCount = rPoly.GetSize();
-//STRIP001 /*?*/                for( USHORT i=0 ; i<nCount; i++ )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    rPoly[i] = OutputDevice::LogicToLogic( rPoly[i], aGrfMap,
-//STRIP001 /*?*/                                                           aContourMap );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
+/*?*/       const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+ /*?*/      const MapMode aContourMap( MAP_100TH_MM );
+ /*?*/      ASSERT( aGrfMap.GetMapUnit() != MAP_PIXEL ||
+ /*?*/              aGrfMap == MapMode( MAP_PIXEL ),
+ /*?*/                  "scale factor for pixel unsupported" );
+ /*?*/      if( aGrfMap.GetMapUnit() != MAP_PIXEL &&
+ /*?*/          aGrfMap != aContourMap )
+ /*?*/      {
+ /*?*/          USHORT nPolyCount = rContour.Count();
+ /*?*/          for( USHORT j=0; j<nPolyCount; j++ )
+ /*?*/          {
+ /*?*/              Polygon& rPoly = (*pContour)[j];
+ /*?*/
+ /*?*/              USHORT nCount = rPoly.GetSize();
+ /*?*/              for( USHORT i=0 ; i<nCount; i++ )
+ /*?*/              {
+ /*?*/                  rPoly[i] = OutputDevice::LogicToLogic( rPoly[i], aGrfMap,
+ /*?*/                                                         aContourMap );
+ /*?*/              }
+ /*?*/          }
+ /*?*/      }
 /*?*/   }
 /*?*/
 /*?*/   return TRUE;
 /*N*/ }
 
-//STRIP001 const BOOL SwNoTxtNode::IsPixelContour() const
-//STRIP001 {
-//STRIP001  BOOL bRet;
-//STRIP001  if( bContourMapModeValid )
-//STRIP001  {
-//STRIP001      const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
-//STRIP001      bRet = aGrfMap.GetMapUnit() == MAP_PIXEL;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      bRet = bPixelContour;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
+const BOOL SwNoTxtNode::IsPixelContour() const
+{
+    BOOL bRet;
+    if( bContourMapModeValid )
+    {
+        const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+        bRet = aGrfMap.GetMapUnit() == MAP_PIXEL;
+    }
+    else
+    {
+        bRet = bPixelContour;
+    }
+
+    return bRet;
+}
 
 
-//STRIP001 Graphic SwNoTxtNode::GetGraphic() const
-//STRIP001 {
-//STRIP001  Graphic aRet;
-//STRIP001  if ( GetGrfNode() )
-//STRIP001  {
-//STRIP001      ((SwGrfNode*)this)->SwapIn( TRUE );
-//STRIP001      aRet = ((SwGrfNode*)this)->GetGrf();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      ASSERT( GetOLENode(), "new type of Node?" );
-//STRIP001      SvInPlaceObjectRef xObj( ((SwOLENode*)this)->GetOLEObj().GetOleRef() );
-//STRIP001      GDIMetaFile aMtf;
-//STRIP001      aRet = xObj->GetGDIMetaFile( aMtf );
-//STRIP001  }
-//STRIP001  return aRet;
-//STRIP001 }
+Graphic SwNoTxtNode::GetGraphic() const
+{
+    Graphic aRet;
+    if ( GetGrfNode() )
+    {
+        ((SwGrfNode*)this)->SwapIn( TRUE );
+        aRet = ((SwGrfNode*)this)->GetGrf();
+    }
+    else
+    {
+        ASSERT( GetOLENode(), "new type of Node?" );
+        SvInPlaceObjectRef xObj( ((SwOLENode*)this)->GetOLEObj().GetOleRef() );
+        GDIMetaFile aMtf;
+        aRet = xObj->GetGDIMetaFile( aMtf );
+    }
+    return aRet;
+}
 
 
 /*N*/ void SwNoTxtNode::SetAlternateText( const String& rTxt, sal_Bool bBroadcast )
