@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sd_sdmod.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 13:33:13 $
+ *  last change: $Author: obo $ $Date: 2004-11-29 15:38:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,9 @@
 // auto strip #endif
 #ifndef _SV_STATUS_HXX //autogen
 #include <vcl/status.hxx>
+#endif
+#ifndef _SV_VIRDEV_HXX
+#include <vcl/virdev.hxx>
 #endif
 // auto strip #ifndef _SFXINTITEM_HXX //autogen
 // auto strip #include <svtools/intitem.hxx>
