@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:37:25 $
+ *  last change: $Author: kz $ $Date: 2005-01-13 17:41:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -2268,7 +2268,10 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/               xStor->SetKey( S2BS( aPasswd ) ); //!!! (pb) needs new implementation
 /*N*/
 /*N*/           // load document
-/*N*/           return Load( xStor );
+                sal_Bool bRet = Load( xStor );
+                if ( bRet )
+                    GetConfigManager( TRUE );
+                return bRet;
 /*N*/       }
 /*N*/       return sal_False;
 /*N*/   }
