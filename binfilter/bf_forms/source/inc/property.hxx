@@ -2,9 +2,9 @@
  *
  *  $RCSfile: property.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:25 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 10:53:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -62,26 +62,26 @@
 #ifndef _FRM_PROPERTY_HXX_
 #define _FRM_PROPERTY_HXX_
 
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
-#include  <com/sun/star/uno/XAggregation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
-#include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
-#include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
+// auto strip #ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
+// auto strip #include  <com/sun/star/uno/XAggregation.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
+// auto strip #include <com/sun/star/beans/XPropertyState.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
+// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
+// auto strip #endif
 
-#ifndef _CPPUHELPER_PROPSHLP_HXX
-#include <cppuhelper/propshlp.hxx>
-#endif
-#ifndef _CPPUHELPER_PROPTYPEHLP_HXX
-#include <cppuhelper/proptypehlp.hxx>
-#endif
+// auto strip #ifndef _CPPUHELPER_PROPSHLP_HXX
+// auto strip #include <cppuhelper/propshlp.hxx>
+// auto strip #endif
+// auto strip #ifndef _CPPUHELPER_PROPTYPEHLP_HXX
+// auto strip #include <cppuhelper/proptypehlp.hxx>
+// auto strip #endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
-#include <comphelper/property.hxx>
-#endif
+// auto strip #ifndef _COMPHELPER_PROPERTY_HXX_
+// auto strip #include <comphelper/property.hxx>
+// auto strip #endif
 #ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
 #include <comphelper/propagg.hxx>
 #endif
