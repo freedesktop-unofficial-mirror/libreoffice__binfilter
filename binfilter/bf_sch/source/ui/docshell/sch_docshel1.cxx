@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sch_docshel1.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:33:01 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 12:55:08 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,32 +71,32 @@
 #include <bf_svx/svxids.hrc>
 #endif
 
-#ifndef _REF_HXX
-#include <tools/ref.hxx>
-#endif
+// auto strip #ifndef _REF_HXX
+// auto strip #include <tools/ref.hxx>
+// auto strip #endif
 
-#ifndef _CTRLTOOL_HXX
-#include <svtools/ctrltool.hxx>
-#endif
-#include <bf_svx/flstitem.hxx>
+// auto strip #ifndef _CTRLTOOL_HXX
+// auto strip #include <svtools/ctrltool.hxx>
+// auto strip #endif
+// auto strip #include <bf_svx/flstitem.hxx>
 #ifndef _SFXDISPATCH_HXX
 #include <bf_sfx2/dispatch.hxx>
 #endif
-#ifndef _SFXVIEWFRM_HXX
-#include <bf_sfx2/viewfrm.hxx>
-#endif
+// auto strip #ifndef _SFXVIEWFRM_HXX
+// auto strip #include <bf_sfx2/viewfrm.hxx>
+// auto strip #endif
 
 #include "app.hrc"
 #include "strings.hrc"
 #include "res_bmp.hrc"
-#include "memchrt.hxx"
-#include "schview.hxx"
+// auto strip #include "memchrt.hxx"
+// auto strip #include "schview.hxx"
 #include "docshell.hxx"
-#include "stlpool.hxx"
-#ifndef _CHTMODEL_HXX
-#include "chtmodel.hxx"
-#endif
-#include "schresid.hxx"
+// auto strip #include "stlpool.hxx"
+// auto strip #ifndef _CHTMODEL_HXX
+// auto strip #include "chtmodel.hxx"
+// auto strip #endif
+// auto strip #include "schresid.hxx"
 
 #include "viewshel.hxx"
 namespace binfilter {
