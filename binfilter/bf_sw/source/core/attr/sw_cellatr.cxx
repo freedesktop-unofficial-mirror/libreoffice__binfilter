@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_cellatr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:47 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 16:55:31 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,34 +63,44 @@
 #pragma hdrstop
 
 #include <float.h>
-#ifndef _HINTIDS_HXX
-#include <hintids.hxx>          // fuer RES_..
-#endif
+// auto strip #ifndef _HINTIDS_HXX
+// auto strip #include <hintids.hxx>            // fuer RES_..
+// auto strip #endif
 
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
-#ifndef _CALC_HXX
-#include <calc.hxx>
+// auto strip #ifndef _CALC_HXX
+// auto strip #include <calc.hxx>
+// auto strip #endif
+// auto strip #ifndef _FORMAT_HXX
+// auto strip #include <format.hxx>
+// auto strip #endif
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FORMAT_HXX
-#include <format.hxx>
-#endif
-#ifndef _DOC_HXX
-#include <doc.hxx>
-#endif
+
+// auto strip #ifndef _DOC_HXX
+// auto strip #include <doc.hxx>
+// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-#ifndef _NODE_HXX
-#include <node.hxx>
+
+#ifndef _ERRHDL_HXX
+#include <errhdl.hxx>
 #endif
-#ifndef _HINTS_HXX
-#include <hints.hxx>
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
-#endif
+
+// auto strip #ifndef _NODE_HXX
+// auto strip #include <node.hxx>
+// auto strip #endif
+// auto strip #ifndef _HINTS_HXX
+// auto strip #include <hints.hxx>
+// auto strip #endif
+// auto strip #ifndef _ROLBCK_HXX
+// auto strip #include <rolbck.hxx>
+// auto strip #endif
 namespace binfilter {
 
 
