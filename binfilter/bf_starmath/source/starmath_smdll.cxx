@@ -2,9 +2,9 @@
  *
  *  $RCSfile: starmath_smdll.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:41:28 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 15:13:20 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -61,9 +61,9 @@
 
 #pragma hdrstop
 
-#ifndef _SOT_FACTORY_HXX //autogen
-#include <sot/factory.hxx>
-#endif
+// auto strip #ifndef _SOT_FACTORY_HXX //autogen
+// auto strip #include <sot/factory.hxx>
+// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
@@ -73,22 +73,22 @@
 #ifndef _SVX_ZOOMCTRL_HXX //autogen
 #include <bf_svx/zoomctrl.hxx>
 #endif
-#ifndef _SFX_OBJFAC_HXX
-#include <bf_sfx2/docfac.hxx>
-#endif
+// auto strip #ifndef _SFX_OBJFAC_HXX
+// auto strip #include <bf_sfx2/docfac.hxx>
+// auto strip #endif
 #ifndef _SVX_LBOXCTRL_HXX_
 #include <bf_svx/lboxctrl.hxx>
 #endif
 
-#ifndef _SMDLL_HXX
-#include <smdll.hxx>
-#endif
+// auto strip #ifndef _SMDLL_HXX
+// auto strip #include <smdll.hxx>
+// auto strip #endif
 #ifndef DOCUMENT_HXX
 #include <document.hxx>
 #endif
-#ifndef TOOLBOX_HXX
-#include <toolbox.hxx>
-#endif
+// auto strip #ifndef TOOLBOX_HXX
+// auto strip #include <toolbox.hxx>
+// auto strip #endif
 #ifndef VIEW_HXX
 #include <view.hxx>
 #endif
