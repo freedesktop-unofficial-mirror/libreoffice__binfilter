@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fefly1.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:57 $
+ *  last change: $Author: hr $ $Date: 2004-08-03 17:28:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,64 +65,69 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
-#include <svtools/itemiter.hxx>
-#endif
-#ifndef _GOODIES_IMAPOBJ_HXX
-#include <svtools/imapobj.hxx>
-#endif
-#ifndef _SOERR_HXX //autogen
-#include <so3/soerr.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
-#include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVDOGRP_HXX //autogen
-#include <bf_svx/svdogrp.hxx>
-#endif
-#ifndef _SVDOUNO_HXX //autogen
-#include <bf_svx/svdouno.hxx>
-#endif
-#ifndef _SVX_FMGLOB_HXX
-#include <bf_svx/fmglob.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
-#include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
-#include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-#include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+// auto strip #ifndef _SFXITEMITER_HXX //autogen
+// auto strip #include <svtools/itemiter.hxx>
+// auto strip #endif
+// auto strip #ifndef _GOODIES_IMAPOBJ_HXX
+// auto strip #include <svtools/imapobj.hxx>
+// auto strip #endif
+// auto strip #ifndef _SOERR_HXX //autogen
+// auto strip #include <so3/soerr.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_PROTITEM_HXX //autogen
+// auto strip #include <bf_svx/protitem.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOGRP_HXX //autogen
+// auto strip #include <bf_svx/svdogrp.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVDOUNO_HXX //autogen
+// auto strip #include <bf_svx/svdouno.hxx>
+// auto strip #endif
+// auto strip #ifndef _SVX_FMGLOB_HXX
+// auto strip #include <bf_svx/fmglob.hxx>
+// auto strip #endif
+// auto strip #ifndef _SFX_INTERNO_HXX //autogen
+// auto strip #include <bf_sfx2/interno.hxx>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
+// auto strip #include <com/sun/star/form/FormButtonType.hpp>
+// auto strip #endif
+// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
+// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
+// auto strip #endif
 
 #ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
 #endif
-#ifndef _TXTFLCNT_HXX //autogen
-#include <txtflcnt.hxx>
-#endif
+// auto strip #ifndef _TXTFLCNT_HXX //autogen
+// auto strip #include <txtflcnt.hxx>
+// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-#ifndef _FMTORNT_HXX //autogen
-#include <fmtornt.hxx>
+
+#ifndef _HORIORNT_HXX
+#include <horiornt.hxx>
 #endif
-#ifndef _FMTFLCNT_HXX //autogen
-#include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTURL_HXX //autogen
-#include <fmturl.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
-#include <fmtclds.hxx>
-#endif
+
+// auto strip #ifndef _FMTORNT_HXX //autogen
+// auto strip #include <fmtornt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLCNT_HXX //autogen
+// auto strip #include <fmtflcnt.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTURL_HXX //autogen
+// auto strip #include <fmturl.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTCLDS_HXX //autogen
+// auto strip #include <fmtclds.hxx>
+// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
-#ifndef _DOCARY_HXX
-#include <docary.hxx>
-#endif
+// auto strip #ifndef _DOCARY_HXX
+// auto strip #include <docary.hxx>
+// auto strip #endif
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif
@@ -132,9 +137,9 @@
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
-#ifndef _CNTFRM_HXX
-#include <cntfrm.hxx>
-#endif
+// auto strip #ifndef _CNTFRM_HXX
+// auto strip #include <cntfrm.hxx>
+// auto strip #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
@@ -153,48 +158,48 @@
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
-#ifndef _DCONTACT_HXX
-#include <dcontact.hxx>
-#endif
+// auto strip #ifndef _DCONTACT_HXX
+// auto strip #include <dcontact.hxx>
+// auto strip #endif
 #ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
 #endif
-#ifndef _FLYFRM_HXX
-#include <flyfrm.hxx>
-#endif
+// auto strip #ifndef _FLYFRM_HXX
+// auto strip #include <flyfrm.hxx>
+// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _EDIMP_HXX
-#include <edimp.hxx>
-#endif
-#ifndef _TBLSEL_HXX
-#include <tblsel.hxx>
-#endif
-#ifndef _SWTABLE_HXX
-#include <swtable.hxx>
-#endif
-#ifndef _MVSAVE_HXX
-#include <mvsave.hxx>       // Strukturen zum Sichern beim Move/Delete
-#endif
+// auto strip #ifndef _EDIMP_HXX
+// auto strip #include <edimp.hxx>
+// auto strip #endif
+// auto strip #ifndef _TBLSEL_HXX
+// auto strip #include <tblsel.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWTABLE_HXX
+// auto strip #include <swtable.hxx>
+// auto strip #endif
+// auto strip #ifndef _MVSAVE_HXX
+// auto strip #include <mvsave.hxx>     // Strukturen zum Sichern beim Move/Delete
+// auto strip #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
 #ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
 #endif
-#ifndef _FLYPOS_HXX
-#include <flypos.hxx>
-#endif
-#ifndef _FLDBAS_HXX
-#include <fldbas.hxx>
-#endif
-#ifndef _FMTFLD_HXX
-#include <fmtfld.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
+// auto strip #ifndef _FLYPOS_HXX
+// auto strip #include <flypos.hxx>
+// auto strip #endif
+// auto strip #ifndef _FLDBAS_HXX
+// auto strip #include <fldbas.hxx>
+// auto strip #endif
+// auto strip #ifndef _FMTFLD_HXX
+// auto strip #include <fmtfld.hxx>
+// auto strip #endif
+// auto strip #ifndef _SWUNDO_HXX
+// auto strip #include <swundo.hxx>
+// auto strip #endif
 namespace binfilter {
 
 using namespace ::rtl;
