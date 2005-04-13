@@ -2,9 +2,9 @@
  *
  *  $RCSfile: appbas.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:39 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:07:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -63,7 +63,7 @@
 
 
 #ifndef _SBXDEF_HXX //autogen
-#include <svtools/sbxdef.hxx>
+#include <basic/sbxdef.hxx>
 #endif
 class StarBASIC;
 class SbxObject;
