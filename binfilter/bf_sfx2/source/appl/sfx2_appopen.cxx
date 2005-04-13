@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:40:06 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:02:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -147,7 +147,7 @@
 #endif
 
 #include <svtools/ehdl.hxx>
-#include <svtools/sbxobj.hxx>
+#include <basic/sbxobj.hxx>
 #include <svtools/urihelper.hxx>
 #include <unotools/localfilehelper.hxx>
 
