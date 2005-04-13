@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_unoshap2.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:44:48 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:10:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,9 +85,9 @@
 #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
 #endif
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
+#ifndef _SV_SVAPP_HXX
+#include <vcl/svapp.hxx>
+#endif
 // auto strip #ifndef _VOS_MUTEX_HXX_ //autogen
 // auto strip #include <vos/mutex.hxx>
 // auto strip #endif
