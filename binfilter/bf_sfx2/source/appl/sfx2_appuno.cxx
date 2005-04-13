@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appuno.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: hr $ $Date: 2004-12-13 12:08:31 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:03:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -64,7 +64,7 @@
 
 #include "appuno.hxx"
 
-// auto strip #include <svtools/sbx.hxx>
+// auto strip #include <basic/sbx.hxx>
 #include <svtools/itempool.hxx>
 
 #ifndef _SFXRECTITEM_HXX //autogen
@@ -83,13 +83,13 @@
 // auto strip #include <tools/config.hxx>
 // auto strip #endif
 // auto strip #ifndef __SBX_SBXMETHOD_HXX
-// auto strip #include <svtools/sbxmeth.hxx>
+// auto strip #include <basic/sbxmeth.hxx>
 // auto strip #endif
 #ifndef _SB_SBMETH_HXX
 #include <basic/sbmeth.hxx>
 #endif
 // auto strip #ifndef _SBX_SBXOBJECT_HXX
-// auto strip #include <svtools/sbxobj.hxx>
+// auto strip #include <basic/sbxobj.hxx>
 // auto strip #endif
 // auto strip #ifndef _SB_SBERRORS_HXX
 // auto strip #include <basic/sberrors.hxx>
@@ -102,10 +102,10 @@
 #endif
 
 #ifndef _SBXCORE_HXX
-#include <svtools/sbxcore.hxx>
+#include <basic/sbxcore.hxx>
 #endif
 #ifndef _SBXCLASS_HXX
-#include <svtools/sbx.hxx>
+#include <basic/sbx.hxx>
 #endif
 
 // auto strip #include <svtools/ownlist.hxx>
