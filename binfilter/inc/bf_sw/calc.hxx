@@ -2,9 +2,9 @@
  *
  *  $RCSfile: calc.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:31 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:12:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -67,7 +67,7 @@
 #endif
 
 #ifndef __SBX_SBXVALUE //autogen
-#include <svtools/sbxvar.hxx>
+#include <basic/sbxvar.hxx>
 #endif
 class CharClass;
 class LocaleDataWrapper;
