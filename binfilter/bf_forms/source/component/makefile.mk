@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:22:26 $
+#   last change: $Author: obo $ $Date: 2005-04-13 07:59:24 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -110,7 +110,8 @@ CXXFILES=	forms_Grid.cxx	\
             forms_Button.cxx \
             forms_ImageButton.cxx \
             forms_ImageControl.cxx \
-            forms_cloneable.cxx
+            forms_cloneable.cxx \
+            forms_imgprod.cxx
 
 .IF "$(COM)"=="GCC"
 NOOPTFILES= $(SLO)$/forms_EventThread.obj
@@ -147,6 +148,7 @@ SLOFILES=	$(SLO)$/forms_Grid.obj \
             $(SLO)$/forms_errorbroadcaster.obj \
             $(SLO)$/forms_cloneable.obj \
             $(SLO)$/forms_Filter.obj \
+            $(SLO)$/forms_imgprod.obj
 
 # --- Targets ----------------------------------
 
