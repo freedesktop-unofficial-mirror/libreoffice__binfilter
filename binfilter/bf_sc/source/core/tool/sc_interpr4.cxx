@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:18:11 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:01:03 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -99,7 +99,7 @@
 #include <basic/sbmeth.hxx>
 #include <basic/sbmod.hxx>
 #include <basic/sbstar.hxx>
-#include <svtools/sbx.hxx>
+#include <basic/sbx.hxx>
 #include <svtools/zforlist.hxx>
 // auto strip #include <tools/urlobj.hxx>
 #include <stdlib.h>
