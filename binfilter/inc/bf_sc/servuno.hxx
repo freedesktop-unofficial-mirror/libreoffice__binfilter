@@ -2,9 +2,9 @@
  *
  *  $RCSfile: servuno.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 20:50:04 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:11:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,10 +68,10 @@
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
+
+class String;
+
 namespace binfilter {
-//#ifndef _USR_USTRING_HXX
-//#include <usr/ustring.hxx>
-//#endif
 
 class ScDocShell;
 
