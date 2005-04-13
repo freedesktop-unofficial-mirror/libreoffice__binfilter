@@ -2,9 +2,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: kz $ $Date: 2004-10-07 10:25:42 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:02:37 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -146,7 +146,7 @@
 #include <sc.hrc>
 #include <stdarg.h>
 #include <bf_svx/dialogs.hrc>
-#include <svtools/sbxdef.hxx>
+#include <basic/sbxdef.hxx>
 #include <svtools/lstner.hxx>
 #include <bf_sfx2/shell.hxx>
 #include <vcl/window.hxx>
@@ -307,14 +307,14 @@
 #include <bf_svx/editeng.hxx>
 #include <bf_svx/pageitem.hxx>
 #include <anyrefdg.hxx>
-#include <svtools/sbxcore.hxx>
+#include <basic/sbxcore.hxx>
 #include <vcl/ctrl.hxx>
 #include <bf_svx/xenum.hxx>
 #include <dbcolect.hxx>
 #include <sot/exchange.hxx>
 #include <math.h>
 #include <vcl/wrkwin.hxx>
-#include <svtools/sbxvar.hxx>
+#include <basic/sbxvar.hxx>
 #include <vcl/image.hxx>
 #include <bf_svx/xdef.hxx>
 #include <drwlayer.hxx>
@@ -365,7 +365,7 @@
 #include <bf_svx/def3d.hxx>
 #include <goodies/vector3d.hxx>
 #include <vcl/floatwin.hxx>
-#include <svtools/sbxobj.hxx>
+#include <basic/sbxobj.hxx>
 #include <bf_svx/svxenum.hxx>
 #include <bf_svx/xtextit0.hxx>
 #include <bf_svx/svdtrans.hxx>
