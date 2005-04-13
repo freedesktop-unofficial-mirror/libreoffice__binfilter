@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_docsh4.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 11:47:08 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:02:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,7 +79,7 @@
 #include <bf_sfx2/docfile.hxx>
 // auto strip #include <bf_sfx2/docfilt.hxx>
 #include <svtools/ehdl.hxx>
-#include <svtools/sbxcore.hxx>
+#include <basic/sbxcore.hxx>
 // auto strip #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/request.hxx>
 #include <svtools/sfxecode.hxx>
