@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:41:07 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:08:47 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,10 +90,6 @@
 #define ITEMID_BRUSH    0
 #define ITEMID_FRAMEDIR 0
 
-
-#ifndef _ARGS_HXX //autogen
-#include <svtools/args.hxx>
-#endif
 #ifndef _GRFMGR_HXX //autogen
 #include <goodies/grfmgr.hxx>
 #endif
@@ -108,7 +104,7 @@
 #include <bf_sfx2/objsh.hxx>
 #endif
 #endif // !SVX_LIGHT
-#include <svtools/sbx.hxx>
+#include <basic/sbx.hxx>
 #define GLOBALOVERFLOW3
 
 #define _SVX_FRMITEMS_CXX
@@ -3365,7 +3361,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 /*N*/ void SvxBrushItem::InitSfxLink()
 /*N*/ {
-/*N*/   SfxBrushItemLink::Set( new SvxBrushItemLink_Impl );
+//STRIP001 SfxBrushItemLink::Set( new SvxBrushItemLink_Impl );
 /*N*/ }
 
 // -----------------------------------------------------------------------
