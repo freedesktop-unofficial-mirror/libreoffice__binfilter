@@ -2,9 +2,9 @@
  *
  *  $RCSfile: forms_services.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2005-02-16 17:39:10 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 07:59:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -226,6 +226,7 @@ IMPLEMENT_CONSTASCII_USTRING(SRV_SDB_CONNECTION, "com.sun.star.sdb.Connection");
 IMPLEMENT_CONSTASCII_USTRING(SRV_SDBC_STATEMENT, "com.sun.star.sdbc.Statement");
 
 IMPLEMENT_CONSTASCII_USTRING(SRV_AWT_POINTER, "com.sun.star.awt.Pointer");
+IMPLEMENT_CONSTASCII_USTRING(SRV_AWT_IMAGEPRODUCER, "com.sun.star.awt.ImageProducer");
 
 // -----------------------
 // common
@@ -310,6 +311,7 @@ namespace frm { \
 }
 
 DECLARE_SERVICE_INFO(OFormsCollection)
+DECLARE_SERVICE_INFO(ImageProducer)
 
 //---------------------------------------------------------------------------------------
 
@@ -482,6 +484,7 @@ void ensureClassInfos()
     // ========================================================================
     // = various
     REGISTER_CLASS1(OFormsCollection, FRM_SUN_FORMS_COLLECTION);
+    REGISTER_CLASS1(ImageProducer, SRV_AWT_IMAGEPRODUCER);
 }
 
 //---------------------------------------------------------------------------------------
