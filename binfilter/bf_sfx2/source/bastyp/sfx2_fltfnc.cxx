@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:51:12 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:03:59 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -90,13 +90,13 @@
 // auto strip #include <basic/sbstar.hxx>
 // auto strip #endif
 // auto strip #ifndef _SBX_SBXOBJECT_HXX //autogen
-// auto strip #include <svtools/sbxobj.hxx>
+// auto strip #include <basic/sbxobj.hxx>
 // auto strip #endif
 #ifndef __SBX_SBXMETHOD_HXX //autogen
-#include <svtools/sbxmeth.hxx>
+#include <basic/sbxmeth.hxx>
 #endif
 // auto strip #ifndef _SBXCORE_HXX //autogen
-// auto strip #include <svtools/sbxcore.hxx>
+// auto strip #include <basic/sbxcore.hxx>
 // auto strip #endif
 // auto strip #ifndef _MSGBOX_HXX //autogen
 // auto strip #include <vcl/msgbox.hxx>
