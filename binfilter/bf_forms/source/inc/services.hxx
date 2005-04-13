@@ -2,9 +2,9 @@
  *
  *  $RCSfile: services.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:25:25 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 07:59:44 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -178,6 +178,7 @@ DECLARE_CONSTASCII_USTRING(SRV_SDB_CONNECTION);
 DECLARE_CONSTASCII_USTRING(SRV_SDBC_STATEMENT);
 
 DECLARE_CONSTASCII_USTRING(SRV_AWT_POINTER);
+DECLARE_CONSTASCII_USTRING(SRV_AWT_IMAGEPRODUCER);
 
 
 DECLARE_CONSTASCII_USTRING(FRM_SUN_COMPONENT_FORM);
