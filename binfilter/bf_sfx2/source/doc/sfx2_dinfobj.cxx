@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_dinfobj.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:39:15 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:05:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,7 +73,7 @@
 #include "fcontnr.hxx"
 
 #ifndef _SBXCLASS_HXX //autogen
-#include <svtools/sbx.hxx>
+#include <basic/sbx.hxx>
 #endif
 //========================================================================
 
