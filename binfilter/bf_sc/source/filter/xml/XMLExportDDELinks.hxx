@@ -2,9 +2,9 @@
  *
  *  $RCSfile: XMLExportDDELinks.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 07:27:53 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:01:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,6 +65,9 @@
 #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
 #endif
+
+class String;
+
 namespace binfilter {
 
 class ScXMLExport;
