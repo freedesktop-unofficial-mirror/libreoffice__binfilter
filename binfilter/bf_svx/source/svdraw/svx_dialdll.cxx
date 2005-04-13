@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_dialdll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 16:18:21 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:10:21 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,9 +73,9 @@
 // auto strip #include <tools/shl.hxx>
 // auto strip #endif
 
-// auto strip #ifndef _SV_SVAPP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
+#ifndef _SV_SVAPP_HXX //autogen
+#include <vcl/svapp.hxx>
+#endif
 
 // auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
 // auto strip #include <tools/debug.hxx>
