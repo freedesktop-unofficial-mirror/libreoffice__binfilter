@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 14:53:36 $
+ *  last change: $Author: obo $ $Date: 2005-04-13 08:06:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,7 +139,7 @@
 #include <svtools/eitem.hxx>
 #endif
 
-#include <svtools/sbx.hxx>
+#include <basic/sbx.hxx>
 #include <basic/sbuno.hxx>
 
 #ifndef _OSL_FILE_HXX_
