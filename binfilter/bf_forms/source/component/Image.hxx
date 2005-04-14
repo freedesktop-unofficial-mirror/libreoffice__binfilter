@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Image.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 10:46:10 $
+ *  last change: $Author: obo $ $Date: 2005-04-14 15:33:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -77,7 +77,7 @@
 #include <comphelper/propmultiplex.hxx>
 #endif
 #ifndef _PRODUCE_HXX
-#include <svtools/imgprod.hxx>
+#include "imgprod.hxx"
 #endif
 
 #ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
