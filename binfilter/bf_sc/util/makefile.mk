@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2004-10-11 07:57:19 $
+#   last change: $Author: obo $ $Date: 2005-04-15 10:39:08 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -111,7 +111,7 @@ RESLIB1LIST=\
     $(SRS)$/sc_formdlgs.srs \
     $(SRS)$/sc_navipi.srs	\
     $(SRS)$/sfx2_sfx.srs
-    
+
 RESLIB1NAME=bf_sc
 RESLIB1SRSFILES=\
     $(RESLIB1LIST)
@@ -132,7 +132,6 @@ SHL1STDLIBS+=       \
     $(BASICLIB)		\
        $(LEGACYSMGRLIB)	\
     $(SO2LIB)		\
-    $(SVMEMLIB)		\
     $(SVTOOLLIB)	\
     $(SVLLIB)		\
     $(BFSVXLIB)		\
@@ -169,7 +168,7 @@ SHL1OBJS=   $(SLO)$/sc_scdll.obj
 .IF "$(GUI)" == "UNX"
 SHL1STDLIBS+= \
             $(BFSFXLIB)
-.ENDIF     
+.ENDIF
 
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
 
