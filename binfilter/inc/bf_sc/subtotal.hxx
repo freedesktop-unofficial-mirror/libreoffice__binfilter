@@ -2,9 +2,9 @@
  *
  *  $RCSfile: subtotal.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:25:04 $
+ *  last change: $Author: obo $ $Date: 2005-04-18 14:00:12 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -65,7 +65,6 @@
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif
-namespace binfilter {
 
 #ifndef MSC
     #include <setjmp.h>
@@ -81,7 +80,7 @@ namespace binfilter {
     };
 #endif
 
-
+namespace binfilter {
 
 class SubTotal
 {
