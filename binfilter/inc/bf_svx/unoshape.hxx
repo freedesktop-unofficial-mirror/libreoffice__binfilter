@@ -2,9 +2,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:29:25 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:42:23 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -143,6 +143,7 @@ namespace binfilter {
 
 class SdrObject;
 class SdrModel;
+class SvxDrawPage;
 class SvxShapeList;
 
 class SvxShapeMutex
@@ -392,8 +393,6 @@ virtual void SAL_CALL release() throw();
 // XServiceInfo
 virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
-
-class SvxDrawPage;
 }//end of namespace binfilter
 #ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
