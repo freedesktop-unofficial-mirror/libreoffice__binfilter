@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtruby.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:43:22 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:44:04 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -70,6 +70,7 @@
 #endif
 namespace binfilter {
 
+class SwTxtRuby;
 
 class SwFmtRuby : public SfxPoolItem
 {
