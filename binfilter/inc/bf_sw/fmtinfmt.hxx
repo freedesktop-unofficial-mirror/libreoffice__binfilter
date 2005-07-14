@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtinfmt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:42:14 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:43:39 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -73,7 +73,7 @@ class SvxMacroTableDtor;
 class IntlWrapper;
 namespace binfilter {
 
-
+class SwTxtINetFmt;
 // ATT_INETFMT *********************************************
 
 class SwFmtINetFmt: public SfxPoolItem
