@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtflcnt.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:33:47 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:42:57 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,6 +68,7 @@
 namespace binfilter {
 
 class SwFrmFmt;
+class SwTxtFlyCnt;
 // ATT_FLYCNT *******************************************************
 
 class SwFmtFlyCnt : public SfxPoolItem
