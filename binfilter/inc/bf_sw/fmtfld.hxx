@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtfld.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: os $ $Date: 2004-04-22 15:42:08 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:43:11 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 namespace binfilter {
 
 class SwField;
+class SwTxtFld;
 // ATT_FLD ***********************************
 
 class SwFmtFld : public SfxPoolItem, public SwClient
