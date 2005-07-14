@@ -2,9 +2,9 @@
  *
  *  $RCSfile: impedit.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-11-18 19:23:47 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:36:35 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -148,6 +148,7 @@ SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;    // IMPL is in
 
 class EditView;
 class EditEngine;
+class EditUndoRemoveChars;
 class SvxFontTable;
 class SvxColorList;
 
