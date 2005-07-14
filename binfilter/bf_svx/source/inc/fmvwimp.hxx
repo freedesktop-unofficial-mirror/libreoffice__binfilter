@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmvwimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:58:20 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:37:16 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -126,6 +126,8 @@ class SdrPageView;
 class SdrObject;
 class FmFormObj;
 class FmFormModel;
+class FmFormShell;
+class FmFormView;
 
 //STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
 //STRIP008 FORWARD_DECLARE_INTERFACE(awt,XWindow)
@@ -133,6 +135,7 @@ class FmFormModel;
 //STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 
 class FmXFormController;
+class FmXFormView;
 
 namespace svx {
     class ODataAccessDescriptor;

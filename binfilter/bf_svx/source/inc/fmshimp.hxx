@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmshimp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:57:15 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:37:02 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -224,6 +224,9 @@ DECLARE_STL_VECTOR( ::com::sun::star::uno::Reference< ::com::sun::star::form::XF
 #define FORMS_UNLOAD        0x0001      // unload
 #define FORMS_RESET         0x0002      // reset after the load/unload
 #define FORMS_ASYNC         0x0004      // do this async
+
+// forward declarations
+class FmFormShell;
 
 //==============================================================================
 // FmFormNavigationDispatcher - a dispatcher responsible for a form navigation slot
