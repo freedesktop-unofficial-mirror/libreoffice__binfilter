@@ -2,9 +2,9 @@
  *
  *  $RCSfile: section.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: pjunck $ $Date: 2004-10-27 13:41:24 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:44:19 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -85,6 +85,7 @@ namespace binfilter {
 
 // Forward Deklaration
 class SwSectionFmt;
+class SwSectionNode;
 class SwDoc;
 class SwSection;
 class SwTOXBase;
