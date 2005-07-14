@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlaustp.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:04 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:44:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -78,6 +78,7 @@ namespace binfilter {
 class SvXMLExportPropertyMapper;
 class SvXMLNamespaceMap;
 class SvXMLAttributeList;
+class SvXMLAutoStylePoolP_Impl;
 class SvXMLExport;
 
 class SvXMLAutoStylePoolP : public UniRefBase
