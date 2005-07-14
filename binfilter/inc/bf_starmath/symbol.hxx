@@ -2,9 +2,9 @@
  *
  *  $RCSfile: symbol.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:27:17 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:39:29 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,8 @@ namespace binfilter {
 
 #define SYMBOLSET_NONE  0xFFFF
 #define SYMBOL_NONE     0xFFFF
+
+class SmSymSetManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 
