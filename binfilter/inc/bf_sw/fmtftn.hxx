@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fmtftn.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:41:49 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:43:24 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,6 +71,7 @@
 namespace binfilter {
 
 class SwDoc;
+class SwTxtFtn;
 
 // ATT_FTN **********************************************************
 
