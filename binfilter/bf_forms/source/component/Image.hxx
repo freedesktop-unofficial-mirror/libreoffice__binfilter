@@ -2,9 +2,9 @@
  *
  *  $RCSfile: Image.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2005-04-14 15:33:27 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:35:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -197,6 +197,7 @@ protected:
 //==================================================================
 typedef ::cppu::ImplHelper2<    ::com::sun::star::form::XApproveActionBroadcaster,
                                 ::com::sun::star::beans::XPropertyChangeListener> OImageControl_BASE;
+class OImageControlThread_Impl;
 
 class OImageControl :   public OImageControl_BASE,
                         public OControl
