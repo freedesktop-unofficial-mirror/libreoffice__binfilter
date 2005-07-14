@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdvmark.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:30:46 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:41:55 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -79,6 +79,7 @@ class XPolygon;
 class XPolyPolygon;
 class SdrObject;
 class SdrPageView;
+class SdrPaintView;
 
 //************************************************************
 //   Defines

@@ -2,9 +2,9 @@
  *
  *  $RCSfile: fchrfmt.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:39:11 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:42:36 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -75,6 +75,7 @@ class IntlWrapper;
 namespace binfilter {
 
 class SwCharFmt;
+class SwTxtCharFmt;
 
 
 // ATT_CHARFMT *********************************************
