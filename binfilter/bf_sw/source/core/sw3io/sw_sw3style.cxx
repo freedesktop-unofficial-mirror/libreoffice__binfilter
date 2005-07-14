@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_sw3style.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 17:44:58 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:37:30 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -158,6 +158,8 @@ struct SwStyleCondColl
 typedef SwStyleCondColl* SwStyleCondCollPtr;
 SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )//STRIP008 ;
 //FEATURE::CONDCOLL
+
+class SwStyleSheetPool;
 
 // Unsere Ableitungen der Klassen SfxStyleSheetBase und SfxStyleSheetBasePool
 
