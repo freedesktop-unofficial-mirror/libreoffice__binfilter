@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdpntv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-03 10:43:08 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:41:41 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -130,8 +130,11 @@ class SfxItemSet;
 class SfxStyleSheet;
 //STRIP012class B2dIAOManager;
 namespace binfilter {
+class SdrGrafObj;
+class SdrPage;
 class SdrPageViewWinRec;
 class SdrView;
+class SdrViewUserMarker;
 class ExtOutputDevice;
 class SdrNamedSubRecord;
 class SdrIOHeader;

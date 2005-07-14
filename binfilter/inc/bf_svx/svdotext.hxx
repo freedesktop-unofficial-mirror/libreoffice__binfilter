@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svdotext.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2004-05-05 16:29:59 $
+ *  last change: $Author: kz $ $Date: 2005-07-14 14:41:13 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -95,6 +95,7 @@ namespace binfilter {
 
 class OutlinerParaObject;
 class SdrOutliner;
+class SdrTextObj;
 class SvxFieldItem;
 class ImpSdrObjTextLink;
 
