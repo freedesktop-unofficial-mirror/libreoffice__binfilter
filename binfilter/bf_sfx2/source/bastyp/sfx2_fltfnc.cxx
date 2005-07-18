@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: obo $ $Date: 2005-04-13 08:03:59 $
+ *  last change: $Author: obo $ $Date: 2005-07-18 11:48:54 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -119,9 +119,9 @@
 // auto strip #ifndef _SVSTOR_HXX //autogen
 // auto strip #include <so3/svstor.hxx>
 // auto strip #endif
-#ifndef _EXTATTR_HXX
-#include <svtools/extattr.hxx>
-#endif
+// STRIP001 #ifndef _EXTATTR_HXX
+// STRIP001 #include <svtools/extattr.hxx>
+// STRIP001 #endif
 // auto strip #ifndef _LCKBITEM_HXX //autogen
 // auto strip #include <svtools/lckbitem.hxx>
 // auto strip #endif
@@ -506,10 +506,10 @@ public:
 
 #ifdef MAC
 #define CONDITION \
-    String( aArg ).Erase( 5 ) == String( pFilter->GetTypeName() ).Erase( 5 )
+     String( aArg ).Erase( 5 ) == String( pFilter->GetTypeName() ).Erase( 5 )
 #else
 #define CONDITION \
-    aArg == pFilter->GetTypeName()
+     aArg == pFilter->GetTypeName()
 #endif
 /*   [Beschreibung]
      Ermitelt einen Filter nach seinen Extended Attributes.
@@ -902,21 +902,21 @@ public:
 /*N*/             if ( aStor.Is() )
 /*N*/                 pFilter = GetFilter4ClipBoardId( aStor->GetFormat(), nMust, nDont );
 /*N*/
-/*N*/           // Als naechstes ueber Extended Attributes pruefen
-/*N*/           String aNewFileName;
-/*N*/           if( !pFilter )
-/*N*/           {
-/*N*/               aNewFileName = rMedium.GetPhysicalName();
-/*N*/               SvEaMgr aMgr( aNewFileName );
-/*N*/               String aType;
-/*N*/               if( aMgr.GetFileType( aType ))
-/*N*/               {
-/*N*/                   // Plain text verwerfen wir, damit unter OS/2
-/*N*/                   // html Dateien mit attribut Text als html geladen werden
-/*?*/                   if( aType.CompareIgnoreCaseToAscii( "Plain Text" ) != COMPARE_EQUAL )
-/*?*/                       pFilter = GetFilter4EA( aType, nMust, nDont );
-/*N*/               }
-/*N*/           }
+// STRIP001 /*N*/           // Als naechstes ueber Extended Attributes pruefen
+// STRIP001 /*N*/           String aNewFileName;
+// STRIP001 /*N*/           if( !pFilter )
+// STRIP001 /*N*/           {
+// STRIP001 /*N*/               aNewFileName = rMedium.GetPhysicalName();
+// STRIP001 /*N*/               SvEaMgr aMgr( aNewFileName );
+// STRIP001 /*N*/               String aType;
+// STRIP001 /*N*/               if( aMgr.GetFileType( aType ))
+// STRIP001 /*N*/               {
+// STRIP001 /*N*/                   // Plain text verwerfen wir, damit unter OS/2
+// STRIP001 /*N*/                   // html Dateien mit attribut Text als html geladen werden
+// STRIP001 /*?*/                   if( aType.CompareIgnoreCaseToAscii( "Plain Text" ) != COMPARE_EQUAL )
+// STRIP001 /*?*/                       pFilter = GetFilter4EA( aType, nMust, nDont );
+// STRIP001 /*N*/               }
+// STRIP001 /*N*/           }
 /*N*/       }
 /*N*/
 /*N*/       // Zu allerletzt ueber Extension mappen
