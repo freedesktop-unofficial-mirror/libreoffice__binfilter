@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_docfile.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2004-05-13 10:18:16 $
+ *  last change: $Author: obo $ $Date: 2005-07-18 11:49:15 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -156,9 +156,9 @@
 #ifndef _SVSTOR_HXX //autogen
 #include <so3/svstor.hxx>
 #endif
-#ifndef _EXTATTR_HXX
-#include <svtools/extattr.hxx>
-#endif
+//STRIP001 #ifndef _EXTATTR_HXX
+//STRIP001 #include <svtools/extattr.hxx>
+//STRIP001 #endif
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
@@ -408,7 +408,7 @@ namespace binfilter {
 /*?*/     SfxPoolCancelManagerRef xCancelManager;
 /*?*/     UcbLockBytesCancellable_Impl* pCancellable;
 /*?*/     SfxMedium*       pAntiImpl;
-/*?*/     SvEaMgr*         pEaMgr;
+//STRIP001 /*?*/     SvEaMgr*         pEaMgr;
 /*?*/
 /*?*/     long             nFileVersion;
 /*?*/
@@ -499,7 +499,9 @@ namespace binfilter {
 /*N*/     bForceSynchron( sal_False ), bStreamReady( sal_False ), bIsStorage( sal_False ),
 /*N*/     pLoadEnv( 0 ), pAntiImpl( pAntiImplP ),
 /*N*/     bDontCreateCancellable( sal_False ), pTempDir( NULL ), bIsDiskSpannedJAR( sal_False ),
-/*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ), pEaMgr( NULL ), pTempFile( NULL ),
+/*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ),
+//STRIP001  pEaMgr( NULL ),
+/*N*/   pTempFile( NULL ),
 /*N*/   nLastStorageError( 0 ),
 /*N*/   bIsCharsetInitialized( sal_False ),
 /*N*/   bUseInteractionHandler( sal_True ),
@@ -521,7 +523,7 @@ namespace binfilter {
 /*N*/     aDoneLink.ClearPendingCall();
 /*N*/     aAvailableLink.ClearPendingCall();
 /*N*/
-/*N*/     delete pEaMgr;
+//STRIP001 /*N*/     delete pEaMgr;
 /*N*/     delete pVersions;
 /*N*/
 /*N*/     if ( pTempFile )
@@ -2049,8 +2051,8 @@ String SfxMedium::GetStatusString( const SvProgressArg* pArg )
 /*?*/     if( bTemporary )
 /*?*/         CreateTempFile();
 /*?*/
-/*?*/     if ( rMedium.pImp->pEaMgr )
-/*?*/         GetEaMgr();
+//STRIP001 /*?*/     if ( rMedium.pImp->pEaMgr )
+//STRIP001 /*?*/         GetEaMgr();
 /*?*/ }
 
 //------------------------------------------------------------------
