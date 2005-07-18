@@ -2,9 +2,9 @@
  *
  *  $RCSfile: docfile.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: mwu $ $Date: 2003-11-06 08:26:11 $
+ *  last change: $Author: obo $ $Date: 2005-07-18 11:50:00 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -313,7 +313,7 @@ public:
     SvStream*           GetInStream();
     SvStream*           GetOutStream();
 
-    SvEaMgr*            GetEaMgr();
+     SvEaMgr*           GetEaMgr();
 
     sal_Bool            Commit();
     sal_Bool            TryStorage();
