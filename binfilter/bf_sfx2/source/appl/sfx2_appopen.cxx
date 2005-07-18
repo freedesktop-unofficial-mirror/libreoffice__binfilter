@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_appopen.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: obo $ $Date: 2005-04-13 08:02:58 $
+ *  last change: $Author: obo $ $Date: 2005-07-18 11:48:34 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -139,9 +139,9 @@
 #ifndef _SFXDOCTEMPL_HXX //autogen
 #include <doctempl.hxx>
 #endif
-#ifndef _EXTATTR_HXX
-#include <svtools/extattr.hxx>
-#endif
+// STRIP001 #ifndef _EXTATTR_HXX
+// STRIP001 #include <svtools/extattr.hxx>
+// STRIP001 #endif
 #ifndef _SFXECODE_HXX
 #include <svtools/sfxecode.hxx>
 #endif
