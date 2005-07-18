@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sfx2_objstor.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2005-01-13 17:41:15 $
+ *  last change: $Author: obo $ $Date: 2005-07-18 11:49:32 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -71,9 +71,9 @@
 #ifndef _SVSTOR_HXX //autogen
 #include <so3/svstor.hxx>
 #endif
-#ifndef _EXTATTR_HXX //autogen
-#include <svtools/extattr.hxx>
-#endif
+//STRIP001 #ifndef _EXTATTR_HXX //autogen
+//STRIP001 #include <svtools/extattr.hxx>
+//STRIP001 #endif
 #ifndef _ZCODEC_HXX //autogen
 #include <tools/zcodec.hxx>
 #endif
@@ -1297,8 +1297,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/             else
 /*?*/                 pImp->bDidDangerousSave=sal_False;
 /*N*/
-/*N*/       if ( pImp->bIsSaving )
-/*?*/           SetEAs_Impl(rMedium);
+//STRIP001 /*N*/        if ( pImp->bIsSaving )
+//STRIP001 /*?*/            SetEAs_Impl(rMedium);
 /*N*/
 /*N*/         try
 /*N*/         {
@@ -1778,8 +1778,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 //-------------------------------------------------------------------------
 
-/*?*/ void SfxObjectShell::SetEAs_Impl( SfxMedium &rMedium )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+//STRIP001 /*?*/ void SfxObjectShell::SetEAs_Impl( SfxMedium &rMedium )
+//STRIP001 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001  //!! wenn OV eine entsprechende Funktionalitaet zur Verfuegung stellt,
 //STRIP001  // besser auf der geoeffneten Datei arbeiten
 //STRIP001 /*?*/    SvEaMgr *pMgr = rMedium.GetEaMgr();
@@ -1799,7 +1799,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 //STRIP001 /*?*/
 //STRIP001 /*?*/    if ( rMedium.GetLongName().Len() )
 //STRIP001 /*?*/        pMgr->SetLongName(rMedium.GetLongName());
-/*?*/ }
+//STRIP001 /*?*/ }
 
 //-------------------------------------------------------------------------
 
