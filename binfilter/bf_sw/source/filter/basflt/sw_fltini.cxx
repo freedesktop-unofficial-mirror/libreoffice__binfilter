@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_fltini.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 18:19:04 $
+ *  last change: $Author: obo $ $Date: 2005-08-10 11:25:45 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -153,6 +153,8 @@
 #ifndef _W4WFLT_HXX
 #include <w4wflt.hxx>           // AutoDetect
 #endif
+// enable implementation and members
+#define IS_SW_DLL 1
 #ifndef _IODETECT_HXX
 #include <iodetect.hxx>
 #endif
