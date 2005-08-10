@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-11 15:30:14 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:25:18 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -199,24 +199,24 @@ LIB3FILES=      \
 
 LIB4TARGET=$(LB)$/bf_sdlib.lib
 LIB4ARCHIV=$(LB)$/libbf_sdlib.a
-.IF "$(GUI)"=="UNX"
-LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
-          $(OBJ)$/sd_sdresid.obj
-.ELSE
-.IF "$(GUI)"=="MAC"
-LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
-          $(OBJ)$/sd_sdresid.obj
-.ELSE
-LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
-          $(OBJ)$/sd_sdresid.obj
-.ENDIF
-.ENDIF
+#.IF "$(GUI)"=="UNX"
+LIB4OBJFILES=$(SLO)$/sd_sdlib.obj \
+          $(SLO)$/sd_sdresid.obj
+#.ELSE
+#.IF "$(GUI)"=="MAC"
+#LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
+#		  $(OBJ)$/sd_sdresid.obj
+#.ELSE
+#LIB4OBJFILES=$(OBJ)$/sd_sdlib.obj \
+#		  $(OBJ)$/sd_sdresid.obj
+#.ENDIF
+#.ENDIF
 
 
-.IF "$(depend)" == ""
-ALL:    \
-    ALLTAR
-.ENDIF
+#.IF "$(depend)" == ""
+#ALL:    \
+#	ALLTAR
+#.ENDIF
 
 
 .IF "$(SVXLIGHT)" != "" 
@@ -247,33 +247,6 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
         $(LINK)  $(LINKFLAGS) $(LINKFLAGSSHL) $(SHL1OBJS) $(SHL1LIBS) -f $@.exp · dev:null
         duplicate -y $@.exp $@
 .ENDIF
-# -------------------------------------------------------------------------
-# Windows 3.1
-# -------------------------------------------------------------------------
-
-.IF "$(GUI)" == "WIN"
-
-$(MISC)$/$(SHL1TARGET).def:  makefile.mk
-    @echo ------------------------------
-    @echo Making: $@
-    @echo LIBRARY     $(SHL1TARGET)                                  >$@
-    @echo DESCRIPTION 'SDRAW3 DLL'                                 >>$@
-    @echo EXETYPE     WINDOWS                                       >>$@
-    @echo PROTMODE                                                  >>$@
-    @echo CODE        LOADONCALL MOVEABLE DISCARDABLE               >>$@
-    @echo DATA        PRELOAD MOVEABLE SINGLE                       >>$@
-    @echo HEAPSIZE    0                                             >>$@
-    @echo EXPORTS                                                   >>$@
-    @echo _CreateSdDrawDocShellDll @2                              >>$@
-    @echo _CreateSdGraphicDocShellDll @3                           >>$@
-    @echo _CreateObjSdDrawDocShellDll @4                           >>$@
-    @echo _CreateObjSdGraphicDocShellDll @5                        >>$@
-    @echo _InitSdDll @6                                            >>$@
-    @echo _DeInitSdDll @7                                          >>$@
-    @echo component_getImplementationEnvironment 				   >>$@
-    @echo component_writeInfo									   >>$@
-    @echo component_getFactory									   >>$@
-.ENDIF
 
 .IF "$(GUI)" == "WNT"
 
@@ -293,52 +266,6 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo component_getImplementationEnvironment 				   >>$@
     @echo component_writeInfo									   >>$@
     @echo component_getFactory									   >>$@
-.ENDIF
-
-# -------------------------------------------------------------------------
-# Presentation Manager 2.0
-# -------------------------------------------------------------------------
-
-.IF "$(GUI)" == "OS2"
-
-$(MISC)$/$(SHL1TARGET).def:  makefile.mk
-    @echo ================================================================
-    @echo building $@
-    @echo ----------------------------------------------------------------
-.IF "$(COM)"!="WTC"
-    echo  LIBRARY           INITINSTANCE TERMINSTANCE                       >$@
-    echo  DESCRIPTION   'SdDLL'                            >>$@
-    echo  PROTMODE                                                                             >>$@
-    @echo CODE        LOADONCALL                                  >>$@
-    @echo DATA                PRELOAD MULTIPLE NONSHARED                                      >>$@
-    @echo EXPORTS                                              >>$@
-.IF "$(COM)"!="ICC"
-    @echo _CreateSdDrawDocShellDll @2                              >>$@
-    @echo _CreateSdGraphicDocShellDll @3                           >>$@
-    @echo _CreateObjSdDrawDocShellDll @4                           >>$@
-    @echo _CreateObjSdGraphicDocShellDll @5                        >>$@
-    @echo _InitSdDll @6                                            >>$@
-    @echo _DeInitSdDll @7                                          >>$@
-.ELSE
-    @echo CreateSdDrawDocShellDll @2                              >>$@
-    @echo CreateSdGraphicDocShellDll @3                           >>$@
-    @echo CreateObjSdDrawDocShellDll @4                           >>$@
-    @echo CreateObjSdGraphicDocShellDll @5                        >>$@
-    @echo InitSdDll @6                                            >>$@
-    @echo DeInitSdDll @7                                          >>$@
-.ENDIF
-.ELSE
-    @echo option DESCRIPTION 'SdDLL'                            >$@
-    @echo name $(BIN)$/$(SHL1TARGET).dll                         >>$@
-    @echo CreateSdDrawDocShellDll_ @2      >>temp.def
-    @echo CreateSdGraphicDocShellDll_ @3   >>temp.def
-    @echo CreateObjSdDrawDocShellDll_ @4   >>temp.def
-    @echo CreateObjSdGraphicDocShellDll_ @5   >>temp.def
-    @echo InitSdDll_ @6                    >>temp.def
-    @echo DeInitSdDll_ @7                  >>temp.def
-    @gawk -f s:\util\exp.awk temp.def                               >>$@
-    del temp.def
-.ENDIF
 .ENDIF
 
 .ENDIF
