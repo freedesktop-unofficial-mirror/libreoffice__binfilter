@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:22:40 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:24:39 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -85,8 +85,8 @@ AUTOSEG=true
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
-OBJFILES = \
-    $(OBJ)$/sc_sclib.obj  \
+#OBJFILES = \
+#	$(OBJ)$/sc_sclib.obj
 
 SLOFILES =  \
     $(SLO)$/sc_scmod.obj  \
@@ -108,15 +108,19 @@ EXCEPTIONSFILES= \
     $(SLO)$/sc_scmod2.obj \
     $(SLO)$/sc_scmod.obj
 
-LIB3TARGET=$(SLB)$/bf_ysclib.lib
-LIB3OBJFILES=$(SLO)$/sc_sclib.obj
+#LIB3TARGET=$(SLB)$/bf_ysclib.lib
+#LIB3OBJFILES=$(SLO)$/sc_sclib.obj
+
+DEPOBJFILES=$(SLO)$/sc_sclib.obj
 
 # --- Targets -------------------------------------------------------
 
 .INCLUDE :  target.mk
 
+ALLTAR : $(DEPOBJFILES)
+
 $(SLO)$/sc_sclib.obj :	$(INCCOM)$/scdll0.hxx
-$(OBJ)$/sc_sclib.obj :	$(INCCOM)$/scdll0.hxx
+#$(OBJ)$/sc_sclib.obj :	$(INCCOM)$/scdll0.hxx
 
 $(INCCOM)$/scdll0.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
