@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: rt $ $Date: 2004-07-13 16:26:41 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:26:27 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -173,13 +173,17 @@ RESLIB1SRSFILES= \
 
 LIB1TARGET=$(LB)$/bf_swlib.lib
 LIB1ARCHIV=$(LB)$/libbf_swlib.a
+#.IF "$(GUI)"=="UNX"
 LIB1OBJFILES= \
-        $(OUT)$/obj$/sw_swlib.obj \
-        $(OUT)$/obj$/sw_swcomlib.obj \
-        $(OUT)$/obj$/sw_w4wflt.obj
-
-
-
+        $(SLO)$/sw_swlib.obj \
+        $(SLO)$/sw_swcomlib.obj \
+        $(SLO)$/sw_w4wflt.obj
+#.ELSE
+#LIB1OBJFILES= \
+#		$(OUT)$/obj$/sw_swlib.obj \
+#		$(OUT)$/obj$/sw_swcomlib.obj \
+#		$(OUT)$/obj$/sw_w4wflt.obj
+#.ENDIF
 
 SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2VERSIONMAP= $(TARGET).map
