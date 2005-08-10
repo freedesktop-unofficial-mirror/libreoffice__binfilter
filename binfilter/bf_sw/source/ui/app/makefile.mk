@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:44 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:25:57 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -102,9 +102,9 @@ SRC1FILES =\
         sw_error.src
 
 
-OBJFILES = \
-        $(OBJ)$/sw_swlib.obj   \
-        $(OBJ)$/sw_swcomlib.obj
+#OBJFILES = \
+#		$(OBJ)$/sw_swlib.obj   \
+#		$(OBJ)$/sw_swcomlib.obj
 
 SLOFILES = \
         $(SLO)$/sw_appenv.obj   \
@@ -147,10 +147,18 @@ LIB1OBJFILES= \
         $(SLO)$/sw_version.obj	 \
         $(SLO)$/sw_swwait.obj
 
+#LIB3TARGET=$(SLB)$/bf_yswlib.lib
+#LIB3OBJFILES=
+
+DEPOBJFILES= \
+    $(SLO)$/sw_swlib.obj \
+    $(SLO)$/sw_swcomlib.obj
 
 # --- Targets ------------------------------------------------------
 
 .INCLUDE :  target.mk
+
+ALLTAR : $(DEPOBJFILES)
 
 $(SLO)$/sw_swdll.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swmodule.obj : $(INCCOM)$/swdll0.hxx
