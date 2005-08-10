@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:24:36 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:25:31 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -90,8 +90,6 @@ SLOFILES =  \
         $(SLO)$/sw_fltini.obj \
         $(SLO)$/sw_shellio.obj \
         $(SLO)$/sw_w4wflt.obj
-
-OBJFILES = $(OBJ)$/sw_w4wflt.obj
 
 # --- Tagets -------------------------------------------------------
 
