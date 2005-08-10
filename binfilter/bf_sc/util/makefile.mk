@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: obo $ $Date: 2005-04-15 10:39:08 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:24:52 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -247,59 +247,20 @@ LIB4FILES=	\
 LIB5TARGET=$(LB)$/bf_sclib.lib
 LIB5ARCHIV=$(LB)$/libbf_sclib.a
 
-.IF "$(GUI)"=="UNX"
+#.IF "$(GUI)"=="UNX"
 LIB5OBJFILES=$(SLO)$/sc_sclib.obj
-.ELSE
-LIB5OBJFILES=$(OBJ)$/sc_sclib.obj
-.ENDIF
-
-.IF "$(depend)" == ""
-ALL:	\
-    $(MISC)$/linkinc.ls \
-    ALLTAR	\
-    ea
-.ENDIF
+#.ELSE
+#LIB5OBJFILES=$(OBJ)$/sc_sclib.obj
+#.ENDIF
 
 # --- Targets -------------------------------------------------------------
 
-.IF "$(depend)" == ""
-
-APP1HEAP=	8192
-.IF "$(GUI)"!="WNT"
-.IF "$(GUI)"=="WIN"
-# DGROUP:  DATA<0x5000  HEAP==0x2000  => STACK:0x9000 (36k)
-# wenn das runtergesetz wird, muss evtl. in data\cell.cxx die
-# MAXRECURSION Tiefe angepasst werden !!! (leider ein PI mal Daumen Wert)
-APP1STACK=36864
-.ELSE
-# os2: ca. 2,3*win
-APP1STACK=81920
-.ENDIF
-.ENDIF
-.ENDIF
-
-
 .INCLUDE :  target.mk
 
+ALLTAR:	\
+    $(MISC)$/linkinc.ls
+
 .IF "$(depend)" == ""
-
-# -------------------------------------------------------------------------
-# MAC
-# -------------------------------------------------------------------------
-
-.IF "$(GUI)" == "MAC"
-
-$(MISC)$/$(SHL1TARGET).def:  makefile.mk
-    @echo ------------------------------
-    @echo Making: $@
-    @echo CreateScDocShellDll                              >  $@
-    @echo CreateObjScDocShellDll                           >> $@
-    @echo InitScDll                                        >> $@
-    @echo DeInitScDll                                      >> $@
-    @echo component_getImplementationEnvironment           >> $@
-    @echo component_writeInfo                              >> $@
-    @echo component_getFactory                             >> $@
-.ENDIF
 
 .IF "$(GUI)" == "WNT"
 
@@ -322,54 +283,6 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     echo  RC $(RCFLAGS) $(RES)$/scappi.res                    >>$@
 .ENDIF
 
-# -------------------------------------------------------------------------
-# Presentation Manager 2.0
-# -------------------------------------------------------------------------
-
-.IF "$(GUI)" == "OS2"
-
-$(MISC)$/$(SHL1TARGET).def:  makefile.mk
-    @echo ================================================================
-    @echo building $@
-    @echo ----------------------------------------------------------------
-.IF "$(COM)"!="WTC"
-    echo  LIBRARY		INITINSTANCE TERMINSTANCE			>$@
-    echo  DESCRIPTION   'ScDLL'                            >>$@
-    echo  PROTMODE										   >>$@
-    @echo CODE        LOADONCALL 			              >>$@
-    @echo DATA		  PRELOAD MULTIPLE NONSHARED					  >>$@
-    @echo EXPORTS                                                   >>$@
-.IF "$(COM)"!="ICC"
-    @echo _CreateScDocShellDll @2                              >>$@
-    @echo _CreateObjScDocShellDll @3                           >>$@
-    @echo _InitScDll @4                                            >>$@
-    @echo _DeInitScDll @5                                          >>$@
-    @echo _component_getImplementationEnvironment @6               >>$@
-    @echo _component_writeInfo @7                                  >>$@
-    @echo _component_getFactory @8                                 >>$@
-.ELSE
-    @echo CreateScDocShellDll @2                              >>$@
-    @echo CreateObjScDocShellDll @3                           >>$@
-    @echo InitScDll @4                                            >>$@
-    @echo DeInitScDll @5                                          >>$@
-    @echo component_getImplementationEnvironment @6               >>$@
-    @echo component_writeInfo @7                                  >>$@
-    @echo component_getFactory @8                                 >>$@
-.ENDIF
-.ELSE
-        @echo option DESCRIPTION 'ScDLL'                            >$@
-    @echo name $(BIN)$/$(SHL1TARGET).dll                         >>$@
-    @echo CreateScDocShellDll_ @2      >>temp.def
-    @echo CreateObjScDocShellDll_ @3   >>temp.def
-    @echo InitScDll_ @4                    >>temp.def
-    @echo DeInitScDll_ @5                  >>temp.def
-    @echo component_getImplementationEnvironment_ @6  >>temp.def
-    @echo component_writeInfo_ @7          >>temp.def
-    @echo component_getFactory_ @8         >>temp.def
-    @gawk -f s:\util\exp.awk temp.def				>>$@
-    del temp.def
-.ENDIF
-.ENDIF
 .ENDIF
 
 
@@ -382,10 +295,3 @@ $(MISCX)$/$(SHL1TARGET).flt:
     @echo LibMain>>$@
 
 
-ea:
-.IF "$(GUI)" == "OS2"
-    @+echo extended attributes? siehe sw\util.
-#	+call swos2.cmd
-.ELSE
-    @echo nix
-.ENDIF
