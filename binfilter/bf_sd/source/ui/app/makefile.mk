@@ -2,9 +2,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: aw $ $Date: 2003-11-18 19:23:05 $
+#   last change: $Author: obo $ $Date: 2005-08-10 11:25:05 $
 #
 #   The Contents of this file are made available subject to the terms of
 #   either of the following licenses
@@ -105,9 +105,9 @@ SRC1FILES =	\
         sd_sdstring.src		\
         sd_pseudo.src
 
-OBJFILES = \
-        $(OBJ)$/sd_sdlib.obj	\
-        $(OBJ)$/sd_sdresid.obj	\
+#OBJFILES = \
+#		$(OBJ)$/sd_sdlib.obj	\
+#		$(OBJ)$/sd_sdresid.obj
 
 SLOFILES =	\
         $(SLO)$/sd_sdmod.obj		\
@@ -125,6 +125,13 @@ SLOFILES =	\
 EXCEPTIONSFILES= \
         $(SLO)$/sd_sdxfer.obj		\
         $(SLO)$/sd_sdmod1.obj		
+
+#LIB3TARGET=$(SLB)$/bf_ysdlib.lib
+#LIB3OBJFILES=
+
+DEPOBJFILES= \
+        $(SLO)$/sd_sdlib.obj \
+         $(SLO)$/sd_sdresid.obj
 
 .IF "$(GUI)" == "WNT"
 
@@ -152,6 +159,8 @@ $(INCCOM)$/sddll0.hxx: makefile.mk
 .ENDIF			# "$(GUI)"=="UNX"
 
 .INCLUDE :  target.mk
+
+ALLTAR : $(DEPOBJFILES)
 
 $(SRS)$/sd_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
 
