@@ -2,9 +2,9 @@
  *
  *  $RCSfile: iodetect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 21:45:03 $
+ *  last change: $Author: obo $ $Date: 2005-08-10 11:26:52 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -68,7 +68,7 @@
 // auto strip #endif
 
 
-#ifdef _DLL_
+#ifdef IS_SW_DLL
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
@@ -94,7 +94,7 @@ struct SwIoDetect
         return rNm.EqualsAscii( pName, 0, nLen );
     }
 
-#ifdef _DLL_
+#ifdef IS_SW_DLL
     Reader* pReader;
     FnGetWriter fnGetWriter;
     BOOL bDelReader;
@@ -109,7 +109,7 @@ struct SwIoDetect
 };
 
 
-#ifdef _DLL_
+#ifdef IS_SW_DLL
 #define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen, 0, pWrt, bDel
 #else
 #define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen
