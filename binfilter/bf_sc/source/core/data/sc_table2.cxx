@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sc_table2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-01-11 11:30:06 $
+ *  last change: $Author: rt $ $Date: 2005-08-18 11:56:27 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -1463,7 +1463,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/   if ( nLockCount )
 /*N*/       bIsEditable = FALSE;
 /*N*/   else if ( bProtected )
+    {
 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/        bIsEditable = !HasAttribSelection( rMark, HASATTR_PROTECTED );
+        bIsEditable = FALSE;
+    }
 /*N*/   else
 /*N*/       bIsEditable = TRUE;
 /*N*/   if ( bIsEditable )
