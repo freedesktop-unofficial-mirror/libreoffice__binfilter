@@ -2,9 +2,9 @@
  *
  *  $RCSfile: svx_ParseContext.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2004-08-03 15:43:22 $
+ *  last change: $Author: rt $ $Date: 2005-08-18 11:56:58 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -181,7 +181,7 @@ using namespace ::connectivity;
 //STRIP001 }
 // -----------------------------------------------------------------------------
 /*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString& rToken) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); IParseContext::InternationalKeyCode aInternationalKeyCode; return aInternationalKeyCode;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;//STRIP001
 //STRIP001  static IParseContext::InternationalKeyCode Intl_TokenID[] =
 //STRIP001  {
 //STRIP001      KEY_LIKE, KEY_NOT, KEY_NULL, KEY_TRUE,
