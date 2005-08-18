@@ -2,9 +2,9 @@
  *
  *  $RCSfile: sw_frmcrsr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2004-11-17 09:09:16 $
+ *  last change: $Author: rt $ $Date: 2005-08-18 11:57:28 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -514,7 +514,7 @@ namespace binfilter {
 //STRIP001 /*?*/
 //STRIP001 /*?*/             return TRUE;
 //STRIP001 /*?*/         }
-//STRIP001 /*?*/         return FALSE;
+         return FALSE;
 /*N*/   }
 /*N*/ }
 
