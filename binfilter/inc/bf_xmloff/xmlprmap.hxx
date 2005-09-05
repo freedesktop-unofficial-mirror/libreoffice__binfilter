@@ -2,9 +2,9 @@
  *
  *  $RCSfile: xmlprmap.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: aw $ $Date: 2003-12-05 09:18:08 $
+ *  last change: $Author: rt $ $Date: 2005-09-05 08:46:09 $
  *
  *  The Contents of this file are made available subject to the terms of
  *  either of the following licenses
@@ -183,7 +183,7 @@ public:
     /** returns the entry context id */
     const sal_Int16 GetEntryContextId( sal_Int32 nIndex ) const
     {
-        return aMapEntries[nIndex].nContextId;
+        return nIndex == -1 ? 0 : aMapEntries[nIndex].nContextId;
     }
 
     /** Returns the index of an entry with the given XML-name and namespace
