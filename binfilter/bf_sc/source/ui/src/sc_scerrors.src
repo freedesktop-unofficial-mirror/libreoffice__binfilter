@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_scerrors.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:58:27 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:33:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,7 +79,7 @@ Resource RID_ERRHDLSC
     String SCERR_IMPORT_OPEN & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Datei konnte nicht geˆffnet werden. : Die Datei konnte nicht ge˜ffnet werden. */
-        Text [ de ] = "Die Datei konnte nicht geˆffnet werden." ;
+        Text [ de ] = "Die Datei konnte nicht ge√∂ffnet werden." ;
         Text [ en-US ] = "File could not be opened." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Imposs√≠vel abrir o ficheiro.";
@@ -224,7 +224,7 @@ Resource RID_ERRHDLSC
     String SCERR_IMPORT_NI & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? F¸r diesen Dateityp ist kein Filter implementiert. : F≥r diesen Dateityp ist kein Filter implementiert. */
-        Text [ de ] = "F¸r diesen Dateityp ist kein Filter implementiert." ;
+        Text [ de ] = "F√ºr diesen Dateityp ist kein Filter implementiert." ;
         Text [ en-US ] = "There is no filter available for this file type." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "N√£o h√° filtro implementado para este tipo de ficheiro.";
@@ -375,7 +375,7 @@ Resource RID_ERRHDLSC
     String SCERR_IMPORT_8K_LIMIT & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Datei enth‰lt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden. : Die Datei enthılt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden. */
-        Text [ de ] = "Die Datei enth‰lt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden." ;
+        Text [ de ] = "Die Datei enth√§lt Daten unterhalb von Zeile 8192 und kann daher nicht gelesen werden." ;
         Text [ en-US ] = "The file contains data after row 8192 and therefore can not be read." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O ficheiro cont√©m dados abaixo da linha 8192 e n√£o pode ser lido.";
@@ -555,7 +555,7 @@ Resource RID_ERRHDLSC
     String SCWARN_IMPORT_RANGE_OVERFLOW & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Maximalanzahl von Zeilen wurde ¸berschritten. ‹berz‰hlige Zeilen wurden nicht mitimportiert! : Die Maximalanzahl von Zeilen wurde ≥berschritten. öberzıhlige Zeilen wurden nicht mitimportiert! */
-        Text [ de ] = "Die Maximalanzahl von Zeilen wurde ¸berschritten. ‹berz‰hlige Zeilen wurden nicht mitimportiert!" ;
+        Text [ de ] = "Die Maximalanzahl von Zeilen wurde √ºberschritten. √úberz√§hlige Zeilen wurden nicht mitimportiert!" ;
         Text [ en-US ] = "The maximum number of rows has been exceeded. Excess rows were not imported!" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O n√∫mero m√°ximo de linhas foi ultrapassado! As linhas em excesso n√£o foram importadas!";
@@ -583,7 +583,7 @@ Resource RID_ERRHDLSC
     };
     String SCWARN_IMPORT_ROW_OVERFLOW & SH_MAX
     {
-        Text [ de ] = "Die Daten konnten nicht vollst‰ndig geladen werden, da die maximale Anzahl von Tabellenzeilen ¸berschritten wurde." ;
+        Text [ de ] = "Die Daten konnten nicht vollst√§ndig geladen werden, da die maximale Anzahl von Tabellenzeilen √ºberschritten wurde." ;
         Text [ en-US ] = "The data could not be loaded completely because the maximum number of rows per sheet was exceeded." ;
         Text[ pt ] = "The data could not be loaded completely because the maximum number of rows per sheet was exceeded.";
         Text[ ru ] = "The data could not be loaded completely because the maximum number of rows per sheet was exceeded.";
@@ -610,7 +610,7 @@ Resource RID_ERRHDLSC
     };
     String SCWARN_IMPORT_COLUMN_OVERFLOW & SH_MAX
     {
-        Text [ de ] = "Die Daten konnten nicht vollst‰ndig geladen werden, da die maximale Anzahl von Tabellenspalten ¸berschritten wurde." ;
+        Text [ de ] = "Die Daten konnten nicht vollst√§ndig geladen werden, da die maximale Anzahl von Tabellenspalten √ºberschritten wurde." ;
         Text [ en-US ] = "The data could not be loaded completely because the maximum number of columns per sheet was exceeded." ;
         Text[ pt ] = "The data could not be loaded completely because the maximum number of columns per sheet was exceeded.";
         Text[ ru ] = "The data could not be loaded completely because the maximum number of columns per sheet was exceeded.";
@@ -637,7 +637,7 @@ Resource RID_ERRHDLSC
     };
     String SCWARN_IMPORT_SHEET_OVERFLOW & SH_MAX
     {
-        Text [ de ] = "Einige Tabellen konnten nicht geladen werden, da die maximale Anzahl von Tabellen ¸berschritten wurde." ;
+        Text [ de ] = "Einige Tabellen konnten nicht geladen werden, da die maximale Anzahl von Tabellen √ºberschritten wurde." ;
         Text [ en-US ] = "Some sheets could not be loaded because the maximum number of sheets was exceeded." ;
         Text[ pt ] = "Some sheets could not be loaded because the maximum number of sheets was exceeded.";
         Text[ ru ] = "Some sheets could not be loaded because the maximum number of sheets was exceeded.";
@@ -727,7 +727,7 @@ Resource RID_ERRHDLSC
     String SCWARN_CORE_HARD_RECALC & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Dokument zu komplex f¸r automatische Berechnung. Neuberechnung mit F9. : Dokument zu komplex f≥r automatische Berechnung. Neuberechnung mit F9. */
-        Text [ de ] = "Dokument zu komplex f¸r automatische Berechnung. Neuberechnung mit F9." ;
+        Text [ de ] = "Dokument zu komplex f√ºr automatische Berechnung. Neuberechnung mit F9." ;
         Text [ en-US ] = "Document too complex for automatic calculation. Press F9 to recalculate." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O documento √© demasiado complexo para o c√°lculo autom√°tico. Calcular de novo com F9.";
@@ -756,7 +756,7 @@ Resource RID_ERRHDLSC
     String SCWARN_EXPORT_MAXROW & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Das Dokument enth‰lt mehr Zeilen, als das Ausgabeformat unterst¸tzt.\n‹berz‰hlige Zeilen wurden nicht gespeichert. : Das Dokument enthılt mehr Zeilen, als das Ausgabeformat unterst≥tzt.\nöberzıhlige Zeilen wurden nicht gespeichert. */
-        Text [ de ] = "Das Dokument enth‰lt mehr Zeilen, als das Ausgabeformat unterst¸tzt.\n‹berz‰hlige Zeilen wurden nicht gespeichert." ;
+        Text [ de ] = "Das Dokument enth√§lt mehr Zeilen, als das Ausgabeformat unterst√ºtzt.\n√úberz√§hlige Zeilen wurden nicht gespeichert." ;
         Text [ en-US ] = "The document contains more rows than supported in the selected format.\nAdditional rows were not saved." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O documento cont√©m mais linhas do que as previstas para o formato correspondente.\nAs linhas em excesso n√£o foram guardadas.";
@@ -785,7 +785,7 @@ Resource RID_ERRHDLSC
     String SCWARN_IMPORT_INFOLOST & SH_MAX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Das Dokument enth‰lt Informationen, die dieser Programmversion unbekannt sind.\nBei erneutem Speichern gehen diese Informationen verloren! : Das Dokument enthılt Informationen, die dieser Programmversion unbekannt sind.\nBei erneutem Speichern gehen diese Informationen verloren! */
-        Text [ de ] = "Das Dokument enth‰lt Informationen, die dieser Programmversion unbekannt sind.\nBei erneutem Speichern gehen diese Informationen verloren!" ;
+        Text [ de ] = "Das Dokument enth√§lt Informationen, die dieser Programmversion unbekannt sind.\nBei erneutem Speichern gehen diese Informationen verloren!" ;
         Text [ en-US ] = "The document contains information not recognized by this program version.\nResaving the document will delete this information!" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O documento cont√©m informa√ß√µes desconhecidas para esta vers√£o do programa.\nAo guardar novamente perder√° estas informa√ß√µes!";
