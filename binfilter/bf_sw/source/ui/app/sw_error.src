@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_error.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:52:23 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:53:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -334,7 +334,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_SW6_PASSWD )
     {
-        Text [ de ] = "Dateien, die mit Kennwort gesch�tzt sind, k�nnen nicht ge�ffnet werden." ;
+        Text [ de ] = "Dateien, die mit Kennwort geschützt sind, können nicht geöffnet werden." ;
         Text [ en-US ] = "Password-protected files cannot be opened." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "As senhas não têm suporte";
@@ -425,7 +425,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_W4W_WRITE_TMP_ERROR )
     {
-        Text [ de ] = "Fehler beim Schreiben der Tempor�rdatei" ;
+        Text [ de ] = "Fehler beim Schreiben der Temporärdatei" ;
         Text [ en-US ] = "Error writing temporary file" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Erro ao gravar o ficheiro temporário";
@@ -454,7 +454,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_EXCLOT_WRONG_RANGE )
     {
-        Text [ de ] = "Einf�gebereich in Ini-Datei zu gro�" ;
+        Text [ de ] = "Einfügebereich in Ini-Datei zu groß" ;
         Text [ en-US ] = "Inserted section in ini file too large" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "A área de inserção do ficheiro Ini é demasiado extensa";
@@ -685,7 +685,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_WRITE , ERR_W4W_READ_TMP_ERROR )
     {
-        Text [ de ] = "Fehler beim Lesen der Tempor�rdatei" ;
+        Text [ de ] = "Fehler beim Lesen der Temporärdatei" ;
         Text [ en-US ] = "Error reading temporary file" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Erro na leitura do ficheiro temporário";
@@ -714,7 +714,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_WRITE , ERR_SWG_LARGE_DOC_ERROR )
     {
-        Text [ de ] = "Das Dokument �berschreitet die m�gliche 3.1/4.0-Textdokument-Gr��e" ;
+        Text [ de ] = "Das Dokument überschreitet die mögliche 3.1/4.0-Textdokument-Größe" ;
         Text [ en-US ] = "The document exceeds the allowed 3.1/4.0 text document size" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O documento ultrapassa o tamanho possível para um documento 3.1/4.0";
@@ -830,7 +830,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_W4W_MEM )
     {
-        Text [ de ] = "Nicht gen�gend Speicher vorhanden" ;
+        Text [ de ] = "Nicht genügend Speicher vorhanden" ;
         Text [ en-US ] = "Insufficient memory" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Memória insuficiente";
@@ -859,7 +859,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_WRITE , ERR_W4W_MEM )
     {
-        Text [ de ] = "Nicht gen�gend Speicher vorhanden" ;
+        Text [ de ] = "Nicht genügend Speicher vorhanden" ;
         Text [ en-US ] = "Insufficient memory" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Memória insuficiente";
@@ -888,7 +888,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_READ , ERR_W4W_WRITE_FULL )
     {
-        Text [ de ] = "Nicht gen�gend Platz auf dem Speichermedium" ;
+        Text [ de ] = "Nicht genügend Platz auf dem Speichermedium" ;
         Text [ en-US ] = "Not enough disk space" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Espaço do disco insuficiente";
@@ -917,7 +917,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_WRITE , ERR_W4W_WRITE_FULL )
     {
-        Text [ de ] = "Nicht gen�gend Platz auf dem Speichermedium" ;
+        Text [ de ] = "Nicht genügend Platz auf dem Speichermedium" ;
         Text [ en-US ] = "Not enough disk space" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Espaço do disco insuficiente";
@@ -1062,7 +1062,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_LOCKING , ERR_TXTBLOCK_NEWFILE_ERROR )
     {
-        Text [ de ] = "$(ARG1) hat sich ge�ndert" ;
+        Text [ de ] = "$(ARG1) hat sich geändert" ;
         Text [ en-US ] = "$(ARG1) has changed" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "$(ARG1) foi modificado";
@@ -1121,7 +1121,7 @@ Resource RID_SW_ERRHDL
     String ERR_CODE ( ERRCODE_CLASS_NONE , ERR_TBLSPLIT_ERROR )
     {
         /* ### ACHTUNG: Neuer Text in Resource? Zellen k�nnen nicht mehr geteilt werden : Zellen k�nnen nicht mehr geteilt werden */
-        Text [ de ] = "Zellen k�nnen nicht mehr geteilt werden" ;
+        Text [ de ] = "Zellen können nicht mehr geteilt werden" ;
         Text [ en-US ] = "Cells cannot be further split" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "É impossível dividir mais as células";
@@ -1151,7 +1151,7 @@ Resource RID_SW_ERRHDL
     String ERR_CODE ( ERRCODE_CLASS_NONE , ERR_TBLINSCOL_ERROR )
     {
         /* ### ACHTUNG: Neuer Text in Resource? weitere Spalten k�nnen nicht eingef�gt werden : weitere Spalten k�nnen nicht eingef�gt werden */
-        Text [ de ] = "weitere Spalten k�nnen nicht eingef�gt werden" ;
+        Text [ de ] = "weitere Spalten können nicht eingefügt werden" ;
         Text [ en-US ] = "Additional columns cannot be inserted" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Impossível inserir colunas adicionais";
@@ -1180,7 +1180,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_NONE , ERR_TBLDDECHG_ERROR )
     {
-        Text [ de ] = "Bei einer verkn�pften Tabelle darf die Struktur nicht ver�ndert werden" ;
+        Text [ de ] = "Bei einer verknüpften Tabelle darf die Struktur nicht verändert werden" ;
         Text [ en-US ] = "The structure of a linked table cannot be modified" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "É impossível modificar a estrutura de uma tabela ligada";
@@ -1331,7 +1331,7 @@ Resource RID_SW_ERRHDL
     String WARN_CODE ( ERRCODE_CLASS_READ , WARN_SWG_OLE )
     {
         /* ### ACHTUNG: Neuer Text in Resource? Einige OLE-Objekte konnten nur als Grafiken �bernommen werden : Einige OLE-Objekte konnten nur als Grafiken �bernommen werden */
-        Text [ de ] = "Einige OLE-Objekte konnten nur als Grafiken �bernommen werden" ;
+        Text [ de ] = "Einige OLE-Objekte konnten nur als Grafiken übernommen werden" ;
         Text [ en-US ] = "Some OLE objects could only be loaded as graphics" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Alguns dos objectos OLE puderam ser apenas carregados como imagens";
@@ -1361,7 +1361,7 @@ Resource RID_SW_ERRHDL
     String WARN_CODE ( ERRCODE_CLASS_WRITE , WARN_SWG_OLE )
     {
         /* ### ACHTUNG: Neuer Text in Resource? Einige OLE-Objekte konnten nur als Grafiken �bernommen werden : Einige OLE-Objekte konnten nur als Grafiken �bernommen werden */
-        Text [ de ] = "Einige OLE-Objekte konnten nur als Grafiken �bernommen werden" ;
+        Text [ de ] = "Einige OLE-Objekte konnten nur als Grafiken übernommen werden" ;
         Text [ en-US ] = "Some OLE objects could only be saved as graphics" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Alguns dos objectos OLE foram carregados apenas como imagens";
@@ -1391,7 +1391,7 @@ Resource RID_SW_ERRHDL
     String WARN_CODE ( ERRCODE_CLASS_READ , WARN_SWG_POOR_LOAD )
     {
         /* ### ACHTUNG: Neuer Text in Resource? Dokument konnte nicht vollst�ndig geladen werden : Dokument konnte nicht vollst�ndig geladen werden */
-        Text [ de ] = "Dokument konnte nicht vollst�ndig geladen werden" ;
+        Text [ de ] = "Dokument konnte nicht vollständig geladen werden" ;
         Text [ en-US ] = "Document could not be completely loaded" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Foi impossível carregar o documento completamente";
@@ -1421,7 +1421,7 @@ Resource RID_SW_ERRHDL
     String WARN_CODE ( ERRCODE_CLASS_WRITE , WARN_SWG_POOR_LOAD )
     {
         /* ### ACHTUNG: Neuer Text in Resource? Dokument konnte nicht vollst�ndig gespeichert werden : Dokument konnte nicht vollst�ndig gespeichert werden */
-        Text [ de ] = "Dokument konnte nicht vollst�ndig gespeichert werden" ;
+        Text [ de ] = "Dokument konnte nicht vollständig gespeichert werden" ;
         Text [ en-US ] = "Document could not be completely saved" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Foi impossível guardar o documento completamente";
@@ -1450,7 +1450,7 @@ Resource RID_SW_ERRHDL
     };
     String WARN_CODE ( ERRCODE_CLASS_WRITE , WARN_SWG_HTML_NO_MACROS)
     {
-        Text [ de ] = "Das HTML-Dokument enth�lt %PRODUCTNAME Basic Makros.\nSie wurden mit den aktuellen Exporteinstellungen nicht gespeichert." ;
+        Text [ de ] = "Das HTML-Dokument enthält %PRODUCTNAME Basic Makros.\nSie wurden mit den aktuellen Exporteinstellungen nicht gespeichert." ;
         Text [ en-US ] = "This HTML document contains %PRODUCTNAME Basic macros.\nThey were not saved with the current export settings.";
         Text [ x-comment ] = " ";
         Text[ pt ] = "O documento HTML contém macros %PRODUCTNAME Basic.\nEstas não foram guardadas com as definições de exportação activas.";
@@ -1535,7 +1535,7 @@ Resource RID_SW_ERRHDL
     };
     String ERR_CODE ( ERRCODE_CLASS_WRITE , WARN_UNCONVERTABLE_CHARS )
     {
-        Text [ de ] = "Die folgenden Zeichen konnten nicht im gew�hlten Zeichensatz dargestellt werden:\n$(ARG1)" ;
+        Text [ de ] = "Die folgenden Zeichen konnten nicht im gewählten Zeichensatz dargestellt werden:\n$(ARG1)" ;
         Text [ en-US ] = "The following characters could not be displayed in the selected character set:\n$(ARG1)";
         Text[ pt ] = "Foi impossível representar os seguintes caracteres no conjunto seleccionado: $(ARG1)";
         Text[ ru ] = "Невозможно показать следующие символы в выбранном наборе: $(ARG1)";
