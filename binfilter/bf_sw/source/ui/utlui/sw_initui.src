@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_initui.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:03:56 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:55:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -222,7 +222,7 @@ Resource RID_SW_SHELLRES
     {
         Text [ en-US ] = "** Square function overflow **" ;
         /* ### ACHTUNG: Neuer Text in Resource? ** Überlauf in Quadratfunktion ** : ** šberlauf in Quadratfunktion ** */
-        Text [ de ] = "** Überlauf in Quadratfunktion **" ;
+        Text [ de ] = "** Ãœberlauf in Quadratfunktion **" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "** Transbordo da funÃ§Ã£o quadrÃ¡tica **";
         Text[ ru ] = "** ÐŸÐµÑ€ÐµÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð² Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚Ð° **";
@@ -281,7 +281,7 @@ Resource RID_SW_SHELLRES
     {
         Text [ en-US ] = "** Overflow **" ;
         /* ### ACHTUNG: Neuer Text in Resource? ** Überlauf ** : ** šberlauf ** */
-        Text [ de ] = "** Überlauf **" ;
+        Text [ de ] = "** Ãœberlauf **" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "** Transbordo **";
         Text[ ru ] = "** ÐŸÐµÑ€ÐµÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ **";
@@ -810,7 +810,7 @@ Resource RID_SW_SHELLRES
     String FLD_DOCINFO_KEYS
     {
         /* ### ACHTUNG: Neuer Text in Resource? Schlüsselwörter : Schl³sselw÷rter */
-        Text [ de ] = "Schlüsselwörter" ;
+        Text [ de ] = "SchlÃ¼sselwÃ¶rter" ;
         Text [ en-US ] = "Keywords" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Palavras-chave";
@@ -1014,7 +1014,7 @@ Resource RID_SW_SHELLRES
     String FLD_DOCINFO_CHANGE
     {
         /* ### ACHTUNG: Neuer Text in Resource? Änderung : Žnderung */
-        Text [ de ] = "Änderung" ;
+        Text [ de ] = "Ã„nderung" ;
         Text [ en-US ] = "Modified" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Modificar";
@@ -1281,7 +1281,7 @@ Resource RID_SW_SHELLRES
  };
  String STR_AUTH_TYPE_BOOKLET
  {
-        Text [ de ] = "Broschüre" ;
+        Text [ de ] = "BroschÃ¼re" ;
         Text[ en-US ] = "Brochures";
         Text[ pt ] = "Brochura";
         Text[ ru ] = "Áðîøþð?";
@@ -1641,7 +1641,7 @@ Resource RID_SW_SHELLRES
  };
  String STR_AUTH_TYPE_UNPUBLISHED
  {
-        Text [ de ] = "Unveröffentlicht" ;
+        Text [ de ] = "UnverÃ¶ffentlicht" ;
         Text[ en-US ] = "Unpublished";
         Text[ pt ] = "Inédito";
         Text[ ru ] = "Íå îïóáëèêîâàíî";
