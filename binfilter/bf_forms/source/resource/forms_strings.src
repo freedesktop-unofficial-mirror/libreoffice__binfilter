@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_strings.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:56:31 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:30:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@ String RID_BASELISTBOX_ERROR_FILLLIST
 
 String RID_STR_IMPORT_GRAPHIC
 {
-    Text [ de ] = "Grafik einf�gen" ;
+    Text [ de ] = "Grafik einfügen" ;
     Text [ en-US ] = "Insert graphics" ;
     Text[ pt ] = "Inserir imagem";
     Text[ ru ] = "Вставить графический объект";
@@ -274,7 +274,7 @@ String RID_ERR_REFRESHING_FORM
 
 String RID_STR_ERR_INSERTRECORD
 {
-    Text [ de ] = "Fehler beim Einf�gen des neuen Datensatzs";
+    Text [ de ] = "Fehler beim Einfügen des neuen Datensatzs";
     Text [ en-US ] = "Error inserting the new record";
     Text[ pt ] = "Erro ao inserir o novo registo de dados";
     Text[ ru ] = "Ошибка вставки новой записи";
@@ -332,7 +332,7 @@ String RID_STR_ERR_UPDATERECORD
 
 String RID_STR_ERR_DELETERECORD
 {
-    Text [ de ] = "Fehler beim L�schen des aktuellen Datensatzes";
+    Text [ de ] = "Fehler beim Löschen des aktuellen Datensatzes";
     Text [ en-US ] = "Error deleting the current record";
     Text[ pt ] = "Erro ao eliminar o registo de dados activo";
     Text[ ru ] = "Ошибка удаления текущей записи";
@@ -361,7 +361,7 @@ String RID_STR_ERR_DELETERECORD
 
 String RID_STR_ERR_DELETERECORDS
 {
-    Text [ de ] = "Fehler beim L�schen der angegebenen Datens�tze";
+    Text [ de ] = "Fehler beim Löschen der angegebenen Datensätze";
     Text [ en-US ] = "Error deleting the specified records";
     Text[ pt ] = "Erro ao eliminar os registos de dados indicados.";
     Text[ ru ] = "Ошибка удаления указанной записи";
@@ -419,7 +419,7 @@ String RID_STR_NEED_NON_NULL_OBJECT
 
 String RID_STR_OPEN_GRAPHICS
 {
-    Text [ de ] = "Grafik einf�gen aus...";
+    Text [ de ] = "Grafik einfügen aus...";
     Text [ en-US ] = "Insert graphics from...";
     Text[ pt ] = "Inserir imagem de...";
     Text[ ru ] = "Вставить графические объекты из...";
