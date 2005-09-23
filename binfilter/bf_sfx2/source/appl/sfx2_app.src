@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_app.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:01:07 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:38:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,7 +168,7 @@ ErrorBox MSG_ERR_OPEN_CFG
 {
     BUTTONS = WB_OK ;
     DEFBUTTON = WB_DEF_OK ;
-    Message [ de ] = "Fehler beim �ffnen der Konfiguration." ;
+    Message [ de ] = "Fehler beim Öffnen der Konfiguration." ;
     Message [ en-US ] = "Error opening configuration file." ;
     Message [ x-comment ] = " ";
     Message[ pt ] = "Erro ao abrir o ficheiro de configuração.";
@@ -296,7 +296,7 @@ ErrorBox MSG_SIGNAL
 {
     BUTTONS = WB_YES_NO ;
     DEFBUTTON = WB_DEF_YES ;
-    Message [ de ] = "Es ist ein unerwarter Anwendungsfehler aufgetreten!\nSie k�nnen jetzt auf eigene Gefahr hin versuchen,\nalle offenen Dokumente zu sichern!\n\nSoll versucht werden, Ihre Arbeit zu sichern, bevor die Applikation beendet wird?" ;
+    Message [ de ] = "Es ist ein unerwarter Anwendungsfehler aufgetreten!\nSie können jetzt auf eigene Gefahr hin versuchen,\nalle offenen Dokumente zu sichern!\n\nSoll versucht werden, Ihre Arbeit zu sichern, bevor die Applikation beendet wird?" ;
     Message [ en-US ] = "An unexpected program error has occurred.\n\nDo you want to try to save your changes in all open documents before the program is terminated?" ;
     Message [ x-comment ] = " ";
     Message[ pt ] = "Surgiu um erro de programa inesperado!\n\nPoderá agora, sob o seu próprio risco, \ntentar guardar todos os documentos abertos.\nTentar guardar o seu trabalho antes que a aplicação seja fechada?";
@@ -328,7 +328,7 @@ ErrorBox MSG_ERR_WEBBROWSER_NOT_STARTED
 {
     BUTTONS = WB_OK ;
     DEFBUTTON = WB_DEF_OK ;
-    Message [ de ] = "Beim Starten des Web-Browsers ist ein Fehler aufgetreten. Bitte �berpr�fen Sie die Einstellungen von %PRODUCTNAME unter 'Extras - Optionen - %PRODUCTNAME - Hilfsprogramme' und die Einstellungen Ihres Web-Browsers." ;
+    Message [ de ] = "Beim Starten des Web-Browsers ist ein Fehler aufgetreten. Bitte überprüfen Sie die Einstellungen von %PRODUCTNAME unter 'Extras - Optionen - %PRODUCTNAME - Hilfsprogramme' und die Einstellungen Ihres Web-Browsers." ;
     Message [ en-US ] = "An error occurred in starting the web browser. Please check the %PRODUCTNAME settings under 'Tools - Options - %PRODUCTNAME - External Programs' and the settings for your web browser.";
     Message[ pt ] = "An error occurred in starting a webbrowser.\nPlease check the %PRODUCTNAME and webbrowser settings.";
     Message[ ru ] = "Ошибка запуска веб-браузера.\nПроверьте настройки %PRODUCTNAME и веб-браузера.";
@@ -359,7 +359,7 @@ ErrorBox MSG_ERR_EXTERNAL_APP_NOT_FOUND
 {
     BUTTONS = WB_OK;
     DEFBUTTON = WB_DEF_OK ;
-    Message [ de ] = "Es konnte keine zugeh�rige externe Applikation f�r den angew�hlten Dateitypen gefunden werden.\nBitte �berpr�fen Sie die Einstellungen von %PRODUCTNAME." ;
+    Message [ de ] = "Es konnte keine zugehörige externe Applikation für den angewählten Dateitypen gefunden werden.\nBitte überprüfen Sie die Einstellungen von %PRODUCTNAME." ;
     Message [ en-US ] = "No corresponding external application could be found for the given file type.\nPlease check the %PRODUCTNAME settings.";
     Message[ pt ] = "An error occurred in starting the external application for the given file type.\nPlease check the %PRODUCTNAME settings.";
     Message[ ru ] = "Для заданного типа файлов не найдено соответствующих внешних приложений.\nПроверьте настройки %PRODUCTNAME.";
@@ -461,7 +461,7 @@ WarningBox RID_WARN_POST_MAILTO
 {
     BUTTONS = WB_OK_CANCEL ;
     DEFBUTTON = WB_DEF_OK ;
-    Message [ de ] = "Ein Formular soll per E-Mail versendet werden.\nDadurch wird dem Empf�nger Ihre E-Mail-Adresse bekannt." ;
+    Message [ de ] = "Ein Formular soll per E-Mail versendet werden.\nDadurch wird dem Empfänger Ihre E-Mail-Adresse bekannt." ;
     Message [ en-US ] = "A form is to be sent by e-mail.\nThis means that the receiver will get to see your e-mail address." ;
     Message [ x-comment ] = " ";
     Message[ pt ] = "O formulário será enviado por e-mail.\nO seu endereço electrónico será fornecido ao destinatário.";
@@ -829,7 +829,7 @@ String GID_NAVIGATOR
 
 String GID_INSERT
 {
-    Text [ de ] = "Einf�gen" ;
+    Text [ de ] = "Einfügen" ;
     Text [ en-US ] = "Insert" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir";
@@ -1261,7 +1261,7 @@ String GID_CONNECTOR
 
 String GID_MODIFY
 {
-    Text [ de ] = "�ndern" ;
+    Text [ de ] = "Ändern" ;
     Text [ en-US ] = "Modify" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Alterar";
@@ -1461,7 +1461,7 @@ TabDialog SID_OPTIONS
             PageItem
             {
                 Identifier = RID_SFXPAGE_SPELL ;
-                Text [ de ] = "Rechtschreibpr�fung" ;
+                Text [ de ] = "Rechtschreibprüfung" ;
                 Text [ en-US ] = "Spellcheck" ;
                 PageResID = 259 ;
                 Text [ x-comment ] = " ";
@@ -1519,7 +1519,7 @@ TabDialog SID_OPTIONS
 
 InfoBox MSG_CANT_QUIT
 {
-    Message [ de ] = "Die Anwendung kann zur Zeit nicht beendet werden.\nBitte warten Sie das Ende aller Druckauftr�ge und/oder\nOLE-Aktivierungen ab und schlie�en Sie alle Dialoge." ;
+    Message [ de ] = "Die Anwendung kann zur Zeit nicht beendet werden.\nBitte warten Sie das Ende aller Druckaufträge und/oder\nOLE-Aktivierungen ab und schließen Sie alle Dialoge." ;
     Message [ en-US ] = "The application cannot be terminated at the moment.\nPlease wait until all print jobs and/or\nOLE actions have finished and close all dialogs." ;
     Message [ x-comment ] = " ";
     Message[ pt ] = "De momento é impossível sair desta aplicação.\nAguarde a impressão de todos os documentos\n e/ou o fim das activações OLE e feche todos os diálogos.";
@@ -1719,7 +1719,7 @@ QueryBox MSG_IS_SERVER
 
 String STR_RESWARNING
 {
-    Text [ de ] = "Die Systemresourcen werden knapp. Bitte beenden Sie andere Applikationen oder schlie�en Sie einige Fenster, bevor Sie weiterarbeiten." ;
+    Text [ de ] = "Die Systemresourcen werden knapp. Bitte beenden Sie andere Applikationen oder schließen Sie einige Fenster, bevor Sie weiterarbeiten." ;
     Text [ en-US ] = "Limited system resources. Please quit other applications or close some windows before continuing." ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Recursos do sistema insuficientes. Por favor, saia dos outros programas ou feche algumas janelas antes de continuar.";
@@ -1748,7 +1748,7 @@ String STR_RESWARNING
 };
 String STR_RESEXCEPTION
 {
-    Text [ de ] = "Wichtige Programmteile nicht gefunden. Bitte �berpr�fen Sie Ihre Installation." ;
+    Text [ de ] = "Wichtige Programmteile nicht gefunden. Bitte überprüfen Sie Ihre Installation." ;
     Text [ en-US ] = "There are files missing. Please check application setup." ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Faltam alguns ficheiros importantes. Por favor, verifique a configuração do programa.";
@@ -2366,7 +2366,7 @@ String STR_EVENT_CLOSEDOC
 
 String STR_EVENT_PREPARECLOSEDOC
 {
-    Text [ de ] = "Dokument schlie�en" ;
+    Text [ de ] = "Dokument schließen" ;
     Text [ en-US ] = "Close Document" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Fechar documento";
@@ -2396,7 +2396,7 @@ String STR_EVENT_PREPARECLOSEDOC
 
 String STR_EVENT_OPENDOC
 {
-    Text [ de ] = "Dokument �ffnen" ;
+    Text [ de ] = "Dokument öffnen" ;
     Text [ en-US ] = "Open Document" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Abrir documento";
@@ -2636,7 +2636,7 @@ String STR_EVENT_PRINTDOC
 
 String STR_EVENT_MODIFYCHANGED
 {
-    Text [ de ] = "'Ge�ndert'-Status wurde ge�ndert" ;
+    Text [ de ] = "'Geändert'-Status wurde geändert" ;
     Text [ en-US ] = "'Modified' status was changed" ;
     Text[ pt ] = "'Modified' status was changed";
     Text[ ru ] = "'Modified' status was changed";
@@ -4473,7 +4473,7 @@ WarningBox RID_SECURITY_WARNING_HYPERLINK
     HelpId = HID_WARNING_SECURITY_HYPERLINK;
     Buttons = WB_YES_NO ;
     DefButton = WB_DEF_NO ;
-    Message [ de ] = "Dieser Hyperlink wird \"%s\" �ffnen. Wollen Sie fortfahren?" ;
+    Message [ de ] = "Dieser Hyperlink wird \"%s\" öffnen. Wollen Sie fortfahren?" ;
     Message [ en-US ] = "This hyperlink is going to open \"%s\". Do you want to proceed?" ;
     Message[ pt ] = "This hyperlink is going to open \"%s\". Do you want to proceed?";
     Message[ ru ] = "Эта гиперссылка открывает %s. Продолжить?";
@@ -4534,7 +4534,7 @@ WarningBox RID_SECURITY_WARNING_HYPERLINK
 ErrorBox RID_INVALID_URL_MSG
 {
     Buttons = WB_OK ;
-    Message [ de ] = "Der URL ist ung�ltig." ;
+    Message [ de ] = "Der URL ist ungültig." ;
     Message [ en-US ] = "The URL is not valid." ;
     Message[ pt ] = "The URL is not valid.";
     Message[ ru ] = "The URL is not valid.";
