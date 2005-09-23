@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_utlui.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:08:57 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:55:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1118,7 +1118,7 @@
 String STR_CONTENT_TYPE_OUTLINE
 {
     /* ### ACHTUNG: Neuer Text in Resource? Überschriften : šberschriften */
-    Text [ de ] = "Überschriften" ;
+    Text [ de ] = "Ãœberschriften" ;
     Text [ en-US ] = "Headings" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "TÃ­tulos";
@@ -1467,7 +1467,7 @@ String STR_CONTENT_TYPE_POSTIT
 String STR_CONTENT_TYPE_SINGLE_OUTLINE
 {
     /* ### ACHTUNG: Neuer Text in Resource? Überschrift : šberschrift */
-    Text [ de ] = "Überschrift" ;
+    Text [ de ] = "Ãœberschrift" ;
     Text [ en-US ] = "Heading" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "TÃ­tulo";
