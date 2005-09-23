@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtsh.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:30:15 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:56:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
  // Undo
 String STR_CANT_UNDO
 {
-    Text [ de ] = "unmˆglich" ;
+    Text [ de ] = "unm√∂glich" ;
     Text [ en-US ] = "not possible" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Imposs√≠vel";
@@ -67,7 +67,7 @@ String STR_CANT_UNDO
 };
 String STR_DELETE_UNDO
 {
-    Text [ de ] = "Lˆschen" ;
+    Text [ de ] = "L√∂schen" ;
     Text [ en-US ] = "Delete" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar";
@@ -96,7 +96,7 @@ String STR_DELETE_UNDO
 };
 String STR_INSERT_UNDO
 {
-    Text [ de ] = "Einf¸gen" ;
+    Text [ de ] = "Einf√ºgen" ;
     Text [ en-US ] = "Insert" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir";
@@ -125,7 +125,7 @@ String STR_INSERT_UNDO
 };
 String STR_OVR_UNDO
 {
-    Text [ de ] = "‹berschreiben" ;
+    Text [ de ] = "√úberschreiben" ;
     Text [ en-US ] = "Overwrite" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Substituir";
@@ -270,7 +270,7 @@ String STR_SETFMTCOLL_UNDO
 };
 String STR_RESET_ATTR_UNDO
 {
-    Text [ de ] = "Attribute zur¸cksetzen" ;
+    Text [ de ] = "Attribute zur√ºcksetzen" ;
     Text [ en-US ] = "Reset attributes" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Restaurar atributos";
@@ -328,7 +328,7 @@ String STR_APPLY_ATTR_UNDO
 };
 String STR_INSERT_DOC_UNDO
 {
-    Text [ de ] = "Dokument einf¸gen" ;
+    Text [ de ] = "Dokument einf√ºgen" ;
     Text [ en-US ] = "Insert Document" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir documento";
@@ -357,7 +357,7 @@ String STR_INSERT_DOC_UNDO
 };
 String STR_INSERT_GLOSSARY
 {
-    Text [ de ] = "AutoText einf¸gen" ;
+    Text [ de ] = "AutoText einf√ºgen" ;
     Text [ en-US ] = "Insert AutoText" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir AutoTexto";
@@ -386,7 +386,7 @@ String STR_INSERT_GLOSSARY
 };
 String STR_DELBOOKMARK
 {
-    Text [ de ] = "Textmarke lˆschen" ;
+    Text [ de ] = "Textmarke l√∂schen" ;
     Text [ en-US ] = "Delete bookmark" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar marcador de texto";
@@ -415,7 +415,7 @@ String STR_DELBOOKMARK
 };
 String STR_INSBOOKMARK
 {
-    Text [ de ] = "Textmarke einf¸gen" ;
+    Text [ de ] = "Textmarke einf√ºgen" ;
     Text [ en-US ] = "Insert bookmark" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir marcador de texto";
@@ -502,7 +502,7 @@ String STR_SORT_TXT
 };
 String STR_INSTABLE_UNDO
 {
-    Text [ de ] = "Tabelle einf¸gen" ;
+    Text [ de ] = "Tabelle einf√ºgen" ;
     Text [ en-US ] = "Insert Table" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir tabela";
@@ -734,7 +734,7 @@ String STR_PLAY_MACRO_UNDO
 };
 String STR_INSERT_ENV_UNDO
 {
-    Text [ de ] = "Briefumschlag einf¸gen" ;
+    Text [ de ] = "Briefumschlag einf√ºgen" ;
     Text [ en-US ] = "Insert Envelope" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir envelope";
@@ -821,7 +821,7 @@ String STR_DRAG_AND_MOVE
 };
 String STR_INSERT_RULER
 {
-    Text [ de ] = "Ruler einf¸gen" ;
+    Text [ de ] = "Ruler einf√ºgen" ;
     Text [ en-US ] = "Insert ruler" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir r√©gua";
@@ -850,7 +850,7 @@ String STR_INSERT_RULER
 };
 String STR_INSERT_CHART
 {
-    Text [ de ] = "%PRODUCTNAME Chart einf¸gen" ;
+    Text [ de ] = "%PRODUCTNAME Chart einf√ºgen" ;
     Text [ en-US ] = "Insert %PRODUCTNAME Chart" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir %PRODUCTNAME Chart";
@@ -879,7 +879,7 @@ String STR_INSERT_CHART
 };
 String STR_INSERTFLY
 {
-    Text [ de ] = "Rahmen einf¸gen" ;
+    Text [ de ] = "Rahmen einf√ºgen" ;
     Text [ en-US ] = "Insert frame" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir moldura";
@@ -908,7 +908,7 @@ String STR_INSERTFLY
 };
 String STR_DELETEFLY
 {
-    Text [ de ] = "Rahmen lˆschen" ;
+    Text [ de ] = "Rahmen l√∂schen" ;
     Text [ en-US ] = "Delete frame" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar moldura";
@@ -966,7 +966,7 @@ String STR_AUTOFORMAT
 };
 String STR_TABLEHEADLINE
 {
-    Text [ de ] = "Tabellen¸berschrift" ;
+    Text [ de ] = "Tabellen√ºberschrift" ;
     Text [ en-US ] = "Table heading" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "T√≠tulo da tabela";
@@ -1024,7 +1024,7 @@ String STR_REPLACE
 };
 String STR_INSERTSECTION
 {
-    Text [ de ] = "Bereich einf¸gen" ;
+    Text [ de ] = "Bereich einf√ºgen" ;
     Text [ en-US ] = "Insert section" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir sec√ß√£o";
@@ -1053,7 +1053,7 @@ String STR_INSERTSECTION
 };
 String STR_DELETESECTION
 {
-    Text [ de ] = "Bereich lˆschen" ;
+    Text [ de ] = "Bereich l√∂schen" ;
     Text [ en-US ] = "Delete section" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar categoria";
@@ -1082,7 +1082,7 @@ String STR_DELETESECTION
 };
 String STR_CHANGESECTION
 {
-    Text [ de ] = "Bereich ‰ndern" ;
+    Text [ de ] = "Bereich √§ndern" ;
     Text [ en-US ] = "Modify section" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Alterar sec√ß√£o";
@@ -1111,7 +1111,7 @@ String STR_CHANGESECTION
 };
 String STR_CHANGESECTPASSWD
 {
-    Text [ de ] = "Passwortschutz ‰ndern" ;
+    Text [ de ] = "Passwortschutz √§ndern" ;
     Text [ en-US ] = "Change password protection" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Alterar protec√ß√£o da senha";
@@ -1140,7 +1140,7 @@ String STR_CHANGESECTPASSWD
 };
 String STR_CHANGEDEFATTR
 {
-    Text [ de ] = "Standardwerte ‰ndern" ;
+    Text [ de ] = "Standardwerte √§ndern" ;
     Text [ en-US ] = "Modify default values" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Alterar valores padr√£o";
@@ -1227,7 +1227,7 @@ String STR_OUTLINE_UD
 };
 String STR_INSNUM
 {
-    Text [ de ] = "Nummerierung einf¸gen" ;
+    Text [ de ] = "Nummerierung einf√ºgen" ;
     Text [ en-US ] = "Insert numbering" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir numera√ß√£o";
@@ -1285,7 +1285,7 @@ String STR_NUMUPDOWN
 };
 String STR_MOVENUM
 {
-    Text [ de ] = "Abs‰tze verschieben" ;
+    Text [ de ] = "Abs√§tze verschieben" ;
     Text [ en-US ] = "Move paragraphs" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Mover par√°grafos";
@@ -1314,7 +1314,7 @@ String STR_MOVENUM
 };
 String STR_INSERTDRAW
 {
-    Text [ de ] = "Zeichenobjekt einf¸gen" ;
+    Text [ de ] = "Zeichenobjekt einf√ºgen" ;
     Text [ en-US ] = "Insert Draw Object" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir objecto de desenho";
@@ -1372,7 +1372,7 @@ String STR_NUMORNONUM
 };
 String STR_INC_LEFTMARGIN
 {
-    Text [ de ] = "Einzug vergrˆﬂern" ;
+    Text [ de ] = "Einzug vergr√∂√üern" ;
     Text [ en-US ] = "Increase Indent" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Aumentar avan√ßo";
@@ -1430,7 +1430,7 @@ String STR_DEC_LEFTMARGIN
 };
 String STR_INSERTLABEL
 {
-    Text [ de ] = "Beschriftung einf¸gen" ;
+    Text [ de ] = "Beschriftung einf√ºgen" ;
     Text [ en-US ] = "Insert caption" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir legenda";
@@ -1488,7 +1488,7 @@ String STR_SETNUMRULESTART
 };
 String STR_CHANGEFTN
 {
-    Text [ de ] = "Fuﬂnote ‰ndern" ;
+    Text [ de ] = "Fu√ünote √§ndern" ;
     Text [ en-US ] = "Modify footnote" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Modificar nota de rodap√©";
@@ -1522,7 +1522,7 @@ String STR_REDLINE
 };
 String STR_ACCEPT_REDLINE
 {
-    Text [ de ] = "ƒnderung akzeptieren" ;
+    Text [ de ] = "√Ñnderung akzeptieren" ;
     Text [ en-US ] = "Accept changes" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Aceitar modifica√ß√µes";
@@ -1551,7 +1551,7 @@ String STR_ACCEPT_REDLINE
 };
 String STR_REJECT_REDLINE
 {
-    Text [ de ] = "ƒnderung ablehnen" ;
+    Text [ de ] = "√Ñnderung ablehnen" ;
     Text [ en-US ] = "Reject change" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Rejeitar altera√ß√£o";
@@ -1697,7 +1697,7 @@ String STR_MERGE_TABLE
 
 String STR_TRANSLITERATE
 {
-    Text [ de ] = "Groﬂ-/Kleinschreibung" ;
+    Text [ de ] = "Gro√ü-/Kleinschreibung" ;
     Text [ en-US ] = "Case/Characters";
     Text[ pt ] = "Caixa/Caracteres";
     Text[ ru ] = "—Ä–µ–≥–∏—Å—Ç—Ä";
@@ -1726,7 +1726,7 @@ String STR_TRANSLITERATE
 
 String STR_DELNUM
 {
-    Text [ de ] = "Nummerierung lˆschen" ;
+    Text [ de ] = "Nummerierung l√∂schen" ;
     Text [ en-US ] = "Delete numbering" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar numera√ß√£o";
@@ -1813,7 +1813,7 @@ String STR_DRAWGROUP
 };
 String STR_DRAWUNGROUP
 {
-    Text [ de ] = "Gruppenobjekt auflˆsen" ;
+    Text [ de ] = "Gruppenobjekt aufl√∂sen" ;
     Text [ en-US ] = "Ungroup drawing objects" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Desagrupar objectos";
@@ -1842,7 +1842,7 @@ String STR_DRAWUNGROUP
 };
 String STR_DRAWDELETE
 {
-    Text [ de ] = "Zeichenobjekte lˆschen" ;
+    Text [ de ] = "Zeichenobjekte l√∂schen" ;
     Text [ en-US ] = "Delete drawing objects" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar objectos de desenho";
@@ -1900,7 +1900,7 @@ String STR_REREAD
 };
 String STR_DELGRF
 {
-    Text [ de ] = "Grafik lˆschen" ;
+    Text [ de ] = "Grafik l√∂schen" ;
     Text [ en-US ] = "Delete graphics" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar imagem";
@@ -1929,7 +1929,7 @@ String STR_DELGRF
 };
 String STR_DELOLE
 {
-    Text [ de ] = "Objekt lˆschen" ;
+    Text [ de ] = "Objekt l√∂schen" ;
     Text [ en-US ] = "Delete object" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar objecto";
@@ -2016,7 +2016,7 @@ String STR_TABLE_AUTOFMT
 };
 String STR_TABLE_INSCOL
 {
-    Text [ de ] = "Spalte einf¸gen" ;
+    Text [ de ] = "Spalte einf√ºgen" ;
     Text [ en-US ] = "Insert Column" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir coluna";
@@ -2045,7 +2045,7 @@ String STR_TABLE_INSCOL
 };
 String STR_TABLE_INSROW
 {
-    Text [ de ] = "Zeile einf¸gen" ;
+    Text [ de ] = "Zeile einf√ºgen" ;
     Text [ en-US ] = "Insert Row" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir linha";
@@ -2074,7 +2074,7 @@ String STR_TABLE_INSROW
 };
 String STR_TABLE_DELBOX
 {
-    Text [ de ] = "Zeile/Spalte lˆschen" ;
+    Text [ de ] = "Zeile/Spalte l√∂schen" ;
     Text [ en-US ] = "Delete row/column" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Eliminar linha/coluna";
@@ -2190,7 +2190,7 @@ String STR_TABLE_NUMFORMAT
 };
 String STR_INSERT_TOX
 {
-    Text [ de ] = "Einf¸gen Verzeichnis" ;
+    Text [ de ] = "Einf√ºgen Verzeichnis" ;
     Text [ en-US ] = "Insert index" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir √≠ndice";
@@ -2364,7 +2364,7 @@ String STR_UNDO_CHAIN
 };
 String STR_UNDO_UNCHAIN
 {
-    Text [ de ] = "Textrahmenverbindung lˆsen" ;
+    Text [ de ] = "Textrahmenverbindung l√∂sen" ;
     Text [ en-US ] = "Unlink text frames" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Desligar molduras de texto";
@@ -2393,7 +2393,7 @@ String STR_UNDO_UNCHAIN
 };
 String STR_UNDO_FTNINFO
 {
-    Text [ de ] = "Fuﬂnoteneinstellungen ‰ndern" ;
+    Text [ de ] = "Fu√ünoteneinstellungen √§ndern" ;
     Text [ en-US ] = "Modify footnote options" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Modificar configura√ß√£o de notas finais";
@@ -2422,7 +2422,7 @@ String STR_UNDO_FTNINFO
 };
 String STR_UNDO_ENDNOTEINFO
 {
-    Text [ de ] = "Endnoteneinstellungen ‰ndern" ;
+    Text [ de ] = "Endnoteneinstellungen √§ndern" ;
     Text [ en-US ] = "Modify endnote settings" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Modificar configura√ß√£o de notas finais";
@@ -2567,7 +2567,7 @@ String STR_UNDO_TMPAUTOCORR
 };
 String STR_INSERT_FOOTNOTE
 {
-    Text [ de ] = "Fuﬂnote einf¸gen" ;
+    Text [ de ] = "Fu√ünote einf√ºgen" ;
     Text [ en-US ] = "Insert footnote" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir nota de rodap√©";
@@ -2596,7 +2596,7 @@ String STR_INSERT_FOOTNOTE
 };
 String STR_INSERT_URLBTN
 {
-    Text [ de ] = "URL Button einf¸gen" ;
+    Text [ de ] = "URL Button einf√ºgen" ;
     Text [ en-US ] = "insert URL button";
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir bot√£o URL";
@@ -2625,7 +2625,7 @@ String STR_INSERT_URLBTN
 };
 String STR_INSERT_URLTXT
 {
-    Text [ de ] = "Hyperlink einf¸gen" ;
+    Text [ de ] = "Hyperlink einf√ºgen" ;
     Text [ en-US ] = "Insert Hyperlink";
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir hiperliga√ß√£o";
@@ -2769,7 +2769,7 @@ String STR_DDEERROR_DATA1
 };
 String STR_DDEERROR_DATA2
 {
-    Text [ de ] = "] kˆnnen nicht ermittelt werden" ;
+    Text [ de ] = "] k√∂nnen nicht ermittelt werden" ;
     Text [ en-US ] = "] cannot be obtained" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "] n√£o podem ser determinados.";
@@ -2798,7 +2798,7 @@ String STR_DDEERROR_DATA2
 };
 String STR_DDEERROR_LINK1
 {
-    Text [ de ] = "Die Verkn¸pfung zu [" ;
+    Text [ de ] = "Die Verkn√ºpfung zu [" ;
     Text [ en-US ] = "Link to [" ;
     Text[ pt ] = "A liga√ß√£o a [";
     Text[ ru ] = "–°—Å—ã–ª–∫—É –Ω–∞ [";
