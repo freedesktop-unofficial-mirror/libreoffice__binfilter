@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_sdstring.src,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:02:44 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:47:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1458,7 +1458,7 @@ String RID_SVXSTR_GREEN
 {
     /* ### ACHTUNG: Neuer Text in Resource? Gr�n : Gr�n */
     /* ### ACHTUNG: Neuer Text in Resource? Gr�n : Gr�n */
-    Text [ de ] = "Gr�n" ;
+    Text [ de ] = "Grün" ;
     Text [ en-US ] = "Green" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Verde";
@@ -1489,7 +1489,7 @@ String RID_SVXSTR_CYAN
 {
     /* ### ACHTUNG: Neuer Text in Resource? T�rkis : T�rkis */
     /* ### ACHTUNG: Neuer Text in Resource? T�rkis : T�rkis */
-    Text [ de ] = "T�rkis" ;
+    Text [ de ] = "Türkis" ;
     Text [ en-US ] = "Turquoise" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Turquesa";
@@ -1695,7 +1695,7 @@ String RID_SVXSTR_LIGHTGREEN
 {
     /* ### ACHTUNG: Neuer Text in Resource? Hellgr�n : Hellgr�n */
     /* ### ACHTUNG: Neuer Text in Resource? Hellgr�n : Hellgr�n */
-    Text [ de ] = "Hellgr�n" ;
+    Text [ de ] = "Hellgrün" ;
     Text [ en-US ] = "Light green" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Verde-claro";
@@ -1726,7 +1726,7 @@ String RID_SVXSTR_LIGHTCYAN
 {
     /* ### ACHTUNG: Neuer Text in Resource? Hellt�rkis : Hellt�rkis */
     /* ### ACHTUNG: Neuer Text in Resource? Hellt�rkis : Hellt�rkis */
-    Text [ de ] = "Hellt�rkis" ;
+    Text [ de ] = "Helltürkis" ;
     Text [ en-US ] = "Light cyan" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Turquesa-claro";
@@ -1845,7 +1845,7 @@ String RID_SVXSTR_WHITE
 {
     /* ### ACHTUNG: Neuer Text in Resource? Wei� : Wei� */
     /* ### ACHTUNG: Neuer Text in Resource? Wei� : Wei� */
-    Text [ de ] = "Wei�" ;
+    Text [ de ] = "Weiß" ;
     Text [ en-US ] = "White" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Branco";
@@ -2572,7 +2572,7 @@ String RID_SVXSTR_PALE_YELLOW
 
 String RID_SVXSTR_PALE_GREEN
 {
-    Text [ de ] = "Blassgr�n";
+    Text [ de ] = "Blassgrün";
     Text [ en-US ] = "Pale green";
     Text[ pt ] = "Verde-claro";
     Text[ ru ] = "Бледно-зеленый";
@@ -2862,7 +2862,7 @@ String RID_SVXSTR_TBLAFMT_BROWN
 };
 String RID_SVXSTR_TBLAFMT_CURRENCY
 {
-    Text [ de ] = "W�hrung";
+    Text [ de ] = "Währung";
     Text [ en-US ] = "Currency";
     Text[ pt ] = "Moeda";
     Text[ ru ] = "Валюта";
@@ -2890,7 +2890,7 @@ String RID_SVXSTR_TBLAFMT_CURRENCY
 };
 String RID_SVXSTR_TBLAFMT_CURRENCY_3D
 {
-    Text [ de ] = "W�hrung 3D";
+    Text [ de ] = "Währung 3D";
     Text [ en-US ] = "Currency 3D";
     Text[ pt ] = "Moeda 3D";
     Text[ ru ] = "Трехмерная валюта";
@@ -2918,7 +2918,7 @@ String RID_SVXSTR_TBLAFMT_CURRENCY_3D
 };
 String RID_SVXSTR_TBLAFMT_CURRENCY_GRAY
 {
-    Text [ de ] = "W�hrung Grau";
+    Text [ de ] = "Währung Grau";
     Text [ en-US ] = "Currency Gray";
     Text[ pt ] = "Moeda em cinzento";
     Text[ ru ] = "Валюта серая";
@@ -2946,7 +2946,7 @@ String RID_SVXSTR_TBLAFMT_CURRENCY_GRAY
 };
 String RID_SVXSTR_TBLAFMT_CURRENCY_LAVENDER
 {
-    Text [ de ] = "W�hrung Flieder";
+    Text [ de ] = "Währung Flieder";
     Text [ en-US ] = "Currency Lavender";
     Text[ pt ] = "Moeda em lilás";
     Text[ ru ] = "Валюта фиолетовая";
@@ -2974,7 +2974,7 @@ String RID_SVXSTR_TBLAFMT_CURRENCY_LAVENDER
 };
 String RID_SVXSTR_TBLAFMT_CURRENCY_TURQUOISE
 {
-    Text [ de ] = "W�hrung T�rkis";
+    Text [ de ] = "Währung Türkis";
     Text [ en-US ] = "Currency Turquoise";
     Text[ pt ] = "Moeda em turquesa";
     Text[ ru ] = "Валюта бирюзовая";
@@ -3030,7 +3030,7 @@ String RID_SVXSTR_TBLAFMT_GRAY
 };
 String RID_SVXSTR_TBLAFMT_GREEN
 {
-    Text [ de ] = "Gr�n";
+    Text [ de ] = "Grün";
     Text [ en-US ] = "Green";
     Text[ pt ] = "Verde";
     Text[ ru ] = "Зеленый";
@@ -3114,7 +3114,7 @@ String RID_SVXSTR_TBLAFMT_RED
 };
 String RID_SVXSTR_TBLAFMT_TURQUOISE
 {
-    Text [ de ] = "T�rkis";
+    Text [ de ] = "Türkis";
     Text [ en-US ] = "Turquoise";
     Text[ pt ] = "Turquesa";
     Text[ ru ] = "Бирюзовый";
@@ -3707,7 +3707,7 @@ String RID_SVXSTR_GRDT0
 };
 String RID_SVXSTR_GRDT1
 {
-    Text [ de ] = "Linear Blau/wei�";
+    Text [ de ] = "Linear Blau/weiß";
     Text [ en-US ] = "Linear blue/white";
     Text[ pt ] = "Linear azul/branco";
     Text[ ru ] = "Линейный: синий/белый";
@@ -3735,7 +3735,7 @@ String RID_SVXSTR_GRDT1
 };
 String RID_SVXSTR_GRDT2
 {
-    Text [ de ] = "Linear violett/gr�n";
+    Text [ de ] = "Linear violett/grün";
     Text [ en-US ] = "Linear magenta/green";
     Text[ pt ] = "Linear violeta/verde";
     Text[ ru ] = "Линейный: пурпурный/зеленый";
@@ -3791,7 +3791,7 @@ String RID_SVXSTR_GRDT3
 };
 String RID_SVXSTR_GRDT4
 {
-    Text [ de ] = "Radial gr�n/schwarz";
+    Text [ de ] = "Radial grün/schwarz";
     Text [ en-US ] = "Radial green/black";
     Text[ pt ] = "Radial verde/preto";
     Text[ ru ] = "Радиальный: зеленый/черный";
@@ -3847,7 +3847,7 @@ String RID_SVXSTR_GRDT5
 };
 String RID_SVXSTR_GRDT6
 {
-    Text [ de ] = "Rechteck rot/wei�";
+    Text [ de ] = "Rechteck rot/weiß";
     Text [ en-US ] = "Rectangular red/white";
     Text[ pt ] = "Rectangular vermelho/branco";
     Text[ ru ] = "Прямоугольный: красный/белый";
@@ -3875,7 +3875,7 @@ String RID_SVXSTR_GRDT6
 };
 String RID_SVXSTR_GRDT7
 {
-    Text [ de ] = "Quadratisch gelb/wei�";
+    Text [ de ] = "Quadratisch gelb/weiß";
     Text [ en-US ] = "Square yellow/white";
     Text[ pt ] = "Quadrado amarelo/branco";
     Text[ ru ] = "Квадратный: желтый/белый";
@@ -3931,7 +3931,7 @@ String RID_SVXSTR_GRDT8
 };
 String RID_SVXSTR_GRDT9
 {
-    Text [ de ] = "Axial hellrot/wei�";
+    Text [ de ] = "Axial hellrot/weiß";
     Text [ en-US ] = "Axial light red/white";
     Text[ pt ] = "Axial vermelho-claro/branco";
     Text[ ru ] = "Осевой: светло-красный/белый";
@@ -4532,7 +4532,7 @@ String RID_SVXSTR_BMP2
 };
 String RID_SVXSTR_BMP3
 {
-    Text [ de ] = "Grobk�rnig";
+    Text [ de ] = "Grobkörnig";
     Text [ en-US ] = "Coarse grained";
     Text[ pt ] = "Granulado grosso";
     Text[ ru ] = "Крупная зернистость";
@@ -4924,7 +4924,7 @@ String RID_SVXSTR_BMP16
 };
 String RID_SVXSTR_BMP17
 {
-    Text [ de ] = "G�nsebl�mchen";
+    Text [ de ] = "Gänseblümchen";
     Text [ en-US ] = "Daisy";
     Text[ pt ] = "Margaridas";
     Text[ ru ] = "Маргаритки";
@@ -5619,7 +5619,7 @@ String RID_SVXSTR_LEND2
 };
 String RID_SVXSTR_LEND3
 {
-    Text [ de ] = "Bema�ungsenden";
+    Text [ de ] = "Bemaßungsenden";
     Text [ en-US ] = "Dimension lines";
     Text[ pt ] = "Linhas de dimensionamento";
     Text[ ru ] = "Размерные линии";
@@ -5884,7 +5884,7 @@ String RID_SVXSTR_TRASNGR0_DEF
 
 String RID_SVXSTR_TRASNGR0
 {
-    Text [ de ] = "Fl�chentransparenz";
+    Text [ de ] = "Flächentransparenz";
     Text [ en-US ] = "Transparency";
     Text[ pt ] = "Transparência";
     Text[ ru ] = "Прозрачность";
