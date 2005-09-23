@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_menu.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:11:41 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:34:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -600,7 +600,7 @@ Menu RID_MENU
         {
             Identifier = WORKAROUND_22 ;
             HelpID = 22 ;
-            Text [ de ] = "~Einf�gen" ;
+            Text [ de ] = "~Einfügen" ;
             Text [ en-US ] = "~Insert" ;
             SubMenu = Menu
             {
@@ -1262,7 +1262,7 @@ Menu RID_MENU
                                 {
                                     Identifier = SID_DIAGRAM_AXIS_A ;
                                     HelpID = SID_DIAGRAM_AXIS_A ;
-                                    Text [ de ] = "~Sekund�re X-Achse..." ;
+                                    Text [ de ] = "~Sekundäre X-Achse..." ;
                                     Text [ en-US ] = "~Secondary X Axis...";
                                     Text [ x-comment ] = " ";
                                     Text[ pt ] = "Eixo X ~secundário...";
@@ -1292,7 +1292,7 @@ Menu RID_MENU
                                 {
                                     Identifier = SID_DIAGRAM_AXIS_B ;
                                     HelpID = SID_DIAGRAM_AXIS_B ;
-                                    Text [ de ] = "~Sekund�re Y-Achse..." ;
+                                    Text [ de ] = "~Sekundäre Y-Achse..." ;
                                     Text [ en-US ] = "S~econdary Y Axis...";
                                     Text [ x-comment ] = " ";
                                     Text[ pt ] = "Eixo Y ~secundário...";
@@ -1690,7 +1690,7 @@ Menu RID_MENU
                     {
                         Identifier = SID_DIAGRAM_AREA ;
                         HelpID = SID_DIAGRAM_AREA ;
-                        Text [ de ] = "Diagram~mfl�che..." ;
+                        Text [ de ] = "Diagram~mfläche..." ;
                         Text [ en-US ] = "C~hart Area..." ;
                         Text [ x-comment ] = " ";
                         Text[ pt ] = "Á~rea do gráfico...";
