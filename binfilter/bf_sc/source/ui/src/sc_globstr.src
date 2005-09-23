@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_globstr.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:54:45 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:32:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -407,7 +407,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_ROWHEIGHT
     {
         /* ### ACHTUNG: Neuer Text in Resource? Zeilenhöhe : Zeilenh÷he */
-        Text [ de ] = "Zeilenhöhe" ;
+        Text [ de ] = "ZeilenhÃ¶he" ;
         Text [ en-US ] = "Row height" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Altura da linha";
@@ -436,7 +436,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_OPTROWHEIGHT
     {
         /* ### ACHTUNG: Neuer Text in Resource? optimale Zeilenhöhe : optimale Zeilenh÷he */
-        Text [ de ] = "optimale Zeilenhöhe" ;
+        Text [ de ] = "optimale ZeilenhÃ¶he" ;
         Text [ en-US ] = "Optimal Row Height" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Altura ideal da linha";
@@ -1177,7 +1177,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_DBDATA
     {
         /* ### ACHTUNG: Neuer Text in Resource? Datenbankbereiche ändern : Datenbankbereiche õndern */
-        Text [ de ] = "Datenbankbereiche ändern" ;
+        Text [ de ] = "Datenbankbereiche Ã¤ndern" ;
         Text [ en-US ] = "Change Database Range" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Modificar Ã¡rea da base de dados";
@@ -2047,7 +2047,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_ENTERMATRIX
     {
         /* ### ACHTUNG: Neuer Text in Resource? Matrixformel einfügen : Matrixformel einf³gen */
-        Text [ de ] = "Matrixformel einfügen" ;
+        Text [ de ] = "Matrixformel einfÃ¼gen" ;
         Text [ en-US ] = "Insert Array Formula" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Inserir fÃ³rmula matriz";
@@ -2648,7 +2648,7 @@ Resource RID_GLOBSTR
     String STR_MSSG_DOSUBTOTALS_2
     {
         /* ### ACHTUNG: Neuer Text in Resource? Kann keine Zeilen einfügen : Kann keine Zeilen einf³gen */
-        Text [ de ] = "Kann keine Zeilen einfügen" ;
+        Text [ de ] = "Kann keine Zeilen einfÃ¼gen" ;
         Text [ en-US ] = "Unable to insert rows" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "ImpossÃ­vel inserir linhas";
@@ -2677,7 +2677,7 @@ Resource RID_GLOBSTR
     String STR_MSSG_REPEATDB_0
     {
         /* ### ACHTUNG: Neuer Text in Resource? Keine Operationen auszuführen : Keine Operationen auszuf³hren */
-        Text [ de ] = "Keine Operationen auszuführen" ;
+        Text [ de ] = "Keine Operationen auszufÃ¼hren" ;
         Text [ en-US ] = "No operations to execute" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "NÃ£o tenho operaÃ§Ãµes para executar";
@@ -3076,7 +3076,7 @@ Resource RID_GLOBSTR
     String STR_MSSG_INSERTCELLS_0
     {
         /* ### ACHTUNG: Neuer Text in Resource? Kann nicht in zusammengefaßte Bereiche einfügen : Kann nicht in zusammengefa˜te Bereiche einf³gen */
-        Text [ de ] = "Kann nicht in zusammengefasste Bereiche einfügen" ;
+        Text [ de ] = "Kann nicht in zusammengefasste Bereiche einfÃ¼gen" ;
         Text [ en-US ] = "Inserting into merged ranges not possible" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "ImpossÃ­vel inserir em Ã¡reas intercaladas.";
@@ -3165,7 +3165,7 @@ Resource RID_GLOBSTR
     String STR_SORT_ERR_MERGED
     {
         /* ### ACHTUNG: Neuer Text in Resource? Bereiche mit zusammengefaßten Zellen können nur ohne Formate sortiert werden. : Bereiche mit zusammengefa˜ten Zellen k÷nnen nur ohne Formate sortiert werden. */
-        Text [ de ] = "Bereiche mit zusammengefassten Zellen können nur ohne Formate sortiert werden." ;
+        Text [ de ] = "Bereiche mit zusammengefassten Zellen kÃ¶nnen nur ohne Formate sortiert werden." ;
         Text [ en-US ] = "Ranges containing merged cells can only be sorted without formats." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "As Ã¡reas contendo cÃ©lulas unidas sÃ³ podem ser ordenadas sem formato.";
@@ -5921,7 +5921,7 @@ Resource RID_GLOBSTR
     String STR_PROTECTIONERR
     {
         /* ### ACHTUNG: Neuer Text in Resource? Gesperrte Zellen können nicht geändert werden. : Gesperrte Zellen k÷nnen nicht geõndert werden. */
-        Text [ de ] = "Gesperrte Zellen können nicht geändert werden." ;
+        Text [ de ] = "Gesperrte Zellen kÃ¶nnen nicht geÃ¤ndert werden." ;
         Text [ en-US ] = "Protected cells can not be modified." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "CÃ©lulas protegidas nÃ£o podem ser modificadas.";
@@ -5980,7 +5980,7 @@ Resource RID_GLOBSTR
     String STR_MATRIXFRAGMENTERR
     {
         /* ### ACHTUNG: Neuer Text in Resource? Teil einer Matrix kann nicht geändert werden. : Teil einer Matrix kann nicht geõndert werden. */
-        Text [ de ] = "Sie können nicht nur einen Teil einer Matrix ändern." ;
+        Text [ de ] = "Sie kÃ¶nnen nicht nur einen Teil einer Matrix Ã¤ndern." ;
          // Text[norwegian] = "Protected cells cannot be modified.";
          // Text[italian] = "Impossibile modificare le celle protette.";
          // Text[portuguese_brazilian] = "Células protegidas não podem ser modificadas.";
@@ -7325,7 +7325,7 @@ Resource RID_GLOBSTR
     String STR_INVALID
     {
         /* ### ACHTUNG: Neuer Text in Resource? ungültig : ung³ltig */
-        Text [ de ] = "ungültig" ;
+        Text [ de ] = "ungÃ¼ltig" ;
         Text [ en-US ] = "invalid" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "incorrecto";
@@ -7812,7 +7812,7 @@ Resource RID_GLOBSTR
     String STR_STYLENAME_HEADLINE
     {
         /* ### ACHTUNG: Neuer Text in Resource? Überschrift : šberschrift */
-        Text [ de ] = "Überschrift" ;
+        Text [ de ] = "Ãœberschrift" ;
         Text [ en-US ] = "Heading" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "TÃ­tulo";
@@ -7841,7 +7841,7 @@ Resource RID_GLOBSTR
     String STR_STYLENAME_HEADLINE1
     {
         /* ### ACHTUNG: Neuer Text in Resource? Überschrift1 : šberschrift1 */
-        Text [ de ] = "Überschrift1" ;
+        Text [ de ] = "Ãœberschrift1" ;
         Text [ en-US ] = "Heading1" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "TÃ­tulo1";
@@ -8111,7 +8111,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_INSERT_TAB
     {
         /* ### ACHTUNG: Neuer Text in Resource? Tabelle einfügen : Tabelle einf³gen */
-        Text [ de ] = "Tabellen einfügen" ;
+        Text [ de ] = "Tabellen einfÃ¼gen" ;
         Text [ en-US ] = "Insert Sheet" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Inserir folha";
@@ -8259,7 +8259,7 @@ Resource RID_GLOBSTR
     String STR_UNDO_APPEND_TAB
     {
         /* ### ACHTUNG: Neuer Text in Resource? Tabelle anhängen : Tabelle anhõngen */
-        Text [ de ] = "Tabelle anhängen" ;
+        Text [ de ] = "Tabelle anhÃ¤ngen" ;
         Text [ en-US ] = "Append sheet" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Anexar folha";
@@ -8788,7 +8788,7 @@ Resource RID_GLOBSTR
     String STR_CONSOLIDATE_ERR1
     {
         /* ### ACHTUNG: Neuer Text in Resource? Verbindungen können nicht oberhalb der Quelldaten eingefügt werden. : Verbindungen k÷nnen nicht oberhalb der Quelldaten eingef³gt werden. */
-        Text [ de ] = "Verbindungen können nicht oberhalb der Quelldaten eingefügt werden." ;
+        Text [ de ] = "Verbindungen kÃ¶nnen nicht oberhalb der Quelldaten eingefÃ¼gt werden." ;
         Text [ en-US ] = "References can not be inserted above the source data." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "ImpossÃ­vel inserir referÃªncias acima dos dados-fonte.";
@@ -9411,7 +9411,7 @@ Resource RID_GLOBSTR
     String STR_LINKERROR
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Verknüpfung konnte nicht aktualisiert werden. : Die Verkn³pfung konnte nicht aktualisiert werden. */
-        Text [ de ] = "Die Verknüpfung konnte nicht aktualisiert werden." ;
+        Text [ de ] = "Die VerknÃ¼pfung konnte nicht aktualisiert werden." ;
         Text [ en-US ] = "The link could not be updated." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "ImpossÃ­vel actualizar a ligaÃ§Ã£o.";
@@ -9585,7 +9585,7 @@ Resource RID_GLOBSTR
     String STR_DOC_MODIFIED
     {
         /* ### ACHTUNG: Neuer Text in Resource? Verändert : Verõndert */
-        Text [ de ] = "Verändert" ;
+        Text [ de ] = "VerÃ¤ndert" ;
         Text [ en-US ] = "Modified" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Modificado";
@@ -9670,7 +9670,7 @@ Resource RID_GLOBSTR
     String STR_DOC_KEYWORDS
     {
         /* ### ACHTUNG: Neuer Text in Resource? Schlüsselworte : Schl³sselworte */
-        Text [ de ] = "Schlüsselworte" ;
+        Text [ de ] = "SchlÃ¼sselworte" ;
         Text [ en-US ] = "Key words" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Palavras-chave";
@@ -9784,7 +9784,7 @@ Resource RID_GLOBSTR
     };
     String STR_RELOAD_TABLES
     {
-        Text [ de ] = "Diese Datei enthält Verknüpfungen zu anderen Dateien.\nSollen diese aktualisiert werden?" ;
+        Text [ de ] = "Diese Datei enthÃ¤lt VerknÃ¼pfungen zu anderen Dateien.\nSollen diese aktualisiert werden?" ;
         Text [ en-US ] = "This file contains links to other files.\nShould they be updated?" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Este ficheiro contÃ©m ligaÃ§Ãµes a outros ficheiros.\nActualizar?";
@@ -9813,7 +9813,7 @@ Resource RID_GLOBSTR
     String STR_REIMPORT_AFTER_LOAD
     {
         /* ### ACHTUNG: Neuer Text in Resource? Diese Datei enthält Abfragen, deren Ergebnisse nicht mitgespeichert wurden.\nSollen diese Abfragen wiederholt werden? : Diese Datei enthõlt Abfragen, deren Ergebnisse nicht mitgespeichert wurden.\nSollen diese Abfragen wiederholt werden? */
-        Text [ de ] = "Diese Datei enthält Abfragen, deren Ergebnisse nicht mitgespeichert wurden.\nSollen diese Abfragen wiederholt werden?" ;
+        Text [ de ] = "Diese Datei enthÃ¤lt Abfragen, deren Ergebnisse nicht mitgespeichert wurden.\nSollen diese Abfragen wiederholt werden?" ;
         Text [ en-US ] = "This file contains queries. The results of these queries were not saved.\nDo you want these queries to be repeated?" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Este ficheiro contÃ©m consultas com resultados nÃ£o guardados.\nRepeti-las?";
@@ -9903,7 +9903,7 @@ Resource RID_GLOBSTR
     String STR_TABINSERT_ERROR
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die Tabelle konnte nicht eingefügt werden. : Die Tabelle konnte nicht eingef³gt werden. */
-        Text [ de ] = "Die Tabelle konnte nicht eingefügt werden." ;
+        Text [ de ] = "Die Tabelle konnte nicht eingefÃ¼gt werden." ;
         Text [ en-US ] = "The table could not be inserted." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "ImpossÃ­vel inserir tabela.";
@@ -10295,7 +10295,7 @@ Resource RID_GLOBSTR
     String STR_PROGRESS_HEIGHTING
     {
         /* ### ACHTUNG: Neuer Text in Resource? Zeilenhöhen anpassen : Zeilenh÷hen anpassen */
-        Text [ de ] = "Zeilenhöhen anpassen" ;
+        Text [ de ] = "ZeilenhÃ¶hen anpassen" ;
         Text [ en-US ] = "Adapt row height" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Ajustar altura das linhas";
@@ -10354,7 +10354,7 @@ Resource RID_GLOBSTR
     String STR_DETINVALID_OVERFLOW
     {
         /* ### ACHTUNG: Neuer Text in Resource? Die maximale Anzahl ungültiger Zellen wurde überschritten.\nEs wurden nicht alle ungültigen Zellen markiert. : Die maximale Anzahl ung³ltiger Zellen wurde ³berschritten.\nEs wurden nicht alle ung³ltigen Zellen markiert. */
-        Text [ de ] = "Die maximale Anzahl ungültiger Zellen wurde überschritten.\nEs wurden nicht alle ungültigen Zellen markiert." ;
+        Text [ de ] = "Die maximale Anzahl ungÃ¼ltiger Zellen wurde Ã¼berschritten.\nEs wurden nicht alle ungÃ¼ltigen Zellen markiert." ;
         Text [ en-US ] = "The maximum number of invalid cells has been exceeded.\nNot all invalid cells have been marked." ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "O nÃºmero mÃ¡ximo de cÃ©lulas incorrectas foi ultrapassado.\nNem todas as cÃ©lulas incorrectas foram marcadas.";
@@ -10980,7 +10980,7 @@ Resource RID_GLOBSTR
     };
     String STR_CHANGED_CELL
     {
-        Text [ de ] = "Zelle #1 von '#2' zu '#3' geändert" ;
+        Text [ de ] = "Zelle #1 von '#2' zu '#3' geÃ¤ndert" ;
         Text [ en-US ] = "Cell #1 changed from '#2' to '#3'" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "CÃ©lula #1 modificada de '#2' para '#3'";
@@ -11008,7 +11008,7 @@ Resource RID_GLOBSTR
     };
     String STR_CHANGED_INSERT
     {
-        Text [ de ] = "#1 eingefügt" ;
+        Text [ de ] = "#1 eingefÃ¼gt" ;
         Text [ en-US ] = "#1 inserted" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "#1 inserido";
@@ -11036,7 +11036,7 @@ Resource RID_GLOBSTR
     };
     String STR_CHANGED_DELETE
     {
-        Text [ de ] = "#1 gelöscht" ;
+        Text [ de ] = "#1 gelÃ¶scht" ;
         Text [ en-US ] = "#1deleted" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "#1 eliminado";
@@ -11122,7 +11122,7 @@ Resource RID_GLOBSTR
 //STRIP001      };
     String STR_END_REDLINING
     {
-        Text [ de ] = "Mit dieser Aktion wird die Aufzeichnung von Änderungen beendet.\nDie Information über Änderungen geht hierdurch verloren.\n\nAufzeichnung beenden?\n\n" ;
+        Text [ de ] = "Mit dieser Aktion wird die Aufzeichnung von Ã„nderungen beendet.\nDie Information Ã¼ber Ã„nderungen geht hierdurch verloren.\n\nAufzeichnung beenden?\n\n" ;
         Text [ en-US ] = "This action will exit the change recording mode.\nAny information about changes will be lost.\n\nExit change recording mode?\n\n" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "Com esta acÃ§Ã£o serÃ¡ cancelado o registo das modificaÃ§Ãµes.\nAs informaÃ§Ãµes sobre modificaÃ§Ãµes prÃ©vias desaparecerÃ£o.\n\nCancelar?\n\n";
