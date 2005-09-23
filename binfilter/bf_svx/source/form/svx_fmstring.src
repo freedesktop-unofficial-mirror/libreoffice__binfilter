@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmstring.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:46:37 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:48:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -4812,7 +4812,7 @@ QueryBox RID_QRY_SAVEMODIFIED
 {
     Buttons = WB_YES_NO_CANCEL ;
     DefButton = WB_DEF_YES ;
-    Message [ de ] = "Der Inhalt des aktuellen Formulars wurde ge�ndert.\nSollen die �nderungen gespeichert werden?" ;
+    Message [ de ] = "Der Inhalt des aktuellen Formulars wurde geändert.\nSollen die Änderungen gespeichert werden?" ;
     Message [ en-US ] = "The content of the current form has been modified.\nDo you want to save your changes?" ;
     Message [ x-comment ] = " ";
     Message[ pt ] = "O conteúdo do formulário activo foi modificado.\nGuardar modificações?";
@@ -4932,7 +4932,7 @@ QueryBox RID_QRY_SAVEMODIFIED
 
 String RID_STR_ERR_DELETERECORD
 {
-    Text [ de ] = "Fehler beim L�schen des aktuellen Datensatzes";
+    Text [ de ] = "Fehler beim Löschen des aktuellen Datensatzes";
     Text [ en-US ] = "Error deleting the current record";
     Text[ pt ] = "Erro ao eliminar o registo de dados activo";
     Text[ ru ] = "Ошибка удаления текущей записи";

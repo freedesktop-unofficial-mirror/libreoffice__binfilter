@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmsearch.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:45:11 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:48:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1064,7 +1064,7 @@
 ErrorBox RID_SVXERR_SEARCH_NORECORD
 {
     Buttons = WB_OK;
-    Message [ de ] = "Es wurden keine Datens�tze, die zu Ihren Angaben passen, gefunden !" ;
+    Message [ de ] = "Es wurden keine Datensätze, die zu Ihren Angaben passen, gefunden !" ;
     Message [ en-US ] = "No records corresponding to your data found!";
     Message [ x-comment ] = " ";
     Message[ pt ] = "Impossível encontrar registos de dados correspondentes às indicações fornecidas!";
@@ -1095,7 +1095,7 @@ ErrorBox RID_SVXERR_SEARCH_NORECORD
 ErrorBox RID_SVXERR_SEARCH_GENERAL_ERROR
 {
     Buttons = WB_OK;
-    Message [ de ] = "Es trat ein nicht n�her bekannter Fehler auf. Die Suche konnte nicht beendet werden !" ;
+    Message [ de ] = "Es trat ein nicht näher bekannter Fehler auf. Die Suche konnte nicht beendet werden !" ;
     Message [ en-US ] = "An unknown error occurred. The search could  not be terminated!";
     Message [ x-comment ] = " ";
     Message[ pt ] = "Surgiu um erro desconhecido. Impossível concluir a procura!";
