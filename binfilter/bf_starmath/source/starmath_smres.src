@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_smres.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:05:33 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:44:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -12518,7 +12518,7 @@ String RID_ERR_FUNCEXPECTED
 String RID_ERR_UNOPEREXPECTED
 {
     /* ### ACHTUNG: Neuer Text in Resource?     Unärer Operator erwartet : Un§rer Operator erwartet */
-    Text [ de ] = "Unärer Operator erwartet" ;
+    Text [ de ] = "UnÃ¤rer Operator erwartet" ;
     Text [ en-US ] = "Unary operator expected" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "NecessÃ¡rio operador unÃ¡rio";
@@ -12549,7 +12549,7 @@ String RID_ERR_UNOPEREXPECTED
 String RID_ERR_BINOPEREXPECTED
 {
     /* ### ACHTUNG: Neuer Text in Resource? Binärer Operator erwartet : Bin§rer Operator erwartet */
-    Text [ de ] = "Binärer Operator erwartet" ;
+    Text [ de ] = "BinÃ¤rer Operator erwartet" ;
     Text [ en-US ] = "Binary operator expected" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "NecessÃ¡rio operador binÃ¡rio";
