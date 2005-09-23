@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_compiler.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:01:39 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:31:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1035,7 +1035,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_FACT
     {
-        Text [ de ] = "FAKULT�T" ;
+        Text [ de ] = "FAKULTÄT" ;
         Text [ en-US ] = "FACT" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "FACT";
@@ -1872,7 +1872,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_TRIM
     {
-        Text [ de ] = "GL�TTEN" ;
+        Text [ de ] = "GLÄTTEN" ;
         Text [ en-US ] = "TRIM" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "COMPACTAR";
@@ -1984,7 +1984,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_LEN
     {
-        Text [ de ] = "L�NGE" ;
+        Text [ de ] = "LÄNGE" ;
         Text [ en-US ] = "LEN" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "NÚM.CARACT";
@@ -2067,7 +2067,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_CLEAN
     {
-        Text [ de ] = "S�UBERN" ;
+        Text [ de ] = "SÄUBERN" ;
         Text [ en-US ] = "CLEAN" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "LIMPAR";
@@ -2597,7 +2597,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_TRUNC
     {
-        Text [ de ] = "K�RZEN" ;
+        Text [ de ] = "KÜRZEN" ;
         Text [ en-US ] = "TRUNC" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "TRUNCAR";
@@ -5029,7 +5029,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_COUNT_IF
     {
-        Text [ de ] = "Z�HLENWENN" ;
+        Text [ de ] = "ZÄHLENWENN" ;
         Text [ en-US ] = "COUNTIF" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "CONTAR.SE";
@@ -6458,7 +6458,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_LARGE
     {
-        Text [ de ] = "KGR�SSTE" ;
+        Text [ de ] = "KGRÖSSTE" ;
         Text [ en-US ] = "LARGE" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "MAIOR";
@@ -6514,7 +6514,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_FREQUENCY
     {
-        Text [ de ] = "H�UFIGKEIT" ;
+        Text [ de ] = "HÄUFIGKEIT" ;
         Text [ en-US ] = "FREQUENCY" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "FREQUÊNCIA";
@@ -7018,7 +7018,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_FORECAST
     {
-        Text [ de ] = "SCH�TZER" ;
+        Text [ de ] = "SCHÄTZER" ;
         Text [ en-US ] = "FORECAST" ;
         Text [ x-comment ] = " ";
         Text[ pt ] = "REGRESSÃO.LINEAR";
@@ -7577,7 +7577,7 @@ Resource RID_SC_FUNCTION_NAMES
     };
     String SC_OPCODE_ROMAN
     {
-        Text [ de ] = "R�MISCH";
+        Text [ de ] = "RÖMISCH";
         Text [ en-US ] = "ROMAN";
         Text[ pt ] = "ROMANO";
         Text[ ru ] = "РИМСКИЕ";
