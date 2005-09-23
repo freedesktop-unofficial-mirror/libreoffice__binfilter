@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fldui.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:07:31 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:54:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -431,7 +431,7 @@ String STR_GETFLD
 };
 String STR_FORMELFLD
 {
-    Text [ de ] = "Formel einfügen" ;
+    Text [ de ] = "Formel einfÃ¼gen" ;
     Text [ en-US ] = "Insert Formula" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir fÃ³rmula";
@@ -610,7 +610,7 @@ String STR_DDEFLD
 };
 String STR_MACROFLD
 {
-    Text [ de ] = "Makro ausführen" ;
+    Text [ de ] = "Makro ausfÃ¼hren" ;
     Text [ en-US ] = "Execute macro" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Executar macro";
@@ -872,7 +872,7 @@ String STR_SETREFFLD
 };
 String STR_GETREFFLD
 {
-    Text [ de ] = "Referenz einfügen" ;
+    Text [ de ] = "Referenz einfÃ¼gen" ;
     Text [ en-US ] = "Insert Reference" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir referÃªncia";
@@ -933,7 +933,7 @@ String STR_DBFLD
 };
 String STR_DBNEXTSETFLD
 {
-    Text [ de ] = "Nächster Datensatz" ;
+    Text [ de ] = "NÃ¤chster Datensatz" ;
     Text [ en-US ] = "Next record" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Registo seguinte";
@@ -1049,7 +1049,7 @@ String STR_PREVPAGEFLD
 };
 String STR_NEXTPAGEFLD
 {
-    Text [ de ] = "Nächste Seite" ;
+    Text [ de ] = "NÃ¤chste Seite" ;
     Text [ en-US ] = "Next page" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "PÃ¡gina seguinte";
@@ -3599,7 +3599,7 @@ String STR_ALL
 };
 String STR_INSERT
 {
-    Text [ de ] = "Einfügen" ;
+    Text [ de ] = "EinfÃ¼gen" ;
     Text [ en-US ] = "Insert" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Inserir";
