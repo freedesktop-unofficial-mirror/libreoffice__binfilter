@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:23:12 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:47:53 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,7 @@
 
 String RID_EDITUNDO_DEL
 {
-    Text [ de ] = "L�schen" ;
+    Text [ de ] = "Löschen" ;
     Text [ en-US ] = "Delete" ;
     Text[ pt ] = "Eliminar";
     Text[ ru ] = "Удалить";
@@ -97,7 +97,7 @@ String RID_EDITUNDO_MOVE
 
 String RID_EDITUNDO_INSERT
 {
-    Text [ de ] = "Einf�gen" ;
+    Text [ de ] = "Einfügen" ;
     Text [ en-US ] = "Insert" ;
     Text[ pt ] = "Inserir";
     Text[ ru ] = "Вставить";
@@ -184,7 +184,7 @@ String RID_EDITUNDO_SETATTRIBS
 
 String RID_EDITUNDO_RESETATTRIBS
 {
-    Text [ de ] = "Attribute zur�cksetzen" ;
+    Text [ de ] = "Attribute zurücksetzen" ;
     Text [ en-US ] = "Reset attributes" ;
     Text[ pt ] = "Repor atributos";
     Text[ ru ] = "Восстановить атрибуты";
@@ -213,7 +213,7 @@ String RID_EDITUNDO_RESETATTRIBS
 
 String RID_EDITUNDO_INDENT
 {
-    Text [ de ] = "Einr�cken" ;
+    Text [ de ] = "Einrücken" ;
     Text [ en-US ] = "Indent" ;
     Text[ pt ] = "Avançar";
     Text[ ru ] = "Отступ";
@@ -271,7 +271,7 @@ String RID_EDITUNDO_SETSTYLE
 
 String RID_EDITUNDO_TRANSLITERATE
 {
-    Text [ de ] = "Gro�-/Kleinschreibung";
+    Text [ de ] = "Groß-/Kleinschreibung";
     Text [ en-US ] = "Case/Characters";
     Text [ x-comment ] = "; nk03.04.01: hier passt Englisch Uebesetzung besser.";
     Text[ pt ] = "Caixa/Caracteres";
@@ -308,7 +308,7 @@ Menu RID_MENU_SPELL
         {
             Identifier = MN_SPELLING ;
             HelpId = HID_EDITENG_SPELLER_START;
-            Text [ de ] = "~Rechtschreibpr�fung..." ;
+            Text [ de ] = "~Rechtschreibprüfung..." ;
             Text [ en-US ] = "~Spellcheck..." ;
             Text [ x-comment ] = "; triple dots (...) are required now at the end of the text";
             Text[ pt ] = "Or~tografia";
