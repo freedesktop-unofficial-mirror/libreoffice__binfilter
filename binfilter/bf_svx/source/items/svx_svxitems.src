@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svxitems.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:21:22 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:50:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -9823,7 +9823,7 @@ String RID_SVXITEMS_CHARROTATE_OFF
 };
 String RID_SVXITEMS_CHARROTATE
 {
-    Text [ de ] = "Zeichen um $(ARG1)� gedreht";
+    Text [ de ] = "Zeichen um $(ARG1)° gedreht";
     Text [ en-US ] = "Character rotated by $(ARG1)�";
     Text[ pt ] = "Rotação de caracteres: $(ARG1)°";
     Text[ ru ] = "Повернуть символы на $(ARG1)°";
