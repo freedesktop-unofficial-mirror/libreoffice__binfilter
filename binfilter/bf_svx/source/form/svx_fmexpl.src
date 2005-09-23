@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_fmexpl.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:42:50 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:48:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -170,6 +170,7 @@ Menu RID_FMEXPLORER_POPUPMENU
             Text[ hi-IN ] = "से प्रतिस्थापित करो";
             Text[ ar ] = "استبدال بـ";
             Text[ he ] = "‮להחליף ב‬";
+            Text[ de ] = "Ersetzen durch";
         };
         MenuItem { ITEM_EDIT_CUT };
         MenuItem { ITEM_EDIT_COPY };
@@ -178,7 +179,7 @@ Menu RID_FMEXPLORER_POPUPMENU
         {
             Identifier = SID_FM_DELETE ;
             HelpID = SID_FM_DELETE ;
-            Text [ de ] = "~L�schen" ;
+            Text [ de ] = "~Löschen" ;
             Text [ en-US ] = "~Delete" ;
             Text [ x-comment ] = " ";
             Text[ pt ] = "E~liminar";
@@ -302,7 +303,7 @@ Menu RID_FMEXPLORER_POPUPMENU
         {
             Identifier = SID_FM_OPEN_READONLY ;
             HelpID = SID_FM_OPEN_READONLY ;
-            Text [ de ] = "Im Ent~wurfsmodus �ffnen" ;
+            Text [ de ] = "Im Ent~wurfsmodus öffnen" ;
             Text [ en-US ] = "Open in Design Mode" ;
             Text [ x-comment ] = " ";
             Text[ pt ] = "Abrir no modo Es~boço";
@@ -401,7 +402,7 @@ Menu RID_FMSHELL_CONVERSIONMENU
         {
             Identifier = SID_FM_CONVERTTO_BUTTON ;
             HelpID = SID_FM_CONVERTTO_BUTTON ;
-            Text [ de ] = "~Sch�ltfl�che" ;
+            Text [ de ] = "~Schältfläche" ;
             Text [ en-US ] = "~Button";
             Text[ pt ] = "~Botão";
             Text[ ru ] = "Кнопка";
@@ -614,7 +615,7 @@ Menu RID_FMSHELL_CONVERSIONMENU
         {
             Identifier = SID_FM_CONVERTTO_IMAGEBUTTON ;
             HelpID = SID_FM_CONVERTTO_IMAGEBUTTON ;
-            Text [ de ] = "~Grafische Schaltfl�che" ;
+            Text [ de ] = "~Grafische Schaltfläche" ;
             Text [ en-US ] = "I~mage Button";
             Text[ pt ] = "Botão ~gráfico";
             Text[ ru ] = "Графическая кнопка";
@@ -768,7 +769,7 @@ Menu RID_FMSHELL_CONVERSIONMENU
         {
             Identifier = SID_FM_CONVERTTO_CURRENCY ;
             HelpID = SID_FM_CONVERTTO_CURRENCY ;
-            Text [ de ] = "~W�hrungsfeld" ;
+            Text [ de ] = "~Währungsfeld" ;
             Text [ en-US ] = "C~urrency Field";
             Text[ pt ] = "Campo para moe~da";
             Text[ ru ] = "Денежное поле";
