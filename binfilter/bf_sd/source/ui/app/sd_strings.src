@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_strings.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:44:38 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:37:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -281,7 +281,7 @@ String STR_GRAPHIC_OPTIONS_TOOLBOX
 String STR_DRAW_COMMONTASK_TOOLBOX
 {
     /* ### ACHTUNG: Neuer Text in Resource? Pr�sentation : Pr�sentation */
-    Text [ de ] = "Pr�sentation" ;
+    Text [ de ] = "Präsentation" ;
     Text [ en-US ] = "Presentation" ;
     Text[ pt ] = "Apresentação";
     Text[ ru ] = "Панель презентации";
@@ -336,7 +336,7 @@ String STR_SLIDE_OBJ_TOOLBOX
 String STR_BEZIER_TOOLBOX
 {
     /* ### ACHTUNG: Neuer Text in Resource? B�zierobjektleiste : B�zierobjektleiste */
-    Text [ de ] = "B�zierobjektleiste" ;
+    Text [ de ] = "Bézierobjektleiste" ;
     Text [ en-US ] = "B�zier object bar" ;
     Text[ pt ] = "Barra de objectos Bézier";
     Text[ ru ] = "Контекстная панель объектов Безье";
@@ -763,7 +763,7 @@ String STR_RED
 String STR_GREEN
 {
     /* ### ACHTUNG: Neuer Text in Resource? Gr�n : Gr�n */
-    Text [ de ] = "Gr�n" ;
+    Text [ de ] = "Grün" ;
     Text [ en-US ] = "Green" ;
     Text[ pt ] = "Verde";
     Text[ ru ] = "Зеленый";
@@ -872,7 +872,7 @@ String STR_YELLOW
 String STR_WHITE
 {
     /* ### ACHTUNG: Neuer Text in Resource? Wei� : Wei� */
-    Text [ de ] = "Wei�" ;
+    Text [ de ] = "Weiß" ;
     Text [ en-US ] = "White" ;
     Text[ pt ] = "Branco";
     Text[ ru ] = "Белый";
@@ -1014,7 +1014,7 @@ String STR_LIGHTBLUE
 String STR_LIGHTGREEN
 {
     /* ### ACHTUNG: Neuer Text in Resource? Hellgr�n : Hellgr�n */
-    Text [ de ] = "Hellgr�n" ;
+    Text [ de ] = "Hellgrün" ;
     Text [ en-US ] = "Light Green" ;
     Text[ pt ] = "Verde claro";
     Text[ ru ] = "Светло-зеленый";
@@ -2169,7 +2169,7 @@ String STR_HATCH
 String STR_AREA
 {
     /* ### ACHTUNG: Neuer Text in Resource? Fl�che : Fl�che */
-    Text [ de ] = "Fl�che" ;
+    Text [ de ] = "Fläche" ;
     Text [ en-US ] = "Area" ;
     Text[ pt ] = "Preenchimento";
     Text[ ru ] = "Область";
@@ -6461,7 +6461,7 @@ ModalDialog RID_UNDO_DELETE_WARNING
         Pos = MAP_APPFONT( 39, 6 );
         Size = MAP_APPFONT( 175, 4 * 12 );
         WordBreak = TRUE;
-        Text [ de ] = "Diese Aktion l�scht die Liste der Arbeitsschritte, die\nr�ckg�ngig gemacht werden k�nnen. Bisher gemachte\n�nderungen am Dokument bleiben erhalten, k�nnen jedoch nicht\nmehr r�ckg�ngig gemacht werden. Wollen Sie fortfahren\nund die neue Seitenvorlage zuweisen?";
+        Text [ de ] = "Diese Aktion löscht die Liste der Arbeitsschritte, die\nrückgängig gemacht werden können. Bisher gemachte\nÄnderungen am Dokument bleiben erhalten, können jedoch nicht\nmehr rückgängig gemacht werden. Wollen Sie fortfahren\nund die neue Seitenvorlage zuweisen?";
         Text [ en-US ] = "This action deletes the list of actions that can\nbe undone. Previous changes made to the document are still valid,\nbut cannot be undone. Do you want to continue and\nthus assign the new slide design?";
         Text[ pt ] = "This action will delete the list of undoable actions.\nChanges on the document made up to now are maintained,\nbut cannot be taken back. Do You want to continue and\nassign the new page layout?";
         Text[ ru ] = "Этим действием удаляется список шагов, которые можно отменить.\nВыполненные до сих пор изменения в документе будут сохранены,\nно отменить их будет уже нельзя. Продолжить, несмотря на это,\nи назначить новый дизайн страницы?";
@@ -8209,7 +8209,7 @@ String STR_TEMPLATE
 //STRIP001 };
 String STR_START_PRESENTATION
 {
-    Text [ de ] = "Bildschirmpr�sentation starten" ;
+    Text [ de ] = "Bildschirmpräsentation starten" ;
     Text [ en-US ] = "Start Slide Show" ;
     Text[ pt ] = "Iniciar apresentação";
     Text[ ru ] = "Демонстрация";
@@ -11239,7 +11239,7 @@ String STR_START_PRESENTATION
 String STR_INSERT_TEXT
 {
     /* ### ACHTUNG: Neuer Text in Resource? Text einf�gen : Text einf�gen */
-    Text [ de ] = "Text einf�gen" ;
+    Text [ de ] = "Text einfügen" ;
     Text [ en-US ] = "Insert Text" ;
     Text[ pt ] = "Inserir texto";
     Text[ ru ] = "Вставить текст";
@@ -13253,7 +13253,7 @@ String STR_CHART_SUBTITLE
 String STR_TWAIN_NO_SOURCE_UNX
 {
     /* ### ACHTUNG: Neuer Text in Resource? Zur Zeit ist leider keine SANE-Quelle verf�gbar. : Zur Zeit ist leider keine SANE-Quelle verf�gbar. */
-    Text [ de ] = "Zur Zeit ist leider keine SANE-Quelle verf�gbar." ;
+    Text [ de ] = "Zur Zeit ist leider keine SANE-Quelle verfügbar." ;
     Text [ en-US ] = "No SANE source is available at the moment." ;
     Text[ pt ] = "De momento não existe fonte-SANE disponível.";
     Text[ ru ] = "В настоящий момент источник SANE недоступен.";
@@ -13282,7 +13282,7 @@ String STR_TWAIN_NO_SOURCE_UNX
 String STR_TWAIN_NO_SOURCE
 {
     /* ### ACHTUNG: Neuer Text in Resource? Zur Zeit ist leider keine TWAIN-Quelle verf�gbar. : Zur Zeit ist leider keine TWAIN-Quelle verf�gbar. */
-    Text [ de ] = "Zur Zeit ist leider keine TWAIN-Quelle verf�gbar." ;
+    Text [ de ] = "Zur Zeit ist leider keine TWAIN-Quelle verfügbar." ;
     Text [ en-US ] = "At present, no TWAIN source is available." ;
     Text[ pt ] = "De momento não existe nenhuma fonte-TWAIN disponível.";
     Text[ ru ] = "В настоящий момент источник TWAIN недоступен.";
@@ -13663,7 +13663,7 @@ String STR_TWAIN_NO_SOURCE
 String STR_IMPRESS_DOCUMENT
 {
     /* ### ACHTUNG: Neuer Text in Resource? Pr�sentation : Pr�sentation */
-    Text [ de ] = "Pr�sentation" ;
+    Text [ de ] = "Präsentation" ;
     Text [ en-US ] = "Presentation" ;
     Text[ pt ] = "Apresentação";
     Text[ ru ] = "Презентация";
@@ -13690,7 +13690,7 @@ String STR_IMPRESS_DOCUMENT
 };
 String STR_IMPRESS_DOCUMENT_FULLTYPE_60
 {
-    Text [ de ] = "%PRODUCTNAME 6.0 Pr�sentation" ;
+    Text [ de ] = "%PRODUCTNAME 6.0 Präsentation" ;
     Text [ en-US ] = "%PRODUCTNAME 6.0 Presentation" ;
     Text[ pt ] = "%PRODUCTNAME 6.0 Apresentação";
     Text[ ru ] = "Презентация %PRODUCTNAME 6.0";
@@ -13717,7 +13717,7 @@ String STR_IMPRESS_DOCUMENT_FULLTYPE_60
 };
 String STR_IMPRESS_DOCUMENT_FULLTYPE_50
 {
-    Text [ de ] = "%PRODUCTNAME 5.0 Pr�sentation" ;
+    Text [ de ] = "%PRODUCTNAME 5.0 Präsentation" ;
     Text [ en-US ] = "%PRODUCTNAME 5.0 Presentation" ;
     Text[ pt ] = "Apresentação (%PRODUCTNAME 5.0)";
     Text[ ru ] = "Презентация %PRODUCTNAME 5.0";
@@ -13745,7 +13745,7 @@ String STR_IMPRESS_DOCUMENT_FULLTYPE_50
 String STR_IMPRESS_DOCUMENT_FULLTYPE_40
 {
     /* ### ACHTUNG: Neuer Text in Resource? StarOffice 4.0 Pr�sentation : StarOffice 4.0 Pr�sentation */
-    Text [ de ] = "%PRODUCTNAME 4.0 Pr�sentation" ;
+    Text [ de ] = "%PRODUCTNAME 4.0 Präsentation" ;
     Text [ en-US ] = "%PRODUCTNAME 4.0 Presentation" ;
     Text[ pt ] = "Apresentação (%PRODUCTNAME 4.0)";
     Text[ ru ] = "Презентация %PRODUCTNAME 4.0";
@@ -13773,7 +13773,7 @@ String STR_IMPRESS_DOCUMENT_FULLTYPE_40
 String STR_IMPRESS_DOCUMENT_FULLTYPE_31
 {
     /* ### ACHTUNG: Neuer Text in Resource? StarOffice 3.0 Graphik / Pr�sentation : StarOffice 3.0 Graphik / Pr�sentation */
-    Text [ de ] = "%PRODUCTNAME 3.0 Graphik / Pr�sentation" ;
+    Text [ de ] = "%PRODUCTNAME 3.0 Graphik / Präsentation" ;
     Text [ en-US ] = "Graphics/presentation (%PRODUCTNAME 3.0)" ;
     Text[ pt ] = "Gráfica/Apresentação (%PRODUCTNAME 3.0)";
     Text[ ru ] = "Графические объекты/презентация %PRODUCTNAME 3.0";
