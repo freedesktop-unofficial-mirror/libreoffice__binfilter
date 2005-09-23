@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_app.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:49:31 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:53:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,7 +87,7 @@ String STR_PRINT_MERGE_MACRO
 
 String STR_PAGE_COUNT_MACRO
 {
-    Text [ de ] = "Änderung der Seitenanzahl" ;
+    Text [ de ] = "Ã„nderung der Seitenanzahl" ;
     Text [ en-US ] = "Changing the page count" ;
     Text [ x-comment ] = " ";
     Text[ pt ] = "Modificar nÃºmero de pÃ¡ginas";
@@ -3815,7 +3815,7 @@ WarningBox MSG_DISABLE_READLINE_QUESTION
 {
     BUTTONS = WB_YES_NO;
     DEFBUTTON = WB_DEF_YES ;
-    Message [ de ] = "Im aktuellen Dokument werden Änderungen aufgezeichnet aber nicht als Solche angezeigt. In umfangreichen Dokumenten, kann es dadurch zu Verzögerungen beim Bearbeiten des Dokumentes kommen. Wollen Sie die Änderungen anzeigen, um Wartezeiten zu vermeiden?";
+    Message [ de ] = "Im aktuellen Dokument werden Ã„nderungen aufgezeichnet aber nicht als Solche angezeigt. In umfangreichen Dokumenten, kann es dadurch zu VerzÃ¶gerungen beim Bearbeiten des Dokumentes kommen. Wollen Sie die Ã„nderungen anzeigen, um Wartezeiten zu vermeiden?";
     Message [ en-US ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
     Message[ pt ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
     Message[ ru ] = "In the current document, changes are being recorded but not shown as such. In large documents, delays can occur when the document is edited. Do you want to show the changes to avoid delays?";
