@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_regionsw.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:40:59 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:54:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -153,7 +153,7 @@
     Text[ he ] = "Mi~t Bedingung";\
 
 #define FL_FILE_TEXT \
-    Text [ de ] = "Verkn�pfung" ; \
+    Text [ de ] = "Verknüpfung" ; \
     Text [ en-US ] = "Link" ; \
     Text[ pt ] = "Ligação";\
     Text[ ru ] = "Связь";\
@@ -180,7 +180,7 @@
     Text[ he ] = "Verknüpfung";\
 
 #define CB_FILE_TEXT\
-        Text [ de ] = "~Verkn�pfen" ; \
+        Text [ de ] = "~Verknüpfen" ; \
     Text [ en-US ] = "~Link";   \
     Text[ pt ] = "~Ligação";\
     Text[ ru ] = "~Связать";\
