@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_taborder.src,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:49:48 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:49:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -142,7 +142,7 @@ ModalDialog RID_SVXDLG_TAB_ORDER
     {
         Pos = MAP_APPFONT ( 102 , 118 ) ;
         Size = MAP_APPFONT ( 60 , 14 ) ;
-        Text [ de ] = "Index größer" ;
+        Text [ de ] = "Index grÃ¶ÃŸer" ;
         Text [ en-US ] = "Move Down" ;
         Text [ x-comment ] = "; RB: Funzioni formulario - Sequenza di attivazione";
         Text[ pt ] = "Mover para baixo";
