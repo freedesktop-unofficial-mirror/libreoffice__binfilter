@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_glob.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:57:22 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:34:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -403,7 +403,7 @@ String STR_STLSHEET_LEGEND
 };
 String STR_NO_LOGARITHMIC_MIN_VALUES
 {
-    Text [ de ] = "Negative und Null-Werte k�nnen nicht logarithmisch dargestellt werden." ;
+    Text [ de ] = "Negative und Null-Werte können nicht logarithmisch dargestellt werden." ;
     Text [ en-US ] = "Negative and zero values cannot be logarithmicaly portrayed." ;
     Text[ pt ] = "Valores zero e negativos não podem ser representados de forma logarítmica.";
     Text[ ru ] = "Невозможно представить логарифмически отрицательные и нулевые значения.";
