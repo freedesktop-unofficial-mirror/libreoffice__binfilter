@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_optload.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:18:27 $
+ *  last change: $Author: hr $ $Date: 2005-09-23 11:53:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1425,7 +1425,7 @@ StringArray STR_ARR_METRIC
             < "Meter" ; FUNIT_M ; > ;
             < "Kilometer" ; FUNIT_KM ; > ;
             < "Zoll" ; FUNIT_INCH ; > ;
-            < "Fuß" ; FUNIT_FOOT ; > ;
+            < "FuÃŸ" ; FUNIT_FOOT ; > ;
             < "Meilen" ; FUNIT_MILE ; > ;
             < "Pica" ; FUNIT_PICA ; > ;
             < "Point" ; FUNIT_POINT ; > ;
