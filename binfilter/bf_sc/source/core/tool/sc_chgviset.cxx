@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chgviset.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:05:57 $
+ *  last change: $Author: hr $ $Date: 2005-09-27 12:33:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,26 +73,27 @@ namespace binfilter {
 //STRIP001
 //STRIP001 }
 
-//STRIP001 ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSettings& r )
-//STRIP001 {
-//STRIP001  SetTheComment(r.aComment);
-//STRIP001
-//STRIP001  aFirstDateTime  =r.aFirstDateTime;
-//STRIP001  aLastDateTime   =r.aLastDateTime;
-//STRIP001  aAuthorToShow   =r.aAuthorToShow;
-//STRIP001  aRangeList      =r.aRangeList;
-//STRIP001  eDateMode       =r.eDateMode;
-//STRIP001  bShowIt         =r.bShowIt;
-//STRIP001  bIsDate         =r.bIsDate;
-//STRIP001  bIsAuthor       =r.bIsAuthor;
-//STRIP001  bIsComment      =r.bIsComment;
-//STRIP001  bIsRange        =r.bIsRange;
-//STRIP001  bEveryoneButMe  =r.bEveryoneButMe;
-//STRIP001  bShowAccepted   =r.bShowAccepted;
-//STRIP001  bShowRejected   =r.bShowRejected;
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
+// #i49161# this is needed to save documents with change tracking
+ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSettings& r )
+{
+    SetTheComment(r.aComment);
+
+    aFirstDateTime  =r.aFirstDateTime;
+    aLastDateTime   =r.aLastDateTime;
+    aAuthorToShow   =r.aAuthorToShow;
+    aRangeList      =r.aRangeList;
+    eDateMode       =r.eDateMode;
+    bShowIt         =r.bShowIt;
+    bIsDate         =r.bIsDate;
+    bIsAuthor       =r.bIsAuthor;
+    bIsComment      =r.bIsComment;
+    bIsRange        =r.bIsRange;
+    bEveryoneButMe  =r.bEveryoneButMe;
+    bShowAccepted   =r.bShowAccepted;
+    bShowRejected   =r.bShowRejected;
+
+    return *this;
+}
 
 //STRIP001 BOOL ScChangeViewSettings::IsValidComment(const String* pCommentStr) const
 //STRIP001 {
