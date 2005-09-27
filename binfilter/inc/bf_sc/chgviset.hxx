@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chgviset.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:02:03 $
+ *  last change: $Author: hr $ $Date: 2005-09-27 12:34:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -149,7 +149,8 @@ public:
 /*N*/   void                Load( SvStream& rStream, USHORT nVer );
 /*N*/   void                Store( SvStream& rStream ) const;
 
-//STRIP001  ScChangeViewSettings&   operator=   ( const ScChangeViewSettings& r );
+    // #i49161# this is needed to save documents with change tracking
+    ScChangeViewSettings&   operator=   ( const ScChangeViewSettings& r );
 
                         /// Adjust dates according to selected DateMode
     void                AdjustDateMode( const ScDocument& rDoc );
