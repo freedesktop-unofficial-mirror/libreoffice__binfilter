@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_collect.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:06:22 $
+ *  last change: $Author: hr $ $Date: 2005-09-27 12:33:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -322,7 +322,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   StrData::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new StrData(*this);
+            return new StrData(*this);      // #i49161# this is needed
 /*N*/ }
 
 //------------------------------------------------------------------------
