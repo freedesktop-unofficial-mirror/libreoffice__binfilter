@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoole2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:00:26 $
+ *  last change: $Author: hr $ $Date: 2005-09-27 12:20:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1053,6 +1053,18 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/   }
 
 /*N*/   BOOL bHasGraphic=pGraphic!=NULL;
+
+        // #i27418# If there actually is no graphic, do not write one. This will lead
+        // to loading an empty bitmap in older OOo versions which sets an error code at
+        // the stream -> load breaks.
+        if(bHasGraphic)
+        {
+            if(GRAPHIC_NONE == pGraphic->GetType())
+            {
+                bHasGraphic = false;
+            }
+        }
+
 /*N*/   rOut<<bHasGraphic;
 /*N*/   if (bHasGraphic)
 /*N*/   {
@@ -1096,6 +1108,10 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       if(pGraphic==NULL)
 /*?*/           pGraphic=new Graphic;
 /*?*/
+
+        // #i27418# Remember stream position to decide if something was read
+        const sal_Size nFilePosition(rIn.Tell());
+
 /*?*/       if(rHead.GetVersion()>=11)
 /*?*/       { // ab V11 eingepackt
 /*?*/           SdrDownCompat aGrafCompat(rIn,STREAM_READ);
@@ -1107,6 +1123,15 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       else
 /*?*/           rIn>>*pGraphic;
 /*?*/
+
+        // #i27418# If 4 bytes were read but an error is set, it was tried to read an empty
+        // bitmap into the Graphic. This a follow-up error from previously wrong saves.
+        // Reset error code here, it's not really an error but leads to a crash in SO7
+        if(0L != rIn.GetError() && (nFilePosition + 4L) == rIn.Tell())
+        {
+            rIn.ResetError();
+        }
+
 /*?*/       if( mpImpl->pGraphicObject )
 /*?*/           delete mpImpl->pGraphicObject;
 /*?*/
