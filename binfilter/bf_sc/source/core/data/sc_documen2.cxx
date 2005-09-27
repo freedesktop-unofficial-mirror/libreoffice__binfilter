@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:42:30 $
+ *  last change: $Author: hr $ $Date: 2005-09-27 12:32:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -432,11 +432,12 @@ namespace binfilter {
 
 /*N*/ void ScDocument::SetChangeTrack( ScChangeTrack* pTrack )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT( pTrack->GetDocument() == this, "SetChangeTrack: different documents" );
-//STRIP001  if ( !pTrack || pTrack == pChangeTrack || pTrack->GetDocument() != this )
-//STRIP001      return ;
-//STRIP001  EndChangeTracking();
-//STRIP001  pChangeTrack = pTrack;
+        // #i49161# this is needed to save documents with change tracking
+        DBG_ASSERT( pTrack->GetDocument() == this, "SetChangeTrack: different documents" );
+        if ( !pTrack || pTrack == pChangeTrack || pTrack->GetDocument() != this )
+            return ;
+        EndChangeTracking();
+        pChangeTrack = pTrack;
 /*N*/ }
 
 
@@ -1818,12 +1819,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 
 /*N*/ void ScDocument::SetChangeViewSettings(const ScChangeViewSettings& rNew)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pChangeViewSettings==NULL)
-//STRIP001      pChangeViewSettings = new ScChangeViewSettings;
-//STRIP001
-//STRIP001  DBG_ASSERT( pChangeViewSettings, "Oops. No ChangeViewSettings :-( by!" );
-//STRIP001
-//STRIP001  *pChangeViewSettings=rNew;
+        // #i49161# this is needed to save documents with change tracking
+        if (pChangeViewSettings==NULL)
+            pChangeViewSettings = new ScChangeViewSettings;
+
+        DBG_ASSERT( pChangeViewSettings, "Oops. No ChangeViewSettings :-( by!" );
+
+        *pChangeViewSettings=rNew;
 /*N*/ }
 
 //  ----------------------------------------------------------------------------
