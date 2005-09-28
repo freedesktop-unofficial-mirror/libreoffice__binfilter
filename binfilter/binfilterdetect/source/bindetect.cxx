@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bindetect.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:40:05 $
+ *  last change: $Author: hr $ $Date: 2005-09-28 10:59:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -216,6 +216,65 @@ BinFilterDetect::~BinFilterDetect()
                     // try general detection using clipboard Id
                     pFilter = rMatcher.GetFilter4ClipBoardId( aStor->GetFormat(), nMust, nDont );
                 }
+
+                // --> OD 2005-08-04 #i47323#, #i51938# - list of file types
+                // the binfilter modul is responsible for
+                // - see /filter/source/config/fragments/filters/
+                static const sal_uInt8 nFileTypeCount = 29;
+                static const String aFileTypeList[ nFileTypeCount ] =
+                {
+                    String::CreateFromAscii("calc_StarCalc_30"),
+                    String::CreateFromAscii("calc_StarCalc_30_VorlageTemplate"),
+                    String::CreateFromAscii("calc_StarCalc_40"),
+                    String::CreateFromAscii("calc_StarCalc_40_VorlageTemplate"),
+                    String::CreateFromAscii("calc_StarCalc_50"),
+                    String::CreateFromAscii("calc_StarCalc_50_VorlageTemplate"),
+                    String::CreateFromAscii("chart_StarChart_30"),
+                    String::CreateFromAscii("chart_StarChart_40"),
+                    String::CreateFromAscii("chart_StarChart_50"),
+                    String::CreateFromAscii("draw_StarDraw_30"),
+                    String::CreateFromAscii("draw_StarDraw_30_Vorlage"),
+                    String::CreateFromAscii("draw_StarDraw_50"),
+                    String::CreateFromAscii("draw_StarDraw_50_Vorlage"),
+                    String::CreateFromAscii("impress_StarImpress_40"),
+                    String::CreateFromAscii("impress_StarImpress_40_Vorlage"),
+                    String::CreateFromAscii("impress_StarImpress_50"),
+                    String::CreateFromAscii("impress_StarImpress_50_Vorlage"),
+                    String::CreateFromAscii("impress_StarImpress_50_packed"),
+                    String::CreateFromAscii("math_StarMath_30"),
+                    String::CreateFromAscii("math_StarMath_40"),
+                    String::CreateFromAscii("math_StarMath_50"),
+                    String::CreateFromAscii("writer_StarWriter_30"),
+                    String::CreateFromAscii("writer_StarWriter_30_VorlageTemplate"),
+                    String::CreateFromAscii("writer_StarWriter_40"),
+                    String::CreateFromAscii("writer_StarWriter_40_VorlageTemplate"),
+                    String::CreateFromAscii("writer_globaldocument_StarWriter_40GlobalDocument"),
+                    String::CreateFromAscii("writer_StarWriter_50"),
+                    String::CreateFromAscii("writer_StarWriter_50_VorlageTemplate"),
+                    String::CreateFromAscii("writer_globaldocument_StarWriter_50GlobalDocument")
+                };
+
+                // Check, if file type of found filter matches one of the
+                // file types the binfilter modul is responsible for.
+                // If not, do not return this filter.
+                if ( pFilter )
+                {
+                    bool bValidFilter( false );
+                    for ( sal_uInt8 i = 0; i < nFileTypeCount; ++i )
+                    {
+                        if ( pFilter->GetRealTypeName() == aFileTypeList[i] )
+                        {
+                            bValidFilter = true;
+                            break;
+                        }
+                    }
+                    if ( !bValidFilter )
+                    {
+                        pFilter = 0L;
+                    }
+                }
+                // <--
+
             }
         }
     }
