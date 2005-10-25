@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLEmbeddedObjectImportContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:44:16 $
+ *  last change: $Author: hr $ $Date: 2005-10-25 11:27:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -215,7 +215,9 @@ sal_Bool XMLEmbeddedObjectImportContext::SetComponent(
 XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
         SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName,
         const Reference< XAttributeList >& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rImport, nPrfx, rLName ),
+    // #i55761#
+    bNeedToUnlockControllers(false)
 {
     SvGlobalName aName;
 
@@ -296,6 +298,14 @@ void XMLEmbeddedObjectImportContext::StartElement(
 {
     if( xHandler.is() )
     {
+        // #i55761#
+        Reference< XModel > xModel( xComp, UNO_QUERY );
+        if( xModel.is() && !xModel->hasControllersLocked())
+        {
+            xModel->lockControllers();
+            bNeedToUnlockControllers = true;
+        }
+
         xHandler->startDocument();
         xHandler->startElement( GetImport().GetNamespaceMap().GetQNameByKey(
                                     GetPrefix(), GetLocalName() ),
@@ -311,6 +321,16 @@ void XMLEmbeddedObjectImportContext::EndElement()
                                     GetPrefix(), GetLocalName() ) );
         xHandler->endDocument();
 
+        // #i55761#
+        if(bNeedToUnlockControllers)
+        {
+            Reference< XModel > xModel( xComp, UNO_QUERY );
+
+            if(xModel.is())
+            {
+                xModel->unlockControllers();
+            }
+        }
 
         // Save the object. That's required because the object should not be
         // modified (it has been loaded just now). Setting it to unmodified
