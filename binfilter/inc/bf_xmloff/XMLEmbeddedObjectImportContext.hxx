@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLEmbeddedObjectImportContext.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:19:16 $
+ *  last change: $Author: hr $ $Date: 2005-10-25 11:27:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,6 +58,9 @@ class XMLEmbeddedObjectImportContext : public SvXMLImportContext
     ::rtl::OUString sFilterService;
     // #100592#
     ::rtl::OUString sCLSID;
+
+    // #i55761#
+    bool bNeedToUnlockControllers;
 
 public:
     TYPEINFO();
