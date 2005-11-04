@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:16:59 $
+ *  last change: $Author: kz $ $Date: 2005-11-04 15:38:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -760,8 +760,8 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         }
 /*N*/
 /*N*/       // Bei dispose keine Speichern-R"uckfrage
-/*N*/       if ( pShell->IsEnableSetModified() && !pShell->Get_Impl()->bClosing )
-/*N*/           pShell->SetModified( sal_False );
+/*N*/       //if ( pShell->IsEnableSetModified() && !pShell->Get_Impl()->bClosing )
+/*N*/       //    pShell->SetModified( sal_False );
 /*N*/       pShell->Get_Impl()->bDisposing = TRUE;
 /*N*/         //pShellLock = SfxObjectShellLock();
 /*N*/       SfxObjectShellClose_Impl( 0, (void*) pShell );
