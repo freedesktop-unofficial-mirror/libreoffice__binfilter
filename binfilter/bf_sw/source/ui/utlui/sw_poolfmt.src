@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_poolfmt.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:55:41 $
+ *  last change: $Author: obo $ $Date: 2005-11-24 11:56:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1173,7 +1173,7 @@ String STR_POOLCOLL_HEADLINE_BASE
     Text[ da ] = "Overskrift";
     Text[ sv ] = "Överskrift";
     Text[ pl ] = "Nagłówek";
-    Text[ pt-BR ] = "Título";
+    Text[ pt-BR ] = "Capítulo";
     Text[ th ] = "หัวข้อ";
     Text[ ja ] = "見出し";
     Text[ ko ] = "제목";
