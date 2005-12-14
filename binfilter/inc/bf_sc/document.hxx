@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:08:55 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:34:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -165,10 +165,10 @@ class ScRefreshTimerControl;
 } //namespace binfilter
 
 #ifdef _ZFORLIST_DECLARE_TABLE
-class SvULONGTable;
+class SvNumberFormatterIndexTable;
 #else
 class Table;
-typedef Table SvULONGTable;
+typedef Table SvNumberFormatterIndexTable;
 #endif
 namespace binfilter {//STRIP009
 #define SC_TAB_APPEND       0xFFFF
@@ -346,7 +346,7 @@ private:
     XColorTable*        pColorTable;
     ScConditionalFormatList* pCondFormList;             // bedingte Formate
     ScValidationDataList* pValidationList;              // Gueltigkeit
-    SvULONGTable*       pFormatExchangeList;            // zum Umsetzen von Zahlenformaten
+    SvNumberFormatterIndexTable*        pFormatExchangeList;            // zum Umsetzen von Zahlenformaten
     ScTable*            pTab[MAXTAB+1];
     ScRangeName*        pRangeName;
     ScDBCollection*     pDBCollection;
@@ -577,7 +577,7 @@ public:
     BOOL            GetName( USHORT nTab, String& rName ) const;
     BOOL            GetTable( const String& rName, USHORT& rTab ) const;
     inline USHORT   GetTableCount() const { return nMaxTableNumber; }
-    SvULONGTable*   GetFormatExchangeList() const { return pFormatExchangeList; }
+    SvNumberFormatterIndexTable*    GetFormatExchangeList() const { return pFormatExchangeList; }
 
     void            SetDocProtection( BOOL bProtect, const ::com::sun::star::uno::Sequence <sal_Int8>& aPass );
     void            SetTabProtection( USHORT nTab, BOOL bProtect, const ::com::sun::star::uno::Sequence <sal_Int8>& aPass );

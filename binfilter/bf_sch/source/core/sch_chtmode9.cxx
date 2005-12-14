@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode9.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:55:36 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:34:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1879,7 +1879,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ChartModel::TranslateAllNumFormatIds( SvULONGTable* pTransTable )
+/*N*/ void ChartModel::TranslateAllNumFormatIds( SvNumberFormatterIndexTable* pTransTable )
 /*N*/ {
 /*N*/   if( pChartXAxis->TranslateMergedNumFormat( pTransTable ) &&
 /*N*/         nXLastNumFmt >= 0 )
