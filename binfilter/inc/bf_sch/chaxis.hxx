@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chaxis.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:43:05 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:34:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,7 +37,7 @@
 
 //STRIP008 class ChartModel;
 class SvNumberFormatter;
-class SvULONGTable;
+class SvNumberFormatterIndexTable;
 //STRIP008 class SdrObject;
 //STRIP008 class SdrObjList;
 //STRIP008 class XPolygon;
@@ -389,7 +389,7 @@ public:
     //nDir ist Flag, kann sein CHAXIS_MARK_INNER und CHAXIS_MARK_OUTER (oder beides)
     SdrObject *CreateMarks(long nPosition,long nLen,long nWhichTicks);
 
-    BOOL TranslateMergedNumFormat( SvULONGTable* pTransTable );
+    BOOL TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable );
     long GetUniqueId() const    { return mnUId; }
 
     /** Converts a CHOBJID into an axis UId.
