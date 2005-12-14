@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:45:04 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:33:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1530,7 +1530,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/           SvNumberFormatter* pOtherFormatter = pClipDoc->xPoolHelper->GetFormTable();
 /*N*/           if (pOtherFormatter && pOtherFormatter != pThisFormatter)
 /*N*/           {
-/*N*/               SvULONGTable* pExchangeList =
+/*N*/               SvNumberFormatterIndexTable* pExchangeList =
 /*N*/                        pThisFormatter->MergeFormatter(*(pOtherFormatter));
 /*N*/               if (pExchangeList->Count() > 0)
 /*N*/                   pFormatExchangeList = pExchangeList;
