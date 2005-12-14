@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode5.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:54:35 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:34:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -383,7 +383,7 @@ namespace binfilter {
 /*N*/               // merge old one to new one and set new one as member
 /*N*/               if( pNewFormatter && pNumFormatter )
 /*N*/               {
-/*N*/                   SvULONGTable* pTransTable =
+/*N*/                   SvNumberFormatterIndexTable* pTransTable =
 /*N*/                       pNewFormatter->MergeFormatter( *pNumFormatter );
 /*N*/
 /*N*/                   SetNumberFormatter( pNewFormatter );
