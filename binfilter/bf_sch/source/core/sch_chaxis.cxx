@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chaxis.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:51:42 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:34:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2761,7 +2761,7 @@ namespace binfilter {
 //STRIP001  return  ((mfMin <= fValue) && (fValue <= mfMax));
 //STRIP001 }
 
-/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvULONGTable* pTransTable )
+/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable )
 /*N*/ {
 /*N*/   ULONG nFmt, nMrgFmt;
 /*N*/   BOOL bRet =FALSE;
