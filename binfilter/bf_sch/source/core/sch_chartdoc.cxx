@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:51:00 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:33:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -277,7 +277,7 @@ namespace binfilter {
 //STRIP001  // merge numberformatters
 //STRIP001  if( pNewModel->pOwnNumFormatter && pNumFormatter )
 //STRIP001  {
-//STRIP001      SvULONGTable* pTransTable =
+//STRIP001      SvNumberFormatterIndexTable* pTransTable =
 //STRIP001          pNewModel->pOwnNumFormatter->MergeFormatter( *pNumFormatter );
 //STRIP001
 //STRIP001      if( pTransTable && pTransTable->Count() )
