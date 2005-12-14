@@ -4,9 +4,9 @@
  *
  *  $RCSfile: chtmodel.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:43:58 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:35:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -123,7 +123,7 @@
 #include <com/sun/star/util/XRefreshable.hpp>
 #endif
 class SvNumberFormatter;
-class SvULONGTable;
+class SvNumberFormatterIndexTable;
 class Vector3D;
 namespace binfilter {
 class SdrObjGroup;
@@ -981,7 +981,7 @@ public:
 
     void                SetNumberFormatter( SvNumberFormatter* );
     void                DataRangeChanged( long _nOldRowCnt = 0, long _nOldColCnt = 0 );
-    void                TranslateAllNumFormatIds( SvULONGTable* );
+    void                TranslateAllNumFormatIds( SvNumberFormatterIndexTable* );
 
     /** set new doc shell if there was no one before
         returns true if new shell was set */
