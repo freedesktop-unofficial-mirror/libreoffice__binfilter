@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_documen2.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-27 12:32:54 $
+ *  last change: $Author: rt $ $Date: 2005-12-14 14:33:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1656,7 +1656,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       SvNumberFormatter* pOtherFormatter = pSrcDoc->xPoolHelper->GetFormTable();
 /*N*/       if (pOtherFormatter && pOtherFormatter != pThisFormatter)
 /*N*/       {
-/*N*/           SvULONGTable* pExchangeList =
+/*N*/           SvNumberFormatterIndexTable* pExchangeList =
 /*N*/                    pThisFormatter->MergeFormatter(*(pOtherFormatter));
 /*N*/           if (pExchangeList->Count() > 0)
 /*N*/               pFormatExchangeList = pExchangeList;
