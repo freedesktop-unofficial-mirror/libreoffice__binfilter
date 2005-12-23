@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:41:42 $
+ *  last change: $Author: kz $ $Date: 2005-12-23 12:52:41 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1554,7 +1554,7 @@ bool ODatabaseForm::hasValidParent() const
 }
 
 //------------------------------------------------------------------------------
-bool ODatabaseForm::fillParameters(ReusableMutexGuard& _rClearForNotifies, const Reference< XInteractionHandler >& _rxCompletionHandler)
+bool ODatabaseForm::fillParameters(::osl::ResettableMutexGuard& _rClearForNotifies, const Reference< XInteractionHandler >& _rxCompletionHandler)
 {
     Reference<XParameters>  xExecutionParams;
     if (!query_aggregation( m_xAggregate, xExecutionParams))
@@ -1704,7 +1704,7 @@ bool ODatabaseForm::fillParameters(ReusableMutexGuard& _rClearForNotifies, const
             _rClearForNotifies.clear();
             while (aIter.hasMoreElements() && !bCanceled)
                 bCanceled = !((XDatabaseParameterListener*)aIter.next())->approveParameter(aEvt);
-            _rClearForNotifies.attach(m_aMutex);
+            _rClearForNotifies.reset();
         }
     }
     return !bCanceled;
@@ -1728,7 +1728,7 @@ void ODatabaseForm::restoreInsertOnlyState( )
 }
 
 //------------------------------------------------------------------------------
-sal_Bool ODatabaseForm::executeRowSet(ReusableMutexGuard& _rClearForNotifies, sal_Bool bMoveToFirst, const Reference< XInteractionHandler >& _rxCompletionHandler)
+sal_Bool ODatabaseForm::executeRowSet(::osl::ResettableMutexGuard& _rClearForNotifies, sal_Bool bMoveToFirst, const Reference< XInteractionHandler >& _rxCompletionHandler)
 {
     if (!m_xAggregateAsRowSet.is())
         return sal_False;
@@ -1789,7 +1789,7 @@ sal_Bool ODatabaseForm::executeRowSet(ReusableMutexGuard& _rClearForNotifies, sa
             onError(eDb, m_sCurrentErrorContext);
         else
             onError(eDb, FRM_RES_STRING(RID_STR_READERROR));
-        _rClearForNotifies.attach(m_aMutex);
+        _rClearForNotifies.reset();
     }
 
     if (bSuccess)
@@ -1829,7 +1829,7 @@ sal_Bool ODatabaseForm::executeRowSet(ReusableMutexGuard& _rClearForNotifies, sa
                     onError(eDB, m_sCurrentErrorContext);
                 else
                     onError(eDB, FRM_RES_STRING(RID_STR_READERROR));
-                _rClearForNotifies.attach(m_aMutex);
+                _rClearForNotifies.reset();
                 bSuccess = sal_False;
             }
         }
@@ -2235,7 +2235,7 @@ Any ODatabaseForm::getPropertyDefaultByHandle( sal_Int32 nHandle ) const
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::reset() throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
 
     if (isLoaded())
     {
@@ -2287,7 +2287,7 @@ void ODatabaseForm::reset_impl(bool _bAproveByListeners)
             return;
     }
 
-    ReusableMutexGuard aResetGuard(m_aResetSafety);
+    ::osl::ResettableMutexGuard aResetGuard(m_aResetSafety);
     // do we have a database connected form and stay on the insert row
     sal_Bool bInsertRow = sal_False;
     if (m_xAggregateSet.is())
@@ -2420,7 +2420,7 @@ void ODatabaseForm::reset_impl(bool _bAproveByListeners)
         }
     }
 
-    aResetGuard.attach(m_aResetSafety);
+    aResetGuard.reset();
     // ensure that the row isn't modified
     // (do this _before_ the listeners are notified ! their reaction (maybe asynchronous) may depend
     // on the modified state of the row
@@ -2434,7 +2434,7 @@ void ODatabaseForm::reset_impl(bool _bAproveByListeners)
         NOTIFY_LISTENERS(m_aResetListeners, XResetListener, resetted, aEvt);
     }
 
-    aResetGuard.attach(m_aResetSafety);
+    aResetGuard.reset();
     // and again : ensure the row isn't modified
     // we already did this after we (and maybe our dependents) resetted the values, but the listeners may have changed the row, too
     if (bInsertRow)
@@ -2748,7 +2748,7 @@ void ODatabaseForm::_propertyChanged(const PropertyChangeEvent& evt) throw( Runt
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::setParent(const InterfaceRef& Parent) throw ( ::com::sun::star::lang::NoSupportException, ::com::sun::star::uno::RuntimeException)
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
 
     Reference<XForm>  xParentForm(getParent(), UNO_QUERY);
     if (xParentForm.is())
@@ -2780,7 +2780,7 @@ void SAL_CALL ODatabaseForm::setParent(const InterfaceRef& Parent) throw ( ::com
 //------------------------------------------------------------------------------
 sal_Bool SAL_CALL ODatabaseForm::getGroupControl() throw(com::sun::star::uno::RuntimeException)
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
 
     // Sollen Controls in einer TabOrder gruppe zusammengefasst werden?
     if (m_aCycle.hasValue())
@@ -2799,7 +2799,7 @@ sal_Bool SAL_CALL ODatabaseForm::getGroupControl() throw(com::sun::star::uno::Ru
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::setControlModels(const Sequence<Reference<XControlModel> >& rControls) throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
 
     // TabIndex in der Reihenfolge der Sequence setzen
     const Reference<XControlModel>* pControls = rControls.getConstArray();
@@ -3141,7 +3141,7 @@ sal_Bool ODatabaseForm::implEnsureConnection()
 //------------------------------------------------------------------------------
 void ODatabaseForm::load_impl(sal_Bool bCausedByParentForm, sal_Bool bMoveToFirst, const Reference< XInteractionHandler >& _rxCompletionHandler ) throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
 
     // are we already loaded?
     if (isLoaded())
@@ -3190,7 +3190,7 @@ void ODatabaseForm::load_impl(sal_Bool bCausedByParentForm, sal_Bool bMoveToFirs
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::unload() throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     if (!isLoaded())
         return;
 
@@ -3221,7 +3221,7 @@ void SAL_CALL ODatabaseForm::unload() throw( RuntimeException )
         {
             eDB;
         }
-        aGuard.attach(m_aMutex);
+        aGuard.reset();
     }
 
     m_bLoaded = sal_False;
@@ -3244,7 +3244,7 @@ void SAL_CALL ODatabaseForm::reload() throw( RuntimeException )
 //------------------------------------------------------------------------------
 void ODatabaseForm::reload_impl(sal_Bool bMoveToFirst, const Reference< XInteractionHandler >& _rxCompletionHandler ) throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     if (!isLoaded())
         return;
 
@@ -3261,7 +3261,7 @@ void ODatabaseForm::reload_impl(sal_Bool bMoveToFirst, const Reference< XInterac
             while (aIter.hasMoreElements())
                 ((XLoadListener*)aIter.next())->reloading(aEvent);
 
-            aGuard.attach(m_aMutex);
+            aGuard.reset();
         }
     }
 
@@ -3327,7 +3327,7 @@ void SAL_CALL ODatabaseForm::cursorMoved(const EventObject& event) throw( Runtim
 {
     // reload the subform with the new parameters of the parent
     // do this handling delayed to provide of execute too many SQL Statements
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     if (m_pLoadTimer->IsActive())
         m_pLoadTimer->Stop();
 
@@ -3430,7 +3430,7 @@ sal_Bool SAL_CALL ODatabaseForm::approveRowSetChange(const EventObject& event) t
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::addRowSetApproveListener(const Reference<XRowSetApproveListener>& _rListener) throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     m_aRowSetApproveListeners.addInterface(_rListener);
 
     // do we have to multiplex ?
@@ -3448,7 +3448,7 @@ void SAL_CALL ODatabaseForm::addRowSetApproveListener(const Reference<XRowSetApp
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::removeRowSetApproveListener(const Reference<XRowSetApproveListener>& _rListener) throw( RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     // do we have to remove the multiplex ?
     m_aRowSetApproveListeners.removeInterface(_rListener);
     if ( m_aRowSetApproveListeners.getLength() == 0 )
@@ -3480,7 +3480,7 @@ void SAL_CALL ODatabaseForm::removeParameterListener(const Reference<XDatabasePa
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::executeWithCompletion( const Reference< XInteractionHandler >& _rxHandler ) throw(SQLException, RuntimeException)
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     // the difference between execute and load is, that we position on the first row in case of load
     // after execute we remain before the first row
     if (!isLoaded())
@@ -3508,7 +3508,7 @@ void SAL_CALL ODatabaseForm::executeWithCompletion( const Reference< XInteractio
 //------------------------------------------------------------------------------
 void SAL_CALL ODatabaseForm::execute() throw( SQLException, RuntimeException )
 {
-    ReusableMutexGuard aGuard(m_aMutex);
+    ::osl::ResettableMutexGuard aGuard(m_aMutex);
     // if somebody calls an execute and we're not loaded we reroute this call to our load method.
 
     // the difference between execute and load is, that we position on the first row in case of load

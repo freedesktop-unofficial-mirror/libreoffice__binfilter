@@ -4,9 +4,9 @@
  *
  *  $RCSfile: DatabaseForm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:31:14 $
+ *  last change: $Author: kz $ $Date: 2005-12-23 12:52:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -165,7 +165,7 @@ class INetMIMEMessage;
 namespace binfilter {
 
 
-typedef ::comphelper::OReusableGuard< ::osl::Mutex > ReusableMutexGuard;
+//typedef ::comphelper::OReusableGuard< ::osl::Mutex > ReusableMutexGuard;
 
 //.........................................................................
 namespace frm
@@ -502,9 +502,9 @@ protected:
     virtual void _propertyChanged( const ::com::sun::star::beans::PropertyChangeEvent& ) throw(::com::sun::star::uno::RuntimeException);
 
 private:
-    sal_Bool executeRowSet(ReusableMutexGuard& _rClearForNotifies, sal_Bool bMoveToFirst = sal_True,
+    sal_Bool executeRowSet(::osl::ResettableMutexGuard& _rClearForNotifies, sal_Bool bMoveToFirst = sal_True,
                     const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >& _rxCompletionHandler = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >());
-    bool    fillParameters(ReusableMutexGuard& _rClearForNotifies,
+    bool    fillParameters(::osl::ResettableMutexGuard& _rClearForNotifies,
                     const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >& _rxCompletionHandler = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >());
     void    createParameterInfo();
     bool    hasValidParent() const;
