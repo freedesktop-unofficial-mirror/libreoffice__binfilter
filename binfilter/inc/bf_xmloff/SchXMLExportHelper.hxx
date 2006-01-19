@@ -4,9 +4,9 @@
  *
  *  $RCSfile: SchXMLExportHelper.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:13:49 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:33:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -176,7 +176,7 @@ public:
                       sal_Bool bIncludeTable );
 
     /// returns the string corresponding to the current FileFormat CLSID for Chart
-    const ::rtl::OUString& SchXMLExportHelper::getChartCLSID();
+    const ::rtl::OUString& getChartCLSID();
 
     UniReference< XMLPropertySetMapper > GetPropertySetMapper() const { return mxPropertySetMapper; }
 
