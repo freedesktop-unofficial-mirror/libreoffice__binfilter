@@ -4,9 +4,9 @@
  *
  *  $RCSfile: DatabaseForm.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2005-12-23 12:52:40 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:27:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -457,7 +457,7 @@ public:
     static  ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames_Static();
     static  ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getCurrentServiceNames_Static();
     static  ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getCompatibleServiceNames_Static();
-    static  ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL ODatabaseForm::Create( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxFactory );
+    static  ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL_CALL Create( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxFactory );
 
     // com::sun::star::io::XPersistObject
     virtual ::rtl::OUString SAL_CALL getServiceName() throw(::com::sun::star::uno::RuntimeException);
