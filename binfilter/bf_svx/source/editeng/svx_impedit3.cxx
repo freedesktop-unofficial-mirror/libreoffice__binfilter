@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:26:45 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:28:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -171,7 +171,7 @@ struct TabInfo
     long        nStartPosX;
     long        nTabPos;
 
-    TabInfo::TabInfo() { bValid = FALSE; }
+    TabInfo() { bValid = FALSE; }
 };
 
 //STRIP001 Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin )
