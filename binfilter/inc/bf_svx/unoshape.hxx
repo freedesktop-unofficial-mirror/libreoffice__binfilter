@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:18:33 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:32:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -187,7 +187,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     // call this in your derivated getTypes() after you call SvxShape::getTypes() but
     // only if maTypeSequence.getLength() is equal 0. See implementation of
     // SvxShape::getTypes() for more information
-    static void SvxShape::addStaticTypes( sal_Int16 nNewTypes, /* uno::Type* */ ... ) throw();
+    static void addStaticTypes( sal_Int16 nNewTypes, /* uno::Type* */ ... ) throw();
 
     sal_Bool SAL_CALL SetFillAttribute( sal_Int32 nWID, const ::rtl::OUString& rName );
 
