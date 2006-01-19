@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rootfrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:36:05 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:30:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,6 +68,8 @@ struct SwCrsrMoveState;
 #define INV_SECTION 16
 #define INV_LINENUM 32
 #define INV_DIRECTION 64
+
+void SetShell( ViewShell *pSh );
 
 class SwRootFrm: public SwLayoutFrm
 {
@@ -172,7 +174,7 @@ public:
     ~SwRootFrm();
 
     ViewShell *GetCurrShell() const { return pCurrShell; }
-    void SwRootFrm::DeRegisterShell( ViewShell *pSh );
+    void DeRegisterShell( ViewShell *pSh );
 
     //Start-/EndAction fuer alle Shells auf moeglichst hoeher
     //(Shell-Ableitungs-)Ebene aufsetzen. Fuer die StarONE Anbindung, die
