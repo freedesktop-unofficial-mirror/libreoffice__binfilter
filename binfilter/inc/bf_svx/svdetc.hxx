@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdetc.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:34:08 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:32:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -138,6 +138,13 @@ public:
     // jedoch dieselbe (die logische Fonthoehe wird umgerechnet).
     friend SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pMod );
 };
+
+// Einen Outliner mit den engineglobalen
+// Defaulteinstellungen auf dem Heap erzeugen.
+// Ist pMod<>NULL, dann wird der MapMode des uebergebenen
+// Models verwendet. Die resultierende Default-Fonthoehe bleibt
+// jedoch dieselbe (die logische Fonthoehe wird umgerechnet).
+SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pMod );
 
 // Liefert eine Ersatzdarstellung fuer einen XFillStyle
 // Bei XFILL_NONE gibt's FALSE und rCol bleibt unveraendert.
