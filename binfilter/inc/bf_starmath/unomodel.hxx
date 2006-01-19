@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unomodel.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:52:10 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:31:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,7 +105,7 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void)
             throw( ::com::sun::star::uno::RuntimeException );
 
-    inline ::rtl::OUString SmModel::getImplementationName_Static() throw(  );
+    inline ::rtl::OUString getImplementationName_Static() throw(  );
 };
 
 inline ::rtl::OUString SmModel::getImplementationName_Static() throw(  )
