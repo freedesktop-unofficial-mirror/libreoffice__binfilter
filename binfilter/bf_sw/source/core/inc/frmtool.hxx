@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmtool.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:30:39 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:29:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,6 +92,9 @@ void SwAlignGrfRect( SwRect *pGrfRect, const OutputDevice &rOut );
 //Shell benutzt.
 //Implementierung in feshview.cxx
 SwFlyFrm *GetFlyFromMarked( const SdrMarkList *pLst, ViewShell *pSh );
+
+SwFrm *SaveCntnt( SwLayoutFrm *pLay, SwFrm *pStart );
+void RestoreCntnt( SwFrm *pSav, SwLayoutFrm *pParent, SwFrm *pSibling );
 
 //Nicht gleich die math.lib anziehen.
 ULONG MA_FASTCALL SqRt( BigInt nX );

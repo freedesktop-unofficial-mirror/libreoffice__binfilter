@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flowfrm.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:28:10 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:29:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,6 +34,11 @@
  ************************************************************************/
 #ifndef _FLOWFRM_HXX
 #define _FLOWFRM_HXX
+
+#ifndef _FRMTOOL_HXX
+#include <frmtool.hxx>
+#endif
+
 namespace binfilter {
 
 //Der FlowFrm gibt die Funktionalitaet fuer alle Frms vor, die fliessen und
