@@ -4,9 +4,9 @@
  *
  *  $RCSfile: grfatr.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:09:43 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:32:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -82,7 +82,7 @@ public:
     SwMirrorGrf( USHORT nMiro = RES_DONT_MIRROR_GRF )
         : SfxEnumItem( RES_GRFATR_MIRRORGRF, nMiro ), bGrfToggle( sal_False )
     {}
-    SwMirrorGrf::SwMirrorGrf( const SwMirrorGrf &rMirrorGrf )
+    SwMirrorGrf( const SwMirrorGrf &rMirrorGrf )
         : SfxEnumItem( RES_GRFATR_MIRRORGRF, rMirrorGrf.GetValue()),
         bGrfToggle( rMirrorGrf.IsGrfToggle() )
     {}
