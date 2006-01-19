@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxbasemodel.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2005-11-04 15:38:34 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:28:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -304,7 +304,7 @@ struct IMPL_SfxBaseModel_DataContainer
     REFERENCE< ::com::sun::star::view::XPrintJob>     m_xPrintJob               ;
     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > m_aPrintOptions;
 
-    IMPL_SfxBaseModel_DataContainer::IMPL_SfxBaseModel_DataContainer(   MUTEX&          aMutex          ,
+    IMPL_SfxBaseModel_DataContainer(    MUTEX&          aMutex          ,
                                                                         SfxObjectShell* pObjectShell    )
             :   m_pObjectShell          ( pObjectShell  )
 //          ,   m_pObjectShellLock      ( pObjectShell  )
