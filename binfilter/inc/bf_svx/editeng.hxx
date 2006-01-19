@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:20:51 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:31:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -129,7 +129,7 @@ private:
 #endif
 
 public:
-                    EditEngine::EditEngine( SfxItemPool* pItemPool );
+                    EditEngine( SfxItemPool* pItemPool );
     virtual         ~EditEngine();
 
     const SfxItemSet&   GetEmptyItemSet();
