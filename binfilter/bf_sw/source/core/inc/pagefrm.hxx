@@ -4,9 +4,9 @@
  *
  *  $RCSfile: pagefrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:35:07 $
+ *  last change: $Author: obo $ $Date: 2006-01-19 17:29:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -69,6 +69,8 @@ enum SwPageChg
     CHG_CUTPAGE,
     CHG_CHGPAGE
 };
+
+void SetLastPage( SwPageFrm* );
 
 class SwPageFrm: public SwFtnBossFrm
 {
