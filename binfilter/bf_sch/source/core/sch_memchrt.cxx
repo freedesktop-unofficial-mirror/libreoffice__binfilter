@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:58:25 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:38:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -663,17 +663,17 @@ namespace binfilter {
 /*N*/           rOut << *(pOut ++);
 /*N*/
 /*N*/   rOut << (INT16)aSysCharSet;
-/*N*/   rOut << rMemChart.aMainTitle;
-/*N*/   rOut << rMemChart.aSubTitle;
-/*N*/   rOut << rMemChart.aXAxisTitle;
-/*N*/   rOut << rMemChart.aYAxisTitle;
-/*N*/   rOut << rMemChart.aZAxisTitle;
+/*N*/   rOut.WriteByteString( rMemChart.aMainTitle );
+/*N*/   rOut.WriteByteString( rMemChart.aSubTitle );
+/*N*/   rOut.WriteByteString( rMemChart.aXAxisTitle );
+/*N*/   rOut.WriteByteString( rMemChart.aYAxisTitle );
+/*N*/   rOut.WriteByteString( rMemChart.aZAxisTitle );
 /*N*/
 /*N*/   for (i = 0; i < rMemChart.nColCnt; i++)
-/*N*/       rOut << rMemChart.pColText[ i ];
+/*N*/       rOut.WriteByteString( rMemChart.pColText[ i ] );
 /*N*/
 /*N*/   for (i = 0; i < rMemChart.nRowCnt; i++)
-/*N*/       rOut << rMemChart.pRowText[ i ];
+/*N*/       rOut.WriteByteString( rMemChart.pRowText[ i ] );
 /*N*/
 /*N*/   rOut << (INT16)rMemChart.eDataType;
 /*N*/
@@ -723,24 +723,24 @@ namespace binfilter {
 /*N*/                                                          (USHORT)rIn.GetVersion());
 /*N*/     rIn.SetStreamCharSet( aCharSet );
 /*N*/
-/*N*/   rIn >> rMemChart.aMainTitle;
-/*N*/   rIn >> rMemChart.aSubTitle;
-/*N*/   rIn >> rMemChart.aXAxisTitle;
-/*N*/   rIn >> rMemChart.aYAxisTitle;
-/*N*/   rIn >> rMemChart.aZAxisTitle;
+/*N*/   rIn.ReadByteString( rMemChart.aMainTitle );
+/*N*/   rIn.ReadByteString( rMemChart.aSubTitle );
+/*N*/   rIn.ReadByteString( rMemChart.aXAxisTitle );
+/*N*/   rIn.ReadByteString( rMemChart.aYAxisTitle );
+/*N*/   rIn.ReadByteString( rMemChart.aZAxisTitle );
 /*N*/
 /*N*/   rMemChart.pColText = new String[rMemChart.nColCnt];
 /*N*/
 /*N*/   for (i = 0; i < rMemChart.nColCnt; i++)
 /*N*/   {
-/*N*/       rIn >> rMemChart.pColText[ i ];
+/*N*/       rIn.ReadByteString( rMemChart.pColText[ i ] );
 /*N*/   }
 /*N*/
 /*N*/   rMemChart.pRowText = new String[rMemChart.nRowCnt];
 /*N*/
 /*N*/   for (i = 0; i < rMemChart.nRowCnt; i++)
 /*N*/   {
-/*N*/       rIn >> rMemChart.pRowText[ i ];
+/*N*/       rIn.ReadByteString( rMemChart.pRowText[ i ] );
 /*N*/   }
 /*N*/
 /*N*/   rIn >> nInt16; rMemChart.eDataType = (short)nInt16;
