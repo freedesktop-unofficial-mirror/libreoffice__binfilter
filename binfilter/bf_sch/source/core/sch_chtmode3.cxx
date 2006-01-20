@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode3.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:53:51 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:38:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1479,9 +1479,12 @@ namespace binfilter {
 /*N*/           aSymbolAttr.Put(XFillStyleItem (XFILL_NONE));
 /*N*/           aSymbolAttr.Put(XLineStyleItem (XLINE_NONE));
 /*N*/       }
-/*N*/       pObj->SetModel( this );
-/*N*/       pObj = SetObjectAttr (pObj, CHOBJID_DIAGRAM_DATA, TRUE, TRUE, &aSymbolAttr);
-/*N*/       pObj->InsertUserData(new SchDataPoint(nColumn, nRow));
+            if( pObj )
+            {
+/*N*/           pObj->SetModel( this );
+/*N*/           pObj = SetObjectAttr (pObj, CHOBJID_DIAGRAM_DATA, TRUE, TRUE, &aSymbolAttr);
+/*N*/           pObj->InsertUserData(new SchDataPoint(nColumn, nRow));
+            }
 /*N*/
 /*N*/   }
 /*N*/
