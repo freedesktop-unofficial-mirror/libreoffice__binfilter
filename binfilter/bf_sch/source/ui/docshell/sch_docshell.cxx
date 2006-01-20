@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_docshell.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 22:25:04 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:38:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1036,6 +1036,24 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/                 if( ! rDocumentStream->GetError())
 /*N*/                 {
+                          // #i56310# set SomeData strings according to
+                          // ChartRange in MemChart like it is done in SaveAs
+                          SvPersist* pParent = GetParent();
+                          if( pParent )
+                          {
+                              // determine which is parent application
+                              SvGlobalName aGlobalName;
+                              ULONG nFileFormat;
+                              String aAppName, aFullName, aShortName;
+                              pParent->FillClass( &aGlobalName, &nFileFormat,
+                                                  &aAppName, &aFullName, &aShortName,
+                                                  SOFFICE_FILEFORMAT_60 );
+
+                              if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
+                                  pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
+                              else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
+                                  pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
+                          }
 /*N*/                     rDocumentStream->SetSize( 0 );
 /*N*/                     rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
 /*N*/                     *rDocumentStream << *pChDoc;
