@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:16:35 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:38:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -4081,21 +4081,21 @@ GraphicFilter* GetGrfFilter();
 // -----------------------------------------------------------------------
 
 /*N*/ void SvxBrushItem::SetGraphic( const Graphic& rNew )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( !pStrLink )
-//STRIP001  {
-//STRIP001      if ( pImpl->pGraphicObject )
-//STRIP001          pImpl->pGraphicObject->SetGraphic( rNew );
-//STRIP001      else
-//STRIP001          pImpl->pGraphicObject = new GraphicObject( rNew );
-//STRIP001
-//STRIP001         ApplyGraphicTransparency_Impl();
-//STRIP001
-//STRIP001         if ( GPOS_NONE == eGraphicPos )
-//STRIP001          eGraphicPos = GPOS_MM; // None waere Brush, also Default: Mitte
-//STRIP001  }
-//STRIP001  else
-//STRIP001      DBG_ERROR( "SetGraphic() on linked graphic! :-/" );
+/*N*/ {
+/*N*/   if ( !pStrLink )
+/*N*/   {
+/*N*/       if ( pImpl->pGraphicObject )
+/*N*/           pImpl->pGraphicObject->SetGraphic( rNew );
+/*N*/       else
+/*N*/           pImpl->pGraphicObject = new GraphicObject( rNew );
+/*N*/
+/*N*/         ApplyGraphicTransparency_Impl();
+/*N*/
+/*N*/         if ( GPOS_NONE == eGraphicPos )
+/*N*/           eGraphicPos = GPOS_MM; // None waere Brush, also Default: Mitte
+/*N*/   }
+/*N*/   else
+/*N*/       DBG_ERROR( "SetGraphic() on linked graphic! :-/" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
