@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:53:35 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:37:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1106,15 +1106,15 @@ enum ChartStyleV0
 /*N*/   rOut << (INT16)eSysSet;
 /*N*/
 /*N*/   rOut << bShowMainTitle;
-/*N*/   rOut << aMainTitle;
+/*N*/   rOut.WriteByteString( aMainTitle );
 /*N*/   rOut << bShowSubTitle;
-/*N*/   rOut << aSubTitle;
+/*N*/   rOut.WriteByteString( aSubTitle );
 /*N*/   rOut << bShowXAxisTitle;
-/*N*/   rOut << aXAxisTitle;
+/*N*/   rOut.WriteByteString( aXAxisTitle );
 /*N*/   rOut << bShowYAxisTitle;
-/*N*/   rOut << aYAxisTitle;
+/*N*/   rOut.WriteByteString( aYAxisTitle );
 /*N*/   rOut << bShowZAxisTitle;
-/*N*/   rOut << aZAxisTitle;
+/*N*/   rOut.WriteByteString( aZAxisTitle );
 /*N*/   rOut << bShowXAxis;
 /*N*/   rOut << bShowXGridMain;
 /*N*/   rOut << bShowXGridHelp;
@@ -1299,19 +1299,19 @@ enum ChartStyleV0
 /*N*/   if (nMoreData >= 2)
 /*N*/       if (pChartData)
 /*N*/       {
-/*N*/           rOut << pChartData->SomeData1();
-/*N*/           rOut << pChartData->SomeData2();
-/*N*/           rOut << pChartData->SomeData3();
-/*N*/           rOut << pChartData->SomeData4();
+/*N*/           rOut.WriteByteString( pChartData->SomeData1() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData2() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData3() );
+/*N*/           rOut.WriteByteString( pChartData->SomeData4() );
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*?*/           String aEmpty;
 /*?*/
-/*?*/           rOut << aEmpty;
-/*?*/           rOut << aEmpty;
-/*?*/           rOut << aEmpty;
-/*?*/           rOut << aEmpty;
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
+/*?*/           rOut.WriteByteString( aEmpty );
 /*N*/       }
 /*N*/
 /*N*/   if (nMoreData >= 3) rOut << fSpotIntensity;
@@ -1733,15 +1733,15 @@ enum ChartStyleV0
 /*N*/   BOOL bShowZDescr;
 /*N*/
 /*N*/   rIn >> bShowMainTitle;
-/*N*/   rIn >> aMainTitle;
+/*N*/   rIn.ReadByteString( aMainTitle );
 /*N*/   rIn >> bShowSubTitle;
-/*N*/   rIn >> aSubTitle;
+/*N*/   rIn.ReadByteString( aSubTitle );
 /*N*/   rIn >> bShowXAxisTitle;
-/*N*/   rIn >> aXAxisTitle;
+/*N*/   rIn.ReadByteString( aXAxisTitle );
 /*N*/   rIn >> bShowYAxisTitle;
-/*N*/   rIn >> aYAxisTitle;
+/*N*/   rIn.ReadByteString( aYAxisTitle );
 /*N*/   rIn >> bShowZAxisTitle;
-/*N*/   rIn >> aZAxisTitle;
+/*N*/   rIn.ReadByteString( aZAxisTitle );
 /*N*/   rIn >> bShowXAxis;
 /*N*/   rIn >> bShowXGridMain;
 /*N*/   rIn >> bShowXGridHelp;
@@ -2044,10 +2044,10 @@ enum ChartStyleV0
 /*N*/       {
 /*N*/           ByteString aReadString;
 /*N*/
-/*N*/           rIn >> pChartData->SomeData1();
-/*N*/           rIn >> pChartData->SomeData2();
-/*N*/           rIn >> pChartData->SomeData3();
-/*N*/           rIn >> pChartData->SomeData4();
+/*N*/           rIn.ReadByteString( pChartData->SomeData1() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData2() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData3() );
+/*N*/           rIn.ReadByteString( pChartData->SomeData4() );
 /*N*/
 /*N*/           if (nMoreData >= 3) rIn >> fSpotIntensity;
 /*N*/           if (nMoreData <= 8) fAmbientIntensity = fSpotIntensity;
