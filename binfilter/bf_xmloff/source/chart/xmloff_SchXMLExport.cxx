@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_SchXMLExport.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:37:12 $
+ *  last change: $Author: obo $ $Date: 2006-01-20 11:39:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1214,9 +1214,16 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             if( aPropertyStates.size())
             {
                 DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
-                aSeriesASName = maAutoStyleNameQueue.front();
+                if( maAutoStyleNameQueue.empty())
+                {
+                    aSeriesASName = OUString();
+                }
+                else
+                {
+                    aSeriesASName = maAutoStyleNameQueue.front();
+                    maAutoStyleNameQueue.pop();
+                }
                 mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, aSeriesASName );
-                maAutoStyleNameQueue.pop();
             }
 
             // open series element until end of for loop
@@ -1406,8 +1413,11 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     {
 //                          AddAutoStyleAttribute( aPropertyStates );   // can't be used here because we need the name
                         DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
-                        aASName = maAutoStyleNameQueue.front();
-                        maAutoStyleNameQueue.pop();
+                        if( ! maAutoStyleNameQueue.empty())
+                        {
+                            aASName = maAutoStyleNameQueue.front();
+                            maAutoStyleNameQueue.pop();
+                        }
                     }
 
 
@@ -1535,8 +1545,11 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                             DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
 
                             SchXMLDataPointStruct aPoint;
-                            aPoint.maStyleName = maAutoStyleNameQueue.front();
-                            maAutoStyleNameQueue.pop();
+                            if( ! maAutoStyleNameQueue.empty())
+                            {
+                                aPoint.maStyleName = maAutoStyleNameQueue.front();
+                                maAutoStyleNameQueue.pop();
+                            }
 
                             aDataPointList.push_back( aPoint );
                             nLastIndex = nCurrIndex;
@@ -2383,8 +2396,11 @@ void SchXMLExportHelper::AddAutoStyleAttribute( const ::std::vector< XMLProperty
     {
         DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
 
-        mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, maAutoStyleNameQueue.front());
-        maAutoStyleNameQueue.pop();
+        if( ! maAutoStyleNameQueue.empty())
+        {
+            mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, maAutoStyleNameQueue.front());
+            maAutoStyleNameQueue.pop();
+        }
     }
 }
 
