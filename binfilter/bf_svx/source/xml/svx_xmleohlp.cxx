@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xmleohlp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:35:23 $
+ *  last change: $Author: kz $ $Date: 2006-02-01 18:36:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -110,6 +110,8 @@ public:
 /*N*/   aTempFile.EnableKillingFile();
 /*N*/   pStream = aTempFile.GetStream( STREAM_READWRITE );
 /*N*/   SvStorageRef aTempStor = new SvStorage( sal_False, *pStream );
+/*N*/   // the object should not be stored in 5.2 storage since the alien objects are stored in a wrapped way in this case
+/*N*/   aTempStor->SetVersion( SOFFICE_FILEFORMAT_31 );
 /*N*/   if( pPersist->DoSaveAs( aTempStor ) )
 /*N*/   {
 /*N*/       aTempStor->Commit();
