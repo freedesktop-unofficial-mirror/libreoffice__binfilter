@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:23:26 $
+ *  last change: $Author: rt $ $Date: 2006-02-09 15:09:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,7 @@
 
 #pragma hdrstop
 
-#define ENABLE_STRING_STREAM_OPERATORS
+//#define ENABLE_STRING_STREAM_OPERATORS
 // auto strip #include <tools/stream.hxx>
 
 #ifndef _SV_OUTDEV_HXX
