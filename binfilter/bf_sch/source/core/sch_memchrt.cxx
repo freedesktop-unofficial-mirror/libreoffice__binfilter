@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-20 11:38:15 $
+ *  last change: $Author: rt $ $Date: 2006-02-09 15:09:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,9 @@
 
 #ifndef _STREAM_HXX
 // enable stream operators >>/<< for UniString (8 Bit !)
-#ifndef ENABLE_STRING_STREAM_OPERATORS
-#define ENABLE_STRING_STREAM_OPERATORS
-#endif
+//#ifndef ENABLE_STRING_STREAM_OPERATORS
+//#define ENABLE_STRING_STREAM_OPERATORS
+//#endif
 // auto strip #include <tools/stream.hxx>
 #endif
 
