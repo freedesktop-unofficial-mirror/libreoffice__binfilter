@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mathml.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:59:42 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:12:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -275,7 +275,7 @@ public:
         const ::rtl::OUString &rLocalName,
         const ::com::sun::star::uno::Reference <
         ::com::sun::star::xml::sax::XAttributeList> &xAttrList);
-    const SvXMLTokenMap &GetMathElemTokenMap();
+//   const SvXMLTokenMap &GetMathElemTokenMap();
     const SvXMLTokenMap &GetPresLayoutElemTokenMap();
     const SvXMLTokenMap &GetPresLayoutAttrTokenMap();
     const SvXMLTokenMap &GetFencedAttrTokenMap();
