@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_symbol.src,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:44:14 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:13:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,10 +80,10 @@ Resource RID_LOCALIZED_NAMES
     {
         ItemList  =
         {
-            < "BÊTA" ; > ;
-            < "bêta" ; > ;
-            < "ÊTA" ; > ;
-            < "êta" ; > ;
+            < "BÃŠTA" ; > ;
+            < "bÃªta" ; > ;
+            < "ÃŠTA" ; > ;
+            < "Ãªta" ; > ;
             < "IOTA" ; > ;
             < "iota" ; > ;
             < "KHI" ; > ;
@@ -94,18 +94,18 @@ Resource RID_LOCALIZED_NAMES
             < "nu" ; > ;
             < "OMICRON" ; > ;
             < "omicron" ; > ;
-            < "OMÉGA" ; > ;
-            < "oméga" ; > ;
-            < "RHÔ" ; > ;
-            < "rhô" ; > ;
-            < "THÊTA" ; > ;
-            < "thêta" ; > ;
+            < "OMÃ‰GA" ; > ;
+            < "omÃ©ga" ; > ;
+            < "RHÃ”" ; > ;
+            < "rhÃ´" ; > ;
+            < "THÃŠTA" ; > ;
+            < "thÃªta" ; > ;
             < "UPSILON" ; > ;
             < "upsilon" ; > ;
-            < "ZÊTA" ; > ;
-            < "zêta" ; > ;
-            < "varrhô" ; > ;
-            < "varthêta" ; > ;
+            < "ZÃŠTA" ; > ;
+            < "zÃªta" ; > ;
+            < "varrhÃ´" ; > ;
+            < "varthÃªta" ; > ;
         };
     };
     StringArray RID_ITALIAN_50_NAMES
@@ -167,7 +167,7 @@ Resource RID_LOCALIZED_NAMES
             < "KSI" ; > ;
             < "ro" ; > ;
             < "RO" ; > ;
-            < "tillhör" ; > ;
+            < "tillhÃ¶r" ; > ;
         };
     };
     StringArray RID_SPANISH_50_NAMES
@@ -534,7 +534,7 @@ Resource RID_LOCALIZED_NAMES
         < "; element" ; > ;
         < "; keinelement" ; > ;
         < "; kleingegen" ; > ;
-        < "; großgegen" ; > ;
+        < "; groÃŸgegen" ; > ;
         < "; ungleich" ; > ;
         < "; identisch" ; > ;
         < "; strebt" ; > ;
