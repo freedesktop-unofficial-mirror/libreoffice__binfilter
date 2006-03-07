@@ -4,9 +4,9 @@
  *
  *  $RCSfile: cfgitem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:58:45 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:12:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -143,7 +143,7 @@ struct SmFontFormat
     INT16       nItalic;
 
     SmFontFormat();
-    SmFontFormat( const Font &rFont );
+//    SmFontFormat( const Font &rFont );
 
     const Font      GetFont() const;
 //STRIP001     BOOL            operator == ( const SmFontFormat &rFntFmt ) const;
@@ -179,7 +179,7 @@ public:
 //STRIP001     void    RemoveFontFormat( const String &rFntFmtId );
 
     const SmFontFormat *    GetFontFormat( const String &rFntFmtId ) const;
-    const SmFontFormat *    GetFontFormat( USHORT nPos ) const;
+//    const SmFontFormat *    GetFontFormat( USHORT nPos ) const;
 //STRIP001     const String            GetFontFormatId( const SmFontFormat &rFntFmt ) const;
 //STRIP001     const String            GetFontFormatId( const SmFontFormat &rFntFmt, BOOL bAdd );
 //STRIP001     const String            GetFontFormatId( USHORT nPos ) const;
