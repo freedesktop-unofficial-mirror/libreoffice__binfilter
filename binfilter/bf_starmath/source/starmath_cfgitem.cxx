@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_cfgitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:00:41 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:12:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -252,15 +252,15 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-/*N*/ SmFontFormat::SmFontFormat( const Font &rFont )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+// /*N*/ SmFontFormat::SmFontFormat( const Font &rFont )
+// /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 //STRIP001     aName       = rFont.GetName();
 //STRIP001     nCharSet    = (INT16) rFont.GetCharSet();
 //STRIP001     nFamily     = (INT16) rFont.GetFamily();
 //STRIP001     nPitch      = (INT16) rFont.GetPitch();
 //STRIP001     nWeight     = (INT16) rFont.GetWeight();
 //STRIP001     nItalic     = (INT16) rFont.GetItalic();
-/*N*/ }
+// /*N*/ }
 
 
 /*N*/ const Font SmFontFormat::GetFont() const
@@ -365,13 +365,13 @@ static const char* aRootName = "Office.Math";
 
 
 
-/*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( USHORT nPos ) const
-/*N*/ {
-/*N*/     SmFontFormat *pRes = 0;
-/*N*/     if (nPos < aEntries.Count())
-/*N*/         pRes = &aEntries[ nPos ].aFntFmt;
-/*N*/     return pRes;
-/*N*/ }
+// /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( USHORT nPos ) const
+// /*N*/ {
+// /*N*/     SmFontFormat *pRes = 0;
+// /*N*/     if (nPos < aEntries.Count())
+// /*N*/         pRes = &aEntries[ nPos ].aFntFmt;
+// /*N*/     return pRes;
+// /*N*/ }
 
 
 //STRIP001 const String SmFontFormatList::GetFontFormatId( const SmFontFormat &rFntFmt ) const
