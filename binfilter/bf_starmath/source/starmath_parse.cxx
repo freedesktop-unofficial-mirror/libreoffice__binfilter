@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:03:57 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:13:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -383,6 +383,8 @@ using namespace ::com::sun::star::i18n;
 
 ///////////////////////////////////////////////////////////////////////////
 
+#if OSL_DEBUG_LEVEL > 1
+
 /*N*/ BOOL SmParser::IsDelimiter( const String &rTxt, xub_StrLen nPos )
 /*N*/   // returns 'TRUE' iff cChar is '\0' or a delimeter
 /*N*/ {
@@ -406,6 +408,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   return bIsDelim;
 /*N*/ }
+
+#endif
 
 
 /*N*/ void SmParser::Insert(const String &rText, USHORT nPos)
@@ -2334,43 +2338,6 @@ const sal_Int32 coNumContFlags =
 /*N*/     eConversion = CONVERT_NONE;
 /*N*/     bImportSymNames = bExportSymNames = FALSE;
 /*N*/     nLang = Application::GetSettings().GetUILanguage();
-/*N*/ }
-
-
-/*N*/ BOOL SmParser::CheckSyntax(const String &rBuffer)
-/*N*/ {
-/*N*/   SmErrDescList OldErrorList;
-/*N*/
-/*N*/   BufferString = rBuffer;
-/*N*/   BufferString.ConvertLineEnd( LINEEND_LF );
-/*N*/   BufferIndex  =
-/*N*/   nTokenIndex  = 0;
-/*N*/   Row    = 1;
-/*N*/   ColOff = 0;
-/*N*/
-/*N*/   NodeStack.Clear();
-/*N*/
-/*N*/   OldErrorList = ErrDescList;
-/*N*/   ErrDescList.Clear();
-/*N*/
-/*N*/     SetLanguage( Application::GetSettings().GetUILanguage() );
-/*N*/   NextToken();
-/*N*/   Table();
-/*N*/
-/*N*/   delete NodeStack.Pop();
-/*N*/
-/*N*/   if (ErrDescList.Count() > 0)
-/*N*/   {
-/*N*/       for (USHORT i = 0;  i < ErrDescList.Count();  i++)
-/*N*/           delete ErrDescList.Remove(i);
-/*N*/
-/*N*/       ErrDescList = OldErrorList;
-/*N*/
-/*N*/       return (FALSE);
-/*N*/   }
-/*N*/   ErrDescList = OldErrorList;
-/*N*/
-/*N*/   return (TRUE);
 /*N*/ }
 
 
