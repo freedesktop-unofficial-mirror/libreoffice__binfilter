@@ -4,9 +4,9 @@
  *
  *  $RCSfile: rect.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:49:32 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:14:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -222,11 +222,11 @@ public:
                               long nNewAlignM);
             SmRect & ExtendBy(const SmRect &rRect, RectCopyMBL eCopyMode,
                       BOOL bKeepVerAlignParams);
-            SmRect & ExtendBy(const Point &rPoint);
+//            SmRect & ExtendBy(const Point &rPoint);
 
-            long    OrientedDist(const Point &rPoint) const;
-            BOOL    IsInsideRect(const Point &rPoint) const;
-            BOOL    IsInsideItalicRect(const Point &rPoint) const;
+//            long    OrientedDist(const Point &rPoint) const;
+//            BOOL    IsInsideRect(const Point &rPoint) const;
+//            BOOL    IsInsideItalicRect(const Point &rPoint) const;
 
     inline  SmRect & operator = (const SmRect &rRect);
 
