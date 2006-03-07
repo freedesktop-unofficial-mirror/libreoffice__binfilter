@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_mathml.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:02:54 $
+ *  last change: $Author: rt $ $Date: 2006-03-07 10:13:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2421,12 +2421,12 @@ static __FAR_DATA SvXMLTokenMapEntry aColorTokenMap[] =
 };
 
 
-const SvXMLTokenMap& SmXMLImport::GetMathElemTokenMap()
-{
-    if(!pMathElemTokenMap)
-        pMathElemTokenMap = new SvXMLTokenMap(aMathElemTokenMap);
-    return *pMathElemTokenMap;
-}
+//const SvXMLTokenMap& SmXMLImport::GetMathElemTokenMap()
+//{
+//    if(!pMathElemTokenMap)
+//        pMathElemTokenMap = new SvXMLTokenMap(aMathElemTokenMap);
+//    return *pMathElemTokenMap;
+//}
 
 const SvXMLTokenMap& SmXMLImport::GetPresLayoutElemTokenMap()
 {
