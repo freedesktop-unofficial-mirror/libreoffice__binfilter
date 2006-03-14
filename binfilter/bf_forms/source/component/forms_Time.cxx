@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Time.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:49:12 $
+ *  last change: $Author: vg $ $Date: 2006-03-14 10:52:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,9 +47,6 @@
 #ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
 #endif
-#ifndef _COMPHELPER_DATETIME_HXX_
-#include <comphelper/datetime.hxx>
-#endif
 #ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
 #endif
@@ -78,10 +75,10 @@ using namespace dbtools;
 namespace frm
 {
 //.........................................................................
+using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -305,7 +302,7 @@ sal_Bool OTimeModel::_commit()
         {
             try
             {
-                starutil::Time aTime;
+                util::Time aTime;
                 if (!(aNewValue >>= aTime))
                 {
                     sal_Int32 nAsInt(0);
@@ -317,7 +314,7 @@ sal_Bool OTimeModel::_commit()
                     m_xColumnUpdate->updateTime(aTime);
                 else
                 {
-                    starutil::DateTime aDateTime = m_xColumn->getTimestamp();
+                    util::DateTime aDateTime = m_xColumn->getTimestamp();
                     aDateTime.HundredthSeconds = aTime.HundredthSeconds;
                     aDateTime.Seconds = aTime.Seconds;
                     aDateTime.Minutes = aTime.Minutes;
@@ -338,7 +335,7 @@ sal_Bool OTimeModel::_commit()
 //------------------------------------------------------------------------------
 void OTimeModel::_onValueChanged()
 {
-    starutil::Time aTime = m_xColumn->getTime();
+    util::Time aTime = m_xColumn->getTime();
     if (m_xColumn->wasNull())
         m_aSaveValue.clear();
     else
