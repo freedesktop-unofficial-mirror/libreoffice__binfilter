@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ComboBox.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:41:06 $
+ *  last change: $Author: vg $ $Date: 2006-03-14 10:52:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,9 +67,6 @@
 #ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_DATETIME_HXX_
-// auto strip #include <comphelper/datetime.hxx>
-// auto strip #endif
 #ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
 #endif
