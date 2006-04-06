@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_forbiddencharacterstable.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:25:54 $
+ *  last change: $Author: vg $ $Date: 2006-04-06 16:14:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,19 +58,23 @@ namespace binfilter {
 
 
 
-/*N*/ const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::GetForbiddenCharacters( USHORT nLanguage, BOOL bGetDefault ) const
-/*N*/ {
-/*N*/   ForbiddenCharactersInfo* pInf = Get( nLanguage );
-/*N*/   if ( !pInf && bGetDefault && mxMSF.is() )
-/*N*/   {
-/*N*/       pInf = new ForbiddenCharactersInfo;
-/*N*/       ((SvxForbiddenCharactersTableImpl*)this)->Insert( nLanguage, pInf );
-/*N*/       pInf->bTemporary = TRUE;
-/*N*/       LocaleDataWrapper aWrapper( mxMSF, SvxCreateLocale( nLanguage ) );
-/*N*/       pInf->aForbiddenChars = aWrapper.getForbiddenCharacters();
-/*N*/   }
-/*N*/   return pInf ? &pInf->aForbiddenChars : NULL;
-/*N*/ }
+const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::GetForbiddenCharacters( USHORT nLanguage, BOOL bGetDefault ) const
+{
+    ForbiddenCharactersInfo* pInf = Get( nLanguage );
+    if ( !pInf && bGetDefault && mxMSF.is() )
+    {
+        const SvxForbiddenCharactersTableImpl *pConstImpl =
+            dynamic_cast<const SvxForbiddenCharactersTableImpl*>(this);
+        SvxForbiddenCharactersTableImpl* pImpl =
+            const_cast<SvxForbiddenCharactersTableImpl*>(pConstImpl);
+        pInf = new ForbiddenCharactersInfo;
+        pImpl->Insert( nLanguage, pInf );
+        pInf->bTemporary = TRUE;
+        LocaleDataWrapper aWrapper( mxMSF, SvxCreateLocale( nLanguage ) );
+        pInf->aForbiddenChars = aWrapper.getForbiddenCharacters();
+    }
+    return pInf ? &pInf->aForbiddenChars : NULL;
+}
 
 
 
