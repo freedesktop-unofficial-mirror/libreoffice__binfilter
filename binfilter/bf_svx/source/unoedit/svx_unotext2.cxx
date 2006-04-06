@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unotext2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:33:49 $
+ *  last change: $Author: vg $ $Date: 2006-04-06 16:14:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,7 +83,7 @@ using namespace ::com::sun::star;
 SvxUnoTextContentEnumeration::SvxUnoTextContentEnumeration( const SvxUnoTextBase& _rText ) throw()
 : rText( _rText )
 {
-    xParentText =  (text::XText*)&_rText;
+    xParentText =  const_cast<SvxUnoTextBase*>(&rText);
     if( rText.GetEditSource() )
         pEditSource = rText.GetEditSource()->Clone();
     else
@@ -145,7 +145,7 @@ SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nP
     nParagraph(nPara),
     bDisposing( sal_False )
 {
-    xParentText =  (text::XText*)&rText;
+    xParentText =  const_cast<SvxUnoTextBase*>(&rText);
     SetSelection( ESelection( nParagraph,0, nParagraph, GetEditSource()->GetTextForwarder()->GetTextLen( nParagraph ) ) );
 }
 
@@ -392,7 +392,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoTextContent::getSupportedServiceNames()
 // ====================================================================
 
 SvxUnoTextRangeEnumeration::SvxUnoTextRangeEnumeration( const SvxUnoTextBase& rText, sal_uInt16 nPara ) throw()
-:   xParentText(  (text::XText*)&rText ),
+:   xParentText(  const_cast<SvxUnoTextBase*>(&rText) ),
     rParentText( rText ),
     nParagraph( nPara ),
     nNextPortion( 0 )
@@ -469,7 +469,7 @@ uno::Reference< uno::XInterface > SvxUnoTextCursor_NewInstance()
 
 SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextBase& rText ) throw()
 :   SvxUnoTextRangeBase(rText),
-    xParentText( (text::XText*)&rText)
+    xParentText( const_cast<SvxUnoTextBase*>(&rText) )
 {
 }
 
