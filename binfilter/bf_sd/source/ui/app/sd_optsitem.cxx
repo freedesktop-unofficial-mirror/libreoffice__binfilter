@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_optsitem.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:40:30 $
+ *  last change: $Author: vg $ $Date: 2006-04-06 16:13:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1588,11 +1588,16 @@ using namespace ::com::sun::star::uno;
 
 // ----------------------------------------------------------------------
 
-/*N*/ int SdOptionsPrintItem::operator==( const SfxPoolItem& rAttr ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-/*N*/   return( (SdOptionsPrint&) *this == (const SdOptionsPrint&)(const SdOptionsPrintItem&) rAttr );
-/*N*/ }
+int SdOptionsPrintItem::operator==( const SfxPoolItem& rAttr ) const
+{
+    const SdOptionsPrintItem* pRHS = dynamic_cast<const SdOptionsPrintItem *>(&rAttr);
+    DBG_ASSERT( pRHS, "SdOptionsPrintItem::operator==(), compare not possible for non SdOptionsPrintItem" );
+
+    if( pRHS )
+        return SdOptionsPrint::operator==(*pRHS);
+    else
+        return 0;
+}
 
 // -----------------------------------------------------------------------
 
