@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:31:42 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:39:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,8 +94,8 @@ namespace com { namespace sun { namespace star {
 #ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>
 #endif
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
