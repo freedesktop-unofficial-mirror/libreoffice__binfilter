@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_addincol.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:02:27 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:20:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,7 +41,7 @@
 
 #include <comphelper/processfactory.hxx>
 #include <tools/debug.hxx>
-#include <tools/isolang.hxx>
+#include <i18npool/mslangid.hxx>
 #include <vcl/svapp.hxx>
 #include <vos/xception.hxx>
 #include <bf_sfx2/objsh.hxx>
@@ -525,11 +525,7 @@ public:
 /*N*/         //  AddIns must use the language for which the office is installed
 /*N*/         LanguageType eOfficeLang = Application::GetSettings().GetUILanguage();
 /*N*/
-/*N*/         String aLanguage, aCountry;
-/*N*/         ConvertLanguageToIsoNames( eOfficeLang, aLanguage, aCountry );
-/*N*/
-/*N*/         ::rtl::OUString aEmpty;
-/*N*/         lang::Locale aLocale(  aLanguage, aCountry, aEmpty );
+/*N*/         lang::Locale aLocale( MsLangId::convertLanguageToLocale( eOfficeLang ));
 /*N*/         xAddIn->setLocale( aLocale );
 /*N*/
 /*N*/         String aServiceName = String( xName->getServiceName() );
