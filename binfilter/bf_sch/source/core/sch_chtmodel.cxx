@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmodel.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:55:52 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:22:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,8 +105,8 @@ class SbxArray;
 #ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
 #endif
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 
 #ifndef _SVX_XLINEIT0_HXX
@@ -170,9 +170,6 @@ class SbxArray;
 #endif
 #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
 #endif
 #ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
