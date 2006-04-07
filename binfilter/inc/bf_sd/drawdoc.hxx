@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:57:35 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:37:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,9 +53,6 @@
 #endif
 #ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _TOOLS_INTN_HXX
-#include <tools/intn.hxx>
 #endif
 
 #include <so3/svstor.hxx>
@@ -193,7 +190,6 @@ private:
     SotStorage*         pDocStor;
     SotStorageRef       xPictureStorage;
     SotStorageStreamRef xDocStream;
-    International*      mpInternational;
     CharClass*          mpCharClass;
     ::com::sun::star::lang::Locale* mpLocale;
 
@@ -452,7 +448,6 @@ public:
 //STRIP001  List*               GetDeletedPresObjList();
 
     CharClass*          GetCharClass() const { return mpCharClass; }
-    International*      GetInternational() const { return mpInternational; }
 
     void                RestoreLayerNames();
     void                MakeUniqueLayerNames();
