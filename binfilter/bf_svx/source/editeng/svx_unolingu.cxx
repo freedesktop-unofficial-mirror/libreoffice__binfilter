@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unolingu.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:28:17 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:25:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
-#endif
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
@@ -69,8 +66,8 @@
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 #endif
 
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
+#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
+#include <i18npool/mslangid.hxx>
 #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
@@ -165,7 +162,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/     Sequence< OUString > aRes;
 /*N*/
-/*N*/     OUString aCfgLocaleStr( ConvertLanguageToIsoString(
+/*N*/     OUString aCfgLocaleStr( MsLangId::convertLanguageToIsoString(
 /*N*/                                 SvxLocaleToLanguage( rAvailLocale ) ) );
 /*N*/
 /*N*/     Sequence< OUString > aNodeNames( rCfg.GetNodeNames(rLastFoundList) );
@@ -277,7 +274,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/             const OUString *pNodeName = aNodeNames.getConstArray();
 /*N*/             for (i = 0;  i < nNodeNames;  ++i)
 /*N*/             {
-/*N*/                 Locale aLocale( SvxCreateLocale( ConvertIsoStringToLanguage(pNodeName[i]) ) );
+/*N*/                 Locale aLocale( SvxCreateLocale( MsLangId::convertIsoStringToLanguage(pNodeName[i]) ) );
 /*N*/                 Sequence< OUString > aCfgSvcs(
 /*N*/                         xLngSvcMgr->getConfiguredServices( aService, aLocale ));
 /*N*/                 Sequence< OUString > aAvailSvcs(
@@ -331,7 +328,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*?*/                 aCfgAny <<= aSvcImplNames;
 /*?*/                 DBG_ASSERT( aCfgAny.hasValue(), "missing value for 'Any' type" );
 /*?*/
-/*?*/                 OUString aCfgLocaleStr( ConvertLanguageToIsoString(
+/*?*/                 OUString aCfgLocaleStr( MsLangId::convertLanguageToIsoString(
 /*?*/                                             SvxLocaleToLanguage( pAvailLocale[i] ) ) );
 /*?*/                 pValue->Value = aCfgAny;
 /*?*/                 pValue->Name  = aLastFoundList;
@@ -410,7 +407,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/         for (INT32 i = 0;  i < nLen;  ++i)
 /*N*/         {
 /*N*/             pLocale[i] = SvxCreateLocale(
-/*N*/                             ConvertIsoStringToLanguage( pNodeNames[i] ) );
+/*N*/                             MsLangId::convertIsoStringToLanguage( pNodeNames[i] ) );
 /*N*/         }
 /*N*/     }
 /*N*/ }
@@ -1321,30 +1318,26 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/   if ( rLocale.Language.getLength() == 0 )
 /*N*/       return LANGUAGE_NONE;
 /*N*/
-/*N*/   //  Variant of Locale is ignored
-/*N*/   return ConvertIsoNamesToLanguage( rLocale.Language, rLocale.Country );
+/*N*/   return MsLangId::convertLocaleToLanguage( rLocale );
 /*N*/ }
 
 /*N*/ Locale& SvxLanguageToLocale( Locale& rLocale, LanguageType eLang )
 /*N*/ {
-/*N*/   String aLangStr, aCtryStr;
 /*N*/   if ( eLang != LANGUAGE_NONE /* &&  eLang != LANGUAGE_SYSTEM */)
-/*N*/       ConvertLanguageToIsoNames( eLang, aLangStr, aCtryStr );
-/*N*/
-/*N*/   rLocale.Language = aLangStr;
-/*N*/   rLocale.Country  = aCtryStr;
-/*N*/   rLocale.Variant  = OUString();
+/*N*/       MsLangId::convertLanguageToLocale( eLang, rLocale );
+/*N*/   else
+/*N*/       rLocale = Locale();
 /*N*/
 /*N*/   return rLocale;
 /*N*/ }
 
 /*N*/ Locale SvxCreateLocale( LanguageType eLang )
 /*N*/ {
-/*N*/   String aLangStr, aCtryStr;
+/*N*/   Locale aLocale;
 /*N*/   if ( eLang != LANGUAGE_NONE /* &&  eLang != LANGUAGE_SYSTEM */)
-/*N*/       ConvertLanguageToIsoNames( eLang, aLangStr, aCtryStr );
+/*N*/       MsLangId::convertLanguageToLocale( eLang, aLocale );
 /*N*/
-/*N*/   return Locale( aLangStr, aCtryStr, OUString() );
+/*N*/   return aLocale;
 /*N*/ }
 
 
