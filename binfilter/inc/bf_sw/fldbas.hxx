@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:59:15 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:42:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,8 +37,8 @@
 
 #ifndef FIELDIDS_ONLY       // SWG-Testreader!!
 
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
