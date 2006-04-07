@@ -4,9 +4,9 @@
  *
  *  $RCSfile: swcalwrp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 16:27:15 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:43:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,8 +36,8 @@
 #ifndef _SWCALWRP_HXX
 #define _SWCALWRP_HXX
 
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
