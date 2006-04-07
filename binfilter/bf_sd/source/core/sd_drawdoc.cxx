@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:21:47 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:23:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,8 +127,8 @@
 #ifndef _XCEPTION_HXX_
 #include <vos/xception.hxx>
 #endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
+#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
+#include <i18npool/mslangid.hxx>
 #endif
 #include <unotools/charclass.hxx>
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
@@ -237,7 +237,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   bInitialOnlineSpellingEnabled(TRUE),
 /*N*/   bHasOnlineSpellErrors(FALSE),
 /*N*/   pOnlineSearchItem(NULL),
-/*N*/   mpInternational(NULL),
 /*N*/   mpLocale(NULL),
 /*N*/   mpCharClass(NULL),
 /*N*/   bAllocDocSh(FALSE),
@@ -301,12 +300,9 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       bHideSpell = aOptions.bIsSpellHideMarkings;
 /*N*/   }
 /*N*/
-/*N*/   LanguageType eRealLanguage = International::GetRealLanguage( eLanguage );
+/*N*/   LanguageType eRealLanguage = MsLangId::getRealLanguage( eLanguage );
 /*N*/
-/*N*/   mpInternational = new International(eLanguage);
-/*N*/   String aLanguage, aCountry, aEmpty;
-/*N*/   ConvertLanguageToIsoNames( eRealLanguage, aLanguage, aCountry );
-/*N*/   mpLocale = new ::com::sun::star::lang::Locale( aLanguage, aCountry, aEmpty );
+/*N*/   mpLocale = new ::com::sun::star::lang::Locale( MsLangId::convertLanguageToLocale( eRealLanguage ));
 /*N*/   mpCharClass = new CharClass( *mpLocale );
 /*N*/
 /*N*/   // If the current application language is a language that uses right-to-left text...
@@ -528,9 +524,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/   delete pDeletedPresObjList;
 /*N*/   pDeletedPresObjList = NULL;
-/*N*/
-/*N*/   delete mpInternational;
-/*N*/   mpInternational = NULL;
 /*N*/
 /*N*/   delete mpLocale;
 /*N*/   mpLocale = NULL;
