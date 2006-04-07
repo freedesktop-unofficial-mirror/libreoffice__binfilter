@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbmgr.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:27:27 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:32:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -246,9 +246,9 @@
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
-#endif
+//STRIPX #ifndef _ISOLANG_HXX
+//STRIPX #include <tools/isolang.hxx>
+//STRIPX #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
 #endif
