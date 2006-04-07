@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlnumfi.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:42:08 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:43:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,8 +49,8 @@
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 #ifndef __SGI_STL_VECTOR
 #include <vector>
@@ -61,6 +61,7 @@
 class Color;
 class Color;
 class SvNumberFormatter;
+class SvtSysLocale;
 namespace binfilter {
 
 #define XML_NUMBERSTYLES "NumberStyles"
@@ -135,12 +136,12 @@ public:
 class SvXMLNumFmtDefaults
 {
 public:
-    static sal_Bool IsSystemLongDay( const International& rIntn, BOOL bLong );
-    static sal_Bool IsSystemLongMonth( const International& rIntn, BOOL bLong );
-    static sal_Bool IsSystemTextualMonth( const International& rIntn, BOOL bLong );
-    static sal_Bool IsSystemLongYear( const International& rIntn, BOOL bLong );
-    static sal_Bool IsSystemLongEra( const International& rIntn, BOOL bLong );
-    static sal_Bool IsSystemLongDayOfWeek( const International& rIntn, BOOL bLong );
+    static sal_Bool IsSystemLongDay( const SvtSysLocale& rSysLoc, BOOL bLong );
+    static sal_Bool IsSystemLongMonth( const SvtSysLocale& rSysLoc, BOOL bLong );
+    static sal_Bool IsSystemTextualMonth( const SvtSysLocale& rSysLoc, BOOL bLong );
+    static sal_Bool IsSystemLongYear( const SvtSysLocale& rSysLoc, BOOL bLong );
+    static sal_Bool IsSystemLongEra( const SvtSysLocale& rSysLoc, BOOL bLong );
+    static sal_Bool IsSystemLongDayOfWeek( const SvtSysLocale& rSysLoc, BOOL bLong );
 
     // return value is NfIndexTableOffset
     static sal_uInt16 GetDefaultDateFormat( SvXMLDateElementAttributes eDOW,
