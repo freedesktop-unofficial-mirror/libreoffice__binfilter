@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:21:53 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:27:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -106,8 +106,8 @@
 // auto strip #endif
 
 #include <rtl/ustring>
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
+#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
+#include <i18npool/mslangid.hxx>
 #endif
 #ifndef _SFXITEMSET_HXX
 #include <svtools/itemset.hxx>
@@ -2602,11 +2602,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*?*/           rVal <<= (sal_Int16)(GetValue());
 /*N*/       break;
 /*N*/       case MID_LANG_LOCALE:
-/*N*/           String sLanguage, sCountry;
-/*N*/           ::ConvertLanguageToIsoNames( GetValue(), sLanguage, sCountry );
-/*N*/           lang::Locale aRet;
-/*N*/           aRet.Language = sLanguage;
-/*N*/           aRet.Country = sCountry;
+/*N*/           lang::Locale aRet( MsLangId::convertLanguageToLocale( GetValue() ));
 /*N*/           rVal <<= aRet;
 /*N*/       break;
 /*N*/   }
@@ -2637,7 +2633,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/               return sal_False;
 /*N*/
 /*N*/           if (aLocale.Language.getLength() || aLocale.Country.getLength())
-/*N*/               SetValue(ConvertIsoNamesToLanguage( aLocale.Language, aLocale.Country ));
+/*N*/               SetValue(MsLangId::convertIsoNamesToLanguage( aLocale.Language, aLocale.Country ));
 /*N*/           else
 /*N*/               SetValue(LANGUAGE_NONE);
 /*N*/       }
