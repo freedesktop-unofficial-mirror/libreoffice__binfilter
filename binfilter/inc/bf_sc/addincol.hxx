@@ -4,9 +4,9 @@
  *
  *  $RCSfile: addincol.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:56:14 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:36:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -57,9 +57,9 @@
 #include <com/sun/star/container/XNameAccess.hpp>
 #endif
 
-#ifndef _LANG_HXX
-#include <tools/lang.hxx>
-#endif
+//STRIP001 #ifndef _LANG_HXX
+//STRIP001 #include <tools/lang.hxx>
+//STRIP001 #endif
 
 #ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
