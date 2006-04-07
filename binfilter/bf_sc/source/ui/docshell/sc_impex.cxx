@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:10:21 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:21:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,6 +54,7 @@ class StarBASIC;
 #include <ctype.h>
 #include <stdlib.h>
 
+#include <i18npool/mslangid.hxx>
 // auto strip #include <tools/list.hxx>
 // auto strip #include <tools/string.hxx>
 // auto strip #include <rtl/math.hxx>
@@ -1039,7 +1040,7 @@ enum DoubledQuoteMode
 /*N*/     aTransliteration.loadModuleIfNeeded( eDocLang );
 /*N*/   CalendarWrapper aCalendar( pDoc->GetServiceManager() );
 /*N*/   aCalendar.loadDefaultCalendar(
-/*N*/       SvNumberFormatter::ConvertLanguageToLocale( eDocLang ) );
+/*N*/       MsLangId::convertLanguageToLocale( eDocLang ) );
 /*N*/     ::utl::TransliterationWrapper* pEnglishTransliteration = NULL;
 /*N*/   CalendarWrapper* pEnglishCalendar = NULL;
 /*N*/   if ( eDocLang != LANGUAGE_ENGLISH_US )
@@ -1049,7 +1050,7 @@ enum DoubledQuoteMode
 /*?*/         aTransliteration.loadModuleIfNeeded( LANGUAGE_ENGLISH_US );
 /*?*/       pEnglishCalendar = new CalendarWrapper ( pDoc->GetServiceManager() );
 /*?*/       pEnglishCalendar->loadDefaultCalendar(
-/*?*/           SvNumberFormatter::ConvertLanguageToLocale( LANGUAGE_ENGLISH_US ) );
+/*?*/           MsLangId::convertLanguageToLocale( LANGUAGE_ENGLISH_US ) );
 /*N*/   }
 /*N*/
 /*N*/   String aLine, aCell;
