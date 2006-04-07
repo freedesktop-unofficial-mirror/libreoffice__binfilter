@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_convuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:10:58 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:21:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,7 +40,7 @@
 #pragma hdrstop
 
 // auto strip #include <tools/debug.hxx>
-#include <tools/isolang.hxx>
+#include <i18npool/mslangid.hxx>
 
 #include "convuno.hxx"
 // auto strip #include "global.hxx"
@@ -63,11 +63,7 @@ LanguageType ScUnoConversion::GetLanguage( const lang::Locale& rLocale )
     if ( rLocale.Language.getLength() == 0 )
         return LANGUAGE_SYSTEM;
 
-    String aLangStr = rLocale.Language;
-    String aCtryStr = rLocale.Country;
-    //  Variant is ignored
-
-    LanguageType eRet = ConvertIsoNamesToLanguage( aLangStr, aCtryStr );
+    LanguageType eRet = MsLangId::convertLocaleToLanguage( rLocale );
     if ( eRet == LANGUAGE_NONE )
         eRet = LANGUAGE_SYSTEM;         //! or throw an exception?
 
@@ -76,10 +72,7 @@ LanguageType ScUnoConversion::GetLanguage( const lang::Locale& rLocale )
 
 void ScUnoConversion::FillLocale( lang::Locale& rLocale, LanguageType eLang )
 {
-    String aLangStr, aCtryStr;
-    ConvertLanguageToIsoNames( eLang, aLangStr, aCtryStr );
-    rLocale.Language = aLangStr;
-    rLocale.Country  = aCtryStr;
+    MsLangId::convertLanguageToLocale( eLang, rLocale );
 }
 
 
