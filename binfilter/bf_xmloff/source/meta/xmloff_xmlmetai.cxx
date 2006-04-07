@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlmetai.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:17:55 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:33:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,8 +34,8 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-#include <tools/isolang.hxx>
 #include <tools/time.hxx>
+#include <tools/string.hxx>
 
 #include <com/sun/star/util/DateTime.hpp>
 // auto strip #include <com/sun/star/lang/Locale.hpp>
