@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_global.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:49:03 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:20:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -65,8 +65,8 @@
 #include <ctype.h>
 
 
-#ifndef _ISOLANG_HXX
-#include <tools/isolang.hxx>
+#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
+#include <i18npool/mslangid.hxx>
 #endif
 // auto strip #ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 // auto strip #include <com/sun/star/lang/Locale.hpp>
@@ -602,8 +602,7 @@ void global_InitAppOptions();
 /*N*/     //! abhaengen sollen, hier "Application::GetSettings().GetUILanguage()"
 /*N*/   String aLanguage, aCountry;
 /*N*/     LanguageType eOfficeLanguage = Application::GetSettings().GetLanguage();
-/*N*/     ConvertLanguageToIsoNames( eOfficeLanguage, aLanguage, aCountry );
-/*N*/   pLocale = new ::com::sun::star::lang::Locale( aLanguage, aCountry, EMPTY_STRING );
+/*N*/   pLocale = new ::com::sun::star::lang::Locale( MsLangId::convertLanguageToLocale( eOfficeLanguage ));
 /*N*/     pSysLocale = new SvtSysLocale;
 /*N*/     pCharClass = pSysLocale->GetCharClassPtr();
 /*N*/     pLocaleData = pSysLocale->GetLocaleDataPtr();
