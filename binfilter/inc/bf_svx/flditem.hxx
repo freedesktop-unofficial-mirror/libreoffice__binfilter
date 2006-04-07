@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flditem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:25:27 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:40:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,18 +35,18 @@
 #ifndef _SVX_FLDITEM_HXX
 #define _SVX_FLDITEM_HXX
 
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 // auto strip #ifndef _SVX_ITEMDATA_HXX
 // auto strip #include <bf_svx/itemdata.hxx>
 // auto strip #endif
-// auto strip #ifndef _TIME_HXX //autogen
-// auto strip #include <tools/time.hxx>
-// auto strip #endif
-// auto strip #ifndef _DATE_HXX //autogen
-// auto strip #include <tools/date.hxx>
-// auto strip #endif
+#ifndef _TIME_HXX //autogen
+#include <tools/time.hxx>
+#endif
+#ifndef _DATE_HXX //autogen
+#include <tools/date.hxx>
+#endif
 // auto strip #ifndef _SFXPOOLITEM_HXX //autogen
 // auto strip #include <svtools/poolitem.hxx>
 // auto strip #endif
