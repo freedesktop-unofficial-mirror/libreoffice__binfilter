@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editview.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:21:58 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:39:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,9 @@
 #ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
 #endif
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
-#endif
+//STRIP001 #ifndef _LANG_HXX //autogen
+//STRIP001 #include <tools/lang.hxx>
+//STRIP001 #endif
 
 #ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
