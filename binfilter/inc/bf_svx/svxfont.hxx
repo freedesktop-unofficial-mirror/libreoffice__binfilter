@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svxfont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:51:51 $
+ *  last change: $Author: vg $ $Date: 2006-04-07 13:41:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,8 +40,8 @@
 #include <bf_svx/svxenum.hxx>
 #endif
 
-#ifndef _LANG_HXX //autogen
-#include <tools/lang.hxx>
+#ifndef INCLUDED_I18NPOOL_LANG_H
+#include <i18npool/lang.h>
 #endif
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
