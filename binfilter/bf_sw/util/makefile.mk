@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-09 07:32:21 $
+#   last change: $Author: vg $ $Date: 2006-05-24 13:07:45 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -39,8 +39,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_sw
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 .IF "$(CPU)"=="i386"
@@ -50,70 +48,18 @@ USE_LDUMP2=TRUE
 
 # --- Settings ------------------------------------------------------------
 
-.INCLUDE :  svpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
-#	nmake		 	-	swdll
 
 DESK=T
 
-.IF "$(GUI)" == "WIN"
-RESLIBSPLIT1NAME=bf_sw
-.ELSE
 RESLIB1NAME=bf_sw
-.ENDIF
 MYRESLIBNAME=sw
 
-#RSCLOCINC=$(RSCLOCINC);$(PRJ)$/RES
-
 # --- Allgemein -----------------------------------------------------------
-.IF "$(GUI)"=="WIN"
-LIBFLAGS=/PAGE:128 /NOE /NOI
-#OPTLINKS=YES
-MAPSYM=tmapsym
-.IF "$(debug)" != ""
-LINKFLAGS= /F /PACKCODE:65520 /PACKDATA /NOD /NOE /MAP /COD /NOCV
-.ELSE
-LINKFLAGS= /F /PACKCODE:65520 /PACKDATA /NOD /NOE /MAP
-.ENDIF
-.ENDIF
-
-.IF "$(COM)"=="ICC"
-LINKFLAGS+=/SEGMENTS:1024 /PACKD:32768
-.ENDIF
 .IF "$(OS)"=="IRIX"
 LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=40
 .ENDIF
-
-.IF "$(header)" == ""
-
-#sw_res_files= \
-#    $(SRS)$/app.srs          \
-#    $(SRS)$/dialog.srs       \
-#    $(SRS)$/chrdlg.srs       \
-#    $(SRS)$/config.srs       \
-#    $(SRS)$/dbui.srs	    \
-#    $(SRS)$/dochdl.srs       \
-#    $(SRS)$/docvw.srs        \
-#    $(SRS)$/envelp.srs       \
-#    $(SRS)$/fldui.srs        \
-#    $(SRS)$/fmtui.srs        \
-#    $(SRS)$/frmdlg.srs       \
-#    $(SRS)$/globdoc.srs      \
-#    $(SRS)$/index.srs        \
-#    $(SRS)$/lingu.srs        \
-#    $(SRS)$/misc.srs         \
-#    $(SRS)$/ribbar.srs       \
-#    $(SRS)$/shells.srs       \
-#    $(SRS)$/swslots.srs     \
-#    $(SRS)$/table.srs        \
-#    $(SRS)$/uiview.srs       \
-#    $(SRS)$/utlui.srs        \
-#    $(SRS)$/web.srs          \
-#    $(SRS)$/wizard.srs       \
-#    $(SRS)$/wrtsh.srs        \
-#    $(SOLARRESDIR)$/bf_sfx.srs
 
 sw_res_files= \
     $(SRS)$/sw_app.srs          \
@@ -136,27 +82,16 @@ sw_res_files= \
     $(SRS)$/sw_web.srs          \
     $(SRS)$/sw_wrtsh.srs        \
     $(SRS)$/sfx2_sfx.srs
-.IF "$(GUI)" == "WIN"
-RESLIBSPLIT1SRSFILES= \
-    $(sw_res_files)
-.ELSE
+
 RESLIB1SRSFILES= \
     $(sw_res_files)
-.ENDIF
 
 LIB1TARGET=$(LB)$/bf_swlib.lib
 LIB1ARCHIV=$(LB)$/libbf_swlib.a
-#.IF "$(GUI)"=="UNX"
 LIB1OBJFILES= \
         $(SLO)$/sw_swlib.obj \
         $(SLO)$/sw_swcomlib.obj \
         $(SLO)$/sw_w4wflt.obj
-#.ELSE
-#LIB1OBJFILES= \
-#		$(OUT)$/obj$/sw_swlib.obj \
-#		$(OUT)$/obj$/sw_swcomlib.obj \
-#		$(OUT)$/obj$/sw_w4wflt.obj
-#.ENDIF
 
 SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2VERSIONMAP= $(TARGET).map
@@ -211,9 +146,6 @@ SHL2STDLIBS+= $(BFSCHLIB) $(BFSMLIB)
 SHL2STDLIBS+= advapi32.lib
 .ENDIF # WNT
 
-#			uno.lib usr.lib sj.lib aofa.lib
-#			ysch.lib  ysim.lib ysm.lib basic.lib ich.lib
-
 SHL2DEPN=   \
     $(SLB)$/sw_core1.lib\
     $(SLB)$/sw_core2.lib\
@@ -230,23 +162,6 @@ SHL2OBJS= \
 
 SHL2DEF=    $(MISC)$/$(SHL2TARGET).def
 SHL2BASE=	0x1e000000
-
-
-.IF "$(GUI)"=="WNT"
-do_build+= \
-    $(MISC)$/linkinc.ls
-.ENDIF
-
-do_build+= \
-    $(SHL2TARGETN)
-
-.IF "$(depend)"==""
-ALL:\
-    $(do_build) \
-    $(INC)$/sw.lst	\
-    ALLTAR
-.ENDIF
-.ENDIF
 
 .INCLUDE :  target.mk
 
@@ -282,13 +197,5 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   component_writeInfo @51									>>$@
     @echo   component_getFactory @52								>>$@
 
-.ENDIF
-
-$(INC)$/sw.lst:
-.IF "$(GUI)" =="WNT"
-    +-@echo clook missed!!!!
-#clook -o $@ -p 1 -i ..\inc;..\source\ui\inc;..\source\core\inc;..\source\filter\inc;. dummy.cxx
-.ELSE
-    @echo wnt only
 .ENDIF
 
