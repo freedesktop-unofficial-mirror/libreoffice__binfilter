@@ -4,9 +4,9 @@
  *
  *  $RCSfile: shaditem.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:27:31 $
+ *  last change: $Author: vg $ $Date: 2006-06-02 12:28:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,14 +50,10 @@
 #include <bf_svx/svxids.hrc>
 #endif
 
-#ifdef _USE_NAMESPACE
 namespace rtl
 {
-#endif
     class OUString;
-#ifdef _USE_NAMESPACE
 }
-#endif
 namespace binfilter {
 
 // class SvxShadowItem ---------------------------------------------------
