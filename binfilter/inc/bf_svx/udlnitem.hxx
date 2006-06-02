@@ -4,9 +4,9 @@
  *
  *  $RCSfile: udlnitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:12:29 $
+ *  last change: $Author: vg $ $Date: 2006-06-02 12:29:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -50,14 +50,10 @@
 #include <tools/color.hxx>
 #endif
 
-#ifdef _USE_NAMESPACE
 namespace rtl
 {
-#endif
     class OUString;
-#ifdef _USE_NAMESPACE
 }
-#endif
 namespace binfilter {
 class SvXMLUnitConverter;
 
