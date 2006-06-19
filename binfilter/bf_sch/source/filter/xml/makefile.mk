@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.2 $
+#   $Revision: 1.3 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-07 22:01:17 $
+#   last change: $Author: hr $ $Date: 2006-06-19 10:07:12 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,7 @@
 #*************************************************************************
 PRJ					= ..$/..$/..$/..
 BFPRJ					= ..$/..$/..
-PRJNAME				= bf_sch
+PRJNAME				= binfilter
 TARGET				= sch_xml
 ENABLE_EXCEPTIONS	= TRUE
 
