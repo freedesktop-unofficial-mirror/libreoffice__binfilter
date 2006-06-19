@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_eventimp.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 08:55:43 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:10:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -308,7 +308,7 @@ SdXMLEventContext::SdXMLEventContext( SvXMLImport& rImport,  sal_uInt16 nPrfx, c
             if( IsXMLToken( aLocalName, XML_HREF ) )
             {
                 const rtl::OUString &rTmp( rImport.GetAbsoluteReference(sValue) );
-                INetURLObject::translateToInternal( rTmp, msBookmark, INetURLObject::WAS_ENCODED, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8 );
+                INetURLObject::translateToInternal( rTmp, msBookmark, INetURLObject::DECODE_UNAMBIGUOUS, RTL_TEXTENCODING_UTF8 );
             }
             break;
         }
