@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtflde.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:34:17 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:17:12 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,8 +48,8 @@
 #include <bf_xmloff/xmlnmspe.hxx>
 #endif
 
-#ifndef _RTL_USTRING
-#include <rtl/ustring>
+#ifndef _RTL_USTRING_HXX_
+#include "rtl/ustring.hxx"
 #endif
 
 #ifndef _XMLOFF_XMLTOKEN_HXX
