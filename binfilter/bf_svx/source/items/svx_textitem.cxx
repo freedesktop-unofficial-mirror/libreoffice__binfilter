@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:27:19 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:09:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,7 +105,7 @@
 // auto strip #include <tools/tenccvt.hxx>
 // auto strip #endif
 
-#include <rtl/ustring>
+#include "rtl/ustring.hxx"
 #ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
 #endif
