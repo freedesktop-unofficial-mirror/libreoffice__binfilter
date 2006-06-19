@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_paraitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:19:01 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:09:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -101,7 +101,7 @@ using namespace ::com::sun::star;
 #include "pgrditem.hxx"
 
 
-#include <rtl/ustring>
+#include "rtl/ustring.hxx"
 
 #include <unomid.hxx>
 
