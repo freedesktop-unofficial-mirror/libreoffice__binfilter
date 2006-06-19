@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtfldi.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:36:30 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:15:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -183,9 +183,7 @@
 #include <com/sun/star/sdb/CommandType.hpp>
 #endif
 
-#ifndef _RTL_USTRING
-#include <rtl/ustring>
-#endif
+#include "rtl/ustring.hxx"
 
 // auto strip #ifndef _RTL_USTRBUF_HXX_
 // auto strip #include <rtl/ustrbuf.hxx>
