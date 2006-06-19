@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xexptran.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:37:19 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:17:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,8 +36,8 @@
 #ifndef _XEXPTRANSFORM_HXX
 #define _XEXPTRANSFORM_HXX
 
-#ifndef _RTL_USTRING_
-#include <rtl/ustring>
+#ifndef _RTL_USTRING_HXX_
+#include "rtl/ustring.hxx"
 #endif
 
 #ifndef _B2D_MATRIX3D_HXX
