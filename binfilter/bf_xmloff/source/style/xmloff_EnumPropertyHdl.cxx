@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_EnumPropertyHdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:36:30 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:11:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,7 @@
 #include <comphelper/extract.hxx>
 #endif
 
-#ifndef _RTL_USTRING_
-#include <rtl/ustring>
-#endif
+#include "rtl/ustring.hxx"
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
