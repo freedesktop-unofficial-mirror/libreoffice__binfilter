@@ -4,9 +4,9 @@
  *
  *  $RCSfile: XMLIndexTitleTemplateContext.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:07:40 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:13:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,8 +44,8 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _RTL_USTRING_
-#include <rtl/ustring>
+#ifndef _RTL_USTRING_HXX_
+#include "rtl/ustring.hxx"
 #endif
 
 #ifndef _RTL_USTRBUF_HXX_
