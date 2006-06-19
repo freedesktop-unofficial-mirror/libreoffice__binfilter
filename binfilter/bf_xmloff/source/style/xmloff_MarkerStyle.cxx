@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_MarkerStyle.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:37:45 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:12:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,9 +73,7 @@
 // auto strip #include <rtl/ustrbuf.hxx>
 // auto strip #endif
 
-#ifndef _RTL_USTRING_
-#include <rtl/ustring>
-#endif
+#include "rtl/ustring.hxx"
 
 #ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>

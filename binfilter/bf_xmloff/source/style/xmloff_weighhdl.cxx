@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_weighhdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:55:19 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:13:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,9 +61,7 @@
 #include <rtl/ustrbuf.hxx>
 #endif
 
-#ifndef _RTL_USTRING_
-#include <rtl/ustring>
-#endif
+#include "rtl/ustring.hxx"
 
 #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/unohlp.hxx>
