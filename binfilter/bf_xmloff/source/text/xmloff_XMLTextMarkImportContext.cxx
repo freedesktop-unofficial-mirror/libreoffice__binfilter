@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_XMLTextMarkImportContext.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:32:49 $
+ *  last change: $Author: hr $ $Date: 2006-06-19 10:15:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,7 @@
 
 #include "XMLTextMarkImportContext.hxx"
 
-
-#ifndef _RTL_USTRING
-#include <rtl/ustring>
-#endif
+#include "rtl/ustring.hxx"
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
