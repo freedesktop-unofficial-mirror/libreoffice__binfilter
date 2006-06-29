@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-07 23:17:57 $
+#   last change: $Author: ihi $ $Date: 2006-06-29 11:14:30 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -117,7 +117,6 @@ SHL1STDLIBS+= \
 
 
 SHL1BASE=	0x1d100000
-SHL1DEPN=   $(L)$/itools.lib
 SHL1LIBS=   $(LIB3TARGET)
 
 .IF "$(GUI)"!="UNX"
@@ -130,11 +129,5 @@ SHL1RES=	$(RCTARGET)
 
 # --- Targets -------------------------------------------------------------
 
-.IF "$(depend)" == ""
-
-ALL: \
-    ALLTAR
-
-.ENDIF # !depend
-
 .INCLUDE :  target.mk
+
