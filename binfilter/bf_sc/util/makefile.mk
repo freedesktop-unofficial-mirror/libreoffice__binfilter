@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.11 $
+#   $Revision: 1.12 $
 #
-#   last change: $Author: vg $ $Date: 2006-04-07 13:22:20 $
+#   last change: $Author: ihi $ $Date: 2006-06-29 11:14:19 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -132,7 +132,6 @@ SHL1STDLIBS+= $(BFSCHLIB)
 .ENDIF
 
 
-SHL1DEPN=   $(L)$/itools.lib
 SHL1LIBS=   $(LIB3TARGET) $(LIB4TARGET)
 
 .IF "$(GUI)"!="UNX"
