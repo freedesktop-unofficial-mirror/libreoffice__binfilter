@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawdoc.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:37:44 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:14:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -169,7 +169,7 @@ private:
     BOOL                bPresLockedPages;
     BOOL                bPresAlwaysOnTop;
     BOOL                bPresFullScreen;
-    ULONG               nPresPause;
+    sal_uInt32          nPresPause;
     BOOL                bPresShowLogo;
     BOOL                bOnlineSpell;
     BOOL                bHideSpell;
@@ -177,7 +177,7 @@ private:
     BOOL                bSummationOfParagraphs;
     bool                mbStartWithPresentation;        // is set to true when starting with command line parameter -start
 
-    ULONG               nPresFirstPage;
+    sal_uInt32          nPresFirstPage;
     LanguageType        eLanguage;
     LanguageType        eLanguageCJK;
     LanguageType        eLanguageCTL;
@@ -363,8 +363,8 @@ public:
     void                SetAnimationAllowed (BOOL bAllowed) { bAnimationAllowed = bAllowed; }
     BOOL                IsAnimationAllowed() const { return bAnimationAllowed; }
 
-    void                SetPresPause( ULONG nSecondsToWait ) { nPresPause = nSecondsToWait; }
-    ULONG               GetPresPause() const { return nPresPause; }
+    void                SetPresPause( sal_uInt32 nSecondsToWait ) { nPresPause = nSecondsToWait; }
+    sal_uInt32          GetPresPause() const { return nPresPause; }
 
     void                SetPresShowLogo( BOOL bShowLogo ) { bPresShowLogo = bShowLogo; }
     BOOL                IsPresShowLogo() const { return bPresShowLogo; }
