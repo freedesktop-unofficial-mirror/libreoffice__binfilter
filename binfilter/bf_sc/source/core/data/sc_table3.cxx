@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table3.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:54:02 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:13:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1050,7 +1050,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 /*N*/                         bOk = pTransliteration->isEqual( aCellStr, *rEntry.pStr );
 /*N*/                   else
 /*N*/                   {
-/*N*/                         ::com::sun::star::uno::Sequence< long > xOff;
+/*N*/                         ::com::sun::star::uno::Sequence< sal_Int32 > xOff;
 /*N*/                         String aCell( pTransliteration->transliterate(
 /*N*/                             aCellStr, ScGlobal::eLnge, 0, aCellStr.Len(),
 /*N*/                             &xOff ) );
