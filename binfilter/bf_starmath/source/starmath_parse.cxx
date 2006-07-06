@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_parse.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-03-07 10:13:24 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:53:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -594,7 +594,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/   else if (aRes.TokenType & KParseType::BOOLEAN)
 /*N*/   {
-/*N*/       long   &rnEndPos = aRes.EndPos;
+/*N*/       sal_Int32   &rnEndPos = aRes.EndPos;
 /*N*/       String  aName( BufferString.Copy( nRealStart, rnEndPos - nRealStart ) );
 /*N*/       if (2 >= aName.Len())
 /*N*/       {
@@ -698,7 +698,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/   else if (aRes.TokenType & KParseType::ONE_SINGLE_CHAR)
 /*N*/   {
-/*N*/       long   &rnEndPos = aRes.EndPos;
+/*N*/       sal_Int32 &rnEndPos = aRes.EndPos;
 /*N*/       String  aName( BufferString.Copy( nRealStart, rnEndPos - nRealStart ) );
 /*N*/
 /*N*/       if (1 == aName.Len())
