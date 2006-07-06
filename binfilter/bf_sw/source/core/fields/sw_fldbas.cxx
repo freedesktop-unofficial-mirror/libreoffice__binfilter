@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fldbas.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:11:01 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:33:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -249,7 +249,7 @@ using namespace ::com::sun::star;
                     Felder sind n-mal vorhanden, Feldtypen nur einmal
  --------------------------------------------------------------------*/
 
-/*N*/ SwField::SwField(SwFieldType* pTyp, ULONG nFmt, USHORT nLng) :
+/*N*/ SwField::SwField(SwFieldType* pTyp, sal_uInt32 nFmt, USHORT nLng) :
 /*N*/   nFormat(nFmt),
 /*N*/     nLang(nLng),
 /*N*/     bIsAutomaticLanguage(TRUE)
@@ -534,7 +534,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*N*/   nLang = nLng;
 /*N*/ }
 
-/*N*/ void SwField::ChangeFormat(ULONG n)
+/*N*/ void SwField::ChangeFormat(sal_uInt32 n)
 /*N*/ {
 /*N*/   nFormat = n;
 /*N*/ }
@@ -672,7 +672,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
     Beschreibung: Numerierung expandieren
  --------------------------------------------------------------------*/
 
-/*N*/ String FormatNumber(USHORT nNum, ULONG nFormat)
+/*N*/ String FormatNumber(USHORT nNum, sal_uInt32 nFormat)
 /*N*/ {
 /*N*/     if(SVX_NUM_PAGEDESC == nFormat)
 /*?*/         return  String::CreateFromInt32( nNum );
@@ -707,7 +707,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
  --------------------------------------------------------------------*/
 
 /*N*/ String SwValueFieldType::ExpandValue( const double& rVal,
-/*N*/                                       ULONG nFmt, USHORT nLng) const
+/*N*/                                       sal_uInt32 nFmt, USHORT nLng) const
 /*N*/ {
 /*N*/   if (rVal >= DBL_MAX)        // FehlerString fuer Calculator
 /*?*/       return ViewShell::GetShellRes()->aCalc_Error;
@@ -728,7 +728,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*?*/
 /*?*/       if (pEntry && nLng != pEntry->GetLanguage())
 /*?*/       {
-/*?*/           ULONG nNewFormat = pFormatter->GetFormatForLanguageIfBuiltIn(nFmt,
+/*?*/           sal_uInt32 nNewFormat = pFormatter->GetFormatForLanguageIfBuiltIn(nFmt,
 /*?*/                                                   (LanguageType)nFmtLng);
 /*?*/
 /*?*/           if (nNewFormat == nFmt)
@@ -793,7 +793,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
     Beschreibung: CTOR SwValueField
  --------------------------------------------------------------------*/
 
-/*N*/ SwValueField::SwValueField( SwValueFieldType* pFldType, ULONG nFmt,
+/*N*/ SwValueField::SwValueField( SwValueFieldType* pFldType, sal_uInt32 nFmt,
 /*N*/                           USHORT nLang, const double fVal )
 /*N*/   : SwField(pFldType, nFmt, nLang),
 /*N*/   fValue(fVal)
@@ -884,7 +884,7 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/ {
 /*N*/     if( IsAutomaticLanguage() &&
 /*N*/             ((SwValueFieldType *)GetTyp())->UseFormat() &&
-/*N*/       GetFormat() != ULONG_MAX )
+/*N*/       GetFormat() != SAL_MAX_UINT32 )
 /*N*/   {
 /*N*/       // wegen Bug #60010
 /*N*/       SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
@@ -899,7 +899,7 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/
 /*N*/           if( pEntry && nFmtLng != pEntry->GetLanguage() )
 /*N*/           {
-/*N*/               ULONG nNewFormat = pFormatter->GetFormatForLanguageIfBuiltIn(
+/*N*/               sal_uInt32 nNewFormat = pFormatter->GetFormatForLanguageIfBuiltIn(
 /*N*/                                       GetFormat(), (LanguageType)nFmtLng );
 /*N*/
 /*N*/               if( nNewFormat == GetFormat() )
@@ -940,7 +940,7 @@ void SwValueField::ChangeFormat(ULONG n)
     Beschreibung: SwFormulaField
  --------------------------------------------------------------------*/
 
-/*N*/ SwFormulaField::SwFormulaField( SwValueFieldType* pFldType, ULONG nFmt, const double fVal)
+/*N*/ SwFormulaField::SwFormulaField( SwValueFieldType* pFldType, sal_uInt32 nFmt, const double fVal)
 /*N*/   : SwValueField(pFldType, nFmt, LANGUAGE_SYSTEM, fVal)
 /*N*/ {
 /*N*/ }
@@ -968,9 +968,9 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/ {
 /*N*/   sFormula = rStr;
 /*N*/
-/*N*/   ULONG nFmt(GetFormat());
+/*N*/   sal_uInt32 nFmt(GetFormat());
 /*N*/
-/*N*/   if( nFmt && ULONG_MAX != nFmt )
+/*N*/   if( nFmt && SAL_MAX_UINT32 != nFmt )
 /*N*/   {
 /*N*/       xub_StrLen nPos = 0;
 /*N*/       double fValue;
@@ -985,9 +985,9 @@ void SwValueField::ChangeFormat(ULONG n)
 
 void SwFormulaField::SetExpandedFormula( const String& rStr )
 {
-    ULONG nFmt(GetFormat());
+    sal_uInt32 nFmt(GetFormat());
 
-    if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
+    if (nFmt && nFmt != SAL_MAX_UINT32 && ((SwValueFieldType *)GetTyp())->UseFormat())
     {
         double fValue;
 
@@ -1011,9 +1011,9 @@ void SwFormulaField::SetExpandedFormula( const String& rStr )
 
 String SwFormulaField::GetExpandedFormula() const
 {
-    ULONG nFmt(GetFormat());
+    sal_uInt32 nFmt(GetFormat());
 
-    if (nFmt && nFmt != ULONG_MAX && ((SwValueFieldType *)GetTyp())->UseFormat())
+    if (nFmt && nFmt != SAL_MAX_UINT32 && ((SwValueFieldType *)GetTyp())->UseFormat())
     {
         String sFormattedValue;
         Color* pCol = 0;
