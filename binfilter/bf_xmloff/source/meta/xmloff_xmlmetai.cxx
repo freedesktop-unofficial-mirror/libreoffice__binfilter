@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlmetai.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:33:38 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:10:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -328,7 +328,7 @@ sal_Bool SfxXMLMetaElementContext::ParseISODurationString(
             bDone = sal_True;
         else if ( sal_Unicode('0') <= c && sal_Unicode('9') >= c )
         {
-            if ( nTemp >= LONG_MAX / 10 )
+            if ( nTemp >= SAL_MAX_INT32 / 10 )
                 bSuccess = sal_False;
             else
             {
