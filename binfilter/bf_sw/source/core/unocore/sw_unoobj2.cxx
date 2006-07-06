@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:52:29 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:36:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1036,7 +1036,7 @@ void SwXTextCursor::GetCrsrAttr(SwPaM& rPam, SfxItemSet& rSet, BOOL bCurrentAttr
 
             // beim 1.Node traegt der Node die Werte in den GetSet ein (Initial)
             // alle weiteren Nodes werden zum GetSet zu gemergt
-            for( sal_uInt32 n = nSttNd; n <= nEndNd; ++n )
+            for( ULONG n = nSttNd; n <= nEndNd; ++n )
             {
                 SwNode* pNd = rPam.GetDoc()->GetNodes()[ n ];
                 switch( pNd->GetNodeType() )
