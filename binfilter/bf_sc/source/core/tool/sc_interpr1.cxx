@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr1.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:11:00 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:14:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1770,7 +1770,7 @@ void ScInterpreter::ScT()
 void ScInterpreter::ScValue()
 {
     String aInputString = GetString();
-    ULONG nFIndex = 0;                  // damit default Land/Spr.
+    sal_uInt32 nFIndex = 0;                 // damit default Land/Spr.
     double fVal;
     if (pFormatter->IsNumberFormat(aInputString, nFIndex, fVal))
         PushDouble(fVal);
@@ -2080,7 +2080,7 @@ void ScInterpreter::ScChar()
 /*?*/               if( eFunc == ifCOUNT )
 /*?*/               {
 /*?*/                   String aStr( PopString() );
-/*?*/                   ULONG nFIndex = 0;                  // damit default Land/Spr.
+/*?*/                   sal_uInt32 nFIndex = 0;                 // damit default Land/Spr.
 /*?*/                   if ( bTextAsZero || pFormatter->IsNumberFormat(aStr, nFIndex, fVal))
 /*?*/                       nCount++;
 /*?*/               }
@@ -3074,7 +3074,7 @@ void ScInterpreter::ScCountEmptyCells()
              else if( rString.Len() )
              {
                  rParam.FillInExcelSyntax(rString,(USHORT) 0);
-                 ULONG nIndex = 0;
+                 sal_uInt32 nIndex = 0;
                  rEntry.bQueryByString =
                      !(pFormatter->IsNumberFormat(
                          *rEntry.pStr, nIndex, rEntry.nVal));
@@ -3244,7 +3244,7 @@ void ScInterpreter::ScCountEmptyCells()
              else
              {
                  rParam.FillInExcelSyntax(rString,(USHORT) 0);
-                 ULONG nIndex = 0;
+                 sal_uInt32 nIndex = 0;
                  rEntry.bQueryByString =
                      !(pFormatter->IsNumberFormat(
                          *rEntry.pStr, nIndex, rEntry.nVal));
@@ -4346,7 +4346,7 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
                         ScQueryEntry& rEntry = rParam.GetEntry(i);
                         if ( rEntry.bDoQuery )
                         {
-                            ULONG nIndex = 0;
+                            sal_uInt32 nIndex = 0;
                             rEntry.bQueryByString = !pFormatter->IsNumberFormat(
                                 *rEntry.pStr, nIndex, rEntry.nVal );
                             if ( rEntry.bQueryByString && !rParam.bRegExp )
