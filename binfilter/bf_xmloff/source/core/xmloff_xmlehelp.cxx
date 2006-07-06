@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmlehelp.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:46:00 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:04:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,7 @@ namespace binfilter {
 using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
 
-void SvXMLExportHelper::AddLength( long nValue, MapUnit eValueUnit,
+void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
                                            OUStringBuffer& rOut,
                                    MapUnit eOutUnit )
 {
@@ -70,9 +70,9 @@ void SvXMLExportHelper::AddLength( long nValue, MapUnit eValueUnit,
     }
 
     // The new length is (nVal * nMul)/(nDiv*nFac*10)
-    long nMul = 1000;
-    long nDiv = 1;
-    long nFac = 100;
+    sal_Int32 nMul = 1000;
+    sal_Int32 nDiv = 1;
+    sal_Int32 nFac = 100;
     enum XMLTokenEnum eUnit = XML_TOKEN_INVALID;
     switch( eValueUnit )
     {
@@ -176,9 +176,9 @@ void SvXMLExportHelper::AddLength( long nValue, MapUnit eValueUnit,
     }
 
 
-    long nLongVal;
+    sal_Int32 nLongVal;
     BOOL bOutLongVal = TRUE;
-    if( nValue > LONG_MAX / nMul )
+    if( nValue > SAL_MAX_INT32 / nMul )
     {
         // A big int is required for calculation
         BigInt nBigVal( nValue );
@@ -190,8 +190,8 @@ void SvXMLExportHelper::AddLength( long nValue, MapUnit eValueUnit,
 
         if( nBigVal.IsLong() )
         {
-            // To convert the value into a string a long is sufficient
-            nLongVal = (long)nBigVal;
+            // To convert the value into a string a sal_Int32 is sufficient
+            nLongVal = (sal_Int32)nBigVal;
         }
         else
         {
@@ -313,7 +313,7 @@ void SvXMLExportHelper::AddLength( long nValue, MapUnit eValueUnit,
 
 }
 
-void SvXMLExportHelper::AddPercentage( long nValue, OUStringBuffer& rOut )
+void SvXMLExportHelper::AddPercentage( sal_Int32 nValue, OUStringBuffer& rOut )
 {
     rOut.append( nValue );
     rOut.append( sal_Unicode('%' ) );
