@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outliner.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:40:55 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:15:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -416,7 +416,7 @@ public:
 
     const SvxFont&  rFont;
 
-    const long*     pDXArray;
+    const sal_Int32*     pDXArray;
 
     // #101498# BiDi level needs to be transported, too.
     BYTE            mnBiDiLevel;
@@ -425,7 +425,7 @@ public:
     sal_Bool IsRTL() const;
 
     DrawPortionInfo( const Point& rPos, const String& rTxt, USHORT nTxtStart, USHORT nTxtLen,
-        const SvxFont& rFnt, USHORT nPar, xub_StrLen nIdx, const long* pDXArr, BYTE nBiDiLevel)
+        const SvxFont& rFnt, USHORT nPar, xub_StrLen nIdx, const sal_Int32* pDXArr, BYTE nBiDiLevel)
         :   rStartPos(rPos), rText(rTxt), rFont(rFnt), nPara(nPar), nIndex(nIdx),
             pDXArray(pDXArr), mnBiDiLevel(nBiDiLevel)
         {
@@ -795,7 +795,7 @@ public:
 
     // #101498#
     virtual void    DrawingText( const Point& rStartPos, const String& rText, USHORT nTextStart, USHORT nTextLen,
-                        const long* pDXArray, const SvxFont& rFont,
+                        const sal_Int32* pDXArray, const SvxFont& rFont,
                         USHORT nPara, xub_StrLen nIndex, BYTE nRightToLeft);
 
     Size            CalcTextSize();
