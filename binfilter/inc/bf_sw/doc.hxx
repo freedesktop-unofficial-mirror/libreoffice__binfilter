@@ -4,9 +4,9 @@
  *
  *  $RCSfile: doc.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 15:54:17 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:23:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -940,7 +940,7 @@ public:
     void UnlockExpFlds()                { if( nLockExpFld ) --nLockExpFld; }
     sal_Bool IsExpFldsLocked() const        { return 0 != nLockExpFld; }
     SwDocUpdtFld& GetUpdtFlds() const   { return *pUpdtFlds; }
-    sal_Bool SetFieldsDirty( sal_Bool b, const SwNode* pChk = 0, sal_uInt32 nLen = 0 );
+    sal_Bool SetFieldsDirty( sal_Bool b, const SwNode* pChk = 0, ULONG nLen = 0 );
 
     void SetFixFields( sal_Bool bOnlyTimeDate = sal_False,
                         const DateTime* pNewDateTime = 0 );
@@ -1383,7 +1383,7 @@ public:
                                             const SwTOXBase& rTOX,
                                             const SfxItemSet* pSet = 0,
                                             sal_Bool bExpand = sal_False );
-    const SwTOXBaseSection* InsertTableOf( sal_uInt32 nSttNd, sal_uInt32 nEndNd,
+    const SwTOXBaseSection* InsertTableOf( ULONG nSttNd, ULONG nEndNd,
                                             const SwTOXBase& rTOX,
                                             const SfxItemSet* pSet = 0                                          );
     const SwTOXBase* GetCurTOX( const SwPosition& rPos ) const;
@@ -1475,7 +1475,7 @@ public:
     // loeschen geht nur, wenn die ::com::sun::star::chaos::Rule niemand benutzt!
     sal_Bool DelNumRule( const String& rName );
     String GetUniqueNumRuleName( const String* pChkStr = 0, sal_Bool bAutoNum = sal_True ) const;
-    void UpdateNumRule( const String& rName, sal_uInt32 nUpdPos );
+    void UpdateNumRule( const String& rName, ULONG nUpdPos );
     void UpdateNumRule();   // alle invaliden Updaten
     void ChgNumRuleFmts( const SwNumRule& rRule );
 //STRIP001  sal_Bool ReplaceNumRule( const SwPosition& rPos, const String& rOldRule,
