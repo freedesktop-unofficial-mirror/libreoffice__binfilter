@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_bordrhdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:47:29 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:11:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -355,7 +355,7 @@ sal_Bool XMLBorderHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue
     sal_uInt16 nNamedWidth = USHRT_MAX;
     Color aColor;
 
-    long nTemp;
+    sal_Int32 nTemp;
     while( aTokens.getNextToken( aToken ) && aToken.getLength() != 0 )
     {
         if( !bHasWidth &&

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_backhdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:47:12 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:11:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -107,7 +107,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::importXML( const OUString& rStrImpValue,
         }
         else if( -1 != aToken.indexOf( sal_Unicode('%') ) )
         {
-            long nPrc = 50;
+            sal_Int32 nPrc = 50;
             if( rUnitConverter.convertPercent( nPrc, aToken ) )
             {
                 if( !bHori )
