@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swxml.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:39:48 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:48:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -427,7 +427,7 @@ sal_Int32 ReadThroughComponent(
 }
 
 
-sal_uInt32 XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
+ULONG XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
 {
     // Get service factory
     Reference< lang::XMultiServiceFactory > xServiceFactory =
@@ -587,7 +587,7 @@ sal_uInt32 XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
     }
 
     rDoc.AddLink(); // prevent deletion
-    sal_uInt32 nRet = 0;
+    ULONG nRet = 0;
 
     // save redline mode into import info property set
     Any aAny;
