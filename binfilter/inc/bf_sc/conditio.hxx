@@ -4,9 +4,9 @@
  *
  *  $RCSfile: conditio.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:03:32 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:13:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -206,13 +206,13 @@ class ScConditionalFormat
 {
     ScDocument*         pDoc;
     ScRangeList*        pAreas;             // Bereiche fuer Paint
-    ULONG               nKey;               // Index in Attributen
+    sal_uInt32          nKey;               // Index in Attributen
     ScCondFormatEntry** ppEntries;
     USHORT              nEntryCount;
     BOOL                bIsUsed;            // temporaer beim Speichern
 
 public:
-            ScConditionalFormat(ULONG nNewKey, ScDocument* pDocument);
+            ScConditionalFormat(sal_uInt32 nNewKey, ScDocument* pDocument);
             ScConditionalFormat(const ScConditionalFormat& r);
             ScConditionalFormat(SvStream& rStream, ScMultipleReadHeader& rHdr,
                                 ScDocument* pDocument);
@@ -245,8 +245,8 @@ public:
     void            DoRepaint( const ScRange* pModified );
     void            InvalidateArea();
 
-    ULONG           GetKey() const          { return nKey; }
-    void            SetKey(ULONG nNew)      { nKey = nNew; }    // nur wenn nicht eingefuegt!
+    sal_uInt32      GetKey() const          { return nKey; }
+    void            SetKey(sal_uInt32 nNew) { nKey = nNew; }    // nur wenn nicht eingefuegt!
 
     void            SetUsed(BOOL bSet)      { bIsUsed = bSet; }
     BOOL            IsUsed() const          { return bIsUsed; }
@@ -277,7 +277,7 @@ public:
     void    InsertNew( ScConditionalFormat* pNew )
                 { if (!Insert(pNew)) delete pNew; }
 
-    ScConditionalFormat* GetFormat( ULONG nKey );
+    ScConditionalFormat* GetFormat( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
     void    Store( SvStream& rStream ) const;
