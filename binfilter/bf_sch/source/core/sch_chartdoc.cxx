@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chartdoc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:33:48 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:16:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -346,7 +346,7 @@ namespace binfilter {
 /*N*/       SchIOCompat aIO(rOut, STREAM_WRITE, 1);
 /*N*/
 /*N*/       // AF: Don't write VCItemPool any longer (01/2001)
-/*N*/       rOut << (ULONG)0L;
+/*N*/       rOut << (sal_uInt32)0L;
 /*N*/
         /**************************************************************************
         * Frueher (StarChart Version 3.0, File-Format Version 1) wurde hier das
@@ -416,7 +416,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SchIOCompat aIO(rIn, STREAM_READ);
 /*N*/
-/*N*/       ULONG n;
+/*N*/       sal_uInt32 n;
 /*N*/       rIn >> n;
 /*N*/       // must be 0 or 1. Otherwise we have an error
 /*N*/       // most probably a wrong password
