@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmluconv.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:45:40 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:26:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -165,8 +165,8 @@ public:
     /** convert string to measure using optional min and max values*/
     sal_Bool convertMeasure( sal_Int32& rValue,
                          const ::rtl::OUString& rString,
-                         sal_Int32 nMin = LONG_MIN,
-                         sal_Int32 nMax = LONG_MAX ) const;
+                         sal_Int32 nMin = SAL_MIN_INT32,
+                         sal_Int32 nMax = SAL_MAX_INT32 ) const;
 
     /** convert measure to string */
     void convertMeasure( ::rtl::OUStringBuffer& rBuffer,
@@ -182,8 +182,8 @@ public:
     static sal_Bool convertMeasure( sal_Int32& rVal,
                                 const ::rtl::OUString& rString,
                                 MapUnit eDstUnit,
-                                sal_Int32 nMin = LONG_MIN,
-                                sal_Int32 nMax = LONG_MAX );
+                                sal_Int32 nMin = SAL_MIN_INT32,
+                                sal_Int32 nMax = SAL_MAX_INT32 );
 
     /** convert measure in given unit to string with given unit */
     static void convertMeasure( ::rtl::OUStringBuffer& rBuffer,
@@ -261,8 +261,8 @@ public:
     /** convert string to number with optional min and max values */
     static sal_Bool convertNumber( sal_Int32& rValue,
                                const ::rtl::OUString& rString,
-                               sal_Int32 nMin = LONG_MIN,
-                               sal_Int32 nMax = LONG_MAX );
+                               sal_Int32 nMin = SAL_MIN_INT32,
+                               sal_Int32 nMax = SAL_MAX_INT32 );
 
     /** convert double number to string (using ::rtl::math) and DO
         convert to export MapUnit */
