@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit4.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:27:00 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:55:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1284,7 +1284,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   if ( pPortionInfo && ( (long)pPortionInfo->GetPaperWidth() == aPaperSize.Width() )
 /*N*/           && ( pPortionInfo->GetRefMapMode() == GetRefDevice()->GetMapMode() ) )
 /*N*/   {
-/*?*/       if ( ( pPortionInfo->GetRefDevPtr() == (sal_uInt32)GetRefDevice() ) ||
+/*?*/       if ( ( pPortionInfo->GetRefDevPtr() == (sal_uIntPtr)GetRefDevice() ) ||
 /*?*/            ( ( pPortionInfo->GetRefDevType() == OUTDEV_VIRDEV ) &&
 /*?*/              ( GetRefDevice()->GetOutDevType() == OUTDEV_VIRDEV ) ) )
 /*?*/       bUsePortionInfo = sal_True;
