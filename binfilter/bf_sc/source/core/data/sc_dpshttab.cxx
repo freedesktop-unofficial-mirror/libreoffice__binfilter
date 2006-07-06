@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dpshttab.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:46:45 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:13:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -105,7 +105,7 @@ namespace binfilter {
 /*M*/             }
 /*M*/             else
 /*M*/             {
-/*M*/               ULONG nIndex = 0;
+/*M*/               sal_uInt32 nIndex = 0;
 /*M*/               rEntry.bQueryByString =
 /*M*/                           !(pD->GetFormatTable()->
 /*M*/                               IsNumberFormat(*rEntry.pStr, nIndex, rEntry.nVal));
