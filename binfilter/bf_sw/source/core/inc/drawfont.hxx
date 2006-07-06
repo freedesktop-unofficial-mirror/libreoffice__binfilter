@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drawfont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:29:22 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:33:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -182,7 +182,7 @@ public:
     USHORT HasKana( xub_StrLen nStart, const xub_StrLen nEnd ) const;
 
     // modifies the kerning array according to a given compress value
-    long Compress( long* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
+    long Compress( sal_Int32* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
                    const USHORT nCompress, const USHORT nFontHeight,
                    Point* pPoint = NULL ) const;
 
