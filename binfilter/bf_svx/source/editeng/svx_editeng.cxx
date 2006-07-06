@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editeng.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:22:56 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:54:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1256,7 +1256,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/       pImpEditEngine->FormatAndUpdate();
 /*N*/ }
 
-/*N*/ sal_uInt32 EditEngine::Read( SvStream& rInput, EETextFormat eFormat, SvKeyValueIterator* pHTTPHeaderAttrs /* = NULL */ )
+/*N*/ ULONG EditEngine::Read( SvStream& rInput, EETextFormat eFormat, SvKeyValueIterator* pHTTPHeaderAttrs /* = NULL */ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return 0; //STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  sal_Bool bUndoEnabled = pImpEditEngine->IsUndoEnabled();
@@ -1269,7 +1269,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 #ifndef SVX_LIGHT
-/*N*/ sal_uInt32 EditEngine::Write( SvStream& rOutput, EETextFormat eFormat )
+/*N*/ ULONG EditEngine::Write( SvStream& rOutput, EETextFormat eFormat )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  DBG_CHKTHIS( EditEngine, 0 );
 //STRIP001  EditPaM aStartPaM( pImpEditEngine->GetEditDoc().GetStartPaM() );
@@ -2333,7 +2333,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-/*N*/ void __EXPORT EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const long*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
+/*N*/ void __EXPORT EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const sal_Int32*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
