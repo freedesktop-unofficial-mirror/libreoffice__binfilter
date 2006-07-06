@@ -4,9 +4,9 @@
  *
  *  $RCSfile: docinf.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:14:19 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:14:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -130,7 +130,7 @@ private:
     String   aDefaultTarget;
     String   aReloadURL;
     BOOL     bReloadEnabled;
-    ULONG    nReloadSecs;
+    sal_uInt32 nReloadSecs;
 
     DateTime aTemplateDate; // Stamp der Dokumentvorlage
 
