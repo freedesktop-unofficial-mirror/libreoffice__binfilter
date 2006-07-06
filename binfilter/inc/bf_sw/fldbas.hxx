@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldbas.hxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:42:59 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:25:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -267,11 +267,11 @@ extern USHORT __FAR_DATA aTypeTab[];
     Beschreibung: Allgemeine Tools
  --------------------------------------------------------------------*/
 
-String  GetResult(double nVal, ULONG nNumFmt, USHORT nLang = LANGUAGE_SYSTEM);
+String  GetResult(double nVal, sal_uInt32 nNumFmt, USHORT nLang = LANGUAGE_SYSTEM);
 void    SetErrorStr(const String& rStr);
 //String    ExpandDate(const Date& rDate, ULONG nFmt, USHORT nLang);
 //String    ExpandTime(const Time& rTime, ULONG nFmt, USHORT nLang);
-String  FormatNumber(USHORT nNum, ULONG nFormat);
+String  FormatNumber(USHORT nNum, sal_uInt32 nFormat);
 
 /*--------------------------------------------------------------------
     Beschreibung:   Instanzen von SwFields und Abgeleiteten kommen 0-n mal vor.
@@ -330,13 +330,13 @@ class SwField
 {
     USHORT              nLang;  // Immer ueber SetLanguage aendern!
     BOOL                bIsAutomaticLanguage;
-    ULONG               nFormat;
+    sal_uInt32          nFormat;
 
     SwFieldType*        pType;
 protected:
-    void                SetFormat(ULONG nSet) {nFormat = nSet;}
+    void                SetFormat(sal_uInt32 nSet) {nFormat = nSet;}
 
-    SwField(SwFieldType* pTyp, ULONG nFmt = 0, USHORT nLang = LANGUAGE_SYSTEM);
+    SwField(SwFieldType* pTyp, sal_uInt32 nFmt = 0, USHORT nLang = LANGUAGE_SYSTEM);
 public:
     virtual             ~SwField();
 
@@ -372,13 +372,13 @@ public:
     virtual void        SetLanguage(USHORT nLng);
 
     // Parameter fuer Dialog und BASIC erfragen
-    inline ULONG        GetFormat() const;
+    inline sal_uInt32 GetFormat() const;
     virtual const String& GetPar1() const;
     virtual String      GetPar2()   const;
 
     virtual String      GetFormula() const;
 
-    virtual void        ChangeFormat(ULONG n);
+    virtual void        ChangeFormat(sal_uInt32 n);
     virtual void        SetPar1(const String& rStr);
     virtual void        SetPar2(const String& rStr);
 
@@ -396,7 +396,7 @@ public:
 inline SwFieldType* SwField::GetTyp() const
     { return pType;     }
 
-inline ULONG SwField::GetFormat() const
+inline sal_uInt32 SwField::GetFormat() const
     { return nFormat;   }
 
 inline USHORT SwField::GetLanguage() const
@@ -423,7 +423,7 @@ public:
     inline BOOL     UseFormat() const                   { return bUseFormat; }
     inline void     EnableFormat(BOOL bFormat = TRUE)   { bUseFormat = bFormat; }
 
-    String          ExpandValue(const double& rVal, ULONG nFmt, USHORT nLng=0) const;
+    String          ExpandValue(const double& rVal, sal_uInt32 nFmt, USHORT nLng=0) const;
     void            DoubleToString(String &rValue, const double &rVal, LanguageType eLng) const;
 //STRIP001  void            DoubleToString(String &rValue, const double &rVal, ULONG nFmt) const;
 };
@@ -434,7 +434,7 @@ class SwValueField : public SwField
 //  String sExpand;
 
 protected:
-    SwValueField( SwValueFieldType* pFldType, ULONG nFmt = 0, USHORT nLang = LANGUAGE_SYSTEM, const double fVal = 0.0 );
+    SwValueField( SwValueFieldType* pFldType, sal_uInt32 nFmt = 0, USHORT nLang = LANGUAGE_SYSTEM, const double fVal = 0.0 );
 //STRIP001  SwValueField( const SwValueField& rFld );
 
 public:
@@ -450,7 +450,7 @@ public:
     virtual double          GetValue() const;
     virtual void            SetValue( const double& rVal );
 
-    inline String   ExpandValue(const double& rVal, ULONG nFmt, USHORT nLng=0) const
+    inline String   ExpandValue(const double& rVal, sal_uInt32 nFmt, USHORT nLng=0) const
         { return ((SwValueFieldType*)GetTyp())->ExpandValue(rVal, nFmt, nLng); }
 
 //STRIP001  static ULONG            GetSystemFormat(SvNumberFormatter* pFormatter, ULONG nFmt);
@@ -461,7 +461,7 @@ class SwFormulaField : public SwValueField
     String sFormula;
 
 protected:
-    SwFormulaField( SwValueFieldType* pFldType, ULONG nFmt = 0, const double fVal = 0.0 );
+    SwFormulaField( SwValueFieldType* pFldType, sal_uInt32 nFmt = 0, const double fVal = 0.0 );
 //STRIP001  SwFormulaField( const SwFormulaField& rFld );
 
 public:
