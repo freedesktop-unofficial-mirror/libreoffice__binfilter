@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fntcache.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:39:43 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:35:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2271,7 +2271,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*?*/         {
 /*?*/             const USHORT nGridWidth = pGrid->GetBaseHeight();
 /*?*/
-/*?*/             long* pKernArray = new long[rInf.GetLen()];
+/*?*/             sal_Int32* pKernArray = new sal_Int32[rInf.GetLen()];
 /*?*/             rInf.GetOut().GetTextArray( rInf.GetText(), pKernArray,
 /*?*/                                         rInf.GetIdx(), rInf.GetLen() );
 /*?*/
@@ -2373,7 +2373,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           nLn = 1;
 /*N*/       else if( nLn > 2 * nTxtBreak )
 /*N*/           nLn = 2 * nTxtBreak;
-/*N*/       long *pKernArray = new long[ nLn ];
+/*N*/       sal_Int32 *pKernArray = new sal_Int32[ nLn ];
 /*N*/       rInf.GetOut().GetTextArray( rInf.GetText(), pKernArray,
 /*N*/                                   rInf.GetIdx(), nLn );
 /*N*/         if( rInf.GetScriptInfo()->Compress( pKernArray, rInf.GetIdx(), nLn,
