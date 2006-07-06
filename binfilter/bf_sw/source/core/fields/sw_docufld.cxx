@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docufld.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:10:04 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:32:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -446,7 +446,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/ {
 /*N*/ }
 
-/*N*/ String SwAuthorFieldType::Expand(sal_uInt32 nFmt) const
+/*N*/ String SwAuthorFieldType::Expand(ULONG nFmt) const
 /*N*/ {
 /*N*/   String sRet;
 /*N*/   SvtUserOptions aOpt;
@@ -556,7 +556,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   pDoc = pDocument;
 /*N*/ }
 
-/*M*/ String SwFileNameFieldType::Expand(sal_uInt32 nFmt) const
+/*M*/ String SwFileNameFieldType::Expand(ULONG nFmt) const
 /*M*/ {
 /*M*/   String aRet;
 /*M*/   const SwDocShell* pDShell = pDoc->GetDocShell();
@@ -741,7 +741,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   pDoc = pDocument;
 /*N*/ }
 
-/*N*/ String SwTemplNameFieldType::Expand(sal_uInt32 nFmt) const
+/*N*/ String SwTemplNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
 /*N*/   ASSERT(nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/
