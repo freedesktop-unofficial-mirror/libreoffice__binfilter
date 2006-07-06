@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_utility.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:07:16 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:54:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,17 +78,17 @@ namespace binfilter {
 /*N*/ SvStream& operator << (SvStream& rStream, const SmFace& rFont)
 /*N*/ {
 /*N*/   rStream.WriteByteString(ExportString(rFont.GetName()));
-/*N*/   rStream << (ULONG)rFont.GetFamily();
-/*N*/     rStream << (ULONG)GetSOStoreTextEncoding( rFont.GetCharSet() );
-/*N*/   rStream << (ULONG)rFont.GetWeight();
-/*N*/   rStream << (ULONG)rFont.GetItalic();
+/*N*/   rStream << (sal_uInt32)rFont.GetFamily();
+/*N*/     rStream << (sal_uInt32)GetSOStoreTextEncoding( rFont.GetCharSet() );
+/*N*/   rStream << (sal_uInt32)rFont.GetWeight();
+/*N*/   rStream << (sal_uInt32)rFont.GetItalic();
 /*N*/
 /*N*/   return rStream;
 /*N*/ }
 
 /*N*/ SvStream& operator >> (SvStream& rStream, SmFace& rFont)
 /*N*/ {
-/*N*/   ULONG   nData;
+/*N*/   sal_uInt32 nData;
 /*N*/     ByteString  aByteStr;
 /*N*/
 /*N*/     rStream.ReadByteString( aByteStr );
@@ -108,7 +108,7 @@ namespace binfilter {
 /*?*/ void ReadSM20Font(SvStream& rStream, Font& rFont)
 /*?*/ {
 /*?*/   BOOL    bData;
-/*?*/   ULONG   nData;
+/*?*/   sal_uInt32 nData;
 /*?*/     ByteString  aByteStr;
 /*?*/
 /*?*/     rStream.ReadByteString( aByteStr );
