@@ -4,9 +4,9 @@
  *
  *  $RCSfile: wrtxml.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:45:15 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:02:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,7 @@ class SwXMLWriter : public StgWriter
     sal_uInt32 _Write();
 
 protected:
-    virtual sal_uInt32 WriteStorage();
+    virtual ULONG WriteStorage();
 
 public:
 
