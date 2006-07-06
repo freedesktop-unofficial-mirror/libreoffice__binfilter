@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabdash.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:42:49 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:30:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -199,10 +199,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       XDash& rDash = pEntry->GetDash();
 /*N*/       rOut << (long)rDash.GetDashStyle();
 /*N*/       rOut << (long)rDash.GetDots();
-/*N*/       rOut << rDash.GetDotLen();
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDotLen());
 /*N*/       rOut << (long)rDash.GetDashes();
-/*N*/       rOut << rDash.GetDashLen();
-/*N*/       rOut << rDash.GetDistance();
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDashLen());
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDistance());
 /*N*/       pEntry = (XDashEntry*)aTable.Next();
 /*N*/   }
 /*N*/
@@ -227,10 +227,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   long        nDots;
-/*N*/   ULONG       nDotLen;
+/*N*/   sal_uInt32  nDotLen;
 /*N*/   long        nDashes;
-/*N*/   ULONG       nDashLen;
-/*N*/   ULONG       nDistance;
+/*N*/   sal_uInt32  nDashLen;
+/*N*/   sal_uInt32  nDistance;
 /*N*/
 /*N*/   rIn >> nType;
 /*N*/
@@ -546,10 +546,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       XDash& rDash = pEntry->GetDash();
 /*N*/       rOut << (long)rDash.GetDashStyle();
 /*N*/       rOut << (long)rDash.GetDots();
-/*N*/       rOut << rDash.GetDotLen();
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDotLen());
 /*N*/       rOut << (long)rDash.GetDashes();
-/*N*/       rOut << rDash.GetDashLen();
-/*N*/       rOut << rDash.GetDistance();
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDashLen());
+/*N*/       rOut << static_cast<sal_uInt32>(rDash.GetDistance());
 /*N*/   }
 /*N*/   return rOut;
 /*N*/ }
@@ -618,10 +618,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   long        nDots;
-/*N*/   ULONG       nDotLen;
+/*N*/   sal_uInt32  nDotLen;
 /*N*/   long        nDashes;
-/*N*/   ULONG       nDashLen;
-/*N*/   ULONG       nDistance;
+/*N*/   sal_uInt32  nDashLen;
+/*N*/   sal_uInt32  nDistance;
 /*N*/
 /*N*/   rIn >> nCount;
 /*N*/

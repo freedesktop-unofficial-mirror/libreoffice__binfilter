@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtablend.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:43:54 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:31:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -273,7 +273,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/               rIn.ReadByteString(aName);
 /*N*/
 /*N*/               USHORT nPoints;
-/*N*/               ULONG  nTemp;
+/*N*/               sal_uInt32 nTemp;
 /*N*/               Point  aPoint;
 /*N*/               rIn >> nTemp; nPoints = (USHORT)nTemp;
 /*N*/               XPolygon* pXPoly = new XPolygon(nPoints);
@@ -672,7 +672,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/
 /*N*/           aName = ConvertName( aName );
 /*N*/           USHORT nPoints;
-/*N*/           ULONG  nTemp;
+/*N*/           sal_uInt32 nTemp;
 /*N*/           Point  aPoint;
 /*N*/           rIn >> nTemp; nPoints = (USHORT)nTemp;
 /*N*/           XPolygon* pXPoly = new XPolygon(nPoints);

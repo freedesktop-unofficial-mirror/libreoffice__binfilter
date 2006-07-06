@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xtabgrdt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:43:06 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:31:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -195,9 +195,9 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       rOut << rGradient.GetEndColor().GetGreen();
 /*N*/       rOut << rGradient.GetEndColor().GetBlue();
 /*N*/       rOut << rGradient.GetAngle();
-/*N*/       rOut << (ULONG)rGradient.GetBorder();
-/*N*/       rOut << (ULONG)rGradient.GetXOffset();
-/*N*/       rOut << (ULONG)rGradient.GetYOffset();
+/*N*/       rOut << (sal_uInt32)rGradient.GetBorder();
+/*N*/       rOut << (sal_uInt32)rGradient.GetXOffset();
+/*N*/       rOut << (sal_uInt32)rGradient.GetYOffset();
 /*N*/       pEntry = (XGradientEntry*)aTable.Next();
 /*N*/   }
 /*N*/
@@ -227,9 +227,9 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   Color   aStart;
 /*N*/   Color   aEnd;
 /*N*/   long    nAngle;
-/*N*/   ULONG   nBorder;
-/*N*/   ULONG   nXOfs;
-/*N*/   ULONG   nYOfs;
+/*N*/   sal_uInt32 nBorder;
+/*N*/   sal_uInt32 nXOfs;
+/*N*/   sal_uInt32 nYOfs;
 /*N*/
 /*N*/   rIn >> nType;
 /*N*/
@@ -567,11 +567,11 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       nCol = nCol << 8;
 /*N*/       rOut << nCol;
 /*N*/       rOut << rGradient.GetAngle();
-/*N*/       rOut << (ULONG)rGradient.GetBorder();
-/*N*/       rOut << (ULONG)rGradient.GetXOffset();
-/*N*/       rOut << (ULONG)rGradient.GetYOffset();
-/*N*/       rOut << (ULONG)rGradient.GetStartIntens();
-/*N*/       rOut << (ULONG)rGradient.GetEndIntens();
+/*N*/       rOut << (sal_uInt32)rGradient.GetBorder();
+/*N*/       rOut << (sal_uInt32)rGradient.GetXOffset();
+/*N*/       rOut << (sal_uInt32)rGradient.GetYOffset();
+/*N*/       rOut << (sal_uInt32)rGradient.GetStartIntens();
+/*N*/       rOut << (sal_uInt32)rGradient.GetEndIntens();
 /*N*/   }
 /*N*/
 /*N*/   return rOut;
@@ -618,11 +618,11 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   Color   aStart;
 /*N*/   Color   aEnd;
 /*N*/   long    nAngle;
-/*N*/   ULONG   nBorder;
-/*N*/   ULONG   nXOfs;
-/*N*/   ULONG   nYOfs;
-/*N*/   ULONG   nStartIntens;
-/*N*/   ULONG   nEndIntens;
+/*N*/   sal_uInt32 nBorder;
+/*N*/   sal_uInt32 nXOfs;
+/*N*/   sal_uInt32 nYOfs;
+/*N*/   sal_uInt32 nStartIntens;
+/*N*/   sal_uInt32 nEndIntens;
 /*N*/
 /*N*/   // Kennung oder Anzahl
 /*N*/   rIn >> nCheck;
