@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unoobj.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:27:27 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:41:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -156,7 +156,7 @@ using namespace ::com::sun::star;
 
 ///////////////////////////////////////////////////////////////////////
 
-DECLARE_STL_STDKEY_MAP(sal_uInt32, SfxExtItemPropertySetInfo*, SdExtPropertySetInfoCache);
+DECLARE_STL_STDKEY_MAP(sal_uIntPtr, SfxExtItemPropertySetInfo*, SdExtPropertySetInfoCache);
 static SdExtPropertySetInfoCache gImplImpressPropertySetInfoCache;
 static SdExtPropertySetInfoCache gImplDrawPropertySetInfoCache;
 
@@ -431,7 +431,7 @@ uno::Any SAL_CALL SdXShape::getPropertyDefault( const OUString& aPropertyName ) 
 ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL SdXShape::getPropertySetInfo()
     throw(::com::sun::star::uno::RuntimeException)
 {
-    sal_uInt32 nObjId = (sal_uInt32)mpShape->getPropertyMap();
+    sal_uIntPtr nObjId = (sal_uIntPtr)mpShape->getPropertyMap();
     SfxExtItemPropertySetInfo* pInfo = NULL;
 
     SdExtPropertySetInfoCache* pCache = (mpModel && mpModel->IsImpressDocument()) ?
