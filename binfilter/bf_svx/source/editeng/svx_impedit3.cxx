@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:28:27 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:55:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -777,7 +777,7 @@ struct TabInfo
 /*N*/   SvxFont aTmpFont( pNode->GetCharAttribs().GetDefFont() );
 /*N*/
 /*N*/   sal_Bool bCalcCharPositions = sal_True;
-/*N*/   long* pBuf = new long[ pNode->Len() ];
+/*N*/   sal_Int32* pBuf = new sal_Int32[ pNode->Len() ];
 /*N*/
 /*N*/   sal_Bool bSameLineAgain = sal_False;    // Fuer TextRanger, wenn sich die Hoehe aendert.
 /*N*/   TabInfo aCurrentTab;
@@ -2932,8 +2932,8 @@ struct TabInfo
 /*N*/                               XubString aText;
 /*N*/                                 USHORT nTextStart = 0;
 /*N*/                                 USHORT nTextLen = 0;
-/*N*/                               const long* pDXArray = 0;
-/*N*/                               long* pTmpDXArray = 0;
+/*N*/                               const sal_Int32* pDXArray = 0;
+/*N*/                               sal_Int32* pTmpDXArray = 0;
 /*N*/
 /*N*/                               if ( pTextPortion->GetKind() == PORTIONKIND_TEXT )
 /*N*/                               {
@@ -2951,7 +2951,7 @@ struct TabInfo
 /*?*/                                     nTextStart = 0;
 /*?*/                                     nTextLen = aText.Len();
 /*?*/
-/*?*/                                   pTmpDXArray = new long[ aText.Len() ];
+/*?*/                                   pTmpDXArray = new sal_Int32[ aText.Len() ];
 /*?*/                                   pDXArray = pTmpDXArray;
 /*?*/                                   Font aOldFont( GetRefDevice()->GetFont() );
 /*?*/                                   aTmpFont.SetPhysFont( GetRefDevice() );
