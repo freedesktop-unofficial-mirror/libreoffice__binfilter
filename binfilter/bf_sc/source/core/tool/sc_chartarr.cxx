@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartarr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:04:56 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:14:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,7 @@ namespace binfilter {
 /*N*/   rDest.SetYAxisTitle( rSource.GetYAxisTitle() );
 /*N*/   rDest.SetZAxisTitle( rSource.GetZAxisTitle() );
 /*N*/
-/*N*/   const long* pArr;
+/*N*/   const sal_Int32* pArr;
 /*N*/   if ( rSource.GetRowCount() == rDest.GetRowCount() &&
 /*N*/        rSource.GetColCount() == rDest.GetColCount() )
 /*N*/   {
@@ -698,7 +698,7 @@ namespace binfilter {
 /*?*/                           nVal = ((ScValueCell*)pCell)->GetValue();
 /*?*/                           if ( bCalcAsShown && nVal != 0.0 )
 /*?*/                           {
-/*?*/                               ULONG nFormat;
+/*?*/                               sal_uInt32 nFormat;
 /*?*/                               pDocument->GetNumberFormat( pCols[nCol],
 /*?*/                                   pRows[nRow], nTab1, nFormat );
 /*?*/                               nVal = pDocument->RoundValueAsShown( nVal, nFormat );
