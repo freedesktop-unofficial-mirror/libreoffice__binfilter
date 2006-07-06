@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_frmview.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:40:53 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:44:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -321,7 +321,7 @@ using namespace ::std;
 
 /*N*/ SvStream& operator << (SvStream& rOut, const FrameView& rView)
 /*N*/ {
-/*N*/   ULONG nULTemp;
+/*N*/   sal_uInt32 nULTemp;
 /*N*/
 /*N*/   // #95895# translate view-layer name to standard-ASCII
 /*N*/   // like in MakeUniqueLayerNames()
@@ -384,9 +384,9 @@ using namespace ::std;
 /*N*/   rOut << rView.bNoColors;
 /*N*/   rOut << rView.bNoAttribs;
 /*N*/   rOut << rView.aVisArea;
-/*N*/   nULTemp = (ULONG) rView.ePageKind;            rOut << nULTemp;
+/*N*/   nULTemp = (sal_uInt32) rView.ePageKind;            rOut << nULTemp;
 /*N*/   rOut << rView.nSelectedPage;
-/*N*/   nULTemp = (ULONG) rView.eStandardEditMode;    rOut << nULTemp;
+/*N*/   nULTemp = (sal_uInt32) rView.eStandardEditMode;    rOut << nULTemp;
 /*N*/   rOut << rView.bLayerMode;
 /*N*/   rOut << rView.bQuickEdit;
 /*N*/   rOut << rView.bDragWithCopy;
@@ -396,11 +396,11 @@ using namespace ::std;
 /*N*/   rOut << rView.bDoubleClickTextEdit;
 /*N*/   rOut << rView.bClickChangeRotation;
 /*N*/
-/*N*/   nULTemp = (ULONG) rView.eNotesEditMode;       rOut << nULTemp;
-/*N*/   nULTemp = (ULONG) rView.eHandoutEditMode;     rOut << nULTemp;
+/*N*/   nULTemp = (sal_uInt32) rView.eNotesEditMode;       rOut << nULTemp;
+/*N*/   nULTemp = (sal_uInt32) rView.eHandoutEditMode;     rOut << nULTemp;
 /*N*/
-/*N*/   rOut << rView.nDrawMode;
-/*N*/   rOut << rView.nPreviewDrawMode;
+/*N*/   rOut << static_cast<sal_uInt32>(rView.nDrawMode);
+/*N*/   rOut << static_cast<sal_uInt32>(rView.nPreviewDrawMode);
 /*N*/
 /*N*/   rOut << rView.bShowPreviewInPageMode;
 /*N*/   rOut << rView.bShowPreviewInMasterPageMode;
@@ -443,7 +443,7 @@ using namespace ::std;
 /*N*/
 /*N*/   if (aIO.GetVersion() >= 3)
 /*N*/   {
-/*N*/       ULONG nULTemp;
+/*N*/       sal_uInt32 nULTemp;
 /*N*/       rIn >> rView.aVisArea;
 /*N*/       rIn >> nULTemp;          rView.ePageKind = (PageKind) nULTemp;
 /*N*/       rIn >> rView.nSelectedPage;
@@ -478,15 +478,18 @@ using namespace ::std;
 /*N*/
 /*N*/   if (aIO.GetVersion() >= 8)
 /*N*/   {
-/*N*/       ULONG nULTemp;
+/*N*/       sal_uInt32 nULTemp;
 /*N*/       rIn >> nULTemp; rView.eNotesEditMode   = (EditMode) nULTemp;
 /*N*/       rIn >> nULTemp; rView.eHandoutEditMode = (EditMode) nULTemp;
 /*N*/   }
 /*N*/
 /*N*/   if (aIO.GetVersion() >= 9)
 /*N*/   {
-/*N*/       rIn >> rView.nDrawMode;
-/*N*/       rIn >> rView.nPreviewDrawMode;
+/*N*/       sal_uInt32 nTemp;
+/*N*/       rIn >> nTemp;
+/*N*/       rView.nDrawMode = nTemp;
+/*N*/       rIn >> nTemp;
+/*N*/       rView.nPreviewDrawMode = nTemp;
 /*N*/   }
 /*N*/
 /*N*/   if (aIO.GetVersion() >= 10)
