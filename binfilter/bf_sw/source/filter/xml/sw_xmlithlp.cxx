@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmlithlp.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:43:09 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:58:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -203,7 +203,7 @@ sal_Bool lcl_frmitems_parseXMLBorder( const OUString& rValue,
     rWidth = 0;
     rNamedWidth = USHRT_MAX;
 
-    long nTemp;
+    sal_Int32 nTemp;
     while( aTokens.getNextToken( aToken ) && aToken.getLength() != 0 )
     {
         if( !rHasWidth &&
