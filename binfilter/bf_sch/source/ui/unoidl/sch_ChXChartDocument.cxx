@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_ChXChartDocument.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:10:16 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:30:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1661,7 +1661,7 @@ uno::Sequence< sal_Int32 > ChXChartDocument::GetTransSequence( SchMemChart* pDat
             short nColCount = pData->GetColCount();
             aResult.realloc( nColCount );
             sal_Int32* pSeq = aResult.getArray();
-            const long* pTransArray = pData->GetColTranslation();
+            const sal_Int32* pTransArray = pData->GetColTranslation();
             sal_Int32 i;
 
             if( nTranslation == TRANS_COL &&
@@ -1682,7 +1682,7 @@ uno::Sequence< sal_Int32 > ChXChartDocument::GetTransSequence( SchMemChart* pDat
             short nRowCount = pData->GetRowCount();
             aResult.realloc( nRowCount );
             sal_Int32* pSeq = aResult.getArray();
-            const long* pTransArray = pData->GetRowTranslation();
+            const sal_Int32* pTransArray = pData->GetRowTranslation();
             sal_Int32 i;
 
             if( nTranslation == TRANS_ROW &&
