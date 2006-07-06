@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_textitem.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:09:39 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:56:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -464,7 +464,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/     // #96441# Kach for EditEngine, only set while creating clipboard stream.
 /*N*/     if ( bEnableStoreUnicodeNames )
 /*N*/     {
-/*N*/         ULONG nMagic = STORE_UNICODE_MAGIC_MARKER;
+/*N*/         sal_uInt32 nMagic = STORE_UNICODE_MAGIC_MARKER;
 /*N*/         rStrm << nMagic;
 /*N*/         rStrm.WriteByteString( aStoreFamilyName, RTL_TEXTENCODING_UNICODE );
 /*N*/       rStrm.WriteByteString( GetStyleName(), RTL_TEXTENCODING_UNICODE );
@@ -498,7 +498,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/
 /*N*/     // Check if we have stored unicode
 /*N*/     ULONG nStreamPos = rStrm.Tell();
-/*N*/     ULONG nMagic = STORE_UNICODE_MAGIC_MARKER;
+/*N*/     sal_uInt32 nMagic = STORE_UNICODE_MAGIC_MARKER;
 /*N*/     rStrm >> nMagic;
 /*N*/     if ( nMagic == STORE_UNICODE_MAGIC_MARKER )
 /*N*/     {
