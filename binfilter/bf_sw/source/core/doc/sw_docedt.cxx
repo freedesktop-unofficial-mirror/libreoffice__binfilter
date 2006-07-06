@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docedt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:34:56 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:32:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2241,7 +2241,7 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*N*/
     /* #i9185# This whould lead to a segmentation fault if not catched
        above. */
-/*N*/   sal_uInt32 nNextNd = rEnd.nNode.GetIndex() + 1;
+/*N*/   ULONG nNextNd = rEnd.nNode.GetIndex() + 1;
 /*N*/   SwTableNode* pTblNd = aNodes[ nNextNd ]->GetTableNode();
 /*N*/
 /*N*/   if( pTblNd && pNd->IsCntntNode() )
