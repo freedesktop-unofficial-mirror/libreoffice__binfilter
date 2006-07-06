@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdopath.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:01:06 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:28:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -79,6 +79,8 @@ namespace binfilter {
 // #104018# replace macros above with type-safe methods
 inline sal_Int32 ImplTwipsToMM(sal_Int32 nVal) { return ((nVal * 127 + 36) / 72); }
 inline sal_Int32 ImplMMToTwips(sal_Int32 nVal) { return ((nVal * 72 + 63) / 127); }
+inline sal_Int64 ImplTwipsToMM(sal_Int64 nVal) { return ((nVal * 127 + 36) / 72); }
+inline sal_Int64 ImplMMToTwips(sal_Int64 nVal) { return ((nVal * 72 + 63) / 127); }
 inline double ImplTwipsToMM(double fVal) { return (fVal * (127.0 / 72.0)); }
 inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
