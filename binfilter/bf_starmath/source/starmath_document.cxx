@@ -4,9 +4,9 @@
  *
  *  $RCSfile: starmath_document.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 04:01:52 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:53:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1813,9 +1813,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   {
 /*N*/       SvStream*    pSvStream = aTempStream;
 /*N*/       char         cTag;
-/*N*/       ULONG        lIdent, lVersion;
+/*N*/       sal_uInt32   lIdent, lVersion;
 /*N*/       long         lTime;
-/*N*/       ULONG        lDate;
+/*N*/       sal_uInt32   lDate;
 /*N*/       String       aBuffer;
 /*N*/         ByteString   aByteStr;
 /*N*/
@@ -1914,9 +1914,9 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
         SvStream*    pSvStream = aTempStream;
         char         cTag;
-        ULONG        lIdent, lVersion;
+        sal_uInt32   lIdent, lVersion;
         long         lTime;
-        ULONG        lDate;
+        sal_uInt32   lDate;
         UINT32       lDataSize;
         String       aBuffer;
         ByteString   aByteStr;
