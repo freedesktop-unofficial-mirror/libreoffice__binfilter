@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editeng.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:39:00 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:15:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -196,19 +196,19 @@ public:
 
     String          GetText( LineEnd eEnd = LINEEND_LF ) const;
     String          GetText( const ESelection& rSelection, const LineEnd eEnd = LINEEND_LF ) const;
-    ULONG           GetTextLen() const;
-    ULONG           GetTextHeight() const;
-    ULONG           CalcTextWidth();
+    sal_uInt32      GetTextLen() const;
+    sal_uInt32      GetTextHeight() const;
+    sal_uInt32      CalcTextWidth();
 
     String          GetText( USHORT nParagraph ) const;
     xub_StrLen          GetTextLen( USHORT nParagraph ) const;
-    ULONG           GetTextHeight( USHORT nParagraph ) const;
+    sal_uInt32      GetTextHeight( USHORT nParagraph ) const;
 
     USHORT          GetParagraphCount() const;
 
     USHORT          GetLineCount( USHORT nParagraph ) const;
     xub_StrLen      GetLineLen( USHORT nParagraph, USHORT nLine ) const;
-    ULONG           GetLineHeight( USHORT nParagraph, USHORT nLine = 0 );
+    sal_uInt32      GetLineHeight( USHORT nParagraph, USHORT nLine = 0 );
     USHORT          GetFirstLineOffset( USHORT nParagraph );
     ParagraphInfos  GetParagraphInfos( USHORT nPara );
     USHORT          FindParagraph( long nDocPosY );
@@ -306,8 +306,8 @@ public:
     BOOL            IsFlatMode() const;
 //STRIP001  void            SetFlatMode( BOOL bFlat );
 
-    void            SetControlWord( ULONG nWord );
-    ULONG           GetControlWord() const;
+    void            SetControlWord( sal_uInt32 nWord );
+    sal_uInt32      GetControlWord() const;
 
     void            QuickSetAttribs( const SfxItemSet& rSet, const ESelection& rSel );
     void            QuickRemoveCharAttribs( USHORT nPara, USHORT nWhich = 0 );
@@ -400,7 +400,7 @@ public:
     virtual void    ParagraphHeightChanged( USHORT nPara );
 
     // #101498#
-    virtual void    DrawingText( const Point& rStartPos, const String& rText, USHORT nTextStart, USHORT nTextLen, const long* pDXArray, const SvxFont& rFont, USHORT nPara, xub_StrLen nIndex, BYTE nRightToLeft);
+    virtual void    DrawingText( const Point& rStartPos, const String& rText, USHORT nTextStart, USHORT nTextLen, const sal_Int32* pDXArray, const SvxFont& rFont, USHORT nPara, xub_StrLen nIndex, BYTE nRightToLeft);
 
     virtual String  GetUndoComment( USHORT nUndoId ) const;
     virtual BOOL    FormattingParagraph( USHORT nPara );
