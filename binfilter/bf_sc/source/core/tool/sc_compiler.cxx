@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_compiler.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:06:44 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:14:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -877,7 +877,7 @@ namespace binfilter {
 /*N*/ BOOL ScCompiler::IsValue( const String& rSym )
 /*N*/ {
 /*N*/   double fVal;
-/*N*/   ULONG nIndex = ( pSymbolTable == pSymbolTableEnglish ?
+/*N*/   sal_uInt32 nIndex = ( pSymbolTable == pSymbolTableEnglish ?
 /*N*/       pDoc->GetFormatTable()->GetStandardIndex( LANGUAGE_ENGLISH_US ) : 0 );
 /*N*/ //    ULONG nIndex = 0;
 /*N*/ ////  ULONG nIndex = pDoc->GetFormatTable()->GetStandardIndex(ScGlobal::eLnge);
