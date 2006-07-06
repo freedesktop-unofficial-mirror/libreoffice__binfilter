@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_laycache.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:50:11 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:34:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -280,9 +280,9 @@ namespace binfilter {
 /*N*/                             aIo.OpenFlagRec( bFollow ? 0x01 : 0x00,
 /*N*/                                             bFollow ? 8 : 4 );
 /*N*/                             nNdIdx -= nStartOfContent;
-/*N*/                             aIo.GetStream() << nNdIdx;
+/*N*/                             aIo.GetStream() << static_cast<sal_uInt32>(nNdIdx);
 /*N*/                             if( bFollow )
-/*?*/                                 aIo.GetStream() << (ULONG)((SwTxtFrm*)pTmp)->GetOfst();
+/*?*/                                 aIo.GetStream() << static_cast<sal_uInt32>(((SwTxtFrm*)pTmp)->GetOfst());
 /*N*/                             aIo.CloseFlagRec();
 /*N*/                             /*  Close Paragraph Record */
 /*N*/                             aIo.CloseRec( SW_LAYCACHE_IO_REC_PARA );
@@ -321,8 +321,8 @@ namespace binfilter {
 /*N*/                                 aIo.OpenRec( SW_LAYCACHE_IO_REC_TABLE );
 /*N*/                                 aIo.OpenFlagRec( 0, 8 );
 /*N*/                                 nNdIdx -= nStartOfContent;
-/*N*/                                 aIo.GetStream() << nNdIdx
-/*N*/                                                 << nOfst;
+/*N*/                                 aIo.GetStream() << static_cast<sal_uInt32>(nNdIdx)
+/*N*/                                                 << static_cast<sal_uInt32>(nOfst);
 /*N*/                                 aIo.CloseFlagRec();
 /*N*/                                 /* Close Table Record  */
 /*N*/                                 aIo.CloseRec( SW_LAYCACHE_IO_REC_TABLE );
@@ -375,15 +375,15 @@ namespace binfilter {
 /*?*/                             const SwContact *pC = (SwContact*)GetUserCall(pO);
 /*?*/                             if( pC )
 /*?*/                             {
-/*?*/                                 ULONG nOrdNum = pO->GetOrdNum();
+/*?*/                                 sal_uInt32 nOrdNum = pO->GetOrdNum();
 /*?*/                                 USHORT nPageNum = pPage->GetPhyPageNum();
 /*?*/                                 /* Open Fly Record */
 /*?*/                                 aIo.OpenRec( SW_LAYCACHE_IO_REC_FLY );
 /*?*/                                 aIo.OpenFlagRec( 0, 0 );
 /*?*/                                 aIo.CloseFlagRec();
 /*?*/                                 SwRect &rRct = pFly->Frm();
-/*?*/                                 long nX = rRct.Left() - pPage->Frm().Left();
-/*?*/                                 long nY = rRct.Top() - pPage->Frm().Top();
+/*?*/                                 sal_Int32 nX = rRct.Left() - pPage->Frm().Left();
+/*?*/                                 sal_Int32 nY = rRct.Top() - pPage->Frm().Top();
 /*?*/                                 aIo.GetStream() << nPageNum << nOrdNum
 /*?*/                                                 << nX << nY << rRct.Width()
 /*?*/                                                 << rRct.Height();
