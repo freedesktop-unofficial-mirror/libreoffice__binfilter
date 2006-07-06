@@ -4,9 +4,9 @@
  *
  *  $RCSfile: validat.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:36:11 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:13:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,7 @@ enum ScValidErrorStyle
 
 class ScValidationData : public ScConditionEntry
 {
-    ULONG               nKey;               // Index in Attributen
+    sal_uInt32          nKey;               // Index in Attributen
 
     ScValidationMode    eDataMode;
     BOOL                bShowInput;
@@ -132,8 +132,8 @@ public:
 //STRIP001  void            DoCalcError( ScFormulaCell* pCell ) const;
 
     BOOL            IsEmpty() const;
-    ULONG           GetKey() const          { return nKey; }
-    void            SetKey(ULONG nNew)      { nKey = nNew; }    // nur wenn nicht eingefuegt!
+    sal_uInt32      GetKey() const          { return nKey; }
+    void            SetKey(sal_uInt32 nNew)     { nKey = nNew; }    // nur wenn nicht eingefuegt!
 
     void            SetUsed(BOOL bSet)      { bIsUsed = bSet; }
     BOOL            IsUsed() const          { return bIsUsed; }
@@ -166,7 +166,7 @@ public:
     void    InsertNew( ScValidationData* pNew )
                 { if (!Insert(pNew)) delete pNew; }
 
-    ScValidationData* GetData( ULONG nKey );
+    ScValidationData* GetData( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
     void    Store( SvStream& rStream ) const;
