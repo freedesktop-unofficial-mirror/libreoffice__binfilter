@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_cellfml.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:06:44 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:32:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -267,7 +267,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/
 /*N*/           double aNum;
 /*N*/           String sTxt( rTxt.Copy( nSttPos ) );
-/*N*/           ULONG nFmtIndex = GetFrmFmt()->GetTblBoxNumFmt().GetValue();
+/*N*/           sal_uInt32 nFmtIndex = GetFrmFmt()->GetTblBoxNumFmt().GetValue();
 /*N*/
 /*N*/           SvNumberFormatter* pNumFmtr = pDoc->GetNumberFormatter();
 /*N*/
@@ -277,7 +277,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           else if( sTxt.Len() &&
 /*?*/                   NUMBERFORMAT_PERCENT == pNumFmtr->GetType( nFmtIndex ))
 /*?*/           {
-/*?*/               ULONG nTmpFmt = 0;
+/*?*/               sal_uInt32 nTmpFmt = 0;
 /*?*/               if( pNumFmtr->IsNumberFormat( sTxt, nTmpFmt, aNum ) &&
 /*?*/                   NUMBERFORMAT_NUMBER == pNumFmtr->GetType( nTmpFmt ))
 /*?*/                   sTxt += '%';
