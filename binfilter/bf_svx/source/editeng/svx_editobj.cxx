@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editobj.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-02-09 15:09:38 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:55:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -483,7 +483,7 @@ namespace binfilter {
 /*N*/   USHORT nWhich = Which();
 /*N*/   rOStream << nWhich;
 /*N*/
-/*N*/   ULONG nStructSz = 0;
+/*N*/   sal_uInt32 nStructSz = 0;
 /*N*/   rOStream << nStructSz;
 /*N*/
 /*N*/   // Eigene Daten:
@@ -507,7 +507,7 @@ namespace binfilter {
 /*N*/   USHORT nWhich;
 /*N*/   rIStream >> nWhich;
 /*N*/
-/*N*/   ULONG nStructSz;
+/*N*/   sal_uInt32 nStructSz;
 /*N*/   rIStream >> nStructSz;
 /*N*/
 /*N*/   DBG_ASSERT( ( nWhich == 0x22 /*EE_FORMAT_BIN300*/ ) || ( nWhich == EE_FORMAT_BIN ), "CreateTextObject: Unbekanntes Objekt!" );
@@ -1842,11 +1842,11 @@ namespace binfilter {
 /*N*/   GetPool()->Load( rIStream );
 /*N*/
 /*N*/   // Die Anzahl der Absaetze...
-/*N*/   ULONG nParagraphs;
+/*N*/   sal_uInt32 nParagraphs;
 /*N*/   rIStream >> nParagraphs;
 /*N*/
 /*N*/   // Die einzelnen Absaetze...
-/*N*/   for ( ULONG nPara = 0; nPara < nParagraphs; nPara++ )
+/*N*/   for ( sal_uInt32 nPara = 0; nPara < nParagraphs; nPara++ )
 /*N*/   {
 /*N*/       ContentInfo* pC = CreateAndInsertContent();
 /*N*/
@@ -1863,13 +1863,13 @@ namespace binfilter {
 /*N*/       pC->GetParaAttribs().Load( rIStream );
 /*N*/
 /*N*/       // Die Anzahl der Attribute...
-/*N*/       ULONG nAttribs;
+/*N*/       sal_uInt32 nAttribs;
 /*N*/       rIStream >> nAttribs;
 /*N*/
 /*N*/       // Und die einzelnen Attribute
 /*N*/       // Items als Surregate => immer 8 Byte pro Attrib
 /*N*/       // Which = 2; Surregat = 2; Start = 2; End = 2;
-/*N*/       for ( ULONG nAttr = 0; nAttr < nAttribs; nAttr++ )
+/*N*/       for ( sal_uInt32 nAttr = 0; nAttr < nAttribs; nAttr++ )
 /*N*/       {
 /*N*/           USHORT nWhich, nStart, nEnd;
 /*N*/           const SfxPoolItem* pItem;
