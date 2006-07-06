@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw3imp.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:58:01 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:34:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -308,7 +308,7 @@ public:
     void   Store( SvStream& );
 
     static USHORT ConvertFromOldPoolId( USHORT nId, USHORT nVersion );
-    static USHORT ConvertToOldPoolId( USHORT nId, ULONG nFFVersion );
+    static USHORT ConvertToOldPoolId( USHORT nId, sal_uInt32 nFFVersion );
 };
 
 // Informationen, die nur beim Export eines Doks benoetigt werden
@@ -437,8 +437,8 @@ public:
     SvUShorts*         pSectionDepths;
     Sw3Fmts*           pConvToSymbolFmts;
     SwHiddenDrawObjList_Impl *pHiddenDrawObjs;
-    ULONG              nCurPercent; // Aktueller Stand der Prozentanzeige
-    ULONG              nEndPercent; // Maximalwert der Prozentanzeige
+    sal_uInt32         nCurPercent; // Aktueller Stand der Prozentanzeige
+    sal_uInt32         nEndPercent; // Maximalwert der Prozentanzeige
     UINT32             nDate,nTime; // Zeitpunkt der Speicherung
     long               nSizeDivFac; // Divisionsfaktor fuer FRMSIZE-Attribs
 
@@ -530,8 +530,8 @@ public:
     BOOL OpenRec( BYTE cType );     // Record oeffnen
     void CloseRec( BYTE cType );    // Record schliessen
     void SkipRec();                 // Record uebergehen
-    void InsertRecordSize( ULONG nPos, ULONG nSize );
-    ULONG GetRecordSize( ULONG nPos );
+    void InsertRecordSize( sal_uInt32 nPos, sal_uInt32 nSize );
+    sal_uInt32 GetRecordSize( sal_uInt32 nPos );
     BOOL HasRecSizes() const { return pRecSizes != 0; }
     void FlushRecSizes();
     void InRecSizes( ULONG nRecPos );
@@ -556,8 +556,8 @@ public:
                                         sal_Char cSrcDelim,
                                         sal_Unicode cDelim,
                                         rtl_TextEncoding eSource );
-    static ULONG InULong( SvStream& );         // ULONG komprimiert lesen
-    static void OutULong( SvStream&, ULONG );  // ULONG komprimiert schreiben
+    static sal_uInt32 InULong( SvStream& );            // ULONG komprimiert lesen
+    static void OutULong( SvStream&, sal_uInt32 );  // ULONG komprimiert schreiben
     inline SvStream& InString( SvStream& rStrm, String& rStr );
     inline SvStream& OutString( SvStream& rStrm, const String& rStr );
 
@@ -579,9 +579,9 @@ public:
     inline BOOL IsVersion( USHORT nMinVers1, USHORT nMaxVers1,
                            USHORT nMinVers2, USHORT nMaxVers2 ) const;
 
-    void OpenPercentBar( ULONG, ULONG );
+    void OpenPercentBar( sal_uInt32, sal_uInt32 );
     void ClosePercentBar();
-    void SetPercentBar( ULONG );
+    void SetPercentBar( sal_uInt32 );
 
     void Cleanup( BOOL bConnectPageDescs = TRUE );  // Nach Einlesen aufraeumen
     void ChangeFontItemCharSet();
