@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editdoc2.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:22:41 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:54:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -94,7 +94,7 @@ namespace binfilter {
 
 /*N*/ DBG_NAME( EE_ParaPortion )
 
-/*N*/ SV_IMPL_VARARR( CharPosArray, long );
+/*N*/ SV_IMPL_VARARR( CharPosArray, sal_Int32 );
 
 /*
 
