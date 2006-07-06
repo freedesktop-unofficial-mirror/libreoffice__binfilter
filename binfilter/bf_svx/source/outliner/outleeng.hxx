@@ -4,9 +4,9 @@
  *
  *  $RCSfile: outleeng.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:41:59 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:56:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -61,7 +61,7 @@ public:
     virtual void        ParagraphDeleted( USHORT nDeletedParagraph );
 
     // #101498#
-    virtual void        DrawingText(const Point& rStartPos, const XubString& rText, USHORT nTextStart, USHORT nTextLen, const long* pDXArray, const SvxFont& rFont, USHORT nPara, USHORT nIndex, BYTE nRightToLeft);
+    virtual void        DrawingText(const Point& rStartPos, const XubString& rText, USHORT nTextStart, USHORT nTextLen, const sal_Int32* pDXArray, const SvxFont& rFont, USHORT nPara, USHORT nIndex, BYTE nRightToLeft);
 
 //STRIP001  virtual void        StyleSheetChanged( SfxStyleSheet* pStyle );
     virtual void        ParaAttribsChanged( USHORT nPara );
