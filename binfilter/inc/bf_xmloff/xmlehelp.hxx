@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlehelp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 17:38:19 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:26:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,10 +46,10 @@ namespace binfilter {
 class SvXMLExportHelper
 {
 public:
-    static void AddLength( long nValue, MapUnit eValueUnit,
+    static void AddLength( sal_Int32 nValue, MapUnit eValueUnit,
                            ::rtl::OUStringBuffer& rOut,
                            MapUnit eOutUnit );
-    static void AddPercentage( long nVal, ::rtl::OUStringBuffer& rOut );
+    static void AddPercentage( sal_Int32 nVal, ::rtl::OUStringBuffer& rOut );
     static double GetConversionFactor(::rtl::OUStringBuffer& rUnit,
         const MapUnit eCoreUnit, const MapUnit eDestUnit);
     static MapUnit GetUnitFromString(const ::rtl::OUString& rString,
