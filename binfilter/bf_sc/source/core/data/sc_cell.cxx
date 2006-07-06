@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cell.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:39:37 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:12:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -916,7 +916,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/ //    rStream << (BYTE) 0x00;
 /*N*/ #endif
 /*N*/   if ( nFormatIndex )
-/*N*/       rStream << (BYTE) (0x10 | sizeof(UINT32)) << nFormatIndex;
+/*N*/       rStream << (BYTE) (0x10 | sizeof(UINT32)) << static_cast<sal_uInt32>(nFormatIndex);
 /*N*/   else
 /*N*/       rStream << (BYTE) 0x00;
 /*N*/   rStream << cFlags << (UINT16) nFormatType;
