@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 12:47:58 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:15:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,15 +83,15 @@ SO2_DECL_REF(SvStorageStream)
 
 #define HINT_DATACHANGED    1004
 
-#define SM30BIDENT   ((ULONG)0x534D3033L)
-#define SM30IDENT    ((ULONG)0x30334d53L)
-#define SM304AIDENT  ((ULONG)0x34303330L)
-#define SM30VERSION  ((ULONG)0x00010000L)
-#define SM50VERSION  ((ULONG)0x00010001L)   //Unterschied zur SM30VERSION ist
+#define SM30BIDENT   ((sal_uInt32)0x534D3033L)
+#define SM30IDENT    ((sal_uInt32)0x30334d53L)
+#define SM304AIDENT  ((sal_uInt32)0x34303330L)
+#define SM30VERSION  ((sal_uInt32)0x00010000L)
+#define SM50VERSION  ((sal_uInt32)0x00010001L)  //Unterschied zur SM30VERSION ist
                                             //der neue Border im Format.
 
-#define FRMIDENT    ((ULONG)0x03031963L)
-#define FRMVERSION  ((ULONG)0x00010001L)
+#define FRMIDENT    ((sal_uInt32)0x03031963L)
+#define FRMVERSION  ((sal_uInt32)0x00010001L)
 
 #define STAROFFICE_XML  "StarOffice XML (Math)"
 #define MATHML_XML      "MathML XML (Math)"
