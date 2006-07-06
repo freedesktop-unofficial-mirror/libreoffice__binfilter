@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docfunc.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:07:03 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:16:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -986,7 +986,7 @@ using namespace ::com::sun::star;
 /*N*/   else        // (nur) auf englisches Zahlformat testen
 /*N*/   {
 /*?*/       SvNumberFormatter* pFormatter = pDoc->GetFormatTable();
-/*?*/       ULONG nEnglish = pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US);
+/*?*/       sal_uInt32 nEnglish = pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US);
 /*?*/       double fVal;
 /*?*/       if ( pFormatter->IsNumberFormat( rText, nEnglish, fVal ) )
 /*?*/           pNewCell = new ScValueCell( fVal );
