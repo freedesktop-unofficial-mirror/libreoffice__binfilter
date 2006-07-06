@@ -4,9 +4,9 @@
  *
  *  $RCSfile: document.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:34:42 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:13:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -759,7 +759,7 @@ public:
     void            GetValue( USHORT nCol, USHORT nRow, USHORT nTab, double& rValue );
     double          RoundValueAsShown( double fVal, ULONG nFormat );
     void            GetNumberFormat( USHORT nCol, USHORT nRow, USHORT nTab,
-                                     ULONG& rFormat );
+                                     sal_uInt32& rFormat );
     ULONG           GetNumberFormat( const ScAddress& ) const;
                     /// if no number format attribute is set the calculated
                     /// number format of the formula cell is returned
