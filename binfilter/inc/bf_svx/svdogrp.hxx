@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdogrp.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:39:54 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:16:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -78,7 +78,7 @@ class ImpSdrObjGroupLinkUserData : public SdrObjUserData
     long                        nShearWink0; // Letzter bekannter Shearwinkel des Originals
 
     ImpSdrObjGroupLink*         pLink;
-    ULONG                       nObjNum;     // des referenzierten Objekts
+    sal_uInt32                  nObjNum;     // des referenzierten Objekts
     USHORT                      nPageNum;    // zum schnelleren wiederauffinden
     FASTBOOL                    bMasterPage; // Liegt im Referenzdokoment auf einer Masterpage
 
