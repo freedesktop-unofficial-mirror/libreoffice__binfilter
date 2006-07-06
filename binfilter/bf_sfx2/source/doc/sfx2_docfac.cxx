@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docfac.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:09:37 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:52:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,7 +168,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*?*/   const String&       rName,          // Klartext-Name f"ur Anzeige im Dialog
 /*?*/   const String&       rWildcard,      // Default-Wildcards
 /*?*/   SfxFilterFlags      eType,          // SFX_FILTER_...
-/*?*/   sal_uInt32               lFormat,        // Clipboard-Format
+/*?*/   ULONG lFormat,        // Clipboard-Format
 /*?*/   const String&       rMacType,       // 4-Byte-Type f"ur Apple Macintosh
 /*?*/   const String&       rTypeName,      // String-Type f"ur OS/2
 /*?*/   sal_uInt16              nIconId,        // Resource-Id f"ur Icon
