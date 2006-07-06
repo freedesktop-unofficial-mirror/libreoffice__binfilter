@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:23:05 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:35:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -675,12 +675,12 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       rOut << aJobSetup;
 /*N*/   }
 /*N*/
-/*N*/   rOut << (ULONG) rDoc.eLanguage;
+/*N*/   rOut << (sal_uInt32) rDoc.eLanguage;
 /*N*/
     /**************************************************************************
     * FrameViews schreiben
     **************************************************************************/
-/*N*/   ULONG nFrameViewCount = 0;
+/*N*/   sal_uInt32 nFrameViewCount = 0;
 /*N*/   SdViewShell* pViewSh = NULL;
 /*N*/   SfxViewShell* pSfxViewSh = NULL;
 /*N*/   SfxViewFrame* pSfxViewFrame = SfxViewFrame::GetFirst(rDoc.pDocSh,
@@ -741,7 +741,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   rOut << rDoc.bCustomShow;
 /*N*/
 /*N*/   // Anzahl CustomShows schreiben
-/*N*/   ULONG nCustomShowCount = 0;
+/*N*/   sal_uInt32 nCustomShowCount = 0;
 /*N*/
 /*N*/   if (rDoc.pCustomShowList)
 /*N*/   {
@@ -760,12 +760,12 @@ using namespace ::com::sun::star::linguistic2;
         }
 
         // Position der aktuellen CustomShow
-        ULONG nCurPos = rDoc.pCustomShowList->GetCurPos();
+        sal_uInt32 nCurPos = rDoc.pCustomShowList->GetCurPos();
         rOut << nCurPos;
     }
 
 /*N*/   // ab Version 15
-/*N*/   rOut << (ULONG) rDoc.GetPageNumType();
+/*N*/   rOut << (sal_uInt32) rDoc.GetPageNumType();
 /*N*/
 /*N*/   // ab Version 17
 /*N*/   rOut << rDoc.GetPresPause() << rDoc.IsPresShowLogo();
@@ -882,7 +882,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/   if (rDoc.nFileFormatVersion >= 3)
 /*N*/   {
-/*N*/       ULONG nTmp;
+/*N*/       sal_uInt32 nTmp;
 /*N*/       rIn >> nTmp;
 /*N*/       rDoc.SetLanguage( (LanguageType) nTmp, EE_CHAR_LANGUAGE );
 /*N*/   }
@@ -910,7 +910,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       const SvtSaveOptions aOptions;
 /*N*/       BOOL bIsSaveDocView = aOptions.IsSaveDocView();
 /*N*/
-/*N*/       ULONG nFrameViewCount = 0;
+/*N*/       sal_uInt32 nFrameViewCount = 0;
 /*N*/       rIn >> nFrameViewCount;
 /*N*/
 /*N*/       for (nCount=0; nCount<nFrameViewCount; nCount++)
@@ -998,7 +998,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       // CustomShow aktiv
 /*N*/       rIn >> rDoc.bCustomShow;
 /*N*/
-/*N*/       ULONG nCustomShowCount = 0;
+/*N*/       sal_uInt32 nCustomShowCount = 0;
 /*N*/       rIn >> nCustomShowCount;
 /*N*/
 /*N*/       if (nCustomShowCount > 0)
@@ -1022,7 +1022,7 @@ using namespace ::com::sun::star::linguistic2;
             }
 
             // Aktuelle CustomShow selektieren
-            ULONG nCurPos;
+            sal_uInt32 nCurPos;
             rIn >> nCurPos;
             rDoc.pCustomShowList->Seek(nCurPos);
         }
@@ -1030,14 +1030,14 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/   if (rDoc.nFileFormatVersion >= 15)
 /*N*/   {
-/*N*/       ULONG nTmp;
+/*N*/       sal_uInt32 nTmp;
 /*N*/       rIn >> nTmp;
 /*N*/       rDoc.SetPageNumType( (SvxNumType) nTmp );
 /*N*/   }
 /*N*/
 /*N*/   if (rDoc.nFileFormatVersion >= 17)
 /*N*/   {
-/*N*/       ULONG   nPauseSec;
+/*N*/       sal_uInt32 nPauseSec;
 /*N*/       BOOL    bShowLogo;
 /*N*/
 /*N*/       rIn >> nPauseSec >> bShowLogo;
