@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_docinf.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:10:21 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:53:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -353,11 +353,11 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/                  60* aDateTime.GetMin() +
 /*N*/                  60L*60* aDateTime.GetHour() ));
 /*N*/
-/*N*/   BigInt aUlongMax((ULONG)ULONG_MAX);
+/*N*/   BigInt aUlongMax(SAL_MAX_UINT32);
 /*N*/   aUlongMax += 1;
 /*N*/
-/*N*/   rStream<<(UINT32)(aTime % aUlongMax) ;
-/*N*/   rStream<<(UINT32)(aTime / aUlongMax);
+/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime % aUlongMax));
+/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime / aUlongMax));
 /*N*/   return rStream.GetErrorCode();
 /*N*/ }
 
@@ -368,7 +368,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   UINT32 nLow, nHigh;
 /*N*/   rStream >> nLow;
 /*N*/   rStream >> nHigh;
-/*N*/   BigInt aUlongMax( (ULONG)ULONG_MAX );
+/*N*/   BigInt aUlongMax( SAL_MAX_UINT32 );
 /*N*/   aUlongMax += 1;
 /*N*/   BigInt aTime = aUlongMax * BigInt( nHigh );
 /*N*/   aTime += nLow;
