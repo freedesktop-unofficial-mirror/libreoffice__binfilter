@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_outlobj.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:44:14 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:57:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -136,7 +136,7 @@ namespace binfilter {
 /*N*/ void OutlinerParaObject::Store(SvStream& rStream ) const
 /*N*/ {
 /*N*/   rStream << nCount;
-/*N*/   rStream << (ULONG) 0x42345678;
+/*N*/   rStream << (sal_uInt32) 0x42345678;
 /*N*/   pText->Store( rStream );
 /*N*/
 /*N*/   for( USHORT nPos=0; nPos < nCount; nPos++ )
@@ -150,10 +150,10 @@ namespace binfilter {
 /*N*/   OutlinerParaObject* pPObj = NULL;
 /*N*/   USHORT nVersion = 0;
 /*N*/
-/*N*/   ULONG nCount;
+/*N*/   sal_uInt32 nCount;
 /*N*/   rStream >> nCount;
 /*N*/
-/*N*/   ULONG nSyncRef;
+/*N*/   sal_uInt32 nSyncRef;
 /*N*/   rStream >> nSyncRef;
 /*N*/   if( nSyncRef == 0x12345678 )
 /*N*/       nVersion = 1;
@@ -175,7 +175,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               EditTextObject* pText = EditTextObject::Create( rStream, NULL );
 /*N*/               DBG_ASSERT(pText,"CreateEditTextObject failed")
-/*N*/               ULONG nSync = 0;
+/*N*/               sal_uInt32 nSync = 0;
 /*N*/               rStream >> nSync;
 /*N*/               DBG_ASSERT(nSync==nSyncRef,"Stream out of sync")
 /*N*/               USHORT nDepth;
@@ -219,7 +219,7 @@ namespace binfilter {
 /*N*/               nCurPara++;
 /*N*/               if( nCount )
 /*N*/               {
-/*N*/                   ULONG nSync = 0;
+/*N*/                   sal_uInt32 nSync = 0;
 /*N*/                   rStream >> nSync;
 /*N*/                   DBG_ASSERT(nSync==nSyncRef,"Stream out of sync")
 /*N*/               }
