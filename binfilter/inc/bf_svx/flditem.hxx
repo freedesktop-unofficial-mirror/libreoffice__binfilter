@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flditem.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:40:04 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:15:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,7 +144,7 @@ enum SvxDateFormat {    SVXDATEFORMAT_APPDEFAULT,   // Wie in App eingestellt
 
 class SvxDateField : public SvxFieldData
 {
-    ULONG                   nFixDate;
+    sal_uInt32              nFixDate;
     SvxDateType             eType;
     SvxDateFormat           eFormat;
 
@@ -156,7 +156,7 @@ public:
                                 SvxDateType eType = SVXDATETYPE_VAR,
                                 SvxDateFormat eFormat = SVXDATEFORMAT_STDSMALL );
 
-    ULONG                   GetFixDate() const { return nFixDate; }
+    sal_uInt32              GetFixDate() const { return nFixDate; }
     void                    SetFixDate( const Date& rDate ) { nFixDate = rDate.GetDate(); }
 
     SvxDateType             GetType() const { return eType; }
@@ -283,7 +283,7 @@ enum SvxTimeFormat {    SVXTIMEFORMAT_APPDEFAULT,   // Wie in App eingestellt
 class SvxExtTimeField : public SvxFieldData
 {
 private:
-    ULONG                   nFixTime;
+    sal_uInt32              nFixTime;
     SvxTimeType             eType;
     SvxTimeFormat           eFormat;
 
@@ -294,7 +294,7 @@ public:
                                 SvxTimeType eType = SVXTIMETYPE_VAR,
                                 SvxTimeFormat eFormat = SVXTIMEFORMAT_STANDARD );
 
-    ULONG                   GetFixTime() const { return nFixTime; }
+    sal_uInt32              GetFixTime() const { return nFixTime; }
     void                    SetFixTime( const Time& rTime ) { nFixTime = rTime.GetTime(); }
 
     SvxTimeType             GetType() const { return eType; }
