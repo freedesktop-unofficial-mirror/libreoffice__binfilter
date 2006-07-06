@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_memchrt.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2006-02-09 15:09:23 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:27:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -201,12 +201,12 @@ namespace binfilter {
 /*N*/   nColCnt = nCols;
 /*N*/   pData   = new double[nColCnt * nRowCnt];
 /*N*/
-/*N*/   pRowNumFmtId= new long [nRowCnt];
-/*N*/   pColNumFmtId= new long [nColCnt];
+/*N*/   pRowNumFmtId= new sal_Int32 [nRowCnt];
+/*N*/   pColNumFmtId= new sal_Int32 [nColCnt];
 /*N*/   InitNumFmt();
 /*N*/
-/*N*/   pRowTable   = new long [nRowCnt];
-/*N*/   pColTable   = new long [nColCnt];
+/*N*/   pRowTable   = new sal_Int32 [nRowCnt];
+/*N*/   pColTable   = new sal_Int32 [nColCnt];
 /*N*/   ResetTranslation(pRowTable,nRowCnt);
 /*N*/   ResetTranslation(pColTable,nColCnt);
 /*N*/
@@ -284,10 +284,10 @@ namespace binfilter {
 /*N*/   aSomeData4  = ((SchMemChart&) rMemChart).SomeData4 ();
 /*N*/   pData       = new double[nColCnt * nRowCnt];
 /*N*/
-/*N*/   pRowNumFmtId= new long [nRowCnt];
-/*N*/   pColNumFmtId= new long [nColCnt];
-/*N*/   pRowTable   = new long [nRowCnt];
-/*N*/   pColTable   = new long [nColCnt];
+/*N*/   pRowNumFmtId= new sal_Int32 [nRowCnt];
+/*N*/   pColNumFmtId= new sal_Int32 [nColCnt];
+/*N*/   pRowTable   = new sal_Int32 [nRowCnt];
+/*N*/   pColTable   = new sal_Int32 [nColCnt];
 /*N*/
 /*N*/     aAppLink = rMemChart.aAppLink;
 /*N*/   nLastSelInfoReturn = rMemChart.nLastSelInfoReturn;
@@ -745,10 +745,10 @@ namespace binfilter {
 /*N*/
 /*N*/   rIn >> nInt16; rMemChart.eDataType = (short)nInt16;
 /*N*/
-/*N*/   rMemChart.pRowNumFmtId  = new long [rMemChart.nRowCnt];
-/*N*/   rMemChart.pColNumFmtId  = new long [rMemChart.nColCnt];
-/*N*/   rMemChart.pRowTable     = new long [rMemChart.nRowCnt];
-/*N*/   rMemChart.pColTable     = new long [rMemChart.nColCnt];
+/*N*/   rMemChart.pRowNumFmtId  = new sal_Int32 [rMemChart.nRowCnt];
+/*N*/   rMemChart.pColNumFmtId  = new sal_Int32 [rMemChart.nColCnt];
+/*N*/   rMemChart.pRowTable     = new sal_Int32 [rMemChart.nRowCnt];
+/*N*/   rMemChart.pColTable     = new sal_Int32 [rMemChart.nColCnt];
 /*N*/
 /*N*/   if(aIO.GetVersion()>=1)
 /*N*/   {
