@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_usrfld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:14:28 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:33:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -301,7 +301,7 @@ void SwUserField::SetPar2(const String& rStr)
 
 /*N*/ String SwUserFieldType::GetContent( sal_uInt32 nFmt )
 /*N*/ {
-/*N*/   if (nFmt && nFmt != ULONG_MAX)
+/*N*/   if (nFmt && nFmt != SAL_MAX_UINT32)
 /*N*/   {
 /*?*/       String sFormattedValue;
 /*?*/       Color* pCol = 0;
@@ -321,7 +321,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   {
 /*N*/       aContent = rStr;
 /*N*/
-/*N*/       if (nFmt && nFmt != ULONG_MAX)
+/*N*/       if (nFmt && nFmt != SAL_MAX_UINT32)
 /*N*/       {
 /*?*/           double fValue;
 /*?*/
