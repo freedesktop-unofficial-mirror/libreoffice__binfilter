@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_column3.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:40:58 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:12:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1212,7 +1212,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/       if (rString.Len() > 0)
 /*N*/       {
 /*N*/           double nVal;
-/*N*/           ULONG nIndex, nOldIndex;
+/*N*/           sal_uInt32 nIndex, nOldIndex;
 /*N*/           sal_Unicode cFirstChar;
 /*N*/           SvNumberFormatter* pFormatter = pDocument->GetFormatTable();
 /*N*/           SfxObjectShell* pDocSh = pDocument->GetDocumentShell();
