@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtedt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:42:05 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:36:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -560,12 +560,12 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/                 pBreakIt->xBreak->getScriptType( rText, nBegin );
 /*N*/
 /*N*/         XubString aTmpWord = rText.Copy( nBegin, aBound.endPos - nBegin );
-/*N*/         const long nScriptEnd = nBegin +
+/*N*/         const sal_Int32 nScriptEnd = nBegin +
 /*N*/             pBreakIt->xBreak->endOfScript( aTmpWord, 0, nCurrScript );
-/*N*/         const long nEnd = Min( aBound.endPos, nScriptEnd );
+/*N*/         const sal_Int32 nEnd = Min( aBound.endPos, nScriptEnd );
 /*N*/
 /*N*/         // restrict word start to last script change position
-/*N*/         long nScriptBegin = 0;
+/*N*/         sal_Int32 nScriptBegin = 0;
 /*N*/         if ( aBound.startPos < nBegin )
 /*N*/         {
 /*N*/             // search from nBegin backwards until the next script change
@@ -583,9 +583,9 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/         const USHORT nCurrScript =
 /*N*/                 pBreakIt->xBreak->getScriptType( rText, aBound.startPos );
 /*N*/         XubString aTmpWord = rText.Copy( aBound.startPos, aBound.endPos - aBound.startPos );
-/*N*/         const long nScriptEnd = aBound.startPos +
+/*N*/         const sal_Int32 nScriptEnd = aBound.startPos +
 /*N*/             pBreakIt->xBreak->endOfScript( aTmpWord, 0, nCurrScript );
-/*N*/         const long nEnd = Min( aBound.endPos, nScriptEnd );
+/*N*/         const sal_Int32 nEnd = Min( aBound.endPos, nScriptEnd );
 /*N*/         nBegin = (xub_StrLen)aBound.startPos;
 /*N*/         nLen = (xub_StrLen)(nEnd - nBegin);
 /*N*/     }
