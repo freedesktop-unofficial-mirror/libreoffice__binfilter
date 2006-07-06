@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_frmtool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:48:44 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:33:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2586,7 +2586,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/           nOldErg = nErg;
 /*N*/       }
 /*N*/   }
-/*N*/   return nErg >= BigInt((ULONG)ULONG_MAX) ? ULONG_MAX : (ULONG)nErg;
+/*N*/   return nErg >= BigInt(SAL_MAX_UINT32) ? ULONG_MAX : (ULONG)nErg;
 /*N*/ }
 
 /*************************************************************************
