@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_tblafmt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:45:26 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:32:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -749,7 +749,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001      rStream << aFont.GetVers
 /*?*/           rChg.GetValueFormat( sFmt, eLng, eSys );
 /*?*/           if( sFmt.Len() )
 /*?*/           {
-/*?*/               ULONG nKey = 0;
+/*?*/               sal_uInt32 nKey = 0;
 /*?*/               if ( eLng == LANGUAGE_SYSTEM && eSys != ::binfilter::GetAppLanguage() )
 /*?*/               {
 /*?*/                   //  #53381# wenn System beim Speichern etwas anderes war,
