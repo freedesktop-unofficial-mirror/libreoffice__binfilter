@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_document.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-12-14 14:33:35 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:13:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2025,7 +2025,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 
 
 /*N*/ void ScDocument::GetNumberFormat( USHORT nCol, USHORT nRow, USHORT nTab,
-/*N*/                                 ULONG& rFormat )
+/*N*/                                 sal_uInt32& rFormat )
 /*N*/ {
 /*N*/   if (VALIDTAB(nTab))
 /*N*/       if (pTab[nTab])
