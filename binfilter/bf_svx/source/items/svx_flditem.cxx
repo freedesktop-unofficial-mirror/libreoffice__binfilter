@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_flditem.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:26:42 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:55:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -80,7 +80,7 @@
 #include "so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#define FRAME_MARKER    (ULONG)0x21981357
+#define FRAME_MARKER    (sal_uInt32)0x21981357
 #define CHARSET_MARKER  (FRAME_MARKER+1)
 
 // -----------------------------------------------------------------------
@@ -415,7 +415,7 @@ namespace binfilter {
 /*N*/ void SvxURLField::Load( SvPersistStream & rStm )
 /*N*/ {
 /*N*/   USHORT nFormat;
-/*N*/   ULONG nFrameMarker, nCharSetMarker;
+/*N*/   sal_uInt32 nFrameMarker, nCharSetMarker;
 /*N*/   long nUlongSize = (long)sizeof(ULONG);
 /*N*/   String aTmpURL;
 /*N*/
@@ -696,7 +696,7 @@ namespace binfilter {
 /*N*/         break;
 /*N*/   }
 /*N*/
-/*N*/     ULONG nFormatKey;
+/*N*/     sal_uInt32 nFormatKey;
 /*N*/
 /*N*/   switch( eTmpFormat )
 /*N*/   {
