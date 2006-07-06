@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_frmitems.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: hr $ $Date: 2006-06-19 10:09:09 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:56:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -505,8 +505,8 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvxLRSpaceItem::SvxLRSpaceItem( const sal_Int32 nLeft, const sal_Int32 nRight,
-/*N*/                               const sal_Int32 nTLeft, const short nOfset,
+/*N*/ SvxLRSpaceItem::SvxLRSpaceItem( const long nLeft, const long nRight,
+/*N*/                               const long nTLeft, const short nOfset,
 /*N*/                               const sal_uInt16 nId ) :
 /*N*/
 /*N*/   SfxPoolItem( nId ),
