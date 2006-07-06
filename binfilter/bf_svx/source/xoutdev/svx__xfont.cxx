@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx__xfont.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:37:56 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:29:37 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -187,7 +187,7 @@ using namespace ::com::sun::star::i18n;
 
 // #101498# Helper method ImpGetTextLength to get text length taking into account
 // hor/vertical and BIDI, especially right-to-left.
-/*N*/ sal_Int32 ImpGetTextLength(OutputDevice* pOut, DrawPortionInfo* pInfo, long* pDXArray,
+/*N*/ sal_Int32 ImpGetTextLength(OutputDevice* pOut, DrawPortionInfo* pInfo, sal_Int32* pDXArray,
 /*N*/   xub_StrLen nIndex, xub_StrLen nLen)
 /*N*/ {
 /*N*/   sal_Bool bRightToLeft = pInfo->IsRTL();
@@ -266,7 +266,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   sal_Bool bToLastPoint, sal_Bool bDraw, sal_Bool bIsShadow)
 /*N*/ {
 /*N*/   Font aFont = pInfo->rFont;
-/*N*/   const long* pDXArray = pInfo->pDXArray;
+/*N*/   const sal_Int32* pDXArray = pInfo->pDXArray;
 /*N*/   sal_Bool bUseBreakIterator(sal_False);
 /*N*/
 /*N*/   Reference < ::com::sun::star::i18n::XBreakIterator > xBreak;
@@ -348,7 +348,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       pDXArray = NULL;
 /*N*/   }
 /*N*/
-/*N*/   nTextWidth = ImpGetTextLength(pOut, pInfo, (long*) pDXArray, 0, pInfo->nTextLen);
+/*N*/   nTextWidth = ImpGetTextLength(pOut, pInfo, const_cast<sal_Int32*>(pDXArray), 0, pInfo->nTextLen);
 /*N*/
 /*N*/   if ( eFormTextAdjust != XFT_LEFT && nAbsStart <= 0 )
 /*N*/   {
@@ -443,7 +443,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       fLen = sqrt(fDx * fDx + fDy * fDy);
 /*N*/       nLen = (long) (fLen + 0.5);
 /*N*/
-/*N*/       nChar1Len = ImpGetTextLength(pOut, pInfo, (long*) pDXArray, nChar, nGlyphLen);
+/*N*/       nChar1Len = ImpGetTextLength(pOut, pInfo, const_cast<sal_Int32*>(pDXArray), nChar, nGlyphLen);
 /*N*/
 /*N*/       double fXDist, fYDist;
 /*N*/       double fCos = fDx;
@@ -498,7 +498,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       CharacterIteratorMode::SKIPCELL, 1, nDone) - (nChar + pInfo->nTextStart + nCnt);
 /*N*/               }
 /*N*/
-/*N*/               nTextLen = ImpGetTextLength(pOut, pInfo, (long*) pDXArray, nChar, nCnt + nNextGlyphLen);
+/*N*/               nTextLen = ImpGetTextLength(pOut, pInfo, const_cast<sal_Int32*>(pDXArray), nChar, nCnt + nNextGlyphLen);
 /*N*/
 /*N*/               nCnt += nNextGlyphLen;
 /*N*/           }
@@ -606,7 +606,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   {
 /*?*/                       long nW;
 /*?*/
-/*?*/                       nW = ImpGetTextLength(pOut, pInfo, (long*) pDXArray, nChar, i);
+/*?*/                       nW = ImpGetTextLength(pOut, pInfo, const_cast<sal_Int32*>(pDXArray), nChar, i);
 /*?*/
 /*?*/                       aPolyPos.X() += (long) (fDx * nW / fLen);
 /*?*/                       aPolyPos.Y() += (long) (fDy * nW / fLen);
@@ -657,7 +657,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   {
 /*?*/                       long nW;
 /*?*/
-/*?*/                       nW = ImpGetTextLength(pOut, pInfo, (long*) pDXArray, nChar + i, nNextGlyphLen);
+/*?*/                       nW = ImpGetTextLength(pOut, pInfo, const_cast<sal_Int32*>(pDXArray), nChar + i, nNextGlyphLen);
 /*?*/
 /*?*/                       aPolyPos.X() -= nW / 2;
 /*?*/
