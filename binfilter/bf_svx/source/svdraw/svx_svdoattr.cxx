@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdoattr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:58:20 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:11:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1084,11 +1084,11 @@ namespace binfilter {
 /*N*/   nSttWdt /= 2;
 /*N*/
 /*N*/   // Lieber etwas mehr, dafuer keine Wurzel ziehen
-/*N*/   long nSttAdd = Max(nSttWdt, nSttHgt);
+/*N*/   sal_Int32 nSttAdd = Max(nSttWdt, nSttHgt);
 /*N*/   nSttAdd *= 3;
 /*N*/   nSttAdd /= 2;
 /*N*/
-/*N*/   long nEndWdt = ((const XLineEndWidthItem&)(rSet.Get(XATTR_LINEENDWIDTH))).GetValue();
+/*N*/   sal_Int32 nEndWdt = ((const XLineEndWidthItem&)(rSet.Get(XATTR_LINEENDWIDTH))).GetValue();
 /*N*/
 /*N*/   if(nEndWdt < 0)
 /*N*/       nEndWdt = -nLineWdt * nEndWdt / 100; // <0 = relativ
