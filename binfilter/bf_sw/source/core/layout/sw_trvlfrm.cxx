@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_trvlfrm.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:53:38 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:34:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1058,7 +1058,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   //Jetzt die Entfernung zwischen den beiden Punkten berechnen.
 /*N*/   //'Delta' X^2 + 'Delta'Y^2 = 'Entfernung'^2
-/*N*/   ULONG dX = Max( rPt1.X(), rPt2.X() ) -
+/*N*/   sal_uInt32 dX = Max( rPt1.X(), rPt2.X() ) -
 /*N*/              Min( rPt1.X(), rPt2.X() ),
 /*N*/         dY = Max( rPt1.Y(), rPt2.Y() ) -
 /*N*/              Min( rPt1.Y(), rPt2.Y() );
