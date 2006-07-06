@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_wrtxml.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:40:15 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:49:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -441,12 +441,12 @@ sal_uInt32 SwXMLWriter::_Write()
     return 0;
 }
 
-sal_uInt32 SwXMLWriter::WriteStorage()
+ULONG SwXMLWriter::WriteStorage()
 {
     return _Write();
 }
 
-sal_uInt32 SwXMLWriter::Write( SwPaM& rPaM, SfxMedium& rMed,
+ULONG SwXMLWriter::Write( SwPaM& rPaM, SfxMedium& rMed,
                                const String* pFileName )
 {
     return IsStgWriter()
