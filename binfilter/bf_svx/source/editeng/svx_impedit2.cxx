@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit2.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:26:27 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:55:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2786,14 +2786,14 @@ using namespace ::com::sun::star;
 /*?*/   return aPaM;
 /*N*/ }
 
-/*N*/ ULONG ImpEditEngine::GetTextHeight() const
+/*N*/ sal_uInt32 ImpEditEngine::GetTextHeight() const
 /*N*/ {
 /*N*/   DBG_ASSERT( GetUpdateMode(), "Sollte bei Update=FALSE nicht verwendet werden: GetTextHeight" );
 /*N*/   DBG_ASSERT( IsFormatted() || IsFormatting(), "GetTextHeight: Nicht formatiert" );
 /*N*/   return nCurTextHeight;
 /*N*/ }
 
-/*N*/ ULONG ImpEditEngine::CalcTextWidth( BOOL bIgnoreExtraSpace )
+/*N*/ sal_uInt32 ImpEditEngine::CalcTextWidth( BOOL bIgnoreExtraSpace )
 /*N*/ {
 /*N*/   // Wenn noch nicht formatiert und nicht gerade dabei.
 /*N*/   // Wird in der Formatierung bei AutoPageSize gerufen.
@@ -2856,10 +2856,10 @@ using namespace ::com::sun::star;
 /*?*/       nMaxWidth = 0;
 /*N*/
 /*N*/   nMaxWidth++; // Ein breiter, da in CreateLines bei >= umgebrochen wird.
-/*N*/   return (ULONG)nMaxWidth;
+/*N*/   return (sal_uInt32)nMaxWidth;
 /*N*/ }
 
-/*N*/ ULONG ImpEditEngine::CalcLineWidth( ParaPortion* pPortion, EditLine* pLine, BOOL bIgnoreExtraSpace )
+/*N*/ sal_uInt32 ImpEditEngine::CalcLineWidth( ParaPortion* pPortion, EditLine* pLine, BOOL bIgnoreExtraSpace )
 /*N*/ {
 /*N*/   USHORT nPara = GetEditDoc().GetPos( pPortion->GetNode() );
 /*N*/     ULONG nOldLayoutMode = GetRefDevice()->GetLayoutMode();
@@ -2869,7 +2869,7 @@ using namespace ::com::sun::star;
 /*N*/     SvxAdjust eJustification = GetJustification( nPara );
 /*N*/
 /*N*/     // Berechnung der Breite ohne die Indents...
-/*N*/   ULONG nWidth = 0;
+/*N*/   sal_uInt32 nWidth = 0;
 /*N*/     USHORT nPos = pLine->GetStart();
 /*N*/   for ( USHORT nTP = pLine->GetStartPortion(); nTP <= pLine->GetEndPortion(); nTP++ )
 /*N*/   {
@@ -2907,10 +2907,10 @@ using namespace ::com::sun::star;
 /*N*/     return nWidth;
 /*N*/ }
 
-/*N*/ ULONG ImpEditEngine::CalcTextHeight()
+/*N*/ sal_uInt32 ImpEditEngine::CalcTextHeight()
 /*N*/ {
 /*N*/   DBG_ASSERT( GetUpdateMode(), "Sollte bei Update=FALSE nicht verwendet werden: CalcTextHeight" );
-/*N*/   ULONG nY = 0;
+/*N*/   sal_uInt32 nY = 0;
 /*N*/   for ( USHORT nPortion = 0; nPortion < GetParaPortions().Count(); nPortion++ )
 /*N*/       nY += GetParaPortions()[nPortion]->GetHeight();
 /*N*/   return nY;
