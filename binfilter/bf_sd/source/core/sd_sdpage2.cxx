@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:24:33 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:36:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -364,10 +364,10 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // Selektionskennung ist nicht persistent, wird nicht geschrieben
 /*N*/
-/*N*/   ULONG nULTemp;
-/*N*/   nULTemp = (ULONG)eFadeSpeed;
+/*N*/   sal_uInt32 nULTemp;
+/*N*/   nULTemp = (sal_uInt32)eFadeSpeed;
 /*N*/   rOut << nULTemp;
-/*N*/   nULTemp = (ULONG)eFadeEffect;
+/*N*/   nULTemp = (sal_uInt32)eFadeEffect;
 /*N*/   rOut << nULTemp;
 /*N*/   rOut << bManual;
 /*N*/   rOut << nTime;
@@ -478,7 +478,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // Selektionskennung ist nicht persistent, wird nicht gelesen
 /*N*/
-/*N*/   ULONG nULTemp;
+/*N*/   sal_uInt32 nULTemp;
 /*N*/   rIn >> nULTemp; eFadeSpeed  = (FadeSpeed)nULTemp;
 /*N*/   rIn >> nULTemp; eFadeEffect = (presentation::FadeEffect)nULTemp;
 /*N*/   rIn >> bManual;
