@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3misc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:02:02 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:35:19 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -879,8 +879,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       if( !pTOXBaseSect || !pTOXBaseSect->GetTOXType() )
 /*N*/           continue;
 /*N*/
-/*N*/       sal_uInt32 nStartIdx = pSectNd->GetIndex();
-/*N*/       sal_uInt32 nEndIdx = pSectNd->EndOfSectionIndex();
+/*N*/       ULONG nStartIdx = pSectNd->GetIndex();
+/*N*/       ULONG nEndIdx = pSectNd->EndOfSectionIndex();
 /*N*/
 /*N*/       // Skip TOXs that are not contained within the saved area completely.
 /*N*/       if( nStart >= nEndOfIcons && (nStartIdx < nStart || nEndIdx > nEnd) )
@@ -1000,7 +1000,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 
 // Die Marks eines Nodes schreiben
 
-/*N*/ void Sw3IoImp::OutNodeMarks( sal_uInt32 nIdx )
+/*N*/ void Sw3IoImp::OutNodeMarks( ULONG nIdx )
 /*N*/ {
 /*N*/   if(pMarks )
 /*N*/   {
@@ -2133,7 +2133,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/                                              pSectFmt->GetPoolFmtId() );
 /*N*/       const SwSectionFmt *pTitleSectFmt = 0;
 /*N*/
-/*N*/       sal_uInt32 nNextNdIdx = pSectNd->GetIndex() + 1;
+/*N*/       ULONG nNextNdIdx = pSectNd->GetIndex() + 1;
 /*N*/       const SwSectionNode *pNextSectNd =
 /*N*/           pDoc->GetNodes()[nNextNdIdx]->GetSectionNode();
 /*N*/           if( pNextSectNd &&
@@ -2476,8 +2476,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/
 /*N*/   if( IsVersion(SWG_LONGIDX) )
 /*N*/   {
-/*N*/       *pStrm  >> aDocStat.nPage
-/*N*/               >> aDocStat.nPara;
+/*N*/       sal_uInt32 nPage, nPara;
+/*N*/       *pStrm >> nPage
+/*N*/              >> nPara;
+/*N*/
+/*N*/       aDocStat.nPage = nPage;
+/*N*/       aDocStat.nPara = nPara;
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -2489,9 +2493,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       aDocStat.nPara = nPara;
 /*N*/   }
 /*N*/
-/*N*/   *pStrm  >> aDocStat.nWord
-/*N*/           >> aDocStat.nChar
-/*N*/           >> c;
+/*N*/   sal_uInt32 w;
+/*N*/   *pStrm  >> w;
+/*N*/   aDocStat.nWord = w;
+/*N*/   *pStrm  >> w;
+/*N*/   aDocStat.nChar = w;
+/*N*/   *pStrm >> c;
 /*N*/
 /*N*/   aDocStat.bModified = c;
 /*N*/
