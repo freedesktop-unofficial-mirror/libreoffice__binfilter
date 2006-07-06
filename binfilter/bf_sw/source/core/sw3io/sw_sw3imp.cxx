@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:01:25 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:35:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -273,14 +273,14 @@ public:
         Table()
     {}
 
-    sal_Bool Insert( sal_uInt32 nKey, sal_uInt32 p )
+    sal_Bool Insert( ULONG nKey, sal_uInt32 p )
     {
         return Table::Insert( nKey, (void*)p );
     }
 
-    sal_uInt32 GetObject( sal_uInt32 nPos ) const
+    sal_uInt32 GetObject( ULONG nPos ) const
     {
-        return (sal_Int32)Table::GetObject( nPos );
+        return (sal_uIntPtr)Table::GetObject( nPos );
     }
 };
 
@@ -487,12 +487,12 @@ void Sw3IoImp::SetDoc( SwDoc& r )
 /*N*/ }
 #endif
 
-/*N*/ void Sw3IoImp::Error( sal_uInt32 nCode )
+/*N*/ void Sw3IoImp::Error( ULONG nCode )
 /*N*/ {
 /*N*/   nRes = nCode ? nCode : ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/ }
 
-/*N*/ void Sw3IoImp::Warning( sal_uInt32 nCode )
+/*N*/ void Sw3IoImp::Warning( ULONG nCode )
 /*N*/ {
 /*N*/   nWarn = nCode ? nCode : WARN_SWG_FEATURES_LOST;
 /*N*/ }
@@ -907,7 +907,7 @@ void Sw3IoImp::SetDoc( SwDoc& r )
 /*N*/       if( LONG_RECSIZE == nSize && IsVersion( SWG_LONGRECS ) )
 /*N*/       {
                 sal_uInt32 nTmp = GetRecordSize( nPos );
-/*?*/           if( nTmp != ULONG_MAX )
+/*?*/           if( nTmp != SAL_MAX_UINT32 )
 /*?*/               nSize = nTmp;
 /*N*/       }
 /*N*/
@@ -1022,14 +1022,15 @@ void Sw3IoImp::InsertRecordSize( sal_uInt32 nPos, sal_uInt32 nSize )
 
 sal_uInt32 Sw3IoImp::GetRecordSize( sal_uInt32 nPos )
 {
-    sal_uInt32 nTablePos, nRet = ULONG_MAX;
+    sal_uInt32 nRet = SAL_MAX_UINT32;
+    ULONG nTablePos;
 
     if( pRecSizes &&
         TABLE_ENTRY_NOTFOUND != pRecSizes->SearchKey( nPos, &nTablePos ) )
     {
         nRet = pRecSizes->GetObject( nTablePos );
     }
-    ASSERT( nRet != ULONG_MAX, "Record-Size nicht gefunden" );
+    ASSERT( nRet != SAL_MAX_UINT32, "Record-Size nicht gefunden" );
 
     return nRet;
 }
@@ -1042,14 +1043,14 @@ void Sw3IoImp::FlushRecSizes()
 
 // Zurueckliefern, wie viele Bytes ein Record noch enthaelt
 
-/*N*/ sal_uInt32 Sw3IoImp::BytesLeft()
+/*N*/ ULONG Sw3IoImp::BytesLeft()
 /*N*/ {
 /*N*/   sal_uInt16 nLvl = aRecSizes.Count();
-/*N*/   sal_uInt32 n = 0;
+/*N*/   ULONG n = 0;
 /*N*/   if( nLvl && !nRes )
 /*N*/   {
 /*N*/       sal_uInt32 nEndPos = aRecSizes[ nLvl-1 ];
-/*N*/       sal_uInt32 nPos = pStrm->Tell();
+/*N*/       ULONG nPos = pStrm->Tell();
 /*N*/       if( nEndPos > nPos )
 /*N*/           n = nEndPos - nPos;
 /*N*/   }
@@ -1094,7 +1095,7 @@ void Sw3IoImp::FlushRecSizes()
 /*N*/   CloseRec( c );
 /*N*/ }
 
-void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
+void Sw3IoImp::InRecSizes( ULONG nRecPos )
 {
     ASSERT( !pRecSizes, "RecSize-Tabelle existiert noch" );
     ASSERT( nRecPos, "Keine Position der RecSize-Tabelle" );
@@ -1106,7 +1107,7 @@ void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
         // Wenn der Stream vor dem Record steht, wird der Record
         // normal gelesen. Sonst wird erstmal zu ihm geseekt und
         // nach dem Lesen wieder am die aktuelle Stelle zurueck.
-        sal_uInt32 nOldPos = pStrm->Tell();
+        ULONG nOldPos = pStrm->Tell();
         if( nOldPos != nRecPos )
             pStrm->Seek( nRecPos );
 
@@ -1116,10 +1117,10 @@ void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
         *pStrm >> nCount;
         CloseFlagRec();
 
-        for( sal_uInt32 i=0; i < (sal_uInt32)nCount; i++ )
+        for( sal_uInt32 i=0; i < nCount; i++ )
         {
             *pStrm >> nPos >> nSize;
-            pRecSizes->Insert( (sal_uInt32)nPos, nSize );
+            pRecSizes->Insert( nPos, nSize );
         }
 
         CloseRec( SWG_RECSIZES );
@@ -1129,9 +1130,9 @@ void Sw3IoImp::InRecSizes( sal_uInt32 nRecPos )
     }
 }
 
-sal_uInt32 Sw3IoImp::OutRecSizes()
+ULONG Sw3IoImp::OutRecSizes()
 {
-    sal_uInt32 nRecPos = 0;
+    ULONG nRecPos = 0;
     if( pRecSizes )
     {
         sal_uInt32 nCount = pRecSizes->Count();
