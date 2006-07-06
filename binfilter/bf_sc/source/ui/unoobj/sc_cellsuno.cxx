@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:10:02 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:16:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1319,7 +1319,7 @@ String lcl_GetInputString( ScDocShell* pDocSh, const ScAddress& rPosition, BOOL 
                 // Since the English formatter was constructed with
                 // LANGUAGE_ENGLISH_US the "General" format has index key 0,
                 // we don't have to query.
-                ULONG nNumFmt = bEnglish ?
+                sal_uInt32 nNumFmt = bEnglish ?
 //                      pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US) :
                         0 :
                         pDoc->GetNumberFormat( rPosition );
