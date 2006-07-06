@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_xmluconv.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 07:48:30 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:09:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -931,7 +931,7 @@ sal_Bool SvXMLUnitConverter::convertTime( double& fTime,
             bDone = sal_True;
         else if ( sal_Unicode('0') <= c && sal_Unicode('9') >= c )
         {
-            if ( nTemp >= LONG_MAX / 10 )
+            if ( nTemp >= SAL_MAX_INT32 / 10 )
                 bSuccess = sal_False;
             else
             {
