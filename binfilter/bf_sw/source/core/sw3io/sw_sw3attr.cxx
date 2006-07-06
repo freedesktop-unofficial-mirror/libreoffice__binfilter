@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3attr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:59:09 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:34:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1007,7 +1007,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   ASSERT( nIVer != USHRT_MAX,
 /*N*/           "SwFmtLineNumber: Wer faengt da Version USHRT_MAX nicht ab?" );
 /*N*/
-/*N*/   rStrm << nStartValue << IsCount();
+/*N*/   rStrm << static_cast<sal_uInt32>(nStartValue) << IsCount();
 /*N*/   return rStrm;
 /*N*/ }
 
@@ -1016,7 +1016,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ SfxPoolItem* SwFmtLineNumber::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   SwFmtLineNumber *pTmp = new SwFmtLineNumber;
-/*N*/   ULONG nTmp; BOOL bTmp;
+/*N*/   sal_uInt32 nTmp; BOOL bTmp;
 /*N*/   rStrm >> nTmp; pTmp->SetStartValue( nTmp );
 /*N*/   rStrm >> bTmp; pTmp->SetCountLines( bTmp );
 /*N*/   return pTmp;
