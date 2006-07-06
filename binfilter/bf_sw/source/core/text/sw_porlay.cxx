@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_porlay.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:29:52 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:35:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1235,7 +1235,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
  *                      SwScriptInfo::Compress()
  *************************************************************************/
 
-/*N*/ long SwScriptInfo::Compress( long* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
+/*N*/ long SwScriptInfo::Compress( sal_Int32* pKernArray, xub_StrLen nIdx, xub_StrLen nLen,
 /*N*/                              const USHORT nCompress, const USHORT nFontHeight,
 /*N*/                              Point* pPoint ) const
 /*N*/ {
