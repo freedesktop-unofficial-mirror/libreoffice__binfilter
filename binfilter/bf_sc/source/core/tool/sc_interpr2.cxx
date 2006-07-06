@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr2.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:11:19 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:14:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -172,7 +172,7 @@ void ScInterpreter::ScGetHour()
 void ScInterpreter::ScGetDateValue()
 {
     String aInputString = GetString();
-    ULONG nFIndex = 0;                  // damit default Land/Spr.
+    sal_uInt32 nFIndex = 0;                 // damit default Land/Spr.
     double fVal;
     if (pFormatter->IsNumberFormat(aInputString, nFIndex, fVal))
     {
@@ -361,7 +361,7 @@ void ScInterpreter::ScGetDiffDate360()
 void ScInterpreter::ScGetTimeValue()
 {
     String aInputString = GetString();
-    ULONG nFIndex = 0;                  // damit default Land/Spr.
+    sal_uInt32 nFIndex = 0;                 // damit default Land/Spr.
     double fVal;
     if (pFormatter->IsNumberFormat(aInputString, nFIndex, fVal))
     {
