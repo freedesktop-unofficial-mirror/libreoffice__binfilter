@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:41:50 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:13:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -508,7 +508,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/   for (i=0; (i<nCount) && (aParam.GetEntry(i).bDoQuery); i++)
 /*N*/   {
 /*N*/       ScQueryEntry& rEntry = aParam.GetEntry(i);
-/*N*/       ULONG nIndex = 0;
+/*N*/       sal_uInt32 nIndex = 0;
 /*N*/       rEntry.bQueryByString =
 /*N*/               !(pDoc->GetFormatTable()->IsNumberFormat(*rEntry.pStr, nIndex, rEntry.nVal));
 /*N*/   }
@@ -794,7 +794,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/       for (i=0; (i<MAXQUERY) && (aParam.GetEntry(i).bDoQuery); i++)
 /*N*/       {
 /*?*/           ScQueryEntry& rEntry = aParam.GetEntry(i);
-/*?*/           ULONG nIndex = 0;
+/*?*/           sal_uInt32 nIndex = 0;
 /*?*/           rEntry.bQueryByString =
 /*?*/                    !(pDoc->GetFormatTable()->IsNumberFormat(*rEntry.pStr,
 /*?*/                                                             nIndex, rEntry.nVal));
