@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_conditio.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:41:15 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:12:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1181,7 +1181,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ ScConditionalFormat::ScConditionalFormat(ULONG nNewKey, ScDocument* pDocument) :
+/*N*/ ScConditionalFormat::ScConditionalFormat(sal_uInt32 nNewKey, ScDocument* pDocument) :
 /*N*/   pDoc( pDocument ),
 /*N*/   pAreas( NULL ),
 /*N*/   nKey( nNewKey ),
@@ -1585,7 +1585,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ ScConditionalFormat* ScConditionalFormatList::GetFormat( ULONG nKey )
+/*N*/ ScConditionalFormat* ScConditionalFormatList::GetFormat( sal_uInt32 nKey )
 /*N*/ {
 /*N*/   //! binaer suchen
 /*N*/
