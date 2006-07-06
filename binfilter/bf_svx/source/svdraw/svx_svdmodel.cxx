@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdmodel.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:57:34 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:05:24 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1684,8 +1684,8 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrModel::WriteData(SvStream& rOut) const
 /*N*/ {
-/*N*/   const ULONG nOldCompressMode = nStreamCompressMode;
-/*N*/   ULONG       nNewCompressMode = nStreamCompressMode;
+/*N*/   const sal_uInt32 nOldCompressMode = nStreamCompressMode;
+/*N*/   sal_uInt32 nNewCompressMode = nStreamCompressMode;
 /*N*/
 /*N*/   if( SOFFICE_FILEFORMAT_40 <= rOut.GetVersion() )
 /*N*/   {
