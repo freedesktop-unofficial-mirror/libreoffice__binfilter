@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flycnt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:47:15 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:33:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -774,7 +774,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           //Jetzt die Entfernung zwischen den beiden Punkten berechnen.
 /*N*/           //'Delta' X^2 + 'Delta'Y^2 = 'Entfernung'^2
-/*N*/           ULONG dX = Max( pCnt->Frm().Left(), rPt.X() ) -
+/*N*/           sal_uInt32 dX = Max( pCnt->Frm().Left(), rPt.X() ) -
 /*N*/                      Min( pCnt->Frm().Left(), rPt.X() ),
 /*N*/                 dY = Max( pCnt->Frm().Top(), rPt.Y() ) -
 /*N*/                      Min( pCnt->Frm().Top(), rPt.Y() );
