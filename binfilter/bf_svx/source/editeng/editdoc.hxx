@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editdoc.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:17:39 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:54:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -459,7 +459,7 @@ public:
 
 class ParaPortion;
 
-SV_DECL_VARARR( CharPosArray, long, 0, CHARPOSGROW )//STRIP008 ;
+SV_DECL_VARARR( CharPosArray, sal_Int32, 0, CHARPOSGROW )//STRIP008 ;
 
 // ------------------------------------------------------------------------
 // class EditLine
