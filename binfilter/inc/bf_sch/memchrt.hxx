@@ -4,9 +4,9 @@
  *
  *  $RCSfile: memchrt.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 11:48:05 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:13:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -194,12 +194,12 @@ protected :
 
     // number formatter and format id
     SvNumberFormatter*  mpNumFormatter;
-    long *pRowNumFmtId;
-    long *pColNumFmtId;
+    sal_Int32 *pRowNumFmtId;
+    sal_Int32 *pColNumFmtId;
 
     // translation table for row-/column reordering (internal)
-    long *pRowTable;
-    long *pColTable;
+    sal_Int32 *pRowTable;
+    sal_Int32 *pColTable;
     ChartSelectionInfo aSelectionInfo;
 
     // is not copied in copy contrustor (?)
@@ -263,49 +263,49 @@ public:
     // methods for translation of data
 //STRIP001  BOOL TransCol(long nCol,BOOL bUp=TRUE);
 //STRIP001  BOOL TransRow(long nRow,BOOL bUp=TRUE);
-    inline void ResetTranslation(long *pTable,long nCnt);
+    inline void ResetTranslation(sal_Int32 *pTable,long nCnt);
     BOOL VerifyTranslation();
     long GetTranslation() const { return nTranslated; }
-    inline void UpdateTranslation(long *pTable,long nCnt);
+    inline void UpdateTranslation(sal_Int32 *pTable,long nCnt);
     // for acces always use these Get-methods !
     double GetTransData(long nCol,long nRow);
     double GetTransDataInPercent(long nCol ,long nRow,BOOL bRowData) const;
     const String& GetTransColText(long nCol) const;
     const String& GetTransRowText(long nRow) const;
 
-    const long *GetRowTranslation() const { return pRowTable; }
-    const long *GetColTranslation() const { return pColTable; }
+    const sal_Int32 *GetRowTranslation() const { return pRowTable; }
+    const sal_Int32 *GetColTranslation() const { return pColTable; }
 
 #ifdef SCH_COPY_HACK
-    const long* GetRowNumFmtTable() const { return pRowNumFmtId; }
-    const long* GetColNumFmtTable() const { return pColNumFmtId; }
+    const sal_Int32* GetRowNumFmtTable() const { return pRowNumFmtId; }
+    const sal_Int32* GetColNumFmtTable() const { return pColNumFmtId; }
 
     // ********************
     // BM: Fix for #68864#
     // Use these four methods with care! The arrays MUST have the correct size!
     // ********************
-    void SetRowTranslation( const long* pTransTable )
+    void SetRowTranslation( const sal_Int32* pTransTable )
     {
         if( !pRowTable ) return;
-        for( long i=0; i<nRowCnt; i++ )
+        for( sal_Int32 i=0; i<nRowCnt; i++ )
             pRowTable[ i ] = pTransTable[ i ];
     }
-    void SetColTranslation( const long* pTransTable )
+    void SetColTranslation( const sal_Int32* pTransTable )
     {
         if( !pColTable ) return;
-        for( long i=0; i<nColCnt; i++ )
+        for( sal_Int32 i=0; i<nColCnt; i++ )
             pColTable[ i ] = pTransTable[ i ];
     }
-    void SetRowNumFmtTable( const long* pNumFmtTable )
+    void SetRowNumFmtTable( const sal_Int32* pNumFmtTable )
     {
         if( !pRowNumFmtId ) return;
-        for( long i=0; i<nRowCnt; i++ )
+        for( sal_Int32 i=0; i<nRowCnt; i++ )
             pRowNumFmtId[ i ] = pNumFmtTable[ i ];
     }
-    void SetColNumFmtTable( const long* pNumFmtTable )
+    void SetColNumFmtTable( const sal_Int32* pNumFmtTable )
     {
         if( !pColNumFmtId ) return;
-        for( long i=0; i<nColCnt; i++ )
+        for( sal_Int32 i=0; i<nColCnt; i++ )
             pColNumFmtId[ i ] = pNumFmtTable[ i ];
     }
     // this is only valid if the corresponding translation table was set correctly!
@@ -481,7 +481,7 @@ public:
 
 // ==================== Inline Implementations ====================
 
-inline void SchMemChart::ResetTranslation(long *pTable,long nCnt)
+inline void SchMemChart::ResetTranslation(sal_Int32 *pTable,long nCnt)
 {
     long i;
     if(pTable)
@@ -494,12 +494,13 @@ inline void SchMemChart::ResetTranslation(long *pTable,long nCnt)
         nTranslated=TRANS_NONE;
 }
 
-inline void SchMemChart::UpdateTranslation(long *pTable,long nCnt)
+inline void SchMemChart::UpdateTranslation(sal_Int32 *pTable,long nCnt)
 {
     if( (pTable==pRowTable && nTranslated==TRANS_ROW)
       ||(pTable==pColTable && nTranslated==TRANS_COL))
     {
-        long i,nMax=0;
+        long i;
+        sal_Int32 nMax=0;
         for(i=0;i<nCnt;i++)
             nMax=Max(nMax,pTable[i]);
 
@@ -588,11 +589,11 @@ inline void SchMemChart::InsertCols(short nAtCol, short nCount)
     delete[] pOldData;
 
     String *pOldColText     = pColText;
-    long   *pOldColNumFmtId = pColNumFmtId;
-    long   *pOldColTable    = pColTable;
+    sal_Int32 *pOldColNumFmtId = pColNumFmtId;
+    sal_Int32 *pOldColTable    = pColTable;
 
-    pColNumFmtId    = new long  [nNewColCnt];
-    pColTable       = new long  [nNewColCnt];
+    pColNumFmtId    = new sal_Int32 [nNewColCnt];
+    pColTable       = new sal_Int32 [nNewColCnt];
     pColText        = new String[nNewColCnt];
 
     long nC=nNewColCnt;
@@ -636,12 +637,12 @@ inline void SchMemChart::RemoveCols(short nAtCol, short nCount)
     pData = new double[nNewColCnt * nRowCnt];
 
     String* pOldColText     = pColText;
-    long*   pOldColNumFmtId = pColNumFmtId;
-    long*   pOldColTable    = pColTable;
+    sal_Int32* pOldColNumFmtId  = pColNumFmtId;
+    sal_Int32* pOldColTable = pColTable;
 
     pColText        = new String[nNewColCnt];
-    pColNumFmtId    = new long  [nNewColCnt];
-    pColTable       = new long  [nNewColCnt];
+    pColNumFmtId    = new sal_Int32 [nNewColCnt];
+    pColTable       = new sal_Int32 [nNewColCnt];
 
     short i, j, nOld;
 
@@ -710,11 +711,11 @@ inline void SchMemChart::InsertRows(short nAtRow, short nCount)
     delete[] pOldData;
 
     String *pOldRowText     =pRowText;
-    long   *pOldRowNumFmtId =pRowNumFmtId;
-    long   *pOldRowTable    =pRowTable;
+    sal_Int32 *pOldRowNumFmtId =pRowNumFmtId;
+    sal_Int32 *pOldRowTable    =pRowTable;
 
-    pRowNumFmtId    = new long  [nNewRowCnt];
-    pRowTable       = new long  [nNewRowCnt];
+    pRowNumFmtId    = new sal_Int32 [nNewRowCnt];
+    pRowTable       = new sal_Int32 [nNewRowCnt];
     pRowText        = new String[nNewRowCnt];
 
     long nC=nNewRowCnt;
@@ -773,12 +774,12 @@ inline void SchMemChart::RemoveRows(short nAtRow, short nCount)
     delete[] pOldData;
 
     String* pOldRowText     = pRowText;
-    long*   pOldRowNumFmtId = pRowNumFmtId;
-    long*   pOldRowTable    = pRowTable;
+    sal_Int32*   pOldRowNumFmtId    = pRowNumFmtId;
+    sal_Int32*   pOldRowTable   = pRowTable;
 
     pRowText        = new String[nNewRowCnt];
-    pRowNumFmtId    = new long  [nNewRowCnt];
-    pRowTable       = new long  [nNewRowCnt];
+    pRowNumFmtId    = new sal_Int32 [nNewRowCnt];
+    pRowTable       = new sal_Int32 [nNewRowCnt];
 
     for (i = 0, nOld = 0;; i++, nOld++)
     {
