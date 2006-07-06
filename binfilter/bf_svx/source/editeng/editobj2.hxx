@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editobj2.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:18:17 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:54:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -193,7 +193,7 @@ private:
     BOOL                    bOwnerOfPool;
     XParaPortionList*       pPortionInfo;
 
-    ULONG                   nObjSettings;
+    sal_uInt32              nObjSettings;
     USHORT                  nMetric;
     USHORT                  nVersion;
     USHORT                  nUserType;
