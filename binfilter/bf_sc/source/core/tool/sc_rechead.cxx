@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_rechead.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:16:09 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:15:26 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -54,7 +54,7 @@ namespace binfilter {
 /*N*/ ScReadHeader::ScReadHeader(SvStream& rNewStream) :
 /*N*/   rStream( rNewStream )
 /*N*/ {
-/*N*/   ULONG nDataSize;
+/*N*/   sal_uInt32 nDataSize;
 /*N*/   rStream >> nDataSize;
 /*N*/   nDataEnd = rStream.Tell() + nDataSize;
 /*N*/ }
@@ -83,7 +83,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ ScWriteHeader::ScWriteHeader(SvStream& rNewStream, ULONG nDefault) :
+/*N*/ ScWriteHeader::ScWriteHeader(SvStream& rNewStream, sal_uInt32 nDefault) :
 /*N*/   rStream( rNewStream )
 /*N*/ {
 /*N*/   nDataSize = nDefault;
@@ -110,7 +110,7 @@ namespace binfilter {
 /*N*/ ScMultipleReadHeader::ScMultipleReadHeader(SvStream& rNewStream) :
 /*N*/   rStream( rNewStream )
 /*N*/ {
-/*N*/   ULONG nDataSize;
+/*N*/   sal_uInt32 nDataSize;
 /*N*/   rStream >> nDataSize;
 /*N*/   ULONG nDataPos = rStream.Tell();
 /*N*/   nTotalEnd = nDataPos + nDataSize;
@@ -131,7 +131,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ULONG nSizeTableLen;
+/*N*/       sal_uInt32 nSizeTableLen;
 /*N*/       rStream >> nSizeTableLen;
 /*N*/       pBuf = new BYTE[nSizeTableLen];
 /*N*/       rStream.Read( pBuf, nSizeTableLen );
@@ -173,7 +173,7 @@ namespace binfilter {
 /*N*/ void ScMultipleReadHeader::StartEntry()
 /*N*/ {
 /*N*/   ULONG nPos = rStream.Tell();
-/*N*/   ULONG nEntrySize;
+/*N*/   sal_uInt32 nEntrySize;
 /*N*/   (*pMemStream) >> nEntrySize;
 /*N*/
 /*N*/   nEntryEnd = nPos + nEntrySize;
@@ -192,7 +192,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ ScMultipleWriteHeader::ScMultipleWriteHeader(SvStream& rNewStream, ULONG nDefault) :
+/*N*/ ScMultipleWriteHeader::ScMultipleWriteHeader(SvStream& rNewStream, sal_uInt32 nDefault) :
 /*N*/   rStream( rNewStream ),
 /*N*/   aMemStream( 4096, 4096 )
 /*N*/ {
@@ -208,7 +208,7 @@ namespace binfilter {
 /*N*/   ULONG nDataEnd = rStream.Tell();
 /*N*/
 /*N*/   rStream << (USHORT) SCID_SIZES;
-/*N*/   rStream << aMemStream.Tell();
+/*N*/   rStream << static_cast<sal_uInt32>(aMemStream.Tell());
 /*N*/   rStream.Write( aMemStream.GetData(), aMemStream.Tell() );
 /*N*/
 /*N*/   if ( nDataEnd - nDataPos != nDataSize )                 // Default getroffen?
@@ -224,7 +224,7 @@ namespace binfilter {
 /*N*/ void ScMultipleWriteHeader::EndEntry()
 /*N*/ {
 /*N*/   ULONG nPos = rStream.Tell();
-/*N*/   aMemStream << nPos - nEntryStart;
+/*N*/   aMemStream << static_cast<sal_uInt32>(nPos - nEntryStart);
 /*N*/ }
 
 /*N*/ void ScMultipleWriteHeader::StartEntry()
