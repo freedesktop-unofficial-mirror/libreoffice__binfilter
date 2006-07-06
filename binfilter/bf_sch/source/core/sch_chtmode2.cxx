@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtmode2.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2006-02-09 15:09:05 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:25:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2169,7 +2169,7 @@ enum ChartStyleV0
 /*N*/           {
 /*N*/               BOOL bNeedMerge=FALSE;
 /*N*/               String aFmtStr;
-/*N*/               ULONG nId;
+/*N*/               sal_uInt32 nId;
 /*N*/               if(nVersion <= 11)//ab V 12 X=Y=Z-Numberformatter!
 /*N*/               {
 /*?*/                   SvNumberFormatter *pTmp = new SvNumberFormatter( ::legacy_binfilters::getLegacyProcessServiceFactory(),
