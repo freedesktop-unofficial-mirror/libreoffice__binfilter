@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:11:58 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:15:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1288,7 +1288,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*N*/       case svString:
 /*N*/       {
 /*N*/           String aStr(PopString());
-/*N*/           ULONG nFIndex = 0;                  // damit default Land/Spr.
+/*N*/           sal_uInt32 nFIndex = 0;                 // damit default Land/Spr.
 /*N*/           if(!pFormatter->IsNumberFormat( aStr, nFIndex, nVal ) )
 /*N*/           {
 /*N*/               SetError(errIllegalArgument);
