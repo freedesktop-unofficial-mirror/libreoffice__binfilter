@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:34:30 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:52:33 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -380,7 +380,7 @@ public:
 
 //----------------------------------------------------------------
 
-/*?*/ sal_uInt32 SfxFilterContainer::Execute( SfxMedium& rMedium, SfxFrame*& pFrame) const
+/*?*/ ULONG SfxFilterContainer::Execute( SfxMedium& rMedium, SfxFrame*& pFrame) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 //STRIP001  return ERRCODE_ABORT;
 /*?*/ }
@@ -476,7 +476,7 @@ public:
      Ermitelt einen Filter nach seiner ClipboardID. Diese steckt im Storage.
  */
 /*N*/ IMPL_CONTAINER_LOOP(
-/*N*/     GetFilter4ClipBoardId, sal_uInt32, aArg && pFilter->GetFormat() == aArg )
+/*N*/     GetFilter4ClipBoardId, ULONG, aArg && pFilter->GetFormat() == aArg )
 
 #ifdef MAC
 #define CONDITION \
@@ -570,7 +570,7 @@ public:
 
 //-------------------------------------------------------------------------
 
-/*?*/ sal_uInt32 SfxFilterContainer::GetFilter4Content(
+/*?*/ ULONG SfxFilterContainer::GetFilter4Content(
 /*?*/     SfxMedium& rMedium, const SfxFilter** ppFilter,
 /*?*/   SfxFilterFlags, SfxFilterFlags ) const
 /*?*/ {
@@ -690,7 +690,7 @@ public:
 
 //----------------------------------------------------------------
 
-/*N*/ sal_uInt32 SfxFactoryFilterContainer::GetFilter4Content(
+/*N*/ ULONG SfxFactoryFilterContainer::GetFilter4Content(
 /*N*/     SfxMedium& rMedium, const SfxFilter** ppFilter, SfxFilterFlags nMust, SfxFilterFlags nDont ) const
 /*N*/ {
 /*N*/   SFX_ITEMSET_ARG( rMedium.GetItemSet(), pTargetItem, SfxStringItem,
@@ -701,7 +701,7 @@ public:
 /*N*/
 /*N*/     if( pFunc )
 /*N*/     {
-/*N*/         sal_uInt32 nErr = (*pFunc)(rMedium, ppFilter, nMust, nDont);
+/*N*/         ULONG nErr = (*pFunc)(rMedium, ppFilter, nMust, nDont);
 /*N*/         DBG_ASSERT( !*ppFilter ||
 /*N*/                     (((*ppFilter)->GetFilterFlags() & nMust ) == nMust &&
 /*N*/                      ((*ppFilter)->GetFilterFlags() & nDont ) == 0 ),
@@ -803,12 +803,12 @@ public:
 
 //----------------------------------------------------------------
 
-/*N*/ sal_uInt32  SfxFilterMatcher::GuessFilterIgnoringContent(
+/*N*/ ULONG SfxFilterMatcher::GuessFilterIgnoringContent(
 /*N*/     SfxMedium& rMedium, const SfxFilter**ppFilter,
 /*N*/     SfxFilterFlags nMust, SfxFilterFlags nDont ) const
 /*N*/ {
 /*N*/     String aFileName = rMedium.GetName();
-/*N*/     sal_uInt32 nErr = ERRCODE_NONE;
+/*N*/     ULONG nErr = ERRCODE_NONE;
 /*N*/   const SfxFilter* pFilter = *ppFilter;
 /*N*/   const INetURLObject& rObj = rMedium.GetURLObject();
 /*N*/
@@ -924,7 +924,7 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 
 //----------------------------------------------------------------
 
-/*N*/ sal_uInt32  SfxFilterMatcher::GuessFilter(
+/*N*/ ULONG SfxFilterMatcher::GuessFilter(
 /*N*/     SfxMedium& rMedium, const SfxFilter**ppFilter,
 /*N*/     SfxFilterFlags nMust, SfxFilterFlags nDont ) const
 /*N*/ {
@@ -1274,10 +1274,10 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 
 //----------------------------------------------------------------
 
-/*STRIP003*/ sal_uInt32 SfxFilterMatcher::GetFilter4Content(
+/*STRIP003*/ ULONG SfxFilterMatcher::GetFilter4Content(
 /*STRIP003*/     SfxMedium& rMedium, const SfxFilter** ppFilter,  SfxFilterFlags nMust, SfxFilterFlags nDont, sal_Bool bOnlyGoodOnes ) const
 /*STRIP003*/ {
-/*STRIP003*/     sal_uInt32 nErr = ERRCODE_NONE;
+/*STRIP003*/     ULONG nErr = ERRCODE_NONE;
 /*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
 /*STRIP003*/     sal_uInt16 nCount = (sal_uInt16)rList.Count();
 /*STRIP003*/     for( sal_uInt16 n = 0; n<nCount; n++ )
@@ -1327,7 +1327,7 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/ IMPL_LOOP( GetFilter4EA, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Extension, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Protocol, SfxMedium& )
-/*N*/ IMPL_LOOP( GetFilter4ClipBoardId, sal_uInt32 )
+/*N*/ IMPL_LOOP( GetFilter4ClipBoardId, ULONG )
 /*N*/ IMPL_LOOP( GetFilter, const String& )
 /*N*/ IMPL_LOOP( GetFilter4FilterName, const String& )
 //STRIP001 IMPL_LOOP( GetFilter4UIName, const String& )
