@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_impex.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:21:16 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 09:16:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -803,7 +803,7 @@ enum DoubledQuoteMode
 /*M*/       //! SetString mit Extra-Flag ???
 /*M*/
 /*M*/       SvNumberFormatter* pFormatter = pDoc->GetFormatTable();
-/*M*/       ULONG nEnglish = pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US);
+/*M*/       sal_uInt32 nEnglish = pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US);
 /*M*/       double fVal;
 /*M*/       if ( pFormatter->IsNumberFormat( rStr, nEnglish, fVal ) )
 /*M*/       {
