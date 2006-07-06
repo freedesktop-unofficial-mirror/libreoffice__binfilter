@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unoobj.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:52:13 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 10:36:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -894,7 +894,7 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
         }
 
         const SwNodes& rNds = rPam.GetDoc()->GetNodes();
-        for( sal_uInt32 n = nSttNd; n <= nEndNd; ++n )
+        for( ULONG n = nSttNd; n <= nEndNd; ++n )
         {
             const SwTxtNode* pNd = rNds[ n ]->GetTxtNode();
             if( pNd )
