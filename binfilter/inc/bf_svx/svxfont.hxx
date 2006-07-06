@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svxfont.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-07 13:41:39 $
+ *  last change: $Author: kz $ $Date: 2006-07-06 11:16:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,10 +120,10 @@ public:
 //STRIP001             const USHORT nIdx = 0, const USHORT nLen = STRING_LEN ) const;
 
     void QuickDrawText( OutputDevice *pOut, const Point &rPos, const String &rTxt,
-               const USHORT nIdx = 0, const USHORT nLen = STRING_LEN, const long* pDXArray = NULL ) const;
+               const USHORT nIdx = 0, const USHORT nLen = STRING_LEN, const sal_Int32* pDXArray = NULL ) const;
 
     Size QuickGetTextSize( const OutputDevice *pOut, const String &rTxt,
-                         const USHORT nIdx, const USHORT nLen, long* pDXArray = NULL ) const;
+                         const USHORT nIdx, const USHORT nLen, sal_Int32* pDXArray = NULL ) const;
 
 //STRIP001  void DrawPrev( OutputDevice* pOut, Printer* pPrinter,
 //STRIP001                 const Point &rPos, const String &rTxt,
