@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-07 16:08:32 $
+#   last change: $Author: obo $ $Date: 2006-07-10 18:48:01 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,6 @@ CDEFS=$(CDEFS) -DPRECOMPILED
     CDEFS+=-DDLL_NAME=bf_ofa$(UPD)$(DLLPOSTFIX)$(DLLPOST)
 .ENDIF
 
-.INCLUDE :  $(UPD)minor.mk
 RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 #IMGLST_SRS=$(SRS)$/offmgr_app.srs
