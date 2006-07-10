@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_txtexppr.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:35:49 $
+ *  last change: $Author: obo $ $Date: 2006-07-10 14:49:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -800,13 +800,19 @@ void XMLTextExportPropertySetMapper::ContextFilter(
         pWrapState->maValue >>= eVal;
         switch( eVal )
         {
+        // --> OD 2006-06-02 #b6432057#
+        // merge fix #i32592# into binfilter module
         case WrapTextMode_NONE:
-        case WrapTextMode_THROUGHT:
-            if( pWrapContourState )
-                pWrapContourState->mnIndex = -1;
+            // no wrapping: disable para-only and contour
             if( pWrapParagraphOnlyState )
                 pWrapParagraphOnlyState->mnIndex = -1;
+            // no break
+        case WrapTextMode_THROUGHT:
+            // wrap through: disable only contour
+            if( pWrapContourState )
+                pWrapContourState->mnIndex = -1;
             break;
+        // <--
         }
         if( pWrapContourModeState  &&
             (!pWrapContourState ||
