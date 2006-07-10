@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.4 $
+#   $Revision: 1.5 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-07 20:48:28 $
+#   last change: $Author: obo $ $Date: 2006-07-10 18:48:22 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,6 @@ INC+= -I$(PRJ)$/inc$/bf_sc
 #BMP_IN=$(BFPRJ)$/res/imglst/apptbx
 # --- Update-Version -----------------------------------------------
 
-.INCLUDE :  $(UPD)minor.mk
 RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 # --- Files --------------------------------------------------------
