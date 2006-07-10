@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmlexprt.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:36:55 $
+ *  last change: $Author: obo $ $Date: 2006-07-10 12:26:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -162,7 +162,7 @@ class ScXMLExport : public SvXMLExport
     void ExportFormatRanges(const sal_Int32 nStartCol, const sal_Int32 nStartRow,
         const sal_Int32 nEndCol, const sal_Int32 nEndRow, const sal_uInt16 nSheet);
     void WriteRowContent();
-    void WriteRowStartTag(const sal_Int32 nRow, const sal_Int32 nIndex, const sal_Int8 nFlag, const sal_Int32 nEmptyRows);
+    void WriteRowStartTag(sal_Int32 nRow, const sal_Int32 nIndex, const sal_Int8 nFlag, const sal_Int32 nEmptyRows);
     void OpenHeaderRows();
     void CloseHeaderRows();
     void OpenNewRow(const sal_Int32 nIndex, const sal_Int8 nFlag, const sal_Int32 nStartRow, const sal_Int32 nEmptyRows);
