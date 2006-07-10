@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: rt $ $Date: 2005-09-09 03:49:01 $
+#   last change: $Author: obo $ $Date: 2006-07-10 18:48:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ LIBTARGET=NO
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
-.INCLUDE :  $(UPD)minor.mk
 RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 #IMGLST_SRS=$(SRS)$/app.srs
