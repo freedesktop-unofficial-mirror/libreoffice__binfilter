@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlexprt.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:30:49 $
+ *  last change: $Author: obo $ $Date: 2006-07-10 12:26:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -834,7 +834,18 @@ void ScXMLExport::GetDetectiveOpList( ScMyDetectiveOpContainer& rDetOp )
             {
                 ScDetOpData* pDetData = pOpList->GetObject( static_cast<USHORT>(nIndex) );
                 if( pDetData )
-                    rDetOp.AddOperation( pDetData->GetOperation(), pDetData->GetPos(), nIndex );
+                {
+                    const ScAddress& rDetPos = pDetData->GetPos();
+                    sal_uInt16 nTab = rDetPos.Tab();
+                    if ( nTab < pDoc->GetTableCount() )
+                    {
+                        rDetOp.AddOperation( pDetData->GetOperation(), rDetPos, nIndex );
+
+                        // #i61888# cells with detective operations are written even if empty
+                        pSharedData->SetLastColumn( nTab, rDetPos.Col() );
+                        pSharedData->SetLastRow( nTab, rDetPos.Row() );
+                    }
+                }
             }
             rDetOp.Sort();
         }
@@ -1067,7 +1078,7 @@ void ScXMLExport::WriteRowContent()
     }
 }
 
-void ScXMLExport::WriteRowStartTag(const sal_Int32 nRow, const sal_Int32 nIndex,
+void ScXMLExport::WriteRowStartTag(sal_Int32 nRow, const sal_Int32 nIndex,
     const sal_Int8 nFlag, const sal_Int32 nEqualRows)
 {
     AddAttribute(sAttrStyleName, *pRowStyles->GetStyleNameByIndex(nIndex));
@@ -1085,7 +1096,15 @@ void ScXMLExport::WriteRowStartTag(const sal_Int32 nRow, const sal_Int32 nIndex,
         GetMM100UnitConverter().convertNumber(aBuf, nEqualRows);
         AddAttribute(XML_NAMESPACE_TABLE, XML_NUMBER_ROWS_REPEATED, aBuf.makeStringAndClear());
     }
-    sal_Int32 nCellStyleIndex((*pDefaults->GetRowDefaults())[nRow].nIndex);
+
+    const ScMyDefaultStyleList& rRowDefaults = *pDefaults->GetRowDefaults();
+    if ( nRow >= rRowDefaults.size() )
+    {
+        // #i61888# used to happen with detective operations - if there are more cases, use the last row's style
+        DBG_ERRORFILE("WriteRowStartTag: not enough defaults");
+        nRow = rRowDefaults.size() - 1;
+    }
+    sal_Int32 nCellStyleIndex(rRowDefaults[nRow].nIndex);
     if (nCellStyleIndex != -1)
         AddAttribute(XML_NAMESPACE_TABLE, XML_DEFAULT_CELL_STYLE_NAME,
             *pCellStyles->GetStyleNameByIndex(nCellStyleIndex,
