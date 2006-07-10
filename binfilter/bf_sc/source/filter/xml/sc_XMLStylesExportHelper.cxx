@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_XMLStylesExportHelper.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:25:36 $
+ *  last change: $Author: obo $ $Date: 2006-07-10 12:25:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1104,6 +1104,13 @@ sal_Int32 ScColumnRowStylesBase::GetIndexOfStyleName(const ::rtl::OUString& rStr
 
 rtl::OUString* ScColumnRowStylesBase::GetStyleNameByIndex(const sal_Int32 nIndex)
 {
+    if ( nIndex < 0 || nIndex >= (sal_Int32)aStyleNames.size() )
+    {
+        // #i61888# should no longer happen, use first style then
+        DBG_ERRORFILE("GetStyleNameByIndex: invalid index");
+        return aStyleNames[0];
+    }
+
     return aStyleNames[nIndex];
 }
 
