@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.11 $
+ *  $Revision: 1.12 $
  *
- *  last change: $Author: kz $ $Date: 2005-12-23 12:52:41 $
+ *  last change: $Author: obo $ $Date: 2006-07-11 08:38:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1504,13 +1504,7 @@ void ODatabaseForm::onError(const SQLErrorEvent& _rEvent)
 //------------------------------------------------------------------------------
 void ODatabaseForm::onError(SQLException& _rException, const ::rtl::OUString& _rContextDescription)
 {
-    if (!m_aErrorListeners.getLength())
-        return;
-
-    SQLContext aError = prependContextInfo(_rException, static_cast<XWeak*>(this), _rContextDescription);
-    SQLErrorEvent aEvent(static_cast<XWeak*>(this), makeAny(aError));
-
-    onError(aEvent);
+    DBG_ERROR( "ODatabaseForm::onError: dead code!" );
 }
 
 //------------------------------------------------------------------------------

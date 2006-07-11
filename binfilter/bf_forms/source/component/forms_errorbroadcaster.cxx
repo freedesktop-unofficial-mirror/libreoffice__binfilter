@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_errorbroadcaster.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:49:44 $
+ *  last change: $Author: obo $ $Date: 2006-07-11 08:38:08 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -87,13 +87,7 @@ namespace frm
     //------------------------------------------------------------------------------
     void SAL_CALL OErrorBroadcaster::onError( const SQLException& _rException, const ::rtl::OUString& _rContextDescription )
     {
-        Any aError;
-        if ( _rContextDescription.getLength() )
-            aError = makeAny( prependContextInfo( _rException, static_cast< XSQLErrorBroadcaster* >( this ), _rContextDescription ) );
-        else
-            aError = makeAny( _rException );
-
-        onError( SQLErrorEvent( static_cast< XSQLErrorBroadcaster* >( this ), aError ) );
+        OSL_ENSURE( false, "OErrorBroadcaster::onError: dead code!" );
     }
 
     //------------------------------------------------------------------------------
