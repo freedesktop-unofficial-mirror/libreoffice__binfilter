@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: ihi $ $Date: 2006-06-29 11:14:30 $
+#   last change: $Author: kz $ $Date: 2006-07-19 13:26:47 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -32,6 +32,8 @@
 #     MA  02111-1307  USA
 #
 #*************************************************************************
+
+EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 
 PRJ=..$/..
 BFPRJ=..
