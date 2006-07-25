@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3doc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:00:01 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:27:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,12 +37,6 @@
 
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
 #ifndef _SFXECODE_HXX //autogen
 #include <svtools/sfxecode.hxx>
 #endif
@@ -832,13 +826,5 @@ void Sw3IoImp::OutRecordSizesPos( ULONG nRecSzPos )
 
     pStrm->Seek( nPos );
 }
-
-/*#pragma SEG_FUNCDEF(sw3doc_0b)
-
-void Sw3IoImp::GetBlockName( String& rName )
-{
-    InHeader();
-    rName = aBlkName;
-} */
 
 }
