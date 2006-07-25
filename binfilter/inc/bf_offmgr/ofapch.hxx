@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ofapch.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 10:50:17 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:17:02 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -53,7 +53,6 @@
 #include <sfxdlg.hxx>
 #include <sfxview.hxx>
 #include <sfxiiter.hxx>
-#include <segmentc.hxx>
 #include <svstdarr.hxx>
 #include <svmem.hxx>
 #define ITEMID_SPELLCHECK SID_ATTR_SPELL
