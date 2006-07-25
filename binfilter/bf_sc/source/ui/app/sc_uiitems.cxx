@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_uiitems.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:49:31 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:03:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,8 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-// auto strip #include "ui_pch.hxx"
-#endif
-
 #pragma hdrstop
 
-// auto strip #include <bf_svx/editobj.hxx>
 
 #include "userlist.hxx"
 #include "uiitems.hxx"
@@ -48,7 +43,6 @@ namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
-//STRIP001 TYPEINIT1(ScInputStatusItem,    SfxPoolItem);
 /*N*/ TYPEINIT1(ScSortItem,           SfxPoolItem);
 /*N*/ TYPEINIT1(ScQueryItem,          SfxPoolItem);
 /*N*/ TYPEINIT1(ScSubTotalItem,       SfxPoolItem);
@@ -56,87 +50,11 @@ namespace binfilter {
 /*N*/ TYPEINIT1(ScConsolidateItem,    SfxPoolItem);
 /*N*/ TYPEINIT1(ScPivotItem,            SfxPoolItem);
 /*N*/ TYPEINIT1(ScSolveItem,            SfxPoolItem);
-//STRIP001 TYPEINIT1(ScTabOpItem,           SfxPoolItem);
-//STRIP001 TYPEINIT1(ScCondFrmtItem,        SfxPoolItem);
 
 /*N*/ TYPEINIT1(ScTablesHint,           SfxHint);
 /*N*/ TYPEINIT1(ScEditViewHint,     SfxHint);
 /*N*/ TYPEINIT1(ScIndexHint,            SfxHint);
 
-// -----------------------------------------------------------------------
-//      ScInputStatusItem - Status-Update fuer Eingabezeile
-// -----------------------------------------------------------------------
-
-//STRIP001 ScInputStatusItem::ScInputStatusItem( USHORT nWhich,
-//STRIP001                                    USHORT nTab,
-//STRIP001                                    USHORT nCol, USHORT nRow,
-//STRIP001                                    USHORT nStartCol, USHORT nStartRow,
-//STRIP001                                    USHORT nEndCol,   USHORT nEndRow,
-//STRIP001                                    const String& rString, const EditTextObject* pData )
-//STRIP001
-//STRIP001  :   SfxPoolItem ( nWhich ),
-//STRIP001      aCursorPos  ( nCol, nRow, nTab ),
-//STRIP001      aStartPos   ( nStartCol, nStartRow, nTab ),
-//STRIP001      aEndPos     ( nEndCol,   nEndRow,   nTab ),
-//STRIP001      aString     ( rString ),
-//STRIP001      pEditData   ( pData ? pData->Clone() : NULL )
-//STRIP001 {
-//STRIP001 }
-
-//STRIP001 ScInputStatusItem::ScInputStatusItem( USHORT nWhich,
-//STRIP001                                    const ScAddress& rCurPos,
-//STRIP001                                    const ScAddress& rStartPos,
-//STRIP001                                    const ScAddress& rEndPos,
-//STRIP001                                    const String& rString,
-//STRIP001                                    const EditTextObject* pData )
-//STRIP001  :   SfxPoolItem ( nWhich ),
-//STRIP001      aCursorPos  ( rCurPos ),
-//STRIP001      aStartPos   ( rStartPos ),
-//STRIP001      aEndPos     ( rEndPos ),
-//STRIP001      aString     ( rString ),
-//STRIP001      pEditData   ( pData ? pData->Clone() : NULL )
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 ScInputStatusItem::ScInputStatusItem( const ScInputStatusItem& rItem )
-//STRIP001  :   SfxPoolItem ( rItem ),
-//STRIP001      aCursorPos  ( rItem.aCursorPos ),
-//STRIP001      aStartPos   ( rItem.aStartPos ),
-//STRIP001      aEndPos     ( rItem.aEndPos ),
-//STRIP001      aString     ( rItem.aString ),
-//STRIP001      pEditData   ( rItem.pEditData ? rItem.pEditData->Clone() : NULL )
-//STRIP001 {
-//STRIP001 }
-//STRIP001
-//STRIP001 __EXPORT ScInputStatusItem::~ScInputStatusItem()
-//STRIP001 {
-//STRIP001  delete pEditData;
-//STRIP001 }
-//STRIP001
-//STRIP001 String __EXPORT ScInputStatusItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("InputStatus"));
-//STRIP001 }
-//STRIP001
-//STRIP001 int __EXPORT ScInputStatusItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  return (    (aStartPos  == ((ScInputStatusItem&)rItem).aStartPos)
-//STRIP001           && (aEndPos    == ((ScInputStatusItem&)rItem).aEndPos)
-//STRIP001           && (aCursorPos == ((ScInputStatusItem&)rItem).aCursorPos)
-//STRIP001           && (aString    == ((ScInputStatusItem&)rItem).aString) );
-//STRIP001                                                      //! Edit-Daten vergleichen!
-//STRIP001 }
-//STRIP001
-//STRIP001 SfxPoolItem* __EXPORT ScInputStatusItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScInputStatusItem( *this );
-//STRIP001 }
-
-//
-//  ScPaintHint ist nach schints.cxx verschoben
-//
 
 // -----------------------------------------------------------------------
 //  ScTablesHint - Views anpassen, wenn Tabellen eingefuegt / geloescht
@@ -630,112 +548,4 @@ namespace binfilter {
 //STRIP001 {
 //STRIP001  return new ScSolveItem( *this );
 //STRIP001 }
-
-// -----------------------------------------------------------------------
-//      ScTabOpItem - Daten fuer den TabOp-Dialog
-// -----------------------------------------------------------------------
-
-//STRIP001 ScTabOpItem::ScTabOpItem( USHORT             nWhich,
-//STRIP001                        const ScTabOpParam*   pTabOpData )
-//STRIP001  :   SfxPoolItem ( nWhich )
-//STRIP001 {
-//STRIP001  if ( pTabOpData ) theTabOpData = *pTabOpData;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScTabOpItem::ScTabOpItem( const ScTabOpItem& rItem )
-//STRIP001  :   SfxPoolItem     ( rItem ),
-//STRIP001      theTabOpData    ( rItem.theTabOpData )
-//STRIP001 {
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 __EXPORT ScTabOpItem::~ScTabOpItem()
-//STRIP001 {
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 String __EXPORT ScTabOpItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScTabOpItem"));
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 int __EXPORT ScTabOpItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScTabOpItem& rPItem = (const ScTabOpItem&)rItem;
-//STRIP001
-//STRIP001  return ( theTabOpData == rPItem.theTabOpData );
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* __EXPORT ScTabOpItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScTabOpItem( *this );
-//STRIP001 }
-
-
-// -----------------------------------------------------------------------
-//      ScCondFrmtItem - Daten fuer den Dialog bedingte Formatierung
-// -----------------------------------------------------------------------
-
-//STRIP001 ScCondFrmtItem::ScCondFrmtItem( USHORT nWhich,
-//STRIP001 //!                              const ScConditionalFormat* pCondFrmt )
-//STRIP001                              const ScConditionalFormat& rCondFrmt )
-//STRIP001  :   SfxPoolItem ( nWhich ),
-//STRIP001      theCondFrmtData ( rCondFrmt )   //!
-//STRIP001 {
-//STRIP001 //!  if ( pCondFrmt ) theCondFrmtData = *pCondFrmt;
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 ScCondFrmtItem::ScCondFrmtItem( const ScCondFrmtItem& rItem )
-//STRIP001  :   SfxPoolItem     ( rItem ),
-//STRIP001      theCondFrmtData ( rItem.theCondFrmtData )
-//STRIP001 {
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 __EXPORT ScCondFrmtItem::~ScCondFrmtItem()
-//STRIP001 {
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 String __EXPORT ScCondFrmtItem::GetValueText() const
-//STRIP001 {
-//STRIP001  return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScCondFrmtItem"));
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 int __EXPORT ScCondFrmtItem::operator==( const SfxPoolItem& rItem ) const
-//STRIP001 {
-//STRIP001  DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
-//STRIP001
-//STRIP001  const ScCondFrmtItem& rPItem = (const ScCondFrmtItem&)rItem;
-//STRIP001
-//STRIP001  return ( theCondFrmtData == rPItem.theCondFrmtData );
-//STRIP001 }
-
-//------------------------------------------------------------------------
-
-//STRIP001 SfxPoolItem* __EXPORT ScCondFrmtItem::Clone( SfxItemPool * ) const
-//STRIP001 {
-//STRIP001  return new ScCondFrmtItem( *this );
-//STRIP001 }
-
-
-#pragma SEG_EOFMODULE
-
-
 }
