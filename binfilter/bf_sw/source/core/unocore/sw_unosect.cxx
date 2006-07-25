@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_unosect.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:54:29 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 11:38:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -796,7 +796,10 @@ void SwXTextSection::setPropertyValues(
             {
                 if(rFmts[i]->GetSection()->GetName() == pSect->GetName())
                 {
-                    pDoc->ChgSection( i, aSection, aItemSet.pItemSet, pDoc->IsInReading());
+                    // --> OD 2006-07-14 #b6448029#
+                    // always prevent update of an existing link in the section
+                    pDoc->ChgSection( i, aSection, aItemSet.pItemSet, sal_True );
+                    // <--
 
                     {
                         // temporarily remove actions to allow cursor update
@@ -1320,7 +1323,10 @@ void SwXTextSection::setPropertyToDefault( const OUString& rPropertyName )
             {
                 if(rFmts[i]->GetSection()->GetName() == pSect->GetName())
                 {
-                    pDoc->ChgSection( i, aSection, pNewAttrSet, pDoc->IsInReading());
+                    // --> OD 2006-07-14 #b6448029#
+                    // always prevent update of an existing link in the section
+                    pDoc->ChgSection( i, aSection, pNewAttrSet, sal_True );
+                    // <--
 
                     {
                         // temporarily remove actions to allow cursor update
