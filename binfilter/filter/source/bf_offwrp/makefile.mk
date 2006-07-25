@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:07:38 $
+#   last change: $Author: rt $ $Date: 2006-07-25 09:16:48 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,12 +41,9 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=bf_wrapper
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 LIBTARGET=NO
-AUTOSEG=true
 ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
