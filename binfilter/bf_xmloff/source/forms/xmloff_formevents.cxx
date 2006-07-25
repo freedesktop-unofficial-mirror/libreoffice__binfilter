@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formevents.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:13:07 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:14:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -92,27 +92,5 @@ namespace xmloff
 }   // namespace xmloff
 //.........................................................................
 
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:21  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:59:06  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/13 08:48:49 aw 1.1.20.1: #117295# minimize_includes step2
- *
- *  Revision 1.1.20.1  2004/07/13 08:48:49  aw
- *  #117295# minimize_includes step2
- *
- *  Revision 1.1  2003/12/05 09:34:14  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2001/01/02 15:56:27  fs
- *  initial checkin - code common to event ex- and import
- *
- *
- *  Revision 1.0 21.12.00 15:19:52  fs
- ************************************************************************/
 
 }//end of namespace binfilter

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: formattributes.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:05:59 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:10:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,15 +36,9 @@
 #ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #define _XMLOFF_FORMATTRIBUTES_HXX_
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif
-// auto strip #ifndef _VOS_REFERNCE_HXX_
-// auto strip #include <vos/refernce.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
 #endif
@@ -358,58 +352,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMATTRIBUTES_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:10  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:56:29  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/08 16:32:18 aw 1.1.20.1: #117295#
- *
- *  Revision 1.1.20.1  2004/07/08 16:32:18  aw
- *  #117295#
- *
- *  Revision 1.1  2003/12/05 09:34:04  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.7  2003/10/21 08:39:13  obo
- *  INTEGRATION: CWS formcelllinkage (1.6.160); FILE MERGED
- *  2003/10/01 09:55:19 fs 1.6.160.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.6.160.1  2003/10/01 09:55:19  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.6.156.1  2003/09/25 14:28:38  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.6.152.2  2003/09/18 14:00:37  fs
- *  #18995# changes for binding list boxes to cells, while exchanging selection indexes instead of strings
- *
- *  Revision 1.6.152.1  2003/09/17 12:26:53  fs
- *  #18999# #19367# persistence for cell value and cell range bindings
- *
- *  Revision 1.6  2002/10/25 07:54:55  fs
- *  #104402# +SCA_COLUMN_STYLE_NAME
- *
- *  Revision 1.5  2001/03/20 13:33:39  fs
- *  #83970# +getOfficeFormsAttributeName(/-space)
- *
- *  Revision 1.4  2000/12/12 12:01:05  fs
- *  new implementations for the import - still under construction
- *
- *  Revision 1.3  2000/12/06 17:28:05  fs
- *  changes for the formlayer import - still under construction
- *
- *  Revision 1.2  2000/11/19 15:41:32  fs
- *  extended the export capabilities - generic controls / grid columns / generic properties / some missing form properties
- *
- *  Revision 1.1  2000/11/17 19:01:46  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 13.11.00 17:49:43  fs
- ************************************************************************/
 
