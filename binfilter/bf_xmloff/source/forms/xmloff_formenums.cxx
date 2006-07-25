@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formenums.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:12:53 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:13:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -307,64 +307,5 @@ namespace xmloff
 //.........................................................................
 }   // namespace xmloff
 //.........................................................................
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:20  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:58:39  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/13 08:48:49 aw 1.1.20.1: #117295# minimize_includes step2
- *
- *  Revision 1.1.20.1  2004/07/13 08:48:49  aw
- *  #117295# minimize_includes step2
- *
- *  Revision 1.1  2003/12/05 09:34:13  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.9  2003/10/21 08:39:38  obo
- *  INTEGRATION: CWS formcelllinkage (1.8.188); FILE MERGED
- *  2003/10/01 09:55:21 fs 1.8.188.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.8.188.1  2003/10/01 09:55:21  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.8.184.1  2003/09/25 14:28:39  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.8.180.1  2003/09/18 14:00:38  fs
- *  #18995# changes for binding list boxes to cells, while exchanging selection indexes instead of strings
- *
- *  Revision 1.8  2001/06/29 21:07:14  dvo
- *  #86004# changes sXML_* strings to XML_* tokens
- *
- *  Revision 1.7  2001/06/15 10:37:07  dvo
- *  #86004# #88312#
- *  - changed convertEnum and appropriate maps to use token constants (rahter than sal_Char*)
- *  - user index marks in the process
- *
- *  Revision 1.6  2001/06/07 12:25:52  fs
- *  #86096# enums for FontEmphasis and FontRelief
- *
- *  Revision 1.5  2000/12/19 12:13:57  fs
- *  some changes ... now the exported styles are XSL conform
- *
- *  Revision 1.4  2000/12/19 08:42:19  fs
- *  removed the epFontWidth
- *
- *  Revision 1.3  2000/12/18 15:14:35  fs
- *  some changes ... now exporting/importing styles
- *
- *  Revision 1.2  2000/12/06 17:28:05  fs
- *  changes for the formlayer import - still under construction
- *
- *  Revision 1.1  2000/11/17 19:01:56  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 15.11.00 11:54:17  fs
- ************************************************************************/
 
 }//end of namespace binfilter

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: layerexport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:07:50 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:11:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,12 +36,6 @@
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #define _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
-// auto strip #include <com/sun/star/container/XIndexAccess.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
 #include <com/sun/star/util/XNumberFormats.hpp>
 #endif
@@ -54,12 +48,6 @@
 #ifndef _XMLOFF_FORMS_IFACECOMPARE_HXX_
 #include "ifacecompare.hxx"
 #endif
-// auto strip #ifndef _VOS_REF_HXX_
-// auto strip #include <vos/ref.hxx>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_STLTYPES_HXX_
-// auto strip #include <comphelper/stl_types.hxx>
-// auto strip #endif
 namespace binfilter {
 
 class SvXMLExport;
@@ -323,62 +311,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:12  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:56:51  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/08 16:32:19 aw 1.1.20.1: #117295#
- *
- *  Revision 1.1.20.1  2004/07/08 16:32:19  aw
- *  #117295#
- *
- *  Revision 1.1  2003/12/05 09:34:06  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.13  2002/10/25 08:00:10  fs
- *  #104402# now exporting the style of a grid column (Align/formatting) as style
- *
- *  Revision 1.12  2002/09/25 12:04:19  fs
- *  #103597# +excludeFromExport/m_aIgnoreList
- *
- *  Revision 1.11  2001/05/29 15:37:44  fs
- *  #86712# no explicit dtor anymore
- *
- *  Revision 1.10  2001/05/28 14:59:18  fs
- *  #86712# added control number style related functionality
- *
- *  Revision 1.9  2001/02/01 09:46:47  fs
- *  no own style handling anymore - the shape exporter is responsible for our styles now
- *
- *  Revision 1.8  2001/01/02 15:58:22  fs
- *  event ex- & import
- *
- *  Revision 1.7  2000/12/19 12:13:57  fs
- *  some changes ... now the exported styles are XSL conform
- *
- *  Revision 1.6  2000/12/18 15:14:35  fs
- *  some changes ... now exporting/importing styles
- *
- *  Revision 1.5  2000/12/13 10:40:15  fs
- *  new import related implementations - at this version, we should be able to import everything we export (which is all except events and styles)
- *
- *  Revision 1.4  2000/12/06 17:28:05  fs
- *  changes for the formlayer import - still under construction
- *
- *  Revision 1.3  2000/12/03 10:57:06  fs
- *  some changes to support more than one page to be examined/exported
- *
- *  Revision 1.2  2000/11/19 15:41:32  fs
- *  extended the export capabilities - generic controls / grid columns / generic properties / some missing form properties
- *
- *  Revision 1.1  2000/11/17 19:02:39  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 17.11.00 17:21:00  fs
- ************************************************************************/
 
