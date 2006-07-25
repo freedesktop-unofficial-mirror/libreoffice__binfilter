@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:00:32 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:37:19 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_dochdl
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
@@ -60,19 +54,16 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 CXXFILES = \
         sw_gloshdl.cxx \
-        sw_selglos.cxx \
         sw_swdtflvr.cxx
 
 #        dataex.cxx \
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_dochdl.src \
-        sw_selglos.src
+        sw_dochdl.src
 
 SLOFILES =  \
         $(SLO)$/sw_gloshdl.obj \
-        $(SLO)$/sw_selglos.obj \
         $(SLO)$/sw_swdtflvr.obj
 
 #        $(SLO)$/sw_dataex.obj \

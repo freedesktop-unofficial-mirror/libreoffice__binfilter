@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:00:06 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:33:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,43 +41,26 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_dbui
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-        sw_dbinsdlg.cxx \
         sw_dbmgr.cxx \
-        sw_dbtree.cxx \
-        sw_dbui.cxx
-
-SRS1NAME=$(TARGET)
-SRC1FILES =  \
-        sw_dbinsdlg.src	\
-        sw_dbui.src
+        sw_dbtree.cxx
 
 SLOFILES =  \
-        $(SLO)$/sw_dbinsdlg.obj \
         $(SLO)$/sw_dbmgr.obj \
-        $(SLO)$/sw_dbtree.obj \
-        $(SLO)$/sw_dbui.obj \
-        $(SLO)$/sw_swdbtoolsclient.obj
+        $(SLO)$/sw_dbtree.obj
 
 EXCEPTIONSFILES= \
-        $(SLO)$/sw_dbinsdlg.obj \
         $(SLO)$/sw_dbmgr.obj \
         $(SLO)$/sw_dbtree.obj
 
