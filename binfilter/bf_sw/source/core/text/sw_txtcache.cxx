@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtcache.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:31:52 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:28:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -35,9 +35,6 @@
 
 
 #pragma hdrstop
-
-// auto strip #include "errhdl.hxx"
-// auto strip #include "segmentc.hxx"
 
 #include "txtcache.hxx"
 #include "txtfrm.hxx"
