@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_controlpropertyhdl.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:10:50 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:12:50 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,36 +36,21 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
-// auto strip #include <com/sun/star/awt/TextAlign.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_FONTWIDTH_HPP_
-// auto strip #include <com/sun/star/awt/FontWidth.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
 #endif
-// auto strip #ifndef _XMLOFF_XMLTYPES_HXX
-// auto strip #include "xmltypes.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
 #endif
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
 #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include "xmltoken.hxx"
-// auto strip #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
 #ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
 #endif
-// auto strip #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
-// auto strip #include "callbacks.hxx"
-// auto strip #endif
 #ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
 #endif
@@ -359,56 +344,5 @@ namespace xmloff
 //.........................................................................
 }   // namespace xmloff
 //.........................................................................
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:17  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:57:13  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/13 08:48:46 aw 1.1.20.1: #117295# minimize_includes step2
- *
- *  Revision 1.1.20.1  2004/07/13 08:48:46  aw
- *  #117295# minimize_includes step2
- *
- *  Revision 1.1  2003/12/05 09:34:10  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.10  2001/07/16 07:34:21  fs
- *  had uninitialized pointers
- *
- *  Revision 1.9  2001/06/29 21:07:14  dvo
- *  #86004# changes sXML_* strings to XML_* tokens
- *
- *  Revision 1.8  2001/06/15 12:35:28  dvo
- *  #86004# changes sXML_* string to XML_* tokens continued
- *
- *  Revision 1.7  2001/06/07 12:27:21  fs
- *  #86096# handler for FontEmphasis/FontRelief / substituted OEnumInt16Handler by XMLConstantsPropertyHandler
- *
- *  Revision 1.6  2001/05/28 15:03:48  fs
- *  #86712# hold the handler as pointer, not as member instance
- *
- *  Revision 1.5  2001/05/15 14:02:13  fs
- *  #86823# changed the handling for control borders
- *
- *  Revision 1.4  2001/02/26 10:28:04  aw
- *  Changed double import/export to use it's own conversion routines
- *  so iots more clear what type is used
- *
- *  Revision 1.3  2000/12/19 12:13:57  fs
- *  some changes ... now the exported styles are XSL conform
- *
- *  Revision 1.2  2000/12/19 08:43:00  fs
- *  no handling for the font with anymore - stored as measure
- *
- *  Revision 1.1  2000/12/18 15:16:04  fs
- *  initial checkin - property handlers / property handler factory
- *
- *
- *  Revision 1.0 14.12.00 10:53:10  fs
- ************************************************************************/
 
 }//end of namespace binfilter
