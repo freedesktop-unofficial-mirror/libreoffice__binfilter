@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:04:51 $
+#   last change: $Author: rt $ $Date: 2006-07-25 09:07:09 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,19 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_wrtsh
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
-
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
@@ -65,7 +58,6 @@ CXXFILES = \
         sw_wrtsh1.cxx \
         sw_wrtsh2.cxx \
         sw_wrtsh3.cxx \
-        sw_wrtsh4.cxx \
         sw_delete.cxx \
         sw_wrtundo.cxx
 
@@ -79,7 +71,6 @@ SLOFILES =  \
         $(SLO)$/sw_wrtsh1.obj \
         $(SLO)$/sw_wrtsh2.obj \
         $(SLO)$/sw_wrtsh3.obj \
-        $(SLO)$/sw_wrtsh4.obj \
         $(SLO)$/sw_delete.obj \
         $(SLO)$/sw_wrtundo.obj
 
