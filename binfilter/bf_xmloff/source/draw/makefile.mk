@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.3 $
+#   $Revision: 1.4 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:05:48 $
+#   last change: $Author: rt $ $Date: 2006-07-25 09:08:18 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -38,7 +38,6 @@ EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=xmloff_draw
-AUTOSEG=true
 ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
