@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:35:43 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:19:14 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,11 +41,7 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=svx_editeng
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 PROJECTPCH4DLL=TRUE
 PROJECTPCH=eeng_pch
