@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_controlelement.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:10:36 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:12:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -76,26 +76,5 @@ namespace xmloff
 }   // namespace xmloff
 //.........................................................................
 
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:17  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:10  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.3  2001/02/13 13:43:42  fs
- *  text-area -> textarea
- *
- *  Revision 1.2  2001/01/03 16:25:34  fs
- *  file format change (extra wrapper element for controls, similar to columns)
- *
- *  Revision 1.1  2000/12/06 17:29:46  fs
- *  initial checkin - implementations for formlayer import/export - still under construction
- *
- *
- *  Revision 1.0 06.12.00 14:02:39  fs
- ************************************************************************/
 
 }//end of namespace binfilter

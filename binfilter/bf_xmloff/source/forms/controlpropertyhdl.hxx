@@ -4,9 +4,9 @@
  *
  *  $RCSfile: controlpropertyhdl.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:04:09 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:09:16 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -113,35 +113,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:07  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:01  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.6  2001/06/07 12:27:21  fs
- *  #86096# handler for FontEmphasis/FontRelief / substituted OEnumInt16Handler by XMLConstantsPropertyHandler
- *
- *  Revision 1.5  2001/05/28 15:03:48  fs
- *  #86712# hold the handler as pointer, not as member instance
- *
- *  Revision 1.4  2001/04/19 12:05:35  cl
- *  #85097# moved control properties to shape styles
- *
- *  Revision 1.3  2000/12/19 12:13:57  fs
- *  some changes ... now the exported styles are XSL conform
- *
- *  Revision 1.2  2000/12/19 08:43:00  fs
- *  no handling for the font with anymore - stored as measure
- *
- *  Revision 1.1  2000/12/18 15:16:04  fs
- *  initial checkin - property handlers / property handler factory
- *
- *
- *  Revision 1.0 14.12.00 10:50:10  fs
- ************************************************************************/
 

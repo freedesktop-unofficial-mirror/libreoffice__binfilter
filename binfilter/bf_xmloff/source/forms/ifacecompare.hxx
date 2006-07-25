@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ifacecompare.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:07:32 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:10:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -83,20 +83,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_IFACECOMPARE_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:12  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:06  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2000/12/13 10:37:19  fs
- *  initial checkin - helper class for build maps whichs keys are interface references
- *
- *
- *  Revision 1.0 13.12.00 10:06:14  fs
- ************************************************************************/
 

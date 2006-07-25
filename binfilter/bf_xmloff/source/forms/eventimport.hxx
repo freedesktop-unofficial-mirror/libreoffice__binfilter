@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eventimport.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:05:42 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:10:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,20 +108,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_EVENTIMPORT_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:09  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:04  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2001/01/02 15:56:11  fs
- *  initial checkin - helper for importing script events
- *
- *
- *  Revision 1.0 21.12.00 15:18:21  fs
- ************************************************************************/
 
