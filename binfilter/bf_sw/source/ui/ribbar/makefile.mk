@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:02:57 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:42:22 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,41 +41,23 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_ribbar
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
-#IMGLST_SRS=$(SRS)$/ribbar.srs
-#BMP_IN=$(PRJ)$/win/imglst
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_tbxanchr.src \
-        sw_inputwin.src \
-        sw_tblctrl.src \
         sw_workctrl.src
 
 SLOFILES =  \
         $(SLO)$/sw_inputwin.obj \
         $(SLO)$/sw_tbxanchr.obj \
-        $(SLO)$/sw_tbxmgr.obj \
-        $(SLO)$/sw_conrect.obj \
-        $(SLO)$/sw_conform.obj \
-        $(SLO)$/sw_conpoly.obj \
-        $(SLO)$/sw_conarc.obj \
-        $(SLO)$/sw_dselect.obj \
-        $(SLO)$/sw_drawbase.obj \
         $(SLO)$/sw_tblctrl.obj \
         $(SLO)$/sw_workctrl.obj
 
