@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:44:03 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:26:14 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_layout
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 
@@ -103,7 +97,6 @@ CXXFILES = \
         sw_tabfrm.cxx \
         sw_trvlfrm.cxx \
         sw_unusedf.cxx \
-        sw_virtoutp.cxx \
         sw_wsfrm.cxx
 
 
@@ -135,7 +128,6 @@ SLOFILES =  \
         $(SLO)$/sw_tabfrm.obj \
         $(SLO)$/sw_trvlfrm.obj \
         $(SLO)$/sw_unusedf.obj \
-        $(SLO)$/sw_virtoutp.obj \
         $(SLO)$/sw_wsfrm.obj
 
 .IF "$(product)"==""
