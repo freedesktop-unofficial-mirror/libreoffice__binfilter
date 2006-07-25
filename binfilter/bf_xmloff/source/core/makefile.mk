@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:05:30 $
+#   last change: $Author: rt $ $Date: 2006-07-25 09:08:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -39,7 +39,6 @@ PRJ=..$/..$/..
 
 PRJNAME=binfilter
 TARGET=xmloff_core
-AUTOSEG=true
 
 ENABLE_EXCEPTIONS=TRUE
 
