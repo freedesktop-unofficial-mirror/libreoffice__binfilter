@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:02:44 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:41:27 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_misc
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :	$(PRJ)$/inc$/swpre.mk
 .INCLUDE :	$(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :	settings.mk
-#.INCLUDE :	$(PRJ)$/inc$/sw.mk
 .INCLUDE :	$(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
@@ -69,12 +63,10 @@ CXXFILES = \
         sw_insrule.cxx \
         sw_linenum.cxx \
         sw_num.cxx \
-        sw_numberingtypelistbox.cxx \
         sw_outline.cxx \
         sw_pgfnote.cxx \
         sw_pggrid.cxx \
-        sw_redlndlg.cxx \
-        sw_srtdlg.cxx
+        sw_redlndlg.cxx
 
 SRS1NAME=$(TARGET)
 SRC1FILES=\
@@ -86,12 +78,10 @@ SRC1FILES=\
     sw_insrule.src \
     sw_linenum.src \
     sw_num.src \
-    sw_numberingtypelistbox.src \
     sw_outline.src \
     sw_pgfnote.src \
     sw_pggrid.src \
-    sw_redlndlg.src \
-    sw_srtdlg.src
+    sw_redlndlg.src
 
 SLOFILES =	\
         $(SLO)$/sw_bookmark.obj \
@@ -105,16 +95,13 @@ SLOFILES =	\
         $(SLO)$/sw_insrule.obj \
         $(SLO)$/sw_linenum.obj \
         $(SLO)$/sw_num.obj \
-        $(SLO)$/sw_numberingtypelistbox.obj \
         $(SLO)$/sw_outline.obj \
         $(SLO)$/sw_pgfnote.obj \
         $(SLO)$/sw_pggrid.obj \
-        $(SLO)$/sw_redlndlg.obj \
-        $(SLO)$/sw_srtdlg.obj
+        $(SLO)$/sw_redlndlg.obj
 
 EXCEPTIONSFILES = \
-        $(SLO)$/sw_glossary.obj \
-        $(SLO)$/sw_numberingtypelistbox.obj
+        $(SLO)$/sw_glossary.obj
 
 # --- Tagets -------------------------------------------------------
 
