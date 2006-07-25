@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:00:18 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:35:31 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,23 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_dialog
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
-
-#IMGLST_SRS=$(SRS)$/dialog.srs
-#BMP_IN=$(PRJ)$/win/imglst
-
-# future: DEMO\dialog.srs
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
@@ -65,27 +54,16 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 CXXFILES = \
         sw_addrdlg.cxx \
-        sw_abstract.cxx \
-        sw_ascfldlg.cxx \
-        sw_docstdlg.cxx \
-        sw_macassgn.cxx \
-        sw_regionsw.cxx
+        sw_ascfldlg.cxx
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_abstract.src \
-        sw_ascfldlg.src \
         sw_dialog.src \
-        sw_docstdlg.src \
         sw_regionsw.src
 
 SLOFILES =  \
-        $(SLO)$/sw_abstract.obj \
         $(SLO)$/sw_addrdlg.obj \
-        $(SLO)$/sw_ascfldlg.obj \
-        $(SLO)$/sw_docstdlg.obj \
-        $(SLO)$/sw_macassgn.obj \
-        $(SLO)$/sw_regionsw.obj
+        $(SLO)$/sw_ascfldlg.obj
 
 # --- Tagets -------------------------------------------------------
 
