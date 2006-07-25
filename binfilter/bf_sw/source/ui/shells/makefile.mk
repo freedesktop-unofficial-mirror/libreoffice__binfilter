@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:03:12 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:45:00 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -45,8 +45,6 @@ TARGET=sw_shells
 #GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
-AUTOSEG=true
-
 # --- Settings -----------------------------------------------------
 
 #.INCLUDE :  $(PRJ)$/inc$/swpre.mk
@@ -84,13 +82,9 @@ SLOFILES =  \
         $(SLO)$/sw_textidx.obj \
         $(SLO)$/sw_textsh.obj \
         $(SLO)$/sw_textsh1.obj \
-        $(SLO)$/sw_textsh2.obj \
-        $(SLO)$/sw_txtattr.obj \
-        $(SLO)$/sw_txtcrsr.obj \
-        $(SLO)$/sw_txtnum.obj
+        $(SLO)$/sw_txtattr.obj
 
 EXCEPTIONSFILES =  \
-        $(SLO)$/sw_textsh2.obj \
         $(SLO)$/sw_grfshex.obj	\
         $(SLO)$/sw_textsh1.obj
 
