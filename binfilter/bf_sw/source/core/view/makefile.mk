@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 14:55:14 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:31:36 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,20 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_view
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
-
-# future: DEMO\vprint.obj
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 
@@ -69,10 +61,8 @@ CXXFILES = \
     sw_vdraw.cxx \
     sw_viewimp.cxx \
     sw_viewsh.cxx \
-        sw_viewpg.cxx \
         sw_vnew.cxx \
-        sw_vprint.cxx \
-        sw_pagepreviewlayout.cxx
+        sw_vprint.cxx
 
 
 
@@ -81,10 +71,8 @@ SLOFILES =  \
     $(SLO)$/sw_vdraw.obj \
     $(SLO)$/sw_viewimp.obj \
     $(SLO)$/sw_viewsh.obj \
-        $(SLO)$/sw_viewpg.obj \
         $(SLO)$/sw_vnew.obj \
-        $(SLO)$/sw_vprint.obj \
-        $(SLO)$/sw_pagepreviewlayout.obj
+        $(SLO)$/sw_vprint.obj
 
 # --- Targets -------------------------------------------------------
 
