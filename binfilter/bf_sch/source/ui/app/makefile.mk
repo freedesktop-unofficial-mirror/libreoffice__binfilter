@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:25:26 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:09:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -43,11 +43,7 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sch_sch
 PRJNAME=binfilter
 TARGET=sch_app
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 BMP_OUT=$(RES)
 BMP_IN =$(BFPRJ)$/res
