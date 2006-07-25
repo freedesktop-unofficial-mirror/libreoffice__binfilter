@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_attriblistmerge.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:10:22 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:12:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -177,25 +177,5 @@ namespace xmloff
 //.........................................................................
 }   // namespace xmloff
 //.........................................................................
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.158.1  2005/09/05 11:30:16  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/04/19 10:23:10  aw
- *  #110098#
- *  Adaptions to binfilter after resynching to SRC680 m33
- *
- *  Revision 1.1  2003/12/05 09:34:09  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2000/12/12 12:02:06  fs
- *  initial checkin - helper class for mergin XAttributeList instances
- *
- *
- *  Revision 1.0 12.12.00 10:32:56  fs
- ************************************************************************/
 
 }//end of namespace binfilter

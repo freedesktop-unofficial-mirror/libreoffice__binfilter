@@ -4,9 +4,9 @@
  *
  *  $RCSfile: elementimport_impl.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:05:14 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:09:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -127,35 +127,4 @@ template <class BASE>
     }
     return xReturn;
 }
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:08  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/07/30 14:52:35  kz
- *  INTEGRATION: CWS gcc340fixes01 (1.1.4); FILE MERGED
- *  2004/07/15 15:25:46 cmc 1.1.4.1: #i31540# a little this required for gcc34
- *
- *  Revision 1.1.4.1  2004/07/15 15:25:46  cmc
- *  #i31540# a little this required for gcc34
- *
- *  Revision 1.1  2003/12/05 09:34:03  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.4  2001/01/03 16:25:34  fs
- *  file format change (extra wrapper element for controls, similar to columns)
- *
- *  Revision 1.3  2001/01/02 15:58:21  fs
- *  event ex- & import
- *
- *  Revision 1.2  2000/12/13 10:40:15  fs
- *  new import related implementations - at this version, we should be able to import everything we export (which is all except events and styles)
- *
- *  Revision 1.1  2000/12/12 12:02:53  fs
- *  initial checkin - implementations for the template classes in elementimport
- *
- *
- *  Revision 1.0 12.12.00 08:33:20  fs
- ************************************************************************/
 
