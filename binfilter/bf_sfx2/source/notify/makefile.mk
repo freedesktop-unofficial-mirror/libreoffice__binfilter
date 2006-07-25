@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:33:09 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:17:17 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,13 +41,9 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=sfx2_notify
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-AUTOSEG=true
-
 
 # --- Settings -----------------------------------------------------
 
