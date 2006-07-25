@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formlayerimport.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:13:34 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:15:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -145,58 +145,5 @@ namespace xmloff
 //.........................................................................
 }   // namespace xmloff
 //.........................................................................
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:22  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:14  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.10  2003/10/21 08:39:58  obo
- *  INTEGRATION: CWS formcelllinkage (1.9.160); FILE MERGED
- *  2003/10/01 09:55:22 fs 1.9.160.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.9.160.1  2003/10/01 09:55:22  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.9.156.1  2003/09/25 14:28:40  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.9.152.1  2003/09/17 12:26:55  fs
- *  #18999# #19367# persistence for cell value and cell range bindings
- *
- *  Revision 1.9  2002/10/25 13:15:25  fs
- *  #104402# +createControlStyleContext
- *
- *  Revision 1.8  2001/05/28 14:59:18  fs
- *  #86712# added control number style related functionality
- *
- *  Revision 1.7  2001/03/20 13:38:42  fs
- *  #83970# +createOfficeFormsContext
- *
- *  Revision 1.6  2001/03/20 08:02:56  fs
- *  removed setAutoStyle (was obsolete)
- *
- *  Revision 1.5  2001/02/01 09:46:47  fs
- *  no own style handling anymore - the shape exporter is responsible for our styles now
- *
- *  Revision 1.4  2000/12/18 15:14:35  fs
- *  some changes ... now exporting/importing styles
- *
- *  Revision 1.3  2000/12/13 10:40:15  fs
- *  new import related implementations - at this version, we should be able to import everything we export (which is all except events and styles)
- *
- *  Revision 1.2  2000/12/12 12:01:05  fs
- *  new implementations for the import - still under construction
- *
- *  Revision 1.1  2000/12/06 17:31:22  fs
- *  initial checkin - implementations for formlayer import/export - still under construction
- *
- *
- *  Revision 1.0 04.12.00 12:52:47  fs
- ************************************************************************/
 
 }//end of namespace binfilter
