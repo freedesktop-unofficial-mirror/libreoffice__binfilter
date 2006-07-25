@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svxpch.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:46:03 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:23:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -72,7 +72,6 @@
 
 #include <sfx.hrc>
 
-#include "segmentc.hxx"
 namespace binfilter {
 
 }
