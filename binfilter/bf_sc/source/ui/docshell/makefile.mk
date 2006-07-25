@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:20:35 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:05:06 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -49,8 +49,6 @@ PROJECTPCH=ui_pch
 PDBTARGET=ui_pch
 PROJECTPCHSOURCE=..\pch\sc_ui_pch
 
-AUTOSEG=true
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  scpre.mk
@@ -79,7 +77,6 @@ CXXFILES = \
         sc_servobj.cxx	\
         sc_tpstat.cxx	\
         sc_autostyl.cxx	\
-        sc_pagedata.cxx \
         sc_hiranges.cxx \
         sc_pntlock.cxx \
         sc_sizedev.cxx \
@@ -105,7 +102,6 @@ SLOFILES =  \
         $(SLO)$/sc_servobj.obj	\
         $(SLO)$/sc_tpstat.obj	\
         $(SLO)$/sc_autostyl.obj	\
-        $(SLO)$/sc_pagedata.obj \
         $(SLO)$/sc_hiranges.obj \
         $(SLO)$/sc_pntlock.obj \
         $(SLO)$/sc_sizedev.obj \
