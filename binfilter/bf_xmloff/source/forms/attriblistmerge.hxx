@@ -4,9 +4,9 @@
  *
  *  $RCSfile: attriblistmerge.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:03:14 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:08:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,9 +42,6 @@
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
 #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #endif
@@ -100,27 +97,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:06  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:56:07  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/08 16:32:17 aw 1.1.20.1: #117295#
- *
- *  Revision 1.1.20.1  2004/07/08 16:32:17  aw
- *  #117295#
- *
- *  Revision 1.1  2003/12/05 09:34:00  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2000/12/12 12:02:13  fs
- *  initial checkin - helper class for mergin XAttributeList instances
- *
- *
- *  Revision 1.0 12.12.00 10:25:25  fs
- ************************************************************************/
 

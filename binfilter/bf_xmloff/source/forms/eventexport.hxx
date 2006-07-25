@@ -4,9 +4,9 @@
  *
  *  $RCSfile: eventexport.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:05:28 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:09:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,12 +42,6 @@
 #ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 #ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
 #endif
@@ -105,27 +99,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_EVENTEXPORT_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.2.128.1  2005/09/05 11:30:09  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.2  2004/08/03 19:56:18  hr
- *  INTEGRATION: CWS bff2 (1.1.20); FILE MERGED
- *  2004/07/08 16:32:18 aw 1.1.20.1: #117295#
- *
- *  Revision 1.1.20.1  2004/07/08 16:32:18  aw
- *  #117295#
- *
- *  Revision 1.1  2003/12/05 09:34:03  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.1  2001/01/02 15:55:40  fs
- *  initial checkin - helper for exporting script events
- *
- *
- *  Revision 1.0 21.12.00 12:14:08  fs
- ************************************************************************/
 
