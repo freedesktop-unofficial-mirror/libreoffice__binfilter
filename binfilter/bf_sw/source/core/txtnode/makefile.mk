@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 14:54:29 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:29:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_txtnode
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 INCEXT=s:$/solar$/inc$/hm
@@ -84,7 +78,6 @@ CXXFILES = \
         sw_swfont.cxx \
         sw_thints.cxx \
         sw_txatbase.cxx \
-        sw_txatritr.cxx \
         sw_txtatr2.cxx \
         sw_txtedt.cxx
 
@@ -107,7 +100,6 @@ SLOFILES =  \
         $(SLO)$/sw_swfont.obj \
         $(SLO)$/sw_thints.obj \
         $(SLO)$/sw_txatbase.obj \
-        $(SLO)$/sw_txatritr.obj \
         $(SLO)$/sw_txtatr2.obj \
         $(SLO)$/sw_txtedt.obj
 
