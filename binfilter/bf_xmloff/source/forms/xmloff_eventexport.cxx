@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_eventexport.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:11:56 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:13:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -168,32 +168,5 @@ namespace xmloff
 }   // namespace xmloff
 //.........................................................................
 
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:19  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:12  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.5  2002/01/18 15:40:36  fs
- *  #96662# don't write a library if the library name is empty
- *
- *  Revision 1.4  2001/09/04 10:19:41  fs
- *  #91865# correctly im- and export application events
- *
- *  Revision 1.3  2001/08/27 17:44:27  fs
- *  #91537# corrected evaluation of macro names for StarBasic script ebents
- *
- *  Revision 1.2  2001/08/27 16:56:33  fs
- *  #91537# export a library attribute when exporting a StarBasic script event descriptor
- *
- *  Revision 1.1  2001/01/02 15:55:28  fs
- *  initial checkin - helper for exporting script events
- *
- *
- *  Revision 1.0 21.12.00 12:16:08  fs
- ************************************************************************/
 
 }//end of namespace binfilter

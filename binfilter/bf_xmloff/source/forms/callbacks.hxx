@@ -4,9 +4,9 @@
  *
  *  $RCSfile: callbacks.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:03:29 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:08:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -180,57 +180,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_CALLBACKS_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:07  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:01  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.10  2003/10/21 08:38:06  obo
- *  INTEGRATION: CWS formcelllinkage (1.9.160); FILE MERGED
- *  2003/10/01 09:55:17 fs 1.9.160.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.9.160.1  2003/10/01 09:55:17  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.9.156.1  2003/09/25 14:28:35  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.9.152.1  2003/09/17 12:26:44  fs
- *  #18999# #19367# persistence for cell value and cell range bindings
- *
- *  Revision 1.9  2002/10/25 13:11:31  fs
- *  #104402# new methods on the import context callback for importing column styles
- *
- *  Revision 1.8  2002/10/25 07:35:35  fs
- *  #104402# +IFormsExportContext::getObjectStyleName
- *
- *  Revision 1.7  2001/02/01 09:46:47  fs
- *  no own style handling anymore - the shape exporter is responsible for our styles now
- *
- *  Revision 1.6  2001/01/24 09:34:10  fs
- *  +IFormsImportContext::enter-/leaveEventContext
- *
- *  Revision 1.5  2001/01/02 15:58:21  fs
- *  event ex- & import
- *
- *  Revision 1.4  2000/12/18 15:14:35  fs
- *  some changes ... now exporting/importing styles
- *
- *  Revision 1.3  2000/12/13 10:35:50  fs
- *  included XPropertySet.hpp
- *
- *  Revision 1.2  2000/12/12 12:00:37  fs
- *  +IControlIdMap / +IFormsImportContext
- *
- *  Revision 1.1  2000/11/17 19:01:13  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 17.11.00 18:42:07  fs
- ************************************************************************/
 
