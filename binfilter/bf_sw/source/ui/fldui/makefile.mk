@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:01:13 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:38:44 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,11 +41,7 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_fldui
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
@@ -68,7 +64,6 @@ CXXFILES = \
         sw_fldfunc.cxx \
         sw_fldmgr.cxx \
         sw_fldpage.cxx \
-        sw_fldref.cxx \
         sw_fldtdlg.cxx \
         sw_fldvar.cxx \
         sw_javaedit.cxx \
@@ -100,7 +95,6 @@ SLOFILES =  \
         $(SLO)$/sw_fldfunc.obj \
         $(SLO)$/sw_fldmgr.obj \
         $(SLO)$/sw_fldpage.obj \
-        $(SLO)$/sw_fldref.obj \
         $(SLO)$/sw_fldtdlg.obj \
         $(SLO)$/sw_fldvar.obj \
         $(SLO)$/sw_javaedit.obj \
