@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:42:16 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:25:10 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_edit
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :	$(PRJ)$/inc$/swpre.mk
 .INCLUDE :	$(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :	settings.mk
-#.INCLUDE :	$(PRJ)$/inc$/sw.mk
 .INCLUDE :	$(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
@@ -76,8 +70,7 @@ CXXFILES = \
         sw_edtox.cxx \
         sw_edundo.cxx \
         sw_edws.cxx \
-        sw_edsect.cxx \
-        sw_tempauto.cxx
+        sw_edsect.cxx
 
 
 
@@ -100,8 +93,7 @@ SLOFILES =	\
         $(SLO)$/sw_edtox.obj \
         $(SLO)$/sw_edundo.obj \
         $(SLO)$/sw_edws.obj \
-        $(SLO)$/sw_edsect.obj \
-        $(SLO)$/sw_tempauto.obj
+        $(SLO)$/sw_edsect.obj
 
 # --- Targets -------------------------------------------------------
 
