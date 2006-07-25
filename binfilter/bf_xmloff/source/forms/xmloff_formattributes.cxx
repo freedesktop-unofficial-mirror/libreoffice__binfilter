@@ -4,9 +4,9 @@
  *
  *  $RCSfile: xmloff_formattributes.cxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:12:23 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:13:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -333,64 +333,5 @@ namespace xmloff
 //.........................................................................
 }   // namespace xmloff
 //.........................................................................
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:20  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:12  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.11  2003/10/21 08:39:03  obo
- *  INTEGRATION: CWS formcelllinkage (1.10.160); FILE MERGED
- *  2003/10/01 09:55:19 fs 1.10.160.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.10.160.1  2003/10/01 09:55:19  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.10.156.1  2003/09/25 14:28:37  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.10.152.2  2003/09/18 14:00:37  fs
- *  #18995# changes for binding list boxes to cells, while exchanging selection indexes instead of strings
- *
- *  Revision 1.10.152.1  2003/09/17 12:26:51  fs
- *  #18999# #19367# persistence for cell value and cell range bindings
- *
- *  Revision 1.10  2002/10/25 07:54:55  fs
- *  #104402# +SCA_COLUMN_STYLE_NAME
- *
- *  Revision 1.9  2001/04/20 16:49:40  fs
- *  tabbing-cycle -> tab-cycle
- *
- *  Revision 1.8  2001/03/20 13:33:39  fs
- *  #83970# +getOfficeFormsAttributeName(/-space)
- *
- *  Revision 1.7  2001/03/20 08:02:29  fs
- *  #85114# #85115# corrected attributed names for encoding type and detail fields
- *
- *  Revision 1.6  2001/02/13 13:44:41  fs
- *  tab_index -> tab-index
- *
- *  Revision 1.5  2001/01/03 16:25:34  fs
- *  file format change (extra wrapper element for controls, similar to columns)
- *
- *  Revision 1.4  2000/12/12 12:01:05  fs
- *  new implementations for the import - still under construction
- *
- *  Revision 1.3  2000/12/06 17:28:05  fs
- *  changes for the formlayer import - still under construction
- *
- *  Revision 1.2  2000/11/19 15:41:32  fs
- *  extended the export capabilities - generic controls / grid columns / generic properties / some missing form properties
- *
- *  Revision 1.1  2000/11/17 19:01:36  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 14.11.00 09:53:05  fs
- ************************************************************************/
 
 }//end of namespace binfilter
