@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw6file.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:23:12 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:32:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,18 +37,10 @@
 
 #include <string.h>
 #include "errhdl.hxx"
-#include "segmentc.hxx"
-
-#ifdef __BORLANDC__
-    #pragma warn -lvc
-#endif
 
 #include "sw6file.hxx"
 namespace binfilter {
 
-#ifdef __BORLANDC__
-    #pragma warn +lvc
-#endif
 
 // --- LAYDESC ---
 
