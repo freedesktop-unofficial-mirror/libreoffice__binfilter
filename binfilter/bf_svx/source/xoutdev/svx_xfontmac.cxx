@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xfontmac.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:40:19 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:22:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -68,10 +68,8 @@
 #include "xoutx.hxx"
 
 #define GLOBALOVERFLOW
-#include <segmentc.hxx>
 namespace binfilter {
 
-SEG_EOFGLOBALS()
 
 /*************************************************************************
 |*
@@ -82,8 +80,6 @@ SEG_EOFGLOBALS()
 |*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfontmac_01)
-
 BOOL HasGX()
 {
     long             nVersion;
@@ -115,7 +111,6 @@ BOOL HasGX()
 |*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfontmac_02)
 
 void SetUpFontData( OutputDevice &rOut, gxShape aTextShape )
 {
@@ -175,7 +170,6 @@ void SetUpFontData( OutputDevice &rOut, gxShape aTextShape )
 |*    Letzte Aenderung  27.06.95 DV
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfontmac_03)
 
 XPolyPolygon XOutGetCharOutlineGX(USHORT nChar, OutputDevice& rOut,
                                 BOOL bOptimizeSize)
@@ -970,7 +964,6 @@ void ScaleGlyphOutline(GlyphOutline* out, Fixed xScale, Fixed yScale)
 |*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfontmac_03)
 
 XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
                                     BOOL bOptimizeSize)
@@ -1176,7 +1169,6 @@ XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
 |*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfontmac_03)
 
 XPolyPolygon XOutGetCharOutline(USHORT nChar, OutputDevice& rOut,
                                 BOOL bOptimizeSize)
@@ -1229,7 +1221,6 @@ XPolyPolygon XOutGetCharOutline(USHORT nChar, OutputDevice& rOut,
 |*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfont_0b)
 
 long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                                     Font aFont, long nAbsStart, BOOL bIsShadow,
@@ -1617,7 +1608,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
 |*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfont_0c)
 
 void XOutputDevice::DrawFormTextShadow(const String& rText,
                                        const Polygon& rPoly,
@@ -1654,7 +1644,6 @@ void XOutputDevice::DrawFormTextShadow(const String& rText,
 |*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfont_0d)
 
 long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
                                  Font aFont, long nAbsStart,
@@ -1681,7 +1670,6 @@ long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
 |*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
-#pragma SEG_FUNCDEF(xfont_0e)
 
 long XOutputDevice::DrawFormText(const String& rText, const XPolygon& rXPoly,
                                  Font aFont, long nAbsStart,
@@ -1700,5 +1688,4 @@ long XOutputDevice::DrawFormText(const String& rText, const XPolygon& rXPoly,
                            bToLastPoint, bDraw, pDXArray);
 }
 
-#pragma SEG_EOFMODULE
 }
