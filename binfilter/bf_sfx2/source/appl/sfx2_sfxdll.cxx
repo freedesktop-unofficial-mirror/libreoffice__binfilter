@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_sfxdll.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:29:09 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 08:14:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,16 +42,12 @@
 #pragma hdrstop
 
 #ifdef WIN
-// auto strip #include "segmentc.hxx"
 namespace binfilter {
 
 // Statische DLL-Verwaltungs-Variablen
 static HINSTANCE hDLLInst = 0;
 
-SEG_EOFGLOBALS()
-
 //==========================================================================
-#pragma SEG_SEGCLASS(DLLINIT_SEG,DLLINITEXIT_CODE)
 
 /*N*/ extern "C" int CALLBACK LibMain( HINSTANCE hDLL, WORD, WORD nHeap, LPSTR )
 /*N*/ {
@@ -67,7 +63,6 @@ SEG_EOFGLOBALS()
 
 
 //--------------------------------------------------------------------------
-#pragma SEG_SEGCLASS(DLLEXIT_SEG,DLLINITEXIT_CODE)
 
 /*N*/ extern "C" int CALLBACK WEP( int )
 /*N*/ {
