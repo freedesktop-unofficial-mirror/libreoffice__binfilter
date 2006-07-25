@@ -4,9 +4,9 @@
  *
  *  $RCSfile: elementexport.hxx,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 09:04:38 $
+ *  last change: $Author: rt $ $Date: 2006-07-25 09:09:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -307,54 +307,4 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_ELEMENTEXPORT_HXX_
-
-/*************************************************************************
- * history:
- *  $Log: not supported by cvs2svn $
- *  Revision 1.1.158.1  2005/09/05 11:30:08  rt
- *  #i54170# Change license header: remove SISSL
- *
- *  Revision 1.1  2003/12/05 09:34:02  aw
- *  Added bf_xmloff files
- *
- *  Revision 1.8  2003/10/21 08:38:25  obo
- *  INTEGRATION: CWS formcelllinkage (1.7.198); FILE MERGED
- *  2003/10/01 09:55:18 fs 1.7.198.1: #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.7.198.1  2003/10/01 09:55:18  fs
- *  #i18994# merging the changes from the CWS fs002
- *
- *  Revision 1.7.194.1  2003/09/25 14:28:36  fs
- *  #18994# merging the changes from cws_srx645_fs002 branch
- *
- *  Revision 1.7.190.2  2003/09/18 14:00:36  fs
- *  #18995# changes for binding list boxes to cells, while exchanging selection indexes instead of strings
- *
- *  Revision 1.7.190.1  2003/09/17 12:26:46  fs
- *  #18999# #19367# persistence for cell value and cell range bindings
- *
- *  Revision 1.7  2001/01/03 16:25:34  fs
- *  file format change (extra wrapper element for controls, similar to columns)
- *
- *  Revision 1.6  2001/01/02 15:58:21  fs
- *  event ex- & import
- *
- *  Revision 1.5  2000/12/18 15:14:35  fs
- *  some changes ... now exporting/importing styles
- *
- *  Revision 1.4  2000/12/13 10:38:10  fs
- *  moved some code to a more central place to reuse it
- *
- *  Revision 1.3  2000/12/06 17:28:05  fs
- *  changes for the formlayer import - still under construction
- *
- *  Revision 1.2  2000/11/19 15:41:32  fs
- *  extended the export capabilities - generic controls / grid columns / generic properties / some missing form properties
- *
- *  Revision 1.1  2000/11/17 19:01:28  fs
- *  initial checkin - export and/or import the applications form layer
- *
- *
- *  Revision 1.0 13.11.00 18:41:40  fs
- ************************************************************************/
 
