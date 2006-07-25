@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:14:58 $
+#   last change: $Author: rt $ $Date: 2006-07-25 07:49:25 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -109,8 +109,6 @@ SLOFILES=\
     $(SLO)$/offmgr_fltrcfg.obj	\
     $(SLO)$/offmgr_htmlcfg.obj	\
     $(SLO)$/offmgr_ofaaccfg.obj	\
-    $(SLO)$/offmgr_ofaitem.obj	\
-    $(SLO)$/offmgr_dbcoll.obj	\
     $(SLO)$/offmgr_osplcfg.obj	\
     $(SLO)$/offmgr_resid.obj	\
     $(SLO)$/offmgr_app3.obj	\
