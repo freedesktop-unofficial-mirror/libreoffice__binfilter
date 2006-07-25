@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:16:57 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:00:29 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -40,15 +40,11 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sc_tool
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 PROJECTPCH4DLL=TRUE
 PROJECTPCH=core_pch
 PROJECTPCHSOURCE=..\pch\sc_core_pch
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
@@ -93,7 +89,6 @@ SLOFILES =  \
         $(SLO)$/sc_rechead.obj  \
         $(SLO)$/sc_refupdat.obj \
         $(SLO)$/sc_refdata.obj \
-        $(SLO)$/sc_reffind.obj \
         $(SLO)$/sc_scdebug.obj \
         $(SLO)$/sc_scmatrix.obj \
         $(SLO)$/sc_sctictac.obj \
