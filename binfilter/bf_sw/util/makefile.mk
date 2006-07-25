@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.9 $
+#   $Revision: 1.10 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:05:05 $
+#   last change: $Author: rt $ $Date: 2006-07-25 09:07:37 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -67,7 +67,6 @@ sw_res_files= \
     $(SRS)$/sw_app.srs          \
     $(SRS)$/sw_dialog.srs       \
     $(SRS)$/sw_config.srs       \
-    $(SRS)$/sw_dbui.srs	    \
     $(SRS)$/sw_dochdl.srs       \
     $(SRS)$/sw_docvw.srs        \
     $(SRS)$/sw_envelp.srs       \
