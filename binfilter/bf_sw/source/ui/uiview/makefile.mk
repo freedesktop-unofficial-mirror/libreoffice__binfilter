@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 15:03:39 $
+#   last change: $Author: rt $ $Date: 2006-07-25 08:49:42 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,18 +41,12 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_uiview
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-AUTOSEG=true
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
@@ -68,18 +62,13 @@ SLOFILES =  \
         $(SLO)$/sw_view.obj \
         $(SLO)$/sw_view1.obj \
         $(SLO)$/sw_view2.obj \
-        $(SLO)$/sw_viewcoll.obj \
-        $(SLO)$/sw_viewdlg2.obj \
-        $(SLO)$/sw_viewdlg.obj \
         $(SLO)$/sw_viewdraw.obj \
-        $(SLO)$/sw_viewling.obj \
         $(SLO)$/sw_viewmdi.obj \
         $(SLO)$/sw_pview.obj \
         $(SLO)$/sw_viewport.obj \
         $(SLO)$/sw_viewstat.obj \
         $(SLO)$/sw_viewtab.obj \
         $(SLO)$/sw_viewprt.obj \
-        $(SLO)$/sw_viewsrch.obj \
         $(SLO)$/sw_scroll.obj \
         $(SLO)$/sw_swcli.obj  \
         $(SLO)$/sw_srcview.obj \
