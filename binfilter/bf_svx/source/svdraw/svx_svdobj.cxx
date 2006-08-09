@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdobj.cxx,v $
  *
- *  $Revision: 1.10 $
+ *  $Revision: 1.11 $
  *
- *  last change: $Author: rt $ $Date: 2006-08-08 07:32:03 $
+ *  last change: $Author: rt $ $Date: 2006-08-09 08:05:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -136,7 +136,7 @@
 #include "svdoimp.hxx"
 #endif
 
-#ifndef _SVTOOLS_GRAPHICTOOLS_HXX_
+#ifndef _VCL_GRAPHICTOOLS_HXX_
 #include <vcl/graphictools.hxx>
 #endif
 
