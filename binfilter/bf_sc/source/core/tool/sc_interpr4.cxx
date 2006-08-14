@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_interpr4.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:15:07 $
+ *  last change: $Author: hr $ $Date: 2006-08-14 13:19:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -2578,7 +2578,6 @@ void ScInterpreter::ScSpewFunc()
 }
 
 
-/*N*/  #include "sctictac.hxx"
 /*N*/
 /*N*/  //#define SC_INVADER_GPF     // GPF wollen wir nicht :-(
 /*N*/  // zum testen Environment-Variable SC_INVADER_GPF=xxx setzen
