@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:04:52 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:20:51 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -57,44 +57,19 @@ INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\
-    $(SLO)$/sc_sortdlg.obj		\
-    $(SLO)$/sc_tpsort.obj		\
-    $(SLO)$/sc_filtdlg.obj		\
-    $(SLO)$/sc_sfiltdlg.obj	\
-    $(SLO)$/sc_foptmgr.obj		\
-    $(SLO)$/sc_pfiltdlg.obj	\
-    $(SLO)$/sc_dbnamdlg.obj	\
     $(SLO)$/sc_expftext.obj	\
-    $(SLO)$/sc_subtdlg.obj		\
-    $(SLO)$/sc_tpsubt.obj		\
-    $(SLO)$/sc_fieldwnd.obj	\
     $(SLO)$/sc_pvlaydlg.obj	\
-    $(SLO)$/sc_pvfundlg.obj	\
-    $(SLO)$/sc_dapitype.obj	\
-    $(SLO)$/sc_dapidata.obj	\
-    $(SLO)$/sc_consdlg.obj		\
-    $(SLO)$/sc_scendlg.obj		\
     $(SLO)$/sc_imoptdlg.obj	\
-    $(SLO)$/sc_validate.obj	\
-    $(SLO)$/sc_csvsplits.obj	\
     $(SLO)$/sc_csvcontrol.obj	\
     $(SLO)$/sc_csvruler.obj	\
     $(SLO)$/sc_csvgrid.obj		\
     $(SLO)$/sc_csvtablebox.obj	\
     $(SLO)$/sc_asciiopt.obj
 
-EXCEPTIONSFILES= \
-    $(SLO)$/sc_dapidata.obj
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sc_pivot.src		\
-        sc_pvfundlg.src	\
-        sc_dapitype.src	\
-        sc_consdlg.src		\
-        sc_scendlg.src     \
         sc_imoptdlg.src    \
-        sc_validate.src    \
         sc_asciiopt.src    \
         sc_outline.src
 
