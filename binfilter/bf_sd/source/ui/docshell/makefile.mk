@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:12:30 $
+#   last change: $Author: hr $ $Date: 2006-08-14 14:32:56 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ INC+= -I$(PRJ)$/inc$/bf_sd
 SLOFILES =	\
         $(SLO)$/sd_docshell.obj \
         $(SLO)$/sd_docshel2.obj \
-        $(SLO)$/sd_docshel3.obj \
         $(SLO)$/sd_docshel4.obj \
         $(SLO)$/sd_sdclient.obj \
         $(SLO)$/sd_grdocsh.obj
