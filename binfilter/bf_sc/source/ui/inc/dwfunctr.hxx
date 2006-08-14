@@ -4,9 +4,9 @@
  *
  *  $RCSfile: dwfunctr.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:45:02 $
+ *  last change: $Author: hr $ $Date: 2006-08-14 13:34:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,17 +67,10 @@
 #include "anyrefdg.hxx"
 #endif
 
-#ifndef SC_FUNCUTL_HXX
-#include "funcutl.hxx"
-#endif
-
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScAddress
 #endif
 
-#ifndef SC_PRIVSPLT_HXX
-#include "privsplt.hxx"
-#endif
 namespace binfilter {
 
 #ifndef LRU_MAX
