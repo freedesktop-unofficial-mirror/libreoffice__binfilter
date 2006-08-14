@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.13 $
+#   $Revision: 1.14 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:23:43 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:49:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -62,22 +62,7 @@ LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
 
 # --- Resourcen ----------------------------------------------------
 
-#RESLIB1LIST=\
-#	$(SRS)$/miscdlgs.srs	\
-#	$(SRS)$/docshell.srs	\
-#	$(SRS)$/ui.srs		\
-#	$(SRS)$/dbgui.srs	\
-#	$(SRS)$/drawfunc.srs \
-#	$(SRS)$/core.srs 	\
-#	$(SRS)$/styleui.srs	\
-#	$(SRS)$/scslots.srs	\
-#	$(SRS)$/formdlgs.srs \
-#	$(SRS)$/pagedlg.srs	\
-#	$(SRS)$/navipi.srs	\
-#	$(SOLARVERSION)$/$(INPATH)$/res$(EXT_UPDMINOR)$/sfx.srs
-
 RESLIB1LIST=\
-    $(SRS)$/sc_docshell.srs	\
     $(SRS)$/sc_ui.srs		\
     $(SRS)$/sc_dbgui.srs	\
     $(SRS)$/sc_drawfunc.srs \
