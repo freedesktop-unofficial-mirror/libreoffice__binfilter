@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:12:03 $
+#   last change: $Author: hr $ $Date: 2006-08-14 14:19:05 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -84,7 +84,6 @@ SRC1FILES =	\
 
 SLOFILES =	\
         $(SLO)$/sd_sdmod.obj		\
-        $(SLO)$/sd_sdmod1.obj		\
         $(SLO)$/sd_sdmod2.obj		\
         $(SLO)$/sd_sddll.obj		\
         $(SLO)$/sd_sddll1.obj      \
@@ -96,8 +95,7 @@ SLOFILES =	\
         $(SLO)$/sd_sdxfer.obj		
 
 EXCEPTIONSFILES= \
-        $(SLO)$/sd_sdxfer.obj		\
-        $(SLO)$/sd_sdmod1.obj		
+        $(SLO)$/sd_sdxfer.obj
 
 #LIB3TARGET=$(SLB)$/bf_ysdlib.lib
 #LIB3OBJFILES=
