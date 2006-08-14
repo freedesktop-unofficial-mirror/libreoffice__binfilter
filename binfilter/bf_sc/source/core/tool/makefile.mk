@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:00:29 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:19:14 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -81,7 +81,6 @@ SLOFILES =  \
         $(SLO)$/sc_interpr4.obj \
         $(SLO)$/sc_interpr5.obj \
         $(SLO)$/sc_interpr6.obj \
-        $(SLO)$/sc_linelink.obj \
         $(SLO)$/sc_progress.obj \
         $(SLO)$/sc_rangenam.obj \
         $(SLO)$/sc_rangelst.obj \
@@ -89,9 +88,7 @@ SLOFILES =  \
         $(SLO)$/sc_rechead.obj  \
         $(SLO)$/sc_refupdat.obj \
         $(SLO)$/sc_refdata.obj \
-        $(SLO)$/sc_scdebug.obj \
         $(SLO)$/sc_scmatrix.obj \
-        $(SLO)$/sc_sctictac.obj \
         $(SLO)$/sc_subtotal.obj \
         $(SLO)$/sc_token.obj \
         $(SLO)$/sc_unitconv.obj \
