@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:30:35 $
+#   last change: $Author: hr $ $Date: 2006-08-14 15:18:09 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -150,7 +150,6 @@ SHL1RES=    $(RCTARGET)
 
 LIB2TARGET=$(SLB)$/sd_sdmod.lib
 LIB2OBJFILES=   \
-            $(SLO)$/sd_sdmod1.obj      \
             $(SLO)$/sd_sdmod2.obj      \
             $(SLO)$/sd_sdmod.obj
 
