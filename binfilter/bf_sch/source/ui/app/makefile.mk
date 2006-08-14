@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:09:32 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:51:21 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -70,7 +70,6 @@ SLOFILES =	\
         $(SLO)$/sch_schresid.obj	\
         $(SLO)$/sch_typemap.obj	\
         $(SLO)$/sch_schopt.obj	\
-        $(SLO)$/sch_appopt.obj \
         $(SLO)$/sch_globopt.obj
 
 LIB2TARGET =	$(SLB)$/bf_ysch.lib

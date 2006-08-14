@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:08:55 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:50:03 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,32 +52,6 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sch
 # --- Files --------------------------------------------------------
 
-CXXFILES = $(BFPRJ)$/util$/sch_sch.cxx	\
-    sch_chtscene.cxx	sch_stlsheet.cxx 	\
-    sch_globfunc.cxx	sch_stlpool.cxx		\
-    sch_chtmodel.cxx	sch_chtmode1.cxx	\
-    sch_chtmode2.cxx	sch_chtmode3.cxx	\
-    sch_chtmode4.cxx	sch_chtmode5.cxx	\
-    sch_chtmode6.cxx	sch_chtmode7.cxx	\
-    sch_chtmode8.cxx	sch_charttyp.cxx	\
-    sch_chtmod2a.cxx	sch_chtmod3d.cxx	\
-    sch_chtm3d2.cxx		sch_chartdoc.cxx 	\
-    sch_schgroup.cxx	sch_objfac.cxx		\
-    sch_axisid.cxx		sch_objid.cxx		\
-    sch_objadj.cxx		sch_datarow.cxx		\
-    sch_datapoin.cxx	sch_lightfac.cxx	\
-    sch_schiocmp.cxx	sch_axisobj.cxx		\
-    sch_itempool.cxx	sch_datalog.cxx		\
-    sch_memchrt.cxx		\
-    sch_chdescr.cxx 	sch_chaxis.cxx		\
-    sch_chtmode9.cxx	sch_chartbar.cxx	\
-    sch_calculat.cxx	\
-    sch_SchAddInCollection.cxx			\
-    sch_SchRangeChecker.cxx				\
-    sch_SchPersistentObjectPointer.cxx  \
-    sch_ReBuildHint.cxx \
-    sch_PropertyChangeHint.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES = sch_glob.src
 
@@ -109,7 +83,6 @@ SLOFILES =  \
     $(SLO)$/sch_objadj.obj		\
     $(SLO)$/sch_datarow.obj		\
     $(SLO)$/sch_datapoin.obj	\
-    $(SLO)$/sch_lightfac.obj	\
     $(SLO)$/sch_schiocmp.obj	\
     $(SLO)$/sch_itempool.obj	\
     $(SLO)$/sch_datalog.obj		\
@@ -119,10 +92,7 @@ SLOFILES =  \
     $(SLO)$/sch_calculat.obj	\
     $(SLO)$/sch_axisobj.obj		\
     $(SLO)$/sch_SchAddInCollection.obj	\
-    $(SLO)$/sch_SchRangeChecker.obj		\
-    $(SLO)$/sch_SchPersistentObjectPointer.obj \
-    $(SLO)$/sch_ReBuildHint.obj \
-    $(SLO)$/sch_PropertyChangeHint.obj
+    $(SLO)$/sch_ReBuildHint.obj
 
 .IF "$(GUI)" == "WIN"
 NOOPTFILES=\
