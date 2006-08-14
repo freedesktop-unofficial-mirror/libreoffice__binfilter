@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:00:00 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:18:34 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -55,64 +55,6 @@ PROJECTPCHSOURCE=..\pch\sc_core_pch
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
-
-CXXFILES = \
-    sc_bclist.cxx \
-    sc_bcaslot.cxx \
-    sc_docpool.cxx \
-    sc_poolhelp.cxx \
-    sc_column.cxx \
-    sc_column2.cxx \
-    sc_column3.cxx \
-    sc_document.cxx \
-    sc_documen2.cxx \
-    sc_documen3.cxx \
-    sc_documen4.cxx \
-    sc_documen5.cxx \
-    sc_documen6.cxx \
-    sc_documen7.cxx \
-    sc_documen8.cxx \
-    sc_documen9.cxx \
-    sc_fillinfo.cxx \
-    sc_table1.cxx \
-    sc_table2.cxx \
-    sc_table3.cxx \
-    sc_table4.cxx \
-    sc_table5.cxx \
-    sc_table6.cxx \
-    sc_olinetab.cxx \
-    sc_patattr.cxx \
-    sc_cell.cxx \
-    sc_cell2.cxx \
-    sc_attarray.cxx \
-    sc_attrib.cxx \
-    sc_global.cxx \
-    sc_global2.cxx \
-    sc_globalx.cxx \
-    sc_markarr.cxx \
-    sc_markdata.cxx \
-    sc_dociter.cxx \
-    sc_drwlayer.cxx \
-    sc_userdat.cxx \
-    sc_drawpage.cxx \
-    sc_stlsheet.cxx \
-    sc_stlpool.cxx \
-    sc_dptabsrc.cxx \
-    sc_dptabres.cxx \
-    sc_dptabdat.cxx \
-    sc_dpshttab.cxx \
-    sc_dpsdbtab.cxx \
-    sc_dpoutput.cxx \
-    sc_dpobject.cxx \
-    sc_dpsave.cxx \
-    sc_pivot.cxx \
-    sc_pivot2.cxx \
-    sc_dbdocutl.cxx \
-    sc_pagepar.cxx \
-    sc_conditio.cxx \
-    sc_validat.cxx \
-    sc_scimpexpmsg.cxx \
-    sc_sortparam.cxx
 
 SLOFILES =  \
     $(SLO)$/sc_bclist.obj \
@@ -169,7 +111,6 @@ SLOFILES =  \
     $(SLO)$/sc_pagepar.obj \
     $(SLO)$/sc_conditio.obj \
     $(SLO)$/sc_validat.obj \
-    $(SLO)$/sc_scimpexpmsg.obj \
     $(SLO)$/sc_sortparam.obj
 
 EXCEPTIONSFILES= \
@@ -179,7 +120,7 @@ EXCEPTIONSFILES= \
     $(SLO)$/sc_dpoutput.obj \
     $(SLO)$/sc_dpsave.obj	\
     $(SLO)$/sc_dbdocutl.obj \
-        $(SLO)$/sc_dptabsrc.obj \
+    $(SLO)$/sc_dptabsrc.obj \
     $(SLO)$/sc_globalx.obj
 
 # --- Tagets -------------------------------------------------------
