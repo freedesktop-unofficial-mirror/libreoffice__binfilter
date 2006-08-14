@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 07:49:25 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:15:42 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -83,7 +83,6 @@ SRC1FILES=	\
     offmgr_app.src
 
 EXCEPTIONSFILES=	\
-    $(SLO)$/offmgr_sdbcdriverenum.obj	\
     $(SLO)$/offmgr_optuno.obj	\
     $(SLO)$/offmgr_apearcfg.obj	\
     $(SLO)$/offmgr_app.obj		\
@@ -92,13 +91,9 @@ EXCEPTIONSFILES=	\
     $(SLO)$/offmgr_appstat.obj	\
     $(SLO)$/offmgr_osplcfg.obj	\
     $(SLO)$/offmgr_app2.obj	\
-    $(SLO)$/offmgr_app3.obj	\
-    $(SLO)$/offmgr_connpoolconfig.obj
+    $(SLO)$/offmgr_app3.obj
 
 SLOFILES=\
-    $(SLO)$/offmgr_sdbcdriverenum.obj     \
-    $(SLO)$/offmgr_connpoolconfig.obj     \
-    $(SLO)$/offmgr_connpoolsettings.obj     \
     $(SLO)$/offmgr_appctor.obj     \
     $(SLO)$/offmgr_optuno.obj	\
     $(SLO)$/offmgr_apearcfg.obj	\
