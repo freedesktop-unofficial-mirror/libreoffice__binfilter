@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:05:06 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:26:36 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -58,31 +58,6 @@ PROJECTPCHSOURCE=..\pch\sc_ui_pch
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sc_docsh.cxx	\
-        sc_docsh2.cxx	\
-        sc_docsh3.cxx	\
-        sc_docsh4.cxx 	\
-        sc_docsh5.cxx	\
-        sc_docsh6.cxx 	\
-        sc_docsh7.cxx 	\
-        sc_docsh8.cxx 	\
-        sc_tablink.cxx 	\
-        sc_arealink.cxx 	\
-        sc_dbdocfun.cxx 	\
-        sc_dbdocimp.cxx 	\
-        sc_impex.cxx	\
-        sc_docfunc.cxx	\
-        sc_olinefun.cxx	\
-        sc_servobj.cxx	\
-        sc_tpstat.cxx	\
-        sc_autostyl.cxx	\
-        sc_hiranges.cxx \
-        sc_pntlock.cxx \
-        sc_sizedev.cxx \
-        sc_editable.cxx
-
-
 SLOFILES =  \
         $(SLO)$/sc_docsh.obj	\
         $(SLO)$/sc_docsh2.obj	\
@@ -90,7 +65,6 @@ SLOFILES =  \
         $(SLO)$/sc_docsh4.obj   	\
         $(SLO)$/sc_docsh5.obj   	\
         $(SLO)$/sc_docsh6.obj   	\
-        $(SLO)$/sc_docsh7.obj   	\
         $(SLO)$/sc_docsh8.obj   	\
         $(SLO)$/sc_tablink.obj   	\
         $(SLO)$/sc_arealink.obj   	\
@@ -99,10 +73,6 @@ SLOFILES =  \
         $(SLO)$/sc_impex.obj	\
         $(SLO)$/sc_docfunc.obj	\
         $(SLO)$/sc_olinefun.obj	\
-        $(SLO)$/sc_servobj.obj	\
-        $(SLO)$/sc_tpstat.obj	\
-        $(SLO)$/sc_autostyl.obj	\
-        $(SLO)$/sc_hiranges.obj \
         $(SLO)$/sc_pntlock.obj \
         $(SLO)$/sc_sizedev.obj \
         $(SLO)$/sc_editable.obj
@@ -112,9 +82,6 @@ EXCEPTIONSFILES= \
         $(SLO)$/sc_docsh8.obj \
         $(SLO)$/sc_dbdocimp.obj
 
-
-SRS1NAME=$(TARGET)
-SRC1FILES =  sc_tpstat.src
 
 # --- Tagets -------------------------------------------------------
 
