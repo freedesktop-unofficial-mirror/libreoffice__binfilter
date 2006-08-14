@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:08:32 $
+#   last change: $Author: hr $ $Date: 2006-08-14 13:45:50 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -68,7 +68,6 @@ SLOFILES =  \
         $(SLO)$/sc_viewfun3.obj \
         $(SLO)$/sc_viewfun4.obj \
         $(SLO)$/sc_viewfun5.obj \
-        $(SLO)$/sc_viewfun6.obj \
         $(SLO)$/sc_viewfun7.obj \
         $(SLO)$/sc_dbfunc.obj \
         $(SLO)$/sc_dbfunc2.obj \
@@ -79,22 +78,17 @@ SLOFILES =  \
         $(SLO)$/sc_tabvwsh3.obj \
         $(SLO)$/sc_tabvwsh4.obj \
         $(SLO)$/sc_tabvwsh5.obj \
-        $(SLO)$/sc_tabvwsh8.obj \
         $(SLO)$/sc_tabvwsh9.obj \
         $(SLO)$/sc_tabvwsha.obj \
         $(SLO)$/sc_tabvwshb.obj \
         $(SLO)$/sc_tabvwshc.obj \
-        $(SLO)$/sc_tabvwshd.obj \
         $(SLO)$/sc_tabvwshe.obj \
-    $(SLO)$/sc_tabvwshf.obj \
-    $(SLO)$/sc_tabvwshg.obj \
+        $(SLO)$/sc_tabvwshf.obj \
         $(SLO)$/sc_tabvwshh.obj \
         $(SLO)$/sc_printfun.obj \
         $(SLO)$/sc_pfuncache.obj \
         $(SLO)$/sc_preview.obj \
         $(SLO)$/sc_prevwsh.obj \
-        $(SLO)$/sc_prevwsh2.obj \
-        $(SLO)$/sc_prevloc.obj \
         $(SLO)$/sc_editsh.obj \
         $(SLO)$/sc_pivotsh.obj \
         $(SLO)$/sc_auditsh.obj \
@@ -115,22 +109,14 @@ SLOFILES =  \
         $(SLO)$/sc_invmerge.obj \
         $(SLO)$/sc_select.obj \
         $(SLO)$/sc_olinewin.obj \
-        $(SLO)$/sc_hintwin.obj \
-        $(SLO)$/sc_notemark.obj \
         $(SLO)$/sc_tabcont.obj \
         $(SLO)$/sc_tabsplit.obj \
         $(SLO)$/sc_viewdata.obj \
         $(SLO)$/sc_viewutil.obj \
         $(SLO)$/sc_hdrcont.obj \
         $(SLO)$/sc_colrowba.obj \
-        $(SLO)$/sc_olkact.obj \
-        $(SLO)$/sc_galwrap.obj \
-        $(SLO)$/sc_imapwrap.obj \
         $(SLO)$/sc_reffact.obj \
-        $(SLO)$/sc_spelleng.obj \
-        $(SLO)$/sc_waitoff.obj \
         $(SLO)$/sc_cellsh.obj \
-        $(SLO)$/sc_cellsh1.obj\
         $(SLO)$/sc_cellsh2.obj\
         $(SLO)$/sc_cellsh3.obj\
         $(SLO)$/sc_cellsh4.obj\
