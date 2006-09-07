@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdpagv.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:05:25 $
+ *  last change: $Author: vg $ $Date: 2006-09-07 16:41:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -141,12 +141,6 @@ using namespace ::com::sun::star;
 /*N*/     // 2003-06-03 - #110592# - fs@openoffice.org
 /*N*/     adjustControlVisibility( true );
 /*N*/
-/*N*/     // no start this design mode listening
-/*N*/     if ( bOldVisible && !bOldVisible )
-/*N*/         // visibility changed from true to false -> explicitly
-/*N*/         // start DesignModeListening
-/*N*/         // 2003-07-18 - #110916# - fs@openoffice.org
-/*N*/         switchDesignModeListening( true );
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -424,30 +418,6 @@ using namespace ::com::sun::star;
 //STRIP001 }
 
 //------------------------------------------------------------------------------
-
-/*?*/ void SdrUnoControlRec::switchDesignModeListening( bool _bStart )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-//STRIP001  if ( (bool)IsListening() != _bStart )
-//STRIP001  {
-//STRIP001      bIsListening = _bStart;
-//STRIP001
-//STRIP001      if (xControl.is())
-//STRIP001      {
-//STRIP001             switchPropertyListening( _bStart, true );
-//STRIP001
-//STRIP001          uno::Reference< form::XImageProducerSupplier > xImg( xControl->getModel(), uno::UNO_QUERY );
-//STRIP001          if (xImg.is())
-//STRIP001          {
-//STRIP001              uno::Reference< awt::XImageProducer > xProducer = xImg->getImageProducer();
-//STRIP001              if (xProducer.is())
-//STRIP001                     if ( _bStart )
-//STRIP001                         xProducer->addConsumer(this);
-//STRIP001                     else
-//STRIP001                  xProducer->removeConsumer(this);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-/*?*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /*N*/ SV_IMPL_OP_PTRARR_SORT( SdrUnoControlAccessArr, SdrUnoControlAccessPtr )
