@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svdpagv.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 14:43:51 $
+ *  last change: $Author: vg $ $Date: 2006-09-07 16:42:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -174,9 +174,6 @@ private:
 
     // starts or stops listening for interesting properties at the model
     void    switchPropertyListening( bool _bStart, bool _bListenForAll );
-
-    // starts listening for changes which are relevant in design mode only
-    void    switchDesignModeListening( bool _bStart );
 };
 
 // class for temporarily (during painting) locking some functionality of the SdrUnoControlRec
