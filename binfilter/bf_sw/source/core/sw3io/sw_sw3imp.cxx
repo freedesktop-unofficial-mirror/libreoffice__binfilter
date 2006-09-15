@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3imp.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 10:35:08 $
+ *  last change: $Author: obo $ $Date: 2006-09-15 12:47:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -340,6 +340,7 @@ public:
 /*N*/   pRefSdrObjects = 0;
 /*N*/ #endif
 /*N*/   hBatsFontConv = 0;
+        hMathFontConv = 0;
 /*N*/   Reset();
 /*N*/
 /*N*/   {
