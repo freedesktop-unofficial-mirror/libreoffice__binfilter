@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.14 $
+#   $Revision: 1.15 $
 #
-#   last change: $Author: hr $ $Date: 2006-08-14 13:49:50 $
+#   last change: $Author: obo $ $Date: 2006-09-15 13:57:13 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -40,22 +40,14 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=scalc3
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------------
 
-.INCLUDE :  svpre.mk
-.INCLUDE :  connectivity/version.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sv.mk
 INC+= -I$(PRJ)$/inc$/bf_sc
 IENV!:=$(IENV);..$/res
 
-.IF "$(COM)"=="ICC"
-LINKFLAGS+=/SEGMENTS:512 /PACKD:32768
-.ENDIF
 .IF "$(OS)"=="IRIX"
 LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
 .ENDIF
@@ -132,7 +124,7 @@ SHL1STDLIBS+= \
 
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
 
-.IF "$(GUI)" == "WNT" || "$(GUI)" == "WNT"
+.IF "$(GUI)"=="WNT"
 SHL1RES=    $(RCTARGET)
 .ENDIF
 
@@ -143,22 +135,6 @@ LIB2OBJFILES=	\
             $(SLO)$/sc_scmod.obj
 
 LIB3TARGET=$(SLB)$/scalc3.lib
-#LIB3FILES=	\
-#	$(SLB)$/app.lib \
-#	$(SLB)$/docshell.lib \
-#	$(SLB)$/view.lib \
-#	$(SLB)$/undo.lib \
-#	$(SLB)$/attrdlg.lib \
-#	$(SLB)$/namedlg.lib \
-#	$(SLB)$/styleui.lib \
-#	$(SLB)$/miscdlgs.lib \
-#	$(SLB)$/formdlgs.lib \
-#	$(SLB)$/cctrl.lib \
-#	$(SLB)$/dbgui.lib \
-#	$(SLB)$/optdlg.lib \
-#	$(SLB)$/pagedlg.lib \
-#	$(SLB)$/drawfunc.lib \
-#	$(SLB)$/navipi.lib
 
 LIB3FILES=	\
     $(SLB)$/sc_app.lib \
@@ -174,30 +150,7 @@ LIB3FILES=	\
 LIB3FILES+= \
             $(SLB)$/sc_unoobj.lib
 
-.IF "$(linkinc)" != ""
-#SHL1STDLIBS+= \
-#			$(SLB)$/stardiv_sc.lib
-.ELSE
-#SHL1STDLIBS+= \
-#			$(L)$/offsmart.lib \
-#			$(L)$/svtsmart.lib \
-#			$(L)$/svxsmrt1.lib
-.ENDIF
-
 LIB4TARGET=$(SLB)$/scalc3c.lib
-#LIB4FILES=	\
-#	$(SLB)$/data.lib \
-#	$(SLB)$/tool.lib \
-#	$(SLB)$/dif.lib \
-#	$(SLB)$/excel.lib \
-#	$(SLB)$/xcl97.lib \
-#	$(SLB)$/html.lib \
-#	$(SLB)$/lotus.lib \
-#	$(SLB)$/rtf.lib \
-#	$(SLB)$/xml.lib \
-#	$(SLB)$/accessibility.lib \
-#	$(SLB)$/ftools.lib \
-#	$(SLB)$/scflt.lib
 
 LIB4FILES=	\
     $(SLB)$/sc_data.lib \
@@ -207,11 +160,7 @@ LIB4FILES=	\
 LIB5TARGET=$(LB)$/bf_sclib.lib
 LIB5ARCHIV=$(LB)$/libbf_sclib.a
 
-#.IF "$(GUI)"=="UNX"
 LIB5OBJFILES=$(SLO)$/sc_sclib.obj
-#.ELSE
-#LIB5OBJFILES=$(OBJ)$/sc_sclib.obj
-#.ENDIF
 
 # --- Targets -------------------------------------------------------------
 
@@ -219,8 +168,6 @@ LIB5OBJFILES=$(SLO)$/sc_sclib.obj
 
 ALLTAR:	\
     $(MISC)$/linkinc.ls
-
-.IF "$(depend)" == ""
 
 .IF "$(GUI)" == "WNT"
 
@@ -242,16 +189,4 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
 .IF "$(OPTLINKS)" == "YES"
     echo  RC $(RCFLAGS) $(RES)$/scappi.res                    >>$@
 .ENDIF
-
-.ENDIF
-
-
-
-$(MISCX)$/$(SHL1TARGET).flt:
-    @echo ------------------------------
-    @echo Making: $@
-    @echo WEP>$@
-    @echo LIBMAIN>>$@
-    @echo LibMain>>$@
-
 
