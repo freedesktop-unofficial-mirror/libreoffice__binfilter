@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_optsitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: vg $ $Date: 2006-04-06 16:13:40 $
+ *  last change: $Author: obo $ $Date: 2006-09-15 12:00:32 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -112,10 +112,11 @@ using namespace ::com::sun::star::uno;
 // --------------------
 
 /*N*/ SdOptionsGeneric::SdOptionsGeneric( USHORT nConfigId, const OUString& rSubTree ) :
-/*N*/   maSubTree   ( rSubTree ),
-/*N*/   mpCfgItem   ( NULL ),
-/*N*/   mnConfigId  ( nConfigId ),
-/*N*/   mbInit      ( rSubTree.getLength() == 0 )
+/*N*/   maSubTree       ( rSubTree ),
+/*N*/   mpCfgItem       ( NULL ),
+/*N*/   mnConfigId      ( nConfigId ),
+/*N*/   mbInit          ( rSubTree.getLength() == 0 ),
+/*N*/   mbEnableModify  ( TRUE )
 /*N*/ {
 /*N*/ }
 
@@ -219,11 +220,15 @@ using namespace ::com::sun::star::uno;
 /*N*/                     ( ( SDCFG_DRAW == nConfigId ) ?
 /*N*/                       B2U( "Office.Draw/Layout" ) :
 /*N*/                       B2U( "Office.Impress/Layout" ) ) :
-/*N*/                     OUString() )
+/*N*/                     OUString() ),
+/*N*/   bRuler( TRUE ),
+/*N*/   bMoveOutline( TRUE ),
+/*N*/   bDragStripes( FALSE ),
+/*N*/   bHandlesBezier( FALSE ),
+/*N*/   bHelplines( TRUE ),
+/*N*/   nMetric( isMetricSystem() ? (UINT16)FUNIT_CM : (UINT16)FUNIT_INCH ),
+/*N*/   nDefTab( 1250 )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -398,11 +403,12 @@ using namespace ::com::sun::star::uno;
 /*N*/                     ( ( SDCFG_DRAW == nConfigId ) ?
 /*N*/                       B2U( "Office.Draw/Content" ) :
 /*N*/                       B2U( "Office.Impress/Content" ) ) :
-/*N*/                     OUString() )
+/*N*/                     OUString() ),
+/*N*/   bExternGraphic( FALSE ),
+/*N*/   bOutlineMode( FALSE ),
+/*N*/   bHairlineMode( FALSE ),
+/*N*/   bNoText( FALSE )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -535,11 +541,28 @@ using namespace ::com::sun::star::uno;
 /*N*/                     ( ( SDCFG_DRAW == nConfigId ) ?
 /*N*/                       B2U( "Office.Draw/Misc" ) :
 /*N*/                       B2U( "Office.Impress/Misc" ) ) :
-/*N*/                     OUString() )
+/*N*/                     OUString() ),
+/*N*/   nPreviewQuality( DRAWMODE_DEFAULT ),
+/*N*/   nDefaultObjectSizeWidth( 8000 ),
+/*N*/   nDefaultObjectSizeHeight( 5000 ),
+/*N*/   bStartWithTemplate( TRUE ),
+/*N*/   bMarkedHitMovesAlways( TRUE ),
+/*N*/   bMoveOnlyDragging( FALSE ),
+/*N*/   bCrookNoContortion( FALSE ),
+/*N*/   bQuickEdit( GetConfigId() != SDCFG_DRAW ),
+/*N*/   bMasterPageCache( TRUE ),
+/*N*/   bDragWithCopy( FALSE ),
+/*N*/   bPickThrough( TRUE ),
+/*N*/   bBigHandles( FALSE ),
+/*N*/   bDoubleClickTextEdit( TRUE ),
+/*N*/   bClickChangeRotation( FALSE ),
+/*N*/   bStartWithActualPage( FALSE ),
+/*N*/   bSolidDragging( FALSE ),
+/*N*/   bSolidMarkHdl( TRUE ),
+/*N*/   bSummationOfParagraphs( FALSE ),
+/*N*/   bShowUndoDeleteWarning( TRUE ),
+/*N*/   mnPrinterIndependentLayout( 1 )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -828,11 +851,18 @@ using namespace ::com::sun::star::uno;
 /*N*/                     ( ( SDCFG_DRAW == nConfigId ) ?
 /*N*/                       B2U( "Office.Draw/Snap" ) :
 /*N*/                       B2U( "Office.Impress/Snap" ) ) :
-/*N*/                     OUString() )
+/*N*/                     OUString() ),
+/*N*/   bSnapHelplines( TRUE ),
+/*N*/   bSnapBorder( TRUE ),
+/*N*/   bSnapFrame( FALSE ),
+/*N*/   bSnapPoints( FALSE ),
+/*N*/   bOrtho( FALSE ),
+/*N*/   bBigOrtho( TRUE ),
+/*N*/   bRotate( FALSE ),
+/*N*/   nSnapArea( 5 ),
+/*N*/   nAngle( 1500 ),
+/*N*/   nBezAngle( 1500 )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1012,11 +1042,10 @@ using namespace ::com::sun::star::uno;
 /*N*/ SdOptionsZoom::SdOptionsZoom( USHORT nConfigId, BOOL bUseConfig ) :
 /*N*/   SdOptionsGeneric( nConfigId, ( bUseConfig &&  ( SDCFG_DRAW == nConfigId ) ) ?
 /*N*/                                B2U( "Office.Draw/Zoom" ) :
-/*N*/                                OUString() )
+/*N*/                                OUString() ),
+/*N*/   nX( 1 ),
+/*N*/   nY( 1 )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1346,11 +1375,27 @@ using namespace ::com::sun::star::uno;
 /*N*/                     ( ( SDCFG_DRAW == nConfigId ) ?
 /*N*/                       B2U( "Office.Draw/Print" ) :
 /*N*/                       B2U( "Office.Impress/Print" ) ) :
-/*N*/                     OUString() )
+/*N*/                     OUString() ),
+/*N*/   bDraw( TRUE ),
+/*N*/   bNotes( FALSE ),
+/*N*/   bHandout( FALSE ),
+/*N*/   bOutline( FALSE ),
+/*N*/   bDate( FALSE ),
+/*N*/   bTime( FALSE ),
+/*N*/   bPagename( FALSE ),
+/*N*/   bHiddenPages( TRUE ),
+/*N*/   bPagesize( FALSE ),
+/*N*/   bPagetile( FALSE ),
+/*N*/   bWarningPrinter( TRUE ),
+/*N*/   bWarningSize( FALSE ),
+/*N*/   bWarningOrientation( FALSE ),
+/*N*/   bBooklet( FALSE ),
+/*N*/   bFront( TRUE ),
+/*N*/   bBack( TRUE ),
+/*N*/   bCutPage( FALSE ),
+/*N*/   bPaperbin( FALSE ),
+/*N*/   nQuality( 0 )
 /*N*/ {
-/*N*/   EnableModify( FALSE );
-/*N*/   SetDefaults();
-/*N*/   EnableModify( TRUE );
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -1554,7 +1599,7 @@ using namespace ::com::sun::star::uno;
 
 // ----------------------------------------------------------------------
 
-/*N*/ SdOptionsPrintItem::SdOptionsPrintItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView ) :
+/*N*/ SdOptionsPrintItem::SdOptionsPrintItem( USHORT nWhich, SdOptions* pOpts, FrameView* ) :
 /*N*/   SfxPoolItem     ( nWhich ),
 /*N*/   SdOptionsPrint  ( 0, FALSE )
 /*N*/ {
