@@ -4,9 +4,9 @@
  *
  *  $RCSfile: optsitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 00:58:32 $
+ *  last change: $Author: obo $ $Date: 2006-09-15 12:00:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -144,7 +144,7 @@ protected:
 public:
 
                             SdOptionsGeneric( USHORT nConfigId, const ::rtl::OUString& rSubTree );
-                            ~SdOptionsGeneric();
+    virtual                 ~SdOptionsGeneric();
 
     const ::rtl::OUString&  GetSubTree() const { return maSubTree; }
     USHORT                  GetConfigId() const { return mnConfigId; }
@@ -191,7 +191,7 @@ public:
     BOOL    IsDragStripes() const { Init(); return (BOOL) bDragStripes; }
     BOOL    IsHandlesBezier() const { Init(); return (BOOL) bHandlesBezier; }
     BOOL    IsHelplines() const { Init(); return (BOOL) bHelplines; }
-    UINT16  GetMetric() const { Init(); return( ( 0xffff == nMetric ) ? GetModuleFieldUnit() : nMetric ); }
+    UINT16  GetMetric() const { Init(); return( ( 0xffff == nMetric ) ? (UINT16)GetModuleFieldUnit() : nMetric ); }
     UINT16  GetDefTab() const { Init(); return nDefTab; }
 
     void    SetRulerVisible( BOOL bOn = TRUE ) { if( bRuler != bOn ) { OptionsChanged(); bRuler = bOn; } }
