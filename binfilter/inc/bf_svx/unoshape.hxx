@@ -4,9 +4,9 @@
  *
  *  $RCSfile: unoshape.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:32:21 $
+ *  last change: $Author: vg $ $Date: 2006-09-25 12:44:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -561,6 +561,7 @@ public:
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
 #endif
+using namespace ::com::sun::star::drawing;
 namespace binfilter {
 /***********************************************************************
 *                                                                      *
@@ -572,11 +573,11 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-    SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_LINE ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
+    SvxShapePolyPolygon( SdrObject* pObj , PolygonKind eNew = PolygonKind_LINE ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
     virtual ~SvxShapePolyPolygon() throw();
 
     // Local support functions
-    ::com::sun::star::drawing::PolygonKind GetPolygonKind() const throw();
+    PolygonKind GetPolygonKind() const throw();
     void SetPolygon(const XPolyPolygon& rNew) throw();
     const XPolyPolygon& GetPolygon() const throw();
 
@@ -599,7 +600,7 @@ private:
     XPolyPolygon aEmptyPoly;
 
 public:
-    SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew = ::com::sun::star::drawing::PolygonKind_PATHLINE) throw();
+    SvxShapePolyPolygonBezier( SdrObject* pObj , PolygonKind eNew = PolygonKind_PATHLINE) throw();
     virtual ~SvxShapePolyPolygonBezier() throw();
 
     // Local support functions
