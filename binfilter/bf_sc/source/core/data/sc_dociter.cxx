@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_dociter.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:13:03 $
+ *  last change: $Author: vg $ $Date: 2006-09-25 12:43:59 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -559,7 +559,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                           rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*N*/  #if ! ( defined WTC || defined IRIX || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) )
+/*N*/  #if ! ( defined WTC || defined IRIX || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat,
@@ -894,7 +894,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/  ULONG ScQueryCellIterator::GetNumberFormat()
 /*N*/  {
 /*N*/   ScColumn* pCol = &(pDoc->pTab[nTab])->aCol[nCol];
-/*N*/  #if ! ( defined WTC || defined IRIX  || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) )
+/*N*/  #if ! ( defined WTC || defined IRIX  || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/   lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/   lcl_IterGetNumberFormat( nNumFormat,
