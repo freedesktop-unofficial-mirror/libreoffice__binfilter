@@ -4,9 +4,9 @@
  *
  *  $RCSfile: numitem.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 13:58:58 $
+ *  last change: $Author: vg $ $Date: 2006-09-25 12:44:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -108,6 +108,8 @@ class SvxNodeNum;
 #define NUMITEM_VERSION_03      0x03
 
 #define LINK_TOKEN  0x80 //indicate linked bitmaps - for use in dialog only
+using namespace ::com::sun::star::style;
+
 class SvxNumberType
 {
     static sal_Int32 nRefCount;
@@ -117,7 +119,7 @@ class SvxNumberType
     sal_Bool        bShowSymbol;        // Symbol auch anzeigen?
 
 public:
-    SvxNumberType(sal_Int16 nType = ::com::sun::star::style::NumberingType::ARABIC);
+    SvxNumberType(sal_Int16 nType = (sal_Int16) NumberingType::ARABIC);
     SvxNumberType(const SvxNumberType& rType);
     ~SvxNumberType();
 
