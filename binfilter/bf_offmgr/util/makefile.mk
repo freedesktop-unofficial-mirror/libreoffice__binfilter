@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.7 $
+#   $Revision: 1.8 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:15:38 $
+#   last change: $Author: kz $ $Date: 2006-10-05 10:25:30 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,17 +41,7 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_ofa
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
-
-.IF "$(CPU)"=="i386"
-USE_LDUMP2=TRUE
-.ENDIF
-
-PROJECTPCH=offmgr_ofapch
-PDBTARGET=offmgr_ofapch
-PROJECTPCHSOURCE=$(BFPRJ)$/util$/offmgr_ofapch
 
 # --- Settings ------------------------------------------------------------
 
@@ -82,12 +72,6 @@ RESLIB1SRSFILES=$(RES1FILELIST)
 LIB3TARGET= $(SLB)$/$(TARGET).lib
 LIB3FILES=	$(SLB)$/offmgr_app.lib 		\
             $(SLB)$/offmgr_dialog.lib
-
-#.IF "$(GUI)"!="UNX"
-#LIB3FILES+= \
-#	$(LIBPRE) $(SOLARLIBDIR)$/ysch.lib	\
-#	$(LIBPRE) $(SOLARLIBDIR)$/ysm.lib
-#.ENDIF # "$(GUI)"!="UNX"
 
 SHL2TARGET= $(TARGET)$(UPD)$(DLLPOSTFIX)
 SHL2IMPLIB= $(TARGET)
@@ -168,12 +152,9 @@ $(INCCOM)$/class.lst:
 .IF "$(GUI)$(CPU)$(UPDATER)"=="WNTIYES"
     +-$(COPY) class.lst $@
 .ELSE
-    @+echo nix
+    @echo nix
 .ENDIF
 .ENDIF			# "$(BUILD_SOSL)"==""
 
-#$(INCCOM)$/sba.hrc: $(INC)$/sbasltid.hrc
 $(INCCOM)$/sba.hrc: $(PRJ)$/inc$/bf_offmgr/sbasltid.hrc
     @+-$(COPY) $(PRJ)$/inc/bf_offmgr/sbasltid.hrc $(INCCOM)$/sba.hrc
-#	@+-$(COPY) $(INC)$/sbasltid.hrc $(INCCOM)$/sba.hrc
-#	@+-$(COPY) $(INC)$/sbasltid.hrc $(INC)$/sba,hrc
