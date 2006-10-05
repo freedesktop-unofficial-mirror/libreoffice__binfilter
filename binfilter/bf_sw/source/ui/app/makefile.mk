@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.8 $
+#   $Revision: 1.9 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:33:19 $
+#   last change: $Author: kz $ $Date: 2006-10-05 10:26:10 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -127,6 +127,7 @@ DEPOBJFILES= \
 ALLTAR : $(DEPOBJFILES)
 
 $(SLO)$/sw_swdll.obj : $(INCCOM)$/swdll0.hxx
+$(SLO)$/sw_swlib.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swmodule.obj : $(INCCOM)$/swdll0.hxx
 
 .IF "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
