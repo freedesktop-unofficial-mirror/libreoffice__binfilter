@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:34:30 $
+#   last change: $Author: kz $ $Date: 2006-10-05 10:25:57 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -35,7 +35,6 @@
 
 EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 
-#MKDEPENDSOLVER=YES
 PROJECTPCH4DLL=TRUE
 
 PRJ=..$/..
@@ -44,8 +43,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_starmath
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 PROJECTPCH=math_pch
@@ -56,9 +53,7 @@ PROJECTPCHSOURCE=starmath_math_pch
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/util$/makefile.pmk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-#IMGLST_SRS=$(SRS)$/smres.srs
 INC+= -I$(PRJ)$/inc$/bf_starmath
 # --- Files --------------------------------------------------------
 
@@ -123,13 +118,9 @@ $(SLO)$/starmath_smlib.obj : $(INCCOM)$/dllname.hxx
 $(INCCOM)$/dllname.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
     $(RM) $@
-    +echo \#define DLL_NAME \"$(DLLPRE)bf_sm$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
+    echo \#define DLL_NAME \"$(DLLPRE)bf_sm$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE
-.IF "$(USE_SHELL)"!="4nt"
-        +echo \#define DLL_NAME \"$(DLLPRE)bf_sm$(UPD)$(DLLPOSTFIX)$(DLLPOST)\" >$@
-.ELSE          # "$(USE_SHELL)"!="4nt"
-    +echo #define DLL_NAME "bf_sm$(UPD)$(DLLPOSTFIX)$(DLLPOST)" >$@
-.ENDIF          # "$(USE_SHELL)"!="4nt"
+    echo $(EMQ)#define DLL_NAME $(EMQ)"$(DLLPRE)bf_sm$(UPD)$(DLLPOSTFIX)$(DLLPOST)$(EMQ)" >$@
 .ENDIF
 
 $(SRS)$/starmath_smres.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
