@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_InterfaceContainer.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: vg $ $Date: 2006-03-14 10:53:04 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:28:54 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -758,7 +758,8 @@ void OInterfaceContainer::implInsert(sal_Int32 _nIndex, const Reference< XProper
         aEvt.Element  = pElementMetaData->aElementTypeInterface;
 
         aGuard.clear();
-        NOTIFY_LISTENERS(m_aContainerListeners, XContainerListener, elementInserted, aEvt);
+        m_aContainerListeners.notifyEach(
+            &XContainerListener::elementInserted, aEvt);
     }
 }
 
@@ -860,7 +861,8 @@ void OInterfaceContainer::implReplaceByIndex( const sal_Int32 _nIndex, const Any
     aEvt.ReplacedElement = xOldElement->queryInterface( m_aElementType );
 
     _rClearBeforeNotify.clear();
-    NOTIFY_LISTENERS(m_aContainerListeners, XContainerListener, elementReplaced, aEvt);
+    m_aContainerListeners.notifyEach(
+        &XContainerListener::elementReplaced, aEvt);
 }
 
 //------------------------------------------------------------------------------
@@ -917,7 +919,7 @@ void OInterfaceContainer::implRemoveByIndex( const sal_Int32 _nIndex, ::osl::Cle
     aEvt.Accessor   <<= _nIndex;
 
     _rClearBeforeNotify.clear();
-    NOTIFY_LISTENERS(m_aContainerListeners, XContainerListener, elementRemoved, aEvt);
+    m_aContainerListeners.notifyEach(&XContainerListener::elementRemoved, aEvt);
 }
 
 //------------------------------------------------------------------------------
