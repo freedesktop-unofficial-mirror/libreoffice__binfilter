@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_Edit.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:42:20 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:27:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -283,7 +283,7 @@ void OEditControl::focusLost( const FocusEvent& e ) throw ( ::com::sun::star::un
         {
             EventObject aEvt;
             aEvt.Source = *this;
-            NOTIFY_LISTENERS(m_aChangeListeners, XChangeListener, changed, aEvt);
+            m_aChangeListeners.notifyEach(&XChangeListener::changed, aEvt);
         }
     }
 }
