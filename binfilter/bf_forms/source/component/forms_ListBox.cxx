@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_ListBox.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:47:54 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:28:34 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -298,7 +298,7 @@ void SAL_CALL OListBoxModel::refresh() throw(RuntimeException)
     }
 
     EventObject aEvt(static_cast< XWeak*>(this));
-    NOTIFY_LISTENERS(m_aRefreshListeners, XRefreshListener, refreshed, aEvt);
+    m_aRefreshListeners.notifyEach(&XRefreshListener::refreshed, aEvt);
 }
 
 //------------------------------------------------------------------------------
@@ -1351,7 +1351,7 @@ void OListBoxControl::disposing()
 IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYTAG)
 {
     EventObject aEvt(static_cast< XWeak*>(this));
-    NOTIFY_LISTENERS(m_aChangeListeners, XChangeListener, changed, aEvt);
+    m_aChangeListeners.notifyEach(&XChangeListener::changed, aEvt);
     return 1;
 }
 
