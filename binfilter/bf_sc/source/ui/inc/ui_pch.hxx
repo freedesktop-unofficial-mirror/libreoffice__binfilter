@@ -4,9 +4,9 @@
  *
  *  $RCSfile: ui_pch.hxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2006-07-25 08:06:10 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:29:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -198,7 +198,6 @@
 #include <svtools/inetdef.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
 #include <svtools/cancel.hxx>
-#include <svtools/compat.hxx>
 #include <svtools/inetmsg.hxx>
 #include <bf_sfx2/app.hxx>
 #include <tools/urlobj.hxx>
