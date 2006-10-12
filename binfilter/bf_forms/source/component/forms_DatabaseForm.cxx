@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_DatabaseForm.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: obo $ $Date: 2006-07-11 08:38:32 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:27:22 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -1498,7 +1498,7 @@ sal_Bool ODatabaseForm::InsertFilePart( INetMIMEMessage& rParent, const ::rtl::O
 //------------------------------------------------------------------------------
 void ODatabaseForm::onError(const SQLErrorEvent& _rEvent)
 {
-    NOTIFY_LISTENERS(m_aErrorListeners, XSQLErrorListener, errorOccured, _rEvent);
+    m_aErrorListeners.notifyEach(&XSQLErrorListener::errorOccured, _rEvent);
 }
 
 //------------------------------------------------------------------------------
@@ -2425,7 +2425,7 @@ void ODatabaseForm::reset_impl(bool _bAproveByListeners)
     aResetGuard.clear();
     {
         EventObject aEvt(static_cast<XWeak*>(this));
-        NOTIFY_LISTENERS(m_aResetListeners, XResetListener, resetted, aEvt);
+        m_aResetListeners.notifyEach(&XResetListener::resetted, aEvt);
     }
 
     aResetGuard.reset();
@@ -3172,7 +3172,7 @@ void ODatabaseForm::load_impl(sal_Bool bCausedByParentForm, sal_Bool bMoveToFirs
         m_bLoaded = sal_True;
         aGuard.clear();
         EventObject aEvt(static_cast<XWeak*>(this));
-        NOTIFY_LISTENERS(m_aLoadListeners, XLoadListener, loaded, aEvt);
+        m_aLoadListeners.notifyEach(&XLoadListener::loaded, aEvt);
 
         // if we are on the insert row, we have to reset all controls
         // to set the default values
@@ -3192,7 +3192,7 @@ void SAL_CALL ODatabaseForm::unload() throw( RuntimeException )
 
     aGuard.clear();
     EventObject aEvt(static_cast<XWeak*>(this));
-    NOTIFY_LISTENERS(m_aLoadListeners, XLoadListener, unloading, aEvt);
+    m_aLoadListeners.notifyEach(&XLoadListener::unloading, aEvt);
 
     if (m_xAggregateAsRowSet.is())
     {
@@ -3226,7 +3226,7 @@ void SAL_CALL ODatabaseForm::unload() throw( RuntimeException )
         stopSharingConnection();
 
     aGuard.clear();
-    NOTIFY_LISTENERS(m_aLoadListeners, XLoadListener, unloaded, aEvt);
+    m_aLoadListeners.notifyEach(&XLoadListener::unloaded, aEvt);
 }
 
 //------------------------------------------------------------------------------
