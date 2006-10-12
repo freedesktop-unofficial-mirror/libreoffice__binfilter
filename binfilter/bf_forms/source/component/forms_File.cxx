@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_File.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 15:43:19 $
+ *  last change: $Author: obo $ $Date: 2006-10-12 10:27:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -310,7 +310,7 @@ void SAL_CALL OFileControlModel::reset() throw ( ::com::sun::star::uno::RuntimeE
             ::osl::MutexGuard aGuard(m_aMutex);
             _reset();
         }
-        NOTIFY_LISTENERS(m_aResetListeners, XResetListener, resetted, aEvt);
+        m_aResetListeners.notifyEach(&XResetListener::resetted, aEvt);
     }
 }
 
