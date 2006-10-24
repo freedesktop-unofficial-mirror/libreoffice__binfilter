@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_printer.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:52:57 $
+ *  last change: $Author: hr $ $Date: 2006-10-24 15:05:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,7 +52,7 @@
 // auto strip #include <svtools/printoptions.hxx>
 // auto strip #endif
 #include <vector>
-
+#include <iostream>
 #pragma hdrstop
 
 // auto strip #include "printer.hxx"
@@ -290,7 +290,17 @@ namespace binfilter {
 /*N*/   bKnown = GetName() == rTheOrigJobSetup.GetPrinterName();
 /*N*/
 /*N*/   if ( bKnown )
+        {
 /*N*/       SetJobSetup( rTheOrigJobSetup );
+        }
+
+        // --> FME 2006-09-19 #b6449032# Use old XPrinter emulation. rTheOrigJobSetup
+        // already has this setting (see SfxPrinter::Create()).
+        JobSetup aJobSetup( GetJobSetup() );
+        aJobSetup.SetValue( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StrictSO52Compatibility" ) ),
+                            rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" ) ) );
+        SetJobSetup( aJobSetup );
+        // <--
 /*N*/ }
 
 //--------------------------------------------------------------------
