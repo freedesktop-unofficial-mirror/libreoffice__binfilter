@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_unoshap4.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:29:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:57:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -52,9 +52,6 @@
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
@@ -65,11 +62,7 @@
 #endif
 
 #include "unoshprp.hxx"
-// auto strip #include "unoapi.hxx"
 
-// auto strip #ifndef _SVDGLOB_HXX
-// auto strip #include "svdglob.hxx"
-// auto strip #endif
 #include "svdstr.hrc"
 
 #ifndef _FRAMEOBJ_HXX
