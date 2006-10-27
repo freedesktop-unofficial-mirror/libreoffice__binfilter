@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sch_chtm3d2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:52:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:23:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,43 +33,22 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _E3D_LIGHT3D_HXX //autogen
-// auto strip #include <bf_svx/light3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _E3D_DLIGHT3D_HXX //autogen
-// auto strip #include <bf_svx/dlight3d.hxx>
-// auto strip #endif
-// auto strip #include "chtmodel.hxx"
-// auto strip #include <bf_svx/obj3d.hxx>
 #ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
 #endif
 #ifndef _SCH_DATAPOIN_HXX
 #include "datapoin.hxx"
 #endif
-// auto strip #ifndef _CAMERA3D_HXX //autogen
-// auto strip #include <bf_svx/camera3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _E3D_EXTRUD3D_HXX //autogen
-// auto strip #include <bf_svx/extrud3d.hxx>
-// auto strip #endif
-// auto strip #ifndef _E3D_POLYGON3D_HXX //autogen
-// auto strip #include <bf_svx/polygn3d.hxx>
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
 
-// auto strip #include "chmod3d.hxx"
 #include "schattr.hxx"
 #include "objid.hxx"
 
 #include "axisobj.hxx"
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include <bf_svx/svx3ditems.hxx>
-// auto strip #endif
 namespace binfilter {
 
 #define SCH_MIN(a, b) (((a) < (b))? (a): (b))
@@ -118,38 +97,6 @@ namespace binfilter {
 /*N*/
 /*N*/     return nShape;
 /*N*/ }
-//STRIP001 long ChartModel::GetChartShapeType(long nRow)
-//STRIP001 {
-//STRIP001  long nShape   =CHART_SHAPE3D_IGNORE;
-//STRIP001  long nOldShape=CHART_SHAPE3D_IGNORE;
-//STRIP001  const SfxPoolItem *pPoolItem;
-//STRIP001  long nColCnt=GetColCount();
-//STRIP001  for(long nCol=0;nCol<nColCnt;nCol++)
-//STRIP001  {
-//STRIP001      const SfxItemSet& rAttr=GetDataPointAttr(nCol,nRow);
-//STRIP001      if(rAttr.GetItemState(SCHATTR_STYLE_SHAPE, TRUE, &pPoolItem) == SFX_ITEM_SET)
-//STRIP001      {
-//STRIP001          nShape=((const SfxInt32Item*) pPoolItem)->GetValue();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if(!GetDataPointObj(nCol,nRow))
-//STRIP001          {
-//STRIP001              nShape=nOldShape;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nShape=CHART_SHAPE3D_SQUARE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( (nShape!=nOldShape) && nOldShape!=CHART_SHAPE3D_IGNORE)
-//STRIP001              return CHART_SHAPE3D_ANY;
-//STRIP001
-//STRIP001      nOldShape=nShape;
-//STRIP001  }
-//STRIP001  return nShape;
-//STRIP001 }
 /*************************************************************************
 |*                                                 |
 |* 3D-Balken erzeugen; aPos: links, unten, hinten  |__
@@ -568,17 +515,7 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SchRectObj::SetItem(const SfxPoolItem& rItem)
-//STRIP001 {
-//STRIP001  SdrRectObj::SetItem(rItem);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
-//STRIP001 void SchRectObj::ClearItem(USHORT nWhich)
-//STRIP001 {
-//STRIP001  SdrRectObj::ClearItem(nWhich);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
 /*N*/ void SchRectObj::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
@@ -594,11 +531,6 @@ namespace binfilter {
 /*N*/   ImpStoreObjcetsAttr(this);
 /*N*/ }
 
-//STRIP001 void SchE3dExtrudeObj::ClearItem(USHORT nWhich)
-//STRIP001 {
-//STRIP001  E3dExtrudeObj::ClearItem(nWhich);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
 /*N*/ void SchE3dExtrudeObj::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
@@ -614,11 +546,6 @@ namespace binfilter {
 /*N*/   ImpStoreObjcetsAttr(this);
 /*N*/ }
 
-//STRIP001 void SchE3dPolygonObj::ClearItem(USHORT nWhich)
-//STRIP001 {
-//STRIP001  E3dPolygonObj::ClearItem(nWhich);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
 /*N*/ void SchE3dPolygonObj::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
@@ -634,11 +561,6 @@ namespace binfilter {
 /*N*/   ImpStoreObjcetsAttr(this);
 /*N*/ }
 
-//STRIP001 void SchE3dLatheObj::ClearItem(USHORT nWhich)
-//STRIP001 {
-//STRIP001  E3dLatheObj::ClearItem(nWhich);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
 /*N*/ void SchE3dLatheObj::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
@@ -648,17 +570,7 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void SchE3dObject::SetItem(const SfxPoolItem& rItem)
-//STRIP001 {
-//STRIP001  E3dObject::SetItem(rItem);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
-//STRIP001 void SchE3dObject::ClearItem(USHORT nWhich)
-//STRIP001 {
-//STRIP001  E3dObject::ClearItem(nWhich);
-//STRIP001  ImpStoreObjcetsAttr(this);
-//STRIP001 }
 
 /*N*/ void SchE3dObject::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
