@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_obj3d.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:32:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:49:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,195 +36,80 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-// auto strip #include "svdglob.hxx"
 
 #ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
 #endif
 
-// auto strip #ifndef _SVDATTR_HXX
-// auto strip #include "svdattr.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include "svdpage.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDIO_HXX
-// auto strip #include "svdio.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDMODEL_HXX
-// auto strip #include "svdmodel.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDITER_HXX
-// auto strip #include "svditer.hxx"
-// auto strip #endif
 
 #ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
 #endif
 
-// auto strip #ifndef _CAMERA3D_HXX
-// auto strip #include "camera3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_VOLMRK3D_HXX
-// auto strip #include "volmrk3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
 #endif
 
-// auto strip #ifndef _E3D_SCENE3D_HXX
-// auto strip #include "scene3d.hxx"
-// auto strip #endif
 
 #ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
 #endif
 
-// auto strip #ifndef _E3D_CUBE3D_HXX
-// auto strip #include "cube3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_LATHE3D_HXX
-// auto strip #include "lathe3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_SPHERE3D_HXX
-// auto strip #include "sphere3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_EXTRUD3D_HXX
-// auto strip #include "extrud3d.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _E3D_OBJ3D_HXX
-// auto strip #include "obj3d.hxx"
-// auto strip #endif
 
 #ifndef _XOUTX_HXX
 #include "xoutx.hxx"
 #endif
 
-// auto strip #ifndef _XTABLE_HXX
-// auto strip #include "xtable.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLCLIT_HXX
-// auto strip #include "xflclit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SETTINGS_HXX
-// auto strip #include <vcl/settings.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B3D_BASE3D_HXX
-// auto strip #include <goodies/base3d.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B3D_B3DTEX_HXX
-// auto strip #include <goodies/b3dtex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNCLIT_HXX
-// auto strip #include "xlnclit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SFXMETRICITEM_HXX
-// auto strip #include <svtools/metitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _XTABLE_HXX
-// auto strip #include "xtable.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_FILLITEM_HXX
-// auto strip #include "xfillit.hxx"
-// auto strip #endif
 
 #ifndef _SVX_XLNWTIT_HXX
 #include "xlnwtit.hxx"
 #endif
 
-// auto strip #ifndef _SV_VIRDEV_HXX
-// auto strip #include <vcl/virdev.hxx>
-// auto strip #endif
 
 #ifndef _SVDIO_HXX
 #include "svdio.hxx"
 #endif
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _B3D_B3DTRANS_HXX
-// auto strip #include "b3dtrans.hxx"
-// auto strip #endif
 
 #ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
 #endif
 
-// auto strip #ifndef _SVX_COLRITEM_HXX
-// auto strip #include "colritem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVXE3DITEM_HXX
-// auto strip #include "e3ditem.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XLNTRIT_HXX
-// auto strip #include "xlntrit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_XFLTRIT_HXX
-// auto strip #include "xfltrit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVDPAGV_HXX
-// auto strip #include "svdpagv.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SV_GRADIENT_HXX
-// auto strip #include <vcl/gradient.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SV_METAACT_HXX
-// auto strip #include <vcl/metaact.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SVX3DITEMS_HXX
-// auto strip #include "svx3ditems.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SFX_WHITER_HXX
-// auto strip #include <svtools/whiter.hxx>
-// auto strip #endif
 
-// auto strip #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
-// auto strip #include <svtools/colorcfg.hxx>
-// auto strip #endif
 
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif
 
-// auto strip #ifndef _SVX_XGRSCIT_HXX
-// auto strip #include "xgrscit.hxx"
-// auto strip #endif
 
-// auto strip #ifndef _SVX_SVDOIMP_HXX
-// auto strip #include "svdoimp.hxx"
-// auto strip #endif
 namespace binfilter {
 
 #define ITEMVALUE(ItemSet,Id,Cast)  ((const Cast&)(ItemSet).Get(Id)).GetValue()
@@ -270,21 +155,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 SdrObject* E3dObjList::NbcRemoveObject(ULONG nObjNum)
-//STRIP001 {
-//STRIP001  // Owner holen
-//STRIP001  DBG_ASSERT(GetOwnerObj()->ISA(E3dObject), "AW: Entfernen 3DObject aus Parent != 3DObject");
-//STRIP001  E3dObject* pOwner = (E3dObject*)GetOwnerObj();
-//STRIP001
-//STRIP001  // call parent
-//STRIP001  SdrObject* pRetval = SdrObjList::NbcRemoveObject(nObjNum);
-//STRIP001
-//STRIP001  // FitSnapRectToBoundVol vorbereiten
-//STRIP001  if(GetOwnerObj() && GetOwnerObj()->ISA(E3dScene))
-//STRIP001      ((E3dScene*)GetOwnerObj())->CorrectSceneDimensions();
-//STRIP001
-//STRIP001  return pRetval;
-//STRIP001 }
 
 /*N*/ SdrObject* E3dObjList::RemoveObject(ULONG nObjNum)
 /*N*/ {
@@ -344,18 +214,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::SetSelected(BOOL bNew)
-//STRIP001 {
-//STRIP001  // selbst setzen
-//STRIP001  bIsSelected = bNew;
-//STRIP001
-//STRIP001  // bei SubObjekten setzen
-//STRIP001  for ( ULONG i = 0; i < pSub->GetObjCount(); i++ )
-//STRIP001  {
-//STRIP001      if(pSub->GetObj(i) && pSub->GetObj(i)->ISA(E3dObject))
-//STRIP001          ((E3dObject*)pSub->GetObj(i))->SetSelected(bNew);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -363,10 +221,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 BOOL E3dObject::IsBreakObjPossible()
-//STRIP001 {
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ SdrAttrObj* E3dObject::GetBreakObj()
 /*N*/ {
@@ -424,40 +278,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::TakeObjInfo(SdrObjTransformInfoRec& rInfo) const
-//STRIP001 {
-//STRIP001  rInfo.bResizeFreeAllowed    = TRUE;
-//STRIP001  rInfo.bResizePropAllowed    = TRUE;
-//STRIP001  rInfo.bRotateFreeAllowed    = TRUE;
-//STRIP001  rInfo.bRotate90Allowed      = TRUE;
-//STRIP001  rInfo.bMirrorFreeAllowed    = FALSE;
-//STRIP001  rInfo.bMirror45Allowed      = FALSE;
-//STRIP001  rInfo.bMirror90Allowed      = FALSE;
-//STRIP001  rInfo.bShearAllowed         = FALSE;
-//STRIP001  rInfo.bEdgeRadiusAllowed    = FALSE;
-//STRIP001  rInfo.bCanConvToPath        = FALSE;
-//STRIP001
-//STRIP001  // no transparence for 3d objects
-//STRIP001  rInfo.bTransparenceAllowed = FALSE;
-//STRIP001
-//STRIP001  // gradient depends on fillstyle
-//STRIP001  // BM *** check if SetItem is NULL ***
-//STRIP001  XFillStyle eFillStyle = ((XFillStyleItem&)(GetItem(XATTR_FILLSTYLE))).GetValue();
-//STRIP001  rInfo.bGradientAllowed = (eFillStyle == XFILL_GRADIENT);
-//STRIP001
-//STRIP001  // Umwandeln von 3D-Koerpern in Gruppe von Polygonen:
-//STRIP001  //
-//STRIP001  // Erst mal nicht moeglich, da die Erzeugung einer Gruppe von
-//STRIP001  // 2D-Polygonen notwendig waere, die tiefensortiert werden muessten,
-//STRIP001  // also bei Durchdringugnen auch gegeneinander geschnitten werden
-//STRIP001  // muessten. Auch die Texturkoorinaten waeren ein ungeloestes
-//STRIP001  // Problem.
-//STRIP001  rInfo.bCanConvToPoly = FALSE;
-//STRIP001  rInfo.bCanConvToContour = FALSE;
-//STRIP001
-//STRIP001  rInfo.bCanConvToPathLineToArea = FALSE;
-//STRIP001  rInfo.bCanConvToPolyLineToArea = FALSE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -598,53 +418,6 @@ namespace binfilter {
 |* Objekt verschieben in 2D, wird bei Cursortasten benoetigt
 |*
 \************************************************************************/
-//STRIP001 void E3dObject::NbcMove(const Size& rSize)
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  // Bewegung in X,Y im Augkoordinatensystem
-//STRIP001  E3dScene* pScene = GetScene();
-//STRIP001
-//STRIP001  if(pScene)
-//STRIP001  {
-//STRIP001      // Abmessungen der Szene in 3D und 2D als Vergleich
-//STRIP001      Rectangle aRect = pScene->GetSnapRect();
-//STRIP001
-//STRIP001      // Transformation Weltkoordinaten bis eine VOR Objektkoordinaten holen
-//STRIP001      Matrix4D mInvDispTransform;
-//STRIP001      if(GetParentObj())
-//STRIP001      {
-//STRIP001          mInvDispTransform = GetParentObj()->GetFullTransform();
-//STRIP001          mInvDispTransform.Invert();
-//STRIP001      }
-//STRIP001
-//STRIP001      // BoundVolume von Weltkoordinaten in Eye-Koordinaten
-//STRIP001      B3dTransformationSet& rTransSet = pScene->GetCameraSet();
-//STRIP001      const Volume3D& rVol = pScene->GetBoundVolume();
-//STRIP001      Volume3D aEyeVol = rVol.GetTransformVolume(rTransSet.GetOrientation());
-//STRIP001
-//STRIP001      // relativen Bewegungsvektor in Augkoordinaten bilden
-//STRIP001      Vector3D aMove(
-//STRIP001          (double)rSize.Width() * aEyeVol.GetWidth() / (double)aRect.GetWidth(),
-//STRIP001          (double)-rSize.Height() * aEyeVol.GetHeight() / (double)aRect.GetHeight(),
-//STRIP001          0.0);
-//STRIP001
-//STRIP001      // Bewegungsvektor in lokale Koordinaten des Parents des Objektes
-//STRIP001      Vector3D aPos;
-//STRIP001      aMove = rTransSet.EyeToWorldCoor(aMove);
-//STRIP001      aMove *= mInvDispTransform;
-//STRIP001      aPos = rTransSet.EyeToWorldCoor(aPos);
-//STRIP001      aPos *= mInvDispTransform;
-//STRIP001      aMove = aMove - aPos;
-//STRIP001
-//STRIP001      // Transformieren
-//STRIP001      Translate(aMove);
-//STRIP001
-//STRIP001      // force new camera and SnapRect on scene, geometry may have really
-//STRIP001      // changed
-//STRIP001      pScene->CorrectSceneDimensions();
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -663,11 +436,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 USHORT E3dObject::GetHdlCount() const
-//STRIP001 {
-//STRIP001  // 8 Eckpunkte + 1 E3dVolumeMarker (= Wireframe-Darstellung)
-//STRIP001  return 9;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -675,37 +443,11 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::AddToHdlList(SdrHdlList& rHdlList) const
-//STRIP001 {
-//STRIP001  XPolyPolygon     aXPP(12);
-//STRIP001  XPolygon         aLine(2);
-//STRIP001  E3dVolumeMarker* pVolMarker;
-//STRIP001  USHORT           nPolyCnt;
-//STRIP001
-//STRIP001  ((E3dObject*) this)->ImpCreateWireframePoly(aXPP, E3DDETAIL_ONEBOX);
-//STRIP001  nPolyCnt = aXPP.Count();
-//STRIP001
-//STRIP001  for ( USHORT i = 0; i < nPolyCnt; i += 3 )
-//STRIP001  {
-//STRIP001      rHdlList.AddHdl(new SdrHdl(aXPP[i][0], HDL_BWGT));
-//STRIP001      rHdlList.AddHdl(new SdrHdl(aXPP[i][1], HDL_BWGT));
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nPolyCnt > 0 )
-//STRIP001  {
-//STRIP001      pVolMarker = new E3dVolumeMarker(aXPP);
-//STRIP001      rHdlList.AddHdl(pVolMarker);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
 \************************************************************************/
 
-//STRIP001 FASTBOOL E3dObject::HasSpecialDrag() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -714,40 +456,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::Paint3D(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001  const SdrPaintInfoRec& rInfoRec, UINT16 nDrawFlags)
-//STRIP001 {
-//STRIP001  if(pSub && pSub->GetObjCount())
-//STRIP001  {
-//STRIP001      BOOL bWasNotActive = rInfoRec.bNotActive;
-//STRIP001      BOOL bIsEnteredGroup(FALSE);
-//STRIP001
-//STRIP001      if((rInfoRec.pPV && GetSubList() && rInfoRec.pPV->GetObjList() == GetSubList())
-//STRIP001          || ((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) != 0))
-//STRIP001      {
-//STRIP001          bIsEnteredGroup = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bIsEnteredGroup && bWasNotActive)
-//STRIP001      {
-//STRIP001          // auf aktive Elemente schalten
-//STRIP001          ((SdrPaintInfoRec&)rInfoRec).bNotActive = FALSE;
-//STRIP001      }
-//STRIP001
-//STRIP001      for (ULONG i = 0; i < pSub->GetObjCount(); i++)
-//STRIP001      {
-//STRIP001          SdrObject* pObj = pSub->GetObj(i);
-//STRIP001          DBG_ASSERT(pObj->ISA(E3dObject), "AW: In E3dObject sind nur 3D-Objekte erlaubt!");
-//STRIP001          ((E3dObject*)pObj)->Paint3D(rOut, pBase3D, rInfoRec, nDrawFlags);
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bIsEnteredGroup && bWasNotActive)
-//STRIP001      {
-//STRIP001          // Zurueck auf Ursprung, Zustand wieder verlassen
-//STRIP001          ((SdrPaintInfoRec&)rInfoRec).bNotActive = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -755,18 +463,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::TakeContour3D(XPolyPolygon& rPoly)
-//STRIP001 {
-//STRIP001  if(pSub && pSub->GetObjCount())
-//STRIP001  {
-//STRIP001      for (ULONG i = 0; i < pSub->GetObjCount(); i++)
-//STRIP001      {
-//STRIP001          SdrObject* pObj = pSub->GetObj(i);
-//STRIP001          DBG_ASSERT(pObj->ISA(E3dObject), "AW: In E3dObject sind nur 3D-Objekte erlaubt!");
-//STRIP001          ((E3dObject*)pObj)->TakeContour3D(rPoly);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -774,21 +470,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::DrawShadows(Base3D *pBase3D,
-//STRIP001  ExtOutputDevice& rXOut,
-//STRIP001  const Rectangle& rBound, const Volume3D& rVolume,
-//STRIP001  const SdrPaintInfoRec& rInfoRec)
-//STRIP001 {
-//STRIP001  if(pSub && pSub->GetObjCount())
-//STRIP001  {
-//STRIP001      for (ULONG i = 0; i < pSub->GetObjCount(); i++)
-//STRIP001      {
-//STRIP001          SdrObject* pObj = pSub->GetObj(i);
-//STRIP001          DBG_ASSERT(pObj->ISA(E3dObject), "AW: In E3dObject sind nur 3D-Objekte erlaubt!");
-//STRIP001          ((E3dObject*)pObj)->DrawShadows(pBase3D, rXOut, rBound, rVolume, rInfoRec);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1051,17 +732,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::GetFullTransform(Matrix4D& rMatrix) const
-//STRIP001 {
-//STRIP001  if ( bTfHasChanged )
-//STRIP001  {
-//STRIP001      rMatrix *= aTfMatrix;
-//STRIP001      if ( GetParentObj() )
-//STRIP001          GetParentObj()->GetFullTransform(rMatrix);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      rMatrix *= aFullTfMatrix;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1143,14 +813,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::ResetTransform()
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcResetTransform();
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1158,26 +820,12 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::NbcTranslate(const Vector3D& rTrans)
-//STRIP001 {
-//STRIP001  aTfMatrix.Translate(rTrans);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 /*************************************************************************
 |*
 |* Translation mit Repaint-Broadcast
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::Translate(const Vector3D& rTrans)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcTranslate(rTrans);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1185,39 +833,15 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::NbcScaleX(double fSx)
-//STRIP001 {
-//STRIP001  aTfMatrix.ScaleX(fSx);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::NbcScaleY(double fSy)
-//STRIP001 {
-//STRIP001  aTfMatrix.ScaleY(fSy);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::NbcScaleZ(double fSz)
-//STRIP001 {
-//STRIP001  aTfMatrix.ScaleZ(fSz);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::NbcScale(double fSx, double fSy, double fSz)
-//STRIP001 {
-//STRIP001  aTfMatrix.Scale(fSx, fSy, fSz);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1225,12 +849,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::NbcScale(double fS)
-//STRIP001 {
-//STRIP001  aTfMatrix.Scale(fS, fS, fS);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1238,58 +856,18 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::ScaleX(double fSx)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcScaleX(fSx);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::ScaleY(double fSy)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcScaleY(fSy);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::ScaleZ(double fSz)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcScaleZ(fSz);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::Scale(double fSx, double fSy, double fSz)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcScale(fSx, fSy, fSz);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::Scale(double fS)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcScale(fS);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1297,30 +875,12 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::NbcRotateX(double fAng)
-//STRIP001 {
-//STRIP001  aTfMatrix.RotateX(fAng);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::NbcRotateY(double fAng)
-//STRIP001 {
-//STRIP001  aTfMatrix.RotateY(fAng);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::NbcRotateZ(double fAng)
-//STRIP001 {
-//STRIP001  aTfMatrix.RotateZ(fAng);
-//STRIP001  SetTransformChanged();
-//STRIP001  StructureChanged(this);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1328,36 +888,12 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::RotateX(double fAng)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcRotateX(fAng);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::RotateY(double fAng)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcRotateY(fAng);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /************************************************************************/
 
-//STRIP001 void E3dObject::RotateZ(double fAng)
-//STRIP001 {
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  NbcRotateZ(fAng);
-//STRIP001  SetChanged();
-//STRIP001  SendRepaintBroadcast();
-//STRIP001  if (pUserCall != NULL) pUserCall->Changed(*this, SDRUSERCALL_RESIZE, Rectangle());
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1388,10 +924,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::SetLogicalGroup(USHORT nGroup)
-//STRIP001 {
-//STRIP001  nLogicalGroup = nGroup;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1400,34 +932,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
-//STRIP001  E3dDragDetail eDetail)
-//STRIP001 {
-//STRIP001  if ( eDetail == E3DDETAIL_DEFAULT )
-//STRIP001      eDetail = eDragDetail;
-//STRIP001
-//STRIP001  if ( eDetail == E3DDETAIL_ALLBOXES || eDetail == E3DDETAIL_ALLLINES )
-//STRIP001  {
-//STRIP001      E3dObjList* pOL = pSub;
-//STRIP001      ULONG nObjCnt = pOL->GetObjCount();
-//STRIP001
-//STRIP001      for (ULONG i = 0; i < nObjCnt; i++)
-//STRIP001      {
-//STRIP001          E3dObject* pObj = (E3dObject*)pOL->GetObj(i);
-//STRIP001          DBG_ASSERT(pObj->ISA(E3dObject), "In E3dObject sind nur 3D-Objekte erlaubt!");
-//STRIP001
-//STRIP001          Matrix4D aLocalTf(pObj->GetTransform());
-//STRIP001          if(pTf)
-//STRIP001              aLocalTf *= *pTf;
-//STRIP001          pObj->CreateWireframe(rWirePoly, &aLocalTf, eDetail);
-//STRIP001      }
-//STRIP001
-//STRIP001      if(eDetail == E3DDETAIL_ALLBOXES && nObjCnt != 1)
-//STRIP001          GetBoundVolume().CreateWireframe(rWirePoly, pTf);
-//STRIP001  }
-//STRIP001  else
-//STRIP001      GetBoundVolume().CreateWireframe(rWirePoly, pTf);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1435,19 +939,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::TakeObjNameSingul(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNameSingulObj3d);
-//STRIP001
-//STRIP001  String aName( GetName() );
-//STRIP001  if(aName.Len())
-//STRIP001  {
-//STRIP001      rName += sal_Unicode(' ');
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001      rName += aName;
-//STRIP001      rName += sal_Unicode('\'');
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1455,10 +946,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::TakeObjNamePlural(XubString& rName) const
-//STRIP001 {
-//STRIP001  rName=ImpGetResStr(STR_ObjNamePluralObj3d);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1466,45 +953,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::ImpCreateWireframePoly(XPolyPolygon& rXPP,
-//STRIP001  E3dDragDetail eDetail)
-//STRIP001 {
-//STRIP001  // Neue Methode
-//STRIP001  E3dScene* pScene = GetScene();
-//STRIP001  Polygon3D aPoly3D(24, 240);
-//STRIP001  XPolygon aLine(2);
-//STRIP001  USHORT nPntCnt;
-//STRIP001
-//STRIP001  // WireFrame herstellen
-//STRIP001  CreateWireframe(aPoly3D, NULL, eDetail);
-//STRIP001  nPntCnt = aPoly3D.GetPointCount();
-//STRIP001
-//STRIP001  if(pScene)
-//STRIP001  {
-//STRIP001      // Maximas holen in DeviceKoordinaten
-//STRIP001      Volume3D aVolume = pScene->FitInSnapRect();
-//STRIP001
-//STRIP001      // Maximas fuer Abbildung verwenden
-//STRIP001      pScene->GetCameraSet().SetDeviceVolume(aVolume, FALSE);
-//STRIP001      Matrix4D mTransform = GetFullTransform();
-//STRIP001      pScene->GetCameraSet().SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001      if ( nPntCnt > 1 )
-//STRIP001      {
-//STRIP001          Vector3D aVec;
-//STRIP001          for ( USHORT i = 0; i < nPntCnt; i += 2 )
-//STRIP001          {
-//STRIP001              aVec = pScene->GetCameraSet().ObjectToViewCoor(aPoly3D[i]);
-//STRIP001              aLine[0] = Point((long)(aVec.X() + 0.5), (long)(aVec.Y() + 0.5));
-//STRIP001
-//STRIP001              aVec = pScene->GetCameraSet().ObjectToViewCoor(aPoly3D[i+1]);
-//STRIP001              aLine[1] = Point((long)(aVec.X() + 0.5), (long)(aVec.Y() + 0.5));
-//STRIP001
-//STRIP001              rXPP.Insert(aLine);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1512,13 +960,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::TakeXorPoly(XPolyPolygon& rXPP, FASTBOOL bDetail) const
-//STRIP001 {
-//STRIP001  rXPP.Clear();
-//STRIP001  // Const mal wieder weg, da evtl. das BoundVolume neu generiert wird
-//STRIP001  static E3dDragDetail eDetail = E3DDETAIL_DEFAULT;
-//STRIP001  ((E3dObject*) this)->ImpCreateWireframePoly(rXPP, eDetail);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -1526,87 +967,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dObject::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  SdrAttrObj::operator=(rObj);
-//STRIP001
-//STRIP001  const E3dObject& r3DObj = (const E3dObject&) rObj;
-//STRIP001  if (r3DObj.GetSubList())
-//STRIP001  {
-//STRIP001      // feststellen, ob alle SubObjekte selektiert oder
-//STRIP001      // deselektiert sind
-//STRIP001      BOOL bAllSelected = TRUE;
-//STRIP001      BOOL bNoneSelected = TRUE;
-//STRIP001      UINT32 nObjCnt = r3DObj.GetSubList()->GetObjCount();
-//STRIP001
-//STRIP001      ULONG i;
-//STRIP001      for (i = 0; i < nObjCnt; i++)
-//STRIP001      {
-//STRIP001          SdrObject* pObj = r3DObj.GetSubList()->GetObj(i);
-//STRIP001          if(pObj && pObj->ISA(E3dObject))
-//STRIP001          {
-//STRIP001              E3dObject* p3DObj = (E3dObject*)pObj;
-//STRIP001              if(p3DObj->GetSelected())
-//STRIP001                  bNoneSelected = FALSE;
-//STRIP001              else
-//STRIP001                  bAllSelected = FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bAllSelected || bNoneSelected)
-//STRIP001      {
-//STRIP001          // Normales verhalten
-//STRIP001          pSub->CopyObjects(*r3DObj.GetSubList());
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // Spezielle SubListe aufstellen, kopieren
-//STRIP001          SdrObjList aOwnSubList(*r3DObj.GetSubList());
-//STRIP001
-//STRIP001          // Alle nicht selektierten Objekte rausschmeissen
-//STRIP001          for(i = 0;i < aOwnSubList.GetObjCount();i++)
-//STRIP001          {
-//STRIP001              SdrObject* pObj = aOwnSubList.GetObj(i);
-//STRIP001              if(pObj && pObj->ISA(E3dObject))
-//STRIP001              {
-//STRIP001                  E3dObject* p3DObj = (E3dObject*)pObj;
-//STRIP001                  if(!p3DObj->GetSelected())
-//STRIP001                  {
-//STRIP001                      aOwnSubList.NbcRemoveObject(pObj->GetOrdNum());
-//STRIP001                      i--;
-//STRIP001                      delete pObj;
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          // jetzt diese Liste kopieren
-//STRIP001          pSub->CopyObjects(aOwnSubList);
-//STRIP001
-//STRIP001          // Hier noch ein FitSnapRect einleiten
-//STRIP001          if(ISA(E3dScene))
-//STRIP001              ((E3dScene&)r3DObj).FitSnapRectToBoundVol();
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // BoundVol kann uebernommen werden, da die Childs auch kopiert werden
-//STRIP001  bBoundVolValid  = r3DObj.bBoundVolValid;
-//STRIP001  aBoundVol       = r3DObj.aBoundVol;
-//STRIP001  aLocalBoundVol  = r3DObj.aLocalBoundVol;
-//STRIP001
-//STRIP001  aTfMatrix       = r3DObj.aTfMatrix;
-//STRIP001  nLogicalGroup   = r3DObj.nLogicalGroup;
-//STRIP001  nObjTreeLevel   = r3DObj.nObjTreeLevel;
-//STRIP001  nPartOfParent   = r3DObj.nPartOfParent;
-//STRIP001  eDragDetail     = r3DObj.eDragDetail;
-//STRIP001
-//STRIP001  // Da sich der Parent geaendert haben kann, Gesamttransformation beim
-//STRIP001  // naechsten Mal auf jeden Fall neu bestimmen
-//STRIP001  SetTransformChanged();
-//STRIP001
-//STRIP001  // Selektionsstatus kopieren
-//STRIP001  bIsSelected = r3DObj.bIsSelected;
-//STRIP001 }
 
 //////////////////////////////////////////////////////////////////////////////
 // ItemSet access
@@ -1980,21 +1340,6 @@ namespace binfilter {
 // Rotation um die Achse die senkrecht auf dem Bildschirm steht und zwar
 // unabhaengig davon, wie die Szene bisher gedreht worden ist.
 
-//STRIP001 void E3dObject::NbcRotate(const Point& rRef, long nWink, double sn, double cs)
-//STRIP001 {
-//STRIP001      // Also derzeit sind die Klebepunkte relativ zum aOutRect der Szene definiert. Vor dem Drehen
-//STRIP001      // werden die Klebepunkte relativ zur Seite definiert. Sie nehmen an der Drehung der Szene noch nicht Teil
-//STRIP001      // dafuer gibt es den
-//STRIP001  SetGlueReallyAbsolute(TRUE);
-//STRIP001
-//STRIP001  // SendRepaintBroadcast();
-//STRIP001  double fWinkelInRad = nWink/100 * F_PI180;
-//STRIP001  NbcRotateZ(fWinkelInRad);
-//STRIP001  SetRectsDirty();    // Veranlasst eine Neuberechnung aller BoundRects
-//STRIP001  NbcRotateGluePoints(rRef,nWink,sn,cs);  // Rotiert die Klebepunkte (die haben noch Koordinaten relativ
-//STRIP001                                          // zum Urpsung des Blattes
-//STRIP001  SetGlueReallyAbsolute(FALSE);  // ab jetzt sind sie wieder relativ zum BoundRect (also dem aOutRect definiert)
-//STRIP001 }
 
 /*************************************************************************/
 
@@ -2139,23 +1484,6 @@ namespace binfilter {
 /*N*/       // Schatten beruecksichtigen
 /*N*/       if(DoDrawShadow())
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/            // ObjectTrans setzen
-//STRIP001 /*?*/            Matrix4D mTransform = GetFullTransform();
-//STRIP001 /*?*/            pScene->GetCameraSet().SetObjectTrans(mTransform);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Schattenpolygon holen
-//STRIP001 /*?*/            PolyPolygon3D aShadowPoly3D;
-//STRIP001 /*?*/            ImpGetShadowPolygon(aShadowPoly3D);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // invert Y coor cause of GetPolyPolygon() later
-//STRIP001 /*?*/            Matrix4D aTransMat;
-//STRIP001 /*?*/            aTransMat.Scale(1.0, -1.0, 1.0);
-//STRIP001 /*?*/            aShadowPoly3D.Transform(aTransMat);
-//STRIP001 /*?*/
-//STRIP001 /*?*/            PolyPolygon aShadowPoly(aShadowPoly3D.GetPolyPolygon());
-//STRIP001 /*?*/
-//STRIP001 /*?*/            // Hinzufuegen
-//STRIP001 /*?*/            aOutRect.Union(aShadowPoly.GetBoundRect());
 /*N*/       }
 
         // Linienbreite beruecksichtigen
@@ -2397,211 +1725,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 AlphaMask E3dCompoundObject::GetAlphaMask(const SfxItemSet& rSet, const Size& rSizePixel)
-//STRIP001 {
-//STRIP001  const XFillFloatTransparenceItem& rFloatTrans = ((const XFillFloatTransparenceItem&)(rSet.Get(XATTR_FILLFLOATTRANSPARENCE)));
-//STRIP001  VirtualDevice *pVD = new VirtualDevice();
-//STRIP001  pVD->SetOutputSizePixel( rSizePixel );
-//STRIP001  XOutputDevice *pXOut = new XOutputDevice( pVD );
-//STRIP001  SfxItemSet aFillSet(*rSet.GetPool());
-//STRIP001
-//STRIP001  XGradient aNewGradient(rFloatTrans.GetValue());
-//STRIP001
-//STRIP001  Color aStartCol(aNewGradient.GetStartColor());
-//STRIP001  if(aNewGradient.GetStartIntens() != 100)
-//STRIP001  {
-//STRIP001      double fFact = (double)aNewGradient.GetStartIntens() / 100.0;
-//STRIP001      aStartCol = (B3dColor)aStartCol * fFact;
-//STRIP001  }
-//STRIP001  aNewGradient.SetStartColor(aStartCol);
-//STRIP001  aNewGradient.SetStartIntens(100);
-//STRIP001
-//STRIP001  Color aEndCol(aNewGradient.GetEndColor());
-//STRIP001  if(aNewGradient.GetEndIntens() != 100)
-//STRIP001  {
-//STRIP001      double fFact = (double)aNewGradient.GetEndIntens() / 100.0;
-//STRIP001      aEndCol = (B3dColor)aEndCol * fFact;
-//STRIP001  }
-//STRIP001  aNewGradient.SetEndColor(aEndCol);
-//STRIP001  aNewGradient.SetEndIntens(100);
-//STRIP001
-//STRIP001  aFillSet.Put( XFillStyleItem( XFILL_GRADIENT ) );
-//STRIP001  aFillSet.Put( XFillGradientItem( String(), aNewGradient ) );
-//STRIP001  aFillSet.Put( XGradientStepCountItem( aNewGradient.GetSteps() ) );
-//STRIP001  pXOut->SetFillAttr( aFillSet );
-//STRIP001
-//STRIP001  aFillSet.Put( XLineStyleItem( XLINE_NONE ) );
-//STRIP001  pXOut->SetLineAttr( aFillSet );
-//STRIP001
-//STRIP001  pXOut->DrawRect( Rectangle( Point(), rSizePixel ) );
-//STRIP001  Bitmap aGradientBitmap = pVD->GetBitmap( Point(), rSizePixel );
-//STRIP001
-//STRIP001  if( pVD )
-//STRIP001      delete pVD;
-//STRIP001  if( pXOut )
-//STRIP001      delete pXOut;
-//STRIP001
-//STRIP001  return AlphaMask(aGradientBitmap);
-//STRIP001 }
 
-//STRIP001 Bitmap E3dCompoundObject::GetGradientBitmap(const SfxItemSet& rSet)
-//STRIP001 {
-//STRIP001  VirtualDevice *pVD = new VirtualDevice();
-//STRIP001  Size aVDSize(256, 256);
-//STRIP001  pVD->SetOutputSizePixel( aVDSize );
-//STRIP001  XOutputDevice *pXOut = new XOutputDevice( pVD );
-//STRIP001  SfxItemSet aFillSet(*rSet.GetPool());
-//STRIP001
-//STRIP001  aFillSet.Put( XFillStyleItem( XFILL_GRADIENT ) );
-//STRIP001  aFillSet.Put( rSet.Get(XATTR_FILLGRADIENT) );
-//STRIP001  aFillSet.Put( rSet.Get(XATTR_GRADIENTSTEPCOUNT) );
-//STRIP001  pXOut->SetFillAttr( aFillSet );
-//STRIP001
-//STRIP001  aFillSet.Put( XLineStyleItem( XLINE_NONE ) );
-//STRIP001  pXOut->SetLineAttr( aFillSet );
-//STRIP001
-//STRIP001  pXOut->DrawRect( Rectangle( Point(), aVDSize ) );
-//STRIP001  Bitmap aGradientBitmap = pVD->GetBitmap( Point(), aVDSize );
-//STRIP001
-//STRIP001  if( pVD )
-//STRIP001      delete pVD;
-//STRIP001  if( pXOut )
-//STRIP001      delete pXOut;
-//STRIP001
-//STRIP001  return aGradientBitmap;
-//STRIP001 }
 
-//STRIP001 Bitmap E3dCompoundObject::GetHatchBitmap(const SfxItemSet& rSet)
-//STRIP001 {
-//STRIP001  VirtualDevice *pVD = new VirtualDevice();
-//STRIP001  const XFillHatchItem* pFillHatchItem = (XFillHatchItem*)&rSet.Get(XATTR_FILLHATCH);
-//STRIP001  const XHatch& rHatch = pFillHatchItem->GetValue();
-//STRIP001  long nDistance = rHatch.GetDistance(); // in 100stel mm
-//STRIP001  double fAngle = double(rHatch.GetAngle()) * (F_PI180 / 10.0);
-//STRIP001
-//STRIP001  double fMinX(0.0);
-//STRIP001  double fMaxX(0.0);
-//STRIP001  double fMinY(0.0);
-//STRIP001  double fMaxY(0.0);
-//STRIP001
-//STRIP001  // nDistance in X-Richtung
-//STRIP001  double fX = cos(fAngle) * double(nDistance);
-//STRIP001  double fY = sin(fAngle) * double(nDistance);
-//STRIP001
-//STRIP001  if(fX < fMinX)
-//STRIP001      fMinX = fX;
-//STRIP001  if(fX > fMaxX)
-//STRIP001      fMaxX = fX;
-//STRIP001
-//STRIP001  if(fY < fMinY)
-//STRIP001      fMinY = fY;
-//STRIP001  if(fY > fMaxY)
-//STRIP001      fMaxY = fY;
-//STRIP001
-//STRIP001  // nDistance in Y-Richtung
-//STRIP001  fX = cos(fAngle + F_PI2) * double(nDistance);
-//STRIP001  fY = sin(fAngle + F_PI2) * double(nDistance);
-//STRIP001
-//STRIP001  if(fX < fMinX)
-//STRIP001      fMinX = fX;
-//STRIP001  if(fX > fMaxX)
-//STRIP001      fMaxX = fX;
-//STRIP001
-//STRIP001  if(fY < fMinY)
-//STRIP001      fMinY = fY;
-//STRIP001  if(fY > fMaxY)
-//STRIP001      fMaxY = fY;
-//STRIP001
-//STRIP001  // nDistance in -X-Richtung
-//STRIP001  fX = cos(fAngle + F_PI) * double(nDistance);
-//STRIP001  fY = sin(fAngle + F_PI) * double(nDistance);
-//STRIP001
-//STRIP001  if(fX < fMinX)
-//STRIP001      fMinX = fX;
-//STRIP001  if(fX > fMaxX)
-//STRIP001      fMaxX = fX;
-//STRIP001
-//STRIP001  if(fY < fMinY)
-//STRIP001      fMinY = fY;
-//STRIP001  if(fY > fMaxY)
-//STRIP001      fMaxY = fY;
-//STRIP001
-//STRIP001  // nDistance in -Y-Richtung
-//STRIP001  fX = cos(fAngle + (F_PI + F_PI2)) * double(nDistance);
-//STRIP001  fY = sin(fAngle + (F_PI + F_PI2)) * double(nDistance);
-//STRIP001
-//STRIP001  if(fX < fMinX)
-//STRIP001      fMinX = fX;
-//STRIP001  if(fX > fMaxX)
-//STRIP001      fMaxX = fX;
-//STRIP001
-//STRIP001  if(fY < fMinY)
-//STRIP001      fMinY = fY;
-//STRIP001  if(fY > fMaxY)
-//STRIP001      fMaxY = fY;
-//STRIP001
-//STRIP001  long nDistanceX = long(fMaxX - fMinX);
-//STRIP001  long nDistanceY = long(fMaxY - fMinY);
-//STRIP001
-//STRIP001  // Bei Schraffuren in eine der 4 Himmelsrichtungen Ausdehnung halbieren
-//STRIP001  if(rHatch.GetAngle() % 900 == 0)
-//STRIP001  {
-//STRIP001      nDistanceX /= 2;
-//STRIP001      nDistanceY /= 2;
-//STRIP001  }
-//STRIP001
-//STRIP001  Size aVDSize(64, 64);
-//STRIP001  pVD->SetOutputSizePixel( aVDSize );
-//STRIP001  MapMode aMapMode(MAP_100TH_MM);
-//STRIP001  pVD->SetMapMode(aMapMode);
-//STRIP001
-//STRIP001  XOutputDevice *pXOut = new XOutputDevice( pVD );
-//STRIP001  SfxItemSet aFillSet(*rSet.GetPool());
-//STRIP001
-//STRIP001  aFillSet.Put( XFillStyleItem( XFILL_SOLID ) );
-//STRIP001  aFillSet.Put( XFillColorItem( String(), RGB_Color( COL_WHITE ) ) );
-//STRIP001  aFillSet.Put( XLineStyleItem( XLINE_NONE ) );
-//STRIP001  pXOut->SetLineAttr( aFillSet );
-//STRIP001  pXOut->SetFillAttr( aFillSet );
-//STRIP001  pXOut->DrawRect( Rectangle( Point(), pVD->PixelToLogic(aVDSize) ) );
-//STRIP001
-//STRIP001  aFillSet.Put( XFillStyleItem( XFILL_HATCH ) );
-//STRIP001  aFillSet.Put( rSet.Get(XATTR_FILLHATCH) );
-//STRIP001  pXOut->SetFillAttr( aFillSet );
-//STRIP001
-//STRIP001  Size aLogicalSize = pVD->PixelToLogic(aVDSize);
-//STRIP001
-//STRIP001  // #109483#
-//STRIP001  // If nDistance was 0 (the init value from the API), nDistanceX/Y
-//STRIP001  // may be zero, too, which is not a valid value for a fraction. The
-//STRIP001  // best value then is 1 since this simply takes the logical size as
-//STRIP001  // scaling. A distance of 0 in a hatch makes no sense anyways.
-//STRIP001  if(!nDistanceX)
-//STRIP001  {
-//STRIP001      nDistanceX = 1;
-//STRIP001  }
-//STRIP001
-//STRIP001  if(!nDistanceY)
-//STRIP001  {
-//STRIP001      nDistanceY = 1;
-//STRIP001  }
-//STRIP001
-//STRIP001  Fraction aFractionX(aLogicalSize.Width(), nDistanceX);
-//STRIP001  Fraction aFractionY(aLogicalSize.Height(), nDistanceY);
-//STRIP001  aMapMode.SetScaleX(aFractionX);
-//STRIP001  aMapMode.SetScaleY(aFractionY);
-//STRIP001  pVD->SetMapMode(aMapMode);
-//STRIP001  pXOut->DrawRect( Rectangle( Point(), pVD->PixelToLogic(aVDSize) ) );
-//STRIP001
-//STRIP001  Bitmap aHatchBitmap = pVD->GetBitmap( Point(), pVD->PixelToLogic(aVDSize) );
-//STRIP001
-//STRIP001  if( pVD )
-//STRIP001      delete pVD;
-//STRIP001  if( pXOut )
-//STRIP001      delete pXOut;
-//STRIP001
-//STRIP001  return aHatchBitmap;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2609,49 +1734,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::GetLineGeometry(PolyPolygon3D& rLinePolyPolygon) const
-//STRIP001 {
-//STRIP001  // use basic implementation here. Maybe optimized later.
-//STRIP001  rLinePolyPolygon.Clear();
-//STRIP001  B3dEntityBucket& rEntityBucket = ((E3dCompoundObject*)this)->GetDisplayGeometry().GetEntityBucket();
-//STRIP001  GeometryIndexValueBucket& rIndexBucket = ((E3dCompoundObject*)this)->GetDisplayGeometry().GetIndexBucket();
-//STRIP001  sal_uInt32 nPolyCounter(0);
-//STRIP001  sal_uInt32 nEntityCounter(0);
-//STRIP001
-//STRIP001  while(nPolyCounter < rIndexBucket.Count())
-//STRIP001  {
-//STRIP001      // next primitive
-//STRIP001      sal_uInt32 nUpperBound(rIndexBucket[nPolyCounter++].GetIndex());
-//STRIP001      Vector3D aLastPoint;
-//STRIP001
-//STRIP001      BOOL bLastLineVisible = rEntityBucket[nUpperBound - 1].IsEdgeVisible();
-//STRIP001      if(bLastLineVisible)
-//STRIP001          aLastPoint = rEntityBucket[nUpperBound - 1].Point().GetVector3D();
-//STRIP001
-//STRIP001      while(nEntityCounter < nUpperBound)
-//STRIP001      {
-//STRIP001          Vector3D aNewPoint = rEntityBucket[nEntityCounter].Point().GetVector3D();
-//STRIP001
-//STRIP001          if(bLastLineVisible)
-//STRIP001          {
-//STRIP001              if(aLastPoint != aNewPoint)
-//STRIP001              {
-//STRIP001                  // fill polygon
-//STRIP001                  Polygon3D aNewPoly(2);
-//STRIP001                  aNewPoly[0] = aLastPoint;
-//STRIP001                  aNewPoly[1] = aNewPoint;
-//STRIP001
-//STRIP001                  // create line geometry for polygon in eye coor to
-//STRIP001                  // have it always orthogonal to camera plane
-//STRIP001                  rLinePolyPolygon.Insert(aNewPoly);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          bLastLineVisible = rEntityBucket[nEntityCounter++].IsEdgeVisible();
-//STRIP001          aLastPoint = aNewPoint;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -2880,25 +1962,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void E3dCompoundObject::AddNormals(
-//STRIP001  PolyPolygon3D& rPolyPolyDest,
-//STRIP001  const PolyPolygon3D& rPolyPolySource)
-//STRIP001 {
-//STRIP001  USHORT nPolyCnt = rPolyPolyDest.Count();
-//STRIP001
-//STRIP001  for(UINT16 a=0;a<nPolyCnt;a++)
-//STRIP001  {
-//STRIP001      Polygon3D& rPolyDest = rPolyPolyDest[a];
-//STRIP001      const Polygon3D& rPolySource = rPolyPolySource[a];
-//STRIP001      USHORT nPntCnt = rPolyDest.GetPointCount();
-//STRIP001
-//STRIP001      for(UINT16 b=0;b<nPntCnt;b++)
-//STRIP001      {
-//STRIP001          rPolyDest[b] += rPolySource[b];
-//STRIP001          rPolyDest[b].Normalize();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void E3dCompoundObject::ScalePoly(
 /*N*/   PolyPolygon3D& rPolyPolyScale,
@@ -3290,27 +2353,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::operator=(const SdrObject& rObj)
-//STRIP001 {
-//STRIP001  // erstmal alle Childs kopieren
-//STRIP001  E3dObject::operator=(rObj);
-//STRIP001
-//STRIP001  // weitere Parameter kopieren
-//STRIP001  const E3dCompoundObject& r3DObj = (const E3dCompoundObject&) rObj;
-//STRIP001
-//STRIP001  aDisplayGeometry = r3DObj.aDisplayGeometry;
-//STRIP001  bCreateNormals = r3DObj.bCreateNormals;
-//STRIP001  bCreateTexture = r3DObj.bCreateTexture;
-//STRIP001  bGeometryValid = r3DObj.bGeometryValid;
-//STRIP001  bBytesLeft = r3DObj.bBytesLeft;
-//STRIP001  bCreateE3dPolyObj = r3DObj.bCreateE3dPolyObj;
-//STRIP001
-//STRIP001  // neu ab 383:
-//STRIP001  aMaterialAmbientColor = r3DObj.aMaterialAmbientColor;
-//STRIP001
-//STRIP001  aBackMaterial = r3DObj.aBackMaterial;
-//STRIP001  bUseDifferentBackMaterial = r3DObj.bUseDifferentBackMaterial;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -3318,515 +2360,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::ImpSet3DParForFill(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001  BOOL& bDrawObject, UINT16 nDrawFlags, BOOL bGhosted, BOOL bIsFillDraft)
-//STRIP001 {
-//STRIP001  if(bIsFillDraft)
-//STRIP001  {
-//STRIP001      bDrawObject = FALSE;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      const SfxItemSet& rSet = GetItemSet();
-//STRIP001      const XFillStyle eFillStyle = ((const XFillStyleItem&)(rSet.Get(XATTR_FILLSTYLE))).GetValue();
-//STRIP001
-//STRIP001      if(eFillStyle == XFILL_NONE)
-//STRIP001      {
-//STRIP001          bDrawObject = FALSE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          sal_uInt16 nFillTrans = ((const XFillTransparenceItem&)(rSet.Get(XATTR_FILLTRANSPARENCE))).GetValue();
-//STRIP001          const XFillFloatTransparenceItem& rFloatTrans = ((const XFillFloatTransparenceItem&)(rSet.Get(XATTR_FILLFLOATTRANSPARENCE)));
-//STRIP001          BOOL bFillTransparence = (nFillTrans != 0);
-//STRIP001          BOOL bFloatTransparence = rFloatTrans.IsEnabled();
-//STRIP001          BOOL bAnyTransparence = (bFillTransparence || bFloatTransparence);
-//STRIP001          BOOL bDrawTransparence = ((nDrawFlags & E3D_DRAWFLAG_TRANSPARENT) != 0);
-//STRIP001
-//STRIP001          // force no fill transparence when float transparence
-//STRIP001          if(bFloatTransparence)
-//STRIP001          {
-//STRIP001              bFillTransparence = FALSE;
-//STRIP001              nFillTrans = 0;
-//STRIP001          }
-//STRIP001
-//STRIP001          if(bAnyTransparence != bDrawTransparence)
-//STRIP001          {
-//STRIP001              bDrawObject = FALSE;
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // get base color
-//STRIP001              Color aColorSolid = ((const XFillColorItem&) (rSet.Get(XATTR_FILLCOLOR))).GetValue();
-//STRIP001              if(bGhosted)
-//STRIP001              {
-//STRIP001                  aColorSolid = Color(
-//STRIP001                      (aColorSolid.GetRed() >> 1) + 0x80,
-//STRIP001                      (aColorSolid.GetGreen() >> 1) + 0x80,
-//STRIP001                      (aColorSolid.GetBlue() >> 1) + 0x80);
-//STRIP001              }
-//STRIP001
-//STRIP001              // prepare custom colors for linear transparency and black/white mode
-//STRIP001              Color aColorSolidWithTransparency(aColorSolid);
-//STRIP001              aColorSolidWithTransparency.SetTransparency((UINT8)(nFillTrans * 255 / 100));
-//STRIP001              Color aColorWhite(COL_WHITE);
-//STRIP001              Color aColorWhiteWithTransparency(COL_WHITE);
-//STRIP001              aColorWhiteWithTransparency.SetTransparency((UINT8)(nFillTrans * 255 / 100));
-//STRIP001
-//STRIP001              // set base materials (if no drawmode is set)
-//STRIP001              pBase3D->SetMaterial(aColorWhite, Base3DMaterialAmbient);
-//STRIP001              pBase3D->SetMaterial(aColorWhiteWithTransparency, Base3DMaterialDiffuse);
-//STRIP001              pBase3D->SetMaterial(GetMaterialSpecular(), Base3DMaterialSpecular);
-//STRIP001              pBase3D->SetMaterial(GetMaterialEmission(), Base3DMaterialEmission);
-//STRIP001              pBase3D->SetShininess(GetMaterialSpecularIntensity());
-//STRIP001              if(GetUseDifferentBackMaterial())
-//STRIP001              {
-//STRIP001                  pBase3D->SetMaterial(aColorWhite, Base3DMaterialAmbient, Base3DMaterialBack);
-//STRIP001                  pBase3D->SetMaterial(aColorWhiteWithTransparency, Base3DMaterialDiffuse, Base3DMaterialBack);
-//STRIP001                  pBase3D->SetMaterial(aBackMaterial.GetMaterial(Base3DMaterialSpecular), Base3DMaterialSpecular, Base3DMaterialBack);
-//STRIP001                  pBase3D->SetMaterial(aBackMaterial.GetMaterial(Base3DMaterialEmission), Base3DMaterialEmission, Base3DMaterialBack);
-//STRIP001                  pBase3D->SetShininess(aBackMaterial.GetShininess(), Base3DMaterialBack);
-//STRIP001              }
-//STRIP001
-//STRIP001              // prepare some more later used texture parameters
-//STRIP001              B3dTexture* pTexture = NULL;
-//STRIP001              Base3DTextureWrap eWrapX(Base3DTextureRepeat);
-//STRIP001              Base3DTextureWrap eWrapY(Base3DTextureRepeat);
-//STRIP001              Matrix4D mTexture;
-//STRIP001
-//STRIP001              // now test the different draw modes and cases
-//STRIP001              if((pBase3D->GetOutputDevice()->GetDrawMode() & DRAWMODE_WHITEFILL) != 0)
-//STRIP001              {
-//STRIP001                  // set material to black and white mode
-//STRIP001                  pBase3D->SetMaterial(aColorWhite, Base3DMaterialAmbient);
-//STRIP001                  pBase3D->SetMaterial(aColorWhiteWithTransparency, Base3DMaterialDiffuse);
-//STRIP001                  if(GetUseDifferentBackMaterial())
-//STRIP001                  {
-//STRIP001                      pBase3D->SetMaterial(aColorWhite, Base3DMaterialAmbient, Base3DMaterialBack);
-//STRIP001                      pBase3D->SetMaterial(aColorWhiteWithTransparency, Base3DMaterialDiffuse, Base3DMaterialBack);
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // Color stays white, just set render mode
-//STRIP001                  pBase3D->SetRenderMode(Base3DRenderFill);
-//STRIP001              }
-//STRIP001              else if((pBase3D->GetOutputDevice()->GetDrawMode() & DRAWMODE_SETTINGSFILL) != 0)
-//STRIP001              {
-//STRIP001                  Color aColorFill(Application::GetSettings().GetStyleSettings().GetWindowColor());
-//STRIP001                  Color aColorFillWithTransparency(aColorFill);
-//STRIP001                  aColorFillWithTransparency.SetTransparency((UINT8)(nFillTrans * 255 / 100));
-//STRIP001
-//STRIP001                  // set material to black and white mode
-//STRIP001                  pBase3D->SetMaterial(aColorFill, Base3DMaterialAmbient);
-//STRIP001                  pBase3D->SetMaterial(aColorFillWithTransparency, Base3DMaterialDiffuse);
-//STRIP001                  if(GetUseDifferentBackMaterial())
-//STRIP001                  {
-//STRIP001                      pBase3D->SetMaterial(aColorFill, Base3DMaterialAmbient, Base3DMaterialBack);
-//STRIP001                      pBase3D->SetMaterial(aColorFillWithTransparency, Base3DMaterialDiffuse, Base3DMaterialBack);
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // Color stays solid, just set render mode
-//STRIP001                  pBase3D->SetRenderMode(Base3DRenderFill);
-//STRIP001              }
-//STRIP001              else if(eFillStyle == XFILL_BITMAP)
-//STRIP001              {
-//STRIP001                  // bitmap fill, use bitmap texture from 2D defines
-//STRIP001                  BitmapEx aBmpEx;
-//STRIP001
-//STRIP001                  if(SFX_ITEM_SET == rSet.GetItemState(XATTR_FILLBITMAP, TRUE))
-//STRIP001                  {
-//STRIP001                      // EIndeutige Bitmap, benutze diese
-//STRIP001                      aBmpEx = BitmapEx((((const XFillBitmapItem&) (rSet.Get(XATTR_FILLBITMAP))).GetValue()).GetBitmap());
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      // Keine eindeutige Bitmap. benutze default
-//STRIP001                      //
-//STRIP001                      // DIES IST EINE NOTLOESUNG, BIS MAN IRGENDWO AN DIE
-//STRIP001                      // DEAULT-BITMAP RANKOMMT (IST VON KA IN VORBEREITUNG)
-//STRIP001                      //
-//STRIP001                      aBmpEx = BitmapEx(Bitmap(Size(4,4), 8));
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // Texturattribute bilden
-//STRIP001                  TextureAttributesBitmap aTexAttr(
-//STRIP001                      bGhosted,
-//STRIP001                      (void*)&rSet.Get(XATTR_FILLFLOATTRANSPARENCE),
-//STRIP001                      aBmpEx.GetBitmap());
-//STRIP001                  pTexture = pBase3D->ObtainTexture(aTexAttr);
-//STRIP001                  if(!pTexture)
-//STRIP001                  {
-//STRIP001                      if(bGhosted)
-//STRIP001                          aBmpEx.Adjust( 50 );
-//STRIP001
-//STRIP001                      if(bFloatTransparence)
-//STRIP001                          // add alpha channel to bitmap
-//STRIP001                          aBmpEx = BitmapEx(aBmpEx.GetBitmap(), GetAlphaMask(rSet, aBmpEx.GetSizePixel()));
-//STRIP001
-//STRIP001                      pTexture = pBase3D->ObtainTexture(aTexAttr, aBmpEx);
-//STRIP001                  }
-//STRIP001
-//STRIP001                  sal_uInt16 nOffX = ((const SfxUInt16Item&) (rSet.Get(XATTR_FILLBMP_TILEOFFSETX))).GetValue();
-//STRIP001                  sal_uInt16 nOffY = ((const SfxUInt16Item&) (rSet.Get(XATTR_FILLBMP_TILEOFFSETY))).GetValue();
-//STRIP001                  sal_uInt16 nOffPosX = ((const SfxUInt16Item&) (rSet.Get(XATTR_FILLBMP_POSOFFSETX))).GetValue();
-//STRIP001                  sal_uInt16 nOffPosY = ((const SfxUInt16Item&) (rSet.Get(XATTR_FILLBMP_POSOFFSETY))).GetValue();
-//STRIP001                  RECT_POINT eRectPoint = (RECT_POINT)((const SfxEnumItem&) (rSet.Get(XATTR_FILLBMP_POS))).GetValue();
-//STRIP001                  BOOL bTile = ((const SfxBoolItem&) (rSet.Get(XATTR_FILLBMP_TILE))).GetValue();
-//STRIP001                  BOOL bStretch = ((const SfxBoolItem&) (rSet.Get(XATTR_FILLBMP_STRETCH))).GetValue();
-//STRIP001                  BOOL bLogSize = ((const SfxBoolItem&) (rSet.Get(XATTR_FILLBMP_SIZELOG))).GetValue();
-//STRIP001                  Size aSize(
-//STRIP001                      labs(((const SfxMetricItem&)(rSet.Get(XATTR_FILLBMP_SIZEX))).GetValue()),
-//STRIP001                      labs(((const SfxMetricItem&)(rSet.Get(XATTR_FILLBMP_SIZEY))).GetValue()));
-//STRIP001                  Vector3D aScaleVector(1.0, 1.0, 1.0);
-//STRIP001                  Vector3D aTranslateVector(0.0, 0.0, 0.0);
-//STRIP001
-//STRIP001                  // Groesse beachten, logische Groesse einer Kachel bestimmen
-//STRIP001                  // erst mal in 1/100 mm
-//STRIP001                  Size aLogicalSize = aBmpEx.GetPrefSize();
-//STRIP001                  const Volume3D& rVol = GetBoundVolume();
-//STRIP001                  if(aLogicalSize.Width() == 0 || aLogicalSize.Height() == 0)
-//STRIP001                  {
-//STRIP001                      // Keine logische Groesse, nimm Pixelgroesse
-//STRIP001                      // und wandle diese um
-//STRIP001                      aLogicalSize = Application::GetDefaultDevice()->PixelToLogic(aBmpEx.GetSizePixel(), MAP_100TH_MM);
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      if ( aBmpEx.GetPrefMapMode() == MAP_PIXEL )
-//STRIP001                          aLogicalSize = Application::GetDefaultDevice()->PixelToLogic( aLogicalSize, MAP_100TH_MM );
-//STRIP001                      else
-//STRIP001                          aLogicalSize = OutputDevice::LogicToLogic( aLogicalSize, aBmpEx.GetPrefMapMode(), MAP_100TH_MM );
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if(bLogSize)
-//STRIP001                  {
-//STRIP001                      // logische Groesse
-//STRIP001                      if(aSize.Width() == 0 && aSize.Height() == 0)
-//STRIP001                      {
-//STRIP001                          // Originalgroesse benutzen, Original flagy
-//STRIP001
-//STRIP001                          // Um ein vernuenftiges Mapping bei defaults auch
-//STRIP001                          // fuer 3D-Objekte zu erreichen, nimm die logische
-//STRIP001                          // groesse einfach als groesser an
-//STRIP001                          aLogicalSize.Width() /= 5; //10;
-//STRIP001                          aLogicalSize.Height() /= 5; //10;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          // Groesse in 100TH_MM in aSize, keine Flags
-//STRIP001                          aLogicalSize = aSize;
-//STRIP001
-//STRIP001                          // Um ein vernuenftiges Mapping bei defaults auch
-//STRIP001                          // fuer 3D-Objekte zu erreichen, nimm die logische
-//STRIP001                          // groesse einfach als groesser an
-//STRIP001                          aLogicalSize.Width() /= 5; //10;
-//STRIP001                          aLogicalSize.Height() /= 5; //10;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      // relative Groesse
-//STRIP001                      // 0..100 Prozent in aSize, relativ flag
-//STRIP001                      aLogicalSize = Size(
-//STRIP001                          (long)((rVol.GetWidth() * (double)aSize.Width() / 100.0) + 0.5),
-//STRIP001                          (long)((rVol.GetHeight() * (double)aSize.Height() / 100.0) + 0.5));
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // Skalieren
-//STRIP001                  aScaleVector.X() = rVol.GetWidth() / (double)aLogicalSize.Width();
-//STRIP001                  aScaleVector.Y() = rVol.GetHeight() / (double)aLogicalSize.Height();
-//STRIP001
-//STRIP001                  if(bTile)
-//STRIP001                  {
-//STRIP001                      // Aneinandergefuegt drauflegen
-//STRIP001                      double fLeftBound, fTopBound;
-//STRIP001
-//STRIP001                      // Vertikal
-//STRIP001                      if(eRectPoint == RP_LT || eRectPoint == RP_LM || eRectPoint == RP_LB)
-//STRIP001                      {
-//STRIP001                          // Links aligned starten
-//STRIP001                          fLeftBound = 0.0;
-//STRIP001                      }
-//STRIP001                      else if(eRectPoint == RP_MT || eRectPoint == RP_MM || eRectPoint == RP_MB)
-//STRIP001                      {
-//STRIP001                          // Mittig
-//STRIP001                          fLeftBound = (rVol.GetWidth() / 2.0)
-//STRIP001                              - ((double)aLogicalSize.Width() / 2.0);
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          // Rechts aligned starten
-//STRIP001                          fLeftBound = rVol.GetWidth()
-//STRIP001                              - (double)aLogicalSize.Width();
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // Horizontal
-//STRIP001                      if(eRectPoint == RP_LT || eRectPoint == RP_MT || eRectPoint == RP_RT)
-//STRIP001                      {
-//STRIP001                          // Top aligned starten
-//STRIP001                          fTopBound = 0.0;
-//STRIP001                      }
-//STRIP001                      else if(eRectPoint == RP_LM || eRectPoint == RP_MM || eRectPoint == RP_RM)
-//STRIP001                      {
-//STRIP001                          // Mittig
-//STRIP001                          fTopBound = (rVol.GetHeight() / 2.0)
-//STRIP001                              - ((double)aLogicalSize.Height() / 2.0);
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          // Bottom aligned starten
-//STRIP001                          fTopBound = rVol.GetHeight()
-//STRIP001                              - (double)aLogicalSize.Height();
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // Verschieben
-//STRIP001                      aTranslateVector.X() = fLeftBound;
-//STRIP001                      aTranslateVector.Y() = fTopBound;
-//STRIP001
-//STRIP001                      // Offset beachten
-//STRIP001                      if(nOffPosX || nOffPosY)
-//STRIP001                      {
-//STRIP001                          aTranslateVector.X() += (double)aLogicalSize.Width() * ((double)nOffPosX / 100.0);
-//STRIP001                          aTranslateVector.Y() += (double)aLogicalSize.Height() * ((double)nOffPosY / 100.0);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      if(bStretch)
-//STRIP001                      {
-//STRIP001                          // 1x drauflegen, alles wie gehabt
-//STRIP001                          // fertig
-//STRIP001                          aScaleVector.X() = 1.0;
-//STRIP001                          aScaleVector.Y() = 1.0;
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          // nur einmal benutzen
-//STRIP001                          eWrapX = Base3DTextureSingle;
-//STRIP001                          eWrapY = Base3DTextureSingle;
-//STRIP001
-//STRIP001                          // Groesse beachten, zentriert anlegen
-//STRIP001                          double fLeftBound = (rVol.GetWidth() / 2.0) - ((double)aLogicalSize.Width() / 2.0);
-//STRIP001                          double fTopBound = (rVol.GetHeight() / 2.0) - ((double)aLogicalSize.Height() / 2.0);
-//STRIP001
-//STRIP001                          // Verschieben
-//STRIP001                          aTranslateVector.X() = fLeftBound;
-//STRIP001                          aTranslateVector.Y() = fTopBound;
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // TranslateVector anpassen
-//STRIP001                  if(aTranslateVector.X())
-//STRIP001                      aTranslateVector.X() /= -rVol.GetWidth();
-//STRIP001                  if(aTranslateVector.Y())
-//STRIP001                      aTranslateVector.Y() /= -rVol.GetHeight();
-//STRIP001
-//STRIP001                  // Texturtransformation setzen
-//STRIP001                  mTexture.Translate(aTranslateVector);
-//STRIP001                  mTexture.Scale(aScaleVector);
-//STRIP001              }
-//STRIP001              else if(eFillStyle == XFILL_GRADIENT)
-//STRIP001              {
-//STRIP001                  // gradient fill. Create texture and set.
-//STRIP001                  TextureAttributesGradient aTexAttr(
-//STRIP001                      bGhosted,
-//STRIP001                      (void*)&rSet.Get(XATTR_FILLFLOATTRANSPARENCE),
-//STRIP001                      (void*)&rSet.Get(XATTR_FILLGRADIENT),
-//STRIP001                      (void*)&rSet.Get(XATTR_GRADIENTSTEPCOUNT));
-//STRIP001
-//STRIP001                  pTexture = pBase3D->ObtainTexture(aTexAttr);
-//STRIP001                  if(!pTexture)
-//STRIP001                  {
-//STRIP001                      BitmapEx aBmpEx = BitmapEx(GetGradientBitmap(rSet));
-//STRIP001
-//STRIP001                      if(bFloatTransparence)
-//STRIP001                          // add alpha channel to bitmap
-//STRIP001                          aBmpEx = BitmapEx(aBmpEx.GetBitmap(), GetAlphaMask(rSet, aBmpEx.GetSizePixel()));
-//STRIP001
-//STRIP001                      if(bGhosted)
-//STRIP001                          aBmpEx.Adjust( 50 );
-//STRIP001                      pTexture = pBase3D->ObtainTexture(aTexAttr, aBmpEx);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else if(eFillStyle == XFILL_HATCH)
-//STRIP001              {
-//STRIP001                  // hatch fill. Create texture and set.
-//STRIP001                  TextureAttributesHatch aTexAttr(
-//STRIP001                      bGhosted,
-//STRIP001                      (void*)&rSet.Get(XATTR_FILLFLOATTRANSPARENCE),
-//STRIP001                      (void*)&rSet.Get(XATTR_FILLHATCH));
-//STRIP001
-//STRIP001                  pTexture = pBase3D->ObtainTexture(aTexAttr);
-//STRIP001                  if(!pTexture)
-//STRIP001                  {
-//STRIP001                      BitmapEx aBmpEx = GetHatchBitmap(rSet);
-//STRIP001
-//STRIP001                      if(bFloatTransparence)
-//STRIP001                          // add alpha channel to bitmap
-//STRIP001                          aBmpEx = BitmapEx(aBmpEx.GetBitmap(), GetAlphaMask(rSet, aBmpEx.GetSizePixel()));
-//STRIP001
-//STRIP001                      if(bGhosted)
-//STRIP001                          aBmpEx.Adjust( 50 );
-//STRIP001                      pTexture = pBase3D->ObtainTexture(aTexAttr, aBmpEx);
-//STRIP001                  }
-//STRIP001
-//STRIP001                  // set different texture transformation
-//STRIP001                  mTexture.Scale(Vector3D(20.0, 20.0, 20.0));
-//STRIP001              }
-//STRIP001              else if(eFillStyle == XFILL_SOLID)
-//STRIP001              {
-//STRIP001                  if(bFloatTransparence)
-//STRIP001                  {
-//STRIP001                      // Texturattribute bilden
-//STRIP001                      TextureAttributesColor aTexAttr(
-//STRIP001                          bGhosted,
-//STRIP001                          (void*)&rSet.Get(XATTR_FILLFLOATTRANSPARENCE),
-//STRIP001                          aColorSolid);
-//STRIP001
-//STRIP001                      pTexture = pBase3D->ObtainTexture(aTexAttr);
-//STRIP001                      if(!pTexture)
-//STRIP001                      {
-//STRIP001                          // build single colored bitmap with draw color and add transparence bitmap
-//STRIP001                          Size aSizeBitmap(128, 128);
-//STRIP001                          Bitmap aForeground(aSizeBitmap, 24);
-//STRIP001                          aForeground.Erase(aColorSolid);
-//STRIP001
-//STRIP001                          if(bGhosted)
-//STRIP001                              aForeground.Adjust( 50 );
-//STRIP001
-//STRIP001                          // add alpha channel to bitmap
-//STRIP001                          BitmapEx aBmpEx(aForeground, GetAlphaMask(rSet, aSizeBitmap));
-//STRIP001
-//STRIP001                          pTexture = pBase3D->ObtainTexture(aTexAttr, aBmpEx);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      // set material to base color
-//STRIP001                      pBase3D->SetMaterial(aColorSolid, Base3DMaterialAmbient);
-//STRIP001                      pBase3D->SetMaterial(aColorSolidWithTransparency, Base3DMaterialDiffuse);
-//STRIP001                      if(GetUseDifferentBackMaterial())
-//STRIP001                      {
-//STRIP001                          pBase3D->SetMaterial(aBackMaterial.GetMaterial(Base3DMaterialAmbient), Base3DMaterialAmbient, Base3DMaterialBack);
-//STRIP001                          pBase3D->SetMaterial(aBackMaterial.GetMaterial(Base3DMaterialDiffuse), Base3DMaterialDiffuse, Base3DMaterialBack);
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // and at last, the render mode.
-//STRIP001                      pBase3D->SetRenderMode(Base3DRenderFill);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  DBG_ERROR("unknown drawing mode (!)");
-//STRIP001              }
-//STRIP001
-//STRIP001              // use texture?
-//STRIP001              if(pTexture)
-//STRIP001              {
-//STRIP001                  // set values for texture modes
-//STRIP001                  pTexture->SetTextureKind(GetTextureKind());
-//STRIP001                  pTexture->SetTextureMode(GetTextureMode());
-//STRIP001                  pTexture->SetTextureFilter(GetTextureFilter() ? Base3DTextureLinear : Base3DTextureNearest);
-//STRIP001                  pTexture->SetTextureWrapS(eWrapX);
-//STRIP001                  pTexture->SetTextureWrapT(eWrapY);
-//STRIP001                  pTexture->SetBlendColor(aColorSolid);
-//STRIP001                  pTexture->SetTextureColor(aColorSolid);
-//STRIP001
-//STRIP001                  // activate texture
-//STRIP001                  pBase3D->SetActiveTexture(pTexture);
-//STRIP001                  pBase3D->SetRenderMode(Base3DRenderFill);
-//STRIP001
-//STRIP001                  // set texture transformation
-//STRIP001                  GetScene()->GetCameraSet().SetTexture(mTexture);
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  // switch it off.texture usage
-//STRIP001                  pBase3D->SetActiveTexture();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::ImpSet3DParForLine(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001  BOOL& bDrawOutline, UINT16 nDrawFlags, BOOL bGhosted, BOOL bIsLineDraft)
-//STRIP001 {
-//STRIP001  // do drawflags allow line drawing at all?
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  sal_uInt16 nLineTransparence = ((const XLineTransparenceItem&)(rSet.Get(XATTR_LINETRANSPARENCE))).GetValue();
-//STRIP001  BOOL bLineTransparence = (nLineTransparence != 0);
-//STRIP001  BOOL bDrawTransparence = ((nDrawFlags & E3D_DRAWFLAG_TRANSPARENT) != 0);
-//STRIP001
-//STRIP001  if(bLineTransparence != bDrawTransparence)
-//STRIP001  {
-//STRIP001      bDrawOutline = FALSE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // if no linestyle, draw no outline
-//STRIP001  XLineStyle aLineStyle(XLINE_NONE);
-//STRIP001  if(bDrawOutline)
-//STRIP001  {
-//STRIP001      aLineStyle = ((const XLineStyleItem&)(rSet.Get(XATTR_LINESTYLE))).GetValue();
-//STRIP001      bDrawOutline = (aLineStyle != XLINE_NONE);
-//STRIP001  }
-//STRIP001
-//STRIP001  // special mode for black/white drawing or high contrast mode
-//STRIP001  // Linecolor is set to black before (Base3d::SetColor())
-//STRIP001  if((!bDrawOutline) && ((pBase3D->GetOutputDevice()->GetDrawMode() & (DRAWMODE_WHITEFILL|DRAWMODE_SETTINGSLINE)) != 0))
-//STRIP001  {
-//STRIP001      bDrawOutline = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  // does the outdev use linestyle?
-//STRIP001  if(bDrawOutline && !rOut.GetIgnoreLineStyle())
-//STRIP001  {
-//STRIP001      Color aColorLine = ((const XLineColorItem&)(rSet.Get(XATTR_LINECOLOR))).GetValue();
-//STRIP001      sal_Int32 nLineWidth = ((const XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue();
-//STRIP001
-//STRIP001         if(pBase3D->GetOutputDevice()->GetDrawMode() & DRAWMODE_SETTINGSLINE)
-//STRIP001         {
-//STRIP001          svtools::ColorConfig aColorConfig;
-//STRIP001             aColorLine = Color( aColorConfig.GetColorValue( svtools::FONTCOLOR ).nColor );
-//STRIP001         }
-//STRIP001
-//STRIP001      if(nLineWidth && !bIsLineDraft)
-//STRIP001      {
-//STRIP001          Point aPnt(nLineWidth, 0);
-//STRIP001          aPnt = pBase3D->GetOutputDevice()->LogicToPixel(aPnt) - pBase3D->GetOutputDevice()->LogicToPixel(Point());
-//STRIP001          if(aPnt.X() <= 0)
-//STRIP001              aPnt.X() = 1;
-//STRIP001          pBase3D->SetLineWidth((double)aPnt.X());
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          pBase3D->SetLineWidth(1.0);
-//STRIP001      }
-//STRIP001
-//STRIP001      // Material setzen
-//STRIP001      pBase3D->SetColor(aColorLine);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::SetBase3DParams(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001  BOOL& bDrawObject, BOOL& bDrawOutline, UINT16 nDrawFlags, BOOL bGhosted,
-//STRIP001  BOOL bIsLineDraft, BOOL bIsFillDraft)
-//STRIP001 {
-//STRIP001  bDrawObject = ((nDrawFlags & E3D_DRAWFLAG_FILLED) != 0);
-//STRIP001  if(bDrawObject)
-//STRIP001      ImpSet3DParForFill(rOut, pBase3D, bDrawObject, nDrawFlags, bGhosted, bIsFillDraft);
-//STRIP001
-//STRIP001  bDrawOutline = ((nDrawFlags & E3D_DRAWFLAG_OUTLINE) != 0);
-//STRIP001  if(bDrawOutline)
-//STRIP001      ImpSet3DParForLine(rOut, pBase3D, bDrawOutline, nDrawFlags, bGhosted, bIsLineDraft);
-//STRIP001
-//STRIP001  // Set ObjectTrans if line or fill is still set (maybe retet by upper calls)
-//STRIP001  if(bDrawObject || bDrawOutline)
-//STRIP001  {
-//STRIP001      Matrix4D mTransform = GetFullTransform();
-//STRIP001      GetScene()->GetCameraSet().SetObjectTrans(mTransform);
-//STRIP001      pBase3D->SetTransformationSet(&(GetScene()->GetCameraSet()));
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -3909,19 +2444,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::CenterObject(const Vector3D& rCenter)
-//STRIP001 {
-//STRIP001  // Geometrie herstellen
-//STRIP001  if(!bGeometryValid)
-//STRIP001      ReCreateGeometry();
-//STRIP001
-//STRIP001  Vector3D aOldCenter = aDisplayGeometry.GetCenter();
-//STRIP001  Vector3D aMoveVector = rCenter - aOldCenter;
-//STRIP001  Matrix4D aTransMat;
-//STRIP001
-//STRIP001  aTransMat.Translate(aMoveVector);
-//STRIP001  SetTransform(GetTransform() * aTransMat);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -3929,35 +2451,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 Color E3dCompoundObject::GetShadowColor()
-//STRIP001 {
-//STRIP001  return ((SdrShadowColorItem&)(GetItem(SDRATTR_SHADOWCOLOR))).GetValue();
-//STRIP001 }
 
-//STRIP001 BOOL E3dCompoundObject::DrawShadowAsOutline()
-//STRIP001 {
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  XFillStyle eFillStyle = ((XFillStyleItem&)(rSet.Get(XATTR_FILLSTYLE))).GetValue();
-//STRIP001  XLineStyle eLineStyle = ((XLineStyleItem&)(rSet.Get(XATTR_LINESTYLE))).GetValue();
-//STRIP001  BOOL bFillAttrIsNone = eFillStyle == XFILL_NONE;
-//STRIP001  BOOL bLineAttrIsNone = eLineStyle == XLINE_NONE;
-//STRIP001  return (bFillAttrIsNone && !bLineAttrIsNone);
-//STRIP001 }
 
-//STRIP001 INT32 E3dCompoundObject::GetShadowXDistance()
-//STRIP001 {
-//STRIP001  return (long)((SdrShadowXDistItem&)(GetItem(SDRATTR_SHADOWXDIST))).GetValue();
-//STRIP001 }
 
-//STRIP001 INT32 E3dCompoundObject::GetShadowYDistance()
-//STRIP001 {
-//STRIP001  return (long)((SdrShadowYDistItem&)(GetItem(SDRATTR_SHADOWYDIST))).GetValue();
-//STRIP001 }
 
-//STRIP001 UINT16 E3dCompoundObject::GetShadowTransparence()
-//STRIP001 {
-//STRIP001  return (UINT16)((SdrShadowTransparenceItem&)(GetItem(SDRATTR_SHADOWTRANSPARENCE))).GetValue();
-//STRIP001 }
 
 /*N*/ BOOL E3dCompoundObject::DoDrawShadow()
 /*N*/ {
@@ -3986,47 +2483,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::DrawObjectWireframe(ExtOutputDevice& rXOut)
-//STRIP001 {
-//STRIP001  UINT32 nPolyCounter = 0;
-//STRIP001  UINT32 nEntityCounter = 0;
-//STRIP001  UINT32 nUpperBound;
-//STRIP001  Point aFirstPoint, aLastPoint, aNewPoint;
-//STRIP001  B3dEntityBucket& rEntityBucket = GetDisplayGeometry().GetEntityBucket();
-//STRIP001  GeometryIndexValueBucket& rIndexBucket = GetDisplayGeometry().GetIndexBucket();
-//STRIP001  B3dTransformationSet& rTransSet = GetScene()->GetCameraSet();
-//STRIP001  BOOL bDrawLine, bLastDrawLine;
-//STRIP001  Vector3D aPoint;
-//STRIP001
-//STRIP001  while(nPolyCounter < rIndexBucket.Count())
-//STRIP001  {
-//STRIP001      // Naechstes Primitiv
-//STRIP001      nUpperBound = rIndexBucket[nPolyCounter++].GetIndex();
-//STRIP001      bDrawLine = bLastDrawLine = rEntityBucket[nEntityCounter].IsEdgeVisible();
-//STRIP001      aPoint = rTransSet.ObjectToViewCoor(rEntityBucket[nEntityCounter++].Point().GetVector3D());
-//STRIP001      aFirstPoint.X() = (long)(aPoint.X() + 0.5);
-//STRIP001      aFirstPoint.Y() = (long)(aPoint.Y() + 0.5);
-//STRIP001      aLastPoint = aFirstPoint;
-//STRIP001
-//STRIP001      // Polygon fuellen
-//STRIP001      while(nEntityCounter < nUpperBound)
-//STRIP001      {
-//STRIP001          // Punkt holen und auf Weltkoordinaten umrechnen
-//STRIP001          bDrawLine = rEntityBucket[nEntityCounter].IsEdgeVisible();
-//STRIP001          aPoint = rTransSet.ObjectToViewCoor(rEntityBucket[nEntityCounter++].Point().GetVector3D());
-//STRIP001          aNewPoint.X() = (long)(aPoint.X() + 0.5);
-//STRIP001          aNewPoint.Y() = (long)(aPoint.Y() + 0.5);
-//STRIP001          if(bLastDrawLine)
-//STRIP001              rXOut.GetOutDev()->DrawLine(aLastPoint, aNewPoint);
-//STRIP001          aLastPoint = aNewPoint;
-//STRIP001          bLastDrawLine = bDrawLine;
-//STRIP001      }
-//STRIP001
-//STRIP001      // Polygon scliessen
-//STRIP001      if(bLastDrawLine)
-//STRIP001          rXOut.GetOutDev()->DrawLine(aLastPoint, aFirstPoint);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -4448,23 +2904,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::SetCreateNormals(BOOL bNew)
-//STRIP001 {
-//STRIP001  if(bCreateNormals != bNew)
-//STRIP001  {
-//STRIP001      bCreateNormals = bNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::SetCreateTexture(BOOL bNew)
-//STRIP001 {
-//STRIP001  if(bCreateTexture != bNew)
-//STRIP001  {
-//STRIP001      bCreateTexture = bNew;
-//STRIP001      bGeometryValid = FALSE;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -4495,21 +2935,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void E3dCompoundObject::SetBackMaterial(const B3dMaterial& rNew)
-//STRIP001 {
-//STRIP001  if(aBackMaterial != rNew)
-//STRIP001  {
-//STRIP001      aBackMaterial = rNew;
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::SetUseDifferentBackMaterial(BOOL bNew)
-//STRIP001 {
-//STRIP001  if(bUseDifferentBackMaterial != bNew)
-//STRIP001  {
-//STRIP001      bUseDifferentBackMaterial = bNew;
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -4517,192 +2943,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::Paint3D(ExtOutputDevice& rOut, Base3D* pBase3D,
-//STRIP001  const SdrPaintInfoRec& rInfoRec, UINT16 nDrawFlags)
-//STRIP001 {
-//STRIP001  // call parent, draw all subobjects
-//STRIP001  E3dObject::Paint3D(rOut, pBase3D, rInfoRec, nDrawFlags);
-//STRIP001
-//STRIP001  // Feststellen, ob das Objekt dargestellt werden muss, was die Layer angeht
-//STRIP001  BOOL bPrinter = (pBase3D->GetOutputDevice()->GetOutDevType()==OUTDEV_PRINTER);
-//STRIP001  const SetOfByte* pVisiLayer=&rInfoRec.aPaintLayer;
-//STRIP001  E3dScene* pScene = GetScene();
-//STRIP001  BOOL bOnlySelectedCriteria = (pScene && (!pScene->DoDrawOnlySelected() || GetSelected()));
-//STRIP001
-//STRIP001  if((!bPrinter || IsPrintable()) && pVisiLayer->IsSet(GetLayer()) && bOnlySelectedCriteria)
-//STRIP001  {
-//STRIP001      // Ausgabeparameter setzen
-//STRIP001      BOOL bDrawOutline;
-//STRIP001      BOOL bDrawObject;
-//STRIP001      BOOL bIsLineDraft((rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTLINE) != 0);
-//STRIP001      BOOL bIsFillDraft((rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTFILL) != 0);
-//STRIP001      SetBase3DParams(rOut, pBase3D, bDrawObject, bDrawOutline, nDrawFlags,
-//STRIP001          (rInfoRec.pPV && rInfoRec.pPV->GetView().DoVisualizeEnteredGroup()) ? rInfoRec.bNotActive : FALSE,
-//STRIP001          bIsLineDraft, bIsFillDraft);
-//STRIP001
-//STRIP001      // Culling?
-//STRIP001      pBase3D->SetCullMode(GetDoubleSided() ? Base3DCullNone : Base3DCullBack);
-//STRIP001
-//STRIP001      // Objekt flat darstellen?
-//STRIP001      BOOL bForceFlat = ((GetNormalsKind() > 0) && !(GetNormalsKind() > 1));
-//STRIP001      pBase3D->SetForceFlat(bForceFlat);
-//STRIP001
-//STRIP001      // Geometrie ausgeben
-//STRIP001      if(bDrawObject)
-//STRIP001      {
-//STRIP001          // #92030# for E3dPolygonObj, take flag at created DisplayGeometry into account
-//STRIP001          // which may not allow this object to be drawn filled
-//STRIP001          if(!GetDisplayGeometry().IsOutline())
-//STRIP001          {
-//STRIP001              pBase3D->DrawPolygonGeometry(GetDisplayGeometry());
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      // Outline ausgeben
-//STRIP001      if(bDrawOutline && pBase3D->GetLightGroup())
-//STRIP001      {
-//STRIP001          BOOL bLightingWasEnabled = pBase3D->GetLightGroup()->IsLightingEnabled();
-//STRIP001          pBase3D->GetLightGroup()->EnableLighting(FALSE);
-//STRIP001          pBase3D->SetLightGroup(pBase3D->GetLightGroup());
-//STRIP001
-//STRIP001          // #79585#
-//STRIP001          pBase3D->SetActiveTexture();
-//STRIP001
-//STRIP001          // #78972#
-//STRIP001          // detect if lines need to be drawn specifically
-//STRIP001          const SfxItemSet& rSet = GetItemSet();
-//STRIP001          sal_Int32 nLineWidth = ((const XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue();
-//STRIP001          XLineStyle aLineStyle = ((const XLineStyleItem&)(rSet.Get(XATTR_LINESTYLE))).GetValue();
-//STRIP001          BOOL bDrawLineSolidHair = (aLineStyle == XLINE_SOLID && nLineWidth == 0);
-//STRIP001
-//STRIP001          // get line geometry
-//STRIP001          PolyPolygon3D aLinePolyPolygon;
-//STRIP001          GetLineGeometry(aLinePolyPolygon);
-//STRIP001
-//STRIP001          if(bDrawLineSolidHair)
-//STRIP001          {
-//STRIP001              // simply draw the object geometry as line (as done before)
-//STRIP001              // pBase3D->DrawPolygonGeometry(GetDisplayGeometry(), TRUE);
-//STRIP001              if(aLinePolyPolygon.Count())
-//STRIP001              {
-//STRIP001                  // draw the line geometry as 3d lines
-//STRIP001                  pBase3D->SetRenderMode(Base3DRenderLine);
-//STRIP001                  pBase3D->SetPolygonOffset(Base3DPolygonOffsetLine, TRUE);
-//STRIP001
-//STRIP001                  for(sal_uInt32 a(0); a < aLinePolyPolygon.Count(); a++)
-//STRIP001                  {
-//STRIP001                      // start new primitive
-//STRIP001                      const Polygon3D& rPolygon = aLinePolyPolygon[(sal_uInt16)a];
-//STRIP001                      pBase3D->StartPrimitive(Base3DLineStrip);
-//STRIP001
-//STRIP001                      for(sal_uInt32 b(0); b < rPolygon.GetPointCount(); b++)
-//STRIP001                      {
-//STRIP001                          Vector3D aVec = rPolygon[sal_uInt16(b)];
-//STRIP001                          pBase3D->AddVertex(aVec);
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // draw primitive
-//STRIP001                      pBase3D->EndPrimitive();
-//STRIP001                  }
-//STRIP001
-//STRIP001                  pBase3D->SetPolygonOffset(Base3DPolygonOffsetLine, FALSE);
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              // convert object geometry to line geometry and draw as polygons
-//STRIP001              // in 3D space
-//STRIP001              PolyPolygon3D aPolyPoly3D;
-//STRIP001              PolyPolygon3D aLinePoly3D;
-//STRIP001
-//STRIP001              // get ImpLineStyleParameterPack
-//STRIP001              ImpLineStyleParameterPack aLineAttr(rSet, FALSE, rOut.GetOutDev());
-//STRIP001              aLineAttr.ForceNoArrowsLeft(TRUE);
-//STRIP001              aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001              ImpLineGeometryCreator aLineCreator(aLineAttr, aPolyPoly3D, aLinePoly3D, FALSE);
-//STRIP001
-//STRIP001              // get camera set
-//STRIP001              B3dTransformationSet* pTransSet = pBase3D->GetTransformationSet();
-//STRIP001
-//STRIP001              // get transform object geometry in eye coor
-//STRIP001              Matrix4D aMatObjectToEye = pTransSet->GetObjectTrans();
-//STRIP001              aMatObjectToEye *= pTransSet->GetOrientation();
-//STRIP001
-//STRIP001              for(sal_uInt16 nInd(0); nInd < aLinePolyPolygon.Count(); nInd++)
-//STRIP001              {
-//STRIP001                  // create line geometry for polygon in eye coor to
-//STRIP001                  // have it always orthogonal to camera plane
-//STRIP001                  Polygon3D aLinePoly = aLinePolyPolygon.GetObject(nInd);
-//STRIP001                  aLinePoly.Transform(aMatObjectToEye);
-//STRIP001                  aLineCreator.AddPolygon3D(aLinePoly);
-//STRIP001              }
-//STRIP001
-//STRIP001              // put together
-//STRIP001              aLinePoly3D.Insert(aPolyPoly3D);
-//STRIP001
-//STRIP001              if(aLinePoly3D.Count())
-//STRIP001              {
-//STRIP001                  pBase3D->SetCullMode(Base3DCullNone);
-//STRIP001                  for(sal_uInt32 a(0); a < aLinePoly3D.Count(); a++)
-//STRIP001                  {
-//STRIP001                      // start new primitive
-//STRIP001                      const Polygon3D& rPolygon = aLinePoly3D[(sal_uInt16)a];
-//STRIP001
-//STRIP001                      if(rPolygon.IsClosed())
-//STRIP001                      {
-//STRIP001                          pBase3D->SetRenderMode(Base3DRenderFill);
-//STRIP001                          pBase3D->StartPrimitive(Base3DPolygon);
-//STRIP001                      }
-//STRIP001                      else
-//STRIP001                      {
-//STRIP001                          pBase3D->SetRenderMode(Base3DRenderLine);
-//STRIP001                          pBase3D->SetPolygonOffset(Base3DPolygonOffsetLine, TRUE);
-//STRIP001                          pBase3D->StartPrimitive(Base3DLineStrip);
-//STRIP001                      }
-//STRIP001
-//STRIP001                      for(sal_uInt32 b(0); b < rPolygon.GetPointCount(); b++)
-//STRIP001                      {
-//STRIP001                          Vector3D aVec = rPolygon[sal_uInt16(b)];
-//STRIP001                          aVec = pTransSet->EyeToObjectCoor(aVec);
-//STRIP001                          pBase3D->AddVertex(aVec);
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // draw primitive
-//STRIP001                      pBase3D->EndPrimitive();
-//STRIP001
-//STRIP001                      if(!rPolygon.IsClosed())
-//STRIP001                      {
-//STRIP001                          pBase3D->SetPolygonOffset(Base3DPolygonOffsetLine, FALSE);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          pBase3D->GetLightGroup()->EnableLighting(bLightingWasEnabled);
-//STRIP001          pBase3D->SetLightGroup(pBase3D->GetLightGroup());
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001 #ifdef DBG_UTIL      // SnapRect und BoundRect zum testen zeichnen
-//STRIP001  static BOOL bDoDrawSnapBoundToMakeThemVisible = FALSE;
-//STRIP001  if(bDoDrawSnapBoundToMakeThemVisible)
-//STRIP001  {
-//STRIP001      OutputDevice* pOut = rOut.GetOutDev();
-//STRIP001
-//STRIP001      // SnapRect in Rot
-//STRIP001      Rectangle aTempRect = GetSnapRect();
-//STRIP001      pOut->SetLineColor(Color(COL_RED));
-//STRIP001      pOut->SetFillColor();
-//STRIP001      pOut->DrawRect(aTempRect);
-//STRIP001
-//STRIP001      // BoundRect in Gruen
-//STRIP001      aTempRect = GetBoundRect();
-//STRIP001      pOut->SetLineColor(Color(COL_GREEN));
-//STRIP001      pOut->SetFillColor();
-//STRIP001      pOut->DrawRect(aTempRect);
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -4710,58 +2950,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::TakeContour3D(XPolyPolygon& rPoly)
-//STRIP001 {
-//STRIP001  // call parent
-//STRIP001  E3dObject::TakeContour3D(rPoly);
-//STRIP001
-//STRIP001  // Kontur dieses Objektes liefern
-//STRIP001  UINT32 nPolyCounter = 0;
-//STRIP001  UINT32 nEntityCounter = 0;
-//STRIP001  UINT32 nUpperBound;
-//STRIP001  B3dEntityBucket& rEntityBucket = GetDisplayGeometry().GetEntityBucket();
-//STRIP001  GeometryIndexValueBucket& rIndexBucket = GetDisplayGeometry().GetIndexBucket();
-//STRIP001  B3dTransformationSet& rTransSet = GetScene()->GetCameraSet();
-//STRIP001  Vector3D aPoint;
-//STRIP001  Point aNewPoint;
-//STRIP001
-//STRIP001  // ObjectTrans setzen
-//STRIP001  Matrix4D mTransform = GetFullTransform();
-//STRIP001  rTransSet.SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001  while(nPolyCounter < rIndexBucket.Count())
-//STRIP001  {
-//STRIP001      // Naechstes Primitiv
-//STRIP001      nUpperBound = rIndexBucket[nPolyCounter++].GetIndex();
-//STRIP001      XPolygon aNewPart(UINT16(nUpperBound - nEntityCounter));
-//STRIP001      UINT16 nIndex = 0;
-//STRIP001
-//STRIP001      while(nEntityCounter < nUpperBound)
-//STRIP001      {
-//STRIP001          aPoint = rTransSet.ObjectToViewCoor(rEntityBucket[nEntityCounter++].Point().GetVector3D());
-//STRIP001          aNewPart[nIndex  ].X() = (long)(aPoint.X() + 0.5);
-//STRIP001          aNewPart[nIndex++].Y() = (long)(aPoint.Y() + 0.5);
-//STRIP001      }
-//STRIP001
-//STRIP001      // Teilprimitiv einfuegen
-//STRIP001      rPoly.Insert(aNewPart);
-//STRIP001  }
-//STRIP001
-//STRIP001  // add shadow now too (#61279#)
-//STRIP001  PolyPolygon3D aShadowPolyPoly;
-//STRIP001  ImpGetShadowPolygon(aShadowPolyPoly);
-//STRIP001
-//STRIP001  // invert Y coor cause of GetPolygon() later
-//STRIP001  Matrix4D aTransMat;
-//STRIP001  aTransMat.Scale(1.0, -1.0, 1.0);
-//STRIP001  aShadowPolyPoly.Transform(aTransMat);
-//STRIP001
-//STRIP001  for(UINT16 a = 0; a < aShadowPolyPoly.Count(); a++)
-//STRIP001  {
-//STRIP001      XPolygon aNewPart(aShadowPolyPoly[a].GetPolygon());
-//STRIP001      rPoly.Insert(aNewPart);
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -4769,376 +2957,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 void E3dCompoundObject::DrawShadows(Base3D *pBase3D, ExtOutputDevice& rXOut,
-//STRIP001  const Rectangle& rBound, const Volume3D& rVolume,
-//STRIP001  const SdrPaintInfoRec& rInfoRec)
-//STRIP001 {
-//STRIP001  // call parent
-//STRIP001  E3dObject::DrawShadows(pBase3D, rXOut, rBound, rVolume, rInfoRec);
-//STRIP001
-//STRIP001  // Schatten fuer dieses Objekt zeichnen
-//STRIP001  // Feststellen, ob das Objekt dargestellt werden muss, was die Layer angeht
-//STRIP001  BOOL bPrinter = (pBase3D->GetOutputDevice()->GetOutDevType()==OUTDEV_PRINTER);
-//STRIP001  const SetOfByte* pVisiLayer=&rInfoRec.aPaintLayer;
-//STRIP001  if(DoDrawShadow()
-//STRIP001      && (!bPrinter || IsPrintable())
-//STRIP001      && pVisiLayer->IsSet(GetLayer()))
-//STRIP001  {
-//STRIP001      // ObjectTrans setzen
-//STRIP001      Matrix4D mTransform = GetFullTransform();
-//STRIP001      GetScene()->GetCameraSet().SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001      // Schattenpolygon holen
-//STRIP001      PolyPolygon3D aShadowPoly;
-//STRIP001      ImpGetShadowPolygon(aShadowPoly);
-//STRIP001
-//STRIP001      // invert Y coor cause of GetPolyPolygon() in ImpDrawShadowPolygon() later
-//STRIP001      Matrix4D aTransMat;
-//STRIP001      aTransMat.Scale(1.0, -1.0, 1.0);
-//STRIP001      aShadowPoly.Transform(aTransMat);
-//STRIP001
-//STRIP001      // ...und Zeichnen
-//STRIP001      ImpDrawShadowPolygon(aShadowPoly, rXOut);
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::ImpGetShadowPolygon(PolyPolygon3D& rPoly)
-//STRIP001 {
-//STRIP001  // #79585#
-//STRIP001  sal_Int32 nXDist(GetShadowXDistance());
-//STRIP001  sal_Int32 nYDist(GetShadowYDistance());
-//STRIP001  BOOL bDrawAsOutline(DrawShadowAsOutline());
-//STRIP001  PolyPolygon3D aLinePolyPolygon;
-//STRIP001  B3dTransformationSet& rTransSet = GetScene()->GetCameraSet();
-//STRIP001  const SfxItemSet& rSet = GetItemSet();
-//STRIP001  XLineStyle aLineStyle = ((const XLineStyleItem&)(rSet.Get(XATTR_LINESTYLE))).GetValue();
-//STRIP001  sal_Int32 nLineWidth = ((const XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue();
-//STRIP001
-//STRIP001  if(!bDrawAsOutline)
-//STRIP001  {
-//STRIP001      // add basic polygon geometry, generate from 3D bucket
-//STRIP001      B3dEntityBucket& rEntityBucket = ((E3dCompoundObject*)this)->GetDisplayGeometry().GetEntityBucket();
-//STRIP001      GeometryIndexValueBucket& rIndexBucket = ((E3dCompoundObject*)this)->GetDisplayGeometry().GetIndexBucket();
-//STRIP001      sal_uInt32 nPolyCounter(0);
-//STRIP001      sal_uInt32 nEntityCounter(0);
-//STRIP001
-//STRIP001      while(nPolyCounter < rIndexBucket.Count())
-//STRIP001      {
-//STRIP001          // next primitive
-//STRIP001          sal_uInt32 nUpperBound(rIndexBucket[nPolyCounter++].GetIndex());
-//STRIP001          Polygon3D aNewPolygon((sal_uInt16)(nUpperBound - nEntityCounter));
-//STRIP001          sal_uInt16 nIndex(0);
-//STRIP001
-//STRIP001          while(nEntityCounter < nUpperBound)
-//STRIP001              aNewPolygon[nIndex++] = rEntityBucket[nEntityCounter++].Point().GetVector3D();
-//STRIP001
-//STRIP001          aNewPolygon.SetClosed(TRUE);
-//STRIP001          aLinePolyPolygon.Insert(aNewPolygon);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(bDrawAsOutline || (nLineWidth != 0))
-//STRIP001  {
-//STRIP001      // add 3D line drawing geometry
-//STRIP001      PolyPolygon3D aBasicLinePolyPoly;
-//STRIP001      GetLineGeometry(aBasicLinePolyPoly);
-//STRIP001
-//STRIP001      // #78972# detect if lines need to be drawn with pattern
-//STRIP001      if(aLineStyle == XLINE_DASH || (aLineStyle == XLINE_SOLID && nLineWidth != 0))
-//STRIP001      {
-//STRIP001          PolyPolygon3D aPolyPoly3D;
-//STRIP001          PolyPolygon3D aLinePoly3D;
-//STRIP001
-//STRIP001          // get ImpLineStyleParameterPack, bForceHair==FALSE to create polygons
-//STRIP001          ImpLineStyleParameterPack aLineAttr(rSet, FALSE, NULL);
-//STRIP001          aLineAttr.ForceNoArrowsLeft(TRUE);
-//STRIP001          aLineAttr.ForceNoArrowsRight(TRUE);
-//STRIP001          ImpLineGeometryCreator aLineCreator(aLineAttr, aPolyPoly3D, aLinePoly3D, FALSE);
-//STRIP001
-//STRIP001          // get camera set and transform to eye coor
-//STRIP001          Matrix4D aMatObjectToEye = rTransSet.GetObjectTrans();
-//STRIP001          aMatObjectToEye *= rTransSet.GetOrientation();
-//STRIP001
-//STRIP001          for(sal_uInt16 nInd(0); nInd < aBasicLinePolyPoly.Count(); nInd++)
-//STRIP001          {
-//STRIP001              Polygon3D aLinePoly = aBasicLinePolyPoly.GetObject(nInd);
-//STRIP001              aLinePoly.Transform(aMatObjectToEye);
-//STRIP001              aLineCreator.AddPolygon3D(aLinePoly);
-//STRIP001          }
-//STRIP001
-//STRIP001          // prepare transform back to object coor
-//STRIP001          if(aLinePoly3D.Count() || aPolyPoly3D.Count())
-//STRIP001              aMatObjectToEye.Invert();
-//STRIP001
-//STRIP001          if(aLinePoly3D.Count())
-//STRIP001          {
-//STRIP001              // transform and add all generated line polygons
-//STRIP001              aLinePoly3D.Transform(aMatObjectToEye);
-//STRIP001              aLinePolyPolygon.Insert(aLinePoly3D);
-//STRIP001          }
-//STRIP001
-//STRIP001          if(aPolyPoly3D.Count())
-//STRIP001          {
-//STRIP001              // transform and add all generated polygons
-//STRIP001              aPolyPoly3D.Transform(aMatObjectToEye);
-//STRIP001              aLinePolyPolygon.Insert(aPolyPoly3D);
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // simply add basic line geometry
-//STRIP001          aLinePolyPolygon.Insert(aBasicLinePolyPoly);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if(aLinePolyPolygon.Count())
-//STRIP001  {
-//STRIP001      if(GetShadow3D())
-//STRIP001      {
-//STRIP001          // 3D Schatten. Nimm Lichtquelle und Ebene. Projiziere
-//STRIP001          // die Punkte und jage sie durch die 3D Darstellung.
-//STRIP001          Vector3D aLampPositionOrDirection;
-//STRIP001          BOOL bDirectionalSource(TRUE);
-//STRIP001          Vector3D aGroundPosition;
-//STRIP001          Vector3D aGroundDirection;
-//STRIP001          B3dLightGroup& rLightGroup = GetScene()->GetLightGroup();
-//STRIP001
-//STRIP001          // Lampe waehlen
-//STRIP001          Base3DLightNumber aLightNumber = Base3DLight0;
-//STRIP001          BOOL bLightNumberValid(FALSE);
-//STRIP001
-//STRIP001          while(!bLightNumberValid && aLightNumber <= Base3DLight7)
-//STRIP001          {
-//STRIP001              if(rLightGroup.IsEnabled(aLightNumber))
-//STRIP001                  bLightNumberValid = TRUE;
-//STRIP001              else
-//STRIP001                  aLightNumber = (Base3DLightNumber)((UINT16)aLightNumber + 1);
-//STRIP001          }
-//STRIP001
-//STRIP001          if(bLightNumberValid)
-//STRIP001          {
-//STRIP001              // Position oder Vektor aus der Lampe extrahieren
-//STRIP001              if(rLightGroup.IsDirectionalSource(aLightNumber))
-//STRIP001              {
-//STRIP001                  // Nur Richtung vorhanden
-//STRIP001                  aLampPositionOrDirection = -rLightGroup.GetDirection(aLightNumber);
-//STRIP001                  aLampPositionOrDirection.Normalize();
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  // Nur Position vorhanden
-//STRIP001                  aLampPositionOrDirection = rLightGroup.GetPosition(aLightNumber);
-//STRIP001                  bDirectionalSource = FALSE;
-//STRIP001              }
-//STRIP001
-//STRIP001              // Ebene holen, Richtung in Augkoordinaten
-//STRIP001              aGroundDirection = -GetScene()->GetShadowPlaneDirection();
-//STRIP001              aGroundDirection.Normalize();
-//STRIP001
-//STRIP001              // Ist die Lampe auch vor der Ebene?
-//STRIP001              Vector3D aLightNormal = aLampPositionOrDirection;
-//STRIP001              if(!bDirectionalSource)
-//STRIP001              {
-//STRIP001                  // Nur Position vorhanden, berechne einen Lichtvektor
-//STRIP001                  aLightNormal = aLinePolyPolygon[0][0] - aLampPositionOrDirection;
-//STRIP001                  aLightNormal.Normalize();
-//STRIP001              }
-//STRIP001
-//STRIP001              double fLightAndNormal = aLightNormal.Scalar(aGroundDirection);
-//STRIP001              B3dVolume aVolume = rTransSet.GetDeviceVolume();
-//STRIP001
-//STRIP001              // auf Augkoordinaten umstellen
-//STRIP001              double fTemp = aVolume.MinVec().Z();
-//STRIP001              aVolume.MinVec().Z() = -aVolume.MaxVec().Z();
-//STRIP001              aVolume.MaxVec().Z() = -fTemp;
-//STRIP001
-//STRIP001              if(fLightAndNormal > 0.0)
-//STRIP001              {
-//STRIP001                  // Position der Ebene in Augkoordinaten setzen
-//STRIP001                  aGroundPosition.X() = (aGroundDirection.X() < 0.0) ? aVolume.MinVec().X() : aVolume.MaxVec().X();
-//STRIP001                  aGroundPosition.Y() = (aGroundDirection.Y() < 0.0) ? aVolume.MinVec().Y() : aVolume.MaxVec().Y();
-//STRIP001                  aGroundPosition.Z() = aVolume.MinVec().Z() - ((aVolume.MaxVec().Z() - aVolume.MinVec().Z()) / 8.0);
-//STRIP001
-//STRIP001                  // Skalar der Ebenengleichung holen
-//STRIP001                  double fGroundScalar = -aGroundPosition.Scalar(aGroundDirection);
-//STRIP001
-//STRIP001                  // ObjectTrans setzen
-//STRIP001                  BOOL bPolygonVisible(TRUE);
-//STRIP001                  Matrix4D mTransform = GetFullTransform();
-//STRIP001                  rTransSet.SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001                  for(sal_uInt16 a(0); a < aLinePolyPolygon.Count(); a++)
-//STRIP001                  {
-//STRIP001                      Polygon3D& rLinePoly = aLinePolyPolygon[a];
-//STRIP001                      Polygon3D aPoly(rLinePoly.GetPointCount());
-//STRIP001                      sal_uInt16 nPolyPos(0);
-//STRIP001
-//STRIP001                      for(sal_uInt16 b(0); b < rLinePoly.GetPointCount(); b++)
-//STRIP001                      {
-//STRIP001                          // Naechsten Punkt holen
-//STRIP001                          Vector3D aPoint = rLinePoly[b];
-//STRIP001
-//STRIP001                          // Auf Augkoordinaten umrechnen
-//STRIP001                          aPoint = rTransSet.ObjectToEyeCoor(aPoint);
-//STRIP001
-//STRIP001                          // Richtung bestimmen
-//STRIP001                          Vector3D aDirection = aLampPositionOrDirection;
-//STRIP001                          if(!bDirectionalSource)
-//STRIP001                          {
-//STRIP001                              aDirection = aPoint - aLampPositionOrDirection;
-//STRIP001                              aDirection.Normalize();
-//STRIP001                          }
-//STRIP001
-//STRIP001                          // Schnittpunkt berechnen (N.D)
-//STRIP001                          double fDiv = aGroundDirection.Scalar(aDirection);
-//STRIP001                          if(fabs(fDiv) < SMALL_DVALUE)
-//STRIP001                          {
-//STRIP001                              bPolygonVisible = FALSE;
-//STRIP001                          }
-//STRIP001                          else
-//STRIP001                          {
-//STRIP001                              fDiv = -((fGroundScalar + aGroundDirection.Scalar(aPoint)) / fDiv);
-//STRIP001                              aPoint += aDirection * fDiv;
-//STRIP001                          }
-//STRIP001
-//STRIP001                          // Punkt normal transformieren
-//STRIP001                          if(bPolygonVisible)
-//STRIP001                          {
-//STRIP001                              // Auf ViewKoordinaten
-//STRIP001                              Vector3D aShadowPoint = rTransSet.EyeToViewCoor(aPoint);
-//STRIP001                              aPoly[nPolyPos++] = Vector3D(
-//STRIP001                                  aShadowPoint.X() + (double)nXDist,
-//STRIP001                                  aShadowPoint.Y() + (double)nYDist,
-//STRIP001                                  0.0);
-//STRIP001                          }
-//STRIP001                      }
-//STRIP001
-//STRIP001                      // Teilpolygon einfuegen
-//STRIP001                      if(nPolyPos)
-//STRIP001                      {
-//STRIP001                          aPoly.SetClosed(rLinePoly.IsClosed());
-//STRIP001                          rPoly.Insert(aPoly);
-//STRIP001                      }
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // ObjectTrans setzen
-//STRIP001          Matrix4D mTransform = GetFullTransform();
-//STRIP001          rTransSet.SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001          for(sal_uInt16 a(0); a < aLinePolyPolygon.Count(); a++)
-//STRIP001          {
-//STRIP001              Polygon3D& rLinePoly = aLinePolyPolygon[a];
-//STRIP001              Polygon3D aPoly(rLinePoly.GetPointCount());
-//STRIP001              sal_uInt16 nPolyPos(0);
-//STRIP001
-//STRIP001              // Polygon fuellen
-//STRIP001              for(sal_uInt16 b(0); b < rLinePoly.GetPointCount(); b++)
-//STRIP001              {
-//STRIP001                  // Naechsten Punkt holen
-//STRIP001                  Vector3D aPoint = rLinePoly[b];
-//STRIP001                  aPoint = rTransSet.ObjectToViewCoor(aPoint);
-//STRIP001                  aPoly[nPolyPos++] = Vector3D(
-//STRIP001                      aPoint.X() + (double)nXDist,
-//STRIP001                      aPoint.Y() + (double)nYDist,
-//STRIP001                      0.0);
-//STRIP001              }
-//STRIP001
-//STRIP001              // open/close
-//STRIP001              aPoly.SetClosed(rLinePoly.IsClosed());
-//STRIP001
-//STRIP001              // Teilpolygon einfuegen
-//STRIP001              rPoly.Insert(aPoly);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void E3dCompoundObject::ImpDrawShadowPolygon(PolyPolygon3D& rPoly, ExtOutputDevice& rXOut)
-//STRIP001 {
-//STRIP001  Color aCol = GetShadowColor();
-//STRIP001  OutputDevice *pDevice = rXOut.GetOutDev();
-//STRIP001  BOOL bDrawAsOutline(DrawShadowAsOutline());
-//STRIP001  UINT16 nTransparence = GetShadowTransparence();
-//STRIP001
-//STRIP001  if(nTransparence)
-//STRIP001  {
-//STRIP001      if(nTransparence != 100)
-//STRIP001      {
-//STRIP001          // transparence, draw to metafile and then transparent to
-//STRIP001          // outdev
-//STRIP001          UINT8 nScaledTrans((UINT8)((nTransparence * 255)/100));
-//STRIP001          Color aTransColor(nScaledTrans, nScaledTrans, nScaledTrans);
-//STRIP001          Gradient aGradient(GRADIENT_LINEAR, aTransColor, aTransColor);
-//STRIP001          GDIMetaFile aMetaFile;
-//STRIP001          VirtualDevice aVDev;
-//STRIP001          MapMode aMap(rXOut.GetOutDev()->GetMapMode());
-//STRIP001
-//STRIP001          // StepCount to someting small
-//STRIP001          aGradient.SetSteps(3);
-//STRIP001
-//STRIP001          // create BoundRectangle
-//STRIP001          PolyPolygon aPolyPolygon(rPoly.GetPolyPolygon());
-//STRIP001          Rectangle aBound(aPolyPolygon.GetBoundRect());
-//STRIP001
-//STRIP001          // prepare VDev and MetaFile
-//STRIP001          aVDev.EnableOutput(FALSE);
-//STRIP001          aVDev.SetMapMode(rXOut.GetOutDev()->GetMapMode());
-//STRIP001          aMetaFile.Record(&aVDev);
-//STRIP001
-//STRIP001          aVDev.SetFont(rXOut.GetOutDev()->GetFont());
-//STRIP001          aVDev.SetDrawMode(rXOut.GetOutDev()->GetDrawMode());
-//STRIP001          aVDev.SetRefPoint(rXOut.GetOutDev()->GetRefPoint());
-//STRIP001
-//STRIP001          // create output
-//STRIP001          for(UINT16 a(0); a < aPolyPolygon.Count(); a++)
-//STRIP001          {
-//STRIP001              if(rPoly[a].IsClosed())
-//STRIP001              {
-//STRIP001                  aVDev.SetLineColor();
-//STRIP001                  aVDev.SetFillColor(aCol);
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  aVDev.SetLineColor(aCol);
-//STRIP001                  aVDev.SetFillColor();
-//STRIP001              }
-//STRIP001
-//STRIP001              aMetaFile.AddAction(new MetaPolygonAction(aPolyPolygon[a]));
-//STRIP001          }
-//STRIP001
-//STRIP001          // draw metafile
-//STRIP001          aMetaFile.Stop();
-//STRIP001          aMetaFile.WindStart();
-//STRIP001          aMap.SetOrigin(aBound.TopLeft());
-//STRIP001          aMetaFile.SetPrefMapMode(aMap);
-//STRIP001          aMetaFile.SetPrefSize(aBound.GetSize());
-//STRIP001          rXOut.GetOutDev()->DrawTransparent(aMetaFile, aBound.TopLeft(), aBound.GetSize(), aGradient);
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001          // no transparence, draw all single polys directly
-//STRIP001      for(UINT16 a(0); a < rPoly.Count(); a++)
-//STRIP001      {
-//STRIP001          if(rPoly[a].IsClosed())
-//STRIP001          {
-//STRIP001              pDevice->SetLineColor();
-//STRIP001              pDevice->SetFillColor(aCol);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              pDevice->SetLineColor(aCol);
-//STRIP001              pDevice->SetFillColor();
-//STRIP001          }
-//STRIP001
-//STRIP001          pDevice->DrawPolygon(rPoly[a].GetPolygon());
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -5146,38 +2966,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//STRIP001 XPolyPolygon E3dCompoundObject::TransformToScreenCoor(const PolyPolygon3D &rExtrudePoly)
-//STRIP001 {
-//STRIP001  XPolyPolygon aNewPolyPolygon;
-//STRIP001  B3dTransformationSet& rTransSet = GetScene()->GetCameraSet();
-//STRIP001
-//STRIP001  // set ObjectTrans
-//STRIP001  Matrix4D mTransform = GetFullTransform();
-//STRIP001  rTransSet.SetObjectTrans(mTransform);
-//STRIP001
-//STRIP001  // transform base polygon to screen coor
-//STRIP001  for(UINT16 a=0;a<rExtrudePoly.Count();a++)
-//STRIP001  {
-//STRIP001      const Polygon3D &rExtPoly = rExtrudePoly[a];
-//STRIP001      BOOL bClosed = rExtPoly.IsClosed();
-//STRIP001      XPolygon aNewPoly(rExtPoly.GetPointCount() + (bClosed ? 1 : 0));
-//STRIP001
-//STRIP001      UINT16 b;
-//STRIP001      for(b=0;b<rExtPoly.GetPointCount();b++)
-//STRIP001      {
-//STRIP001          Vector3D aPoint = rTransSet.ObjectToViewCoor(rExtPoly[b]);
-//STRIP001          aNewPoly[b].X() = (long)(aPoint.X() + 0.5);
-//STRIP001          aNewPoly[b].Y() = (long)(aPoint.Y() + 0.5);
-//STRIP001      }
-//STRIP001
-//STRIP001      if(bClosed)
-//STRIP001          aNewPoly[b] = aNewPoly[0];
-//STRIP001
-//STRIP001      aNewPolyPolygon.Insert(aNewPoly);
-//STRIP001  }
-//STRIP001
-//STRIP001  return aNewPolyPolygon;
-//STRIP001 }
 
 /*************************************************************************
 |*
