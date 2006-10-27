@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3npool.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:02:43 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:59:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,10 +36,6 @@
 #pragma hdrstop
 
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _SFXMACITEM_HXX //autogen
 #include <svtools/macitem.hxx>
 #endif
@@ -68,18 +64,6 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
-// auto strip #ifndef _PARATR_HXX
-// auto strip #include <paratr.hxx>
-// auto strip #endif
-// auto strip #ifndef _POOLFMT_HXX
-// auto strip #include <poolfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDTXT_HXX
-// auto strip #include <ndtxt.hxx>
-// auto strip #endif
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif
@@ -134,9 +118,6 @@
 #ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
 #endif
-// auto strip #ifndef _GRFATR_HXX
-// auto strip #include <grfatr.hxx>
-// auto strip #endif
 #ifndef _CELLATR_HXX
 #include <cellatr.hxx>
 #endif
@@ -146,9 +127,6 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _NDINDEX_HXX
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
 #ifndef _FMTRUBY_HXX
 #include <fmtruby.hxx>
 #endif
