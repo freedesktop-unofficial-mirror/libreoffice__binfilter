@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txttab.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:34:28 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,16 +48,10 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 
-// auto strip #include "viewopt.hxx"    // SwViewOptions
 #include "txtcfg.hxx"
 #include "portab.hxx"
-// auto strip #include "inftxt.hxx"
 #include "itrform2.hxx"
-// auto strip #include "txtfrm.hxx"
 namespace binfilter {
 
 
@@ -424,81 +418,10 @@ namespace binfilter {
 
 
 
-//STRIP001 void SwTabPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001 #ifndef PRODUCT
-//STRIP001  // Wir wollen uns die Fixbreite anzeigen
-//STRIP001     if( rInf.OnWin() && OPTDBG( rInf ) &&
-//STRIP001         !rInf.GetOpt().IsPagePreview() && \
-//STRIP001         !rInf.GetOpt().IsReadonly() && \
-//STRIP001         SwViewOption::IsFieldShadings()    )
-//STRIP001  {
-//STRIP001      const KSHORT nWidth = PrtWidth();
-//STRIP001      ((SwTabPortion*)this)->PrtWidth( GetFixWidth() );
-//STRIP001      rInf.DrawViewOpt( *this, POR_TAB );
-//STRIP001      ((SwTabPortion*)this)->PrtWidth( nWidth );
-//STRIP001  }
-//STRIP001 #endif
-//STRIP001
-//STRIP001  rInf.DrawBackBrush( *this );
-//STRIP001
-//STRIP001     // do we have to repaint a post it portion?
-//STRIP001     if( rInf.OnWin() && pPortion && !pPortion->Width() )
-//STRIP001         pPortion->PrePaint( rInf, this );
-//STRIP001
-//STRIP001     // Darstellung von Sonderzeichen
-//STRIP001  if( rInf.OnWin() && rInf.GetOpt().IsTab() )
-//STRIP001  {
-//STRIP001      // gefuellte Tabs werden grau hinterlegt.
-//STRIP001      if( IsFilled() )
-//STRIP001          rInf.DrawViewOpt( *this, POR_TAB );
-//STRIP001      else
-//STRIP001          rInf.DrawTab( *this );
-//STRIP001  }
-//STRIP001
-//STRIP001  // 6842: Tabs sollen auf einmal wieder unterstrichen werden.
-//STRIP001  if( rInf.GetFont()->IsPaintBlank() )
-//STRIP001  {
-//STRIP001      // Tabs mit Fuellung
-//STRIP001      XubString aTxt( ' ' );
-//STRIP001      const KSHORT nCharWidth = rInf.GetTxtSize( aTxt ).Width();
-//STRIP001      // robust:
-//STRIP001      if( nCharWidth )
-//STRIP001      {
-//STRIP001          // 6864: immer mit Kerning, auch auf dem Drucker!
-//STRIP001          KSHORT nChar = Width() / nCharWidth;
-//STRIP001          rInf.DrawText( aTxt.Fill( nChar, ' ' ), *this, 0, nChar, sal_True );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  // Ausgabe von Fuellzeichen
-//STRIP001  if( IsFilled() )
-//STRIP001  {
-//STRIP001      // Tabs mit Fuellung
-//STRIP001      XubString aTxt( cFill );
-//STRIP001      const KSHORT nCharWidth = rInf.GetTxtSize( aTxt ).Width();
-//STRIP001 #if OSL_DEBUG_LEVEL > 1
-//STRIP001      ASSERT( nCharWidth, "!SwTabPortion::Paint: sophisticated tabchar" );
-//STRIP001 #endif
-//STRIP001      // robust:
-//STRIP001      if( nCharWidth )
-//STRIP001      {
-//STRIP001          // 6864: immer mit Kerning, auch auf dem Drucker!
-//STRIP001          KSHORT nChar = Width() / nCharWidth;
-//STRIP001          if ( cFill == '_' )
-//STRIP001              ++nChar; // damit keine Luecken entstehen (Bug 13430)
-//STRIP001          rInf.DrawText( aTxt.Fill( nChar, cFill ), *this, 0, nChar, sal_True );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwTabPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwTabPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     rPH.Text( GetLen(), GetWhichPor() );
-//STRIP001 }
 
 }

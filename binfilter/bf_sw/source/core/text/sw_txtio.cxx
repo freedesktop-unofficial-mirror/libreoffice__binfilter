@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtio.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:33:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,8 +38,6 @@
 
 #include "viewsh.hxx"       // IsDbg()
 #include "viewopt.hxx"      // IsDbg()
-// auto strip #include "txtatr.hxx"
-// auto strip #include "errhdl.hxx"
 
 #ifdef PRODUCT
 #error Wer fummelt denn an den makefiles?
@@ -48,7 +46,6 @@
 #define CONSTCHAR( name, string ) static const sal_Char __FAR_DATA name[] = string
 //#include "txtcfg.hxx"
 
-// auto strip #include "txtfrm.hxx"       // IsDbg()
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
@@ -56,22 +53,15 @@
 
 #include "flyfrms.hxx"
 #include "inftxt.hxx"
-// auto strip #include "porexp.hxx"
-// auto strip #include "porfld.hxx"
 #include "porfly.hxx"
 #include "porftn.hxx"
-// auto strip #include "porglue.hxx"
 #include "porhyph.hxx"
-// auto strip #include "porlay.hxx"
-// auto strip #include "porlin.hxx"
 #include "porref.hxx"
 #include "porrst.hxx"
 #include "portab.hxx"
 #include "portox.hxx"
-// auto strip #include "portxt.hxx"
 #include "pordrop.hxx"
 #include "pormulti.hxx"
-// auto strip #include "ndhints.hxx"
 #include "frmsh.hxx"
 
 // So kann man die Layoutstruktur ausgeben lassen
@@ -79,14 +69,6 @@
 #ifdef AMA_LAYOUT
 #include <stdio.h>
 #include <stdlib.h>         // getenv()
-// auto strip #include <flowfrm.hxx>
-// auto strip #include <pagefrm.hxx>
-// auto strip #ifndef _SVDOBJ_HXX //autogen
-// auto strip #include <bf_svx/svdobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _DFLYOBJ_HXX //autogen
-// auto strip #include <dflyobj.hxx>
-// auto strip #endif
 namespace binfilter {
 
 

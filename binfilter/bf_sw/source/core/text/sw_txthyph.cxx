@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txthyph.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:33:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:25 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,53 +36,20 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
-// auto strip #include <com/sun/star/i18n/WordType.hpp>
-// auto strip #endif
 
 #ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
 #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTCFG_HXX
-// auto strip #include <txtcfg.hxx>
-// auto strip #endif
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 #ifndef _PORHYPH_HXX
 #include <porhyph.hxx>  //
 #endif
-// auto strip #ifndef _INFTXT_HXX
-// auto strip #include <inftxt.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTFRM_HXX
-// auto strip #include <txtfrm.hxx>
-// auto strip #endif
 #ifndef _ITRFORM2_HXX
 #include <itrform2.hxx> //
 #endif
 #ifndef _GUESS_HXX
 #include <guess.hxx>    //
 #endif
-// auto strip #ifndef _SPLARGS_HXX
-// auto strip #include <splargs.hxx>    // SwInterHyphInfo
-// auto strip #endif
-// auto strip #ifndef _PORRST_HXX
-// auto strip #include <porrst.hxx> // SwKernPortion
-// auto strip #endif
 namespace binfilter {
 
 #ifndef PRODUCT
@@ -100,22 +67,6 @@ using namespace ::com::sun::star::i18n;
  *                      SwTxtFormatInfo::HyphWord()
  *************************************************************************/
 
-//STRIP001 Reference< XHyphenatedWord >  SwTxtFormatInfo::HyphWord(
-//STRIP001                              const XubString &rTxt, const MSHORT nMinTrail )
-//STRIP001 {
-//STRIP001  if( rTxt.Len() < 4 || pFnt->IsSymbol(pVsh) )
-//STRIP001      return 0;
-//STRIP001 //   ASSERT( IsHyphenate(), "SwTxtFormatter::HyphWord: why?" );
-//STRIP001  Reference< XHyphenator >  xHyph = ::GetHyphenator();
-//STRIP001  Reference< XHyphenatedWord > xHyphWord;
-//STRIP001
-//STRIP001  if( xHyph.is() )
-//STRIP001      xHyphWord = xHyph->hyphenate( OUString(rTxt),
-//STRIP001                          pBreakIt->GetLocale( pFnt->GetLanguage() ),
-//STRIP001                          rTxt.Len() - nMinTrail, GetHyphValues() );
-//STRIP001  return xHyphWord;
-//STRIP001
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFrm::Hyphenate
@@ -123,63 +74,6 @@ using namespace ::com::sun::star::i18n;
  * Wir formatieren eine Zeile fuer die interaktive Trennung
  *************************************************************************/
 
-//STRIP001 sal_Bool SwTxtFrm::Hyphenate( SwInterHyphInfo &rHyphInf )
-//STRIP001 {
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001     ASSERT( ! IsVertical() || ! IsSwapped(),"swapped frame at SwTxtFrm::Hyphenate" );
-//STRIP001 #endif
-//STRIP001     if( !pBreakIt->xBreak.is() )
-//STRIP001      return sal_False;;
-//STRIP001  // Wir machen den Laden erstmal dicht:
-//STRIP001  ASSERT( !IsLocked(), "SwTxtFrm::Hyphenate: this is locked" );
-//STRIP001  // 4935: Der ::com::sun::star::frame::Frame muss eine gueltige SSize haben!
-//STRIP001  Calc();
-//STRIP001  GetFormatted();
-//STRIP001
-//STRIP001  sal_Bool bRet = sal_False;
-//STRIP001  if( !IsEmpty() )
-//STRIP001  {
-//STRIP001      // Wir muessen die Trennung immer einschalten.
-//STRIP001      // Keine Angst, der SwTxtIter sichert im Hyphenate die alte Zeile.
-//STRIP001      SwTxtFrmLocker aLock( this );
-//STRIP001
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001         if ( IsVertical() )
-//STRIP001             SwapWidthAndHeight();
-//STRIP001 #endif
-//STRIP001
-//STRIP001         SwTxtFormatInfo aInf( this, sal_True );     // sal_True fuer interactive hyph!
-//STRIP001      SwTxtFormatter aLine( this, &aInf );
-//STRIP001         aLine.CharToLine( rHyphInf.nStart );
-//STRIP001      // Wenn wir innerhalb des ersten Wortes einer Zeile stehen, so koennte
-//STRIP001      // dieses in der vorherigen getrennt werden, deshalb gehen wir ein Zeile
-//STRIP001      // zurueck.
-//STRIP001      if( aLine.Prev() )
-//STRIP001      {
-//STRIP001          SwLinePortion *pPor = aLine.GetCurr()->GetFirstPortion();
-//STRIP001          while( pPor->GetPortion() )
-//STRIP001              pPor = pPor->GetPortion();
-//STRIP001          if( pPor->GetWhichPor() == POR_SOFTHYPH ||
-//STRIP001              pPor->GetWhichPor() == POR_SOFTHYPHSTR )
-//STRIP001              aLine.Next();
-//STRIP001      }
-//STRIP001
-//STRIP001      const xub_StrLen nEnd = rHyphInf.GetEnd();
-//STRIP001      while( !bRet && aLine.GetStart() < nEnd )
-//STRIP001      {
-//STRIP001          DBG_LOOP;
-//STRIP001          bRet = aLine.Hyphenate( rHyphInf );
-//STRIP001          if( !aLine.Next() )
-//STRIP001              break;
-//STRIP001      }
-//STRIP001
-//STRIP001 #ifdef VERTICAL_LAYOUT
-//STRIP001         if ( IsVertical() )
-//STRIP001             SwapWidthAndHeight();
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFormatter::Hyphenate
@@ -192,171 +86,7 @@ using namespace ::com::sun::star::i18n;
 // so vorbereitet, wie ihn die UI erwartet.
 // Hier stehen natuerlich enorme Optimierungsmoeglichkeiten offen.
 
-//STRIP001 void SetParaPortion( SwTxtInfo *pInf, SwParaPortion *pRoot )
-//STRIP001 {
-//STRIP001  ASSERT( pRoot, "SetParaPortion: no root anymore" );
-//STRIP001  pInf->pPara = pRoot;
-//STRIP001 }
 
-//STRIP001 sal_Bool SwTxtFormatter::Hyphenate( SwInterHyphInfo &rHyphInf )
-//STRIP001 {
-//STRIP001  SwTxtFormatInfo &rInf = GetInfo();
-//STRIP001  sal_Bool bRet = sal_False;
-//STRIP001
-//STRIP001  // In der letzten Zeile gibt es nie etwas zu trennen.
-//STRIP001  // Es sei denn, es befindet sich eine FlyPortion darin,
-//STRIP001  // oder es ist die letzte Zeile des Masters
-//STRIP001  if( !GetNext() && !rInf.GetTxtFly()->IsOn() && !pFrm->GetFollow() )
-//STRIP001      return bRet;
-//STRIP001
-//STRIP001  xub_StrLen nWrdStart = nStart;
-//STRIP001
-//STRIP001  // Wir muessen die alte Zeile erhalten. Ein Beispiel:
-//STRIP001  // Das Attribut fuer Trennung wurde nicht gesetzt,
-//STRIP001  // in SwTxtFrm::Hyphenate wird es jedoch immer gesetzt,
-//STRIP001  // weil wir Trennpositionen im Hyphenator einstellen wollen.
-//STRIP001  SwLineLayout *pOldCurr = pCurr;
-//STRIP001
-//STRIP001  InitCntHyph();
-//STRIP001
-//STRIP001  // 5298: IsParaLine() (ex.IsFirstLine) fragt auf GetParaPortion() ab.
-//STRIP001  // wir muessen gleiche Bedingungen schaffen: in der ersten
-//STRIP001  // Zeile formatieren wir SwParaPortions...
-//STRIP001  if( pOldCurr->IsParaPortion() )
-//STRIP001  {
-//STRIP001      SwParaPortion *pPara = new SwParaPortion();
-//STRIP001      SetParaPortion( &rInf, pPara );
-//STRIP001      pCurr = pPara;
-//STRIP001      ASSERT( IsParaLine(), "SwTxtFormatter::Hyphenate: not the first" );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pCurr = new SwLineLayout();
-//STRIP001
-//STRIP001  nWrdStart = FormatLine( nWrdStart );
-//STRIP001
-//STRIP001  // Man muss immer im Hinterkopf behalten, dass es z.B.
-//STRIP001  // Felder gibt, die aufgetrennt werden koennen ...
-//STRIP001  if( pCurr->PrtWidth() && pCurr->GetLen() )
-//STRIP001  {
-//STRIP001      // Wir muessen uns darauf einstellen, dass in der Zeile
-//STRIP001      // FlyFrms haengen, an denen auch umgebrochen werden darf.
-//STRIP001      // Wir suchen also die erste HyphPortion in dem angegebenen
-//STRIP001      // Bereich.
-//STRIP001
-//STRIP001      SwLinePortion *pPos = pCurr->GetPortion();
-//STRIP001      const xub_StrLen nPamStart = rHyphInf.nStart;
-//STRIP001      nWrdStart = nStart;
-//STRIP001      const xub_StrLen nEnd = rHyphInf.GetEnd();
-//STRIP001      while( pPos )
-//STRIP001      {
-//STRIP001          // Entweder wir liegen drueber oder wir laufen gerade auf eine
-//STRIP001          // Hyphportion die am Ende der Zeile oder vor einem Flys steht.
-//STRIP001          if( nWrdStart >= nEnd )
-//STRIP001          {
-//STRIP001              nWrdStart = 0;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( nWrdStart >= nPamStart && pPos->InHyphGrp()
-//STRIP001              && ( !pPos->IsSoftHyphPortion()
-//STRIP001                   || ((SwSoftHyphPortion*)pPos)->IsExpand() ) )
-//STRIP001          {
-//STRIP001                 nWrdStart += pPos->GetLen();
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          nWrdStart += pPos->GetLen();
-//STRIP001          pPos = pPos->GetPortion();
-//STRIP001      }
-//STRIP001      // Wenn pPos 0 ist, wurde keine Trennstelle ermittelt.
-//STRIP001      if( !pPos )
-//STRIP001          nWrdStart = 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Das alte LineLayout wird wieder eingestellt ...
-//STRIP001  delete pCurr;
-//STRIP001  pCurr = pOldCurr;
-//STRIP001
-//STRIP001  if( pOldCurr->IsParaPortion() )
-//STRIP001  {
-//STRIP001      SetParaPortion( &rInf, (SwParaPortion*)pOldCurr );
-//STRIP001      ASSERT( IsParaLine(), "SwTxtFormatter::Hyphenate: even not the first" );
-//STRIP001  }
-//STRIP001
-//STRIP001  if( nWrdStart )
-//STRIP001  {
-//STRIP001      // nWrdStart bezeichnet nun die Position im String, der
-//STRIP001      // fuer eine Trennung zur Debatte steht.
-//STRIP001      // Start() hangelt sich zum End()
-//STRIP001      rHyphInf.nWordStart = nWrdStart;
-//STRIP001
-//STRIP001      xub_StrLen nLen = 0;
-//STRIP001      const xub_StrLen nEnd = nWrdStart;
-//STRIP001
-//STRIP001      // Wir suchen vorwaerts
-//STRIP001      Reference< XHyphenatedWord > xHyphWord;
-//STRIP001
-//STRIP001      Boundary aBound =
-//STRIP001          pBreakIt->xBreak->getWordBoundary( rInf.GetTxt(), nWrdStart,
-//STRIP001          pBreakIt->GetLocale( rInf.GetFont()->GetLanguage() ), WordType::DICTIONARY_WORD, sal_True );
-//STRIP001      nWrdStart = aBound.startPos;
-//STRIP001      nLen = aBound.endPos - nWrdStart;
-//STRIP001      bRet = 0 != nLen;
-//STRIP001      if( bRet )
-//STRIP001      {
-//STRIP001          XubString aSelTxt( rInf.GetTxt().Copy(nWrdStart, nLen) );
-//STRIP001          xub_StrLen nCnt = 0;
-//STRIP001
-//STRIP001 // these things should be handled by the dialog
-//STRIP001 //            for( xub_StrLen i = 0; i < nLen; ++i )
-//STRIP001 //            {
-//STRIP001 //                sal_Unicode cCh = aSelTxt.GetChar(i);
-//STRIP001 //                if( (CH_TXTATR_BREAKWORD == cCh || CH_TXTATR_INWORD == cCh )
-//STRIP001 //                     && rInf.HasHint( nWrdStart + i ) )
-//STRIP001 //                {
-//STRIP001 //                    aSelTxt.Erase( i , 1 );
-//STRIP001 //                    nCnt++;
-//STRIP001 //                    --nLen;
-//STRIP001 //                    if( i )
-//STRIP001 //                        --i;
-//STRIP001 //                }
-//STRIP001 //            }
-//STRIP001
-//STRIP001          {
-//STRIP001              MSHORT nMinTrail = 0;
-//STRIP001              if( nWrdStart + nLen > nEnd )
-//STRIP001                  nMinTrail = nWrdStart + nLen - nEnd - 1;
-//STRIP001
-//STRIP001              //!! rHyphInf.SetHyphWord( ... ) mu?hier geschehen
-//STRIP001              xHyphWord = rInf.HyphWord( aSelTxt, nMinTrail );
-//STRIP001              bRet = xHyphWord.is();
-//STRIP001              if ( !rHyphInf.IsCheck() && sal_False == bRet )
-//STRIP001                  rHyphInf.SetNoLang( sal_True );
-//STRIP001          }
-//STRIP001
-//STRIP001          if( bRet )
-//STRIP001          {
-//STRIP001              rHyphInf.SetHyphWord( xHyphWord );
-//STRIP001              rHyphInf.nWordStart = nWrdStart;
-//STRIP001              rHyphInf.nWordLen   = nLen+nCnt;
-//STRIP001              rHyphInf.SetNoLang( sal_False );
-//STRIP001              rHyphInf.SetCheck( sal_True );
-//STRIP001          }
-//STRIP001 #ifdef DEBUGGY
-//STRIP001          if( OPTDBG( rInf ) )
-//STRIP001          {
-//STRIP001              ASSERT( aSelTxt == aHyphWord,
-//STRIP001                      "!SwTxtFormatter::Hyphenate: different words, different planets" );
-//STRIP001              aDbstream << "Diff: \"" << aSelTxt.GetStr() << "\" != \""
-//STRIP001                        << aHyphWord.GetStr() << "\"" << endl;
-//STRIP001              ASSERT( bRet, "!SwTxtFormatter::Hyphenate: three of a perfect pair" );
-//STRIP001              aDbstream << "Hyphenate: ";
-//STRIP001          }
-//STRIP001 #endif
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtPortion::CreateHyphen()
@@ -379,27 +109,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   // first case: hyphenated word has alternative spelling
 /*N*/   if ( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxAlternativeSpelling aAltSpell;
-//STRIP001 /*?*/        aAltSpell = SvxGetAltSpelling( xHyphWord );
-//STRIP001 /*?*/        ASSERT( aAltSpell.bIsAltSpelling, "no alternatve spelling" );
-//STRIP001 /*?*/
-//STRIP001 /*?*/        XubString  aAltTxt   = aAltSpell.aReplacement;
-//STRIP001 /*?*/         nPorEnd = aAltSpell.nChangedPos + rGuess.BreakStart() - rGuess.FieldDiff();
-//STRIP001 /*?*/        xub_StrLen nTmpLen = 0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // soft hyphen at alternative spelling position?
-//STRIP001 /*?*/        if( rInf.GetTxt().GetChar( rInf.GetSoftHyphPos() ) == CHAR_SOFTHYPHEN )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pHyphPor = new SwSoftHyphStrPortion( aAltTxt );
-//STRIP001 /*?*/            nTmpLen = 1;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else {
-//STRIP001 /*?*/            pHyphPor = new SwHyphStrPortion( aAltTxt );
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/        // length of pHyphPor is adjusted
-//STRIP001 /*?*/        pHyphPor->SetLen( aAltTxt.Len() + 1 );
-//STRIP001 /*?*/        (SwPosSize&)(*pHyphPor) = pHyphPor->GetTxtSize( rInf );
-//STRIP001 /*?*/        pHyphPor->SetLen( aAltSpell.nChangedLength + nTmpLen );
 /*N*/   } else {
 /*N*/       // second case: no alternative spelling
 /*N*/       SwHyphPortion aHyphPor;
@@ -467,11 +176,6 @@ using namespace ::com::sun::star::i18n;
  *              virtual SwHyphPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwHyphPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     String aString( '-' );
-//STRIP001     rPH.Special( GetLen(), aString, GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwHyphPortion::Format()
@@ -501,20 +205,11 @@ using namespace ::com::sun::star::i18n;
  *              virtual SwHyphStrPortion::GetExpTxt()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwHyphStrPortion::GetExpTxt( const SwTxtSizeInfo &, XubString &rTxt ) const
-//STRIP001 {
-//STRIP001  rTxt = aExpand;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwHyphStrPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwHyphStrPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     rPH.Special( GetLen(), aExpand, GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwSoftHyphPortion
@@ -529,20 +224,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   SetWhichPor( POR_SOFTHYPH );
 /*N*/ }
 
-//STRIP001 KSHORT SwSoftHyphPortion::GetViewWidth( const SwTxtSizeInfo &rInf ) const
-//STRIP001 {
-//STRIP001  // Wir stehen zwar im const, aber nViewWidth sollte erst im letzten
-//STRIP001  // Moment errechnet werden:
-//STRIP001  if( !Width() && rInf.OnWin() && rInf.GetOpt().IsSoftHyph() && !IsExpand() )
-//STRIP001  {
-//STRIP001      if( !nViewWidth )
-//STRIP001          ((SwSoftHyphPortion*)this)->nViewWidth
-//STRIP001              = rInf.GetTxtSize( '-' ).Width();
-//STRIP001  }
-//STRIP001  else
-//STRIP001      ((SwSoftHyphPortion*)this)->nViewWidth = 0;
-//STRIP001  return nViewWidth;
-//STRIP001 }
 
 /*  Faelle:
  *  1) SoftHyph steht in der Zeile, ViewOpt aus.
@@ -553,14 +234,6 @@ using namespace ::com::sun::star::i18n;
  *     -> immer sichtbar, Nachbarn unveraendert
  */
 
-//STRIP001 void SwSoftHyphPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  if( Width() )
-//STRIP001  {
-//STRIP001      rInf.DrawViewOpt( *this, POR_SOFTHYPH );
-//STRIP001      SwExpandPortion::Paint( rInf );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwSoftHyphPortion::Format()
@@ -694,14 +367,6 @@ using namespace ::com::sun::star::i18n;
  *              virtual SwSoftHyphPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwSoftHyphPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     const String aString( '-' );
-//STRIP001     const USHORT nWhich = ! Width() ?
-//STRIP001                           POR_SOFTHYPH_COMP :
-//STRIP001                           GetWhichPor();
-//STRIP001     rPH.Special( GetLen(), aString, nWhich );
-//STRIP001 }
 
 /*************************************************************************
  *                      SwSoftHyphStrPortion::Paint
@@ -710,16 +375,12 @@ using namespace ::com::sun::star::i18n;
 /*N*/ void SwSoftHyphStrPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    // Bug oder feature?:
-//STRIP001  // {Zu}{k-}{ker}, {k-} wird grau statt {-}
-//STRIP001  rInf.DrawViewOpt( *this, POR_SOFTHYPH );
-//STRIP001  SwHyphStrPortion::Paint( rInf );
 /*N*/ }
 
 /*N*/ SwSoftHyphStrPortion::SwSoftHyphStrPortion( const XubString &rStr )
 /*N*/   : SwHyphStrPortion( rStr )
 /*N*/ {
 /*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SetLen( 1 );
-//STRIP001  SetWhichPor( POR_SOFTHYPHSTR );
 /*N*/ }
 
 
