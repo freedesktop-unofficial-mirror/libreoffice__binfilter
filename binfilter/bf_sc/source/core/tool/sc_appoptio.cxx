@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_appoptio.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:03:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:29:01 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,23 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 //------------------------------------------------------------------
 
-// auto strip #include <vcl/svapp.hxx>
 
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
 
-// auto strip #include "cfgids.hxx"
 #include "appoptio.hxx"
 #include "rechead.hxx"
-// auto strip #include "scresid.hxx"
-// auto strip #include "global.hxx"
 #include "userlist.hxx"
 #include "bf_sc.hrc"
 #include "compiler.hrc"
@@ -297,21 +290,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void lcl_GetLastFunctions( Any& rDest, const ScAppOptions& rOpt )
-//STRIP001 {
-//STRIP001  long nCount = rOpt.GetLRUFuncListCount();
-//STRIP001  USHORT* pUShorts = rOpt.GetLRUFuncList();
-//STRIP001  if ( nCount && pUShorts )
-//STRIP001  {
-//STRIP001      Sequence<sal_Int32> aSeq( nCount );
-//STRIP001      sal_Int32* pArray = aSeq.getArray();
-//STRIP001      for (long i=0; i<nCount; i++)
-//STRIP001          pArray[i] = pUShorts[i];
-//STRIP001      rDest <<= aSeq;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      rDest <<= Sequence<sal_Int32>(0);   // empty
-//STRIP001 }
 
 /*N*/ void lcl_SetSortList( const Any& rValue )
 /*N*/ {
@@ -343,21 +321,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void lcl_GetSortList( Any& rDest )
-//STRIP001 {
-//STRIP001  const ScUserList* pUserList = ScGlobal::GetUserList();
-//STRIP001  if (pUserList)
-//STRIP001  {
-//STRIP001      long nCount = pUserList->GetCount();
-//STRIP001      Sequence<OUString> aSeq( nCount );
-//STRIP001      OUString* pArray = aSeq.getArray();
-//STRIP001      for (long i=0; i<nCount; i++)
-//STRIP001          pArray[i] = (*pUserList)[i]->GetString();
-//STRIP001      rDest <<= aSeq;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      rDest <<= Sequence<OUString>(0);    // empty
-//STRIP001 }
 
 //------------------------------------------------------------------
 
@@ -682,177 +645,40 @@ using namespace ::com::sun::star::uno;
 /*N*/ IMPL_LINK( ScAppCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Sequence<OUString> aNames = GetLayoutPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCLAYOUTOPT_MEASURE:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetAppMetric();
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_STATUSBAR:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetStatusFunc();
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_ZOOMVAL:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetZoom();
-//STRIP001              break;
-//STRIP001          case SCLAYOUTOPT_ZOOMTYPE:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetZoomType();
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aLayoutItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, InputCommitHdl, void *, EMPTYARG )
 /*N*/ {
          DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetInputPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCINPUTOPT_LASTFUNCS:
-//STRIP001              lcl_GetLastFunctions( pValues[nProp], *this );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_AUTOINPUT:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetAutoComplete() );
-//STRIP001              break;
-//STRIP001          case SCINPUTOPT_DET_AUTO:
-//STRIP001              ScUnoHelpFunctions::SetBoolInAny( pValues[nProp], GetDetectiveAuto() );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aInputItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, RevisionCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetRevisionPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCREVISOPT_CHANGE:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetTrackContentColor();
-//STRIP001              break;
-//STRIP001          case SCREVISOPT_INSERTION:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetTrackInsertColor();
-//STRIP001              break;
-//STRIP001          case SCREVISOPT_DELETION:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetTrackDeleteColor();
-//STRIP001              break;
-//STRIP001          case SCREVISOPT_MOVEDENTRY:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetTrackMoveColor();
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aRevisionItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, ContentCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetContentPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCCONTENTOPT_LINK:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetLinkMode();
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aContentItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, SortListCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetSortListPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCSORTLISTOPT_LIST:
-//STRIP001              lcl_GetSortList( pValues[nProp] );
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aSortListItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, MiscCommitHdl, void *, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetMiscPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case SCMISCOPT_DEFOBJWIDTH:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetDefaultObjectSizeWidth();
-//STRIP001              break;
-//STRIP001          case SCMISCOPT_DEFOBJHEIGHT:
-//STRIP001              pValues[nProp] <<= (sal_Int32) GetDefaultObjectSizeHeight();
-//STRIP001              break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  aMiscItem.PutProperties(aNames, aValues);
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void ScAppCfg::SetOptions( const ScAppOptions& rNew )
-//STRIP001 {
-//STRIP001  *(ScAppOptions*)this = rNew;
-//STRIP001  OptionsChanged();
-//STRIP001 }
 
-//STRIP001 void ScAppCfg::OptionsChanged()
-//STRIP001 {
-//STRIP001  aLayoutItem.SetModified();
-//STRIP001  aInputItem.SetModified();
-//STRIP001  aRevisionItem.SetModified();
-//STRIP001  aContentItem.SetModified();
-//STRIP001  aSortListItem.SetModified();
-//STRIP001  aMiscItem.SetModified();
-//STRIP001 }
 
 
 }
