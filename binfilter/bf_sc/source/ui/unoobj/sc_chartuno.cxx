@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartuno.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:10:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:00:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -46,8 +45,6 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_sch/memchrt.hxx>
 #include <bf_sch/schdll0.hxx>
-// auto strip #include <so3/svstor.hxx>
-// auto strip #include <bf_sfx2/app.hxx>
 #include <svtools/moduleoptions.hxx>
 
 #include "chartuno.hxx"
