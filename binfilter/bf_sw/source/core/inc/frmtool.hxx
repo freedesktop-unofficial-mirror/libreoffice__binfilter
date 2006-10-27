@@ -4,9 +4,9 @@
  *
  *  $RCSfile: frmtool.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:29:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:45:36 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -295,7 +295,6 @@ class SwBorderAttrs : public SwCacheObj
     void _CalcTop();
     void _CalcBottom();
 
-//STRIP001  void _IsLine();
 
     void _GetTopLine   ( const SwFrm *pFrm );
     void _GetBottomLine( const SwFrm *pFrm );
@@ -337,7 +336,6 @@ public:
            long CalcLeft( const SwFrm *pCaller ) const;
            long CalcRight( const SwFrm *pCaller ) const;
 
-//STRIP001  inline BOOL IsLine() const;
 
     inline const Size &GetSize()     const { return aFrmSize; }
 
@@ -381,10 +379,8 @@ public:
     void             Current( const SdrObject *pNew ) { pCurrent = pNew; }
     const SdrObject *Current()    const { return pCurrent; }
     const SdrObject *operator()() const { return pCurrent; }
-//STRIP001  const SdrObject *Top();
     const SdrObject *Bottom();
     const SdrObject *Next();
-//STRIP001  const SdrObject *Prev();
 };
 
 
@@ -469,11 +465,5 @@ inline USHORT SwBorderAttrs::CalcBottom() const
         ((SwBorderAttrs*)this)->_CalcBottom();
     return nBottom;
 }
-//STRIP001 inline BOOL SwBorderAttrs::IsLine() const
-//STRIP001 {
-//STRIP001  if ( bLine )
-//STRIP001      ((SwBorderAttrs*)this)->_IsLine();
-//STRIP001  return bIsLine;
-//STRIP001 }
 } //namespace binfilter
 #endif  //_FRMTOOL_HXX

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: flowfrm.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: obo $ $Date: 2006-01-19 17:29:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:44:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -167,7 +167,6 @@ public:
     BOOL IsColBreak( BOOL bAct ) const;
     sal_Bool HasLockedFollow() const;
 
-//STRIP001     BOOL HasParaSpaceAtPages( BOOL bSct ) const;
     SwTwips CalcUpperSpace( const SwBorderAttrs *pAttrs = NULL,
                             const SwFrm* pPr = NULL ) const;
 
