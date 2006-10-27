@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docftn.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:36:24 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:23:47 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -67,16 +67,10 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -312,7 +306,6 @@ namespace binfilter {
 /*N*/       if( DoesUndo() )
 /*N*/       {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-//STRIP001 /*?*/            AppendUndo( new SwUndoFtnInfo( rOld ) );
 /*N*/       }
 /*N*/
 /*N*/       FASTBOOL bPageNum = rInfo.eNum == FTNNUM_PAGE &&
@@ -338,21 +331,6 @@ namespace binfilter {
 /*?*/           else
 /*?*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetRootFrm()->UpdateFtnNums();
-//STRIP001  if ( bFtnDesc )
-//STRIP001 /*?*/                    GetRootFrm()->CheckFtnPageDescs( FALSE );
-//STRIP001 /*?*/                if ( bExtra )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    //Fuer die Benachrichtung bezueglich ErgoSum usw. sparen wir uns
-//STRIP001 /*?*/                    //extra-Code und nutzen die vorhandenen Wege.
-//STRIP001 /*?*/                    SwFtnIdxs& rFtnIdxs = GetFtnIdxs();
-//STRIP001 /*?*/                    for( USHORT nPos = 0; nPos < rFtnIdxs.Count(); ++nPos )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        SwTxtFtn *pTxtFtn = rFtnIdxs[ nPos ];
-//STRIP001 /*?*/                        const SwFmtFtn &rFtn = pTxtFtn->GetFtn();
-//STRIP001 /*?*/                        if ( !rFtn.IsEndNote() )
-//STRIP001 /*?*/                            pTxtFtn->SetNumber( rFtn.GetNumber(), &rFtn.GetNumStr());
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
 /*?*/           }
 /*N*/       }
 /*N*/       if( FTNNUM_PAGE != rInfo.eNum )
@@ -377,7 +355,6 @@ namespace binfilter {
 /*N*/       if( DoesUndo() )
 /*N*/       {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-//STRIP001 /*?*/            AppendUndo( new SwUndoEndNoteInfo( GetEndNoteInfo() ) );
 /*N*/       }
 /*N*/
 /*N*/       FASTBOOL bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
@@ -472,8 +449,6 @@ namespace binfilter {
 /*N*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*N*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
-//STRIP001 /*?*/                    bTypeChgd = TRUE;
-//STRIP001 /*?*/                    pTxtFtn->CheckCondColl();
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -499,8 +474,6 @@ namespace binfilter {
 /*?*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*?*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
-//STRIP001 /*?*/                    bTypeChgd = TRUE;
-//STRIP001 /*?*/                    pTxtFtn->CheckCondColl();
 /*?*/               }
 /*?*/           }
 /*N*/       }
