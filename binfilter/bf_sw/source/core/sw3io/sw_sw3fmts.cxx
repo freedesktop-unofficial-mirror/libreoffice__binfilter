@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_sw3fmts.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 10:00:45 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:58:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -48,9 +48,6 @@
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif
-// auto strip #ifndef _SVX_CSCOITEM_HXX
-// auto strip #include <bf_svx/cscoitem.hxx>
-// auto strip #endif
 
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
@@ -96,7 +93,6 @@
 #endif
 #include "swerror.h"
 #include "doc.hxx"
-// auto strip #include "docary.hxx"
 #include "pagefrm.hxx"
 #include "cntfrm.hxx"
 #include "pam.hxx"
@@ -1219,58 +1215,6 @@ extern BOOL TstFlyRange( const SwPaM* pPam, const SwIndex& rFlyPos );
 
 ////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 void Sw3IoImp::ScanAttr( SvStrings& rSecList,
-//STRIP001                          SvStringsDtor& rBookmarks )
-//STRIP001 {
-//STRIP001     UINT16 nWhich, nVer, nDummy16;
-//STRIP001
-//STRIP001     OpenRec( SWG_ATTRIBUTE );
-//STRIP001
-//STRIP001     BYTE cFlags = OpenFlagRec();
-//STRIP001     *pStrm >> nWhich >> nVer;
-//STRIP001     nWhich = lcl_sw3io__CompressWhich( nWhich, nVersion );
-//STRIP001     if( cFlags & 0x10 )
-//STRIP001         *pStrm >> nDummy16;
-//STRIP001     if( cFlags & 0x20 )
-//STRIP001         *pStrm >> nDummy16;
-//STRIP001     CloseFlagRec();
-//STRIP001
-//STRIP001     switch( nWhich )
-//STRIP001     {
-//STRIP001     case RES_TXTATR_FLYCNT:
-//STRIP001         // ein zeichengebundener Rahmen
-//STRIP001         ScanFormat( SWG_FLYFMT, rSecList, rBookmarks );
-//STRIP001         break;
-//STRIP001     case RES_TXTATR_FTN:
-//STRIP001         {
-//STRIP001             // eine Fussnote
-//STRIP001             String aDummy;
-//STRIP001             *pStrm >> nDummy16;
-//STRIP001             InString( *pStrm, aDummy );
-//STRIP001             ScanContents( rSecList, rBookmarks );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001     case RES_HEADER:
-//STRIP001     case RES_FOOTER:
-//STRIP001         {
-//STRIP001             // eine Kopf- oder Fusszeile
-//STRIP001             BYTE nDummy8;
-//STRIP001             *pStrm >> nDummy8;
-//STRIP001             if( SWG_FREEFMT==Peek() )
-//STRIP001                 ScanFormat( SWG_FREEFMT, rSecList, rBookmarks );
-//STRIP001         }
-//STRIP001         break;
-//STRIP001     case RES_CNTNT:
-//STRIP001         // der Inhalt eines Fly-Frames
-//STRIP001         ScanContents( rSecList, rBookmarks );
-//STRIP001         break;
-//STRIP001     default:
-//STRIP001         // hier gibt's erstmal eine Warnung
-//STRIP001         break;
-//STRIP001     }
-//STRIP001
-//STRIP001     CloseRec( SWG_ATTRIBUTE );
-//STRIP001 }
 
 /*  */
 
