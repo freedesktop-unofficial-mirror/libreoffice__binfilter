@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_atrfrm.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:44:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:51:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,85 +46,37 @@
 #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
-// auto strip #include <com/sun/star/text/HorizontalAdjust.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
-// auto strip #include <com/sun/star/text/DocumentStatistic.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
-// auto strip #include <com/sun/star/text/HoriOrientationFormat.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
-// auto strip #include <com/sun/star/text/NotePrintMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
-// auto strip #include <com/sun/star/text/SizeType.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
-// auto strip #include <com/sun/star/text/VertOrientationFormat.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
 #include <com/sun/star/text/WrapTextMode.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
-// auto strip #include <com/sun/star/text/XTextFrame.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP_
 #include <com/sun/star/text/TextContentAnchorType.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_INVALIDTEXTCONTENTEXCEPTION_HPP_
-// auto strip #include <com/sun/star/text/InvalidTextContentException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
-// auto strip #include <com/sun/star/text/XTextContent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
 #endif
 #ifndef _COM_SUN_STAR_TEXT_TEXTGRIDMODE_HPP_
 #include <com/sun/star/text/TextGridMode.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
-// auto strip #include <com/sun/star/awt/Size.hpp>
-// auto strip #endif
 #ifndef _SVTOOLS_UNOIMAP_HXX
 #include <svtools/unoimap.hxx>
 #endif
-// auto strip #ifndef _SVTOOLS_UNOEVENT_HXX_
-// auto strip #include <svtools/unoevent.hxx>
-// auto strip #endif
-// auto strip #ifndef __SBX_SBXVARIABLE_HXX //autogen
-// auto strip #include <svtools/sbxvar.hxx>
-// auto strip #endif
 #ifndef _IMAP_HXX //autogen
 #include <svtools/imap.hxx>
 #endif
-// auto strip #ifndef _GOODIES_IMAPOBJ_HXX //autogen
-// auto strip #include <svtools/imapobj.hxx>
-// auto strip #endif
 #ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
 #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
-// auto strip #ifndef _SVDMODEL_HXX //autogen
-// auto strip #include <bf_svx/svdmodel.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDPAGE_HXX //autogen
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _UNOSETT_HXX
 #include <unosett.hxx>
 #endif
-// auto strip #ifndef _UNOSTYLE_HXX
-// auto strip #include <unostyle.hxx>
-// auto strip #endif
 #ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
 #endif
@@ -142,9 +94,6 @@
 #ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
 #endif
-// auto strip #ifndef _FMTCNTNT_HXX //autogen
-// auto strip #include <fmtcntnt.hxx>
-// auto strip #endif
 #ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
 #endif
@@ -172,9 +121,6 @@
 #ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX //autogen
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _SECTION_HXX //autogen
 #include <section.hxx>
 #endif
@@ -187,9 +133,6 @@
 #ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #include <hfspacingitem.hxx>
 #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
@@ -205,24 +148,12 @@
 #ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
 #endif
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-// auto strip #ifndef _FLYFRM_HXX
-// auto strip #include <flyfrm.hxx>
-// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
@@ -235,12 +166,6 @@
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
 #endif
-// auto strip #ifndef _GRFATR_HXX
-// auto strip #include <grfatr.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDNOTXT_HXX
-// auto strip #include <ndnotxt.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -278,9 +203,6 @@
 #ifndef _UNOMID_H
 #include <unomid.h>
 #endif
-// auto strip #ifndef _UNOOBJ_HXX
-// auto strip #include <unoobj.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -390,8 +312,6 @@ using namespace ::rtl;
 /*?*/                           if( aIter()->ISA( SwCrsrShell ) )
 /*?*/                           {
 /*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwCrsrShell*)aIter())->ParkCrsr( aIdx );
-//STRIP001 /*?*/                                aIdx = nEnd-1;
-//STRIP001 /*?*/                                break;
 /*?*/                           }
 /*?*/                       } while ( aIter++ );
 /*?*/                   }
@@ -690,10 +610,6 @@ using namespace ::rtl;
 /*N*/   return new SwFmtFillOrder( GetFillOrder() );
 /*N*/ }
 
-//STRIP001 sal_uInt16  SwFmtFillOrder::GetValueCount() const
-//STRIP001 {
-//STRIP001  return SW_FILL_ORDER_END - SW_FILL_ORDER_BEGIN;
-//STRIP001 }
 
 //  class SwFmtHeader
 //  Implementierung teilweise inline im hxx
@@ -1079,24 +995,6 @@ SwFmtCol& SwFmtCol::operator=( const SwFmtCol& rCpy )
 /*N*/   return nRet;
 /*N*/ }
 
-//STRIP001 void SwFmtCol::SetGutterWidth( sal_uInt16 nNew, sal_uInt16 nAct )
-//STRIP001 {
-//STRIP001  if ( bOrtho )
-//STRIP001      Calc( nNew, nAct );
-//STRIP001  else
-//STRIP001  {
-//STRIP001      sal_uInt16 nHalf = nNew / 2;
-//STRIP001      for ( sal_uInt16 i = 0; i < aColumns.Count(); ++i )
-//STRIP001      {   SwColumn *pCol = aColumns[i];
-//STRIP001          pCol->SetLeft ( nHalf );
-//STRIP001          pCol->SetRight( nHalf );
-//STRIP001          if ( i == 0 )
-//STRIP001              pCol->SetLeft( 0 );
-//STRIP001          else if ( i == (aColumns.Count() - 1) )
-//STRIP001              pCol->SetRight( 0 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 void SwFmtCol::Init( sal_uInt16 nNumCols, sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 {
@@ -1115,12 +1013,6 @@ void SwFmtCol::Init( sal_uInt16 nNumCols, sal_uInt16 nGutterWidth, sal_uInt16 nA
         Calc( nGutterWidth, nAct );
 }
 
-//STRIP001 void SwFmtCol::SetOrtho( sal_Bool bNew, sal_uInt16 nGutterWidth, sal_uInt16 nAct )
-//STRIP001 {
-//STRIP001  bOrtho = bNew;
-//STRIP001  if ( bNew && aColumns.Count() )
-//STRIP001      Calc( nGutterWidth, nAct );
-//STRIP001 }
 
 /*N*/ sal_uInt16 SwFmtCol::CalcColWidth( sal_uInt16 nCol, sal_uInt16 nAct ) const
 /*N*/ {
@@ -1136,15 +1028,6 @@ void SwFmtCol::Init( sal_uInt16 nNumCols, sal_uInt16 nGutterWidth, sal_uInt16 nA
 /*?*/       return aColumns[nCol]->GetWishWidth();
 /*N*/ }
 
-//STRIP001 sal_uInt16 SwFmtCol::CalcPrtColWidth( sal_uInt16 nCol, sal_uInt16 nAct ) const
-//STRIP001 {
-//STRIP001  ASSERT( nCol < aColumns.Count(), ":-( ColumnsArr ueberindiziert." );
-//STRIP001  sal_uInt16 nRet = CalcColWidth( nCol, nAct );
-//STRIP001  SwColumn *pCol = aColumns[nCol];
-//STRIP001  nRet -= pCol->GetLeft();
-//STRIP001  nRet -= pCol->GetRight();
-//STRIP001  return nRet;
-//STRIP001 }
 
 void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 {
@@ -1309,10 +1192,6 @@ void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 /*N*/   return new SwFmtSurround( *this );
 /*N*/ }
 
-//STRIP001 sal_uInt16  SwFmtSurround::GetValueCount() const
-//STRIP001 {
-//STRIP001  return SURROUND_END - SURROUND_BEGIN;
-//STRIP001 }
 
 
 /*N*/ BOOL SwFmtSurround::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
@@ -2046,10 +1925,6 @@ SfxPoolItem* SwFmtLayoutSplit::Clone( SfxItemPool* pPool ) const
 
 // class SwFmtFtnEndAtTxtEnd
 
-//STRIP001 sal_uInt16 SwFmtFtnEndAtTxtEnd::GetValueCount() const
-//STRIP001 {
-//STRIP001  return sal_uInt16( FTNEND_ATTXTEND_END );
-//STRIP001 }
 
 SwFmtFtnEndAtTxtEnd& SwFmtFtnEndAtTxtEnd::operator=(
                         const SwFmtFtnEndAtTxtEnd& rAttr )
@@ -2673,58 +2548,6 @@ void SwFrmFmt::MakeFrms()
 /*N*/ }
 
 
-//STRIP001 sal_Bool SwFrmFmt::IsLowerOf( const SwFrmFmt& rFmt ) const
-//STRIP001 {
-//STRIP001  //Auch eine Verkettung von Innen nach aussen oder von aussen
-//STRIP001  //nach innen ist nicht zulaessig.
-//STRIP001  SwClientIter aIter( *(SwModify*)this );
-//STRIP001  SwFlyFrm *pSFly = (SwFlyFrm*)aIter.First( TYPE(SwFlyFrm) );
-//STRIP001  if( pSFly )
-//STRIP001  {
-//STRIP001      SwClientIter aOtherIter( (SwModify&)rFmt );
-//STRIP001      SwFlyFrm *pAskFly = (SwFlyFrm*)aOtherIter.First( TYPE(SwFlyFrm) );
-//STRIP001      if( pAskFly )
-//STRIP001          return pSFly->IsLowerOf( pAskFly );
-//STRIP001  }
-//STRIP001
-//STRIP001  // dann mal ueber die Node-Positionen versuchen
-//STRIP001  const SwFmtAnchor* pAnchor = &rFmt.GetAnchor();
-//STRIP001  if( FLY_PAGE != pAnchor->GetAnchorId() && pAnchor->GetCntntAnchor() )
-//STRIP001  {
-//STRIP001      const SwSpzFrmFmts& rFmts = *GetDoc()->GetSpzFrmFmts();
-//STRIP001      const SwNode* pFlyNd = pAnchor->GetCntntAnchor()->nNode.GetNode().
-//STRIP001                              FindFlyStartNode();
-//STRIP001      while( pFlyNd )
-//STRIP001      {
-//STRIP001          // dann ueber den Anker nach oben "hangeln"
-//STRIP001          for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
-//STRIP001          {
-//STRIP001              const SwFrmFmt* pFmt = rFmts[ n ];
-//STRIP001              const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
-//STRIP001              if( pIdx && pFlyNd == &pIdx->GetNode() )
-//STRIP001              {
-//STRIP001                  if( pFmt == this )
-//STRIP001                      return sal_True;
-//STRIP001
-//STRIP001                  pAnchor = &pFmt->GetAnchor();
-//STRIP001                  if( FLY_PAGE == pAnchor->GetAnchorId() ||
-//STRIP001                      !pAnchor->GetCntntAnchor() )
-//STRIP001                      return sal_False;
-//STRIP001
-//STRIP001                  pFlyNd = pAnchor->GetCntntAnchor()->nNode.GetNode().
-//STRIP001                              FindFlyStartNode();
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          if( n >= rFmts.Count() )
-//STRIP001          {
-//STRIP001              ASSERT( !this, "Fly-Section aber kein Format gefunden" );
-//STRIP001              return sal_False;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return sal_False;
-//STRIP001 }
 
 //  class SwFlyFrmFmt
 //  Implementierung teilweise inline im hxx
@@ -2972,18 +2795,6 @@ void SwFlyFrmFmt::MakeFrms()
 
     @return true, if background brush is "inherited" from parent/grandparent
 */
-//STRIP001 const sal_Bool SwFlyFrmFmt::IsBackgroundBrushInherited() const
-//STRIP001 {
-//STRIP001     sal_Bool bReturn = sal_False;
-//STRIP001
-//STRIP001     if ( (GetBackground().GetColor() == COL_TRANSPARENT) &&
-//STRIP001          !(GetBackground().GetGraphicObject()) )
-//STRIP001     {
-//STRIP001         bReturn = sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     return bReturn;
-//STRIP001 }
 
 
 //  class SwDrawFrmFmt
@@ -3014,66 +2825,5 @@ void SwFlyFrmFmt::MakeFrms()
 /*N*/ }
 
 
-//STRIP001 IMapObject* SwFrmFmt::GetIMapObject( const Point& rPoint,
-//STRIP001                                      const SwFlyFrm *pFly ) const
-//STRIP001 {
-//STRIP001  const SwFmtURL &rURL = GetURL();
-//STRIP001  if( !rURL.GetMap() )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  if( !pFly )
-//STRIP001  {
-//STRIP001      pFly = (SwFlyFrm*) SwClientIter( *(SwFrmFmt*)this ).First( TYPE( SwFlyFrm ));
-//STRIP001      if( !pFly )
-//STRIP001          return 0;
-//STRIP001  }
-//STRIP001
-//STRIP001  //Orignialgroesse fuer OLE und Grafik ist die TwipSize,
-//STRIP001  //ansonsten die Groesse vom FrmFmt des Fly.
-//STRIP001  const SwFrm *pRef;
-//STRIP001  SwNoTxtNode *pNd;
-//STRIP001  Size aOrigSz;
-//STRIP001  if( pFly->Lower() && pFly->Lower()->IsNoTxtFrm() )
-//STRIP001  {
-//STRIP001      pRef = pFly->Lower();
-//STRIP001      pNd = ((SwCntntFrm*)pRef)->GetNode()->GetNoTxtNode();
-//STRIP001      aOrigSz = pNd->GetTwipSize();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pRef = pFly;
-//STRIP001      aOrigSz = pFly->GetFmt()->GetFrmSize().GetSize();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( aOrigSz.Width() != 0 && aOrigSz.Height() != 0 )
-//STRIP001  {
-//STRIP001      Point aPos( rPoint );
-//STRIP001      Size aActSz ( pRef == pFly ? pFly->Frm().SSize() : pRef->Prt().SSize() );
-//STRIP001      const MapMode aSrc ( MAP_TWIP );
-//STRIP001      const MapMode aDest( MAP_100TH_MM );
-//STRIP001      aOrigSz = OutputDevice::LogicToLogic( aOrigSz, aSrc, aDest );
-//STRIP001      aActSz  = OutputDevice::LogicToLogic( aActSz,  aSrc, aDest );
-//STRIP001      aPos -= pRef->Frm().Pos();
-//STRIP001      aPos -= pRef->Prt().Pos();
-//STRIP001      aPos    = OutputDevice::LogicToLogic( aPos, aSrc, aDest );
-//STRIP001      sal_uInt32 nFlags = 0;
-//STRIP001      if ( pFly != pRef && pNd->IsGrfNode() )
-//STRIP001      {
-//STRIP001          const sal_uInt16 nMirror = pNd->GetSwAttrSet().
-//STRIP001                                      GetMirrorGrf().GetValue();
-//STRIP001          if ( RES_MIRROR_GRF_BOTH == nMirror )
-//STRIP001              nFlags = IMAP_MIRROR_HORZ | IMAP_MIRROR_VERT;
-//STRIP001          else if ( RES_MIRROR_GRF_VERT == nMirror )
-//STRIP001              nFlags = IMAP_MIRROR_VERT;
-//STRIP001          else if ( RES_MIRROR_GRF_HOR == nMirror )
-//STRIP001              nFlags = IMAP_MIRROR_HORZ;
-//STRIP001
-//STRIP001      }
-//STRIP001      return ((ImageMap*)rURL.GetMap())->GetHitIMapObject( aOrigSz,
-//STRIP001                                              aActSz, aPos, nFlags );
-//STRIP001  }
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
 }
