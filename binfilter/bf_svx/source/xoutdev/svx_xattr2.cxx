@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr2.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:39:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:02:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -40,9 +40,6 @@
 #ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 
 #include "dialogs.hrc"
 
@@ -51,11 +48,6 @@
 #endif
 
 #include "xattr.hxx"
-// auto strip #include "xtable.hxx"
-// auto strip #include "xoutx.hxx"
-// auto strip #include "dialmgr.hxx"
-// auto strip #include "itemtype.hxx"
-// auto strip #include "xdef.hxx"
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -129,30 +121,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineTransparenceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = XubString( ResId( RID_SVXSTR_TRANSPARENCE, DIALOG_MGR() ) );
-//STRIP001          rText.AppendAscii(": ");
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += XubString( UniString::CreateFromInt32((USHORT) GetValue()) );
-//STRIP001          rText += sal_Unicode('%');
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //-----------------------
 // class XLineJointItem -
@@ -202,55 +170,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineJointItem::GetPresentation( SfxItemPresentation ePres,  SfxMapUnit eCoreUnit,
-//STRIP001                                                      SfxMapUnit ePresUnit, XubString& rText, const IntlWrapper*) const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE: return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          USHORT nId = 0;
-//STRIP001
-//STRIP001          switch( GetValue() )
-//STRIP001          {
-//STRIP001              case( XLINEJOINT_NONE ):
-//STRIP001                  nId = RID_SVXSTR_LINEJOINT_NONE;
-//STRIP001              break;
-//STRIP001
-//STRIP001              case( XLINEJOINT_MIDDLE ):
-//STRIP001                  nId = RID_SVXSTR_LINEJOINT_MIDDLE;
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001              case( XLINEJOINT_BEVEL ):
-//STRIP001                  nId = RID_SVXSTR_LINEJOINT_BEVEL;
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001              case( XLINEJOINT_MITER ):
-//STRIP001                  nId = RID_SVXSTR_LINEJOINT_MITER;
-//STRIP001              break;
-//STRIP001
-//STRIP001
-//STRIP001              case( XLINEJOINT_ROUND ):
-//STRIP001                  nId = RID_SVXSTR_LINEJOINT_ROUND;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if( nId )
-//STRIP001              rText = SVX_RESSTR( nId );
-//STRIP001
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------------
 
@@ -396,30 +315,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillTransparenceItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = XubString( ResId( RID_SVXSTR_TRANSPARENCE, DIALOG_MGR() ) );
-//STRIP001          rText.AppendAscii(": ");
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += XubString( UniString::CreateFromInt32((USHORT) GetValue() ));
-//STRIP001          rText += sal_Unicode('%');
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------
 // class XFormTextShadowTranspItem
@@ -554,29 +449,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XGradientStepCountItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001 //           rText = XubString( ResId( RID_SVXSTR_GRADIENTSTEPCOUNT, DIALOG_MGR() ) );
-//STRIP001 //           rText += ": ";
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += XubString( UniString::CreateFromInt32((USHORT) GetValue() ));
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -658,27 +530,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpTileItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -760,27 +611,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpPosItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /******************************************************************************
 |*
@@ -873,27 +703,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpSizeXItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -904,10 +713,6 @@ namespace binfilter {
 |*
 \*************************************************************************/
 
-//STRIP001 FASTBOOL XFillBmpSizeXItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return GetValue() > 0L;
-//STRIP001 }
 
 
 //------------------------------
@@ -989,27 +794,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpSizeYItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1020,10 +804,6 @@ namespace binfilter {
 |*
 \*************************************************************************/
 
-//STRIP001 FASTBOOL XFillBmpSizeYItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return GetValue() > 0L;
-//STRIP001 }
 
 
 //------------------------------
@@ -1105,27 +885,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpSizeLogItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -1207,27 +966,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpTileOffsetXItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -1309,27 +1047,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpTileOffsetYItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -1411,27 +1128,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpStretchItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -1513,27 +1209,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpPosOffsetXItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 //------------------------------
@@ -1615,27 +1290,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SfxItemPresentation XFillBmpPosOffsetYItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //--------------------------
 // class XFillBackgroundItem
@@ -1704,25 +1358,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillBackgroundItem::GetPresentation( SfxItemPresentation ePres, SfxMapUnit eCoreUnit,
-//STRIP001                                                           SfxMapUnit ePresUnit, XubString& rText, const IntlWrapper*) const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      break;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          return ePres;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 
 

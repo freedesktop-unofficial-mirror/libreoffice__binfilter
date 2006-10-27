@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_xattr.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 07:39:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:02:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -51,17 +51,8 @@
 #include <com/sun/star/drawing/LineDash.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_DASHSTYLE_HPP_
-// auto strip #include <com/sun/star/drawing/DashStyle.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_AWT_POINT_HPP_
-// auto strip #include <com/sun/star/awt/Point.hpp>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
-// auto strip #include <com/sun/star/drawing/PointSequence.hpp>
-// auto strip #endif
 
 #ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
@@ -75,7 +66,6 @@
 #include <svtools/itempool.hxx>
 #endif
 
-// auto strip #include <tools/stream.hxx>
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
@@ -91,17 +81,12 @@
 #include "unopolyhelper.hxx"
 #endif
 
-// auto strip #include <tools/bigint.hxx>
 #include <svtools/itemset.hxx>
 #include "dialogs.hrc"
 #include "svdstr.hrc"
 #include "xattr.hxx"
 #include "xtable.hxx"
-// auto strip #include "xoutx.hxx"
-// auto strip #include "dialmgr.hxx"
 #include "itemtype.hxx"
-// auto strip #include "xdef.hxx"
-// auto strip #include "unomid.hxx"
 
 #ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
@@ -129,21 +114,6 @@ XubString aNameOrIndexEmptyString;
 |*
 \*************************************************************************/
 
-//STRIP001 long ScaleMetricValue( long nVal, long nMul, long nDiv )
-//STRIP001 {
-//STRIP001  BigInt aVal( nVal );
-//STRIP001
-//STRIP001  aVal *= nMul;
-//STRIP001
-//STRIP001  if ( aVal.IsNeg() != ( nDiv < 0 ) )
-//STRIP001      aVal-=nDiv/2; // fuer korrektes Runden
-//STRIP001  else
-//STRIP001      aVal+=nDiv/2; // fuer korrektes Runden
-//STRIP001
-//STRIP001  aVal/=nDiv;
-//STRIP001
-//STRIP001  return long( aVal );
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -235,11 +205,6 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-//STRIP001 SfxPoolItem* NameOrIndex::Clone(SfxItemPool* pPool) const
-//STRIP001 {
-//STRIP001
-//STRIP001  return new NameOrIndex(*this);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -251,10 +216,6 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-//STRIP001 SfxPoolItem* NameOrIndex::Create(SvStream& rIn, USHORT nVer) const
-//STRIP001 {
-//STRIP001  return new NameOrIndex(Which(), rIn);
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -612,42 +573,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineStyleItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      {
-//STRIP001          USHORT nId = 0;
-//STRIP001
-//STRIP001          switch( (USHORT)GetValue() )
-//STRIP001          {
-//STRIP001              case XLINE_NONE:
-//STRIP001                  nId = RID_SVXSTR_INVISIBLE;
-//STRIP001                  break;
-//STRIP001              case XLINE_SOLID:
-//STRIP001                  nId = RID_SVXSTR_SOLID;
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( nId )
-//STRIP001              rText = SVX_RESSTR( nId );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -914,43 +839,12 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineDashItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL XLineDashItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL XLineDashItem::ScaleMetrics(long nMul, long nDiv)
-//STRIP001 {
-//STRIP001  aDash.SetDotLen( ScaleMetricValue( aDash.GetDotLen(), nMul, nDiv ) );
-//STRIP001  aDash.SetDashLen( ScaleMetricValue( aDash.GetDashLen(), nMul, nDiv ) );
-//STRIP001  aDash.SetDistance( ScaleMetricValue( aDash.GetDistance(), nMul, nDiv ) );
-//STRIP001  return TRUE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineDashItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1228,28 +1122,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineWidthItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper * pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetMetricText( (long) GetValue(),
-//STRIP001                                     eCoreUnit, ePresUnit, pIntl);
-//STRIP001          rText += SVX_RESSTR( GetMetricId( ePresUnit) );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1348,26 +1220,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineColorItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -1578,26 +1430,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineStartItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineStartItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2276,26 +2108,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineEndItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineEndItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2412,28 +2224,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineStartWidthItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper * pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetMetricText( (long) GetValue(),
-//STRIP001                                     eCoreUnit, ePresUnit, pIntl);
-//STRIP001          rText += SVX_RESSTR( GetMetricId( ePresUnit) );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineStartWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2518,28 +2308,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineEndWidthItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *pIntl
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetMetricText( (long) GetValue(),
-//STRIP001                                     eCoreUnit, ePresUnit, pIntl);
-//STRIP001          rText += SVX_RESSTR( GetMetricId( ePresUnit) );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineEndWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2624,27 +2392,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineStartCenterItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = XubString( ResId( GetValue() ? RID_SVXSTR_CENTERED :
-//STRIP001                          RID_SVXSTR_NOTCENTERED, DIALOG_MGR() ) );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineStartCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2731,27 +2478,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XLineEndCenterItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = XubString( ResId( GetValue() ? RID_SVXSTR_CENTERED :
-//STRIP001                          RID_SVXSTR_NOTCENTERED, DIALOG_MGR() ) );
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 /*N*/ sal_Bool XLineEndCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -2841,52 +2567,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillStyleItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          return ePres;
-//STRIP001
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001      {
-//STRIP001          USHORT nId = 0;
-//STRIP001
-//STRIP001          switch( (USHORT)GetValue() )
-//STRIP001          {
-//STRIP001              case XFILL_NONE:
-//STRIP001                  nId = RID_SVXSTR_INVISIBLE;
-//STRIP001                  break;
-//STRIP001              case XFILL_SOLID:
-//STRIP001                  nId = RID_SVXSTR_SOLID;
-//STRIP001                  break;
-//STRIP001              case XFILL_GRADIENT:
-//STRIP001                  nId = RID_SVXSTR_GRADIENT;
-//STRIP001                  break;
-//STRIP001              case XFILL_HATCH:
-//STRIP001                  nId = RID_SVXSTR_HATCH;
-//STRIP001                  break;
-//STRIP001              case XFILL_BITMAP:
-//STRIP001                  nId = RID_SVXSTR_BITMAP;
-//STRIP001                  break;
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( nId )
-//STRIP001              rText = SVX_RESSTR( nId );
-//STRIP001          return ePres;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -3006,26 +2686,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillColorItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
@@ -3357,26 +3017,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillGradientItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 /*N*/ sal_Bool XFillGradientItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
@@ -3673,26 +3313,10 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 sal_Bool XFillFloatTransparenceItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-//STRIP001 {
-//STRIP001  return XFillGradientItem::PutValue( rVal, nMemberId );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillFloatTransparenceItem::GetPresentation( SfxItemPresentation ePres,
-//STRIP001                                                                  SfxMapUnit eCoreUnit, SfxMapUnit ePresUnit,
-//STRIP001                                                                  XubString& rText,
-//STRIP001                                                                     const IntlWrapper * pIntlWrapper ) const
-//STRIP001 {
-//STRIP001     return XFillGradientItem::GetPresentation( ePres, eCoreUnit, ePresUnit, rText, pIntlWrapper );
-//STRIP001 }
 
-//STRIP001 BOOL XFillFloatTransparenceItem::CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 )
-//STRIP001 {
-//STRIP001  return  ((XFillFloatTransparenceItem*)p1)->IsEnabled() == ((XFillFloatTransparenceItem*)p2)->IsEnabled() &&
-//STRIP001          ((XFillFloatTransparenceItem*)p1)->GetValue()  == ((XFillFloatTransparenceItem*)p2)->GetValue();
-//STRIP001 }
 
 /*N*/ XFillFloatTransparenceItem* XFillFloatTransparenceItem::checkForUniqueItem( SdrModel* pModel ) const
 /*N*/ {
@@ -3973,41 +3597,12 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation XFillHatchItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  switch ( ePres )
-//STRIP001  {
-//STRIP001      case SFX_ITEM_PRESENTATION_NONE:
-//STRIP001          rText.Erase();
-//STRIP001          return ePres;
-//STRIP001      case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001      case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText = GetName();
-//STRIP001          return ePres;
-//STRIP001  }
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL XFillHatchItem::HasMetrics() const
-//STRIP001 {
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 FASTBOOL XFillHatchItem::ScaleMetrics(long nMul, long nDiv)
-//STRIP001 {
-//STRIP001  aHatch.SetDistance( ScaleMetricValue( aHatch.GetDistance(), nMul, nDiv ) );
-//STRIP001  return TRUE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 /*N*/ sal_Bool XFillHatchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
