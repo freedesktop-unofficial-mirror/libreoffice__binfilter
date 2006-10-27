@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_init.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:20:31 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:16:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -161,21 +161,12 @@
 #ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
 #endif
-// auto strip #ifndef _SVXSWAFOPT_HXX
-// auto strip #include <bf_svx/swafopt.hxx>
-// auto strip #endif
 #ifndef _MySVXACORR_HXX
 #include <bf_svx/svxacorr.hxx>
 #endif
 #ifndef _OFF_APP_HXX
 #include <bf_offmgr/app.hxx>
 #endif
-// auto strip #ifndef _UNOTOOLS_CHARCLASS_HXX
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
 #ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
 #endif
@@ -185,27 +176,6 @@
 #ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
-// auto strip #include <unotools/collatorwrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
-// auto strip #include <svtools/syslocale.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
-// auto strip #include <com/sun/star/i18n/CollatorOptions.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
 
 #ifndef _FMTHBSH_HXX
@@ -291,9 +261,6 @@
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _INIT_HXX
 #include <init.hxx>
 #endif
@@ -321,9 +288,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
 #endif
@@ -639,11 +603,8 @@ class SwDontWrite : public SfxBoolItem
 public:
     SwDontWrite( USHORT nId ) : SfxBoolItem( nId ) {}
 
-//STRIP001  virtual USHORT  GetVersion( USHORT nFFVer ) const;
 };
 
-//STRIP001 USHORT SwDontWrite::GetVersion( USHORT nFFVer ) const
-//STRIP001 { return USHRT_MAX; }
 
 
 
@@ -1047,18 +1008,7 @@ public:
 /*N*/ }
 
 
-//STRIP001 void SwCalendarWrapper::LoadDefaultCalendar( USHORT eLang )
-//STRIP001 {
-//STRIP001  sUniqueId.Erase();
-//STRIP001  if( eLang != nLang )
-//STRIP001      loadDefaultCalendar( SvxCreateLocale( nLang = eLang ));
-//STRIP001 }
 
-//STRIP001 void SwCalendarWrapper::LoadCalendar( USHORT eLang, const String& rUniqueId )
-//STRIP001 {
-//STRIP001  if( eLang != nLang || sUniqueId != rUniqueId )
-//STRIP001      loadCalendar( sUniqueId = rUniqueId,SvxCreateLocale( nLang = eLang ));
-//STRIP001 }
 
 /*N*/ ULONG GetAppLanguage()
 /*N*/ {
@@ -1080,21 +1030,6 @@ public:
 /*?*/   }
 /*?*/   return *pCollator;
 /*N*/ }
-//STRIP001 CollatorWrapper& GetAppCaseCollator()
-//STRIP001 {
-//STRIP001  if( !pCaseCollator )
-//STRIP001  {
-//STRIP001      const ::com::sun::star::lang::Locale& rLcl = pBreakIt->GetLocale(
-//STRIP001                                          (LanguageType)GetAppLanguage() );
-//STRIP001      ::com::sun::star::uno::Reference<
-//STRIP001          ::com::sun::star::lang::XMultiServiceFactory > xMSF =
-//STRIP001                                  ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001
-//STRIP001      pCaseCollator = new CollatorWrapper( xMSF );
-//STRIP001      pCaseCollator->loadDefaultCollator( rLcl, 0 );
-//STRIP001  }
-//STRIP001  return *pCaseCollator;
-//STRIP001 }
 
 /*N*/ const ::utl::TransliterationWrapper& GetAppCmpStrIgnore()
 /*N*/ {
