@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_objcont.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:14:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:29:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -133,52 +133,6 @@ using namespace ::com::sun::star::uno;
 
 /*?*/ GDIMetaFile* SfxObjectShell::GetPreviewMetaFile( sal_Bool bFullContent ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  // Nur wenn gerade nicht gedruckt wird, darf DoDraw aufgerufen
-//STRIP001  // werden, sonst wird u.U. der Printer abgeschossen !
-//STRIP001  SfxViewFrame *pFrame = SfxViewFrame::GetFirst( this );
-//STRIP001  if ( pFrame && pFrame->GetViewShell() &&
-//STRIP001       pFrame->GetViewShell()->GetPrinter() &&
-//STRIP001       pFrame->GetViewShell()->GetPrinter()->IsPrinting() )
-//STRIP001       return 0;
-//STRIP001
-//STRIP001  GDIMetaFile* pFile = new GDIMetaFile;
-//STRIP001
-//STRIP001  VirtualDevice aDevice;
-//STRIP001  aDevice.EnableOutput( FALSE );
-//STRIP001
-//STRIP001  SfxInPlaceObject* pInPlaceObj = GetInPlaceObject();
-//STRIP001  DBG_ASSERT( pInPlaceObj, "Ohne Inplace Objekt keine Grafik" );
-//STRIP001  if (pInPlaceObj)
-//STRIP001  {
-//STRIP001      MapMode aMode( pInPlaceObj->GetMapUnit() );
-//STRIP001      aDevice.SetMapMode( aMode );
-//STRIP001      pFile->SetPrefMapMode( aMode );
-//STRIP001
-//STRIP001      Size aTmpSize;
-//STRIP001      sal_Int8 nAspect;
-//STRIP001      if ( bFullContent )
-//STRIP001      {
-//STRIP001          nAspect = ASPECT_CONTENT;
-//STRIP001          aTmpSize = pInPlaceObj->GetVisArea( nAspect ).GetSize();
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          nAspect = ASPECT_THUMBNAIL;
-//STRIP001          aTmpSize = ((SfxObjectShell*)this)->GetFirstPageSize();
-//STRIP001      }
-//STRIP001
-//STRIP001      pFile->SetPrefSize( aTmpSize );
-//STRIP001      DBG_ASSERT( aTmpSize.Height()*aTmpSize.Width(),
-//STRIP001                  "size of first page is 0, overload GetFirstPageSize or set vis-area!" );
-//STRIP001
-//STRIP001      pFile->Record( &aDevice );
-//STRIP001      pInPlaceObj->DoDraw(
-//STRIP001              &aDevice, Point(0,0), aTmpSize,
-//STRIP001              JobSetup(), nAspect );
-//STRIP001      pFile->Stop();
-//STRIP001  }
-//STRIP001
-//STRIP001  return pFile;
 /*?*/ }
 
 /*N*/ FASTBOOL SfxObjectShell::SaveWindows_Impl( SvStorage &rStor ) const
@@ -557,28 +511,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   if( nMaxSize && !GetDocInfo().IsPasswd() &&
 /*N*/       SFX_CREATE_MODE_STANDARD == eCreateMode )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        GDIMetaFile* pFile = GetPreviewMetaFile();
-//STRIP001 /*?*/        if ( pFile )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SvCacheStream aStream;
-//STRIP001 /*?*/            long nVer = pNewStg->GetVersion();
-//STRIP001 /*?*/            aStream.SetVersion( nVer );
-//STRIP001 /*?*/            aStream << *pFile;
-//STRIP001 /*?*/            if( aStream.Tell() < nMaxSize )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SvStorageStreamRef xStream = pNewStg->OpenStream(
-//STRIP001 /*?*/                    DEFINE_CONST_UNICODE( SFX_PREVIEW_STREAM ),
-//STRIP001 /*?*/                    STREAM_TRUNC | STREAM_STD_READWRITE);
-//STRIP001 /*?*/                if( xStream.Is() && !xStream->GetError() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    long nVer = pNewStg->GetVersion();
-//STRIP001 /*?*/                    xStream->SetVersion( nVer );
-//STRIP001 /*?*/                    aStream.Seek( 0L );
-//STRIP001 /*?*/                    *xStream << aStream;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            delete pFile;
-//STRIP001 /*?*/        }
 /*N*/   }
 
 /*N*/   if( pImp->bIsSaving )
@@ -799,77 +731,9 @@ using namespace ::com::sun::star::uno;
 
 //--------------------------------------------------------------------
 
-//STRIP001 void SfxObjectShell::DocInfoDlg_Impl( SfxDocumentInfo &rDocInfo )
-//STRIP001 {
-//STRIP001  // anzuzeigenden Dokumentnamen ermitteln
-//STRIP001  String aURL, aTitle;
-//STRIP001  if ( HasName() && !pImp->aNewName.Len() )
-//STRIP001  {
-//STRIP001      aURL = GetMedium()->GetName();
-//STRIP001      aTitle = GetTitle();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      if ( !pImp->aNewName.Len() )
-//STRIP001      {
-//STRIP001          aURL = DEFINE_CONST_UNICODE( "private:factory/" );
-//STRIP001          aURL += String::CreateFromAscii( GetFactory().GetShortName() );
-//STRIP001          // aTitle = String( SfxResId( STR_NONAME ) );
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          aURL = DEFINE_CONST_UNICODE( "[private:factory/" );
-//STRIP001          aURL += String::CreateFromAscii( GetFactory().GetShortName() );
-//STRIP001          aURL += DEFINE_CONST_UNICODE( "]" );
-//STRIP001          INetURLObject aURLObj( pImp->aNewName );
-//STRIP001          aURL += aURLObj.GetMainURL( INetURLObject::DECODE_TO_IURI );
-//STRIP001          // aTitle = aURLObj.GetBase();
-//STRIP001      }
-//STRIP001      aTitle = GetTitle();
-//STRIP001  }
-//STRIP001
-//STRIP001  // Itemset f"ur Dialog aufbereiten
-//STRIP001  SfxDocumentInfoItem aDocInfoItem( aURL, rDocInfo );
-//STRIP001  if ( !GetSlotState( SID_DOCTEMPLATE ) )
-//STRIP001      aDocInfoItem.SetTemplate(FALSE);
-//STRIP001  SfxItemSet aSet(GetPool(), SID_DOCINFO, SID_DOCINFO,
-//STRIP001                  SID_EXPLORER_PROPS_START, SID_EXPLORER_PROPS_START,
-//STRIP001                  0L );
-//STRIP001  aSet.Put( aDocInfoItem );
-//STRIP001  aSet.Put( SfxStringItem( SID_EXPLORER_PROPS_START, aTitle ) );
-//STRIP001
-//STRIP001  // Dialog via Factory erzeugen und ausf"uhren
-//STRIP001  SfxDocumentInfoDialog *pDlg = CreateDocumentInfoDialog(0, aSet);
-//STRIP001  if ( RET_OK == pDlg->Execute() )
-//STRIP001  {
-//STRIP001      // neue DocInfo aus Dialog holen
-//STRIP001      const SfxPoolItem *pItem = 0;
-//STRIP001      if ( SFX_ITEM_SET ==
-//STRIP001           pDlg->GetOutputItemSet()->GetItemState( SID_DOCINFO, TRUE, &pItem ) )
-//STRIP001      {
-//STRIP001          rDocInfo = (*(const SfxDocumentInfoItem *)pItem)();
-//STRIP001
-//STRIP001          // ggf. den Titel des Dokuments neu setzen
-//STRIP001          String aNewTitle = rDocInfo.GetTitle();
-//STRIP001          aNewTitle.EraseLeadingChars();
-//STRIP001          aNewTitle.EraseTrailingChars();
-//STRIP001          if ( aTitle != aNewTitle && aNewTitle.Len() )
-//STRIP001              SetTitle( aNewTitle );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  delete pDlg;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxDocumentInfoDialog* SfxObjectShell::CreateDocumentInfoDialog
-//STRIP001 (
-//STRIP001  Window*             pParent,
-//STRIP001  const SfxItemSet&   rSet
-//STRIP001 )
-//STRIP001 {
-//STRIP001  return new SfxDocumentInfoDialog(pParent, rSet);
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -880,40 +744,6 @@ using namespace ::com::sun::star::uno;
 /*?*/ )
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-//STRIP001  // Objekt erzeugen ist fehlgeschlagen?
-//STRIP001  if ( !pObj )
-//STRIP001      HACK(Fehlermeldung fehlt)
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  String aName( rName );
-//STRIP001  if( !aName.Len() )
-//STRIP001  {
-//STRIP001         aName = DEFINE_CONST_UNICODE("Object ");
-//STRIP001      String aStr;
-//STRIP001      USHORT i = 1;
-//STRIP001      HACK(Wegen Storage Bug 46033)
-//STRIP001      // for-Schleife wegen Storage Bug 46033
-//STRIP001      for( USHORT n = 0; n < 100; n++ )
-//STRIP001      {
-//STRIP001          do
-//STRIP001          {
-//STRIP001              aStr = aName;
-//STRIP001              aStr += String::CreateFromInt32( i );
-//STRIP001              i++;
-//STRIP001          } while ( Find( aStr ) );
-//STRIP001
-//STRIP001          SvInfoObjectRef xSub = new SvEmbeddedInfoObject( pObj, aStr );
-//STRIP001          if ( Move( xSub, aStr ) ) // Eigentuemer Uebergang
-//STRIP001              return (SvEmbeddedInfoObject*) &xSub;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SvInfoObjectRef xSub = new SvEmbeddedInfoObject( pObj, aName );
-//STRIP001      if ( Move( xSub, aName ) ) // Eigentuemer Uebergang
-//STRIP001          return (SvEmbeddedInfoObject*) &xSub;
-//STRIP001  }
-//STRIP001  return 0;
 /*?*/ }
 
 //-------------------------------------------------------------------------
@@ -951,11 +781,6 @@ using namespace ::com::sun::star::uno;
 
 //-------------------------------------------------------------------------
 
-//STRIP001 void SfxObjectShell::SetTemplateConfig(BOOL bTplConf)
-//STRIP001 {
-//STRIP001 //    pImp->bTemplateConfig = bTplConf;
-//STRIP001 //    DBG_ASSERT(pImp->pCfgMgr || !bTplConf,"Keine Konfiguration in der Vorlage!");
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
@@ -988,83 +813,18 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 void SfxObjectShell::SetOrganizerSearchMask(
-//STRIP001  SfxStyleSheetBasePool* pPool) const
-//STRIP001 {
-//STRIP001  pPool->SetSearchMask(SFX_STYLE_FAMILY_ALL,
-//STRIP001                       SFXSTYLEBIT_USERDEF | SFXSTYLEBIT_USED);
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
 /*N*/ USHORT SfxObjectShell::GetContentCount(USHORT nIdx1,
 /*N*/                                        USHORT nIdx2)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  switch(nIdx1)
-//STRIP001  {
-//STRIP001      case INDEX_IGNORE:
-//STRIP001          return DEF_CONTENT_COUNT;
-//STRIP001      case CONTENT_STYLE:
-//STRIP001      {
-//STRIP001          SfxStyleSheetBasePool *pPool = GetStyleSheetPool();
-//STRIP001          if(!pPool)
-//STRIP001              return 0;
-//STRIP001          SetOrganizerSearchMask(pPool);
-//STRIP001          return pPool->Count();
-//STRIP001      }
-//STRIP001      case CONTENT_MACRO:
-//STRIP001          break;
-//STRIP001 /*
-//STRIP001      case CONTENT_CONFIG:
-//STRIP001          return (GetConfigManager() && !HasTemplateConfig()) ?
-//STRIP001                      GetConfigManager()->GetItemCount() : 0;
-//STRIP001          break;
-//STRIP001  */
-//STRIP001  }
-//STRIP001  return 0;
 /*N*/ }
 
 
 //--------------------------------------------------------------------
 
-//STRIP001 void  SfxObjectShell::TriggerHelpPI(USHORT nIdx1, USHORT nIdx2, USHORT nIdx3)
-//STRIP001 {
-//STRIP001  if(nIdx1==CONTENT_STYLE && nIdx2 != INDEX_IGNORE) //StyleSheets
-//STRIP001  {
-//STRIP001      SfxStyleSheetBasePool *pPool = GetStyleSheetPool();
-//STRIP001      SetOrganizerSearchMask(pPool);
-//STRIP001      SfxStyleSheetBase *pStyle = (*pPool)[nIdx2];
-//STRIP001 #ifdef WIR_KOENNEN_WIEDER_HILFE_FUER_STYLESHEETS
-//STRIP001      if(pStyle)
-//STRIP001      {
-//STRIP001          String aHelpFile;
-//STRIP001          ULONG nHelpId=pStyle->GetHelpId(aHelpFile);
-//STRIP001          SfxHelpPI* pHelpPI = SFX_APP()->GetHelpPI();
-//STRIP001          if ( pHelpPI && nHelpId )
-//STRIP001              pHelpPI->LoadTopic( nHelpId );
-//STRIP001      }
-//STRIP001 #endif
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 BOOL   SfxObjectShell::CanHaveChilds(USHORT nIdx1,
-//STRIP001                                     USHORT nIdx2)
-//STRIP001 {
-//STRIP001  switch(nIdx1) {
-//STRIP001  case INDEX_IGNORE:
-//STRIP001      return TRUE;
-//STRIP001  case CONTENT_STYLE:
-//STRIP001      return INDEX_IGNORE == nIdx2 || !GetStyleSheetPool()? FALSE: TRUE;
-//STRIP001  case CONTENT_MACRO:
-//STRIP001 //!!    return INDEX_IGNORE == nIdx2? FALSE: TRUE;
-//STRIP001      return FALSE;
-//STRIP001 /*
-//STRIP001  case CONTENT_CONFIG:
-//STRIP001      return INDEX_IGNORE == nIdx2 ? FALSE : TRUE;
-//STRIP001  */
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -1076,8 +836,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                               USHORT nIdx1,
 /*N*/                               USHORT nIdx2 )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  DBG_ERRORFILE( "Non high contrast method called. Please update calling code!" );
-//STRIP001  SfxObjectShell::GetContent( rText, rClosedBitmap, rOpenedBitmap, BMP_COLOR_NORMAL, bCanDel, i, nIdx1, nIdx2 );
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -1091,489 +849,26 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 /*N*/                                 USHORT nIdx1,
 /*N*/                                 USHORT nIdx2 )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  bCanDel=TRUE;
-//STRIP001
-//STRIP001  switch(nIdx1)
-//STRIP001  {
-//STRIP001      case INDEX_IGNORE:
-//STRIP001      {
-//STRIP001          USHORT nTextResId = 0;
-//STRIP001          USHORT nClosedBitmapResId; // evtl. sp"ater mal unterschiedliche
-//STRIP001          USHORT nOpenedBitmapResId; // "     "       "   "
-//STRIP001          switch(i)
-//STRIP001          {
-//STRIP001              case CONTENT_STYLE:
-//STRIP001                  nTextResId = STR_STYLES;
-//STRIP001                  if ( eColorMode == BMP_COLOR_NORMAL )
-//STRIP001                  {
-//STRIP001                      nClosedBitmapResId= BMP_STYLES_CLOSED;
-//STRIP001                      nOpenedBitmapResId= BMP_STYLES_OPENED;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      nClosedBitmapResId= BMP_STYLES_CLOSED_HC;
-//STRIP001                      nOpenedBitmapResId= BMP_STYLES_OPENED_HC;
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001              case CONTENT_MACRO:
-//STRIP001                  nTextResId = STR_MACROS;
-//STRIP001                  if ( eColorMode == BMP_COLOR_NORMAL )
-//STRIP001                  {
-//STRIP001                      nClosedBitmapResId= BMP_STYLES_CLOSED;
-//STRIP001                      nOpenedBitmapResId= BMP_STYLES_OPENED;
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      nClosedBitmapResId= BMP_STYLES_CLOSED_HC;
-//STRIP001                      nOpenedBitmapResId= BMP_STYLES_OPENED_HC;
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001 /*
-//STRIP001              case CONTENT_CONFIG:
-//STRIP001                  nTextResId = STR_CONFIG;
-//STRIP001                  nClosedBitmapResId= BMP_STYLES_CLOSED;
-//STRIP001                  nOpenedBitmapResId= BMP_STYLES_OPENED;
-//STRIP001                  break;
-//STRIP001  */
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( nTextResId )
-//STRIP001          {
-//STRIP001              rText  = String(SfxResId(nTextResId));
-//STRIP001              rClosedBitmap = Bitmap(SfxResId(nClosedBitmapResId));
-//STRIP001              rOpenedBitmap = Bitmap(SfxResId(nOpenedBitmapResId));
-//STRIP001          }
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      case CONTENT_STYLE:
-//STRIP001      {
-//STRIP001          SfxStyleSheetBasePool *pPool = GetStyleSheetPool();
-//STRIP001          SetOrganizerSearchMask(pPool);
-//STRIP001          SfxStyleSheetBase *pStyle = (*pPool)[i];
-//STRIP001          rText = pStyle->GetName();
-//STRIP001          bCanDel=((pStyle->GetMask() & SFXSTYLEBIT_USERDEF)
-//STRIP001                   == SFXSTYLEBIT_USERDEF);
-//STRIP001          rClosedBitmap = rOpenedBitmap =
-//STRIP001              GetStyleFamilyBitmap(pStyle->GetFamily(), eColorMode );
-//STRIP001      }
-//STRIP001          break;
-//STRIP001      case CONTENT_MACRO:
-//STRIP001          break;
-//STRIP001 /*
-//STRIP001      case CONTENT_CONFIG:
-//STRIP001          if ( GetConfigManager() && !HasTemplateConfig())
-//STRIP001          {
-//STRIP001              rText = GetConfigManager()->GetItem(i);
-//STRIP001              bCanDel = GetConfigManager()->CanDelete(i);
-//STRIP001          }
-//STRIP001          else
-//STRIP001              rText = String();
-//STRIP001          rClosedBitmap = Bitmap(SfxResId(BMP_STYLES_CLOSED));
-//STRIP001          rOpenedBitmap = Bitmap(SfxResId(BMP_STYLES_OPENED));
-//STRIP001          break;
-//STRIP001 */
-//STRIP001  }
 /*N*/ }
 
 //--------------------------------------------------------------------
-//STRIP001 Bitmap SfxObjectShell::GetStyleFamilyBitmap( SfxStyleFamily eFamily )
-//STRIP001 {
-//STRIP001  DBG_ERRORFILE( "Non high contrast method called. Please update calling code!" );
-//STRIP001  return SfxObjectShell::GetStyleFamilyBitmap( eFamily, BMP_COLOR_NORMAL );
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 Bitmap SfxObjectShell::GetStyleFamilyBitmap(SfxStyleFamily eFamily, BmpColorMode eColorMode )
-//STRIP001 {
-//STRIP001  USHORT nResId = 0;
-//STRIP001  switch(eFamily)
-//STRIP001  {
-//STRIP001      case SFX_STYLE_FAMILY_CHAR:
-//STRIP001          nResId = ( eColorMode == BMP_COLOR_NORMAL ) ? BMP_STYLES_FAMILY1 : BMP_STYLES_FAMILY1_HC;
-//STRIP001          break;
-//STRIP001      case SFX_STYLE_FAMILY_PARA:
-//STRIP001          nResId = ( eColorMode == BMP_COLOR_NORMAL ) ? BMP_STYLES_FAMILY2 : BMP_STYLES_FAMILY2_HC;
-//STRIP001          break;
-//STRIP001      case SFX_STYLE_FAMILY_FRAME:
-//STRIP001          nResId = ( eColorMode == BMP_COLOR_NORMAL ) ? BMP_STYLES_FAMILY3 : BMP_STYLES_FAMILY3_HC;
-//STRIP001          break;
-//STRIP001      case SFX_STYLE_FAMILY_PAGE :
-//STRIP001          nResId = ( eColorMode == BMP_COLOR_NORMAL ) ? BMP_STYLES_FAMILY4 : BMP_STYLES_FAMILY4_HC;
-//STRIP001          break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( nResId )
-//STRIP001      return Bitmap(SfxResId(nResId));
-//STRIP001  else
-//STRIP001      return Bitmap();
-//STRIP001 }
 
 
 //--------------------------------------------------------------------
 
-//STRIP001 BOOL SfxObjectShell::Insert(SfxObjectShell &rSource,
-//STRIP001                            USHORT nSourceIdx1,
-//STRIP001                            USHORT nSourceIdx2,
-//STRIP001                            USHORT nSourceIdx3,
-//STRIP001                            USHORT &nIdx1,
-//STRIP001                            USHORT &nIdx2,
-//STRIP001                            USHORT &nIdx3,
-//STRIP001                            USHORT &nDeleted)
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  if (INDEX_IGNORE == nIdx1 && CONTENT_STYLE == nSourceIdx1)
-//STRIP001      nIdx1 = CONTENT_STYLE;
-//STRIP001
-//STRIP001  if (CONTENT_STYLE == nSourceIdx1 && CONTENT_STYLE == nIdx1)
-//STRIP001  {
-//STRIP001      SfxStyleSheetBasePool* pHisPool  = rSource.GetStyleSheetPool();
-//STRIP001      SfxStyleSheetBasePool* pMyPool   = GetStyleSheetPool();
-//STRIP001      SetOrganizerSearchMask(pHisPool);
-//STRIP001      SetOrganizerSearchMask(pMyPool);
-//STRIP001
-//STRIP001      SfxStyleSheetBase* pHisSheet = (*pHisPool)[nSourceIdx2];
-//STRIP001
-//STRIP001      // Einfuegen ist nur dann noetig, wenn ein StyleSheet
-//STRIP001      // zwischen unterschiedlichen(!) Pools bewegt wird
-//STRIP001
-//STRIP001      if (pMyPool != pHisPool)
-//STRIP001      {
-//STRIP001          if (INDEX_IGNORE == nIdx2)
-//STRIP001          {
-//STRIP001              nIdx2 = pMyPool->Count();
-//STRIP001          }
-//STRIP001
-//STRIP001          // wenn so eine Vorlage schon existiert: loeschen!
-//STRIP001          String aOldName(pHisSheet->GetName());
-//STRIP001          SfxStyleFamily eOldFamily = pHisSheet->GetFamily();
-//STRIP001
-//STRIP001          SfxStyleSheetBase* pExist = pMyPool->Find(aOldName, eOldFamily);
-//STRIP001          // USHORT nOldHelpId = pExist->GetHelpId(??? VB ueberlegt sich was);
-//STRIP001          BOOL bUsedOrUserDefined;
-//STRIP001          if( pExist )
-//STRIP001          {
-//STRIP001              bUsedOrUserDefined =
-//STRIP001                  pExist->IsUsed() || pExist->IsUserDefined();
-//STRIP001              if( ErrorHandler::HandleError(
-//STRIP001                  *new MessageInfo( ERRCODE_SFXMSG_STYLEREPLACE, aOldName ) )
-//STRIP001                  != ERRCODE_BUTTON_OK )
-//STRIP001                  return FALSE;
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  pMyPool->Replace( *pHisSheet, *pExist );
-//STRIP001                  SetModified( TRUE );
-//STRIP001                  nIdx2 = nIdx1 = INDEX_IGNORE;
-//STRIP001                  return TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          SfxStyleSheetBase& rNewSheet = pMyPool->Make(
-//STRIP001              aOldName, eOldFamily,
-//STRIP001              pHisSheet->GetMask(), nIdx2);
-//STRIP001
-//STRIP001          // ItemSet der neuen Vorlage fuellen
-//STRIP001          rNewSheet.GetItemSet().Set(pHisSheet->GetItemSet());
-//STRIP001
-//STRIP001          // wer bekommt den Neuen als Parent? wer benutzt den Neuen als Follow?
-//STRIP001          SfxStyleSheetBase* pTestSheet = pMyPool->First();
-//STRIP001          while (pTestSheet)
-//STRIP001          {
-//STRIP001              if (pTestSheet->GetFamily() == eOldFamily &&
-//STRIP001                  pTestSheet->HasParentSupport() &&
-//STRIP001                  pTestSheet->GetParent() == aOldName)
-//STRIP001              {
-//STRIP001                  pTestSheet->SetParent(aOldName);
-//STRIP001                  // Verknuepfung neu aufbauen
-//STRIP001              }
-//STRIP001
-//STRIP001              if (pTestSheet->GetFamily() == eOldFamily &&
-//STRIP001                  pTestSheet->HasFollowSupport() &&
-//STRIP001                  pTestSheet->GetFollow() == aOldName)
-//STRIP001              {
-//STRIP001                  pTestSheet->SetFollow(aOldName);
-//STRIP001                  // Verknuepfung neu aufbauen
-//STRIP001              }
-//STRIP001
-//STRIP001              pTestSheet = pMyPool->Next();
-//STRIP001          }
-//STRIP001          bUsedOrUserDefined =
-//STRIP001              rNewSheet.IsUsed() || rNewSheet.IsUserDefined();
-//STRIP001
-//STRIP001
-//STRIP001          // hat der Neue einen Parent? wenn ja, mit gleichem Namen bei uns suchen
-//STRIP001          if (pHisSheet->HasParentSupport())
-//STRIP001          {
-//STRIP001              const String& rParentName = pHisSheet->GetParent();
-//STRIP001              if (0 != rParentName.Len())
-//STRIP001              {
-//STRIP001                  SfxStyleSheetBase* pParentOfNew =
-//STRIP001                      pMyPool->Find(rParentName, eOldFamily);
-//STRIP001                  if (pParentOfNew)
-//STRIP001                      rNewSheet.SetParent(rParentName);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          // hat der Neue einen Follow? wenn ja, mit gleichem
-//STRIP001          // Namen bei uns suchen
-//STRIP001          if (pHisSheet->HasFollowSupport())
-//STRIP001          {
-//STRIP001              const String& rFollowName = pHisSheet->GetFollow();
-//STRIP001              if (0 != rFollowName.Len())
-//STRIP001              {
-//STRIP001                  SfxStyleSheetBase* pFollowOfNew =
-//STRIP001                      pMyPool->Find(rFollowName, eOldFamily);
-//STRIP001                  if (pFollowOfNew)
-//STRIP001                      rNewSheet.SetFollow(rFollowName);
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          SetModified( TRUE );
-//STRIP001          if( !bUsedOrUserDefined ) nIdx2 = nIdx1 = INDEX_IGNORE;
-//STRIP001
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          bRet = FALSE;
-//STRIP001  }
-//STRIP001 /*
-//STRIP001  else if (nSourceIdx1 == CONTENT_CONFIG)
-//STRIP001  {
-//STRIP001      nIdx1 = CONTENT_CONFIG;
-//STRIP001
-//STRIP001      SfxConfigManager *pCfgMgr = SFX_CFGMANAGER();
-//STRIP001      if (!GetConfigManager() || HasTemplateConfig())
-//STRIP001      {
-//STRIP001          SetConfigManager(new SfxConfigManager(0, pCfgMgr));
-//STRIP001          SetTemplateConfig(FALSE);
-//STRIP001          if (this == Current())
-//STRIP001              GetConfigManager()->Activate(pCfgMgr);
-//STRIP001      }
-//STRIP001
-//STRIP001      if (GetConfigManager()->CopyItem(
-//STRIP001          nSourceIdx2, nIdx2, rSource.GetConfigManager()))
-//STRIP001      {
-//STRIP001          SetModified(TRUE);
-//STRIP001          bRet = TRUE;
-//STRIP001             SFX_APP()->GetDispatcher_Impl()->Update_Impl(TRUE);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 */
-//STRIP001  return bRet;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 BOOL SfxObjectShell::Remove
-//STRIP001 (
-//STRIP001  USHORT nIdx1,
-//STRIP001  USHORT nIdx2,
-//STRIP001  USHORT nIdx3
-//STRIP001 )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  if (CONTENT_STYLE == nIdx1)
-//STRIP001  {
-//STRIP001      SfxStyleSheetBasePool* pMyPool  = GetStyleSheetPool();
-//STRIP001
-//STRIP001      SetOrganizerSearchMask(pMyPool);
-//STRIP001
-//STRIP001      SfxStyleSheetBase* pMySheet =  (*pMyPool)[nIdx2];
-//STRIP001      String aName(pMySheet->GetName());
-//STRIP001      String aEmpty;
-//STRIP001      SfxStyleFamily  eFamily = pMySheet->GetFamily();
-//STRIP001      if (pMySheet)
-//STRIP001      {
-//STRIP001          pMyPool->Erase(pMySheet);
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001
-//STRIP001      SfxStyleSheetBase* pTestSheet = pMyPool->First();
-//STRIP001      while (pTestSheet)
-//STRIP001      {
-//STRIP001          if (pTestSheet->GetFamily() == eFamily &&
-//STRIP001              pTestSheet->HasParentSupport() &&
-//STRIP001              pTestSheet->GetParent() == aName)
-//STRIP001          {
-//STRIP001              pTestSheet->SetParent(aEmpty); // Verknuepfung aufloesen
-//STRIP001          }
-//STRIP001
-//STRIP001          if (pTestSheet->GetFamily() == eFamily &&
-//STRIP001              pTestSheet->HasFollowSupport() &&
-//STRIP001              pTestSheet->GetFollow() == aName)
-//STRIP001          {
-//STRIP001              pTestSheet->SetFollow(aEmpty); // Verknuepfung aufloesen
-//STRIP001          }
-//STRIP001
-//STRIP001          pTestSheet = pMyPool->Next();
-//STRIP001      }
-//STRIP001      if(bRet)
-//STRIP001          SetModified( TRUE );
-//STRIP001  }
-//STRIP001 /*
-//STRIP001  else if (nIdx1 == CONTENT_CONFIG)
-//STRIP001  {
-//STRIP001      if (GetConfigManager()->RemoveItem(nIdx2))
-//STRIP001      {
-//STRIP001          SetModified(TRUE);
-//STRIP001          bRet = TRUE;
-//STRIP001             SFX_APP()->GetDispatcher_Impl()->Update_Impl(TRUE);
-//STRIP001      }
-//STRIP001  }
-//STRIP001 */
-//STRIP001  return bRet;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
-//STRIP001 BOOL SfxObjectShell::Print
-//STRIP001 (
-//STRIP001  Printer&        rPrt,
-//STRIP001  USHORT          nIdx1,
-//STRIP001  USHORT          nIdx2,
-//STRIP001  USHORT          nIdx3,
-//STRIP001  const String*   pObjectName
-//STRIP001 )
 
 /*  [Beschreibung]
 */
 
-//STRIP001 {
-//STRIP001  switch(nIdx1)
-//STRIP001  {
-//STRIP001    case CONTENT_STYLE:
-//STRIP001      {
-//STRIP001          SfxStyleSheetBasePool *pPool = GetStyleSheetPool();
-//STRIP001          SetOrganizerSearchMask(pPool);
-//STRIP001          SfxStyleSheetIterator* pIter = pPool->CreateIterator(
-//STRIP001              pPool->GetSearchFamily(), pPool->GetSearchMask() );
-//STRIP001          USHORT nStyles = pIter->Count();
-//STRIP001          SfxStyleSheetBase *pStyle = pIter->First();
-//STRIP001          if ( !pStyle )
-//STRIP001              return TRUE;
-//STRIP001
-//STRIP001          if ( !rPrt.StartJob(String(SfxResId(STR_STYLES))) )
-//STRIP001          {
-//STRIP001              delete pIter;
-//STRIP001              return FALSE;
-//STRIP001          }
-//STRIP001          if ( !rPrt.StartPage() )
-//STRIP001          {
-//STRIP001              delete pIter;
-//STRIP001              return FALSE;
-//STRIP001          }
-//STRIP001          SfxStatusBarManager* pStbMgr = SFX_APP()->GetStatusBarManager();
-//STRIP001          if ( pStbMgr )
-//STRIP001              pStbMgr->StartProgressMode(String(SfxResId(STR_PRINT_STYLES)), nStyles);
-//STRIP001          rPrt.SetMapMode(MapMode(MAP_10TH_MM));
-//STRIP001          Font aFont( DEFINE_CONST_UNICODE( "Arial" ), Size(0, 64));   // 18pt
-//STRIP001          aFont.SetWeight(WEIGHT_BOLD);
-//STRIP001          rPrt.SetFont(aFont);
-//STRIP001          const Size aPageSize(rPrt.GetOutputSize());
-//STRIP001          const USHORT nXIndent = 200;
-//STRIP001          USHORT nYIndent = 200;
-//STRIP001          Point aOutPos(nXIndent, nYIndent);
-//STRIP001          String aHeader(SfxResId(STR_PRINT_STYLES_HEADER));
-//STRIP001          if ( pObjectName )
-//STRIP001              aHeader += *pObjectName;
-//STRIP001          else
-//STRIP001              aHeader += GetTitle();
-//STRIP001             long nTextHeight( rPrt.GetTextHeight() );
-//STRIP001          rPrt.DrawText(aOutPos, aHeader);
-//STRIP001          aOutPos.Y() += nTextHeight;
-//STRIP001          aOutPos.Y() += nTextHeight/2;
-//STRIP001          aFont.SetSize(Size(0, 35)); // 10pt
-//STRIP001          nStyles = 1;
-//STRIP001          while(pStyle)
-//STRIP001          {
-//STRIP001              if(pStbMgr)
-//STRIP001                  pStbMgr->SetProgressState(nStyles++);
-//STRIP001              // Ausgabe des Vorlagennamens
-//STRIP001              String aStr(pStyle->GetName());
-//STRIP001              aFont.SetWeight(WEIGHT_BOLD);
-//STRIP001              rPrt.SetFont(aFont);
-//STRIP001              nTextHeight = rPrt.GetTextHeight();
-//STRIP001              // Seitenwechsel
-//STRIP001              if ( aOutPos.Y() + nTextHeight*2 >
-//STRIP001                     aPageSize.Height() - (long) nYIndent )
-//STRIP001              {
-//STRIP001                  rPrt.EndPage();
-//STRIP001                  rPrt.StartPage();
-//STRIP001                  aOutPos.Y() = nYIndent;
-//STRIP001              }
-//STRIP001              rPrt.DrawText(aOutPos, aStr);
-//STRIP001              aOutPos.Y() += nTextHeight;
-//STRIP001
-//STRIP001              // Ausgabe der Vorlagenbeschreibung
-//STRIP001              aFont.SetWeight(WEIGHT_NORMAL);
-//STRIP001              rPrt.SetFont(aFont);
-//STRIP001              aStr = pStyle->GetDescription();
-//STRIP001              const char cDelim = ' ';
-//STRIP001              USHORT nStart = 0, nIdx = 0;
-//STRIP001
-//STRIP001              nTextHeight = rPrt.GetTextHeight();
-//STRIP001              // wie viele Worte passen auf eine Zeile
-//STRIP001              while(nIdx < aStr.Len())
-//STRIP001              {
-//STRIP001                  USHORT  nOld = nIdx;
-//STRIP001                     long nTextWidth;
-//STRIP001                  nIdx = aStr.Search(cDelim, nStart);
-//STRIP001                  nTextWidth = rPrt.GetTextWidth(aStr, nStart, nIdx-nStart);
-//STRIP001                  while(nIdx != STRING_NOTFOUND &&
-//STRIP001                        aOutPos.X() + nTextWidth <
-//STRIP001                           aPageSize.Width() - (long) nXIndent)
-//STRIP001                  {
-//STRIP001                      nOld = nIdx;
-//STRIP001                      nIdx = aStr.Search(cDelim, nIdx+1);
-//STRIP001                      nTextWidth = rPrt.GetTextWidth(aStr, nStart, nIdx-nStart);
-//STRIP001                  }
-//STRIP001                  String aTmp(aStr, nStart, nIdx == STRING_NOTFOUND?
-//STRIP001                              STRING_LEN :
-//STRIP001                              nOld-nStart);
-//STRIP001                  if ( aTmp.Len() )
-//STRIP001                  {
-//STRIP001                      nStart = nOld+1;    // wegen trailing space
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      USHORT nChar = 1;
-//STRIP001                      while(
-//STRIP001                          nStart + nChar < aStr.Len() &&
-//STRIP001                          aOutPos.X() + rPrt.GetTextWidth(
-//STRIP001                              aStr, nStart, nChar) <
-//STRIP001                          aPageSize.Width() - nXIndent)
-//STRIP001                          ++nChar;
-//STRIP001                      aTmp = String(aStr, nStart, nChar-1);
-//STRIP001                      nIdx = nStart + nChar;
-//STRIP001                      nStart = nIdx;
-//STRIP001                  }
-//STRIP001                  if ( aOutPos.Y() + nTextHeight*2 >
-//STRIP001                      aPageSize.Height() - nYIndent )
-//STRIP001                  {
-//STRIP001                      rPrt.EndPage();
-//STRIP001                      rPrt.StartPage();
-//STRIP001                      aOutPos.Y() = nYIndent;
-//STRIP001                  }
-//STRIP001                  rPrt.DrawText(aOutPos, aTmp);
-//STRIP001                  aOutPos.Y() += rPrt.GetTextHeight();
-//STRIP001              }
-//STRIP001              pStyle = pIter->Next();
-//STRIP001          }
-//STRIP001          rPrt.EndPage();
-//STRIP001          rPrt.EndJob();
-//STRIP001          if ( pStbMgr )
-//STRIP001              pStbMgr->EndProgressMode();
-//STRIP001          delete pIter;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001    default:
-//STRIP001        return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 //--------------------------------------------------------------------
 
@@ -1594,48 +889,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 */
 
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  struct Styles_Impl
-//STRIP001  {
-//STRIP001      SfxStyleSheetBase *pSource;
-//STRIP001      SfxStyleSheetBase *pDest;
-//STRIP001 //      Styles_Impl () : pSource(0), pDest(0) {}
-//STRIP001  };
-//STRIP001
-//STRIP001  SfxStyleSheetBasePool *pSourcePool = rSource.GetStyleSheetPool();
-//STRIP001  DBG_ASSERT(pSourcePool, "Source-DocumentShell ohne StyleSheetPool");
-//STRIP001  SfxStyleSheetBasePool *pMyPool = GetStyleSheetPool();
-//STRIP001  DBG_ASSERT(pMyPool, "Dest-DocumentShell ohne StyleSheetPool");
-//STRIP001  pSourcePool->SetSearchMask(SFX_STYLE_FAMILY_ALL, 0xffff);
-//STRIP001  Styles_Impl *pFound = new Styles_Impl[pSourcePool->Count()];
-//STRIP001  USHORT nFound = 0;
-//STRIP001
-//STRIP001  SfxStyleSheetBase *pSource = pSourcePool->First();
-//STRIP001  while ( pSource )
-//STRIP001  {
-//STRIP001      SfxStyleSheetBase *pDest =
-//STRIP001          pMyPool->Find( pSource->GetName(), pSource->GetFamily() );
-//STRIP001      if ( !pDest )
-//STRIP001      {
-//STRIP001          pDest = &pMyPool->Make( pSource->GetName(),
-//STRIP001                  pSource->GetFamily(), pSource->GetMask());
-//STRIP001          // Setzen des Parents, der Folgevorlage
-//STRIP001      }
-//STRIP001      pFound[nFound].pSource = pSource;
-//STRIP001      pFound[nFound].pDest = pDest;
-//STRIP001      ++nFound;
-//STRIP001      pSource = pSourcePool->Next();
-//STRIP001  }
-//STRIP001
-//STRIP001  for ( USHORT i = 0; i < nFound; ++i )
-//STRIP001  {
-//STRIP001      pFound[i].pDest->GetItemSet().PutExtended(pFound[i].pSource->GetItemSet(), SFX_ITEM_DONTCARE, SFX_ITEM_DEFAULT);
-//STRIP001 //      pFound[i].pDest->SetHelpId(pFound[i].pSource->GetHelpId());
-//STRIP001      if(pFound[i].pSource->HasParentSupport())
-//STRIP001          pFound[i].pDest->SetParent(pFound[i].pSource->GetParent());
-//STRIP001      if(pFound[i].pSource->HasFollowSupport())
-//STRIP001          pFound[i].pDest->SetFollow(pFound[i].pSource->GetParent());
-//STRIP001  }
-//STRIP001  delete pFound;
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -1652,159 +905,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 */
 
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  // Storage-medium?
-//STRIP001  SfxMedium *pFile = GetMedium();
-//STRIP001  DBG_ASSERT( pFile, "cannot UpdateFromTemplate without medium" );
-//STRIP001
-//STRIP001     // only for own storage formats
-//STRIP001     SvStorageRef xDocStor = pFile ? pFile->GetStorage() : 0;
-//STRIP001     if ( !xDocStor.Is() || !pFile->GetFilter() || !pFile->GetFilter()->IsOwnFormat() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  SFX_ITEMSET_ARG( pFile->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
-//STRIP001  sal_Int16 bCanUpdateFromTemplate = pUpdateDocItem ? pUpdateDocItem->GetValue() : document::UpdateDocMode::NO_UPDATE;
-//STRIP001
-//STRIP001     // created from template?
-//STRIP001  SfxDocumentInfo *pInfo = &GetDocInfo();
-//STRIP001  String aTemplName( pInfo->GetTemplateName() );
-//STRIP001  String aTemplFileName( pInfo->GetTemplateFileName() );
-//STRIP001     String aFoundName;
-//STRIP001     SvStorageRef aTemplStor;
-//STRIP001     if ( aTemplName.Len() || aTemplFileName.Len() && !IsReadOnly() )
-//STRIP001  {
-//STRIP001         // try to locate template, first using filename
-//STRIP001         // this must be done because writer global document uses this "great" idea to manage the templates of all parts
-//STRIP001         // in the master document
-//STRIP001         // but it is NOT an error if the template filename points not to a valid file
-//STRIP001         SfxDocumentTemplates aTempl;
-//STRIP001         aTempl.Construct();
-//STRIP001         if ( aTemplFileName.Len() )
-//STRIP001         {
-//STRIP001             String aURL;
-//STRIP001             if( ::utl::LocalFileHelper::ConvertSystemPathToURL( aTemplFileName, GetMedium()->GetName(), aURL ) )
-//STRIP001             {
-//STRIP001                 aTemplStor = new SvStorage( aURL, STREAM_READ|STREAM_NOCREATE|STREAM_SHARE_DENYWRITE, STORAGE_TRANSACTED );
-//STRIP001                 if ( aTemplStor->GetError() )
-//STRIP001                     aTemplStor.Clear();
-//STRIP001                 else
-//STRIP001                     aFoundName = aURL;
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         if( !aFoundName.Len() && aTemplName.Len() )
-//STRIP001             // if the template filename did not lead to success, try to get a file name for the logical template name
-//STRIP001             aTempl.GetFull( String(), aTemplName, aFoundName );
-//STRIP001  }
-//STRIP001
-//STRIP001     if ( aFoundName.Len() )
-//STRIP001  {
-//STRIP001         // check existence of template storage
-//STRIP001         aTemplFileName = aFoundName;
-//STRIP001      BOOL bLoad = FALSE;
-//STRIP001         if ( !aTemplStor.Is() )
-//STRIP001             aTemplStor = new SvStorage( aTemplFileName,
-//STRIP001                             STREAM_READ | STREAM_NOCREATE | STREAM_SHARE_DENYWRITE, STORAGE_TRANSACTED );
-//STRIP001
-//STRIP001         // should the document checked against changes in the template ?
-//STRIP001         if ( !aTemplStor->GetError() && pInfo->IsQueryLoadTemplate() )
-//STRIP001      {
-//STRIP001             // load document info of template
-//STRIP001             BOOL bOK = FALSE;
-//STRIP001          DateTime aTemplDate;
-//STRIP001             Reference < document::XStandaloneDocumentInfo > xDocInfo (
-//STRIP001                     ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-//STRIP001                         ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.StandaloneDocumentInfo") ) ), UNO_QUERY );
-//STRIP001             Reference < beans::XFastPropertySet > xSet( xDocInfo, UNO_QUERY );
-//STRIP001             if ( xDocInfo.is() && xSet.is() )
-//STRIP001             {
-//STRIP001                 try
-//STRIP001                 {
-//STRIP001                     xDocInfo->loadFromURL( aTemplFileName );
-//STRIP001                     Any aAny = xSet->getFastPropertyValue( WID_DATE_MODIFIED );
-//STRIP001                     ::com::sun::star::util::DateTime aTmp;
-//STRIP001                     if ( aAny >>= aTmp )
-//STRIP001                     {
-//STRIP001                         // get modify date from document info
-//STRIP001                         aTemplDate = SfxDocumentInfoObject::impl_DateTime_Struct2Object( aTmp );
-//STRIP001                         bOK = TRUE;
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001                 catch ( Exception& )
-//STRIP001                 {
-//STRIP001                 }
-//STRIP001             }
-//STRIP001
-//STRIP001             // if modify date was read successfully
-//STRIP001             if ( bOK )
-//STRIP001          {
-//STRIP001                 // compare modify data of template with the last check date of the document
-//STRIP001                 const DateTime aInfoDate( pInfo->GetTemplateDate(), pInfo->GetTemplateDate() );
-//STRIP001              if ( aTemplDate > aInfoDate )
-//STRIP001              {
-//STRIP001                     // ask user
-//STRIP001                  if( bCanUpdateFromTemplate == document::UpdateDocMode::QUIET_UPDATE
-//STRIP001                   || bCanUpdateFromTemplate == document::UpdateDocMode::FULL_UPDATE )
-//STRIP001                      bLoad = TRUE;
-//STRIP001                  else if ( bCanUpdateFromTemplate == document::UpdateDocMode::ACCORDING_TO_CONFIG )
-//STRIP001                  {
-//STRIP001                      QueryBox aBox( GetDialogParent(), SfxResId(MSG_QUERY_LOAD_TEMPLATE) );
-//STRIP001                      if ( RET_YES == aBox.Execute() )
-//STRIP001                          bLoad = TRUE;
-//STRIP001                  }
-//STRIP001
-//STRIP001                  if( !bLoad )
-//STRIP001                  {
-//STRIP001                         // user refuses, so don't ask again for this document
-//STRIP001                      pInfo->SetQueryLoadTemplate(FALSE);
-//STRIP001
-//STRIP001                      if ( xDocStor->IsOLEStorage() )
-//STRIP001                          pInfo->Save(xDocStor);
-//STRIP001                      else
-//STRIP001                          SetModified( TRUE );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if ( bLoad )
-//STRIP001          {
-//STRIP001                 // styles should be updated, create document in organizer mode to read in the styles
-//STRIP001                 SfxObjectShellLock xTemplDoc = GetFactory().CreateObject( SFX_CREATE_MODE_ORGANIZER );
-//STRIP001              xTemplDoc->DoInitNew(0);
-//STRIP001              String aOldBaseURL = so3::StaticBaseUrl::GetBaseURL();
-//STRIP001                 so3::StaticBaseUrl::SetBaseURL( INetURLObject( aTemplFileName ).GetMainURL( INetURLObject::NO_DECODE ) );
-//STRIP001              if ( xTemplDoc->LoadFrom(aTemplStor) )
-//STRIP001              {
-//STRIP001                     // transfer styles from xTemplDoc to this document
-//STRIP001                  LoadStyles(*xTemplDoc);
-//STRIP001
-//STRIP001                     // remember date/time of check
-//STRIP001                  pInfo->SetTemplateDate(aTemplDate);
-//STRIP001                  pInfo->Save(xDocStor);
-//STRIP001              }
-//STRIP001
-//STRIP001              so3::StaticBaseUrl::SetBaseURL( aOldBaseURL );
-//STRIP001          }
-//STRIP001 /*
-//STRIP001          SfxConfigManager *pCfgMgr = SFX_CFGMANAGER();
-//STRIP001          BOOL bConfig = pInfo->HasTemplateConfig();
-//STRIP001          {
-//STRIP001              SfxConfigManager *pTemplCfg = new SfxConfigManager(aTemplStor, pCfgMgr);
-//STRIP001              SetConfigManager(pTemplCfg);
-//STRIP001              SetTemplateConfig(TRUE);
-//STRIP001
-//STRIP001              // Falls der gerade zerst"orte CfgMgr des Dokuments der
-//STRIP001              // aktive war, pCfgMgr lieber neu holen
-//STRIP001              pCfgMgr = SFX_CFGMANAGER();
-//STRIP001
-//STRIP001              // ggf. den neuen ConfigManager aktivieren
-//STRIP001              if ( this == SfxObjectShell::Current() )
-//STRIP001                  pTemplCfg->Activate(pCfgMgr);
-//STRIP001          }
-//STRIP001 */
-//STRIP001          // Template und Template-DocInfo werden nicht mehr gebraucht
-//STRIP001 //            delete pTemplInfo;
-//STRIP001      }
-//STRIP001  }
 /*N*/ }
 
 /*N*/ SfxEventConfigItem_Impl* SfxObjectShell::GetEventConfig_Impl( BOOL bForce )
@@ -1823,35 +923,10 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 
 /*N*/ SvStorageRef SfxObjectShell::GetConfigurationStorage( SotStorage* pStor )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SvStorageRef();//STRIP001
-//STRIP001  // configuration storage shall be opened in own storage or a new storage, if the
-//STRIP001  // document is getting stored into this storage
-//STRIP001  if ( !pStor )
-//STRIP001      pStor = GetStorage();
-//STRIP001
-//STRIP001  if ( pStor->IsOLEStorage() )
-//STRIP001                 return (SvStorageRef) SotStorageRef();
-//STRIP001
-//STRIP001  // storage is always opened in transacted mode, so changes must be commited
-//STRIP001  SotStorageRef xStorage = pStor->OpenSotStorage( DEFINE_CONST_UNICODE("Configurations"),
-//STRIP001              IsReadOnly() ? STREAM_STD_READ : STREAM_STD_READWRITE );
-//STRIP001  if ( xStorage.Is() && xStorage->GetError() )
-//STRIP001      xStorage.Clear();
-//STRIP001         return (SvStorageRef) xStorage;
 /*N*/ }
 
 /*N*/ SotStorageStreamRef SfxObjectShell::GetConfigurationStream( const String& rName, BOOL bCreate )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SotStorageStreamRef();//STRIP001
-//STRIP001  SotStorageStreamRef xStream;
-//STRIP001  SvStorageRef xStorage = GetConfigurationStorage();
-//STRIP001  if ( xStorage.Is() )
-//STRIP001  {
-//STRIP001      xStream = xStorage->OpenSotStream( rName,
-//STRIP001          bCreate ? STREAM_STD_READWRITE|STREAM_TRUNC : STREAM_STD_READ );
-//STRIP001      if ( xStream.Is() && xStream->GetError() )
-//STRIP001          xStream.Clear();
-//STRIP001  }
-//STRIP001
-//STRIP001  return xStream;
 /*N*/ }
 
 /*N*/ SfxAcceleratorManager* SfxObjectShell::GetAccMgr_Impl()
@@ -1904,42 +979,6 @@ void SfxObjectShell::TransferConfig(SfxObjectShell& rObjSh)
 
 /*N*/ SfxObjectShellRef MakeObjectShellForOrganizer_Impl( const String& aTargetURL, BOOL bForWriting )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SfxObjectShellRef();//STRIP001
-//STRIP001  // check for own format
-//STRIP001  SfxObjectShellRef xDoc;
-//STRIP001  SfxMedium *pMed = new SfxMedium( aTargetURL, STREAM_STD_READ, FALSE, 0 );
-//STRIP001  const SfxFilter* pFilter = NULL;
-//STRIP001     if( SFX_APP()->GetFilterMatcher().GuessFilter( *pMed, &pFilter ) == ERRCODE_NONE && pFilter && pFilter->IsOwnFormat() )
-//STRIP001  {
-//STRIP001         delete pMed;
-//STRIP001         StreamMode nMode = bForWriting ? STREAM_STD_READWRITE : STREAM_STD_READ;
-//STRIP001         SvStorageRef xStor = new SvStorage( aTargetURL, nMode, STORAGE_TRANSACTED );
-//STRIP001         xStor->SetVersion( pFilter->GetVersion() );
-//STRIP001         if ( SVSTREAM_OK == xStor->GetError() )
-//STRIP001         {
-//STRIP001          // create document
-//STRIP001          const SfxObjectFactory &rFactory =
-//STRIP001              ((SfxFactoryFilterContainer*)pFilter->GetFilterContainer())->GetFactory();
-//STRIP001
-//STRIP001             xDoc = (SfxObjectShell *) rFactory.CreateObject( SFX_CREATE_MODE_ORGANIZER );
-//STRIP001             if ( xDoc.Is() )
-//STRIP001             {
-//STRIP001              // partially load, so don't use DoLoad!
-//STRIP001                 xDoc->DoInitNew(0);
-//STRIP001                 if( !xDoc->LoadFrom( xStor ) )
-//STRIP001                     xDoc.Clear();
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                  // connect to storage, abandon temp. storage
-//STRIP001                     xDoc->DoHandsOff();
-//STRIP001                     xDoc->DoSaveCompleted( xStor );
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001  }
-//STRIP001  else
-//STRIP001      delete pMed;
-//STRIP001
-//STRIP001     return xDoc;
 /*N*/ }
 
 /*N*/ SfxToolBoxConfig* SfxObjectShell::GetToolBoxConfig_Impl()
