@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fldui.hrc,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:00:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:19:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,14 +43,9 @@
 #define DLG_RECORD_INS      (RC_FLDDLG_BEGIN + 2)
 #define DLG_FLD_EDIT        (RC_FLDDLG_BEGIN + 3)
 #define DLG_POSTIT          (RC_FLDDLG_BEGIN + 4)
-//STRIP001 #define DLG_FLD_INPUT       (RC_FLDDLG_BEGIN + 5)
 #define DLG_BRCFG           (RC_FLDDLG_BEGIN + 6)
 #define DLG_BRSEEK          (RC_FLDDLG_BEGIN + 7)
 #define DLG_BRSORT          (RC_FLDDLG_BEGIN + 8)
-//STRIP001 #define DLG_CHANGE_DB        (RC_FLDDLG_BEGIN + 9)
-//STRIP001 #define DLG_JAVAEDIT         (RC_FLDDLG_BEGIN + 10)
-//STRIP001 #define DLG_FLD_INSERT       (RC_FLDDLG_BEGIN + 11)
-//STRIP001 #define DLG_FLD_DROPDOWN    (RC_FLDDLG_BEGIN + 12)
 
 /*--------------------------------------------------------------------
     Beschreibung: TypeId
@@ -116,40 +111,16 @@
 #define FLD_TIME_END        (FLD_TIME_BEGIN + 2)
 
 #define FLD_STAT_BEGIN      FLD_TIME_END
-//STRIP001 #define FLD_STAT_PAGE        FLD_STAT_BEGIN
-//STRIP001 #define FLD_STAT_PARA        (FLD_STAT_BEGIN + 1)
-//STRIP001 #define FLD_STAT_WORD        (FLD_STAT_BEGIN + 2)
-//STRIP001 #define FLD_STAT_CHAR        (FLD_STAT_BEGIN + 3)
 #define FLD_STAT_TABLE      (FLD_STAT_BEGIN + 4)
-//STRIP001 #define FLD_STAT_GRF     (FLD_STAT_BEGIN + 5)
-//STRIP001 #define FLD_STAT_OBJ     (FLD_STAT_BEGIN + 6)
 #define FLD_STAT_END        (FLD_STAT_BEGIN + 7)
 
 #define FLD_INPUT_BEGIN     FLD_STAT_END
-//STRIP001 #define FLD_INPUT_TEXT       FLD_INPUT_BEGIN
 #define FLD_INPUT_END       (FLD_INPUT_BEGIN + 1)
 
 #define FLD_EU_BEGIN        FLD_INPUT_END
-//STRIP001 #define FLD_EU_FIRMA        FLD_EU_BEGIN
-//STRIP001 #define FLD_EU_VORNAME       (FLD_EU_BEGIN    + 1)
-//STRIP001 #define FLD_EU_NAME          (FLD_EU_BEGIN    + 2)
-//STRIP001 #define FLD_EU_ABK           (FLD_EU_BEGIN    + 3)
-//STRIP001 #define FLD_EU_STRASSE       (FLD_EU_BEGIN    + 4)
-//STRIP001 #define FLD_EU_LAND          (FLD_EU_BEGIN    + 5)
-//STRIP001 #define FLD_EU_PLZ           (FLD_EU_BEGIN    + 6)
-//STRIP001 #define FLD_EU_ORT           (FLD_EU_BEGIN    + 7)
-//STRIP001 #define FLD_EU_TITEL         (FLD_EU_BEGIN    + 8)
-//STRIP001 #define FLD_EU_POS           (FLD_EU_BEGIN    + 9)
-//STRIP001 #define FLD_EU_TELPRIV       (FLD_EU_BEGIN    + 10)
-//STRIP001 #define FLD_EU_TELFIRMA      (FLD_EU_BEGIN    + 11)
-//STRIP001 #define FLD_EU_FAX           (FLD_EU_BEGIN    + 12)
-//STRIP001 #define FLD_EU_EMAIL        (FLD_EU_BEGIN    + 13)
-//STRIP001 #define FLD_EU_STATE        (FLD_EU_BEGIN    + 14)
 #define FLD_EU_END          (FLD_EU_BEGIN    + 15)
 
 #define FLD_PAGEREF_BEGIN   FLD_EU_END
-//STRIP001 #define FLD_PAGEREF_OFF      FLD_PAGEREF_BEGIN
-//STRIP001 #define FLD_PAGEREF_ON   (FLD_PAGEREF_BEGIN+1)
 #define FLD_PAGEREF_END     (FLD_PAGEREF_BEGIN+2)
 
 /*----------------------------------------------------------
@@ -160,97 +131,51 @@
 
 // Nummern
 #define FMT_NUM_BEGIN       (FMT_TEXT       + 1)
-//STRIP001 #define FMT_NUM_ABC          FMT_NUM_BEGIN
-//STRIP001 #define FMT_NUM_SABC        (FMT_NUM_BEGIN   + 1)
-//STRIP001 #define FMT_NUM_ABC_N        (FMT_NUM_BEGIN  + 2)
-//STRIP001 #define FMT_NUM_SABC_N      (FMT_NUM_BEGIN   + 3)
-//STRIP001 #define FMT_NUM_ROMAN       (FMT_NUM_BEGIN   + 4)
-//STRIP001 #define FMT_NUM_SROMAN      (FMT_NUM_BEGIN   + 5)
-//STRIP001 #define FMT_NUM_ARABIC       (FMT_NUM_BEGIN  + 6)
-//STRIP001 #define FMT_NUM_PAGEDESC (FMT_NUM_BEGIN  + 7)
-//STRIP001 #define  FMT_NUM_PAGESPECIAL (FMT_NUM_BEGIN  + 8)
 #define FMT_NUM_END         (FMT_NUM_BEGIN  + 9)
 
 // AuthorFormat
 #define FMT_AUTHOR_BEGIN    FMT_NUM_END
-//STRIP001 #define FMT_AUTHOR_NAME      FMT_AUTHOR_BEGIN
-//STRIP001 #define FMT_AUTHOR_SCUT      (FMT_AUTHOR_BEGIN + 1)
 #define FMT_AUTHOR_END      (FMT_AUTHOR_BEGIN + 2)
 
 // Variable setzen
 #define FMT_SETVAR_BEGIN    FMT_AUTHOR_END
-//STRIP001 #define FMT_SETVAR_SYS      (FMT_SETVAR_BEGIN + 0)
-//STRIP001 #define FMT_SETVAR_TEXT      (FMT_SETVAR_BEGIN + 1)
 #define FMT_SETVAR_END      (FMT_SETVAR_BEGIN + 2)
 
 // Variable einfuegen
 #define FMT_GETVAR_BEGIN    FMT_SETVAR_END
-//STRIP001 #define FMT_GETVAR_TEXT      (FMT_GETVAR_BEGIN + 0)
-//STRIP001 #define FMT_GETVAR_NAME      (FMT_GETVAR_BEGIN + 1)
 #define FMT_GETVAR_END      (FMT_GETVAR_BEGIN + 2)
 
 // Userfeld einfuegen
 #define FMT_USERVAR_BEGIN   FMT_GETVAR_END
-//STRIP001 #define FMT_USERVAR_TEXT (FMT_USERVAR_BEGIN + 0)
-//STRIP001 #define FMT_USERVAR_CMD      (FMT_USERVAR_BEGIN + 1)
 #define FMT_USERVAR_END     (FMT_USERVAR_BEGIN + 2)
 
 // Datenbankfeld einfuegen
 #define FMT_DBFLD_BEGIN     FMT_USERVAR_END
-//STRIP001 #define FMT_DBFLD_DB     (FMT_DBFLD_BEGIN + 0)
 #define FMT_DBFLD_SYS       (FMT_DBFLD_BEGIN + 1)
 #define FMT_DBFLD_END       (FMT_DBFLD_BEGIN + 2)
 
 //FileNameFormat
 // Achtung die letzten 4 Formate gibt es in RTF nicht (Verlust!)
 #define FMT_FF_BEGIN        FMT_DBFLD_END
-//STRIP001 #define FMT_FF_NAME      FMT_FF_BEGIN
-//STRIP001 #define FMT_FF_PATHNAME  (FMT_FF_BEGIN   + 1)
-//STRIP001 #define FMT_FF_PATH          (FMT_FF_BEGIN   + 2)
-//STRIP001 #define FMT_FF_NAME_NOEXT    (FMT_FF_BEGIN   + 3)
-//STRIP001 #define FMT_FF_UI_NAME       (FMT_FF_BEGIN   + 4)
-//STRIP001 #define FMT_FF_UI_RANGE      (FMT_FF_BEGIN   + 5)
 #define FMT_FF_END          (FMT_FF_BEGIN   + 6)
 
 // Registry-Format
 #define FMT_REG_BEGIN       FMT_FF_END
-//STRIP001 #define FMT_REG_AUTHOR       FMT_REG_BEGIN
-//STRIP001 #define FMT_REG_TIME     (FMT_REG_BEGIN  + 1)
-//STRIP001 #define FMT_REG_DATE     (FMT_REG_BEGIN  + 2)
 #define FMT_REG_END         (FMT_REG_BEGIN  + 3)
 
 // Kapitel
 #define FMT_CHAPTER_BEGIN   FMT_REG_END
-//STRIP001 #define FMT_CHAPTER_NO       FMT_CHAPTER_BEGIN
-//STRIP001 #define FMT_CHAPTER_NAME (FMT_CHAPTER_BEGIN  + 1)
-//STRIP001 #define FMT_CHAPTER_NAMENO   (FMT_CHAPTER_BEGIN  + 2)
-//STRIP001 #define FMT_CHAPTER_NO_NOSEPARATOR   (FMT_CHAPTER_BEGIN  + 3)
 #define FMT_CHAPTER_END     (FMT_CHAPTER_BEGIN  + 4)
 
 // DDE-Formate
 #define FMT_DDE_BEGIN       FMT_CHAPTER_END
-//STRIP001 #define FMT_DDE_NORMAL       FMT_DDE_BEGIN
-//STRIP001 #define FMT_DDE_HOT          (FMT_DDE_BEGIN  + 1)
 #define FMT_DDE_END         (FMT_DDE_BEGIN  + 2)
 
 #define FMT_REF_BEGIN       FMT_DDE_END
-//STRIP001 #define FMT_REF_PAGE     FMT_REF_BEGIN
-//STRIP001 #define FMT_REF_CHAPTER      (FMT_REF_BEGIN  + 1)
-//STRIP001 #define FMT_REF_TEXT     (FMT_REF_BEGIN  + 2)
-//STRIP001 #define FMT_REF_UPDOWN       (FMT_REF_BEGIN  + 3)
-//STRIP001 #define FMT_REF_PAGE_PGDSC   (FMT_REF_BEGIN  + 4)
-//STRIP001 #define FMT_REF_ONLYNUMBER   (FMT_REF_BEGIN  + 5)
-//STRIP001 #define FMT_REF_ONLYCAPTION (FMT_REF_BEGIN   + 6)
-//STRIP001 #define FMT_REF_ONLYSEQNO   (FMT_REF_BEGIN   + 7)
 #define FMT_REF_END         (FMT_REF_BEGIN  + 8)
 
 // Platzhalter
 #define FMT_MARK_BEGIN      FMT_REF_END
-//STRIP001 #define FMT_MARK_TEXT        FMT_MARK_BEGIN
-//STRIP001 #define FMT_MARK_TABLE       (FMT_MARK_BEGIN + 1)
-//STRIP001 #define FMT_MARK_FRAME       (FMT_MARK_BEGIN + 2)
-//STRIP001 #define FMT_MARK_GRAFIC      (FMT_MARK_BEGIN + 3)
-//STRIP001 #define FMT_MARK_OLE     (FMT_MARK_BEGIN + 4)
 #define FMT_MARK_END        (FMT_MARK_BEGIN + 5)
 
 /*--------------------------------------------------------------------
@@ -266,9 +191,6 @@
     Beschreibung: Buttons fuer Field-Edit-Dlg
  --------------------------------------------------------------------*/
 
-//STRIP001 #define BTN_FLDEDT_PREV          STR_EXTRA
-//STRIP001 #define BTN_FLDEDT_NEXT          (STR_EXTRA  + 1)
-//STRIP001 #define PB_FLDEDT_ADDRESS        (STR_EXTRA  + 2)
 
 /*--------------------------------------------------------------------
     Beschreibung: Zusaetzliche Strings
@@ -276,23 +198,8 @@
 
 #define STR_COND                STR_EXTRA
 #define STR_TEXT                (STR_EXTRA  + 1)
-//STRIP001 #define STR_DDE_CMD              (STR_EXTRA  + 2)
-//STRIP001 #define STR_INSTEXT              (STR_EXTRA  + 3)
-//STRIP001 #define STR_COMBCHRS_FT          (STR_EXTRA  + 4)
-//STRIP001 #define STR_PROMPT               (STR_EXTRA  + 5)
-//STRIP001 #define STR_MACNAME              (STR_EXTRA  + 6)
-//STRIP001 #define STR_SETNO                (STR_EXTRA  + 7)
-//STRIP001 #define STR_OFFSET               (STR_EXTRA  + 8)
-//STRIP001 #define STR_VALUE            (STR_EXTRA  + 9)
-//STRIP001 #define STR_LEVEL                (STR_EXTRA  + 10)
-//STRIP001 #define STR_URLPROMPT        (STR_EXTRA  + 11)
-//STRIP001 #define STR_FORMULA              (STR_EXTRA  + 12)
-//STRIP001 #define STR_ALL_DATABASE         (STR_EXTRA  + 13)
-//STRIP001 #define STR_FLD_EDIT_DLG         (STR_EXTRA  + 14)
 
-//STRIP001 #define FLDDLG_ACT_END           (STR_FLD_EDIT_DLG)
 //changed by jmeng begin
-//STRIP001 #define FLDDLG_ACT_END           (STR_EXTRA  + 14)
 //changed by jmeng end
 
 
