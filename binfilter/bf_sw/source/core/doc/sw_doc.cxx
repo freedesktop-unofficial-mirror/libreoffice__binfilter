@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_doc.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:31:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:21:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,30 +43,12 @@
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 #ifndef _IPOBJ_HXX //autogen
 #include <so3/ipobj.hxx>
 #endif
 #ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
 #endif
-// auto strip #ifndef _SVX_KEEPITEM_HXX //autogen
-// auto strip #include <bf_svx/keepitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_CSCOITEM_HXX //autogen
-// auto strip #include <bf_svx/cscoitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
-// auto strip #include <bf_svx/brkitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVXLINKMGR_HXX
-// auto strip #include <bf_svx/linkmgr.hxx>
-// auto strip #endif
 #ifndef SMDLL0_HXX //autogen
 #include <bf_starmath/smdll0.hxx>
 #endif
@@ -77,33 +59,12 @@
 #ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTANCHR_HXX //autogen
-// auto strip #include <fmtanchr.hxx>
-// auto strip #endif
 #ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
 #endif
-// auto strip #ifndef _FMTINFMT_HXX //autogen
-// auto strip #include <fmtinfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTFLD_HXX //autogen
-// auto strip #include <fmtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTFLD_HXX //autogen
-// auto strip #include <txtfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTINET_HXX //autogen
-// auto strip #include <txtinet.hxx>
-// auto strip #endif
 #ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
 #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
 #endif
@@ -115,9 +76,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
 #endif
@@ -127,9 +85,6 @@
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -148,27 +103,18 @@
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
 #ifndef _NDOLE_HXX
 #include <ndole.hxx>
 #endif
 #ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
 #endif
-// auto strip #ifndef _ROLBCK_HXX
-// auto strip #include <rolbck.hxx>         // Undo-Attr
-// auto strip #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer die Bookmarks
 #endif
 #ifndef _DOCTXM_HXX
 #include <doctxm.hxx>           // fuer die Verzeichnisse
 #endif
-// auto strip #ifndef _GRFATR_HXX
-// auto strip #include <grfatr.hxx>
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>          // PoolVorlagen-Id's
 #endif
@@ -184,12 +130,6 @@
 #ifndef _ACORRECT_HXX
 #include <acorrect.hxx>         // Autokorrektur
 #endif
-// auto strip #ifndef _SECTION_HXX
-// auto strip #include <section.hxx>            //
-// auto strip #endif
-// auto strip #ifndef _MDIEXP_HXX
-// auto strip #include <mdiexp.hxx>         // Statusanzeige
-// auto strip #endif
 #ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
 #endif
@@ -202,9 +142,6 @@
 #ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
 #endif
-// auto strip #ifndef _SWBASLNK_HXX
-// auto strip #include <swbaslnk.hxx>
-// auto strip #endif
 
 #ifndef _STATSTR_HRC
 #include <statstr.hrc>          // StatLine-String
@@ -342,12 +279,6 @@ namespace binfilter {
 /*N*/       if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
-//STRIP001 /*?*/            aPam.SetMark();
-//STRIP001 /*?*/            aPam.Move( fnMoveBackward );
-//STRIP001 /*?*/            if( IsRedlineOn() )
-//STRIP001 /*?*/                AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                SplitRedline( aPam );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -383,12 +314,6 @@ namespace binfilter {
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
-//STRIP001 /*?*/        aPam.SetMark();
-//STRIP001 /*?*/        aPam.Move( fnMoveBackward );
-//STRIP001 /*?*/        if( IsRedlineOn() )
-//STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            SplitRedline( aPam );
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -458,11 +383,6 @@ namespace binfilter {
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pPos->nNode, aTmp.GetCntnt(),
-//STRIP001 /*?*/                    pPos->nNode, pPos->nContent.GetIndex());
-//STRIP001 /*?*/        if( IsRedlineOn() )
-//STRIP001 /*?*/            AppendRedline( new SwRedline( REDLINE_INSERT, aPam ));
-//STRIP001 /*?*/        else
-//STRIP001 /*?*/            SplitRedline( aPam );
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -554,13 +474,6 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 String SwDoc::GetCurWord( SwPaM& rPaM )
-//STRIP001 {
-//STRIP001  SwTxtNode *pNd = rPaM.GetNode()->GetTxtNode();
-//STRIP001  if( pNd )
-//STRIP001      return pNd->GetCurWord(rPaM.GetPoint()->nContent.GetIndex());
-//STRIP001  return aEmptyStr;
-//STRIP001 }
 
 
 /*************************************************************************
@@ -578,16 +491,7 @@ namespace binfilter {
 
 //----- Macro ---------------------------------------------------------
 
-//STRIP001 BOOL SwDoc::HasGlobalMacro( USHORT nEvent ) const
-//STRIP001 {
-//STRIP001  return pMacroTable->IsKeyValid(nEvent);
-//STRIP001 }
 
-//STRIP001 const SvxMacro& SwDoc::GetGlobalMacro( USHORT nEvent ) const
-//STRIP001 {
-//STRIP001  ASSERT(pMacroTable->IsKeyValid(nEvent), "Get fuer nicht ex. Macro");
-//STRIP001  return *(pMacroTable->Get(nEvent));
-//STRIP001 }
 
 void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 {
@@ -602,13 +506,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
     pMacroTable->Insert(nEvent, new SvxMacro(rMacro));
 }
 
-//STRIP001 BOOL SwDoc::DelGlobalMacro(USHORT nEvent)
-//STRIP001 {
-//STRIP001  SetModified();
-//STRIP001  SvxMacro *pMacro = pMacroTable->Remove(nEvent);
-//STRIP001  delete pMacro;
-//STRIP001  return (pMacro != 0);
-//STRIP001 }
 
 /*************************************************************************
  *             void SetDocStat( const SwDocStat& rStat );
@@ -726,28 +623,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/ }
 
     // returne die RefMark per Index - fuer Uno
-//STRIP001 const SwFmtRefMark* SwDoc::GetRefMark( USHORT nIndex ) const
-//STRIP001 {
-//STRIP001  const SfxPoolItem* pItem;
-//STRIP001  const SwTxtRefMark* pTxtRef;
-//STRIP001  const SwFmtRefMark* pRet = 0;
-//STRIP001
-//STRIP001  USHORT nMaxItems = GetAttrPool().GetItemCount( RES_TXTATR_REFMARK );
-//STRIP001  USHORT nCount = 0;
-//STRIP001  for( USHORT n = 0; n < nMaxItems; ++n )
-//STRIP001      if( 0 != (pItem = GetAttrPool().GetItem( RES_TXTATR_REFMARK, n )) &&
-//STRIP001          0 != (pTxtRef = ((SwFmtRefMark*)pItem)->GetTxtRefMark()) &&
-//STRIP001          &pTxtRef->GetTxtNode().GetNodes() == &GetNodes() )
-//STRIP001      {
-//STRIP001          if(nCount == nIndex)
-//STRIP001          {
-//STRIP001              pRet = (SwFmtRefMark*)pItem;
-//STRIP001              break;
-//STRIP001          }
-//STRIP001          nCount++;
-//STRIP001      }
-//STRIP001    return pRet;
-//STRIP001 }
 
     // returne die Namen aller im Doc gesetzten Referenzen
     //JP 24.06.96: Ist der ArrayPointer 0 dann returne nur, ob im Doc. eine
@@ -756,24 +631,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* pNames ) const
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    const SfxPoolItem* pItem;
-//STRIP001  const SwTxtRefMark* pTxtRef;
-//STRIP001
-//STRIP001  USHORT nMaxItems = GetAttrPool().GetItemCount( RES_TXTATR_REFMARK );
-//STRIP001  USHORT nCount = 0;
-//STRIP001  for( USHORT n = 0; n < nMaxItems; ++n )
-//STRIP001      if( 0 != (pItem = GetAttrPool().GetItem( RES_TXTATR_REFMARK, n )) &&
-//STRIP001          0 != (pTxtRef = ((SwFmtRefMark*)pItem)->GetTxtRefMark()) &&
-//STRIP001          &pTxtRef->GetTxtNode().GetNodes() == &GetNodes() )
-//STRIP001      {
-//STRIP001          if( pNames )
-//STRIP001          {
-//STRIP001              String* pTmp = new String( ((SwFmtRefMark*)pItem)->GetRefName() );
-//STRIP001              pNames->Insert( pTmp, nCount );
-//STRIP001          }
-//STRIP001          nCount ++;
-//STRIP001      }
-//STRIP001
-//STRIP001  return nCount;
 /*N*/ }
 
 /*N*/ void SwDoc::SetModified()
@@ -817,25 +674,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/                   const GraphicObject* pGrafObj )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
-//STRIP001  if( ( !rPam.HasMark()
-//STRIP001       || rPam.GetPoint()->nNode.GetIndex() == rPam.GetMark()->nNode.GetIndex() )
-//STRIP001       && 0 != ( pGrfNd = rPam.GetPoint()->nNode.GetNode().GetGrfNode() ) )
-//STRIP001  {
-//STRIP001      if( DoesUndo() )
-//STRIP001      {
-//STRIP001          ClearRedo();
-//STRIP001          AppendUndo( new SwUndoReRead( rPam, *pGrfNd ) );
-//STRIP001      }
-//STRIP001
-//STRIP001      // Weil nicht bekannt ist, ob sich die Grafik spiegeln laesst,
-//STRIP001      // immer das SpiegelungsAttribut zuruecksetzen
-//STRIP001      if( RES_DONT_MIRROR_GRF != pGrfNd->GetSwAttrSet().
-//STRIP001                                              GetMirrorGrf().GetValue() )
-//STRIP001          pGrfNd->SetAttr( SwMirrorGrf() );
-//STRIP001
-//STRIP001      pGrfNd->ReRead( rGrfName, rFltName, pGraphic, pGrafObj, TRUE );
-//STRIP001      SetModified();
-//STRIP001  }
 /*N*/ }
 
 /*N*/ BOOL lcl_SpellAgain( const SwNodePtr& rpNd, void* pArgs )
@@ -887,296 +725,24 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/   GetRootFrm()->SetIdleFlags();
 /*N*/ }
 
-//STRIP001 void SwDoc::InvalidateAutoCompleteFlag()
-//STRIP001 {
-//STRIP001  if( GetRootFrm() )
-//STRIP001  {
-//STRIP001      SwPageFrm *pPage = (SwPageFrm*)GetRootFrm()->Lower();
-//STRIP001      while ( pPage )
-//STRIP001      {
-//STRIP001          pPage->InvalidateAutoCompleteWords();
-//STRIP001          pPage = (SwPageFrm*)pPage->GetNext();
-//STRIP001      }
-//STRIP001      for( ULONG nNd = 1, nCnt = GetNodes().Count(); nNd < nCnt; ++nNd )
-//STRIP001          GetNodes()[ nNd ]->SetAutoCompleteWordDirty( TRUE );
-//STRIP001      GetRootFrm()->SetIdleFlags();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 const SwFmtINetFmt* SwDoc::FindINetAttr( const String& rName ) const
-//STRIP001 {
-//STRIP001  const SwFmtINetFmt* pItem;
-//STRIP001  const SwTxtINetFmt* pTxtAttr;
-//STRIP001  const SwTxtNode* pTxtNd;
-//STRIP001  USHORT n, nMaxItems = GetAttrPool().GetItemCount( RES_TXTATR_INETFMT );
-//STRIP001  for( n = 0; n < nMaxItems; ++n )
-//STRIP001      if( 0 != (pItem = (SwFmtINetFmt*)GetAttrPool().GetItem(
-//STRIP001          RES_TXTATR_INETFMT, n ) ) &&
-//STRIP001          pItem->GetName().Equals( rName ) &&
-//STRIP001          0 != ( pTxtAttr = pItem->GetTxtINetFmt()) &&
-//STRIP001          0 != ( pTxtNd = pTxtAttr->GetpTxtNode() ) &&
-//STRIP001          &pTxtNd->GetNodes() == &GetNodes() )
-//STRIP001      {
-//STRIP001          return pItem;
-//STRIP001      }
-//STRIP001
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 void SwDoc::Summary( SwDoc* pExtDoc, BYTE nLevel, BYTE nPara, BOOL bImpress )
-//STRIP001 {
-//STRIP001  const SwOutlineNodes& rOutNds = GetNodes().GetOutLineNds();
-//STRIP001  if( pExtDoc && rOutNds.Count() )
-//STRIP001  {
-//STRIP001      USHORT i;
-//STRIP001      ::StartProgress( STR_STATSTR_SUMMARY, 0, rOutNds.Count(), GetDocShell() );
-//STRIP001      SwNodeIndex aEndOfDoc( pExtDoc->GetNodes().GetEndOfContent(), -1 );
-//STRIP001      for( i = 0; i < rOutNds.Count(); ++i )
-//STRIP001      {
-//STRIP001          ::binfilter::SetProgressState( i, GetDocShell() );
-//STRIP001          ULONG nIndex = rOutNds[ i ]->GetIndex();
-//STRIP001          BYTE nLvl = ((SwTxtNode*)GetNodes()[ nIndex ])->GetTxtColl()
-//STRIP001                       ->GetOutlineLevel();
-//STRIP001          if( nLvl > nLevel )
-//STRIP001              continue;
-//STRIP001          USHORT nEndOfs = 1;
-//STRIP001          BYTE nWish = nPara;
-//STRIP001          ULONG nNextOutNd = i + 1 < rOutNds.Count() ?
-//STRIP001              rOutNds[ i + 1 ]->GetIndex() : GetNodes().Count();
-//STRIP001          BOOL bKeep = FALSE;
-//STRIP001          while( ( nWish || bKeep ) && nIndex + nEndOfs < nNextOutNd &&
-//STRIP001                 GetNodes()[ nIndex + nEndOfs ]->IsTxtNode() )
-//STRIP001          {
-//STRIP001              SwTxtNode* pTxtNode = (SwTxtNode*)GetNodes()[ nIndex+nEndOfs ];
-//STRIP001              if( pTxtNode->GetTxt().Len() && nWish )
-//STRIP001                  --nWish;
-//STRIP001              bKeep = pTxtNode->GetSwAttrSet().GetKeep().GetValue();
-//STRIP001              ++nEndOfs;
-//STRIP001          }
-//STRIP001
-//STRIP001          SwNodeRange aRange( *rOutNds[ i ], 0, *rOutNds[ i ], nEndOfs );
-//STRIP001          GetNodes()._Copy( aRange, aEndOfDoc );
-//STRIP001      }
-//STRIP001      const SwTxtFmtColls *pColl = pExtDoc->GetTxtFmtColls();
-//STRIP001      for( i = 0; i < pColl->Count(); ++i )
-//STRIP001          (*pColl)[ i ]->ResetAttr( RES_PAGEDESC, RES_BREAK );
-//STRIP001      SwNodeIndex aIndx( pExtDoc->GetNodes().GetEndOfExtras() );
-//STRIP001      ++aEndOfDoc;
-//STRIP001      while( aIndx < aEndOfDoc )
-//STRIP001      {
-//STRIP001          SwNode *pNode;
-//STRIP001          BOOL bDelete = FALSE;
-//STRIP001          if( (pNode = &aIndx.GetNode())->IsTxtNode() )
-//STRIP001          {
-//STRIP001              SwTxtNode *pNd = (SwTxtNode*)pNode;
-//STRIP001              if( pNd->HasSwAttrSet() )
-//STRIP001                  pNd->ResetAttr( RES_PAGEDESC, RES_BREAK );
-//STRIP001              if( bImpress )
-//STRIP001              {
-//STRIP001                  SwTxtFmtColl* pColl = pNd->GetTxtColl();
-//STRIP001                  USHORT nHeadLine = pColl->GetOutlineLevel()==NO_NUMBERING ?
-//STRIP001                              RES_POOLCOLL_HEADLINE2 : RES_POOLCOLL_HEADLINE1;
-//STRIP001                  pColl = pExtDoc->GetTxtCollFromPool( nHeadLine );
-//STRIP001                  pNd->ChgFmtColl( pColl );
-//STRIP001              }
-//STRIP001              if( !pNd->Len() &&
-//STRIP001                  pNd->StartOfSectionIndex()+2 < pNd->EndOfSectionIndex() )
-//STRIP001              {
-//STRIP001                  bDelete = TRUE;
-//STRIP001                  pExtDoc->GetNodes().Delete( aIndx );
-//STRIP001              }
-//STRIP001          }
-//STRIP001          if( !bDelete )
-//STRIP001              ++aIndx;
-//STRIP001      }
-//STRIP001      ::EndProgress( GetDocShell() );
-//STRIP001  }
-//STRIP001 }
 
     // loesche den nicht sichtbaren Content aus dem Document, wie z.B.:
     // versteckte Bereiche, versteckte Absaetze
-//STRIP001 BOOL SwDoc::RemoveInvisibleContent()
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  StartUndo( UIUNDO_DELETE_INVISIBLECNTNT );
-//STRIP001
-//STRIP001  {
-//STRIP001      SwTxtNode* pTxtNd;
-//STRIP001      SwClientIter aIter( *GetSysFldType( RES_HIDDENPARAFLD ) );
-//STRIP001      for( SwFmtFld* pFmtFld = (SwFmtFld*)aIter.First( TYPE( SwFmtFld ));
-//STRIP001              pFmtFld; pFmtFld = (SwFmtFld*)aIter.Next() )
-//STRIP001          if( pFmtFld->GetTxtFld() &&
-//STRIP001              0 != ( pTxtNd = (SwTxtNode*)pFmtFld->GetTxtFld()->GetpTxtNode() ) &&
-//STRIP001              pTxtNd->GetpSwpHints() && !pTxtNd->GetpSwpHints()->IsVisible() &&
-//STRIP001              &pTxtNd->GetNodes() == &GetNodes() )
-//STRIP001          {
-//STRIP001              bRet = TRUE;
-//STRIP001              // ein versteckter Absatz -> entfernen oder Inhalt loeschen?
-//STRIP001              SwPaM aPam( *pTxtNd, 0, *pTxtNd, pTxtNd->GetTxt().Len() );
-//STRIP001
-//STRIP001              if( 2 != pTxtNd->EndOfSectionIndex() -
-//STRIP001                      pTxtNd->StartOfSectionIndex() )
-//STRIP001              {
-//STRIP001                  aPam.DeleteMark();
-//STRIP001                  DelFullPara( aPam );
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  Delete( aPam );
-//STRIP001          }
-//STRIP001  }
-//STRIP001
-//STRIP001  {
-//STRIP001      // dann noch alle versteckten Bereiche loeschen/leeren
-//STRIP001      SwSectionFmts aSectFmts;
-//STRIP001      SwSectionFmts& rSectFmts = GetSections();
-//STRIP001      for( USHORT n = rSectFmts.Count(); n; )
-//STRIP001      {
-//STRIP001          SwSectionFmt* pSectFmt = rSectFmts[ --n ];
-//STRIP001          SwSection* pSect = pSectFmt->GetSection();
-//STRIP001          if( pSect->CalcHiddenFlag() )
-//STRIP001          {
-//STRIP001              SwSection* pParent = pSect, *pTmp;
-//STRIP001              while( 0 != (pTmp = pParent->GetParent() ))
-//STRIP001              {
-//STRIP001                  if( pTmp->IsHiddenFlag() )
-//STRIP001                      pSect = pTmp;
-//STRIP001                  pParent = pTmp;
-//STRIP001              }
-//STRIP001
-//STRIP001              if( USHRT_MAX == aSectFmts.GetPos( pSect->GetFmt() ) )
-//STRIP001                  aSectFmts.Insert( pSect->GetFmt(), 0 );
-//STRIP001          }
-//STRIP001          if( pSect->GetCondition().Len() )
-//STRIP001          {
-//STRIP001              SwSection aSect( pSect->GetType(), pSect->GetName() );
-//STRIP001              aSect = *pSect;
-//STRIP001              aSect.SetCondition( aEmptyStr );
-//STRIP001              aSect.SetHidden( FALSE );
-//STRIP001              ChgSection( n, aSect );
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( 0 != ( n = aSectFmts.Count() ))
-//STRIP001      {
-//STRIP001          while( n )
-//STRIP001          {
-//STRIP001              SwSectionFmt* pSectFmt = aSectFmts[ --n ];
-//STRIP001              SwSectionNode* pSectNd = pSectFmt->GetSectionNode();
-//STRIP001              if( pSectNd )
-//STRIP001              {
-//STRIP001                  bRet = TRUE;
-//STRIP001                  SwPaM aPam( *pSectNd );
-//STRIP001
-//STRIP001                  if( pSectNd->FindStartNode()->StartOfSectionIndex() ==
-//STRIP001                      pSectNd->GetIndex() - 1 &&
-//STRIP001                      pSectNd->FindStartNode()->EndOfSectionIndex() ==
-//STRIP001                      pSectNd->EndOfSectionIndex() + 1 )
-//STRIP001                  {
-//STRIP001                      // nur den Inhalt loeschen
-//STRIP001                      SwCntntNode* pCNd = GetNodes().GoNext(
-//STRIP001                                              &aPam.GetPoint()->nNode );
-//STRIP001                      aPam.GetPoint()->nContent.Assign( pCNd, 0 );
-//STRIP001                      aPam.SetMark();
-//STRIP001                      aPam.GetPoint()->nNode = *pSectNd->EndOfSectionNode();
-//STRIP001                      pCNd = GetNodes().GoPrevious(
-//STRIP001                                              &aPam.GetPoint()->nNode );
-//STRIP001                      aPam.GetPoint()->nContent.Assign( pCNd, pCNd->Len() );
-//STRIP001
-//STRIP001                      Delete( aPam );
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      // die gesamte Section loeschen
-//STRIP001                      aPam.SetMark();
-//STRIP001                      aPam.GetPoint()->nNode = *pSectNd->EndOfSectionNode();
-//STRIP001                      DelFullPara( aPam );
-//STRIP001                  }
-//STRIP001
-//STRIP001              }
-//STRIP001          }
-//STRIP001          aSectFmts.Remove( 0, aSectFmts.Count() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bRet )
-//STRIP001      SetModified();
-//STRIP001  EndUndo( UIUNDO_DELETE_INVISIBLECNTNT );
-//STRIP001  return bRet;
-//STRIP001 }
 
     // embedded alle lokalen Links (Bereiche/Grafiken)
-//STRIP001 BOOL SwDoc::EmbedAllLinks()
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  SvxLinkManager& rLnkMgr = GetLinkManager();
-//STRIP001  const ::so3::SvBaseLinks& rLnks = rLnkMgr.GetLinks();
-//STRIP001  if( rLnks.Count() )
-//STRIP001  {
-//STRIP001      BOOL bDoesUndo = DoesUndo();
-//STRIP001      DoUndo( FALSE );
-//STRIP001
-//STRIP001      for( USHORT n = 0; n < rLnks.Count(); ++n )
-//STRIP001      {
-//STRIP001          ::so3::SvBaseLink* pLnk = &(*rLnks[ n ]);
-//STRIP001          if( pLnk &&
-//STRIP001              ( OBJECT_CLIENT_GRF == pLnk->GetObjType() ||
-//STRIP001                OBJECT_CLIENT_FILE == pLnk->GetObjType() ) &&
-//STRIP001              pLnk->ISA( SwBaseLink ) )
-//STRIP001          {
-//STRIP001              ::so3::SvBaseLinkRef xLink = pLnk;
-//STRIP001              USHORT nCount = rLnks.Count();
-//STRIP001
-//STRIP001              String sFName;
-//STRIP001              rLnkMgr.GetDisplayNames( xLink, 0, &sFName, 0, 0 );
-//STRIP001
-//STRIP001              INetURLObject aURL( sFName );
-//STRIP001              if( INET_PROT_FILE == aURL.GetProtocol() ||
-//STRIP001                  INET_PROT_CID == aURL.GetProtocol() )
-//STRIP001              {
-//STRIP001                  // dem Link sagen, das er aufgeloest wird!
-//STRIP001                  xLink->Closed();
-//STRIP001
-//STRIP001                  // falls einer vergessen hat sich auszutragen
-//STRIP001                  if( xLink.Is() )
-//STRIP001                      rLnkMgr.Remove( xLink );
-//STRIP001
-//STRIP001                  if( nCount != rLnks.Count() + 1 )
-//STRIP001                      n = 0;      // wieder von vorne anfangen, es wurden
-//STRIP001                                  // mehrere Links entfernt
-//STRIP001                  bRet = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      DelAllUndoObj();
-//STRIP001      DoUndo( bDoesUndo );
-//STRIP001      SetModified();
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 BOOL SwDoc::IsInsTblFormatNum() const
-//STRIP001 {
-//STRIP001  return SW_MOD()->IsInsTblFormatNum(IsHTMLMode());
-//STRIP001 }
 
-//STRIP001 BOOL SwDoc::IsInsTblChangeNumFormat() const
-//STRIP001 {
-//STRIP001  return SW_MOD()->IsInsTblChangeNumFormat(IsHTMLMode());
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 BOOL SwDoc::IsInsTblAlignNum() const
-//STRIP001 {
-//STRIP001  return SW_MOD()->IsInsTblAlignNum(IsHTMLMode());
-//STRIP001 }
 
 
 /*N*/ USHORT SwDoc::GetLinkUpdMode() const
@@ -1196,25 +762,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/ }
 
         // setze das InsertDB als Tabelle Undo auf:
-//STRIP001 void SwDoc::AppendUndoForInsertFromDB( const SwPaM& rPam, BOOL bIsTable )
-//STRIP001 {
-//STRIP001  if( bIsTable )
-//STRIP001  {
-//STRIP001      const SwTableNode* pTblNd = rPam.GetPoint()->nNode.GetNode().FindTableNode();
-//STRIP001      if( pTblNd )
-//STRIP001      {
-//STRIP001          SwUndoCpyTbl* pUndo = new SwUndoCpyTbl;
-//STRIP001          pUndo->SetTableSttIdx( pTblNd->GetIndex() );
-//STRIP001          AppendUndo( pUndo );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if( rPam.HasMark() )
-//STRIP001  {
-//STRIP001      SwUndoCpyDoc* pUndo = new SwUndoCpyDoc( rPam );
-//STRIP001      pUndo->SetInsertRange( rPam, FALSE );
-//STRIP001      AppendUndo( pUndo );
-//STRIP001  }
-//STRIP001 }
 
 
 
