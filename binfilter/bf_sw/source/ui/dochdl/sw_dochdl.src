@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dochdl.src,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: hr $ $Date: 2005-09-23 11:54:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:08:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,224 +38,10 @@
 #include "dochdl.hrc"
 #include "globals.hrc"
 
-//STRIP001 String STR_NOGLOS1
-//STRIP001 {
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? AutoText zum Kürzel ' : AutoText zum Kürzel '' */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? AutoText zum Kürzel ' : AutoText zum Kürzel '' */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? AutoText zum Kürzel ' : AutoText zum K³rzel ' */
-//STRIP001      TEXT = "AutoText zum Kürzel '" ;
-//STRIP001      TEXT [ English ] = "AutoText for Short Name '" ;
-//STRIP001      TEXT [ norwegian ] = "AutoText for Short Name '" ;
-//STRIP001      TEXT [ italian ] = "Testo automatico per la sigla '" ;
-//STRIP001      TEXT [ portuguese_brazilian ] = "AutoTexto para Atalho " ;
-//STRIP001      TEXT [ portuguese ] = "AutoTexto para abreviatura '" ;
-//STRIP001      TEXT [ finnish ] = "Automaattista teksti?pikavalinnalle" ;
-//STRIP001      TEXT [ danish ] = "AutoTekst til genvej '" ;
-//STRIP001      TEXT [ french ] = "AutoTexte pour raccourci '" ;
-//STRIP001      TEXT [ swedish ] = "AutoText till genvägen '" ;
-//STRIP001      TEXT [ dutch ] = "AutoTekst voor afkortingen'" ;
-//STRIP001      TEXT [ spanish ] = "Texto automático para la abreviatura '" ;
-//STRIP001      TEXT [ english_us ] = "AutoText for Shortcut '" ;
-//STRIP001      TEXT[ chinese_simplified ] = "è‡ªåŠ¨å›¾æ–‡é›†çš„ç¼©å†™ '";
-//STRIP001      TEXT[ russian ] = "Àâòîòåêñ??ñîêğàùåíèş '";
-//STRIP001      TEXT[ polish ] = "Autotekst skrótu '";
-//STRIP001      TEXT[ japanese ] = "å…¥åŠ›æ”¯æ´ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã€?";
-//STRIP001      TEXT[ chinese_traditional ] = "è‡ªå‹•åœ–æ–‡é›†çš„ç¸®å¯«<";
-//STRIP001      TEXT[ arabic ] = "äÕ ÊáŞÇÆí ááÇÎÊÕÇÑ '";
-//STRIP001      TEXT[ dutch ] = "AutoTekst voor afkortingen'";
-//STRIP001      TEXT[ chinese_simplified ] = "è‡ªåŠ¨å›¾æ–‡é›†çš„ç¼©å†™ '";
-//STRIP001      TEXT[ greek ] = "Áõôüìáôï êåßìåí?ãé?ôá áñ÷éêÜ '";
-//STRIP001      TEXT[ korean ] = "ìë™ í…ìŠ¤íŠ?ë°”ë¡œ ê°€ê¸?'";
-//STRIP001      TEXT[ turkish ] = "Otomatik metin kısaltmas?'";
-//STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "AutoText per al nom curt '";
-//STRIP001      TEXT[ thai ] = "à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´à¸ªà¸³à¸«à¸£à¸±à¸šà¹€à¸›à¹‡à¸™à¸—à¸²à¸‡à¸¥à¸±à¸?'";
-//STRIP001      TEXT[ czech ] = "AutomatickÃ½ text pro zkratku '";
-//STRIP001      TEXT[ hebrew ] = "AutoText zum KÃ¼rzel '";
-//STRIP001      TEXT[ hindi ] = "à¤¸à¤°à¤²à¤µà¤¿à¤§à¤?à¤•à¥‡à¤²à¤¿à¤?à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤¢à¤‚à¤?à¤¸à¥‡ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥  '";
-//STRIP001      TEXT[ slovak ] = "AutomatickÃ½ text pre skratku '";
-//STRIP001 };
-//STRIP001 String STR_NOGLOS2
-//STRIP001 {
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
-//STRIP001      /* ### ACHTUNG: Neuer Text in Resource? ' nicht gefunden. : '' nicht gefunden. */
-//STRIP001      TEXT = "' nicht gefunden." ;
-//STRIP001      TEXT [ English ] = "' not found." ;
-//STRIP001      TEXT [ norwegian ] = "' not found." ;
-//STRIP001      TEXT [ italian ] = "' non trovato." ;
-//STRIP001      TEXT [ portuguese_brazilian ] = " não encontrado." ;
-//STRIP001      TEXT [ portuguese ] = "' não localizado." ;
-//STRIP001      TEXT [ finnish ] = "ei löydy." ;
-//STRIP001      TEXT [ danish ] = "' blev ikke fundet." ;
-//STRIP001      TEXT [ french ] = "' introuvable." ;
-//STRIP001      TEXT [ swedish ] = "' hittades inte." ;
-//STRIP001      TEXT [ dutch ] = "' niet gevonden." ;
-//STRIP001      TEXT [ spanish ] = "' no se encontr?" ;
-//STRIP001      TEXT [ english_us ] = "' not found." ;
-//STRIP001      TEXT[ chinese_simplified ] = "' æ²¡æœ‰è¢«æ‰¾åˆ°ã€?";
-//STRIP001      TEXT[ russian ] = "' íå íàéäåí.";
-//STRIP001      TEXT[ polish ] = "' nie znaleziono.";
-//STRIP001      TEXT[ japanese ] = "ã€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€?";
-//STRIP001      TEXT[ chinese_traditional ] = ">æ²’æœ‰æ‰¾åˆ°ã€?";
-//STRIP001      TEXT[ arabic ] = "' Ûí?ãæÌæ?";
-//STRIP001      TEXT[ dutch ] = "' niet gevonden.";
-//STRIP001      TEXT[ chinese_simplified ] = "' æ²¡æœ‰è¢«æ‰¾åˆ°ã€?";
-//STRIP001      TEXT[ greek ] = "' äå?âñİèçê?";
-//STRIP001      TEXT[ korean ] = "' ì?ë¥? ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
-//STRIP001      TEXT[ turkish ] = "' bulunamad?";
-//STRIP001      TEXT[ language_user1 ] = " ";
-//STRIP001      TEXT[ catalan ] = "' no s'ha trobat.";
-//STRIP001      TEXT[ thai ] = "' à¹„à¸¡à¹ˆà¸à¸?";
-//STRIP001      TEXT[ czech ] = "' nebyl nalezen.";
-//STRIP001      TEXT[ hebrew ] = "' nicht gefunden.";
-//STRIP001      TEXT[ hindi ] = "' à¤¨à¤¹à¥€à¤?à¤®à¤¿à¤²à¤¾ à¥?";
-//STRIP001      TEXT[ slovak ] = "' nebol nÃ¡jdenÃ½.";
-//STRIP001 };
 
-//STRIP001 String STR_NO_TABLE
-//STRIP001 {
-//STRIP001     Text = "Eine Tabelle kann nicht in eine andere Tabelle eingefügt werden. Sie können die Daten jedoch einfügen, wenn sich der Cursor nicht in einer Tabelle befindet." ;
-//STRIP001     Text [ english_us ] = "A table cannot be inserted into another table. However, you can paste the data into the document when the cursor is not in a table.";
-//STRIP001     Text [ norwegian ] = "Inserting a table is impossible now." ;
-//STRIP001      Text [ italian ] = "Impossibile inserire una tabella in un'altra tabella. Tuttavia potete inserire i dati nel documento quando il cursore non ?posizionato in una tabella." ;
-//STRIP001      Text [ portuguese_brazilian ] = "Não ?possível inserir uma tabela no momento" ;
-//STRIP001      Text [ portuguese ] = "De momento não ?possível inserir a tabela." ;
-//STRIP001      Text [ finnish ] = "Täll?hetkell?taulukkoa ei voi lisät?" ;
-//STRIP001      Text [ danish ] = "Det er for tiden ikke muligt at indsætte en tabel" ;
-//STRIP001      Text [ french ] = "Impossible d'insérer un tableau dans un autre tableau ! Vous pouvez toutefois insérer les données tant que le curseur ne se trouve pas dans un tableau." ;
-//STRIP001      Text [ swedish ] = "En tabell kan inte infogas i en annan tabell. Men du kan klistra in data i dokumentet om markören inte är placerad i en tabell." ;
-//STRIP001      Text [ dutch ] = "Tabel kan op dit ogenblik niet worden ingevoegd." ;
-//STRIP001      Text [ spanish ] = "No se puede insertar una tabla dentro de otra. Sin embargo, puede pegar los datos en el documento cuando el cursor no est?en la tabla." ;
-//STRIP001     Text[ chinese_simplified ] = "åœ¨ä¸€ä¸ªè¡¨æ ¼ä¹‹å†…æ— æ³•æ’å…¥è¡¨æ ¼ã€‚å¦‚æœé¼ æ ‡ä¸æ˜¯ä½äºä¸€ä¸ªè¡¨æ ¼ä¹‹å†…ï¼Œæ‚¨ä¹Ÿè¿˜æ˜¯èƒ½å¤Ÿæ’å…¥æ•°æ®ã€?";
-//STRIP001      Text[ russian ] = "Ñåé÷àñ íåâîçìîæíî âñòàâèòü òàáëèö?";
-//STRIP001      Text[ polish ] = "Obecnie wstawienie tabeli jest niemo¿liwe.";
-//STRIP001      Text[ japanese ] = "è¡¨ã‚’åˆ¥ã®è¡¨ã«æŒ¿å…¥ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚ãŸã ã—ã€è¡¨ä»¥å¤–ã®å ´æ‰€ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç½®ã‘ã°ã€ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã«è¡¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’è²¼ã‚Šä»˜ã‘ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€?";
-//STRIP001      Text[ chinese_traditional ] = "è¡¨æ ¼ç„¡æ³•æ’å…¥å…¶ä»–è¡¨æ ¼ä¸­ã€‚ä½†æ˜¯ç•¶æ¸¸æ¨™ä¸åœ¨è¡¨æ ¼ä¸­æ™‚ï¼Œæ‚¨å¯ä»¥å°‡è³‡æ–™è²¼åˆ°æ–‡ä»¶ä¸­ã€?";
-//STRIP001      Text[ arabic ] = "ÅÏÑÇ?ÌÏæá Ûí?ããßä ÍÇáíÇğ.";
-//STRIP001      Text[ dutch ] = "Tabel kan op dit ogenblik niet worden ingevoegd.";
-//STRIP001      Text[ chinese_simplified ] = "åœ¨ä¸€ä¸ªè¡¨æ ¼ä¹‹å†…æ— æ³•æ’å…¥è¡¨æ ¼ã€‚å¦‚æœé¼ æ ‡ä¸æ˜¯ä½äºä¸€ä¸ªè¡¨æ ¼ä¹‹å†…ï¼Œæ‚¨ä¹Ÿè¿˜æ˜¯èƒ½å¤Ÿæ’å…¥æ•°æ®ã€?";
-//STRIP001      Text[ greek ] = "Ğñïò ôï ğáñü?åßíá?áäıíáôïí íá åéóá÷èåß ğßíáêá?";
-//STRIP001      Text[ korean ] = "í‘?ì•ˆì— ë˜?ë‹¤ë¥¸ í‘œë¥¼ ì‚½ì…í•?ìˆ˜ëŠ” ì—†ìœ¼ë‚?ì»¤ì„œê°€ í‘?ì•ˆì— ë†“ì—¬ìˆì§€ ì•Šì€ í•?ë°ì´í„°ëŠ” í‘œë¬¸ì„?ì•ˆìœ¼ë¡?ì‚½ì…í•?ìˆ?ìˆìŠµë‹ˆë‹¤.";
-//STRIP001      Text[ turkish ] = "Bir tablo başka bir tablo içine eklenemez. Ancak, fare imleçi tablo içinde olmadığ?zaman verileri belgeye yapiştırabilirsiniz.";
-//STRIP001      Text[ language_user1 ] = " ";
-//STRIP001      Text[ catalan ] = "Ara no es pot inserir cap taula.";
-//STRIP001      Text[ thai ] = "à¸¡à¸±à¸™à¹€à¸›à¹‡à¸™à¹„à¸›à¹„à¸¡à¹ˆà¹„à¸”à¹‰à¸—à¸µà¹ˆà¸ˆà¸°à¹à¸—à¸£à¸à¸•à¸²à¸£à¸²à¸‡à¸›à¸±à¸ˆà¸ˆà¸¸à¸šà¸±à¸?";
-//STRIP001      Text[ czech ] = "NenÃ­ moÅ¾no vloÅ¾it tabulku";
-//STRIP001      Text[ hebrew ] = "Eine Tabelle kann nicht in eine andere Tabelle eingefÃ¼gt werden. Sie kÃ¶nnen die Daten jedoch einfÃ¼gen, wenn sich der Cursor nicht in einer Tabelle befindet.";
-//STRIP001      Text[ hindi ] = "à¤µà¤°à¥à¤¤à¤®à¤¾à¤?à¤®à¥‡à¤?à¤¸à¤¾à¤°à¤£à¥€ à¤•à¥‹ à¤œà¥‹à¤¡à¤¼à¤¨à¤¾ à¤¸à¤‚à¤­à¤µ à¤¨à¤¹à¥€à¤?à¤¹à¥ˆ ";
-//STRIP001      Text[ slovak ] = "NemoÅ¾no vloÅ¾iÅ¥ tabuÄ¾ku";
-//STRIP001 };
 
-//STRIP001 InfoBox MSG_ERR_INSERT_GLOS
-//STRIP001 {
-//STRIP001  MESSAGE = "AutoText konnte nicht angelegt werden." ;
-//STRIP001  MESSAGE [ English ] = "Could not insert AutoText." ;
-//STRIP001  MESSAGE [ norwegian ] = "Could not insert AutoText." ;
-//STRIP001  MESSAGE [ italian ] = "Impossibile creare voce di glossario." ;
-//STRIP001  MESSAGE [ portuguese_brazilian ] = "Não foi possível criar o AutoTexto" ;
-//STRIP001  MESSAGE [ portuguese ] = "Impossível inserir o AutoTexto." ;
-//STRIP001  MESSAGE [ finnish ] = "Automaattista teksti?ei voitu luoda." ;
-//STRIP001  MESSAGE [ danish ] = "Det var ikke muligt at oprette AutoTeksten." ;
-//STRIP001  MESSAGE [ french ] = "Impossible de créer l'AutoTexte." ;
-//STRIP001  MESSAGE [ swedish ] = "AutoText kunde inte skapas." ;
-//STRIP001  MESSAGE [ dutch ] = "AutoTekst kan niet worden gemaakt" ;
-//STRIP001  MESSAGE [ spanish ] = "No se pudo crear el Texto automático." ;
-//STRIP001  MESSAGE [ english_us ] = "AutoText could not be created." ;
-//STRIP001  MESSAGE[ chinese_simplified ] = "æ— æ³•å»ºç«‹è‡ªåŠ¨å›¾æ–‡é›†ã€?";
-//STRIP001  MESSAGE[ russian ] = "Íåâîçìîæíî ñîçäàò?àâòîòåêñ?";
-//STRIP001  MESSAGE[ polish ] = "Nie mo¿na utworzy?Autotekstu.";
-//STRIP001  MESSAGE[ japanese ] = "å…¥åŠ›æ”¯æ´ã§ãã¾ã›ã‚?";
-//STRIP001  MESSAGE[ chinese_traditional ] = "ç„¡æ³•å»ºç«‹è‡ªå‹•åœ–æ–‡é›†ã€?";
-//STRIP001  MESSAGE[ arabic ] = "ÊÚĞÑ Úã?äÕ ÊáŞÇÆí.";
-//STRIP001  MESSAGE[ dutch ] = "AutoTekst kan niet worden gemaakt";
-//STRIP001  MESSAGE[ chinese_simplified ] = "æ— æ³•å»ºç«‹è‡ªåŠ¨å›¾æ–‡é›†ã€?";
-//STRIP001  MESSAGE[ greek ] = "Äå?Şôáí äõíáôŞ ?äçìéïõñãßá áõôüìáôï?êåéìİíïõ.";
-//STRIP001  MESSAGE[ korean ] = "ìë™ í…ìŠ¤íŠ¸ë¥¼ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹?";
-//STRIP001  MESSAGE[ turkish ] = "Otomatik metin oluşturulamad?";
-//STRIP001  MESSAGE[ language_user1 ] = " ";
-//STRIP001  MESSAGE[ catalan ] = "No s'ha pogut crear l'autotext.";
-//STRIP001  MESSAGE[ thai ] = "à¹„à¸¡à¹ˆà¸ªà¸²à¸¡à¸²à¸£à¸–à¸ªà¸£à¹‰à¸²à¸‡à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´";
-//STRIP001  MESSAGE[ czech ] = "AutomatickÃ½ text nelze vytvoÅ™it.";
-//STRIP001  MESSAGE[ hebrew ] = "AutoText konnte nicht angelegt werden.";
-//STRIP001  MESSAGE[ hindi ] = "à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤¢à¤‚à¤?à¤¸à¥‡ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿà¥ à¤¨à¤¹à¥€à¤?à¤‰à¤¤à¥à¤ªà¤¨à¥à¤?à¤•à¤° à¤¸à¤•à¤¤à¥‡ à¤¹à¥ˆ à¥?";
-//STRIP001  MESSAGE[ slovak ] = "AutomatickÃ½ text nie je moÅ¾nÃ© vytvoriÅ¥";
-//STRIP001 };
 
-//STRIP001 InfoBox MSG_CLPBRD_FORMAT_ERROR
-//STRIP001 {
-//STRIP001     MESSAGE = "Gewünschtes Zwischenablagen-Format steht nicht zur Verfügung." ;
-//STRIP001  MESSAGE [ English ] = "Requested clipboard format is not available." ;
-//STRIP001  MESSAGE [ norwegian ] = "Requested clipboard format is not available." ;
-//STRIP001  MESSAGE [ italian ] = "Il formato Appunti richiesto non ?disponibile." ;
-//STRIP001  MESSAGE [ portuguese_brazilian ] = "O formato de área de transferência solicitado não est?disponível." ;
-//STRIP001  MESSAGE [ portuguese ] = "Formato da área de transferência solicitado não se encontra disponível." ;
-//STRIP001  MESSAGE [ finnish ] = "Pyydetty leikepöydän muoto ei ole käytettäviss?" ;
-//STRIP001  MESSAGE [ danish ] = "Det anmodede udskriftsholderformat er ikke tilgængeligt." ;
-//STRIP001  MESSAGE [ french ] = "Le format de presse-papiers souhait?n'est pas disponible." ;
-//STRIP001  MESSAGE [ swedish ] = "Önskat urklippsformat är inte tillgängligt." ;
-//STRIP001  MESSAGE [ dutch ] = "Gevraagde clipboardindeling is niet beschikbaar." ;
-//STRIP001  MESSAGE [ spanish ] = "El formato requerido, del portapapeles, no est?disponible." ;
-//STRIP001  MESSAGE [ english_us ] = "Requested clipboard format is not available." ;
-//STRIP001  MESSAGE[ chinese_simplified ] = "æ‰€éœ€è¦çš„è£å‰ªæ¿æ ¼å¼ä¸å­˜åœ¨ã€?";
-//STRIP001  MESSAGE[ russian ] = "Íåäîñòóïåí æåëàåìûé ôîğìàò áóôåğà îáìåíà.";
-//STRIP001  MESSAGE[ polish ] = "¯¹dany format zawartoœci schowka jest niedostêpny.";
-//STRIP001  MESSAGE[ japanese ] = "æŒ‡å®šã®ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰æ›¸å¼ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€?";
-//STRIP001  MESSAGE[ chinese_traditional ] = "è«‹æ±‚çš„å‰ªè²¼ç°¿æ ¼å¼ä¸å­˜åœ¨ã€?";
-//STRIP001  MESSAGE[ arabic ] = "ÊäÓí?ÇáÍÇİÙ?ÇáãØáæ?Ûí?ãÊæİ?";
-//STRIP001  MESSAGE[ dutch ] = "Gevraagde clipboardindeling is niet beschikbaar.";
-//STRIP001  MESSAGE[ chinese_simplified ] = "æ‰€éœ€è¦çš„è£å‰ªæ¿æ ¼å¼ä¸å­˜åœ¨ã€?";
-//STRIP001  MESSAGE[ greek ] = "?æçôïıìåí?ìïñö?ôï?ğñü÷åéñï?äå?åßíá?äéáèİóéì?";
-//STRIP001  MESSAGE[ korean ] = "ìš”ì²­í•?í´ë¦½ë³´ë“œ ì„œì‹ì?ì‚¬ìš©í•?ìˆ?ì—†ìŠµë‹ˆë‹¤.";
-//STRIP001  MESSAGE[ turkish ] = "İstenen artalan biçemi kullanılamaz";
-//STRIP001  MESSAGE[ language_user1 ] = " ";
-//STRIP001  MESSAGE[ catalan ] = "El format desitjat del porta-retalls no est?disponible.";
-//STRIP001  MESSAGE[ thai ] = "à¸£à¹‰à¸­à¸‡à¸‚à¸­à¸£à¸¹à¸›à¹à¸šà¸šà¸„à¸¥à¸´à¸›à¸šà¸­à¸£à¹Œà¸”à¹„à¸¡à¹ˆà¹„à¸”à¹?";
-//STRIP001  MESSAGE[ czech ] = "PoÅ¾adovanÃ½ formÃ¡t schrÃ¡nky nenÃ­ dostupnÃ½.";
-//STRIP001  MESSAGE[ hebrew ] = "GewÃ¼nschtes Zwischenablagen-Format steht nicht zur VerfÃ¼gung.";
-//STRIP001  MESSAGE[ hindi ] = "à¤¨à¤¿à¤µà¥‡à¤¦à¤¨ à¤•à¥€ à¤¹à¥à¤¯à¥€ à¤•à¥à¤²à¤¿à¤ªà¤¬à¥‹à¤°à¥à¤¡ à¤°à¤šà¤¨à¤¾ à¤ªà¥à¤°à¤¾à¤ªà¥à¤?à¤¨à¤¹à¥€à¤?à¤¹à¥ˆ à¥?";
-//STRIP001  MESSAGE[ slovak ] = "PoÅ¾adovanÃ½ formÃ¡t schrÃ¡nky nie je dostupnÃ½.";
-//STRIP001 };
 
-//STRIP001 QueryBox MSG_UPDATE_NEW_GLOS_FMT
-//STRIP001 {
-//STRIP001  BUTTONS = WB_YES_NO ;
-//STRIP001  DEFBUTTON = WB_DEF_YES ;
-//STRIP001  MESSAGE = "Der Bereich liegt in einem alten Format vor.\nEr muss konvertiert werden, um Änderungen\nspeichern zu können.\nSoll er konvertiert werden?" ;
-//STRIP001  MESSAGE [ English ] = "The file format of the region is out-of-date.\nIt must be converted in order to save modifications.\nDo you want to convert it?" ;
-//STRIP001  MESSAGE [ norwegian ] = "The file format of the region is out-of-date.\nIt must be converted in order to save modifications.\nDo you want to convert it?" ;
-//STRIP001  MESSAGE [ italian ] = "Il formato dell'area ?vecchio.\n?necessario convertirlo per poter\nsalvare le modifiche apportate\nVolete convertirlo?" ;
-//STRIP001  MESSAGE [ portuguese_brazilian ] = "O formato da seção est?desatualizado.\nEle deve ser convertido para que se possa gravar modificações.\nDeseja convert?lo agora?" ;
-//STRIP001  MESSAGE [ portuguese ] = "O formato do ficheiro est?desactualizado.\nDeve ser convertido para que se possam\n guardar as respectivas alterações.\nDeseja convert?lo?" ;
-//STRIP001  MESSAGE [ finnish ] = "Osan muoto on vanhentunut.\nOsa on muunnettava, jotta\nmuutokset voisi tallentaa.\nMuunnetaanko osa nyt?" ;
-//STRIP001  MESSAGE [ danish ] = "Områdets filformat er forældet.\nDet skal konverteres, for at ændringerne kan gemmes.\nVil du konvertere det?" ;
-//STRIP001  MESSAGE [ french ] = "La section se trouve dans un format périm?\nVous ne pourrrez enregistrer aucune modification \n ?moins de le convertir.\nVoulez-vous procéder ?la conversion sans plus attendre ?" ;
-//STRIP001  MESSAGE [ swedish ] = "Området har ett gammalt format.\nDet måste konverteras för att\nändringar skall kunna sparas.\nVill du konvertera det?" ;
-//STRIP001  MESSAGE [ dutch ] = "Het bereik heeft een verouderde indeling.\nHet moet worden geconverteerd om de wijzigingen\nte kunnen opslaan.\nWilt u de conversie nu uitvoeren?" ;
-//STRIP001  MESSAGE [ spanish ] = "El formato de la sección no est?actualizado.\nHay que convertirlo\npara poder guardar las modificaciones.\n¿Desea convertirlo?" ;
-//STRIP001  MESSAGE [ english_us ] = "The section format is outdated.\nIt needs to be converted so that changes\ncan be saved.\nShould it be converted now?" ;
-//STRIP001  /* ### ACHTUNG: Neuer Text in Resource? Der Bereich liegt in einem alten Format vor.\nEr mu?konvertiert werden, um Änderungen\nspeichern zu können.\nSoll er konvertiert werden? : Der Bereich liegt in einem alten Format vor.\nEr mu?konvertiert werden, um nderungen\nspeichern zu k÷nnen.\nSoll er konvertiert werden? */
-//STRIP001  Message = "Der Bereich liegt in einem alten Format vor.\nEr muss konvertiert werden, um Änderungen\nspeichern zu können.\nSoll er konvertiert werden?" ;
-//STRIP001  Message[ chinese_simplified ] = "è¿™ä¸ªåŒºåŸŸå…·æœ‰çš„æ ¼å¼æ˜¯æ—§çš„ã€‚\nè¦å­˜ç›˜æ›´æ”¹å°±å¿…é¡»è¿›è¡Œæ ¼å¼è½¬æ¢ã€‚\nè¦è½¬æ¢æ ¼å¼å—ï¼?";
-//STRIP001  Message[ russian ] = "Ğàçäåë ïğåäñòàâëå??ñòàğîì ôîğìàò?\nÅã?íåîáõîäèìî ïğåîáğàçîâàò? ÷òîá?\nñîõğàíèò?èçìåíåíèÿ\n.Ïğåîáğàçîâàò?";
-//STRIP001  Message[ polish ] = "Format sekcji jest przestarza³y.\nAby mo¿na by³o zapisa?zmiany,\nnale¿y dokona?konwersji\n.Czy zrobi?to teraz?";
-//STRIP001  Message[ japanese ] = "ã“ã®ç¯„å›²ã¯æ—§æ›¸å¼ã«ã‚ã‚Šã¾ã™ã€‚\nå¤‰æ›´ã‚’ä¿å­˜ã™ã‚‹ã«ã¯\næ›¸å¼ã‚’å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚\næ›¸å¼å¤‰æ›ã—ã¾ã™ã‹?";
-//STRIP001  Message[ chinese_traditional ] = "é€™å€‹å€åŸŸçš„æ ¼å¼æ˜¯èˆŠçš„ã€‚\nè¦å„²å­˜è®Šæ›´å°±å¿…é ˆè½‰æ›å®ƒæ ¼å¼ã€‚\næ‚¨è¦è½‰æ›å®ƒçš„æ ¼å¼ï¼?";
-//STRIP001  Message[ arabic ] = "ÊäÓí?ÇáäØÇŞ ŞÏíã.\níÌ?ÊÍæíáå?ÍÊ?íãßä \nÍİ?ÇáÊÛííÑÇ?\nåá ÊÑíÏ ÊÍæíáå?";
-//STRIP001  Message[ dutch ] = "Het bereik heeft een verouderde indeling.\nHet moet worden geconverteerd om de wijzigingen\nte kunnen opslaan.\nWilt u de conversie nu uitvoeren?";
-//STRIP001  Message[ chinese_simplified ] = "è¿™ä¸ªåŒºåŸŸå…·æœ‰çš„æ ¼å¼æ˜¯æ—§çš„ã€‚\nè¦å­˜ç›˜æ›´æ”¹å°±å¿…é¡»è¿›è¡Œæ ¼å¼è½¬æ¢ã€‚\nè¦è½¬æ¢æ ¼å¼å—ï¼?";
-//STRIP001  Message[ greek ] = "?ìïñö?ôç?åíüôçôáò åßíá?ğáëé?\nĞñİğåé íá ìåôáôñáğåß şóôå ïé áëëáãİò\níá ìğïñïı?íá áğïèçêåõôïıí.\nÈİëåôå íá ìåôáôñáğåß ôşñá;";
-//STRIP001  Message[ korean ] = "êµ¬ì—­ì?ì„œì‹ì?ì˜¤ë˜ë˜ì—ˆìŠµë‹ˆë‹?\n ì´ê²ƒì?ë³€í™˜í•˜ì—¬ì•¼ ë³€ê²?ì‚¬í•­ì?ì €ì¥í•  ìˆ?ìˆìŠµë‹ˆë‹¤.\n ì§€ê¸?ë³€í™˜í•˜ì‹œê² ìŠµë‹ˆê¹?";
-//STRIP001  Message[ turkish ] = "Bölümün format?eski.\nDeğişikliklerin kaydedilebilmesi n\niçin değiştirilmesi gerekiyor.\nFormat değiştirilsin mi?";
-//STRIP001  Message[ language_user1 ] = " ";
-//STRIP001  Message[ catalan ] = "El format de l'àrea no és actual.\nS'ha de convertir\nper poder desar les modificacions.\nVoleu convertir-lo?";
-//STRIP001  Message[ thai ] = "à¸£à¸¹à¸›à¹à¸šà¸šà¸ªà¹ˆà¸§à¸™à¸¥à¹‰à¸²à¸ªà¸¡à¸±à¸¢\nà¸¡à¸±à¸™à¸ˆà¸³à¹€à¸›à¹‡à¸™à¸•à¹‰à¸­à¸‡à¸–à¸¹à¸à¹à¸›à¸¥à¸‡à¹€à¸à¸·à¹ˆà¸­\nà¸ªà¸²à¸¡à¸²à¸£à¸–à¸šà¸±à¸™à¸—à¸¶à¸à¸à¸²à¸£à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹à¸›à¸¥à¸‡\nà¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¹à¸›à¸¥à¸‡à¸‚à¸“à¸°à¸™à¸µà¹‰à¸«à¸£à¸·à¸­à¹„à¸¡à¹ˆ?";
-//STRIP001  Message[ czech ] = "FormÃ¡t oddÃ­lu je neplatnÃ½.\nMusÃ­ se zkonvertovat, aby\nbylo moÅ¾no uloÅ¾it zmÄ›ny.\nZkonvertovat nynÃ­?";
-//STRIP001  Message[ hebrew ] = "Der Bereich liegt in einem alten Format vor.\nEr muss konvertiert werden, um Ã„nderungen\nspeichern zu kÃ¶nnen.\nSoll er konvertiert werden?";
-//STRIP001  Message[ hindi ] = "à¤µà¤¿à¤­à¤¾à¤?à¤°à¤šà¤¨à¤¾ à¤…à¤®à¤¾à¤¨à¥à¤¯ à¤¹à¥ˆ à¥¤\nà¤ªà¤°à¤¿à¤µà¤°à¥à¤¤à¤¨à¥‹à¤‚ à¤•à¥‹ à¤¸à¤‚à¤šà¤¿à¤?à¤•à¤°à¤¨à¥‡ à¤•à¥‡à¤²à¤¿à¤?à¤‰à¤¨à¤•à¥‹\nà¤¬à¤¦à¤²à¤¨à¤?à¤¹à¥‹à¤—à¤¾ à¥¤\nà¤…à¤­à¥€ à¤‰à¤¸à¥?à¤¬à¤¦à¤²à¤¨à¤?à¤šà¤¾à¤¹à¤¤à¥?à¤¹à¥ˆ?";
-//STRIP001  Message[ slovak ] = "FormÃ¡t oddielu je neplatnÃ½.\nMusÃ­ sa skonvertovaÅ¥, aby\nbolo moÅ¾nÃ© uloÅ¾iÅ¥ zmeny.\nSkonvertovaÅ¥ teraz?";
-//STRIP001 };
 
 String STR_PRIVATETEXT
 {
@@ -373,13 +159,5 @@ String STR_DDEFORMAT
     Text[ ar ] = "Ø§Ø±ØªØ¨Ø§Ø· DDE";
     Text[ he ] = "DDE VerknÃ¼pfung";
 };
-//STRIP001 Bitmap BMP_SW_TEAM_MUGSHOT
-//STRIP001 {
-//STRIP001  File ="writerteam.bmp";
-//STRIP001 };
 
-//STRIP001 String STR_SW_TEAM_NAMES
-//STRIP001 {
-//STRIP001     TEXT = "Back row: Aidan Butler, Peter Burow, Caolán McNamara, Michael Brauer, Martin Maher, Gunnar Timm\nFront row: Thomas Lange, Oliver-Rainer Düsterhöft, Henning Brinkmann,  Andreas Martens, Oliver Specht, Frank Meies, Daniel Vogelheim";
-//STRIP001 };
 
