@@ -4,9 +4,9 @@
  *
  *  $RCSfile: tabcont.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 20:18:26 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:26:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,32 +63,18 @@ private:
     USHORT          nTabSwitchId;
     long            nQueryCount;
 
-//STRIP001  void            DoDrag( const Region& rRegion );
 
     USHORT          GetMaxId() const;
-//STRIP001  USHORT          GetPrivatDropPos(const Point& rPos );
 
-//STRIP001 protected:
-//STRIP001  virtual void    Select();
-//STRIP001  virtual void    Command( const CommandEvent& rCEvt );
-//STRIP001  virtual void    MouseButtonDown( const MouseEvent& rMEvt );
-//STRIP001  virtual void    MouseButtonUp( const MouseEvent& rMEvt );
 
-//STRIP001  virtual sal_Int8 AcceptDrop( const AcceptDropEvent& rEvt );
-//STRIP001  virtual sal_Int8 ExecuteDrop( const ExecuteDropEvent& rEvt );
 
-//STRIP001  virtual void    StartDrag( sal_Int8 nAction, const Point& rPosPixel );
 
-//STRIP001  virtual long    StartRenaming();
-//STRIP001  virtual long    AllowRenaming();
-//STRIP001  virtual void    EndRenaming();
 
 public:
                     ScTabControl( Window* pParent, ScViewData* pData );
                     ~ScTabControl();
 
     void            UpdateStatus();
-//STRIP001  void            ActivateView(BOOL bActivate);
 };
 
 
