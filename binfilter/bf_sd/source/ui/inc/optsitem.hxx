@@ -4,9 +4,9 @@
  *
  *  $RCSfile: optsitem.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: obo $ $Date: 2006-09-15 12:00:47 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:29:18 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -102,12 +102,9 @@ public:
                             SdOptionsItem( const SdOptionsGeneric& rParent, const ::rtl::OUString rSubTree );
                             ~SdOptionsItem();
 
-//STRIP001  virtual void            Commit();
 
     ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > GetProperties(
                                 const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames );
-//STRIP001  sal_Bool                PutProperties( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& rNames,
-//STRIP001                                         const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>& rValues );
     void                    SetModified();
 };
 
@@ -127,7 +124,6 @@ private:
     BOOL                    mbInit          : 1;
     BOOL                    mbEnableModify  : 1;
 
-//STRIP001  void                    Commit( SdOptionsItem& rCfgItem ) const;
     ::com::sun::star::uno::Sequence< ::rtl::OUString > GetPropertyNames() const;
 
 protected:
@@ -151,7 +147,6 @@ public:
 
     void                    EnableModify( BOOL bModify ) { mbEnableModify = bModify; }
 
-//STRIP001  void                    Store();
 
 
     static bool             isMetricSystem();
@@ -184,7 +179,6 @@ public:
             ~SdOptionsLayout() {}
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsLayout& rOpt ) const;
 
     BOOL    IsRulerVisible() const { Init(); return (BOOL) bRuler; }
     BOOL    IsMoveOutline() const { Init(); return (BOOL) bMoveOutline; }
@@ -205,18 +199,8 @@ public:
 
 // -----------------------------------------------------------------------------
 
-//STRIP001class SdOptionsLayoutItem : public SfxPoolItem, public SdOptionsLayout
-//STRIP001{
-//STRIP001public:
 
-//STRIP001                          SdOptionsLayoutItem( USHORT nWhich);
-//STRIP001                          SdOptionsLayoutItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
-//STRIP001};
 
 // ---------------------
 // - SdOptionsContents -
@@ -243,7 +227,6 @@ public:
             ~SdOptionsContents() {}
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsContents& rOpt ) const;
 
     BOOL    IsExternGraphic() const { Init(); return (BOOL) bExternGraphic; }
     BOOL    IsOutlineMode() const { Init(); return (BOOL) bOutlineMode; }
@@ -258,19 +241,8 @@ public:
 
 // -----------------------------------------------------------------------------
 
-//STRIP001class SdOptionsContentsItem : public SfxPoolItem, public SdOptionsContents
-//STRIP001{
-//STRIP001public:
-//STRIP001
-//STRIP001                          SdOptionsContentsItem( USHORT nWhich);
-//STRIP001                          SdOptionsContentsItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-//STRIP001};
 
 // -----------------
 // - SdOptionsMisc -
@@ -324,7 +296,6 @@ public:
             ~SdOptionsMisc() {}
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsMisc& rOpt ) const;
 
     BOOL    IsStartWithTemplate() const { Init(); return (BOOL) bStartWithTemplate; }
     BOOL    IsMarkedHitMovesAlways() const { Init(); return (BOOL) bMarkedHitMovesAlways; }
@@ -386,19 +357,8 @@ public:
 
 // -----------------------------------------------------------------------------
 
-//STRIP001class SdOptionsMiscItem : public SfxPoolItem, public SdOptionsMisc
-//STRIP001{
-//STRIP001public:
-//STRIP001
-//STRIP001                          SdOptionsMiscItem( USHORT nWhich);
-//STRIP001                          SdOptionsMiscItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-//STRIP001};
 
 // -----------------
 // - SdOptionsSnap -
@@ -431,7 +391,6 @@ public:
             ~SdOptionsSnap() {}
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsSnap& rOpt ) const;
 
     BOOL    IsSnapHelplines() const { Init(); return (BOOL) bSnapHelplines; }
     BOOL    IsSnapBorder() const { Init(); return (BOOL) bSnapBorder; }
@@ -458,19 +417,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-//STRIP001class SdOptionsSnapItem : public SfxPoolItem, public SdOptionsSnap
-//STRIP001{
-//STRIP001public:
 
-//STRIP001                          SdOptionsSnapItem( USHORT nWhich);
-//STRIP001                          SdOptionsSnapItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
 
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-//STRIP001};
 
 // -----------------
 // - SdOptionsZoom -
@@ -495,7 +444,6 @@ public:
             ~SdOptionsZoom() {}
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsZoom& rOpt ) const;
 
     void    GetScale( INT32& rX, INT32& rY ) const { Init(); rX = nX; rY = nY; }
     void    SetScale( INT32 nInX, INT32 nInY ) { if( nX != nInX || nY != nInY ) { OptionsChanged(); nX = nInX; nY = nInY; } }
@@ -503,19 +451,7 @@ public:
 
 // -----------------------------------------------------------------------------
 
-//STRIP001class SdOptionsZoomItem : public SfxPoolItem, public SdOptionsZoom
-//STRIP001{
-//STRIP001public:
-//STRIP001
-//STRIP001                          SdOptionsZoomItem( USHORT nWhich);
-//STRIP001                          SdOptionsZoomItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
-//STRIP001
-//STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-//STRIP001  virtual int             operator==( const SfxPoolItem& ) const;
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 
-//STRIP001};
 
 // -----------------
 // - SdOptionsGrid -
@@ -535,7 +471,6 @@ public:
             ~SdOptionsGrid();
 
     void    SetDefaults();
-//STRIP001  BOOL    operator==( const SdOptionsGrid& rOpt ) const;
 
     UINT32  GetFldDrawX() const { Init(); return SvxOptionsGrid::GetFldDrawX(); }
     UINT32  GetFldDivisionX() const { Init(); return SvxOptionsGrid::GetFldDivisionX(); }
@@ -562,15 +497,6 @@ public:
 
 // -----------------------------------------------
 
-//STRIP001 class SdOptionsGridItem : public SvxGridItem
-//STRIP001 {
-//STRIP001
-//STRIP001 public:
-//STRIP001                          SdOptionsGridItem( USHORT nWhich );
-//STRIP001                          SdOptionsGridItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
-//STRIP001
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
-//STRIP001 };
 
 // ------------------
 // - SdOptionsPrint -
@@ -669,7 +595,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual int             operator==( const SfxPoolItem& ) const;
 
-//STRIP001  void                    SetOptions( SdOptions* pOpts ) const;
 };
 
 // -------------
@@ -690,8 +615,6 @@ public:
                         SdOptions( USHORT nConfigId );
                         ~SdOptions();
 
-//STRIP001  void                SetDefaults( ULONG nOptionRange );
-//STRIP001  void                StoreConfig( ULONG nOptionRange = SD_OPTIONS_ALL );
 };
 
 } //namespace binfilter
