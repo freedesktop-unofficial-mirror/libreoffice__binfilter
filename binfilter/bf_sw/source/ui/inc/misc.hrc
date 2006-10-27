@@ -4,9 +4,9 @@
  *
  *  $RCSfile: misc.hrc,v $
  *
- *  $Revision: 1.2 $
+ *  $Revision: 1.3 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:42:38 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:47:04 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,49 +43,28 @@
 #define DLG_MASTERDOC_PAGE          (RC_MISC_BEGIN + 3)
 #define DLG_QUERY_ADD               (RC_MISC_BEGIN + 4)
 
-//STRIP001 #define STR_GLOSSARY_BIB_DLG     (RC_MISC_BEGIN + 5)
 #define STR_DOCUMENT_BIB_DLG        (RC_MISC_BEGIN + 6)
 
 #define WIN_GLOBAL_DOC              (RC_MISC_BEGIN + 7)
 #define DLG_GLOBAL_DOC_OPTION       (RC_MISC_BEGIN + 8)
 #define DLG_NUMBERING               (RC_MISC_BEGIN + 9)
 #define DLG_ZOOM                    (RC_MISC_BEGIN + 10)
-//STRIP001 #define DLG_GLOSSARY             (RC_MISC_BEGIN + 11)
-//STRIP001 #define DLG_INS_FOOTNOTE         (RC_MISC_BEGIN + 12)
-//STRIP001 #define DLG_DOC_FOOTNOTE            (RC_MISC_BEGIN + 13)
 #define DLG_PG_FOOTNOTE             (RC_MISC_BEGIN + 14)
 #define DLG_NUMBERING_OUTLINE       (RC_MISC_BEGIN + 15)
-//STRIP001 #define DLG_BIB_BASE             (RC_MISC_BEGIN + 16)
-//STRIP001 #define DLG_INSERT_BOOKMARK      (RC_MISC_BEGIN + 17)
-//STRIP001 #define DLG_NUM_NAMES                (RC_MISC_BEGIN + 18)
-//STRIP001 #define DLG_SORTING              (RC_MISC_BEGIN + 19)
 #define DLG_CHARMAP                 (RC_MISC_BEGIN + 20)
 #define DLG_AUTOCORR                (RC_MISC_BEGIN + 23)
 #define DLG_AUTOFMT_OPT             (RC_MISC_BEGIN + 24)
-//STRIP001 #define DLG_RENAME_GLOS              (RC_MISC_BEGIN + 25)
 #define DLG_AUTOFMT_TAB             (RC_MISC_BEGIN + 26)
 #define DLG_PRCNT_SET               (RC_MISC_BEGIN + 27)
-//STRIP001 #define DLG_INSERT_RULER            (RC_MISC_BEGIN + 28)
-//STRIP001 #define DLG_REDLINE_ACCEPT          (RC_MISC_BEGIN + 29)
-
-//STRIP001 #define DLG_TAB_OUTLINE              (RC_MISC_BEGIN + 31)
-//STRIP001 #define DLG_MOD_REDLINE_ACCEPT      (RC_MISC_BEGIN + 32)
 
 
-//STRIP001 #define MSG_DOUBLE_SHORTNAME     (RC_MISC_BEGIN + 30)
-//STRIP001 #define MSG_QUERY_DELETE         (RC_MISC_BEGIN + 31)
-//STRIP001 #define STR_QUERY_DELETE_GROUP1      (RC_MISC_BEGIN + 32)
-//STRIP001 #define STR_QUERY_DELETE_GROUP2      (RC_MISC_BEGIN + 33)
-//STRIP001 #define MSG_NO_GLOSSARIES            (RC_MISC_BEGIN + 34)
+
 
 #define MSG_BLOCK_CREATE_ERR        (RC_MISC_BEGIN + 40)
 #define MSG_BLOCK_DELETE_ERR        (RC_MISC_BEGIN + 41)
-//STRIP001 #define MSG_SRTERR                   (RC_MISC_BEGIN + 42)
 
-//STRIP001 #define STR_GLOSSARY             (RC_MISC_BEGIN + 43)
 #define STR_CHANGE_START            (RC_MISC_BEGIN + 44)
 #define STR_CHANGE_END              (RC_MISC_BEGIN + 45)
-//STRIP001 #define STR_SAVE_GLOSSARY           (RC_MISC_BEGIN + 46)
 
 #define STR_FULLNUMS_START          (RC_MISC_BEGIN + 47)
 #define STR_FULLNUMS_1              (STR_FULLNUMS_START )
@@ -101,14 +80,7 @@
 #define MSG_NO_BULLETS              (RC_MISC_BEGIN + 56)
 
 #define STR_NUMRULE_UNKNOWN         (RC_MISC_BEGIN + 60)
-//STRIP001 #define MN_REDLINE_POPUP         (RC_MISC_BEGIN + 61)
-//STRIP001 #define STR_REMOVE_WARNING          (RC_MISC_BEGIN + 62)
-//STRIP001 #define STRRES_NUMTYPES              (RC_MISC_BEGIN + 63)
 
-//STRIP001 #define MISC_ACT_END                 STRRES_NUMTYPES
 
-//STRIP001 #if MISC_ACT_END > RC_MISC_END
-//STRIP001 #error Resource-Id Ueberlauf in #file, #line
-//STRIP001 #endif
 
 #endif  // _MISC_HRC
