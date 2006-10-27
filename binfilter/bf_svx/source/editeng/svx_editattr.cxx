@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editattr.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:21:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:42:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
@@ -46,9 +45,6 @@
 
 #include <svxfont.hxx>
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <svtools/poolitem.hxx>
@@ -66,7 +62,6 @@
 #include <tools/time.hxx>
 #endif
 
-// auto strip #include <flditem.hxx>
 #include <fontitem.hxx>
 #include <postitem.hxx>
 #include <wghtitem.hxx>
@@ -74,7 +69,6 @@
 #include <cntritem.hxx>
 #include <shdditem.hxx>
 #include <escpitem.hxx>
-// auto strip #include <colritem.hxx>
 #include <wrlmitem.hxx>
 #include <fhgtitem.hxx>
 #include <crsditem.hxx>
