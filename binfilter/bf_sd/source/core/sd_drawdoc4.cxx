@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_drawdoc4.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 23:22:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:02:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,26 +34,10 @@
  ************************************************************************/
 
 #ifndef SVX_LIGHT
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #include <bf_sfx2/docfile.hxx>
-// auto strip #ifndef _SFXDISPATCH_HXX //autogen
-// auto strip #include <bf_sfx2/dispatch.hxx>
-// auto strip #endif
 #ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
 #endif
-// auto strip #ifndef _OSPLCFG_HXX
-// auto strip #include <bf_offmgr/osplcfg.hxx>
-// auto strip #endif
-// auto strip #include "sdoutl.hxx"
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif#else
-// auto strip #ifndef _OUTLINER_HXX //autogen wg. Outliner
-// auto strip #include <bf_svx/outliner.hxx>
-// auto strip #endif
 #ifdef MAC
-// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/docshell.hxx"
@@ -76,7 +60,6 @@
 #define ITEMID_FRAMEDIR             EE_PARA_WRITINGDIR
 
 #include <bf_svx/svxids.hrc>
-// auto strip #include <bf_svx/srchitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_svx/lspcitem.hxx>
@@ -85,32 +68,14 @@
 #include <bf_svx/dialmgr.hxx>                   // SVX_RESSTR
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/xtable.hxx>
-// auto strip #ifndef _SVX_XIT_HXX //autogen
-// auto strip #include <bf_svx/xit.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_XLINEIT0_HXX //autogen
-// auto strip #include <bf_svx/xlineit0.hxx>
-// auto strip #endif
 
 #ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
 #endif
 
-// auto strip #ifndef _SDSHITM_HXX //autogen
-// auto strip #include <bf_svx/sdshitm.hxx>
-// auto strip #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
 #endif
-// auto strip #ifndef SVX_XFILLIT0_HXX //autogen
-// auto strip #include <bf_svx/xfillit0.hxx>
-// auto strip #endif
-// auto strip #ifndef _SDSHCITM_HXX //autogen
-// auto strip #include <bf_svx/sdshcitm.hxx>
-// auto strip #endif
-// auto strip #ifndef _EDITSTAT_HXX //autogen
-// auto strip #include <bf_svx/editstat.hxx>
-// auto strip #endif
 #ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
 #endif
@@ -183,12 +148,6 @@
 #ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
 #endif
-// auto strip #ifndef _SVDITER_HXX //autogen
-// auto strip #include <bf_svx/svditer.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVDOGRP_HXX //autogen
-// auto strip #include <bf_svx/svdogrp.hxx>
-// auto strip #endif
 #ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
 #endif
@@ -198,27 +157,12 @@
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
 #endif
-// auto strip #ifndef _UNO_LINGU_HXX
-// auto strip #include <bf_svx/unolingu.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATOR_HPP_
-// auto strip #include <com/sun/star/linguistic2/XHyphenator.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
 #ifndef _SFXITEMPOOL_HXX
 #include <svtools/itempool.hxx>
 #endif
 #ifndef _OUTLOBJ_HXX
 #include <bf_svx/outlobj.hxx>
 #endif
-// auto strip #ifndef _SFXVIEWFRM_HXX
-// auto strip #include <bf_sfx2/viewfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_LANGITEM_HXX
-// auto strip #include <bf_svx/langitem.hxx>
-// auto strip #endif
 #ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
@@ -227,10 +171,8 @@
 #include "drawdoc.hxx"
 #include "sdpage.hxx"
 #include "glob.hrc"
-// auto strip #include "glob.hxx"
 #include "stlpool.hxx"
 #include "helpids.h"
-// auto strip #include "sdiocmpt.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
@@ -740,44 +682,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/       pDocSh && !pDocSh->IsReadOnly() )
 /*?*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 StopOnlineSpelling();
-//STRIP001
-//STRIP001 /*?*/        SdOutliner* pOutl = GetInternalOutliner(TRUE);
-//STRIP001
-//STRIP001 /*?*/        Reference< XSpellChecker1 > xSpellChecker( LinguMgr::GetSpellChecker() );
-//STRIP001 /*?*/        if ( xSpellChecker.is() )
-//STRIP001 /*?*/            pOutl->SetSpeller( xSpellChecker );
-//STRIP001
-//STRIP001 /*?*/        Reference< XHyphenator > xHyphenator( LinguMgr::GetHyphenator() );
-//STRIP001 /*?*/        if( xHyphenator.is() )
-//STRIP001 /*?*/            pOutl->SetHyphenator( xHyphenator );
-//STRIP001
-//STRIP001 /*?*/        pOutl->SetDefaultLanguage( eLanguage );
-//STRIP001
-//STRIP001 /*?*/        SdPage* pPage = NULL;
-//STRIP001 /*?*/        SdrObject* pObj = NULL;
-//STRIP001 /*?*/        pOnlineSpellingList = new List(64, 32);
-//STRIP001
-//STRIP001      // Um im OnlineSpellingHdl mit List::Next() arbeiten zu  koennen,
-//STRIP001      // wird ein Position 0 ein Dummy-Objekt (NULL-Pointer) eingefuegt
-//STRIP001 /*?*/        pOnlineSpellingList->Insert(NULL, LIST_APPEND);
-//STRIP001
-//STRIP001 /*?*/        for (USHORT nPage = 0; nPage < GetPageCount(); nPage++)
-//STRIP001 /*?*/        {
-//STRIP001          // Alle Pages durchsuchen
-//STRIP001 /*?*/            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FillOnlineSpellingList((SdPage*) GetPage(nPage));
-//STRIP001 /*?*/        }
-//STRIP001
-//STRIP001 /*?*/        for (nPage = 0; nPage < GetMasterPageCount(); nPage++)
-//STRIP001 /*?*/        {
-//STRIP001          // Alle MasterPages durchsuchen
-//STRIP001 /*?*/            FillOnlineSpellingList((SdPage*) GetMasterPage(nPage));
-//STRIP001 /*?*/        }
-//STRIP001
-//STRIP001 /*?*/        pOnlineSpellingList->Seek(ULONG(0));
-//STRIP001 /*?*/        pOnlineSpellingTimer = new Timer();
-//STRIP001 /*?*/        pOnlineSpellingTimer->SetTimeoutHdl( LINK(this, SdDrawDocument, OnlineSpellingHdl) );
-//STRIP001 /*?*/        pOnlineSpellingTimer->SetTimeout(250);
-//STRIP001 /*?*/        pOnlineSpellingTimer->Start();
 /*?*/   }
 /*N*/ }
 /*N*/ #endif // !SVX_LIGHT
@@ -789,46 +693,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 void SdDrawDocument::FillOnlineSpellingList(SdPage* pPage)
-//STRIP001 {
-//STRIP001  SdrObject* pObj = NULL;
-//STRIP001  SdrObjListIter aIter(*pPage, IM_FLAT);
-//STRIP001
-//STRIP001  while (aIter.IsMore())
-//STRIP001  {
-//STRIP001      pObj = aIter.Next();
-//STRIP001
-//STRIP001      if (pObj->GetOutlinerParaObject())
-//STRIP001      {
-//STRIP001          // Textobjekt gefunden
-//STRIP001          pOnlineSpellingList->Insert(pObj, LIST_APPEND);
-//STRIP001      }
-//STRIP001      else if (pObj->GetObjIdentifier() == OBJ_GRUP)
-//STRIP001      {
-//STRIP001          // Gruppenobjekt gefunden
-//STRIP001          SdrObjListIter aGroupIter(*((SdrObjGroup*)pObj)->GetSubList(),
-//STRIP001                                    IM_DEEPNOGROUPS);
-//STRIP001
-//STRIP001          BOOL bSubTextObjFound = FALSE;
-//STRIP001
-//STRIP001          while (aGroupIter.IsMore() && !bSubTextObjFound)
-//STRIP001          {
-//STRIP001              if (aGroupIter.Next()->GetOutlinerParaObject())
-//STRIP001              {
-//STRIP001                  // Textobjekt im Gruppenobjekt gefunden
-//STRIP001                  bSubTextObjFound = TRUE;
-//STRIP001              }
-//STRIP001          }
-//STRIP001
-//STRIP001          if (bSubTextObjFound)
-//STRIP001          {
-//STRIP001              pOnlineSpellingList->Insert(pObj, LIST_APPEND);
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 
 /*************************************************************************
@@ -837,64 +701,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 IMPL_LINK(SdDrawDocument, OnlineSpellingHdl, Timer*, pTimer)
-//STRIP001 {
-//STRIP001  if (pOnlineSpellingList!=NULL
-//STRIP001         && ( !bOnlineSpell ||
-//STRIP001             pOnlineSpellingList->GetCurPos() < pOnlineSpellingList->Count() + 1))
-//STRIP001  {
-//STRIP001      /**********************************************************************
-//STRIP001      * Naechstes Objekt spellen
-//STRIP001      **********************************************************************/
-//STRIP001      SdrObject* pObj = (SdrObject*) pOnlineSpellingList->Next();
-//STRIP001
-//STRIP001      if (pObj)
-//STRIP001      {
-//STRIP001          if (pObj->GetOutlinerParaObject() && pObj->ISA(SdrTextObj))
-//STRIP001          {
-//STRIP001              // Textobjekt spellen
-//STRIP001              SpellObject((SdrTextObj*) pObj);
-//STRIP001          }
-//STRIP001          else if (pObj->GetObjIdentifier() == OBJ_GRUP)
-//STRIP001          {
-//STRIP001              // Gruppenobjekt gefunden
-//STRIP001              SdrObjListIter aGroupIter(*((SdrObjGroup*)pObj)->GetSubList(),
-//STRIP001                                        IM_DEEPNOGROUPS);
-//STRIP001
-//STRIP001              SdrObject* pSubObj = NULL;
-//STRIP001
-//STRIP001              while (aGroupIter.IsMore())
-//STRIP001              {
-//STRIP001                  pSubObj = aGroupIter.Next();
-//STRIP001
-//STRIP001                  if (pSubObj->GetOutlinerParaObject() && pSubObj->ISA(SdrTextObj))
-//STRIP001                  {
-//STRIP001                      // Textobjekt im Gruppenobjekt gefunden
-//STRIP001                      SpellObject((SdrTextObj*) pSubObj);
-//STRIP001                  }
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      // Weitersuchen
-//STRIP001      pOnlineSpellingTimer->Start();
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // Spelling wurde initial durchgefuehrt
-//STRIP001      bInitialOnlineSpellingEnabled = FALSE;
-//STRIP001
-//STRIP001      // Suche beenden
-//STRIP001      StopOnlineSpelling();
-//STRIP001
-//STRIP001      delete pOnlineSearchItem;
-//STRIP001      pOnlineSearchItem = NULL;
-//STRIP001  }
-//STRIP001
-//STRIP001  return(0);
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 
 /*************************************************************************
@@ -903,52 +709,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 void SdDrawDocument::SpellObject(SdrTextObj* pObj)
-//STRIP001 {
-//STRIP001  if (pObj && pObj->GetOutlinerParaObject() /* && pObj != pView->GetTextEditObject() */)
-//STRIP001  {
-//STRIP001      bHasOnlineSpellErrors = FALSE;
-//STRIP001      SdOutliner* pOutl = GetInternalOutliner(TRUE);
-//STRIP001      pOutl->SetUpdateMode(TRUE);
-//STRIP001      Link aEvtHdl = pOutl->GetStatusEventHdl();
-//STRIP001      pOutl->SetStatusEventHdl(LINK(this, SdDrawDocument, OnlineSpellEventHdl));
-//STRIP001
-//STRIP001      USHORT nOldOutlMode = pOutl->GetMode();
-//STRIP001      USHORT nOutlMode = OUTLINERMODE_TEXTOBJECT;
-//STRIP001      if (((SdrTextObj*) pObj)->GetObjInventor() == SdrInventor &&
-//STRIP001          ((SdrTextObj*) pObj)->GetObjIdentifier() == OBJ_OUTLINETEXT)
-//STRIP001      {
-//STRIP001          nOutlMode = OUTLINERMODE_OUTLINEOBJECT;
-//STRIP001          pOutl->SetMinDepth(1);
-//STRIP001      }
-//STRIP001      pOutl->Init( nOutlMode );
-//STRIP001
-//STRIP001      // Text in den Outliner setzen
-//STRIP001      pOutl->SetText(*((SdrTextObj*) pObj)->GetOutlinerParaObject());
-//STRIP001
-//STRIP001      if (!pOnlineSearchItem || pOutl->HasText(*pOnlineSearchItem))
-//STRIP001      {
-//STRIP001          // Spelling
-//STRIP001          pOutl->CompleteOnlineSpelling();
-//STRIP001
-//STRIP001          if (bHasOnlineSpellErrors)
-//STRIP001          {
-//STRIP001              // Text aus Outliner holen
-//STRIP001              BOOL bModified = IsChanged();
-//STRIP001              ((SdrTextObj*) pObj)->SetOutlinerParaObject( pOutl->CreateParaObject() );
-//STRIP001              SetChanged(bModified);
-//STRIP001              pObj->SendRepaintBroadcast();
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      pOutl->SetStatusEventHdl(aEvtHdl);
-//STRIP001      pOutl->SetUpdateMode(FALSE);
-//STRIP001      pOutl->Init( nOldOutlMode );
-//STRIP001      bHasOnlineSpellErrors = FALSE;
-//STRIP001  }
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 
 /*************************************************************************
@@ -1001,15 +761,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 \************************************************************************/
 
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 IMPL_LINK(SdDrawDocument, OnlineSpellEventHdl, EditStatus*, pEditStat)
-//STRIP001 {
-//STRIP001  ULONG nStat = pEditStat->GetStatusWord();
-//STRIP001  bHasOnlineSpellErrors = (nStat & EE_STAT_WRONGWORDCHANGED) != 0;
-//STRIP001
-//STRIP001  return(0);
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 
 /*************************************************************************
@@ -1019,36 +770,6 @@ using namespace ::com::sun::star::linguistic2;
 \************************************************************************/
 
 // #91457# removed link and replaced with Imp method
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001 void SdDrawDocument::ImpOnlineSpellCallback(SpellCallbackInfo* pInfo, SdrObject* pObj, SdrOutliner* pOutl)
-//STRIP001 {
-//STRIP001  delete pOnlineSearchItem;
-//STRIP001  pOnlineSearchItem = NULL;
-//STRIP001
-//STRIP001  USHORT nCommand = pInfo->nCommand;
-//STRIP001
-//STRIP001  if (nCommand == SPELLCMD_IGNOREWORD
-//STRIP001      // #91457# restart when add to dictionary takes place, too.
-//STRIP001      || nCommand == SPELLCMD_ADDTODICTIONARY)
-//STRIP001  {
-//STRIP001      if(pObj && pOutl && pObj->ISA(SdrTextObj))
-//STRIP001      {
-//STRIP001          BOOL bModified(IsChanged());
-//STRIP001          ((SdrTextObj*)pObj)->SetOutlinerParaObject(pOutl->CreateParaObject());
-//STRIP001          SetChanged(bModified);
-//STRIP001          pObj->SendRepaintBroadcast();
-//STRIP001      }
-//STRIP001
-//STRIP001      pOnlineSearchItem = new SvxSearchItem();
-//STRIP001      pOnlineSearchItem->SetSearchString(pInfo->aWord);
-//STRIP001      StartOnlineSpelling();
-//STRIP001  }
-//STRIP001  else if (nCommand == SPELLCMD_STARTSPELLDLG)
-//STRIP001  {
-//STRIP001      SfxViewFrame::Current()->GetDispatcher()->Execute( SID_SPELLING, SFX_CALLMODE_ASYNCHRON );
-//STRIP001  }
-//STRIP001 }
-//STRIP001 #endif // !SVX_LIGHT
 
 /*************************************************************************
 |*
@@ -1457,34 +1178,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     return eRet;
 /*N*/ }
 
-//STRIP001 void SdDrawDocument::SetDefaultWritingMode(::com::sun::star::text::WritingMode eMode )
-//STRIP001 {
-//STRIP001  if( pItemPool )
-//STRIP001  {
-//STRIP001      SvxFrameDirection nVal;
-//STRIP001      switch( eMode )
-//STRIP001      {
-//STRIP001      case ::com::sun::star::text::WritingMode_LR_TB: nVal = FRMDIR_HORI_LEFT_TOP; break;
-//STRIP001      case ::com::sun::star::text::WritingMode_RL_TB: nVal = FRMDIR_HORI_RIGHT_TOP; break;
-//STRIP001      case ::com::sun::star::text::WritingMode_TB_RL: nVal = FRMDIR_VERT_TOP_RIGHT; break;
-//STRIP001      default:
-//STRIP001          DBG_ERROR( "Frame direction not supported yet" );
-//STRIP001          return;
-//STRIP001      }
-//STRIP001
-//STRIP001      SvxFrameDirectionItem aModeItem( nVal, EE_PARA_WRITINGDIR );
-//STRIP001      pItemPool->SetPoolDefaultItem( aModeItem );
-//STRIP001
-//STRIP001         SvxAdjustItem aAdjust;
-//STRIP001
-//STRIP001      if( eMode == ::com::sun::star::text::WritingMode_RL_TB )
-//STRIP001          aAdjust.SetEnumValue( SVX_ADJUST_RIGHT );
-//STRIP001
-//STRIP001      pItemPool->SetPoolDefaultItem( aAdjust );
-//STRIP001
-//STRIP001
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SdDrawDocument::getDefaultFonts( Font& rLatinFont, Font& rCJKFont, Font& rCTLFont )
 /*N*/ {
