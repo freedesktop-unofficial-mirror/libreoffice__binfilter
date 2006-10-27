@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ndtxt.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:40:25 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:18:42 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,15 +44,6 @@
 #ifndef _COM_SUN_STAR_I18N_XINPUTSEQUENCECHECKER_HPP_
 #include <com/sun/star/i18n/InputSequenceCheckMode.hpp>
 #endif
-// auto strip #ifndef _SVX_FONTITEM_HXX //autogen
-// auto strip #include <bf_svx/fontitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_BRKITEM_HXX //autogen
-// auto strip #include <bf_svx/brkitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVX_ESCPITEM_HXX //autogen
-// auto strip #include <bf_svx/escpitem.hxx>
-// auto strip #endif
 #ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
 #endif
@@ -78,12 +69,6 @@
 #ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTATR_HXX //autogen
-// auto strip #include <txtatr.hxx>
-// auto strip #endif
 #ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
 #endif
@@ -108,9 +93,6 @@
 #ifndef _FRMATR_HXX
 #include <frmatr.hxx>
 #endif
-// auto strip #ifndef _CHARATR_HXX
-// auto strip #include <charatr.hxx>
-// auto strip #endif
 #ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
 #endif
@@ -137,18 +119,6 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>                    // fuer SwPosition
-// auto strip #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -158,24 +128,15 @@
 #ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
 #endif
-// auto strip #ifndef _FTNBOSS_HXX
-// auto strip #include <ftnboss.hxx>
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>                // fuer SwFmtChg in ChgTxtColl
 #endif
-// auto strip #ifndef _PAGEDESC_HXX
-// auto strip #include <pagedesc.hxx>               // fuer SwPageDesc
-// auto strip #endif
 #ifndef _EXPFLD_HXX
 #include <expfld.hxx>               // fuer SwTblField
 #endif
-// auto strip #ifndef _SECTION_HXX
-// auto strip #include <section.hxx>                // fuer SwSection
-// auto strip #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
 #endif
@@ -185,9 +146,6 @@
 #ifndef _WRONG_HXX
 #include <wrong.hxx>                // fuer die WrongList des OnlineSpellings
 #endif
-// auto strip #ifndef _DCONTACT_HXX
-// auto strip #include <dcontact.hxx>
-// auto strip #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
 #endif
@@ -259,16 +217,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/
 /*?*/       case ND_SECTIONNODE:
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwSectionNode*)pNd)->GetSection().IsHidden() ||
-//STRIP001 /*?*/                ((SwSectionNode*)pNd)->IsCntntHidden() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwNodeIndex aTmpIdx( *pNode );
-//STRIP001 /*?*/                pNd = FindPrvNxtFrmNode( aTmpIdx, pNode );
-//STRIP001 /*?*/                if( !pNd )
-//STRIP001 /*?*/                    return pNode;
-//STRIP001 /*?*/                aTmp = *pNd;
-//STRIP001 /*?*/                break;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            ((SwSectionNode*)pNd)->MakeFrms( aIdx );
 /*?*/           return pNode;
 /*N*/
 /*N*/       case ND_TEXTNODE:
@@ -595,22 +543,11 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       if( pSwpHints )
 /*N*/       {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwTxtAttr* pHt;
-//STRIP001 /*?*/            xub_StrLen* pEnd;
-//STRIP001 /*?*/            for( register USHORT j = pSwpHints->Count(); j; )
-//STRIP001 /*?*/                if( ( pHt = pSwpHints->GetHt( --j ) )->DontExpand() &&
-//STRIP001 /*?*/                    0 != ( pEnd = pHt->GetEnd() ) && *pHt->GetStart() == *pEnd )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // loeschen!
-//STRIP001 /*?*/                    pSwpHints->DeleteAtPos( j );
-//STRIP001 /*?*/                    DestroyAttr( pHt );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            MoveTxtAttr_To_AttrSet();
 /*N*/       }
 /*N*/
 /*N*/         if( pList )
 /*N*/         {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pNode->SetWrong( pList->SplitList( nSplitPos ) );
-//STRIP001 /*?*/             pWrong = pList;
 /*N*/         }
 /*N*/
 /*N*/       if ( GetDepends() )
@@ -631,36 +568,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   return pNode;
 /*N*/ }
 
-//STRIP001 void SwTxtNode::MoveTxtAttr_To_AttrSet()
-//STRIP001 {
-//STRIP001  ASSERT( pSwpHints, "MoveTxtAttr_To_AttrSet without SwpHints?" );
-//STRIP001  for( USHORT i = 0; pSwpHints && i < pSwpHints->Count(); ++i )
-//STRIP001  {
-//STRIP001      SwTxtAttr *pHt = pSwpHints->GetHt(i);
-//STRIP001
-//STRIP001      if( *pHt->GetStart() )
-//STRIP001          break;
-//STRIP001
-//STRIP001      const xub_StrLen* pHtEndIdx = pHt->GetEnd();
-//STRIP001
-//STRIP001      if( !pHtEndIdx )
-//STRIP001          continue;
-//STRIP001
-//STRIP001      const USHORT nWhich = pHt->Which();
-//STRIP001
-//STRIP001      if( *pHtEndIdx < aText.Len() || pHt->IsCharFmtAttr() )
-//STRIP001          break;
-//STRIP001
-//STRIP001      if( !pHt->IsDontMoveAttr() &&
-//STRIP001          SwCntntNode::SetAttr( pHt->GetAttr() ) )
-//STRIP001      {
-//STRIP001          pSwpHints->DeleteAtPos(i);
-//STRIP001          DestroyAttr( pHt );
-//STRIP001          --i;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001 }
 
 /*N*/ SwCntntNode *SwTxtNode::JoinNext()
 /*N*/ {
@@ -677,8 +584,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         if( pList )
 /*N*/         {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( pTxtNode->GetWrong(), nOldLen );
-//STRIP001 /*?*/             SetWrongDirty( TRUE );
-//STRIP001 /*?*/             pWrong = NULL;
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -686,8 +591,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/             if( pList )
 /*N*/             {
                     DBG_BF_ASSERT(0, "STRIP");//STRIP001 /*?*/                 pList->Move( 0, nOldLen );
-//STRIP001 /*?*/                 SetWrongDirty( TRUE );
-//STRIP001 /*?*/                 pTxtNode->pWrong = NULL;
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -727,9 +630,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         if( pList )
 /*N*/         {
                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( GetWrong(), Len() );
-//STRIP001 /*?*/             SetWrongDirty( TRUE );
-//STRIP001 /*?*/             pTxtNode->pWrong = NULL;
-//STRIP001 /*?*/             SetWrong( NULL );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -737,8 +637,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/             if( pList )
 /*N*/             {
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pList->Move( 0, nLen );
-//STRIP001 /*?*/                 SetWrongDirty( TRUE );
-//STRIP001 /*?*/                 pWrong = NULL;
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -1093,37 +991,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 // Wenn man sich genau am Ende einer Text- bzw. INetvorlage befindet,
 // bekommt diese das DontExpand-Flag verpasst
 
-//STRIP001 BOOL SwTxtNode::DontExpandFmt( const SwIndex& rIdx, BOOL bFlag,
-//STRIP001                              BOOL bFmtToTxtAttributes )
-//STRIP001 {
-//STRIP001  const xub_StrLen nIdx = rIdx.GetIndex();
-//STRIP001  if( bFmtToTxtAttributes && nIdx == aText.Len() )
-//STRIP001      FmtToTxtAttr( this );
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if( pSwpHints )
-//STRIP001  {
-//STRIP001      const USHORT nEndCnt = pSwpHints->GetEndCount();
-//STRIP001      USHORT nPos = nEndCnt;
-//STRIP001      while( nPos )
-//STRIP001      {
-//STRIP001          SwTxtAttr *pTmp = pSwpHints->GetEnd( --nPos );
-//STRIP001          xub_StrLen *pEnd = pTmp->GetEnd();
-//STRIP001          if( !pEnd || *pEnd > nIdx )
-//STRIP001              continue;
-//STRIP001          if( nIdx != *pEnd )
-//STRIP001              nPos = 0;
-//STRIP001          else if( bFlag != pTmp->DontExpand() && !pTmp->IsLockExpandFlag()
-//STRIP001                   && *pEnd > *pTmp->GetStart())
-//STRIP001          {
-//STRIP001              bRet = TRUE;
-//STRIP001              pSwpHints->NoteInHistory( pTmp );
-//STRIP001              pTmp->SetDontExpand( bFlag );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 // gebe das vorgegebene Attribut, welches an der TextPosition (rIdx)
@@ -1184,21 +1051,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
  *                          CopyHint()
  *************************************************************************/
 
-//STRIP001 SwCharFmt* lcl_FindCharFmt( const SwCharFmts* pCharFmts, const XubString& rName )
-//STRIP001 {
-//STRIP001  if( rName.Len() )
-//STRIP001  {
-//STRIP001      SwCharFmt* pFmt;
-//STRIP001      USHORT nArrLen = pCharFmts->Count();
-//STRIP001      for( USHORT i = 1; i < nArrLen; i++ )
-//STRIP001      {
-//STRIP001          pFmt = (*pCharFmts)[ i ];
-//STRIP001          if( pFmt->GetName().CompareTo( rName ) == COMPARE_EQUAL )
-//STRIP001              return pFmt;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return NULL;
-//STRIP001 }
 
 /*N*/ void lcl_CopyHint( const USHORT nWhich, const SwTxtAttr *pHt,
 /*N*/                   SwTxtAttr *pNewHt, SwDoc* pOtherDoc, SwTxtNode *pDest )
@@ -1270,14 +1122,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/               if( 0!=( pDoc = ((SwTxtINetFmt*)pHt)->GetTxtNode().GetDoc() ) )
 /*?*/               {
                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     const SwCharFmts* pCharFmts = pDoc->GetCharFmts();
-//STRIP001 /*?*/                    const SwFmtINetFmt& rFmt = pHt->GetINetFmt();
-//STRIP001 /*?*/                    SwCharFmt* pFmt;
-//STRIP001 /*?*/                    pFmt = lcl_FindCharFmt( pCharFmts, rFmt.GetINetFmt() );
-//STRIP001 /*?*/                    if( pFmt )
-//STRIP001 /*?*/                        pOtherDoc->CopyCharFmt( *pFmt );
-//STRIP001 /*?*/                    pFmt = lcl_FindCharFmt( pCharFmts, rFmt.GetVisitedFmt() );
-//STRIP001 /*?*/                    if( pFmt )
-//STRIP001 /*?*/                        pOtherDoc->CopyCharFmt( *pFmt );
 /*?*/               }
 /*?*/           }
 /*?*/           //JP 24.04.98: Bug 49753 - ein TextNode muss am Attribut
@@ -2190,49 +2034,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 #*  Update      :   VB 24.07.91
 #***********************************************************************/
 
-//STRIP001 void SwTxtNode::GCAttr()
-//STRIP001 {
-//STRIP001  if ( !pSwpHints )
-//STRIP001      return;
-//STRIP001
-//STRIP001  const SwTxtAttr *pHt = 0;
-//STRIP001  const xub_StrLen *pEndIdx = 0;
-//STRIP001  BOOL   bChanged = FALSE;
-//STRIP001  USHORT nMin = aText.Len(),
-//STRIP001         nMax = 0;
-//STRIP001  BOOL bAll = nMin != 0; // Bei leeren Absaetzen werden nur die
-//STRIP001                         // INet-Formate entfernt.
-//STRIP001
-//STRIP001  for ( USHORT i = 0; pSwpHints && i < pSwpHints->Count(); ++i )
-//STRIP001  {
-//STRIP001      pHt = (*pSwpHints)[i];
-//STRIP001
-//STRIP001      // wenn Ende und Start gleich sind --> loeschen
-//STRIP001      pEndIdx = pHt->GetEnd();
-//STRIP001      if( pEndIdx && (*pEndIdx == *pHt->GetStart())
-//STRIP001          && ( bAll || pHt->Which() == RES_TXTATR_INETFMT ) )
-//STRIP001      {
-//STRIP001          bChanged = TRUE;
-//STRIP001          nMin = Min( nMin, *pHt->GetStart() );
-//STRIP001          nMax = Max( nMax, *pHt->GetEnd() );
-//STRIP001          DestroyAttr( pSwpHints->Cut(i) );
-//STRIP001          --i;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          ((SwTxtAttr*)pHt)->SetDontExpand( FALSE );
-//STRIP001  }
-//STRIP001  if ( pSwpHints && pSwpHints->CanBeDeleted() )
-//STRIP001      DELETEZ( pSwpHints );
-//STRIP001
-//STRIP001  if(bChanged)
-//STRIP001  {
-//STRIP001      //TxtFrm's reagieren auf aHint, andere auf aNew
-//STRIP001      SwUpdateAttr aHint( nMin, nMax, 0 );
-//STRIP001      SwModify::Modify( 0, &aHint );
-//STRIP001      SwFmtChg aNew( GetTxtColl() );
-//STRIP001      SwModify::Modify( 0, &aNew );
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ const SwNodeNum* SwTxtNode::UpdateNum( const SwNodeNum& rNum )
 /*N*/ {
@@ -2535,8 +2336,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                       break;
 /*N*/                   case RES_TXTATR_HARDBLANK:
                             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       rTxt.SetChar( nPos, ((SwTxtHardBlank*)pAttr)->GetChar() );
-//STRIP001 /*?*/                        ++nPos;
-//STRIP001 /*?*/                        ++nEndPos;
 /*?*/                       break;
 /*N*/                   case RES_TXTATR_FTN:
 /*N*/                       rTxt.Erase( nPos, 1 );
@@ -2585,193 +2384,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   return aTxt;
 /*N*/ }
 
-//STRIP001 BOOL SwTxtNode::GetExpandTxt( SwTxtNode& rDestNd, const SwIndex* pDestIdx,
-//STRIP001                         xub_StrLen nIdx, xub_StrLen nLen, BOOL bWithNum,
-//STRIP001                         BOOL bWithFtn, BOOL bReplaceTabsWithSpaces ) const
-//STRIP001 {
-//STRIP001  if( &rDestNd == this )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  SwIndex aDestIdx( &rDestNd, rDestNd.GetTxt().Len() );
-//STRIP001  if( pDestIdx )
-//STRIP001      aDestIdx = *pDestIdx;
-//STRIP001  xub_StrLen nDestStt = aDestIdx.GetIndex();
-//STRIP001
-//STRIP001  // Text einfuegen
-//STRIP001     String sTmpText = GetTxt().Copy(nIdx, nLen);
-//STRIP001     if(bReplaceTabsWithSpaces)
-//STRIP001         sTmpText.SearchAndReplaceAll('\t', ' ');
-//STRIP001     rDestNd.Insert( sTmpText, aDestIdx );
-//STRIP001  nLen = aDestIdx.GetIndex() - nDestStt;
-//STRIP001
-//STRIP001  // alle FontAttribute mit CHARSET Symbol in dem Bereich setzen
-//STRIP001  if( pSwpHints )
-//STRIP001  {
-//STRIP001      xub_StrLen nInsPos = nDestStt - nIdx;
-//STRIP001      for( USHORT i = 0; i < pSwpHints->Count(); i++ )
-//STRIP001      {
-//STRIP001          const SwTxtAttr* pHt = (*pSwpHints)[i];
-//STRIP001          xub_StrLen nAttrStartIdx;
-//STRIP001          USHORT nWhich = pHt->Which();
-//STRIP001          if( nIdx + nLen <= ( nAttrStartIdx = *pHt->GetStart() ) )
-//STRIP001              break;      // ueber das Textende
-//STRIP001
-//STRIP001          const SvxFontItem* pFont;
-//STRIP001          const xub_StrLen *pEndIdx = pHt->GetEnd();
-//STRIP001          if( pEndIdx && *pEndIdx > nIdx && (
-//STRIP001              ( RES_CHRATR_FONT == nWhich &&
-//STRIP001                RTL_TEXTENCODING_SYMBOL == (pFont = &pHt->GetFont())->GetCharSet() ) ||
-//STRIP001              ( RES_TXTATR_CHARFMT == nWhich &&
-//STRIP001                RTL_TEXTENCODING_SYMBOL == (pFont = &pHt->GetCharFmt().
-//STRIP001                  GetCharFmt()->GetFont())->GetCharSet() )))
-//STRIP001          {
-//STRIP001              // Attribut liegt im Bereich, also kopieren
-//STRIP001              rDestNd.Insert( *pFont, nInsPos + nAttrStartIdx,
-//STRIP001                                      nInsPos + *pEndIdx );
-//STRIP001          }
-//STRIP001          else if( !pEndIdx && nAttrStartIdx >= nIdx )
-//STRIP001          {
-//STRIP001              aDestIdx = nInsPos + nAttrStartIdx;
-//STRIP001              switch( nWhich )
-//STRIP001              {
-//STRIP001              case RES_TXTATR_FIELD:
-//STRIP001                  {
-//STRIP001                      const XubString aExpand( ((SwTxtFld*)pHt)->GetFld().GetFld()->Expand() );
-//STRIP001                      if( aExpand.Len() )
-//STRIP001                      {
-//STRIP001                          aDestIdx++;     // dahinter einfuegen;
-//STRIP001                          rDestNd.Insert( aExpand, aDestIdx );
-//STRIP001                          aDestIdx = nInsPos + nAttrStartIdx;
-//STRIP001                          nInsPos += aExpand.Len();
-//STRIP001                      }
-//STRIP001                      rDestNd.Erase( aDestIdx, 1 );
-//STRIP001                      --nInsPos;
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case RES_TXTATR_HARDBLANK:
-//STRIP001                  rDestNd.aText.SetChar( nInsPos + nAttrStartIdx,
-//STRIP001                              ((SwTxtHardBlank*)pHt)->GetChar() );
-//STRIP001                  break;
-//STRIP001
-//STRIP001              case RES_TXTATR_FTN:
-//STRIP001                  {
-//STRIP001                         if ( bWithFtn )
-//STRIP001                         {
-//STRIP001                             const SwFmtFtn& rFtn = pHt->GetFtn();
-//STRIP001                             XubString sExpand;
-//STRIP001                             if( rFtn.GetNumStr().Len() )
-//STRIP001                                 sExpand = rFtn.GetNumStr();
-//STRIP001                             else if( rFtn.IsEndNote() )
-//STRIP001                                 sExpand = GetDoc()->GetEndNoteInfo().aFmt.
-//STRIP001                                                 GetNumStr( rFtn.GetNumber() );
-//STRIP001                             else
-//STRIP001                                 sExpand = GetDoc()->GetFtnInfo().aFmt.
-//STRIP001                                                 GetNumStr( rFtn.GetNumber() );
-//STRIP001                             if( sExpand.Len() )
-//STRIP001                             {
-//STRIP001                                 aDestIdx++;     // dahinter einfuegen;
-//STRIP001                                 rDestNd.Insert( SvxEscapementItem(
-//STRIP001                                         SVX_ESCAPEMENT_SUPERSCRIPT ),
-//STRIP001                                         aDestIdx.GetIndex(),
-//STRIP001                                         aDestIdx.GetIndex() );
-//STRIP001                                 rDestNd.Insert( sExpand, aDestIdx, INS_EMPTYEXPAND );
-//STRIP001                                 aDestIdx = nInsPos + nAttrStartIdx;
-//STRIP001                                 nInsPos += sExpand.Len();
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                      rDestNd.Erase( aDestIdx, 1 );
-//STRIP001                      --nInsPos;
-//STRIP001                  }
-//STRIP001                  break;
-//STRIP001
-//STRIP001              default:
-//STRIP001                  rDestNd.Erase( aDestIdx, 1 );
-//STRIP001                  --nInsPos;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  if( bWithNum )
-//STRIP001  {
-//STRIP001      aDestIdx = nDestStt;
-//STRIP001      rDestNd.Insert( GetNumString(), aDestIdx );
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
-//STRIP001 XubString SwTxtNode::GetRedlineTxt( xub_StrLen nIdx, xub_StrLen nLen,
-//STRIP001                              BOOL bExpandFlds, BOOL bWithNum ) const
-//STRIP001 {
-//STRIP001  SvUShorts aRedlArr;
-//STRIP001  const SwDoc* pDoc = GetDoc();
-//STRIP001  USHORT nRedlPos = pDoc->GetRedlinePos( *this, REDLINE_DELETE );
-//STRIP001  if( USHRT_MAX != nRedlPos )
-//STRIP001  {
-//STRIP001      // es existiert fuer den Node irgendein Redline-Delete-Object
-//STRIP001      const ULONG nNdIdx = GetIndex();
-//STRIP001      for( ; nRedlPos < pDoc->GetRedlineTbl().Count() ; ++nRedlPos )
-//STRIP001      {
-//STRIP001          const SwRedline* pTmp = pDoc->GetRedlineTbl()[ nRedlPos ];
-//STRIP001          if( REDLINE_DELETE == pTmp->GetType() )
-//STRIP001          {
-//STRIP001              const SwPosition *pRStt = pTmp->Start(), *pREnd = pTmp->End();
-//STRIP001              if( pRStt->nNode < nNdIdx )
-//STRIP001              {
-//STRIP001                  if( pREnd->nNode > nNdIdx )
-//STRIP001                      // Absatz ist komplett geloescht
-//STRIP001                      return aEmptyStr;
-//STRIP001                  else if( pREnd->nNode == nNdIdx )
-//STRIP001                  {
-//STRIP001                      // von 0 bis nContent ist alles geloescht
-//STRIP001                      aRedlArr.Insert( xub_StrLen(0), aRedlArr.Count() );
-//STRIP001                      aRedlArr.Insert( pREnd->nContent.GetIndex(), aRedlArr.Count() );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else if( pRStt->nNode == nNdIdx )
-//STRIP001              {
-//STRIP001                  aRedlArr.Insert( pRStt->nContent.GetIndex(), aRedlArr.Count() );
-//STRIP001                  if( pREnd->nNode == nNdIdx )
-//STRIP001                      aRedlArr.Insert( pREnd->nContent.GetIndex(), aRedlArr.Count() );
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      aRedlArr.Insert( GetTxt().Len(), aRedlArr.Count() );
-//STRIP001                      break;      // mehr kann nicht kommen
-//STRIP001                  }
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  break;      // mehr kann nicht kommen
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  XubString aTxt( GetTxt().Copy( nIdx, nLen ) );
-//STRIP001
-//STRIP001  xub_StrLen nTxtStt = nIdx, nIdxEnd = nIdx + aTxt.Len();
-//STRIP001  for( USHORT n = 0; n < aRedlArr.Count(); n += 2 )
-//STRIP001  {
-//STRIP001      xub_StrLen nStt = aRedlArr[ n ], nEnd = aRedlArr[ n+1 ];
-//STRIP001      if( ( nIdx <= nStt && nStt <= nIdxEnd ) ||
-//STRIP001          ( nIdx <= nEnd && nEnd <= nIdxEnd ))
-//STRIP001      {
-//STRIP001          if( nStt < nIdx ) nStt = nIdx;
-//STRIP001          if( nIdxEnd < nEnd ) nEnd = nIdxEnd;
-//STRIP001          xub_StrLen nDelCnt = nEnd - nStt;
-//STRIP001          aTxt.Erase( nStt - nTxtStt, nDelCnt );
-//STRIP001          Replace0xFF( aTxt, nTxtStt, nStt - nTxtStt, bExpandFlds );
-//STRIP001          nTxtStt += nDelCnt;
-//STRIP001      }
-//STRIP001      else if( nStt >= nIdxEnd )
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  Replace0xFF( aTxt, nTxtStt, aTxt.Len(), bExpandFlds );
-//STRIP001
-//STRIP001  if( bWithNum )
-//STRIP001      aTxt.Insert( GetNumString(), 0 );
-//STRIP001  return aTxt;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtNode::GetExpandTxt
@@ -2801,58 +2415,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ }
 
 
-//STRIP001 void SwTxtNode::Replace( const SwIndex& rStart, xub_StrLen nLen,
-//STRIP001                          const XubString& rText )
-//STRIP001 {
-//STRIP001  ASSERT( rStart.GetIndex() < aText.Len() &&
-//STRIP001          rStart.GetIndex() + nLen <= aText.Len(),
-//STRIP001          "ausserhalb des Strings" );
-//STRIP001  SwTxtAttr* pHt;
-//STRIP001  xub_StrLen nStart = rStart.GetIndex();
-//STRIP001  xub_StrLen nEnde = nStart + nLen;
-//STRIP001  xub_StrLen nDelLen = nLen;
-//STRIP001  for( xub_StrLen nPos = nStart; nPos < nEnde; ++nPos )
-//STRIP001      if( ( CH_TXTATR_BREAKWORD == aText.GetChar( nPos ) ||
-//STRIP001            CH_TXTATR_INWORD == aText.GetChar( nPos )) &&
-//STRIP001          0 != ( pHt = GetTxtAttr( nPos ) ))
-//STRIP001      {
-//STRIP001          Delete( pHt );
-//STRIP001          --nEnde;
-//STRIP001          --nLen;
-//STRIP001      }
-//STRIP001
-//STRIP001  BOOL bOldExpFlg = IsIgnoreDontExpand();
-//STRIP001  SetIgnoreDontExpand( TRUE );
-//STRIP001
-//STRIP001  if( nLen && rText.Len() )
-//STRIP001  {
-//STRIP001      // dann das 1. Zeichen ersetzen den Rest loschen und einfuegen
-//STRIP001      // Dadurch wird die Attributierung des 1. Zeichen expandiert!
-//STRIP001      aText.SetChar( nStart, rText.GetChar( 0 ) );
-//STRIP001
-//STRIP001      ((SwIndex&)rStart)++;
-//STRIP001      aText.Erase( rStart.GetIndex(), nLen - 1 );
-//STRIP001      Update( rStart, nLen - 1, TRUE );
-//STRIP001
-//STRIP001      XubString aTmpTxt( rText ); aTmpTxt.Erase( 0, 1 );
-//STRIP001      aText.Insert( aTmpTxt, rStart.GetIndex() );
-//STRIP001      Update( rStart, aTmpTxt.Len(), FALSE );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      aText.Erase( nStart, nLen );
-//STRIP001      Update( rStart, nLen, TRUE );
-//STRIP001
-//STRIP001      aText.Insert( rText, nStart );
-//STRIP001      Update( rStart, rText.Len(), FALSE );
-//STRIP001  }
-//STRIP001  SetIgnoreDontExpand( bOldExpFlg );
-//STRIP001  SwDelTxt aDelHint( nStart, nDelLen );
-//STRIP001  SwModify::Modify( 0, &aDelHint );
-//STRIP001
-//STRIP001  SwInsTxt aHint( nStart, rText.Len() );
-//STRIP001  SwModify::Modify( 0, &aHint );
-//STRIP001 }
 
 /*N*/ void SwTxtNode::Modify( SfxPoolItem* pOldValue, SfxPoolItem* pNewValue )
 /*N*/ {
