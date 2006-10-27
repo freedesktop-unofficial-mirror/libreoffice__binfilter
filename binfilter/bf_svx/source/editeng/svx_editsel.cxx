@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editsel.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:23:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:43:48 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,19 +33,11 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
-// auto strip #include <editsel.hxx>
 
-// auto strip #ifndef _SV_OUTDEV_HXX
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VCL_POINTR_HXX
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 
 #ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
@@ -65,8 +57,6 @@ namespace binfilter {
 
 /*N*/ void __EXPORT EditSelFunctionSet::CreateAnchor()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( pCurView )
-//STRIP001      pCurView->pImpEditView->CreateAnchor();
 /*N*/ }
 
 /*N*/ void __EXPORT EditSelFunctionSet::DestroyAnchor()
@@ -76,17 +66,11 @@ namespace binfilter {
 
 /*N*/ BOOL __EXPORT EditSelFunctionSet::SetCursorAtPoint( const Point& rPointPixel, BOOL )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( pCurView )
-//STRIP001      return pCurView->pImpEditView->SetCursorAtPoint( rPointPixel );
-//STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ BOOL __EXPORT EditSelFunctionSet::IsSelectionAtPoint( const Point& rPointPixel )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( pCurView )
-//STRIP001      return pCurView->pImpEditView->IsSelectionAtPoint( rPointPixel );
-//STRIP001
 /*N*/     return FALSE;
 /*N*/ }
 
@@ -105,8 +89,6 @@ namespace binfilter {
 
 /*N*/ void __EXPORT EditSelFunctionSet::DeselectAll()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( pCurView )
-//STRIP001      pCurView->pImpEditView->DeselectAll();
 /*N*/ }
 
 //  ----------------------------------------------------------------------
@@ -131,13 +113,5 @@ namespace binfilter {
 /*N*/       SetWindow( (Window*)0 );
 /*N*/ }
 
-//STRIP001 EditView* EditSelectionEngine::GetCurView()
-//STRIP001 {
-//STRIP001  EditView* pView = 0;
-//STRIP001  if ( GetFunctionSet() )
-//STRIP001      pView = ((EditSelFunctionSet*)GetFunctionSet())->GetCurView();
-//STRIP001
-//STRIP001  return pView;
-//STRIP001 }
 
 }
