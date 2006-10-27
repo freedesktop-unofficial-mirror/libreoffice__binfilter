@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_impedit3.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:55:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:45:58 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,18 +33,10 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
-// auto strip #ifndef _SV_GDIMTF_HXX
-// auto strip #include <vcl/gdimtf.hxx>
-// auto strip #endif
 
 #define _SVSTDARR_USHORTS
-// auto strip #include <svtools/svstdarr.hxx>
 
-// auto strip #ifndef _WRKWIN_HXX //autogen
-// auto strip #include <vcl/wrkwin.hxx>
-// auto strip #endif
 #pragma hdrstop
 
 #ifndef _EEITEMID_HXX
@@ -55,13 +47,7 @@
 #include <tstpitem.hxx>
 #include <lspcitem.hxx>
 
-// auto strip #ifndef _PSTM_HXX //autogen
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX //autogen
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
@@ -77,13 +63,7 @@
 
 #include <flditem.hxx>
 
-// auto strip #ifndef _SV_OUTDEV_HXX
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _VCL_POINTR_HXX
-// auto strip #include <vcl/pointr.hxx>
-// auto strip #endif
 
 #ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
@@ -93,8 +73,6 @@
 #include <editeng.hxx>
 #include <editview.hxx>
 #include <txtrange.hxx>
-// auto strip #include <cscoitem.hxx>
-// auto strip #include <colritem.hxx>
 #include <udlnitem.hxx>
 #include <fhgtitem.hxx>
 #include <kernitem.hxx>
@@ -111,7 +89,6 @@
 
 #include <forbiddencharacterstable.hxx>
 
-// auto strip #include <unotools/localedatawrapper.hxx>
 
 #include <unolingu.hxx>
 
@@ -121,9 +98,6 @@
 #include <vcl/svapp.hxx>
 #endif
 
-// auto strip #ifndef _SFX_SFXUNO_HXX
-// auto strip #include <bf_sfx2/sfxuno.hxx>
-// auto strip #endif
 
 #ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
@@ -133,11 +107,7 @@
 #include <com/sun/star/i18n/ScriptType.hpp>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_TEXT_CHARACTERCOMPRESSIONTYPE_HPP_
-// auto strip #include <com/sun/star/text/CharacterCompressionType.hpp>
-// auto strip #endif
 
-// auto strip #include <comphelper/processfactory.hxx>
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -174,155 +144,11 @@ struct TabInfo
     TabInfo() { bValid = FALSE; }
 };
 
-//STRIP001 Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin )
-//STRIP001 {
-//STRIP001  double nRealOrientation = nOrientation*F_PI1800;
-//STRIP001  double nCos = cos( nRealOrientation );
-//STRIP001  double nSin = sin( nRealOrientation );
-//STRIP001
-//STRIP001  Point aRotatedPos;
-//STRIP001  Point aTranslatedPos( rPoint );
-//STRIP001
-//STRIP001  // Translation
-//STRIP001  aTranslatedPos -= rOrigin;
-//STRIP001
-//STRIP001  // Rotation...
-//STRIP001  aRotatedPos.X() = (long)   ( nCos*aTranslatedPos.X() + nSin*aTranslatedPos.Y() );
-//STRIP001  aRotatedPos.Y() = (long) - ( nSin*aTranslatedPos.X() - nCos*aTranslatedPos.Y() );
-//STRIP001  aTranslatedPos = aRotatedPos;
-//STRIP001
-//STRIP001  // Translation...
-//STRIP001  aTranslatedPos += rOrigin;
-//STRIP001  return aTranslatedPos;
-//STRIP001 }
 
-//STRIP001 BYTE GetCharTypeForCompression( xub_Unicode cChar )
-//STRIP001 {
-//STRIP001     switch ( cChar )
-//STRIP001     {
-//STRIP001         case 0x3008: case 0x300A: case 0x300C: case 0x300E:
-//STRIP001         case 0x3010: case 0x3014: case 0x3016: case 0x3018:
-//STRIP001         case 0x301A: case 0x301D:
-//STRIP001         {
-//STRIP001             return CHAR_PUNCTUATIONRIGHT;
-//STRIP001         }
-//STRIP001         case 0x3001: case 0x3002: case 0x3009: case 0x300B:
-//STRIP001         case 0x300D: case 0x300F: case 0x3011: case 0x3015:
-//STRIP001         case 0x3017: case 0x3019: case 0x301B: case 0x301E:
-//STRIP001         case 0x301F:
-//STRIP001         {
-//STRIP001             return CHAR_PUNCTUATIONLEFT;
-//STRIP001         }
-//STRIP001         default:
-//STRIP001         {
-//STRIP001             return ( ( 0x3040 <= cChar ) && ( 0x3100 > cChar ) ) ? CHAR_KANA : CHAR_NORMAL;
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 
-//STRIP001 void lcl_DrawRedLines( OutputDevice* pOutDev, long nFontHeight, const Point& rPnt, sal_uInt16 nIndex, sal_uInt16 nMaxEnd, const long* pDXArray, WrongList* pWrongs, short nOrientation, const Point& rOrigin, BOOL bVertical )
-//STRIP001 {
-//STRIP001 #ifndef SVX_LIGHT
-//STRIP001  // Aber nur, wenn Font nicht zu klein...
-//STRIP001  long nHght = pOutDev->LogicToPixel( Size( 0, nFontHeight ) ).Height();
-//STRIP001  if( WRONG_SHOW_MIN < nHght )
-//STRIP001  {
-//STRIP001      sal_uInt16 nStyle;
-//STRIP001      if( WRONG_SHOW_MEDIUM < nHght )
-//STRIP001          nStyle = WAVE_NORMAL;
-//STRIP001      else if( WRONG_SHOW_SMALL < nHght )
-//STRIP001          nStyle = WAVE_SMALL;
-//STRIP001      else
-//STRIP001          nStyle = WAVE_FLAT;
-//STRIP001
-//STRIP001      sal_uInt16 nEnd, nStart = nIndex;
-//STRIP001      sal_Bool bWrong = pWrongs->NextWrong( nStart, nEnd );
-//STRIP001      while ( bWrong )
-//STRIP001      {
-//STRIP001          if ( nStart >= nMaxEnd )
-//STRIP001              break;
-//STRIP001
-//STRIP001          if ( nStart < nIndex )  // Wurde korrigiert
-//STRIP001              nStart = nIndex;
-//STRIP001          if ( nEnd > nMaxEnd )
-//STRIP001              nEnd = nMaxEnd;
-//STRIP001          Point aPnt1( rPnt );
-//STRIP001          if ( bVertical && ( nStyle != WAVE_FLAT ) )
-//STRIP001          {
-//STRIP001              // VCL doesn't know that the text is vertical, and is manipulating
-//STRIP001              // the positions a little bit in y direction...
-//STRIP001              long nOnePixel = pOutDev->PixelToLogic( Size( 0, 1 ) ).Height();
-//STRIP001              long nCorrect = ( nStyle == WAVE_NORMAL ) ? 2*nOnePixel : nOnePixel;
-//STRIP001              aPnt1.Y() -= nCorrect;
-//STRIP001              aPnt1.X() -= nCorrect;
-//STRIP001          }
-//STRIP001          if ( nStart > nIndex )
-//STRIP001          {
-//STRIP001              if ( !bVertical )
-//STRIP001                  aPnt1.X() += pDXArray[ nStart - nIndex - 1 ];
-//STRIP001              else
-//STRIP001                  aPnt1.Y() += pDXArray[ nStart - nIndex - 1 ];
-//STRIP001          }
-//STRIP001          Point aPnt2( rPnt );
-//STRIP001          DBG_ASSERT( nEnd > nIndex, "RedLine: aPnt2?" );
-//STRIP001          if ( !bVertical )
-//STRIP001              aPnt2.X() += pDXArray[ nEnd - nIndex - 1 ];
-//STRIP001          else
-//STRIP001              aPnt2.Y() += pDXArray[ nEnd - nIndex - 1 ];
-//STRIP001          if ( nOrientation )
-//STRIP001          {
-//STRIP001              aPnt1 = Rotate( aPnt1, nOrientation, rOrigin );
-//STRIP001              aPnt2 = Rotate( aPnt2, nOrientation, rOrigin );
-//STRIP001          }
-//STRIP001
-//STRIP001          pOutDev->DrawWaveLine( aPnt1, aPnt2, nStyle );
-//STRIP001
-//STRIP001          nStart = nEnd+1;
-//STRIP001          if ( nEnd < nMaxEnd )
-//STRIP001              bWrong = pWrongs->NextWrong( nStart, nEnd );
-//STRIP001          else
-//STRIP001              bWrong = sal_False;
-//STRIP001      }
-//STRIP001  }
-//STRIP001 #endif // !SVX_LIGHT
-//STRIP001 }
 
-//STRIP001 Point lcl_ImplCalcRotatedPos( Point rPos, Point rOrigin, double nSin, double nCos )
-//STRIP001 {
-//STRIP001  Point aRotatedPos;
-//STRIP001  // Translation...
-//STRIP001  Point aTranslatedPos( rPos);
-//STRIP001  aTranslatedPos -= rOrigin;
-//STRIP001
-//STRIP001  aRotatedPos.X() = (long)   ( nCos*aTranslatedPos.X() + nSin*aTranslatedPos.Y() );
-//STRIP001  aRotatedPos.Y() = (long) - ( nSin*aTranslatedPos.X() - nCos*aTranslatedPos.Y() );
-//STRIP001  aTranslatedPos = aRotatedPos;
-//STRIP001  // Translation...
-//STRIP001  aTranslatedPos += rOrigin;
-//STRIP001
-//STRIP001  return aTranslatedPos;
-//STRIP001 }
 
-//STRIP001 sal_Bool lcl_IsLigature( xub_Unicode cCh, xub_Unicode cNextCh ) // For Kashidas from sw/source/core/text/porlay.txt
-//STRIP001 {
-//STRIP001             // Lam + Alef
-//STRIP001     return ( 0x644 == cCh && 0x627 == cNextCh ) ||
-//STRIP001             // Beh + Reh
-//STRIP001            ( 0x628 == cCh && 0x631 == cNextCh );
-//STRIP001 }
 
-//STRIP001 sal_Bool lcl_ConnectToPrev( xub_Unicode cCh, xub_Unicode cPrevCh )  // For Kashidas from sw/source/core/text/porlay.txt
-//STRIP001 {
-//STRIP001     // Alef, Dal, Thal, Reh, Zain, and Waw do not connect to the left
-//STRIP001     sal_Bool bRet = 0x627 != cPrevCh && 0x62F != cPrevCh && 0x630 != cPrevCh &&
-//STRIP001                     0x631 != cPrevCh && 0x632 != cPrevCh && 0x648 != cPrevCh;
-//STRIP001
-//STRIP001     // check for ligatures cPrevChar + cChar
-//STRIP001     if ( bRet )
-//STRIP001         bRet = ! lcl_IsLigature( cPrevCh, cCh );
-//STRIP001
-//STRIP001     return bRet;
-//STRIP001 }
 
 
 // ----------------------------------------------------------------------
@@ -369,18 +195,11 @@ struct TabInfo
 
 /*N*/ IMPL_LINK( ImpEditEngine, OnlineSpellHdl, Timer *, EMPTYARG )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  if ( !Application::AnyInput( INPUT_KEYBOARD ) && GetUpdateMode() && IsFormatted() )
-//STRIP001      DoOnlineSpelling();
-//STRIP001  else
-//STRIP001      aOnlineSpellTimer.Start();
-//STRIP001
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK_INLINE_START( ImpEditEngine, IdleFormatHdl, Timer *, EMPTYARG )
 /*N*/ {
-//STRIP001 /*?*/    aIdleFormatter.ResetRestarts();
-//STRIP001 /*?*/    FormatAndUpdate( aIdleFormatter.GetView() );
 /*N*/   return 0;
 /*N*/ }
 /*N*/ IMPL_LINK_INLINE_END( ImpEditEngine, IdleFormatHdl, Timer *, EMPTYARG )
@@ -514,12 +333,6 @@ struct TabInfo
 /*N*/               if ( pImpView->DoAutoHeight() )
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz( pImpView->GetOutputArea().GetWidth(), nCurTextHeight );
-//STRIP001 /*?*/                    if ( aSz.Height() > aMaxAutoPaperSize.Height() )
-//STRIP001 /*?*/                        aSz.Height() = aMaxAutoPaperSize.Height();
-//STRIP001 /*?*/                    else if ( aSz.Height() < aMinAutoPaperSize.Height() )
-//STRIP001 /*?*/                        aSz.Height() = aMinAutoPaperSize.Height();
-//STRIP001 /*?*/                    pImpView->ResetOutputArea( Rectangle(
-//STRIP001 /*?*/                        pImpView->GetOutputArea().TopLeft(), aSz ) );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -614,7 +427,6 @@ struct TabInfo
 /*N*/       for ( sal_uInt16 nView = 0; nView < aEditViews.Count(); nView++ )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = aEditViews[nView];
-//STRIP001 /*?*/            pView->pImpEditView->RecalcOutputArea();
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -850,70 +662,6 @@ struct TabInfo
 /*N*/       if ( GetTextRanger() )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetTextRanger()->SetVertical( IsVertical() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/            long nTextY = nStartPosY + GetEditCursor( pParaPortion, pLine->GetStart() ).Top();
-//STRIP001 /*?*/            if ( !bSameLineAgain )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SeekCursor( pNode, nTmpPos+1, aTmpFont );
-//STRIP001 /*?*/                aTmpFont.SetPhysFont( GetRefDevice() );
-//STRIP001 /*?*/                nTextLineHeight = aTmpFont.GetPhysTxtSize( GetRefDevice(), String() ).Height();
-//STRIP001 /*?*/                // Metriken koennen groesser sein
-//STRIP001 /*?*/                FormatterFontMetric aTempFormatterMetrics;
-//STRIP001 /*?*/                RecalcFormatterFontMetrics( aTempFormatterMetrics, aTmpFont );
-//STRIP001 /*?*/                sal_uInt16 nLineHeight = aTempFormatterMetrics.GetHeight();
-//STRIP001 /*?*/                if ( nLineHeight > nTextLineHeight )
-//STRIP001 /*?*/                    nTextLineHeight = nLineHeight;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else
-//STRIP001 /*?*/                nTextLineHeight = pLine->GetHeight();
-//STRIP001 /*?*/
-//STRIP001 /*?*/            nXWidth = 0;
-//STRIP001 /*?*/            while ( !nXWidth )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                long nYOff = nTextY + nTextExtraYOffset;
-//STRIP001 /*?*/                long nYDiff = nTextLineHeight;
-//STRIP001 /*?*/                if ( IsVertical() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    long nMaxPolygonX = GetTextRanger()->GetBoundRect().Right();
-//STRIP001 /*?*/                    nYOff = nMaxPolygonX-nYOff;
-//STRIP001 /*?*/                    nYDiff = -nTextLineHeight;
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                pTextRanges = GetTextRanger()->GetTextRanges( Range( nYOff, nYOff + nYDiff ) );
-//STRIP001 /*?*/                DBG_ASSERT( pTextRanges, "GetTextRanges?!" );
-//STRIP001 /*?*/                long nMaxRangeWidth = 0;
-//STRIP001 /*?*/                // Den breitesten Bereich verwenden...
-//STRIP001 /*?*/                // Der breiteste Bereich koennte etwas verwirren, also
-//STRIP001 /*?*/                // generell den ersten. Am besten mal richtig mit Luecken.
-//STRIP001 /*?*/ //             for ( sal_uInt16 n = 0; n < pTextRanges->Count(); )
-//STRIP001 /*?*/                if ( pTextRanges->Count() )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    sal_uInt16 n = 0;
-//STRIP001 /*?*/                    long nA = pTextRanges->GetObject( n++ );
-//STRIP001 /*?*/                    long nB = pTextRanges->GetObject( n++ );
-//STRIP001 /*?*/                    DBG_ASSERT( nA <= nB, "TextRange verdreht?" );
-//STRIP001 /*?*/                    long nW = nB - nA;
-//STRIP001 /*?*/                    if ( nW > nMaxRangeWidth )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        nMaxRangeWidth = nW;
-//STRIP001 /*?*/                        nTextXOffset = nA;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                nXWidth = nMaxRangeWidth;
-//STRIP001 /*?*/                if ( nXWidth )
-//STRIP001 /*?*/                    nMaxLineWidth = nXWidth - nStartX - GetXValue( rLRItem.GetRight() );
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    // Weiter unten im Polygon versuchen.
-//STRIP001 /*?*/                    // Unterhalb des Polygons die Paperbreite verwenden.
-//STRIP001 /*?*/                    nTextExtraYOffset += Max( (long)(nTextLineHeight / 10), (long)1 );
-//STRIP001 /*?*/                    if ( ( nTextY + nTextExtraYOffset  ) > GetTextRanger()->GetBoundRect().Bottom() )
-//STRIP001 /*?*/                    {
-//STRIP001 /*?*/                        nXWidth = !IsVertical() ? GetPaperSize().Width() : GetPaperSize().Height();
-//STRIP001 /*?*/                        if ( !nXWidth ) // AutoPaperSize
-//STRIP001 /*?*/                            nXWidth = 0x7FFFFFFF;
-//STRIP001 /*?*/                    }
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/            }
 /*N*/       }
 /*N*/
 /*N*/       // Portion suchen, die nicht mehr in Zeile passt....
@@ -1375,7 +1123,6 @@ struct TabInfo
 /*?*/             if ( nRemainingWidth > 0 )
 /*?*/             {
 /*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImplExpandCompressedPortions( pLine, pParaPortion, nRemainingWidth );
-//STRIP001 /*?*/                 aTextSize = pLine->CalcTextSize( *pParaPortion );
 /*?*/             }
 /*N*/         }
 /*N*/
@@ -2125,13 +1872,6 @@ struct TabInfo
 /*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
 /*N*/             {
 /*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // check if character is connectable to previous character,
-//STRIP001 /*?*/                 if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     nKashidaPos = aWordSel.Min().GetIndex() + nIdx - 1;
-//STRIP001 /*?*/                     break;
-//STRIP001 /*?*/                 }
 /*N*/             }
 /*N*/
 /*N*/             // 5. Priority:
@@ -2147,8 +1887,6 @@ struct TabInfo
 /*?*/                      0x649 == cNextCh )
 /*?*/                 {
 /*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // check if character is connectable to previous character,
-//STRIP001 /*?*/                     if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                         nKashidaPos = aWordSel.Min().GetIndex() + nIdx - 1;
 /*?*/                 }
 /*N*/             }
 /*N*/
@@ -2158,16 +1896,6 @@ struct TabInfo
 /*N*/                  0x60C <= cCh && 0x6FE >= cCh )
 /*N*/             {
 /*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
-//STRIP001 /*?*/
-//STRIP001 /*?*/                 // check if character is connectable to previous character,
-//STRIP001 /*?*/                 if ( lcl_ConnectToPrev( cCh, cPrevCh ) )
-//STRIP001 /*?*/                 {
-//STRIP001 /*?*/                     // only choose this position if we did not find
-//STRIP001 /*?*/                     // a better one:
-//STRIP001 /*?*/                     if ( STRING_LEN == nKashidaPos )
-//STRIP001 /*?*/                         nKashidaPos = aWordSel.Min().GetIndex() + nIdx - 1;
-//STRIP001 /*?*/                     break;
-//STRIP001 /*?*/                 }
 /*N*/             }
 /*N*/
 /*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,
@@ -2237,11 +1965,6 @@ struct TabInfo
 /*N*/         {
 /*?*/             // We need the original size from the portion
 /*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTxtPortionStart = pPortion->GetTextPortions().GetStartPos( nSplitPortion );
-//STRIP001 /*?*/                SvxFont aTmpFont( pPortion->GetNode()->GetCharAttribs().GetDefFont() );
-//STRIP001 /*?*/            SeekCursor( pPortion->GetNode(), nTxtPortionStart+1, aTmpFont );
-//STRIP001 /*?*/            aTmpFont.SetPhysFont( GetRefDevice() );
-//STRIP001 /*?*/            Size aSz = aTmpFont.QuickGetTextSize( GetRefDevice(), *pPortion->GetNode(), nTxtPortionStart, pTextPortion->GetLen(), NULL );
-//STRIP001 /*?*/             pTextPortion->GetExtraInfos()->nOrgWidth = aSz.Width();
 /*N*/         }
 /*N*/   }
 /*N*/   else
@@ -3016,21 +2739,6 @@ struct TabInfo
 /*N*/                                   if ( nOrientation )
 /*N*/                                   {
 /*?*/                                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Bei Hoch/Tief selbst Hand anlegen:
-//STRIP001 /*?*/                                        if ( aTmpFont.GetEscapement() )
-//STRIP001 /*?*/                                        {
-//STRIP001 /*?*/                                             long nDiff = aTmpFont.GetSize().Height() * aTmpFont.GetEscapement() / 100L;
-//STRIP001 /*?*/                                             if ( !IsVertical() )
-//STRIP001 /*?*/                                                aOutPos.Y() -= nDiff;
-//STRIP001 /*?*/                                             else
-//STRIP001 /*?*/                                                 aOutPos.X() += nDiff;
-//STRIP001 /*?*/                                             aRedLineTmpPos = aOutPos;
-//STRIP001 /*?*/                                            aTmpFont.SetEscapement( 0 );
-//STRIP001 /*?*/                                        }
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                         aOutPos = lcl_ImplCalcRotatedPos( aOutPos, aOrigin, nSin, nCos );
-//STRIP001 /*?*/                                        aTmpFont.SetOrientation( aTmpFont.GetOrientation()+nOrientation );
-//STRIP001 /*?*/                                        aTmpFont.SetPhysFont( pOutDev );
-//STRIP001 /*?*/
 /*N*/                                   }
 /*N*/                                   // nur ausgeben, was im sichtbaren Bereich beginnt:
 /*N*/                                   // Wichtig, weil Bug bei einigen Grafikkarten bei transparentem Font, Ausgabe bei neg.
@@ -3065,22 +2773,6 @@ struct TabInfo
 /*?*/                                           if ( bSpecialUnderline )
 /*?*/                                           {
 /*?*/                                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz = aTmpFont.GetPhysTxtSize( pOutDev, aText, nTextStart, nTextLen );
-//STRIP001 /*?*/                                                BYTE nProp = aTmpFont.GetPropr();
-//STRIP001 /*?*/                                                aTmpFont.SetEscapement( 0 );
-//STRIP001 /*?*/                                                aTmpFont.SetPropr( 100 );
-//STRIP001 /*?*/                                                aTmpFont.SetPhysFont( pOutDev );
-//STRIP001 /*?*/                                                String aBlanks;
-//STRIP001 /*?*/                                                aBlanks.Fill( nTextLen, ' ' );
-//STRIP001 /*?*/                                                Point aUnderlinePos( aOutPos );
-//STRIP001 /*?*/                                                if ( nOrientation )
-//STRIP001 /*?*/                                                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aUnderlinePos = lcl_ImplCalcRotatedPos( aTmpPos, aOrigin, nSin, nCos );
-//STRIP001 /*?*/                                                pOutDev->DrawStretchText( aUnderlinePos, aSz.Width(), aBlanks, 0, nTextLen );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                                                aTmpFont.SetUnderline( UNDERLINE_NONE );
-//STRIP001 /*?*/                                                if ( !nOrientation )
-//STRIP001 /*?*/                                                    aTmpFont.SetEscapement( nEsc );
-//STRIP001 /*?*/                                                aTmpFont.SetPropr( nProp );
-//STRIP001 /*?*/                                                aTmpFont.SetPhysFont( pOutDev );
 /*?*/                                           }
 /*N*/                                       }
 /*N*/                                         Point aRealOutPos( aOutPos );
@@ -3107,20 +2799,6 @@ struct TabInfo
 /*N*/                                   if ( GetStatus().DoOnlineSpelling() && GetStatus().DoDrawRedLines() && pPortion->GetNode()->GetWrongList()->HasWrongs() && pTextPortion->GetLen() )
 /*N*/                                   {
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 /*?*/                                         {//#105750# adjust LinePos for superscript or subscript text
-//STRIP001 /*?*/                                             short nEsc = aTmpFont.GetEscapement();
-//STRIP001 /*?*/                                             if( nEsc )
-//STRIP001 /*?*/                                             {
-//STRIP001 /*?*/                                                 long nShift = ((nEsc*long(aTmpFont.GetSize().Height()))/ 100L);
-//STRIP001 /*?*/                                                 if( !IsVertical() )
-//STRIP001 /*?*/                                                     aRedLineTmpPos.Y() -= nShift;
-//STRIP001 /*?*/                                                 else
-//STRIP001 /*?*/                                                     aRedLineTmpPos.X() += nShift;
-//STRIP001 /*?*/                                             }
-//STRIP001 /*?*/                                         }
-//STRIP001 /*?*/                                        Color aOldColor( pOutDev->GetLineColor() );
-//STRIP001 /*?*/                                         pOutDev->SetLineColor( Color( GetColorConfig().GetColorValue( svtools::SPELL ).nColor ) );
-//STRIP001 /*?*/                                        lcl_DrawRedLines( pOutDev, aTmpFont.GetSize().Height(), aRedLineTmpPos, nIndex, nIndex + pTextPortion->GetLen(), pDXArray, pPortion->GetNode()->GetWrongList(), nOrientation, aOrigin, IsVertical() );
-//STRIP001 /*?*/                                        pOutDev->SetLineColor( aOldColor );
 /*N*/                                   }
 /*N*/ #endif // !SVX_LIGHT
 /*N*/                               }
@@ -3414,36 +3092,8 @@ struct TabInfo
 /*N*/
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::InsertContent( ContentNode* pNode, sal_uInt16 nPos )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( pNode, "NULL-Poointer in InsertContent! " );
-//STRIP001  DBG_ASSERT( IsInUndo(), "InsertContent nur fuer Undo()!" );
-//STRIP001  ParaPortion* pNew = new ParaPortion( pNode );
-//STRIP001  GetParaPortions().Insert( pNew, nPos );
-//STRIP001  aEditDoc.Insert( pNode, nPos );
-//STRIP001  if ( IsCallParaInsertedOrDeleted() )
-//STRIP001      GetEditEnginePtr()->ParagraphInserted( nPos );
-//STRIP001 }
 
-//STRIP001 EditPaM ImpEditEngine::SplitContent( sal_uInt16 nNode, sal_uInt16 nSepPos )
-//STRIP001 {
-//STRIP001  ContentNode* pNode = aEditDoc.SaveGetObject( nNode );
-//STRIP001  DBG_ASSERT( pNode, "Ungueltiger Node in SplitContent" );
-//STRIP001  DBG_ASSERT( IsInUndo(), "SplitContent nur fuer Undo()!" );
-//STRIP001  DBG_ASSERT( nSepPos <= pNode->Len(), "Index im Wald: SplitContent" );
-//STRIP001  EditPaM aPaM( pNode, nSepPos );
-//STRIP001  return ImpInsertParaBreak( aPaM );
-//STRIP001 }
 
-//STRIP001 EditPaM ImpEditEngine::ConnectContents( sal_uInt16 nLeftNode, sal_Bool bBackward )
-//STRIP001 {
-//STRIP001  ContentNode* pLeftNode = aEditDoc.SaveGetObject( nLeftNode );
-//STRIP001  ContentNode* pRightNode = aEditDoc.SaveGetObject( nLeftNode+1 );
-//STRIP001  DBG_ASSERT( pLeftNode, "Ungueltiger linker Node in ConnectContents" );
-//STRIP001  DBG_ASSERT( pRightNode, "Ungueltiger rechter Node in ConnectContents" );
-//STRIP001  DBG_ASSERT( IsInUndo(), "ConnectContent nur fuer Undo()!" );
-//STRIP001  return ImpConnectParagraphs( pLeftNode, pRightNode, bBackward );
-//STRIP001 }
 
 /*N*/ void ImpEditEngine::SetUpdateMode( sal_Bool bUp, EditView* pCurView, sal_Bool bForceUpdate )
 /*N*/ {
@@ -3471,129 +3121,9 @@ struct TabInfo
 /*N*/       FormatAndUpdate( pCurView );
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::ShowParagraph( sal_uInt16 nParagraph, sal_Bool bShow )
-//STRIP001 {
-//STRIP001  ParaPortion* pPPortion = GetParaPortions().SaveGetObject( nParagraph );
-//STRIP001  DBG_ASSERT( pPPortion, "ShowParagraph: Absatz existiert nicht!" );
-//STRIP001  if ( pPPortion && ( pPPortion->IsVisible() != bShow ) )
-//STRIP001  {
-//STRIP001      pPPortion->SetVisible( bShow );
-//STRIP001
-//STRIP001      if ( !bShow )
-//STRIP001      {
-//STRIP001          // Als deleted kenzeichnen, damit keine Selektion auf diesem
-//STRIP001          // Absatz beginnt oder endet...
-//STRIP001          DeletedNodeInfo* pDelInfo = new DeletedNodeInfo( (sal_uInt32)pPPortion->GetNode(), nParagraph );
-//STRIP001          aDeletedNodes.Insert( pDelInfo, aDeletedNodes.Count() );
-//STRIP001          UpdateSelections();
-//STRIP001          // Dann kriege ich den unteren Bereich nicht invalidiert,
-//STRIP001          // wenn UpdateMode = sal_False!
-//STRIP001          // Wenn doch, dann vor SetVisible auf sal_False merken!
-//STRIP001 //           nCurTextHeight -= pPPortion->GetHeight();
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( bShow && ( pPPortion->IsInvalid() || !pPPortion->nHeight ) )
-//STRIP001      {
-//STRIP001          if ( !GetTextRanger() )
-//STRIP001          {
-//STRIP001              if ( pPPortion->IsInvalid() )
-//STRIP001              {
-//STRIP001                  Font aOldFont( GetRefDevice()->GetFont() );
-//STRIP001                  CreateLines( nParagraph, 0 );   // 0: Kein TextRanger
-//STRIP001                  if ( aStatus.DoRestoreFont() )
-//STRIP001                      GetRefDevice()->SetFont( aOldFont );
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  CalcHeight( pPPortion );
-//STRIP001              }
-//STRIP001              nCurTextHeight += pPPortion->GetHeight();
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              nCurTextHeight = 0x7fffffff;
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      pPPortion->SetMustRepaint( sal_True );
-//STRIP001      if ( GetUpdateMode() && !IsInUndo() && !GetTextRanger() )
-//STRIP001      {
-//STRIP001          aInvalidRec = Rectangle(    Point( 0, GetParaPortions().GetYOffset( pPPortion ) ),
-//STRIP001                                      Point( GetPaperSize().Width(), nCurTextHeight ) );
-//STRIP001          UpdateViews( GetActiveView() );
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 sal_Bool ImpEditEngine::IsParagraphVisible( sal_uInt16 nParagraph )
-//STRIP001 {
-//STRIP001  ParaPortion* pPPortion = GetParaPortions().SaveGetObject( nParagraph );
-//STRIP001  DBG_ASSERT( pPPortion, "IsParagraphVisible: Absatz existiert nicht!" );
-//STRIP001  if ( pPPortion )
-//STRIP001      return pPPortion->IsVisible();
-//STRIP001  return sal_False;
-//STRIP001 }
 
-//STRIP001 EditSelection ImpEditEngine::MoveParagraphs( Range aOldPositions, sal_uInt16 nNewPos, EditView* pCurView )
-//STRIP001 {
-//STRIP001  DBG_ASSERT( GetParaPortions().Count() != 0, "Keine Absaetze gefunden: MoveParagraphs" );
-//STRIP001  if ( GetParaPortions().Count() == 0 )
-//STRIP001      return EditSelection();
-//STRIP001  aOldPositions.Justify();
-//STRIP001
-//STRIP001  EditSelection aSel( ImpMoveParagraphs( aOldPositions, nNewPos ) );
-//STRIP001
-//STRIP001  if ( nNewPos >= GetParaPortions().Count() )
-//STRIP001      nNewPos = GetParaPortions().Count() - 1;
-//STRIP001
-//STRIP001  // Dort, wo der Absatz eingefuegt wurde, muss richtig gepainted werden:
-//STRIP001  // Dort, wo der Absatz entfernt wurde, muss richtig gepainted werden:
-//STRIP001  // ( Und dazwischen entsprechend auch...)
-//STRIP001  if ( pCurView && ( GetUpdateMode() == sal_True ) )
-//STRIP001  {
-//STRIP001      // in diesem Fall kann ich direkt neu malen, ohne die
-//STRIP001      // Portions zu Invalidieren.
-//STRIP001      sal_uInt16 nFirstPortion = Min( (sal_uInt16)aOldPositions.Min(), nNewPos );
-//STRIP001      sal_uInt16 nLastPortion = Max( (sal_uInt16)aOldPositions.Max(), nNewPos );
-//STRIP001
-//STRIP001      ParaPortion* pUpperPortion = GetParaPortions().SaveGetObject( nFirstPortion );
-//STRIP001      ParaPortion* pLowerPortion = GetParaPortions().SaveGetObject( nLastPortion );
-//STRIP001
-//STRIP001      aInvalidRec = Rectangle();  // leermachen
-//STRIP001      aInvalidRec.Left() = 0;
-//STRIP001      aInvalidRec.Right() = aPaperSize.Width();
-//STRIP001      aInvalidRec.Top() = GetParaPortions().GetYOffset( pUpperPortion );
-//STRIP001      aInvalidRec.Bottom() = GetParaPortions().GetYOffset( pLowerPortion ) + pLowerPortion->GetHeight();
-//STRIP001
-//STRIP001      UpdateViews( pCurView );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      // aber der oberen ungueltigen Position neu painten...
-//STRIP001      sal_uInt16 nFirstInvPara = Min( (sal_uInt16)aOldPositions.Min(), nNewPos );
-//STRIP001      InvalidateFromParagraph( nFirstInvPara );
-//STRIP001  }
-//STRIP001  return aSel;
-//STRIP001 }
 
-//STRIP001 void ImpEditEngine::InvalidateFromParagraph( sal_uInt16 nFirstInvPara )
-//STRIP001 {
-//STRIP001  // Es werden nicht die folgenden Absaetze invalidiert,
-//STRIP001  // da ResetHeight() => Groessenanderung => alles folgende wird
-//STRIP001  // sowieso neu ausgegeben.
-//STRIP001  ParaPortion* pTmpPortion;
-//STRIP001  if ( nFirstInvPara != 0 )
-//STRIP001  {
-//STRIP001      pTmpPortion = GetParaPortions().GetObject( nFirstInvPara-1 );
-//STRIP001      pTmpPortion->MarkInvalid( pTmpPortion->GetNode()->Len(), 0 );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pTmpPortion = GetParaPortions().GetObject( 0 );
-//STRIP001      pTmpPortion->MarkSelectionInvalid( 0, pTmpPortion->GetNode()->Len() );
-//STRIP001  }
-//STRIP001  pTmpPortion->ResetHeight();
-//STRIP001 }
 
 /*N*/ IMPL_LINK_INLINE_START( ImpEditEngine, StatusTimerHdl, Timer *, EMPTYARG )
 /*N*/ {
@@ -3615,47 +3145,9 @@ struct TabInfo
 /*N*/   }
 /*N*/ }
 
-//STRIP001 ContentNode* ImpEditEngine::GetPrevVisNode( ContentNode* pCurNode )
-//STRIP001 {
-//STRIP001  ParaPortion* pPortion = FindParaPortion( pCurNode );
-//STRIP001  DBG_ASSERT( pPortion, "GetPrevVisibleNode: Keine passende Portion!" );
-//STRIP001  pPortion = GetPrevVisPortion( pPortion );
-//STRIP001  if ( pPortion )
-//STRIP001      return pPortion->GetNode();
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 ContentNode* ImpEditEngine::GetNextVisNode( ContentNode* pCurNode )
-//STRIP001 {
-//STRIP001  ParaPortion* pPortion = FindParaPortion( pCurNode );
-//STRIP001  DBG_ASSERT( pPortion, "GetNextVisibleNode: Keine passende Portion!" );
-//STRIP001  pPortion = GetNextVisPortion( pPortion );
-//STRIP001  if ( pPortion )
-//STRIP001      return pPortion->GetNode();
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 ParaPortion* ImpEditEngine::GetPrevVisPortion( ParaPortion* pCurPortion )
-//STRIP001 {
-//STRIP001  sal_uInt16 nPara = GetParaPortions().GetPos( pCurPortion );
-//STRIP001  DBG_ASSERT( nPara < GetParaPortions().Count() , "Portion nicht gefunden: GetPrevVisPortion" );
-//STRIP001  ParaPortion* pPortion = nPara ? GetParaPortions()[--nPara] : 0;
-//STRIP001  while ( pPortion && !pPortion->IsVisible() )
-//STRIP001      pPortion = nPara ? GetParaPortions()[--nPara] : 0;
-//STRIP001
-//STRIP001  return pPortion;
-//STRIP001 }
 
-//STRIP001 ParaPortion* ImpEditEngine::GetNextVisPortion( ParaPortion* pCurPortion )
-//STRIP001 {
-//STRIP001  sal_uInt16 nPara = GetParaPortions().GetPos( pCurPortion );
-//STRIP001  DBG_ASSERT( nPara < GetParaPortions().Count() , "Portion nicht gefunden: GetPrevVisNode" );
-//STRIP001  ParaPortion* pPortion = GetParaPortions().SaveGetObject( ++nPara );
-//STRIP001  while ( pPortion && !pPortion->IsVisible() )
-//STRIP001      pPortion = GetParaPortions().SaveGetObject( ++nPara );
-//STRIP001
-//STRIP001  return pPortion;
-//STRIP001 }
 
 /*N*/ EditPaM ImpEditEngine::InsertParagraph( sal_uInt16 nPara )
 /*N*/ {
@@ -3702,23 +3194,6 @@ struct TabInfo
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ImpEditEngine::SetFlatMode( sal_Bool bFlat )
-//STRIP001 {
-//STRIP001  if ( bFlat != aStatus.UseCharAttribs() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  if ( !bFlat )
-//STRIP001      aStatus.TurnOnFlags( EE_CNTRL_USECHARATTRIBS );
-//STRIP001  else
-//STRIP001      aStatus.TurnOffFlags( EE_CNTRL_USECHARATTRIBS );
-//STRIP001
-//STRIP001  aEditDoc.CreateDefFont( !bFlat );
-//STRIP001
-//STRIP001  FormatFullDoc();
-//STRIP001  UpdateViews( (EditView*) 0);
-//STRIP001  if ( pActiveView )
-//STRIP001      pActiveView->ShowCursor();
-//STRIP001 }
 
 /*N*/ void ImpEditEngine::SetCharStretching( sal_uInt16 nX, sal_uInt16 nY )
 /*N*/ {
@@ -3967,185 +3442,6 @@ struct TabInfo
 /*N*/ }
 
 
-//STRIP001 BOOL ImpEditEngine::ImplCalcAsianCompression( ContentNode* pNode, TextPortion* pTextPortion, USHORT nStartPos, long* pDXArray, USHORT n100thPercentFromMax, BOOL bManipulateDXArray )
-//STRIP001 {
-//STRIP001     DBG_ASSERT( GetAsianCompressionMode(), "ImplCalcAsianCompression - Why?" );
-//STRIP001     DBG_ASSERT( pTextPortion->GetLen(), "ImplCalcAsianCompression - Empty Portion?" );
-//STRIP001
-//STRIP001     // Percent is 1/100 Percent...
-//STRIP001
-//STRIP001     if ( n100thPercentFromMax == 10000 )
-//STRIP001         pTextPortion->SetExtraInfos( NULL );
-//STRIP001
-//STRIP001     BOOL bCompressed = FALSE;
-//STRIP001
-//STRIP001  if ( GetScriptType( EditPaM( pNode, nStartPos+1 ) ) == i18n::ScriptType::ASIAN )
-//STRIP001     {
-//STRIP001         long nNewPortionWidth = pTextPortion->GetSize().Width();
-//STRIP001         USHORT nPortionLen = pTextPortion->GetLen();
-//STRIP001         for ( USHORT n = 0; n < nPortionLen; n++ )
-//STRIP001         {
-//STRIP001             BYTE nType = GetCharTypeForCompression( pNode->GetChar( n+nStartPos ) );
-//STRIP001
-//STRIP001             BOOL bCompressPunctuation = ( nType == CHAR_PUNCTUATIONLEFT ) || ( nType == CHAR_PUNCTUATIONRIGHT );
-//STRIP001             BOOL bCompressKana = ( nType == CHAR_KANA ) && ( GetAsianCompressionMode() == text::CharacterCompressionType::PUNCTUATION_AND_KANA );
-//STRIP001
-//STRIP001             // create Extra infos only if needed...
-//STRIP001             if ( bCompressPunctuation || bCompressKana )
-//STRIP001             {
-//STRIP001                 if ( !pTextPortion->GetExtraInfos() )
-//STRIP001                 {
-//STRIP001                     ExtraPortionInfo* pExtraInfos = new ExtraPortionInfo;
-//STRIP001                     pTextPortion->SetExtraInfos( pExtraInfos );
-//STRIP001                     pExtraInfos->nOrgWidth = pTextPortion->GetSize().Width();
-//STRIP001                     pExtraInfos->nAsianCompressionTypes = CHAR_NORMAL;
-//STRIP001                 }
-//STRIP001                 pTextPortion->GetExtraInfos()->nMaxCompression100thPercent = n100thPercentFromMax;
-//STRIP001                 pTextPortion->GetExtraInfos()->nAsianCompressionTypes |= nType;
-//STRIP001 //                pTextPortion->GetExtraInfos()->nCompressedChars++;
-//STRIP001
-//STRIP001                 long nOldCharWidth;
-//STRIP001                 if ( (n+1) < nPortionLen )
-//STRIP001                 {
-//STRIP001                     nOldCharWidth = pDXArray[n];
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     if ( bManipulateDXArray )
-//STRIP001                         nOldCharWidth = nNewPortionWidth - pTextPortion->GetExtraInfos()->nPortionOffsetX;
-//STRIP001                     else
-//STRIP001                         nOldCharWidth = pTextPortion->GetExtraInfos()->nOrgWidth;
-//STRIP001                 }
-//STRIP001                 nOldCharWidth -= ( n ? pDXArray[n-1] : 0 );
-//STRIP001
-//STRIP001                 long nCompress = 0;
-//STRIP001
-//STRIP001                 if ( bCompressPunctuation )
-//STRIP001                 {
-//STRIP001                     // pTextPortion->GetExtraInfos()->nComressionWeight += 5;
-//STRIP001                     nCompress = nOldCharWidth / 2;
-//STRIP001                 }
-//STRIP001                 else // Kana
-//STRIP001                 {
-//STRIP001                     // pTextPortion->GetExtraInfos()->nComressionWeight += 1;
-//STRIP001                     nCompress = nOldCharWidth / 10;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 if ( n100thPercentFromMax != 10000 )
-//STRIP001                 {
-//STRIP001                     nCompress *= n100thPercentFromMax;
-//STRIP001                     nCompress /= 10000;
-//STRIP001                 }
-//STRIP001
-//STRIP001                 if ( nCompress )
-//STRIP001                 {
-//STRIP001                     bCompressed = TRUE;
-//STRIP001                     nNewPortionWidth -= nCompress;
-//STRIP001                     pTextPortion->GetExtraInfos()->bCompressed = TRUE;
-//STRIP001
-//STRIP001
-//STRIP001                     // Special handling for rightpunctuation: For the 'compression' we must
-//STRIP001                     // start th eoutput before the normal char position....
-//STRIP001                     if ( bManipulateDXArray && ( pTextPortion->GetLen() > 1 ) )
-//STRIP001                     {
-//STRIP001                         if ( !pTextPortion->GetExtraInfos()->pOrgDXArray )
-//STRIP001                             pTextPortion->GetExtraInfos()->SaveOrgDXArray( pDXArray, pTextPortion->GetLen()-1 );
-//STRIP001
-//STRIP001                         if ( nType == CHAR_PUNCTUATIONRIGHT )
-//STRIP001                         {
-//STRIP001                             // If it's the first char, I must handle it in Paint()...
-//STRIP001                             if ( n )
-//STRIP001                             {
-//STRIP001                                 // -1: No entry for the last character
-//STRIP001                                 for ( USHORT i = n-1; i < (nPortionLen-1); i++ )
-//STRIP001                                     pDXArray[i] -= nCompress;
-//STRIP001                             }
-//STRIP001                             else
-//STRIP001                             {
-//STRIP001                                 pTextPortion->GetExtraInfos()->bFirstCharIsRightPunktuation = TRUE;
-//STRIP001                                 pTextPortion->GetExtraInfos()->nPortionOffsetX = -nCompress;
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                         else
-//STRIP001                         {
-//STRIP001                             // -1: No entry for the last character
-//STRIP001                             for ( USHORT i = n; i < (nPortionLen-1); i++ )
-//STRIP001                                 pDXArray[i] -= nCompress;
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         if ( bCompressed && ( n100thPercentFromMax == 10000 ) )
-//STRIP001             pTextPortion->GetExtraInfos()->nWidthFullCompression = nNewPortionWidth;
-//STRIP001
-//STRIP001         pTextPortion->GetSize().Width() = nNewPortionWidth;
-//STRIP001
-//STRIP001         if ( pTextPortion->GetExtraInfos() && ( n100thPercentFromMax != 10000 ) )
-//STRIP001         {
-//STRIP001             // Maybe rounding errors in nNewPortionWidth, assure that width not bigger than expected
-//STRIP001             long nShrink = pTextPortion->GetExtraInfos()->nOrgWidth - pTextPortion->GetExtraInfos()->nWidthFullCompression;
-//STRIP001             nShrink *= n100thPercentFromMax;
-//STRIP001             nShrink /= 10000;
-//STRIP001             long nNewWidth = pTextPortion->GetExtraInfos()->nOrgWidth - nShrink;
-//STRIP001             if ( nNewWidth < pTextPortion->GetSize().Width() )
-//STRIP001             pTextPortion->GetSize().Width() = nNewWidth;
-//STRIP001         }
-//STRIP001     }
-//STRIP001     return bCompressed;
-//STRIP001 }
 
 
-//STRIP001 void ImpEditEngine::ImplExpandCompressedPortions( EditLine* pLine, ParaPortion* pParaPortion, long nRemainingWidth )
-//STRIP001 {
-//STRIP001     BOOL bFoundCompressedPortion = FALSE;
-//STRIP001     long nCompressed = 0;
-//STRIP001     long nCompressWeight = 0;
-//STRIP001     TextPortionList aCompressedPortions;
-//STRIP001
-//STRIP001     USHORT nPortion = pLine->GetEndPortion();
-//STRIP001     TextPortion* pTP = pParaPortion->GetTextPortions()[ nPortion ];
-//STRIP001     while ( pTP && ( pTP->GetKind() == PORTIONKIND_TEXT ) )
-//STRIP001     {
-//STRIP001         if ( pTP->GetExtraInfos() && pTP->GetExtraInfos()->bCompressed )
-//STRIP001         {
-//STRIP001             bFoundCompressedPortion = TRUE;
-//STRIP001             nCompressed += pTP->GetExtraInfos()->nOrgWidth - pTP->GetSize().Width();
-//STRIP001             aCompressedPortions.Insert( pTP, aCompressedPortions.Count() );
-//STRIP001         }
-//STRIP001         pTP = ( nPortion > pLine->GetStartPortion() ) ? pParaPortion->GetTextPortions()[ --nPortion ] : NULL;
-//STRIP001     }
-//STRIP001
-//STRIP001     if ( bFoundCompressedPortion )
-//STRIP001     {
-//STRIP001         long nCompressPercent = 0;
-//STRIP001         if ( nCompressed > nRemainingWidth )
-//STRIP001         {
-//STRIP001             nCompressPercent = nCompressed - nRemainingWidth;
-//STRIP001             DBG_ASSERT( nCompressPercent < 200000, "ImplExpandCompressedPortions - Overflow!" );
-//STRIP001             nCompressPercent *= 10000;
-//STRIP001             nCompressPercent /= nCompressed;
-//STRIP001         }
-//STRIP001
-//STRIP001         for ( USHORT n = 0; n < aCompressedPortions.Count(); n++ )
-//STRIP001         {
-//STRIP001             pTP = aCompressedPortions[n];
-//STRIP001             pTP->GetExtraInfos()->bCompressed = FALSE;
-//STRIP001             pTP->GetSize().Width() = pTP->GetExtraInfos()->nOrgWidth;
-//STRIP001             if ( nCompressPercent )
-//STRIP001             {
-//STRIP001                 USHORT nTxtPortion = pParaPortion->GetTextPortions().GetPos( pTP );
-//STRIP001                 USHORT nTxtPortionStart = pParaPortion->GetTextPortions().GetStartPos( nTxtPortion );
-//STRIP001                 DBG_ASSERT( nTxtPortionStart >= pLine->GetStart(), "Portion doesn't belong to the line!!!" );
-//STRIP001                 long* pDXArray = (long*)pLine->GetCharPosArray().GetData()+( nTxtPortionStart-pLine->GetStart() );
-//STRIP001                 if ( pTP->GetExtraInfos()->pOrgDXArray )
-//STRIP001                     memcpy( pDXArray, pTP->GetExtraInfos()->pOrgDXArray, (pTP->GetLen()-1)*sizeof(long) );
-//STRIP001                 ImplCalcAsianCompression( pParaPortion->GetNode(), pTP, nTxtPortionStart, pDXArray, (USHORT)nCompressPercent, TRUE );
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     aCompressedPortions.Remove( 0, aCompressedPortions.Count() );
-//STRIP001 }
 }
