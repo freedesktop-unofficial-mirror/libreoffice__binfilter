@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_dlgcont.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:25:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:56:51 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,48 +33,13 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
-// auto strip #include <com/sun/star/container/XNameContainer.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
-// auto strip #include <com/sun/star/xml/sax/XParser.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
-// auto strip #include <com/sun/star/xml/sax/InputSource.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XOutputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
-// auto strip #include <com/sun/star/io/XInputStream.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
-// auto strip #include <com/sun/star/ucb/XSimpleFileAccess.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
 
 
 #include "dlgcont.hxx"
 
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
-// auto strip #ifndef _UTL_STREAM_WRAPPER_HXX_
-// auto strip #include <unotools/streamwrap.hxx>
-// auto strip #endif
-// auto strip #ifndef _OSL_MUTEX_HXX_
-// auto strip #include <osl/mutex.hxx>
-// auto strip #endif
 
-// auto strip #include <svtools/pathoptions.hxx>
 #include <xmlscript/xmldlg_imexp.hxx>
-// auto strip #include <app.hxx>
 
-// auto strip #ifndef _LEGACYBINFILTERMGR_HXX
-// auto strip #include <legacysmgr/legacy_binfilters_smgr.hxx>  //STRIP002
-// auto strip #endif
 
 #ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
@@ -111,11 +76,6 @@ using namespace osl;
 /*N*/ }
 
 // Ctor for service
-//STRIP001 SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
-//STRIP001 {
-//STRIP001     // all initialisation has to be done
-//STRIP001     // by calling XInitialization::initialize
-//STRIP001 }
 
 /*N*/ SfxDialogLibraryContainer::SfxDialogLibraryContainer( SotStorage* pStor )
 /*N*/ {
@@ -149,10 +109,6 @@ using namespace osl;
 
 /*?*/ sal_Bool SAL_CALL SfxDialogLibraryContainer::isLibraryElementValid( Any aElement )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-//STRIP001  Reference< XInputStreamProvider > xISP;
-//STRIP001  aElement >>= xISP;
-//STRIP001  sal_Bool bRet = xISP.is();
-//STRIP001  return bRet;
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::writeLibraryElement
@@ -163,98 +119,12 @@ using namespace osl;
 /*?*/ )
 /*?*/   throw(Exception)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  Reference< XInputStreamProvider > xISP;
-//STRIP001  aElement >>= xISP;
-//STRIP001  if( !xISP.is() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  Reference< XInputStream > xInput( xISP->createInputStream() );
-//STRIP001  Sequence< sal_Int8 > bytes;
-//STRIP001  sal_Int32 nRead = xInput->readBytes( bytes, xInput->available() );
-//STRIP001  for (;;)
-//STRIP001  {
-//STRIP001      if( nRead )
-//STRIP001          xOutput->writeBytes( bytes );
-//STRIP001
-//STRIP001      nRead = xInput->readBytes( bytes, 1024 );
-//STRIP001      if (! nRead)
-//STRIP001          break;
-//STRIP001  }
-//STRIP001  xInput->closeInput();
 /*?*/ }
 
 
 /*?*/ Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
 /*?*/   ( const OUString& aFile, SotStorageStreamRef xElementStream )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;//STRIP001
-//STRIP001  Any aRetAny;
-//STRIP001
-//STRIP001  // TODO: Member because later it will be a component
-//STRIP001  Reference< XMultiServiceFactory > xMSF( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-//STRIP001  if( !xMSF.is() )
-//STRIP001  {
-//STRIP001      OSL_ENSURE( 0, "### couln't get ProcessServiceFactory\n" );
-//STRIP001      return aRetAny;
-//STRIP001  }
-//STRIP001
-//STRIP001  Reference< XParser > xParser( xMSF->createInstance(
-//STRIP001      OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
-//STRIP001  if( !xParser.is() )
-//STRIP001  {
-//STRIP001      OSL_ENSURE( 0, "### couln't create sax parser component\n" );
-//STRIP001      return aRetAny;
-//STRIP001  }
-//STRIP001
-//STRIP001  Reference< XNameContainer > xDialogModel( xMSF->createInstance
-//STRIP001      ( OUString(RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.awt.UnoControlDialogModel" ) ) ), UNO_QUERY );
-//STRIP001  if( !xDialogModel.is() )
-//STRIP001  {
-//STRIP001      OSL_ENSURE( 0, "### couln't create com.sun.star.awt.UnoControlDialogModel component\n" );
-//STRIP001      return aRetAny;
-//STRIP001  }
-//STRIP001
-//STRIP001  // Read from storage?
-//STRIP001  sal_Bool bStorage = xElementStream.Is();
-//STRIP001  Reference< XInputStream > xInput;
-//STRIP001
-//STRIP001  if( bStorage )
-//STRIP001  {
-//STRIP001      xInput = new utl::OInputStreamWrapper( *xElementStream );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          xInput = mxSFI->openFileRead( aFile );
-//STRIP001      }
-//STRIP001      catch( Exception& )
-//STRIP001      //catch( Exception& e )
-//STRIP001      {
-//STRIP001          // TODO:
-//STRIP001          //throw WrappedTargetException( e );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( !xInput.is() )
-//STRIP001      return aRetAny;
-//STRIP001
-//STRIP001     Reference< XComponentContext > xContext;
-//STRIP001     Reference< beans::XPropertySet > xProps( xMSF, UNO_QUERY );
-//STRIP001     OSL_ASSERT( xProps.is() );
-//STRIP001     OSL_VERIFY( xProps->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("DefaultContext")) ) >>= xContext );
-//STRIP001
-//STRIP001  InputSource source;
-//STRIP001  source.aInputStream = xInput;
-//STRIP001  source.sSystemId    = aFile;
-//STRIP001
-//STRIP001  // start parsing
-//STRIP001  xParser->setDocumentHandler( ::xmlscript::importDialogModel( xDialogModel, xContext ) );
-//STRIP001  xParser->parseStream( source );
-//STRIP001
-//STRIP001  // Create InputStream, TODO: Implement own InputStreamProvider
-//STRIP001  // to avoid creating the DialogModel here!
-//STRIP001  Reference< XInputStreamProvider > xISP = ::xmlscript::exportDialogModel( xDialogModel, xContext );
-//STRIP001  aRetAny <<= xISP;
-//STRIP001  return aRetAny;
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
@@ -262,10 +132,6 @@ using namespace osl;
 /*?*/     // Nothing to do here, old dialogs cannot be imported
 /*?*/ }
 
-//STRIP001 SfxLibraryContainer_Impl* SfxDialogLibraryContainer::createInstanceImpl( void )
-//STRIP001 {
-//STRIP001     return new SfxDialogLibraryContainer();
-//STRIP001 }
 
 
 //============================================================================
@@ -274,19 +140,6 @@ using namespace osl;
 /*?*/     throw (::com::sun::star::uno::Exception,
 /*?*/            ::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  sal_Int32 nArgCount = aArguments.getLength();
-//STRIP001  OSL_ENSURE( nArgCount, "SfxDialogLibraryContainer::initialize() called with no arguments\n" );
-//STRIP001
-//STRIP001     OUString aInitialisationParam;
-//STRIP001     if( nArgCount )
-//STRIP001     {
-//STRIP001         const Any* pArgs = aArguments.getConstArray();
-//STRIP001         pArgs[0] >>= aInitialisationParam;
-//STRIP001      OSL_ENSURE( aInitialisationParam.getLength(),
-//STRIP001             "SfxDialogLibraryContainer::initialize() called with empty url\n" );
-//STRIP001     }
-//STRIP001
-//STRIP001     init( aInitialisationParam );
 /*?*/ }
 
 
@@ -296,17 +149,6 @@ using namespace osl;
 
 /*?*/ Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNames()
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");Sequence< OUString > seqServiceNames;return seqServiceNames; //STRIP001
-//STRIP001     static Sequence< OUString > seqServiceNames( 1 );
-//STRIP001     static sal_Bool bNeedsInit = sal_True;
-//STRIP001
-//STRIP001  MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001     if( bNeedsInit )
-//STRIP001     {
-//STRIP001         OUString* pSeq = seqServiceNames.getArray();
-//STRIP001         pSeq[0] = OUString::createFromAscii( "com.sun.star.script.DialogLibraryContainer" );
-//STRIP001         bNeedsInit = sal_False;
-//STRIP001     }
-//STRIP001     return seqServiceNames;
 /*?*/ }
 
 /*N*/ OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
@@ -327,9 +169,6 @@ using namespace osl;
 /*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
 /*N*/         throw( Exception )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001     Reference< XInterface > xRet =
-//STRIP001         static_cast< XInterface* >( static_cast< OWeakObject* >(new SfxDialogLibraryContainer()) );
-//STRIP001     return xRet;
 /*N*/ }
 
 
@@ -340,15 +179,6 @@ using namespace osl;
 /*N*/ Sequence< OUString > SfxApplicationDialogLibraryContainer::impl_getStaticSupportedServiceNames()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/     static Sequence< OUString > seqServiceNames( 1 );
-//STRIP001     static sal_Bool bNeedsInit = sal_True;
-//STRIP001
-//STRIP001  MutexGuard aGuard( Mutex::getGlobalMutex() );
-//STRIP001     if( bNeedsInit )
-//STRIP001     {
-//STRIP001         OUString* pSeq = seqServiceNames.getArray();
-//STRIP001         pSeq[0] = OUString::createFromAscii( "com.sun.star.script.ApplicationDialogLibraryContainer" );
-//STRIP001         bNeedsInit = sal_False;
-//STRIP001     }
 /*N*/     return seqServiceNames;
 /*N*/ }
 
@@ -370,10 +200,6 @@ using namespace osl;
 /*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
 /*N*/         throw( Exception )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-//STRIP001  SFX_APP()->GetBasicManager();
-//STRIP001     Reference< XInterface > xRet =
-//STRIP001         Reference< XInterface >( SFX_APP()->GetDialogContainer(), UNO_QUERY );
-//STRIP001     return xRet;
 /*N*/ }
 
 
