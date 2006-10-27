@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swserv.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:44:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:27:23 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 #ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
@@ -56,9 +53,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 #ifndef _SWSERV_HXX
 #include <swserv.hxx>
 #endif
@@ -74,12 +68,6 @@
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _SHELLIO_HXX
-// auto strip #include <shellio.hxx>
-// auto strip #endif
 
 #ifndef _SWERROR_H
 #include <swerror.h>
@@ -93,169 +81,12 @@ namespace binfilter {
 /*N*/ }
 
 
-//STRIP001 BOOL SwServerObject::GetData( ::com::sun::star::uno::Any & rData,
-//STRIP001                                  const String & rMimeType, BOOL )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  WriterRef xWrt;
-//STRIP001  switch( SotExchange::GetFormatIdFromMimeType( rMimeType ) )
-//STRIP001  {
-//STRIP001  case FORMAT_STRING:
-//STRIP001      ::GetASCWriter( aEmptyStr, xWrt );
-//STRIP001      break;
-//STRIP001
-//STRIP001  case FORMAT_RTF:
-//STRIP001      ::GetRTFWriter( aEmptyStr, xWrt );
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( xWrt.Is() )
-//STRIP001  {
-//STRIP001      SwPaM* pPam = 0;
-//STRIP001      switch( eType )
-//STRIP001      {
-//STRIP001      case BOOKMARK_SERVER:
-//STRIP001          if( CNTNT_TYPE.pBkmk->GetOtherPos() )
-//STRIP001          {
-//STRIP001              // Bereich aufspannen
-//STRIP001              pPam = new SwPaM( CNTNT_TYPE.pBkmk->GetPos(),
-//STRIP001                              *CNTNT_TYPE.pBkmk->GetOtherPos() );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case TABLE_SERVER:
-//STRIP001          pPam = new SwPaM( *CNTNT_TYPE.pTblNd,
-//STRIP001                          *CNTNT_TYPE.pTblNd->EndOfSectionNode() );
-//STRIP001          break;
-//STRIP001
-//STRIP001      case SECTION_SERVER:
-//STRIP001          pPam = new SwPaM( SwPosition( *CNTNT_TYPE.pSectNd ) );
-//STRIP001          pPam->Move( fnMoveForward );
-//STRIP001          pPam->SetMark();
-//STRIP001          pPam->GetPoint()->nNode = *CNTNT_TYPE.pSectNd->EndOfSectionNode();
-//STRIP001          pPam->Move( fnMoveBackward );
-//STRIP001          break;
-//STRIP001      }
-//STRIP001
-//STRIP001      if( pPam )
-//STRIP001      {
-//STRIP001          // Stream anlegen
-//STRIP001          SvMemoryStream aMemStm( 65535, 65535 );
-//STRIP001          SwWriter aWrt( aMemStm, *pPam, FALSE );
-//STRIP001          if( !IsError( aWrt.Write( xWrt )) )
-//STRIP001          {
-//STRIP001              aMemStm << '\0';        // append a zero char
-//STRIP001              rData <<= ::com::sun::star::uno::Sequence< sal_Int8 >(
-//STRIP001                                      (sal_Int8*)aMemStm.GetData(),
-//STRIP001                                      aMemStm.Seek( STREAM_SEEK_TO_END ) );
-//STRIP001              bRet = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001          delete pPam;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
-//STRIP001 BOOL SwServerObject::SetData( const String & rMimeType,
-//STRIP001                  const ::com::sun::star::uno::Any& rData )
-//STRIP001 {
-//STRIP001  // set new data into the "server" -> at first nothing to do
-//STRIP001  return FALSE;
-//STRIP001 }
 
 
-//STRIP001 void SwServerObject::SendDataChanged( const SwPosition& rPos )
-//STRIP001 {
-//STRIP001  // ist an unseren Aenderungen jemand interessiert ?
-//STRIP001  if( HasDataLinks() )
-//STRIP001  {
-//STRIP001      int bCall = FALSE;
-//STRIP001      const SwStartNode* pNd = 0;
-//STRIP001      switch( eType )
-//STRIP001      {
-//STRIP001      case BOOKMARK_SERVER:
-//STRIP001          if( CNTNT_TYPE.pBkmk->GetOtherPos() )
-//STRIP001          {
-//STRIP001              SwBookmark& rBkmk = *CNTNT_TYPE.pBkmk;
-//STRIP001              bCall = rBkmk.GetPos() < *rBkmk.GetOtherPos()
-//STRIP001                  ? ( rBkmk.GetPos() <= rPos && rPos < *rBkmk.GetOtherPos() )
-//STRIP001                  : ( *rBkmk.GetOtherPos() <= rPos && rPos < rBkmk.GetPos() );
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case TABLE_SERVER:      pNd = CNTNT_TYPE.pTblNd;    break;
-//STRIP001      case SECTION_SERVER:    pNd = CNTNT_TYPE.pSectNd;   break;
-//STRIP001      }
-//STRIP001      if( pNd )
-//STRIP001      {
-//STRIP001          register ULONG nNd = rPos.nNode.GetIndex();
-//STRIP001          bCall = pNd->GetIndex() < nNd && nNd < pNd->EndOfSectionIndex();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bCall )
-//STRIP001      {
-//STRIP001          // Recursionen erkennen und flaggen
-//STRIP001          IsLinkInServer( 0 );
-//STRIP001          SvLinkSource::NotifyDataChanged();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // sonst melden wir uns ab !!
-//STRIP001 // ????? JP 27.06.95: geht das so ????
-//STRIP001 //   else
-//STRIP001 //       Closed();
-//STRIP001 }
 
 
-//STRIP001 void SwServerObject::SendDataChanged( const SwPaM& rRange )
-//STRIP001 {
-//STRIP001  // ist an unseren Aenderungen jemand interessiert ?
-//STRIP001  if( HasDataLinks() )
-//STRIP001  {
-//STRIP001      int bCall = FALSE;
-//STRIP001      const SwStartNode* pNd = 0;
-//STRIP001      const SwPosition* pStt = rRange.Start(), *pEnd = rRange.End();
-//STRIP001      switch( eType )
-//STRIP001      {
-//STRIP001      case BOOKMARK_SERVER:
-//STRIP001          if( CNTNT_TYPE.pBkmk->GetOtherPos() )
-//STRIP001          {
-//STRIP001              SwBookmark& rBkmk = *CNTNT_TYPE.pBkmk;
-//STRIP001              const SwPosition* pBkStt = &rBkmk.GetPos(),
-//STRIP001                              * pBkEnd = rBkmk.GetOtherPos();
-//STRIP001              if( *pBkStt > *pBkEnd )
-//STRIP001              {
-//STRIP001                  const SwPosition* pTmp = pBkStt;
-//STRIP001                  pBkStt = pBkEnd;
-//STRIP001                  pBkEnd = pTmp;
-//STRIP001              }
-//STRIP001              bCall = *pStt <= *pBkEnd && *pEnd > *pBkStt;
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001      case TABLE_SERVER:      pNd = CNTNT_TYPE.pTblNd;    break;
-//STRIP001      case SECTION_SERVER:    pNd = CNTNT_TYPE.pSectNd;   break;
-//STRIP001      }
-//STRIP001      if( pNd )
-//STRIP001      {
-//STRIP001          // liegt der Start-Bereich im Node Bereich ?
-//STRIP001          bCall = pStt->nNode.GetIndex() <  pNd->EndOfSectionIndex() &&
-//STRIP001                  pEnd->nNode.GetIndex() >= pNd->GetIndex();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( bCall )
-//STRIP001      {
-//STRIP001          // Recursionen erkennen und flaggen
-//STRIP001          IsLinkInServer( 0 );
-//STRIP001          SvLinkSource::NotifyDataChanged();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  // sonst melden wir uns ab !!
-//STRIP001 // ????? JP 27.06.95: geht das so ????
-//STRIP001 //   else
-//STRIP001 //       Closed();
-//STRIP001 }
 
 
 /*N*/ BOOL SwServerObject::IsLinkInServer( const SwBaseLink* pChkLnk ) const
@@ -376,10 +207,6 @@ namespace binfilter {
 /*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
 /*?*/           {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwServerObject& rObj = *(SwServerObject*)&refObj;
-//STRIP001 /*?*/                if( pPos )
-//STRIP001 /*?*/                    rObj.SendDataChanged( *pPos );
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    rObj.SendDataChanged( *pPam );
 /*?*/           }
 /*?*/
 /*?*/           // sollte jetzt gar keine Verbindung mehr bestehen
