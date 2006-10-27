@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_xmltexti.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 11:02:23 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:57:17 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -32,10 +32,6 @@
  *    MA  02111-1307  USA
  *
  ************************************************************************/
-
-
-#pragma hdrstop
-
 
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
@@ -125,6 +121,8 @@
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
 #endif
+
+#include <bf_sfx2/frmdescr.hxx>
 
 // for locking SolarMutex: svapp + mutex
 #ifndef _SV_SVAPP_HXX
