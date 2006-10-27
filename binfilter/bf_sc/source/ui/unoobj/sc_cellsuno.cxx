@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_cellsuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:16:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:00:46 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,14 +42,7 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-// auto strip #include <bf_svx/algitem.hxx>
-// auto strip #include <bf_svx/boxitem.hxx>
-// auto strip #include <bf_svx/brshitem.hxx>
-// auto strip #include <bf_svx/editeng.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
@@ -69,18 +61,11 @@
 #endif
 
 #include <bf_svx/flditem.hxx>
-// auto strip #include <bf_svx/fmdpage.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/linkmgr.hxx>
-// auto strip #include <bf_svx/srchitem.hxx>
-// auto strip #include <bf_svx/unomid.hxx>
-// auto strip #include <bf_svx/unoprnms.hxx>
-// auto strip #include <bf_svx/unotext.hxx>
 #include <bf_svx/svdpage.hxx>
 #include <bf_sfx2/bindings.hxx>
-// auto strip #include <bf_sch/schdll.hxx>  // SchMemChart
 #include <bf_sch/memchrt.hxx>
-// auto strip #include <svtools/zforlist.hxx>
 #include <svtools/zformat.hxx>
 #include <rtl/uuid.h>
 #include <float.h>              // DBL_MIN
@@ -91,14 +76,10 @@
 #include <com/sun/star/table/CellOrientation.hpp>
 #include <com/sun/star/table/CellVertJustify.hpp>
 #include <com/sun/star/table/ShadowFormat.hpp>
-// auto strip #include <com/sun/star/table/TableBorder.hpp>
 #include <com/sun/star/sheet/CellFlags.hpp>
 #include <com/sun/star/sheet/FormulaResult.hpp>
-// auto strip #include <com/sun/star/beans/PropertyAttribute.hpp>
-// auto strip #include <com/sun/star/lang/Locale.hpp>
 
 #include "autoform.hxx"
-// auto strip #include "cellsuno.hxx"
 #include "cursuno.hxx"
 #include "textuno.hxx"
 #include "editsrc.hxx"
@@ -114,7 +95,6 @@
 #include "srchuno.hxx"
 #include "targuno.hxx"
 #include "docsh.hxx"
-// auto strip #include "markdata.hxx"
 #include "patattr.hxx"
 #include "docpool.hxx"
 #include "docfunc.hxx"
@@ -122,7 +102,6 @@
 #include "olinefun.hxx"
 #include "hints.hxx"
 #include "cell.hxx"
-// auto strip #include "undocell.hxx"
 #include "undotab.hxx"
 #include "undoblk.hxx"      // fuer lcl_ApplyBorder - nach docfunc verschieben!
 #include "stlsheet.hxx"
@@ -135,11 +114,8 @@
 #include "prnsave.hxx"
 #include "tablink.hxx"
 #include "dociter.hxx"
-// auto strip #include "rangeutl.hxx"
-// auto strip #include "conditio.hxx"
 #include "validat.hxx"
 #include "bf_sc.hrc"
-// auto strip #include "brdcst.hxx"
 #include "unoguard.hxx"
 #include "cellform.hxx"
 #include "globstr.hrc"
