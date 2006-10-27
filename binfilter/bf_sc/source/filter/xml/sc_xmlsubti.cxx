@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmlsubti.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:33:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:32:30 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,19 +34,13 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #ifndef SC_XMLSUBTI_HXX
-// auto strip #include "xmlsubti.hxx"
-// auto strip #endif
-// auto strip #include "global.hxx"
 #include "xmlstyli.hxx"
-// auto strip #include "xmlimprt.hxx"
 #include "document.hxx"
 #ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
@@ -58,8 +52,6 @@
 #include "XMLStylesImportHelper.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
-// auto strip #include <bf_xmloff/nmspmap.hxx>
 #ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
 #endif
@@ -67,33 +59,18 @@
 #include <bf_xmloff/xmlerror.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
 #include <com/sun/star/util/XMergeable.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGE_HPP_
-// auto strip #include <com/sun/star/sheet/XSheetCellRange.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
 #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SHEET_CELLINSERTMODE_HPP_
-// auto strip #include <com/sun/star/sheet/CellInsertMode.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
 #include <com/sun/star/sheet/XCellRangeMovement.hpp>
 #endif
 #ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
-// auto strip #include <com/sun/star/container/XNamed.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
-// auto strip #include <com/sun/star/util/XProtectable.hpp>
-// auto strip #endif
 namespace binfilter {
 
 //------------------------------------------------------------------

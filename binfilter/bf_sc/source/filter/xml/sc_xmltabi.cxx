@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_xmltabi.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 18:34:10 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 15:32:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "filt_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -47,7 +46,6 @@
 #include "xmlcoli.hxx"
 #include "xmlsceni.hxx"
 #include "document.hxx"
-// auto strip #include "docuno.hxx"
 #include "olinetab.hxx"
 
 #ifndef _SC_XMLCONVERTER_HXX
@@ -63,20 +61,9 @@
 #include "XMLStylesImportHelper.hxx"
 #endif
 
-// auto strip #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/nmspmap.hxx>
-// auto strip #ifndef _XMLOFF_FORMSIMP_HXX
-// auto strip #include <bf_xmloff/formsimp.hxx>
-// auto strip #endif
-// auto strip #ifndef _XMLOFF_XMLTOKEN_HXX
-// auto strip #include <bf_xmloff/xmltoken.hxx>
-// auto strip #endif
 
-// auto strip #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-// auto strip #include <com/sun/star/sheet/XSpreadsheets.hpp>
-// auto strip #include <com/sun/star/sheet/XSpreadsheet.hpp>
 #include <com/sun/star/sheet/XPrintAreas.hpp>
-// auto strip #include <com/sun/star/table/CellAddress.hpp>
 namespace binfilter {
 
 using namespace ::com::sun::star;
