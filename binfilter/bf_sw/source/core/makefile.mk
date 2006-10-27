@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.5 $
+#   $Revision: 1.6 $
 #
-#   last change: $Author: kz $ $Date: 2006-07-19 13:40:20 $
+#   last change: $Author: rt $ $Date: 2006-10-27 22:05:07 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -41,16 +41,12 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=sw_core
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 
 INC+= -I$(PRJ)$/inc$/bf_sw
@@ -59,22 +55,6 @@ RC_SUBDIRS=
 .ENDIF
 
 # --- Files --------------------------------------------------------
-
-
-#SUBLIBS1= \
-#		$(SLB)$/access.lib \
-#		$(SLB)$/graphic.lib \
-#		$(SLB)$/para.lib \
-#		$(SLB)$/attr.lib \
-#		$(SLB)$/edit.lib \
-#		$(SLB)$/crsr.lib \
-#		$(SLB)$/view.lib \
-#		$(SLB)$/frmedt.lib \
-#		$(SLB)$/ole.lib \
-#		$(SLB)$/fields.lib \
-#		$(SLB)$/tox.lib \
-#		$(SLB)$/undo.lib \
-#		$(SLB)$/bastyp.lib
 
 SUBLIBS1= \
         $(SLB)$/sw_graphic.lib \
