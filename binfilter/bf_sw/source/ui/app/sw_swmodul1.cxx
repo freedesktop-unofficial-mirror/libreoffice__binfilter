@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_swmodul1.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:54:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:00:52 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -188,133 +188,30 @@ using namespace ::com::sun::star::lang;
 
  ---------------------------------------------------------------------------*/
 
-//STRIP001 class SwXDispatchStatusListener : public cppu::WeakImplHelper1
-//STRIP001 <
-//STRIP001  frame::XStatusListener
-//STRIP001 >
-//STRIP001 {
-//STRIP001  uno::Reference< frame::XStatusListener >            xSelf;
-//STRIP001  util::URL                       aDispURL;
-//STRIP001  uno::Reference< frame::XDispatch >              xDispatch;
-//STRIP001
-//STRIP001  void            Invalidate();
-//STRIP001 public:
-//STRIP001  SwXDispatchStatusListener(uno::Reference< frame::XDispatch > &  xDisp, const util::URL&     aURL);
-//STRIP001  ~SwXDispatchStatusListener();
-//STRIP001
-//STRIP001  //XStatusListener
-//STRIP001  virtual void SAL_CALL statusChanged(const frame::FeatureStateEvent& Event) throw( uno::RuntimeException );
-//STRIP001
-//STRIP001  //XEventListener
-//STRIP001     virtual void SAL_CALL disposing(const lang::EventObject& Source) throw( uno::RuntimeException );
-//STRIP001 };
 /* -----------------------------05.01.00 15:18--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SwXDispatchStatusListener::SwXDispatchStatusListener(
-//STRIP001                              uno::Reference< frame::XDispatch > & xDisp, const util::URL&    aURL) :
-//STRIP001  xDispatch(xDisp),
-//STRIP001  aDispURL(aURL)
-//STRIP001 {
-//STRIP001  DBG_ASSERT(xDisp.is(),  "XDispatch not set")
-//STRIP001  if(xDisp.is())
-//STRIP001      xSelf = this;
-//STRIP001 }
 /* -----------------------------05.01.00 15:19--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 SwXDispatchStatusListener::~SwXDispatchStatusListener()
-//STRIP001 {
-//STRIP001 }
 /* -----------------------------05.01.00 15:21--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwXDispatchStatusListener::disposing(const lang::EventObject& Source)
-//STRIP001  throw( uno::RuntimeException )
-//STRIP001 {
-//STRIP001  Invalidate();
-//STRIP001 }
 /* -----------------------------05.01.00 15:22--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwXDispatchStatusListener::statusChanged(const frame::FeatureStateEvent& rEvent)
-//STRIP001  throw( uno::RuntimeException )
-//STRIP001 {
-//STRIP001  if(rEvent.FeatureURL.Complete == aDispURL.Complete && rEvent.IsEnabled)
-//STRIP001  {
-//STRIP001      uno::Sequence <beans::PropertyValue > aArgs(0);
-//STRIP001      xDispatch->dispatch(aDispURL, aArgs);
-//STRIP001      Invalidate();
-//STRIP001  }
-//STRIP001 }
 /* -----------------------------05.01.00 15:45--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwXDispatchStatusListener::Invalidate()
-//STRIP001 {
-//STRIP001  if(xDispatch.is())
-//STRIP001  {
-//STRIP001      try
-//STRIP001      {
-//STRIP001          xDispatch->removeStatusListener(xSelf, aDispURL);
-//STRIP001      }
-//STRIP001      catch(...)
-//STRIP001      {
-//STRIP001      }
-//STRIP001  }
-//STRIP001  xSelf = 0;
-//STRIP001 }
 /*-----------------08/28/97 08:41pm-----------------
 
 --------------------------------------------------*/
-//STRIP001 void lcl_SetUIPrefs(const SwViewOption* pPref, SwView* pView, ViewShell* pSh )
-//STRIP001 {
-//STRIP001  // in FrameSets kann die tatsaechliche Sichtbarkeit von der Einstellung der ViewOptions abweichen
-//STRIP001  sal_Bool bVScrollChanged = pPref->IsViewVScrollBar() != pSh->GetViewOptions()->IsViewVScrollBar();
-//STRIP001     sal_Bool bHScrollChanged = pPref->IsViewHScrollBar() != pSh->GetViewOptions()->IsViewHScrollBar();
-//STRIP001     sal_Bool bVAlignChanged = pPref->IsVRulerRight() != pSh->GetViewOptions()->IsVRulerRight();
-//STRIP001
-//STRIP001     pSh->SetUIOptions(*pPref);
-//STRIP001     const SwViewOption* pNewPref = pSh->GetViewOptions();
-//STRIP001
-//STRIP001  // Scrollbars an / aus
-//STRIP001  if(bVScrollChanged)
-//STRIP001  {
-//STRIP001         pView->ShowVScrollbar(pNewPref->IsViewVScrollBar());
-//STRIP001  }
-//STRIP001  if(bHScrollChanged)
-//STRIP001  {
-//STRIP001         pView->ShowHScrollbar( pNewPref->IsViewHScrollBar() || pSh->IsBrowseMode());
-//STRIP001  }
-//STRIP001     //if only the position of the vertical ruler has been changed initiate an update
-//STRIP001     if(bVAlignChanged && !bHScrollChanged && !bVScrollChanged)
-//STRIP001         pView->InvalidateBorder();
-//STRIP001
-//STRIP001  // Lineale an / aus
-//STRIP001     if(pNewPref->IsViewVRuler())
-//STRIP001      pView->CreateVLineal();
-//STRIP001  else
-//STRIP001      pView->KillVLineal();
-//STRIP001
-//STRIP001  // TabWindow an/aus
-//STRIP001     if(pNewPref->IsViewHRuler())
-//STRIP001      pView->CreateTab();
-//STRIP001  else
-//STRIP001      pView->KillTab();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Aktuelle SwWrtShell
  --------------------------------------------------------------------*/
 
 
-//STRIP001 SwWrtShell*  GetActiveWrtShell()
-//STRIP001 {
-//STRIP001  SwView *pActive = ::GetActiveView();
-//STRIP001  if( pActive )
-//STRIP001      return &pActive->GetWrtShell();
-//STRIP001  return 0;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:   Pointer auf die aktuelle Sicht
@@ -359,27 +256,6 @@ using namespace ::com::sun::star::lang;
 ------------------------------------------------------------------------*/
 
 
-//STRIP001 void SwModule::MakeUsrPref( SwViewOption &rToFill, sal_Bool bWeb ) const
-//STRIP001 {
-//STRIP001      // Einstellungen Ansicht der Core setzen
-//STRIP001  SwView* pView = ::GetActiveView();
-//STRIP001  SwPagePreView* pPPView;
-//STRIP001
-//STRIP001  if(pView)
-//STRIP001  {
-//STRIP001      rToFill = *(pView->GetWrtShell().GetViewOptions());
-//STRIP001      SfxFrame* pTopFrame = pView->GetViewFrame()->GetTopFrame();
-//STRIP001      if( pTopFrame->GetChildFrameCount() != 0 )
-//STRIP001      {
-//STRIP001             rToFill.SetViewHRuler(pUsrPref->IsViewHRuler());
-//STRIP001             rToFill.SetViewVRuler(pUsrPref->IsViewVRuler());
-//STRIP001      }
-//STRIP001  }
-//STRIP001  else if( 0 != (pPPView = PTR_CAST( SwPagePreView, SfxViewShell::Current())) )
-//STRIP001         rToFill = *(pPPView->GetViewShell()->GetViewOptions());
-//STRIP001  else
-//STRIP001      rToFill = *((SwModule*)this)->GetUsrPref( bWeb );
-//STRIP001 }
 
 
 /*------------------------------------------------------------------------
@@ -391,117 +267,14 @@ using namespace ::com::sun::star::lang;
 /*M*/ void SwModule::ApplyUsrPref(const SwViewOption &rUsrPref, SwView* pActView,
 /*M*/                           sal_uInt16 nDest )
 /*M*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/    SwView* pView = pActView;
-//STRIP001 /*?*/     ViewShell* pSh = pView ? &pView->GetWrtShell() : 0;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    SwMasterUsrPref* pPref = (SwMasterUsrPref*)GetUsrPref(
-//STRIP001 /*?*/                                         VIEWOPT_DEST_WEB == nDest ? sal_True  :
-//STRIP001 /*?*/                                         VIEWOPT_DEST_TEXT== nDest ? sal_False :
-//STRIP001 /*?*/                                         pView && pView->ISA(SwWebView) );
-//STRIP001 /*?*/
-//STRIP001 /*?*/    //per Uno soll nur die sdbcx::View, aber nicht das Module veraendert werden
-//STRIP001 /*?*/    sal_Bool bViewOnly = VIEWOPT_DEST_VIEW_ONLY == nDest;
-//STRIP001 /*?*/    //PreView abfruehstuecken
-//STRIP001 /*?*/    SwPagePreView* pPPView;
-//STRIP001 /*?*/    if( !pView && 0 != (pPPView = PTR_CAST( SwPagePreView, SfxViewShell::Current())) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        if(!bViewOnly)
-//STRIP001 /*?*/            pPref->SetUIOptions( rUsrPref );
-//STRIP001 /*?*/         pPPView->ShowVScrollbar(pPref->IsViewVScrollBar());
-//STRIP001 /*?*/         pPPView->ShowHScrollbar(pPref->IsViewHScrollBar());
-//STRIP001 /*?*/        if(!bViewOnly)
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            pPref->SetPagePrevRow(rUsrPref.GetPagePrevRow());
-//STRIP001 /*?*/            pPref->SetPagePrevCol(rUsrPref.GetPagePrevCol());
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        return;
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if(!bViewOnly)
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        pPref->SetUsrPref( rUsrPref );
-//STRIP001 /*?*/        pPref->SetModified();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/
-//STRIP001 /*?*/    if( !pView )
-//STRIP001 /*?*/        return;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    // Weitergabe an die CORE
-//STRIP001 /*?*/    const sal_Bool bReadonly = pView->GetDocShell()->IsReadOnly();
-//STRIP001 /*?*/    SwViewOption* pViewOpt;
-//STRIP001 /*?*/    if(!bViewOnly)
-//STRIP001 /*?*/        pViewOpt = new SwViewOption( *pPref );
-//STRIP001 /*?*/    else
-//STRIP001 /*?*/        pViewOpt = new SwViewOption( rUsrPref );
-//STRIP001 /*?*/    pViewOpt->SetReadonly( bReadonly );
-//STRIP001 /*?*/    if( !(*pSh->GetViewOptions() == *pViewOpt) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/        //Ist evtl. nur eine ViewShell
-//STRIP001 /*?*/        pSh->StartAction();
-//STRIP001 /*?*/        pSh->ApplyViewOptions( *pViewOpt );
-//STRIP001 /*?*/        ((SwWrtShell*)pSh)->SetReadOnlyAvailable(pViewOpt->IsCursorInProtectedArea());
-//STRIP001 /*?*/        pSh->EndAction();
-//STRIP001 /*?*/    }
-//STRIP001 /*?*/    if ( pSh->GetViewOptions()->IsReadonly() != bReadonly )
-//STRIP001 /*?*/        pSh->SetReadonlyOption(bReadonly);
-//STRIP001 /*?*/
-//STRIP001 /*?*/    lcl_SetUIPrefs(pViewOpt, pView, pSh);
-//STRIP001 /*?*/     // zum Schluss wird das Idle-Flag wieder gesetzt
-//STRIP001 /*?*/    // #42510#
-//STRIP001 /*?*/    pPref->SetIdle(sal_True);
-//STRIP001 /*?*/
 /*M*/ }
 /* -----------------------------28.09.00 12:36--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwModule::ApplyUserMetric( FieldUnit eMetric, BOOL bWeb )
-//STRIP001 {
-//STRIP001      SwMasterUsrPref* pPref;
-//STRIP001      if(bWeb)
-//STRIP001      {
-//STRIP001          if(!pWebUsrPref)
-//STRIP001              GetUsrPref(sal_True);
-//STRIP001          pPref = pWebUsrPref;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          if(!pUsrPref)
-//STRIP001              GetUsrPref(sal_False);
-//STRIP001          pPref = pUsrPref;
-//STRIP001      }
-//STRIP001      FieldUnit eOldMetric = pPref->GetMetric();
-//STRIP001      if(eOldMetric != eMetric)
-//STRIP001          pPref->SetMetric(eMetric);
-//STRIP001
-//STRIP001         FieldUnit eHScrollMetric = pPref->IsHScrollMetric() ? pPref->GetHScrollMetric() : eMetric;
-//STRIP001         FieldUnit eVScrollMetric = pPref->IsVScrollMetric() ? pPref->GetVScrollMetric() : eMetric;
-//STRIP001
-//STRIP001      SwView* pTmpView = SwModule::GetFirstView();
-//STRIP001      // fuer alle MDI-Fenster das Lineal umschalten
-//STRIP001      while(pTmpView)
-//STRIP001      {
-//STRIP001          if(bWeb == (0 != PTR_CAST(SwWebView, pTmpView)))
-//STRIP001          {
-//STRIP001                 pTmpView->ChangeVLinealMetric(eHScrollMetric);
-//STRIP001                 pTmpView->ChangeTabMetric(eVScrollMetric);
-//STRIP001          }
-//STRIP001
-//STRIP001          pTmpView = SwModule::GetNextView(pTmpView);
-//STRIP001      }
-//STRIP001
-//STRIP001 }
 /*-----------------13.11.96 11.57-------------------
 
 --------------------------------------------------*/
 
-//STRIP001 SwNavigationConfig*  SwModule::GetNavigationConfig()
-//STRIP001 {
-//STRIP001  if(!pNavigationConfig)
-//STRIP001  {
-//STRIP001      pNavigationConfig = new SwNavigationConfig;
-//STRIP001  }
-//STRIP001  return pNavigationConfig;
-//STRIP001 }
 
 /*-----------------05.02.97 08.03-------------------
 
@@ -524,56 +297,17 @@ using namespace ::com::sun::star::lang;
 /*-----------------26.06.97 07.52-------------------
 
 --------------------------------------------------*/
-//STRIP001 SwChapterNumRules*   SwModule::GetChapterNumRules()
-//STRIP001 {
-//STRIP001  if(!pChapterNumRules)
-//STRIP001      pChapterNumRules = new SwChapterNumRules;
-//STRIP001  return pChapterNumRules;
-//STRIP001 }
 
 
 /*--------------------------------------------------------------------
     Beschreibung: Schaut nach ob's min eine View gibt
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwModule::StateIsView(SfxItemSet& rSet)
-//STRIP001 {
-//STRIP001  SwView *pView = ::GetActiveView();
-//STRIP001
-//STRIP001  TypeId aType( TYPE(SwView) );
-//STRIP001  if( !SfxViewShell::GetFirst(&aType) )   // Ist irgendein Writer-Dok vorhanden?
-//STRIP001      rSet.DisableItem(FN_QRY_MERGE);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwModule::ShowDBObj(SwView& rView, const SwDBData& rData, BOOL bOnlyIfAvailable)
-//STRIP001 {
-//STRIP001     Reference<XFrame> xFrame = rView.GetViewFrame()->GetFrame()->GetFrameInterface();
-//STRIP001     Reference<XDispatchProvider> xDP(xFrame, uno::UNO_QUERY);
-//STRIP001
-//STRIP001     uno::Reference<frame::XFrame> xBeamerFrame = xFrame->findFrame(
-//STRIP001                                         ::rtl::OUString::createFromAscii("_beamer"),
-//STRIP001                                         FrameSearchFlag::CHILDREN);
-//STRIP001     if (xBeamerFrame.is())
-//STRIP001     {   // the beamer has been opened by the SfxViewFrame
-//STRIP001         Reference<XController> xController = xBeamerFrame->getController();
-//STRIP001         Reference<XSelectionSupplier> xControllerSelection(xController, UNO_QUERY);
-//STRIP001         if (xControllerSelection.is())
-//STRIP001         {
-//STRIP001
-//STRIP001             ODataAccessDescriptor aSelection;
-//STRIP001             aSelection[daDataSource]    <<= rData.sDataSource;
-//STRIP001             aSelection[daCommand]       <<= rData.sCommand;
-//STRIP001             aSelection[daCommandType]   <<= rData.nCommandType;
-//STRIP001             xControllerSelection->select(makeAny(aSelection.createPropertyValueSequence()));
-//STRIP001         }
-//STRIP001         else
-//STRIP001             DBG_ERROR("no selection supplier in the beamer!");
-//STRIP001     }
-//STRIP001 }
 /*--------------------------------------------------------------------
     Beschreibung: Redlining
  --------------------------------------------------------------------*/
@@ -581,13 +315,6 @@ using namespace ::com::sun::star::lang;
 /*N*/ sal_uInt16 SwModule::GetRedlineAuthor()
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
-//STRIP001  {
-//STRIP001      SvtUserOptions aOpt;
-//STRIP001      if( !(sActAuthor = aOpt.GetFullName()).Len() )
-//STRIP001          sActAuthor = String( SW_RES( STR_REDLINE_UNKNOWN_AUTHOR ));
-//STRIP001      bAuthorInitialised = sal_True;
-//STRIP001  }
-//STRIP001  return InsertRedlineAuthor( sActAuthor );
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -603,10 +330,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 sal_uInt16 SwModule::GetRedlineAuthorCount()
-//STRIP001 {
-//STRIP001  return pAuthorNames->Count();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
@@ -629,122 +352,32 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void lcl_FillAuthorAttr( sal_uInt16 nAuthor, SfxItemSet &rSet,
-//STRIP001                      const AuthorCharAttr &rAttr )
-//STRIP001 {
-//STRIP001  Color aCol( (ColorData)rAttr.nColor );
-//STRIP001
-//STRIP001  if( COL_TRANSPARENT == rAttr.nColor )
-//STRIP001  {
-//STRIP001      // dynamische Vergabe der Attribute
-//STRIP001      static const ColorData aColArr[] = {
-//STRIP001              COL_LIGHTRED,       COL_LIGHTBLUE,      COL_LIGHTMAGENTA,
-//STRIP001              COL_GREEN,          COL_RED,            COL_BLUE,
-//STRIP001              COL_BROWN,          COL_MAGENTA,        COL_CYAN };
-//STRIP001      aCol.SetColor( aColArr[ nAuthor % (sizeof( aColArr ) /
-//STRIP001                                         sizeof( aColArr[0] )) ] );
-//STRIP001  }
-//STRIP001
-//STRIP001  sal_Bool bBackGr = COL_NONE == rAttr.nColor;
-//STRIP001
-//STRIP001  switch (rAttr.nItemId)
-//STRIP001  {
-//STRIP001  case SID_ATTR_CHAR_WEIGHT:
-//STRIP001      {
-//STRIP001          SvxWeightItem aW( (FontWeight)rAttr.nAttr, RES_CHRATR_WEIGHT );
-//STRIP001          rSet.Put( aW );
-//STRIP001          aW.SetWhich( RES_CHRATR_CJK_WEIGHT );
-//STRIP001          rSet.Put( aW );
-//STRIP001          aW.SetWhich( RES_CHRATR_CTL_WEIGHT );
-//STRIP001          rSet.Put( aW );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_ATTR_CHAR_POSTURE:
-//STRIP001      {
-//STRIP001          SvxPostureItem aP( (FontItalic)rAttr.nAttr, RES_CHRATR_POSTURE );
-//STRIP001          rSet.Put( aP );
-//STRIP001          aP.SetWhich( RES_CHRATR_CJK_POSTURE );
-//STRIP001          rSet.Put( aP );
-//STRIP001          aP.SetWhich( RES_CHRATR_CTL_POSTURE );
-//STRIP001          rSet.Put( aP );
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_ATTR_CHAR_UNDERLINE:
-//STRIP001      rSet.Put( SvxUnderlineItem( (FontUnderline)rAttr.nAttr,
-//STRIP001                                  RES_CHRATR_UNDERLINE));
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_ATTR_CHAR_STRIKEOUT:
-//STRIP001      rSet.Put(SvxCrossedOutItem( (FontStrikeout)rAttr.nAttr,
-//STRIP001                                  RES_CHRATR_CROSSEDOUT));
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_ATTR_CHAR_CASEMAP:
-//STRIP001      rSet.Put( SvxCaseMapItem( (SvxCaseMap)rAttr.nAttr,
-//STRIP001                                  RES_CHRATR_CASEMAP));
-//STRIP001      break;
-//STRIP001
-//STRIP001  case SID_ATTR_BRUSH:
-//STRIP001      rSet.Put( SvxBrushItem( aCol, RES_CHRATR_BACKGROUND ));
-//STRIP001      bBackGr = sal_True;
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  if( !bBackGr )
-//STRIP001      rSet.Put( SvxColorItem( aCol ) );
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwModule::GetInsertAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet)
-//STRIP001 {
-//STRIP001  lcl_FillAuthorAttr(nAuthor, rSet, pModuleConfig->GetInsertAuthorAttr());
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwModule::GetDeletedAuthorAttr(sal_uInt16 nAuthor, SfxItemSet &rSet)
-//STRIP001 {
-//STRIP001  lcl_FillAuthorAttr(nAuthor, rSet, pModuleConfig->GetDeletedAuthorAttr());
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 const AuthorCharAttr& SwModule::GetInsertAuthorAttr() const
-//STRIP001 {
-//STRIP001  return pModuleConfig->GetInsertAuthorAttr();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 const AuthorCharAttr& SwModule::GetDeletedAuthorAttr() const
-//STRIP001 {
-//STRIP001  return pModuleConfig->GetDeletedAuthorAttr();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung: Fuer zukuenftige Erweiterung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwModule::GetFormatAuthorAttr( sal_uInt16 nAuthor, SfxItemSet &rSet )
-//STRIP001 {
-//STRIP001  lcl_FillAuthorAttr( nAuthor, rSet, pModuleConfig->GetFormatAuthorAttr() );
-//STRIP001 }
 
-//STRIP001 const AuthorCharAttr& SwModule::GetFormatAuthorAttr() const
-//STRIP001 {
-//STRIP001  return pModuleConfig->GetFormatAuthorAttr();
-//STRIP001 }
 
 
 /*--------------------------------------------------------------------
@@ -760,33 +393,17 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 sal_Bool SwModule::IsInsTblFormatNum(sal_Bool bHTML) const
-//STRIP001 {
-//STRIP001  return pModuleConfig->IsInsTblFormatNum(bHTML);
-//STRIP001 }
 
-//STRIP001 sal_Bool SwModule::IsInsTblChangeNumFormat(sal_Bool bHTML) const
-//STRIP001 {
-//STRIP001  return pModuleConfig->IsInsTblChangeNumFormat(bHTML);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 sal_Bool SwModule::IsInsTblAlignNum(sal_Bool bHTML) const
-//STRIP001 {
-//STRIP001  return pModuleConfig->IsInsTblAlignNum(bHTML);
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 const Color &SwModule::GetRedlineMarkColor()
-//STRIP001 {
-//STRIP001  return pModuleConfig->GetMarkAlignColor();
-//STRIP001 }
 
 /*-----------------03.03.98 16:47-------------------
 
@@ -844,21 +461,9 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
 /* -----------------------------28.09.00 14:18--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwModule::ApplyFldUpdateFlags(sal_Int32 nFldFlags)
-//STRIP001 {
-//STRIP001  if(!pUsrPref)
-//STRIP001      GetUsrPref(sal_False);
-//STRIP001  pUsrPref->SetFldUpdateFlags(nFldFlags);
-//STRIP001 }
 /* -----------------------------28.09.00 14:18--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwModule::ApplyLinkMode(sal_Int32 nNewLinkMode)
-//STRIP001 {
-//STRIP001  if(!pUsrPref)
-//STRIP001      GetUsrPref(sal_False);
-//STRIP001  pUsrPref->SetUpdateLinkMode(nNewLinkMode);
-//STRIP001 }
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
