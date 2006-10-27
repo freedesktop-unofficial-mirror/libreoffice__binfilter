@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_node.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:50:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:29:57 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -47,15 +47,9 @@
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 #endif
 
-// auto strip #ifndef _FMTCNTNT_HXX //autogen
-// auto strip #include <fmtcntnt.hxx>
-// auto strip #endif
 #ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX //autogen
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -73,57 +67,24 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
-// auto strip #ifndef _NDINDEX_HXX
-// auto strip #include <ndindex.hxx>
-// auto strip #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _HINTS_HXX
-// auto strip #include <hints.hxx>
-// auto strip #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 #ifndef _PAM_HXX
 #include <pam.hxx>
 #endif
-// auto strip #ifndef _SWCACHE_HXX
-// auto strip #include <swcache.hxx>
-// auto strip #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
 #endif
-// auto strip #ifndef _CNTFRM_HXX
-// auto strip #include <cntfrm.hxx>
-// auto strip #endif
-// auto strip #ifndef _LAYFRM_HXX
-// auto strip #include <layfrm.hxx>
-// auto strip #endif
 #ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
 #endif
 #ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
 #endif
-// auto strip #ifndef _TABFRM_HXX
-// auto strip #include <tabfrm.hxx>  // SwTabFrm
-// auto strip #endif
-// auto strip #ifndef _VIEWSH_HXX
-// auto strip #include <viewsh.hxx>
-// auto strip #endif
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
 #endif
@@ -133,15 +94,9 @@
 #ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
 #endif
-// auto strip #ifndef _FMTHDFT_HXX //autogen
-// auto strip #include <fmthdft.hxx>
-// auto strip #endif
 #ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
 #endif
-// auto strip #ifndef _FRMATR_HXX
-// auto strip #include <frmatr.hxx>
-// auto strip #endif
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif
@@ -154,12 +109,6 @@
 #ifndef _HINTS_HXX
 #include <hints.hxx>
 #endif
-// auto strip #ifndef _PAGEDESC_HXX //autogen
-// auto strip #include <pagedesc.hxx>
-// auto strip #endif
-// auto strip #ifndef _FMTPDSC_HXX //autogen
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
 #ifndef _BREAKIT_HXX
 #include <breakit.hxx>
 #endif
@@ -199,18 +148,6 @@ using namespace ::com::sun::star::i18n;
 *******************************************************************/
 
 
-//STRIP001 USHORT SwNode::GetSectionLevel() const
-//STRIP001 {
-//STRIP001  // EndNode einer Grund-Section ?? diese sind immer 0 !!
-//STRIP001  if( IsEndNode() && 0 == pStartOfSection->StartOfSectionIndex() )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  USHORT nLevel;
-//STRIP001  const SwNode* pNode = IsStartNode() ? this : pStartOfSection;
-//STRIP001  for( nLevel = 1; 0 != pNode->StartOfSectionIndex(); ++nLevel )
-//STRIP001      pNode = pNode->pStartOfSection;
-//STRIP001  return IsEndNode() ? nLevel-1 : nLevel;
-//STRIP001 }
 
 /*******************************************************************
 |*
@@ -324,48 +261,6 @@ using namespace ::com::sun::star::i18n;
 
 
 // liegt der Node im Sichtbarenbereich der Shell ?
-//STRIP001 BOOL SwNode::IsVisible( ViewShell* pSh ) const
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  const SwCntntNode* pNd;
-//STRIP001
-//STRIP001  if( ND_STARTNODE & nNodeType )
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *this );
-//STRIP001      pNd = GetNodes().GoNext( &aIdx );
-//STRIP001  }
-//STRIP001  else if( ND_ENDNODE & nNodeType )
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *EndOfSectionNode() );
-//STRIP001      pNd = GetNodes().GoPrevious( &aIdx );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pNd = GetCntntNode();
-//STRIP001
-//STRIP001  const SwFrm* pFrm;
-//STRIP001  if( pNd && 0 != ( pFrm = pNd->GetFrm( 0, 0, FALSE ) ) )
-//STRIP001  {
-//STRIP001      if( !pSh )
-//STRIP001          // dann die Shell vom Doc besorgen:
-//STRIP001          GetDoc()->GetEditShell( &pSh );
-//STRIP001
-//STRIP001      if( pSh )
-//STRIP001      {
-//STRIP001          if ( pFrm->IsInTab() )
-//STRIP001              pFrm = pFrm->FindTabFrm();
-//STRIP001
-//STRIP001          if( !pFrm->IsValid() )
-//STRIP001              do
-//STRIP001              {   pFrm = pFrm->FindPrev();
-//STRIP001              } while ( pFrm && !pFrm->IsValid() );
-//STRIP001
-//STRIP001          if( !pFrm || pSh->VisArea().IsOver( pFrm->Frm() ) )
-//STRIP001              bRet = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 
 /*N*/ BOOL SwNode::IsInProtectSect() const
 /*N*/ {
@@ -421,250 +316,6 @@ using namespace ::com::sun::star::i18n;
     // suche den PageDesc, mit dem dieser Node formatiert ist. Wenn das
     // Layout vorhanden ist wird ueber das gesucht, ansonsten gibt es nur
     // die harte Tour ueber die Nodes nach vorne suchen!!
-//STRIP001 const SwPageDesc* SwNode::FindPageDesc( BOOL bCalcLay,
-//STRIP001                                         sal_uInt32* pPgDescNdIdx ) const
-//STRIP001 {
-//STRIP001     // OD 18.03.2003 #106329#
-//STRIP001     if ( !GetNodes().IsDocNodes() )
-//STRIP001     {
-//STRIP001         return 0;
-//STRIP001     }
-//STRIP001
-//STRIP001     const SwPageDesc* pPgDesc = 0;
-//STRIP001
-//STRIP001     const SwCntntNode* pNd;
-//STRIP001     if( ND_STARTNODE & nNodeType )
-//STRIP001     {
-//STRIP001         SwNodeIndex aIdx( *this );
-//STRIP001         pNd = GetNodes().GoNext( &aIdx );
-//STRIP001     }
-//STRIP001     else if( ND_ENDNODE & nNodeType )
-//STRIP001     {
-//STRIP001         SwNodeIndex aIdx( *EndOfSectionNode() );
-//STRIP001         pNd = GetNodes().GoPrevious( &aIdx );
-//STRIP001     }
-//STRIP001     else
-//STRIP001     {
-//STRIP001         pNd = GetCntntNode();
-//STRIP001         if( pNd )
-//STRIP001             pPgDesc = ((SwFmtPageDesc&)pNd->GetAttr( RES_PAGEDESC )).GetPageDesc();
-//STRIP001     }
-//STRIP001
-//STRIP001     // geht es uebers Layout?
-//STRIP001     if( !pPgDesc )
-//STRIP001     {
-//STRIP001         const SwFrm* pFrm;
-//STRIP001         const SwPageFrm* pPage;
-//STRIP001         if( pNd && 0 != ( pFrm = pNd->GetFrm( 0, 0, bCalcLay ) ) &&
-//STRIP001             0 != ( pPage = pFrm->FindPageFrm() ) )
-//STRIP001         {
-//STRIP001             pPgDesc = pPage->GetPageDesc();
-//STRIP001             // OD 18.03.2003 #106329#
-//STRIP001             if ( pPgDescNdIdx )
-//STRIP001             {
-//STRIP001                 *pPgDescNdIdx = pNd->GetIndex();
-//STRIP001             }
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     if( !pPgDesc )
-//STRIP001     {
-//STRIP001         // dann also uebers Nodes-Array
-//STRIP001         const SwDoc* pDoc = GetDoc();
-//STRIP001         const SwNode* pNd = this;
-//STRIP001         const SwStartNode* pSttNd;
-//STRIP001         if( pNd->GetIndex() < GetNodes().GetEndOfExtras().GetIndex() &&
-//STRIP001             0 != ( pSttNd = pNd->FindFlyStartNode() ) )
-//STRIP001         {
-//STRIP001             // dann erstmal den richtigen Anker finden
-//STRIP001             const SwFrmFmt* pFmt = 0;
-//STRIP001             const SwSpzFrmFmts& rFmts = *pDoc->GetSpzFrmFmts();
-//STRIP001             for( USHORT n = 0; n < rFmts.Count(); ++n )
-//STRIP001             {
-//STRIP001                 SwFrmFmt* pFrmFmt = rFmts[ n ];
-//STRIP001                 const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
-//STRIP001                 if( rCntnt.GetCntntIdx() &&
-//STRIP001                     &rCntnt.GetCntntIdx()->GetNode() == (SwNode*)pSttNd )
-//STRIP001                 {
-//STRIP001                     pFmt = pFrmFmt;
-//STRIP001                     break;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001
-//STRIP001             if( pFmt )
-//STRIP001             {
-//STRIP001                 const SwFmtAnchor* pAnchor = &pFmt->GetAnchor();
-//STRIP001                 if( FLY_PAGE != pAnchor->GetAnchorId() &&
-//STRIP001                     pAnchor->GetCntntAnchor() )
-//STRIP001                 {
-//STRIP001                     pNd = &pAnchor->GetCntntAnchor()->nNode.GetNode();
-//STRIP001                     const SwNode* pFlyNd = pNd->FindFlyStartNode();
-//STRIP001                     while( pFlyNd )
-//STRIP001                     {
-//STRIP001                         // dann ueber den Anker nach oben "hangeln"
-//STRIP001                         for( n = 0; n < rFmts.Count(); ++n )
-//STRIP001                         {
-//STRIP001                             const SwFrmFmt* pFrmFmt = rFmts[ n ];
-//STRIP001                             const SwNodeIndex* pIdx = pFrmFmt->GetCntnt().
-//STRIP001                                                         GetCntntIdx();
-//STRIP001                             if( pIdx && pFlyNd == &pIdx->GetNode() )
-//STRIP001                             {
-//STRIP001                                 if( pFmt == pFrmFmt )
-//STRIP001                                 {
-//STRIP001                                     pNd = pFlyNd;
-//STRIP001                                     pFlyNd = 0;
-//STRIP001                                     break;
-//STRIP001                                 }
-//STRIP001                                 pAnchor = &pFrmFmt->GetAnchor();
-//STRIP001                                 if( FLY_PAGE == pAnchor->GetAnchorId() ||
-//STRIP001                                     !pAnchor->GetCntntAnchor() )
-//STRIP001                                 {
-//STRIP001                                     pFlyNd = 0;
-//STRIP001                                     break;
-//STRIP001                                 }
-//STRIP001
-//STRIP001                                 pFlyNd = pAnchor->GetCntntAnchor()->nNode.
-//STRIP001                                         GetNode().FindFlyStartNode();
-//STRIP001                                 break;
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                         if( n >= rFmts.Count() )
-//STRIP001                         {
-//STRIP001                             ASSERT( !this, "Fly-Section aber kein Format gefunden" );
-//STRIP001                             return FALSE;
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             // in pNd sollte jetzt der richtige Anker Node stehen oder
-//STRIP001             // immer noch der this
-//STRIP001         }
-//STRIP001
-//STRIP001         if( pNd->GetIndex() < GetNodes().GetEndOfExtras().GetIndex() )
-//STRIP001         {
-//STRIP001             if( pNd->GetIndex() > GetNodes().GetEndOfAutotext().GetIndex() )
-//STRIP001             {
-//STRIP001                 pPgDesc = &pDoc->GetPageDesc( 0 );
-//STRIP001                 pNd = 0;
-//STRIP001             }
-//STRIP001             else
-//STRIP001             {
-//STRIP001                 // suche den Body Textnode
-//STRIP001                 if( 0 != ( pSttNd = pNd->FindHeaderStartNode() ) ||
-//STRIP001                     0 != ( pSttNd = pNd->FindFooterStartNode() ))
-//STRIP001                 {
-//STRIP001                     // dann in den PageDescs diesen StartNode suchen
-//STRIP001                     USHORT nId;
-//STRIP001                     UseOnPage eAskUse;
-//STRIP001                     if( SwHeaderStartNode == pSttNd->GetStartNodeType())
-//STRIP001                     {
-//STRIP001                         nId = RES_HEADER;
-//STRIP001                         eAskUse = PD_HEADERSHARE;
-//STRIP001                     }
-//STRIP001                     else
-//STRIP001                     {
-//STRIP001                         nId = RES_FOOTER;
-//STRIP001                         eAskUse = PD_FOOTERSHARE;
-//STRIP001                     }
-//STRIP001
-//STRIP001                     for( USHORT n = pDoc->GetPageDescCnt(); n && !pPgDesc; )
-//STRIP001                     {
-//STRIP001                         const SwPageDesc& rPgDsc = pDoc->GetPageDesc( --n );
-//STRIP001                         const SwFrmFmt* pFmt = &rPgDsc.GetMaster();
-//STRIP001                         int nStt = 0, nLast = 1;
-//STRIP001                         if( !( eAskUse & rPgDsc.ReadUseOn() )) ++nLast;
-//STRIP001
-//STRIP001                         for( ; nStt < nLast; ++nStt, pFmt = &rPgDsc.GetLeft() )
-//STRIP001                         {
-//STRIP001                             const SwFmtHeader& rHdFt = (SwFmtHeader&)
-//STRIP001                                                     pFmt->GetAttr( nId );
-//STRIP001                             if( rHdFt.GetHeaderFmt() )
-//STRIP001                             {
-//STRIP001                                 const SwFmtCntnt& rCntnt =
-//STRIP001                                     rHdFt.GetHeaderFmt()->GetCntnt();
-//STRIP001                                 if( rCntnt.GetCntntIdx() &&
-//STRIP001                                     &rCntnt.GetCntntIdx()->GetNode() ==
-//STRIP001                                     (SwNode*)pSttNd )
-//STRIP001                                 {
-//STRIP001                                     pPgDesc = &rPgDsc;
-//STRIP001                                     break;
-//STRIP001                                 }
-//STRIP001                             }
-//STRIP001                         }
-//STRIP001                     }
-//STRIP001
-//STRIP001                     if( !pPgDesc )
-//STRIP001                         pPgDesc = &pDoc->GetPageDesc( 0 );
-//STRIP001                     pNd = 0;
-//STRIP001                 }
-//STRIP001                 else if( 0 != ( pSttNd = pNd->FindFootnoteStartNode() ))
-//STRIP001                 {
-//STRIP001                     // der Anker kann nur im Bodytext sein
-//STRIP001                     const SwTxtFtn* pTxtFtn;
-//STRIP001                     const SwFtnIdxs& rFtnArr = pDoc->GetFtnIdxs();
-//STRIP001                     for( USHORT n = 0; n < rFtnArr.Count(); ++n )
-//STRIP001                         if( 0 != ( pTxtFtn = rFtnArr[ n ])->GetStartNode() &&
-//STRIP001                             (SwNode*)pSttNd ==
-//STRIP001                             &pTxtFtn->GetStartNode()->GetNode() )
-//STRIP001                         {
-//STRIP001                             pNd = &pTxtFtn->GetTxtNode();
-//STRIP001                             break;
-//STRIP001                         }
-//STRIP001                 }
-//STRIP001                 else
-//STRIP001                 {
-//STRIP001                     // kann jetzt nur noch ein Seitengebundener Fly sein
-//STRIP001                     // oder irgendetwas neueres.
-//STRIP001                     // Hier koennen wir nur noch den Standard returnen
-//STRIP001                     ASSERT( pNd->FindFlyStartNode(),
-//STRIP001                             "wo befindet sich dieser Node?" );
-//STRIP001
-//STRIP001                     pPgDesc = &pDoc->GetPageDesc( 0 );
-//STRIP001                     pNd = 0;
-//STRIP001                 }
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         if( pNd )
-//STRIP001         {
-//STRIP001             SwFindNearestNode aInfo( *pNd );
-//STRIP001             // dann ueber alle Nodes aller PageDesc
-//STRIP001             const SfxPoolItem* pItem;
-//STRIP001             USHORT i, nMaxItems = pDoc->GetAttrPool().GetItemCount( RES_PAGEDESC );
-//STRIP001             for( i = 0; i < nMaxItems; ++i )
-//STRIP001                 if( 0 != (pItem = pDoc->GetAttrPool().GetItem( RES_PAGEDESC, i ) ) &&
-//STRIP001                     ((SwFmtPageDesc*)pItem)->GetDefinedIn() )
-//STRIP001                 {
-//STRIP001                     const SwModify* pMod = ((SwFmtPageDesc*)pItem)->GetDefinedIn();
-//STRIP001                     if( pMod->ISA( SwCntntNode ) )
-//STRIP001                         aInfo.CheckNode( *(SwCntntNode*)pMod );
-//STRIP001                     else if( pMod->ISA( SwFmt ))
-//STRIP001                         ((SwFmt*)pMod)->GetInfo( aInfo );
-//STRIP001                 }
-//STRIP001
-//STRIP001             if( 0 != ( pNd = aInfo.GetFoundNode() ))
-//STRIP001             {
-//STRIP001                 if( pNd->IsCntntNode() )
-//STRIP001                     pPgDesc = ((SwFmtPageDesc&)pNd->GetCntntNode()->
-//STRIP001                                 GetAttr( RES_PAGEDESC )).GetPageDesc();
-//STRIP001                 else if( pNd->IsTableNode() )
-//STRIP001                     pPgDesc = pNd->GetTableNode()->GetTable().
-//STRIP001                             GetFrmFmt()->GetPageDesc().GetPageDesc();
-//STRIP001                 else if( pNd->IsSectionNode() )
-//STRIP001                     pPgDesc = pNd->GetSectionNode()->GetSection().
-//STRIP001                             GetFmt()->GetPageDesc().GetPageDesc();
-//STRIP001                 // OD 18.03.2003 #106329#
-//STRIP001                 if ( pPgDescNdIdx )
-//STRIP001                 {
-//STRIP001                     *pPgDescNdIdx = pNd->GetIndex();
-//STRIP001                 }
-//STRIP001             }
-//STRIP001             if( !pPgDesc )
-//STRIP001                 pPgDesc = &pDoc->GetPageDesc( 0 );
-//STRIP001         }
-//STRIP001     }
-//STRIP001  return pPgDesc;
-//STRIP001 }
 
 
     // falls der Node in einem Fly steht, dann wird das entsprechende Format
@@ -702,28 +353,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return pRet;
 /*N*/ }
 
-//STRIP001 const SwFrmFmt* SwNode::GetFrmFmt() const
-//STRIP001 {
-//STRIP001  const SwFrmFmt* pRet = 0;
-//STRIP001  const SwNode* pNd = FindStartNode();
-//STRIP001  ASSERT( pNd, "SwNode::GetFrmFmt(): Missing StartNode" );
-//STRIP001  if( pNd->IsSectionNode() )
-//STRIP001      pRet = ((SwSectionNode*)pNd)->GetSection().GetFmt();
-//STRIP001  else if( pNd->IsTableNode() )
-//STRIP001      pRet = ((SwTableNode*)pNd)->GetTable().GetFrmFmt();
-//STRIP001  else switch( ((SwStartNode*)pNd)->GetStartNodeType() )
-//STRIP001  {
-//STRIP001      case SwNormalStartNode: break;
-//STRIP001      case SwTableBoxStartNode: pRet = pNd->FindTableNode()->GetTable().GetTblBox(
-//STRIP001                                       pNd->GetIndex() )->GetFrmFmt(); break;
-//STRIP001      case SwFlyStartNode: pRet = GetFlyFmt(); break;
-//STRIP001      case SwFootnoteStartNode: pRet = GetDoc()->GetDfltFrmFmt(); break;
-//STRIP001      case SwHeaderStartNode: break;
-//STRIP001      case SwFooterStartNode: break;
-//STRIP001      default: ASSERT( FALSE, "GetFrmFmt(): New StartNodeType?" );
-//STRIP001  }
-//STRIP001  return pRet;
-//STRIP001 }
 
 /*N*/ SwTableBox* SwNode::GetTblBox() const
 /*N*/ {
@@ -803,28 +432,7 @@ using namespace ::com::sun::star::i18n;
 // This information is used for the export filters. Our layout never have a
 // distance before or after if the node is the first or last in a section.
 
-//STRIP001 inline IsValidNextPrevNd( const SwNode& rNd )
-//STRIP001 {
-//STRIP001  return ND_TABLENODE == rNd.GetNodeType() ||
-//STRIP001         ( ND_CONTENTNODE & rNd.GetNodeType() ) ||
-//STRIP001          ( ND_ENDNODE == rNd.GetNodeType() && rNd.StartOfSectionNode() &&
-//STRIP001          ND_TABLENODE == rNd.StartOfSectionNode()->GetNodeType() );
-//STRIP001 }
 
-//STRIP001 BYTE SwNode::HasPrevNextLayNode() const
-//STRIP001 {
-//STRIP001  BYTE nRet = 0;
-//STRIP001  if( IsValidNextPrevNd( *this ))
-//STRIP001  {
-//STRIP001      SwNodeIndex aIdx( *this, -1 );
-//STRIP001      if( IsValidNextPrevNd( aIdx.GetNode() ))
-//STRIP001          nRet |= ND_HAS_PREV_LAYNODE;
-//STRIP001      aIdx += 2;
-//STRIP001      if( IsValidNextPrevNd( aIdx.GetNode() ))
-//STRIP001          nRet |= ND_HAS_NEXT_LAYNODE;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 
 /*******************************************************************
 |*
@@ -1016,10 +624,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/   case RES_CONDCOLL_CONDCHG:
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwCondCollCondChg*)pNewValue)->pChangedFmt == GetRegisteredIn() &&
-//STRIP001 /*?*/            &GetNodes() == &GetDoc()->GetNodes() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            ChkCondColl();
-//STRIP001 /*?*/        }
 /*?*/       return ;    // nicht an die Basisklasse / Frames weitergeben
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
@@ -1116,27 +720,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                           pPoint, pPos, bCalcFrm );
 /*N*/ }
 
-//STRIP001 SwRect SwCntntNode::FindLayoutRect( const BOOL bPrtArea, const Point* pPoint,
-//STRIP001                                  const BOOL bCalcFrm ) const
-//STRIP001 {
-//STRIP001  SwRect aRet;
-//STRIP001  SwCntntFrm* pFrm = (SwCntntFrm*)::GetFrmOfModify( *(SwModify*)this,
-//STRIP001                                          FRM_CNTNT, pPoint, 0, bCalcFrm );
-//STRIP001  if( pFrm )
-//STRIP001      aRet = bPrtArea ? pFrm->Prt() : pFrm->Frm();
-//STRIP001  return aRet;
-//STRIP001 }
 
-//STRIP001 SwRect SwCntntNode::FindPageFrmRect( const BOOL bPrtArea, const Point* pPoint,
-//STRIP001                                  const BOOL bCalcFrm ) const
-//STRIP001 {
-//STRIP001  SwRect aRet;
-//STRIP001  SwFrm* pFrm = ::GetFrmOfModify( *(SwModify*)this,
-//STRIP001                                          FRM_CNTNT, pPoint, 0, bCalcFrm );
-//STRIP001  if( pFrm && 0 != ( pFrm = pFrm->FindPageFrm() ))
-//STRIP001      aRet = bPrtArea ? pFrm->Prt() : pFrm->Frm();
-//STRIP001  return aRet;
-//STRIP001 }
 
 /*N*/ xub_StrLen SwCntntNode::Len() const { return 0; }
 
@@ -1344,16 +928,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 
-//STRIP001 SwCntntNode *SwCntntNode::JoinNext()
-//STRIP001 {
-//STRIP001  return this;
-//STRIP001 }
 
 
-//STRIP001 SwCntntNode *SwCntntNode::JoinPrev()
-//STRIP001 {
-//STRIP001  return this;
-//STRIP001 }
 
 
 
@@ -1383,19 +959,10 @@ using namespace ::com::sun::star::i18n;
 /*?*/
 /*?*/   case RES_GETLOWERNUMLEVEL:
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( IsTxtNode() && ((SwTxtNode*)this)->GetNum() &&
-//STRIP001 /*?*/            0 != ( pItem = (SwNumRuleItem*)GetNoCondAttr(
-//STRIP001 /*?*/            RES_PARATR_NUMRULE, TRUE )) && pItem->GetValue().Len() &&
-//STRIP001 /*?*/            pItem->GetValue() == ((SwNRuleLowerLevel&)rInfo).GetName() &&
-//STRIP001 /*?*/            (((SwTxtNode*)this)->GetNum()->GetLevel() & ~NO_NUMLEVEL)
-//STRIP001 /*?*/                > ((SwNRuleLowerLevel&)rInfo).GetLevel() )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            return FALSE;
-//STRIP001 /*?*/        }
 /*?*/       break;
 /*?*/
 /*?*/   case RES_FINDNEARESTNODE:
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
-//STRIP001 /*?*/            ((SwFindNearestNode&)rInfo).CheckNode( *this );
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:
@@ -1533,45 +1100,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-//STRIP001 BOOL SwCntntNode::ResetAttr( const SvUShorts& rWhichArr )
-//STRIP001 {
-//STRIP001  if( !pAttrSet )
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  if ( IsInCache() )
-//STRIP001  {
-//STRIP001      SwFrm::GetCache().Delete( this );
-//STRIP001      SetInCache( FALSE );
-//STRIP001  }
-//STRIP001
-//STRIP001  // wenn Modify gelockt ist, werden keine Modifies verschickt
-//STRIP001  USHORT nDel = 0;
-//STRIP001  if( IsModifyLocked() )
-//STRIP001  {
-//STRIP001      for( USHORT n = 0, nEnd = rWhichArr.Count(); n < nEnd; ++n )
-//STRIP001          if( pAttrSet->ClearItem( rWhichArr[ n ] ))
-//STRIP001              ++nDel;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      SwAttrSet aOld( *pAttrSet->GetPool(), pAttrSet->GetRanges() ),
-//STRIP001                  aNew( *pAttrSet->GetPool(), pAttrSet->GetRanges() );
-//STRIP001
-//STRIP001      for( USHORT n = 0, nEnd = rWhichArr.Count(); n < nEnd; ++n )
-//STRIP001          if( pAttrSet->ClearItem_BC( rWhichArr[ n ], &aOld, &aNew ))
-//STRIP001              ++nDel;
-//STRIP001
-//STRIP001      if( nDel )
-//STRIP001      {
-//STRIP001          SwAttrSetChg aChgOld( *pAttrSet, aOld );
-//STRIP001          SwAttrSetChg aChgNew( *pAttrSet, aNew );
-//STRIP001          Modify( &aChgOld, &aChgNew );       // alle veraenderten werden verschickt
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if( !pAttrSet->Count() )    // leer, dann loeschen
-//STRIP001      DELETEZ( pAttrSet );
-//STRIP001  return 0 != nDel ;
-//STRIP001 }
 
 
 /*N*/ USHORT SwCntntNode::ResetAllAttr()
