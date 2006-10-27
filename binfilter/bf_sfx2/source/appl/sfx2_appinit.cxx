@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_appinit.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:03:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:54:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,7 +120,6 @@
 #include "fsetview.hxx"
 #include "imgmgr.hxx"
 #include "interno.hxx"
-#include "intro.hxx"
 #include "macrconf.hxx"
 #include "mnumgr.hxx"
 #include "msgpool.hxx"
