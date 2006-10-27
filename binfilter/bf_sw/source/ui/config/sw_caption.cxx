@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_caption.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:13:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:03:10 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,9 +36,6 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 
 #include "numrule.hxx"
 #include "caption.hxx"
@@ -69,10 +66,6 @@ namespace binfilter {
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 InsCaptionOpt::InsCaptionOpt(const InsCaptionOpt& rOpt)
-//STRIP001 {
-//STRIP001  *this = rOpt;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
@@ -86,42 +79,11 @@ namespace binfilter {
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 InsCaptionOpt& InsCaptionOpt::operator=( const InsCaptionOpt& rOpt )
-//STRIP001 {
-//STRIP001  bUseCaption = rOpt.bUseCaption;
-//STRIP001  eObjType = rOpt.eObjType;
-//STRIP001  aOleId = rOpt.aOleId;
-//STRIP001  sCategory = rOpt.sCategory;
-//STRIP001  nNumType = rOpt.nNumType;
-//STRIP001  sCaption = rOpt.sCaption;
-//STRIP001  nPos = rOpt.nPos;
-//STRIP001  nLevel = rOpt.nLevel;
-//STRIP001  cSeparator = rOpt.cSeparator;
-//STRIP001  bIgnoreSeqOpts = rOpt.bIgnoreSeqOpts;
-//STRIP001  bCopyAttributes = rOpt.bCopyAttributes;
-//STRIP001
-//STRIP001  return *this;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 BOOL InsCaptionOpt::operator==( const InsCaptionOpt& rOpt ) const
-//STRIP001 {
-//STRIP001  return (eObjType == rOpt.eObjType &&
-//STRIP001          aOleId == rOpt.aOleId); // Damit gleiche Ole-IDs nicht mehrfach eingefuegt
-//STRIP001                                  // werden koennen, auf nichts weiteres vergleichen
-//STRIP001
-//STRIP001
-//STRIP001 /*            &&
-//STRIP001          sCategory == rOpt.sCategory &&
-//STRIP001          nNumType == rOpt.nNumType &&
-//STRIP001          sCaption == rOpt.sCaption &&
-//STRIP001          nPos == rOpt.nPos &&
-//STRIP001          nLevel == rOpt.nLevel &&
-//STRIP001          cSeparator == rOpt.cSeparator);*/
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -131,29 +93,6 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SvStream& operator>>( SvStream& rIStream, InsCaptionOpt& rCapOpt )
-//STRIP001 {
-//STRIP001  rtl_TextEncoding eEncoding = gsl_getSystemTextEncoding();
-//STRIP001  UINT16 nVal;
-//STRIP001  BYTE   cVal;
-//STRIP001  BYTE   nVersion;
-//STRIP001
-//STRIP001  rIStream >> nVersion;
-//STRIP001  rIStream >> cVal;               rCapOpt.UseCaption() = cVal != 0;
-//STRIP001  rIStream >> nVal;               rCapOpt.eObjType = (SwCapObjType)nVal;
-//STRIP001  rIStream >> rCapOpt.aOleId;
-//STRIP001
-//STRIP001  rIStream.ReadByteString( rCapOpt.sCategory, eEncoding );
-//STRIP001  rIStream >> nVal;               rCapOpt.nNumType = nVal;
-//STRIP001  rIStream.ReadByteString( rCapOpt.sCaption, eEncoding );
-//STRIP001  rIStream >> nVal;               rCapOpt.nPos = nVal;
-//STRIP001  rIStream >> nVal;               rCapOpt.nLevel = nVal;
-//STRIP001
-//STRIP001  rIStream >> cVal;
-//STRIP001  rCapOpt.cSeparator = UniString( ByteString(cVal) , eEncoding).GetChar(0);
-//STRIP001
-//STRIP001  return rIStream;
-//STRIP001 }
 
 /*************************************************************************
 |*
@@ -163,26 +102,5 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-//STRIP001 SvStream& operator<<( SvStream& rOStream, const InsCaptionOpt& rCapOpt )
-//STRIP001 {
-//STRIP001  rtl_TextEncoding eEncoding = gsl_getSystemTextEncoding();
-//STRIP001  rOStream    << (BYTE)CAPTION_VERSION
-//STRIP001              << (BYTE)rCapOpt.UseCaption()
-//STRIP001              << (UINT16)rCapOpt.eObjType
-//STRIP001              << rCapOpt.aOleId;
-//STRIP001
-//STRIP001  rOStream.WriteByteString( rCapOpt.sCategory, eEncoding );
-//STRIP001
-//STRIP001  rOStream    << (UINT16)rCapOpt.nNumType;
-//STRIP001
-//STRIP001  rOStream.WriteByteString( rCapOpt.sCaption, eEncoding );
-//STRIP001
-//STRIP001  BYTE cSep = ByteString(UniString(rCapOpt.cSeparator), eEncoding).GetChar(0);
-//STRIP001  rOStream    << (UINT16)rCapOpt.nPos
-//STRIP001              << (UINT16)rCapOpt.nLevel
-//STRIP001              << cSep;
-//STRIP001
-//STRIP001  return rOStream;
-//STRIP001 }
 
 }

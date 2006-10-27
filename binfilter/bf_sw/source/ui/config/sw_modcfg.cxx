@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_modcfg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:16:02 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:03:55 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,30 +36,15 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 #ifndef _SO_CLSIDS_HXX
 #include <so3/clsids.hxx>
 #endif
-// auto strip #ifndef _STREAM_HXX //autogen
-// auto strip #include <tools/stream.hxx>
-// auto strip #endif
-// auto strip #ifndef _SV_SVAPP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _MAILENUM_HXX //autogen
-// auto strip #include <goodies/mailenum.hxx>
-// auto strip #endif
 #ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
 #endif
 #ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX //autogen
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _FACTORY_HXX //autogen
 #include <so3/factory.hxx>
 #endif
@@ -73,16 +58,7 @@
 #ifndef _MODCFG_HXX
 #include <modcfg.hxx>
 #endif
-// auto strip #ifndef _FLDUPDE_HXX
-// auto strip #include <fldupde.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 namespace binfilter {
 
 using namespace utl;
@@ -120,72 +96,11 @@ using namespace ::com::sun::star::uno;
  *
  * --------------------------------------------------*/
 
-//STRIP001 const InsCaptionOpt* SwModuleOptions::GetCapOption(
-//STRIP001  BOOL bHTML, const SwCapObjType eType, const SvGlobalName *pOleId)
-//STRIP001 {
-//STRIP001  if(bHTML)
-//STRIP001  {
-//STRIP001      DBG_ERROR("no caption option in sw/web!")
-//STRIP001      return 0;
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      sal_Bool bFound = FALSE;
-//STRIP001      if(eType == OLE_CAP && pOleId)
-//STRIP001      {
-//STRIP001          for( USHORT nId = 0; nId <= GLOB_NAME_CHART && !bFound; nId++)
-//STRIP001              bFound = *pOleId == aInsertConfig.aGlobalNames[nId  ];
-//STRIP001          if(!bFound)
-//STRIP001              return aInsertConfig.pOLEMiscOpt;
-//STRIP001      }
-//STRIP001      return aInsertConfig.pCapOptions->Find(eType, pOleId);
-//STRIP001  }
-//STRIP001 }
 
 /* -----------------03.11.98 15:05-------------------
  *
  * --------------------------------------------------*/
 
-//STRIP001 BOOL SwModuleOptions::SetCapOption(BOOL bHTML, const InsCaptionOpt* pOpt)
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001
-//STRIP001  if(bHTML)
-//STRIP001  {
-//STRIP001      DBG_ERROR("no caption option in sw/web!")
-//STRIP001  }
-//STRIP001  else if (pOpt)
-//STRIP001  {
-//STRIP001      sal_Bool bFound = FALSE;
-//STRIP001      if(pOpt->GetObjType() == OLE_CAP && &pOpt->GetOleId())
-//STRIP001      {
-//STRIP001          for( USHORT nId = 0; nId <= GLOB_NAME_CHART; nId++)
-//STRIP001              bFound = pOpt->GetOleId() == aInsertConfig.aGlobalNames[nId  ];
-//STRIP001          if(!bFound)
-//STRIP001          {
-//STRIP001              if(aInsertConfig.pOLEMiscOpt)
-//STRIP001                  *aInsertConfig.pOLEMiscOpt = *pOpt;
-//STRIP001              else
-//STRIP001                  aInsertConfig.pOLEMiscOpt = new InsCaptionOpt(*pOpt);
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      InsCaptionOptArr& rArr = *aInsertConfig.pCapOptions;
-//STRIP001      InsCaptionOpt *pObj = rArr.Find(pOpt->GetObjType(), &pOpt->GetOleId());
-//STRIP001
-//STRIP001      if (pObj)
-//STRIP001      {
-//STRIP001          *pObj = *pOpt;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          rArr.Insert(new InsCaptionOpt(*pOpt));
-//STRIP001
-//STRIP001      aInsertConfig.SetModified();
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return bRet;
-//STRIP001 }
 /*-----------------13.01.97 12.44-------------------
 
 --------------------------------------------------*/
@@ -341,57 +256,7 @@ using namespace ::com::sun::star::uno;
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 sal_Int32 lcl_ConvertAttrToCfg(const AuthorCharAttr& rAttr)
-//STRIP001 {
-//STRIP001  sal_Int32 nRet = 0;
-//STRIP001  switch(rAttr.nItemId)
-//STRIP001  {
-//STRIP001      case  SID_ATTR_CHAR_WEIGHT: nRet = 1; break;
-//STRIP001      case  SID_ATTR_CHAR_POSTURE: nRet = 2; break;
-//STRIP001      case  SID_ATTR_CHAR_UNDERLINE: nRet = UNDERLINE_SINGLE == rAttr.nAttr ? 3 : 4; break;
-//STRIP001         case  SID_ATTR_CHAR_STRIKEOUT: nRet = 3; break;
-//STRIP001      case  SID_ATTR_CHAR_CASEMAP:
-//STRIP001      {
-//STRIP001          switch(rAttr.nAttr)
-//STRIP001          {
-//STRIP001              case  SVX_CASEMAP_VERSALIEN   : nRet = 5;break;
-//STRIP001              case  SVX_CASEMAP_GEMEINE     : nRet = 6;break;
-//STRIP001              case  SVX_CASEMAP_KAPITAELCHEN: nRet = 7;break;
-//STRIP001              case  SVX_CASEMAP_TITEL       : nRet = 8;break;
-//STRIP001          }
-//STRIP001      }
-//STRIP001         break;
-//STRIP001      case SID_ATTR_BRUSH : nRet = 9; break;
-//STRIP001  }
-//STRIP001  return nRet;
-//STRIP001 }
 //-----------------------------------------------------------------------------
-//STRIP001 void SwRevisionConfig::Commit()
-//STRIP001 {
-//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
-//STRIP001  const OUString* pNames = aNames.getConstArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Int32 nVal = -1;
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001             case 0 : nVal = lcl_ConvertAttrToCfg(aInsertAttr); break;
-//STRIP001          case 1 : nVal = aInsertAttr.nColor  ; break;
-//STRIP001             case 2 : nVal = lcl_ConvertAttrToCfg(aDeletedAttr); break;
-//STRIP001          case 3 : nVal = aDeletedAttr.nColor ; break;
-//STRIP001             case 4 : nVal = lcl_ConvertAttrToCfg(aFormatAttr); break;
-//STRIP001          case 5 : nVal = aFormatAttr.nColor  ; break;
-//STRIP001          case 6 : nVal = nMarkAlign          ; break;
-//STRIP001          case 7 : nVal = aMarkColor.GetColor(); break;
-//STRIP001      }
-//STRIP001      pValues[nProp] <<= nVal;
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -574,119 +439,7 @@ using namespace ::com::sun::star::uno;
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void lcl_WriteOpt(const InsCaptionOpt& rOpt, Any* pValues, sal_Int32 nProp, sal_Int32 nOffset)
-//STRIP001 {
-//STRIP001  switch(nOffset)
-//STRIP001  {
-//STRIP001      case 0:
-//STRIP001      {
-//STRIP001          sal_Bool bTemp = rOpt.UseCaption();
-//STRIP001          pValues[nProp].setValue(&bTemp, ::getBooleanCppuType());
-//STRIP001      }
-//STRIP001      break;//Enable
-//STRIP001      case 1: pValues[nProp] <<= OUString(rOpt.GetCategory()); break;//Category
-//STRIP001      case 2: pValues[nProp] <<= (sal_Int32)rOpt.GetNumType(); break;//Numbering",
-//STRIP001      case 3: pValues[nProp] <<= OUString(rOpt.GetCaption());  break;//CaptionText",
-//STRIP001      case 4: pValues[nProp] <<= OUString(rOpt.GetSeparator());break;//Delimiter",
-//STRIP001      case 5: pValues[nProp] <<= (sal_Int32)rOpt.GetLevel();   break;//Level",
-//STRIP001      case 6: pValues[nProp] <<= (sal_Int32)rOpt.GetPos();     break;//Position",
-//STRIP001  }
-//STRIP001 }
 //-----------------------------------------------------------------------------
-//STRIP001 void SwInsertConfig::Commit()
-//STRIP001 {
-//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
-//STRIP001  const OUString* pNames = aNames.getConstArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      sal_Int32 nVal = -1;
-//STRIP001      const InsCaptionOpt* pWriterTableOpt = 0;
-//STRIP001      const InsCaptionOpt* pWriterFrameOpt = 0;
-//STRIP001      const InsCaptionOpt* pWriterGraphicOpt = 0;
-//STRIP001      const InsCaptionOpt* pOLECalcOpt = 0;
-//STRIP001      const InsCaptionOpt* pOLEImpressOpt = 0;
-//STRIP001      const InsCaptionOpt* pOLEChartOpt = 0;
-//STRIP001      const InsCaptionOpt* pOLEFormulaOpt = 0;
-//STRIP001      const InsCaptionOpt* pOLEDrawOpt = 0;
-//STRIP001      if(pCapOptions)
-//STRIP001      {
-//STRIP001          pWriterTableOpt = pCapOptions->Find(TABLE_CAP, 0);
-//STRIP001          pWriterFrameOpt = pCapOptions->Find(FRAME_CAP, 0);
-//STRIP001          pWriterGraphicOpt = pCapOptions->Find(GRAPHIC_CAP, 0);
-//STRIP001          pOLECalcOpt = pCapOptions->Find(OLE_CAP, &aGlobalNames[GLOB_NAME_CALC]);
-//STRIP001          pOLEImpressOpt = pCapOptions->Find(OLE_CAP, &aGlobalNames[GLOB_NAME_IMPRESS]);
-//STRIP001          pOLEDrawOpt = pCapOptions->Find(OLE_CAP, &aGlobalNames[GLOB_NAME_DRAW   ]);
-//STRIP001          pOLEFormulaOpt = pCapOptions->Find(OLE_CAP, &aGlobalNames[GLOB_NAME_MATH   ]);
-//STRIP001          pOLEChartOpt = pCapOptions->Find(OLE_CAP, &aGlobalNames[GLOB_NAME_CHART  ]);
-//STRIP001      }
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0:
-//STRIP001          {
-//STRIP001              sal_Bool bVal = 0 !=(nInsTblFlags&HEADLINE); pValues[nProp].setValue(&bVal, rType);
-//STRIP001          }
-//STRIP001          break;//"Table/Header",
-//STRIP001          case  1:
-//STRIP001          {
-//STRIP001              sal_Bool bVal = 0 !=(nInsTblFlags&REPEAT); pValues[nProp].setValue(&bVal, rType);
-//STRIP001          }
-//STRIP001          break;//"Table/RepeatHeader",
-//STRIP001          case  2:
-//STRIP001          {
-//STRIP001              sal_Bool bVal = 0 !=(nInsTblFlags&DEFAULT_BORDER ); pValues[nProp].setValue(&bVal, rType);
-//STRIP001          }
-//STRIP001          break;//"Table/Border",
-//STRIP001          case  3:
-//STRIP001          {
-//STRIP001              sal_Bool bVal = 0 !=(nInsTblFlags&SPLIT_LAYOUT); pValues[nProp].setValue(&bVal, rType);
-//STRIP001          }
-//STRIP001          break;//"Table/Split",
-//STRIP001          case  4: pValues[nProp].setValue(&bInsWithCaption, rType);break;//"Caption/Automatic",
-//STRIP001
-//STRIP001          case  5: case  6: case  7: case  8: case  9: case 10: case 11: //"Caption/WriterObject/Table/Position",
-//STRIP001                  if(pWriterTableOpt)
-//STRIP001                      lcl_WriteOpt(*pWriterTableOpt, pValues, nProp, nProp - 5);
-//STRIP001          break;
-//STRIP001          case 12: case 13: case 14: case 15: case 16: case 17: case 18:
-//STRIP001                  if(pWriterFrameOpt)
-//STRIP001                      lcl_WriteOpt(*pWriterFrameOpt, pValues, nProp, nProp - 12);
-//STRIP001          case 19: case 20: case 21: case 22: case 23: case 24:
-//STRIP001                  if(pWriterGraphicOpt)
-//STRIP001                      lcl_WriteOpt(*pWriterGraphicOpt, pValues, nProp, nProp - 19);
-//STRIP001                  break;
-//STRIP001          case 25: case 26: case 27: case 28: case 29: case 30: case 31:
-//STRIP001                  if(pOLECalcOpt)
-//STRIP001                      lcl_WriteOpt(*pOLECalcOpt, pValues, nProp, nProp - 25);
-//STRIP001          break;
-//STRIP001          case 32: case 33: case 34: case 35: case 36: case 37: case 38:
-//STRIP001                  if(pOLEImpressOpt)
-//STRIP001                      lcl_WriteOpt(*pOLEImpressOpt, pValues, nProp, nProp - 32);
-//STRIP001          break;
-//STRIP001          case 39: case 40: case 41: case 42: case 43: case 44: case 45:
-//STRIP001                  if(pOLEChartOpt)
-//STRIP001                      lcl_WriteOpt(*pOLEChartOpt, pValues, nProp, nProp - 39);
-//STRIP001          break;
-//STRIP001          case 46: case 47: case 48: case 49: case 50: case 51: case 52:
-//STRIP001                  if(pOLEFormulaOpt)
-//STRIP001                      lcl_WriteOpt(*pOLEFormulaOpt, pValues, nProp, nProp - 46);
-//STRIP001          break;
-//STRIP001          case 53: case 54:   case 55: case 56: case 57: case 58: case 59:
-//STRIP001                  if(pOLEDrawOpt)
-//STRIP001                      lcl_WriteOpt(*pOLEDrawOpt, pValues, nProp, nProp - 53);
-//STRIP001          break;
-//STRIP001          case 60: case 61: case 62: case 63: case 64: case 65: case 66:
-//STRIP001                  if(pOLEMiscOpt)
-//STRIP001                      lcl_WriteOpt(*pOLEMiscOpt, pValues, nProp, nProp - 60);
-//STRIP001          break;
-//STRIP001
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -919,30 +672,6 @@ using namespace ::com::sun::star::uno;
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwTableConfig::Commit()
-//STRIP001 {
-//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
-//STRIP001  const OUString* pNames = aNames.getConstArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case 0 : pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(nTblHMove); break;  //"Shift/Row",
-//STRIP001          case 1 : pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(nTblVMove); break;     //"Shift/Column",
-//STRIP001          case 2 : pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(nTblHInsert); break;   //"Insert/Row",
-//STRIP001          case 3 : pValues[nProp] <<= (sal_Int32)TWIP_TO_MM100(nTblVInsert); break;   //"Insert/Column",
-//STRIP001          case 4 : pValues[nProp] <<= (sal_Int32)eTblChgMode; break;   //"Change/Effect",
-//STRIP001          case 5 : pValues[nProp].setValue(&bInsTblFormatNum, rType); break;  //"Input/NumberRecognition",
-//STRIP001          case 6 : pValues[nProp].setValue(&bInsTblChangeNumFormat, rType); break;  //"Input/NumberFormatRecognition",
-//STRIP001          case 7 : pValues[nProp].setValue(&bInsTblAlignNum, rType); break;  //"Input/Alignment"
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -1029,36 +758,6 @@ using namespace ::com::sun::star::uno;
 /*-- 18.01.01 17:02:47---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-//STRIP001 void SwMiscConfig::Commit()
-//STRIP001 {
-//STRIP001  const Sequence<OUString>& aNames = GetPropertyNames();
-//STRIP001  const OUString* pNames = aNames.getConstArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case 0 :
-//STRIP001              pValues[nProp] <<= OUString(
-//STRIP001                  SwModuleOptions::ConvertWordDelimiter(sWordDelimiter, sal_False));
-//STRIP001          break;
-//STRIP001          case 1 : pValues[nProp].setValue(&bDefaultFontsInCurrDocOnly, rType); break;
-//STRIP001          case 2 : pValues[nProp].setValue(&bShowIndexPreview, rType) ;        break;
-//STRIP001          case 3 : pValues[nProp].setValue(&bGrfToGalleryAsLnk, rType);        break;
-//STRIP001          case 4 : pValues[nProp].setValue(&bNumAlignSize, rType);            break;
-//STRIP001          case 5 : pValues[nProp].setValue(&bSinglePrintJob, rType);          break;
-//STRIP001          case 6 : pValues[nProp] <<= nMailingFormats;             break;
-//STRIP001          case 7 : pValues[nProp] <<= OUString(sNameFromColumn);  break;
-//STRIP001          case 8 : pValues[nProp] <<= OUString(sMailingPath);     break;
-//STRIP001          case 9 : pValues[nProp] <<= OUString(sMailName);        break;
-//STRIP001          case 10: pValues[nProp].setValue(&bIsNameFromColumn, rType);break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /*-- 18.01.01 17:02:48---------------------------------------------------
 
   -----------------------------------------------------------------------*/

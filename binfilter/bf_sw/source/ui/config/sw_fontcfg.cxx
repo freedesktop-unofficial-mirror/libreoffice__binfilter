@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_fontcfg.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:15:29 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:03:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -42,23 +42,11 @@
 #ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
-// auto strip #ifndef _TOOLS_DEBUG_HXX
-// auto strip #include <tools/debug.hxx>
-// auto strip #endif
 #ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <svtools/lingucfg.hxx>
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
-// auto strip #include <com/sun/star/uno/Sequence.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SWTYPES_HXX
-// auto strip #include <swtypes.hxx>
-// auto strip #endif
 
 // #107253#
 #ifndef _SWLINGUCONFIG_HXX
@@ -152,27 +140,6 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------08.09.00 15:58--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwStdFontConfig::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001     SvtLinguOptions aLinguOpt;
-//STRIP001
-//STRIP001  // #107253# Replaced SvtLinguConfig with SwLinguConfig wrapper with UsageCount
-//STRIP001     SwLinguConfig().GetOptions( aLinguOpt );
-//STRIP001
-//STRIP001  sal_Int16   eWestern = aLinguOpt.nDefaultLanguage,
-//STRIP001                 eCJK = aLinguOpt.nDefaultLanguage_CJK,
-//STRIP001                 eCTL = aLinguOpt.nDefaultLanguage_CTL;
-//STRIP001     for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001         if(GetDefaultFor(nProp, lcl_LanguageOfType(nProp, eWestern, eCJK, eCTL)) != sDefaultFonts[nProp])
-//STRIP001                 pValues[nProp] <<= OUString(sDefaultFonts[nProp]);
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 /* -----------------------------08.09.00 15:56--------------------------------
 
  ---------------------------------------------------------------------------*/

@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_prtopt.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 04:19:36 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:05:03 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,22 +36,13 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _UTL_CONFIGMGR_HXX_
-// auto strip #include <unotools/configmgr.hxx>
-// auto strip #endif
 #ifndef _PRTOPT_HXX
 #include <prtopt.hxx>
 #endif
-// auto strip #ifndef _SWPRTOPT_HXX
-// auto strip #include <swprtopt.hxx>
-// auto strip #endif
 
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
-// auto strip #include <com/sun/star/uno/Any.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
 #endif
@@ -150,38 +141,6 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------06.09.00 16:43--------------------------------
 
  ---------------------------------------------------------------------------*/
-//STRIP001 void SwPrintOptions::Commit()
-//STRIP001 {
-//STRIP001  Sequence<OUString> aNames = GetPropertyNames();
-//STRIP001
-//STRIP001  OUString* pNames = aNames.getArray();
-//STRIP001  Sequence<Any> aValues(aNames.getLength());
-//STRIP001  Any* pValues = aValues.getArray();
-//STRIP001
-//STRIP001  const Type& rType = ::getBooleanCppuType();
-//STRIP001  BOOL bVal;
-//STRIP001  for(int nProp = 0; nProp < aNames.getLength(); nProp++)
-//STRIP001  {
-//STRIP001      switch(nProp)
-//STRIP001      {
-//STRIP001          case  0: bVal = bPrintGraphic; pValues[nProp].setValue(&bVal, rType);break;
-//STRIP001          case  1: bVal = bPrintTable         ;pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  2: bVal = bPrintControl        ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  3: bVal = bPrintPageBackground; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  4: bVal = bPrintBlackFont     ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001             case  5: pValues[nProp] <<=  (sal_Int32)nPrintPostIts       ; break;
-//STRIP001             case  6: bVal = bPrintReverse       ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  7: bVal = bPrintProspect      ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  8: bVal = bPrintSingleJobs     ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case  9: pValues[nProp] <<= sFaxName;  break;
-//STRIP001          case 10: bVal = bPaperFromSetup     ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case 11: bVal = bPrintDraw           ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case 12: bVal = bPrintLeftPage       ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001          case 13: bVal = bPrintRightPage     ; pValues[nProp].setValue(&bVal, rType);  break;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  PutProperties(aNames, aValues);
-//STRIP001 }
 
 
 
