@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_txtftn.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:33:07 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:14:13 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -44,12 +44,7 @@
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
-// auto strip #include "ndtxt.hxx"
-// auto strip #include "txtatr.hxx"
 
-// auto strip #ifndef _SW_PORTIONHANDLER_HXX
-// auto strip #include <SwPortionHandler.hxx>
-// auto strip #endif
 #ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
 #endif
@@ -74,31 +69,18 @@
 #ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
 #endif
-// auto strip #ifndef _SVDOBJ_HXX //autogen
-// auto strip #include <bf_svx/svdobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _BREAKIT_HXX
-// auto strip #include <breakit.hxx>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
 #include "txtcfg.hxx"
-// auto strip #include "swfont.hxx" // new SwFont
 #include "porftn.hxx"
 #include "porfly.hxx"
-// auto strip #include "porlay.hxx"
-// auto strip #include "txtfrm.hxx"
 #include "itrform2.hxx"
 #include "frmsh.hxx"
 #include "ftnfrm.hxx"   // FindErgoSumFrm(), FindQuoVadisFrm(),
 #include "pagedesc.hxx"
-// auto strip #include "redlnitr.hxx" // SwRedlnItr
 #include "sectfrm.hxx"  // SwSectionFrm
-// auto strip #include "layouter.hxx" // Endnote-Collection
-// auto strip #include "frmtool.hxx"
-// auto strip #include "ndindex.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -347,18 +329,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwTxtFrm::FindErgoSumFrm()
  *************************************************************************/
 
-//STRIP001 SwTxtFrm *SwTxtFrm::FindErgoSumFrm()
-//STRIP001 {
-//STRIP001  // Erstmal feststellen, ob wir in einem FtnFrm stehen:
-//STRIP001  if( !IsInFtn() )
-//STRIP001      return 0;
-//STRIP001
-//STRIP001  // Zum folgenden FtnFrm
-//STRIP001  SwFtnFrm *pFtnFrm = FindFtnFrm()->GetFollow();
-//STRIP001
-//STRIP001  // Nun den ersten Cntnt:
-//STRIP001  return pFtnFrm ? (SwTxtFrm*)(pFtnFrm->ContainsCntnt()) : 0;
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFrm::FindQuoVadisFrm()
@@ -391,15 +361,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwTxtFrm::SetErgoSumNum()
  *************************************************************************/
 
-//STRIP001 void SwTxtFrm::SetErgoSumNum( const MSHORT nErgo )
-//STRIP001 {
-//STRIP001  SwParaPortion *pPara = GetPara();
-//STRIP001  if( pPara )
-//STRIP001  {
-//STRIP001      XubString aStr( nErgo );
-//STRIP001      pPara->SetErgoSumNum( aStr );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                      SwTxtFrm::RemoveFtn()
@@ -501,57 +462,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                   }
 /*?*/                   else if( GetFollow() )
                             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   {
-//STRIP001 /*?*/                        SwCntntFrm *pDest = GetFollow();
-//STRIP001 /*?*/                        while( pDest->GetFollow() && ((SwTxtFrm*)pDest->
-//STRIP001 /*?*/                               GetFollow())->GetOfst() <= nIdx )
-//STRIP001 /*?*/                            pDest = pDest->GetFollow();
-//STRIP001 /*?*/                        ASSERT( !pDest->FindFtnBossFrm( !bEndn )->FindFtn(
-//STRIP001 /*?*/                            pDest,pFtn),"SwTxtFrm::RemoveFtn: footnote exists");
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        //Nicht ummelden sondern immer Moven.
-//STRIP001 /*?*/                         // OD 08.11.2002 #104840# - use <SwlayoutFrm::IsBefore(::)>
-//STRIP001 /*?*/                         if ( bEndDoc ||
-//STRIP001 /*?*/                              !pFtnFrm->FindFtnBossFrm()->IsBefore( pDest->FindFtnBossFrm( !bEndn ) )
-//STRIP001 /*?*/                            )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            SwPageFrm* pTmp = pFtnFrm->FindPageFrm();
-//STRIP001 /*?*/                            if( pUpdate && pUpdate != pTmp )
-//STRIP001 /*?*/                                pUpdate->UpdateFtnNum();
-//STRIP001 /*?*/                            pUpdate = pTmp;
-//STRIP001 /*?*/                            while ( pFtnFrm )
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                pFtnFrm->SetRef( pDest );
-//STRIP001 /*?*/                                pFtnFrm = pFtnFrm->GetFollow();
-//STRIP001 /*?*/                            }
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        else
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            if( bEndn )
-//STRIP001 /*?*/                                pEndBoss->MoveFtns( this, pDest, pFtn );
-//STRIP001 /*?*/                            else
-//STRIP001 /*?*/                                pFtnBoss->MoveFtns( this, pDest, pFtn );
-//STRIP001 /*?*/                            bRemove = sal_True;
-//STRIP001 /*?*/                        }
-//STRIP001 /*?*/                        ((SwTxtFrm*)pDest)->SetFtn( sal_True );
-//STRIP001 /*?*/
-//STRIP001 /*?*/                        ASSERT( pDest->FindFtnBossFrm( !bEndn )->FindFtn( pDest,
-//STRIP001 /*?*/                           pFtn),"SwTxtFrm::RemoveFtn: footnote ChgRef failed");
-//STRIP001 /*?*/                    }
 /*?*/                   else
 /*?*/                   {
 /*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bEndDoc || ( bEndn && pEndBoss->IsInSct() &&
-//STRIP001 /*?*/                             !SwLayouter::Collecting( GetNode()->GetDoc(),
-//STRIP001 /*?*/                             pEndBoss->FindSctFrm(), NULL ) ) )
-//STRIP001 /*?*/                        {
-//STRIP001 /*?*/                            if( bEndn )
-//STRIP001 /*?*/                                pEndBoss->RemoveFtn( this, pFtn );
-//STRIP001 /*?*/                            else
-//STRIP001 /*?*/                                pFtnBoss->RemoveFtn( this, pFtn );
-//STRIP001 /*?*/                            bRemove = bRemove || !bEndDoc;
-//STRIP001 /*?*/                            ASSERT( bEndn ? !pEndBoss->FindFtn( this, pFtn ) :
-//STRIP001 /*?*/                                    !pFtnBoss->FindFtn( this, pFtn ),
-//STRIP001 /*?*/                            "SwTxtFrm::RemoveFtn: can't get off that footnote" );
-//STRIP001 /*?*/                        }
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -645,33 +558,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   else if( bEnd && pSect )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm *pFtnFrm = pSrcFrm ? pBoss->FindFtn( pSrcFrm, pFtn ) : NULL;
-//STRIP001 /*?*/        if( pFtnFrm && !pFtnFrm->GetUpper() )
-//STRIP001 /*?*/            pFtnFrm = NULL;
-//STRIP001 /*?*/        SwDoc *pDoc = GetNode()->GetDoc();
-//STRIP001 /*?*/        if( SwLayouter::Collecting( pDoc, pSect, pFtnFrm ) )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            if( !pSrcFrm )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                SwFtnFrm *pNew = new SwFtnFrm(pDoc->GetDfltFrmFmt(),this,pFtn);
-//STRIP001 /*?*/                SwNodeIndex aIdx( *pFtn->GetStartNode(), 1 );
-//STRIP001 /*?*/                ::_InsertCnt( pNew, pDoc, aIdx.GetIndex() );
-//STRIP001 /*?*/                pDoc->GetLayouter()->CollectEndnote( pNew );
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/            else if( pSrcFrm != this )
-//STRIP001 /*?*/                pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
-//STRIP001 /*?*/            bInFtnConnect = sal_False;
-//STRIP001 /*?*/            return;
-//STRIP001 /*?*/        }
-//STRIP001 /*?*/        else if( pSrcFrm )
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            SwFtnBossFrm *pFtnBoss = pFtnFrm->FindFtnBossFrm();
-//STRIP001 /*?*/            if( !pFtnBoss->IsInSct() ||
-//STRIP001 /*?*/                pFtnBoss->ImplFindSctFrm()->GetSection()!=pSect->GetSection() )
-//STRIP001 /*?*/            {
-//STRIP001 /*?*/                pBoss->RemoveFtn( pSrcFrm, pFtn );
-//STRIP001 /*?*/                pSrcFrm = 0;
-//STRIP001 /*?*/            }
-//STRIP001 /*?*/        }
 /*N*/   }
 /*N*/
 /*N*/   if( bDocEnd || bEnd )
@@ -741,17 +627,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/               // der Seite schon einen FtnContainer gibt, hilft nur die brutale
 /*N*/               // Methode
                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( pSect && pSect->FindFtnBossFrm( !bEnd )->FindFtnCont() )
-//STRIP001 /*?*/                    bBrutal = sal_True;
-//STRIP001                 // OD 08.11.2002 #104840# - use <SwLayoutFrm::IsBefore(..)>
-//STRIP001 /*?*/                 else if ( !pFtnFrm->GetPrev() ||
-//STRIP001 /*?*/                           pFtnBoss->IsBefore( pBoss )
-//STRIP001 /*?*/                         )
-//STRIP001 /*?*/                {
-//STRIP001 /*?*/                    SwFtnBossFrm *pSrcBoss = pSrcFrm->FindFtnBossFrm( !bEnd );
-//STRIP001 /*?*/                    pSrcBoss->MoveFtns( pSrcFrm, this, pFtn );
-//STRIP001 /*?*/                }
-//STRIP001 /*?*/                else
-//STRIP001 /*?*/                    pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -984,12 +859,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                       if( pFtnC )
 /*?*/                       {
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnC->Lower();
-//STRIP001 /*?*/                            if( pTmp && *pTmp < pFtn )
-//STRIP001 /*?*/                            {
-//STRIP001 /*?*/                                rInf.SetStop( sal_True );
-//STRIP001 /*?*/                                 UNDO_SWAP( pFrm )
-//STRIP001 /*?*/                                return 0;
-//STRIP001 /*?*/                            }
 /*?*/                       }
 /*N*/                   }
 /*N*/                   // Ist dies die letzte passende Zeile?
@@ -1123,14 +992,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/   if( pPage == pQuoFrm->FindPageFrm() )
 /*?*/       return 0; // Wenn der QuoVadis auf der selben (spaltigen) Seite steht
             {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001 /*?*/  const XubString aPage = lcl_GetPageNumber( pPage );
-//STRIP001 /*?*/    SwParaPortion *pPara = pQuoFrm->GetPara();
-//STRIP001 /*?*/    if( pPara )
-//STRIP001 /*?*/        pPara->SetErgoSumNum( aPage );
-//STRIP001 /*?*/    if( !rFtnInfo.aErgoSum.Len() )
-//STRIP001 /*?*/        return 0;
-//STRIP001 /*?*/    SwErgoSumPortion *pErgo = new SwErgoSumPortion( rFtnInfo.aErgoSum,
-//STRIP001 /*?*/                                lcl_GetPageNumber( pQuoPage ) );
-//STRIP001 /*?*/    return pErgo;
 /*N*/ }
 
 /*************************************************************************
@@ -1331,11 +1192,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   CalcAdjustLine( pCurr );
 /*M*/
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-//STRIP001 /*?*/    if( OPTDBG( rInf ) )
-//STRIP001 /*?*/    {
-//STRIP001 /*?*/ //       aDbstream << "FormatQuoVadis:" << endl;
-//STRIP001 /*?*/ //       pCurr->DebugPortions( aDbstream, rInf.GetTxt(), nStart );
-//STRIP001 /*?*/    }
 /*M*/ #endif
 /*M*/
 /*M*/   // Uff...
@@ -1353,19 +1209,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 // Sie werden bei absatzgebundenen Frames in Fussnoten und bei Ftn-
 // Oszillationen verwendet.
 
-//STRIP001 void SwTxtFormatter::MakeDummyLine()
-//STRIP001 {
-//STRIP001  KSHORT nRstHeight = GetFrmRstHeight();
-//STRIP001  if( pCurr && nRstHeight > pCurr->Height() )
-//STRIP001  {
-//STRIP001      SwLineLayout *pLay = new SwLineLayout;
-//STRIP001      nRstHeight -= pCurr->Height();
-//STRIP001      pLay->Height( nRstHeight );
-//STRIP001      pLay->SetAscent( nRstHeight );
-//STRIP001      Insert( pLay );
-//STRIP001      Next();
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                     SwFtnSave::SwFtnSave()
@@ -1459,14 +1302,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   return sal_True;
 /*N*/ }
 
-//STRIP001 void SwFtnPortion::ClearFtn()
-//STRIP001 {
-//STRIP001  if( pFrm && (!pFrm->IsInSct() ||
-//STRIP001      !SwLayouter::Collecting( pFrm->GetNode()->GetDoc(),
-//STRIP001                               pFrm->FindSctFrm(), NULL ) ) )
-//STRIP001      pFrm->FindFtnBossFrm( !pFtn->GetFtn().IsEndNote() )
-//STRIP001                            ->RemoveFtn( pFrm, pFtn );
-//STRIP001 }
 
 
 /*************************************************************************
@@ -1497,8 +1332,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &rInf ) const
 /*N*/ {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SwFtnSave aFtnSave( rInf, pFtn );
-//STRIP001  rInf.DrawViewOpt( *this, POR_FTN );
-//STRIP001  SwExpandPortion::Paint( rInf );
 /*N*/ }
 
 /*************************************************************************
@@ -1508,143 +1341,45 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &rInfo ) const
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   SwFtnSave aFtnSave( rInfo, pFtn );
-//STRIP001  return SwExpandPortion::GetTxtSize( rInfo );
 /*N*/ }
 
 /*************************************************************************
  *                      class SwQuoVadisPortion
  *************************************************************************/
 
-//STRIP001 SwFldPortion *SwQuoVadisPortion::Clone( const XubString &rExpand ) const
-//STRIP001 { return new SwQuoVadisPortion( rExpand, aErgo ); }
 
-//STRIP001 SwQuoVadisPortion::SwQuoVadisPortion( const XubString &rExp, const XubString& rStr )
-//STRIP001  : SwFldPortion( rExp ), aErgo(rStr)
-//STRIP001 {
-//STRIP001  SetLen(0);
-//STRIP001  SetWhichPor( POR_QUOVADIS );
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwQuoVadisPortion::Format()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwQuoVadisPortion::Format( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  // erster Versuch, vielleicht passt der Text
-//STRIP001              CheckScript( rInf );
-//STRIP001  sal_Bool bFull = SwFldPortion::Format( rInf );
-//STRIP001  SetLen( 0 );
-//STRIP001
-//STRIP001  if( bFull )
-//STRIP001  {
-//STRIP001      // zweiter Versuch, wir kuerzen den String:
-//STRIP001      aExpand = XubString( "...", RTL_TEXTENCODING_MS_1252 );
-//STRIP001      bFull = SwFldPortion::Format( rInf );
-//STRIP001      SetLen( 0 );
-//STRIP001      if( bFull  )
-//STRIP001          // dritter Versuch, es langt: jetzt wird gestaucht:
-//STRIP001             Width( USHORT(rInf.Width() - rInf.X()) );
-//STRIP001
-//STRIP001      // 8317: keine mehrzeiligen Felder bei QuoVadis und ErgoSum
-//STRIP001      if( rInf.GetRest() )
-//STRIP001      {
-//STRIP001          delete rInf.GetRest();
-//STRIP001          rInf.SetRest( 0 );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bFull;
-//STRIP001 }
 
 /*************************************************************************
  *               virtual SwQuoVadisPortion::GetExpTxt()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwQuoVadisPortion::GetExpTxt( const SwTxtSizeInfo &, XubString &rTxt ) const
-//STRIP001 {
-//STRIP001  rTxt = aExpand;
-//STRIP001     // if this QuoVadisPortion has a follow, the follow is responsible for
-//STRIP001     // the ergo text.
-//STRIP001     if ( ! HasFollow() )
-//STRIP001         rTxt += aErgo;
-//STRIP001  return sal_True;
-//STRIP001 }
 
 /*************************************************************************
  *              virtual SwQuoVadisPortion::HandlePortion()
  *************************************************************************/
 
-//STRIP001 void SwQuoVadisPortion::HandlePortion( SwPortionHandler& rPH ) const
-//STRIP001 {
-//STRIP001     String aString( aExpand );
-//STRIP001     aString += aErgo;
-//STRIP001     rPH.Special( GetLen(), aString, GetWhichPor() );
-//STRIP001 }
 
 /*************************************************************************
  *               virtual SwQuoVadisPortion::Paint()
  *************************************************************************/
 
-//STRIP001 void SwQuoVadisPortion::Paint( const SwTxtPaintInfo &rInf ) const
-//STRIP001 {
-//STRIP001  // Wir wollen _immer_ per DrawStretchText ausgeben,
-//STRIP001  // weil nErgo schnell mal wechseln kann.
-//STRIP001  if( PrtWidth() )
-//STRIP001  {
-//STRIP001      rInf.DrawViewOpt( *this, POR_QUOVADIS );
-//STRIP001      SwTxtSlotLen aDiffTxt( &rInf, this );
-//STRIP001         SwFontSave aSave( rInf, pFnt );
-//STRIP001      rInf.DrawText( *this, rInf.GetLen(), sal_True );
-//STRIP001  }
-//STRIP001 }
 
 /*************************************************************************
  *                      class SwErgoSumPortion
  *************************************************************************/
 
-//STRIP001 SwFldPortion *SwErgoSumPortion::Clone( const XubString &rExpand ) const
-//STRIP001 {
-//STRIP001      UniString aTmp; // = UniString::CreateFromInt32( 0 );
-//STRIP001  return new SwErgoSumPortion( rExpand, aTmp );
-//STRIP001 }
 
-//STRIP001 SwErgoSumPortion::SwErgoSumPortion( const XubString &rExp, const XubString& rStr )
-//STRIP001  : SwFldPortion( rExp )
-//STRIP001 {
-//STRIP001  SetLen(0);
-//STRIP001  aExpand += rStr;
-//STRIP001
-//STRIP001  // 7773: sinnvolle Massnahme: ein Blank Abstand zum Text
-//STRIP001  aExpand += ' ';
-//STRIP001  SetWhichPor( POR_ERGOSUM );
-//STRIP001 }
 
-//STRIP001 xub_StrLen SwErgoSumPortion::GetCrsrOfst( const KSHORT ) const
-//STRIP001 {
-//STRIP001  return 0;
-//STRIP001 }
 
 /*************************************************************************
  *                 virtual SwErgoSumPortion::Format()
  *************************************************************************/
 
-//STRIP001 sal_Bool SwErgoSumPortion::Format( SwTxtFormatInfo &rInf )
-//STRIP001 {
-//STRIP001  sal_Bool bFull = SwFldPortion::Format( rInf );
-//STRIP001  SetLen( 0 );
-//STRIP001     rInf.SetErgoDone( sal_True );
-//STRIP001
-//STRIP001  // 8317: keine mehrzeiligen Felder bei QuoVadis und ErgoSum
-//STRIP001     if( bFull && rInf.GetRest() )
-//STRIP001     {
-//STRIP001         delete rInf.GetRest();
-//STRIP001         rInf.SetRest( 0 );
-//STRIP001     }
-//STRIP001
-//STRIP001     // We return false in order to get some text into the current line,
-//STRIP001     // even if it's full (better than looping)
-//STRIP001     return sal_False;
-//STRIP001 }
 
 /*************************************************************************
  * sal_Bool SwFtnNumPortion::DiffFont()
@@ -1667,25 +1402,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwParaPortion::SetErgoSumNum()
  *************************************************************************/
 
-//STRIP001 void SwParaPortion::SetErgoSumNum( const XubString& rErgo )
-//STRIP001 {
-//STRIP001  SwLineLayout *pLay = this;
-//STRIP001  while( pLay->GetNext() )
-//STRIP001  {
-//STRIP001      DBG_LOOP;
-//STRIP001      pLay = pLay->GetNext();
-//STRIP001  }
-//STRIP001  SwLinePortion     *pPor = pLay;
-//STRIP001  SwQuoVadisPortion *pQuo = 0;
-//STRIP001  while( pPor && !pQuo )
-//STRIP001  {
-//STRIP001      if ( pPor->IsQuoVadisPortion() )
-//STRIP001          pQuo = (SwQuoVadisPortion*)pPor;
-//STRIP001      pPor = pPor->GetPortion();
-//STRIP001  }
-//STRIP001  if( pQuo )
-//STRIP001      pQuo->SetNumber( rErgo );
-//STRIP001 }
 
 /*************************************************************************
  *                      SwParaPortion::UpdateQuoVadis()
