@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_docnew.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:37:50 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:24:35 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -41,12 +41,6 @@
 #ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HDL_
 #include <com/sun/star/i18n/ForbiddenCharacters.hdl>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
-// auto strip #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-// auto strip #endif
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
@@ -75,9 +69,6 @@
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
 #endif
-// auto strip #ifndef _SVDPAGE_HXX
-// auto strip #include <bf_svx/svdpage.hxx>
-// auto strip #endif
 
 #ifndef _PARATR_HXX
 #include <paratr.hxx>
@@ -97,9 +88,6 @@
 #ifndef _FMTFORDR_HXX
 #include <fmtfordr.hxx>
 #endif
-// auto strip #ifndef _FMTPDSC_HXX
-// auto strip #include <fmtpdsc.hxx>
-// auto strip #endif
 #ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
 #endif
@@ -107,25 +95,13 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
 #endif
 #ifndef _LAYOUTER_HXX
 #include <layouter.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAGEDESC_HXX
-// auto strip #include <pagedesc.hxx> //Damit die PageDescs zerstoert werden koennen.
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -147,12 +123,6 @@
 #ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
 #endif
-// auto strip #ifndef _FRMFMT_HXX
-// auto strip #include <frmfmt.hxx>
-// auto strip #endif
-// auto strip #ifndef _ROLBCK_HXX
-// auto strip #include <rolbck.hxx>           // Undo-Attr, SwHistory
-// auto strip #endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>          // fuer die Pool-Vorlage
 #endif
@@ -171,12 +141,6 @@
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
-// auto strip #ifndef _NUMRULE_HXX
-// auto strip #include <numrule.hxx>
-// auto strip #endif
 #ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
 #endif
@@ -210,9 +174,6 @@
 #ifndef _LAYCACHE_HXX
 #include <laycache.hxx>
 #endif
-// auto strip #ifndef _MVSAVE_HXX
-// auto strip #include <mvsave.hxx>
-// auto strip #endif
 
 #ifndef _CMDID_H
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
@@ -813,20 +774,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 
 
 
-//STRIP001 void SwDoc::SetPersist( SvPersist* pPersist )
-//STRIP001 {
-//STRIP001  if( !pDocShell )
-//STRIP001  {
-//STRIP001      ASSERT( ( !pPersist && pLinkMgr->GetPersist() ) ||
-//STRIP001              ( pPersist && !pLinkMgr->GetPersist() ),
-//STRIP001              "doppeltes setzen von Persist-Pointer?" )
-//STRIP001      pLinkMgr->SetPersist( pPersist );
-//STRIP001  }
-//STRIP001 #ifndef PRODUCT
-//STRIP001  else
-//STRIP001      ASSERT( !this, "DocShell existiert schon!" )
-//STRIP001 #endif
-//STRIP001 }
 
 
 
@@ -838,106 +785,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   return pSwgInfo;
 /*N*/ }
 
-//STRIP001 void SwDoc::ClearDoc()
-//STRIP001 {
-//STRIP001  BOOL bOldUndo = bUndo;
-//STRIP001  DelAllUndoObj();
-//STRIP001  bUndo = FALSE;          // immer das Undo abschalten !!
-//STRIP001
-//STRIP001  // Undo-Benachrichtigung vom Draw abschalten
-//STRIP001  if( pDrawModel )
-//STRIP001  {
-//STRIP001      DrawNotifyUndoHdl();
-//STRIP001      ClrContourCache();
-//STRIP001  }
-//STRIP001
-//STRIP001  // stehen noch FlyFrames rum, loesche auch diese
-//STRIP001  USHORT n;
-//STRIP001  while( n = GetSpzFrmFmts()->Count() )
-//STRIP001      DelLayoutFmt( (*pSpzFrmFmtTbl)[ n-1 ] );
-//STRIP001  ASSERT( !pDrawModel || !pDrawModel->GetPage(0)->GetObjCount(),
-//STRIP001              "not all DrawObjects removed from the page" );
-//STRIP001
-//STRIP001  pRedlineTbl->DeleteAndDestroy( 0, pRedlineTbl->Count() );
-//STRIP001
-//STRIP001  if( pACEWord )
-//STRIP001      delete pACEWord;
-//STRIP001
-//STRIP001  // in den BookMarks sind Indizies auf den Content. Diese muessen vorm
-//STRIP001  // loesche der Nodes geloescht werden.
-//STRIP001  pBookmarkTbl->DeleteAndDestroy( 0, pBookmarkTbl->Count() );
-//STRIP001  pTOXTypes->DeleteAndDestroy( 0, pTOXTypes->Count() );
-//STRIP001  pNumRuleTbl->DeleteAndDestroy( 0, pNumRuleTbl->Count() );
-//STRIP001
-//STRIP001  // create a dummy pagedesc for the layout
-//STRIP001  sal_uInt16 nDummyPgDsc = MakePageDesc( String::CreateFromAscii( "?DUMMY?" ));
-//STRIP001  SwPageDesc* pDummyPgDsc = aPageDescs[ nDummyPgDsc ];
-//STRIP001
-//STRIP001  SwNodeIndex aSttIdx( *GetNodes().GetEndOfContent().StartOfSectionNode(), 1 );
-//STRIP001  // den ersten immer wieder neu anlegen (ohne Attribute/Vorlagen/...)
-//STRIP001  SwTxtNode* pFirstNd = GetNodes().MakeTxtNode( aSttIdx, pDfltTxtFmtColl );
-//STRIP001
-//STRIP001  if( pLayout )
-//STRIP001  {
-//STRIP001      // set the layout to the dummy pagedesc
-//STRIP001      pFirstNd->SwCntntNode::SetAttr( SwFmtPageDesc( pDummyPgDsc ));
-//STRIP001
-//STRIP001      SwPosition aPos( *pFirstNd, SwIndex( pFirstNd ));
-//STRIP001      ::PaMCorrAbs( aSttIdx, SwNodeIndex( GetNodes().GetEndOfContent() ),
-//STRIP001                      aPos );
-//STRIP001  }
-//STRIP001
-//STRIP001  GetNodes().Delete( aSttIdx,
-//STRIP001          GetNodes().GetEndOfContent().GetIndex() - aSttIdx.GetIndex() );
-//STRIP001
-//STRIP001  //remove the dummy pagedec from the array and delete all the old ones
-//STRIP001  aPageDescs.Remove( nDummyPgDsc );
-//STRIP001  aPageDescs.DeleteAndDestroy( 0, aPageDescs.Count() );
-//STRIP001
-//STRIP001  // Delete fuer Collections
-//STRIP001  // damit die Abhaengigen wech sind
-//STRIP001  SwTxtFmtColl* pFtnColl = pFtnInfo->GetFtnTxtColl();
-//STRIP001  if( pFtnColl ) pFtnColl->Remove( pFtnInfo );
-//STRIP001  pFtnColl = pEndNoteInfo->GetFtnTxtColl();
-//STRIP001  if( pFtnColl ) pFtnColl->Remove( pEndNoteInfo );
-//STRIP001
-//STRIP001  // JP 27.01.98: opt.: ausgehend davon, das Standard als 2. im Array
-//STRIP001  //              steht, sollte das als letztes geloescht werden, damit
-//STRIP001  //              die ganze Umhaengerei der Formate vermieden wird!
-//STRIP001  if( 2 < pTxtFmtCollTbl->Count() )
-//STRIP001      pTxtFmtCollTbl->DeleteAndDestroy( 2, pTxtFmtCollTbl->Count()-2 );
-//STRIP001  pTxtFmtCollTbl->DeleteAndDestroy( 1, pTxtFmtCollTbl->Count()-1 );
-//STRIP001  pGrfFmtCollTbl->DeleteAndDestroy( 1, pGrfFmtCollTbl->Count()-1 );
-//STRIP001  pCharFmtTbl->DeleteAndDestroy( 1, pCharFmtTbl->Count()-1 );
-//STRIP001
-//STRIP001  if( pLayout )
-//STRIP001  {
-//STRIP001      // search the FrameFormat of the root frm. This is not allowed to delete
-//STRIP001      pFrmFmtTbl->Remove( pFrmFmtTbl->GetPos( pLayout->GetFmt() ) );
-//STRIP001      pFrmFmtTbl->DeleteAndDestroy( 1, pFrmFmtTbl->Count()-1 );
-//STRIP001      pFrmFmtTbl->Insert( pLayout->GetFmt(), pFrmFmtTbl->Count() );
-//STRIP001  }
-//STRIP001  else
-//STRIP001      pFrmFmtTbl->DeleteAndDestroy( 1, pFrmFmtTbl->Count()-1 );
-//STRIP001
-//STRIP001  xForbiddenCharsTable.unbind();
-//STRIP001
-//STRIP001  pFldTypes->DeleteAndDestroy( INIT_FLDTYPES,
-//STRIP001                              pFldTypes->Count() - INIT_FLDTYPES );
-//STRIP001
-//STRIP001  delete pNumberFormatter, pNumberFormatter = 0;
-//STRIP001
-//STRIP001  GetPageDescFromPool( RES_POOLPAGE_STANDARD );
-//STRIP001  pFirstNd->ChgFmtColl( GetTxtCollFromPool( RES_POOLCOLL_STANDARD ));
-//STRIP001  nDummyPgDsc = aPageDescs.Count();
-//STRIP001  aPageDescs.Insert( pDummyPgDsc, nDummyPgDsc );
-//STRIP001  // set the layout back to the new standard pagedesc
-//STRIP001  pFirstNd->ResetAllAttr();
-//STRIP001  // delete now the dummy pagedesc
-//STRIP001  DelPageDesc( nDummyPgDsc );
-//STRIP001
-//STRIP001  bUndo = bOldUndo;
-//STRIP001 }
 
 /*N*/ void SwDoc::SetPreViewPrtData( const SwPagePreViewPrtData* pNew )
 /*N*/ {
@@ -985,55 +832,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   return pRet;
 /*N*/ }
 
-//STRIP001 void SwDoc::SetForbiddenCharacters( USHORT nLang,
-//STRIP001              const ::com::sun::star::i18n::ForbiddenCharacters& rFChars )
-//STRIP001 {
-//STRIP001  if( !xForbiddenCharsTable.isValid() )
-//STRIP001  {
-//STRIP001      ::com::sun::star::uno::Reference<
-//STRIP001          ::com::sun::star::lang::XMultiServiceFactory > xMSF =
-//STRIP001                                  ::legacy_binfilters::getLegacyProcessServiceFactory();
-//STRIP001      xForbiddenCharsTable = new SvxForbiddenCharactersTable( xMSF );
-//STRIP001  }
-//STRIP001  xForbiddenCharsTable->SetForbiddenCharacters( nLang, rFChars );
-//STRIP001  if( pDrawModel )
-//STRIP001  {
-//STRIP001      pDrawModel->SetForbiddenCharsTable( xForbiddenCharsTable );
-//STRIP001      if( !bInReading )
-//STRIP001          pDrawModel->ReformatAllTextObjects();
-//STRIP001  }
-//STRIP001
-//STRIP001  if( pLayout && !bInReading )
-//STRIP001  {
-//STRIP001      pLayout->StartAllAction();
-//STRIP001      pLayout->InvalidateAllCntnt();
-//STRIP001      pLayout->EndAllAction();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 void SwDoc::ClearForbiddenCharacters( USHORT nLang )
-//STRIP001 {
-//STRIP001  if( xForbiddenCharsTable.isValid() )
-//STRIP001  {
-//STRIP001      xForbiddenCharsTable->ClearForbiddenCharacters( nLang );
-//STRIP001      if( !xForbiddenCharsTable->Count() )
-//STRIP001          xForbiddenCharsTable.unbind();
-//STRIP001
-//STRIP001      if( pDrawModel )
-//STRIP001      {
-//STRIP001          pDrawModel->SetForbiddenCharsTable( xForbiddenCharsTable );
-//STRIP001          if( !bInReading )
-//STRIP001              pDrawModel->ReformatAllTextObjects();
-//STRIP001      }
-//STRIP001
-//STRIP001      if( pLayout && !bInReading )
-//STRIP001      {
-//STRIP001          pLayout->StartAllAction();
-//STRIP001          pLayout->InvalidateAllCntnt();
-//STRIP001          pLayout->EndAllAction();
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void SwDoc::SetCharCompressType( SwCharCompressType n )
 /*N*/ {
