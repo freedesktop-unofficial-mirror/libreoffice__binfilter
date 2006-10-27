@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_node2lay.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:50:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:30:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,17 +36,11 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _CALBCK_HXX
-// auto strip #include <calbck.hxx> // SwClientIter
-// auto strip #endif
 
 #ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
 #endif
 
-// auto strip #ifndef _NODE_HXX
-// auto strip #include <node.hxx>
-// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
@@ -59,7 +53,6 @@
 #ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
 #endif
-// auto strip #include "frmfmt.hxx"
 #include "cntfrm.hxx"
 #include "tabfrm.hxx"
 #include "frmtool.hxx"
@@ -88,9 +81,6 @@ namespace binfilter {
 /*N*/   // Fuegt unter jeden pUpper des Arrays einen Frame ein.
 /*N*/   void RestoreUpperFrms( SwNodes& rNds, ULONG nStt, ULONG nEnd );
 /*N*/
-//STRIP001  SwFrm* GetFrm( const Point* pDocPos = 0,
-//STRIP001                  const SwPosition *pPos = 0,
-//STRIP001                  const BOOL bCalcFrm = TRUE ) const;
 /*N*/ };
 
 /* -----------------25.02.99 10:38-------------------
@@ -113,10 +103,6 @@ namespace binfilter {
 /*N*/       if( !bSearch && rNode.GetIndex() < nIndex )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aTmp( *rNode.EndOfSectionNode(), +1 );
-//STRIP001 /*?*/            pNd = rNode.GetNodes().GoPreviousWithFrm( &aTmp );
-//STRIP001 /*?*/            if( !bSearch && pNd && rNode.GetIndex() > pNd->GetIndex() )
-//STRIP001 /*?*/                pNd = NULL; // Nicht ueber den Bereich hinausschiessen
-//STRIP001 /*?*/            bMaster = FALSE;
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -349,14 +335,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 SwFrm* SwNode2LayImpl::GetFrm( const Point* pDocPos,
-//STRIP001                              const SwPosition *pPos,
-//STRIP001                              const BOOL bCalcFrm ) const
-//STRIP001 {
-//STRIP001  return pIter ? ::GetFrmOfModify( pIter->GetModify(), USHRT_MAX,
-//STRIP001                                      pDocPos, pPos, bCalcFrm )
-//STRIP001               : 0;
-//STRIP001 }
 
 /*N*/ SwNode2Layout::SwNode2Layout( const SwNode& rNd, ULONG nIdx )
 /*N*/ {
@@ -390,12 +368,6 @@ namespace binfilter {
 /*N*/   delete pImpl;
 /*N*/ }
 
-//STRIP001 SwFrm* SwNode2Layout::GetFrm( const Point* pDocPos,
-//STRIP001                              const SwPosition *pPos,
-//STRIP001                              const BOOL bCalcFrm ) const
-//STRIP001 {
-//STRIP001  return pImpl->GetFrm( pDocPos, pPos, bCalcFrm );
-//STRIP001 }
 
 
 }
