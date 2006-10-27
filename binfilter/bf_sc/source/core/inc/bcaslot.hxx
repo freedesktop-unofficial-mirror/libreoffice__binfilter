@@ -4,9 +4,9 @@
  *
  *  $RCSfile: bcaslot.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:57:05 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:26:45 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -117,10 +117,6 @@ public:
     BOOL                AreaBroadcastInRange( const ScRange& rRange,
                                               const ScHint& rHint ) const;
 /*N*/   void                DelBroadcastAreasInRange( const ScRange& rRange );
-//STRIP001  void                UpdateRemove( UpdateRefMode eUpdateRefMode,
-//STRIP001                                      const ScRange& rRange,
-//STRIP001                                      short nDx, short nDy, short nDz );
-//STRIP001  void                UpdateInsert( ScBroadcastArea* pArea );
 };
 
 
@@ -159,9 +155,6 @@ public:
         // return: mindestens ein Broadcast gewesen
     BOOL                AreaBroadcastInRange( const ScRange& rRange, const ScHint& rHint ) const;
 /*N*/   void                DelBroadcastAreasInRange( const ScRange& rRange );
-//STRIP001  void                UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
-//STRIP001                                          const ScRange& rRange,
-//STRIP001                                          short nDx, short nDy, short nDz );
     inline ScBroadcastArea* GetUpdateChain() const { return pUpdateChain; }
     inline void SetUpdateChain( ScBroadcastArea* p ) { pUpdateChain = p; }
     inline ScBroadcastArea* GetEOUpdateChain() const { return pEOUpdateChain; }
