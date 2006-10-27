@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_table5.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:54:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:25:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,23 +41,11 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-// auto strip #include "collect.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
-// auto strip #include "docpool.hxx"
 #include "cell.hxx"
-// auto strip #include "table.hxx"
-// auto strip #include "column.hxx"
 #include "document.hxx"
-// auto strip #include "drwlayer.hxx"
-// auto strip #include "olinetab.hxx"
-// auto strip #include "userlist.hxx"
-// auto strip #include "stlsheet.hxx"
-// auto strip #include "global.hxx"
-// auto strip #include "rechead.hxx"
 #include "stlpool.hxx"
-// auto strip #include "stlsheet.hxx"
-// auto strip #include "brdcst.hxx"
 #include "globstr.hrc"
 namespace binfilter {
 
@@ -243,20 +230,6 @@ namespace binfilter {
 /*N*/           pRowFlags[nRow] &= ~CR_MANUALBREAK;
 /*N*/ }
 
-//STRIP001 BOOL ScTable::HasManualBreaks() const
-//STRIP001 {
-//STRIP001  if (pColFlags)
-//STRIP001      for (USHORT nCol = 0; nCol <= MAXCOL; nCol++)
-//STRIP001          if ( pColFlags[nCol] & CR_MANUALBREAK )
-//STRIP001              return TRUE;
-//STRIP001
-//STRIP001  if (pRowFlags)
-//STRIP001      for (USHORT nRow = 0; nRow <= MAXROW; nRow++)
-//STRIP001          if ( pRowFlags[nRow] & CR_MANUALBREAK )
-//STRIP001              return TRUE;
-//STRIP001
-//STRIP001  return FALSE;
-//STRIP001 }
 
 /*N*/ void ScTable::SetPageSize( const Size& rSize )
 /*N*/ {
@@ -332,11 +305,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 void ScTable::PageStyleModified( const String& rNewName )
-//STRIP001 {
-//STRIP001  aPageStyle = rNewName;
-//STRIP001  InvalidateTextWidth();          // man weiss nicht mehr, was vorher drinstand...
-//STRIP001 }
 
 /*N*/ void ScTable::InvalidateTextWidth( const ScAddress* pAdrFrom,
 /*N*/                                  const ScAddress* pAdrTo,
