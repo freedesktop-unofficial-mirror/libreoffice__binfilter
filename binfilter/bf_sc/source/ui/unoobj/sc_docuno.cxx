@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docuno.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 21:12:58 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 17:02:28 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,6 @@
  *
  ************************************************************************/
 #ifdef PCH
-// auto strip #include "ui_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -43,26 +42,15 @@
 #include <bf_svx/svdpage.hxx>
 
 #include <svtools/numuno.hxx>
-// auto strip #include <svtools/smplhint.hxx>
-// auto strip #include <bf_sfx2/printer.hxx>
 #include <bf_sfx2/bindings.hxx>
 #include <vcl/waitobj.hxx>
-// auto strip #include <unotools/charclass.hxx>
 #include <tools/multisel.hxx>
 #include <toolkit/awt/vclxdevice.hxx>
 #include <ctype.h>
 #include <float.h>  // DBL_MAX
 
 #include <com/sun/star/util/Date.hpp>
-// auto strip #include <com/sun/star/sheet/XNamedRanges.hpp>
-// auto strip #include <com/sun/star/sheet/XLabelRanges.hpp>
-// auto strip #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-// auto strip #include <com/sun/star/script/XLibraryContainer.hpp>
-// auto strip #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
-// auto strip #include "docuno.hxx"
 #include "cellsuno.hxx"
 #include "nameuno.hxx"
 #include "datauno.hxx"
@@ -81,10 +69,7 @@
 #include "dociter.hxx"
 #include "cell.hxx"
 #include "drwlayer.hxx"
-// auto strip #include "rangeutl.hxx"
-// auto strip #include "markdata.hxx"
 #include "viewfunc.hxx"     // TABLEID_DOC - verschieben!!!
-// auto strip #include "docoptio.hxx"
 #include "unoguard.hxx"
 #include "unonames.hxx"
 #include "shapeuno.hxx"
