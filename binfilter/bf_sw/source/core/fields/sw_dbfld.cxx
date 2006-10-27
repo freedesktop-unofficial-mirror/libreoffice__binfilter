@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_dbfld.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:08:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:36:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,18 +38,9 @@
 
 #include <float.h>
 
-// auto strip #ifndef _SFXAPP_HXX //autogen
-// auto strip #include <bf_sfx2/app.hxx>
-// auto strip #endif
-// auto strip #ifndef _ZFORLIST_HXX
-// auto strip #include <svtools/zforlist.hxx>
-// auto strip #endif
 #ifndef _SVX_PAGEITEM_HXX
 #include <bf_svx/pageitem.hxx>
 #endif
-// auto strip #ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
-// auto strip #include <com/sun/star/sdbc/DataType.hpp>
-// auto strip #endif
 #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
 #endif
@@ -65,21 +56,9 @@
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
-// auto strip #ifndef _FRAME_HXX
-// auto strip #include <frame.hxx>
-// auto strip #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
-// auto strip #ifndef _PAM_HXX
-// auto strip #include <pam.hxx>
-// auto strip #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
@@ -92,12 +71,6 @@
 #ifndef _DOCFLD_HXX
 #include <docfld.hxx>
 #endif
-// auto strip #ifndef _EXPFLD_HXX
-// auto strip #include <expfld.hxx>
-// auto strip #endif
-// auto strip #ifndef _TXTATR_HXX
-// auto strip #include <txtatr.hxx>
-// auto strip #endif
 #ifndef _UNOFLDMID_H
 #include <unofldmid.h>
 #endif
@@ -349,25 +322,6 @@ using namespace ::rtl;
 /*N*/   return pTmp;
 /*N*/ }
 
-//STRIP001 /*N*/ String SwDBField::GetCntnt(BOOL bName) const
-//STRIP001 /*N*/ {
-//STRIP001 /*N*/    if(bName)
-//STRIP001 /*N*/   {
-//STRIP001 /*?*/       const String& rDBName = ((SwDBFieldType*)GetTyp())->GetName();
-//STRIP001 /*?*/       String sContent( SFX_APP()->LocalizeDBName(INI2NATIONAL,
-//STRIP001 /*?*/                                           rDBName.GetToken(0, DB_DELIM)));
-//STRIP001 /*?*/
-//STRIP001 /*?*/       if (sContent.Len() > 1)
-//STRIP001 /*?*/       {
-//STRIP001 /*?*/           sContent += DB_DELIM;
-//STRIP001 /*?*/           sContent += rDBName.GetToken(1, DB_DELIM);
-//STRIP001 /*?*/           sContent += DB_DELIM;
-//STRIP001 /*?*/           sContent += rDBName.GetToken(2, DB_DELIM);
-//STRIP001 /*?*/       }
-//STRIP001 /*?*/       return lcl_DBTrennConv(sContent);
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/    return Expand();
-//STRIP001 /*N*/ }
 
 //------------------------------------------------------------------------------
 
@@ -400,62 +354,6 @@ SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
 
 /*N*/ void SwDBField::Evaluate()
  /*N*/ {    DBG_ERROR("STRIP")
-//STRIP001 /*N*/    SwNewDBMgr* pMgr = GetDoc()->GetNewDBMgr();
-//STRIP001 /*N*/
-//STRIP001 /*N*/    // erstmal loeschen
-//STRIP001 /*N*/    bValidValue = FALSE;
-//STRIP001 /*N*/    double nValue = DBL_MAX;
-//STRIP001 /*N*/    const SwDBData& aTmpData = GetDBData();
-//STRIP001 /*N*/
-//STRIP001 /*N*/     if(!pMgr || !pMgr->IsDataSourceOpen(aTmpData.sDataSource, aTmpData.sCommand, sal_True))
-//STRIP001 /*N*/        return ;
-//STRIP001 /*N*/
-//STRIP001 /*N*/    ULONG nFmt;
-//STRIP001 /*?*/
-//STRIP001 /*?*/    // Passenden Spaltennamen suchen
-//STRIP001 /*?*/   String aColNm( ((SwDBFieldType*)GetTyp())->GetColumnName() );
-//STRIP001 /*?*/
-//STRIP001 /*?*/   SvNumberFormatter* pDocFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001 /*?*/   pMgr->GetMergeColumnCnt(aColNm, GetLanguage(), aContent, &nValue, &nFmt);
-//STRIP001 /*?*/   if( !( nSubType & SUB_OWN_FMT ) )
-//STRIP001 /*?*/       SetFormat( nFmt = pMgr->GetColumnFmt( aTmpData.sDataSource, aTmpData.sCommand,
-//STRIP001 /*?*/                                       aColNm, pDocFormatter, GetLanguage() ));
-//STRIP001 /*?*/
-//STRIP001 /*?*/   if( DBL_MAX != nValue )
-//STRIP001 /*?*/   {
-//STRIP001 /*?*/       sal_Int32 nColumnType = pMgr->GetColumnType(aTmpData.sDataSource, aTmpData.sCommand, aColNm);
-//STRIP001 /*?*/       if( DataType::DATE == nColumnType  || DataType::TIME == nColumnType  ||
-//STRIP001 /*?*/                  DataType::TIMESTAMP  == nColumnType)
-//STRIP001 /*?*/
-//STRIP001 /*?*/       {
-//STRIP001 /*?*/           Date aStandard(1,1,1900);
-//STRIP001 /*?*/           if (*pDocFormatter->GetNullDate() != aStandard)
-//STRIP001 /*?*/               nValue += (aStandard - *pDocFormatter->GetNullDate());
-//STRIP001 /*?*/       }
-//STRIP001 /*?*/       bValidValue = TRUE;
-//STRIP001 /*?*/       SetValue(nValue);
-//STRIP001 /*?*/       aContent = ((SwValueFieldType*)GetTyp())->ExpandValue(nValue, GetFormat(), GetLanguage());
-//STRIP001 /*?*/   }
-//STRIP001 /*?*/   else
-//STRIP001 /*?*/   {
-//STRIP001 /*?*/       SwSbxValue aVal;
-//STRIP001 /*?*/       aVal.PutString( aContent );
-//STRIP001 /*?*/
-//STRIP001 /*?*/       if (aVal.IsNumeric())
-//STRIP001 /*?*/       {
-//STRIP001 /*?*/           SetValue(aVal.GetDouble());
-//STRIP001 /*?*/
-//STRIP001 /*?*/           SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
-//STRIP001 /*?*/           if (nFmt && nFmt != ULONG_MAX && !pFormatter->IsTextFormat(nFmt))
-//STRIP001 /*?*/               bValidValue = TRUE; // Wegen Bug #60339 nicht mehr bei allen Strings
-//STRIP001 /*?*/       }
-//STRIP001 /*?*/       else
-//STRIP001 /*?*/       {
-//STRIP001 /*?*/           // Bei Strings TRUE wenn Laenge > 0 sonst FALSE
-//STRIP001 /*?*/           SetValue(aContent.Len() ? 1 : 0);
-//STRIP001 /*?*/       }
-//STRIP001 /*?*/   }
-//STRIP001 /*?*/   bInitialized = TRUE;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -602,23 +500,6 @@ const String& SwDBField::GetPar1() const
 
 //------------------------------------------------------------------------------
 
-//STRIP001 /*N*/ String SwDBNameInfField::GetCntnt(BOOL bName) const
-//STRIP001 /*N*/ {
-//STRIP001 /*N*/    String sStr(SwField::GetCntnt(bName));
-//STRIP001 /*N*/
-//STRIP001 /*N*/    if(bName)
-//STRIP001 /*N*/    {
-//STRIP001 /*?*/        if (aDBData.sDataSource.getLength())
-//STRIP001 /*?*/        {
-//STRIP001 /*?*/            sStr += ':';
-//STRIP001 /*?*/            sStr += String(aDBData.sDataSource);
-//STRIP001 /*?*/            sStr += DB_DELIM;
-//STRIP001 /*?*/            sStr += String(aDBData.sCommand);
-//STRIP001 /*?*/        }
-//STRIP001 /*N*/    }
-//STRIP001 /*N*/    return lcl_DBTrennConv(sStr);
-//STRIP001 /*N*/ }
-//STRIP001
 /*-----------------06.03.98 16:55-------------------
 
 --------------------------------------------------*/
