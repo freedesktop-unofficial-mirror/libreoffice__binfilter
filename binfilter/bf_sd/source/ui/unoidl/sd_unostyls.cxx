@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_unostyls.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 01:29:21 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:38:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,13 +33,7 @@
  *
  ************************************************************************/
 
-// auto strip #ifndef _VOS_MUTEX_HXX_
-// auto strip #include <vos/mutex.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 
 #include <bf_svx/unoprov.hxx>
 
