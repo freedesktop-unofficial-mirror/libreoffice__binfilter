@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_e3ditem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:16:03 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:15:11 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -73,12 +73,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-//STRIP001 SvxVector3DItem::SvxVector3DItem( USHORT nWhich, SvStream& rStream ) :
-//STRIP001  SfxPoolItem( nWhich )
-//STRIP001 {
-//STRIP001  DBG_CTOR(SvxVector3DItem, 0);
-//STRIP001  rStream >> aVal;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 

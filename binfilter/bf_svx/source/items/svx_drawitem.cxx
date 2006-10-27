@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_drawitem.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:15:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:15:00 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,7 +46,6 @@
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
-// auto strip #include "xoutx.hxx"
 
 #ifndef _SFXPOOLITEM_HXX
 #include <svtools/poolitem.hxx>
@@ -92,24 +91,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxColorTableItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ int SvxColorTableItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return ( ( SvxColorTableItem& ) rItem).pColorTable == pColorTable;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -147,24 +134,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxGradientListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ int SvxGradientListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return ( ( SvxGradientListItem& ) rItem).pGradientList == pGradientList;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -202,24 +177,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxHatchListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ int SvxHatchListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return ( ( SvxHatchListItem& ) rItem).pHatchList == pHatchList;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -257,24 +220,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxBitmapListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ int SvxBitmapListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return ( ( SvxBitmapListItem& ) rItem).pBitmapList == pBitmapList;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -313,24 +264,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxDashListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
 /*?*/ int SvxDashListItem::operator==( const SfxPoolItem& rItem ) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
-//STRIP001  return ( ( SvxDashListItem& ) rItem).pDashList == pDashList;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -368,17 +307,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 SfxItemPresentation SvxLineEndListItem::GetPresentation
-//STRIP001 (
-//STRIP001  SfxItemPresentation ePres,
-//STRIP001  SfxMapUnit          eCoreUnit,
-//STRIP001  SfxMapUnit          ePresUnit,
-//STRIP001     XubString&          rText, const IntlWrapper *
-//STRIP001 )    const
-//STRIP001 {
-//STRIP001  rText.Erase();
-//STRIP001  return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001 }
 
 // -----------------------------------------------------------------------
 
