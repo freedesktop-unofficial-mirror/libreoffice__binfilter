@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sd_sdpage2.cxx,v $
  *
- *  $Revision: 1.9 $
+ *  $Revision: 1.10 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:36:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 18:03:14 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,24 +37,12 @@
 #include <bf_sfx2/docfile.hxx>
 #endif
 
-// auto strip #ifndef _SV_SVAPP_HXX
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
-// auto strip #ifndef _OUTLINER_HXX
-// auto strip #include <bf_svx/outliner.hxx>
-// auto strip #endif
 #ifndef _SVXLINK_HXX
 #include <bf_svx/linkmgr.hxx>
 #endif
 #ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
 #endif
-// auto strip #ifndef _URLOBJ_HXX //autogen
-// auto strip #include <tools/urlobj.hxx>
-// auto strip #endif
-// auto strip #ifndef _OUTLOBJ_HXX //autogen
-// auto strip #include <bf_svx/outlobj.hxx>
-// auto strip #endif
 #include <svtools/urihelper.hxx>
 
 #ifndef _SVX_XMLCNITM_HXX
@@ -65,11 +53,7 @@
 #include <bf_svx/svditer.hxx>
 #endif
 
-// auto strip #ifndef _LIST_HXX
-// auto strip #include <tools/list.hxx>
-// auto strip #endif
 
-// auto strip #include "sdresid.hxx"
 #include "sdpage.hxx"
 #include "glob.hxx"
 #include "glob.hrc"
@@ -82,13 +66,11 @@
 
 #ifdef MAC
 #include "::ui:inc:strings.hrc"
-// auto strip #include "::ui:inc:docshell.hxx"
 #else
 #ifdef UNX
 #include "../ui/inc/strings.hrc"
 #include "../ui/inc/docshell.hxx"
 #else
-// auto strip #include "..\ui\inc\cfgids.hxx"
 #include "..\ui\inc\strings.hrc"
 #include "..\ui\inc\docshell.hxx"
 #endif
@@ -123,182 +105,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 void SdPage::SetPresentationLayout(const String& rLayoutName,
-//STRIP001                                 BOOL bReplaceStyleSheets,
-//STRIP001                                 BOOL bSetMasterPage,
-//STRIP001                                 BOOL bReverseOrder)
-//STRIP001 {
-//STRIP001  /*********************************************************************
-//STRIP001  |* Layoutname der Seite
-//STRIP001  \********************************************************************/
-//STRIP001  String aOldLayoutName(aLayoutName);     // merken
-//STRIP001  aLayoutName = rLayoutName;
-//STRIP001  aLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
-//STRIP001  aLayoutName += String(SdResId(STR_LAYOUT_OUTLINE));
-//STRIP001
-//STRIP001  /*********************************************************************
-//STRIP001  |* ggf. Masterpage suchen und setzen
-//STRIP001  \********************************************************************/
-//STRIP001  if (bSetMasterPage && !IsMasterPage())
-//STRIP001  {
-//STRIP001      SdPage* pMaster;
-//STRIP001      USHORT nMaster = 0;
-//STRIP001      USHORT nMasterCount = pModel->GetMasterPageCount();
-//STRIP001
-//STRIP001      if( !bReverseOrder )
-//STRIP001      {
-//STRIP001          for ( nMaster = 0; nMaster < nMasterCount; nMaster++ )
-//STRIP001          {
-//STRIP001              pMaster = (SdPage*)pModel->GetMasterPage(nMaster);
-//STRIP001              if (pMaster->GetPageKind() == ePageKind &&
-//STRIP001                  pMaster->GetLayoutName() == aLayoutName)
-//STRIP001              {
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          for ( nMaster = nMasterCount - 1; nMaster >= 0; nMaster-- )
-//STRIP001          {
-//STRIP001              pMaster = (SdPage*)pModel->GetMasterPage(nMaster);
-//STRIP001              if (pMaster->GetPageKind() == ePageKind &&
-//STRIP001                  pMaster->GetLayoutName() == aLayoutName)
-//STRIP001              {
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      DBG_ASSERT(nMaster < nMasterCount, "Masterpage nicht gefunden");
-//STRIP001
-//STRIP001      // falls es eine oder mehrere Masterpages gibt: die 1. ersetzen
-//STRIP001      if (GetMasterPageCount() > 0)
-//STRIP001          SetMasterPageNum(nMaster, 0);
-//STRIP001      // sonst: als 1. Masterpage einfuegen
-//STRIP001      else
-//STRIP001          InsertMasterPage(nMaster);
-//STRIP001  }
-//STRIP001
-//STRIP001  /*********************************************************************
-//STRIP001  |* Vorlagen fuer Praesentationsobjekte
-//STRIP001  \********************************************************************/
-//STRIP001  // Listen mit:
-//STRIP001  // - Vorlagenzeigern fuer Gliederungstextobjekt (alte und neue Vorlagen)
-//STRIP001  // -Replacedaten fuer OutlinerParaObject
-//STRIP001  List aOutlineStyles;
-//STRIP001  List aOldOutlineStyles;
-//STRIP001  List aReplList;
-//STRIP001  BOOL bListsFilled = FALSE;
-//STRIP001
-//STRIP001  ULONG nObjCount = GetObjCount();
-//STRIP001
-//STRIP001  for (ULONG nObj = 0; nObj < nObjCount; nObj++)
-//STRIP001  {
-//STRIP001      SdrTextObj* pObj = (SdrTextObj*) GetObj(nObj);
-//STRIP001
-//STRIP001      if (pObj->GetObjInventor() == SdrInventor &&
-//STRIP001          pObj->GetObjIdentifier() == OBJ_OUTLINETEXT)
-//STRIP001      {
-//STRIP001          if (!bListsFilled || !bReplaceStyleSheets)
-//STRIP001          {
-//STRIP001              String aFullName;
-//STRIP001              String aOldFullName;
-//STRIP001              SfxStyleSheetBase* pSheet = NULL;
-//STRIP001              SfxStyleSheetBasePool* pStShPool = pModel->GetStyleSheetPool();
-//STRIP001
-//STRIP001              for (USHORT i = 1; i < 10; i++)
-//STRIP001              {
-//STRIP001                  aFullName = aLayoutName;
-//STRIP001                  aOldFullName = aOldLayoutName;
-//STRIP001                  aFullName += sal_Unicode( ' ' );
-//STRIP001                  aFullName += String::CreateFromInt32( (sal_Int32)i );
-//STRIP001                  aOldFullName += sal_Unicode( ' ' );
-//STRIP001                  aOldFullName += String::CreateFromInt32( (sal_Int32)i );
-//STRIP001
-//STRIP001                  pSheet = pStShPool->Find(aOldFullName, SD_LT_FAMILY);
-//STRIP001                  DBG_ASSERT(pSheet, "alte Gliederungsvorlage nicht gefunden");
-//STRIP001                  aOldOutlineStyles.Insert(pSheet, LIST_APPEND);
-//STRIP001
-//STRIP001                  pSheet = pStShPool->Find(aFullName, SD_LT_FAMILY);
-//STRIP001                  DBG_ASSERT(pSheet, "neue Gliederungsvorlage nicht gefunden");
-//STRIP001                  aOutlineStyles.Insert(pSheet, LIST_APPEND);
-//STRIP001
-//STRIP001                  if (bReplaceStyleSheets && pSheet)
-//STRIP001                  {
-//STRIP001                      // Replace anstatt Set
-//STRIP001                      StyleReplaceData* pReplData = new StyleReplaceData;
-//STRIP001                      pReplData->nNewFamily = pSheet->GetFamily();
-//STRIP001                      pReplData->nFamily    = pSheet->GetFamily();
-//STRIP001                      pReplData->aNewName   = aFullName;
-//STRIP001                      pReplData->aName      = aOldFullName;
-//STRIP001                      aReplList.Insert(pReplData, LIST_APPEND);
-//STRIP001                  }
-//STRIP001                  else
-//STRIP001                  {
-//STRIP001                      OutlinerParaObject* pOPO = ((SdrTextObj*)pObj)->GetOutlinerParaObject();
-//STRIP001
-//STRIP001                         if( pOPO )
-//STRIP001                          pOPO->SetStyleSheets( i,  aFullName, SD_LT_FAMILY );
-//STRIP001                  }
-//STRIP001              }
-//STRIP001
-//STRIP001              bListsFilled = TRUE;
-//STRIP001          }
-//STRIP001
-//STRIP001          SfxStyleSheet* pSheet = (SfxStyleSheet*)aOutlineStyles.First();
-//STRIP001          SfxStyleSheet* pOldSheet = (SfxStyleSheet*)aOldOutlineStyles.First();
-//STRIP001          while (pSheet)
-//STRIP001          {
-//STRIP001              if (pSheet != pOldSheet)
-//STRIP001              {
-//STRIP001                  pObj->EndListening(*pOldSheet);
-//STRIP001
-//STRIP001                  if (!pObj->IsListening(*pSheet))
-//STRIP001                      pObj->StartListening(*pSheet);
-//STRIP001              }
-//STRIP001
-//STRIP001              pSheet = (SfxStyleSheet*)aOutlineStyles.Next();
-//STRIP001              pOldSheet = (SfxStyleSheet*)aOldOutlineStyles.Next();
-//STRIP001          }
-//STRIP001
-//STRIP001          OutlinerParaObject* pOPO = ((SdrTextObj*)pObj)->GetOutlinerParaObject();
-//STRIP001          if ( bReplaceStyleSheets && pOPO )
-//STRIP001          {
-//STRIP001              StyleReplaceData* pReplData = (StyleReplaceData*) aReplList.First();
-//STRIP001
-//STRIP001              while( pReplData )
-//STRIP001              {
-//STRIP001                  pOPO->ChangeStyleSheets( pReplData->aName, pReplData->nFamily, pReplData->aNewName, pReplData->nNewFamily );
-//STRIP001                  pReplData = (StyleReplaceData*) aReplList.Next();
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001      else if (pObj->GetObjInventor() == SdrInventor &&
-//STRIP001               pObj->GetObjIdentifier() == OBJ_TITLETEXT)
-//STRIP001      {
-//STRIP001          // PresObjKind nicht ueber GetPresObjKind() holen, da dort nur
-//STRIP001          // die PresObjListe beruecksichtigt wird. Es sollen aber alle
-//STRIP001          // "Titelobjekte" hier beruecksichtigt werden (Paste aus Clipboard usw.)
-//STRIP001          SfxStyleSheet* pSheet = GetStyleSheetForPresObj(PRESOBJ_TITLE);
-//STRIP001
-//STRIP001          if (pSheet)
-//STRIP001              pObj->SetStyleSheet(pSheet, TRUE);
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          SfxStyleSheet* pSheet = GetStyleSheetForPresObj(GetPresObjKind(pObj));
-//STRIP001
-//STRIP001          if (pSheet)
-//STRIP001              pObj->SetStyleSheet(pSheet, TRUE);
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  for (ULONG i = 0; i < aReplList.Count(); i++)
-//STRIP001  {
-//STRIP001      delete (StyleReplaceData*) aReplList.GetObject(i);
-//STRIP001  }
-//STRIP001 }
 
 
 /*************************************************************************
@@ -622,21 +428,6 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-//STRIP001 FASTBOOL SdPage::IsReadOnly() const
-//STRIP001 {
-//STRIP001  BOOL bReadOnly = FALSE;
-//STRIP001
-//STRIP001  if (pPageLink)
-//STRIP001  {
-//STRIP001      // Seite ist gelinkt
-//STRIP001      // bReadOnly = TRUE wuerde dazu fuehren, dass diese Seite nicht
-//STRIP001      // bearbeitet werden kann. Dieser Effekt ist jedoch z.Z. nicht
-//STRIP001      // gewuenscht, daher auskommentiert:
-//STRIP001 //         bReadOnly = TRUE;
-//STRIP001  }
-//STRIP001
-//STRIP001  return (bReadOnly);
-//STRIP001 }
 
 
 
@@ -664,10 +455,6 @@ using namespace ::com::sun::star;
 /*?*/       {
 /*?*/           // Keine Links auf Dokument-eigene Seiten!
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPageLink = new SdPageLink(this, aFileName, aBookmarkName);
-//STRIP001 /*?*/            String aFilterName(SdResId(STR_IMPRESS));
-//STRIP001 /*?*/            pLinkManager->InsertFileLink(*pPageLink, OBJECT_CLIENT_FILE,
-//STRIP001 /*?*/                                         aFileName, &aFilterName, &aBookmarkName);
-//STRIP001 /*?*/            pPageLink->Connect();
 /*?*/       }
 /*?*/   }
 /*N*/ }
