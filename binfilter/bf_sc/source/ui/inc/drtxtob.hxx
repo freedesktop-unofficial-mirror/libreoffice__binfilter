@@ -4,9 +4,9 @@
  *
  *  $RCSfile: drtxtob.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:44:34 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:07:49 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -60,18 +60,11 @@ class ScViewData;
 
 class ScDrawTextObjectBar : public SfxShell
 {
-//STRIP001  ScViewData*         pViewData;
-//STRIP001  TransferableClipboardListener* pClipEvtLstnr;
-//STRIP001  BOOL                bPastePossible;
-//STRIP001
-//STRIP001  DECL_LINK( ClipboardChanged, TransferableDataHelper* );
 
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_DRAW_TEXT_SHELL);
 
     ScDrawTextObjectBar(ScViewData* pData){DBG_BF_ASSERT(0, "STRIP"); }
-//STRIP001      ~ScDrawTextObjectBar();
 
     void StateDisableItems( SfxItemSet &rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void StateDisableItems( SfxItemSet &rSet );
 
@@ -83,19 +76,9 @@ public:
     void ExecuteAttr( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001 //STRIP001   void ExecuteAttr( SfxRequest &rReq );
     void GetAttrState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void GetAttrState( SfxItemSet& rSet );
     void ExecuteToggle( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void ExecuteToggle( SfxRequest &rReq );
-//STRIP001
-//STRIP001  BOOL ExecuteCharDlg( const SfxItemSet& rArgs, SfxItemSet& rOutSet );
-//STRIP001  BOOL ExecuteParaDlg( const SfxItemSet& rArgs, SfxItemSet& rOutSet );
-//STRIP001
     void ExecuteExtra( SfxRequest &rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void ExecuteExtra( SfxRequest &rReq );
     void ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void ExecFormText(SfxRequest& rReq);        // StarFontWork
     void GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void GetFormTextState(SfxItemSet& rSet);
-//STRIP001
-//STRIP001 private:
-//STRIP001  void ExecuteGlobal( SfxRequest &rReq );         // von Execute gerufen fuer ganze Objekte
-//STRIP001  void GetGlobalClipState( SfxItemSet& rSet );
-//STRIP001  void ExecutePasteContents( SfxRequest &rReq );
-//STRIP001  BOOL IsNoteEdit();
 };
 
 

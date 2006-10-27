@@ -4,9 +4,9 @@
  *
  *  $RCSfile: editsh.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 19:45:30 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 16:08:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,39 +58,20 @@ class SvxURLField;
 
 class ScEditShell : public SfxShell
 {
-//STRIP001 private:
-//STRIP001  EditView*   pEditView;
-//STRIP001  ScViewData* pViewData;
-//STRIP001  TransferableClipboardListener* pClipEvtLstnr;
-//STRIP001  BOOL        bPastePossible;
-//STRIP001  BOOL        bIsInsertMode;
 
-//STRIP001  const SvxURLField* GetURLField();
-//STRIP001  ScInputHandler* GetMyInputHdl();
-//STRIP001
-//STRIP001  DECL_LINK( ClipboardChanged, TransferableDataHelper* );
 
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SCID_EDIT_SHELL);
 
     ScEditShell(EditView* pView, ScViewData* pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScEditShell(EditView* pView, ScViewData* pData);
-//STRIP001                  ~ScEditShell();
-//STRIP001
-//STRIP001  void    SetEditView(EditView* pView);
-//STRIP001
     void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    Execute(SfxRequest& rReq);
     void    ExecuteTrans(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecuteTrans(SfxRequest& rReq);
     void    GetState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetState(SfxItemSet &rSet);
     void    GetClipState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetClipState(SfxItemSet& rSet);
-//STRIP001
     void    ExecuteAttr(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    ExecuteAttr(SfxRequest& rReq);
     void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrState(SfxItemSet &rSet);
-//STRIP001
     void    ExecuteUndo(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    ExecuteUndo(SfxRequest& rReq);
     void    GetUndoState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetUndoState(SfxItemSet &rSet);
-//STRIP001
-//STRIP001  String  GetSelectionText( BOOL bWholeWord );
 };
 
 
