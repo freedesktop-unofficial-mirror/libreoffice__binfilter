@@ -4,9 +4,9 @@
 #
 #   $RCSfile: makefile.mk,v $
 #
-#   $Revision: 1.6 $
+#   $Revision: 1.7 $
 #
-#   last change: $Author: rt $ $Date: 2006-07-25 08:35:31 $
+#   last change: $Author: rt $ $Date: 2006-10-28 00:07:32 $
 #
 #   The Contents of this file are made available subject to
 #   the terms of GNU Lesser General Public License Version 2.1.
@@ -52,18 +52,9 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_addrdlg.cxx \
-        sw_ascfldlg.cxx
-
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
-        sw_dialog.src \
         sw_regionsw.src
-
-SLOFILES =  \
-        $(SLO)$/sw_addrdlg.obj \
-        $(SLO)$/sw_ascfldlg.obj
 
 # --- Tagets -------------------------------------------------------
 
