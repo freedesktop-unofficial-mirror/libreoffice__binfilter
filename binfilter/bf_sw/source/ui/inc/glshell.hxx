@@ -4,9 +4,9 @@
  *
  *  $RCSfile: glshell.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 05:35:56 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:42:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -43,54 +43,19 @@ class SwTextBlocks;
 
 class SwGlosDocShell : public SwDocShell
 {
-//STRIP001  String          aLongName;
-//STRIP001  String          aShortName;
-//STRIP001  String          aGroupName;
-//STRIP001  sal_Bool        bShow;
-//STRIP001 protected:
-//STRIP001  virtual BOOL Save();
 
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SW_GLOSDOCSHELL);
-//STRIP001              SwGlosDocShell( sal_Bool bNewShow = sal_True);
-//STRIP001      virtual ~SwGlosDocShell();
-//STRIP001
-//STRIP001  void            Execute( SfxRequest& );
-//STRIP001  void            GetState( SfxItemSet& );
-//STRIP001  void            SetLongName( const String& rLongName )
-//STRIP001                      { aLongName = rLongName; }
-//STRIP001  void            SetShortName( const String& rShortName )
-//STRIP001                      { aShortName = rShortName; }
-//STRIP001  void            SetGroupName( const String& rGroupName )
-//STRIP001                      { aGroupName = rGroupName; }
-//STRIP001  const String&   GetShortName(){return aShortName;}
 };
 
 
 class SwWebGlosDocShell : public SwWebDocShell
 {
-//STRIP001  String          aLongName;
-//STRIP001  String          aShortName;
-//STRIP001  String          aGroupName;
-//STRIP001 protected:
-//STRIP001  virtual BOOL Save();
 
 public:
-//STRIP001  TYPEINFO();
     SFX_DECL_INTERFACE(SW_WEBGLOSDOCSHELL);
                 SwWebGlosDocShell();
         virtual ~SwWebGlosDocShell();
-//STRIP001
-//STRIP001  void            Execute( SfxRequest& );
-//STRIP001  void            GetState( SfxItemSet& );
-//STRIP001  void            SetLongName( const String& rLongName )
-//STRIP001                      { aLongName = rLongName; }
-//STRIP001  void            SetShortName( const String& rShortName )
-//STRIP001                      { aShortName = rShortName; }
-//STRIP001  void            SetGroupName( const String& rGroupName )
-//STRIP001                      { aGroupName = rGroupName; }
-//STRIP001  const String&   GetShortName(){return aShortName;}
 };
 
 } //namespace binfilter
