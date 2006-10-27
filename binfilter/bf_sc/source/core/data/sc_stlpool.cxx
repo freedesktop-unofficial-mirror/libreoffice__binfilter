@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_stlpool.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:52:44 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:24:20 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,24 +41,15 @@
 //------------------------------------------------------------------------
 
 #include "scitems.hxx"
-// auto strip #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/brshitem.hxx>
-// auto strip #include <bf_svx/editdata.hxx>
-// auto strip #include <bf_svx/editeng.hxx>
 #include <bf_svx/editobj.hxx>
 #include <bf_svx/fhgtitem.hxx>
 
-// auto strip #ifndef _PSTM_HXX
-// auto strip #include <tools/pstm.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _SFXPOOLITEM_HXX
-// auto strip #include <svtools/poolitem.hxx>
-// auto strip #endif
 
 #ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
@@ -75,23 +65,17 @@
 
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/fontitem.hxx>
-// auto strip #include <bf_svx/pageitem.hxx>
 #include <bf_svx/postitem.hxx>
 #include <bf_svx/udlnitem.hxx>
 #include <bf_svx/wghtitem.hxx>
-// auto strip #include <svtools/itemset.hxx>
 #include <svtools/zforlist.hxx>
-// auto strip #include <unotools/charclass.hxx>
-// auto strip #include <vcl/fontcvt.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/svapp.hxx>
 
 #include "bf_sc.hrc"
 #include "attrib.hxx"
-// auto strip #include "global.hxx"
 #include "globstr.hrc"
 #include "document.hxx"
-// auto strip #include "docpool.hxx"
 #include "stlpool.hxx"
 #include "stlsheet.hxx"
 #include "rechead.hxx"
@@ -177,63 +161,13 @@ namespace binfilter {
 /*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
-//STRIP001  return new ScStyleSheet( (const ScStyleSheet&) rStyle );
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void __EXPORT ScStyleSheetPool::Erase( SfxStyleSheetBase* pStyle )
-//STRIP001 {
-//STRIP001  if ( pStyle )
-//STRIP001  {
-//STRIP001      DBG_ASSERT( IS_SET( SFXSTYLEBIT_USERDEF, pStyle->GetMask() ),
-//STRIP001                  "SFXSTYLEBIT_USERDEF not set!" );
-//STRIP001
-//STRIP001      ((ScDocumentPool&)rPool).StyleDeleted((ScStyleSheet*)pStyle);
-//STRIP001      SfxStyleSheetPool::Erase(pStyle);
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 void ScStyleSheetPool::CopyStyleFrom( ScStyleSheetPool* pSrcPool,
-//STRIP001                                      const String& rName, SfxStyleFamily eFamily )
-//STRIP001 {
-//STRIP001  //  this ist Dest-Pool
-//STRIP001
-//STRIP001  SfxStyleSheetBase* pStyleSheet = pSrcPool->Find( rName, eFamily );
-//STRIP001  if (pStyleSheet)
-//STRIP001  {
-//STRIP001      const SfxItemSet& rSourceSet = pStyleSheet->GetItemSet();
-//STRIP001      SfxStyleSheetBase* pDestSheet = Find( rName, eFamily );
-//STRIP001      if (!pDestSheet)
-//STRIP001          pDestSheet = &Make( rName, eFamily );
-//STRIP001      SfxItemSet& rDestSet = pDestSheet->GetItemSet();
-//STRIP001      rDestSet.PutExtended( rSourceSet, SFX_ITEM_DONTCARE, SFX_ITEM_DEFAULT );
-//STRIP001
-//STRIP001      if ( eFamily == SFX_STYLE_FAMILY_PAGE )
-//STRIP001      {
-//STRIP001          //  Set-Items
-//STRIP001
-//STRIP001          const SfxPoolItem* pItem;
-//STRIP001
-//STRIP001          if ( rSourceSet.GetItemState( ATTR_PAGE_HEADERSET, FALSE, &pItem ) == SFX_ITEM_SET )
-//STRIP001          {
-//STRIP001              const SfxItemSet& rSrcSub = ((const SvxSetItem*) pItem)->GetItemSet();
-//STRIP001              SfxItemSet aDestSub( *rDestSet.GetPool(), rSrcSub.GetRanges() );
-//STRIP001              aDestSub.PutExtended( rSrcSub, SFX_ITEM_DONTCARE, SFX_ITEM_DEFAULT );
-//STRIP001              rDestSet.Put( SvxSetItem( ATTR_PAGE_HEADERSET, aDestSub ) );
-//STRIP001          }
-//STRIP001          if ( rSourceSet.GetItemState( ATTR_PAGE_FOOTERSET, FALSE, &pItem ) == SFX_ITEM_SET )
-//STRIP001          {
-//STRIP001              const SfxItemSet& rSrcSub = ((const SvxSetItem*) pItem)->GetItemSet();
-//STRIP001              SfxItemSet aDestSub( *rDestSet.GetPool(), rSrcSub.GetRanges() );
-//STRIP001              aDestSub.PutExtended( rSrcSub, SFX_ITEM_DONTCARE, SFX_ITEM_DEFAULT );
-//STRIP001              rDestSet.Put( SvxSetItem( ATTR_PAGE_FOOTERSET, aDestSub ) );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 //------------------------------------------------------------------------
 //
@@ -243,18 +177,6 @@ namespace binfilter {
 
 #define SCSTR(id)   ScGlobal::GetRscString(id)
 
-//STRIP001 void ScStyleSheetPool::CopyStdStylesFrom( ScStyleSheetPool* pSrcPool )
-//STRIP001 {
-//STRIP001  //  Default-Styles kopieren
-//STRIP001
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_STANDARD),     SFX_STYLE_FAMILY_PARA );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_RESULT),       SFX_STYLE_FAMILY_PARA );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_RESULT1),      SFX_STYLE_FAMILY_PARA );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_HEADLINE),     SFX_STYLE_FAMILY_PARA );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_HEADLINE1),    SFX_STYLE_FAMILY_PARA );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_STANDARD),     SFX_STYLE_FAMILY_PAGE );
-//STRIP001  CopyStyleFrom( pSrcPool, SCSTR(STR_STYLENAME_REPORT),       SFX_STYLE_FAMILY_PAGE );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -633,26 +555,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-//STRIP001 ScStyleSheet* ScStyleSheetPool::FindCaseIns( const String& rName, SfxStyleFamily eFam )
-//STRIP001 {
-//STRIP001  String aUpSearch = rName;
-//STRIP001  ScGlobal::pCharClass->toUpper(aUpSearch);
-//STRIP001
-//STRIP001  ULONG nCount = aStyles.Count();
-//STRIP001  for (ULONG n=0; n<nCount; n++)
-//STRIP001  {
-//STRIP001      SfxStyleSheetBase* pStyle = aStyles.GetObject(n);
-//STRIP001      if ( pStyle->GetFamily() == eFam )
-//STRIP001      {
-//STRIP001          String aUpName = pStyle->GetName();
-//STRIP001          ScGlobal::pCharClass->toUpper(aUpName);
-//STRIP001          if (aUpName == aUpSearch)
-//STRIP001              return (ScStyleSheet*)pStyle;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  return NULL;
-//STRIP001 }
 
 
 /*N*/ void ScStyleSheetPool::ConvertFontsAfterLoad()
