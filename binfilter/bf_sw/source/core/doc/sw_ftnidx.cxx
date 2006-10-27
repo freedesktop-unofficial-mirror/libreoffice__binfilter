@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_ftnidx.cxx,v $
  *
- *  $Revision: 1.7 $
+ *  $Revision: 1.8 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 08:40:55 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:26:05 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -49,9 +49,6 @@
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
-// auto strip #ifndef _ERRHDL_HXX
-// auto strip #include <errhdl.hxx>
-// auto strip #endif
 
 #ifndef _DOC_HXX
 #include <doc.hxx>
@@ -62,9 +59,6 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-// auto strip #ifndef _FMTCOL_HXX
-// auto strip #include <fmtcol.hxx>
-// auto strip #endif
 #ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
 #endif
@@ -74,9 +68,6 @@
 #ifndef _FMTFTNTX_HXX
 #include <fmtftntx.hxx>
 #endif
-// auto strip #ifndef _ROOTFRM_HXX
-// auto strip #include <rootfrm.hxx>
-// auto strip #endif
 namespace binfilter {
 
 
@@ -331,33 +322,6 @@ namespace binfilter {
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pDoc->GetRootFrm()->UpdateFtnNums();
 /*N*/ }
 
-//STRIP001 void SwFtnIdxs::UpdateFtnInSections()
-//STRIP001 {
-//STRIP001  if( !Count() )
-//STRIP001      return;
-//STRIP001
-//STRIP001  // besorge erstmal das Nodes-Array ueber den StartIndex der
-//STRIP001  // ersten Fussnote
-//STRIP001  SwDoc* pDoc = (SwDoc*) (*this)[ 0 ]->GetTxtNode().GetDoc();
-//STRIP001  SwTxtFtn* pTxtFtn;
-//STRIP001  SwUpdFtnEndNtAtEnd aNumArr;
-//STRIP001  for( USHORT nPos = 0; nPos < Count(); ++nPos )
-//STRIP001  {
-//STRIP001      pTxtFtn = (*this)[ nPos ];
-//STRIP001      const SwFmtFtn &rFtn = pTxtFtn->GetFtn();
-//STRIP001      if( !rFtn.GetNumStr().Len() )
-//STRIP001      {
-//STRIP001          USHORT nSectNo = aNumArr.ChkNumber( *pTxtFtn );
-//STRIP001          if( nSectNo )
-//STRIP001          {
-//STRIP001              if( rFtn.IsEndNote() )
-//STRIP001                  pTxtFtn->SetNumber( nSectNo, &rFtn.GetNumStr() );
-//STRIP001              else
-//STRIP001                  pTxtFtn->SetNumber( nSectNo, &rFtn.GetNumStr() );
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ SwTxtFtn* SwFtnIdxs::SeekEntry( const SwNodeIndex& rPos, USHORT* pFndPos ) const
 /*N*/ {
