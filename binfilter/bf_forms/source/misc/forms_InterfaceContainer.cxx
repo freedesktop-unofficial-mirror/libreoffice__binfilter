@@ -4,9 +4,9 @@
  *
  *  $RCSfile: forms_InterfaceContainer.cxx,v $
  *
- *  $Revision: 1.8 $
+ *  $Revision: 1.9 $
  *
- *  last change: $Author: obo $ $Date: 2006-10-12 10:28:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:05:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,15 +37,9 @@
 #include "InterfaceContainer.hxx"
 #endif
 
-// auto strip #ifndef _CPPUHELPER_QUERYINTERFACE_HXX_
-// auto strip #include <cppuhelper/queryinterface.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_EVENTATTACHERMGR_HXX_
 #include <comphelper/eventattachermgr.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_TYPES_HXX_
-// auto strip #include <comphelper/types.hxx>
-// auto strip #endif
 #ifndef _COMPHELPER_ENUMHELPER_HXX_
 #include <comphelper/enumhelper.hxx>
 #endif
@@ -55,9 +49,6 @@
 #ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
 #endif
-// auto strip #ifndef _COMPHELPER_SEQUENCE_HXX_
-// auto strip #include <comphelper/sequence.hxx>
-// auto strip #endif
 
 #ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
@@ -72,12 +63,6 @@
 #include "frm_resource.hxx"
 #endif
 
-// auto strip #ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
-// auto strip #include <com/sun/star/beans/XPropertySet.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
-// auto strip #include <com/sun/star/lang/XComponent.hpp>
-// auto strip #endif
 #ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
 #endif
