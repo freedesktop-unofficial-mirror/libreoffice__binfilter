@@ -4,9 +4,9 @@
  *
  *  $RCSfile: porrst.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:23:48 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:07:29 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -58,7 +58,6 @@ class SwTmpEndPortion : public SwLinePortion
 {
 public:
             SwTmpEndPortion( const SwLinePortion &rPortion );
-//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     OUTPUT_OPERATOR
 };
 
@@ -69,7 +68,6 @@ public:
 class SwBreakPortion : public SwLinePortion
 {
 #ifdef VERTICAL_LAYOUT
-//STRIP001     USHORT CalcViewWidth( const SwTxtSizeInfo &rInf );
 #else
     void CalcViewWidth( const SwTxtSizeInfo &rInf );
 #endif
@@ -85,12 +83,9 @@ public:
     virtual SwLinePortion *Compress();
     virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-//STRIP001  virtual KSHORT GetViewWidth( const SwTxtSizeInfo &rInf ) const;
     USHORT GetRestWidth() const { return nRestWidth; }
-//STRIP001  virtual xub_StrLen GetCrsrOfst( const MSHORT nOfst ) const;
 
     // Accessibility: pass information about this portion to the PortionHandler
-//STRIP001     virtual void HandlePortion( SwPortionHandler& rPH ) const;
 
     OUTPUT_OPERATOR
 };
@@ -121,7 +116,6 @@ public:
 
     // This constructor only sets the height and ascent to the values
     // of rPortion. It is only used for kerning portions for grid mode
-//STRIP001     SwKernPortion( const SwLinePortion &rPortion );
 #else
     SwKernPortion( SwLinePortion &rPortion, short nKrn,
                    sal_Bool bBG = sal_False );
@@ -147,7 +141,6 @@ public:
     virtual void Paint( const SwTxtPaintInfo &rInf ) const;
     virtual SwLinePortion *Compress();
 #ifndef VERTICAL_LAYOUT
-//STRIP001  void PaintIt( OutputDevice *pOut ) const;
 #endif
     inline sal_Bool IsLeft() const { return bLeft; }
     inline const Point& GetPos() const { return aPos; }
