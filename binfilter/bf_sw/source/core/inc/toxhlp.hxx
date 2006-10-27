@@ -4,9 +4,9 @@
  *
  *  $RCSfile: toxhlp.hxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:40:52 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:49:56 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,9 +46,6 @@
 #include <com/sun/star/uno/Reference.hxx>
 #endif
 
-// auto strip #ifndef _SWUNODEF_HXX
-// auto strip #include <swunodef.hxx>
-// auto strip #endif
 
 namespace drafts { namespace com { namespace sun { namespace star {
 namespace i18n {
@@ -58,7 +55,6 @@ namespace lang {
     class XMultiServiceFactory;
 }
 }}}};
-//STRIP001 class String;
 namespace binfilter {
 
 
