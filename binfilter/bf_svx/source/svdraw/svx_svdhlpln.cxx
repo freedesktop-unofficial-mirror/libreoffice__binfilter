@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_svdhlpln.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 06:56:01 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 21:39:21 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,103 +36,17 @@
 #include "svdhlpln.hxx"
 #include "svdio.hxx"
 
-// auto strip #ifndef _COLOR_HXX //autogen
-// auto strip #include <tools/color.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _OUTDEV_HXX //autogen
-// auto strip #include <vcl/outdev.hxx>
-// auto strip #endif
 
 #ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
 #endif
 
-// auto strip #ifndef _TL_POLY_HXX
-// auto strip #include <tools/poly.hxx>
-// auto strip #endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//STRIP001 Pointer SdrHelpLine::GetPointer() const
-//STRIP001 {
-//STRIP001  switch (eKind) {
-//STRIP001      case SDRHELPLINE_VERTICAL  : return Pointer(POINTER_ESIZE); break;
-//STRIP001      case SDRHELPLINE_HORIZONTAL: return Pointer(POINTER_SSIZE); break;
-//STRIP001      default                    : return Pointer(POINTER_MOVE);  break;
-//STRIP001  } // switch
-//STRIP001 }
 
-//STRIP001 void SdrHelpLine::Draw(OutputDevice& rOut, const Point& rOfs) const
-//STRIP001 {
-//STRIP001  Point aPnt(rOut.LogicToPixel(aPos+rOfs));
-//STRIP001  long x=aPnt.X();
-//STRIP001  long y=aPnt.Y();
-//STRIP001  long nMin=0;
-//STRIP001  long nMax=2048;
-//STRIP001  FASTBOOL bMap0=rOut.IsMapModeEnabled();
-//STRIP001  rOut.EnableMapMode(FALSE);
-//STRIP001  switch (eKind) {
-//STRIP001      case SDRHELPLINE_VERTICAL  :
-//STRIP001      {
-//STRIP001          if (rOut.GetOutDevType() == OUTDEV_WINDOW)
-//STRIP001          {
-//STRIP001              Point aLine[2];
-//STRIP001              aLine[0].X() = x; aLine[0].Y() = nMin;
-//STRIP001              aLine[1].X() = x; aLine[1].Y() = nMax;
-//STRIP001              ((Window&) rOut).InvertTracking(Polygon(2, aLine), SHOWTRACK_WINDOW);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rOut.DrawLine(Point(x,nMin),Point(x,nMax));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case SDRHELPLINE_HORIZONTAL:
-//STRIP001      {
-//STRIP001          if (rOut.GetOutDevType() == OUTDEV_WINDOW)
-//STRIP001          {
-//STRIP001              Point aLine[2];
-//STRIP001              aLine[0].X() = nMin; aLine[0].Y() = y;
-//STRIP001              aLine[1].X() = nMax; aLine[1].Y() = y;
-//STRIP001              ((Window&) rOut).InvertTracking(Polygon(2, aLine), SHOWTRACK_WINDOW);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rOut.DrawLine(Point(nMin,y),Point(nMax,y));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case SDRHELPLINE_POINT     :
-//STRIP001      {
-//STRIP001          int r=SDRHELPLINE_POINT_PIXELSIZE;
-//STRIP001
-//STRIP001          if (rOut.GetOutDevType() == OUTDEV_WINDOW)
-//STRIP001          {
-//STRIP001              Point aHLine[2];
-//STRIP001              aHLine[0].X() = x-r; aHLine[0].Y() = y;
-//STRIP001              aHLine[1].X() = x+r; aHLine[1].Y() = y;
-//STRIP001              ((Window&) rOut).InvertTracking(Polygon(2, aHLine), SHOWTRACK_WINDOW);
-//STRIP001
-//STRIP001              Point aVLine[2];
-//STRIP001              aVLine[0].X() = x; aVLine[0].Y() = y-r;
-//STRIP001              aVLine[1].X() = x; aVLine[1].Y() = y+r;
-//STRIP001              ((Window&) rOut).InvertTracking(Polygon(2, aVLine), SHOWTRACK_WINDOW);
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              rOut.DrawLine(Point(x-r,y),Point(x+r,y));
-//STRIP001              rOut.DrawLine(Point(x,y-r),Point(x,y+r));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001  } // switch
-//STRIP001  rOut.EnableMapMode(bMap0);
-//STRIP001 }
 
 /*N*/ FASTBOOL SdrHelpLine::IsHit(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const
 /*N*/ {
@@ -153,42 +67,7 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//STRIP001 Rectangle SdrHelpLine::GetBoundRect(const OutputDevice& rOut) const
-//STRIP001 {
-//STRIP001  Rectangle aRet(aPos,aPos);
-//STRIP001  Point aOfs(rOut.GetMapMode().GetOrigin());
-//STRIP001  Size aSiz(rOut.GetOutputSize());
-//STRIP001  switch (eKind) {
-//STRIP001      case SDRHELPLINE_VERTICAL  : aRet.Top()=-aOfs.Y(); aRet.Bottom()=-aOfs.Y()+aSiz.Height(); break;
-//STRIP001      case SDRHELPLINE_HORIZONTAL: aRet.Left()=-aOfs.X(); aRet.Right()=-aOfs.X()+aSiz.Width();  break;
-//STRIP001      case SDRHELPLINE_POINT     : {
-//STRIP001          Size aRad(rOut.PixelToLogic(Size(SDRHELPLINE_POINT_PIXELSIZE,SDRHELPLINE_POINT_PIXELSIZE)));
-//STRIP001          aRet.Left()  -=aRad.Width();
-//STRIP001          aRet.Right() +=aRad.Width();
-//STRIP001          aRet.Top()   -=aRad.Height();
-//STRIP001          aRet.Bottom()+=aRad.Height();
-//STRIP001      } break;
-//STRIP001  } // switch
-//STRIP001  return aRet;
-//STRIP001 }
 
-//STRIP001 bool SdrHelpLine::IsVisibleEqual( const SdrHelpLine& rHelpLine, const OutputDevice& rOut ) const
-//STRIP001 {
-//STRIP001  if( eKind == rHelpLine.eKind)
-//STRIP001  {
-//STRIP001      Point aPt1(rOut.LogicToPixel(aPos)), aPt2(rOut.LogicToPixel(rHelpLine.aPos));
-//STRIP001      switch( eKind )
-//STRIP001      {
-//STRIP001          case SDRHELPLINE_POINT:
-//STRIP001              return aPt1 == aPt2;
-//STRIP001          case SDRHELPLINE_VERTICAL:
-//STRIP001              return aPt1.X() == aPt2.X();
-//STRIP001          case SDRHELPLINE_HORIZONTAL:
-//STRIP001              return aPt1.Y() == aPt2.Y();
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return false;
-//STRIP001 }
 
 /*?*/ SvStream& operator<<(SvStream& rOut, const SdrHelpLine& rHL)
 /*?*/ {
@@ -226,55 +105,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-//STRIP001 FASTBOOL SdrHelpLineList::operator==(const SdrHelpLineList& rSrcList) const
-//STRIP001 {
-//STRIP001  FASTBOOL bEqual=FALSE;
-//STRIP001  USHORT nAnz=GetCount();
-//STRIP001  if (nAnz==rSrcList.GetCount()) {
-//STRIP001      bEqual=TRUE;
-//STRIP001      for (USHORT i=0; i<nAnz && bEqual; i++) {
-//STRIP001          if (*GetObject(i)!=*rSrcList.GetObject(i)) {
-//STRIP001              bEqual=FALSE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bEqual;
-//STRIP001 }
 
-//STRIP001 void SdrHelpLineList::DrawAll(OutputDevice& rOut, const Point& rOfs) const
-//STRIP001 {
-//STRIP001  Color aOldLineColor( rOut.GetLineColor() );
-//STRIP001
-//STRIP001  rOut.SetLineColor( Color( COL_GREEN ) );
-//STRIP001
-//STRIP001  sal_uInt16 nAnz = GetCount();
-//STRIP001  sal_uInt16 i,j;
-//STRIP001  SdrHelpLine *pHL, *pHL2;
-//STRIP001
-//STRIP001  for(i=0; i<nAnz; i++)
-//STRIP001  {
-//STRIP001      pHL = GetObject(i);
-//STRIP001
-//STRIP001      // check if we already drawn a help line like this one
-//STRIP001      if( pHL )
-//STRIP001      {
-//STRIP001          for(j=0;j<i;j++)
-//STRIP001          {
-//STRIP001              pHL2 = GetObject(j);
-//STRIP001              if( pHL2 && pHL->IsVisibleEqual( *pHL2, rOut) )
-//STRIP001              {
-//STRIP001                  pHL = NULL;
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001      }
-//STRIP001
-//STRIP001      if( pHL )
-//STRIP001          pHL->Draw(rOut,rOfs);
-//STRIP001  }
-//STRIP001
-//STRIP001  rOut.SetLineColor( aOldLineColor );
-//STRIP001 }
 
 /*N*/ USHORT SdrHelpLineList::HitTest(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const
 /*N*/ {
