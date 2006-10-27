@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_misc.cxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 02:36:54 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:05:15 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -46,21 +46,6 @@ unsigned SfxStack::nLevel = 0;
 
 //--------------------------------------------------------------------
 
-//STRIP001 String SearchAndReplace( const String &rSource,
-//STRIP001                       const String &rToReplace,
-//STRIP001                       const String &rReplacement )
-//STRIP001 {
-//STRIP001  String aTarget( rSource );
-//STRIP001  USHORT nPos = rSource.Search( rToReplace );
-//STRIP001  if ( nPos != STRING_NOTFOUND )
-//STRIP001  {
-//STRIP001      aTarget.Erase( nPos, rToReplace.Len() );
-//STRIP001      return aTarget.Insert( rReplacement, nPos );
-//STRIP001  }
-//STRIP001  return rSource;
-//STRIP001 }
-//STRIP001
-//STRIP001 //--------------------------------------------------------------------
 
 /*N*/ String SfxStringEncode( const String &rSource, const char *pKey  )
 /*N*/ {
@@ -86,32 +71,5 @@ unsigned SfxStack::nLevel = 0;
 /*N*/   return aRet;
 /*N*/ }
 
-//STRIP001 //--------------------------------------------------------------------
-//STRIP001
-//STRIP001 String SfxStringDecode( const String &rSource, const char *pKey  )
-//STRIP001 {
-//STRIP001  // Output-Buffer aufbereiten
-//STRIP001  String aRet;/*ASMUSS
-//STRIP001  aRet.AllocStrBuf( rSource.Len() / 2 );
-//STRIP001
-//STRIP001  // Buchstabenfolge in normale Zeichen wandeln
-//STRIP001  USHORT nTo = 0;
-//STRIP001  for ( USHORT n1 = 0; n1 < rSource.Len(); n1 += 2)
-//STRIP001      aRet[nTo++] = (unsigned char)
-//STRIP001                      ( ( ( rSource[n1] - 'a' ) << 4 ) +
-//STRIP001                        ( ( rSource[ USHORT(n1+1) ] - 'a' ) ) );
-//STRIP001
-//STRIP001  // decodieren
-//STRIP001  USHORT nCode = 0;
-//STRIP001  for ( USHORT n2 = 0; n2 < aRet.Len(); ++n2 )
-//STRIP001  {
-//STRIP001      aRet[n2] ^= pKey[nCode];
-//STRIP001      if ( !pKey[++nCode] )
-//STRIP001          nCode = 0;
-//STRIP001  }
-//STRIP001 */
-//STRIP001  return aRet;
-//STRIP001 }
-//STRIP001
 
 }
