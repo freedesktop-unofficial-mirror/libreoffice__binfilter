@@ -4,9 +4,9 @@
  *
  *  $RCSfile: mathtype.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 03:59:57 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:54:43 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -63,8 +63,6 @@ public:
     sal_uInt32   nReserved3; // not used
     sal_uInt32   nReserved4; // not used
 
-//STRIP001  void Read(SvStorageStream *pS);
-//STRIP001  void Write(SvStorageStream *pS);
 };
 
 class MathTypeFont
@@ -74,7 +72,6 @@ public:
     sal_uInt8 nStyle;
     MathTypeFont() : nTface(0),nStyle(0) {}
     MathTypeFont(sal_uInt8 nFace) : nTface(nFace),nStyle(0) {}
-//STRIP001  void AppendStyleToText(String &rS);
 };
 
 struct LessMathTypeFont
@@ -102,8 +99,6 @@ public:
     {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001Init();
     }
-//STRIP001  int Parse(SvStorage *pS);
-//STRIP001  int ConvertFromStarMath(SvStorage *pStor);
 private:
 /*Ver 2 Header*/
     sal_uInt8 nVersion;
@@ -114,24 +109,7 @@ private:
 
     SvStorageStream *pS;
 
-//STRIP001  void Init();
 
-//STRIP001  int HandleRecords(int nLevel=0,sal_uInt8 nSelector=-1,
-//STRIP001      sal_uInt8 nVariation=-1,int nRows=0,int nCols=0);
-//STRIP001  sal_Bool HandleSize(sal_Int16 nLSize,sal_Int16 nDSize, int &rSetSize);
-//STRIP001  void HandleAlign(sal_uInt8 nHAlign,sal_uInt8 nVAlign, int &rSetAlign);
-//STRIP001  int HandlePile(int &rSetAlign,int nLevel,sal_uInt8 nSelector,
-//STRIP001      sal_uInt8 nVariation);
-//STRIP001  int HandleMatrix(int nLevel,sal_uInt8 nSelector,sal_uInt8 nVariarion);
-//STRIP001  void HandleMatrixSeperator(int nMatrixRows,int nMatrixCols,int &rCurCol,
-//STRIP001      int &rCurRow);
-//STRIP001  int HandleTemplate(int nLevel,sal_uInt8 &rSelector,sal_uInt8 &rVariation,
-//STRIP001      xub_StrLen &rLastTemplateBracket);
-//STRIP001  void HandleEmblishments();
-//STRIP001  void HandleSetSize();
-//STRIP001  int HandleChar(xub_StrLen &rTextStart,int &rSetSize,int nLevel,
-//STRIP001      sal_uInt8 nTag,sal_uInt8 nSelector,sal_uInt8 nVariation,
-//STRIP001      sal_Bool bSilent);
     int xfLMOVE(sal_uInt8 nTest) {return nTest&0x80;}
     int xfAUTO(sal_uInt8 nTest) {return nTest&0x10;}
     int xfEMBELL(sal_uInt8 nTest) {return nTest&0x20;}
@@ -139,25 +117,6 @@ private:
     int xfLSPACE(sal_uInt8 nTest) {return nTest&0x40;}
     int xfRULER(sal_uInt8 nTest) {return nTest&0x20;}
 
-//STRIP001  sal_uInt8 HandleNodes(SmNode *pNode,int nLevel=0);
-//STRIP001  int StartTemplate(sal_uInt16 nSelector,sal_uInt16 nVariation=0);
-//STRIP001  void EndTemplate(int nOldPendingAttributes);
-//STRIP001  void HandleSmMatrix(SmMatrixNode *pMatrix,int nLevel);
-//STRIP001  void HandleTable(SmNode *pNode,int nLevel);
-//STRIP001  void HandleRoot(SmNode *pNode,int nLevel);
-//STRIP001  void HandleSubSupScript(SmNode *pNode,int nLevel);
-//STRIP001  sal_uInt8 HandleCScript(SmNode *pNode,SmNode *pContent,int nLevel,
-//STRIP001      ULONG *pPos=NULL,sal_Bool bTest=TRUE);
-//STRIP001  void HandleFractions(SmNode *pNode,int nLevel);
-//STRIP001  void HandleBrace(SmNode *pNode,int nLevel);
-//STRIP001  void HandleVerticalBrace(SmNode *pNode,int nLevel);
-//STRIP001  void HandleOperator(SmNode *pNode,int nLevel);
-//STRIP001  sal_Bool HandleLim(SmNode *pNode,int nLevel);
-//STRIP001  void HandleMAlign(SmNode *pNode,int nLevel);
-//STRIP001  void HandleMath(SmNode *pNode,int nLevel);
-//STRIP001  void HandleText(SmNode *pNode,int nLevel);
-//STRIP001  void HandleAttributes(SmNode *pNode,int nLevel);
-//STRIP001  void TypeFaceToString(String &rRet,sal_uInt8 nFace);
 
     String &rRet;
     SmNode *pTree;
@@ -191,8 +150,6 @@ private:
         tmDSINT,tmTSINT,tmUHBRACE,tmLHBRACE,tmSUM
     };
 public:
-//STRIP001  static sal_Bool LookupChar(sal_Unicode nChar,String &rRet,
-//STRIP001      sal_uInt8 nVersion=3,sal_uInt8 nTypeFace=0);
 };
 
 
