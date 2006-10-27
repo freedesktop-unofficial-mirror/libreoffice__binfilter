@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sfx2_fltfnc.cxx,v $
  *
- *  $Revision: 1.12 $
+ *  $Revision: 1.13 $
  *
- *  last change: $Author: kz $ $Date: 2006-07-06 09:52:33 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 19:03:09 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,180 +33,30 @@
  *
  ************************************************************************/
 
-// auto strip #include "fltfnc.hxx"
 
-// auto strip #ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP_
-// auto strip #include <com/sun/star/uno/Exception.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
-// auto strip #include <com/sun/star/beans/PropertyValue.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
-// auto strip #include <com/sun/star/container/XNameAccess.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DATATRANSFER_DATAFLAVOR_HPP_
-// auto strip #include <com/sun/star/datatransfer/DataFlavor.hpp>
-// auto strip #endif
 
 #ifndef _EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
 #endif
-// auto strip #ifndef _CONFIG_HXX
-// auto strip #include <tools/config.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBMETH_HXX //autogen
-// auto strip #include <basic/sbmeth.hxx>
-// auto strip #endif
-// auto strip #ifndef _BASMGR_HXX //autogen
-// auto strip #include <basic/basmgr.hxx>
-// auto strip #endif
-// auto strip #ifndef _SB_SBSTAR_HXX //autogen
-// auto strip #include <basic/sbstar.hxx>
-// auto strip #endif
-// auto strip #ifndef _SBX_SBXOBJECT_HXX //autogen
-// auto strip #include <basic/sbxobj.hxx>
-// auto strip #endif
 #ifndef __SBX_SBXMETHOD_HXX //autogen
 #include <basic/sbxmeth.hxx>
 #endif
-// auto strip #ifndef _SBXCORE_HXX //autogen
-// auto strip #include <basic/sbxcore.hxx>
-// auto strip #endif
-// auto strip #ifndef _MSGBOX_HXX //autogen
-// auto strip #include <vcl/msgbox.hxx>
-// auto strip #endif
-// auto strip #ifndef _RTL_USTRING_HXX //autogen
-// auto strip #include <rtl/ustring.hxx>
-// auto strip #endif
 #ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
 #endif
-// auto strip #ifndef _SFXENUMITEM_HXX //autogen
-// auto strip #include <svtools/eitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXINTITEM_HXX //autogen
-// auto strip #include <svtools/intitem.hxx>
-// auto strip #endif
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <svtools/stritem.hxx>
 #endif
-// auto strip #ifndef _SVSTOR_HXX //autogen
-// auto strip #include <so3/svstor.hxx>
-// auto strip #endif
 // STRIP001 #ifndef _EXTATTR_HXX
 // STRIP001 #include <svtools/extattr.hxx>
 // STRIP001 #endif
-// auto strip #ifndef _LCKBITEM_HXX //autogen
-// auto strip #include <svtools/lckbitem.hxx>
-// auto strip #endif
-// auto strip #ifndef _INETTYPE_HXX //autogen
-// auto strip #include <svtools/inettype.hxx>
-// auto strip #endif
-// auto strip #ifndef _SFXRECTITEM_HXX
-// auto strip #include <svtools/rectitem.hxx>
-// auto strip #endif
 
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
-// auto strip #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_DOCUMENT_XSTANDALONEDOCUMENTINFO_HPP_
-// auto strip #include <com/sun/star/document/XStandaloneDocumentInfo.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCH_HPP_
-// auto strip #include <com/sun/star/frame/XDispatch.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProvider.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XSTATUSLISTENER_HPP_
-// auto strip #include <com/sun/star/frame/XStatusListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HPP_
-// auto strip #include <com/sun/star/frame/FrameSearchFlag.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
-// auto strip #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_FEATURESTATEEVENT_HPP_
-// auto strip #include <com/sun/star/frame/FeatureStateEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HPP_
-// auto strip #include <com/sun/star/frame/DispatchDescriptor.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XCONTROLLER_HPP_
-// auto strip #include <com/sun/star/frame/XController.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAMEACTIONLISTENER_HPP_
-// auto strip #include <com/sun/star/frame/XFrameActionListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XCOMPONENTLOADER_HPP_
-// auto strip #include <com/sun/star/frame/XComponentLoader.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
-// auto strip #include <com/sun/star/frame/XFrame.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTIONEVENT_HPP_
-// auto strip #include <com/sun/star/frame/FrameActionEvent.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_FRAMEACTION_HPP_
-// auto strip #include <com/sun/star/frame/FrameAction.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XFRAMELOADER_HPP_
-// auto strip #include <com/sun/star/frame/XFrameLoader.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XLOADEVENTLISTENER_HPP_
-// auto strip #include <com/sun/star/frame/XLoadEventListener.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_FRAME_XFILTERDETECT_HPP_
-// auto strip #include <com/sun/star/frame/XFilterDetect.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINMODE_HPP_
-// auto strip #include <com/sun/star/plugin/PluginMode.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
-// auto strip #include <com/sun/star/plugin/PluginDescription.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINEXCEPTION_HPP_
-// auto strip #include <com/sun/star/plugin/PluginException.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_PLUGINVARIABLE_HPP_
-// auto strip #include <com/sun/star/plugin/PluginVariable.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGIN_HPP_
-// auto strip #include <com/sun/star/plugin/XPlugin.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINMANAGER_HPP_
-// auto strip #include <com/sun/star/plugin/XPluginManager.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_PLUGIN_XPLUGINCONTEXT_HPP_
-// auto strip #include <com/sun/star/plugin/XPluginContext.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LOADER_XIMPLEMENTATIONLOADER_HPP_
-// auto strip #include <com/sun/star/loader/XImplementationLoader.hpp>
-// auto strip #endif
-// auto strip #ifndef _COM_SUN_STAR_LOADER_CANNOTACTIVATEFACTORYEXCEPTION_HPP_
-// auto strip #include <com/sun/star/loader/CannotActivateFactoryException.hpp>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_PROCESSFACTORY_HXX
-// auto strip #include <comphelper/processfactory.hxx>
-// auto strip #endif
 
 #include <sal/types.h>
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/ucb/XContent.hpp>
-// auto strip #include <rtl/ustring.hxx>
 #include <vos/process.hxx>
-// auto strip #include <svtools/pathoptions.hxx>
 
-// auto strip #ifndef _L2TXTENC_HXX
-// auto strip #include <tools/l2txtenc.hxx>
-// auto strip #endif
 
 #include <rtl/logfile.hxx>
 
@@ -226,35 +76,16 @@ using namespace ::vos;
 #include <svtools/syslocale.hxx>
 #endif
 
-// auto strip #include "app.hxx"
-// auto strip #include "sfxhelp.hxx"
-// auto strip #include "sfxbasic.hxx"
-// auto strip #include "docfilt.hxx"
-// auto strip #include "docfac.hxx"
-// auto strip #include "sfxtypes.hxx"
-// auto strip #include "sfxuno.hxx"
 #include "docfile.hxx"
-// auto strip #include "progress.hxx"
 #include "loadenv.hxx"
-// auto strip #include "openflag.hxx"
 #include "bastyp.hrc"
-// auto strip #include "sfxresid.hxx"
-// auto strip #include "doctempl.hxx"
-// auto strip #include "frame.hxx"
 #include "dispatch.hxx"
 #include "urlframe.hxx"
-// auto strip #include "topfrm.hxx"
-// auto strip #include "plugwin.hxx"
-// auto strip #include "helper.hxx"
 #include "fltlst.hxx"
 
 // wg. EXPLORER_BROWSER
 #include "request.hxx"
-// auto strip #include "nfltdlg.hxx"
 #include "arrdecl.hxx"
-// auto strip #include "appdata.hxx"
-// auto strip #include "appuno.hxx"
-// auto strip #include "viewfrm.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
@@ -290,8 +121,6 @@ public:
     SfxFilterContainerFlags eFlags;
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > xCacheSync; // listener on framework::FilterCache to synchronize our two caches!
 
-//STRIP001     void     syncDefaults( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& lNew );
-//STRIP001     sal_Bool equalFilterNames( const String& s1, const ::rtl::OUString& s2 ) const;
 };
 
 
@@ -382,7 +211,6 @@ public:
 
 /*?*/ ULONG SfxFilterContainer::Execute( SfxMedium& rMedium, SfxFrame*& pFrame) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-//STRIP001  return ERRCODE_ABORT;
 /*?*/ }
 
 //----------------------------------------------------------------
@@ -502,9 +330,6 @@ public:
 /*N*/     pFilter->GetWildcard() != String() && pFilter->GetWildcard() != DEFINE_CONST_UNICODE("*.*") && pFilter->GetWildcard() != '*' &&
 /*N*/   WildCard( ToUpper_Impl( pFilter->GetWildcard()() ), ';' ) == ToUpper_Impl( aArg ))
 
-//STRIP001 IMPL_CONTAINER_LOOP(
-//STRIP001     GetFilter4UIName, const String&,
-//STRIP001     pFilter->GetUIName() == aArg )
 
 //----------------------------------------------------------------
 
@@ -515,15 +340,6 @@ public:
 
 //----------------------------------------------------------------
 
-//STRIP001 void SfxFilterContainer::DeleteFilter( const SfxFilter* pFilter )
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001   Loescht einen Filter aus seinem Container und den Filter selbst.
-//STRIP001  */
-//STRIP001 {
-//STRIP001     pImpl->aList.Remove( (SfxFilter*)pFilter );
-//STRIP001     delete (SfxFilter*)pFilter;
-//STRIP001 }
 
 //----------------------------------------------------------------
 
@@ -560,13 +376,6 @@ public:
 
 //----------------------------------------------------------------
 
-//STRIP001 void SfxFilterContainer::SaveFilters( const String& rGroup, SfxFilterFlags nMask ) const
-//STRIP001 /*   [Beschreibung]
-//STRIP001
-//STRIP001   Speichert die Filter des Containers in der soffice3.ini.
-//STRIP001  */
-//STRIP001 {
-//STRIP001 }
 
 //-------------------------------------------------------------------------
 
@@ -741,11 +550,6 @@ public:
 
 //----------------------------------------------------------------
 
-//STRIP001 SfxFilterMatcher::SfxFilterMatcher()
-//STRIP001 {
-//STRIP001     pImpl = new SfxFilterMatcher_Impl;
-//STRIP001  pImpl->bDeleteContainers = sal_False;
-//STRIP001 }
 
 /*N*/ SfxFilterMatcher::SfxFilterMatcher(sal_Bool bDeleteContainers)
 /*N*/ {
@@ -777,17 +581,9 @@ public:
 
 //----------------------------------------------------------------
 
-//STRIP001 sal_uInt16 SfxFilterMatcher::GetContainerCount() const
-//STRIP001 {
-//STRIP001     return (sal_uInt16)pImpl->aList.Count();
-//STRIP001 }
 
 //----------------------------------------------------------------
 
-//STRIP001 SfxFilterContainer* SfxFilterMatcher::GetContainer( sal_uInt16 nPos ) const
-//STRIP001 {
-//STRIP001     return pImpl->aList.GetObject( nPos );
-//STRIP001 }
 
 //----------------------------------------------------------------
 
@@ -1050,22 +846,6 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/   // Jetzt einmal drueberiterieren und nur die perfekten Filter nehmen
 /*N*/   if( !pFilter )
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/        // Achtung: hier k"onnte auch asynchron detected werden!
-//STRIP001 /*?*/         rMedium.StartDownload();
-//STRIP001 /*?*/        if ( !rMedium.IsDownloadDone_Impl() )
-//STRIP001 /*?*/            return ERRCODE_IO_PENDING;
-//STRIP001 /*?*/
-//STRIP001 /*?*/         rMedium.GetStorage();
-//STRIP001 /*?*/        nErr = rMedium.GetErrorCode();
-//STRIP001 /*?*/        if( nErr )
-//STRIP001 /*?*/            return nErr;
-//STRIP001 /*?*/        nErr = GetFilter4Content( rMedium, &pFilter, nMust, nDont, sal_True );
-//STRIP001 /*?*/        CHECKERROR();
-//STRIP001 /*?*/        if( nErr && (nErr != ERRCODE_ABORT && nErr != ERRCODE_SFX_FORCEQUIET ) )
-//STRIP001 /*?*/            return nErr;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( nErr == ERRCODE_ABORT && pFilter )
-//STRIP001 /*?*/            pFilter = 0;
 /*N*/   }
 /*N*/
 /*N*/   // Letzte Moeglichkeit ist die Befragung aller ObjectFactories.
@@ -1078,14 +858,6 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*?*/ //DV !!!! don't close InStream when using the new Medium
 /*?*/ //rMedium.CloseInStream();
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001 /*?*/         rMedium.GetStorage();
-//STRIP001 /*?*/        nErr = GetFilter4Content( rMedium, &pFilter, nMust, nDont );
-//STRIP001 /*?*/        CHECKERROR();
-//STRIP001 /*?*/        if( nErr && (nErr != ERRCODE_ABORT && nErr != ERRCODE_SFX_FORCEQUIET ) )
-//STRIP001 /*?*/            return nErr;
-//STRIP001 /*?*/
-//STRIP001 /*?*/        if( nErr == ERRCODE_ABORT && pFilter )
-//STRIP001 /*?*/            bConsultUser = sal_True;
 /*N*/   }
 /*N*/
 /*N*/   *ppFilter = pFilter;
@@ -1118,159 +890,11 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/ };
 
 //----------------------------------------------------------------
-//STRIP001 sal_Bool SfxFilterMatcher::IsFilterInstalled( const SfxFilter* pFilter )
-//STRIP001 {
-//STRIP001  Window *pWindow = SFX_APP()->GetTopWindow();
-//STRIP001  if ( pFilter->GetFilterFlags() & SFX_FILTER_MUSTINSTALL )
-//STRIP001  {
-//STRIP001      // Hier k"onnte noch eine Nachinstallation angeboten werden
-//STRIP001      String aText( SfxResId( STR_FILTER_NOT_INSTALLED ) );
-//STRIP001      aText.SearchAndReplaceAscii( "$(FILTER)", pFilter->GetUIName() );
-//STRIP001      QueryBox aQuery( pWindow, WB_YES_NO | WB_DEF_YES, aText );
-//STRIP001      short nRet = aQuery.Execute();
-//STRIP001      if ( nRet == RET_YES )
-//STRIP001      {
-//STRIP001 #ifdef DBG_UTIL
-//STRIP001          // Setup starten
-//STRIP001          InfoBox( pWindow, DEFINE_CONST_UNICODE("Hier soll jetzt das Setup starten!") ).Execute();
-//STRIP001 #endif
-//STRIP001          // Installation mu\s hier noch mitteilen, ob es geklappt hat, dann kann das
-//STRIP001          // Filterflag gel"oscht werden
-//STRIP001      }
-//STRIP001
-//STRIP001      return ( !(pFilter->GetFilterFlags() & SFX_FILTER_MUSTINSTALL) );
-//STRIP001  }
-//STRIP001  else if ( pFilter->GetFilterFlags() & SFX_FILTER_CONSULTSERVICE )
-//STRIP001  {
-//STRIP001      String aText( SfxResId( STR_FILTER_CONSULT_SERVICE ) );
-//STRIP001      aText.SearchAndReplaceAscii( "$(FILTER)", pFilter->GetUIName() );
-//STRIP001      InfoBox ( pWindow, aText ).Execute();
-//STRIP001      return sal_False;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      return sal_True;
-//STRIP001 }
 
 
-//STRIP001 sal_uInt32 SfxFilterMatcher::DetectFilter( SfxMedium& rMedium, const SfxFilter**ppFilter, sal_Bool bPlugIn, sal_Bool bAPI ) const
-//STRIP001 /*  [Beschreibung]
-//STRIP001
-//STRIP001     Hier wird noch die Filterauswahlbox hochgezogen. Sonst GuessFilter
-//STRIP001  */
-//STRIP001
-//STRIP001 {
-//STRIP001     const SfxFilter* pOldFilter = rMedium.GetFilter();
-//STRIP001     if ( pOldFilter )
-//STRIP001     {
-//STRIP001         if( !IsFilterInstalled( pOldFilter ) )
-//STRIP001             pOldFilter = 0;
-//STRIP001         else
-//STRIP001         {
-//STRIP001             SFX_ITEMSET_ARG( rMedium.GetItemSet(), pSalvageItem, SfxStringItem, SID_DOC_SALVAGE, sal_False);
-//STRIP001             if ( ( pOldFilter->GetFilterFlags() & SFX_FILTER_PACKED ) && pSalvageItem )
-//STRIP001                 // Salvage is always done without packing
-//STRIP001                 pOldFilter = 0;
-//STRIP001         }
-//STRIP001     }
-//STRIP001
-//STRIP001     const SfxFilter* pFilter = pOldFilter;
-//STRIP001
-//STRIP001     sal_Bool bPreview = rMedium.IsPreview_Impl(), bInsert = sal_False;
-//STRIP001  SFX_ITEMSET_ARG(rMedium.GetItemSet(), pReferer, SfxStringItem, SID_REFERER, FALSE);
-//STRIP001     if ( bPreview && rMedium.IsRemote() && ( !pReferer || pReferer->GetValue().CompareToAscii("private:searchfolder:",21 ) != COMPARE_EQUAL ) )
-//STRIP001         return ERRCODE_ABORT;
-//STRIP001
-//STRIP001  ErrCode nErr = GuessFilter( rMedium, &pFilter );
-//STRIP001  if ( nErr == ERRCODE_ABORT )
-//STRIP001      return nErr;
-//STRIP001
-//STRIP001  if ( nErr == ERRCODE_IO_PENDING )
-//STRIP001  {
-//STRIP001      *ppFilter = pFilter;
-//STRIP001      return nErr;
-//STRIP001  }
-//STRIP001
-//STRIP001  if ( !pFilter )
-//STRIP001  {
-//STRIP001      const SfxFilter* pInstallFilter = NULL;
-//STRIP001
-//STRIP001      // Jetzt auch Filter testen, die nicht installiert sind ( ErrCode ist irrelevant )
-//STRIP001      GuessFilter( rMedium, &pInstallFilter, SFX_FILTER_IMPORT, SFX_FILTER_CONSULTSERVICE );
-//STRIP001      if ( pInstallFilter )
-//STRIP001      {
-//STRIP001          if ( IsFilterInstalled( pInstallFilter ) )
-//STRIP001              // Eventuell wurde der Filter nachinstalliert
-//STRIP001              pFilter = pInstallFilter;
-//STRIP001      }
-//STRIP001      else
-//STRIP001      {
-//STRIP001          // Jetzt auch Filter testen, die erst von Star bezogen werden m"ussen ( ErrCode ist irrelevant )
-//STRIP001          GuessFilter( rMedium, &pInstallFilter, SFX_FILTER_IMPORT, 0 );
-//STRIP001          if ( pInstallFilter )
-//STRIP001              IsFilterInstalled( pInstallFilter );
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001     sal_Bool bHidden = bPreview;
-//STRIP001  SFX_ITEMSET_ARG( rMedium.GetItemSet(), pFlags, SfxStringItem, SID_OPTIONS, sal_False);
-//STRIP001     if ( !bHidden && pFlags )
-//STRIP001     {
-//STRIP001         String aFlags( pFlags->GetValue() );
-//STRIP001         aFlags.ToUpperAscii();
-//STRIP001         if( STRING_NOTFOUND != aFlags.Search( 'H' ) )
-//STRIP001             bHidden = sal_True;
-//STRIP001     }
-//STRIP001
-//STRIP001     if ( ( !pFilter || nErr == ERRCODE_SFX_CONSULTUSER ) && !bAPI && !bHidden )
-//STRIP001     {
-//STRIP001         if ( !pFilter )
-//STRIP001          pFilter = pOldFilter;
-//STRIP001
-//STRIP001         String aTmpName;
-//STRIP001      if ( pFilter )
-//STRIP001          aTmpName = pFilter->GetUIName();
-//STRIP001
-//STRIP001         SfxFilterMatcher *pMatcher;
-//STRIP001         if( bPlugIn && pFilter )
-//STRIP001             pMatcher = new SfxFilterMatcher( (SfxFilterContainer *) pFilter->GetFilterContainer() );
-//STRIP001         else
-//STRIP001             pMatcher = (SfxFilterMatcher*) this;
-//STRIP001
-//STRIP001         SfxFilterDialog *pDlg = new SfxFilterDialog( 0, &rMedium, *pMatcher, pFilter ? &aTmpName: 0, 0 );
-//STRIP001         const sal_Bool bOk = RET_OK == pDlg->Execute();
-//STRIP001         if (bOk)
-//STRIP001             pFilter  = pMatcher->GetFilter4UIName( pDlg->GetSelectEntry());
-//STRIP001
-//STRIP001         if( bPlugIn && pFilter )
-//STRIP001          delete pMatcher;
-//STRIP001         delete pDlg;
-//STRIP001
-//STRIP001         if ( !bOk)
-//STRIP001          nErr = ERRCODE_ABORT;
-//STRIP001         else
-//STRIP001          nErr = ERRCODE_NONE;
-//STRIP001     }
-//STRIP001
-//STRIP001     *ppFilter = pFilter;
-//STRIP001
-//STRIP001     if ( bHidden || bAPI && nErr == ERRCODE_SFX_CONSULTUSER )
-//STRIP001      nErr = pFilter ? ERRCODE_NONE : ERRCODE_ABORT;
-//STRIP001     return nErr;
-//STRIP001 }
 
 //----------------------------------------------------------------
 
-//STRIP001 const SfxFilter* SfxFilterMatcher::GetDefaultFilter() const
-//STRIP001 /*  [Beschreibung]
-//STRIP001
-//STRIP001  Returned den ersten Filter, der nicht internal ist und im Filedialog
-//STRIP001  auftaucht
-//STRIP001  */
-//STRIP001 {
-//STRIP001     SfxFilterMatcherIter aIter(
-//STRIP001         this, 0, SFX_FILTER_INTERNAL | SFX_FILTER_NOTINFILEDLG );
-//STRIP001  return aIter.First();
-//STRIP001 }
 
 //----------------------------------------------------------------
 
@@ -1323,24 +947,15 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
     return pFirstFilter;                                        \
 }
 
-//STRIP001 IMPL_LOOP( GetFilter4Mime, const String& )
 /*N*/ IMPL_LOOP( GetFilter4EA, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Extension, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Protocol, SfxMedium& )
 /*N*/ IMPL_LOOP( GetFilter4ClipBoardId, ULONG )
 /*N*/ IMPL_LOOP( GetFilter, const String& )
 /*N*/ IMPL_LOOP( GetFilter4FilterName, const String& )
-//STRIP001 IMPL_LOOP( GetFilter4UIName, const String& )
 
 //----------------------------------------------------------------
 
-//STRIP001 sal_uInt32 SfxFilterMatcher::AppDetectFilter(
-//STRIP001     SfxMedium& rMedium, const SfxFilter** ppFilter,  SfxFilterFlags nMust, SfxFilterFlags nDont )
-//STRIP001 {
-//STRIP001     SfxFilterFlags nClass = nMust & SFX_FILTER_TEMPLATE ?
-//STRIP001         SFX_FILTER_TEMPLATE : USHRT_MAX;
-//STRIP001     return SFX_APP()->DetectFilter( rMedium, ppFilter, (sal_uInt16)nMust );
-//STRIP001 }
 
 //----------------------------------------------------------------
 
@@ -1437,20 +1052,8 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/     return pFilter;
 /*N*/ }
 
-//STRIP001 sal_Bool SfxFilterContainer::IsUsableForRedirects() const
-//STRIP001 {
-//STRIP001     return FALSE;
-//STRIP001 }
 
-//STRIP001 const SfxFilter* SfxExecutableFilterContainer::GetDownloadFilter()
-//STRIP001 {
-//STRIP001     return NULL;
-//STRIP001 }
 
-//STRIP001 const SfxFilter* SfxExecutableFilterContainer::GetChooserFilter()
-//STRIP001 {
-//STRIP001     return NULL;
-//STRIP001 }
 
 /*---------------------------------------------------------------
     helper to build own formated string from given stringlist by
@@ -1888,77 +1491,5 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*N*/     }
 /*N*/ }
 
-//STRIP001 sal_Bool SfxFilterContainer_Impl::equalFilterNames( const String& s1, const ::rtl::OUString& s2 ) const
-//STRIP001 {
-//STRIP001     ::rtl::OUString sC1( s1 );
-//STRIP001     ::rtl::OUString sC2( s2 );
-//STRIP001     sal_Int32       nPos = -1;
-//STRIP001
-//STRIP001     nPos = sC1.indexOf( DEFINE_CONST_UNICODE(": "), 0 );
-//STRIP001     if( nPos > 0 )
-//STRIP001     {
-//STRIP001         sC1 = sC1.copy( nPos+2 );
-//STRIP001     }
-//STRIP001
-//STRIP001     nPos = sC2.indexOf( DEFINE_CONST_UNICODE(": "), 0 );
-//STRIP001     if( nPos > 0 )
-//STRIP001     {
-//STRIP001         sC2 = sC2.copy( nPos+2 );
-//STRIP001     }
-//STRIP001
-//STRIP001     return( sC1 == sC2 );
-//STRIP001 }
 
-//STRIP001 void SfxFilterContainer_Impl::syncDefaults( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& lNew )
-//STRIP001 {
-//STRIP001     // sync lists only, wich diff by old/new default filters only.
-//STRIP001     // They must have same size and should be allready filled.
-//STRIP001     if(
-//STRIP001         ( lNew.getLength()        >  0             )    &&
-//STRIP001         ( aList.Count()           >  0             )    &&
-//STRIP001         ( (ULONG)lNew.getLength() == aList.Count() )
-//STRIP001       )
-//STRIP001     {
-//STRIP001         SfxFilter* pOldDefault = aList.First();
-//STRIP001         SfxFilter* pNewDefault = NULL         ;
-//STRIP001         sal_Int32  nOldPos     = 0            ;
-//STRIP001
-//STRIP001         // search for old/new positions of items in both lists
-//STRIP001         sal_Int32 nCount = aList.Count();
-//STRIP001         for( sal_Int32 nStep=0; nStep<nCount; ++nStep )
-//STRIP001         {
-//STRIP001             // get new default filter
-//STRIP001             if( equalFilterNames( aList.GetObject(nStep)->GetFilterName(), lNew[0] ) == sal_True )
-//STRIP001             {
-//STRIP001                 pNewDefault = aList.GetObject(nStep);
-//STRIP001             }
-//STRIP001
-//STRIP001             // get position for old default filter
-//STRIP001             if( equalFilterNames( pOldDefault->GetFilterName(), lNew[nStep] ) == sal_True )
-//STRIP001             {
-//STRIP001                 nOldPos = nStep;
-//STRIP001             }
-//STRIP001
-//STRIP001             // break search, if all neccessary informations are available
-//STRIP001             if( nOldPos>0 && pNewDefault!= NULL )
-//STRIP001             {
-//STRIP001                 break;
-//STRIP001             }
-//STRIP001         }
-//STRIP001
-//STRIP001         // realy changed ?!
-//STRIP001         if(
-//STRIP001             ( pOldDefault != pNewDefault )  &&
-//STRIP001             ( nOldPos     >  0           )
-//STRIP001           )
-//STRIP001         {
-//STRIP001             // move default filter to top of list
-//STRIP001             aList.Remove( pNewDefault                 );
-//STRIP001             aList.Insert( pNewDefault, (ULONG)0       );
-//STRIP001             // move old default one to right place in list
-//STRIP001             aList.Remove( pOldDefault                 );
-//STRIP001             aList.Insert( pOldDefault, (ULONG)nOldPos );
-//STRIP001         }
-//STRIP001     }
-//STRIP001 }
 }
