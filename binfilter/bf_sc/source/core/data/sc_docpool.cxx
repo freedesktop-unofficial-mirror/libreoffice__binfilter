@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_docpool.cxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 16:42:12 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:15:38 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,16 +34,13 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 #include "scitems.hxx"
-// auto strip #include <tools/shl.hxx>
 #include <vcl/outdev.hxx>
 #include <svtools/aeitem.hxx>
-// auto strip #include <svtools/itemiter.hxx>
 #include <bf_svx/algitem.hxx>
 #include <bf_svx/boxitem.hxx>
 #include <bf_svx/brshitem.hxx>
@@ -51,14 +48,12 @@
 #include <bf_svx/cntritem.hxx>
 #include <bf_svx/colritem.hxx>
 #include <bf_svx/crsditem.hxx>
-// auto strip #include <bf_svx/dialmgr.hxx>
 #include <bf_svx/emphitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/forbiddenruleitem.hxx>
 #include <bf_svx/frmdiritem.hxx>
 #include <bf_svx/hngpnctitem.hxx>
-// auto strip #include <bf_svx/itemtype.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/pageitem.hxx>
@@ -77,7 +72,6 @@
 #include <bf_svx/xmlcnitm.hxx>
 
 #include "docpool.hxx"
-// auto strip #include "global.hxx"
 #include "attrib.hxx"
 #include "patattr.hxx"
 #include "globstr.hrc"
@@ -607,357 +601,10 @@ namespace binfilter {
 
 // ----------------------------------------------------------------------------------------
 
-//STRIP001 void ScDocumentPool::StyleDeleted( ScStyleSheet* pStyle )
-//STRIP001 {
-//STRIP001  USHORT nCount = GetItemCount(ATTR_PATTERN);
-//STRIP001  for (USHORT i=0; i<nCount; i++)
-//STRIP001  {
-//STRIP001      ScPatternAttr* pPattern = (ScPatternAttr*)GetItem(ATTR_PATTERN, i);
-//STRIP001      if ( pPattern && pPattern->GetStyleSheet() == pStyle )
-//STRIP001          pPattern->StyleToName();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 SfxItemPool* __EXPORT ScDocumentPool::Clone() const
-//STRIP001 {
-//STRIP001  return new SfxItemPool (*this, TRUE);
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation lcl_HFPresentation
-//STRIP001 (
-//STRIP001  const SfxPoolItem&  rItem,
-//STRIP001  SfxItemPresentation ePresentation,
-//STRIP001  SfxMapUnit          eCoreMetric,
-//STRIP001  SfxMapUnit          ePresentationMetric,
-//STRIP001  String&             rText,
-//STRIP001     const IntlWrapper* pIntl
-//STRIP001 )
-//STRIP001 {
-//STRIP001  const SfxItemSet& rSet = ((const SfxSetItem&)rItem).GetItemSet();
-//STRIP001  const SfxPoolItem* pItem;
-//STRIP001
-//STRIP001  if ( SFX_ITEM_SET == rSet.GetItemState(ATTR_PAGE_ON,FALSE,&pItem) )
-//STRIP001  {
-//STRIP001      if( FALSE == ((const SfxBoolItem*)pItem)->GetValue() )
-//STRIP001          return SFX_ITEM_PRESENTATION_NONE;
-//STRIP001  }
-//STRIP001
-//STRIP001  SfxItemIter aIter( rSet );
-//STRIP001  pItem = aIter.FirstItem();
-//STRIP001  String  aText;
-//STRIP001  String  aDel = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM( " + " ));
-//STRIP001
-//STRIP001  while( pItem )
-//STRIP001  {
-//STRIP001      USHORT nWhich = pItem->Which();
-//STRIP001
-//STRIP001      aText.Erase();
-//STRIP001
-//STRIP001      switch( nWhich )
-//STRIP001      {
-//STRIP001          case ATTR_PAGE_ON:
-//STRIP001          case ATTR_PAGE_DYNAMIC:
-//STRIP001          case ATTR_PAGE_SHARED:
-//STRIP001          break;
-//STRIP001
-//STRIP001          case ATTR_LRSPACE:
-//STRIP001          {
-//STRIP001              SvxLRSpaceItem& rLRItem = (SvxLRSpaceItem&)*pItem;
-//STRIP001              USHORT nPropLeftMargin  = rLRItem.GetPropLeft();
-//STRIP001              USHORT nPropRightMargin = rLRItem.GetPropRight();
-//STRIP001              USHORT nLeftMargin, nRightMargin;
-//STRIP001              long nTmp;
-//STRIP001              nTmp = rLRItem.GetLeft();
-//STRIP001              nLeftMargin = nTmp < 0 ? 0 : USHORT(nTmp);
-//STRIP001              nTmp = rLRItem.GetRight();
-//STRIP001              nRightMargin = nTmp < 0 ? 0 : USHORT(nTmp);
-//STRIP001
-//STRIP001              aText = SVX_RESSTR(RID_SVXITEMS_LRSPACE_LEFT);
-//STRIP001              if ( 100 != nPropLeftMargin )
-//STRIP001              {
-//STRIP001                  aText += String::CreateFromInt32( nPropLeftMargin );
-//STRIP001                  aText += '%';
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  aText += GetMetricText( (long)nLeftMargin,
-//STRIP001                                            eCoreMetric, ePresentationMetric, pIntl );
-//STRIP001                  aText += SVX_RESSTR(GetMetricId(ePresentationMetric));
-//STRIP001              }
-//STRIP001              aText += cpDelim;
-//STRIP001
-//STRIP001              // nPropFirstLineOfst haben wir nicht
-//STRIP001
-//STRIP001              aText += SVX_RESSTR(RID_SVXITEMS_LRSPACE_RIGHT);
-//STRIP001              if ( 100 != nPropRightMargin )
-//STRIP001              {
-//STRIP001                  aText += String::CreateFromInt32( nPropRightMargin );
-//STRIP001                  aText += '%';
-//STRIP001              }
-//STRIP001              else
-//STRIP001              {
-//STRIP001                  aText += GetMetricText( (long)nRightMargin,
-//STRIP001                                             eCoreMetric, ePresentationMetric, pIntl );
-//STRIP001                  aText += SVX_RESSTR(GetMetricId(ePresentationMetric));
-//STRIP001              }
-//STRIP001          }
-//STRIP001          break;
-//STRIP001
-//STRIP001          default:
-//STRIP001              if ( !pIntl )
-//STRIP001                     pIntl = ScGlobal::pScIntlWrapper;
-//STRIP001              pItem->GetPresentation( ePresentation, eCoreMetric, ePresentationMetric, aText, pIntl );
-//STRIP001
-//STRIP001      }
-//STRIP001
-//STRIP001      if ( aText.Len() )
-//STRIP001      {
-//STRIP001          rText += aText;
-//STRIP001          rText += aDel;
-//STRIP001      }
-//STRIP001
-//STRIP001      pItem = aIter.NextItem();
-//STRIP001  }
-//STRIP001
-//STRIP001  rText.EraseTrailingChars();
-//STRIP001  rText.EraseTrailingChars( '+' );
-//STRIP001  rText.EraseTrailingChars();
-//STRIP001
-//STRIP001  return ePresentation;
-//STRIP001 }
 
-//STRIP001 SfxItemPresentation __EXPORT ScDocumentPool::GetPresentation(
-//STRIP001  const SfxPoolItem&  rItem,
-//STRIP001  SfxItemPresentation ePresentation,
-//STRIP001  SfxMapUnit          ePresentationMetric,
-//STRIP001  String&             rText,
-//STRIP001     const IntlWrapper* pIntl ) const
-//STRIP001 {
-//STRIP001  USHORT  nW = rItem.Which();
-//STRIP001  String aStrYes  ( ScGlobal::GetRscString(STR_YES) );
-//STRIP001  String aStrNo   ( ScGlobal::GetRscString(STR_NO) );
-//STRIP001  String aStrSep = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(": "));
-//STRIP001
-//STRIP001  switch( nW )
-//STRIP001  {
-//STRIP001      case ATTR_PAGE_TOPDOWN:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_PRINTDIR);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ?
-//STRIP001              ScGlobal::GetRscString(STR_SCATTR_PAGE_TOPDOWN) :
-//STRIP001              ScGlobal::GetRscString(STR_SCATTR_PAGE_LEFTRIGHT) ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_HEADERS:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_HEADERS);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ? aStrYes : aStrNo ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_NULLVALS:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_NULLVALS);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ? aStrYes : aStrNo ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_FORMULAS:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_NULLVALS);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ? aStrYes : aStrNo ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_NOTES:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_NOTES);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ? aStrYes : aStrNo ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_GRID:
-//STRIP001      switch ( ePresentation )
-//STRIP001      {
-//STRIP001          case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001          rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_GRID);
-//STRIP001          rText += aStrSep;
-//STRIP001 //           break; // DURCHFALLEN!!!
-//STRIP001          case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001          rText += ((const SfxBoolItem&)rItem).GetValue() ? aStrYes : aStrNo ;
-//STRIP001          break;
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_SCALETOPAGES:
-//STRIP001      {
-//STRIP001          USHORT  nPagNo = ((const SfxUInt16Item&)rItem).GetValue();
-//STRIP001
-//STRIP001          if( nPagNo )
-//STRIP001          {
-//STRIP001              switch ( ePresentation )
-//STRIP001              {
-//STRIP001                  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001                  rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_SCALETOPAGES);
-//STRIP001                  rText += aStrSep;
-//STRIP001 //                   break; // DURCHFALLEN!!!
-//STRIP001                  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001                  rText += String::CreateFromInt32( nPagNo );
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              ePresentation = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_FIRSTPAGENO:
-//STRIP001      {
-//STRIP001          USHORT  nPagNo = ((const SfxUInt16Item&)rItem).GetValue();
-//STRIP001
-//STRIP001          if( nPagNo )
-//STRIP001          {
-//STRIP001              switch ( ePresentation )
-//STRIP001              {
-//STRIP001                  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001                  rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_FIRSTPAGENO);
-//STRIP001                  rText += aStrSep;
-//STRIP001 //                   break; // DURCHFALLEN!!!
-//STRIP001                  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001                  rText += String::CreateFromInt32( nPagNo );
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              ePresentation = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_SCALE:
-//STRIP001      {
-//STRIP001          USHORT  nPercent = ((const SfxUInt16Item&)rItem).GetValue();
-//STRIP001
-//STRIP001          if( nPercent )
-//STRIP001          {
-//STRIP001              switch ( ePresentation )
-//STRIP001              {
-//STRIP001                  case SFX_ITEM_PRESENTATION_COMPLETE:
-//STRIP001                  rText  = ScGlobal::GetRscString(STR_SCATTR_PAGE_SCALE);
-//STRIP001                  rText += aStrSep;
-//STRIP001 //                   break; // DURCHFALLEN!!!
-//STRIP001                  case SFX_ITEM_PRESENTATION_NAMELESS:
-//STRIP001                  rText += String::CreateFromInt32( nPercent );
-//STRIP001                  rText += '%';
-//STRIP001                  break;
-//STRIP001              }
-//STRIP001          }
-//STRIP001          else
-//STRIP001          {
-//STRIP001              ePresentation = SFX_ITEM_PRESENTATION_NONE;
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_HEADERSET:
-//STRIP001      {
-//STRIP001          String  aBuffer;
-//STRIP001
-//STRIP001          if( lcl_HFPresentation( rItem, ePresentation, GetMetric( nW ), ePresentationMetric, aBuffer, pIntl ) != SFX_ITEM_PRESENTATION_NONE )
-//STRIP001          {
-//STRIP001              rText  = ScGlobal::GetRscString(STR_HEADER);
-//STRIP001              rText.AppendAscii(RTL_CONSTASCII_STRINGPARAM( " ( " ));
-//STRIP001              rText += aBuffer;
-//STRIP001              rText.AppendAscii(RTL_CONSTASCII_STRINGPARAM( " ) " ));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_FOOTERSET:
-//STRIP001      {
-//STRIP001          String  aBuffer;
-//STRIP001
-//STRIP001          if( lcl_HFPresentation( rItem, ePresentation, GetMetric( nW ), ePresentationMetric, aBuffer, pIntl ) != SFX_ITEM_PRESENTATION_NONE )
-//STRIP001          {
-//STRIP001              rText  = ScGlobal::GetRscString(STR_FOOTER);
-//STRIP001              rText.AppendAscii(RTL_CONSTASCII_STRINGPARAM( " ( " ));
-//STRIP001              rText += aBuffer;
-//STRIP001              rText.AppendAscii(RTL_CONSTASCII_STRINGPARAM( " ) " ));
-//STRIP001          }
-//STRIP001      }
-//STRIP001      break;
-//STRIP001
-//STRIP001 /*
-//STRIP001      case ATTR_PAGE_HEADERLEFT:
-//STRIP001      rText = "SID_SCATTR_PAGE_HEADERLEFT";
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_FOOTERLEFT:
-//STRIP001      rText = "SID_SCATTR_PAGE_FOOTERLEFT";
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_HEADERRIGHT:
-//STRIP001      rText = "SID_SCATTR_PAGE_HEADERRIGHT";
-//STRIP001      break;
-//STRIP001
-//STRIP001      case ATTR_PAGE_FOOTERRIGHT:
-//STRIP001      rText = "SID_SCATTR_PAGE_FOOTERRIGHT";
-//STRIP001      break;
-//STRIP001 */
-//STRIP001
-//STRIP001      default:
-//STRIP001          if ( !pIntl )
-//STRIP001                 pIntl = ScGlobal::pScIntlWrapper;
-//STRIP001          ePresentation = rItem.GetPresentation( ePresentation, GetMetric( nW ), ePresentationMetric, rText, pIntl );
-//STRIP001      break;
-//STRIP001  }
-//STRIP001
-//STRIP001  return ePresentation;
-//STRIP001 }
 
-//STRIP001 SfxMapUnit __EXPORT ScDocumentPool::GetMetric( USHORT nWhich ) const
-//STRIP001 {
-//STRIP001  //  eigene Attribute: Twips, alles andere 1/100 mm
-//STRIP001
-//STRIP001  if ( nWhich >= ATTR_STARTINDEX && nWhich <= ATTR_ENDINDEX )
-//STRIP001      return SFX_MAPUNIT_TWIP;
-//STRIP001  else
-//STRIP001      return SFX_MAPUNIT_100TH_MM;
-//STRIP001 }
 
 
 
