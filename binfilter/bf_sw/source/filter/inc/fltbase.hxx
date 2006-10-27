@@ -4,9 +4,9 @@
  *
  *  $RCSfile: fltbase.hxx,v $
  *
- *  $Revision: 1.4 $
+ *  $Revision: 1.5 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:16:19 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:38:39 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -39,9 +39,6 @@
 #include <tools/stream.hxx>
 #endif
 
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 class SwFilterBase
