@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_mainwn.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 03:52:41 $
+ *  last change: $Author: rt $ $Date: 2006-10-28 00:00:07 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -37,21 +37,9 @@
 #pragma hdrstop
 
 
-// auto strip #ifndef _SHL_HXX //autogen
-// auto strip #include <tools/shl.hxx>
-// auto strip #endif
-// auto strip #ifndef _STRING_HXX //autogen
-// auto strip #include <tools/string.hxx>
-// auto strip #endif
-// auto strip #ifndef _SVARRAY_HXX
-// auto strip #include <svtools/svstdarr.hxx>
-// auto strip #endif
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif
-// auto strip #ifndef _RESID_HXX //autogen
-// auto strip #include <tools/resid.hxx>
-// auto strip #endif
 
 #ifndef _SWDOCSH_HXX //autogen
 #include <docsh.hxx>
@@ -157,15 +145,6 @@ static SvPtrarr *pProgressContainer = 0;
 /*N*/ }
 
 
-//STRIP001 void SetProgressText( USHORT nId, SwDocShell *pDocShell )
-//STRIP001 {
-//STRIP001  if( pProgressContainer && !SW_MOD()->IsEmbeddedLoadSave() )
-//STRIP001  {
-//STRIP001      SwProgress *pProgress = lcl_SwFindProgress( pDocShell );
-//STRIP001      if ( pProgress )
-//STRIP001          pProgress->pProgress->SetStateText( 0, SW_RESSTR(nId) );
-//STRIP001  }
-//STRIP001 }
 
 
 /*N*/ void RescheduleProgress( SwDocShell *pDocShell )
