@@ -4,9 +4,9 @@
  *
  *  $RCSfile: txtfly.hxx,v $
  *
- *  $Revision: 1.3 $
+ *  $Revision: 1.4 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-09 02:35:42 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 23:15:31 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -120,8 +120,6 @@ public:
         const SwRect &rLine, const long nXPos, const sal_Bool bRight );
 #endif
 #ifndef PRODUCT
-//STRIP001  void ShowContour( OutputDevice* pOut, const SdrObject* pObj,
-//STRIP001                    const Color& rClosedColor, const Color& rOpenColor );
 #endif
 };
 
@@ -203,10 +201,7 @@ public:
 
     // Die Drawmethoden stellen sicher, dass ueberlappende Frames
     // (ausser bei transparenten Frames) nicht uebergepinselt werden.
-//STRIP001  sal_Bool DrawTextOpaque( SwDrawTextInfo &rInf );
 
-//STRIP001  void DrawFlyRect( OutputDevice *pOut, const SwRect &rRect,
-//STRIP001                    const SwTxtPaintInfo &rInf, sal_Bool bNoGraphic = sal_False );
 
     // Liefert zurueck, ob die Zeile von einem Frame ueberlappt wird.
     sal_Bool IsAnyFrm( const SwRect &rLine ) const;
@@ -218,7 +213,6 @@ public:
     void SetIgnoreContour( sal_Bool bNew ) { mbIgnoreContour = bNew; }
 
 #ifndef PRODUCT
-//STRIP001  void ShowContour( OutputDevice* pOut );
 #endif
 };
 
