@@ -4,9 +4,9 @@
  *
  *  $RCSfile: svx_editdoc.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 05:22:27 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 20:42:44 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -33,7 +33,6 @@
  *
  ************************************************************************/
 
-// auto strip #include <eeng_pch.hxx>
 
 #pragma hdrstop
 
@@ -45,7 +44,6 @@
 #endif
 
 #include <tstpitem.hxx>
-// auto strip #include <colritem.hxx>
 #include <fontitem.hxx>
 #include <crsditem.hxx>
 #include <fhgtitem.hxx>
@@ -61,16 +59,13 @@
 #include <cscoitem.hxx>
 #include <langitem.hxx>
 #include <emphitem.hxx>
-// auto strip #include <charscaleitem.hxx>
 #include <charreliefitem.hxx>
-// auto strip #include <xmlcnitm.hxx>
 
 #ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
 #endif
 
 #include <editdoc.hxx>
-// auto strip #include <editdbg.hxx>
 #include <eerdll.hxx>
 #include <eerdll2.hxx>
 
@@ -78,9 +73,7 @@
 #include <tools/stream.hxx>
 #endif
 
-// auto strip #include <tools/debug.hxx>
 #include <tools/shl.hxx>
-// auto strip #include <vcl/svapp.hxx>
 
 #ifndef _COM_SUN_STAR_TEXT_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
@@ -458,26 +451,6 @@ using namespace ::com::sun::star;
 /*N*/   DBG_DTOR( EE_EditLine, 0 );
 /*N*/ }
 
-//STRIP001 EditLine* EditLine::Clone() const
-//STRIP001 {
-//STRIP001  EditLine* pL = new EditLine;
-//STRIP001  if ( aPositions.Count() )
-//STRIP001  {
-//STRIP001      pL->aPositions.Insert (aPositions.GetData(), aPositions.Count(), 0);
-//STRIP001  }
-//STRIP001  pL->nStartPosX      = nStartPosX;
-//STRIP001  pL->nStart          = nStart;
-//STRIP001  pL->nEnd            = nEnd;
-//STRIP001  pL->nStartPortion   = nStartPortion;
-//STRIP001  pL->nEndPortion     = nEndPortion;
-//STRIP001  pL->nHeight         = nHeight;
-//STRIP001  pL->nTxtWidth       = nTxtWidth;
-//STRIP001  pL->nTxtHeight      = nTxtHeight;
-//STRIP001  pL->nCrsrHeight     = nCrsrHeight;
-//STRIP001  pL->nMaxAscent      = nMaxAscent;
-//STRIP001
-//STRIP001  return pL;
-//STRIP001 }
 
 /*N*/ BOOL operator == ( const EditLine& r1,  const EditLine& r2  )
 /*N*/ {
@@ -506,10 +479,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 BOOL operator != ( const EditLine& r1,  const EditLine& r2  )
-//STRIP001 {
-//STRIP001  return !( r1 == r2 );
-//STRIP001 }
 
 /*N*/ Size EditLine::CalcTextSize( ParaPortion& rParaPortion )
 /*N*/ {
@@ -577,21 +546,6 @@ using namespace ::com::sun::star;
 /*N*/   Remove( nDelFrom, Count()-nDelFrom );
 /*N*/ }
 
-//STRIP001 USHORT EditLineList::FindLine( USHORT nChar, BOOL bInclEnd )
-//STRIP001 {
-//STRIP001  for ( USHORT nLine = 0; nLine < Count(); nLine++ )
-//STRIP001  {
-//STRIP001      EditLine* pLine = GetObject( nLine );
-//STRIP001      if ( ( bInclEnd && ( pLine->GetEnd() >= nChar ) ) ||
-//STRIP001           ( pLine->GetEnd() > nChar ) )
-//STRIP001      {
-//STRIP001          return nLine;
-//STRIP001      }
-//STRIP001  }
-//STRIP001
-//STRIP001  DBG_ASSERT( !bInclEnd, "Zeile nicht gefunden: FindLine" );
-//STRIP001  return ( Count() - 1 );
-//STRIP001 }
 
 // -------------------------------------------------------------------------
 // class EditSelection
@@ -844,7 +798,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( pWrongList )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bSep = ( GetChar( nIndex ) == ' ' ) || IsFeature( nIndex );
-//STRIP001 /*?*/        pWrongList->TextInserted( nIndex, nNew, bSep );
 /*N*/   }
 /*N*/ #endif // !SVX_LIGHT
 /*N*/
@@ -1066,13 +1019,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void ContentNode::SetStyleSheet( SfxStyleSheet* pS, const SvxFont& rFontFromStyle )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-//STRIP001  aContentAttribs.SetStyleSheet( pS );
-//STRIP001
-//STRIP001  // Erst alle Informationen aus dem Style verwenden...
-//STRIP001  GetCharAttribs().GetDefFont() = rFontFromStyle;
-//STRIP001  // ... dann die harte Absatzformatierung rueberbuegeln...
-//STRIP001  CreateFont( GetCharAttribs().GetDefFont(),
-//STRIP001      GetContentAttribs().GetItems(), ( pS ? FALSE : TRUE ) );
 /*N*/ }
 
 /*N*/ void ContentNode::SetStyleSheet( SfxStyleSheet* pS, BOOL bRecalcFont )
@@ -1164,14 +1110,6 @@ using namespace ::com::sun::star;
 // ----------------------------------------------------------------------
 //  class ItemList
 //  ----------------------------------------------------------------------
-//STRIP001 const SfxPoolItem* ItemList::FindAttrib( USHORT nWhich )
-//STRIP001 {
-//STRIP001  const SfxPoolItem* pItem = First();
-//STRIP001  while ( pItem && ( pItem->Which() != nWhich ) )
-//STRIP001      pItem = Next();
-//STRIP001
-//STRIP001  return pItem;
-//STRIP001 }
 
 // -------------------------------------------------------------------------
 // class EditDoc
@@ -1627,12 +1565,6 @@ using namespace ::com::sun::star;
 /*N*/   SetModified( TRUE );
 /*N*/ }
 
-//STRIP001 BOOL EditDoc::RemoveAttribs( ContentNode* pNode, USHORT nStart, USHORT nEnd, USHORT nWhich )
-//STRIP001 {
-//STRIP001  EditCharAttrib* pStarting;
-//STRIP001  EditCharAttrib* pEnding;
-//STRIP001  return RemoveAttribs( pNode, nStart, nEnd, pStarting, pEnding, nWhich );
-//STRIP001 }
 
 /*N*/ BOOL EditDoc::RemoveAttribs( ContentNode* pNode, USHORT nStart, USHORT nEnd, EditCharAttrib*& rpStarting, EditCharAttrib*& rpEnding, USHORT nWhich )
 /*N*/ {
@@ -2032,28 +1964,7 @@ using namespace ::com::sun::star;
 /*N*/   return 0;
 /*N*/ }
 
-//STRIP001 BOOL CharAttribList::HasAttrib( USHORT nWhich ) const
-//STRIP001 {
-//STRIP001  for ( USHORT nAttr = aAttribs.Count(); nAttr; )
-//STRIP001  {
-//STRIP001      const EditCharAttrib* pAttr = aAttribs[--nAttr];
-//STRIP001      if ( pAttr->Which() == nWhich )
-//STRIP001          return TRUE;
-//STRIP001  }
-//STRIP001  return FALSE;
-//STRIP001 }
 
-//STRIP001 BOOL CharAttribList::HasAttrib( USHORT nStartPos, USHORT nEndPos ) const
-//STRIP001 {
-//STRIP001  BOOL bAttr = FALSE;
-//STRIP001  for ( USHORT nAttr = aAttribs.Count(); nAttr && !bAttr; )
-//STRIP001  {
-//STRIP001      const EditCharAttrib* pAttr = aAttribs[--nAttr];
-//STRIP001      if ( ( pAttr->GetStart() < nEndPos ) && ( pAttr->GetEnd() > nStartPos ) )
-//STRIP001          return bAttr = TRUE;
-//STRIP001  }
-//STRIP001  return bAttr;
-//STRIP001 }
 
 
 /*N*/ BOOL CharAttribList::HasBoundingAttrib( USHORT nBound )
@@ -2111,101 +2022,15 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 void CharAttribList::DeleteEmptyAttribs( SfxItemPool& rItemPool )
-//STRIP001 {
-//STRIP001  for ( USHORT nAttr = 0; nAttr < aAttribs.Count(); nAttr++ )
-//STRIP001  {
-//STRIP001      EditCharAttrib* pAttr = aAttribs[nAttr];
-//STRIP001      if ( pAttr->IsEmpty() )
-//STRIP001      {
-//STRIP001          rItemPool.Remove( *pAttr->GetItem() );
-//STRIP001          aAttribs.Remove( nAttr );
-//STRIP001          delete pAttr;
-//STRIP001          nAttr--;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  bHasEmptyAttribs = FALSE;
-//STRIP001 }
-
-//STRIP001 BOOL CharAttribList::DbgCheckAttribs()
-//STRIP001 {
-//STRIP001 #ifdef  DBG_UTIL
-//STRIP001  BOOL bOK = TRUE;
-//STRIP001  for ( USHORT nAttr = 0; nAttr < aAttribs.Count(); nAttr++ )
-//STRIP001  {
-//STRIP001      EditCharAttrib* pAttr = aAttribs[nAttr];
-//STRIP001      if ( pAttr->GetStart() > pAttr->GetEnd() )
-//STRIP001      {
-//STRIP001          bOK = FALSE;
-//STRIP001          DBG_ERROR( "Attr verdreht" );
-//STRIP001      }
-//STRIP001      else if ( pAttr->IsFeature() && ( pAttr->GetLen() != 1 ) )
-//STRIP001      {
-//STRIP001          bOK = FALSE;
-//STRIP001          DBG_ERROR( "Feature, Len != 1" );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  return bOK;
-//STRIP001 #else
-//STRIP001  return TRUE;
-//STRIP001 #endif
-//STRIP001 }
 
 
 
-//STRIP001 SvxFontTable::SvxFontTable()
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvxFontTable::~SvxFontTable()
-//STRIP001 {
-//STRIP001  SvxFontItem* pItem = First();
-//STRIP001  while( pItem )
-//STRIP001  {
-//STRIP001      delete pItem;
-//STRIP001      pItem = Next();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 ULONG SvxFontTable::GetId( const SvxFontItem& rFontItem )
-//STRIP001 {
-//STRIP001  SvxFontItem* pItem = First();
-//STRIP001  while ( pItem )
-//STRIP001  {
-//STRIP001      if ( *pItem == rFontItem )
-//STRIP001          return GetCurKey();
-//STRIP001      pItem = Next();
-//STRIP001  }
-//STRIP001  DBG_WARNING( "Font nicht gefunden: GetId()" );
-//STRIP001  return 0;
-//STRIP001 }
 
-//STRIP001 SvxColorList::SvxColorList()
-//STRIP001 {
-//STRIP001 }
 
-//STRIP001 SvxColorList::~SvxColorList()
-//STRIP001 {
-//STRIP001  SvxColorItem* pItem = First();
-//STRIP001  while( pItem )
-//STRIP001  {
-//STRIP001      delete pItem;
-//STRIP001      pItem = Next();
-//STRIP001  }
-//STRIP001 }
 
-//STRIP001 ULONG SvxColorList::GetId( const SvxColorItem& rColorItem )
-//STRIP001 {
-//STRIP001  SvxColorItem* pItem = First();
-//STRIP001  while ( pItem )
-//STRIP001  {
-//STRIP001      if ( *pItem == rColorItem )
-//STRIP001          return GetCurPos();
-//STRIP001      pItem = Next();
-//STRIP001  }
-//STRIP001  DBG_WARNING( "Color nicht gefunden: GetId()" );
-//STRIP001  return 0;
-//STRIP001 }
+
 
 /*N*/ EditEngineItemPool::EditEngineItemPool( BOOL bPersistenRefCounts )
 /*N*/   : SfxItemPool( String( "EditEngineItemPool", RTL_TEXTENCODING_ASCII_US ), EE_ITEMS_START, EE_ITEMS_END,
