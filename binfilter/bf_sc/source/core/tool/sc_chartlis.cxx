@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_chartlis.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:05:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:30:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,7 +34,6 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
@@ -42,7 +41,6 @@
 #include <vcl/svapp.hxx>
 
 #include "chartlis.hxx"
-// auto strip #include "brdcst.hxx"
 #include "document.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {
@@ -227,43 +225,12 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 void ScChartListener::UpdateScheduledSeriesRanges()
-//STRIP001 {
-//STRIP001  if ( bSeriesRangesScheduled )
-//STRIP001  {
-//STRIP001      bSeriesRangesScheduled = FALSE;
-//STRIP001      UpdateSeriesRanges();
-//STRIP001  }
-//STRIP001 }
 
 
-//STRIP001 void ScChartListener::UpdateSeriesRangesIntersecting( const ScRange& rRange )
-//STRIP001 {
-//STRIP001  if ( aRangeListRef->Intersects( rRange ) )
-//STRIP001      UpdateSeriesRanges();
-//STRIP001 }
 
 
-//STRIP001 void ScChartListener::UpdateSeriesRanges()
-//STRIP001 {
-//STRIP001  pDoc->SetChartRangeList( GetString(), aRangeListRef );
-//STRIP001 }
 
 
-//STRIP001 BOOL ScChartListener::operator==( const ScChartListener& r )
-//STRIP001 {
-//STRIP001  BOOL b1 = aRangeListRef.Is();
-//STRIP001  BOOL b2 = r.aRangeListRef.Is();
-//STRIP001  return
-//STRIP001      pDoc == r.pDoc &&
-//STRIP001      bUsed == r.bUsed &&
-//STRIP001      bDirty == r.bDirty &&
-//STRIP001      bSeriesRangesScheduled == r.bSeriesRangesScheduled &&
-//STRIP001      GetString() == r.GetString() &&
-//STRIP001      b1 == b2 &&
-//STRIP001      ((!b1 && !b2) || (*aRangeListRef == *r.aRangeListRef))
-//STRIP001      ;
-//STRIP001 }
 
 
 // === ScChartListenerCollection ======================================
@@ -275,13 +242,6 @@ using namespace ::com::sun::star;
 /*N*/   aTimer.SetTimeoutHdl( LINK( this, ScChartListenerCollection, TimerHdl ) );
 /*N*/ }
 
-//STRIP001 ScChartListenerCollection::ScChartListenerCollection(
-//STRIP001      const ScChartListenerCollection& rColl ) :
-//STRIP001  StrCollection( rColl ),
-//STRIP001  pDoc( rColl.pDoc )
-//STRIP001 {
-//STRIP001  aTimer.SetTimeoutHdl( LINK( this, ScChartListenerCollection, TimerHdl ) );
-//STRIP001 }
 
 /*N*/ ScChartListenerCollection::~ScChartListenerCollection()
 /*N*/ {
@@ -298,34 +258,11 @@ using namespace ::com::sun::star;
         DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new ScChartListenerCollection( *this );
 /*N*/ }
 
-//STRIP001 void ScChartListenerCollection::StartAllListeners()
-//STRIP001 {
-//STRIP001  for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-//STRIP001  {
-//STRIP001      ((ScChartListener*) pItems[ nIndex ])->StartListeningTo();
-//STRIP001  }
-//STRIP001 }
 
 /*N*/ void ScChartListenerCollection::ChangeListening( const String& rName,
 /*N*/       const ScRangeListRef& rRangeListRef, BOOL bDirty )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
-//STRIP001  ScChartListener* pCL;
-//STRIP001  USHORT nIndex;
-//STRIP001  if ( Search( &aCLSearcher, nIndex ) )
-//STRIP001  {
-//STRIP001      pCL = (ScChartListener*) pItems[ nIndex ];
-//STRIP001      pCL->EndListeningTo();
-//STRIP001      pCL->SetRangeList( rRangeListRef );
-//STRIP001  }
-//STRIP001  else
-//STRIP001  {
-//STRIP001      pCL = new ScChartListener( aCLSearcher );
-//STRIP001      Insert( pCL );
-//STRIP001  }
-//STRIP001  pCL->StartListeningTo();
-//STRIP001  if ( bDirty )
-//STRIP001      pCL->SetDirty( TRUE );
 /*N*/ }
 
 /*N*/ void ScChartListenerCollection::FreeUnused()
@@ -404,57 +341,8 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-//STRIP001 void ScChartListenerCollection::SetDiffDirty(
-//STRIP001          const ScChartListenerCollection& rCmp, BOOL bSetChartRangeLists )
-//STRIP001 {
-//STRIP001  BOOL bDirty = FALSE;
-//STRIP001  for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-//STRIP001  {
-//STRIP001      ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
-//STRIP001      USHORT nFound;
-//STRIP001      BOOL bFound = rCmp.Search( pCL, nFound );
-//STRIP001      if ( !bFound || (*pCL != *((const ScChartListener*) rCmp.pItems[ nFound ])) )
-//STRIP001      {
-//STRIP001          if ( bSetChartRangeLists )
-//STRIP001          {
-//STRIP001              if ( bFound )
-//STRIP001              {
-//STRIP001                  const ScRangeListRef& rList1 = pCL->GetRangeList();
-//STRIP001                  const ScRangeListRef& rList2 =
-//STRIP001                      ((const ScChartListener*) rCmp.pItems[ nFound ])->GetRangeList();
-//STRIP001                  BOOL b1 = rList1.Is();
-//STRIP001                  BOOL b2 = rList2.Is();
-//STRIP001                  if ( b1 != b2 || (b1 && b2 && (*rList1 != *rList2)) )
-//STRIP001                      pDoc->SetChartRangeList( pCL->GetString(), rList1 );
-//STRIP001              }
-//STRIP001              else
-//STRIP001                  pDoc->SetChartRangeList( pCL->GetString(), pCL->GetRangeList() );
-//STRIP001          }
-//STRIP001          bDirty = TRUE;
-//STRIP001          pCL->SetDirty( TRUE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( bDirty )
-//STRIP001      StartTimer();
-//STRIP001 }
 
 
-//STRIP001 void ScChartListenerCollection::SetRangeDirty( const ScRange& rRange )
-//STRIP001 {
-//STRIP001  BOOL bDirty = FALSE;
-//STRIP001  for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-//STRIP001  {
-//STRIP001      ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
-//STRIP001      const ScRangeListRef& rList = pCL->GetRangeList();
-//STRIP001      if ( rList.Is() && rList->Intersects( rRange ) )
-//STRIP001      {
-//STRIP001          bDirty = TRUE;
-//STRIP001          pCL->SetDirty( TRUE );
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( bDirty )
-//STRIP001      StartTimer();
-//STRIP001 }
 
 
 /*N*/ void ScChartListenerCollection::UpdateScheduledSeriesRanges()
@@ -462,7 +350,6 @@ using namespace ::com::sun::star;
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
-//STRIP001 /*?*/        pCL->UpdateScheduledSeriesRanges();
 /*N*/   }
 /*N*/ }
 
@@ -473,25 +360,10 @@ using namespace ::com::sun::star;
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
-//STRIP001 /*?*/        pCL->UpdateSeriesRangesIntersecting( aRange );
 /*N*/   }
 /*N*/ }
 
 
-//STRIP001 BOOL ScChartListenerCollection::operator==( const ScChartListenerCollection& r )
-//STRIP001 {
-//STRIP001  // hier nicht StrCollection::operator==() verwenden, der umstaendlich via
-//STRIP001  // IsEqual und Compare laeuft, stattdessen ScChartListener::operator==()
-//STRIP001  if ( pDoc != r.pDoc || nCount != r.nCount )
-//STRIP001      return FALSE;
-//STRIP001  for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
-//STRIP001  {
-//STRIP001      if ( *((ScChartListener*) pItems[ nIndex ]) !=
-//STRIP001              *((ScChartListener*) r.pItems[ nIndex ]) )
-//STRIP001          return FALSE;
-//STRIP001  }
-//STRIP001  return TRUE;
-//STRIP001 }
 
 
 

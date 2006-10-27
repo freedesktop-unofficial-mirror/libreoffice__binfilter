@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sc_callform.cxx,v $
  *
- *  $Revision: 1.5 $
+ *  $Revision: 1.6 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-07 17:04:18 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 14:29:27 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -34,28 +34,16 @@
  ************************************************************************/
 
 #ifdef PCH
-// auto strip #include "core_pch.hxx"
 #endif
 
 #pragma hdrstop
 
 // INCLUDE ---------------------------------------------------------------
 
-// auto strip #ifndef _SV_SVAPP_HXX //autogen
-// auto strip #include <vcl/svapp.hxx>
-// auto strip #endif
 #ifndef _VOS_MODULE_HXX_
 #include <vos/module.hxx>
 #endif
-// auto strip #ifndef _OSL_FILE_HXX_
-// auto strip #include <osl/file.hxx>
-// auto strip #endif
-// auto strip #ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
-// auto strip #include <unotools/transliterationwrapper.hxx>
-// auto strip #endif
 
-// auto strip #include "callform.hxx"
-// auto strip #include "global.hxx"
 #include "adiasync.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {
@@ -138,23 +126,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 //------------------------------------------------------------------------
 
-//STRIP001 FuncData::FuncData(const ModuleData*pModule,
-//STRIP001                 const String&    rIName,
-//STRIP001                 const String&    rFName,
-//STRIP001                       USHORT nNo,
-//STRIP001                  USHORT  nCount,
-//STRIP001                 const ParamType* peType,
-//STRIP001                  ParamType  eType) :
-//STRIP001  pModuleData     (pModule),
-//STRIP001  aInternalName   (rIName),
-//STRIP001  aFuncName       (rFName),
-//STRIP001  nNumber         (nNo),
-//STRIP001  nParamCount     (nCount),
-//STRIP001  eAsyncType      (eType)
-//STRIP001 {
-//STRIP001  for (USHORT i = 0; i < MAXFUNCPARAM; i++)
-//STRIP001      eParamType[i] = peType[i];
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -175,7 +146,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/ short FuncCollection::Compare(DataObject* pKey1, DataObject* pKey2) const
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 return (short) ScGlobal::pTransliteration->compareString(
-//STRIP001      ((FuncData*)pKey1)->aInternalName, ((FuncData*)pKey2)->aInternalName );
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -213,8 +183,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/   virtual DataObject*     Clone() const { return new ModuleCollection(*this); }
 /*N*/           ModuleData*     operator[]( const USHORT nIndex) const {return (ModuleData*)At(nIndex);}
     virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short          Compare(DataObject* pKey1, DataObject* pKey2) const;
-//STRIP001          BOOL            SearchModule( const String& rName,
-//STRIP001                                        const ModuleData*& rpModule ) const;
 /*N*/ };
 
 /*N*/ #pragma code_seg("SCSTATICS")
@@ -225,112 +193,12 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 //------------------------------------------------------------------------
 
-//STRIP001 short ModuleCollection::Compare(DataObject* pKey1, DataObject* pKey2) const
-//STRIP001 {
-//STRIP001     return (short) ScGlobal::pTransliteration->compareString(
-//STRIP001      ((ModuleData*)pKey1)->aName, ((ModuleData*)pKey2)->aName );
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL ModuleCollection::SearchModule( const String& rName,
-//STRIP001                                   const ModuleData*& rpModule ) const
-//STRIP001 {
-//STRIP001  USHORT nIndex;
-//STRIP001  ModuleData aSearchModule(rName, 0);
-//STRIP001  BOOL bFound = Search( &aSearchModule, nIndex );
-//STRIP001  if (bFound)
-//STRIP001      rpModule = (ModuleData*)At(nIndex);
-//STRIP001  else
-//STRIP001      rpModule = 0;
-//STRIP001  return bFound;
-//STRIP001 }
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-//STRIP001 BOOL InitExternalFunc(const ::rtl::OUString& rModuleName)
-//STRIP001 {
-//STRIP001  String aModuleName( rModuleName );
-//STRIP001
-//STRIP001  // Module schon geladen?
-//STRIP001  const ModuleData* pTemp;
-//STRIP001  if (aModuleCollection.SearchModule(aModuleName, pTemp))
-//STRIP001      return FALSE;
-//STRIP001
-//STRIP001  ::rtl::OUString aNP;
-//STRIP001  aNP = rModuleName;
-//STRIP001
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  OModule* pLib = new OModule( aNP );
-//STRIP001  if (pLib->isLoaded())
-//STRIP001  {
-//STRIP001      FARPROC fpGetCount = (FARPROC)pLib->getSymbol(LIBFUNCNAME(GETFUNCTIONCOUNT));
-//STRIP001      FARPROC fpGetData = (FARPROC)pLib->getSymbol(LIBFUNCNAME(GETFUNCTIONDATA));
-//STRIP001      if ((fpGetCount != NULL) && (fpGetData != NULL))
-//STRIP001      {
-//STRIP001          FARPROC fpIsAsync = (FARPROC)pLib->getSymbol(LIBFUNCNAME(ISASYNC));
-//STRIP001          FARPROC fpAdvice = (FARPROC)pLib->getSymbol(LIBFUNCNAME(ADVICE));
-//STRIP001          FARPROC fpSetLanguage = (FARPROC)pLib->getSymbol(LIBFUNCNAME(SETLANGUAGE));
-//STRIP001          if ( fpSetLanguage )
-//STRIP001          {
-//STRIP001                 LanguageType eLanguage = Application::GetSettings().GetUILanguage();
-//STRIP001              USHORT nLanguage = (USHORT) eLanguage;
-//STRIP001              (*((SetLanguagePtr)fpSetLanguage))( nLanguage );
-//STRIP001          }
-//STRIP001
-//STRIP001          // Module in die Collection aufnehmen
-//STRIP001          ModuleData* pModuleData = new ModuleData(aModuleName, pLib);
-//STRIP001          aModuleCollection.Insert(pModuleData);
-//STRIP001
-//STRIP001          // Schnittstelle initialisieren
-//STRIP001          AdvData pfCallBack = &ScAddInAsyncCallBack;
-//STRIP001          FuncData* pFuncData;
-//STRIP001          FuncCollection* pFuncCol = ScGlobal::GetFuncCollection();
-//STRIP001          USHORT nCount;
-//STRIP001          (*((GetFuncCountPtr)fpGetCount))(nCount);
-//STRIP001          for (USHORT i=0; i < nCount; i++)
-//STRIP001          {
-//STRIP001              sal_Char cFuncName[256];
-//STRIP001              sal_Char cInternalName[256];
-//STRIP001              USHORT nParamCount;
-//STRIP001              ParamType eParamType[MAXFUNCPARAM];
-//STRIP001              ParamType eAsyncType = NONE;
-//STRIP001              // #62113# alles initialisieren, falls das AddIn sich schlecht verhaelt
-//STRIP001              cFuncName[0] = 0;
-//STRIP001              cInternalName[0] = 0;
-//STRIP001              nParamCount = 0;
-//STRIP001              for ( USHORT j=0; j<MAXFUNCPARAM; j++ )
-//STRIP001              {
-//STRIP001                  eParamType[j] = NONE;
-//STRIP001              }
-//STRIP001              (*((GetFuncDataPtr)fpGetData))(i, cFuncName, nParamCount,
-//STRIP001                                             eParamType, cInternalName);
-//STRIP001              if( fpIsAsync )
-//STRIP001              {
-//STRIP001                  (*((IsAsync)fpIsAsync))(i, &eAsyncType);
-//STRIP001                  if ( fpAdvice && eAsyncType != NONE )
-//STRIP001                      (*((Advice)fpAdvice))( i, pfCallBack );
-//STRIP001              }
-//STRIP001              String aInternalName( cInternalName, osl_getThreadTextEncoding() );
-//STRIP001              String aFuncName( cFuncName, osl_getThreadTextEncoding() );
-//STRIP001              pFuncData = new FuncData( pModuleData,
-//STRIP001                                        aInternalName,
-//STRIP001                                        aFuncName,
-//STRIP001                                        i,
-//STRIP001                                        nParamCount,
-//STRIP001                                        eParamType,
-//STRIP001                                        eAsyncType );
-//STRIP001              pFuncCol->Insert(pFuncData);
-//STRIP001          }
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001      else
-//STRIP001          delete pLib;
-//STRIP001  }
-//STRIP001  else
-//STRIP001      delete pLib;
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
@@ -441,70 +309,15 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL FuncData::Advice( AdvData pfCallback )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  OModule* pLib = pModuleData->GetInstance();
-//STRIP001  FARPROC fProc = (FARPROC)pLib->getSymbol(LIBFUNCNAME(ADVICE));
-//STRIP001  if (fProc != NULL)
-//STRIP001  {
-//STRIP001      ((::Advice)fProc)(nNumber, pfCallback);
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL FuncData::Unadvice( double nHandle )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  OModule* pLib = pModuleData->GetInstance();
-//STRIP001  FARPROC fProc = (FARPROC)pLib->getSymbol(LIBFUNCNAME(UNADVICE));
-//STRIP001  if (fProc != NULL)
-//STRIP001  {
-//STRIP001      ((::Unadvice)fProc)(nHandle);
-//STRIP001      bRet = TRUE;
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 const String& FuncData::GetModuleName() const
-//STRIP001 {
-//STRIP001  // DBG_ASSERT( pModuleData, "Keine Arme, keine Kekse" ):
-//STRIP001  return pModuleData->GetName();
-//STRIP001 }
 
 //------------------------------------------------------------------------
 
-//STRIP001 BOOL FuncData::GetParamDesc( String& aName, String& aDesc, USHORT nParam )
-//STRIP001 {
-//STRIP001  BOOL bRet = FALSE;
-//STRIP001  if ( nParam <= nParamCount )
-//STRIP001  {
-//STRIP001      OModule* pLib = pModuleData->GetInstance();
-//STRIP001      FARPROC fProc = (FARPROC) pLib->getSymbol( LIBFUNCNAME(GETPARAMDESC) );
-//STRIP001      if ( fProc != NULL )
-//STRIP001      {
-//STRIP001          sal_Char pcName[256];
-//STRIP001          sal_Char pcDesc[256];
-//STRIP001          *pcName = *pcDesc = 0;
-//STRIP001          USHORT nFuncNo = nNumber;   // nicht per Reference versauen lassen..
-//STRIP001          ((::GetParamDesc)fProc)( nFuncNo, nParam, pcName, pcDesc );
-//STRIP001          aName = String( pcName, osl_getThreadTextEncoding() );
-//STRIP001          aDesc = String( pcDesc, osl_getThreadTextEncoding() );
-//STRIP001          bRet = TRUE;
-//STRIP001      }
-//STRIP001  }
-//STRIP001  if ( !bRet )
-//STRIP001  {
-//STRIP001      aName.Erase();
-//STRIP001      aDesc.Erase();
-//STRIP001  }
-//STRIP001  return bRet;
-//STRIP001 }
 
 
 }
