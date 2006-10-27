@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_macrofld.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:12:49 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:38:40 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -36,17 +36,11 @@
 
 #pragma hdrstop
 
-// auto strip #ifndef _HINTIDS_HXX
-// auto strip #include <hintids.hxx>
-// auto strip #endif
 
 #ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
 #endif
 
-// auto strip #ifndef _DOC_HXX
-// auto strip #include <doc.hxx>
-// auto strip #endif
 #ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
 #endif
@@ -72,7 +66,6 @@ using namespace ::rtl;
 /*N*/ SwFieldType* SwMacroFieldType::Copy() const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType* pType = new SwMacroFieldType(pDoc);
-//STRIP001  return pType;
 /*N*/ }
 
 /*--------------------------------------------------------------------

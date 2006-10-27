@@ -4,9 +4,9 @@
  *
  *  $RCSfile: sw_flddat.cxx,v $
  *
- *  $Revision: 1.6 $
+ *  $Revision: 1.7 $
  *
- *  last change: $Author: rt $ $Date: 2005-09-08 09:11:20 $
+ *  last change: $Author: rt $ $Date: 2006-10-27 22:38:06 $
  *
  *  The Contents of this file are made available subject to
  *  the terms of GNU Lesser General Public License Version 2.1.
@@ -38,9 +38,6 @@
 
 #include <math.h>
 
-// auto strip #ifndef _DATETIME_HXX
-// auto strip #include <tools/datetime.hxx>
-// auto strip #endif
 #ifndef _ZFORLIST_HXX //autogen
 #include <svtools/zforlist.hxx>
 #endif
@@ -55,9 +52,6 @@
 #ifndef _DOC_HXX
 #include <doc.hxx>
 #endif
-// auto strip #ifndef _FLDBAS_HXX
-// auto strip #include <fldbas.hxx>
-// auto strip #endif
 #ifndef _FLDDAT_HXX
 #include <flddat.hxx>
 #endif
@@ -82,7 +76,6 @@ using namespace ::com::sun::star;
 /*N*/ SwFieldType* SwDateTimeFieldType::Copy() const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldType *pTmp = new SwDateTimeFieldType(GetDoc());
-//STRIP001  return pTmp;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -169,22 +162,11 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldT
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 void SwDateTimeField::SetPar2(const String& rStr)
-//STRIP001 {
-//STRIP001  nOffset = rStr.ToInt32();
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-//STRIP001 String SwDateTimeField::GetPar2() const
-//STRIP001 {
-//STRIP001  if (nOffset)
-//STRIP001      return String::CreateFromInt32(nOffset);
-//STRIP001  else
-//STRIP001      return aEmptyStr;
-//STRIP001 }
 
 /*--------------------------------------------------------------------
     Beschreibung:
